@@ -227,16 +227,11 @@
   }
 
   .acc-panel{
-    display:grid;
-    grid-template-rows:0fr;
-    transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-panel{
-    grid-template-rows:1fr;
+    height:0;
+    overflow:hidden;
+    transition:height .4s cubic-bezier(.4,0,.2,1);
   }
   .acc-panel-inner{
-    overflow:hidden;
-    min-height:0;
     padding:0 28px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -302,16 +297,11 @@
     border-bottom: 1px dashed #dceef5;
   }
   .sub-panel{
-    display:grid;
-    grid-template-rows:0fr;
-    transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);
-  }
-  .sub-item.open > .sub-panel{
-    grid-template-rows:1fr;
+    height:0;
+    overflow:hidden;
+    transition:height .4s cubic-bezier(.4,0,.2,1);
   }
   .sub-panel-inner{
-    overflow:hidden;
-    min-height:0;
     padding:0 24px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -1365,35 +1355,68 @@
 <script>
 (function(){
   // Accordion Logic
+  // Panel height is driven explicitly in JS (rather than the CSS grid-template-rows
+  // 0fr/1fr trick) because iOS Safari does not always collapse a 0fr grid row all
+  // the way to zero, leaving a residual gap under the header.
+  function getPanel(item, toggleSelector){
+    var toggle = item.querySelector(toggleSelector);
+    return toggle.nextElementSibling;
+  }
+
+  function setItemOpen(item, toggleSelector, willOpen){
+    var panel = getPanel(item, toggleSelector);
+    if(!panel) return;
+    var isOpen = item.classList.contains("open");
+
+    if(willOpen){
+      item.classList.add("open");
+      var target = panel.scrollHeight;
+      panel.style.height = target + "px";
+      panel.addEventListener("transitionend", function onEnd(e){
+        if(e.propertyName === "height"){
+          panel.style.height = "auto";
+          panel.removeEventListener("transitionend", onEnd);
+        }
+      });
+    } else {
+      if(!isOpen) return;
+      var current = panel.scrollHeight;
+      panel.style.height = current + "px";
+      panel.offsetHeight; // force reflow so the browser registers the starting height
+      requestAnimationFrame(function(){
+        item.classList.remove("open");
+        panel.style.height = "0px";
+      });
+    }
+  }
+
   function bindAccordion(itemSelector, toggleSelector){
     document.querySelectorAll(itemSelector).forEach(function(item){
       var toggle = item.querySelector(toggleSelector);
+      var panel = toggle.nextElementSibling;
       toggle.addEventListener("click", function(e){
         // Do not toggle if text is being selected
         var selection = window.getSelection();
         if(selection.toString().length > 0) return;
-        
+
         var willOpen = !item.classList.contains("open");
         if(willOpen){
           Array.prototype.forEach.call(item.parentElement.children, function(sibling){
             if(sibling !== item && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
+              setItemOpen(sibling, toggleSelector, false);
             }
           });
         }
-        item.classList.toggle("open", willOpen);
+        setItemOpen(item, toggleSelector, willOpen);
 
         if(willOpen){
-          var panel = toggle.nextElementSibling;
           var scrolled = false;
           var doScroll = function(){
             if(scrolled) return;
             scrolled = true;
             toggle.scrollIntoView({behavior:"smooth", block:"start"});
           };
-          if(panel){
-            panel.addEventListener("transitionend", doScroll, {once:true});
-          }
+          panel.addEventListener("transitionend", doScroll, {once:true});
           setTimeout(doScroll, 450);
         }
       });
@@ -1404,14 +1427,20 @@
   bindAccordion("[data-sub]", "[data-sub-toggle]");
 
   document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
-      item.classList.add("open");
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      setItemOpen(item, "[data-acc-toggle]", true);
+    });
+    document.querySelectorAll("[data-sub]").forEach(function(item){
+      setItemOpen(item, "[data-sub-toggle]", true);
     });
   });
 
   document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
-      item.classList.remove("open");
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      setItemOpen(item, "[data-acc-toggle]", false);
+    });
+    document.querySelectorAll("[data-sub]").forEach(function(item){
+      setItemOpen(item, "[data-sub-toggle]", false);
     });
   });
 
