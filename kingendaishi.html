@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>近代・現代史 講義まとめノート ― 「近代」と「現代」の境界はどこに引かれるのか</title>
+<style>
+  :root{
+    --sky:#4fc3f7;
+    --sky-deep:#0277bd;
+    --sun:#ffca28;
+    --sun-deep:#f57f17;
+    --coral:#ef6c60;
+    --green:#66bb6a;
+    --green-deep:#2e7d32;
+    --grape:#7e57c2;
+    --card:#fffdf7;
+    --paper:#fbf6e9;
+    --ink:#33322e;
+    --ink-soft:#6d6a60;
+    --line:#e8e0cc;
+    --pause-bg:#fff8e1;
+    --pause-border:#ffca28;
+    --accent-bg:#f4f9f4;
+    --tape:rgba(255,224,130,0.75);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;scroll-behavior:smooth;}
+  body{
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 88% -8%, #fff3c4 0%, rgba(255,243,196,0) 42%),
+      linear-gradient(180deg, #dff3fb 0%, #fdf9ec 20%, #fdf9ec 100%);
+    line-height:2.0;
+    letter-spacing:0.035em;
+  }
+
+  /* ---------- Progress Bar ---------- */
+  #progress-bar{
+    position:fixed; top:0; left:0;
+    height:5px; width:0%;
+    background:linear-gradient(90deg, var(--sky), var(--green), var(--sun), var(--coral));
+    z-index:9999;
+    transition:width .1s ease-out;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:74px 24px 100px;
+    text-align:center;
+    background:linear-gradient(165deg, var(--sky) 0%, #29b6f6 50%, var(--sky-deep) 100%);
+    color:#fff;
+  }
+  .hero .sun{
+    position:absolute; top:-70px; right:-40px;
+    width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fff6cc 0%, var(--sun) 45%, var(--sun-deep) 100%);
+    box-shadow:0 0 60px 18px rgba(255,202,40,.45);
+    animation:pulseSun 8s infinite alternate;
+  }
+  @keyframes pulseSun{0%{transform:scale(1);opacity:.9;}100%{transform:scale(1.06);opacity:1;}}
+  .hero .cloud{position:absolute; opacity:.9; animation:floatCloud 22s infinite linear;}
+  @keyframes floatCloud{0%{transform:translateX(0);}50%{transform:translateX(24px);}100%{transform:translateX(0);}}
+  .hero .cloud svg{display:block;}
+  .hero .cloud.c1{top:26px; left:-30px; width:150px;}
+  .hero .cloud.c2{top:104px; right:110px; width:110px; opacity:.7; animation-duration:28s; animation-direction:reverse;}
+  .hero-inner{position:relative; z-index:2;}
+  .kicker{
+    display:inline-block;
+    font-size:.82rem; letter-spacing:.3em;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:999px;
+    padding:8px 22px; margin-bottom:22px;
+    backdrop-filter:blur(4px);
+  }
+  .hero h1{
+    margin:0 0 16px;
+    font-size:clamp(1.9rem, 4.6vw, 3.1rem);
+    font-weight:800;
+    text-shadow:0 3px 12px rgba(0,60,90,.3);
+  }
+  .hero h2{
+    margin:0 auto; max-width:620px;
+    font-size:clamp(1.02rem, 2.4vw, 1.3rem);
+    font-weight:500; color:#e8f8ff; line-height:1.7;
+  }
+  .namecard{
+    display:inline-block;
+    margin-top:26px;
+    background:rgba(255,255,255,.94);
+    color:var(--ink);
+    border-radius:10px;
+    padding:12px 26px;
+    font-size:.92rem;
+    line-height:1.9;
+    box-shadow:0 6px 18px rgba(0,50,80,.18);
+    transform:rotate(-1.2deg);
+    text-align:left;
+  }
+  .namecard b{color:var(--sky-deep);}
+  .wave{position:absolute; left:0; right:0; bottom:-2px; line-height:0;}
+  .wave svg{width:100%; height:70px; display:block;}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:820px; margin:0 auto; padding:0 24px 90px;}
+  .toc-note{text-align:center; color:var(--ink-soft); font-size:.95rem; margin:40px 0 26px;}
+
+  .toolbar-container{
+    position:sticky; top:10px; z-index:100;
+    background:rgba(253,249,236,.92);
+    backdrop-filter:blur(8px);
+    padding:10px 0; border-radius:999px;
+    margin-bottom:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,.04);
+  }
+  .toolbar{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
+  .toolbar button{
+    font-family:inherit; font-size:.9rem; font-weight:600;
+    color:var(--sky-deep); background:#fff;
+    border:1.5px solid var(--sky); border-radius:999px;
+    padding:10px 24px; cursor:pointer;
+    transition:all .2s ease;
+    box-shadow:0 2px 6px rgba(41,182,246,.15);
+  }
+  .toolbar button:hover{
+    background:var(--sky); color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(41,182,246,.25);
+  }
+
+  /* ---------- Accordion ---------- */
+  .acc-item{
+    background:var(--card);
+    border-radius:18px;
+    margin-bottom:16px;
+    box-shadow:0 4px 20px rgba(80,60,20,.06);
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .acc-item:hover{box-shadow:0 6px 25px rgba(80,60,20,.1);}
+  .acc-header{
+    width:100%; display:flex; align-items:center; gap:16px;
+    background:none; border:none; padding:20px 24px;
+    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+  }
+  .acc-header .num{
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg, var(--sun), var(--sun-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:1rem;
+    box-shadow:0 3px 10px rgba(245,127,23,.28);
+  }
+  .acc-header .title{flex:1 1 auto; font-size:1.13rem; font-weight:700; letter-spacing:.04em;}
+  .acc-header .title small{
+    display:block; font-weight:500; font-size:.84rem;
+    color:var(--ink-soft); margin-top:4px; letter-spacing:.02em;
+  }
+  .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--sky-deep); transition:transform .3s cubic-bezier(.4,0,.2,1);}
+  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
+  .acc-item.open > .acc-header{
+    background:linear-gradient(90deg, #f2fbff, #fffdf7);
+    border-bottom:1px solid var(--line);
+  }
+  .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
+  .acc-panel-inner{overflow:hidden; min-height:0; padding:0 28px; opacity:0; transition:opacity .3s ease .1s;}
+  .acc-item.open > .acc-panel > .acc-panel-inner{padding:18px 28px 32px; opacity:1;}
+
+  /* nested */
+  .sub-list{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
+  .sub-item{background:var(--accent-bg); border:1px solid #dde9dd; border-radius:14px; overflow:hidden;}
+  .sub-header{
+    width:100%; display:flex; align-items:center; gap:14px;
+    background:none; border:none; padding:16px 20px;
+    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+  }
+  .sub-header:hover{background:rgba(255,255,255,.6);}
+  .sub-header .num{
+    flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(135deg, var(--green), var(--green-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:.82rem;
+  }
+  .sub-header .title{flex:1 1 auto; font-size:1.02rem; font-weight:700;}
+  .sub-header .chev{width:20px; height:20px; color:var(--green-deep); transition:transform .3s ease;}
+  .sub-item.open > .sub-header .chev{transform:rotate(180deg);}
+  .sub-item.open > .sub-header{border-bottom:1px dashed #cfe3cf;}
+  .sub-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
+  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
+  .sub-panel-inner{overflow:hidden; min-height:0; padding:0 24px; opacity:0; transition:opacity .3s ease .1s;}
+  .sub-item.open > .sub-panel > .sub-panel-inner{padding:16px 24px 24px; opacity:1;}
+
+  /* ---------- Body typography ---------- */
+  p{margin:0 0 1.2em; font-size:1.04rem; color:#3b3a35;}
+  .no-indent{text-indent:0;}
+  h3.sec{
+    font-size:1.05rem; color:var(--sky-deep);
+    margin:2em 0 .8em; padding-left:12px;
+    border-left:5px solid var(--sky);
+    letter-spacing:.05em;
+  }
+  .pullquote{
+    text-align:center; font-size:1.22rem; font-weight:700;
+    color:var(--sky-deep); margin:1.8em 0; text-indent:0; padding:0 20px; position:relative;
+  }
+  .pullquote::before, .pullquote::after{
+    content:''; display:inline-block; width:20px; height:2px;
+    background:var(--sky-deep); vertical-align:middle; margin:0 15px; opacity:.3;
+  }
+  .quote{
+    margin:1.5em 0; padding:18px 24px;
+    border-left:5px solid var(--grape);
+    background:#f6f3fc; border-radius:0 12px 12px 0;
+    font-style:italic; color:#4a4560;
+    box-shadow:0 2px 8px rgba(0,0,0,.02);
+  }
+  .quote .author{display:block; margin-top:10px; font-style:normal; font-size:.88rem; text-align:right; color:var(--grape); font-weight:bold;}
+
+  /* 講義ノートふうのメモ */
+  .pause{
+    margin-top:2em; padding:24px;
+    background:var(--pause-bg);
+    border:2px dashed var(--pause-border);
+    border-radius:16px; position:relative;
+    box-shadow:0 4px 12px rgba(255,202,40,.12);
+  }
+  .pause::before{
+    content:"講義メモ";
+    position:absolute; top:-11px; left:20px;
+    background:var(--pause-bg); padding:0 8px;
+    font-size:.74rem; font-weight:700; letter-spacing:.06em; color:#c79100;
+  }
+  .pause p{margin:0; text-indent:0; color:#6d4c00; font-weight:600; text-align:left; font-size:1.06rem; line-height:1.75;}
+  .pause p + p{margin-top:.7em;}
+
+  .memo{
+    margin:1.8em 0; padding:22px 24px;
+    background:#eef7fd;
+    border:2px dashed #81d4fa;
+    border-radius:16px; position:relative;
+  }
+  .memo::before{
+    content:"理解の変化";
+    position:absolute; top:-11px; left:20px;
+    background:#eef7fd; padding:0 8px;
+    font-size:.74rem; font-weight:700; letter-spacing:.06em; color:var(--sky-deep);
+  }
+  .memo p{margin:0; text-indent:0; color:#0d4a6b; font-size:1.02rem; line-height:1.8;}
+  .memo p + p{margin-top:.7em;}
+
+  .card-note{
+    margin:1.8em 0; padding:22px 24px 20px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(80,60,20,.06);
+    position:relative;
+  }
+  .card-note::after{
+    content:""; position:absolute; top:-9px; left:50%;
+    width:76px; height:20px; margin-left:-38px;
+    background:var(--tape);
+    transform:rotate(-2deg);
+    box-shadow:0 1px 3px rgba(0,0,0,.08);
+  }
+  .card-note h4{
+    margin:.2em 0 .8em; font-size:1.02rem; color:var(--coral);
+    letter-spacing:.05em;
+  }
+  .card-note p:last-child{margin-bottom:0;}
+
+  strong.term{
+    color:var(--ink); font-weight:700;
+    background:linear-gradient(180deg, transparent 64%, rgba(255,202,40,.65) 64%);
+    padding:0 2px;
+  }
+  strong.term2{
+    color:var(--ink); font-weight:700;
+    background:linear-gradient(180deg, transparent 64%, rgba(129,212,250,.6) 64%);
+    padding:0 2px;
+  }
+
+  /* 年表 */
+  .chrono{list-style:none; margin:1.2em 0 0; padding:0 0 0 4px;}
+  .chrono li{
+    position:relative; padding:0 0 1.1em 26px;
+    border-left:3px solid #ffe082; margin-left:8px;
+    font-size:1rem; line-height:1.8;
+  }
+  .chrono li::before{
+    content:""; position:absolute; left:-9px; top:.62em;
+    width:15px; height:15px; border-radius:50%;
+    background:#fff; border:3px solid var(--sun-deep);
+  }
+  .chrono li b{color:var(--sun-deep); margin-right:.6em; letter-spacing:.04em;}
+  .chrono li:last-child{border-left-color:transparent;}
+  .chrono.blue li{border-left-color:#b3e5fc;}
+  .chrono.blue li::before{border-color:var(--sky-deep);}
+  .chrono.blue li b{color:var(--sky-deep);}
+
+  /* 表 */
+  .tablewrap{overflow-x:auto; margin:1.6em 0;}
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:.96rem; background:#fff;}
+  th,td{border:1px solid var(--line); padding:10px 12px; text-align:left; line-height:1.7;}
+  th{background:#f3f8ec; color:var(--green-deep); font-weight:700; white-space:nowrap;}
+  td b{color:var(--coral);}
+
+  .dl-term{margin:0 0 1.5em; padding-bottom:1.5em; border-bottom:1px solid var(--line);}
+  .dl-term:last-child{border-bottom:none;}
+  .dl-term dt{font-weight:700; font-size:1.06rem; color:var(--sky-deep); margin-bottom:6px;}
+  .dl-term dd{margin:0; color:#3b3a35; font-size:1rem;}
+
+  .book-group h4{color:var(--coral); font-size:1.06rem; margin:1.5em 0 .8em; border-left:4px solid var(--coral); padding-left:10px;}
+  .book-group ul{margin:0 0 1em; padding-left:1.5em;}
+  .book-group li{margin-bottom:.8em; font-size:1rem; color:#3b3a35;}
+
+  .closing{
+    text-align:center; font-style:italic; color:var(--ink-soft);
+    margin-top:2em; padding:20px;
+    background:rgba(255,255,255,.6); border-radius:12px;
+  }
+
+  footer{
+    text-align:center; color:var(--ink-soft); font-size:.88rem;
+    padding:30px 20px; background:#f4f8ef; border-top:1px solid var(--line);
+    line-height:1.9;
+  }
+
+  @media (max-width:600px){
+    .hero{padding:56px 16px 78px;}
+    .acc-header{padding:16px 14px;}
+    .acc-item.open > .acc-panel > .acc-panel-inner{padding:14px 16px 26px;}
+    .sub-item.open > .sub-panel > .sub-panel-inner{padding:12px 16px 20px;}
+    .pause,.memo,.card-note{padding:20px 16px;}
+    .pullquote::before,.pullquote::after{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div class="hero">
+  <div class="sun"></div>
+  <div class="cloud c1">
+    <svg viewBox="0 0 200 90" fill="#ffffff"><ellipse cx="60" cy="55" rx="55" ry="30"/><ellipse cx="110" cy="40" rx="45" ry="34"/><ellipse cx="150" cy="58" rx="38" ry="24"/></svg>
+  </div>
+  <div class="cloud c2">
+    <svg viewBox="0 0 200 90" fill="#ffffff"><ellipse cx="60" cy="55" rx="55" ry="30"/><ellipse cx="110" cy="40" rx="45" ry="34"/><ellipse cx="150" cy="58" rx="38" ry="24"/></svg>
+  </div>
+  <div class="hero-inner">
+    <span class="kicker">教養課程 ／ 近代・現代史特論 講義ノート</span>
+    <h1>「近代」と「現代」の境界は<br>どこに引かれるのか</h1>
+    <h2>世界史と日本史を一本の年表に重ね合わせて考える、講義まとめノート</h2>
+    <div class="namecard">
+      <b>科目名</b>：近代・現代史特論（教養科目）<br>
+      <b>整理の時期</b>：学期中、講義の合間に少しずつ<br>
+      <b>参照した資料</b>：教科書、参考文献、配布年表、講義レジュメ
+    </div>
+  </div>
+  <div class="wave">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fdf9ec" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,90 L0,90 Z"/></svg>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="toc-note no-indent">気になる項目をクリックすると、その部分だけが開きます。順に読んでも、関心のある部分から読んでも構いません。</p>
+
+  <div class="toolbar-container">
+    <div class="toolbar">
+      <button id="expandAll" type="button">全部開く</button>
+      <button id="collapseAll" type="button">全部閉じる</button>
+    </div>
+  </div>
+
+  <div id="accordion">
+
+    <!-- 1 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">1</span>
+        <span class="title">ノートを取り始めたきっかけ<small>教科書の年表を見比べていて気づいたこと</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>このノートをまとめようと思ったきっかけは、実家にあった高校時代の教科書と、大学の講義で配布された参考年表を、たまたま並べて眺めていたことにある。どちらの年表にも、最下段に「近代」「現代」という区分が印刷されている。ところが、よく見ると、日本史の年表と世界史の年表とでは、「近代」が始まる位置がまったく異なっていた。</p>
+          <p>日本史の年表では、「近代」は<strong class="term">明治維新（1868年）</strong>のあたりから始まっている。ところが世界史の年表では、「近代」ははるかに早く、<strong class="term">大航海時代</strong>や<strong class="term">宗教改革</strong>のころ、つまり1500年前後から始まっている。三百年以上のずれがある。同じ「近代」という語を使っているのに、なぜこれほど違うのだろうか。</p>
+          <p>さらに気になったのは、「現代」の始まりも、文献によってばらばらだという点である。ある書物では1914年（第一次世界大戦の勃発）、別の書物では1945年（第二次世界大戦の終結）、また別の書物では1989年（ベルリンの壁崩壊）が起点とされていた。いずれの記述も迷いのない断定的な書きぶりだったので、かえって混乱した。</p>
+          <p>そこで、このノートの主題を、次のように設定した。</p>
+          <p class="pullquote">「近代」と「現代」は、誰が、どのような基準で線を引いているのか</p>
+          <p>個々の出来事を暗記することが目的ではない。<strong class="term2">出来事の並べ方そのもの</strong>を検討することが、このノートの目的である。並べ方が変われば、同じ出来事でも見え方が変わる。地図の中心をどこに置くかによって、世界の形が違って見えるのと、いくらか似ている。</p>
+          <div class="memo">
+            <p><b>当初の理解：</b>時代区分には、専門家の間で合意された「正解」があらかじめ存在しているのだろうと思っていた。</p>
+            <p><b>調べて分かったこと：</b>そのような合意は存在しない。時代区分とは、後の時代に生きる者が、自分の立っている現在から過去を振り返り、便宜的に引いた線にすぎない。したがって、立っている場所が変われば、線の位置も変わる。</p>
+          </div>
+          <div class="pause">
+            <p>問い：もし自分で年表を作るとしたら、「現在」の始まりをどの年に置くか。またそれはなぜか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">2</span>
+        <span class="title">整理の方法<small>どのように情報を集め、どう整理したか</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>まず、ノートに世界史と日本史を上下二段に分けた対照年表を作成した。上段に世界の出来事、下段に日本の出来事を、時系列で書き入れていく。これが、このノート全体の基盤となる作業である。</p>
+          <p>「上下二段に分ける」という方法を取ったのには理由がある。世界史と日本史をそれぞれ別のノートに記録していると、同じ時期に地球の各地で何が起きていたかが見えなくなってしまう。たとえば、日本にペリーの艦隊が来航した1853年前後には、クリミア戦争、インド大反乱、アメリカの南北戦争、中国の太平天国の乱が並行して起きている。個別に見ていた出来事が、上下に並べた瞬間、一つのつながりとして立ち上がってきた。</p>
+          <p>次に、蛍光マーカーで五色に色分けをした。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>色</th><th>意味</th><th>その色でぬった出来事の例</th></tr>
+              <tr><td><b>赤</b></td><td>戦争・革命</td><td>フランス革命、二つの世界大戦、戊辰戦争</td></tr>
+              <tr><td><b>青</b></td><td>技術・産業のかわりめ</td><td>蒸気機関、鉄道、電気、コンピュータ、インターネット</td></tr>
+              <tr><td><b>緑</b></td><td>仕組み・制度のかわりめ</td><td>憲法、選挙、学校制度、国際連合</td></tr>
+              <tr><td><b>黄</b></td><td>人やモノの移動</td><td>大航海、移民、鉄道網、飛行機、コンテナ船</td></tr>
+              <tr><td><b>紫</b></td><td>考え方のかわりめ</td><td>宗教改革、啓蒙思想、進化論、人権の思想</td></tr>
+            </table>
+          </div>
+          <p>色分けをしてみて、興味深い規則性に気づいた。赤（戦争）と青（技術）は、しばしば近接して現れる。そして赤と青が集中する時期の少しあとに、緑（制度）の色が現れることが多い。技術が変化し、対立が生じ、その後になってようやく社会制度が追いつく、という順序である。この順序は一度限りではなく、繰り返し確認された。</p>
+          <p>資料としては、大学図書館で借りた通史、教科書、参考文献に指定されている概説書、それに地図帳を用いた。一つの出来事については、できるだけ二つ以上の資料で確認するように努めた。一つの資料だけに依拠すると、その著者の視点がそのまま自分の結論になってしまう危険があるためで、この点はノートを作成する過程で最も注意した点である。</p>
+          <div class="pause">
+            <p>気づいたこと：年号の記述に食い違いがある資料も少なくなかった。たとえば「産業革命がいつ始まったか」は、資料によって1760年代とも1780年代とも書かれている。どちらかが誤っているのではなく、「始まり」をどう定義するかが異なっているのだと理解した。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">3</span>
+        <span class="title">そもそも「近代」とは何か<small>このノートの中心的な問い</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>調べてまず分かったのは、「古代・中世・近代」という三区分がそれほど古い時代から存在していたわけではなく、ヨーロッパの知識人たちが、ある時期に自分たちの立場から作り出したものだということである。</p>
+          <p>ルネサンス期の知識人たちは、おおよそ次のように考えた。「古代のギリシャ・ローマは素晴らしかった。ところがその後、暗く停滞した時代が長く続いた。そして今、われわれの時代になって、ふたたび光が戻ってきた」。この論理でいくと、優れた過去（古代）と、優れた現在（近代）に挟まれた時代は、「あいだの時代」ということになる。これが<strong class="term">中世（middle ages）</strong>という語の由来である。名称そのものが、「あいだに挟まれたもの」という位置づけを表している。</p>
+          <p>つまり時代区分は、はじめから中立な分類ではなかった。「われわれは新しい」と主張したい者たちが、その主張を裏づけるために作った道具でもあったのである。この点は、このノートを通じて繰り返し確認することになる。</p>
+          <h3 class="sec">「モダン」という語の逆説</h3>
+          <p>「近代」は英語で <strong class="term2">modern</strong> という。この語の語源であるラテン語 <em>modo</em> は、「たった今」を意味する。つまり modern とは、本来「現在の」という意味の語である。</p>
+          <p>ここに構造的な問題がある。「現在」は時間が経過すれば「過去」になる。それにもかかわらず「近代」という名称だけは、その時代に固定されたまま動かない。結果として、五百年前の出来事が「近代の始まり」と呼ばれ続けるという逆説が生じる。</p>
+          <p>そして「近代」がしだいに過去へと押しやられていったため、人々はさらに新しい呼称を必要とした。そこで登場したのが「現代（contemporary）」であり、さらには「ポストモダン（近代のあと）」という語である。「近代のあと」という命名は、率直に言えば苦しい。次の時代にふさわしい名称が見つからないため、暫定的に「あれのあと」と呼んでいるにすぎない。</p>
+          <div class="card-note">
+            <h4>用語メモ：日本語の「近代」と「現代」</h4>
+            <p>日本語では「近代」と「現代」は明確に区別される。しかし英語では、両者がいずれも modern と呼ばれることがあり、「現代」を指す際には contemporary（同時代の）という別の語を用いたり、modern をさらに early modern（近世）と late modern（近代後期）に分けたりする。</p>
+            <p>つまり日本語の「近代／現代」という二層構造は、日本語独自の整理法であって、世界共通の分類ではない。翻訳の際にこの二語のずれが生じるのは、そのためである。</p>
+          </div>
+          <h3 class="sec">「近代」を構成する要素は何か</h3>
+          <p>年代ではなく内容の面から「近代」を捉えることもできる。文献を読み比べると、おおむね次の六点が、繰り返し「近代の指標」として挙げられていた。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>しるし</th><th>どういうことか</th></tr>
+              <tr><td><b>主権国家</b></td><td>はっきりした国境を持つ国が、その中のことを最終的に決める。王や貴族や教会が、あちこちで別々に支配するのではなくなる。</td></tr>
+              <tr><td><b>産業化</b></td><td>機械と化石燃料を使って、人の力をはるかにこえる量のものを作る様になる。</td></tr>
+              <tr><td><b>資本主義</b></td><td>土地や道具や工場を持つ人が、お金をふやすためにそれを動かし、多くの人が賃金をもらってはたらく。</td></tr>
+              <tr><td><b>科学と合理性</b></td><td>ものごとを、神話や慣習ではなく、観察と実験と計算で説明しようとする。</td></tr>
+              <tr><td><b>個人と人権</b></td><td>身分ではなく、一人ひとりの人間として、生まれながらに権利を持つと考える。</td></tr>
+              <tr><td><b>国民という意識</b></td><td>顔も知らない人同士が、「同じ国の仲間だ」と思う様になる。学校・新聞・徴兵・鉄道がそれを支えた。</td></tr>
+            </table>
+          </div>
+          <p>これら六つは、どれか一つが起きれば直ちに揃うような性質のものではない。国や地域によって、その順序も速度も異なる。したがって、「この年から近代」と一本の線で区切ることには、本質的な困難が伴う。線を引くことで理解はしやすくなるが、その利便性と引き換えに、こぼれ落ちるものも生じる。</p>
+          <div class="pause">
+            <p>問い：もし「近代」を年代ではなく内容で定義するとしたら、上記六点のうちどれを最も重視するか。一つを選び、その理由を述べよ。</p>
+            <p>（このノートの終盤で、自分なりの回答を示す。）</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">4</span>
+        <span class="title">世界の近代の始まり<small>1500年ごろ〜1789年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>世界史の年表で「近代の始まり」とされる時期を年表に書き入れると、1490年代から1600年代にかけて大きな出来事が集中していることが分かる。</p>
+          <div class="chrono">
+            <li><b>1450年ごろ</b>　グーテンベルクが活版印刷を実用化する。それまで手で写すしかなかった本が、大量に、はやく、安く作れる様になった。</li>
+            <li><b>1492年</b>　コロンブスが大西洋をわたる。ヨーロッパ・アフリカ・南北アメリカが、一つの経済のネットワークに引きこまれていく。</li>
+            <li><b>1517年</b>　ルターが宗教改革をはじめる。印刷術がその主張を各地に運んだ。ヨーロッパの信仰が一つでなくなる。</li>
+            <li><b>1543年</b>　コペルニクスの地動説。同じ年、日本には鉄砲が伝わったとされる。</li>
+            <li><b>1648年</b>　ウェストファリア条約。長い宗教戦争のあと、国同士が対等な「主権国家」としてつきあう考え方が広まる。</li>
+            <li><b>1687年</b>　ニュートンが万有引力の法則を発表。天の動きと地上の落下が、同じ数式で説明できることが示される。</li>
+          </div>
+          <p>この時期を、世界史では<strong class="term">近世（early modern）</strong>と呼ぶこともある。「近代への入り口」という程度の意味である。日本史でも、織田信長・豊臣秀吉の時代から江戸時代の終わりまでを「近世」と呼ぶ。同じ「近世」という語でも、指し示す内容は異なっており、この点は混同しやすいので注意を要する。</p>
+          <h3 class="sec">なぜこの時期が画期とされるのか</h3>
+          <p>調べた中で最も納得できた説明は、この時期に<strong class="term2">世界がはじめて一つに接続された</strong>という点であった。それまで南北アメリカ大陸と、ユーラシア・アフリカ大陸との間には、ほとんど交流がなかった。それが1492年以降、航路によって結ばれる。</p>
+          <p>接続の結果、何が生じたか。作物が世界規模で移動した。じゃがいも、とうもろこし、さつまいも、トマト、とうがらしは、いずれも元来アメリカ大陸原産である。これらがヨーロッパやアジアに広まり、各地の人口を支える基盤となった。日本の食卓にあるさつまいもも、この移動の産物である。逆に、ヨーロッパから持ち込まれた感染症は、アメリカ大陸の住民に壊滅的な被害を与えた。さらに労働力として、アフリカから多数の人々が奴隷として大西洋を渡らされた。</p>
+          <p>「世界が接続された」というと、肯定的な出来事のように聞こえる。しかし実際には、その接続は当初から著しい不公正を内包していた。近代の始まりを検討する際には、この点を看過すべきではないと考える。銀、砂糖、綿花、そして人間そのものが商品として流通し、その仕組みの上に、後の繁栄の一部が築かれていったからである。</p>
+          <div class="card-note">
+            <h4>日本の動き（同時代）</h4>
+            <p>ヨーロッパの船がアジアに到達した時期は、日本の戦国時代と重なる。1543年に鉄砲が伝来し、1549年にはキリスト教が伝来した。その後戦乱が収束し、江戸幕府が成立する。</p>
+            <p>江戸幕府は、貿易の相手と窓口を大きく限定した。一般に「鎖国」と呼ばれるが、完全に閉ざされていたわけではなく、長崎（オランダ・中国）、対馬（朝鮮）、薩摩（琉球）、松前（アイヌ）という四つの窓口は開かれていた。近年の教科書では「四つの口」という表現が用いられることが多いようである。</p>
+            <p>この点も、時代区分と類似した構造を持つと感じた。「鎖国」という一語でまとめると理解しやすい反面、実際に存在した細かな交流が見えなくなってしまう。</p>
+          </div>
+          <div class="pause">
+            <p>問い：もし印刷術が存在しなかったら、宗教改革は同様に拡大しただろうか。「新しい技術」と「新しい思想」は、どちらが先行すると考えるか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">5</span>
+        <span class="title">二つの革命が世界を変えた<small>1776年〜1848年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>年表の中で、色分けしたマーカーが最も密集しているのがこの時期である。赤（革命）と青（技術）が同時に、しかも同じヨーロッパの地域に集中している。</p>
+          <p>文献では、この時期を<strong class="term">二重革命</strong>と呼ぶことがある。イギリスで始まった<strong class="term">産業革命</strong>と、フランスで起きた<strong class="term">フランス革命</strong>という二つの革命が、ほぼ同時に世界を変えたためである。前者は「ものの生産方法」を、後者は「政治の決定方法」を、それぞれ根本から変えた。</p>
+          <div class="chrono">
+            <li><b>1769年</b>　ワットが蒸気機関を改良。人や動物や水車の力にたよらない動力が手に入る。</li>
+            <li><b>1776年</b>　アメリカ独立宣言。同じ年、アダム・スミスの『国富論』が出版される。</li>
+            <li><b>1789年</b>　フランス革命がはじまる。「人間と市民の権利の宣言」が出される。</li>
+            <li><b>1804年</b>　ナポレオンが皇帝になる。ナポレオン法典が各地に広まる。</li>
+            <li><b>1825年</b>　イギリスで蒸気機関車による鉄道が開業する。</li>
+            <li><b>1848年</b>　ヨーロッパ各地で革命が連鎖する（諸国民の春）。『共産党宣言』が出る。</li>
+          </div>
+          <h3 class="sec">産業革命は何を変えたのか</h3>
+          <p>産業革命というと、機械や工場の話だと単純に考えていた。しかし調べてみると、最も大きな変化は<strong class="term2">エネルギー源の転換</strong>にあったと分かった。</p>
+          <p>それまで、人間が利用できるエネルギーは、大部分が「その年に地上で得られるもの」であった。人力や牛馬の力、薪や木炭、水車、帆にあたる風である。いずれも太陽のもたらす恵みをその都度受け取るものであり、量に限界があった。ところが石炭は、太古の植物が地中に蓄積したエネルギーである。人類はこれを掘り出して利用し始めた。いわば、何億年分もの蓄えを一気に取り崩し始めたようなものである。</p>
+          <p>これによって生産量の上限が大きく引き上げられた。同時に、人々の生活様式も変化した。日の出とともに働き日没とともに休む生活から、時計と工場のベルに合わせて働く生活へ。農村から都市へ。家族単位の労働から、工場に集められて行う労働へ。</p>
+          <p>そして、現在世界が直面している気候変動の問題は、まさにこの時期、石炭の採掘が始まった地点に起源を持つ。産業革命は過去の出来事ではなく、現在の生活の中に依然として継続している事象なのだと理解した。</p>
+          <h3 class="sec">フランス革命は何を変えたのか</h3>
+          <p>フランス革命の意義は、国王を打倒したという事実そのものよりも、<strong class="term2">「人は生まれながらにして自由かつ平等である」と文書化し、公的な宣言として世に示した</strong>点にあると考える。それまで、身分は出生によって定まるのが当然とされていた。その前提を明確に否定する言葉が、公式文書として公表されたのである。</p>
+          <p>ただし、この宣言が直ちに現実として実現したわけではない。宣言後も、女性に参政権はなく、植民地には奴隷制が存続し、無産者は政治参加から排除されていた。宣言と現実の間には大きな乖離があった。</p>
+          <p>それでも、いったん「すべての人間は平等である」という言葉が公になると、その言葉は後続の運動にとっての論拠となる。「あなた方がそう記したのであれば、われわれもそこに含まれるはずだ」。奴隷とされた人々も、女性も、植民地の人々も、この論理によって権利を要求していった。近代の二百年は、ある意味で、この宣言を後追いする形で展開した二百年だったとも言える。</p>
+          <div class="memo">
+            <p><b>当初の理解：</b>革命が起これば、社会は速やかに改善されると考えていた。</p>
+            <p><b>調べて分かったこと：</b>フランス革命の後には、恐怖政治、対外戦争、皇帝の出現、王政復古、そして再度の革命と、混乱が続いた。進行は直線的ではなかった。曲折を経ながらも、時間をかけて、宣言された言葉の方向へと少しずつ近づいていった、という経過である。</p>
+          </div>
+          <div class="card-note">
+            <h4>日本の動き（同時代）</h4>
+            <p>ヨーロッパが二つの革命によって揺れていたころ、日本は江戸時代後期にあたる。「遅れていた」と説明されることがあるが、調べてみるとそれほど単純ではない。</p>
+            <p>この時期の日本では、寺子屋が各地に普及して識字率が高く、街道と航路によって物資や情報が活発に流通し、大坂の米市場には先物取引に類する仕組みまで存在し、和算という独自の数学も発達していた。都市人口も世界有数の規模であった。つまり、後に急速な近代化を可能にした基盤は、江戸時代のうちにかなりの程度形成されていたことになる。</p>
+            <p>ここでも、「遅れていた／進んでいた」という単一の尺度で測ろうとすると、見えなくなるものがあると感じた。</p>
+          </div>
+          <div class="pause">
+            <p>問い：「機械が労働のあり方を変える」という現象は、現在の身の回りでも起きているか。産業革命期の人々と共通する感覚を抱く場面はあるか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">6</span>
+        <span class="title">日本が世界の年表につながる<small>1853年〜1890年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>年表の上段と下段、つまり世界と日本の線がはっきりと交差するのがこの時期である。日本史の年表が「近代」と記し始めるのも、この時期からである。</p>
+          <div class="chrono blue">
+            <li><b>1853年</b>　ペリーの艦隊が浦賀に来る。翌年、日米和親条約。</li>
+            <li><b>1858年</b>　日米修好通商条約。関税自主権がなく、領事裁判権をみとめる不平等な内容だった。</li>
+            <li><b>1868年</b>　明治維新。天皇を中心とする新しい政府ができる。</li>
+            <li><b>1871年</b>　廃藩置県。藩がなくなり、県になる。同じ年、岩倉使節団が欧米へ出発。</li>
+            <li><b>1872年</b>　学制がしかれ、鉄道が新橋・横浜間で開業する。</li>
+            <li><b>1873年</b>　徴兵令と地租改正。税を米ではなく現金で納める様になる。</li>
+            <li><b>1889年</b>　大日本帝国憲法が発布される。翌年、第一回帝国議会が開かれる。</li>
+          </div>
+          <p>この二十数年間の変化の速度には、調べていて最も驚かされた。ちょんまげと刀の時代から、憲法と議会と鉄道の時代まで、わずか一世代のうちに移行している。生まれたときは武士であった人物が、老年になって電灯の下で新聞を読んでいる、という状況である。</p>
+          <h3 class="sec">なぜ日本はこれほど急速に変化できたのか</h3>
+          <p>複数の文献を比較し、自分なりに三点にまとめた。</p>
+          <p>第一に、<strong class="term">既存の基盤があった</strong>ことである。前章に記したとおり、江戸時代の日本には、識字層、全国に及ぶ流通網、貨幣経済、そして各藩が競って人材を育成する仕組みが存在していた。ゼロからの出発ではなかった。</p>
+          <p>第二に、<strong class="term">危機感が極めて強かった</strong>ことである。日本の指導層は、隣国の清がアヘン戦争でイギリスに敗北し、不平等条約を締結させられ、領土を割譲していく過程を目の当たりにしていた。「同様の事態に陥りかねない」という危機感が、改革の速度を押し上げた。</p>
+          <p>第三に、<strong class="term">実地調査を先行させた</strong>ことである。明治政府は、成立直後の多忙な時期にもかかわらず、政府中枢の人物を含む大規模な岩倉使節団を、一年十か月にわたり欧米へ派遣した。国家の舵取りを担う人々が、自らの目で工場、議会、学校を視察したのである。この点は、このノートを作成する中で最も感心した部分であった。議論を先行させるのではなく、まず現地に赴き、観察したうえで決定するという順序である。</p>
+          <div class="card-note">
+            <h4>「近代化」と「西洋化」は同一か</h4>
+            <p>明治期の日本は、洋装を採用し、洋館を建設し、鹿鳴館で舞踏会を催した。これらは「近代化」だったのか、それとも「西洋化」だったのか。</p>
+            <p>調べてみると、当時の人々自身がこの問題に直面していたことが分かる。「和魂洋才」という語は、技術は西洋から導入するが、精神性は日本古来のものを保持する、という考え方を示す。類似の発想は、同時代の中国にも（中体西用）、朝鮮にも（東道西器）見られる。西洋の圧力にさらされた地域では、どこも同種の問いに直面していたことになる。</p>
+            <p>この問いは、現在も未解決のまま残っていると考える。新しい技術や制度が外部から流入するたびに、「どこまで受容し、どこを固有のものとして維持するか」という判断が、繰り返し求められているためである。</p>
+          </div>
+          <h3 class="sec">明治維新は「革命」と呼べるか</h3>
+          <p>この点も見解が分かれるところである。フランス革命では、被支配層である民衆が下から国王を打倒した。これに対し明治維新は、支配層の一部である下級武士が中心となって政権を移行させたものである。したがって「革命ではない」とする見方が存在する。</p>
+          <p>一方で、その後に生じた変化は、確かに社会の構造を大きく転換させた。武士という身分そのものが廃止され、帯刀は禁じられ、家禄は廃され、農民は土地所有権を得て、誰もが就学し、誰もが兵役に服する可能性を持つようになった。身分制が解体されたという点では、十分に革命的な変化だといえる。</p>
+          <p>結局のところ、これも「革命」という語をどう定義するかという問題に帰着する。時代区分の議論と同様に、語の定義を先に確定しなければ、結論も定まらない。歴史をめぐる議論には、こうした構造を持つものが少なくないと理解した。</p>
+          <div class="pause">
+            <p>問い：「上から進められた変革」と「下から沸き起こった変革」とでは、その後の社会にどのような相違が残ると考えるか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">7</span>
+        <span class="title">帝国の世紀<small>1870年〜1914年／世界が縮小した時代</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>十九世紀後半、世界地図の勢力分布は急速に塗り替えられていった。ヨーロッパ諸国と、それに続くアメリカと日本が、アジア・アフリカ・太平洋地域を自国の勢力圏に組み込んでいった時代である。</p>
+          <p>年表を見ていて気づいたのは、この時期に青（技術）と黄（移動）の印が密集していることであった。技術と支配は、密接に結びついている。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>技術</th><th>それが可能にしたこと</th></tr>
+              <tr><td><b>蒸気船</b></td><td>風にたよらず、時刻表どおりに海をわたれる。川をさかのぼって内陸へも入れる。</td></tr>
+              <tr><td><b>電信</b></td><td>本国と遠い植民地が、数時間で連絡をとりあえる。命令と情報の速さが変わる。</td></tr>
+              <tr><td><b>鉄道</b></td><td>内陸の資源を港まで運び出せる。軍隊も、はやく遠くへ動かせる。</td></tr>
+              <tr><td><b>医薬</b></td><td>キニーネによってマラリアを予防でき、ヨーロッパ人が熱帯の内陸に入れる様になる。</td></tr>
+              <tr><td><b>連発銃</b></td><td>軍事力の差が、それまでとは比べものにならないほど開く。</td></tr>
+            </table>
+          </div>
+          <p>また、この時期に<strong class="term2">世界の時刻が統一された</strong>ことも印象的であった。鉄道網が整備されると、地域ごとにわずかずつずれていた時刻では、時刻表を編成できない。そこで1884年、経度零度をグリニッジに定め、世界を二十四の時間帯に分割する取り決めが成立した。日本が現在の標準時を定めたのは1886年である。「現在何時か」が世界規模でそろったのは、わずか百四十年ほど前の出来事にすぎない。</p>
+          <h3 class="sec">日本もまた、その一方の当事者となった</h3>
+          <p>この点は、記述していて最も気の重くなった箇所である。日本は、不平等条約を押しつけられる側から出発しながら、やがて自らが押しつける側へと転じていった。</p>
+          <div class="chrono">
+            <li><b>1894〜95年</b>　日清戦争。台湾を領有する。</li>
+            <li><b>1904〜05年</b>　日露戦争。多くの死者と国民の負担のうえに、かろうじて講和にもちこむ。</li>
+            <li><b>1910年</b>　韓国併合。朝鮮半島を植民地とする。</li>
+            <li><b>1911年</b>　条約改正が完成し、関税自主権を回復する。開国から半世紀以上かかった。</li>
+          </div>
+          <p>日露戦争に際して、アジアやアフリカの一部の人々は、日本の勝利を「ヨーロッパに対抗しうる」という希望として受け止めたとされる。しかし同じ日本が、隣接地域を植民地化していったこともまた事実である。この両面は、いずれか一方のみを取り上げて済ませるべきではないと考える。</p>
+          <p>歴史を調べていると、自国に関する事柄については、肯定的な側面のみを見たいという心理が働く。しかし、上下に線を引いた年表を眺めていると、そうした見方を維持することはできなかった。同じ時期に、上段（世界）で生じていたことと、下段（日本）で生じていたことが、一つの構造の中でつながっているためである。</p>
+          <div class="card-note">
+            <h4>「グローバル化」は現代に固有の現象ではない</h4>
+            <p>1910年ごろの世界は、実際にはかなり「グローバル」であった。海底ケーブルが大陸間を結び、旅券なしで国境を越えられる地域も多く、大量の移民が海を渡り、金本位制のもとで各国通貨が接続されていた。</p>
+            <p>ある経済学者は「ロンドンの住人は、朝、寝床で紅茶を飲みながら、電話一本で世界中の商品を注文できた」という描写を残している。ところがこの結びつきは、第一次世界大戦とその後の混乱によって、一度大きく断裂することになる。</p>
+            <p>つまり、世界の結びつきは一方向に強まり続けるとは限らない。これは、このノートを作成する過程で見出した、最も意外な発見の一つであった。</p>
+          </div>
+
+          <div class="card-note">
+            <h4>コラム：海底ケーブルの構造を調べる</h4>
+            <p>「海底ケーブル」と聞いて、当初は現在の光ファイバーに類するものを想像していた。しかし1910年ごろに、そこまで精密なものを海底に数千キロ規模で敷設できたのだろうか。気になって、当時のケーブルの断面構造を調べてみた。</p>
+            <p>結果は、想定していたよりも素朴な構造であった。中心にあるのは通常の銅線である。電気信号はこの銅線を通る。問題はその外側であった。海水は電気を通すため、銅線を十分に絶縁しなければ、信号が海水側へ漏れてしまう。加えて海底は水圧が高く、貝類や虫害の被害を受けることもある。ここで用いられたのが、<strong class="term">グッタペルカ</strong>という、聞き慣れない名称の素材であった。</p>
+            <div class="tablewrap">
+              <table>
+                <tr><th>層</th><th>使われた素材</th><th>役目</th></tr>
+                <tr><td>いちばん内側</td><td>銅線</td><td>電気信号を通す道</td></tr>
+                <tr><td>その外側</td><td><b>グッタペルカ</b>（天然樹脂）</td><td>海水から電気をさえぎる絶縁</td></tr>
+                <tr><td>さらに外側</td><td>タールをしみこませた麻ひも</td><td>グッタペルカを保護するクッション</td></tr>
+                <tr><td>いちばん外側</td><td>鉄線を編んだシース</td><td>船のいかりや岩から守る鎧</td></tr>
+              </table>
+            </div>
+            <p><strong class="term">グッタペルカ</strong>は、東南アジア（マレー半島やボルネオ島など）に自生するアカテツ科の樹木から採取される、樹液を固めた天然樹脂である。ゴムに類似するがゴムより硬く、湯につけると軟化し、任意の形状に成形できる。さらに水を通さず、海水中でもほとんど劣化しない。当時、これほど条件に適した絶縁材は他に見当たらなかった。</p>
+            <p>1840年代、ドイツの技術者ヴェルナー・フォン・ジーメンス（後のシーメンス社創業者）が、この素材を電線の絶縁に応用できることを見出したとされる。そして1866年、この素材で被覆した銅線を大西洋の海底に敷設する工事が、ようやく成功した。プラスチック（塩化ビニルなど）の発明は、なお数十年先のことである。つまり1910年ごろの世界を結んでいたのは、樹木の樹液と、鉄の網と、地道な工事であった。</p>
+            <p>この素材が二十世紀半ばごろまで、約百年にわたり海底ケーブルの絶縁材として使用され続けたことにも注目した。技術は次々に新しいものへ置き換わるという印象を持っていたが、一度確立した組み合わせは、想定以上に長く使用され続けるのだと理解した。現在の光ファイバーケーブルも、いずれ「かつてはガラス繊維を用いていたらしい」と、後世に調べられる対象になるのかもしれない。</p>
+          </div>
+
+          <div class="pause">
+            <p>問い：技術が進歩すれば、世界は自動的に平和になるだろうか。それとも、技術は使い方次第だろうか。この時代の事例をもとに検討せよ。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">8</span>
+        <span class="title">1914年 ― ここから「現代」か<small>特に重要な論点</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>第一次世界大戦は1914年から1918年まで続いた。この戦争を「近代の終わり」あるいは「現代の始まり」と位置づける歴史家は、想定していたより多いことが分かった。</p>
+          <p>ある著名な歴史家は、1789年のフランス革命から1914年までを<strong class="term">「長い十九世紀」</strong>、1914年から1991年のソ連解体までを<strong class="term">「短い二十世紀」</strong>と呼んだ。暦年上の百年ではなく、内容のまとまりで区切るという発想である。この呼称を知ったとき、「時代区分はここまで自由に設定してよいのか」という驚きを覚えた。同時に、その自由度こそが時代区分という営みの本質なのだとも理解した。</p>
+          <h3 class="sec">なぜこの戦争が画期とされるのか</h3>
+          <p>調べた限りで、理由を四点にまとめた。</p>
+          <p><b>①　戦争の形態が変化した。</b>それまでの戦争は、軍人が戦場で戦うものであった。第一次世界大戦は、国内のあらゆる工場、鉄道、農地、そして国民全体を動員する<strong class="term2">総力戦</strong>となった。戦場と銃後の区別が曖昧になり、戦争は国民全体の事象となった。</p>
+          <p><b>②　技術が大量殺戮を可能にした。</b>機関銃、毒ガス、戦車、潜水艦、飛行機。産業革命が生み出した技術力が、そのまま殺傷力へと転化した。「科学は人類を幸福にする」という、それまでの楽観的な信念は深く傷ついた。</p>
+          <p><b>③　四つの帝国が消滅した。</b>ドイツ帝国、オーストリア＝ハンガリー帝国、ロシア帝国、オスマン帝国。数百年続いた枠組みが、数年のうちに解体した。代わって、国民国家が並ぶ世界地図が形成される。現在の中東やバルカン半島の国境線の多くは、この時期に引かれたものである。</p>
+          <p><b>④　「進歩」への信頼が動揺した。</b>これが最も大きいと考える。十九世紀のヨーロッパの人々は、世界は着実に改善されていくと、かなり本気で信じていた。ところが、その最も「進んだ」国々同士が、四年間で数百万人の若者を戦死させたのである。</p>
+          <div class="quote">
+            戦争が終わったあとの世界を、ある詩人は「中心はもちこたえられない」と書いた。時代が一つの中心を失ったという感覚が、当時の人々に共有されていたことがうかがえる。
+            <span class="author">講義ノートより</span>
+          </div>
+          <p>もう一点、この時期に世界を襲ったのが、1918年からのインフルエンザの世界的流行である。戦死者数を上回る死者が出たとされる。長らく歴史記述の中であまり大きく扱われてこなかったが、近年では重視される傾向にある。歴史がどのように記述されるかも、その時代の関心のあり方によって変化するのだと感じた。</p>
+          <div class="memo">
+            <p><b>当初の理解：</b>「現代」は第二次世界大戦以降を指す、と学校教育で学んだ記憶があった。</p>
+            <p><b>調べて分かったこと：</b>世界史の文献では、1914年を境界とするものが、想定していたより多かった。日本史の文献では、大半が1945年を境界としていた。同じ「現代」という語であっても、世界史と日本史とでは線を引く位置が異なる。年表を参照する際には、それが世界史のものか日本史のものかを、まず確認する必要がある。</p>
+          </div>
+          <div class="card-note">
+            <h4>日本の動き（同時代）</h4>
+            <p>日本にとって第一次世界大戦は、主戦場から離れた戦争であった。ヨーロッパが交戦している間、日本は輸出を伸ばし、大戦景気と呼ばれる好況を迎えた。ただし物価も急騰し、1918年には米騒動が全国に拡大した。</p>
+            <p>一方この時期には、選挙権拡大を求める運動、労働運動、女性解放を求める運動、部落解放運動などが活発化した。大正デモクラシーと呼ばれる時期である。1925年には、二十五歳以上の男性すべてに選挙権が付与された（普通選挙法）。ただし女性は対象外であり、同年に治安維持法も制定されている。権利拡大の動きと統制強化の動きが、同時に進行していた。</p>
+          </div>
+          <div class="pause">
+            <p>問い：ある出来事が「時代の画期」となるのは、その出来事自体の規模が大きいからか。それとも、後世の人間がそこに線を引いたからか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">9</span>
+        <span class="title">戦争と戦争のあいだ<small>1919年〜1939年／機能しなかった二十年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>第一次世界大戦の後、世界の人々は「もう二度とこのような戦争を繰り返さない」と考えた。国際連盟が設立され、戦争を違法とする条約も締結された。ところが、そのわずか二十年後に、さらに大規模な戦争が勃発する。この二十年間に何が起きていたのかを検討するのに、このノートの作成過程で最も時間を要した。</p>
+          <div class="chrono">
+            <li><b>1919年</b>　ヴェルサイユ条約。ドイツに巨額の賠償金が課される。同じ年、国際労働機関ができ、朝鮮で三・一独立運動、中国で五・四運動が起きる。</li>
+            <li><b>1920年</b>　国際連盟が発足。ただしアメリカは加盟しなかった。</li>
+            <li><b>1929年</b>　ニューヨークの株式市場が暴落し、世界恐慌がはじまる。</li>
+            <li><b>1931年</b>　満州事変。</li>
+            <li><b>1933年</b>　ドイツでヒトラーが政権につく。日本とドイツが国際連盟を脱退する。</li>
+            <li><b>1937年</b>　日中戦争がはじまる。</li>
+            <li><b>1939年</b>　ドイツがポーランドに侵攻し、第二次世界大戦がはじまる。</li>
+          </div>
+          <h3 class="sec">なぜ防げなかったのか</h3>
+          <p>調べて分かったことを三点にまとめる。</p>
+          <p>第一に、<strong class="term">経済の崩壊</strong>である。世界恐慌によって、各国で失業者が急増した。アメリカでは労働人口の四人に一人が職を失ったとされる。生活基盤が崩れたとき、人々は、断定的で分かりやすい言葉を語る政治家に引き寄せられていった。</p>
+          <p>第二に、<strong class="term">ブロック化</strong>である。恐慌後、各国は自国の植民地や勢力圏内で経済を囲い込み、高関税によって他国製品を排除した。持たざる国は、資源と市場を求めて対外進出を図った。経済的な障壁が、軍事的な衝突へと転化していった。</p>
+          <p>第三に、<strong class="term">制度上の欠陥</strong>である。国際連盟には、決定を強制執行する権限がなかった。侵略行為が生じても勧告を発する以外の手段を持たず、不満を持つ加盟国は脱退すれば済んだ。</p>
+          <p>ここで気づいたのは、第一次世界大戦の反省から作られた制度が失敗した、その経験自体が、第二次世界大戦後の国際連合や国際経済秩序の構築に生かされているという点である。人類が失敗から学ぶには、おおむね二度の経験を要するのかもしれない。</p>
+          <div class="card-note">
+            <h4>ラジオという新技術</h4>
+            <p>この時代の技術として看過できないのがラジオである。日本で放送が開始されたのは1925年である。</p>
+            <p>ラジオは、指導者の肉声を直接、数百万世帯に届けた。新聞と異なり、識字能力を要さない。声には文字にはない訴求力がある。この時代に大衆的な支持を獲得した政治家たちは、いずれもこの新技術を効果的に活用した。</p>
+            <p>技術それ自体に善悪はない。しかし技術の変化は、政治の手法をも変える。ラジオ、テレビ、そしてインターネットと、同様の現象がその後も繰り返し観察される。</p>
+          </div>
+          <div class="pause">
+            <p>問い：生活が困窮したとき、人はどのような言葉に引き寄せられるか。それを認識しておくことに、どのような意義があるか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">10</span>
+        <span class="title">1945年 ― 日本史が「現代」と呼ぶ年<small>1939年〜1945年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>第二次世界大戦は、人類史上最も多くの死者を出した戦争である。犠牲者数は推計によって幅があるが、五千万人から八千万人程度とされる。その多くは兵士ではなく、一般の生活者であった。</p>
+          <p>この戦争について、このノートでは出来事の網羅よりも、「なぜこの年が時代の画期とされるのか」を検討することに重点を置いた。</p>
+          <h3 class="sec">日本にとっての1945年</h3>
+          <p>日本史の教科書や年表が、ほぼ例外なく1945年を「現代の始まり」とするのには、明確な理由がある。この年を境に、国家の制度が根本から入れ替わったためである。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th></th><th>1945年より前</th><th>1945年より後</th></tr>
+              <tr><td>主権</td><td>天皇にあるとされた</td><td>国民にある</td></tr>
+              <tr><td>軍隊</td><td>陸軍・海軍を持つ</td><td>戦争の放棄を憲法に書く</td></tr>
+              <tr><td>選挙</td><td>男性のみ（1925年以降）</td><td>女性もふくむ（1945年末に実現）</td></tr>
+              <tr><td>土地</td><td>地主と小作の関係が広く残る</td><td>農地改革で自作農が中心に</td></tr>
+              <tr><td>教育</td><td>国のためにつくす人を育てる</td><td>個人の尊厳を重んじる</td></tr>
+              <tr><td>領域</td><td>植民地・占領地をふくむ</td><td>本土のみ（沖縄は1972年まで施政権が米国下）</td></tr>
+            </table>
+          </div>
+          <p>これほどの変化があれば、確かに別の時代と呼びたくなる。日本にとって1945年は、単なる敗戦の年ではなく、国家の形態そのものが更新された年であった。</p>
+          <h3 class="sec">世界にとっての1945年</h3>
+          <p>世界的に見ても、この年は特異な年であった。三つの事象が同時に始まっている。</p>
+          <p>一つめは、<strong class="term">核兵器の登場</strong>である。広島と長崎に原子爆弾が投下され、人類は自らを滅ぼしうる力を手に入れた。以後の国際政治はすべて、この事実を前提として構築されている。「大国同士が全面戦争を行えば、勝者も存続しえない」という条件が加わったことになる。</p>
+          <p>二つめは、<strong class="term">国際連合の発足</strong>である。国際連盟の失敗を踏まえ、安全保障理事会という執行力を伴う機関が設置された。ただし常任理事国に拒否権が与えられているため、当該五か国が関与する問題には機能しにくいという構造的な弱点を当初から抱えている。</p>
+          <p>三つめは、<strong class="term">植民地支配の終焉の始まり</strong>である。疲弊したヨーロッパ諸国には、遠隔地の植民地を維持し続ける余力が残っていなかった。アジアとアフリカで独立国が相次いで誕生する。1947年にインドとパキスタン、1960年にはアフリカで十七か国が独立し、この年は「アフリカの年」と呼ばれた。</p>
+          <div class="memo">
+            <p><b>当初の理解：</b>世界の国家数は、昔から大きく変わっていないと考えていた。</p>
+            <p><b>調べて分かったこと：</b>国際連合の加盟国数は、発足時の五十一か国から現在の百九十三か国まで増加している。四十年ほどの間に国家数が三倍以上になった計算になる。現在われわれが目にする世界地図は、実際にはかなり新しいものだと分かった。</p>
+          </div>
+          <div class="pause">
+            <p>問い：「戦争が終結した年」を新時代の始まりとするのは、日本にとって自然な発想に思える。では、その土地で戦争が終わらなかった人々にとって、事情はどうであったか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">11</span>
+        <span class="title">冷戦と高度経済成長<small>1945年〜1973年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>戦争終結後、世界は直ちに二陣営に分裂した。アメリカを中心とする陣営と、ソ連を中心とする陣営である。直接には交戦しないが対立が持続する状態であったため、<strong class="term">冷たい戦争（冷戦）</strong>と呼ばれた。</p>
+          <p>ただし「冷たかった」のはヨーロッパの内部に限られる。朝鮮半島、ベトナム、アフリカ、中東、中南米では、実際に死者を伴う戦争が発生している。冷戦とは、大国の視点から見た呼称にすぎないと理解した。呼称には、常に何者かの視座が反映される。</p>
+          <div class="chrono blue">
+            <li><b>1947〜49年</b>　冷戦の枠組みができる。ドイツが東西に分かれる。</li>
+            <li><b>1949年</b>　中華人民共和国が成立。ソ連が核実験に成功する。</li>
+            <li><b>1950〜53年</b>　朝鮮戦争。日本は特需によって経済が立ち直るきっかけをつかむ。</li>
+            <li><b>1955年</b>　アジア・アフリカ会議（バンドン会議）。どちらの陣営にも属さない国々が集まる。</li>
+            <li><b>1962年</b>　キューバ危機。核戦争の一歩手前までいく。</li>
+            <li><b>1964年</b>　東京オリンピック。東海道新幹線が開業する。</li>
+            <li><b>1969年</b>　人類が月に立つ。同じ年、インターネットの原型となるネットワークがつながる。</li>
+          </div>
+          <h3 class="sec">世界規模で経済が拡大した三十年</h3>
+          <p>この時期を調べて意外だったのは、冷戦下の緊張と並行して、世界各地で経済が急速に拡大していたことである。西ヨーロッパでも、アメリカでも、日本でも、生活水準がそれ以前のいかなる時代とも比較にならない速度で向上した。フランスではこの時期を「栄光の三十年」と呼ぶという。</p>
+          <p>日本の場合、1955年から1973年ごろまでを<strong class="term">高度経済成長期</strong>と呼ぶ。経済規模はこの間に数倍に拡大した。家庭に電化製品が普及し、道路が舗装され、団地が建設され、テレビが茶の間の中心となり、新幹線が開業した。</p>
+          <p>ただしその一方で、深刻な公害が発生している。水俣病、イタイイタイ病、四日市ぜんそくなど、成長の代償は特定の地域とその住民に集中的に負わされた。経済成長率という数値のみを見ていては、この側面は見えてこない。</p>
+          <div class="card-note">
+            <h4>この時代最大の変化は「台所」かもしれない</h4>
+            <p>年表には政治上の大きな出来事ばかりが並ぶ。しかし、一般の生活者の暮らしを最も変えたのは何だったのか、考えてみた。</p>
+            <p>一つの答えは、上下水道・電気・ガス、そして洗濯機や冷蔵庫といった家庭用機器である。それ以前、家事は終日を要する重労働であった。井戸から水を汲み、薪で火をおこし、洗濯板で衣類をこすっていたのである。この労働の多くは女性が担っていた。</p>
+            <p>家電の普及によって、この時間が大幅に短縮された。その時間が、女性が就学し、就労し、社会に参加するための条件の一つになったとされる。「洗濯機は、いかなる政治運動よりも社会を変えたのではないか」と論じる研究者もいる。</p>
+            <p>これは、このノートを作成する中で最も考えさせられた論点であった。歴史上の大きな変化は、議会や戦場だけでなく、台所にも存在するのである。</p>
+          </div>
+          <div class="pause">
+            <p>問い：自分の家庭に最も最近導入された「暮らしを変えた機器」は何か。それは何時間をあなたに返したか。あるいは何時間を奪ったか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">12</span>
+        <span class="title">1973年と1989年<small>さらに二本、線を引きたくなる年</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>年表を眺めていると、1945年のほかにも「ここで何かが転換している」と思われる箇所が二つあった。1973年と1989年である。</p>
+          <div class="sub-list">
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">A</span>
+                <span class="title">1973年 ― 拡大の時代の終焉</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>この年、第一次石油危機が発生した。原油価格が数か月で四倍近くに高騰し、日本ではトイレットペーパーの買い占め騒動が起きている。高度経済成長期は、この年をもって終わりを迎えた。</p>
+                  <p>それだけではない。その少し前には、アメリカがドルと金の交換停止を発表し、戦後の国際通貨体制が変化していた。まもなく各国の為替相場は変動相場制に移行する。同じころ、『成長の限界』という報告書が発表され、地球資源の有限性が広く議論され始めた。</p>
+                  <p>つまり1973年前後は、<strong class="term2">「このまま成長が持続できる」という前提が、初めて疑問に付された時期</strong>であった。近代という時代の根幹的な前提が「進歩」であるとすれば、その前提が揺らいだこの年は、時代区分の有力な候補になると考える。</p>
+                  <p>実際、環境問題への関心の高まり、経済成長率の低下、非正規雇用の増加、そして「ポストモダン」という語の流行は、いずれもこの時期を境に顕著になっている。</p>
+                </div>
+              </div>
+            </div>
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">B</span>
+                <span class="title">1989〜91年 ― 二十世紀の終焉</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>1989年、ベルリンの壁が崩壊した。1991年にはソビエト連邦そのものが解体する。四十年以上続いた冷戦が、大規模な戦争を経ずに終結した。</p>
+                  <p>先に触れた「短い二十世紀」という捉え方では、この年が二十世紀の終わりに位置づけられる。暦の上ではなお十年残っていたが、内容の上では、この時点で一つの時代が閉じたとする見方である。</p>
+                  <p>同じ1989年には天安門事件があり、日本では昭和が終わり平成が始まった。また、あまり知られていないが、この年、ある研究者がワールド・ワイド・ウェブの最初の提案書を執筆している。壁が崩壊した年に、世界を結ぶ別の仕組みが誕生していたことになる。</p>
+                  <p>当時、「これで歴史は終結した。自由主義と市場経済によって世界は収斂する」と論じる者もいた。しかしその後の展開を見る限り、歴史は終結しなかった。地域紛争、民族対立、テロリズム、金融危機、感染症、そして大国間対立の再燃。冷戦という蓋が外れたことで、その下に存在していたものが表出したとも解釈できる。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="memo">
+            <p><b>ここまでで判明したこと：</b>「現代の始まり」の候補は、少なくとも四つ存在する。1914年、1945年、1973年、1989年である。いずれにも根拠があり、いずれも決定的とは言えない。</p>
+            <p>そして気づいたのは、候補が四つもあるのは、<b>「現代」が長くなりすぎたから</b>だという点である。1945年から数えると、もう八十年である。八十年前を「現代」と呼ぶのは、そろそろ無理がある。線は、時間の経過とともに引き直しを要するのである。</p>
+          </div>
+          <div class="pause">
+            <p>問い：自分が子ども時代を過ごした世界と、現在の世界とで、最も変化した点は何か。その変化は教科書の年表に記載されているか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">13</span>
+        <span class="title">われわれが立っている位置<small>1991年〜現在</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>ここからは年表の右端の部分にあたる。刊行済みの年表にも、まだ数行しか記述がない領域である。時間的に近すぎるため、何が重要な出来事なのか、いまだ定まっていないのだと考えられる。</p>
+          <div class="chrono">
+            <li><b>1991年</b>　日本のバブル経済がはじけ、長い低成長の時代に入る。ソ連が解体する。</li>
+            <li><b>1995年</b>　阪神・淡路大震災と地下鉄サリン事件。この年から、インターネットが一般家庭に広がりはじめる。</li>
+            <li><b>2001年</b>　アメリカ同時多発テロ。国同士の戦争とは形の違う争いが前面に出る。</li>
+            <li><b>2008年</b>　世界金融危機。同じころ、スマートフォンが世界に広まりはじめる。</li>
+            <li><b>2011年</b>　東日本大震災と原子力発電所の事故。</li>
+            <li><b>2020年</b>　感染症の世界的流行。人の移動が世界規模で止まる。</li>
+            <li><b>2020年代</b>　人工知能が急速に広まる。ヨーロッパで大規模な戦争が起きる。</li>
+          </div>
+          <h3 class="sec">気づいたこと：世界の構造が再び変化している</h3>
+          <p>1990年代初頭には、世界はこれから一つに統合されていく、という見方が有力であった。人・モノ・資金・情報が国境を越えて移動し、それによって全体が豊かになる、という発想である。</p>
+          <p>ところが2010年代後半から、逆方向の動きが顕著になった。関税、輸出規制、国境管理の強化、自国優先の政治である。第七章で触れた、1910年ごろのグローバル化がいったん断裂した経緯と、構造が類似している。「結びつきは一方向に強まり続けるとは限らない」という発見が、ここで再度確認された。</p>
+          <p>もう一点、この時期の特徴として挙げたいのは<strong class="term">人口動態の転換</strong>である。近代という時代は、一貫して人口が増加し続ける時代であった。ところが日本の人口は2008年ごろを境に減少に転じ、韓国、中国、ヨーロッパの多くの国々も同様の経路をたどりつつある。</p>
+          <p>増加する社会と減少する社会とでは、機能する制度が異なる。年金も、教育も、住宅も、地方の交通網も、大半が「今後も増加する」という前提で設計されている。この前提の転換は、政治的対立ほど目立たないが、より根底で作用する変化だと考える。</p>
+          <div class="card-note">
+            <h4>現在進行中の出来事は、年表にどう記述されるか</h4>
+            <p>百年後の年表に、2020年代がどのように記述されるかを想像してみた。三通り考えられる。</p>
+            <p><b>①「情報革命の完成期」</b>　誰もが常時接続の小型端末を携帯し、人工知能が文章や画像を生成するようになった時期として。印刷術の発明が五百年後にどう記述されているかを考えれば、十分にありうる。</p>
+            <p><b>②「化石燃料時代の終焉の始まり」</b>　産業革命に端を発する石炭・石油の時代から、別のエネルギー源への移行が始まった時期として。この移行が達成されれば、産業革命に匹敵する画期となるはずである。</p>
+            <p><b>③「人口減少が始まった時代」</b>　数千年にわたり増加を続けた人類が、地域によっては減少に転じた最初の時期として。</p>
+            <p>いずれになるかは判然としない。ただ、現時点でその時代を生きている者には、自らの時代の名称を決定する資格がないということだけは明確になった。名称を与えるのは、常に後の世代である。</p>
+          </div>
+          <div class="pause">
+            <p>問い：今日のニュースの中で、百年後の年表に一行残るとすればどれか。またその予測は的中するだろうか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">14</span>
+        <span class="title">総括<small>「近代」と「現代」について、たどり着いた結論</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>一学期をかけて整理してきた内容を、五点にまとめる。</p>
+          <h3 class="sec">まとめ①　時代の画期に、唯一の正解は存在しない</h3>
+          <p>これが最初にして最大の結論である。「近代はいつから始まるか」「現代はいつから始まるか」に、公式の正解は存在しない。あるのは、それぞれの立場からの、それぞれの線の引き方である。世界史では1500年ごろから、日本史では1868年から「近代」が始まるとされるのは、どちらかが誤っているのではなく、着眼する場所と重視する内容が異なるためである。</p>
+          <p>ただし、「正解がない」ことと「どうでもよい」こととは異なる。それぞれの線には、それぞれの根拠がある。したがって年表を読む際には、次のように問えばよいと理解した。<strong class="term2">この線を引いた者は、何を重視しているのか。</strong></p>
+          <h3 class="sec">まとめ②　時代区分は道具である</h3>
+          <p>時代区分は自然界に存在するものではない。人間が作り出した道具である。長大な時間を認識可能な単位に変換するための、便宜的な枠組みである。</p>
+          <p>道具である以上、目的に応じて使い分けてよいはずである。政治体制の変化を見たいなら革命の年で区切り、経済動向を見たいなら成長の起点と終点で区切り、技術の変化を見たいなら発明の年で区切る。一つの区分がすべての目的に適用できると想定するために、混乱が生じるのである。</p>
+          <p>さらに付言すべき点がある。道具である以上、<strong class="term">誰のための道具か</strong>という問いが残る。「近代」という区分は、もともとヨーロッパの人々が自らを基準として引いた線であった。そのためアジアやアフリカの歴史をこの線で切ると、「近代化が遅れた地域」という評価になりがちである。しかし、当該地域にはその地域固有の時間の流れが存在する。線の引き方そのものが、評価を規定してしまうことがあるのである。</p>
+          <h3 class="sec">まとめ③　「近代」はまだ終わっていない可能性がある</h3>
+          <p>調べる前は、「近代は終わり、現在は現代である」と単純に考えていた。しかし現在は、やや異なる見方をしている。</p>
+          <p>第三章で挙げた近代の指標――主権国家、産業化、資本主義、科学、個人の権利、国民意識――は、いずれも現在も機能している。むしろ当時より強く作用している要素もある。だとすれば、われわれは「近代の後」にいるのではなく、<strong class="term2">近代の最も深い地点にいる</strong>のかもしれない。</p>
+          <p>その一方で、動揺している部分もある。「進歩は継続する」という信頼、「人口は増加する」という前提、「科学が答えを与える」という期待。これらは二十世紀半ば以降、繰り返し疑問視されてきた。近代という道具は健在であるにもかかわらず、近代を支えてきた信念の方は疲弊している、という状態に見える。</p>
+          <h3 class="sec">まとめ④　変化には一定の順序がある</h3>
+          <p>第二章で色分けをした際に気づいた順序――技術が変化し、対立が生じ、その後に制度が追いつく――は、以後どの時代を検討しても、ほぼ同一の形で現れた。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>技術・条件の変化</th><th>混乱・対立</th><th>あとから来た制度</th></tr>
+              <tr><td>印刷術</td><td>宗教戦争</td><td>主権国家の体系（1648年）</td></tr>
+              <tr><td>蒸気機関・工場</td><td>都市の貧困、労働争議</td><td>工場法、労働組合、社会保険</td></tr>
+              <tr><td>総力戦の技術</td><td>二つの世界大戦</td><td>国際連合、人権宣言、福祉国家</td></tr>
+              <tr><td>金融の自由化・情報化</td><td>金融危機、格差の拡大</td><td>いま議論の途中</td></tr>
+              <tr><td>ネット・人工知能</td><td>いま起きているところ</td><td>これから決まる</td></tr>
+            </table>
+          </div>
+          <p>この表の最下段二行が未記入であることが、このノートを通じて得た最大の発見かもしれない。われわれは表の「対立」の欄に位置しており、まだ右端の欄を記述できていない。過去の人々も、当時は同じ地点に立っていた。そして時間を要しながらも、右端の欄を何とか記述してきた。そこに、いくらかの希望があると考える。</p>
+          <h3 class="sec">まとめ⑤　自分なりに時代区分を試みる</h3>
+          <p>最後に、このノートの結論として、自分なりの時代区分を提示する。既存の学説の引用ではなく、一学期をかけて年表を眺めて考えた、独自の試案である。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>自分案の時代名</th><th>時期</th><th>その時代のとくちょう</th></tr>
+              <tr><td><b>つながりはじめた時代</b></td><td>1500〜1780年ごろ</td><td>海の道で世界が一つになる。ただし、つながり方はとても不公平だった。</td></tr>
+              <tr><td><b>ふえ続けた時代</b></td><td>1780〜1914年ごろ</td><td>石炭を掘り、機械を動かし、人口も生産も都市も、ひたすらふえていく。</td></tr>
+              <tr><td><b>けずりあった時代</b></td><td>1914〜1945年</td><td>ふえる力が、そのまま壊す力になる。二つの大戦と恐慌。</td></tr>
+              <tr><td><b>つくり直した時代</b></td><td>1945〜1973年</td><td>国際的な仕組みと福祉と成長。冷戦の下での、不思議な安定。</td></tr>
+              <tr><td><b>ゆらいでいる時代</b></td><td>1973年〜いま</td><td>成長の限界、情報の革命、人口の減少。次の名前は、まだ決まっていない。</td></tr>
+            </table>
+          </div>
+          <p>この試案が妥当だとは考えていない。しかし、自ら線を引いてみて初めて分かったことがある。線を引くには、「何を重視するか」を先に決定しなければならない、ということである。したがって時代区分について考えることは、結局のところ、<strong class="term">自分が何を重視しているかを考えること</strong>に帰着する。</p>
+          <p class="pullquote">歴史を区切るとき、人は自らの価値観を用いている</p>
+          <div class="pause">
+            <p>このノートの結論：年表を読む際には、記載されている出来事そのものだけでなく、その年表がどこで区切られているかに注目するとよい。区切りの位置にこそ、その年表を作成した者の視点が、最も明確に表れている。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">15</span>
+        <span class="title">対照年表<small>ノートに整理した年表</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>世界の出来事と日本の出来事を、同一の表にまとめた。横に見比べることで、同時期に何が起きていたかを把握できる。</p>
+          <div class="tablewrap">
+            <table>
+              <tr><th>年</th><th>世界</th><th>日本</th></tr>
+              <tr><td>1543</td><td>コペルニクスの地動説</td><td>鉄砲の伝来</td></tr>
+              <tr><td>1600年代</td><td>三十年戦争とウェストファリア条約</td><td>江戸幕府がひらかれる／貿易を四つの口にしぼる</td></tr>
+              <tr><td>1776</td><td>アメリカ独立宣言</td><td>田沼時代のなかば</td></tr>
+              <tr><td>1789</td><td>フランス革命</td><td>寛政の改革</td></tr>
+              <tr><td>1840</td><td>阿片戦争</td><td>天保の改革のころ</td></tr>
+              <tr><td>1853</td><td>クリミア戦争のころ</td><td>ペリー来航</td></tr>
+              <tr><td>1861</td><td>アメリカ南北戦争</td><td>幕末の動乱</td></tr>
+              <tr><td>1868</td><td>ヨーロッパで国民国家の形成が進む</td><td>明治維新</td></tr>
+              <tr><td>1889</td><td>第二インターナショナル結成</td><td>大日本帝国憲法</td></tr>
+              <tr><td>1914</td><td>第一次世界大戦</td><td>大戦景気</td></tr>
+              <tr><td>1929</td><td>世界恐慌</td><td>昭和恐慌</td></tr>
+              <tr><td>1939</td><td>第二次世界大戦</td><td>日中戦争の長期化</td></tr>
+              <tr><td>1945</td><td>国際連合の発足／核兵器の登場</td><td>敗戦、占領の始まり</td></tr>
+              <tr><td>1947</td><td>インド独立</td><td>日本国憲法の施行</td></tr>
+              <tr><td>1964</td><td>公民権法（アメリカ）</td><td>東京オリンピック、新幹線</td></tr>
+              <tr><td>1973</td><td>石油危機、変動相場制へ</td><td>高度経済成長期の終わり</td></tr>
+              <tr><td>1989</td><td>ベルリンの壁の崩壊</td><td>昭和が終わり平成へ</td></tr>
+              <tr><td>1995</td><td>インターネットの普及がはじまる</td><td>阪神・淡路大震災</td></tr>
+              <tr><td>2008</td><td>世界金融危機</td><td>人口が減りはじめる</td></tr>
+              <tr><td>2011</td><td>アラブの春</td><td>東日本大震災</td></tr>
+              <tr><td>2020</td><td>感染症の世界的流行</td><td>同上（オリンピックの延期）</td></tr>
+            </table>
+          </div>
+          <p>この表を作成して気づいたことがある。日本の欄が空欄になりそうな年でも、必ず何らかの出来事は生じている。逆に、日本にとって重大事であった年が、世界の欄では比較的静穏であることもある。どちらの欄を主軸に置くかによって、時代の見え方は大きく異なる。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">16</span>
+        <span class="title">用語集<small>このノートに登場した重要語</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <dl>
+            <div class="dl-term"><dt>近代（modern）</dt><dd>もとは「今の」という意味の言葉。世界史ではおよそ十六世紀以降、日本史では明治維新以降を指すことが多い。主権国家・産業化・資本主義・科学・個人の権利・国民意識といった特徴でとらえられる。</dd></div>
+            <div class="dl-term"><dt>近世（early modern）</dt><dd>近代の入り口にあたる時期。世界史ではおよそ十六〜十八世紀、日本史では織豊時代から江戸時代までを指す。同じ言葉でも中身がずれるので注意がいる。</dd></div>
+            <div class="dl-term"><dt>現代（contemporary）</dt><dd>「同じ時代を生きている」という意味あい。日本史ではふつう1945年以降。世界史では1914年、1945年、1989年など、本によって線の位置が変わる。</dd></div>
+            <div class="dl-term"><dt>長い十九世紀／短い二十世紀</dt><dd>数字の百年ではなく、中身のまとまりで時代を区切る考え方。前者は1789年から1914年、後者は1914年から1991年。</dd></div>
+            <div class="dl-term"><dt>主権国家</dt><dd>はっきりした領域をもち、その内部のことを最終的に決める権限を持つ国。ウェストファリア条約（1648年）以降の国際秩序の基本単位とされる。</dd></div>
+            <div class="dl-term"><dt>二重革命</dt><dd>イギリスの産業革命とフランス革命という、ほぼ同時期に起きた二つの革命をまとめた呼び方。ものの作り方と政治の決め方が、同時に変わった。</dd></div>
+            <div class="dl-term"><dt>総力戦</dt><dd>軍隊だけでなく、工業・農業・輸送・国民全体を動員しておこなう戦争。第一次世界大戦以降の戦争の形。</dd></div>
+            <div class="dl-term"><dt>冷戦</dt><dd>米ソが直接には全面戦争をしないまま、四十年以上つづいた対立。ただし、その周辺の地域では実際の戦争が起きていた。</dd></div>
+            <div class="dl-term"><dt>高度経済成長期</dt><dd>日本で1955年ごろから1973年まで続いた、急速に経済成長した期間。生活のかたちが大きく変わる一方、公害という深刻な代償も伴った。</dd></div>
+            <div class="dl-term"><dt>時代区分</dt><dd>長い時間を、いくつかのまとまりに分けて理解するやり方。自然に存在するものではなく、あとの時代の人が作る道具である。このノートの中心テーマ。</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">17</span>
+        <span class="title">参考文献／受講後の所感</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <div class="book-group">
+            <h4>時代区分そのものを考えるために</h4>
+            <ul>
+              <li><strong>『歴史とは何か』</strong> E・H・カー — 歴史の事実は、書き手が選び取ったものだ、という考え方を教えてくれる古典。このノートの出発点になった本。</li>
+              <li><strong>『世界システム論』に関する入門書</strong> — 国ごとではなく、世界全体を一つの仕組みとして見る見方。近代の始まりを考えるときに参考になる。</li>
+            </ul>
+            <h4>世界の近・現代史を通して見るために</h4>
+            <ul>
+              <li><strong>『二十世紀の歴史』</strong> E・ホブズボーム — 「短い二十世紀」という区切りを示した本。第八章と第十二章は、ここから多くを学んだ。</li>
+              <li><strong>各社の「世界の歴史」シリーズ</strong> — 巻ごとに書き手が違うので、同じ出来事のあつかい方をくらべると面白い。</li>
+            </ul>
+            <h4>日本の近・現代史のために</h4>
+            <ul>
+              <li><strong>岩波新書・中公新書の近現代史のシリーズ</strong> — 幕末から現在までを、政治・経済・社会に分けて読める。</li>
+              <li><strong>地域の郷土資料館の展示・資料</strong> — 自分の住んでいる町が、いつ電気が通り、いつ鉄道が来たのかを調べると、大きな歴史が身近になる。今回一番楽しかった調べ方。</li>
+            </ul>
+          </div>
+          <h3 class="sec">総括的な所感</h3>
+          <p>当初は、「近代と現代の境目」という、明確な答えを持つ問いを探していた。しかし調べを進めるうちに、探していたのは答えではなく<strong class="term2">問いの立て方</strong>であったと気づいた。</p>
+          <p>最も印象に残ったのは、時代の名称を定めるのは常に後の世代であるという点である。ルネサンス期の人々が「中世」という名称を与えたように、われわれの時代の名称も、まだ生まれていない世代が定めることになるのだろう。その世代がこの時代をどう呼ぶのか、いくらかの不安と、いくらかの興味を覚える。</p>
+          <p>反省点もある。一つは、ヨーロッパと日本の事例に偏り、アフリカや中南米、西アジア、東南アジアの歴史に十分踏み込めなかったことである。世界を一本の線に並べたつもりでいながら、実際には自分にとって参照しやすい領域のみを見ていた。これは今後の課題としたい。</p>
+          <p>もう一つは、統計や数値をより丁寧に扱うべきだったという点である。人口、生産量、平均寿命といった数値は、政治的出来事に比べて目立たないが、生活の変化を的確に反映する。次に取り組む際は、自らグラフを作成してみたいと考えている。</p>
+          <p class="closing">このノートを、ひとまずここで区切る。<br>ここまで目を通していただき、感謝する。<br>年表の線は、いつでも自らの手で引き直してよいのだと理解できたことが、最大の収穫であった。</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<footer>
+  近代・現代史 講義まとめノート「『近代』と『現代』の境界はどこに引かれるのか」<br>
+  ― 世界史と日本史を一本の年表に重ね合わせて考える ―
+</footer>
+
+<script>
+(function(){
+  // Accordion Logic
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(e){
+        // Do not toggle if text is being selected
+        var selection = window.getSelection();
+        if(selection.toString().length > 0) return;
+
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+  bindAccordion("[data-sub]", "[data-sub-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  // Scroll Progress Bar
+  window.addEventListener('scroll', function(){
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("progress-bar").style.width = scrolled + "%";
+  });
+})();
+</script>
+
+</body>
+</html>
+
