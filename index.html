@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>書庫 ― 読み物ポータル</title>
+<style>
+  :root{
+    --bg: #f7f5f0;
+    --paper: #ffffff;
+    --ink: #2a2622;
+    --muted: #6f6a63;
+    --line: #e4dfd5;
+    --accent: #8a3b2f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #1b1916;
+      --paper: #242220;
+      --ink: #ece7de;
+      --muted: #a49d90;
+      --line: #3a352e;
+      --accent: #d98b73;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+    line-height:1.8;
+  }
+  .top{
+    max-width:780px;
+    margin:0 auto;
+    padding:72px 24px 32px;
+    text-align:center;
+  }
+  .top .eyebrow{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.28em;
+    color:var(--muted);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    margin-bottom:18px;
+  }
+  .top h1{
+    font-size:clamp(26px,4vw,34px);
+    margin:0 0 14px;
+    letter-spacing:.06em;
+  }
+  .top p.lead{
+    font-size:14.5px;
+    color:var(--muted);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    margin:0;
+  }
+  .divider{
+    width:64px;
+    height:1px;
+    background:var(--line);
+    margin:28px auto 0;
+    position:relative;
+  }
+  .divider::after{
+    content:"◆";
+    position:absolute;
+    left:50%;
+    top:-7px;
+    transform:translateX(-50%);
+    background:var(--bg);
+    padding:0 10px;
+    color:var(--accent);
+    font-size:9px;
+  }
+
+  main{
+    max-width:780px;
+    margin:0 auto;
+    padding:40px 24px 90px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .card{
+    display:block;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px 34px;
+    text-decoration:none;
+    color:inherit;
+    position:relative;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    left:0; top:14px; bottom:14px;
+    width:3px;
+    background:var(--accent);
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 28px rgba(0,0,0,.08);
+    border-color:var(--accent);
+  }
+  .card:hover::before{ opacity:1; }
+
+  .card .kicker{
+    display:block;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .card h2{
+    font-size:20px;
+    margin:0 0 8px;
+    letter-spacing:.03em;
+  }
+  .card h3{
+    font-size:13.5px;
+    font-weight:normal;
+    color:var(--muted);
+    margin:0 0 14px;
+  }
+  .card p.desc{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0;
+    line-height:1.75;
+  }
+  .card .go{
+    display:inline-block;
+    margin-top:16px;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:12px;
+    color:var(--accent);
+    letter-spacing:.05em;
+  }
+  .card .go::after{ content:" →"; }
+
+  footer{
+    text-align:center;
+    padding:0 24px 60px;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:11.5px;
+    color:var(--muted);
+    letter-spacing:.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <span class="eyebrow">PERSONAL ARCHIVE</span>
+  <h1>書庫</h1>
+  <p class="lead">こころ理学・歴史・政治思想 ― 三つの読み物</p>
+  <div class="divider"></div>
+</div>
+
+<main>
+
+  <a class="card" href="becomingyourself.html">
+    <span class="kicker">JUNGIAN PSYCHOLOGY</span>
+    <h2>本当の自分に出会う</h2>
+    <h3>ユング心理学とともに歩む、こころの旅</h3>
+    <p class="desc">カール・グスタフ・ユングの思想を手がかりに、自分自身の内面を見つめ直すための一冊。専門知識は不要で、河合隼雄をはじめとする日本の臨床家たちの知見にも触れながら、章ごとに開いて読み進められる。</p>
+    <span class="go">読む</span>
+  </a>
+
+  <a class="card" href="kingendaishi.html">
+    <span class="kicker">HISTORY LECTURE NOTES</span>
+    <h2>「近代」と「現代」の境界はどこに引かれるのか</h2>
+    <h3>近代・現代史 講義まとめノート</h3>
+    <p class="desc">世界史と日本史を一本の年表に重ね合わせながら、「近代」と「現代」を分ける境界線がどこにあるのかを考える講義ノート。教養課程・近代現代史特論の内容をまとめている。</p>
+    <span class="go">読む</span>
+  </a>
+
+  <a class="card" href="authoritarianism-thesis.html">
+    <span class="kicker">POLITICAL ESSAY</span>
+    <h2>「権威主義」をめぐる考察</h2>
+    <h3>民主主義は善で権威主義は悪か、体制転換は平和をもたらすか</h3>
+    <p class="desc">民主主義国家は善で権威主義国家は悪だと言い切れるのか。権威主義国家の民主化は本当に世界に平和をもたらすのか。歴史と比較政治学の議論を積み重ねながら、二つの問いを検討する論考。</p>
+    <span class="go">読む</span>
+  </a>
+
+</main>
+
+<footer>&copy; 2026</footer>
+
+</body>
+</html>
