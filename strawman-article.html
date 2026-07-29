@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藁人形論法 ― 存在しない主張と戦う詭弁</title>
+<style>
+  :root{
+    --sky:#5ec8e6;
+    --sky-deep:#1f7fa8;
+    --straw:#e3b23c;
+    --straw-deep:#b9791a;
+    --field:#5da35f;
+    --field-deep:#2f6b34;
+    --coral:#e0624a;
+    --coral-deep:#b6402c;
+    --card:#fffdf6;
+    --paper:#fbf5e4;
+    --ink:#332b1f;
+    --ink-soft:#78705f;
+    --line:#eadfc2;
+    --pause-bg:#fff7e2;
+    --pause-border:#e3b23c;
+    --field-bg:#f2f8ef;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;scroll-behavior:smooth;}
+  body{
+    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 90% -6%, #fff3c4 0%, rgba(255,243,196,0) 40%),
+      linear-gradient(180deg, #e4f6fb 0%, #fbf6e6 22%, #fbf6e6 100%);
+    line-height:2.0;
+    letter-spacing:0.03em;
+  }
+
+  #progress-bar{
+    position:fixed; top:0; left:0;
+    height:5px; width:0%;
+    background:linear-gradient(90deg, var(--sky), var(--field), var(--straw), var(--coral));
+    z-index:9999;
+    transition:width .1s ease-out;
+  }
+
+  /* ---------- Hero: 夏の田んぼとかかし ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:78px 24px 128px;
+    text-align:center;
+    background:linear-gradient(180deg, #2f9fd0 0%, #6fcbe8 46%, #bfe9f2 82%, #eaf6d8 100%);
+    color:#fff;
+  }
+  .hero .sun{
+    position:absolute; top:-60px; right:8%;
+    width:170px; height:170px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fffbe0 0%, var(--straw) 45%, #d98a1e 100%);
+    box-shadow:0 0 70px 22px rgba(227,178,60,.5);
+    animation:pulseSun 7s infinite alternate;
+  }
+  @keyframes pulseSun{0%{transform:scale(1);opacity:.92;}100%{transform:scale(1.07);opacity:1;}}
+  .hero .cumulus{position:absolute; top:30px; left:-40px; width:280px; opacity:.95; animation:floatCloud 26s infinite ease-in-out;}
+  @keyframes floatCloud{0%{transform:translateX(0);}50%{transform:translateX(30px);}100%{transform:translateX(0);}}
+  .hero .cicada-line{
+    position:absolute; left:0; right:0; top:120px;
+    text-align:center; font-size:.78rem; letter-spacing:.5em;
+    color:rgba(255,255,255,.55);
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .kicker{
+    display:inline-block;
+    font-size:.8rem; letter-spacing:.28em;
+    background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:999px;
+    padding:8px 22px; margin-bottom:22px;
+    backdrop-filter:blur(4px);
+  }
+  .hero h1{
+    margin:0 0 16px;
+    font-size:clamp(1.7rem, 4.4vw, 2.9rem);
+    font-weight:800;
+    text-shadow:0 3px 12px rgba(0,50,70,.32);
+  }
+  .hero h2{
+    margin:0 auto; max-width:600px;
+    font-size:clamp(1rem, 2.2vw, 1.24rem);
+    font-weight:500; color:#f3fdfb; line-height:1.75;
+  }
+  .namecard{
+    display:inline-block;
+    margin-top:26px;
+    background:rgba(255,253,246,.96);
+    color:var(--ink);
+    border-radius:10px;
+    padding:14px 28px;
+    font-size:.9rem;
+    line-height:2.0;
+    box-shadow:0 8px 22px rgba(40,50,20,.2);
+    transform:rotate(-1deg);
+    text-align:left;
+  }
+  .namecard b{color:var(--field-deep);}
+
+  /* field silhouette with scarecrow */
+  .field-wrap{position:absolute; left:0; right:0; bottom:-2px; line-height:0;}
+  .field-wrap svg{width:100%; height:150px; display:block;}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:820px; margin:0 auto; padding:0 24px 90px;}
+  .toc-note{text-align:center; color:var(--ink-soft); font-size:.94rem; margin:36px 0 26px;}
+
+  .toolbar-container{
+    position:sticky; top:10px; z-index:100;
+    background:rgba(251,245,230,.93);
+    backdrop-filter:blur(8px);
+    padding:10px 0; border-radius:999px;
+    margin-bottom:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+  }
+  .toolbar{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
+  .toolbar button{
+    font-family:inherit; font-size:.9rem; font-weight:600;
+    color:var(--field-deep); background:#fff;
+    border:1.5px solid var(--field); border-radius:999px;
+    padding:10px 24px; cursor:pointer;
+    transition:all .2s ease;
+    box-shadow:0 2px 6px rgba(93,163,95,.18);
+  }
+  .toolbar button:hover{
+    background:var(--field); color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(93,163,95,.28);
+  }
+
+  /* ---------- Accordion ---------- */
+  .acc-item{
+    background:var(--card);
+    border-radius:18px;
+    margin-bottom:16px;
+    box-shadow:0 4px 20px rgba(90,60,10,.07);
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .acc-item:hover{box-shadow:0 6px 25px rgba(90,60,10,.11);}
+  .acc-header{
+    width:100%; display:flex; align-items:center; gap:16px;
+    background:none; border:none; padding:20px 24px;
+    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+  }
+  .acc-header .num{
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg, var(--straw), var(--straw-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:1rem;
+    box-shadow:0 3px 10px rgba(185,121,26,.3);
+  }
+  .acc-header .title{flex:1 1 auto; font-size:1.12rem; font-weight:700; letter-spacing:.03em;}
+  .acc-header .title small{
+    display:block; font-weight:500; font-size:.83rem;
+    color:var(--ink-soft); margin-top:4px; letter-spacing:.01em;
+  }
+  .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--sky-deep); transition:transform .3s cubic-bezier(.4,0,.2,1);}
+  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
+  .acc-item.open > .acc-header{
+    background:linear-gradient(90deg, #fff8e6, #fffdf6);
+    border-bottom:1px solid var(--line);
+  }
+  .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
+  .acc-panel-inner{overflow:hidden; min-height:0; padding:0 28px; opacity:0; transition:opacity .3s ease .1s;}
+  .acc-item.open > .acc-panel > .acc-panel-inner{padding:18px 28px 32px; opacity:1;}
+
+  /* nested (事例) */
+  .sub-list{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
+  .sub-item{background:var(--field-bg); border:1px solid #dbe9d6; border-radius:14px; overflow:hidden;}
+  .sub-header{
+    width:100%; display:flex; align-items:center; gap:14px;
+    background:none; border:none; padding:16px 20px;
+    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+  }
+  .sub-header:hover{background:rgba(255,255,255,.65);}
+  .sub-header .num{
+    flex:0 0 auto; width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(135deg, var(--field), var(--field-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:.78rem;
+  }
+  .sub-header .title{flex:1 1 auto; font-size:1.01rem; font-weight:700;}
+  .sub-header .title small{display:block; font-weight:500; font-size:.78rem; color:var(--ink-soft); margin-top:3px;}
+  .sub-header .chev{width:20px; height:20px; color:var(--field-deep); transition:transform .3s ease;}
+  .sub-item.open > .sub-header .chev{transform:rotate(180deg);}
+  .sub-item.open > .sub-header{border-bottom:1px dashed #cfe0c9;}
+  .sub-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
+  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
+  .sub-panel-inner{overflow:hidden; min-height:0; padding:0 22px; opacity:0; transition:opacity .3s ease .1s;}
+  .sub-item.open > .sub-panel > .sub-panel-inner{padding:14px 22px 22px; opacity:1;}
+
+  /* ---------- Body typography ---------- */
+  p{margin:0 0 1.2em; font-size:1.03rem; color:#3b3627;}
+  .no-indent{text-indent:0;}
+
+  .dialogue{
+    margin:1.4em 0; border-radius:14px; overflow:hidden;
+    border:1px solid var(--line); background:#fff;
+  }
+  .dialogue .line{padding:14px 20px; font-size:.98rem;}
+  .dialogue .line.orig{background:#eef6ec; border-bottom:1px dashed var(--line);}
+  .dialogue .line.straw{background:#fdf1ec;}
+  .dialogue .line b{display:block; font-size:.74rem; letter-spacing:.1em; margin-bottom:5px;}
+  .dialogue .line.orig b{color:var(--field-deep);}
+  .dialogue .line.straw b{color:var(--coral-deep);}
+
+  .compare{display:flex; flex-wrap:wrap; gap:12px; margin:1.2em 0;}
+  .compare-box{flex:1 1 220px; border-radius:12px; padding:14px 18px;}
+  .compare-box.original{background:#eef6ec; border:1px solid #cfe3c8;}
+  .compare-box.straw{background:#fdf1ec; border:1px solid #f0cdc0;}
+  .compare-box .tag{
+    display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.08em;
+    padding:2px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .compare-box.original .tag{background:var(--field); color:#fff;}
+  .compare-box.straw .tag{background:var(--coral); color:#fff;}
+  .compare-box p{margin:0; font-size:.96rem; color:#3b3627;}
+  .gap-note{
+    margin:1em 0 0; padding:12px 18px;
+    background:var(--pause-bg); border-left:4px solid var(--straw);
+    border-radius:0 10px 10px 0; font-size:.95rem;
+  }
+  .gap-note b{color:var(--straw-deep);}
+  .cite-line{
+    margin:.9em 0 0; font-size:.82rem; color:var(--ink-soft);
+    text-align:right; font-style:italic;
+  }
+
+  .pullquote{
+    text-align:center; font-size:1.18rem; font-weight:700;
+    color:var(--field-deep); margin:1.6em 0; text-indent:0; padding:0 20px; position:relative;
+  }
+  .pullquote::before, .pullquote::after{
+    content:''; display:inline-block; width:20px; height:2px;
+    background:var(--field-deep); vertical-align:middle; margin:0 15px; opacity:.35;
+  }
+
+  .steps{display:flex; flex-wrap:wrap; gap:12px; margin:1.4em 0;}
+  .step{flex:1 1 200px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .step .n{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%; background:var(--sky-deep); color:#fff;
+    font-size:.8rem; font-weight:700; margin-bottom:8px;
+  }
+  .step p{margin:0; font-size:.93rem; color:#3b3627;}
+
+  .pause{
+    margin-top:2em; padding:22px 24px;
+    background:var(--pause-bg);
+    border:2px dashed var(--pause-border);
+    border-radius:16px; position:relative;
+    box-shadow:0 4px 12px rgba(227,178,60,.14);
+  }
+  .pause::before{
+    content:"気づいたこと";
+    position:absolute; top:-11px; left:20px;
+    background:var(--pause-bg); padding:0 8px;
+    font-size:.74rem; font-weight:700; letter-spacing:.06em; color:#a06d00;
+  }
+  .pause p{margin:0; text-indent:0; color:#6d4c00; font-weight:600; text-align:left; font-size:1.02rem; line-height:1.75;}
+  .pause p + p{margin-top:.7em;}
+
+  .card-note{
+    margin:1.7em 0; padding:22px 24px 20px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(90,60,10,.06);
+    position:relative;
+  }
+  .card-note::after{
+    content:""; position:absolute; top:-9px; left:50%;
+    width:72px; height:18px; margin-left:-36px;
+    background:rgba(227,178,60,.7);
+    transform:rotate(-2deg);
+    box-shadow:0 1px 3px rgba(0,0,0,.08);
+  }
+  .card-note h4{
+    margin:.2em 0 .8em; font-size:1.0rem; color:var(--coral-deep);
+    letter-spacing:.04em;
+  }
+  .card-note p:last-child{margin-bottom:0;}
+
+  strong.term{
+    color:var(--ink); font-weight:700;
+    background:linear-gradient(180deg, transparent 64%, rgba(227,178,60,.55) 64%);
+    padding:0 2px;
+  }
+  strong.term2{
+    color:var(--ink); font-weight:700;
+    background:linear-gradient(180deg, transparent 64%, rgba(94,200,230,.5) 64%);
+    padding:0 2px;
+  }
+
+  .terms-grid{display:flex; flex-direction:column; gap:10px; margin:1.2em 0 0;}
+  .term-row{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); align-items:baseline;}
+  .term-row:last-child{border-bottom:none;}
+  .term-row .t{flex:0 0 128px; font-weight:700; color:var(--coral-deep); font-size:.96rem;}
+  .term-row .d{flex:1 1 auto; font-size:.94rem; color:#3b3627;}
+
+  .refs{list-style:none; margin:0; padding:0;}
+  .refs li{
+    padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs a{color:var(--sky-deep); font-weight:700; text-decoration:none; font-size:.98rem;}
+  .refs a:hover{text-decoration:underline;}
+  .refs .meta{display:block; margin-top:5px; font-size:.82rem; color:var(--ink-soft);}
+
+  .closing{
+    text-align:center; font-style:italic; color:var(--ink-soft);
+    margin-top:2em; padding:22px;
+    background:rgba(255,255,255,.65); border-radius:12px;
+    line-height:2;
+  }
+
+  footer{
+    text-align:center; color:var(--ink-soft); font-size:.86rem;
+    padding:30px 20px; background:#f4f0e2; border-top:1px solid var(--line);
+    line-height:1.9;
+  }
+
+  @media (max-width:600px){
+    .hero{padding:56px 16px 96px;}
+    .hero .cumulus{width:190px;}
+    .acc-header{padding:16px 14px;}
+    .acc-item.open > .acc-panel > .acc-panel-inner{padding:14px 16px 26px;}
+    .sub-item.open > .sub-panel > .sub-panel-inner{padding:12px 14px 20px;}
+    .pause,.card-note{padding:20px 16px;}
+    .pullquote::before,.pullquote::after{display:none;}
+    .term-row{flex-direction:column; gap:4px;}
+    .term-row .t{flex:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div class="hero">
+  <div class="sun"></div>
+  <div class="cumulus">
+    <svg viewBox="0 0 300 130" fill="#ffffff"><ellipse cx="70" cy="90" rx="65" ry="34"/><ellipse cx="130" cy="70" rx="55" ry="44"/><ellipse cx="190" cy="88" rx="48" ry="32"/><ellipse cx="110" cy="105" rx="70" ry="24"/></svg>
+  </div>
+  <div class="cicada-line">ジィィィ……ミィンミィンミィン……</div>
+  <div class="hero-inner">
+    <span class="kicker">現代社会 ｜ ことばの観察ノート</span>
+    <h1>藁人形論法<br>― 存在しない主張と戦う詭弁</h1>
+    <h2>かかしを叩いて「勝った」と言っていないか。日本と海外の実例から確かめる。</h2>
+    <div class="namecard">
+      <b>調べたテーマ</b>：藁人形論法（主張のすり替え）<br>
+      <b>記録した時期</b>：夏休み中、蝉の声を聞きながら<br>
+      <b>使った資料</b>：ファクトチェック機関・報道各社の記事
+    </div>
+  </div>
+  <div class="field-wrap">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="fieldGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#dff0c4"/>
+          <stop offset="100%" stop-color="#eadfa0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#fieldGrad)" d="M0,90 C240,140 480,60 720,95 C960,130 1200,70 1440,100 L1440,220 L0,220 Z"/>
+      <!-- 麦の穂のライン -->
+      <g stroke="#c9a13a" stroke-width="3" stroke-linecap="round" opacity=".55">
+        <path d="M60,140 L54,175"/><path d="M90,150 L84,182"/><path d="M120,142 L114,178"/>
+        <path d="M980,150 L974,185"/><path d="M1010,158 L1004,190"/><path d="M1040,148 L1034,183"/>
+        <path d="M1200,140 L1194,175"/><path d="M1230,150 L1224,182"/><path d="M1260,143 L1254,179"/>
+      </g>
+      <!-- ひまわり -->
+      <g transform="translate(240,128)">
+        <g fill="#f4c542">
+          <ellipse rx="7" ry="16" transform="rotate(0)"/><ellipse rx="7" ry="16" transform="rotate(45)"/>
+          <ellipse rx="7" ry="16" transform="rotate(90)"/><ellipse rx="7" ry="16" transform="rotate(135)"/>
+        </g>
+        <circle r="9" fill="#7a4a24"/>
+      </g>
+      <g transform="translate(1120,132) scale(0.85)">
+        <g fill="#f4c542">
+          <ellipse rx="7" ry="16" transform="rotate(20)"/><ellipse rx="7" ry="16" transform="rotate(65)"/>
+          <ellipse rx="7" ry="16" transform="rotate(110)"/><ellipse rx="7" ry="16" transform="rotate(155)"/>
+        </g>
+        <circle r="9" fill="#7a4a24"/>
+      </g>
+      <!-- かかし -->
+      <g transform="translate(720,60)">
+        <rect x="-4" y="-6" width="8" height="120" fill="#8d6a3f" rx="2"/>
+        <rect x="-52" y="18" width="104" height="9" fill="#8d6a3f" rx="4"/>
+        <path d="M-52,22 l-16,10 M-52,22 l-10,-14" stroke="#e3b23c" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M52,22 l16,10 M52,22 l10,-14" stroke="#e3b23c" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M-28,20 Q0,30 28,20 L36,88 Q0,102 -36,88 Z" fill="#c1552f"/>
+        <path d="M-28,86 l-9,22 M-13,90 l-5,24 M2,92 l0,26 M17,90 l5,24 M32,86 l9,22" stroke="#e3b23c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="0" cy="-10" r="17" fill="#f0d9a8"/>
+        <path d="M-6,-10 l4,4 M-2,-10 l-4,4 M4,-10 l4,4 M8,-10 l-4,4" stroke="#8d5a2b" stroke-width="1.6"/>
+        <ellipse cx="0" cy="-20" rx="32" ry="7" fill="#d9a441"/>
+        <path d="M-15,-22 Q0,-44 15,-22 Z" fill="#e3b23c"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="toc-note no-indent">気になる項目をタップすると、そこだけが開く。順に読んでも、気になるところから読んでも構わない。</p>
+
+  <div class="toolbar-container">
+    <div class="toolbar">
+      <button id="expandAll" type="button">全部開く</button>
+      <button id="collapseAll" type="button">全部閉じる</button>
+    </div>
+  </div>
+
+  <div id="accordion">
+
+    <!-- 1 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">1</span>
+        <span class="title">藁人形論法とは何か<small>相手の言っていないことと、戦っていないか</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>議論における詭弁のなかでも特によく見られるものに、藁人形論法がある。相手が実際に述べた主張ではなく、それを歪めて弱く、あるいは極端にした偽物の主張を勝手に作り上げ、その偽物を叩いて「論破した」ことにしてしまう手口である。名前の由来は、本物の敵ではなく藁でできた弱い人形を叩くという比喩にある。</p>
+          <p class="no-indent">たとえば、次のようなやり取りを考えてみる。</p>
+          <div class="dialogue">
+            <div class="line orig"><b>実際の発言</b>「移民の受け入れ基準を少し緩めるべきだ」</div>
+            <div class="line straw"><b>すり替えられた反論</b>「国境をなくして誰でも無制限に入れろと言うのか、それは無責任だ」</div>
+          </div>
+          <p class="no-indent">相手は基準の緩和としか言っていないのに、より極端で反論しやすい主張にすり替えられている。</p>
+          <p>この詭弁が厄介なのは、聞き手には「相手を論破した」ように見えてしまう点にある。実際には元の主張には一言も反論できていないにもかかわらず、議論に勝った空気だけが生まれる。結果として論点は深まらず、対話は破壊される。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">2</span>
+        <span class="title">なぜ人はこの詭弁に陥るのか<small>三段階の仕組みと、SNS時代のわな</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>藁人形論法が成立する過程は三段階に整理できる。この三段階のどこか一つでも欠ければ、単なる誤解や勇み足であって藁人形論法とは呼べない。</p>
+          <div class="steps">
+            <div class="step"><span class="n">1</span><p>相手の主張を実際より弱く、あるいは極端な形に歪める。</p></div>
+            <div class="step"><span class="n">2</span><p>その歪めた版――藁人形――を攻撃する。</p></div>
+            <div class="step"><span class="n">3</span><p>藁人形を倒したことをもって、元の主張そのものを論破したかのように錯覚させる。</p></div>
+          </div>
+          <p>人がこの詭弁に陥りやすい理由は単純だ。相手の主張をそのままの強さで受け止めて反論するより、極端な形に描き直したほうが圧倒的に反論しやすい。加えて、SNSのように短い言葉が拡散されやすい環境では、複雑な留保つきの主張よりも、単純化され感情を刺激する主張のほうが目に留まりやすい。切り取られた動画や発言が「わかりやすい」からこそ拡散し、元の文脈は置き去りにされる。</p>
+          <p>有害さは学術的な議論の場でも指摘されてきた。反対意見を不当に弱めて紹介すれば、それに続く反論もまた説得力を失う。読者や聴衆は、歪められた主張しか知らないまま「論破された」と信じ込み、実際の論点についての理解はむしろ後退する。</p>
+          <div class="card-note">
+            <h4>用語メモ：スチールマンと好意的解釈の原則</h4>
+            <p>だからこそ、相手の主張は「その論者が言いうる最も強い形」で提示したうえで検討すべきだとされる。この姿勢はスチールマン（steel man、鋼鉄人形）や、好意的解釈の原則（principle of charity）と呼ばれ、藁人形論法の対概念として繰り返し語られてきた。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">3</span>
+        <span class="title">実例に見る藁人形論法<small>日本2件・欧米3件、政治からSNSまで</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>ここからは、実際に報道・検証された5件を見ていく。分野やテレビ・広告・討論会など場面が偏っては、「藁人形論法は特定の陣営の専売特許だ」という誤った印象を与えかねない。政治的な立場に関わらず、誰もがこの詭弁を使い、また使われうることを意識しながら読んでほしい。</p>
+
+          <div class="sub-list">
+
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">1</span>
+                <span class="title">小泉進次郎氏の会見動画<small>日本／政治家の発言そのものを作り替える</small></span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>2025年5月、「小泉進次郎氏が消費税15%を主張している」とする45秒の動画がX上で拡散し、1万回以上リポストされた。動画は2017年6月1日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
+                  <div class="compare">
+                    <div class="compare-box original"><span class="tag">元の主張</span><p>増税には慎重、少子化対策は待ったなし（同じ会見で「消費増税というのは選択肢にはなり得ない」と発言）</p></div>
+                    <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>消費税15%を積極的に推進している</p></div>
+                  </div>
+                  <p class="gap-note"><b>歪曲点：</b>両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
+                  <p class="cite-line">出典：日本ファクトチェックセンター（2025年5月23日）</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">2</span>
+                <span class="title">「オープンボーダー」への飛躍<small>米国／2016年大統領選、討論会での応酬</small></span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>2016年10月19日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー（国境の撤廃）を望んでいる」と述べた。根拠とされたのは、2013年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
+                  <div class="compare">
+                    <div class="compare-box original"><span class="tag">元の主張</span><p>エネルギー・貿易面での地域統合（国境警備強化を含む2013年の移民改革法案は支持）</p></div>
+                    <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>移民の無制限受け入れ</p></div>
+                  </div>
+                  <p class="gap-note"><b>歪曲点：</b>両者は主題からして異なる。米ファクトチェック団体PolitiFactはトランプ氏の発言を「ほぼ誤り」と判定した。</p>
+                  <p class="cite-line">出典：PolitiFact（2016年10月20日）</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">3</span>
+                <span class="title">発言の後半を切り落とす<small>日本／テレビ報道発言の切り抜き</small></span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>2026年1月、中道改革連合の斉藤鉄夫共同代表がTBSテレビの番組で発言した場面を切り取った動画がXで拡散した。</p>
+                  <div class="compare">
+                    <div class="compare-box original"><span class="tag">元の発言（全文）</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある……そういう考え方には立たない。人間を中心に考えていくことが中道主義の本質だ」</p></div>
+                    <div class="compare-box straw"><span class="tag">拡散した動画（後半カット）</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある」</p></div>
+                  </div>
+                  <p class="gap-note"><b>歪曲点：</b>発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
+                  <p class="cite-line">出典：時事通信（2026年2月2日）</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">4</span>
+                <span class="title">「カナダ型医療」の脅し<small>米国／2009年、医療保険改革をめぐる広告</small></span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>2009年、米国の医療保険改革をめぐり、保守系団体のPatients United NowとPatients Firstは「ワシントンはカナダ型の医療制度を持ち込もうとしている」とする広告を展開した。</p>
+                  <div class="compare">
+                    <div class="compare-box original"><span class="tag">元の提案</span><p>公的保険の選択肢を追加する案</p></div>
+                    <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>カナダのような完全な政府運営制度への移行</p></div>
+                  </div>
+                  <p class="gap-note"><b>歪曲点：</b>専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米FactCheck.orgは藁人形論法と評した。</p>
+                  <p class="cite-line">出典：FactCheck.org（2009年7月17日）</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-item" data-sub>
+              <button class="sub-header" data-sub-toggle>
+                <span class="num">5</span>
+                <span class="title">同じ党内でも起きる<small>米国／2019年、民主党予備選討論会</small></span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="sub-panel">
+                <div class="sub-panel-inner">
+                  <p>2019年6月の米民主党予備選討論会では、穏健派候補のデラニー氏が、サンダース氏の掲げる国民皆保険制度「メディケア・フォー・オール」について発言した。</p>
+                  <div class="compare">
+                    <div class="compare-box original"><span class="tag">サンダース氏の法案</span><p>病院への診療報酬をメディケア水準に固定するとは規定していない</p></div>
+                    <div class="compare-box straw"><span class="tag">デラニー氏の主張</span><p>「すべての病院がメディケア並みの支払いになれば経営が立ち行かなくなる」</p></div>
+                  </div>
+                  <p class="gap-note"><b>歪曲点：</b>米公共放送PBSはデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
+                  <p class="cite-line">出典：PBS NewsHour（2019年6月27日）</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">4</span>
+        <span class="title">明日から相手の議論をスチールマン化するために<small>実践のための3つの問いと、隣接する詭弁</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <p>ここまで見た5つの事例に共通するのは、対立する陣営の政治家であれ、同じ党派の候補者であれ、テレビ番組で発言した候補者であれ、誰もが藁人形論法を使い、また使われうるという事実である。左右どちらの立場にも、この詭弁を犯した側と犯された側が存在した。</p>
+          <p class="no-indent">議論を建設的に進めるためには、反論する前に一呼吸置き、次のように自問するとよい。</p>
+          <div class="pullquote">相手の主張そのものと戦っているか、それとも自分が作った弱い版と戦っているか</div>
+          <div class="steps">
+            <div class="step"><span class="n">Q1</span><p>相手が実際に言った言葉は何か。</p></div>
+            <div class="step"><span class="n">Q2</span><p>その主張を、相手自身が最も納得できる形で要約できているか。</p></div>
+            <div class="step"><span class="n">Q3</span><p>自分が今から叩こうとしているのは相手の主張そのものか、それとも作り上げた弱い版にすぎないのか。</p></div>
+          </div>
+          <p>この問いに正直に答える姿勢こそがスチールマンを作る作業であり、不毛な論破合戦を実りある対話に変える第一歩となる。</p>
+          <p class="no-indent">なお、藁人形論法には隣接する詭弁がいくつかある。いずれも相手の主張を正確に扱わない点で親戚関係にあるが、歪め方の方向性はそれぞれ異なる。</p>
+          <div class="terms-grid">
+            <div class="term-row"><span class="t">チェリーピッキング</span><span class="d">都合のよい事実だけを並べる。</span></div>
+            <div class="term-row"><span class="t">滑り坂論法</span><span class="d">些細な譲歩が破滅的な結果に直結すると決めつける。</span></div>
+            <div class="term-row"><span class="t">人身攻撃</span><span class="d">主張ではなく人格を攻撃する。</span></div>
+            <div class="term-row"><span class="t">偽のジレンマ</span><span class="d">選択肢を二つしかないかのように狭める。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="acc-item" data-acc>
+      <button class="acc-header" data-acc-toggle>
+        <span class="num">5</span>
+        <span class="title">参考文献<small>検証に用いた記事一覧</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">
+          <ul class="refs">
+            <li><a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/" target="_blank" rel="noopener">小泉進次郎氏が消費増税を主張？恣意的な切り貼り【ファクトチェック】</a><span class="meta">日本ファクトチェックセンター, 2025年5月23日</span></li>
+            <li><a href="https://www.jiji.com/jc/article?k=2026020200704&g=pol" target="_blank" rel="noopener">中道・斉藤氏「人間より大事なものある」動画は誤り テレビ番組発言の切り抜きが拡散【チェック！選挙】</a><span class="meta">時事通信, 2026年2月2日</span></li>
+            <li><a href="https://www.politifact.com/factchecks/2016/oct/20/donald-trump/donald-trump-says-hillary-clinton-wants-have-open-/" target="_blank" rel="noopener">In final debate, Trump wrongly says Clinton wants open borders</a><span class="meta">PolitiFact, 2016年10月20日</span></li>
+            <li><a href="https://www.factcheck.org/2009/07/canadian-straw-man/" target="_blank" rel="noopener">Canadian Straw Man</a><span class="meta">FactCheck.org, 2009年7月17日</span></li>
+            <li><a href="https://www.pbs.org/newshour/politics/fact-check-delaneys-debate-claim-that-medicare-for-all-will-shutter-hospitals-goes-overboard" target="_blank" rel="noopener">Fact check: Delaney's debate claim that 'Medicare For All' will shutter hospitals goes overboard</a><span class="meta">PBS NewsHour, 2019年6月27日</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="closing">ここでノートを一区切りする。<br>蝉の声を聞きながらニュースを読み返すと、見出しの向こうにある「元の言葉」が気になる様になった。<br>かかしを叩いて満足していないか、これからも時々確かめたい。</p>
+</div>
+
+<footer>
+  藁人形論法 ― 存在しない主張と戦う詭弁<br>
+  ― 日本と欧米の実例から確かめる、すり替えの詭弁ノート ―
+</footer>
+
+<script>
+(function(){
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(e){
+        var selection = window.getSelection();
+        if(selection.toString().length > 0) return;
+
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+  bindAccordion("[data-sub]", "[data-sub-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  window.addEventListener('scroll', function(){
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("progress-bar").style.width = scrolled + "%";
+  });
+})();
+</script>
+
+</body>
+</html>
