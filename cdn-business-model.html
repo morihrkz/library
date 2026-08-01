@@ -98,20 +98,6 @@
   /* ---------- Layout ---------- */
   .wrap{max-width:760px; margin:0 auto; padding:0 20px 90px;}
 
-  .notice{
-    margin:-40px auto 34px; max-width:720px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-left:4px solid var(--cyan-600);
-    border-radius:4px;
-    padding:22px 24px;
-    box-shadow:0 8px 24px rgba(11,21,48,.12);
-    position:relative; z-index:3;
-  }
-  .notice p{margin:0 0 .7em; font-size:.96rem; color:var(--ink-soft); line-height:1.85; text-indent:0;}
-  .notice p:last-child{margin-bottom:0;}
-  .notice p strong{color:var(--navy-900); font-size:1rem; letter-spacing:.05em;}
-
   .toc-note{text-align:center; color:var(--ink-soft); font-size:.92rem; margin:0 0 22px; text-indent:0;}
 
   .toolbar-container{
@@ -134,19 +120,6 @@
   }
   .toolbar button:hover, .toolbar button:active{
     background:var(--navy-800); color:#fff; border-color:var(--navy-800);
-  }
-
-  /* ---------- Part divider ---------- */
-  .part-divider{
-    display:flex; align-items:center; gap:14px;
-    margin:38px 0 16px;
-  }
-  .part-divider:first-child{margin-top:0;}
-  .part-line{flex:1 1 auto; height:1px; background:#c3d2ea;}
-  .part-label{
-    flex:0 0 auto; font-size:.86rem; font-weight:700;
-    color:var(--navy-800); letter-spacing:.06em;
-    padding:6px 14px; background:var(--cyan-100); border-radius:999px;
   }
 
   /* ---------- Accordion ---------- */
@@ -213,13 +186,6 @@
   /* ---------- Body typography ---------- */
   p{margin:0 0 1.15em; font-size:1.02rem; color:var(--ink); line-height:1.95; text-indent:1em;}
   p:last-child{margin-bottom:0;}
-  h3.sec{
-    font-size:1.02rem; color:var(--navy-800);
-    margin:1.7em 0 .8em; padding-left:12px;
-    border-left:4px solid var(--cyan-500);
-    letter-spacing:.03em; font-weight:700;
-  }
-  h3.sec:first-child{margin-top:0;}
 
   ul, ol{margin:0 0 1.15em; padding-left:1.7em; font-size:1.02rem; color:var(--ink); line-height:1.9;}
   ul li, ol li{margin-bottom:.55em; padding-left:.1em;}
@@ -281,7 +247,6 @@
 
   @media (max-width:600px){
     .hero{padding:52px 18px 68px;}
-    .notice{margin:-30px 16px 30px; padding:18px 18px;}
     .acc-header{padding:15px 14px; gap:12px;}
     .acc-header .title{font-size:1rem;}
     .acc-item.open > .acc-panel > .acc-panel-inner{padding:13px 16px 22px;}
@@ -290,7 +255,6 @@
 
   @media (max-width:380px){
     .hero h1{font-size:1.32rem;}
-    .part-label{font-size:.76rem;}
   }
 </style>
 </head>
@@ -360,7 +324,7 @@
     <h1>CDNのビジネスモデルとインターネット相互接続の仕組み</h1>
     <div class="divider"></div>
     <h2>ピアリング・トランジット・IXという相互接続の物理構造から、CDN事業者の実際のお金の流れ、そして専業型・フリーミアム型・自前型という4つの企業モデルまで。実例と財務データで積み上げて読み解く。</h2>
-    <p class="meta">2026年8月1日</p>
+    <p class="meta">2026年8月</p>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f8fc" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
@@ -368,18 +332,12 @@
 </div>
 
 <div class="wrap">
-  <div class="notice">
-    <p><strong>本稿について</strong></p>
-    <p>本稿は、生成AI（Claude Code）が対話を通じてリサーチ・執筆した解説文書である。CDNのビジネスモデルという主題について「なんとなく知っている」状態から「仕組みを人に説明できる」状態まで引き上げることを目的としており、査読を経た学術論文ではない。財務数値・企業動向は各社の決算資料等の一次情報を中心に確認しているが、時点によって変動しうる点、および一部の数字は複数の報道を突き合わせた概算である点に留意されたい。出典は各項目末尾の番号から「参考文献・情報源一覧」で確認できる。</p>
-    <p>作成日：2026年8月1日</p>
-  </div>
-
-  <p class="toc-note">気になる項目をタップすると、その部分だけが開きます。順に読んでも、関心のある部分から読んでも構いません。</p>
+  <p class="toc-note">項目をタップするとその部分だけが開く。順に読んでも関心のある部分から読んでも構わない。</p>
 
   <div class="toolbar-container">
     <div class="toolbar">
-      <button id="expandAll" type="button">全部開く</button>
-      <button id="collapseAll" type="button">全部閉じる</button>
+      <button id="expandAll" type="button">すべて開く</button>
+      <button id="collapseAll" type="button">すべて閉じる</button>
     </div>
   </div>
 
@@ -1083,12 +1041,7 @@
 
   </div>
 </div>
-
-<footer>
-  CDNのビジネスモデルとインターネット相互接続の仕組み<br>
-  作成日：2026年8月1日
-</footer>
-
+<footer>CDNのビジネスモデルとインターネット相互接続の仕組み<br>2026年8月</footer>
 <script>
 (function(){
   var OPEN_SCROLL_DELAY = 400;

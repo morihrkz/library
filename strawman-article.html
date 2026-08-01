@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>藁人形論法 ― 存在しない主張と戦う詭弁</title>
+<title>藁人形論法 - 存在しない主張と戦う詭弁</title>
 <style>
   :root{
     --sky:#5ec8e6;
@@ -88,21 +88,6 @@
     font-size:clamp(1rem, 2.2vw, 1.24rem);
     font-weight:500; color:#f3fdfb; line-height:1.75;
   }
-  .namecard{
-    display:inline-block;
-    margin-top:26px;
-    background:rgba(255,253,246,.96);
-    color:var(--ink);
-    border-radius:10px;
-    padding:14px 28px;
-    font-size:.9rem;
-    line-height:2.0;
-    box-shadow:0 8px 22px rgba(40,50,20,.2);
-    transform:rotate(-1deg);
-    text-align:left;
-  }
-  .namecard b{color:var(--field-deep);}
-
   /* field silhouette with scarecrow */
   .field-wrap{position:absolute; left:0; right:0; bottom:-2px; line-height:0;}
   .field-wrap svg{width:100%; height:150px; display:block;}
@@ -199,7 +184,7 @@
   .sub-item.open > .sub-panel > .sub-panel-inner{padding:14px 22px 22px; opacity:1;}
 
   /* ---------- Body typography ---------- */
-  p{margin:0 0 1.2em; font-size:1.03rem; color:#3b3627;}
+  p{margin:0 0 1.2em; font-size:1.03rem; color:#3b3627; text-indent:1em;}
   .no-indent{text-indent:0;}
 
   .dialogue{
@@ -253,22 +238,6 @@
   }
   .step p{margin:0; font-size:.93rem; color:#3b3627;}
 
-  .pause{
-    margin-top:2em; padding:22px 24px;
-    background:var(--pause-bg);
-    border:2px dashed var(--pause-border);
-    border-radius:16px; position:relative;
-    box-shadow:0 4px 12px rgba(227,178,60,.14);
-  }
-  .pause::before{
-    content:"気づいたこと";
-    position:absolute; top:-11px; left:20px;
-    background:var(--pause-bg); padding:0 8px;
-    font-size:.74rem; font-weight:700; letter-spacing:.06em; color:#a06d00;
-  }
-  .pause p{margin:0; text-indent:0; color:#6d4c00; font-weight:600; text-align:left; font-size:1.02rem; line-height:1.75;}
-  .pause p + p{margin-top:.7em;}
-
   .card-note{
     margin:1.7em 0; padding:22px 24px 20px;
     background:#fff;
@@ -295,12 +264,6 @@
     background:linear-gradient(180deg, transparent 64%, rgba(227,178,60,.55) 64%);
     padding:0 2px;
   }
-  strong.term2{
-    color:var(--ink); font-weight:700;
-    background:linear-gradient(180deg, transparent 64%, rgba(94,200,230,.5) 64%);
-    padding:0 2px;
-  }
-
   .terms-grid{display:flex; flex-direction:column; gap:10px; margin:1.2em 0 0;}
   .term-row{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); align-items:baseline;}
   .term-row:last-child{border-bottom:none;}
@@ -335,7 +298,7 @@
     .acc-header{padding:16px 14px;}
     .acc-item.open > .acc-panel > .acc-panel-inner{padding:14px 16px 26px;}
     .sub-item.open > .sub-panel > .sub-panel-inner{padding:12px 14px 20px;}
-    .pause,.card-note{padding:20px 16px;}
+    .card-note{padding:20px 16px;}
     .pullquote::before,.pullquote::after{display:none;}
     .term-row{flex-direction:column; gap:4px;}
     .term-row .t{flex:none;}
@@ -354,13 +317,8 @@
   <div class="cicada-line">ジィィィ……ミィンミィンミィン……</div>
   <div class="hero-inner">
     <span class="kicker">現代社会 | ことばの観察ノート</span>
-    <h1>藁人形論法<br>― 存在しない主張と戦う詭弁</h1>
-    <h2>かかしを叩いて「勝った」と言っていないか。日本と海外の実例から確かめる。</h2>
-    <div class="namecard">
-      <b>調べたテーマ</b>:藁人形論法(主張のすり替え)<br>
-      <b>記録した時期</b>:夏休み中、蝉の声を聞きながら<br>
-      <b>使った資料</b>:ファクトチェック機関・報道各社の記事
-    </div>
+    <h1>藁人形論法<br>- 存在しない主張と戦う詭弁 -</h1>
+    <h2>かかしを叩いて「勝った」と言っていないか。実例から確かめる。</h2>
   </div>
   <div class="field-wrap">
     <svg viewBox="0 0 1440 220" preserveAspectRatio="none">
@@ -410,12 +368,12 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note no-indent">気になる項目をタップすると、そこだけが開きます。順に読んでも、気になるところから読んでも構いません。</p>
+  <p class="toc-note no-indent">項目をタップするとそこが開く。順に読んでも気になるところから読んでも構わない。</p>
 
   <div class="toolbar-container">
     <div class="toolbar">
-      <button id="expandAll" type="button">全部開く</button>
-      <button id="collapseAll" type="button">全部閉じる</button>
+      <button id="expandAll" type="button">すべて開く</button>
+      <button id="collapseAll" type="button">すべて閉じる</button>
     </div>
   </div>
 
@@ -425,7 +383,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">1</span>
-        <span class="title">藁人形論法とは何か<small>相手の言っていないことと、戦っていないか</small></span>
+        <span class="title">藁人形論法とは何か<small>相手の言っていないことと戦っていないか</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -454,7 +412,7 @@
           <p>藁人形論法が成立する過程は三段階に整理できる。この三段階のどこか一つでも欠ければ、単なる誤解や勇み足であって藁人形論法とは呼べない。</p>
           <div class="steps">
             <div class="step"><span class="n">1</span><p>相手の主張を実際より弱く、あるいは極端な形に歪める。</p></div>
-            <div class="step"><span class="n">2</span><p>その歪めた版――藁人形――を攻撃する。</p></div>
+            <div class="step"><span class="n">2</span><p>その歪めた版 - 藁人形 - を攻撃する。</p></div>
             <div class="step"><span class="n">3</span><p>藁人形を倒したことをもって、元の主張そのものを論破したかのように錯覚させる。</p></div>
           </div>
           <p>人がこの詭弁に陥りやすい理由は単純だ。相手の主張をそのままの強さで受け止めて反論するより、極端な形に描き直したほうが圧倒的に反論しやすい。加えて、SNSのように短い言葉が拡散されやすい環境では、複雑な留保つきの主張よりも、単純化され感情を刺激する主張のほうが目に留まりやすい。切り取られた動画や発言が「わかりやすい」からこそ拡散し、元の文脈は置き去りにされる。</p>
@@ -631,12 +589,12 @@
 
   </div>
 
-  <p class="closing">ここでノートを一区切りする。<br>蝉の声を聞きながらニュースを読み返すと、見出しの向こうにある「元の言葉」が気になる様になった。<br>かかしを叩いて満足していないか、これからも時々確かめたい。</p>
+  <p class="closing">蝉の声を聞きながらニュースを読み返すと、見出しの向こうにある「元の言葉」が気になる様になった。<br>かかしを叩いて満足していないか、これからも時々確かめたい。</p>
 </div>
 
 <footer>
-  藁人形論法 ― 存在しない主張と戦う詭弁<br>
-  ― 日本と欧米の実例から確かめる、すり替えの詭弁ノート ―
+  藁人形論法 - 存在しない主張と戦う詭弁<br>
+  - 日本と欧米の実例から確かめる、すり替えの詭弁ノート -
 </footer>
 
 <script>

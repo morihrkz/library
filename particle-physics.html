@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>素粒子物理学とは何か ― 原子から宇宙まで、ひと続きの物語</title>
+<title>素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語</title>
 <style>
   :root{
     --navy-900:#0d1b2e;
@@ -96,20 +96,6 @@
   /* ---------- Layout ---------- */
   .wrap{max-width:760px; margin:0 auto; padding:0 20px 90px;}
 
-  .notice{
-    margin:-40px auto 34px; max-width:720px;
-    background:var(--card);
-    border:1px solid var(--navy-200);
-    border-left:4px solid var(--navy-700);
-    border-radius:4px;
-    padding:22px 24px;
-    box-shadow:0 8px 24px rgba(13,27,46,.10);
-    position:relative; z-index:3;
-  }
-  .notice p{margin:0 0 .7em; font-size:.96rem; color:var(--ink-soft); line-height:1.85; text-indent:0;}
-  .notice p:last-child{margin-bottom:0;}
-  .notice p strong{color:var(--navy-900); font-size:1rem; letter-spacing:.05em;}
-
   .toc-note{text-align:center; color:var(--ink-soft); font-size:.92rem; margin:0 0 22px; text-indent:0; padding:0 8px;}
 
   .toolbar-container{
@@ -132,19 +118,6 @@
   }
   .toolbar button:hover, .toolbar button:active{
     background:var(--navy-700); color:#fff; border-color:var(--navy-700);
-  }
-
-  /* ---------- Part divider ---------- */
-  .part-divider{
-    display:flex; align-items:center; gap:14px;
-    margin:38px 0 16px;
-  }
-  .part-divider:first-child{margin-top:0;}
-  .part-line{flex:1 1 auto; height:1px; background:var(--navy-300);}
-  .part-label{
-    flex:0 0 auto; font-size:.86rem; font-weight:700;
-    color:var(--navy-800); letter-spacing:.08em;
-    padding:6px 14px; background:var(--navy-100); border-radius:999px;
   }
 
   /* ---------- Accordion ---------- */
@@ -275,7 +248,6 @@
 
   @media (max-width:600px){
     .hero{padding:52px 18px 68px;}
-    .notice{margin:-30px 16px 30px; padding:18px 18px;}
     .acc-header{padding:15px 14px; gap:12px;}
     .acc-header .title{font-size:1rem;}
     .acc-item.open > .acc-panel > .acc-panel-inner{padding:13px 16px 22px;}
@@ -285,7 +257,6 @@
 
   @media (max-width:380px){
     .hero h1{font-size:1.35rem;}
-    .part-label{font-size:.78rem;}
   }
 </style>
 </head>
@@ -297,10 +268,10 @@
   <div class="rule-pattern"></div>
   <div class="hero-inner">
     <span class="kicker">解説 / POPULAR SCIENCE</span>
-    <h1 class="serif">素粒子物理学とは何か ― 原子から宇宙まで、ひと続きの物語</h1>
+    <h1 class="serif">素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語</h1>
     <div class="divider"></div>
     <h2>原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</h2>
-    <p class="meta">2026年7月28日</p>
+    <p class="meta">2026年7月</p>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f7fb" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
@@ -308,25 +279,17 @@
 </div>
 
 <div class="wrap">
-  <div class="notice">
-    <p><strong>本稿について</strong></p>
-    <p>本稿は生成AI(Claude Code)によって執筆された文章である。学術的な業績として提出・公表されることは意図していない。読者を1名の依頼者とする私的な解説文書として書かれている。</p>
-          <p>執筆日は2026年7月28日である。本文中の実験結果・研究動向は、特に断らない限り2026年7月時点で確認できた情報に基づく。個々の測定値・発見の年代については、各注に示す文献の発表年をその記述の基準時点とする。分野の性質上、加速器実験や天文観測のデータは今後更新され得る。特に、本稿執筆時点で「未確定」「<span class="tag tag-c">検証手段が乏しい</span>」と位置づけた論点については、数年のうちに状況が変わる可能性がある。</p>
-          <p>本稿の執筆にあたっては、存在しない理論・実験・数値を書かないことを最優先した。確信の持てない事項は明示的にその旨を記し、断定を避けている。</p>
-  </div>
-
-  <p class="toc-note">気になる章をタップすると、その部分だけが開きます。各章末の色つきの囲みは、序章で示した「スケールの見取り図」のどこを扱っているかを示す道しるべです。</p>
-
+  <p class="toc-note">気になる章をタップすると、その部分だけが開く。各章末の色つきの囲みは、序章で示した「スケールの見取り図」のどこを扱っているかを示す道しるべである。</p>
   <div class="toolbar-container">
     <div class="toolbar">
-      <button id="expandAll" type="button">全部開く</button>
-      <button id="collapseAll" type="button">全部閉じる</button>
+      <button id="expandAll" type="button">すべて開く</button>
+      <button id="collapseAll" type="button">すべて閉じる</button>
     </div>
   </div>
 
   <div id="accordion">
 
-    <div class="part-divider"><span class="part-line"></span><span class="part-label">第一部 基礎編 ― 原子から標準模型へ</span><span class="part-line"></span></div>
+    <div class="part-divider"><span class="part-line"></span><span class="part-label">第一部 基礎編 - 原子から標準模型へ</span><span class="part-line"></span></div>
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
@@ -359,7 +322,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">1</span>
+        <span class="num">一</span>
         <span class="title">原子はどこまで「できて」いるのか</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -386,7 +349,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">2</span>
+        <span class="num">二</span>
         <span class="title">力を粒子として理解する</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -417,7 +380,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">3</span>
+        <span class="num">三</span>
         <span class="title">標準模型の全体像</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -450,7 +413,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">4</span>
+        <span class="num">四</span>
         <span class="title">三つの力のはたらき</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -482,8 +445,8 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">5</span>
-        <span class="title">加速器という実験装置 ― なぜ高エネルギーで小さいものが見えるのか</span>
+        <span class="num">五</span>
+        <span class="title">加速器という実験装置 - なぜ高エネルギーで小さいものが見えるのか</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -510,8 +473,8 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">6</span>
-        <span class="title">ヒッグス粒子 ― 確立した事実の一例</span>
+        <span class="num">六</span>
+        <span class="title">ヒッグス粒子 - 確立した事実の一例</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -536,8 +499,8 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">7</span>
-        <span class="title">ニュートリノ振動 ― 標準模型を超えた最初の確証</span>
+        <span class="num">七</span>
+        <span class="title">ニュートリノ振動 - 標準模型を超えた最初の確証</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -566,7 +529,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">8</span>
+        <span class="num">八</span>
         <span class="title">初期宇宙という実験場</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -596,7 +559,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">9</span>
+        <span class="num">九</span>
         <span class="title">暗黒物質と物質・反物質の非対称性</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -626,7 +589,7 @@
 
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
-        <span class="num">10</span>
+        <span class="num">十</span>
         <span class="title">元素の起源と人体</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -751,8 +714,8 @@
 </div>
 
 <footer>
-  素粒子物理学とは何か ― 原子から宇宙まで、ひと続きの物語<br>
-  執筆日:2026年7月28日
+  素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語<br>
+  執筆日:2026年7月
 </footer>
 
 <script>
