@@ -325,6 +325,11 @@
     .pause,.memo,.card-note{padding:20px 16px;}
     .pullquote::before,.pullquote::after{display:none;}
   }
+  /* Publication polish: keeps decorative patterns subordinate to the title. */
+  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
+  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -350,7 +355,7 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note no-indent">章の見出しをクリックすると、その章だけが開く。頭から通読してもよいし、関心のある章から読み進めても構わない。</p>
+  <div><p>【読み方】時代区分は、出来事そのものではなく、何を重視するかによって異なる歴史叙述上の道具である。本記事の年表は比較のための骨組みであり、同時期に起きた出来事が因果関係にあること、また一つの地域の変化を世界全体に一般化することを意味しない。</p></div>
 
   <div class="toolbar-container">
     <div class="toolbar">
@@ -562,7 +567,7 @@
             <li><b>1889 年</b> 大日本帝国憲法が発布される。翌年、第一回帝国議会が開かれる。</li>
           </div>
           <p>この二十数年間の変化の速度には、目を見張るものがある。ちょんまげと刀の時代から、憲法と議会と鉄道の時代まで、わずか一世代のうちに移行している。生まれたときは武士であった人物が、老年になって電灯の下で新聞を読んでいる、という状況である。</p>
-          <h3 class="sec">なぜ日本はこれほど急速に変化できたのか</h3>
+          <h3 class="sec">日本の変化を可能にした条件は何だったのか</h3>
           <p>複数の文献を比較すると、理由はおおむね三点にまとめられる。</p>
           <p>第一に、<strong class="term">既存の基盤があった</strong>ことである。前章に記したとおり、江戸時代の日本には、識字層、全国に及ぶ流通網、貨幣経済、そして各藩が競って人材を育成する仕組みが存在していた。ゼロからの出発ではなかった。</p>
           <p>第二に、<strong class="term">危機感が極めて強かった</strong>ことである。日本の指導層は、隣国の清がアヘン戦争でイギリスに敗北し、不平等条約を締結させられ、領土を割譲していく過程を目の当たりにしていた。「同様の事態に陥りかねない」という危機感が、改革の速度を押し上げた。</p>
@@ -917,7 +922,7 @@
           <p>第三章で挙げた近代の指標――主権国家、産業化、資本主義、科学、個人の権利、国民意識――は、いずれも現在も機能している。むしろ当時より強く作用している要素もある。だとすれば、われわれは「近代の後」にいるのではなく、<strong class="term2">近代の最も深い地点にいる</strong>のかもしれない。</p>
           <p>その一方で、動揺している部分もある。「進歩は継続する」という信頼、「人口は増加する」という前提、「科学が答えを与える」という期待。これらは二十世紀半ば以降、繰り返し疑問視されてきた。近代という道具は健在であるにもかかわらず、近代を支えてきた信念の方は疲弊している、という状態に見える。</p>
           <h3 class="sec">まとめ④ 変化には一定の順序がある</h3>
-          <p>第二章で示した色分けにおいて浮かび上がった順序――技術が変化し、対立が生じ、その後に制度が追いつく――は、以後どの時代を検討しても、ほぼ同一の形で現れる。</p>
+          <p>第二章の色分けからは、技術変化、対立、制度調整という順に見える事例がある。ただし、これは普遍法則ではない。制度が先行する場合、対立が制度を変えない場合、地域ごとに順序が異なる場合も多い。ここでは、年表を比較するための仮説として扱う。</p>
           <div class="tablewrap">
             <table>
               <tr><th>技術・条件の変化</th><th>混乱・対立</th><th>あとから来た制度</th></tr>
@@ -1111,4 +1116,3 @@
 
 </body>
 </html>
-

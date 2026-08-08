@@ -303,6 +303,11 @@
     .term-row{flex-direction:column; gap:4px;}
     .term-row .t{flex:none;}
   }
+  /* Publication polish: keeps decorative patterns subordinate to the title. */
+  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
+  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -368,7 +373,7 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note no-indent">項目をタップするとそこが開く。順に読んでも気になるところから読んでも構わない。</p>
+  <div class="pause"><p>【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</p></div>
 
   <div class="toolbar-container">
     <div class="toolbar">
@@ -409,7 +414,7 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>藁人形論法が成立する過程は三段階に整理できる。この三段階のどこか一つでも欠ければ、単なる誤解や勇み足であって藁人形論法とは呼べない。</p>
+          <p>ここでは、藁人形論法を三段階に整理する。第一に相手の主張を歪め、第二にその歪めた版を攻撃し、第三にその攻撃を元の主張への反論として扱う。実際の議論には、悪意のない誤解、要約をめぐる争い、根拠の弱い反論もあるため、三段階にきれいに当てはまらないからといって問題がないわけではない。</p>
           <div class="steps">
             <div class="step"><span class="n">1</span><p>相手の主張を実際より弱く、あるいは極端な形に歪める。</p></div>
             <div class="step"><span class="n">2</span><p>その歪めた版 - 藁人形 - を攻撃する。</p></div>

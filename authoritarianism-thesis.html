@@ -213,6 +213,11 @@
   @media (max-width:380px){
     .hero h1{font-size:1.4rem;}
   }
+  /* Publication polish: keeps decorative patterns subordinate to the title. */
+  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
+  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -234,7 +239,7 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note">気になる項目をタップするとその部分だけが開く。順に読んでも関心のある部分から読んでも構わない。</p>
+  <div class="pause"><p>【方法と限界】本稿は、民主主義の望ましさをめぐる規範的な問いと、体制転換が平和に及ぼす効果をめぐる実証的な問いを区別する。V-Dem、Freedom House 等の指数は重要な比較資料だが、対象年・分類基準・測定概念が異なるため、数値を単純に同一の尺度として扱わない。</p></div>
   <div class="toolbar-container">
     <div class="toolbar">
       <button id="expandAll" type="button">すべて開く</button>

@@ -562,6 +562,11 @@
     .pause{ padding: 20px 16px; }
     .pullquote::before, .pullquote::after { display: none; }
   }
+  /* Publication polish: keeps decorative patterns subordinate to the title. */
+  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
+  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -623,7 +628,8 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note no-indent">項目をタップするとそこが開く。初めて宗派に触れる方は上から、すでに詳しい方は気になる宗から、好きな順番で。</p>
+  <div><p>【分類について】「十三宗五十六派」は、仏教史の入門で用いられてきた整理の一つであり、現在の宗教法人の包括・被包括関係を数えた公式統計ではない。宗派・派の数え方は資料と時点で変わる。本記事では歴史的な見取り図として用い、現行の法人統計は文化庁「宗教年鑑」で確認できる。</p></div>
+
 
   <div class="toolbar-container">
     <div class="toolbar">
@@ -664,7 +670,7 @@
             <table class="info-table">
               <thead><tr><th>宗名</th><th>開祖・開宗年</th><th>本山</th><th>ひとことで言うと</th></tr></thead>
               <tbody>
-                <tr><td>法相宗</td><td>道昭ら(奈良時代)</td><td>興福寺・薬師寺</td><td>すべては心が映し出したもの(唯識)</td></tr>
+<tr><td>法相宗</td><td>道昭ら(奈良時代)</td><td>興福寺・薬師寺</td><td>認識のあり方を精密に考察する唯識を重視する</td></tr>
                 <tr><td>律宗</td><td>鑑真(753 年来日)</td><td>唐招提寺</td><td>戒律を守り抜くことを実践の中心に</td></tr>
                 <tr><td>華厳宗</td><td>審祥ら(奈良時代)</td><td>東大寺</td><td>一即一切、あらゆるものが響き合う</td></tr>
                 <tr><td>天台宗</td><td>最澄(806 年)</td><td>比叡山延暦寺</td><td>法華経中心の総合仏教、鎌倉仏教の母山</td></tr>
@@ -718,7 +724,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">4</span>
-        <span class="title">天台宗<small>すべての鎌倉仏教の「母山」</small></span>
+                <span class="title">天台宗<small>多くの鎌倉仏教の祖師が学んだ比叡山</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -798,7 +804,7 @@
           <p>平安末期から鎌倉時代にかけて、「阿弥陀仏の力にすがって極楽浄土に生まれ変わる」という浄土信仰を軸に、複数の宗が独立していった。</p>
           <p>まず、良忍が 1117 年に開いた<strong class="term">融通念仏宗</strong>。「一人の唱える念仏の功徳が、すべての人々の念仏と融け通い合う」という考え方から、この名がついた。本山は大阪の大念佛寺である。</p>
           <p>続いて、法然が 1175 年に開いた<strong class="term">浄土宗</strong>。法然は、それまで数ある修行の一つに過ぎなかった念仏を、「南無阿弥陀仏と称えることこそが、誰もが浄土に往生できるただ一つの道である」として他の実践から切り離し、専修念仏として打ち出した。本山は知恩院である。</p>
-          <p class="no-indent">法然の弟子であった親鸞は、師の教えをさらに徹底し、<strong class="term">浄土真宗</strong>を開く。親鸞の思想の核心は「絶対他力」――自分の力によって悟りに近づこうとする発想そのものを退け、ただ阿弥陀仏の本願の力にすべてを委ねる、という立場である。「善人でさえ往生できるのだから、まして悪人はなおさらである」と説く悪人正機説は、浄土真宗を象徴する言葉としてよく知られている。</p>
+<p class="no-indent">法然の弟子であった親鸞は、後に浄土真宗の祖師と位置づけられる。親鸞の教えは、阿弥陀仏の本願による救いを中心に据える「他力」の理解に特徴がある。ただし「絶対他力」や悪人正機の受け取り方には、教団・研究者の間でも丁寧な解釈の積み重ねがある。ここでは、自己の功績を救いの条件として誇らないという方向性を指す、入門的な要約として読んでほしい。</p>
 
           <div class="sub-list">
             <div class="sub-item" data-sub>
@@ -1047,7 +1053,7 @@
   </div>
 </div>
 
-<footer>十三宗五十六派を歩く - 日本仏教の宗派地図</footer>
+<footer>十三宗五十六派を歩く - 日本仏教の宗派地図<br>分類・法人統計の参照先: <a href="https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/index.html">文化庁「宗教年鑑」</a>（最終確認 2026-08-08）</footer>
 
 <script>
 (function(){

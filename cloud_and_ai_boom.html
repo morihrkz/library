@@ -285,6 +285,11 @@
   @media (max-width:380px){
     .hero h1{font-size:1.32rem;}
   }
+  /* Publication polish: keeps decorative patterns subordinate to the title. */
+  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
+  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -378,7 +383,7 @@
 </div>
 
 <div class="wrap">
-  <p class="toc-note">項目をタップするとその部分だけが開く。順に読んでも関心のある部分から読んでも構わない。</p>
+  <div class="pause"><p>【比較の前提】市場シェアは、IaaS・PaaS・SaaSの範囲、地域、四半期、売上かランレートかで値が変わる。各社の会計年度・開示セグメントも一致しない。本稿中の実績、会社ガイダンス、調査会社の予測、著者のシナリオは同じ確度の情報ではない。</p></div>
 
   <div class="toolbar-container">
     <div class="toolbar">
@@ -591,7 +596,7 @@
 <p><span class="tag pred">予測</span>IDC は世界の企業向けパブリッククラウド支出が 2026 年に初めて 1 兆ドルを突破、+21%超で成長すると予測。PaaS(アプリケーション開発・実行基盤をサービス提供する形態)が AI ワークロード需要を背景に+37%と最速という<span class="cite">(出典: <a href="https://www.biztechreports.com/news-archive/2026/3/20/global-public-cloud-spending-to-surpass-1-trillion-in-2026-driven-by-paas-and-ai-platform-adoption-idc-march-23-2026" target="_blank" rel="noopener noreferrer">BizTechReports</a>、2026 年 3 月)</span>。</p>
 <p><span class="tag pred">予測</span>McKinsey は 2030 年までに AI 関連インフラへの累計投資額が 6.7 兆ドル(データセンター単体 5.2 兆ドル、電力・冷却等の周辺投資 1.3 兆ドル)に達すると試算。世界のデータセンター容量は 219 ギガワット拡大し、うち AI 向けが 156 ギガワット、AI 向け容量比率は 2025 年の約 33%から 2030 年に約 70%へ上昇する見込みという<span class="cite">(出典: <a href="https://datacentremagazine.com/articles/ai-infrastructure-to-require-7tn-by-2030-says-mckinsey" target="_blank" rel="noopener noreferrer">Data Centre Magazine</a>、発表時期は未確認)</span>。</p>
 <p><span class="tag pred">予測</span>Goldman Sachs は 2026 年のハイパースケーラー CapEx が前年比 36%増の約 5,390 億ドル、2027 年は+17%の約 6,290 億ドルと予測し、「2027 年の市場コンセンサスはむしろ保守的すぎる」との見方を示す<span class="cite">(出典: <a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026" target="_blank" rel="noopener noreferrer">Goldman Sachs Insights</a>、2026 年 1 月)</span>。</p>
-<p>これらの予測はいずれも「二桁〜数十%の高成長が続く」方向性で一致する。Gartner が年内に 3 回予測を上方修正し続けている事実は、市場実勢が予測を上回るペースで動いていることの表れであると同時に、将来予測の不確実性の高さの裏返しでもある。</p>
+<p>これらの予測には「二桁〜数十%の高成長が続く」という共通点がある。ただし、上方修正だけから市場実勢が予測を上回ったと結論づけることはできない。対象範囲、為替前提、価格、調査モデルの見直しも改定に影響する。予測の一致は方向性の参考であり、将来の実績を保証しない。</p>
     </div>
   </div>
 </section>
