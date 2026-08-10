@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 比較表</title>
+<style>
+/* ---- Design tokens ---- */
+:root{
+  --primary:#1a365d;
+  --primary2:#0f172a;
+  --bg:#f7fafc;
+  --card:#fff;
+  --text:#2d3748;
+  --muted:#667085;
+  --border:#e2e8f0;
+  --accent:#2b6cb0;
+  --warn:#975a16;
+  --warn-bg:#fffaf0;
+}
+*{box-sizing:border-box}
+
+/* ---- Page layout ---- */
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,
+    "Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  line-height:1.65;
+  color:var(--text);
+  background:var(--bg);
+  margin:0;
+  padding:36px 18px;
+}
+.container{
+  max-width:1680px;
+  margin:0 auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:14px;
+  box-shadow:0 4px 24px rgba(0,0,0,.07);
+}
+h1{margin:0 0 8px;color:var(--primary2);font-size:26px}
+.lead{margin:0 0 22px;color:var(--muted);font-size:14px}
+
+/* ---- Comparison table ---- */
+.table-wrapper{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+table{width:100%;min-width:1480px;border-collapse:collapse;text-align:left;font-size:14px}
+th,td{padding:15px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top}
+th:last-child,td:last-child{border-right:none}
+tr:last-child td{border-bottom:none}
+
+thead th{background:var(--primary);color:#fff;font-weight:650;white-space:nowrap}
+thead th:first-child{background:var(--primary2);width:17%;min-width:180px;position:sticky;left:0;z-index:3}
+.vendor{font-size:16px}
+
+.category{
+  font-weight:700;
+  background:#f8fafc;
+  color:var(--primary);
+  white-space:nowrap;
+  position:sticky;
+  left:0;
+  z-index:2;
+  box-shadow:1px 0 0 var(--border);
+}
+
+/* ---- Table cell content ---- */
+code{
+  font-family:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;
+  background:#eef2f7;
+  padding:1px 5px;
+  border-radius:4px;
+  font-size:.92em;
+}
+ul{margin:5px 0 0;padding-left:18px}
+li{margin:3px 0}
+
+.status{
+  display:inline-block;
+  padding:2px 7px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  background:#edf2f7;
+  color:#4a5568;
+  margin-bottom:4px;
+}
+.status.warn{background:#feebc8;color:var(--warn)}
+
+/* ---- Callouts / footer ---- */
+.warnbox{margin-top:14px;padding:14px 16px;border-left:4px solid #d69e2e;background:var(--warn-bg);font-size:13px}
+.sources{margin-top:22px;font-size:12px;color:var(--muted)}
+.sources p{margin-top:10px}
+footer{margin-top:18px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>AI 比較表</h1>
+  <p class="lead">
+    生成 AI ・ AI エージェント・ AI コーディングを中心に比較。「企業」「基盤モデル」「製品」「コーディングツール」を混同しないよう、項目を分けて整理しています。
+  </p>
+
+  <div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">比較項目</th>
+        <th scope="col" class="vendor">Google</th>
+        <th scope="col" class="vendor">OpenAI</th>
+        <th scope="col" class="vendor">Anthropic</th>
+        <th scope="col" class="vendor">xAI/SpaceX</th>
+        <th scope="col" class="vendor">Anysphere</th>
+        <th scope="col" class="vendor">Meta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" class="category">企業としての位置づけ</th>
+        <td>Google 自身が AI 研究・モデル・クラウド・消費者向けサービスを一体的に展開。</td>
+        <td>基盤モデルと ChatGPT 、 Codex 、 API などを自社で広く展開する AI 企業。</td>
+        <td>Claude を中心に、基盤モデル・ AI エージェント・企業向け AI を展開。</td>
+        <td>2026 年 2 月に SpaceX が xAI を取得。 Grok を中心とする AI 事業を SpaceX の計算資源・インフラ戦略と結び付けている。</td>
+        <td><span class="status warn">買収手続き中</span> Cursor を開発する Anysphere 。 2026 年 6 月 16 日、 SpaceX が約 <strong>600 億ドル</strong>相当の全株式交換取引で買収する契約を締結。クロージングは 2026 年第 3 四半期の予定で、 8 月時点では手続きの進行中。</td>
+        <td>2025 年、<strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進める。</td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">代表的なチャット AI</th>
+        <td><strong>Gemini</strong><br>Web ・モバイルなどで提供。</td>
+        <td><strong>ChatGPT</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
+        <td><strong>Claude</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
+        <td><strong>Grok</strong><br>grok.com 、 iOS/Android 、 X などで提供。</td>
+        <td><strong>Cursor</strong> はチャット AI そのものではなく、 AI コーディング環境。エディタ内で複数の AI モデルを利用できる点が特徴。</td>
+        <td><strong>Meta AI</strong><br>Web とスタンドアロンアプリで提供。 WhatsApp, Facebook, Messenger, Instagram, Threads にネイティブ統合。</td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">基盤モデル</th>
+        <td>
+          <strong>Gemini 3 系</strong>
+          <ul>
+            <li>Gemini 3.6 Flash : 一般提供 (2026 年 7 月、現行の主力 )</li>
+            <li>Gemini 3.1 Pro : <span class="status warn">Preview</span> 最上位 Pro だが正式提供前</li>
+            <li>Gemini 3.5 Flash / Flash-Lite : 一般提供</li>
+            <li>Gemini 3.5 Flash Cyber  セキュリティ特化。政府・信頼パートナー限定の試験提供</li>
+            <li>Gemini 3.5 Pro はパートナーテスト中、 Gemini 4 は事前学習段階</li>
+          </ul>
+        </td>
+        <td>
+          <strong>GPT-5.6/GPT 系</strong>
+          <ul>
+            <li>GPT-5.6 : Luna/Terra/Sol の 3 構成 ( 2026 年 7 月公開の最新世代 )</li>
+            <li>最上位 Sol はコーディング・科学研究・セキュリティ用途を強化</li>
+            <li>GPT-5.5 ( Instant/Thinking/Pro ) は前世代</li>
+            <li>Codex 系のコーディング・エージェント専用モデル</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Claude 5 系</strong>
+          <ul>
+            <li>Claude Fable 5 : 最上位。最も高難度な推論・長時間の自律作業向け</li>
+            <li>Claude Opus 5 : 主力フラッグシップ。エージェント型コーディングと業務利用の中心</li>
+            <li>Claude Sonnet 5 : 速度と知性のバランス型</li>
+            <li>Claude Haiku 4.5 : 軽量・低コスト用途</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Grok 系</strong>
+          <ul>
+            <li>Grok 4.5</li>
+            <li>Grok Build を支えるコーディング特化モデル</li>
+          </ul>
+        </td>
+        <td>
+          <strong>自社単独の基盤モデル企業ではない</strong>
+          <ul>
+            <li>Cursor は独自補完モデル (Cursor Tab) と外部モデル API を組み合わせる開発環境</li>
+            <li>買収後は xAI/SpaceX 基盤モデルとの密連携が注力ポイント</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Llama 4 + Muse Spark 二層構造</strong>
+          <ul>
+            <li>Llama 4( オープンウェイト ) : Scout / Maverick / Behemoth 。 Scout は 10M トークンの長文脈に対応</li>
+            <li>Muse Spark( プロプライエタリ ) : MSL 初のフロンティアモデル群。 1.1 は 100 万トークン対応、 1.2 が 2026 年 8 月に公開</li>
+            <li>「完全オープン」から「オープン + プロプライエタリ収益化」へ戦略転換</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">CLI / AI エージェント</th>
+        <td>
+          <strong>Antigravity CLI</strong>
+          <ul>
+            <li>ターミナル型 AI エージェント。コマンドは <code>agy</code> 、 Go 製のクローズドソース</li>
+            <li>Antigravity 2.0 と同一のエージェント基盤を共有、複数エージェントの並行実行に対応</li>
+            <li><span class="status warn">提供終了</span> 旧 Gemini CLI( オープンソース ) は 2026 年 6 月 18 日に個人向け終了。法人の Gemini Code Assist Standard / Enterprise 契約者のみ継続利用可</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Codex CLI / Codex Security CLI</strong>
+          <ul>
+            <li>ターミナルでコード解釈・編集・脆弱性スキャン・実行までこなすエージェント</li>
+            <li>ChatGPT 、エディタ、 CLI を跨ぎ OSS 展開</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Claude Code</strong>
+          <ul>
+            <li>ターミナル上でコードベースを理解・編集</li>
+            <li>テスト、 Git 操作、 PR 作成など長尺エージェントワークに対応</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Grok Build</strong>
+          <ul>
+            <li>2026 年 5 月に early beta として公開されたターミナル TUI ツール</li>
+            <li>Plan → 承認 → 実行のワークフローを持つエージェント</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Cursor Agent</strong>
+          <ul>
+            <li>エディタ内でコードベース全体を扱う AI エージェント</li>
+            <li>複数モデルを柔軟に切り替えられる点が最大の特徴</li>
+          </ul>
+        </td>
+        <td>
+          <strong>Muse Code</strong>
+          <ul>
+            <li>2026 年 8 月 5 日に Spark 1.2 と同時に beta 公開されたターミナル型コーディングエージェント</li>
+            <li>複数サブエージェントの並列実行、長尺タスクの自律完遂に対応</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">コーディング環境</th>
+        <td><strong>Antigravity 2.0 / Antigravity CLI</strong><br>デスクトップアプリと CLI が同一基盤。法人向けは Gemini Code Assist Enterprise(VS Code 、 JetBrains 統合 ) が継続。</td>
+        <td><strong>Codex / Codex CLI</strong><br>ChatGPT 、エディタ、ターミナルを横断。</td>
+        <td><strong>Claude Code</strong><br>ターミナル中心。 Web 検索、 Git 、 MCP なども利用可能。</td>
+        <td><strong>Grok Build</strong><br>ターミナル中心 (TUI) 。 ACP により他社エディタ・開発環境との連携も展開。</td>
+        <td><strong>Cursor</strong><br>AI を中心に再設計したコードエディタ。単なるコード補完ツールではなく、 Agent 型開発環境として位置づける方が適切。</td>
+        <td><strong>Muse Code / Meta Model API</strong><br>CLI 中心の beta 提供。 Meta Model API ( 2026 年 7 月 public preview 開始 ) により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">エコシステム / 強み</th>
+        <td>
+          <ul>
+            <li>Google Search 、 Workspace 、 Android 、 Google Cloud</li>
+            <li>Antigravity 2.0 に統合された開発環境 ( デスクトップ +CLI)</li>
+            <li>大規模クラウド・検索・データ基盤</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>ChatGPT を中心とした巨大な利用者基盤</li>
+            <li>Codex による agentic coding</li>
+            <li>API 、 Deep Research 、各種エージェント機能</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Claude の長文・高度推論・コーディング能力</li>
+            <li>Claude Code による agentic coding</li>
+            <li>MCP(Model Context Protocol) を策定・公開。 AI エージェントと外部ツールの接続規格として業界標準化</li>
+            <li>企業・主要クラウド各社との密接な連携</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>X とのリアルタイム情報環境</li>
+            <li>SpaceX の大規模計算資源 (Colossus) ・ AI インフラ</li>
+            <li>Grok と Grok Build の統合</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>AI コーディングに特化した UI/UX 設計</li>
+            <li>複数の基盤モデルを選択できるモデル・アグノスティックな性格</li>
+            <li>SpaceX/xAI との統合によるインフラ・モデル強化</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>30 億人規模の配布網 : Facebook, Instagram, WhatsApp, Messenger, Threads に Meta AI を直接統合</li>
+            <li>二層戦略 : Llama ( オープン ) + Muse ( プロプライエタリ ) のハイブリッド</li>
+            <li>MSL への巨額投資と低価格 API によるコスト競争力</li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="category">一言で表すなら</th>
+        <td><strong>「 Google の AI エコシステム」</strong><br>検索・クラウド・ OS ・ Workspace まで含めた総合型。</td>
+        <td><strong>「汎用 AI アシスタント +AI エージェント」</strong><br>ChatGPT を入口に、調査・作業・コーディングまで広げる。</td>
+        <td><strong>「高性能モデル +AI エージェント」</strong><br>Claude Code を含む知的作業・開発への深い統合。</td>
+        <td><strong>「 Grok+ 巨大 AI インフラ」</strong><br>AI モデルと SpaceX の計算資源を組み合わせる戦略。</td>
+        <td><strong>「 AI ネイティブな開発環境」</strong><br>モデルそのものより、 AI を使ってソフトウェアを作る体験に強み。</td>
+        <td><strong>「配布力 × スーパーインテリジェンス」</strong><br>30 億人規模のソーシャルグラフに Muse Spark と Muse Code を直接届ける企業。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="warnbox">
+    <strong>重要 :</strong>
+    AI 業界では製品名・モデル名・提供条件が短期間で変わります。また、買収や統合の途中にある企業では
+    「契約締結」と「買収完了」を区別する必要があります。本表は <strong>2026 年 8 月 10 日時点</strong>を基準にしています。<br>
+  </div>
+
+  <div class="sources">
+    <strong>主な確認資料</strong>
+    <p>
+      各項目は公表情報および報道に基づく整理であり、非公開の内部資料は含みません。重要な判断に用いる場合は各社公式発表で再確認してください。
+    </p>
+  </div>
+
+  <footer>
+    情報基準日 : 2026 年 8 月 10 日。<br>
+    このページは「 AI 各社の違いを把握するための概観表」であり、ベンチマーク順位や性能の絶対評価を示すものではありません。
+  </footer>
+</div>
+</body>
+</html>
