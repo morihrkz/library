@@ -49,7 +49,7 @@ th:last-child,td:last-child{border-right:none}
 tr:last-child td{border-bottom:none}
 
 thead th{background:var(--primary);color:#fff;font-weight:650;white-space:nowrap}
-thead th:first-child{background:var(--primary2);width:17%;min-width:180px;position:sticky;left:0;z-index:3}
+thead th:first-child{background:var(--primary2);width:1%;white-space:nowrap;position:sticky;left:0;z-index:3}
 .vendor{font-size:16px}
 
 .category{
@@ -91,6 +91,55 @@ li{margin:3px 0}
 .sources{margin-top:22px;font-size:12px;color:var(--muted)}
 .sources p{margin-top:10px}
 footer{margin-top:18px;font-size:12px;color:var(--muted)}
+
+/* ---- Mobile layout: table -> stacked cards per category ---- */
+@media (max-width:760px){
+  body{padding:20px 10px}
+  .container{padding:16px}
+  h1{font-size:22px}
+
+  .table-wrapper{overflow-x:visible;border:none}
+  table{width:100%;min-width:0;border-collapse:separate;border-spacing:0}
+  thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+
+  table, tbody, tr, th, td{display:block;width:100%}
+
+  tbody tr{
+    margin-bottom:22px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  tbody tr:last-child{margin-bottom:0}
+
+  th.category{
+    position:static;
+    box-shadow:none;
+    padding:12px 16px;
+    font-size:16px;
+    border-bottom:1px solid var(--border);
+  }
+
+  td{
+    border-right:none;
+    padding:12px 16px;
+  }
+  td:last-child{border-bottom:none}
+  td[data-label]{position:relative}
+  td[data-label]::before{
+    content:attr(data-label);
+    display:block;
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.02em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+}
 </style>
 </head>
 <body>
@@ -116,27 +165,27 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
     <tbody>
       <tr>
         <th scope="row" class="category">企業としての位置づけ</th>
-        <td>Google 自身が AI 研究・モデル・クラウド・消費者向けサービスを一体的に展開。</td>
-        <td>基盤モデルと ChatGPT 、 Codex 、 API などを自社で広く展開する AI 企業。</td>
-        <td>Claude を中心に、基盤モデル・ AI エージェント・企業向け AI を展開。</td>
-        <td>2026 年 2 月に SpaceX が xAI を取得。 Grok を中心とする AI 事業を SpaceX の計算資源・インフラ戦略と結び付けている。</td>
-        <td><span class="status warn">買収手続き中</span> Cursor を開発する Anysphere 。 2026 年 6 月 16 日、 SpaceX が約 <strong>600 億ドル</strong>相当の全株式交換取引で買収する契約を締結。クロージングは 2026 年第 3 四半期の予定で、 8 月時点では手続きの進行中。</td>
-        <td>2025 年、<strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進める。</td>
+        <td data-label="Google">Google 自身が AI 研究・モデル・クラウド・消費者向けサービスを一体的に展開。</td>
+        <td data-label="OpenAI">基盤モデルと ChatGPT 、 Codex 、 API などを自社で広く展開する AI 企業。</td>
+        <td data-label="Anthropic">Claude を中心に、基盤モデル・ AI エージェント・企業向け AI を展開。</td>
+        <td data-label="xAI/SpaceX">2026 年 2 月に SpaceX が xAI を取得。 Grok を中心とする AI 事業を SpaceX の計算資源・インフラ戦略と結び付けている。</td>
+        <td data-label="Anysphere"><span class="status warn">買収手続き中</span> Cursor を開発する Anysphere 。 2026 年 6 月 16 日、 SpaceX が約 <strong>600 億ドル</strong>相当の全株式交換取引で買収する契約を締結。クロージングは 2026 年第 3 四半期の予定で、 8 月時点では手続きの進行中。</td>
+        <td data-label="Meta">2025 年、<strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進める。</td>
       </tr>
 
       <tr>
         <th scope="row" class="category">代表的なチャット AI</th>
-        <td><strong>Gemini</strong><br>Web ・モバイルなどで提供。</td>
-        <td><strong>ChatGPT</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
-        <td><strong>Claude</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
-        <td><strong>Grok</strong><br>grok.com 、 iOS/Android 、 X などで提供。</td>
-        <td><strong>Cursor</strong> はチャット AI そのものではなく、 AI コーディング環境。エディタ内で複数の AI モデルを利用できる点が特徴。</td>
-        <td><strong>Meta AI</strong><br>Web とスタンドアロンアプリで提供。 WhatsApp, Facebook, Messenger, Instagram, Threads にネイティブ統合。</td>
+        <td data-label="Google"><strong>Gemini</strong><br>Web ・モバイルなどで提供。</td>
+        <td data-label="OpenAI"><strong>ChatGPT</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
+        <td data-label="Anthropic"><strong>Claude</strong><br>Web ・デスクトップ・モバイルなどで提供。</td>
+        <td data-label="xAI/SpaceX"><strong>Grok</strong><br>grok.com 、 iOS/Android 、 X などで提供。</td>
+        <td data-label="Anysphere"><strong>Cursor</strong> はチャット AI そのものではなく、 AI コーディング環境。エディタ内で複数の AI モデルを利用できる点が特徴。</td>
+        <td data-label="Meta"><strong>Meta AI</strong><br>Web とスタンドアロンアプリで提供。 WhatsApp, Facebook, Messenger, Instagram, Threads にネイティブ統合。</td>
       </tr>
 
       <tr>
         <th scope="row" class="category">基盤モデル</th>
-        <td>
+        <td data-label="Google">
           <strong>Gemini 3 系</strong>
           <ul>
             <li>Gemini 3.6 Flash : 一般提供 (2026 年 7 月、現行の主力 )</li>
@@ -146,7 +195,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
             <li>Gemini 3.5 Pro はパートナーテスト中、 Gemini 4 は事前学習段階</li>
           </ul>
         </td>
-        <td>
+        <td data-label="OpenAI">
           <strong>GPT-5.6/GPT 系</strong>
           <ul>
             <li>GPT-5.6 : Luna/Terra/Sol の 3 構成 ( 2026 年 7 月公開の最新世代 )</li>
@@ -155,7 +204,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
             <li>Codex 系のコーディング・エージェント専用モデル</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anthropic">
           <strong>Claude 5 系</strong>
           <ul>
             <li>Claude Fable 5 : 最上位。最も高難度な推論・長時間の自律作業向け</li>
@@ -164,21 +213,21 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
             <li>Claude Haiku 4.5 : 軽量・低コスト用途</li>
           </ul>
         </td>
-        <td>
+        <td data-label="xAI/SpaceX">
           <strong>Grok 系</strong>
           <ul>
             <li>Grok 4.5</li>
             <li>Grok Build を支えるコーディング特化モデル</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anysphere">
           <strong>自社単独の基盤モデル企業ではない</strong>
           <ul>
             <li>Cursor は独自補完モデル (Cursor Tab) と外部モデル API を組み合わせる開発環境</li>
             <li>買収後は xAI/SpaceX 基盤モデルとの密連携が注力ポイント</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Meta">
           <strong>Llama 4 + Muse Spark 二層構造</strong>
           <ul>
             <li>Llama 4( オープンウェイト ) : Scout / Maverick / Behemoth 。 Scout は 10M トークンの長文脈に対応</li>
@@ -190,7 +239,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
 
       <tr>
         <th scope="row" class="category">CLI / AI エージェント</th>
-        <td>
+        <td data-label="Google">
           <strong>Antigravity CLI</strong>
           <ul>
             <li>ターミナル型 AI エージェント。コマンドは <code>agy</code> 、 Go 製のクローズドソース</li>
@@ -198,35 +247,35 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
             <li><span class="status warn">提供終了</span> 旧 Gemini CLI( オープンソース ) は 2026 年 6 月 18 日に個人向け終了。法人の Gemini Code Assist Standard / Enterprise 契約者のみ継続利用可</li>
           </ul>
         </td>
-        <td>
+        <td data-label="OpenAI">
           <strong>Codex CLI / Codex Security CLI</strong>
           <ul>
             <li>ターミナルでコード解釈・編集・脆弱性スキャン・実行までこなすエージェント</li>
             <li>ChatGPT 、エディタ、 CLI を跨ぎ OSS 展開</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anthropic">
           <strong>Claude Code</strong>
           <ul>
             <li>ターミナル上でコードベースを理解・編集</li>
             <li>テスト、 Git 操作、 PR 作成など長尺エージェントワークに対応</li>
           </ul>
         </td>
-        <td>
+        <td data-label="xAI/SpaceX">
           <strong>Grok Build</strong>
           <ul>
             <li>2026 年 5 月に early beta として公開されたターミナル TUI ツール</li>
             <li>Plan → 承認 → 実行のワークフローを持つエージェント</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anysphere">
           <strong>Cursor Agent</strong>
           <ul>
             <li>エディタ内でコードベース全体を扱う AI エージェント</li>
             <li>複数モデルを柔軟に切り替えられる点が最大の特徴</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Meta">
           <strong>Muse Code</strong>
           <ul>
             <li>2026 年 8 月 5 日に Spark 1.2 と同時に beta 公開されたターミナル型コーディングエージェント</li>
@@ -237,31 +286,31 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
 
       <tr>
         <th scope="row" class="category">コーディング環境</th>
-        <td><strong>Antigravity 2.0 / Antigravity CLI</strong><br>デスクトップアプリと CLI が同一基盤。法人向けは Gemini Code Assist Enterprise(VS Code 、 JetBrains 統合 ) が継続。</td>
-        <td><strong>Codex / Codex CLI</strong><br>ChatGPT 、エディタ、ターミナルを横断。</td>
-        <td><strong>Claude Code</strong><br>ターミナル中心。 Web 検索、 Git 、 MCP なども利用可能。</td>
-        <td><strong>Grok Build</strong><br>ターミナル中心 (TUI) 。 ACP により他社エディタ・開発環境との連携も展開。</td>
-        <td><strong>Cursor</strong><br>AI を中心に再設計したコードエディタ。単なるコード補完ツールではなく、 Agent 型開発環境として位置づける方が適切。</td>
-        <td><strong>Muse Code / Meta Model API</strong><br>CLI 中心の beta 提供。 Meta Model API ( 2026 年 7 月 public preview 開始 ) により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</td>
+        <td data-label="Google"><strong>Antigravity 2.0 / Antigravity CLI</strong><br>デスクトップアプリと CLI が同一基盤。法人向けは Gemini Code Assist Enterprise(VS Code 、 JetBrains 統合 ) が継続。</td>
+        <td data-label="OpenAI"><strong>Codex / Codex CLI</strong><br>ChatGPT 、エディタ、ターミナルを横断。</td>
+        <td data-label="Anthropic"><strong>Claude Code</strong><br>ターミナル中心。 Web 検索、 Git 、 MCP なども利用可能。</td>
+        <td data-label="xAI/SpaceX"><strong>Grok Build</strong><br>ターミナル中心 (TUI) 。 ACP により他社エディタ・開発環境との連携も展開。</td>
+        <td data-label="Anysphere"><strong>Cursor</strong><br>AI を中心に再設計したコードエディタ。単なるコード補完ツールではなく、 Agent 型開発環境として位置づける方が適切。</td>
+        <td data-label="Meta"><strong>Muse Code / Meta Model API</strong><br>CLI 中心の beta 提供。 Meta Model API ( 2026 年 7 月 public preview 開始 ) により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</td>
       </tr>
 
       <tr>
         <th scope="row" class="category">エコシステム / 強み</th>
-        <td>
+        <td data-label="Google">
           <ul>
             <li>Google Search 、 Workspace 、 Android 、 Google Cloud</li>
             <li>Antigravity 2.0 に統合された開発環境 ( デスクトップ +CLI)</li>
             <li>大規模クラウド・検索・データ基盤</li>
           </ul>
         </td>
-        <td>
+        <td data-label="OpenAI">
           <ul>
             <li>ChatGPT を中心とした巨大な利用者基盤</li>
             <li>Codex による agentic coding</li>
             <li>API 、 Deep Research 、各種エージェント機能</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anthropic">
           <ul>
             <li>Claude の長文・高度推論・コーディング能力</li>
             <li>Claude Code による agentic coding</li>
@@ -269,21 +318,21 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
             <li>企業・主要クラウド各社との密接な連携</li>
           </ul>
         </td>
-        <td>
+        <td data-label="xAI/SpaceX">
           <ul>
             <li>X とのリアルタイム情報環境</li>
             <li>SpaceX の大規模計算資源 (Colossus) ・ AI インフラ</li>
             <li>Grok と Grok Build の統合</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Anysphere">
           <ul>
             <li>AI コーディングに特化した UI/UX 設計</li>
             <li>複数の基盤モデルを選択できるモデル・アグノスティックな性格</li>
             <li>SpaceX/xAI との統合によるインフラ・モデル強化</li>
           </ul>
         </td>
-        <td>
+        <td data-label="Meta">
           <ul>
             <li>30 億人規模の配布網 : Facebook, Instagram, WhatsApp, Messenger, Threads に Meta AI を直接統合</li>
             <li>二層戦略 : Llama ( オープン ) + Muse ( プロプライエタリ ) のハイブリッド</li>
@@ -294,12 +343,12 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
 
       <tr>
         <th scope="row" class="category">一言で表すなら</th>
-        <td><strong>「 Google の AI エコシステム」</strong><br>検索・クラウド・ OS ・ Workspace まで含めた総合型。</td>
-        <td><strong>「汎用 AI アシスタント +AI エージェント」</strong><br>ChatGPT を入口に、調査・作業・コーディングまで広げる。</td>
-        <td><strong>「高性能モデル +AI エージェント」</strong><br>Claude Code を含む知的作業・開発への深い統合。</td>
-        <td><strong>「 Grok+ 巨大 AI インフラ」</strong><br>AI モデルと SpaceX の計算資源を組み合わせる戦略。</td>
-        <td><strong>「 AI ネイティブな開発環境」</strong><br>モデルそのものより、 AI を使ってソフトウェアを作る体験に強み。</td>
-        <td><strong>「配布力 × スーパーインテリジェンス」</strong><br>30 億人規模のソーシャルグラフに Muse Spark と Muse Code を直接届ける企業。</td>
+        <td data-label="Google"><strong>「 Google の AI エコシステム」</strong><br>検索・クラウド・ OS ・ Workspace まで含めた総合型。</td>
+        <td data-label="OpenAI"><strong>「汎用 AI アシスタント +AI エージェント」</strong><br>ChatGPT を入口に、調査・作業・コーディングまで広げる。</td>
+        <td data-label="Anthropic"><strong>「高性能モデル +AI エージェント」</strong><br>Claude Code を含む知的作業・開発への深い統合。</td>
+        <td data-label="xAI/SpaceX"><strong>「 Grok+ 巨大 AI インフラ」</strong><br>AI モデルと SpaceX の計算資源を組み合わせる戦略。</td>
+        <td data-label="Anysphere"><strong>「 AI ネイティブな開発環境」</strong><br>モデルそのものより、 AI を使ってソフトウェアを作る体験に強み。</td>
+        <td data-label="Meta"><strong>「配布力 × スーパーインテリジェンス」</strong><br>30 億人規模のソーシャルグラフに Muse Spark と Muse Code を直接届ける企業。</td>
       </tr>
     </tbody>
   </table>
