@@ -4,153 +4,246 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>書庫 - 読み物ポータル</title>
+<meta name="description" content="自然科学・社会科学・人文科学、十五本の読み物を収めた個人アーカイブ。">
 <style>
   :root{
-    --bg: #f7f5f0;
+    --bg: #f5f6fa;
     --paper: #ffffff;
-    --ink: #2a2622;
-    --muted: #6f6a63;
-    --line: #e4dfd5;
-    --accent: #8a3b2f;
+    --ink: #1c1e26;
+    --muted: #62677a;
+    --line: #e3e5ee;
+
+    --nat: #0891b2;
+    --nat-soft: #e0f6fb;
+    --nat-ink: #075366;
+    --soc: #b45309;
+    --soc-soft: #fef3e2;
+    --soc-ink: #7a3a06;
+    --hum: #7c3aed;
+    --hum-soft: #f3ebfe;
+    --hum-ink: #55229e;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg: #1b1916;
-      --paper: #242220;
-      --ink: #ece7de;
-      --muted: #a49d90;
-      --line: #3a352e;
-      --accent: #d98b73;
+      --bg: #14151c;
+      --paper: #1d1f29;
+      --ink: #eceef5;
+      --muted: #9498ab;
+      --line: #2c2f3c;
+
+      --nat-soft: #103744;
+      --nat-ink: #7fdcf2;
+      --soc-soft: #3f2a0f;
+      --soc-ink: #f3b775;
+      --hum-soft: #33224f;
+      --hum-ink: #d3b3fb;
     }
   }
-  *{box-sizing:border-box;}
+  *{ box-sizing:border-box; }
   body{
     margin:0;
     background:var(--bg);
     color:var(--ink);
-    font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
-    line-height:1.8;
-  }
-  .top{
-    max-width:780px;
-    margin:0 auto;
-    padding:72px 24px 32px;
-    text-align:center;
-  }
-  .top .eyebrow{
-    display:inline-block;
-    font-size:12px;
-    letter-spacing:.28em;
-    color:var(--muted);
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    margin-bottom:18px;
-  }
-  .top h1{
-    font-size:clamp(26px,4vw,34px);
-    margin:0 0 14px;
-    letter-spacing:.06em;
-  }
-  .top p.lead{
-    font-size:14.5px;
-    color:var(--muted);
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    margin:0;
-  }
-  .divider{
-    width:64px;
-    height:1px;
-    background:var(--line);
-    margin:28px auto 0;
-    position:relative;
-  }
-  .divider::after{
-    content:"◆";
-    position:absolute;
-    left:50%;
-    top:-7px;
-    transform:translateX(-50%);
-    background:var(--bg);
-    padding:0 10px;
-    color:var(--accent);
-    font-size:9px;
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.75;
   }
 
-  main{
-    max-width:780px;
+  header.hero{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(8,145,178,.35), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(180,83,9,.30), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(124,58,237,.30), transparent 55%),
+      linear-gradient(160deg, #14151f 0%, #1d1a2b 60%, #201826 100%);
+    color:#f4f2fa;
+    padding:clamp(56px,9vw,96px) 24px clamp(44px,7vw,64px);
+  }
+  header.hero .wrap{
+    max-width:960px;
     margin:0 auto;
-    padding:40px 24px 90px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.32em;
+    color:#b9b4cf;
+    margin-bottom:20px;
+  }
+  header.hero h1{
+    font-size:clamp(32px,5.5vw,46px);
+    font-weight:800;
+    margin:0 0 16px;
+    letter-spacing:.03em;
+  }
+  header.hero p.lead{
+    font-size:clamp(14.5px,2vw,16.5px);
+    color:#c9c5de;
+    margin:0 auto;
+    max-width:640px;
+  }
+
+  .counters{
     display:flex;
-    flex-direction:column;
-    gap:24px;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:32px;
+  }
+  .counters a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:13.5px;
+    font-weight:600;
+    letter-spacing:.02em;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:#f4f2fa;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12); }
+  .counters .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .counters a.nat .dot{ background:var(--nat); box-shadow:0 0 10px var(--nat); }
+  .counters a.soc .dot{ background:var(--soc); box-shadow:0 0 10px var(--soc); }
+  .counters a.hum .dot{ background:var(--hum); box-shadow:0 0 10px var(--hum); }
+  .counters .n{ opacity:.72; font-weight:400; }
+
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:clamp(40px,6vw,64px) 24px 40px;
+  }
+
+  section.group{ margin-bottom:clamp(48px,7vw,72px); scroll-margin-top:24px; }
+  section.group .group-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:26px;
+  }
+  section.group .icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  section.group .icon svg{ width:24px; height:24px; }
+  section.group h2{
+    font-size:clamp(20px,2.6vw,25px);
+    margin:0;
+    letter-spacing:.02em;
+  }
+  section.group .group-en{
+    display:block;
+    font-size:11.5px;
+    letter-spacing:.22em;
+    color:var(--muted);
+    margin-top:3px;
+  }
+  section.group .count{
+    margin-left:auto;
+    font-size:13px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  #natural .icon{ background:var(--nat-soft); color:var(--nat-ink); }
+  #social .icon{ background:var(--soc-soft); color:var(--soc-ink); }
+  #humanities .icon{ background:var(--hum-soft); color:var(--hum-ink); }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:20px;
   }
 
   .card{
-    display:block;
+    display:flex;
+    flex-direction:column;
     background:var(--paper);
     border:1px solid var(--line);
-    border-radius:4px;
-    padding:32px 34px;
+    border-radius:14px;
+    padding:26px 26px 24px;
     text-decoration:none;
     color:inherit;
     position:relative;
+    overflow:hidden;
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
   .card::before{
     content:"";
     position:absolute;
-    left:0; top:14px; bottom:14px;
-    width:3px;
-    background:var(--accent);
-    opacity:0;
-    transition:opacity .2s ease;
+    left:0; top:0; bottom:0;
+    width:4px;
   }
+  #natural .card::before{ background:var(--nat); }
+  #social .card::before{ background:var(--soc); }
+  #humanities .card::before{ background:var(--hum); }
+
   .card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 28px rgba(0,0,0,.08);
-    border-color:var(--accent);
+    transform:translateY(-4px);
+    box-shadow:0 16px 34px rgba(0,0,0,.10);
   }
-  .card:hover::before{ opacity:1; }
+  #natural .card:hover{ border-color:var(--nat); }
+  #social .card:hover{ border-color:var(--soc); }
+  #humanities .card:hover{ border-color:var(--hum); }
 
   .card .kicker{
-    display:block;
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    font-size:11px;
-    letter-spacing:.18em;
-    color:var(--accent);
-    margin-bottom:10px;
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.14em;
+    padding:4px 10px;
+    border-radius:6px;
+    margin-bottom:14px;
+    align-self:flex-start;
   }
-  .card h2{
-    font-size:20px;
-    margin:0 0 8px;
-    letter-spacing:.03em;
-  }
+  #natural .card .kicker{ background:var(--nat-soft); color:var(--nat-ink); }
+  #social .card .kicker{ background:var(--soc-soft); color:var(--soc-ink); }
+  #humanities .card .kicker{ background:var(--hum-soft); color:var(--hum-ink); }
+
   .card h3{
-    font-size:13.5px;
-    font-weight:normal;
+    font-size:17.5px;
+    font-weight:700;
+    margin:0 0 8px;
+    letter-spacing:.01em;
+  }
+  .card h4{
+    font-size:12.5px;
+    font-weight:500;
     color:var(--muted);
-    margin:0 0 14px;
+    margin:0 0 13px;
   }
   .card p.desc{
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    font-size:13.5px;
+    font-size:13px;
     color:var(--muted);
     margin:0;
     line-height:1.75;
+    flex-grow:1;
   }
   .card .go{
-    display:inline-block;
-    margin-top:16px;
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:18px;
     font-size:12px;
-    color:var(--accent);
-    letter-spacing:.05em;
+    font-weight:700;
+    letter-spacing:.03em;
   }
-  .card .go::after{ content:" →"; }
+  #natural .card .go{ color:var(--nat-ink); }
+  #social .card .go{ color:var(--soc-ink); }
+  #humanities .card .go{ color:var(--hum-ink); }
+  .card .go::after{ content:"→"; transition:transform .18s ease; }
+  .card:hover .go::after{ transform:translateX(3px); }
 
   footer{
     text-align:center;
     padding:0 24px 60px;
-    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
     font-size:11.5px;
     color:var(--muted);
     letter-spacing:.04em;
@@ -159,118 +252,199 @@
 </head>
 <body>
 
-<div class="top">
-  <span class="eyebrow">PERSONAL ARCHIVE</span>
-  <h1>書庫</h1>
-  <p class="lead">十三の読み物</p>
-  <div class="divider"></div>
-</div>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">PERSONAL ARCHIVE</span>
+    <h1>書庫</h1>
+    <p class="lead">自然科学・社会科学・人文科学、三つの分野にまたがる十五本の読み物。物理から政治、心理学から宗教まで、一次資料をたどりながら考えを積み上げていく。</p>
+    <div class="counters">
+      <a class="nat" href="#natural"><span class="dot"></span>自然科学 <span class="n">4</span></a>
+      <a class="soc" href="#social"><span class="dot"></span>社会科学 <span class="n">5</span></a>
+      <a class="hum" href="#humanities"><span class="dot"></span>人文科学 <span class="n">6</span></a>
+    </div>
+  </div>
+</header>
 
 <main>
 
-  <a class="card" href="becomingyourself.html">
-    <span class="kicker">JUNGIAN PSYCHOLOGY</span>
-    <h2>本当の自分に出会う</h2>
-    <h3>ユング心理学とともに歩む、こころの旅</h3>
-    <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
-    <span class="go">読む</span>
-  </a>
+  <section class="group" id="natural">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
+        </svg>
+      </span>
+      <div>
+        <h2>自然科学 <span class="group-en">NATURAL SCIENCE</span></h2>
+      </div>
+      <span class="count">4 本</span>
+    </div>
+    <div class="grid">
 
-  <a class="card" href="jung_criticism.html">
-    <span class="kicker">JUNGIAN PSYCHOLOGY / 批判編</span>
-    <h2>ユング心理学、光と影</h2>
-    <h3>よく指摘される弱点を集めてみた</h3>
-    <p class="desc">「本当の自分に出会う」の続編。反証可能性、MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="particle-physics.html">
+        <span class="kicker">PHYSICS</span>
+        <h3>素粒子物理学とは何か</h3>
+        <h4>原子から宇宙まで、ひと続きの物語</h4>
+        <p class="desc">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="kingendaishi.html">
-    <span class="kicker">MODERN & CONTEMPORARY HISTORY</span>
-    <h2>近代と現代の境界はどこに引かれるのか</h2>
-    <h3>「近代」と「現代」を分ける、もうひとつの年表</h3>
-    <p class="desc">世界史と日本史を一本の年表に重ね合わせながら、近代と現代を分ける境界線がどこにあるのかを考える。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="js-zeroichi.html">
+        <span class="kicker">PROGRAMMING</span>
+        <h3>JavaScript ゼロからイチまで</h3>
+        <h4>HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</h4>
+        <p class="desc">変数・条件分岐・配列操作から DOM 操作、非同期処理、エラー対応まで。 1 日 1 章、全 10 章で「読めなかったコード」を「自分の言葉で説明できるコード」に変えていく実践書。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="buddhism_13shu56ha.html">
-    <span class="kicker">JAPANESE BUDDHISM / SECT GUIDE</span>
-    <h2>十三宗五十六派を歩く</h2>
-    <h3>日本仏教の宗派地図</h3>
-    <p class="desc">奈良仏教から鎌倉新仏教まで、十三の宗と五十六の派がどのように枝分かれしてきたかを、時代を追ってたどる。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="ai_comparison.html">
+        <span class="kicker">AI / COMPARISON</span>
+        <h3>AI 比較表</h3>
+        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
+        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="authoritarianism-thesis.html">
-    <span class="kicker">POLITICAL ESSAY</span>
-    <h2>権威主義をめぐる考察</h2>
-    <h3>民主主義国家は善で権威主義国家は悪なのか / 権威主義国家の民主化は世界に平和をもたらすのか</h3>
-    <p class="desc">歴史と比較政治学の議論を積み重ねながら、二つの問いを検討する論考。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="claude-code-migration.html">
+        <span class="kicker">TOOLING / GUIDE</span>
+        <h3>Claude Code 環境移植ガイド</h3>
+        <h4>Windows 11 ⇔ Mac</h4>
+        <p class="desc">1 台の PC で育てた Claude Code の設定・記憶・ワークフローを、別の PC へ持ち運ぶための実践チェックリスト。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="strawman-article.html">
-    <span class="kicker">LOGIC</span>
-    <h2>藁人形論法 - 存在しない主張と戦う詭弁</h2>
-    <h3>かかしを叩いて「勝った」と言っていないか</h3>
-    <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
-    <span class="go">読む</span>
-  </a>
+    </div>
+  </section>
 
-  <a class="card" href="particle-physics.html">
-    <span class="kicker">POPULAR SCIENCE</span>
-    <h2>素粒子物理学とは何か</h2>
-    <h3>原子から宇宙まで、ひと続きの物語</h3>
-    <p class="desc">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
-    <span class="go">読む</span>
-  </a>
+  <section class="group" id="social">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20V11"/>
+          <path d="M10 20V6"/>
+          <path d="M16 20V13"/>
+          <path d="M20 20V9"/>
+          <path d="M2 20h20"/>
+        </svg>
+      </span>
+      <div>
+        <h2>社会科学 <span class="group-en">SOCIAL SCIENCE</span></h2>
+      </div>
+      <span class="count">5 本</span>
+    </div>
+    <div class="grid">
 
-  <a class="card" href="cdn-business-model.html">
-    <span class="kicker">TECH / BUSINESS</span>
-    <h2>CDN のビジネスモデルとインターネット相互接続の仕組み</h2>
-    <h3>ピアリング・トランジット・ IX から、企業モデルの分類まで</h3>
-    <p class="desc">相互接続の物理構造から、CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="cdn-business-model.html">
+        <span class="kicker">TECH / BUSINESS</span>
+        <h3>CDN のビジネスモデルとインターネット相互接続の仕組み</h3>
+        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
+        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="cloud_and_ai_boom.html">
-    <span class="kicker">TECH / BUSINESS</span>
-    <h2>クラウド市場と生成 AI ブーム</h2>
-    <h3>シェア・成長動向・今後の見通し</h3>
-    <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1〜3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="cloud_and_ai_boom.html">
+        <span class="kicker">MARKET ANALYSIS</span>
+        <h3>クラウド市場と生成 AI ブーム</h3>
+        <h4>シェア・成長動向・今後の見通し</h4>
+        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="liberal_arts.html">
-    <span class="kicker">EDUCATION</span>
-    <h2>リベラルアーツ考</h2>
-    <h3>教養教育の理念と米国モデル</h3>
-    <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・STEM 重視との緊張関係をめぐる論争までを整理する。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="saas-is-dead-consideration.html">
+        <span class="kicker">BUSINESS MODEL</span>
+        <h3>「 SaaS is dead 」言説を検証する</h3>
+        <h4>UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</h4>
+        <p class="desc">SaaS は本当に終わるのか。 UI ・ロジック・データという三層構造に分解し、 AI エージェントが代替しうる部分と、なお残る部分を見極める。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="js-zeroichi.html">
-    <span class="kicker">PROGRAMMING / TUTORIAL</span>
-    <h2>JavaScript ゼロからイチまで</h2>
-    <h3>HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</h3>
-    <p class="desc">変数・条件分岐・配列操作から DOM 操作、非同期処理、エラー対応まで。 1 日 1 章、全 10 章で「読めなかったコード」を「自分の言葉で説明できるコード」に変えていく実践書。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="authoritarianism-thesis.html">
+        <span class="kicker">POLITICAL ESSAY</span>
+        <h3>権威主義をめぐる考察</h3>
+        <h4>民主主義国家は善で権威主義国家は悪なのか / 権威主義国家の民主化は世界に平和をもたらすのか</h4>
+        <p class="desc">歴史と比較政治学の議論を積み重ねながら、二つの問いを検討する論考。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="ai_comparison.html">
-    <span class="kicker">TECH / AI COMPARISON</span>
-    <h2>AI 比較表</h2>
-    <h3>企業・基盤モデル・コーディングツールを分けて整理する</h3>
-    <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。 2026 年 8 月 10 日時点の情報を基準にしている。</p>
-    <span class="go">読む</span>
-  </a>
+      <a class="card" href="one-party-multiple-policies.html">
+        <span class="kicker">POLITICAL ESSAY / LAW</span>
+        <h3>一つの政党、複数の政策</h3>
+        <h4>自民党という枠組みを支える法的構造</h4>
+        <p class="desc">政党助成法・公職選挙法上の政党要件、最高裁判例が認める政党の内部自律性、党議拘束の法的位置づけ、そして派閥という制度の変遷まで。党内の政策的多様性がなぜ現行法制と抵触しないのかを、条文・判例・報道に基づいて整理する。</p>
+        <span class="go">読む</span>
+      </a>
 
-  <a class="card" href="one-party-multiple-policies.html">
-    <span class="kicker">POLITICAL ESSAY</span>
-    <h2>一つの政党、複数の政策</h2>
-    <h3>自民党という枠組みを支える法的構造</h3>
-    <p class="desc">政党助成法・公職選挙法上の政党要件、最高裁判例が認める政党の内部自律性、党議拘束の法的位置づけ、そして派閥という制度の変遷まで。党内の政策的多様性がなぜ現行法制と抵触しないのかを、条文・判例・報道に基づいて整理する。</p>
-    <span class="go">読む</span>
-  </a>
+    </div>
+  </section>
+
+  <section class="group" id="humanities">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 6.5c-1.8-1.4-4.2-2-6.5-2-1 0-2 .12-3 .35v13.4c1-.23 2-.35 3-.35 2.3 0 4.7.6 6.5 2 1.8-1.4 4.2-2 6.5-2 1 0 2 .12 3 .35V4.85c-1-.23-2-.35-3-.35-2.3 0-4.7.6-6.5 2Z"/>
+          <path d="M12 6.5v13.4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>人文科学 <span class="group-en">HUMANITIES</span></h2>
+      </div>
+      <span class="count">6 本</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="becomingyourself.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY</span>
+        <h3>本当の自分に出会う</h3>
+        <h4>ユング心理学とともに歩む、こころの旅</h4>
+        <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="jung_criticism.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY / 批判編</span>
+        <h3>ユング心理学、光と影</h3>
+        <h4>よく指摘される弱点を集めてみた</h4>
+        <p class="desc">「本当の自分に出会う」の続編。反証可能性、 MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="kingendaishi.html">
+        <span class="kicker">HISTORY</span>
+        <h3>「近代」と「現代」の境界はどこに引かれるのか</h3>
+        <h4>近代と現代を分ける、もうひとつの年表</h4>
+        <p class="desc">世界史と日本史を一本の年表に重ね合わせながら、近代と現代を分ける境界線がどこにあるのかを考える。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="buddhism_13shu56ha.html">
+        <span class="kicker">JAPANESE BUDDHISM</span>
+        <h3>十三宗五十六派を歩く</h3>
+        <h4>日本仏教の宗派地図</h4>
+        <p class="desc">奈良仏教から鎌倉新仏教まで、十三の宗と五十六の派がどのように枝分かれしてきたかを、時代を追ってたどる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="liberal_arts.html">
+        <span class="kicker">EDUCATION / PHILOSOPHY</span>
+        <h3>リベラルアーツ考</h3>
+        <h4>教養教育の理念と米国モデル</h4>
+        <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・ STEM 重視との緊張関係をめぐる論争までを整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="strawman-article.html">
+        <span class="kicker">LOGIC / RHETORIC</span>
+        <h3>藁人形論法</h3>
+        <h4>存在しない主張と戦う詭弁</h4>
+        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
+        <span class="go">読む</span>
+      </a>
+
+    </div>
+  </section>
 
 </main>
 

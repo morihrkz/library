@@ -45,28 +45,47 @@
     color: var(--fg);
     font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     line-height: 1.9;
-    font-size: 17px;
+    font-size: 1.08rem;
   }
   .page {
-    max-width: 780px;
+    margin: 0;
+    padding: 2.5rem clamp(1.5rem, 3vw, 3rem) 6rem;
+  }
+  header.hero {
+    background: linear-gradient(135deg, #201a12 0%, #4a341c 100%);
+    color: #f5eddc;
+    padding: 3.4rem 0 2.6rem;
+    margin-bottom: 0;
+  }
+  header.hero .wrap {
+    max-width: 960px;
     margin: 0 auto;
-    padding: 2.5rem 1.25rem 6rem;
+    padding: 0 clamp(1.5rem, 3vw, 3rem);
   }
-  header.book-header {
-    text-align: center;
-    padding: 3rem 1rem 2.5rem;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 2rem;
+  header.hero .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: #cbb188;
+    margin-bottom: 0.9rem;
   }
-  header.book-header h1 {
-    font-size: 2.1rem;
+  header.hero h1 {
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
     margin: 0 0 0.6rem;
     letter-spacing: 0.02em;
   }
-  header.book-header p.subtitle {
-    color: var(--muted);
-    font-size: 1rem;
+  header.hero p.subtitle {
+    color: #d9c6a3;
+    font-size: 1.08rem;
     margin: 0;
+  }
+  .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
+  .hero-figure svg { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #c7b596;
   }
   nav.toc {
     background: color-mix(in srgb, var(--column-bg) 55%, transparent);
@@ -116,7 +135,7 @@
     border-radius: 4px;
     padding: 0.05rem 0.35rem;
     font-family: "Consolas", "SFMono-Regular", Menlo, monospace;
-    font-size: 0.9em;
+    font-size: 1em;
   }
   pre {
     background: var(--code-bg);
@@ -124,7 +143,7 @@
     padding: 1rem 1.1rem;
     border-radius: 8px;
     overflow-x: auto;
-    font-size: 0.88rem;
+    font-size: 1em;
     line-height: 1.6;
   }
   pre code {
@@ -184,7 +203,6 @@
     width: 100%;
     border-collapse: collapse;
     margin: 1.4rem 0;
-    font-size: 0.92rem;
   }
   th, td {
     border: 1px solid var(--rule);
@@ -214,12 +232,86 @@
 </style>
 </head>
 <body>
-<div class="page">
 
-<header class="book-header">
-  <h1>JavaScript ゼロからイチまで</h1>
-  <p class="subtitle">HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</p>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">JAVASCRIPT / 10-DAY GUIDE</span>
+    <h1>JavaScript ゼロからイチまで</h1>
+    <p class="subtitle">HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 200" role="img" aria-labelledby="jsTitle jsDesc">
+        <title id="jsTitle">10 日間で歩く JavaScript 学習ロードマップ</title>
+        <desc id="jsDesc">基礎から応用へ、 10 個の丸いノードを結ぶ一本の道として 10 日間の章立てを示した図。ノードは交互に上下へ張り出したラベルを持つ。</desc>
+
+        <line x1="40" y1="100" x2="680" y2="100" stroke="#8a6a3a" stroke-opacity="0.45" stroke-width="2"/>
+
+        <g class="node">
+          <circle cx="40" cy="100" r="15"/>
+          <text x="40" y="105" class="idx">1</text>
+          <text x="40" y="70" class="lb">基礎</text>
+        </g>
+        <g class="node">
+          <circle cx="111" cy="100" r="15"/>
+          <text x="111" y="105" class="idx">2</text>
+          <text x="111" y="140" class="lb">変数</text>
+        </g>
+        <g class="node">
+          <circle cx="182" cy="100" r="15"/>
+          <text x="182" y="105" class="idx">3</text>
+          <text x="182" y="70" class="lb">条件分岐</text>
+        </g>
+        <g class="node">
+          <circle cx="253" cy="100" r="15"/>
+          <text x="253" y="105" class="idx">4</text>
+          <text x="253" y="140" class="lb">繰り返し</text>
+        </g>
+        <g class="node">
+          <circle cx="324" cy="100" r="15"/>
+          <text x="324" y="105" class="idx">5</text>
+          <text x="324" y="70" class="lb">関数</text>
+        </g>
+        <g class="node">
+          <circle cx="395" cy="100" r="15"/>
+          <text x="395" y="105" class="idx">6</text>
+          <text x="395" y="140" class="lb">DOM 操作</text>
+        </g>
+        <g class="node">
+          <circle cx="466" cy="100" r="15"/>
+          <text x="466" y="105" class="idx">7</text>
+          <text x="466" y="70" class="lb">イベント</text>
+        </g>
+        <g class="node">
+          <circle cx="537" cy="100" r="15"/>
+          <text x="537" y="105" class="idx">8</text>
+          <text x="537" y="140" class="lb">非同期処理</text>
+        </g>
+        <g class="node">
+          <circle cx="608" cy="100" r="15"/>
+          <text x="608" y="105" class="idx">9</text>
+          <text x="608" y="70" class="lb">デバッグ</text>
+        </g>
+        <g class="node out">
+          <circle cx="680" cy="100" r="15"/>
+          <text x="680" y="105" class="idx out">10</text>
+          <text x="680" y="140" class="lb out">この先へ</text>
+        </g>
+
+        <style>
+          .node circle { fill: #2c2418; stroke: #c9a24a; stroke-width: 2; }
+          .node.out circle { stroke: #e0a95f; }
+          .idx { fill: #f5eddc; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .idx.out { fill: #fff3dd; }
+          .lb { fill: #cbb188; font-size: 12.5px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .lb.out { fill: #e0a95f; font-weight: 700; }
+        </style>
+      </svg>
+      <figcaption>全 10 章の流れ。 1 〜 9 章で基礎文法から非同期処理・デバッグまでを一つずつ積み上げ、 10 章でモジュール・フレームワーク・ AI との付き合い方へつなげる。</figcaption>
+    </figure>
+  </div>
 </header>
+
+<div class="page">
 
 <nav class="toc" id="toc">
   <h2>目次</h2>

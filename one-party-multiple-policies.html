@@ -5,36 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>一つの政党、複数の政策――自民党という枠組みを支える法的構造</title>
 <style>
+  * { box-sizing: border-box; }
   body {
+    margin: 0;
     font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.9;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 6rem;
     color: #1a1a1a;
     background: #fdfcf9;
   }
-  h1 {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    border-bottom: 3px solid #2c2c2c;
-    padding-bottom: 0.8rem;
-    margin-bottom: 0.5rem;
+  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
+
+  header.hero {
+    background: linear-gradient(135deg, #241f16 0%, #4a3f2c 100%);
+    color: #f5f0e4;
+    padding: 3.4rem 0 2.6rem;
+    margin-bottom: 2.6rem;
   }
+  header.hero .wrap { max-width: 960px; margin: 0 auto; }
+  header.hero .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: #cbb88f;
+    margin-bottom: 0.9rem;
+  }
+  header.hero h1 {
+    font-size: clamp(1.4rem, 3.2vw, 1.8rem);
+    line-height: 1.55;
+    margin: 0 0 0.7rem;
+    letter-spacing: 0.02em;
+  }
+  header.hero p.sub {
+    margin: 0;
+    color: #cbb88f;
+    line-height: 1.8;
+  }
+  .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
+  .hero-figure svg { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #b8a985;
+  }
+
+  main.wrap { padding-bottom: 4rem; }
   .meta {
     font-size: 0.85rem;
     color: #666;
-    margin-bottom: 2.5rem;
+    margin: 0 0 2.5rem;
   }
   h2 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     margin-top: 2.8rem;
     border-left: 6px solid #7a6a4f;
     padding-left: 0.7rem;
   }
   p { margin: 1.1rem 0; text-align: justify; }
-  sup.fn { font-size: 0.7rem; }
+  sup.fn { font-size: 0.8rem; }
   sup.fn a { text-decoration: none; color: #7a6a4f; }
   section#refs {
     margin-top: 3.5rem;
@@ -52,18 +81,79 @@
   section#refs li { margin-bottom: 0.6rem; }
   section#note {
     margin-top: 2.5rem;
-    font-size: 0.8rem;
-    color: #666;
     background: #f2efe8;
     padding: 1rem 1.2rem;
     border-radius: 4px;
+  }
+  section#note p { margin: 0; color: #4a4a4a; }
+  @media (max-width: 640px) {
+    p { text-align: left; }
+    .hero-figure svg { min-width: 560px; }
   }
 </style>
 </head>
 <body>
 
-<h1>一つの政党、複数の政策――自民党という枠組みを支える法的構造</h1>
-<p class="meta">執筆日 :2026 年 8 月 11 日</p>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">法解釈ノート / POLITICAL PARTY LAW</span>
+    <h1>一つの政党、複数の政策</h1>
+    <p class="sub">自民党という枠組みを支える法的構造</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 250" role="img" aria-labelledby="lpTitle lpDesc">
+        <title id="lpTitle">一つの政党の中に複数の政策的立場が同居できる法的構造</title>
+        <desc id="lpDesc">「自由民主党」という一つの枠を表す破線の外枠の中に、防衛政策・経済政策それぞれで対立する二つの立場を示す四つの箱が並ぶ。外枠の下には、政党としての法的要件が議員数と得票率のみである旨の注記があり、右側には、この多様性を組織的に担う「派閥」という別法人が矢印でつながれている。</desc>
+
+        <rect x="24" y="20" width="470" height="176" rx="10" fill="none" stroke="#c9a24a" stroke-opacity="0.6" stroke-dasharray="6 5"/>
+        <text x="44" y="44" class="grp">自由民主党 ── 法律上は一つの政治団体</text>
+
+        <rect x="44" y="60" width="205" height="46" rx="6" class="chip chipL"/>
+        <text x="146" y="80" class="chipT">防衛政策</text>
+        <text x="146" y="99" class="chipS">改憲・防衛強化派</text>
+
+        <rect x="269" y="60" width="205" height="46" rx="6" class="chip chipR"/>
+        <text x="371" y="80" class="chipT">防衛政策</text>
+        <text x="371" y="99" class="chipS">慎重・護憲派</text>
+
+        <rect x="44" y="118" width="205" height="46" rx="6" class="chip chipL"/>
+        <text x="146" y="138" class="chipT">経済政策</text>
+        <text x="146" y="157" class="chipS">積極財政派</text>
+
+        <rect x="269" y="118" width="205" height="46" rx="6" class="chip chipR"/>
+        <text x="371" y="138" class="chipT">経済政策</text>
+        <text x="371" y="157" class="chipS">緊縮財政派</text>
+
+        <text x="44" y="182" class="req">法的要件（政党助成法 2 条）：議員数 5 人以上 or 得票率 2% 以上 ── 政策の一致は不要</text>
+
+        <path d="M494 108 h34" stroke="#e0a95f" stroke-opacity="0.8" stroke-width="2" fill="none"/>
+        <path d="M528 108 l-10 -6 v12 z" fill="#e0a95f" fill-opacity="0.8"/>
+        <rect x="538" y="66" width="150" height="84" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#e08b7f" stroke-opacity="0.6"/>
+        <text x="613" y="94" class="sideT">派閥</text>
+        <text x="613" y="114" class="sideS">政治資金規正法上の</text>
+        <text x="613" y="130" class="sideS">別法人として</text>
+        <text x="613" y="146" class="sideS">資金・人事を担う</text>
+
+        <style>
+          .grp { fill: #e8dcc0; font-size: 13px; font-weight: 700; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .chip { fill: #ffffff; fill-opacity: 0.06; }
+          .chipL { stroke: #c9a24a; stroke-opacity: 0.7; }
+          .chipR { stroke: #6a9a8a; stroke-opacity: 0.7; }
+          .chipT { fill: #f0e6ce; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .chipS { fill: #cbb88f; font-size: 11px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .req { fill: #b8a985; font-size: 11.5px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .sideT { fill: #f0c9c2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .sideS { fill: #d9a89f; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>本稿の骨子。「政党」の法的要件は議員数・得票率のみで、党内の政策的立場の統一は求められない。この多様性を組織的に担ってきたのが「派閥」という別法人である。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+<p class="meta">執筆日 : 2026 年 8 月 11 日</p>
 
 <p>自由民主党 ( 以下、自民党 ) は、 1955 年の結党以来、防衛政策や経済政策、憲法改正論などをめぐって党内に幅の広い立場を抱えながら、単一の政党として存続してきた。一つの政党の内部に、争点によっては互いに対立する政策的立場を持つ議員が同居していることは、しばしば「なぜ一つの政党としてまとまっていられるのか」という疑問を招く。本稿は、この疑問を感情論や政治的評価からではなく、政党に関する日本の法制度がどのような枠組みを設定しているかという観点から検討する。</p>
 
@@ -123,6 +213,8 @@
 <li>[11] Wikipedia 「一党優位政党制」 <a href="https://ja.wikipedia.org/wiki/%E4%B8%80%E5%85%9A%E5%84%AA%E4%BD%8D%E6%94%BF%E5%85%9A%E5%88%B6" target="_blank">ja.wikipedia.org/wiki/一党優位政党制</a> (2026 年 8 月 11 日閲覧 ) 。</li>
 </ol>
 </section>
+
+</main>
 
 </body>
 </html>

@@ -63,81 +63,6 @@
     color:#ffffff;
   }
 
-  /* -- sun low over the horizon -- */
-  .hero .sun2{
-    position:absolute;
-    top:20%; right:22%;
-    width:120px; height:120px;
-    border-radius:50%;
-    background:radial-gradient(circle at 35% 35%, #fff6cc 0%, var(--sun) 45%, var(--sun-deep) 100%);
-    box-shadow:0 0 70px 22px rgba(255,202,40,0.5);
-    animation: pulseSun2 7s infinite alternate;
-  }
-  @keyframes pulseSun2 {
-    0% { transform: scale(1); opacity: 0.92; }
-    100% { transform: scale(1.06); opacity: 1; }
-  }
-
-  /* -- seabirds drifting across the sky -- */
-  .hero .bird{
-    position:absolute;
-    opacity:0.85;
-    animation: driftBird 18s infinite ease-in-out;
-  }
-  .hero .bird svg{ display:block; }
-  @keyframes driftBird {
-    0% { transform: translate(0,0); }
-    50% { transform: translate(28px,-10px); }
-    100% { transform: translate(0,0); }
-  }
-  .hero .bird.b1{ top:16%; left:14%; width:38px; animation-duration:16s; }
-  .hero .bird.b2{ top:26%; left:64%; width:26px; opacity:0.7; animation-duration:22s; animation-delay:-4s; }
-  .hero .bird.b3{ top:12%; left:80%; width:22px; opacity:0.6; animation-duration:20s; animation-delay:-9s; }
-
-  /* -- palm tree with a cast shadow -- */
-  .hero .palm{
-    position:absolute;
-    left:5%; bottom:0;
-    width:110px;
-    z-index:1;
-  }
-  .hero .palm svg{ display:block; width:100%; height:auto; overflow:visible; }
-  .hero .palm .fronds{
-    transform-origin:60px 80px;
-    animation: swayPalm 5s ease-in-out infinite alternate;
-  }
-  @keyframes swayPalm {
-    0% { transform: rotate(-3deg); }
-    100% { transform: rotate(3deg); }
-  }
-  .hero .palm .shadow{
-    position:absolute;
-    left:6px; bottom:-4px;
-    width:96px; height:18px;
-    background:rgba(0,40,40,0.18);
-    border-radius:50%;
-    filter:blur(2px);
-    transform:scaleX(1.4) skewX(-25deg);
-  }
-
-  /* -- beach umbrella with a cast shadow -- */
-  .hero .umbrella{
-    position:absolute;
-    right:8%; bottom:3%;
-    width:150px;
-    z-index:1;
-  }
-  .hero .umbrella svg{ display:block; width:100%; height:auto; overflow:visible; }
-  .hero .umbrella .shadow{
-    position:absolute;
-    left:16px; bottom:-2px;
-    width:112px; height:16px;
-    background:rgba(0,40,40,0.16);
-    border-radius:50%;
-    filter:blur(2px);
-    transform:scaleX(1.3) skewX(20deg);
-  }
-
   .hero-inner{ position:relative; z-index:2; }
   .kicker{
     display:inline-block;
@@ -173,10 +98,12 @@
 
   /* ---------- Layout ---------- */
   .wrap{
-    max-width:800px;
-    margin:0 auto;
-    padding:0 24px 90px;
+    margin:0;
+    padding:0 clamp(1.5rem, 3vw, 3rem) 90px;
   }
+  .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
+  .hero-figure svg{ display:block; width:100%; height:auto; }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#e3f7ff; }
   .toc-note{
     text-align:center;
     color:var(--ink-soft);
@@ -374,7 +301,7 @@
   /* ---------- Body typography ---------- */
   p{
     margin:0 0 1.2em;
-    font-size:1.05rem;
+    font-size:1.12rem;
     color: #37474f;
     text-indent:1em;
   }
@@ -481,10 +408,7 @@
 
   @media (max-width:600px){
     .hero{ padding:60px 16px 80px; }
-    .hero .sun2{ width:80px; height:80px; top:12%; right:16%; }
-    .hero .bird.b3{ display:none; }
-    .hero .palm{ width:58px; left:1%; }
-    .hero .umbrella{ width:86px; right:2%; }
+    .hero-figure svg{ min-width:560px; }
     .acc-header{ padding:16px 16px; }
     .acc-panel-inner{ padding:12px 16px 24px; }
     .sub-panel-inner{ padding:12px 16px 20px; }
@@ -498,41 +422,48 @@
 <div id="progress-bar"></div>
 
 <div class="hero">
-  <div class="sun2"></div>
-
-  <div class="bird b1"><svg viewBox="0 0 60 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"><path d="M2 14 Q15 2 30 14 Q45 2 58 14"/></svg></div>
-  <div class="bird b2"><svg viewBox="0 0 60 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"><path d="M2 14 Q15 2 30 14 Q45 2 58 14"/></svg></div>
-  <div class="bird b3"><svg viewBox="0 0 60 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"><path d="M2 14 Q15 2 30 14 Q45 2 58 14"/></svg></div>
-
-  <div class="palm">
-    <svg viewBox="0 0 120 220">
-      <path d="M60 218 C 54 168, 48 138, 60 80" fill="none" stroke="#6d4c41" stroke-width="10" stroke-linecap="round"/>
-      <g class="fronds">
-        <path d="M60 80 C 20 62, 0 30, 6 4 C 32 24, 52 55, 60 80 Z" fill="#1b5e20"/>
-        <path d="M60 80 C 100 58, 120 22, 113 0 C 90 16, 68 52, 60 80 Z" fill="#2e7d32"/>
-        <path d="M60 80 C 28 58, 8 66, 0 54 C 20 80, 46 90, 60 80 Z" fill="#2e7d32"/>
-        <path d="M60 80 C 92 60, 112 68, 120 58 C 98 84, 74 92, 60 80 Z" fill="#1b5e20"/>
-        <path d="M60 80 C 50 42, 55 16, 46 -2 C 63 14, 68 50, 60 80 Z" fill="#388e3c"/>
-      </g>
-    </svg>
-    <div class="shadow"></div>
-  </div>
-
-  <div class="umbrella">
-    <svg viewBox="0 0 160 160">
-      <path d="M8,80 Q80,-14 152,80 Z" fill="#ff7043"/>
-      <path d="M45,80 Q80,18 80,80" fill="none" stroke="#ffe0b2" stroke-width="2" opacity="0.7"/>
-      <path d="M115,80 Q80,18 80,80" fill="none" stroke="#ffe0b2" stroke-width="2" opacity="0.7"/>
-      <path d="M80,80 L80,150" stroke="#8d6e63" stroke-width="6" stroke-linecap="round"/>
-      <circle cx="28" cy="140" r="10" fill="#ffca28" stroke="#ffffff" stroke-width="3"/>
-    </svg>
-    <div class="shadow"></div>
-  </div>
-
   <div class="hero-inner">
     <span class="kicker">JUNGIAN PSYCHOLOGY / 批判編</span>
     <h1>ユング心理学、光と影</h1>
     <h2>よく指摘される弱点を集めてみた</h2>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 210" role="img" aria-labelledby="jcTitle jcDesc">
+        <title id="jcTitle">本稿が集めた光と影</title>
+        <desc id="jcDesc">左の「光」の欄には自己理解の物語としての実用性など評価点が二つ、右の「影」の欄には反証可能性の弱さ、検証の難しさ、商業的流用、共時性への懐疑という四つの批判点が並び、影の欄のほうが項目が多いことで、本稿が批判的検討に重きを置いていることを示す。</desc>
+
+        <rect x="16" y="16" width="290" height="178" rx="10" class="panel light"/>
+        <text x="161" y="44" class="head">光</text>
+        <rect x="34" y="60" width="254" height="40" rx="6" class="chip"/>
+        <text x="161" y="84" class="chipT">自己理解の物語としての実用性</text>
+        <rect x="34" y="112" width="254" height="40" rx="6" class="chip"/>
+        <text x="161" y="130" class="chipT">臨床・日常語として</text>
+        <text x="161" y="144" class="chipT">定着した語彙</text>
+
+        <rect x="322" y="16" width="382" height="178" rx="10" class="panel shadow"/>
+        <text x="513" y="44" class="head">影</text>
+        <rect x="340" y="58" width="166" height="40" rx="6" class="chip dim"/>
+        <text x="423" y="82" class="chipT">反証可能性の弱さ</text>
+        <rect x="520" y="58" width="166" height="40" rx="6" class="chip dim"/>
+        <text x="603" y="82" class="chipT">検証の難しい概念</text>
+        <rect x="340" y="106" width="166" height="40" rx="6" class="chip dim"/>
+        <text x="423" y="130" class="chipT">MBTI 等の商業的流用</text>
+        <rect x="520" y="106" width="166" height="40" rx="6" class="chip dim"/>
+        <text x="603" y="130" class="chipT">共時性への懐疑</text>
+        <text x="513" y="172" class="note">項目の多さは、本稿が批判の検討に重きを置くことの表れ</text>
+
+        <style>
+          .panel { fill: #ffffff; fill-opacity: 0.10; stroke: #ffffff; stroke-opacity: 0.4; }
+          .panel.shadow { fill-opacity: 0.06; }
+          .head { fill: #ffffff; font-size: 20px; font-weight: 800; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+          .chip { fill: #ffffff; fill-opacity: 0.14; }
+          .chip.dim { fill-opacity: 0.10; }
+          .chipT { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+          .note { fill: #e3f7ff; font-size: 10px; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>本稿が集めた光と影。「影」（批判点）のほうが項目が多いのは、本稿が擁護よりも批判的検討に重心を置いているためで、ユング心理学の評価がこの比率どおりというわけではない。</figcaption>
+    </figure>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fffdf5" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,90 L0,90 Z"/></svg>

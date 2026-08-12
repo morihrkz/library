@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「 SaaS is dead 」言説を検証する - UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</title>
+<style>
+  :root {
+    --bg: #fdfcf9;
+    --paper: #ffffff;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --muted: #6f6a63;
+    --line: #ddd8cd;
+    --accent: #2f5d5b;
+    --accent-soft: #eaf1f0;
+    --hero-1: #1c2b2c;
+    --hero-2: #2f4a4b;
+    --hero-ink: #eee9de;
+    --hero-dim: #a9b8b6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+  }
+  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
+
+  /* ---- hero ---- */
+  header.hero {
+    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    color: var(--hero-ink);
+    padding: 3.4rem 0 2.6rem;
+    margin-bottom: 2.6rem;
+  }
+  header.hero .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  header.hero .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    color: var(--hero-dim);
+    margin-bottom: 0.9rem;
+  }
+  header.hero h1 {
+    font-size: clamp(1.35rem, 3.4vw, 1.75rem);
+    line-height: 1.55;
+    margin: 0 0 0.7rem;
+    letter-spacing: 0.02em;
+  }
+  header.hero p.sub {
+    margin: 0;
+    color: var(--hero-dim);
+    line-height: 1.8;
+  }
+  .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
+  .hero-figure svg { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--hero-dim);
+    line-height: 1.7;
+  }
+
+  /* ---- text ---- */
+  .meta {
+    color: var(--muted);
+    margin: 0 0 2.2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 3rem 0 1rem;
+    border-left: 6px solid var(--accent);
+    padding-left: 0.7rem;
+    scroll-margin-top: 1rem;
+  }
+  p { margin: 1.1rem 0; text-align: justify; color: var(--ink-soft); }
+  strong { color: var(--ink); }
+  ul.layers { list-style: none; padding: 0; margin: 1.4rem 0; }
+  ul.layers li {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.7rem;
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
+  sup.fn { font-size: 0.8rem; }
+  sup.fn a { text-decoration: none; color: var(--accent); }
+  sup.fn a:hover { text-decoration: underline; }
+
+  /* ---- toc ---- */
+  nav.toc {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2.6rem;
+  }
+  nav.toc h2 {
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    border: none;
+    padding: 0;
+    margin: 0 0 0.6rem;
+  }
+  nav.toc ol { margin: 0; padding-left: 1.3rem; }
+  nav.toc li { padding: 0.15rem 0; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+
+  /* ---- sections ---- */
+  section#refs {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  section#refs h2 {
+    font-size: 1rem;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0;
+    color: var(--ink);
+  }
+  section#refs ol { padding-left: 1.5rem; }
+  section#refs li { margin-bottom: 0.6rem; }
+  section#refs a { color: var(--accent); word-break: break-all; }
+  section#refs li:target { background: #fff6dd; }
+
+  main.wrap { padding-bottom: 4rem; }
+  @media (max-width: 640px) {
+    p { text-align: left; }
+    .hero-figure svg { min-width: 580px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">TECH &middot; BUSINESS / ESSAY</span>
+    <h1>「 SaaS is dead 」言説を検証する</h1>
+    <p class="sub">UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 272" role="img" aria-labelledby="heroTitle heroDesc">
+        <title id="heroTitle">SaaS の三層モデルと、 AI エージェントによる代替されやすさ</title>
+        <desc id="heroDesc">UI 層・ロジックワークフロー層・データ記録層の三段の帯を上から積み上げ、上の層ほど AI エージェントに代替されやすいことを、各層の下部に置いたバーの長さで表した模式図。</desc>
+        <defs>
+          <linearGradient id="axis" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="26" y2="250">
+            <stop offset="0%" stop-color="#8fd4c8" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#8fd4c8" stop-opacity="0.18"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 代替されやすさの軸 -->
+        <line x1="26" y1="20" x2="26" y2="250" stroke="url(#axis)" stroke-width="2"/>
+        <path d="M26 12 L20 24 L32 24 Z" fill="#8fd4c8" fill-opacity="0.95"/>
+        <text x="40" y="26" class="ax">代替されやすい</text>
+        <text x="40" y="254" class="ax dim">代替されにくい</text>
+
+        <!-- UI 層 -->
+        <rect x="150" y="14" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <text x="166" y="38" class="lb">UI 層</text>
+        <text x="166" y="58" class="sm">画面・入力フォーム・ダッシュボード</text>
+        <rect x="166" y="68" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
+        <rect x="166" y="68" width="268" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <text x="554" y="54" class="tag">生成で置き換わりやすい</text>
+
+        <!-- ロジック・ワークフロー層 -->
+        <rect x="150" y="98" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <text x="166" y="122" class="lb">ロジック・ワークフロー層</text>
+        <text x="166" y="142" class="sm">承認フロー・通知・自動化・外部連携</text>
+        <rect x="166" y="152" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
+        <rect x="166" y="152" width="143" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <text x="554" y="138" class="tag">中期的に競争が激化</text>
+
+        <!-- データ・記録層 -->
+        <rect x="150" y="182" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <text x="166" y="206" class="lb">データ・記録層</text>
+        <text x="166" y="226" class="sm">顧客マスタ・取引履歴・権限・監査ログ</text>
+        <rect x="166" y="236" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
+        <rect x="166" y="236" width="43" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <text x="554" y="222" class="tag">記録の連続性が残る</text>
+
+        <style>
+          .lb { fill: #eee9de; font-size: 15px; font-weight: 700; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .sm { fill: #a9b8b6; font-size: 11.5px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .ax { fill: #8fd4c8; font-size: 11.5px; letter-spacing: .04em; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .tag { fill: #cfe6e1; font-size: 11.5px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .dim { fill-opacity: .75; }
+        </style>
+      </svg>
+      <figcaption>本稿が採用する三層モデルの模式図。各層のバーの長さは代替の進みやすさの相対的なイメージであり、測定値ではない。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+<p class="meta">執筆日： 2026 年 8 月 12 日</p>
+
+<nav class="toc">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#sec-intro">はじめに</a></li>
+    <li><a href="#sec1">「 SaaS is dead 」言説の整理</a></li>
+    <li><a href="#sec2">事実確認： Salesforce</a></li>
+    <li><a href="#sec3">事実確認：サイボウズ／ kintone</a></li>
+    <li><a href="#sec4">構造分析： SaaS の三層モデル</a></li>
+    <li><a href="#sec5">デジタル・フォレンジックの観点からの検討</a></li>
+    <li><a href="#sec-conc">結論</a></li>
+  </ol>
+</nav>
+
+<h2 id="sec-intro">はじめに</h2>
+
+<p>
+2026 年に入り、「 SaaS is dead 」という刺激的な言説が SNS や業界メディアで急速に広がった。 AI コーディングエージェントの実用化によってソフトウェアを内製する障壁が下がり、企業が長年抱え込んできた SaaS ツールの乱立（いわゆるツールスプロール）への疲弊感と結びついた結果である。
+</p>
+
+<p>
+本稿の目的は、この言説の当否を賛否いずれかの立場から断定することではない。「 SaaS is dead 」という一言が覆い隠しがちな内部構造 - SaaS という製品カテゴリのどの部分が AI エージェントによって代替されやすく、どの部分がされにくいのか - を、可能な限り一次情報に基づいて分解して検討することにある。具体的には、 Salesforce とサイボウズの kintone という AI 機能統合を進める 2 社の株価・決算の乖離を事実確認したうえで、 SaaS を「 UI 層」「ロジック・ワークフロー層」「データ・記録層」に分解する構造分析を行い、最後に「長期運用された SaaS 上のデータは、デジタル・フォレンジック（デジタル機器上のデータを法的証拠として扱うための調査手法の総称）の観点から見て、 AI による代替が及びにくい資産ではないか」という一つの仮説を、賛否両論から検討する。
+</p>
+
+<h2 id="sec1">1. 「 SaaS is dead 」言説の整理</h2>
+
+<p>
+この言説が急速に広まった直接のきっかけとして頻繁に言及されるのは、 2026 年 2 月上旬に生じた SaaS 関連銘柄の急落である。 Forbes の寄稿記事（ 2026 年 2 月 6 日付）によれば、 2026 年に入ってソフトウェア関連株は 20% 以上下落し、時価総額にして約 1 兆ドルが失われたと報じられている <sup class="fn"><a href="#fn2">[2]</a></sup> 。同記事は Salesforce 株が 26% 下落したことにも触れている。これらの数値は同記事執筆時点（ 2 月上旬）のものであり、後述するとおり下落はその後も続いた銘柄が多い。
+</p>
+
+<p>
+この急落の引き金として語られることが多いのが、 Anthropic が 2026 年 1 月 30 日に発表した、 Claude Cowork の「プラグイン」機能である。企業の役割・部門ごとに Claude を専門特化させるための仕組みで、営業・人事・エンジニアリングなど職種別のスキル・コネクタ・サブエージェントをまとめて利用できるようにするものであり、 TechCrunch 等が同日付で報じている <sup class="fn"><a href="#fn1">[1]</a></sup> 。ただし、この発表と株価急落を直接結びつける因果関係は、あくまで市場関係者・メディアの解釈であって、発表そのものが下落を引き起こしたと定量的に証明されているわけではない点には注意が要る。「 AI エージェントが実務ワークフローを代行できる」という期待（あるいは懸念）が急速に強まったタイミングで急落が生じた、という時期的な符合として理解するのが妥当だろう。
+</p>
+
+<p>
+実例として引き合いに出されることが多いのが、 CSS フレームワーク「 Tailwind CSS 」の開発元である Tailwind Labs が 2026 年 1 月 6 日に発表した大規模レイオフである。同社は 4 人のエンジニアのうち 3 人（約 75% ）を解雇し、創業者の Adam Wathan 氏は「 AI が我々の事業に与えた過酷な影響」を理由として挙げたと報じられている <sup class="fn"><a href="#fn3">[3]</a></sup> 。ただし、この事例を「 SaaS is dead 」言説の典型例として引用する際には注意が必要である。報道によれば、 Tailwind Labs の収益源はフレームワーク自体の利用料ではなく、公式ドキュメントサイト経由で誘導する有償製品（ UI キット等）の販売であり、 AI 検索・ AI コーディングエージェントの普及によってドキュメントサイトへの直接トラフィックが減少したことが収益急落（報道では約 80% 減）の主因とされている <sup class="fn"><a href="#fn3">[3]</a></sup> 。これは「企業が SaaS 利用をやめて AI エージェントに置き換えた」という筋書きとは異なり、「 AI による情報検索の変化がコンテンツ経由の販売導線を毀損した」という、やや性質の異なる話である。両者を無批判に同一視するのは、本稿が後段で戒める単純化の一例になりかねない。
+</p>
+
+<p>
+一方で、「 SaaS は死なない」とする反論も同時期から提出されている。 Forrester 社のブログ記事（ 2026 年 2 月 11 日付）は、「 SaaS is dead 」という表現の煽情性を明確に否定し、世界の SaaS 支出は 2025 年の 3,180 億ドルから 2029 年には 5,760 億ドルへと成長する予測を提示したうえで、「企業の頭脳・中枢神経系は進化するが消滅しない」と論じている <sup class="fn"><a href="#fn4">[4]</a></sup> 。ただし同記事も、座席数課金・単機能特化型の水平型 SaaS ベンダーは淘汰され、業界特化型・システム統合型の SaaS が生き残るという「選別」のシナリオ自体は認めており、単純な「 SaaS は安泰」論でもない点は明記しておきたい。またベンチャーキャピタリストの Tomasz Tunguz 氏（ Theory Ventures ）も、 SaaS が消滅するというより「 AI 企業への再統合（ rebundling ）」が進んでいるという整理を示しており、「死」ではなく「業態転換」というフレーミングを取っている。
+</p>
+
+<h2 id="sec2">2. 事実確認： Salesforce</h2>
+
+<p>
+Salesforce の株価は、 2026 年に入って大きく下落した。 TIKR.com （ 2026 年 6 月 16 日更新の記事）によれば、同社株は 2026 年の年初来で約 33% 下落し、 52 週高値 276.80 ドルに対し 52 週安値 161.40 ドルまで落ち込み、記事執筆時点の株価は 164.55 ドルと 52 週安値近辺で推移していた <sup class="fn"><a href="#fn7">[7]</a></sup> 。 7 月下旬にはモルガン・スタンレーが目標株価を 35% 引き下げたとの報道もあり <sup class="fn"><a href="#fn8">[8]</a></sup> 、下落基調は少なくとも夏場まで続いていたとみられる。
+</p>
+
+<p>
+一方で業績面は堅調である。 Salesforce が自社 IR （投資家向け情報）サイトで発表した 2027 会計年度第 1 四半期（ 2026 年 4 月 30 日締め）決算によれば、売上高は 111.3 億ドルで前年同期比 13% 増、 non-GAAP ベースの 1 株当たり利益は 3.88 ドルで前年同期比 50% 増となった <sup class="fn"><a href="#fn5">[5]</a></sup> 。とりわけ目を引くのが、同社の生成 AI エージェント製品「 Agentforce 」（自然言語の指示に基づき業務プロセスを自律的に実行する AI エージェント基盤で、企業の営業・カスタマーサポート等の業務に組み込んで使う製品）の伸びである。 Agentforce の年間経常収益（ ARR 。年間契約に基づき毎年継続的に見込める収益を指す指標）は前年同期比 205% 増の 12 億ドルに達し、初めて 10 億ドルの大台を超えた <sup class="fn"><a href="#fn5">[5]</a></sup> 。同社は 2027 会計年度通期の売上高ガイダンスを 459 億〜 462 億ドル（前年比 11% 増）へと引き上げてもいる <sup class="fn"><a href="#fn5">[5]</a></sup> 。
+</p>
+
+<p>
+CNBC の報道（ 2026 年 5 月 27 日付）によれば、この四半期決算自体は市場予想を上回ったものの、通期ガイダンスが市場の期待に対して「物足りない（ light ）」と受け止められ、決算発表後の株価反応は限定的だったとされる <sup class="fn"><a href="#fn6">[6]</a></sup> 。つまり、「好決算にもかかわらず株価が伸びない」という現象は、単発のイベントではなく 2026 年を通じて繰り返し観測された構図であり、 Agentforce という看板 AI 製品の急成長そのものが株価の押し上げ材料として十分に機能していないことを示唆している。これは、投資家が Agentforce の成長を評価していないというより、 Salesforce の伝統的な座席数課金型の中核事業（ Sales Cloud 、 Service Cloud 等の従来型 CRM ）が AI エージェントによって代替されるリスクを、 AI 新製品の成長以上に重く織り込んでいる可能性を示す一つの状況証拠と言える。ただし、これはあくまで解釈であり、 2026 年前半の株式市場全体のボラティリティ（ AI 関連銘柄への資金の出入りの荒さ）がどこまで寄与しているかは、本稿の調査範囲では切り分けられていない。
+</p>
+
+<h2 id="sec3">3. 事実確認：サイボウズ／ kintone</h2>
+
+<p>
+日本国内の事例として、業務改善プラットフォーム「 kintone 」を展開するサイボウズの状況を確認する。同社株（東証プライム、証券コード 4776 ）は、日本経済新聞の企業情報ページによれば、 2025 年 8 月に上場来高値の 4,160 円を記録した後、 2026 年 3 月 12 日時点の同紙記事では「上場来高値のほぼ半値近くまで下落した」と報じられている <sup class="fn"><a href="#fn9">[9]</a></sup> 。同紙の企業チャートページ（本稿執筆時点でのアクセス分）によれば、その後株価は 2026 年 4 月 13 日に年初来安値 1,948 円をつけ、 2026 年 7 月 30 日には年初来高値 2,922 円まで戻す動きを見せており、直近値は 2,750 円前後で推移している <sup class="fn"><a href="#fn10">[10]</a></sup> 。すなわち、 2025 年 8 月の高値からは依然として 3 割超低い水準にあり、 2026 年前半に急落したのち緩やかに値を戻す、という Salesforce ともやや異なる値動きが確認できる。
+</p>
+
+<p>
+同記事は、この株価下落の背景として「 SaaS の死」という言説の波及への投資家の懸念を挙げており、サイボウズの青野慶久社長がこれに対し「 AI は脅威ではなく好機」との認識を示し、 kintone を「 AI を安全に扱うための基盤」として進化させる戦略を強調したと報じている <sup class="fn"><a href="#fn9">[9]</a></sup> 。
+</p>
+
+<p>
+一方、業績自体は好調である。サイボウズが公表した決算補足資料によれば、 kintone 事業の売上高は前年比 33.9% 増の 216 億 8,900 万円、営業利益は前年比 106.4% 増と大幅に伸長した <sup class="fn"><a href="#fn11">[11]</a></sup> 。 2026 年 12 月期通期の会社側業績予想も、連結売上高 421 億 6,800 万円（前期比 12.7% 増）、営業利益 105 億 1,400 万円（同 4.1% 増）、 1 株当たり配当金 50 円（前期比 25.0% 増）と、増収増益・増配の見通しを示している <sup class="fn"><a href="#fn11">[11]</a></sup> 。加えて、同社は「 kintone AI 」と呼ぶ生成 AI 機能群（検索 AI 、アプリ作成 AI 等）を 2026 年 6 月 14 日に正式版として提供開始しており、スタンダード・ワイドコース契約者には追加料金なしで一定の AI クレジットが毎月付与される料金体系を採用している <sup class="fn"><a href="#fn12">[12]</a></sup> 。
+</p>
+
+<p>
+以上から、 Salesforce とサイボウズの双方において、「 AI 機能への統合を進め、実際に業績も伸びているにもかかわらず、株価は大きく下落した」という乖離が、日米それぞれの一次情報・報道ベースで確認できた。これは筆者が調査に着手する前から抱いていた見立て（両社とも 2026 年に入り株価が大きく下落した一方、業績自体は好調という乖離があるのではないか、という予想）と整合する結果であり、調査によって覆された見立てではなく、むしろ裏付けが取れた見立てとして扱うのが適切である。
+</p>
+
+<h2 id="sec4">4. 構造分析： SaaS の三層モデル</h2>
+
+<p>
+ここまでの事実確認を踏まえ、「 SaaS のどの部分が AI エージェントによって代替されやすいか」を考えるための分析枠組みを提示する。ここでは仮に、 SaaS が提供する価値を次の三層に分解する。
+</p>
+
+<ul class="layers">
+<li><strong>UI 層</strong>：エンドユーザーが直接操作する画面・入力フォーム・ダッシュボードなど。</li>
+<li><strong>ロジック・ワークフロー層</strong>：承認フロー、通知、タスク自動割当、外部サービス連携など、業務プロセスを駆動する処理。</li>
+<li><strong>データ・記録層</strong>：顧客マスタ、取引履歴、アクセス権限、監査ログなど、組織にとっての「記録の原本」としての性質を持つデータ。英語圏では、企業活動の正式な記録を保持するシステムという意味で「システム・オブ・レコード（ System of Record 、 SoR ）」と呼ばれることが多い。</li>
+</ul>
+
+<p>
+断っておくと、この三分割は本稿独自の発明ではなく、また唯一絶対の正解でもない。調査の過程で、独立に類似の枠組みを提示している分析記事（ SmartScope ）を確認できた。同記事も「 UI 層」「ワークフロー層」「 SoR 層」という、本稿とほぼ同じ三層構造を用いており、「 SaaS は死なず、二極分化する」 - UI 中心の汎用 SaaS と座席数課金は衰退し、記録の基盤としての価値を持つ SaaS は競争力を維持する - という結論を示している <sup class="fn"><a href="#fn13">[13]</a></sup> 。分析の切り口として一定の収束が見られる点は参考になるが、二層（ UI 対 SoR ）や四層以上に分解する論者も存在しうる。以下の議論は、あくまでこの三層モデルを採用した場合の一つの見立てとして読んでほしい。
+</p>
+
+<p>
+<strong>UI 層</strong>は、 AI エージェントによって最も代替されやすい層だと考えられる。プロジェクト管理や基本的な CRM のように、突き詰めれば「データを表示し、フォームで入力を受け付ける」という機能が価値の中心である製品は、 AI コーディングエージェントに要件を伝えるだけで同等の画面を短時間で生成できてしまう。座席数課金という価格モデルも、この層では正当化しづらくなっている。 1 人の AI エージェントが 5 人分の入力・確認作業をこなせるなら、企業が購入するのは 5 ライセンスではなく 1 ライセンスで済むという指摘は、 Forbes の記事でも紹介されている <sup class="fn"><a href="#fn2">[2]</a></sup> 。
+</p>
+
+<p>
+<strong>ロジック・ワークフロー層</strong>は、 UI 層よりは代替に時間がかかるものの、中期的には競争が激しくなる層とみられる。承認フローや業務自動化そのものを AI エージェントに構築させることは技術的には既に十分可能だが、「本番環境で動くワークフローの運用責任を誰が負うか」（障害時の切り分け、監視、 SLA 遵守等）は、コードを書けることとは別の課題である。 SmartScope の分析も、この層の競争が「 2 〜 5 年で激化する」と見ており <sup class="fn"><a href="#fn13">[13]</a></sup> 、比較的短中期の時間軸で変化が起きる領域だと位置づけられる。
+</p>
+
+<p>
+<strong>データ・記録層</strong>は、三層の中で最も AI エージェントによる代替が及びにくいと考えられている層である。ただし、その理由についてはコンセンサスが一枚岩ではない。データを企業にとっての戦略的な「堀（モート）」と見る立場（ Tidemark の分析等）は、 AI エージェントが有効に機能するためには豊富で権威づけられたデータが不可欠であり、そのデータを外部の AI 基盤に移すことはガバナンス上・コスト上、容易ではないと論じる <sup class="fn"><a href="#fn14">[14]</a></sup> 。一方で、この「データの重力（データグラビティ）」による優位性は年々弱まっているという反論も存在する。あるアナリストは、 SaaS 企業が取るべき戦略は「データを囲い込むこと」から「 API やコンテキスト連携の管理を通じてアクセスをコントロールすること」へ移行しつつあると指摘しており、データそのものの保有が絶対的な堀ではなくなりつつあるという見方を示している <sup class="fn"><a href="#fn15">[15]</a></sup> 。データ・記録層の防御力がどこまで本質的なものかは、次章で扱うデジタル・フォレンジックの論点とも関わる、現時点で決着のついていない問いである。
+</p>
+
+<h2 id="sec5">5. デジタル・フォレンジックの観点からの検討</h2>
+
+<p>
+上記のデータ・記録層の防御力について、筆者は次のような仮説を持っている - あくまで検討対象の一つの提案・仮説であり、確立した事実ではない。すなわち、 20 年規模の運用実績を持つ SaaS 上のデータ（監査ログ、アクセス権限の変遷、参照整合性、規制対応の証跡等）は、デジタル・フォレンジックの観点から見て、 AI エージェントが生成した新システムへただちに移行できるものではなく、この「記録の連続性・証拠能力」への価値は AI の登場によっても本質的に揺るがないのではないか、というものである。以下、この仮説を補強しうる論点と、反証しうる論点の双方を検討する。
+</p>
+
+<p>
+<strong>補強する論点</strong>：まず、法令面の要請として、米国の SOX 法（サーベンス・オクスリー法。エンロン事件等の会計不正を受けて 2002 年に制定された米国の企業改革法で、上場企業に財務報告の内部統制と監査証跡の保持を義務づける）は、財務データを扱うシステムに対し、職務分掌や承認の適切性を裏づける監査証跡を、監査人・規制当局といった外部主体が事後的に検証できる形で維持することを求めている。「チェーン・オブ・カストディ」（証拠がいつ・誰によって、どのように取得・保管・移転されたかを切れ目なく記録し、証拠としての完全性を担保する考え方。元来は刑事訴訟における物的証拠の管理手法だが、デジタル・フォレンジックの文脈で電子データにも適用される）という概念に照らせば、 20 年にわたって蓄積された権限変更履歴やアクセスログは、それ自体が「その期間、実際に何が起きたか」を証明する一次証拠としての価値を持つ。 AI エージェントが仮に機能的に同等な新システムを短期間で構築できたとしても、過去の事象についての同時性のある記録を遡って作り直すことはできない。この意味で、少なくとも「移行前の期間に関する証拠能力」という一点に限れば、既存データの連続性には代替不可能な価値がある、という論理は成立する。
+</p>
+
+<p>
+<strong>反証しうる論点</strong>：他方で、この仮説を弱める、あるいは限定する論点も複数存在する。第一に、「監査証跡の生成」自体は、 AI エージェントによる移行であっても新規に、かつ高品質に行うことが技術的に可能ではないかという対立仮説である。実際、金融機関向けのレガシーシステム刷新の文脈で、 AI エージェントを用いて COBOL や PL/SQL で書かれた既存の業務ロジックを解析し、 SOX 法準拠の監査証跡やデータ来歴（リネージュ）を維持しながら移行する手法が紹介されている <sup class="fn"><a href="#fn16">[16]</a></sup> 。ただし、この種の情報の多くは IT ベンダー自身が発信するブログ記事であり、具体的な企業名を伴う独立した第三者検証は本稿の調査範囲では確認できなかった。したがって「技術的に可能だと喧伝されている」ことと「実際に大規模な基幹システムで検証済みである」ことの間には、なお距離があると考えるのが妥当だろう。
+</p>
+
+<p>
+第二に、規制環境そのものが AI エージェントの説明責任を前提に整備されつつある点も踏まえる必要がある。 EU の AI 法（ EU AI Act ）では、高リスク AI システムに関する義務規定の適用が 2026 年 8 月から始まるとされ <sup class="fn"><a href="#fn17">[17]</a></sup> 、 NIST の AI リスクマネジメントフレームワークや ISO/IEC 42001 といった規格も、 AI エージェントの意思決定プロセスそのものを監査可能にすることを求めている。つまり、「新しい AI エージェント主導のシステムだから証拠能力が低い」とは必ずしも言えず、設計次第では、むしろ最初から監査を前提に組み込まれた（ audit-native な）システムとして、旧来の SaaS より充実した記録を持つ可能性すらある。
+</p>
+
+<p>
+第三に、「記録の連続性」が実務上どこまで死活的に重要かは、想定される事象の性質によって変わる。将来にわたる通常運用のコンプライアンス確保が目的であれば、移行後に高品質な監査基盤を新規に構築すれば足りる可能性が高い。これに対し、移行前の期間に生じた不正や係争を事後的に調査する必要が生じた場合に限り、旧システムの連続した記録が持つ証拠価値が本当の意味で問われる。後者はあらゆる企業に恒常的に生じるリスクではなく、条件付きの、頻度の低いリスクである。したがって、この仮説を「 SaaS 全般が生き残る根拠」にまで一般化するのは、根拠の射程を超えた飛躍になりかねない。
+</p>
+
+<p>
+以上を踏まえると、この仮説は「移行前の期間に関する証拠能力」という限定された論点においては相応の説得力を持つ一方、「 AI エージェント時代においても SaaS のデータ層全般が代替されない」という一般化された主張として採用するには、独立した検証事例の不足という点で、現時点ではなお仮説の域を出ないというのが公正な評価である。
+</p>
+
+<h2 id="sec-conc">結論</h2>
+
+<p>
+本稿で確認できた事実は次のとおりである。 2026 年に入り SaaS 関連株が急落し、 Salesforce ・サイボウズともに好調な業績・ AI 機能統合の進展にもかかわらず株価が大きく下落するという乖離が、日米それぞれの一次情報・報道で確認できた。 Tailwind Labs のレイオフ事例は広く引用されているものの、その直接の原因は「企業による AI エージェントへの代替」というよりも「 AI による情報検索の変化がコンテンツ経由の販売導線を毀損したこと」に近く、両者を安易に同一視すべきではない。
+</p>
+
+<p>
+一方、未確定にとどまる論点も少なくない。 UI ・ロジック・データという三層への分解自体は複数の独立した論者に共有されつつある切り口だが、唯一の正解ではない。データ・記録層が AI エージェントに対して持つ優位性についても、「データの重力」を堀とみる立場と、その堀が弱まりつつあるとみる立場が併存している。筆者が提示したデジタル・フォレンジックの仮説 - 記録の連続性・証拠能力への価値は AI の登場によっても揺るがない - は、移行前の事象に関する証拠能力という限定された文脈では説得力を持つが、これを SaaS 全般の存続根拠にまで一般化することは、現時点で入手できた情報の範囲では正当化できない。
+</p>
+
+<p>
+本稿は執筆にあたり、「 SaaS is dead 」という性急な一般化を批判する記事自体が、同じ論法 - 限られた事例から全体を断定すること - に陥っていないかを執筆中・完成後の双方で点検した。その結果、断定を避けるべき箇所（ Tailwind Labs の事例の解釈、データ層の防御力、フォレンジック仮説の射程）については、いずれも「事実」「業界内で未確定の論点」「提案・仮説」を区別して記述したつもりである。 SaaS は死んでもいないし、無条件に生き残るとも言い切れない。少なくとも本稿の調査時点で言えるのは、「どの層の SaaS か」を問わずに賛否を語ること自体が、この議論を粗くしているという一点である。
+</p>
+
+<section id="refs">
+<h2>出典</h2>
+
+<ol>
+<li id="fn1">TechCrunch, "Anthropic brings agentic plug-ins to Cowork," 2026 年 1 月 30 日 . <a href="https://techcrunch.com/2026/01/30/anthropic-brings-agentic-plugins-to-cowork/">https://techcrunch.com/2026/01/30/anthropic-brings-agentic-plugins-to-cowork/</a></li>
+<li id="fn2">Forbes (Peter Cohan), "SaaSpocalypse Now: AI Is Disrupting SaaS — But Not All Software Is Doomed," 2026 年 2 月 6 日 . <a href="https://www.forbes.com/sites/petercohan/2026/02/06/saaspocalypse-now-ai-is-disrupting-saas---but-not-all-software-is-doomed/">https://www.forbes.com/sites/petercohan/2026/02/06/</a></li>
+<li id="fn3">devclass, "Tailwind Labs lays off 75 percent of its engineers thanks to 'brutal impact' of AI," 2026 年 1 月 8 日 . <a href="https://devclass.com/2026/01/08/tailwind-labs-lays-off-75-percent-of-its-engineers-thanks-to-brutal-impact-of-ai/">https://devclass.com/2026/01/08/</a></li>
+<li id="fn4">Forrester Blog, "SaaS As We Know It Is Dead: How To Survive The SaaS-pocalypse!," 2026 年 2 月 11 日 . <a href="https://www.forrester.com/blogs/saas-as-we-know-it-is-dead-how-to-survive-the-saas-pocalypse/">https://www.forrester.com/blogs/saas-as-we-know-it-is-dead-how-to-survive-the-saas-pocalypse/</a></li>
+<li id="fn5">Salesforce, "Salesforce Delivers Record First Quarter Fiscal 2027 Results" （プレスリリース） , 2026 年 5 月 27 日 . <a href="https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-First-Quarter-Fiscal-2027-Results/default.aspx">https://investor.salesforce.com/news/news-details/2026/</a></li>
+<li id="fn6">CNBC, "Salesforce beats on earnings and revenue but full-year guidance comes in light," 2026 年 5 月 27 日 . <a href="https://www.cnbc.com/2026/05/27/salesforce-crm-q1-earnings-report-2027.html">https://www.cnbc.com/2026/05/27/salesforce-crm-q1-earnings-report-2027.html</a></li>
+<li id="fn7">TIKR.com, "Salesforce Just Beat Earnings by 25% and the Stock Is Still Down 33% in 2026," 2026 年 6 月 16 日更新 . <a href="https://www.tikr.com/blog/salesforce-just-beat-earnings-by-25-and-the-stock-is-still-down-33-in-2026">https://www.tikr.com/blog/salesforce-just-beat-earnings-by-25-and-the-stock-is-still-down-33-in-2026</a></li>
+<li id="fn8">247wallst.com, "Morgan Stanley Slashes Salesforce Price Target By 35%," 2026 年 7 月 22 日 . <a href="https://247wallst.com/investing/2026/07/22/morgan-stanley-slashes-salesforce-price-target-by-35/">https://247wallst.com/investing/2026/07/22/</a></li>
+<li id="fn9">日本経済新聞「サイボウズ青野社長『 SaaS の死』波及懸念も好機、『 AI は脅威にあらず』」 , 2026 年 3 月 12 日 . <a href="https://www.nikkei.com/article/DGXZQOUC25A1J0V20C26A2000000/">https://www.nikkei.com/article/DGXZQOUC25A1J0V20C26A2000000/</a> （会員限定記事）</li>
+<li id="fn10">日本経済新聞「サイボウズ [4776] 」企業情報・株価チャートページ（アクセス日 : 2026 年 8 月 12 日） . <a href="https://www.nikkei.com/nkd/company/?scode=4776">https://www.nikkei.com/nkd/company/?scode=4776</a></li>
+<li id="fn11">サイボウズ株式会社「 2025 年 12 月期 通期 決算補足資料」 , 2026 年 2 月開示 . <a href="https://japanir.jp/company/company-4776/ir/4776-20260212-02_wp_financial_summary/">https://japanir.jp/company/company-4776/ir/4776-20260212-02_wp_financial_summary/</a> ；日本経済新聞「サイボウズ株価続伸、 26 年 12 月期純利益 19% 増 年間配当も増額」 . <a href="https://www.nikkei.com/article/DGXZQOFL1911D0Z11C25A2000000/">https://www.nikkei.com/article/DGXZQOFL1911D0Z11C25A2000000/</a></li>
+<li id="fn12">サイボウズ株式会社「『 kintone AI 』を正式提供」プレスリリース , 2026 年 4 月 22 日 . <a href="https://topics.cybozu.co.jp/news/2026/04/22-19405.html">https://topics.cybozu.co.jp/news/2026/04/22-19405.html</a></li>
+<li id="fn13">SmartScope, "Structuring the 'SaaS is Dead' Debate: What Dies and What Survives in the AI Agent Era." <a href="https://smartscope.blog/en/blog/saas-disruption-analysis/">https://smartscope.blog/en/blog/saas-disruption-analysis/</a></li>
+<li id="fn14">Tidemark, "AI's Impact on Data Gravity: Insights from Tidemark." <a href="https://www.tidemarkcap.com/post/does-ai-remove-the-incumbent-data-gravity-advantage">https://www.tidemarkcap.com/post/does-ai-remove-the-incumbent-data-gravity-advantage</a></li>
+<li id="fn15">Flexera Blog, "Is Enterprise SaaS Shifting From UX to Agentic Infrastructure?" <a href="https://www.flexera.com/blog/perspectives/enterprise-saas-strategy-data-gravity-agentic-ai/">https://www.flexera.com/blog/perspectives/enterprise-saas-strategy-data-gravity-agentic-ai/</a> （データの重力優位性が弱まりつつあるという見方の紹介元）</li>
+<li id="fn16">Stromasys, "AI-Driven Migration Mitigate Compliance Blind Spots in 2026." <a href="https://www.stromasys.com/resources/ai-driven-vs-traditional-legacy-migration/">https://www.stromasys.com/resources/ai-driven-vs-traditional-legacy-migration/</a> （ベンダー発信のブログ記事であり、記載事例の第三者検証は未確認）</li>
+<li id="fn17">FutureAGI, "AI Agent Compliance and Governance in 2026: A Practical Guide." （ EU AI 法の高リスク AI システムに関する義務適用開始時期＝ 2026 年 8 月についての言及元） <a href="https://futureagi.com/blog/ai-agent-compliance-governance-2026">https://futureagi.com/blog/ai-agent-compliance-governance-2026</a></li>
+</ol>
+</section>
+
+</main>
+
+</body>
+</html>

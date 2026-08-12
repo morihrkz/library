@@ -57,11 +57,6 @@
       linear-gradient(160deg, var(--maroon-950) 0%, var(--maroon-900) 46%, var(--maroon-700) 100%);
     color:#f7f1e6;
   }
-  .hero .deco-pattern{
-    position:absolute; inset:0; z-index:0;
-    width:100%; height:100%;
-  }
-  .hero .deco-pattern svg{width:100%; height:100%; display:block;}
   .hero-inner{position:relative; z-index:2;}
   .kicker{
     display:inline-block;
@@ -95,7 +90,11 @@
   .wave svg{width:100%; height:44px; display:block;}
 
   /* ---------- Layout ---------- */
-  .wrap{max-width:760px; margin:0 auto; padding:0 20px 90px;}
+  .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
+
+  .hero-figure{max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure svg{display:block; width:100%; height:auto;}
+  .hero-figure figcaption{margin-top:.8rem; font-size:.82rem; line-height:1.75; color:#c7b596;}
 
   .toc-note{text-align:center; color:var(--ink-soft); font-size:.92rem; margin:0 0 22px; text-indent:0;}
 
@@ -182,10 +181,10 @@
   .acc-item.open > .acc-panel > .acc-panel-inner{padding:16px 22px 26px; opacity:1;}
 
   /* ---------- Body typography ---------- */
-  p{margin:0 0 1.15em; font-size:1.02rem; color:var(--ink); line-height:1.95; text-indent:1em;}
+  p{margin:0 0 1.15em; font-size:1.12rem; color:var(--ink); line-height:1.95; text-indent:1em;}
   p:last-child{margin-bottom:0;}
 
-  ul, ol{margin:0 0 1.15em; padding-left:1.7em; font-size:1.02rem; color:var(--ink); line-height:1.9;}
+  ul, ol{margin:0 0 1.15em; padding-left:1.7em; font-size:1.12rem; color:var(--ink); line-height:1.9;}
   ul li, ol li{margin-bottom:.55em; padding-left:.1em;}
   ul li:last-child, ol li:last-child{margin-bottom:0;}
   ul:last-child, ol:last-child{margin-bottom:0;}
@@ -257,7 +256,8 @@
     .acc-header{padding:15px 14px; gap:12px;}
     .acc-header .title{font-size:1rem;}
     .acc-item.open > .acc-panel > .acc-panel-inner{padding:13px 16px 22px;}
-    p, ul, ol{font-size:1.03rem;}
+    p, ul, ol{font-size:1.08rem;}
+    .hero-figure svg{min-width:560px;}
   }
 
   @media (max-width:380px){
@@ -270,58 +270,61 @@
 <div id="progress-bar"></div>
 
 <div class="hero">
-  <div class="deco-pattern" aria-hidden="true">
-    <svg viewBox="0 0 900 260" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="2.4" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-
-      <!-- faint concentric rings, evoking the classical/astronomical quadrivium -->
-      <g fill="none" stroke="#e6c67a" opacity=".07">
-        <circle cx="450" cy="130" r="118"/>
-        <circle cx="450" cy="130" r="138"/>
-      </g>
-
-      <!-- "wheel of the seven liberal arts": a hub encircled by seven arts (trivium + quadrivium), slowly turning -->
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 450 130" to="360 450 130" dur="150s" repeatCount="indefinite"/>
-
-        <circle cx="450" cy="130" r="95" fill="none" stroke="#e6c67a" stroke-width="1" opacity=".25"/>
-        <polygon points="450,35 524.27,70.77 542.63,151.14 491.22,215.6 408.78,215.6 357.37,151.14 375.73,70.77" fill="none" stroke="#e6c67a" stroke-width="1" opacity=".16"/>
-
-        <g stroke="#e6c67a" stroke-width="1" opacity=".28">
-          <line x1="450" y1="130" x2="450" y2="35"/>
-          <line x1="450" y1="130" x2="524.27" y2="70.77"/>
-          <line x1="450" y1="130" x2="542.63" y2="151.14"/>
-          <line x1="450" y1="130" x2="491.22" y2="215.6"/>
-          <line x1="450" y1="130" x2="408.78" y2="215.6"/>
-          <line x1="450" y1="130" x2="357.37" y2="151.14"/>
-          <line x1="450" y1="130" x2="375.73" y2="70.77"/>
-        </g>
-
-        <circle cx="450" cy="130" r="6" fill="#f7ecd0" filter="url(#glow)"><animate attributeName="opacity" values=".5;.9;.5" dur="4s" repeatCount="indefinite"/></circle>
-
-        <g fill="#f7ecd0">
-          <circle cx="450" cy="35" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".3;.9;.3" dur="3.1s" repeatCount="indefinite"/></circle>
-          <circle cx="524.27" cy="70.77" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".8;.35;.8" dur="2.6s" begin=".4s" repeatCount="indefinite"/></circle>
-          <circle cx="542.63" cy="151.14" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".3;.85;.3" dur="2.9s" begin="1.2s" repeatCount="indefinite"/></circle>
-          <circle cx="491.22" cy="215.6" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".85;.3;.85" dur="2.4s" begin=".7s" repeatCount="indefinite"/></circle>
-          <circle cx="408.78" cy="215.6" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".3;.9;.3" dur="3.3s" begin="1.6s" repeatCount="indefinite"/></circle>
-          <circle cx="357.37" cy="151.14" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".8;.3;.8" dur="2.7s" begin=".3s" repeatCount="indefinite"/></circle>
-          <circle cx="375.73" cy="70.77" r="3.6" filter="url(#glow)"><animate attributeName="opacity" values=".3;.8;.3" dur="2.5s" begin="1.4s" repeatCount="indefinite"/></circle>
-        </g>
-      </g>
-    </svg>
-  </div>
   <div class="hero-inner">
     <span class="kicker">考察ノート / ON LIBERAL ARTS EDUCATION</span>
     <h1>リベラルアーツ考<br>― 教養教育の理念と米国モデル</h1>
     <div class="divider"></div>
     <h2>特定分野に偏らず人文・社会・自然科学を横断して学ぶ「リベラルアーツ(教養教育)」とは何かを、語源・歴史的展開から辿り、米国のリベラル・アーツ・カレッジと研究型大学の違い、そして実利主義や STEM 重視との緊張関係をめぐる論争までを整理する。</h2>
     <p class="meta">2026 年 8 月 6 日時点でまとめた考察</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 175" role="img" aria-labelledby="laTitle laDesc">
+        <title id="laTitle">自由七科 - リベラルアーツの起源</title>
+        <desc id="laDesc">「自由七科」を根として、言語系三科であるトリビウム（文法・論理学・修辞学）と、数学系四科であるクアドリビウム（算術・幾何学・天文学・音楽）の二群に分かれることを示す図。</desc>
+
+        <rect x="260" y="6" width="200" height="32" rx="6" class="node root"/>
+        <text x="360" y="27" class="nodeT">自由七科（リベラルアーツの起源）</text>
+
+        <path d="M330 38 L170 66" class="branch"/>
+        <path d="M390 38 L550 66" class="branch"/>
+
+        <rect x="40" y="66" width="260" height="26" rx="5" class="node grp"/>
+        <text x="170" y="84" class="grpT">トリビウム（言語系三科）</text>
+        <rect x="40" y="106" width="80" height="34" rx="6" class="node leaf"/>
+        <text x="80" y="128" class="leafT">文法</text>
+        <rect x="130" y="106" width="80" height="34" rx="6" class="node leaf"/>
+        <text x="170" y="128" class="leafT">論理学</text>
+        <rect x="220" y="106" width="80" height="34" rx="6" class="node leaf"/>
+        <text x="260" y="128" class="leafT">修辞学</text>
+
+        <rect x="420" y="66" width="260" height="26" rx="5" class="node grp"/>
+        <text x="550" y="84" class="grpT">クアドリビウム（数学系四科）</text>
+        <rect x="420" y="106" width="59" height="34" rx="6" class="node leaf"/>
+        <text x="449" y="128" class="leafT">算術</text>
+        <rect x="487" y="106" width="59" height="34" rx="6" class="node leaf"/>
+        <text x="516" y="128" class="leafT">幾何学</text>
+        <rect x="554" y="106" width="59" height="34" rx="6" class="node leaf"/>
+        <text x="583" y="128" class="leafT">天文学</text>
+        <rect x="621" y="106" width="59" height="34" rx="6" class="node leaf"/>
+        <text x="650" y="128" class="leafT">音楽</text>
+
+        <text x="360" y="160" class="note">現代のリベラルアーツは、この七科の精神を人文・社会・自然科学の横断に広げたもの</text>
+
+        <style>
+          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #e6c67a; stroke-opacity: 0.55; }
+          .node.root { fill-opacity: 0.12; }
+          .node.grp { fill-opacity: 0.05; stroke-opacity: 0.35; }
+          .node.leaf { stroke-opacity: 0.7; }
+          .nodeT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .grpT { fill: #e3d6bd; font-size: 11px; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .leafT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .branch { fill: none; stroke: #e6c67a; stroke-opacity: 0.5; stroke-width: 1.5; }
+          .note { fill: #c7b596; font-size: 10.5px; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>リベラルアーツの語源にある「自由七科」。言語を扱うトリビウムと数学を扱うクアドリビウムの七科が、専門に偏らず横断的に学ぶという理念の原型になっている。</figcaption>
+    </figure>
+  </div>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#faf6ee" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>

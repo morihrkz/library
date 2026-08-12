@@ -52,32 +52,6 @@
     background:linear-gradient(160deg, var(--sky) 0%, var(--sky-deep) 55%, #0277bd 100%);
     color:#ffffff;
   }
-  .hero .sun{
-    position:absolute;
-    top:-70px; right:-40px;
-    width:220px; height:220px;
-    border-radius:50%;
-    background:radial-gradient(circle at 35% 35%, #fff6cc 0%, var(--sun) 45%, var(--sun-deep) 100%);
-    box-shadow:0 0 60px 18px rgba(255,202,40,0.45);
-    animation: pulseSun 8s infinite alternate;
-  }
-  @keyframes pulseSun {
-    0% { transform: scale(1); opacity: 0.9; }
-    100% { transform: scale(1.05); opacity: 1; }
-  }
-  .hero .cloud{
-    position:absolute;
-    opacity:0.9;
-    animation: floatCloud 20s infinite linear;
-  }
-  @keyframes floatCloud {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
-    100% { transform: translateX(0); }
-  }
-  .hero .cloud svg{ display:block; }
-  .hero .cloud.c1{ top:30px; left:-30px; width:150px; }
-  .hero .cloud.c2{ top:100px; right:120px; width:110px; opacity:0.7; animation-duration: 25s; animation-direction: reverse; }
   .hero-inner{ position:relative; z-index:2; }
   .kicker{
     display:inline-block;
@@ -113,10 +87,12 @@
 
   /* ---------- Layout ---------- */
   .wrap{
-    max-width:800px;
-    margin:0 auto;
-    padding:0 24px 90px;
+    margin:0;
+    padding:0 clamp(1.5rem, 3vw, 3rem) 90px;
   }
+  .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
+  .hero-figure svg{ display:block; width:100%; height:auto; }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#e3f7ff; }
   .toc-note{
     text-align:center;
     color:var(--ink-soft);
@@ -314,7 +290,7 @@
   /* ---------- Body typography ---------- */
   p{
     margin:0 0 1.2em;
-    font-size:1.05rem;
+    font-size:1.12rem;
     color: #37474f;
     text-indent:1em;
   }
@@ -457,6 +433,7 @@
 
   @media (max-width:600px){
     .hero{ padding:60px 16px 80px; }
+    .hero-figure svg{ min-width:560px; }
     .acc-header{ padding:16px 16px; }
     .acc-panel-inner{ padding:12px 16px 24px; }
     .sub-panel-inner{ padding:12px 16px 20px; }
@@ -470,17 +447,45 @@
 <div id="progress-bar"></div>
 
 <div class="hero">
-  <div class="sun"></div>
-  <div class="cloud c1">
-    <svg viewBox="0 0 200 90" fill="#ffffff"><ellipse cx="60" cy="55" rx="55" ry="30"/><ellipse cx="110" cy="40" rx="45" ry="34"/><ellipse cx="150" cy="58" rx="38" ry="24"/></svg>
-  </div>
-  <div class="cloud c2">
-    <svg viewBox="0 0 200 90" fill="#ffffff"><ellipse cx="60" cy="55" rx="55" ry="30"/><ellipse cx="110" cy="40" rx="45" ry="34"/><ellipse cx="150" cy="58" rx="38" ry="24"/></svg>
-  </div>
   <div class="hero-inner">
     <span class="kicker">JUNGIAN PSYCHOLOGY</span>
     <h1>本当の自分に出会う</h1>
     <h2>ユング心理学とともに歩む、こころの旅</h2>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 200" role="img" aria-labelledby="byTitle byDesc">
+        <title id="byTitle">本書が歩む、こころの旅の三部構成</title>
+        <desc id="byDesc">今の自分を出発点として、パート I 自分自身と出会う、パート II 内側から成長する、パート III 賢く生きる、という三つの節目を通り、自分自身になるという到達点へと右上がりに続く一本道を示す図。</desc>
+
+        <path d="M30,165 C120,150 180,140 260,125 C340,110 400,95 470,80 C540,65 610,50 690,35" class="path"/>
+
+        <circle cx="30" cy="165" r="5" class="dot start"/>
+        <text x="30" y="186" class="lb">今の自分</text>
+
+        <circle cx="260" cy="125" r="7" class="dot"/>
+        <text x="260" y="106" class="lb strong">パート I</text>
+        <text x="260" y="120" class="lb">自分自身と出会う</text>
+
+        <circle cx="470" cy="80" r="7" class="dot"/>
+        <text x="470" y="61" class="lb strong">パート II</text>
+        <text x="470" y="75" class="lb">内側から成長する</text>
+
+        <circle cx="690" cy="35" r="7" class="dot end"/>
+        <text x="644" y="18" class="lb strong end">パート III ・ 賢く生きる</text>
+        <text x="644" y="55" class="lb end">自分自身になる</text>
+
+        <style>
+          .path { fill: none; stroke: #ffffff; stroke-opacity: 0.55; stroke-width: 2.5; stroke-linecap: round; }
+          .dot { fill: #ffffff; stroke: #0288d1; stroke-width: 2; }
+          .dot.start { fill: #e3f7ff; }
+          .dot.end { fill: #ffca28; stroke: #ffa000; }
+          .lb { fill: #ffffff; font-size: 12.5px; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+          .lb.strong { font-weight: 800; font-size: 13.5px; }
+          .lb.end { text-anchor: end; }
+        </style>
+      </svg>
+      <figcaption>本書はこの一本道を、パート I ・ II ・ III の三部構成でゆっくりとたどる。会話形式の各章は、この道のどこに位置するかをそれぞれ示しながら進む。</figcaption>
+    </figure>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fffdf5" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,90 L0,90 Z"/></svg>
