@@ -376,7 +376,7 @@
 </div>
 <p class="caption">図１：　動的サイトと静的サイトの、リクエストごとの処理の違い</p>
 
-<p>違いは<strong>「 HTML をいつ、どこで作るか」だけ</strong>です。そしてこの違いが、そのまま費用の違いになります。動的サイトは、誰もアクセスしていない夜中でも PHP とデータベースを動かせる状態で待機させておく必要があり、その待機場所の家賃が月額のレンタルサーバー費用です。<br>静的サイトには待機させるものがないので、ファイルを置く場所さえあれば済みます。</p>
+<p>違いは<strong>「 HTML をいつ、どこで作るか」だけ</strong>です。そしてこの違いが、そのまま費用の違いになります。<br>動的サイトは、誰もアクセスしていない夜中でも PHP とデータベースを動かせる状態で待機させておく必要があり、その待機場所の家賃が月額のレンタルサーバー費用です。<br>静的サイトには待機させるものがないので、ファイルを置く場所さえあれば済みます。</p>
 
 <h3>1-3. 請求書に載る費用と、載らない費用</h3>
 
@@ -400,11 +400,11 @@
 
 <h2><span class="num">第２部</span>静的サイトにすると、費用のどこが消えるのか</h2>
 
-<h3>2-1. 「静的」は「表現が貧しい」という意味ではない</h3>
+<h3>2-1. 「静的」とは表現が貧しいという意味ではない</h3>
 
 <p>静的サイトと聞いて、古い時代の素朴なホームページを思い浮かべる必要はありません。静的サイトでも、画面幅に応じたレイアウト、アニメーション、動画、画像の最適化、地図、検索、フォーム、アクセス解析、外部サービスとの連携は普通に使えます。この記事のページ自体も静的な HTML ファイル一枚です。</p>
 
-<p><strong>静的か動的かは、見た目ではなくページの HTML を「作る場所」の話です。</strong>訪問者が来るたびにサーバーで作るのが動的、公開する前に作り終えておくのが静的。それだけの違いです。</p>
+<p><strong>静的か動的かは、見た目ではなくページの HTML を作る場所の話です。</strong>訪問者が来るたびにサーバーで作るのが動的、公開する前に作り終えておくのが静的。それだけの違いです。</p>
 
 <h3>2-2. なぜ GitHub Pages は無料で使えるのか</h3>
 
@@ -455,12 +455,12 @@
 
 <div class="verdict">訪問者がページを開くたびに、サーバー側で何かを計算したり保存したりする必要があるか。</div>
 
-<p>必要がないなら、静的サイトで足ります。必要があるなら、その部分については動的な仕組みが要ります。それだけです。「見栄えを良くしたい」、「スマートフォンに対応したい」、「画像をたくさん載せたい」などは、いずれも動的である理由になりません。</p>
+<p>必要が無いなら静的サイトで足ります。必要があるならその部分については動的な仕組みが要ります。それだけです。<br>「見栄えを良くしたい」、「スマートフォンに対応したい」、「画像をたくさん載せたい」などは、いずれも動的である理由になりません。</p>
 
 <h3>3-2. チェックリスト</h3>
 
 <div class="check">
-  <strong>次のうち、一つも当てはまらないなら静的サイトで十分です。</strong>
+  <strong>次のうち、当てはまるものが無いなら、静的サイトで十分です。</strong>
   <ul>
     <li>□ 訪問者がアカウントを作り、ログインする</li>
     <li>□ 訪問者がコメントや投稿を書き込み、それがサイトに保存される</li>
@@ -499,15 +499,15 @@
   <tr><td>予約・在庫のリアルタイム表示</td><td><span class="no">動的が必要</span></td><td>その部分だけ外部サービスに任せる</td></tr>
 </table>
 
-<h3>3-4. 「動的な部分」は、外部サービスで足せる</h3>
+<h3>3-4. 動的な部分は、外部サービスで足せる</h3>
 
 <p>ここが実務上いちばん大事な点です。<strong>サイトに一つ動的な要素があるからといって、サイト全体を動的にする必要はありません。</strong>お問い合わせフォームが欲しいという理由だけで WordPress とレンタルサーバーを維持しているケースは、非常によくあります。<br>フォーム、コメント、検索、アクセス解析、予約受付といった機能は、それぞれ専用の外部サービスを静的なページに埋め込むことで実現できます。サイト本体は静的なまま、必要な部分だけを外に持たせる。この形なら、サーバーを借りずに済みます。</p>
 
 <h3>3-5. 動的が必要なら、ためらわず動的にする</h3>
 
-<p>誤解のないように書いておくと、この記事は「 WordPress の利用をやめよう」という話ではありません。会員機能や決済、複数人での編集ワークフローが本当に必要なサイトにとって、 WordPress は今も非常に優れた選択肢です。<strong>間違いは動的な技術を使うことではなく、必要が無いのに使うことです。</strong></p>
+<p>誤解のないように書いておくと、この記事は「 WordPress の利用をやめましょう」という話ではありません。会員機能や決済、複数人での編集ワークフローが本当に必要なサイトにとって、 WordPress は今も非常に優れた選択肢です。<strong>間違いは、「使う必要が無いのに使うこと」です。</strong></p>
 
-<div class="callout">考え方の順番を、こう入れ替えるだけです。<br>×　サイトを作りたい → CMS が要る → じゃあ WordPress<br>○　サイトを作りたい → 実際にどんな機能が要るのか → それを最も単純に実現できる仕組みはどれか</div>
+<div class="callout">考え方の順番を、こう入れ替えるだけです。<br>×　「サイトを作りたい」→「 CMS が要る」→「 WordPress を使おう」<br>○　「サイトを作りたい」→「実際にどんな機能が要るのか」→「それを最も単純に実現できる仕組みはどれか」</div>
 
 <hr class="sep">
 
@@ -517,7 +517,7 @@
 
 <h3>4-1. その前に：サイトが表示される仕組み</h3>
 
-<p>設定作業の意味を理解しておくために、ページが表示されるまでの流れを押さえておきます。インターネット上のサーバーは <code>203.0.113.25</code> のような「 IP アドレス」で区別されています。<br>人間が毎回この数字を覚えるのは大変なので、 <code>example.com</code> のような「ドメイン名」を使います。この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS ( Domain Name System )</strong> です。</p>
+<p>設定作業の意味を理解しておくために、ページが表示されるまでの流れを押さえておきます。インターネット上のサーバーは <code>203.0.113.25</code> のような「ＩＰアドレス」で区別されています。<br>人間が毎回この数字を覚えるのは大変なので、 <code>example.com</code> のような「ドメイン名」を使います。この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> です。</p>
 
 <div class="diagram-box">
 <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
@@ -537,32 +537,32 @@
 
   <rect x="30" y="40" width="150" height="70" rx="12" class="node"/>
   <text x="105" y="70" class="label">ブラウザ</text>
-  <text x="105" y="90" class="sub">( あなたの PC ・スマホ )</text>
+  <text x="105" y="90" class="sub">（あなたのＰＣ・スマホ）</text>
 
   <rect x="270" y="40" width="150" height="70" rx="12" class="node-alt"/>
   <text x="345" y="70" class="label">DNS サーバー</text>
-  <text x="345" y="90" class="sub">( ドメインの電話帳 )</text>
+  <text x="345" y="90" class="sub">（ドメインの電話帳）</text>
 
   <rect x="500" y="40" width="150" height="70" rx="12" class="node"/>
   <text x="575" y="70" class="label">Web サーバー</text>
-  <text x="575" y="90" class="sub">( GitHub Pages 等 )</text>
+  <text x="575" y="90" class="sub">（ GitHub Pages 等）</text>
 
   <path d="M180,60 L268,60" class="flow"/>
-  <text x="224" y="45" class="arrow-label">① この住所の IP は？</text>
+  <text x="224" y="45" class="arrow-label">①この住所のＩＰは？</text>
 
   <path d="M270,90 L182,90" class="flow"/>
-  <text x="224" y="120" class="arrow-label">② この IP です</text>
+  <text x="224" y="120" class="arrow-label">②このＩＰです</text>
 
   <path d="M180,150 L498,150" class="flow"/>
-  <text x="345" y="135" class="arrow-label">③ その IP 宛にページをください ( HTTP リクエスト )</text>
+  <text x="345" y="135" class="arrow-label">③そのＩＰ宛にページをください（ HTTP リクエスト）</text>
 
   <path d="M500,180 L182,180" class="flow"/>
   <text x="345" y="210" class="arrow-label">④ HTML ファイルなどを返す</text>
 
   <rect x="30" y="240" width="620" height="110" rx="12" fill="#f4f1ea" stroke="#e4e0d8"/>
-  <text x="50" y="270" style="text-anchor:start;font-family:sans-serif;font-size:15px;fill:#2b2a28;font-weight:bold">⑤ ブラウザが HTML/CSS/JS を解釈して画面に描画</text>
-  <text x="50" y="300" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ 静的サイトでは、④ で返すファイルが最初から完成している</text>
-  <text x="50" y="325" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ ① と ② の DNS 問い合わせは一定時間キャッシュ ( 記憶 ) され、毎回は発生しない</text>
+  <text x="50" y="270" style="text-anchor:start;font-family:sans-serif;font-size:15px;fill:#2b2a28;font-weight:bold">⑤ブラウザが HTML/CSS/JS を解釈して画面に描画</text>
+  <text x="50" y="300" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ 静的サイトでは、④で返すファイルが最初から完成している</text>
+  <text x="50" y="325" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ ①と②の DNS 問い合わせは一定時間キャッシュ（記憶）され、毎回は発生しない</text>
 </svg>
 </div>
 <p class="caption">図３： URL を入力してからページが表示されるまでの流れ</p>
@@ -582,7 +582,7 @@
   <li>ドメイン取得費用を支払える手段（未成年のかたは保護者の同意・協力を得てください）</li>
 </ul>
 
-<div class="warn"><strong>注意：</strong>　ドメインの取得や支払いは契約行為です。未成年のかたは、必ず保護者に相談し、了承を得たうえで進めてください。</div>
+<div class="warn"><strong>注意：　</strong>ドメインの取得や支払いは契約行為です。未成年のかたは、必ず保護者に相談し、了承を得たうえで進めてください。</div>
 
 <div class="box">
   <strong>この章で行う作業</strong>
@@ -632,18 +632,18 @@
 
 <div class="step-title"><span class="step-num">4</span> 独自ドメインを取得する</div>
 <p>ドメインを販売している事業者（レジストラ）で、希望のドメイン名（例： <code>natsuki-works.com</code> ）が空いているか検索し、取得します。「お名前 .com 」、「 Cloudflare Registrar 」、「 Value Domain 」などが代表的です。</p>
-<p>ドメインの種類（ <code>.com</code> ／ <code>.net</code> ／ <code>.jp</code> など）によって費用は異なり、年間 1,000 〜 4,000 円程度が目安です。取得後は基本的に 1 年ごとの更新制になります。更新を忘れると失効し、最悪の場合は他人に取得されてしまうため、<strong>自動更新の設定を必ず確認してください。</strong></p>
+<p>ドメインの種類（ <code>.com</code> / <code>.net</code> / <code>.jp</code> など）によって費用は異なり、年間 1,000 〜 4,000 円程度が目安です。取得後は基本的に一年ごとの更新制になります。更新を忘れると失効し、最悪の場合は他人に取得されてしまうため、<strong>自動更新の設定を必ず確認してください。</strong></p>
 
 <div class="step-title"><span class="step-num">5</span>DNS を設定して、ドメインと GitHub Pages をつなぐ</div>
 <p>図 3 で説明した「電話帳」を書き換える作業です。取得したドメインの管理画面（ DNS 設定画面）で、次の 2 種類を設定します。</p>
 
 <table>
   <tr><th>設定するレコード</th><th>役割</th></tr>
-  <tr><td><code>A</code> レコード（四つ）</td><td>ドメインそのもの（例： <code>natsuki-works.com</code> ）を、 GitHub Pages の IP アドレスに向ける</td></tr>
+  <tr><td><code>A</code> レコード（四つ）</td><td>ドメインそのもの（例： <code>natsuki-works.com</code> ）を、 GitHub Pages のＩＰアドレスに向ける</td></tr>
   <tr><td><code>CNAME</code> レコード</td><td><code>www.natsuki-works.com</code> のような別名を、 <code>[username].github.io</code> に向ける</td></tr>
 </table>
 
-<p>A レコードに設定する IP アドレスは、 GitHub の公式ドキュメントに記載されている固定値を使います（ <code>185.199.108.153</code> のような 4 つのアドレスが案内されています）。値が変更されることもあるため、<strong>実際の設定時は必ず GitHub 公式の最新情報を確認してください。</strong></p>
+<p>A レコードに設定するＩＰアドレスは、 GitHub の公式ドキュメントに記載されている固定値を使います（ <code>185.199.108.153</code> のような 4 つのアドレスが案内されています）。値が変更されることもあるため、<strong>実際の設定時は必ず GitHub 公式の最新情報を確認してください。</strong></p>
 <p>あわせて、 GitHub 側のリポジトリ設定（ Settings → Pages → Custom domain ）に、使いたいドメイン名を入力して保存します。<strong>「 GitHub 側の設定」と「 DNS 側の設定」は、両方が揃って初めて機能します。</strong>片方だけでは正しく表示されません。</p>
 
 <div class="warn"><strong>反映には時間がかかることがあります</strong><br>DNS の設定変更は、インターネット全体にすぐ行き渡るわけではありません。 GitHub 公式も、 DNS の変更が反映されるまで<strong>最大 24 時間程度</strong>かかる場合があるとしています。数分で反映されることもあれば、半日ほど待つ必要があることもあります。設定直後にうまく表示されなくても、あわてずに時間をおいて再確認しましょう。</div>
