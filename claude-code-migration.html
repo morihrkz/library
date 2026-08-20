@@ -251,6 +251,94 @@
     font-size: 0.8rem;
     margin-top: 50px;
   }
+
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 0 24px;
+  }
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--card-bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 999px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+  #accordion { margin-bottom: 40px; }
+  .acc-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    overflow-anchor: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .acc-item:last-child { margin-bottom: 0; }
+  .acc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    padding: 18px 22px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: var(--ink);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .acc-header .title {
+    flex: 1 1 auto;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .acc-header .chev {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
+  .acc-item.open > .acc-header {
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--border);
+  }
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor: none;
+  }
+  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 22px;
+    opacity: 0;
+    transition: opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner {
+    padding: 6px 22px 24px;
+    opacity: 1;
+  }
+  .acc-panel-inner section { margin-bottom: 0; }
+  @media (max-width: 600px) {
+    .acc-header { padding: 15px 16px; gap: 10px; }
+    .acc-header .title { font-size: 1rem; }
+    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -353,8 +441,21 @@
     </ol>
   </nav>
 
-  <section id="sec1">
-    <h2>① ユーザーレベル設定（ <code>~/.claude/</code> 配下）</h2>
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
+
+  <div id="accordion">
+
+  <section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">① ユーザーレベル設定（ <code>~/.claude/</code> 配下）</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <p>全プロジェクト共通で効く、あなた個人の設定です。ホームディレクトリ配下にあるため、これが「移植の本丸」になります。</p>
 
     <table>
@@ -412,10 +513,19 @@
       <strong>コピー方法の一例（ <code>.claude</code> フォルダごと）</strong>
       Windows 側の <code>%USERPROFILE%\.claude</code> フォルダを ZIP 化 → Mac 側で解凍し <code>~/.claude</code> に配置、で個別ファイルを気にせず一括移植できます。 <code>settings.json</code> 内のパスが OS 依存の値（後述の環境変数など）を含む場合は、コピー後に中身を確認してください。
     </div>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec2">
-    <h2>② 認証・ API キー</h2>
+  <section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">② 認証・ API キー</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <div class="card">
       <h4><span class="num">1</span> ログインセッション（ OAuth ）</h4>
       <p>ログイン状態は <code>~/.claude.json</code> に保存されていますが、トークンを直接コピーするのは推奨されません（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code> （またはコンソール上の OAuth フロー）で再ログインするのが確実です。</p>
@@ -434,10 +544,19 @@
         API キーは OS の環境変数やシークレット管理（ Windows なら「システム環境変数」、 Mac ならシェルの <code>~/.zshrc</code> 等）に個別設定し、設定ファイルには直接書き込まない運用が安全です。
       </div>
     </div>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec3">
-    <h2>③ プロジェクトレベル設定</h2>
+  <section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">③ プロジェクトレベル設定</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <p>各リポジトリ（プロジェクトフォルダ）内にある設定です。 Git リポジトリならクローンするだけで自動的に付いてきます。</p>
 
     <table>
@@ -482,10 +601,19 @@
       <strong>実質的にやること</strong>
       Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現されます。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong>（ <code>settings.local.json</code> 、 <code>CLAUDE.local.md</code> ）で、これらは手動でコピーしない限り引き継がれません。
     </div>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec4">
-    <h2>④ MCP サーバー設定</h2>
+  <section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">④ MCP サーバー設定</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <p>MCP （ Model Context Protocol ）サーバーの登録先はスコープによってファイルが異なります。</p>
     <table>
       <thead>
@@ -513,28 +641,55 @@
       <strong>再登録という選択肢</strong>
       <code>claude mcp list</code> で現在登録されている MCP サーバー一覧を確認し、新 PC 側で <code>claude mcp add</code> を使って再登録するほうが、認証まわりのトラブルが少なく確実です。設定ファイルを直接コピーする場合は、サーバーによっては個別の認証（トークンなど）が別途必要になることがあります。
     </div>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec5">
-    <h2>⑤ Auto Memory （自動記憶）— 見落としやすいポイント</h2>
+  <section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">⑤ Auto Memory （自動記憶）— 見落としやすいポイント</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <div class="callout warn">
       <strong>⚠️ Auto Memory はマシンローカルで、原則「移植されない」</strong>
       Claude Code にはユーザーが書く <code>CLAUDE.md</code> とは別に、 Claude が会話中に自動で学習内容を書き留める「 Auto Memory 」機能があります（デフォルト ON ）。保存先は <strong>リポジトリごと・マシンごと</strong> に分かれており、 <code>~/.claude/projects/&lt;プロジェクト名&gt;/memory/</code> に置かれます。この機能はプロジェクトに紐づいたローカルの学習内容であり、他の PC へは自動的に引き継がれません。重要な決定事項が書かれていた場合は、内容を確認してプロジェクトの <code>CLAUDE.md</code> など永続的なファイルへ手動で書き写すことが推奨されています。
     </div>
     <p>セッション中に <code>/memory</code> コマンドを実行すると、現在読み込まれている <code>CLAUDE.md</code> ・ <code>CLAUDE.local.md</code> ・ Auto Memory の場所を一覧表示できるので、移植前に新旧環境で見比べると確実です。</p>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec6">
-    <h2>⑥ 前提環境（ Node.js / Claude Code 本体）</h2>
+  <section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">⑥ 前提環境（ Node.js / Claude Code 本体）</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <ul class="bullets">
       <li>Claude Code 自体は npm 経由でグローバルインストールするツールのため、新 PC では <code>npm install -g @anthropic-ai/claude-code</code> を実行し直す</li>
       <li>Node.js のバージョンが前提要件を満たしているか確認（新 PC で未インストールなら Node.js 自体のセットアップも必要）</li>
       <li>シェル補完（ bash/zsh/PowerShell ）を設定していた場合は、それぞれの環境向けに再設定</li>
     </ul>
-  </section>
+  
+    </div>
+  </div>
+</section>
 
-  <section id="sec7">
-    <h2>✅ 移植チェックリスト（実行順）</h2>
+  <section class="acc-item" id="sec7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">✅ 移植チェックリスト（実行順）</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
     <ul class="checklist">
       <li><input type="checkbox"> Windows/Mac 双方に Node.js と <code>npm install -g @anthropic-ai/claude-code</code> で Claude Code 本体を用意する</li>
       <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（ <span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span> ）</li>
@@ -547,7 +702,12 @@
       <li><input type="checkbox"> 旧 PC で <code>/memory</code> を実行し、 Auto Memory の中に永続化すべき内容がないか確認・手動転記</li>
       <li><input type="checkbox"> 新 PC で <code>/status</code> または <code>/doctor</code> を実行し、設定が正しく読み込まれているか検証</li>
     </ul>
-  </section>
+  
+    </div>
+  </div>
+</section>
+
+  </div>
 
   <div class="callout tip">
     <strong>検証コマンド</strong>
@@ -560,5 +720,58 @@
   出典： Claude Code 公式ドキュメント（ code.claude.com/docs ）を基に作成 ｜ 作成日： 2026 年 8 月 11 日
 </footer>
 
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(e){
+        var selection = window.getSelection();
+        if(selection.toString().length > 0) return;
+
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  if(location.hash){
+    var target = document.querySelector(location.hash);
+    if(target && target.matches("[data-acc]")){
+      target.classList.add("open");
+      setTimeout(function(){ target.scrollIntoView({behavior:"instant", block:"start"}); }, 0);
+    }
+  }
+})();
+</script>
 </body>
 </html>

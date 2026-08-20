@@ -163,6 +163,58 @@
     th, td { padding: 0.5em 0.6em; }
     .hero-figure svg { min-width: 560px; }
   }
+
+  .toolbar {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    margin: 0 0 2.4rem;
+    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  }
+  .toolbar button {
+    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    color: var(--accent); background: var(--paper);
+    border: 1.5px solid var(--accent); border-radius: 999px;
+    padding: 8px 20px; cursor: pointer; transition: all .2s ease;
+  }
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+  #accordion { margin-bottom: 2.6rem; }
+  .acc-item {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 16px; overflow: hidden; overflow-anchor: none;
+  }
+  .acc-item:last-child { margin-bottom: 0; }
+  .acc-header {
+    width: 100%; display: flex; align-items: center; gap: 14px;
+    background: none; border: none; padding: 18px 22px; cursor: pointer;
+    text-align: left; font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    color: var(--text); -webkit-tap-highlight-color: transparent;
+  }
+  .acc-header .num {
+    flex: 0 0 auto; color: var(--accent); font-size: 0.82rem; font-weight: 700;
+    background: var(--note-bg); padding: 4px 11px; border-radius: 999px; white-space: nowrap;
+  }
+  .acc-header .title { flex: 1 1 auto; font-size: 1.15rem; font-weight: 700; line-height: 1.5; }
+  .acc-header .chev {
+    flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
+  .acc-item.open > .acc-header { background: var(--note-bg); border-bottom: 1px solid var(--line); }
+  .acc-panel {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
+  }
+  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner {
+    overflow: hidden; min-height: 0; padding: 0 22px; opacity: 0;
+    transition: opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
+  .acc-panel-inner h2 { margin-top: 0; border-top: none; padding-top: 0; }
+  @media (max-width: 600px) {
+    .acc-header { padding: 15px 16px; gap: 10px; }
+    .acc-header .title { font-size: 1rem; }
+    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
+  }
 </style>
 </head>
 <body>
@@ -246,8 +298,21 @@
   </ol>
 </nav>
 
-<h2 id="sec1">正統性とは何か―ウェーバーから現代比較政治学へ</h2>
+<div class="toolbar">
+  <button id="expandAll" type="button">すべて開く</button>
+  <button id="collapseAll" type="button">すべて閉じる</button>
+</div>
 
+<div id="accordion">
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">正統性とは何か―ウェーバーから現代比較政治学へ</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>政治学における「正統性」の議論の出発点は、ドイツの社会学者マックス・ウェーバー (Max Weber 、 1864 〜 1920 年 ) である。ウェーバーは、死後に編纂された大著『経済と社会』や、 1919 年の講演「職業としての政治」の中で、人がなぜ権力者の命令に従うのかという問いを、「支配の正統性」という観点から三つの理念型に整理した <span class="cite">[1]</span> 。</p>
 
 <p>第一に伝統的支配。「昔からそうだったから」という慣習・伝統への信仰に基づく支配であり、世襲の王政などがその典型である。第二にカリスマ的支配。指導者個人の非凡な資質―英雄性、預言者的な力、あるいは単なる強烈な個性―への心酔に基づく支配で、革命指導者やカルト的な政治家に見られる。第三に合法的支配。特定の人物への信仰ではなく、あらかじめ定められた法や手続きそのものへの信頼に基づく支配であり、近代官僚制国家や現代の民主主義国家の大半はこの類型に属する。ウェーバー自身は、これらを現実の政治体制を分類するための厳密なラベルではなく、複数が混ざり合って現れる分析上の道具、いわゆる「理念型」として位置づけていた点には注意が必要である。</p>
@@ -262,9 +327,18 @@
 </ul>
 
 <p>権威主義体制の多くは、この四つの源泉を単独ではなく組み合わせて用いる。次章で見るロシア・中国・北朝鮮は、いずれも歴史的正統性を重視する点で共通するが、その動員の仕方―どのような歴史を、どのように語るか―は驚くほど異なっている。</p>
+    </div>
+  </div>
+</section>
 
-<h2 id="sec2">歴史を武器化する国家―ロシア・中国・北朝鮮の比較</h2>
-
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">歴史を武器化する国家―ロシア・中国・北朝鮮の比較</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>ロシア・中国・北朝鮮はいずれも、歴史的正統性を統治の重要な柱としている点で共通する。しかし、その手法を仔細に見ると、少なくとも三つの異なる型に分かれることが分かる。本稿ではこれを便宜的に「反論型」「選択的記憶型」「神話創造型」と呼ぶ。これは学界で確立した固有の分類名というより、以下で述べる各国の特徴を整理するために本稿が用いる分析上のラベルである。</p>
 
 <h3>ロシア―「反論型」歴史修正</h3>
@@ -313,9 +387,18 @@
 </tr>
 </tbody>
 </table>
+    </div>
+  </div>
+</section>
 
-<h2 id="sec3">逸脱するベトナム</h2>
-
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">逸脱するベトナム</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>ロシア・中国・北朝鮮の共通点を踏まえると、「一党支配体制は歴史を政治利用し、対外的な敵意を動員することで正統性を調達する」という命題は、それなりの説得力を持って見える。しかし同じ一党独裁体制でありながら、ベトナムはこの図式にきれいには当てはまらない。</p>
 
 <p>ベトナムが中国に対して抱く歴史的な警戒感は、決して希薄なものではない。むしろ、ロシアや中国が動員する歴史よりも、はるかに具体的で根深い実体を持つ。ベトナムは紀元前後から千年以上にわたって中国王朝の支配下に置かれた歴史を持ち、独立後も幾度となく中国との軍事的緊張を経験してきた。その最も新しい記憶が、 1979 年の中越国境紛争である。カンボジアに侵攻してポル・ポト政権を打倒したベトナムに対し、中国が「懲罰」を掲げて越境攻撃を行ったこの戦争では、双方合わせて数万人規模の死者が出たとされるが、正確な数字については双方の発表に開きがあり、確定的な統計は存在しない <span class="cite">[10]</span> 。興味深いことに、 1991 年の国交正常化以降、この戦争は両国の公的な言説からほとんど姿を消しており、双方の政府とも記念行事などでこの戦争に触れることを避ける傾向が続いている。加えて南シナ海 ( ベトナムでは東海と呼ばれる ) の島嶼をめぐる対立も、現在進行形の火種であり続けている。</p>
@@ -329,9 +412,18 @@
 <p>この全方位外交の到達点を象徴するのが、対米関係の劇的な進展である。ベトナムと米国は 1995 年 7 月 11 日に国交を正常化し、 2023 年 9 月 10 日、ハノイを訪れたバイデン米大統領とチョン書記長の会談により、両国関係はベトナムの外交序列で最上位にあたる「包括的戦略パートナーシップ」に格上げされた <span class="cite">[13]</span> 。両国の貿易額は、正常化当初の 1995 年には 4 億 5100 万ドルにすぎなかったが、 2023 年には約 1240 億ドルにまで拡大している <span class="cite">[14]</span> 。注目すべきは、ベトナムがこの対米関係の格上げと並行して、中国・ロシアとも同格の「包括的戦略パートナーシップ」を維持している点である。かつての戦争相手であった米国とも、歴史的な後ろ盾であり続けるロシアや、警戒対象である中国とも、同時に最高レベルの関係を築くという芸当は、イデオロギーよりも実利を徹底して優先する姿勢の表れだと言える。</p>
 
 <p>この実利重視の姿勢は、スポーツや観光といった分野にも表れている。 2025 年 9 月、ダナンで開催された国際大会「 PPA ツアー・アジア MB ベトナムカップ 2025 」は、 7906 人の観客を集め、ピックルボール競技における最多観客動員数としてギネス世界記録に認定された <span class="cite">[16]</span> 。さらにベトナムは、 2026 年 8 月 30 日から 9 月 6 日にかけて、同じくダナンで「ピックルボール・ワールドカップ 2026 」を開催する権利を獲得しており、これはこの大会がアジアで開催される初めての事例となる <span class="cite">[15]</span> 。イデオロギー的な意味合いをほとんど持たないこうした国際スポーツイベントの誘致に積極的なことは、対外的な敵意動員とは対照的な、経済的実利と国際的な可視性の獲得を志向するベトナム外交の姿勢を象徴する一エピソードとして興味深い。</p>
+    </div>
+  </div>
+</section>
 
-<h2 id="sec4">敵を作らない一党優位―シンガポール</h2>
-
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">敵を作らない一党優位―シンガポール</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>シンガポールもまた、一党優位体制でありながら対外的な敵意動員をほとんど行わない国の代表例である。シンガポールの人民行動党 (PAP) は、 1959 年の自治獲得以来、実に六十年以上にわたって政権の座を維持し続けている <span class="cite">[17]</span> 。法制度上、シンガポールは複数政党制であり、野党の立候補や議席獲得も認められている。 2025 年 5 月 3 日に実施された総選挙では、ローレンス・ウォン首相 ( 2024 年 5 月にリー・シェンロン前首相から政権を継承 ) のもとで初めての選挙が行われ、 PAP は全 97 議席中 87 議席を獲得し、得票率も前回 2020 年の 61.2% から 65.57% へと上昇する圧勝を収めた。最大野党の労働者党 (WP) は既存の地盤を守り、議席数自体は維持したものの、新たな選挙区での勢力拡大には至らなかった <span class="cite">[18]</span> 。制度上は競争的な選挙が存在しながら、実質的には長期にわたる一党優位が続いているという点で、シンガポールは「合法的支配」と「業績正統性」がきわめて強く結びついた事例だと言える。</p>
 
 <p>シンガポールがロシア・中国・北朝鮮のような対外的敵意動員に頼らない背景には、二つの構造的な制約がある。第一に、多民族国家としての成り立ちである。 1965 年の独立は、マレーシアからの分離という経緯に加え、 1964 年や 1969 年に生じた人種暴動の記憶を伴うものであった。この経験から、シンガポール政府は中国系・マレー系・インド系・その他という区分 ( いわゆる CMIO モデル ) を前提に、意図的な多民族主義政策を国是として掲げてきた。多民族社会において特定の外部民族・国家への敵意を煽ることは、国内の民族間関係にただちに跳ね返ってくる危険な火遊びであり、統治の安定を損なう自傷行為になりかねない。</p>
@@ -339,9 +431,18 @@
 <p>第二に、貿易依存度のきわめて高い経済構造である。シンガポールの貿易総額の対 GDP 比は 2022 年時点で約 333% に達し、世界でも突出して高い水準にある <span class="cite">[19]</span> 。中継貿易拠点・国際金融拠点としての性格を色濃く持つシンガポール経済にとって、特定の貿易相手国や地域を「敵」に設定することは、自国の存立基盤そのものを脅かす。ロシアや中国のように資源や巨大な国内市場を背景に一定の経済的自己完結性を持つ大国とは異なり、シンガポールにとって対外的な敵意動員は、割に合わないどころか自滅的な選択肢なのである。</p>
 
 <p>この結果、シンガポールの正統性は、経済成長・治安の安定・効率的で腐敗の少ない統治といった業績正統性にほぼ全面的に依拠する構造になっている。逆に言えば、この業績が大きく揺らいだとき、シンガポールがこれまでと同じ統治の安定を維持できるかどうかは、まだ十分に検証されていない未知数だとも言える。</p>
+    </div>
+  </div>
+</section>
 
-<h2 id="sec5">民主主義国にとっての正統性の問題</h2>
-
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">民主主義国にとっての正統性の問題</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>ここまで権威主義体制、とりわけ一党支配体制における正統性調達の多様性を見てきた。しかし「正統性の源泉」という視点の真価は、権威主義体制の分析にとどまらない。むしろ、この視点を民主主義国家に向けたときにこそ、見えてくるものがある。</p>
 
 <p>しばしば「民主主義国には正統性の調達という問題がそもそも存在しない。選挙で選ばれているのだから当然正統だ」という理解がなされる。しかし、これは半分正しく半分誤っている。より正確に言えば、民主主義国において正統性の調達が不要なのではなく、選挙という制度に埋め込まれることによって、その調達過程が「見えにくくなっている」だけなのである。</p>
@@ -396,18 +497,35 @@
 </tr>
 </tbody>
 </table>
+    </div>
+  </div>
+</section>
 
-<h2 id="sec6">結び―正統性をどこに立脚させるか</h2>
-
+<section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">結び―正統性をどこに立脚させるか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p>本稿は、「国家はなぜ、どのように正統性を調達するのか」という問いを軸に、ロシア・中国・北朝鮮という歴史を武器化する権威主義国家と、ベトナム・シンガポールという同じ一党支配体制でありながらそれを行わない、あるいは行う必要のない国々を比較してきた。その差異は、単純な「権威主義か否か」という区分ではなく、各国が置かれた構造的条件―経済的自己完結性の有無、民族構成、対外関係における実利の大きさ、そして代替可能な正統性の源泉をどれだけ持っているか―によって説明される。</p>
 
 <p>ロシアと北朝鮮は、業績正統性を十分に発揮しにくい構造的制約 ( 前者は資源依存経済と国際的孤立、後者は経済制裁下の閉鎖経済 ) を抱えるがゆえに、歴史とカリスマへの依存を強めている。中国は現在のところ高い業績正統性を維持しているが、それが今後鈍化した場合に歴史的・民族主義的動員への依存をどこまで強めるかは、この体制の今後を占ううえで重要な論点であり続けるだろう。一方でベトナムとシンガポールは、対外的な経済的相互依存の深さと、多民族性や地政学的な脆弱性ゆえに、対外的な敵意動員そのものが自国の利益を損なう構造に置かれている。</p>
 
 <p>そして、この「正統性をどこに立脚させるか」という視点は、権威主義体制の比較分析だけの道具ではない。手続き的正統性という強力だが万能ではない装置を持つ民主主義国もまた、業績・イデオロギー・カリスマ・歴史という同じ四つの源泉のあいだで、常に綱渡りを続けている。近年の政治的分極化やポピュリズムの高まりは、この綱渡りが不安定化した徴候として理解することができる。民主主義国に生きる私たちが直面しているのは、権威主義体制とは無縁の特殊な危機ではなく、あらゆる政治体制が抱える普遍的な問い―正統性をどこに立脚させるか―が、選挙という装置の陰から表舞台に姿を現しつつある局面なのかもしれない。</p>
+    </div>
+  </div>
+</section>
 
-<hr>
-
-<h2 id="refs">出典・参考文献</h2>
+<section class="acc-item" id="refs" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">出典・参考文献</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <ol class="refs">
 <li>Max Weber, <em>Wirtschaft und Gesellschaft</em>( 『経済と社会』、死後編纂・ 1922 年刊 ) 、および講演 "Politik als Beruf"( 「職業としての政治」、 1919 年 ) 。</li>
 <li>Stanford Encyclopedia of Philosophy, "Political Legitimacy" (<a href="https://plato.stanford.edu/entries/legitimacy/" target="_blank" rel="noopener">plato.stanford.edu</a>) 。</li>
@@ -430,7 +548,77 @@
 <li>World Bank, "Trade (% of GDP) - Singapore" (<a href="https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS?locations=SG" target="_blank" rel="noopener">data.worldbank.org</a>) 。</li>
 <li>Annual Review of Law and Social Science, "Polarization, Populism, and the Crisis of American Democracy" (<a href="https://www.annualreviews.org/content/journals/10.1146/annurev-lawsocsci-041922-035113" target="_blank" rel="noopener">annualreviews.org</a>) 。</li>
 </ol>
+    </div>
+  </div>
+</section>
 
+</div>
 </main>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+})();
+</script>
 </body>
 </html>
