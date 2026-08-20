@@ -22,6 +22,9 @@
     --hum: #7c3aed;
     --hum-soft: #f3ebfe;
     --hum-ink: #55229e;
+    --tech: #4f46e5;
+    --tech-soft: #eceafe;
+    --tech-ink: #3730a3;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -37,6 +40,8 @@
       --soc-ink: #f3b775;
       --hum-soft: #33224f;
       --hum-ink: #d3b3fb;
+      --tech-soft: #262454;
+      --tech-ink: #b3aef8;
     }
   }
   *{ box-sizing:border-box; }
@@ -107,6 +112,7 @@
   .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12); }
   .counters .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
   .counters a.nat .dot{ background:var(--nat); box-shadow:0 0 10px var(--nat); }
+  .counters a.tech .dot{ background:var(--tech); box-shadow:0 0 10px var(--tech); }
   .counters a.soc .dot{ background:var(--soc); box-shadow:0 0 10px var(--soc); }
   .counters a.hum .dot{ background:var(--hum); box-shadow:0 0 10px var(--hum); }
   .counters .n{ opacity:.72; font-weight:400; }
@@ -153,6 +159,7 @@
   }
 
   #natural .icon{ background:var(--nat-soft); color:var(--nat-ink); }
+  #tech .icon{ background:var(--tech-soft); color:var(--tech-ink); }
   #social .icon{ background:var(--soc-soft); color:var(--soc-ink); }
   #humanities .icon{ background:var(--hum-soft); color:var(--hum-ink); }
 
@@ -182,6 +189,7 @@
     width:4px;
   }
   #natural .card::before{ background:var(--nat); }
+  #tech .card::before{ background:var(--tech); }
   #social .card::before{ background:var(--soc); }
   #humanities .card::before{ background:var(--hum); }
 
@@ -190,6 +198,7 @@
     box-shadow:0 16px 34px rgba(0,0,0,.10);
   }
   #natural .card:hover{ border-color:var(--nat); }
+  #tech .card:hover{ border-color:var(--tech); }
   #social .card:hover{ border-color:var(--soc); }
   #humanities .card:hover{ border-color:var(--hum); }
 
@@ -204,6 +213,7 @@
     align-self:flex-start;
   }
   #natural .card .kicker{ background:var(--nat-soft); color:var(--nat-ink); }
+  #tech .card .kicker{ background:var(--tech-soft); color:var(--tech-ink); }
   #social .card .kicker{ background:var(--soc-soft); color:var(--soc-ink); }
   #humanities .card .kicker{ background:var(--hum-soft); color:var(--hum-ink); }
 
@@ -236,6 +246,7 @@
     letter-spacing:.03em;
   }
   #natural .card .go{ color:var(--nat-ink); }
+  #tech .card .go{ color:var(--tech-ink); }
   #social .card .go{ color:var(--soc-ink); }
   #humanities .card .go{ color:var(--hum-ink); }
   .card .go::after{ content:"→"; transition:transform .18s ease; }
@@ -346,8 +357,9 @@
     <h1>書庫</h1>
     <p class="lead">複数の分野にまたがる二十本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
     <div class="counters">
-      <a class="nat" href="#natural"><span class="dot"></span>NATURAL SCIENCE <span class="n">4</span></a>
-      <a class="soc" href="#social"><span class="dot"></span>SOCIAL SCIENCE <span class="n">8</span></a>
+      <a class="nat" href="#natural"><span class="dot"></span>NATURAL SCIENCE <span class="n">1</span></a>
+      <a class="tech" href="#tech"><span class="dot"></span>TECHNOLOGY <span class="n">5</span></a>
+      <a class="soc" href="#social"><span class="dot"></span>SOCIAL SCIENCE <span class="n">7</span></a>
       <a class="hum" href="#humanities"><span class="dot"></span>HUMANITIES <span class="n">7</span></a>
     </div>
   </div>
@@ -382,7 +394,7 @@
       <div>
         <h2><span class="group-en">NATURAL SCIENCE</span></h2>
       </div>
-      <span class="count">4 articles</span>
+      <span class="count">1 article</span>
     </div>
     <div class="grid">
 
@@ -393,6 +405,25 @@
         <p class="desc">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
         <span class="go">読む</span>
       </a>
+
+    </div>
+  </section>
+
+  <section class="group" id="tech">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="m7 9 3 3-3 3"/>
+          <path d="M13 15h4"/>
+        </svg>
+      </span>
+      <div>
+        <h2><span class="group-en">TECHNOLOGY</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+    </div>
+    <div class="grid">
 
       <a class="card" href="js-zeroichi.html">
         <span class="kicker">PROGRAMMING</span>
@@ -418,6 +449,21 @@
         <span class="go">読む</span>
       </a>
 
+      <a class="card" href="stopped-using-wordpress.html">
+        <span class="kicker">WEB OPS / CASE STUDY</span>
+        <h3>WordPress をやめて、静的サイトへ移行した話</h3>
+        <h4>動いていないサイトに、動的な仕組みは要るか</h4>
+        <p class="desc">二年近く更新が止まっていた会社サイトを、レンタルサーバーの契約期限をきっかけに WordPress から GitHub Pages の静的サイトへ移行した実録。 DNS の契約依存関係の見極めから、後戻りできない工程の安全設計まで、実際の工程順に記す。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="cdn-business-model.html">
+        <span class="kicker">TECH / BUSINESS</span>
+        <h3>CDN のビジネスモデルとインターネット相互接続の仕組み</h3>
+        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
+        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
 
     </div>
   </section>
@@ -436,17 +482,9 @@
       <div>
         <h2><span class="group-en">SOCIAL SCIENCE</span></h2>
       </div>
-      <span class="count">8 articles</span>
+      <span class="count">7 articles</span>
     </div>
     <div class="grid">
-
-      <a class="card" href="cdn-business-model.html">
-        <span class="kicker">TECH / BUSINESS</span>
-        <h3>CDN のビジネスモデルとインターネット相互接続の仕組み</h3>
-        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
-        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
-        <span class="go">読む</span>
-      </a>
 
       <a class="card" href="cloud_and_ai_boom.html">
         <span class="kicker">MARKET ANALYSIS</span>
@@ -593,7 +631,7 @@
   var cache = new Map();
   var debounceTimer = null;
   var searchToken = 0;
-  var groupLabel = { natural: '自然科学', social: '社会科学', humanities: '人文科学' };
+  var groupLabel = { natural: '自然科学', tech: 'テクノロジー', social: '社会科学', humanities: '人文科学' };
 
   function collectSources(){
     return Array.prototype.map.call(document.querySelectorAll('main .card'), function(card){
