@@ -229,6 +229,61 @@
     body { font-size: 16px; }
     .page { padding: 1.5rem 1rem 4rem; }
   }
+
+  .toolbar {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    margin: 0 0 2rem;
+  }
+  .toolbar button {
+    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    color: var(--accent); background: var(--bg);
+    border: 1.5px solid var(--accent); border-radius: 999px;
+    padding: 8px 20px; cursor: pointer; transition: all .2s ease;
+  }
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+  #accordion { margin-bottom: 2.4rem; }
+  .acc-item {
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 10px;
+    margin-bottom: 18px; overflow: hidden; overflow-anchor: none;
+    scroll-margin-top: 1rem;
+  }
+  .acc-item:last-child { margin-bottom: 0; }
+  .acc-header {
+    width: 100%; display: flex; align-items: center; gap: 14px;
+    background: none; border: none; padding: 18px 22px; cursor: pointer;
+    text-align: left; font-family: inherit; color: var(--fg);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .acc-header .num {
+    flex: 0 0 auto; color: var(--accent-dark); font-size: 0.8rem; font-weight: 700;
+    background: color-mix(in srgb, var(--tip-bg) 70%, transparent);
+    border: 1px solid var(--tip-border);
+    padding: 3px 12px; border-radius: 999px; white-space: nowrap;
+  }
+  .acc-header .title { flex: 1 1 auto; font-size: 1.2rem; font-weight: 700; }
+  .acc-header .chev {
+    flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
+  .acc-item.open > .acc-header {
+    border-bottom: 2px solid var(--accent);
+  }
+  .acc-panel {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
+  }
+  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner {
+    overflow: hidden; min-height: 0; padding: 0 22px; opacity: 0;
+    transition: opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 22px 26px; opacity: 1; }
+  @media (max-width: 600px) {
+    .acc-header { padding: 15px 16px; gap: 10px; }
+    .acc-header .title { font-size: 1.05rem; }
+    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 2px 16px 22px; }
+  }
 </style>
 </head>
 <body>
@@ -329,12 +384,23 @@
   </ol>
 </nav>
 
-<section class="chapter" id="chapter1">
-  <span class="day-badge">1</span>
-  <h2>JavaScript って、そもそも何者 ?</h2>
+<div class="toolbar">
+  <button id="expandAll" type="button">すべて開く</button>
+  <button id="collapseAll" type="button">すべて閉じる</button>
+</div>
 
+<div id="accordion">
+
+<section class="acc-item" id="chapter1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">JavaScript って、そもそも何者 ?</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>この本の使い方</h3>
-  <p>はじめまして。この本は「 JavaScript ゼロからイチまで」というタイトルの通り、 JavaScript を完全にマスターする本ではありません。 1 を 10 にするのではなく 0 を 1 にする本です。あなたはこれまで長年、 HTML ファイルの中で <code>&lt;script&gt;</code> タグやコードの断片を何度も目にしてきたはずです。おまじないのようにコピーして貼り付け、動けば良し、動かなければ別のコードを探す。そんな付き合い方を続けてきたのではないでしょうか。この本の目標は、その「おまじない」を「自分の言葉で説明できるもの」に変えることです。</p>
+  <p>はじめまして。この記事は「 JavaScript ゼロからイチまで」というタイトルの通り、 JavaScript を完全にマスターする本ではありません。 1 を 10 にするのではなく 0 を 1 にする本です。あなたはこれまで長年、 HTML ファイルの中で <code>&lt;script&gt;</code> タグやコードの断片を何度も目にしてきたはずです。おまじないのようにコピーして貼り付け、動けば良し、動かなければ別のコードを探す。そんな付き合い方を続けてきたのではないでしょうか。この本の目標は、その「おまじない」を「自分の言葉で説明できるもの」に変えることです。</p>
   <p>想定している進め方は「 1 日 1 章に取り組み、それを 10 日間続ける」というものです。全 10 章がちょうど 10 日分に対応していて、各章は「読む」パートと「実際に手を動かす」パートの両方を含んでいます。一気に全部読み切る必要はありません。むしろ、写経のように実際にファイルを作り、ブラウザで開いて、動く様子を自分の目で確認しながら進めることを強くすすめます。</p>
   <p>前提として、あなたはすでに次の様な状態であるということを想定しています。<br>
 「 HTML ファイルの仕組みを理解している」<br>
@@ -403,13 +469,18 @@ console.log("外部ファイルから実行されました");</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter2">
-  <span class="day-badge">2</span>
-  <h2>変数とデータ型 : 箱に何を入れるか</h2>
-
+<section class="acc-item" id="chapter2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">変数とデータ型 : 箱に何を入れるか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>変数とは、名前のついた入れ物</h3>
   <p>プログラムは基本的に「値を覚えておいて、あとで使う」ことの繰り返しです。この「値を覚えておく場所」に名前をつけたものが変数です。 JavaScript で変数を作るには <code>let</code> または <code>const</code> というキーワードを使います。</p>
   <pre><code>let userName = "田中";
@@ -507,13 +578,18 @@ console.log(name, age); // "田中" 34</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter3">
-  <span class="day-badge">3</span>
-  <h2>条件分岐 : コードに判断させる</h2>
-
+<section class="acc-item" id="chapter3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">条件分岐 : コードに判断させる</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>比較演算子 :2 つの値を比べる</h3>
   <p>「もし◯◯だったら△△する」という処理を書くには、まず 2 つの値を比べる方法が必要です。 JavaScript には次のような比較演算子があります。</p>
   <pre><code>5 > 3   // true(5は3より大きい)
@@ -608,13 +684,18 @@ console.log(displayName); // "名無しさん"</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter4">
-  <span class="day-badge">4</span>
-  <h2>繰り返しと配列操作</h2>
-
+<section class="acc-item" id="chapter4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">繰り返しと配列操作</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>for 文 : 決まった回数だけ繰り返す</h3>
   <p>同じ処理を何度も繰り返したいとき、毎回コードを書き写すのは非効率です。 <code>for</code> 文を使うと、繰り返しの回数や条件を指定して同じ処理を自動で繰り返せます。</p>
   <pre><code>for (let i = 0; i &lt; 5; i++) {
@@ -699,13 +780,18 @@ while (count &lt; 3) {
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter5">
-  <span class="day-badge">5</span>
-  <h2>関数 : 処理をひとまとめにする</h2>
-
+<section class="acc-item" id="chapter5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">関数 : 処理をひとまとめにする</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>関数とは、名前のついた処理のまとまり</h3>
   <p>これまでの章で書いてきたコードは、上から下に 1 回だけ実行されるものでした。しかし実際のプログラムでは「同じ処理を、違う値で何度も使い回したい」という場面がよく出てきます。そこで使うのが関数です。関数は「入力 ( 引数 ) を受け取り、何らかの処理をして、出力 ( 戻り値 ) を返す」というひとまとまりの処理に名前をつけたものです。</p>
   <pre><code>function greet(name) {
@@ -786,13 +872,18 @@ repeatTwice(() => console.log("こんにちは"));
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter6">
-  <span class="day-badge">6</span>
-  <h2>DOM 操作 : ページの中身を書き換える</h2>
-
+<section class="acc-item" id="chapter6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">DOM 操作 : ページの中身を書き換える</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>DOM とは何か</h3>
   <p>ブラウザは HTML ファイルを読み込むと、そのタグの入れ子構造をもとに「 DOM(Document Object Model) 」と呼ばれる、プログラムから操作できるオブジェクトの木構造を内部に作ります。 JavaScript から見たとき、 HTML の見出しや段落、ボタンなどは、 DOM というオブジェクトとして触れる対象になります。「ページの見た目や中身を JavaScript から書き換える」というのは、実際には「この DOM というオブジェクトを操作する」ことにほかなりません。</p>
 
@@ -860,13 +951,18 @@ list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追�
   <p>ボタンと空の <code>&lt;ul&gt;&lt;/ul&gt;</code> を持つ HTML ファイルを作り、ボタンの <code>id</code> を使って要素を取得し ( クリックイベントはまだ習っていないので、ここではコンソールから直接関数を呼び出す形で構いません ) 、 <code>&lt;li&gt;</code> 要素を 1 つ作って <code>&lt;ul&gt;</code> に追加する処理を書いてみましょう。追加するたびにリストの項目が増えていく様子を確認できたら成功です。</p>
 
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter7">
-  <span class="day-badge">7</span>
-  <h2>イベント : ユーザーの操作に反応する</h2>
-
+<section class="acc-item" id="chapter7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">イベント : ユーザーの操作に反応する</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>addEventListener の基本形</h3>
   <p>前章まではページが読み込まれた瞬間に一度だけ実行されるコードを書いてきました。ここからは「ユーザーがボタンをクリックしたら」「フォームを送信したら」のように、ユーザーの操作をきっかけに動くコードを扱います。これを実現するのが <code>addEventListener()</code> です。</p>
   <pre><code>&lt;button id="my-button"&gt;クリックしてね&lt;/button&gt;
@@ -945,13 +1041,18 @@ form.addEventListener("submit", (event) => {
   <p>テキスト入力欄・ボタン・空の <code>&lt;ul&gt;</code> を用意し、「入力欄に文字を入れてボタンを押すと、その文字が新しい <code>&lt;li&gt;</code> としてリストに追加され、入力欄は空になる」というミニアプリを作ってみましょう。前章の DOM 操作 (<code>createElement</code> ・ <code>appendChild</code>) と、本章のイベント処理を組み合わせる練習になります。</p>
 
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter8">
-  <span class="day-badge">8</span>
-  <h2>非同期処理とサーバー通信</h2>
-
+<section class="acc-item" id="chapter8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">非同期処理とサーバー通信</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>「時間がかかる処理」をどう扱うか</h3>
   <p>これまでのコードはすべて、上から下へ順番に、しかも一瞬で実行される前提で書かれていました。しかし実際の Web ページでは「サーバーにデータを問い合わせて、返ってくるまで待つ」といった、時間のかかる処理がよく登場します。このとき、返事が返ってくるまでブラウザ全体の動きを止めてしまう ( ボタンも押せない、画面もスクロールできない ) のは、多くの場合望ましくありません。そこで JavaScript には「時間のかかる処理を裏側で進めておいて、終わったら結果を受け取る」という非同期処理の仕組みが用意されています。</p>
   <p>もっとも単純な例が <code>setTimeout()</code> です。</p>
@@ -1043,13 +1144,18 @@ loadData();</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter9">
-  <span class="day-badge">9</span>
-  <h2>エラーと仲良くなる、開発者ツールを使いこなす</h2>
-
+<section class="acc-item" id="chapter9" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">9</span>
+    <span class="title">エラーと仲良くなる、開発者ツールを使いこなす</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>エラーメッセージは敵ではない</h3>
   <p>ここまでの 8 日間で、意図しないエラーメッセージに何度も遭遇してきたはずです。エラーメッセージは「何かがうまくいかなかった」という知らせであると同時に、「どこで」「なぜ」うまくいかなかったのかという手がかりでもあります。エラーを読み解く力は、コードを書く力と同じくらい実務で重要です。</p>
   <p>よく出会う代表的なエラーの種類を紹介します。</p>
@@ -1107,13 +1213,18 @@ console.log(backToText);</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
 
-<section class="chapter" id="chapter10">
-  <span class="day-badge">10</span>
-  <h2>この先へ : モジュール・フレームワーク・ AI との付き合い方</h2>
-
+<section class="acc-item" id="chapter10" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">10</span>
+    <span class="title">この先へ : モジュール・フレームワーク・ AI との付き合い方</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
   <h3>ファイルを分割する :ES Modules</h3>
   <p>第 1 章で「 HTML と JavaScript をファイルとして分ける」話をしましたが、 JavaScript のコード自体も、規模が大きくなれば複数のファイルに分けたくなります。そのための標準の仕組みが ES Modules(<code>import</code>/<code>export</code>) です。</p>
   <pre><code>// math.js
@@ -1144,7 +1255,7 @@ console.log(add(2, 3)); // 5</code></pre>
 
   <h3>おわりに :10 日間、お疲れさまでした</h3>
   <p>ここまでの 10 日間で、変数、条件分岐、繰り返し、関数、 DOM 操作、イベント処理、非同期処理、エラー対応、そしてこの先の広がりまでを一通り歩いてきました。これで「 JavaScript を完全に理解した」わけではありませんが、それはこの本が最初に約束した目標ではありません。目標は「ゼロをイチにする」こと、つまり、これまでナナメ読みしてきたコードの前に立ったとき、以前とは違う手触りでそれを読める自分になることでした。</p>
-  <p>この本の中のコード例やコラムを、後から辞書のように読み返しても構いません。むしろ、実際に何かを作っていて「あれ、これどう書くんだっけ」と思ったときにこそ、該当の章を開き直してみてください。そのときにはもう、この本は「最初から順番に読む本」ではなく「必要なときに開く相棒」になっているはずです。</p>
+  <p>この本の中のコード例やコラムを、後から辞書のように読み返しても構いません。むしろ、実際に何かを作っていて「あれ、これどう書くんだっけ」と思ったときにこそ、該当の章を開き直してみてください。そのときにはもう、この記事は「最初から順番に読む本」ではなく「必要なときに開く相棒」になっているはずです。</p>
 
   <section class="footnotes">
     <h4>脚注</h4>
@@ -1153,8 +1264,12 @@ console.log(add(2, 3)); // 5</code></pre>
     </ol>
   </section>
   <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
+    </div>
+  </div>
 </section>
-<hr class="chapter-end">
+
+</div>
+
 
 
 <footer class="book-footer">
@@ -1162,5 +1277,71 @@ console.log(add(2, 3)); // 5</code></pre>
 </footer>
 
 </div>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+})();
+</script>
 </body>
 </html>
