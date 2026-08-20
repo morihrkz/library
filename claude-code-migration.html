@@ -228,23 +228,6 @@
   }
   ul.bullets li { padding: 4px 0; }
 
-  .toc {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin-bottom: 36px;
-  }
-  .toc h2 {
-    margin-top: 0;
-    border: none;
-    padding-left: 0;
-  }
-  .toc ol { margin: 0; padding-left: 22px; color: var(--ink-soft); }
-  .toc li { padding: 3px 0; }
-  .toc a { color: var(--accent); text-decoration: none; }
-  .toc a:hover { text-decoration: underline; }
-
   footer {
     text-align: center;
     color: #a39d8c;
@@ -428,19 +411,6 @@
     Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（ Node.js 等）」の 5 系統に分かれています。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎません。以下、優先度の高い順に並べています。
   </div>
 
-  <nav class="toc">
-    <h2 style="border:none; padding:0;">目次</h2>
-    <ol>
-      <li><a href="#sec1">① ユーザーレベル設定（ ~/.claude/ 配下）</a></li>
-      <li><a href="#sec2">② 認証・ API キー</a></li>
-      <li><a href="#sec3">③ プロジェクトレベル設定</a></li>
-      <li><a href="#sec4">④ MCP サーバー設定</a></li>
-      <li><a href="#sec5">⑤ Auto Memory （自動記憶）— 注意点</a></li>
-      <li><a href="#sec6">⑥ 前提環境（ Node.js / Claude Code 本体）</a></li>
-      <li><a href="#sec7">✅ 移植チェックリスト</a></li>
-    </ol>
-  </nav>
-
   <div class="toolbar">
     <button id="expandAll" type="button">すべて開く</button>
     <button id="collapseAll" type="button">すべて閉じる</button>
@@ -451,7 +421,7 @@
   <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">① ユーザーレベル設定（ <code>~/.claude/</code> 配下）</span>
+    <span class="title">ユーザーレベル設定（ <code>~/.claude/</code> 配下）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -521,7 +491,7 @@
   <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">② 認証・ API キー</span>
+    <span class="title">認証・ API キー</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -552,7 +522,7 @@
   <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3</span>
-    <span class="title">③ プロジェクトレベル設定</span>
+    <span class="title">プロジェクトレベル設定</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -609,7 +579,7 @@
   <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4</span>
-    <span class="title">④ MCP サーバー設定</span>
+    <span class="title">MCP サーバー設定</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -649,7 +619,7 @@
   <section class="acc-item" id="sec5" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">5</span>
-    <span class="title">⑤ Auto Memory （自動記憶）— 見落としやすいポイント</span>
+    <span class="title">Auto Memory （自動記憶）— 見落としやすいポイント</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -667,7 +637,7 @@
   <section class="acc-item" id="sec6" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">6</span>
-    <span class="title">⑥ 前提環境（ Node.js / Claude Code 本体）</span>
+    <span class="title">前提環境（ Node.js / Claude Code 本体）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -685,7 +655,7 @@
   <section class="acc-item" id="sec7" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">7</span>
-    <span class="title">✅ 移植チェックリスト（実行順）</span>
+    <span class="title">移植チェックリスト（実行順）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">

@@ -63,19 +63,6 @@
   }
   .subtitle{ color:var(--ink2); font-size:1.05em; margin:0 0 2.2em; }
   .byline{ color:var(--muted); font-size:0.9em; margin:0 0 3em; }
-  nav.toc{
-    background:var(--surface); border:1px solid var(--border); border-radius:10px;
-    padding:1.2rem 1.6rem; margin:0 0 2.6rem;
-    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-  }
-  nav.toc h2{
-    font-size:0.86rem; letter-spacing:0.18em; color:var(--muted);
-    border:none; padding:0; margin:0 0 0.7rem;
-  }
-  nav.toc ol{ margin:0; padding-left:1.3rem; font-size:0.92rem; }
-  nav.toc li{ padding:0.2rem 0; }
-  nav.toc a{ color:var(--blue); text-decoration:none; }
-  nav.toc a:hover{ text-decoration:underline; }
   h2{
     font-size:1.35em; margin:2.6em 0 0.9em; padding-bottom:0.35em;
     border-bottom:2px solid var(--ink); font-weight:700;
@@ -161,6 +148,7 @@
     width:100%; display:flex; align-items:center; gap:14px;
     background:none; border:none; padding:18px 22px; cursor:pointer;
     text-align:left; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:1rem;
     color:var(--ink); -webkit-tap-highlight-color:transparent;
   }
   .acc-header .num{
@@ -256,24 +244,6 @@
 というタグを本文中に付す。どの記述をどの区分に置くかは、出典の性質 ( 一次資料の実証データか、単一の逸話か、複数の研究者が独立に到達した解釈か等 ) に基づき、筆者が判断した。
 </p>
 
-<nav class="toc">
-  <h2>目次</h2>
-  <ol>
-    <li><a href="#intro">序章 ― なぜ「与える人が成功する」という物語はこれほど魅力的なのか</a></li>
-    <li><a href="#sec1">1. グラント理論の骨格 ― 3 類型と「双峰分布」という発見</a></li>
-    <li><a href="#sec2">2. 「賢く与える」の内実 ― otherish giver とマッチャーは何が違うのか</a></li>
-    <li><a href="#sec3">3. 対抗言説①― 権力を取りに行く者が勝つ ( ジェフリー・フェファー )</a></li>
-    <li><a href="#sec4">4. 対抗言説②― 大衆的権力論の伝統 ( ロバート・グリーンとマキャベリ )</a></li>
-    <li><a href="#sec5">5. 対抗言説③― 進化生物学・ゲーム理論からの視座</a></li>
-    <li><a href="#sec6">6. 対抗言説④― ダークトライアド研究 ( ヘア、バビアク、ロンソン )</a></li>
-    <li><a href="#sec7">7. 内在批判 ― グラント自身のデータが語るもう一つの物語</a></li>
-    <li><a href="#sec8">8. 総合 ― ギバー戦略はどのような条件下で有効なのか</a></li>
-    <li><a href="#sec9">9. 本稿の限界について ― 自己点検</a></li>
-    <li><a href="#conclusion">結び</a></li>
-    <li><a href="#refs">出典</a></li>
-  </ol>
-</nav>
-
 <div class="toolbar">
   <button id="expandAll" type="button">すべて開く</button>
   <button id="collapseAll" type="button">すべて閉じる</button>
@@ -283,7 +253,7 @@
 
 <section class="acc-item" id="intro" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
+    <span class="num">0</span>
     <span class="title">序章 ― なぜ「与える人が成功する」という物語はこれほど魅力的なのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -298,8 +268,8 @@
 
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">1. グラント理論の骨格 ― 3 類型と「双峰分布」という発見</span>
+    <span class="num">1</span>
+    <span class="title">グラント理論の骨格 ― 3 類型と「双峰分布」という発見</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -331,8 +301,8 @@
 
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">2. 「賢く与える」の内実 ― otherish giver とマッチャーは何が違うのか</span>
+    <span class="num">2</span>
+    <span class="title">「賢く与える」の内実 ― otherish giver とマッチャーは何が違うのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -376,8 +346,8 @@
 
 <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">3. 対抗言説①― 権力を取りに行く者が勝つ ( ジェフリー・フェファー )</span>
+    <span class="num">3</span>
+    <span class="title">対抗言説①― 権力を取りに行く者が勝つ ( ジェフリー・フェファー )</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -393,8 +363,8 @@
 
 <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">4. 対抗言説②― 大衆的権力論の伝統 ( ロバート・グリーンとマキャベリ )</span>
+    <span class="num">4</span>
+    <span class="title">対抗言説②― 大衆的権力論の伝統 ( ロバート・グリーンとマキャベリ )</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -414,8 +384,8 @@
 
 <section class="acc-item" id="sec5" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">5. 対抗言説③― 進化生物学・ゲーム理論からの視座</span>
+    <span class="num">5</span>
+    <span class="title">対抗言説③― 進化生物学・ゲーム理論からの視座</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -435,8 +405,8 @@
 
 <section class="acc-item" id="sec6" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">7</span>
-    <span class="title">6. 対抗言説④― ダークトライアド研究 ( ヘア、バビアク、ロンソン )</span>
+    <span class="num">6</span>
+    <span class="title">対抗言説④― ダークトライアド研究 ( ヘア、バビアク、ロンソン )</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -452,8 +422,8 @@
 
 <section class="acc-item" id="sec7" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">8</span>
-    <span class="title">7. 内在批判 ― グラント自身のデータが語るもう一つの物語</span>
+    <span class="num">7</span>
+    <span class="title">内在批判 ― グラント自身のデータが語るもう一つの物語</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -467,8 +437,8 @@
 
 <section class="acc-item" id="sec8" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">9</span>
-    <span class="title">8. 総合 ― ギバー戦略はどのような条件下で有効なのか</span>
+    <span class="num">8</span>
+    <span class="title">総合 ― ギバー戦略はどのような条件下で有効なのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -499,8 +469,8 @@
 
 <section class="acc-item" id="sec9" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">10</span>
-    <span class="title">9. 本稿の限界について ― 自己点検</span>
+    <span class="num">9</span>
+    <span class="title">本稿の限界について ― 自己点検</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -518,7 +488,7 @@
 
 <section class="acc-item" id="conclusion" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">11</span>
+    <span class="num">10</span>
     <span class="title">結び</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -533,7 +503,7 @@
 
 <section class="acc-item" id="refs" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">12</span>
+    <span class="num">11</span>
     <span class="title">出典</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>

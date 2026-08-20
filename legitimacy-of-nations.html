@@ -125,26 +125,6 @@
     color: var(--sub);
   }
   .cite { font-size: 0.85em; color: var(--muted); }
-  nav.toc {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 1.2rem 1.6rem;
-    margin: 0 0 2.6rem;
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
-  }
-  nav.toc h2 {
-    font-size: 0.86rem;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    border: none;
-    padding: 0;
-    margin: 0 0 0.7rem;
-  }
-  nav.toc ol { margin: 0; padding-left: 1.3rem; font-size: 0.94rem; }
-  nav.toc li { padding: 0.2rem 0; }
-  nav.toc a { color: var(--accent); text-decoration: none; }
-  nav.toc a:hover { text-decoration: underline; }
   ol.refs {
     font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 0.86rem;
@@ -277,6 +257,21 @@
 
 <main class="wrap">
 
+<div class="toolbar">
+  <button id="expandAll" type="button">すべて開く</button>
+  <button id="collapseAll" type="button">すべて閉じる</button>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">序</span>
+    <span class="title">序章―なぜ権威主義国家は歴史を書き換えるのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 <p class="lead">なぜ権威主義国家は、しばしば手間と外交的コストを払ってまで歴史を書き換えようとするのか。ロシアは独ソ戦、いわゆる「大祖国戦争」の記憶を国家統合の中核的な物語として法律で保護し、その記憶に反する言説を犯罪とする法整備まで行った。中国共産党は結党百周年にあたる 2021 年、党の歩みを総括する「歴史決議」を採択し、アヘン戦争以来の「屈辱の世紀」から国家再興へと至る物語を公式化した。北朝鮮は金一族の権力継承のたびに、白頭山という特定の山にまつわる神話を再構成し、金正恩体制のもとでは「白頭の血統」という言葉が公式イデオロギーの中核に据えられるまでになった。</p>
 
 <p>一見すると、これらは単なるプロパガンダや権力者の自己満足に見えるかもしれない。しかし政治学の視点から見れば、これは驚くほど一貫した合理的行動である。国家、とりわけ選挙という審判の仕組みを持たない権威主義体制は、暴力装置―軍・警察・治安機関―だけで統治を維持することはできない。統治される側が「この政権には従うべき理由がある」と、積極的にせよ消極的にせよ受け入れて初めて、統治のコストは劇的に下がる。この「従うべき理由」を政治学では正統性 (legitimacy) と呼ぶ。歴史の書き換えは、この正統性を調達するための、費用対効果に優れた手段のひとつなのである。</p>
@@ -284,26 +279,9 @@
 <p>だが、ここでもうひとつの疑問が浮かぶ。同じ一党支配体制でありながら、ベトナムやシンガポールは、ロシア・中国・北朝鮮ほど積極的に歴史や外部の敵を政治利用しているようには見えない。単に「権威主義体制だから歴史を歪める」という図式では、この違いを説明できない。</p>
 
 <p>本稿は、「正統性の源泉」という分析軸を用いて、この謎を解きほぐすことを試みる。そしてこの視点は、権威主義体制を分析するためだけの道具ではない。むしろ、選挙という制度によって正統性の調達過程が「見えにくくなっている」だけの民主主義国家を理解するうえでも、同じ枠組みは有効に機能する。以下ではまず「正統性」という概念そのものを整理したうえで、ロシア・中国・北朝鮮の歴史の政治利用を比較し、それとは対照的な道を歩むベトナムとシンガポールの事例を検討する。そのうえで最後に、この視点を私たち自身が生きる民主主義国の現在―政治的分極化やポピュリズムの高まり―に投げ返してみたい。</p>
-
-<nav class="toc">
-  <h2>目次</h2>
-  <ol>
-    <li><a href="#sec1">正統性とは何か―ウェーバーから現代比較政治学へ</a></li>
-    <li><a href="#sec2">歴史を武器化する国家―ロシア・中国・北朝鮮の比較</a></li>
-    <li><a href="#sec3">逸脱するベトナム</a></li>
-    <li><a href="#sec4">敵を作らない一党優位―シンガポール</a></li>
-    <li><a href="#sec5">民主主義国にとっての正統性の問題</a></li>
-    <li><a href="#sec6">結び―正統性をどこに立脚させるか</a></li>
-    <li><a href="#refs">出典・参考文献</a></li>
-  </ol>
-</nav>
-
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
-</div>
-
-<div id="accordion">
+    </div>
+  </div>
+</section>
 
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>

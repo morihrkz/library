@@ -87,24 +87,6 @@
     line-height: 1.7;
     color: #c7b596;
   }
-  nav.toc {
-    background: color-mix(in srgb, var(--column-bg) 55%, transparent);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    padding: 1.5rem 1.75rem;
-    margin: 0 0 3rem;
-  }
-  nav.toc h2 {
-    margin-top: 0;
-    font-size: 1.05rem;
-  }
-  nav.toc ol {
-    padding-left: 1.4rem;
-    margin: 0;
-  }
-  nav.toc li { margin: 0.35rem 0; }
-  nav.toc a { color: var(--link); text-decoration: none; }
-  nav.toc a:hover { text-decoration: underline; }
   section.chapter {
     margin: 4rem 0;
     scroll-margin-top: 1rem;
@@ -224,7 +206,6 @@
     padding-top: 2rem;
     border-top: 1px solid var(--rule);
   }
-  .backtotoc { font-size: 0.8rem; }
   @media (max-width: 600px) {
     body { font-size: 16px; }
     .page { padding: 1.5rem 1rem 4rem; }
@@ -368,22 +349,6 @@
 
 <div class="page">
 
-<nav class="toc" id="toc">
-  <h2>目次</h2>
-  <ol>
-    <li><a href="#chapter1">JavaScript って、そもそも何者 ?</a></li>
-    <li><a href="#chapter2">変数とデータ型 : 箱に何を入れるか</a></li>
-    <li><a href="#chapter3">条件分岐 : コードに判断させる</a></li>
-    <li><a href="#chapter4">繰り返しと配列操作</a></li>
-    <li><a href="#chapter5">関数 : 処理をひとまとめにする</a></li>
-    <li><a href="#chapter6">DOM 操作 : ページの中身を書き換える</a></li>
-    <li><a href="#chapter7">イベント : ユーザーの操作に反応する</a></li>
-    <li><a href="#chapter8">非同期処理とサーバー通信</a></li>
-    <li><a href="#chapter9">エラーと仲良くなる、開発者ツールを使いこなす</a></li>
-    <li><a href="#chapter10">この先へ : モジュール・フレームワーク・ AI との付き合い方</a></li>
-  </ol>
-</nav>
-
 <div class="toolbar">
   <button id="expandAll" type="button">すべて開く</button>
   <button id="collapseAll" type="button">すべて閉じる</button>
@@ -468,7 +433,6 @@ console.log("外部ファイルから実行されました");</code></pre>
       <li id="fn-1-3"><span class="fnsrc">"A Brief History of JavaScript," Auth0 Blog. https://auth0.com/blog/a-brief-history-of-javascript/(2026 年 8 月閲覧、二次情報 )</span><a href="#fnref-1-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -577,7 +541,6 @@ console.log(name, age); // "田中" 34</code></pre>
       <li id="fn-2-3"><span class="fnsrc">"Destructuring assignment," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment(2026 年 8 月閲覧 )</span><a href="#fnref-2-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -683,7 +646,6 @@ console.log(displayName); // "名無しさん"</code></pre>
       <li id="fn-3-1"><span class="fnsrc">Null 合体演算子 (Nullish coalescing operator) の ES2020 導入について、複数の技術記事による確認 ( 二次情報 ) 。例 :"ES2020 Optional Chaining &amp; Nullish Coalescing," Eric Feminella Blog. https://www.ericfeminella.com/blog/2020/03/10/es2020-optional-chaining-nullish-coalescing/(2026 年 8 月閲覧 ) 。あわせて MDN Web Docs "Nullish coalescing operator (??)" も参照。</span><a href="#fnref-3-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -779,7 +741,6 @@ while (count &lt; 3) {
       <li id="fn-4-1"><span class="fnsrc">"for...of," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of(2026 年 8 月閲覧 ) 。 ES2015 での導入について。</span><a href="#fnref-4-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -871,7 +832,6 @@ repeatTwice(() => console.log("こんにちは"));
       <li id="fn-5-3"><span class="fnsrc">同上、 MDN "let" ページ内 "Temporal dead zone (TDZ)" の項 (2026 年 8 月閲覧 )</span><a href="#fnref-5-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -950,7 +910,6 @@ list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追�
   <h3>今日の実習</h3>
   <p>ボタンと空の <code>&lt;ul&gt;&lt;/ul&gt;</code> を持つ HTML ファイルを作り、ボタンの <code>id</code> を使って要素を取得し ( クリックイベントはまだ習っていないので、ここではコンソールから直接関数を呼び出す形で構いません ) 、 <code>&lt;li&gt;</code> 要素を 1 つ作って <code>&lt;ul&gt;</code> に追加する処理を書いてみましょう。追加するたびにリストの項目が増えていく様子を確認できたら成功です。</p>
 
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -1040,7 +999,6 @@ form.addEventListener("submit", (event) => {
   <h3>今日の実習</h3>
   <p>テキスト入力欄・ボタン・空の <code>&lt;ul&gt;</code> を用意し、「入力欄に文字を入れてボタンを押すと、その文字が新しい <code>&lt;li&gt;</code> としてリストに追加され、入力欄は空になる」というミニアプリを作ってみましょう。前章の DOM 操作 (<code>createElement</code> ・ <code>appendChild</code>) と、本章のイベント処理を組み合わせる練習になります。</p>
 
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -1143,7 +1101,6 @@ loadData();</code></pre>
       <li id="fn-8-3"><span class="fnsrc">"Fetch Standard," WHATWG. https://fetch.spec.whatwg.org/(2026 年 8 月閲覧、一次情報 ) 。ブラウザ対応時期について :"Fetch API," MDN Web Docs および caniuse.com "fetch API" のデータ (Chrome 42 、 Firefox 39 、 Safari 10.1 などから対応開始 ) 。</span><a href="#fnref-8-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -1212,7 +1169,6 @@ console.log(backToText);</code></pre>
       <li id="fn-9-1"><span class="fnsrc">JSON の成立史について複数の技術記事による確認 ( 二次情報 ) 。例 :"The History of JSON and the People That Created It," HackerNoon. https://hackernoon.com/the-history-of-json-and-the-people-that-created-it(2026 年 8 月閲覧 ) 。 RFC 4627(2006 年 ) は IETF による一次情報。</span><a href="#fnref-9-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
@@ -1263,7 +1219,6 @@ console.log(add(2, 3)); // 5</code></pre>
       <li id="fn-10-1"><span class="fnsrc">Jake Archibald, "ES modules in browsers," jakearchibald.com, 2017 年 5 月 2 日 . https://jakearchibald.com/2017/es-modules-in-browsers/(2026 年 8 月閲覧、著者は Google Chrome チームの開発者による実務ブログのため実装状況の一次的な観測記録として扱う )</span><a href="#fnref-10-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
-  <p class="backtotoc"><a href="#toc">目次へ戻る</a></p>
     </div>
   </div>
 </section>
