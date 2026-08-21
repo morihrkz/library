@@ -285,6 +285,104 @@
     .fact-grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 6px; }
   }
+
+  /* ---------- Accordion ---------- */
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 32px 0 24px;
+  }
+  .toolbar button {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--card);
+    border: 1.5px solid var(--accent);
+    border-radius: 999px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+  }
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+  #accordion { margin-bottom: 40px; }
+  .acc-item {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    overflow-anchor: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .acc-item:last-child { margin-bottom: 0; }
+  .acc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    padding: 18px 22px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .acc-header .num {
+    flex: 0 0 auto;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .acc-header .title {
+    flex: 1 1 auto;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .acc-header .chev {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
+  .acc-item.open > .acc-header {
+    background: var(--accent-light);
+    border-bottom: 1px solid var(--line);
+  }
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor: none;
+  }
+  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 22px;
+    opacity: 0;
+    transition: opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner {
+    padding: 6px 22px 24px;
+    opacity: 1;
+  }
+  .acc-panel-inner > h3:first-child { margin-top: 20px; }
+  @media (max-width: 760px) {
+    .acc-header { padding: 15px 16px; gap: 10px; }
+    .acc-header .title { font-size: 17px; }
+    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -293,13 +391,13 @@
 <header class="hero">
   <div class="kicker">実録・ある作業の記録</div>
   <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="lede">二年間にわたり放置してしまっていたウェブサイト <code>pyx.co.jp</code> を、WordPress が動くレンタルサーバーから、静的な HTML ファイルが配置されているのみの GitHub Pages へ移しました。</p>
+  <p class="lede">二年間にわたり放置してしまっていたウェブサイト <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから、静的な HTML ファイルが配置されているのみの GitHub Pages へ移しました。</p>
   <div class="hero-meta">
-    <span>旧環境：WordPress / XServer</span>
-    <span>新環境：GitHub Pages</span>
-    <span>DNS：Xserver Domain</span>
-    <span>独自ドメイン：pyx.co.jp</span>
-    <span>サーバー期限：2026-08-31</span>
+    <span>旧環境： WordPress / XServer</span>
+    <span>新環境： GitHub Pages</span>
+    <span>DNS ： Xserver Domain</span>
+    <span>独自ドメイン： pyx.co.jp</span>
+    <span>サーバー期限： 2026-08-31</span>
   </div>
 </header>
 
@@ -325,22 +423,34 @@
 
 <p>以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものです。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記します。</p>
 
-<div class="source-note">注：旧サーバーの IP アドレス、サーバー ID、サポート問い合わせ番号など、それ自体が特定や悪用につながりうる識別情報は、記事の趣旨に必要ないため伏せてあります。DNS の設定内容や作業手順は、移行計画書の実記録にもとづいています。</div>
+<div class="source-note">注：旧サーバーの IP アドレス、サーバー ID 、サポート問い合わせ番号など、それ自体が特定や悪用につながりうる識別情報は、記事の趣旨に必要ないため伏せてあります。 DNS の設定内容や作業手順は、移行計画書の実記録にもとづいています。</div>
 
 <div class="toc">
   <div class="toc-title">この記事の流れ</div>
   <ol>
-    <li>なぜウェブサイトのサーバーを移すことにしたか</li>
-    <li>移行計画を立てる</li>
-    <li>実際の移行作業（工程順の記録）</li>
-    <li>振り返り：得られた教訓</li>
-    <li>すべてのサイトが動的サイトである必要はない</li>
+    <li><a href="#sec1">なぜウェブサイトのサーバーを移すことにしたか</a></li>
+    <li><a href="#sec2">移行計画を立てる</a></li>
+    <li><a href="#sec3">実際の移行作業（工程順の記録）</a></li>
+    <li><a href="#sec4">振り返り：得られた教訓</a></li>
+    <li><a href="#sec5">すべてのサイトが動的サイトである必要はない</a></li>
   </ol>
 </div>
 
-<hr class="sep">
+<div class="toolbar">
+  <button id="expandAll" type="button">すべて開く</button>
+  <button id="collapseAll" type="button">すべて閉じる</button>
+</div>
 
-<h2><span class="num">第１部</span>なぜウェブサイトのサーバーを移すことにしたか</h2>
+<div id="accordion">
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">第１部</span>
+    <span class="title">なぜウェブサイトのサーバーを移すことにしたか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 
 <h3>1-1. 二年間、放置されていたサイト</h3>
 
@@ -400,7 +510,18 @@
 <p>もう一つ、早い段階で決めたことがあります。<strong>旧サイトの内容は一つも移行しない</strong>という判断です。<br>二年近く更新が止まっていた内容を、手間をかけて移し替える価値があるかを考えた結果でした。当初公開する内容は仮の一枚のページのみとし、本格的な内容は落ち着いてから作り込む方針にしました。</p>
 <p>なにも移さないことも一つの選択肢です。移行というと「今あるものを、そのまま新しい場所に運ぶ」と考えがちですが、価値が薄れた内容まで運び込む必要はありません。移す中身を減らすほど、移行作業は軽くなります。</p>
 
-<h2><span class="num">第２部</span>移行計画を立てる</h2>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">第２部</span>
+    <span class="title">移行計画を立てる</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 
 <p>期限が決まっている以上、行き当たりばったりで進めるのは危険だと考え、着手前に計画書を作りました。作成日から数えて実質二週間ほどしかない期限でした。<br>AI に相談しながら、現状の整理・技術選定・作業順序・想定される落とし穴を、一つの文書にまとめていきました。以下は、その計画段階で分かったことの記録です。</p>
 
@@ -550,7 +671,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <tr><td>HTTPS</td><td>リポジトリ設定で「 Enforce HTTPS 」を有効化。反映まで最大 24 時間程度</td><td>自動発行・自動更新</td></tr>
 </table>
 
-<p>すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていました。ここにさらに「ネームサーバーを Cloudflare へ切り替える」という、もう一段構成の異なる変更を重ねる必然性はないと判断しました。<strong>2026-08-31 という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方です。<br>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結します。</p>
+<p>すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていました。ここにさらに「ネームサーバーを Cloudflare へ切り替える」という、もう一段構成の異なる変更を重ねる必然性はないと判断しました。 <strong>2026-08-31 という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方です。<br>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結します。</p>
 <p>あわせて、いわゆる静的サイトジェネレーターなども特に導入しないことにしました。公開する内容が準備中を示す一枚もののページである以上、ビルド工程を挟む理由がなかったためです。依存パッケージのない、単一の <code>index.html</code> として作成する方針にしました。<br>リポジトリは新規に <code>pyx-site</code> という名前で作成し、公開範囲は Public （公開）としました。無料プランでは、 Private （非公開）のリポジトリで GitHub Pages を有効化できないと、この段階で判明したためです。</p>
 
 <h3>2-4. 全体の実施順序</h3>
@@ -579,9 +700,18 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <tr><td>新しいサイトの完成を確認する<br>→ 旧環境を削除する</td><td>削除後は元に戻せない</td></tr>
 </table>
 
-<hr class="sep">
+    </div>
+  </div>
+</section>
 
-<h2><span class="num">第３部</span>実際の移行作業（工程順の記録）</h2>
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">第３部</span>
+    <span class="title">実際の移行作業（工程順の記録）</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 
 <p>ここからが本編です。計画どおりに進んだ部分と、進まなかった部分の両方を、工程の順に記します。</p>
 
@@ -770,9 +900,18 @@ curl -I https://pyx.co.jp</code></pre>
   <li>権威サーバーへの確認で「設定は正しいが未反映なだけ」かを切り分ける</li>
 </ol>
 
-<hr class="sep">
+    </div>
+  </div>
+</section>
 
-<h2><span class="num">第４部</span>振り返り：得られた教訓</h2>
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">第４部</span>
+    <span class="title">振り返り：得られた教訓</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 
 <p>作業を終えて振り返ると、技術的な難所そのものより、<strong>別々の契約の、どちらに何が紐づいているかを見誤らないこと</strong>と、<strong>後戻りできない工程の前に、確認をどれだけ積んでおけるか</strong>の二点に、ほとんどの緊張が集まっていたように思います。</p>
 
@@ -788,9 +927,18 @@ curl -I https://pyx.co.jp</code></pre>
 <p>費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになりました。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果です。</p>
 <p>ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要です。静的サイトはページを配信する部分の攻撃対象を大幅に減らしますが、「公開する権限を持つアカウントを守る」という仕事は残ります。ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事です。</p>
 
-<hr class="sep">
+    </div>
+  </div>
+</section>
 
-<h2><span class="num">第５部</span>すべてのサイトが動的サイトである必要はない</h2>
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">第５部</span>
+    <span class="title">すべてのサイトが動的サイトである必要はない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
 
 <p>最後に、この移行の背景にあった、もう少し一般的な話をします。動的サイトの基盤となる WordPress は今も、世界中の膨大な数のサイトを支えている、優れたソフトウェアです。編集者が何人もいて、日常的に記事を書き、コメント機能や複雑なワークフローを必要とするサイトにとって、これ以上ないほど強力な選択肢であることは変わりません。</p>
 <p>問題は、 WordPress の優劣などの話ではなく、<strong>そのサイトが、実際にその能力を必要としているかどうか</strong>ということです。動的サイトを持つということは、コンテンツを管理するだけでなく、 PHP ・データベース・プラグイン・テーマという、一式のソフトウェア環境を自分の責任で維持し続けるということです。十分に複雑なソフトウェアには脆弱性が見つかるのが常で、その更新作業を引き受け続けることが、動的サイトを運用するということの実態です。</p>
@@ -825,8 +973,71 @@ curl -I https://pyx.co.jp</code></pre>
 
 <p><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けました。今回の移行は、その状態に区切りをつける作業でもありました。</p>
 
+    </div>
+  </div>
+</section>
+
+</div>
+
 <footer>本記事は、筆者が 2026 年 8 月におこなった移行作業の一次記録です。移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称（ XServer ）は、実名で記載しています。<br>一方で、サーバーの契約 ID 、サポートへの問い合わせ番号、旧サーバーの IP アドレス、ドメインの登録者情報など、それ自体が特定や悪用につながりうる識別情報は、記事の趣旨に必要ないため伏せてあります。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合があります。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してください。</footer>
 
 </div>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  document.querySelectorAll("[data-acc]").forEach(function(item){
+    var toggle = item.querySelector("[data-acc-toggle]");
+    toggle.addEventListener("click", function(){
+      var selection = window.getSelection();
+      if(selection.toString().length > 0) return;
+
+      var willOpen = !item.classList.contains("open");
+      if(willOpen){
+        Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+          if(sibling !== item && sibling.matches && sibling.matches("[data-acc]")){
+            sibling.classList.remove("open");
+          }
+        });
+      }
+      item.classList.toggle("open", willOpen);
+
+      if(willOpen){
+        setTimeout(function(){
+          item.scrollIntoView({behavior:"smooth", block:"start"});
+        }, OPEN_SCROLL_DELAY);
+      }
+    });
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.querySelectorAll('.toc a[href^="#sec"]').forEach(function(link){
+    link.addEventListener("click", function(){
+      var target = document.querySelector(link.getAttribute("href"));
+      if(target) target.classList.add("open");
+    });
+  });
+
+  if(location.hash){
+    var target = document.querySelector(location.hash);
+    if(target && target.matches("[data-acc]")){
+      target.classList.add("open");
+      setTimeout(function(){ target.scrollIntoView({behavior:"instant", block:"start"}); }, 0);
+    }
+  }
+})();
+</script>
 </body>
 </html>
