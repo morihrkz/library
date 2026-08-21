@@ -389,9 +389,9 @@
 <div class="wrap">
 
 <header class="hero">
-  <div class="kicker">実録・ある作業の記録</div>
+  <div class="kicker">実録・作業記録</div>
   <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="lede">二年間にわたり放置してしまっていたウェブサイト <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから、静的な HTML ファイルが配置されているのみの GitHub Pages へ移しました。</p>
+  <p class="lede">二年間にわたり放置していたウェブサイト <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから、静的な HTML ファイルが配置される GitHub Pages へ移しました。</p>
   <div class="hero-meta">
     <span>旧環境： WordPress / XServer</span>
     <span>新環境： GitHub Pages</span>
@@ -401,13 +401,29 @@
   </div>
 </header>
 
-<p class="story-lead">この移行は、単にファイルを「引っ越し」させる作業ではありませんでした。<strong>サーバーをやめると DNS はどうなるのか。</strong>　古い設定は本当に新しい DNS へ引き継がれるのか。何を削除してよく、どこから先は後戻りできないのか。実際に手を動かすと、計画段階では見えていなかった問題が一つずつ姿を現しました。<br>この記事の主題は、<strong>「動いていないサイトのために、動的な仕組みを維持し続ける必要が本当にあるか」を、実際に手を動かして確かめた記録</strong>です。</p>
+<div class="toolbar">
+  <button id="expandAll" type="button">すべて開く</button>
+  <button id="collapseAll" type="button">すべて閉じる</button>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">0</span>
+    <span class="title">はじめに</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+
+<p class="story-lead">この移行は、単にファイルを「引っ越し」させる作業ではありませんでした。サーバーをやめると DNS はどうなるのか。古い設定は本当に新しい DNS へ引き継がれるのか。何を削除していいのか。どこから先は後戻りできないのか。実際に手を動かすと、計画段階では見えていなかった問題が一つずつ姿を現しました。</p>
 
 <div class="fact-grid">
   <div class="fact-card">
     <div class="label">旧サイトの放置期間</div>
     <div class="value">約 2 年</div>
-    <div class="small">記事も更新も止まっていた期間</div>
+    <div class="small">更新が止まっていた期間</div>
   </div>
   <div class="fact-card">
     <div class="label">旧ネームサーバー</div>
@@ -425,27 +441,13 @@
 
 <div class="source-note">注：旧サーバーの IP アドレス、サーバー ID 、サポート問い合わせ番号など、それ自体が特定や悪用につながりうる識別情報は、記事の趣旨に必要ないため伏せてあります。 DNS の設定内容や作業手順は、移行計画書の実記録にもとづいています。</div>
 
-<div class="toc">
-  <div class="toc-title">この記事の流れ</div>
-  <ol>
-    <li><a href="#sec1">なぜウェブサイトのサーバーを移すことにしたか</a></li>
-    <li><a href="#sec2">移行計画を立てる</a></li>
-    <li><a href="#sec3">実際の移行作業（工程順の記録）</a></li>
-    <li><a href="#sec4">振り返り：得られた教訓</a></li>
-    <li><a href="#sec5">すべてのサイトが動的サイトである必要はない</a></li>
-  </ol>
-</div>
-
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
-</div>
-
-<div id="accordion">
+    </div>
+  </div>
+</section>
 
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">第１部</span>
+    <span class="num">1</span>
     <span class="title">なぜウェブサイトのサーバーを移すことにしたか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -516,7 +518,7 @@
 
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">第２部</span>
+    <span class="num">2</span>
     <span class="title">移行計画を立てる</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -706,7 +708,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
 
 <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">第３部</span>
+    <span class="num">3</span>
     <span class="title">実際の移行作業（工程順の記録）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -906,7 +908,7 @@ curl -I https://pyx.co.jp</code></pre>
 
 <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">第４部</span>
+    <span class="num">4</span>
     <span class="title">振り返り：得られた教訓</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
@@ -933,7 +935,7 @@ curl -I https://pyx.co.jp</code></pre>
 
 <section class="acc-item" id="sec5" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">第５部</span>
+    <span class="num">5</span>
     <span class="title">すべてのサイトが動的サイトである必要はない</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
