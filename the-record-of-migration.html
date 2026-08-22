@@ -524,7 +524,7 @@
 <p>まず前提として、「ドメイン」と「サーバー（ホスティング先）」は、別の契約です。<br>インターネット上のサーバーは <code>203.0.113.25</code> の様な「 IP アドレス」で区別されていますが、人間が毎回この数字を覚えるのは大変なので、 <code>pyx.co.jp</code> の様な「ドメイン名」を使います。この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> です。</p>
 
 <div class="diagram-box">
-<svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-d3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
       <path d="M0,0 L8,3 L0,6 Z" fill="#2f6f4f"/>
@@ -539,34 +539,29 @@
     .d3flow { stroke: #2f6f4f; stroke-width: 2; fill: none; marker-end: url(#arrow-d3); }
   </style>
 
-  <rect x="30" y="40" width="150" height="70" rx="12" class="d3node"/>
-  <text x="105" y="70" class="d3label">ブラウザ</text>
-  <text x="105" y="90" class="d3sub">（ＰＣ・スマホ）</text>
+  <rect x="20" y="15" width="190" height="175" rx="24" class="d3node"/>
+  <text x="115" y="98" class="d3label">ブラウザ</text>
+  <text x="115" y="118" class="d3sub">（ＰＣ・スマホ）</text>
 
-  <rect x="270" y="40" width="150" height="70" rx="12" class="d3node-alt"/>
-  <text x="345" y="70" class="d3label">DNS サーバー</text>
-  <text x="345" y="90" class="d3sub">（ドメインの電話帳）</text>
+  <rect x="470" y="15" width="210" height="75" rx="12" class="d3node"/>
+  <text x="575" y="48" class="d3label">DNS サーバー</text>
+  <text x="575" y="68" class="d3sub">（ドメインの電話帳）</text>
 
-  <rect x="500" y="40" width="150" height="70" rx="12" class="d3node"/>
-  <text x="575" y="70" class="d3label">Web サーバー</text>
-  <text x="575" y="90" class="d3sub">（レンタルサーバー等）</text>
+  <rect x="470" y="115" width="210" height="75" rx="12" class="d3node"/>
+  <text x="575" y="148" class="d3label">ウェブサーバー</text>
+  <text x="575" y="168" class="d3sub">（データの置き場）</text>
 
-  <path d="M180,60 L268,60" class="d3flow"/>
-  <text x="224" y="45" class="d3arrow-label">①この住所の IP は？</text>
+  <path d="M212,45 L468,45" class="d3flow"/>
+  <text x="340" y="30" class="d3arrow-label">①「この住所の IP は何ですか？」</text>
 
-  <path d="M270,90 L182,90" class="d3flow"/>
-  <text x="224" y="120" class="d3arrow-label">②この IP です</text>
+  <path d="M470,75 L214,75" class="d3flow"/>
+  <text x="340" y="100" class="d3arrow-label">②「この IP です」</text>
 
-  <path d="M180,150 L498,150" class="d3flow"/>
-  <text x="345" y="135" class="d3arrow-label">③その IP 宛にページをください（ HTTP リクエスト）</text>
+  <path d="M212,145 L468,145" class="d3flow"/>
+  <text x="340" y="130" class="d3arrow-label">③「データをください」（ HTTP リクエスト）</text>
 
-  <path d="M500,180 L182,180" class="d3flow"/>
-  <text x="345" y="210" class="d3arrow-label">④ HTML ファイルなどを返す</text>
-
-  <rect x="30" y="240" width="620" height="110" rx="12" fill="#f4f1ea" stroke="#e4e0d8"/>
-  <text x="50" y="270" style="text-anchor:start;font-family:sans-serif;font-size:15px;fill:#2b2a28;font-weight:bold">⑤ブラウザが HTML/CSS/JS を解釈して画面に描画</text>
-  <text x="50" y="300" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ 静的サイトでは、④で返すファイルが最初から完成している</text>
-  <text x="50" y="325" style="text-anchor:start;font-family:sans-serif;font-size:12px;fill:#6b6863">→ ①と②の DNS 問い合わせは一定時間キャッシュ（記憶）され、毎回は発生しない</text>
+  <path d="M470,175 L214,175" class="d3flow"/>
+  <text x="340" y="200" class="d3arrow-label">④（データ）</text>
 </svg>
 </div>
 <p class="caption">図２： URL を入力してからページが表示されるまでの流れ</p>
