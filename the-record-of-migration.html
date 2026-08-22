@@ -407,7 +407,7 @@
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">なぜ、サーバーをやめることにしたのか</span>
+    <span class="title">なぜサーバーを移すことにしたのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -435,7 +435,7 @@
     .title { font-family: sans-serif; font-size: 13px; font-weight: bold; fill: #2f6f4f; }
   </style>
 
-  <text x="20" y="30" class="title">動的サイト：　アクセスされた都度、組み立てる</text>
+  <text x="20" y="30" class="title">動的サイト = アクセスされた都度、組み立てる</text>
   <rect x="20" y="60" width="130" height="60" rx="10" class="node"/>
   <text x="85" y="95" class="label">ブラウザ</text>
   <path d="M150,90 L228,90" class="flow"/>
@@ -451,7 +451,7 @@
 
   <line x1="0" y1="220" x2="680" y2="220" stroke="#e4e0d8" stroke-dasharray="4 4"/>
 
-  <text x="20" y="255" class="title">静的サイト：　用意しているファイルをそのまま渡す</text>
+  <text x="20" y="255" class="title">静的サイト = 用意しているファイルをそのまま渡す</text>
   <rect x="20" y="280" width="150" height="60" rx="10" class="node"/>
   <text x="95" y="315" class="label">ブラウザ</text>
   <path d="M170,310 L268,310" class="flow"/>
@@ -486,7 +486,7 @@
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">先に調べる。特に DNS を</span>
+    <span class="title">先に調べる、特に DNS を</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -538,7 +538,7 @@
   <text x="340" y="200" class="d3arrow-label">④（データ）</text>
 </svg>
 </div>
-<p class="caption">図２： URL を入力してからページが表示されるまでの流れ</p>
+<p class="caption">図 2 : URL を入力してからページが表示されるまでの流れ</p>
 
 <p><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者 (XServer) でした。同じ会社でも「ドメイン契約」と「レンタルサーバー契約」という別々の契約として管理されています。ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態でした。</p>
 
@@ -548,10 +548,8 @@
 
 <table>
   <tr><th>管理画面</th><th>役割</th></tr>
-  <tr><td>XSever レンタルサーバー契約管理ページ<br>
-https://secure.xserver.ne.jp/xapanel/xserver/index</td><td>サーバーの各種設定（メールアカウント発行など含め）</td></tr>
-  <tr><td>XSever Domain 契約管理ページ<br>
-https://secure.xserver.ne.jp/xapanel/xdomain/index</td><td>ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td></tr>
+  <tr><td>XSever レンタルサーバー契約管理ページ<br>https://secure.xserver.ne.jp/xapanel/xserver/index</td><td>サーバーの各種設定（メールアカウント発行など含め）</td></tr>
+  <tr><td>XSever Domain 契約管理ページ<br>https://secure.xserver.ne.jp/xapanel/xdomain/index</td><td>ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td></tr>
 </table>
 
 <p>DNS レコードの管理は「 XSever レンタルサーバー契約管理ページ」ではなく、ドメイン契約に紐づく「 XSever Domain 管理ページ」の機能でした。<br>さらに、 XServer にはドメインだけを単独契約する利用者も存在し、そうした利用者も同じネームサーバー群を使っていることが公式マニュアルから読み取れました。サーバー契約を一度も持たない利用者がこの仕組みを使えている以上、サーバー契約の有無が DNS 配信の前提条件になっているとは考えにくいと判断できました。</p>
@@ -624,7 +622,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <text x="507" y="206" class="d5ok">編集する手段も名前解決も残る</text>
 </svg>
 </div>
-<p class="caption">図３： DNS にまつわる二つの機能が、どちらの契約に紐づいているか</p>
+<p class="caption">図 3 : DNS にまつわる二つの機能が、どちらの契約に紐づいているか</p>
 
 <h3>2-3. ホスティング先の選定： GitHub Pages を採用</h3>
 
@@ -673,7 +671,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
 <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3</span>
-    <span class="title">第 3 章　ここからが本番。実際の移行作業</span>
+    <span class="title">ここからが本番、実際の移行作業</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -873,7 +871,7 @@ curl -I https://pyx.co.jp</code></pre>
 <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4</span>
-    <span class="title">第 4 章　終わってから分かったこと</span>
+    <span class="title">終わってから、わかったこと</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
