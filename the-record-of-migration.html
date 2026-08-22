@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ウェブサーバーを GitHub Pages へ移行した記録 — 実録・ DNS 切替とサーバー移行</title>
+<title>ウェブサーバーを GitHub Pages へ移行した記録</title>
 <style>
   :root {
     --bg: #fdfcf9;
@@ -355,13 +355,13 @@
 <header class="hero">
   <div class="kicker">実録・作業記録</div>
   <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="lede">二年間ほとんど手を入れていなかった <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから GitHub Pages へ移しました。</p>
+  <p class="lede">二年間にわたり更新していなかった自社ウェブサイトを、 WordPress が動くレンタルサーバーから GitHub Pages へ移しました。その顛末を記します。</p>
   <div class="hero-meta">
-    <span>旧環境： WordPress / XServer</span>
-    <span>新環境： GitHub Pages</span>
-    <span>DNS ： Xserver Domain</span>
-    <span>独自ドメイン： pyx.co.jp</span>
-    <span>サーバー期限： 2026-08-31</span>
+    <span>旧環境 : WordPress / XServer</span>
+    <span>新環境 : GitHub Pages</span>
+    <span>DNS : Xserver Domain</span>
+    <span>独自ドメイン : pyx.co.jp</span>
+    <span>サーバー契約期限 : 2026 年 8 月 31 日</span>
   </div>
 </header>
 
@@ -381,7 +381,7 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 
-<p>「古いサーバーをやめ、 HTML ファイルを GitHub Pages に置き、ドメインの向き先を変える。」<br>こう言うと、それは単純な作業です。ところが実際に手を動かすと話は変わりました。<strong> DNS はどの契約に属しているのか。設定は本当に引き継がれるのか。何を確認してから削除すべきなのか。</strong>ひとつ判断を間違えれば、サイトだけでなくドメインへの到達性まで失います。そこで今回は、作業そのものだけでなく、次へ進んでよいと判断した根拠まで記録することにしました。</p>
+<p>「もとのサーバーから HTML ファイルを GitHub Pages に移し、ドメインの向き先を変える。」<br>こう言うと、単純な作業に聞こえます。ところが実際に手を動かすと話は変わりました。<strong> DNS はどの契約に属しているのか。設定は本当に引き継がれるのか。何を確認してから削除すべきなのか。</strong>ひとつ判断を間違えれば、サイトだけでなくドメインへの到達性まで失います。そこで今回は、作業そのものだけでなく、次へ進んでよいと判断した根拠まで記録することにしました。</p>
 
 <div class="fact-grid">
   <div class="fact-card">
@@ -398,7 +398,7 @@
 
 <p>以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものです。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記します。</p>
 
-<div class="source-note">注：旧サーバーの IP アドレス、サーバー ID 、サポート問い合わせ番号などの識別情報は、記事の趣旨に必要ないため伏せてあります。 DNS の設定内容や作業手順は、移行計画書の実記録にもとづいています。</div>
+<div class="source-note">注 : 旧サーバーの各種識別情報は、記事の趣旨に必要ないため伏せてあります。</div>
 
     </div>
   </div>
@@ -407,7 +407,7 @@
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">第 1 章　なぜ、サーバーをやめることにしたのか</span>
+    <span class="title">なぜ、サーバーをやめることにしたのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -435,7 +435,7 @@
     .title { font-family: sans-serif; font-size: 13px; font-weight: bold; fill: #2f6f4f; }
   </style>
 
-  <text x="20" y="30" class="title">動的サイト：　アクセスのたびに組み立てる（＝サーバーを借り続ける）</text>
+  <text x="20" y="30" class="title">動的サイト：　アクセスされた都度、組み立てる</text>
   <rect x="20" y="60" width="130" height="60" rx="10" class="node"/>
   <text x="85" y="95" class="label">ブラウザ</text>
   <path d="M150,90 L228,90" class="flow"/>
@@ -451,7 +451,7 @@
 
   <line x1="0" y1="220" x2="680" y2="220" stroke="#e4e0d8" stroke-dasharray="4 4"/>
 
-  <text x="20" y="255" class="title">静的サイト：　完成品をそのまま渡す（＝無料ホスティングで足りる）</text>
+  <text x="20" y="255" class="title">静的サイト：　用意しているファイルをそのまま渡す</text>
   <rect x="20" y="280" width="150" height="60" rx="10" class="node"/>
   <text x="95" y="315" class="label">ブラウザ</text>
   <path d="M170,310 L268,310" class="flow"/>
@@ -464,7 +464,7 @@
 </div>
 <p class="caption">図 1 : 動的サイトと静的サイトの、リクエストごとの処理の違い</p>
 
-<p><strong>「このサイトが動的サイトである必要は無いのではないか。」</strong>これが、作り直しを検討した最初の動機でした。<br>（なお、動的サイトを実現する手段は WordPress 以外にもありますが、便宜上、「動的サイト = WordPress 」としています。）</p>
+<p><strong>「このサイトは、必ずしも WordPress の上に構築されている必要は無いのではないか。」</strong><br>これが、作り直しを検討した最初の動機でした。<br>（なお、動的サイトを実現する手段は WordPress 以外にもありますが、便宜上、「動的サイト = WordPress 」としています。）</p>
 
 <table>
   <tr><th>観点</th><th>WordPress （動的サイト）</th><th>静的サイト</th></tr>
@@ -476,9 +476,9 @@
 
 <p>WordPress は世界中の膨大な数のサイトを支える優れたソフトウェアです。編集者が複数いて、日常的に記事を書き、コメント機能や複雑なワークフローを必要とするサイトにとっては依然として強力な選択肢です。<br>しかし <code>pyx.co.jp</code> はそれに該当するサイトではありませんでした。</p>
 
-<h3>1-3. 旧記事は移さず、一から作り直した</h3>
+<h3>1-3. 旧記事は移さず、新たなコンテンツを作った</h3>
 <p>もう一つ、早い段階で決めたことがあります。<strong>旧サイトの内容は一つも移行しない</strong>という判断です。<br>二年近く更新が止まっていた内容を、手間をかけて移し替える価値があるかを考えた結果でした。新サイトで当初公開する内容は仮の一枚のページのみとし、本格的な内容は落ち着いてから作り込むという方針にしました。</p>
-<p>移行というと「今あるものを、そのまま新しい場所に運ぶ」と考えがちですが、価値が薄れた内容まで運び込む必要はありません。移す中身を減らすほど、移行作業は軽くなります。</p>
+<p>移行というと、今あるものをそのまま新しい場所に持っていく、と考えがちですが、価値が薄れた内容まで運び込む必要はありません。移すものが少なければ移行作業は軽くなります。</p>
     </div>
   </div>
 </section>
@@ -486,7 +486,7 @@
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">第 2 章　先に調べる。特に DNS を</span>
+    <span class="title">先に調べる。特に DNS を</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -515,7 +515,7 @@
 
   <rect x="20" y="15" width="190" height="175" rx="24" class="d3node"/>
   <text x="115" y="98" class="d3label">ブラウザ</text>
-  <text x="115" y="118" class="d3sub">（ＰＣ・スマホ）</text>
+  <text x="115" y="118" class="d3sub">（ PC やスマホ）</text>
 
   <rect x="470" y="15" width="210" height="75" rx="12" class="d3node"/>
   <text x="575" y="48" class="d3label">DNS サーバー</text>
@@ -540,19 +540,21 @@
 </div>
 <p class="caption">図２： URL を入力してからページが表示されるまでの流れ</p>
 
-<p><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者 (XServer) でした。同じ会社でも「ドメイン契約」と「サーバー契約」という別々の契約として管理されています。ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態でした。</p>
+<p><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者 (XServer) でした。同じ会社でも「ドメイン契約」と「レンタルサーバー契約」という別々の契約として管理されています。ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態でした。</p>
 
 <h3>2-2. 最大の論点：　サーバー契約をやめても DNS は生き残るか</h3>
 <p>計画段階でいちばん時間を使ったのが、この一点でした。<strong>レンタルサーバーの契約をやめたとき、ドメインの DNS 設定を編集する手段と、ドメイン名から IP アドレスを引く「名前解決」の仕組みは、どうなるのか。</strong></p>
 <p>これは類推だけでは確定できない問題でした。 XServer の公式案内には、期限を超過したサーバーアカウントについて「凍結が行われるとホームページへのアクセスやメールの送受信が行えなくなります」とだけ書かれており、「 DNS レコードの管理ができなくなる」とは明記されていませんでした。<br>一方で、 XServer には管理画面が二種類あり、役割が分かれていることも分かりました。</p>
 
 <table>
-  <tr><th>管理画面</th><th>役割</th><th>紐づく契約</th></tr>
-  <tr><td>サーバーパネル</td><td>サーバーの各種設定（メールアカウント発行など）</td><td>サーバー契約</td></tr>
-  <tr><td>XServer アカウント<br>（ドメイン契約管理ページ）</td><td>契約情報の確認・支払い、ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td><td>ドメイン契約</td></tr>
+  <tr><th>管理画面</th><th>役割</th></tr>
+  <tr><td>XSever レンタルサーバー契約管理ページ<br>
+https://secure.xserver.ne.jp/xapanel/xserver/index</td><td>サーバーの各種設定（メールアカウント発行など含め）</td></tr>
+  <tr><td>XSever Domain 契約管理ページ<br>
+https://secure.xserver.ne.jp/xapanel/xdomain/index</td><td>ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td></tr>
 </table>
 
-<p>DNS レコードの管理は、サーバーパネルではなく、ドメイン契約に紐づく「 XServer アカウント」側の機能でした。<br>さらに、 XServer にはドメインだけを単独契約する利用者も存在し、そうした利用者も同じネームサーバー群を使っていることが公式マニュアルから読み取れました。サーバー契約を一度も持たない利用者がこの仕組みを使えている以上、サーバー契約の有無が DNS 配信の前提条件になっているとは考えにくいと判断できました。</p>
+<p>DNS レコードの管理は「 XSever レンタルサーバー契約管理ページ」ではなく、ドメイン契約に紐づく「 XSever Domain 管理ページ」の機能でした。<br>さらに、 XServer にはドメインだけを単独契約する利用者も存在し、そうした利用者も同じネームサーバー群を使っていることが公式マニュアルから読み取れました。サーバー契約を一度も持たない利用者がこの仕組みを使えている以上、サーバー契約の有無が DNS 配信の前提条件になっているとは考えにくいと判断できました。</p>
 
 <p>ただし、これは状況証拠の積み重ねにすぎません。実際に <code>dig</code> コマンドで <code>pyx.co.jp</code> の現在のネームサーバーを調べたところ、次のように、サーバー契約者専用のネームサーバーが設定されていることが分かりました。</p>
 
@@ -907,7 +909,7 @@ curl -I https://pyx.co.jp</code></pre>
 
 
 
-<footer>本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録です。移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> は実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてあります。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合があります。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してください。</footer>
+<footer>本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録です。<br>移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> などは実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてあります。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合があります。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してください。</footer>
 
 </div>
 
