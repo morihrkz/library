@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ウェブサーバーを GitHub Pages へ移行した記録</title>
+<title>ウェブサーバーを GitHub Pages へ移行した記録 — 実録・ DNS 切替とサーバー移行</title>
 <style>
   :root {
     --bg: #fdfcf9;
@@ -80,17 +80,10 @@
     color: var(--accent);
   }
   p { margin: 16px 0; text-indent: 1em; }
-  .lede, .callout p, .warn p, .box p, .caption, .toc p, .source-note { text-indent: 0; }
+  .lede, .callout p, .caption, .source-note { text-indent: 0; }
   ul, ol { margin: 16px 0; padding-left: 1.4em; }
   li { margin: 8px 0; }
   a { color: var(--accent); }
-  .box {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px;
-    margin: 24px 0;
-  }
   .diagram-box {
     background: var(--card);
     border: 1px solid var(--line);
@@ -114,13 +107,6 @@
     margin: 20px 0;
   }
   .callout strong { color: var(--accent); }
-  .warn {
-    background: var(--warn-bg);
-    border-left: 4px solid var(--warn-border);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-  }
   code, pre {
     font-family: "SF Mono", Menlo, Consolas, monospace;
     font-size: 14px;
@@ -151,22 +137,6 @@
     vertical-align: top;
   }
   th { background: var(--code-bg); }
-  .toc {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin: 32px 0;
-  }
-  .toc-title { font-weight: 700; margin-bottom: 8px; color: var(--accent); }
-  .toc ol { margin: 0; padding-left: 1.2em; }
-  .toc li { margin: 4px 0; }
-  .toc a { text-decoration: none; }
-  hr.sep {
-    border: none;
-    border-top: 1px dashed var(--line);
-    margin: 48px 0;
-  }
   footer {
     margin-top: 64px;
     padding-top: 24px;
@@ -236,15 +206,9 @@
     font-size: 13px;
     text-indent: 0;
   }
-  .story-lead {
-    font-size: 18px;
-    line-height: 2;
-    margin: 28px 0;
-  }
-  .story-lead strong { color: var(--accent); }
   .fact-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
     margin: 28px 0;
   }
@@ -391,7 +355,7 @@
 <header class="hero">
   <div class="kicker">実録・作業記録</div>
   <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="lede">二年間にわたり放置していたウェブサイト <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから、静的な HTML ファイルが配置される GitHub Pages へ移しました。</p>
+  <p class="lede">二年間ほとんど手を入れていなかった <code>pyx.co.jp</code> を、 WordPress が動くレンタルサーバーから GitHub Pages へ移しました。</p>
   <div class="hero-meta">
     <span>旧環境： WordPress / XServer</span>
     <span>新環境： GitHub Pages</span>
@@ -417,7 +381,7 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 
-<p class="story-lead">この移行は、単にファイルを引っ越しさせる作業ではありませんでした。サーバーをやめると DNS はどうなるのか。古い設定は本当に新しい DNS へ引き継がれるのか。何を削除していいのか。どこから先は後戻りできないのか。実際に手を動かすと、計画段階では見えていなかった問題が一つずつ姿を現しました。</p>
+<p>「古いサーバーをやめ、 HTML ファイルを GitHub Pages に置き、ドメインの向き先を変える。」<br>こう言うと、それは単純な作業です。ところが実際に手を動かすと話は変わりました。<strong> DNS はどの契約に属しているのか。設定は本当に引き継がれるのか。何を確認してから削除すべきなのか。</strong>ひとつ判断を間違えれば、サイトだけでなくドメインへの到達性まで失います。そこで今回は、作業そのものだけでなく、次へ進んでよいと判断した根拠まで記録することにしました。</p>
 
 <div class="fact-grid">
   <div class="fact-card">
@@ -426,7 +390,7 @@
     <div class="small">サーバー契約に紐づく DNS</div>
   </div>
   <div class="fact-card">
-    <div class="label">新しいネームサーバー</div>
+    <div class="label">新ネームサーバー</div>
     <div class="value"><code>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp</code></div>
     <div class="small">Xserver Domain 側の DNS</div>
   </div>
@@ -443,7 +407,7 @@
 <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">なぜウェブサイトのサーバーを移すことにしたか</span>
+    <span class="title">第 1 章　なぜ、サーバーをやめることにしたのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -522,13 +486,13 @@
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">移行計画を立てる</span>
+    <span class="title">第 2 章　先に調べる。特に DNS を</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
 
-<p>期限が決まっている以上、行き当たりばったりで進めるのは危険だと考え、着手前に計画書を作りました。作成日から数えて実質二週間ほどしかない期限でした。<br>AI に相談しながら、現状の整理・技術選定・作業順序・想定される落とし穴を、一つの文書にまとめていきました。以下は、その計画段階で分かったことの記録です。</p>
+<p>ここで一度、作業の手を止めました。期限が決まっている以上、行き当たりばったりで進めるのは危険です。作成日から数えて実質二週間ほどしかない期限でした。<br>AI に相談しながら、現状の整理・技術選定・作業順序・想定される落とし穴を、一つの文書にまとめていきました。以下は、その計画段階で分かったことの記録です。</p>
 
 <h3>2-1. ドメインとサーバーは別契約、という基本</h3>
 <p>まず前提として、「ドメイン」と「サーバー（ホスティング先）」は、別の契約です。<br>インターネット上のサーバーは <code>203.0.113.25</code> の様な「 IP アドレス」で区別されていますが、人間が毎回この数字を覚えるのは大変なので、 <code>pyx.co.jp</code> の様な「ドメイン名」を使います。この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> です。</p>
@@ -601,7 +565,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
 <div class="callout">
   <strong>サポート回答の要点（ 8 月 16 日）</strong><br>
   1. ドメインのみ契約している状態でも、ネームサーバーを Xserver Domain （サーバー契約に紐づかない、ドメイン契約側の DNS 管理機能）に設定すれば、引き続き DNS レコードの編集・管理が可能。<br>
-  2. ns1 〜 ns5.xserver.jp による名前解決は、レンタルサーバー契約者専用であり、サーバー契約が凍結されると使えなくなる。したがって、凍結前にネームサーバーを Xserver Domain へ切り替えておく必要がある。
+  2. ns1.xserver.jp 〜 ns5.xserver.jp による名前解決は、レンタルサーバー契約者専用であり、サーバー契約が凍結されると使えなくなる。したがって、凍結前にネームサーバーを Xserver Domain へ切り替えておく必要がある。
 </div>
 
 <p>この回答により、作業の前提が一点変わりました。<strong>サーバー契約が凍結される前に、ネームサーバーを Xserver Domain へ切り替える作業が、独立した必須工程として加わった</strong>のです（詳しくは第３部）。</p>
@@ -671,11 +635,11 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <tr><td>HTTPS</td><td>リポジトリ設定で Enforce HTTPS を有効化。反映まで最大 24 時間程度</td><td>自動発行・自動更新</td></tr>
 </table>
 
-<p>すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていました。ここにさらに、ネームサーバーを Cloudflare へ切り替えるという、もう一段構成の異なる変更を重ねる必然性はないと判断しました。 <strong>2026-08-31 という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方です。<br>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結します。</p>
+<p>すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていました。ここにさらに、ネームサーバーを Cloudflare へ切り替えるという、もう一段構成の異なる変更を重ねる必然性はないと判断しました。 <strong> 8 月 31 日という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方です。<br>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結します。</p>
 <p>あわせて、いわゆる静的サイトジェネレーターなども特に導入しないことにしました。公開する内容が準備中を示す一枚もののページである以上、ビルド工程を挟む理由がなかったためです。依存パッケージのない、単一の <code>index.html</code> として作成する方針にしました。<br>リポジトリは新規に <code>pyx-site</code> という名前で作成し、公開範囲は Public （公開）としました。無料プランでは、 Private （非公開）のリポジトリで GitHub Pages を有効化できないと、この段階で判明したためです。</p>
 
 <h3>2-4. 全体の実施順序</h3>
-<p>サーバー契約の期限（ 8 月 31 日）から逆算し、作業を六つの工程に分けました。上から順に実行すれば、前提を満たさないまま先に進んでしまうことがない並びです。</p>
+<p>サーバー契約の期限日から逆算し、作業を六つの工程に分けました。上から順に実行すれば、前提を満たさないまま先に進んでしまうことがない並びです。</p>
 
 <table>
   <tr><th>工程</th><th>内容</th></tr>
@@ -707,13 +671,13 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
 <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3</span>
-    <span class="title">実際の移行作業（工程順の記録）</span>
+    <span class="title">第 3 章　ここからが本番。実際の移行作業</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
 
-<p>ここからが本編です。計画どおりに進んだ部分と、進まなかった部分の両方を、工程の順に記します。</p>
+<p>そして、実際の切り替えに入りました。ここから先は、計画書の中では数行だった作業が、ひとつずつ現実の判断になります。計画どおりに進んだところもあれば、<strong>実際に設定を切り替えた瞬間に、計画とは違う答えが返ってきたところもありました。</strong></p>
 
 <h3>3-1. 工程 1 ：移行前の保全、 DNS レコードのバックアップ</h3>
 
@@ -727,7 +691,7 @@ dig +short TXT pyx.co.jp</code></pre>
 
 <table>
   <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
-  <tr><td>NS</td><td>pyx.co.jp</td><td>ns1 〜 ns5.xserver.jp</td></tr>
+  <tr><td>NS</td><td>pyx.co.jp</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td></tr>
   <tr><td>A</td><td>pyx.co.jp</td><td>（旧サーバーの IP アドレス）</td></tr>
   <tr><td>A</td><td>www.pyx.co.jp</td><td>（ apex と同一）</td></tr>
   <tr><td>MX</td><td>pyx.co.jp</td><td>0 pyx.co.jp</td></tr>
@@ -746,10 +710,10 @@ dig +short TXT pyx.co.jp</code></pre>
 dig @a.dns.jp pyx.co.jp NS +norecurse
 # 切替後の権威サーバーが実際に何を持っているか
 dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre>
-<p>ここで想定外のことが起きました。<strong>切り替えは成功しましたが、それまで設定されていた DNS レコードは、一件も引き継がれませんでした。</strong><br>「切り替えたのだから、古い A レコードもそのまま新しい DNS に移るだろう」と考えていたら、ここで作業は止まっていたはずです。実際には、ゾーンを成立させるための NS と SOA は用意されたものの、設定したはずの A/MX/TXT は空でした。</p>
+<p>ここで、計画書にはなかった事実が一つ現れました。<strong>切り替えは成功しましたが、それまで設定されていた DNS レコードは、一件も引き継がれませんでした。</strong><br>「切り替えたのだから、古い A レコードもそのまま新しい DNS に移るだろう」と考えていたら、ここで作業は止まっていたはずです。実際には、ゾーンを成立させるための NS と SOA は用意されたものの、設定したはずの A/MX/TXT は空でした。</p>
 <table>
   <tr><th>レコード</th><th>切替前</th><th>切替後の Xserver Domain 側</th></tr>
-  <tr><td>NS</td><td>ns1 〜 ns5.xserver.jp</td><td>ns1 〜 ns3.xdomain.ne.jp （自動生成）</td></tr>
+  <tr><td>NS</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td><td>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp （自動生成）</td></tr>
   <tr><td>SOA</td><td>—</td><td>自動生成</td></tr>
   <tr><td>A （ pyx.co.jp ）</td><td>設定あり</td><td>無し</td></tr>
   <tr><td>A （ www.pyx.co.jp ）</td><td>設定あり</td><td>無し</td></tr>
@@ -907,13 +871,14 @@ curl -I https://pyx.co.jp</code></pre>
 <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4</span>
-    <span class="title">振り返り：得られた教訓</span>
+    <span class="title">第 4 章　終わってから分かったこと</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
 
-<p>作業を終えて振り返ると、技術的な難所そのものより、<strong>別々の契約の、どちらに何が紐づいているかを見誤らないこと</strong>と、<strong>後戻りできない工程の前に、確認をどれだけ積んでおけるか</strong>の二点に、ほとんどの緊張が集まっていたように思います。</p>
+<p>終わってみると、この移行でいちばん難しかったのは、 DNS のコマンドを覚えることでも、 GitHub Pages を設定することでもありませんでした。<strong>「いま何が、どの契約に紐づいているのか」を見誤らないこと。そして「ここから先は戻れない」という地点を、先に見つけておくこと。</strong>緊張が集まっていたのは、この二点でした。</p>
+<h3>4-1. 「待つ」より先に、「誰に聞くか」を考える</h3>
 
 <ul>
   <li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる (2-2)</li>
@@ -924,33 +889,27 @@ curl -I https://pyx.co.jp</code></pre>
   <li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある (2-5 / 3-5)</li>
 </ul>
 
+<h3>4-2. 移行で得たものは、費用よりも単純さだった</h3>
 <p>費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになりました。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果です。</p>
 <p>ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要です。静的サイトはページを配信する部分の攻撃対象を大幅に減らしますが、「公開する権限を持つアカウントを守る」という仕事は残ります。ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事です。</p>
 
-    </div>
-  </div>
-</section>
 
-<section class="acc-item" id="sec5" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">おわりに</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
 
+<h3>4-3. 移行後に残ったもの、消えたもの</h3>
 <p>移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさです。 WordPress の管理画面・ PHP ・データベース・プラグイン更新・サーバー側の保守という一式を抱える必要がなくなり、サイトを更新するときは、基本的に HTML ファイルを更新したら Git 操作で commit ～ push するだけで済む様になりました。もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残ります。それでも、格段にシンプルな流れになったことは確かです。</p>
 
 <p><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けました。今回の移行は、その状態に区切りをつける作業でもありました。</p>
+<p>結局、移したのはサイトというより、サイトを支える仕組みでした。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用です。</p>
 
     </div>
   </div>
 </section>
 
-</div>
 
-<footer>本記事は、筆者が 2026 年 8 月におこなった移行作業の一次情報です。移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> は実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてあります。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合があります。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してください。</footer>
+
+<footer>本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録です。移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> は実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてあります。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合があります。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してください。</footer>
+
+</div>
 
 </div>
 
@@ -991,13 +950,6 @@ curl -I https://pyx.co.jp</code></pre>
   document.getElementById("collapseAll").addEventListener("click", function(){
     document.querySelectorAll("[data-acc]").forEach(function(item){
       item.classList.remove("open");
-    });
-  });
-
-  document.querySelectorAll('.toc a[href^="#sec"]').forEach(function(link){
-    link.addEventListener("click", function(){
-      var target = document.querySelector(link.getAttribute("href"));
-      if(target) target.classList.add("open");
     });
   });
 
