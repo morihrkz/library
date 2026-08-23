@@ -317,9 +317,9 @@
     .pullquote::before,.pullquote::after{display:none;}
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
-  .hero{isolation:isolate;min-height:300px;display:grid;place-items:center;padding-block:64px}
+  .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
-  .hero-inner{max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  .hero-inner{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
 </head>
