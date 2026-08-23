@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ウェブサーバーを GitHub Pages へ移行した記録</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #fdfcf9;
     --text: #2b2a28;
@@ -18,13 +19,14 @@
     --warn-border: #e0a94b;
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
     font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
     line-height: 1.9;
-    font-size: 17px;
+    font-size: 16px;
   }
   .wrap {
     max-width: 920px;
@@ -32,28 +34,53 @@
     padding: 48px 32px 120px;
   }
   header.hero {
-    padding: 56px 0 32px;
+    background: linear-gradient(140deg, #14231b 0%, #23412f 100%);
     border-bottom: 3px solid var(--accent);
-    margin-bottom: 40px;
+    padding: 56px 0 44px;
+  }
+  header.hero .hero-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  header.hero .kicker { color: #8fc79c; }
+  header.hero h1 { color: #f2f7f3; }
+  header.hero .lede { color: #bdd3c3; }
+  header.hero .hero-meta span {
+    background: rgba(255,255,255,.06);
+    border-color: rgba(143,199,156,.35);
+    color: #cfe0d4;
+  }
+  .hero-figure {
+    margin: 30px 0 0;
+    overflow-x: auto;
+  }
+  .hero-figure svg { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #a9c4b2;
+    text-indent: 0;
   }
   .kicker {
     color: var(--accent);
     font-weight: 700;
     letter-spacing: 0.05em;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 12px;
   }
   h1 {
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1.5;
     margin: 0 0 16px;
   }
   .lede {
     color: var(--sub);
-    font-size: 16px;
+    font-size: 15px;
   }
   h2 {
-    font-size: 24px;
+    font-size: 23px;
     margin-top: 64px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--line);
@@ -63,19 +90,19 @@
   }
   h2 .num {
     color: var(--accent);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     background: var(--accent-light);
     padding: 3px 10px;
     border-radius: 999px;
   }
   h3 {
-    font-size: 19px;
+    font-size: 18px;
     margin-top: 36px;
     color: var(--text);
   }
   h4 {
-    font-size: 16px;
+    font-size: 15px;
     margin-top: 28px;
     color: var(--accent);
   }
@@ -96,7 +123,7 @@
   .caption {
     text-align: center;
     color: var(--sub);
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 8px;
   }
   .callout {
@@ -109,7 +136,7 @@
   .callout strong { color: var(--accent); }
   code, pre {
     font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: 14px;
+    font-size: 13px;
   }
   code {
     background: var(--code-bg);
@@ -128,7 +155,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 15px;
+    font-size: 14px;
   }
   th, td {
     border: 1px solid var(--line);
@@ -142,7 +169,7 @@
     padding-top: 24px;
     border-top: 2px solid var(--line);
     color: var(--sub);
-    font-size: 14px;
+    font-size: 13px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -170,7 +197,7 @@
   .check li { padding-left: 1.8em; text-indent: -1.8em; }
   .verdict {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     color: var(--accent);
     background: var(--accent-light);
     border-radius: 8px;
@@ -180,7 +207,7 @@
   }
   .pill {
     display: inline-block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     padding: 2px 8px;
     border-radius: 999px;
@@ -203,7 +230,7 @@
     border-radius: 999px;
     background: var(--card);
     color: var(--sub);
-    font-size: 13px;
+    font-size: 12px;
     text-indent: 0;
   }
   .fact-grid {
@@ -220,27 +247,27 @@
   }
   .fact-card .label {
     color: var(--sub);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: .04em;
     margin-bottom: 6px;
     text-indent: 0;
   }
   .fact-card .value {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--accent);
     text-indent: 0;
   }
   .fact-card .small {
     color: var(--sub);
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 5px;
     text-indent: 0;
   }
   .source-note {
     color: var(--sub);
-    font-size: 13px;
+    font-size: 12px;
     border-top: 1px dashed var(--line);
     padding-top: 10px;
     margin-top: 18px;
@@ -248,9 +275,24 @@
   @media (max-width: 760px) {
     .fact-grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 6px; }
+    header.hero .hero-inner { padding: 0 20px; }
+    .hero-figure svg { min-width: 620px; }
   }
 
   /* ---------- Accordion ---------- */
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 32px 0 24px;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex;
     justify-content: center;
@@ -260,7 +302,7 @@
   }
   .toolbar button {
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--accent);
     background: var(--card);
@@ -299,7 +341,7 @@
   .acc-header .num {
     flex: 0 0 auto;
     color: var(--accent);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     background: var(--accent-light);
     padding: 3px 10px;
@@ -307,7 +349,7 @@
   }
   .acc-header .title {
     flex: 1 1 auto;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     line-height: 1.5;
   }
@@ -344,15 +386,15 @@
   .acc-panel-inner > h3:first-child { margin-top: 20px; }
   @media (max-width: 760px) {
     .acc-header { padding: 15px 16px; gap: 10px; }
-    .acc-header .title { font-size: 17px; }
+    .acc-header .title { font-size: 16px; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 20px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
 <header class="hero">
+  <div class="hero-inner">
   <div class="kicker">実録・作業記録</div>
   <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
   <p class="lede">二年間にわたり更新していなかった自社ウェブサイトを、 WordPress が動くレンタルサーバーから GitHub Pages へ移しました。その顛末を記します。</p>
@@ -363,11 +405,85 @@
     <span>独自ドメイン : pyx.co.jp</span>
     <span>サーバー契約期限 : 2026 年 8 月 31 日</span>
   </div>
+
+  <figure class="hero-figure">
+    <svg viewBox="0 0 720 268" role="img" aria-labelledby="mgTitle mgDesc">
+      <title id="mgTitle">移行を六つの工程に分けた並びと、入れ替えられない順序</title>
+      <desc id="mgDesc">左から右へ、 DNS レコードのバックアップ、ネームサーバーの切り替え、サイト構築と完成確認、旧 WordPress 環境の削除、 DNS を GitHub Pages へ向ける、切替後の検証という六工程が一本の線でつながる図。工程 2 にはサーバー契約の凍結前に済ませる必要があるという注記が付き、下部の破線の枠には入れ替えてはいけない四つの順序が並ぶ。</desc>
+
+      <text x="360" y="24" class="figTitle">六つの工程と、入れ替えられない順序</text>
+
+      <text x="192" y="52" class="warnnote">サーバー契約の凍結前に済ませる必要があった</text>
+      <path d="M192 58 V88" stroke="#e0a94b" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <path d="M192 94 l-5 -8 h10 z" fill="#e0a94b" fill-opacity="0.85"/>
+
+      <line x1="80" y1="112" x2="640" y2="112" stroke="#8fc79c" stroke-opacity="0.35" stroke-width="1.6"/>
+
+      <g>
+        <circle cx="80" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <text x="80" y="117" class="num">1</text>
+        <text x="80" y="145" class="step">DNS レコード</text>
+        <text x="80" y="159" class="step">のバックアップ</text>
+
+        <circle cx="192" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <text x="192" y="117" class="num">2</text>
+        <text x="192" y="145" class="step">ネームサーバー</text>
+        <text x="192" y="159" class="step">を切り替える</text>
+
+        <circle cx="304" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#cfe0d4" stroke-opacity="0.5"/>
+        <text x="304" y="117" class="num light">3</text>
+        <text x="304" y="145" class="step">サイト構築と</text>
+        <text x="304" y="159" class="step">完成確認</text>
+
+        <circle cx="416" cy="112" r="15" fill="#e0a94b" fill-opacity="0.85"/>
+        <text x="416" y="117" class="num">4</text>
+        <text x="416" y="145" class="step">旧 WordPress</text>
+        <text x="416" y="159" class="step">環境の削除</text>
+
+        <circle cx="528" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <text x="528" y="117" class="num">5</text>
+        <text x="528" y="145" class="step">DNS を GitHub</text>
+        <text x="528" y="159" class="step">Pages へ向ける</text>
+
+        <circle cx="640" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#cfe0d4" stroke-opacity="0.5"/>
+        <text x="640" y="117" class="num light">6</text>
+        <text x="640" y="145" class="step">切替後の</text>
+        <text x="640" y="159" class="step">検証</text>
+      </g>
+
+      <path d="M192 88 q56 -22 112 0" fill="none" stroke="#cfe0d4" stroke-opacity="0.45" stroke-width="1.3" stroke-dasharray="4 3"/>
+      <text x="248" y="74" class="para">2 と 3 は並行できた</text>
+
+      <rect x="46" y="180" width="628" height="74" rx="8" fill="none" stroke="#8fc79c" stroke-opacity="0.45" stroke-dasharray="5 4"/>
+      <text x="66" y="200" class="boxttl">入れ替えてはいけない四つの順序</text>
+      <text x="66" y="222" class="rule">DNS を控える → ネームサーバー切替</text>
+      <text x="66" y="242" class="rule">標準 URL で確認 → Custom domain 設定</text>
+      <text x="388" y="222" class="rule">Custom domain 設定 → DNS レコード設定</text>
+      <text x="388" y="242" class="rule">完成を確認 → 旧環境を削除</text>
+
+      <style>
+        .figTitle { fill: #f2f7f3; font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .num { fill: #16241c; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .num.light { fill: #eaf2ec; }
+        .step { fill: #dcebe0; font-size: 11px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .warnnote { fill: #e0a94b; font-size: 11px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .para { fill: #a9c4b2; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .boxttl { fill: #8fc79c; font-size: 11.5px; font-weight: 700; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+        .rule { fill: #cfe0d4; font-size: 11px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+      </style>
+    </svg>
+    <figcaption>サーバー契約の期限から逆算して組んだ六工程。緑は DNS に触れる工程、橙は取り消しのきかない削除工程を示す。工程 2 と 3 は互いに独立していて並行できたが、下段の四か所だけは技術上・安全上の理由から順序が固定される。</figcaption>
+  </figure>
+  </div>
 </header>
 
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
+<div class="wrap">
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
 </div>
 
 <div id="accordion">

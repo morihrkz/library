@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>「 SaaS is dead 」言説を検証する - UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #fdfcf9;
     --paper: #ffffff;
@@ -20,6 +21,7 @@
     --hero-dim: #a9b8b6;
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -127,6 +129,19 @@
     .hero-figure svg { min-width: 580px; }
   }
 
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 2.4rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     margin: 0 0 2.4rem;
@@ -245,9 +260,11 @@
 
 <p class="meta">執筆日： 2026 年 8 月 12 日</p>
 
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
 </div>
 
 <div id="accordion">
@@ -301,7 +318,7 @@
 <section class="acc-item" id="sec2" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">事実確認： Salesforce</span>
+    <span class="title">事実確認 : Salesforce</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -324,7 +341,7 @@ CNBC の報道（ 2026 年 5 月 27 日付）によれば、この四半期決�
 <section class="acc-item" id="sec3" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3</span>
-    <span class="title">事実確認：サイボウズ／ kintone</span>
+    <span class="title">事実確認 : サイボウズ - kintone</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -351,7 +368,7 @@ CNBC の報道（ 2026 年 5 月 27 日付）によれば、この四半期決�
 <section class="acc-item" id="sec4" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4</span>
-    <span class="title">構造分析： SaaS の三層モデル</span>
+    <span class="title">構造分析 : SaaS の三層モデル</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">

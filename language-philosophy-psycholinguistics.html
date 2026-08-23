@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>言語哲学と心理言語学</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #f7f7fa;
     --paper: #ffffff;
@@ -21,6 +22,7 @@
     --hero-dim: #c3b9dd;
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -58,6 +60,15 @@
     font-size: 0.98rem;
     text-indent: 0;
   }
+  header.hero .hero-figure { max-width: 960px; margin: 2rem 0 0; overflow-x: auto; }
+  header.hero .hero-figure svg { display: block; width: 100%; height: auto; }
+  header.hero .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--hero-dim);
+    text-indent: 0;
+  }
 
   main.wrap { padding-bottom: 4rem; }
   h2 {
@@ -85,6 +96,19 @@
   ol.refs li, ul.refs li { margin-bottom: 0.6em; }
   a { color: var(--accent); }
 
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 2.4rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     margin: 0 0 2.4rem;
@@ -130,6 +154,7 @@
   }
   .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
   @media (max-width: 600px) {
+    header.hero .hero-figure svg { min-width: 580px; }
     .acc-header { padding: 15px 16px; gap: 10px; }
     .acc-header .title { font-size: 1rem; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
@@ -143,14 +168,80 @@
     <span class="eyebrow">概説 / PHILOSOPHY OF LANGUAGE</span>
     <h1>言語哲学と心理言語学</h1>
     <p class="sub">概念分析で意味を問う言語哲学と、実験で心と脳の言語処理を調べる心理言語学。二つの学問的伝統を見取り図としてまとめる</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 330" role="img" aria-labelledby="lpTitle lpDesc">
+        <title id="lpTitle">言語哲学と心理言語学の対象・方法・系譜と、認知科学での交差</title>
+        <desc id="lpDesc">左に言語哲学、右に心理言語学を対置した図。言語哲学は概念分析と論証を方法とし、指示・真理・意味・必然性・言語行為を対象とする。心理言語学は行動実験・計算モデル・脳計測を方法とし、言語理解・産出・獲得・神経機構を対象とする。両者は下部の認知科学という交差点へ矢印で合流する。</desc>
+
+        <text x="360" y="24" class="figTitle">「意味とは何か」への二つの接近路</text>
+
+        <rect x="14" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#8f7fc4" stroke-opacity="0.45"/>
+        <text x="179" y="70" class="side">言語哲学</text>
+        <text x="179" y="90" class="method">概念分析・論証で問う</text>
+        <g>
+          <rect x="34" y="104" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="102" y="122" class="item">指示 reference</text>
+          <rect x="188" y="104" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="256" y="122" class="item">真理 truth</text>
+          <rect x="34" y="136" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="102" y="154" class="item">意味 meaning</text>
+          <rect x="188" y="136" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="256" y="154" class="item">必然性 necessity</text>
+          <rect x="34" y="168" width="290" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="179" y="186" class="item">言語行為論 ─ 発語・発語内・発語媒介</text>
+        </g>
+        <text x="179" y="210" class="lineage">フレーゲ → ラッセル → ウィトゲンシュタイン → クリプキ</text>
+
+        <rect x="376" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#7fb0c4" stroke-opacity="0.45"/>
+        <text x="541" y="70" class="side alt">心理言語学</text>
+        <text x="541" y="90" class="method">行動実験・計算モデル・脳計測で調べる</text>
+        <g>
+          <rect x="396" y="104" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="464" y="122" class="item">言語理解</text>
+          <rect x="550" y="104" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="618" y="122" class="item">言語産出</text>
+          <rect x="396" y="136" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="464" y="154" class="item">言語獲得</text>
+          <rect x="550" y="136" width="136" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="618" y="154" class="item">神経言語学</text>
+          <rect x="396" y="168" width="290" height="26" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+          <text x="541" y="186" class="item">EEG ・ fMRI ・大規模言語データ</text>
+        </g>
+        <text x="541" y="210" class="lineage">チョムスキー 1957 ─ 生得説対経験説</text>
+
+        <path d="M179 226 V254 H300" fill="none" stroke="#8f7fc4" stroke-opacity="0.6" stroke-width="1.6"/>
+        <path d="M541 226 V254 H420" fill="none" stroke="#7fb0c4" stroke-opacity="0.6" stroke-width="1.6"/>
+        <path d="M306 254 l-10 -5 v10 z" fill="#8f7fc4" fill-opacity="0.8"/>
+        <path d="M414 254 l10 -5 v10 z" fill="#7fb0c4" fill-opacity="0.8"/>
+
+        <rect x="240" y="266" width="240" height="44" rx="8" fill="#ffffff" fill-opacity="0.10" stroke="#c3b9dd" stroke-opacity="0.5"/>
+        <text x="360" y="288" class="hub">認知科学という交差点</text>
+        <text x="360" y="304" class="hubsub">概念の問いと実験データが往復する</text>
+
+        <style>
+          .figTitle { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .side { fill: #cbbcf2; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .side.alt { fill: #a8d3e6; }
+          .method { fill: #b3a9cf; font-size: 11px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .item { fill: #ede9f7; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .lineage { fill: #a79dc4; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .hub { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .hubsub { fill: #b3a9cf; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>同じ「言語」を対象としながら、言語哲学は概念分析で意味の成り立ちを問い、心理言語学は実験と計測で処理の実態を調べる。方法は異なるが、両者は認知科学という学際的な枠組みで交差し、概念の問いと経験的データが双方向に往復する。</figcaption>
+    </figure>
   </div>
 </header>
 
 <main class="wrap">
 
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
 </div>
 
 <div id="accordion">

@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>一つの政党、複数の政策―自民党という枠組みを支える法的構造</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
@@ -93,6 +95,18 @@
     .hero-figure svg { min-width: 560px; }
   }
 
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: rgba(253,252,249,.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 2.4rem;
+    border: 1px solid rgba(122,106,79,.22);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     margin: 0 0 2.4rem;
@@ -211,9 +225,11 @@
 
 <p>自由民主党 ( 以下、自民党 ) は、 1955 年の結党以来、防衛政策や経済政策、憲法改正論などをめぐって党内に幅の広い立場を抱えながら、単一の政党として存続してきた。一つの政党の内部に、争点によっては互いに対立する政策的立場を持つ議員が同居していることは、しばしば「なぜ一つの政党としてまとまっていられるのか」という疑問を招く。本稿は、この疑問を感情論や政治的評価からではなく、政党に関する日本の法制度がどのような枠組みを設定しているかという観点から検討する。</p>
 
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
 </div>
 
 <div id="accordion">

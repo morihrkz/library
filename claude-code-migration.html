@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Code 環境移植ガイド（ Windows 11 ⇔ Mac ）</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #faf9f7;
     --card-bg: #ffffff;
@@ -23,6 +24,7 @@
     --warn-soft: #fdecea;
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -236,6 +238,19 @@
     margin-top: 50px;
   }
 
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex;
     justify-content: center;
@@ -412,9 +427,11 @@
     Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（ Node.js 等）」の 5 系統に分かれています。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎません。以下、優先度の高い順に並べています。
   </div>
 
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
+  <div class="toolbar-container">
+    <div class="toolbar">
+      <button id="expandAll" type="button">すべて開く</button>
+      <button id="collapseAll" type="button">すべて閉じる</button>
+    </div>
   </div>
 
   <div id="accordion">

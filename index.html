@@ -126,6 +126,23 @@
   }
   .counters .n{ opacity:.72; font-weight:400; }
 
+  .hero-figure{
+    max-width:760px;
+    margin:36px auto 0;
+    overflow-x:auto;
+    text-align:left;
+  }
+  .hero-figure svg{ display:block; width:100%; height:auto; }
+  .hero-figure figcaption{
+    margin-top:12px;
+    font-size:13px;
+    line-height:1.8;
+    color:#b3aecb;
+  }
+  @media (max-width:640px){
+    .hero-figure svg{ min-width:600px; }
+  }
+
   main{
     max-width:1180px;
     margin:0 auto;
@@ -356,7 +373,7 @@
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
     <h1>書庫</h1>
-    <p class="lead">複数の分野にまたがる <span id="total-count">22</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
+    <p class="lead"><span id="total-count">22</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
     <div class="counters">
       <a class="tech" href="#tech"><span class="dot"></span>TECHNOLOGY &amp; INDUSTRY <span class="n">7</span></a>
       <a class="soc" href="#social"><span class="dot"></span>POLITICS &amp; SOCIETY <span class="n">5</span></a>
@@ -670,11 +687,34 @@
   var groupLabel = {};
 
   // 記事数と分類名はカードの実数から組み立てる（ 手書きの数値がずれるのを防ぐ ）。
+  // ヒーローの棒グラフの寸法（ SVG の座標系に合わせる ）。
+  var BAR_BASE = 210;
+  var BAR_MAX_H = 150;
+
   function syncGroups(){
     var total = 0;
-    Array.prototype.forEach.call(document.querySelectorAll('main section.group'), function(section){
+    var sections = Array.prototype.slice.call(document.querySelectorAll('main section.group'));
+    var maxCount = 0;
+    sections.forEach(function(section){
+      var n = section.querySelectorAll('.card').length;
+      if (n > maxCount) maxCount = n;
+    });
+
+    sections.forEach(function(section){
       var n = section.querySelectorAll('.card').length;
       total += n;
+
+      var barH = maxCount ? Math.max(6, Math.round(BAR_MAX_H * n / maxCount)) : 6;
+      var bar = document.querySelector('.hero-figure [data-bar="' + section.id + '"]');
+      if (bar){
+        bar.setAttribute('height', barH);
+        bar.setAttribute('y', BAR_BASE - barH);
+      }
+      var barCount = document.querySelector('.hero-figure [data-bar-count="' + section.id + '"]');
+      if (barCount){
+        barCount.textContent = n;
+        barCount.setAttribute('y', BAR_BASE - barH - 10);
+      }
 
       var h2 = section.querySelector('h2');
       var first = h2 && h2.firstChild;

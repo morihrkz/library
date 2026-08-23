@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>徳育のゆくえ - 文部科学省の方針と諸外国の道徳教育を辿る</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #f7f8f5;
     --paper: #ffffff;
@@ -21,6 +22,7 @@
     --hero-dim: #bcd0bf;
   }
   * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -58,6 +60,15 @@
     font-size: 0.98rem;
     text-indent: 0;
   }
+  header.hero .hero-figure { max-width: 960px; margin: 2rem 0 0; overflow-x: auto; }
+  header.hero .hero-figure svg { display: block; width: 100%; height: auto; }
+  header.hero .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--hero-dim);
+    text-indent: 0;
+  }
 
   main.wrap { padding-bottom: 4rem; }
   .subtitle {
@@ -90,6 +101,19 @@
     table { font-size: 0.82rem; }
   }
 
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 2.4rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar { margin: 0; }
   .toolbar {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     margin: 0 0 2.4rem;
@@ -135,6 +159,7 @@
   }
   .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
   @media (max-width: 600px) {
+    header.hero .hero-figure svg { min-width: 560px; }
     .acc-header { padding: 15px 16px; gap: 10px; }
     .acc-header .title { font-size: 1rem; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
@@ -148,14 +173,77 @@
     <span class="eyebrow">論考 / EDUCATION</span>
     <h1>徳育のゆくえ</h1>
     <p class="sub">文部科学省の方針と諸外国の道徳教育を辿る</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 320" role="img" aria-labelledby="meTitle meDesc">
+        <title id="meTitle">道徳教育の制度設計を二つの軸で見た 6 か国の配置</title>
+        <desc id="meDesc">横軸に宗教との距離、縦軸に教科としての制度化の度合いをとった散布図。ドイツは宗教が制度の中核にあり制度化も強い位置、イギリスはその中間、韓国・フランス・日本は世俗的かつ国レベルで制度化された位置、アメリカは世俗的だが州ごとの裁量に委ねる位置に置かれる。</desc>
+
+        <text x="360" y="22" class="figTitle">「教科として制度化するか」と「宗教と結びつけるか」の組み合わせ</text>
+
+        <line x1="70" y1="44" x2="70" y2="252" stroke="#7f9c85" stroke-opacity="0.55" stroke-width="1.6"/>
+        <path d="M70 40 l-5 9 h10 z" fill="#7f9c85" fill-opacity="0.7"/>
+        <line x1="70" y1="252" x2="694" y2="252" stroke="#7f9c85" stroke-opacity="0.55" stroke-width="1.6"/>
+        <path d="M698 252 l-9 -5 v10 z" fill="#7f9c85" fill-opacity="0.7"/>
+
+        <text x="26" y="148" class="axisName" transform="rotate(-90 26 148)">教科としての制度化</text>
+        <text x="58" y="56" class="pole">高</text>
+        <text x="58" y="248" class="pole">低</text>
+        <text x="382" y="300" class="axisName">宗教との距離</text>
+        <text x="74" y="274" class="poleSub">宗教が制度の中核</text>
+        <text x="694" y="274" class="poleSub end">世俗性を明示</text>
+
+        <g>
+          <circle cx="150" cy="96" r="7" fill="#d9b168"/>
+          <text x="150" y="78" class="country">ドイツ</text>
+          <text x="150" y="118" class="note">憲法上の正規教科</text>
+
+          <circle cx="330" cy="138" r="7" fill="#c2b39a"/>
+          <text x="330" y="120" class="country">イギリス</text>
+          <text x="330" y="160" class="note">宗教教育と公民教育の二本立て</text>
+
+          <circle cx="470" cy="104" r="7" fill="#8fc79c"/>
+          <text x="470" y="86" class="country">韓国</text>
+          <text x="470" y="126" class="note">人性教育振興法</text>
+
+          <circle cx="630" cy="118" r="7" fill="#8fc79c"/>
+          <text x="630" y="100" class="country">フランス</text>
+          <text x="630" y="140" class="note">ライシテを教える</text>
+
+          <circle cx="545" cy="74" r="10" fill="none" stroke="#eef3ea" stroke-opacity="0.5" stroke-width="1.4"/>
+          <circle cx="545" cy="74" r="7" fill="#eef3ea"/>
+          <text x="545" y="54" class="country self">日本</text>
+          <text x="545" y="96" class="note self">特別の教科 道徳</text>
+
+          <circle cx="600" cy="196" r="7" fill="#8fc79c"/>
+          <text x="600" y="178" class="country">アメリカ</text>
+          <text x="600" y="218" class="note">州ごとの人格教育</text>
+        </g>
+
+        <style>
+          .figTitle { fill: #eef3ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .axisName { fill: #bcd0bf; font-size: 11.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .pole { fill: #9db4a2; font-size: 11px; text-anchor: end; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .poleSub { fill: #9db4a2; font-size: 10.5px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .poleSub.end { text-anchor: end; }
+          .country { fill: #eef3ea; font-size: 12.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .country.self { font-weight: 700; }
+          .note { fill: #a9bfae; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .note.self { fill: #cfe0d2; }
+        </style>
+      </svg>
+      <figcaption>本稿で扱う 6 か国を、宗教との距離（横軸）と教科としての制度化の度合い（縦軸）で配置した。宗教を制度の中核に据えるのはドイツのみで、韓国・フランス・日本は世俗的な枠組みを国レベルで制度化している。イギリスは宗教教育と公民教育を並存させ、アメリカは州ごとの裁量に委ねる。</figcaption>
+    </figure>
   </div>
 </header>
 
 <main class="wrap">
 
-<div class="toolbar">
-  <button id="expandAll" type="button">すべて開く</button>
-  <button id="collapseAll" type="button">すべて閉じる</button>
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
 </div>
 
 <div id="accordion">
@@ -168,7 +256,7 @@
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
-<p class="lead">「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』(1861 年、原題 Education: Intellectual, Moral, and Physical) で示した「知育 (intellectual education)・徳育 (moral education)・体育 (physical education)」という枠組みを、福沢諭吉が『学問のすゝめ』(1872 年) で紹介したことを一つの契機として日本に定着したとされる。知育・体育が学力や運動能力という比較的測定しやすい対象を扱うのに対し、徳育、すなわち人格や道徳性の涵養を学校教育がどこまで、どのように担うべきかという問いは、明治期から今日に至るまで繰り返し論争の的になってきた。筆者自身、三育のうち徳育こそが人の生き方の基盤として特に重要ではないかと考えている一人だが、それが学校教育の制度として現にどう扱われているのかは、実のところよく知らなかった。本稿では、文部科学省 (文科省) が徳育に関してどのような方針を持っているのか、また諸外国では道徳教育・人格教育に相当する取り組みがどう行われているのかを、公表資料に基づいて確認する。諸外国の事例については、宗教教育との結びつきが強いのではないかという予想を出発点としつつ、その当否は調査結果に沿って判断する。</p>
+<p>「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』(1861 年、原題 Education: Intellectual, Moral, and Physical) で示した「知育 (intellectual education)・徳育 (moral education)・体育 (physical education)」という枠組みを、福沢諭吉が『学問のすゝめ』(1872 年) で紹介したことを一つの契機として日本に定着したとされる。知育・体育が学力や運動能力という比較的測定しやすい対象を扱うのに対し、徳育、すなわち人格や道徳性の涵養を学校教育がどこまで、どのように担うべきかという問いは、明治期から今日に至るまで繰り返し論争の的になってきた。筆者自身、三育のうち徳育こそが人の生き方の基盤として特に重要ではないかと考えている一人だが、それが学校教育の制度として現にどう扱われているのかは、実のところよく知らなかった。本稿では、文部科学省 (文科省) が徳育に関してどのような方針を持っているのか、また諸外国では道徳教育・人格教育に相当する取り組みがどう行われているのかを、公表資料に基づいて確認する。諸外国の事例については、宗教教育との結びつきが強いのではないかという予想を出発点としつつ、その当否は調査結果に沿って判断する。</p>
     </div>
   </div>
 </section>

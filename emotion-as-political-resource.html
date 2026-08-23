@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>「奪われ感」 — 感情はいかに政治資源化されるか</title>
+<title>「奪われ感」 - 感情はいかに政治資源化されるか</title>
 <style>
+  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --hero-1: #241412;
     --hero-2: #4a1d1a;
@@ -73,6 +74,16 @@
     line-height: 1.9;
     font-size: 0.98rem;
     max-width: 720px;
+  }
+  header.hero .hero-figure { max-width: 960px; margin: 2rem 0 0; overflow-x: auto; }
+  header.hero .hero-figure svg { display: block; width: 100%; height: auto; }
+  header.hero .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--hero-dim);
+    text-indent: 0;
+    max-width: 900px;
   }
   header.hero .wave { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; }
   header.hero .wave svg { width: 100%; height: 40px; display: block; }
@@ -192,6 +203,7 @@
 
   @media (max-width: 640px) {
     header.hero { padding: 2.6rem 0 3.2rem; }
+    header.hero .hero-figure svg { min-width: 600px; }
     .acc-header { padding: 15px 14px; gap: 12px; }
     .acc-header .title { font-size: 1rem; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 14px 16px 22px; }
@@ -206,8 +218,73 @@
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">論考 / COMPARATIVE POLITICS</span>
-    <h1>「奪われ感」 — 感情はいかに政治資源化されるか</h1>
-    <p class="sub">米国・欧州・日本に共通する分断とポピュリズムの構造 — 「奪われ感」はどこから生まれ、誰によってどう動員されるのか。心理学の知見から、その発生と伝播のメカニズムを読み解く</p>
+    <h1>「奪われ感」 - 感情はいかに政治資源化されるか</h1>
+    <p class="sub">米国・欧州・日本に共通する分断とポピュリズムの構造 - 「奪われ感」はどこから生まれ、誰によってどう動員されるのか。心理学の知見から、その発生と伝播のメカニズムを読み解く</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 280" role="img" aria-labelledby="epTitle epDesc">
+        <title id="epTitle">「奪われ感」が投票行動に変換されるまでの回路</title>
+        <desc id="epDesc">相対的剥奪の知覚、集団への帰属、感情の力学、問題の単純化、投票行動という五段階が左から右へ矢印で連なる図。下段のアテンション・エコノミーが中盤の二段階を増幅する矢印を上向きに伸ばし、最下段の対抗装置（メディアリテラシー教育、ミニ・パブリックス、社会的包摂）が破線の矢印で同じ段階に制動をかける形で描かれている。</desc>
+
+        <text x="360" y="24" class="figTitle">不満が「敵」への怒りに変換され、票になるまで</text>
+
+        <g>
+          <rect x="14" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <text x="80" y="68" class="step">相対的剥奪の知覚</text>
+          <text x="80" y="88" class="stepsub">比較が生む不満</text>
+
+          <rect x="154" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <text x="220" y="68" class="step">集団への帰属</text>
+          <text x="220" y="88" class="stepsub">私たち 対 彼ら</text>
+
+          <rect x="294" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <text x="360" y="68" class="step">感情の力学</text>
+          <text x="360" y="88" class="stepsub">不安と喪失</text>
+
+          <rect x="434" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <text x="500" y="68" class="step">問題の単純化</text>
+          <text x="500" y="88" class="stepsub">敵を名指す物語</text>
+
+          <rect x="574" y="44" width="132" height="58" rx="8" fill="#e8a48c" fill-opacity="0.16" stroke="#e8a48c" stroke-opacity="0.55"/>
+          <text x="640" y="68" class="step">投票行動</text>
+          <text x="640" y="88" class="stepsub">アイデンティティ投票</text>
+        </g>
+
+        <g fill="#e8a48c" fill-opacity="0.8">
+          <path d="M152 73 l-8 -5 v10 z"/>
+          <path d="M292 73 l-8 -5 v10 z"/>
+          <path d="M432 73 l-8 -5 v10 z"/>
+          <path d="M572 73 l-8 -5 v10 z"/>
+        </g>
+
+        <rect x="234" y="146" width="332" height="34" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#d8b48c" stroke-opacity="0.45"/>
+        <text x="400" y="168" class="band">アテンション・エコノミー ─ 強い感情ほど速く広く届く</text>
+        <path d="M330 146 V112" fill="none" stroke="#d8b48c" stroke-opacity="0.7" stroke-width="1.6"/>
+        <path d="M330 104 l-5 9 h10 z" fill="#d8b48c" fill-opacity="0.85"/>
+        <path d="M470 146 V112" fill="none" stroke="#d8b48c" stroke-opacity="0.7" stroke-width="1.6"/>
+        <path d="M470 104 l-5 9 h10 z" fill="#d8b48c" fill-opacity="0.85"/>
+        <text x="576" y="168" class="bandnote">増幅</text>
+
+        <rect x="120" y="216" width="480" height="42" rx="8" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-dasharray="5 4"/>
+        <text x="360" y="234" class="brake">対抗の装置 ─ メディアリテラシー教育 / ミニ・パブリックス / 社会的包摂</text>
+        <text x="360" y="250" class="brakesub">単純化に抗う手間を、個人の努力ではなく制度の側で支える</text>
+        <path d="M220 216 V190" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <path d="M220 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
+        <path d="M500 216 V190" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <path d="M500 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
+
+        <style>
+          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>本稿がたどる回路の見取り図。客観的な貧しさではなく比較から生まれる不満が、集団の境界線と結びついて「奪われた」という感情になり、敵を名指す物語によって投票先へと変換される。アテンション・エコノミーはこの流れを増幅し、熟議の設計とリテラシー教育は制動をかける側に立つ。</figcaption>
+    </figure>
   </div>
   <div class="wave">
     <svg viewBox="0 0 1440 40" preserveAspectRatio="none"><path fill="#fdfcf9" d="M0,18 C360,40 1080,0 1440,18 L1440,40 L0,40 Z"/></svg>
@@ -227,8 +304,8 @@
 
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
-    <span class="num">序</span>
-    <span class="title">序章 — 感情が政治資源化するという視座</span>
+    <span class="num">0</span>
+    <span class="title">感情が政治資源化するという視座</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -242,7 +319,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">トランプ支持層の実相 — 何が「不当さ」の感覚を生むのか</span>
+    <span class="title">トランプ支持層の実相 - 何が「不当さ」の感覚を生むのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -305,7 +382,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">2</span>
-    <span class="title">不満の伏線としての「オバマ政権期」— 分断の種はいつ、どこで蒔かれたのか</span>
+    <span class="title">不満の伏線としての「オバマ政権期」- 分断の種はいつ、どこで蒔かれたのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -322,7 +399,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3</span>
-    <span class="title">心理学による考察 — なぜ人は「奪われた」と感じ、その感情のままに投票するのか</span>
+    <span class="title">心理学による考察 - なぜ人は「奪われた」と感じ、その感情のままに投票するのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -334,7 +411,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3.1</span>
-    <span class="title">(A) 剥奪の知覚 — 客観的な貧しさではなく、比較が不満を生む</span>
+    <span class="title">剥奪の知覚 - 客観的な貧しさではなく、比較が不満を生む</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -350,13 +427,13 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3.2</span>
-    <span class="title">(B) 集団への帰属 — 「私たち」対「彼ら」という枠組みの起源</span>
+    <span class="title">集団への帰属 - 「私たち」対「彼ら」という枠組みの起源</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
 <p>なぜ人はこれほど容易に「自分の集団」と「他の集団」を区別し、前者を優遇する物語に引き込まれるのか。この問いに実験的な基盤を与えたのが、心理学者アンリ・タジフェルとジョン・ターナーによる社会的アイデンティティ理論、およびその基礎となった「最小条件集団パラダイム」の実験である。タジフェルは 1970 年代の実験で、参加者を絵画の好み ( 実際には無意味な基準 ) によって恣意的に二つのグループに分けただけで、参加者が匿名の内集団メンバーに対して、外集団メンバーよりも多くの報酬を割り当てる傾向を示すことを発見した。しかもこの内集団びいきは、参加者自身の利益とは無関係な、意味のない基準で分けられた集団においてすら生じた <sup>[19]</sup> 。この実験は数百回にわたり異なる文化・年齢層・分類基準で再現されており、内集団びいきは社会心理学において最も頑健な知見の一つとされている。この知見を政治に当てはめれば、人種・学歴・居住地域・支持政党といった実質的な利害を伴うカテゴリーによる分断が、なぜあれほど強く、かつ急速に人々の感情や行動を方向づけるのかが理解しやすくなる。集団への帰属そのものが、内容とは独立に、選好を生成する心理的な力を持っているのである。</p>
-<p>この集団帰属の力は、何を「正しい」「公正だ」とみなすかという道徳的判断そのものにも及ぶ。心理学者ジョナサン・ハイトが提唱した「モラル基盤理論」は、人間の道徳的直観が単一の原理ではなく、複数の基盤 ( ケア / 危害、公正 / 欺瞞、忠誠 / 裏切り、権威 / 転覆、神聖 / 堕落、自由 / 抑圧 ) から構成されると論じる。ハイトらの実証研究によれば、リベラル層は主として「ケア」と「公正」の二つの基盤に道徳判断を強く依拠させる傾向があるのに対し、保守層はこの二つに加えて「忠誠」「権威」「神聖」といった、集団の結束や秩序の維持にかかわる基盤も同程度に重視する傾向がある <sup>[20]</sup> 。この理論を踏まえると、第一章で両論併記した DEI 論争における「公正さ」をめぐる対立の構造がより明確になる。 DEI 擁護派の主張が主として「ケア」( 構造的に不利な立場に置かれてきた集団への配慮 ) と結果の「公正」を基盤とするのに対し、批判派の主張は個人の能力に基づく手続き的な「公正」( メリトクラシー ) を基盤としながら、しばしば集団の一体性という「忠誠」的な価値観とも結びついている。両者は同じ「公正」という語を用いながら、実際には異なる道徳基盤に依拠した異なる主張を行っており、この基盤の違いこそが、対話を通じた合意形成を難しくしている一因だと考えられる。</p>
+<p>この集団帰属の力は、何を「正しい」「公正だ」とみなすかという道徳的判断そのものにも及ぶ。心理学者ジョナサン・ハイトが提唱した「モラル基盤理論」は、人間の道徳的直観が単一の原理ではなく、複数の基盤（ケア／危害、公正／欺瞞、忠誠／裏切り、権威／転覆、神聖／堕落、自由／抑圧）から構成されると論じる。ハイトらの実証研究によれば、リベラル層は主として「ケア」と「公正」の二つの基盤に道徳判断を強く依拠させる傾向があるのに対し、保守層はこの二つに加えて「忠誠」「権威」「神聖」といった、集団の結束や秩序の維持にかかわる基盤も同程度に重視する傾向がある <sup>[20]</sup> 。この理論を踏まえると、第一章で両論併記した DEI 論争における「公正さ」をめぐる対立の構造がより明確になる。 DEI 擁護派の主張が主として「ケア」( 構造的に不利な立場に置かれてきた集団への配慮 ) と結果の「公正」を基盤とするのに対し、批判派の主張は個人の能力に基づく手続き的な「公正」（メリトクラシー）を基盤としながら、しばしば集団の一体性という「忠誠」的な価値観とも結びついている。両者は同じ「公正」という語を用いながら、実際には異なる道徳基盤に依拠した異なる主張を行っており、この基盤の違いこそが、対話を通じた合意形成を難しくしている一因だと考えられる。</p>
     </div>
   </div>
 </section>
@@ -364,7 +441,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3.3</span>
-    <span class="title">(C) 感情の力学 — なぜ不安と喪失は理屈より強く作用するのか</span>
+    <span class="title">感情の力学 - なぜ不安と喪失は理屈より強く作用するのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -379,7 +456,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3.4</span>
-    <span class="title">(D) 認知の防衛機制 — なぜ反証に接しても考えは変わらないのか</span>
+    <span class="title">認知の防衛機制 - なぜ反証に接しても考えは変わらないのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -394,7 +471,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">3.5</span>
-    <span class="title">(E) 投票行動への帰結 — 政策ではなく、アイデンティティを選んでいる</span>
+    <span class="title">投票行動への帰結 - 政策ではなく、アイデンティティを選んでいる</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -413,7 +490,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4</span>
-    <span class="title">不満の政治資源化のメカニズム — なぜ不満は「敵」への怒りへと変換されるのか</span>
+    <span class="title">不満の政治資源化のメカニズム - なぜ不満は「敵」への怒りへと変換されるのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -425,7 +502,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">4.1</span>
-    <span class="title">問題の単純化 — 敵の名指し</span>
+    <span class="title">問題の単純化 - 敵の名指し</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -469,7 +546,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">5</span>
-    <span class="title">熟議の質を高めるための方策 — 分断を超える対話をどう設計するか</span>
+    <span class="title">熟議の質を高めるための方策 - 分断を超える対話をどう設計するか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -494,7 +571,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">5.2</span>
-    <span class="title">熟議民主主義 — ミニ・パブリックスという実践</span>
+    <span class="title">熟議民主主義 - ミニ・パブリックスという実践</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -526,7 +603,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">6</span>
-    <span class="title">民主主義における知性の役割 — なぜ「賢い市民」だけでは分断を止められないのか</span>
+    <span class="title">民主主義における知性の役割 - なぜ「賢い市民」だけでは分断を止められないのか</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -539,7 +616,7 @@
 <section class="acc-item" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">6.1</span>
-    <span class="title">「知性」とは何を指すのか — 学歴でも情報量でもない</span>
+    <span class="title">「知性」とは何を指すのか - 学歴でも情報量でもない</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -633,10 +710,10 @@
 <li>Pew Research Center, "How wealth inequality has changed in the U.S. since the Great Recession, by race, ethnicity and income"(2017 年 11 月 1 日 )</li>
 <li>The Century Foundation, "A Tale of Two Recoveries: Wealth Inequality After the Great Recession"</li>
 <li>Eurostat, "Record number of over 1.2 million first time asylum seekers registered in 2015"(2016 年 3 月 4 日 ); Pew Research Center, "Number of Refugees to Europe Surges to Record 1.3 Million in 2015"(2016 年 8 月 2 日 )</li>
-<li>Ted Robert Gurr, "Why Men Rebel"(1970 年 ); W.G. Runciman, "Relative Deprivation and Social Justice"(1966 年 ) — 相対的剥奪理論の基礎文献</li>
+<li>Ted Robert Gurr, "Why Men Rebel"(1970 年 ); W.G. Runciman, "Relative Deprivation and Social Justice"(1966 年 ) - 相対的剥奪理論の基礎文献</li>
 <li>Michael I. Norton, Samuel R. Sommers, "Whites See Racism as a Zero-Sum Game That They Are Now Losing", Perspectives on Psychological Science(2011 年 )</li>
 <li>Diana C. Mutz, "Status Threat, Not Economic Hardship, Explains the 2016 Presidential Vote", PNAS(2018 年 ); 批判的再分析として Stephen L. Morgan, "Status Threat, Material Interests, and the 2016 Presidential Vote", Socius(2018 年 ) がある</li>
-<li>Henri Tajfel, John C. Turner, "An Integrative Theory of Intergroup Conflict"(1979 年 ) — 社会的アイデンティティ理論・最小条件集団パラダイム</li>
+<li>Henri Tajfel, John C. Turner, "An Integrative Theory of Intergroup Conflict"(1979 年 ) - 社会的アイデンティティ理論・最小条件集団パラダイム</li>
 <li>Jonathan Haidt, "The Righteous Mind: Why Good People Are Divided by Politics and Religion"(2012 年 ); Jesse Graham, Jonathan Haidt, Brian A. Nosek, "Liberals and Conservatives Rely on Different Sets of Moral Foundations", Journal of Personality and Social Psychology(2009 年 )</li>
 <li>George E. Marcus, W. Russell Neuman, Michael MacKuen, "Affective Intelligence and Political Judgment"(University of Chicago Press, 2000 年 )</li>
 <li>Daniel Kahneman, Amos Tversky, "Prospect Theory: An Analysis of Decision under Risk", Econometrica(1979 年 )</li>
@@ -648,7 +725,7 @@
 <li>Herbert A. Simon, "Designing Organizations for an Information-Rich World"(1971 年 ); 関連解説記事 Exformation, "The attention economy: a history of the term"</li>
 <li>Frontiers in Political Science, "Citizens' Assemblies for Referendums and Constitutional Reforms: Is There an 'Irish Model' for Deliberative Democracy?"; newDemocracy Foundation, "Forms of Mini-Publics"</li>
 <li>John H. Flavell, "Metacognition and Cognitive Monitoring: A New Area of Cognitive-Developmental Inquiry", American Psychologist(1979 年 )</li>
-<li>Donald Davidson, "Radical Interpretation"(1973 年 ); W.V.O. Quine, "Word and Object"(1960 年 ) — 「善意の解釈 (principle of charity) 」の哲学的起源に関する標準的な参照先</li>
+<li>Donald Davidson, "Radical Interpretation"(1973 年 ); W.V.O. Quine, "Word and Object"(1960 年 ) - 「善意の解釈 (principle of charity) 」の哲学的起源に関する標準的な参照先</li>
 </ol>
     </div>
   </div>
