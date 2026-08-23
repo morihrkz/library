@@ -25,6 +25,9 @@
     --tech: #4f46e5;
     --tech-soft: #eceafe;
     --tech-ink: #3730a3;
+    --mind: #be123c;
+    --mind-soft: #fdeaef;
+    --mind-ink: #9f1239;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -42,6 +45,8 @@
       --hum-ink: #d3b3fb;
       --tech-soft: #262454;
       --tech-ink: #b3aef8;
+      --mind-soft: #4a1526;
+      --mind-ink: #fba8bd;
     }
   }
   *{ box-sizing:border-box; }
@@ -110,11 +115,15 @@
     transition:transform .18s ease, background .18s ease, border-color .18s ease;
   }
   .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12); }
-  .counters .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-  .counters a.nat .dot{ background:var(--nat); box-shadow:0 0 10px var(--nat); }
-  .counters a.tech .dot{ background:var(--tech); box-shadow:0 0 10px var(--tech); }
-  .counters a.soc .dot{ background:var(--soc); box-shadow:0 0 10px var(--soc); }
-  .counters a.hum .dot{ background:var(--hum); box-shadow:0 0 10px var(--hum); }
+  .counters a.nat{ --accent:var(--nat); }
+  .counters a.tech{ --accent:var(--tech); }
+  .counters a.soc{ --accent:var(--soc); }
+  .counters a.mind{ --accent:var(--mind); }
+  .counters a.hum{ --accent:var(--hum); }
+  .counters .dot{
+    width:8px; height:8px; border-radius:50%; flex-shrink:0;
+    background:var(--accent); box-shadow:0 0 10px var(--accent);
+  }
   .counters .n{ opacity:.72; font-weight:400; }
 
   main{
@@ -137,6 +146,8 @@
     align-items:center;
     justify-content:center;
     flex-shrink:0;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
   }
   section.group .icon svg{ width:24px; height:24px; }
   section.group h2{
@@ -158,10 +169,11 @@
     white-space:nowrap;
   }
 
-  #natural .icon{ background:var(--nat-soft); color:var(--nat-ink); }
-  #tech .icon{ background:var(--tech-soft); color:var(--tech-ink); }
-  #social .icon{ background:var(--soc-soft); color:var(--soc-ink); }
-  #humanities .icon{ background:var(--hum-soft); color:var(--hum-ink); }
+  #natural{    --accent:var(--nat);  --accent-soft:var(--nat-soft);  --accent-ink:var(--nat-ink); }
+  #tech{       --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
+  #social{     --accent:var(--soc);  --accent-soft:var(--soc-soft);  --accent-ink:var(--soc-ink); }
+  #mind{       --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
+  #humanities{ --accent:var(--hum);  --accent-soft:var(--hum-soft);  --accent-ink:var(--hum-ink); }
 
   .grid{
     display:grid;
@@ -187,20 +199,14 @@
     position:absolute;
     left:0; top:0; bottom:0;
     width:4px;
+    background:var(--accent);
   }
-  #natural .card::before{ background:var(--nat); }
-  #tech .card::before{ background:var(--tech); }
-  #social .card::before{ background:var(--soc); }
-  #humanities .card::before{ background:var(--hum); }
 
   .card:hover{
     transform:translateY(-4px);
     box-shadow:0 16px 34px rgba(0,0,0,.10);
+    border-color:var(--accent);
   }
-  #natural .card:hover{ border-color:var(--nat); }
-  #tech .card:hover{ border-color:var(--tech); }
-  #social .card:hover{ border-color:var(--soc); }
-  #humanities .card:hover{ border-color:var(--hum); }
 
   .card .kicker{
     display:inline-block;
@@ -211,11 +217,9 @@
     border-radius:6px;
     margin-bottom:14px;
     align-self:flex-start;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
   }
-  #natural .card .kicker{ background:var(--nat-soft); color:var(--nat-ink); }
-  #tech .card .kicker{ background:var(--tech-soft); color:var(--tech-ink); }
-  #social .card .kicker{ background:var(--soc-soft); color:var(--soc-ink); }
-  #humanities .card .kicker{ background:var(--hum-soft); color:var(--hum-ink); }
 
   .card h3{
     font-size:17.5px;
@@ -244,11 +248,8 @@
     font-size:12px;
     font-weight:700;
     letter-spacing:.03em;
+    color:var(--accent-ink);
   }
-  #natural .card .go{ color:var(--nat-ink); }
-  #tech .card .go{ color:var(--tech-ink); }
-  #social .card .go{ color:var(--soc-ink); }
-  #humanities .card .go{ color:var(--hum-ink); }
   .card .go::after{ content:"→"; transition:transform .18s ease; }
   .card:hover .go::after{ transform:translateX(3px); }
 
@@ -355,12 +356,13 @@
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
     <h1>書庫</h1>
-    <p class="lead">複数の分野にまたがる二十本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
+    <p class="lead">複数の分野にまたがる <span id="total-count">22</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
     <div class="counters">
+      <a class="tech" href="#tech"><span class="dot"></span>TECHNOLOGY &amp; INDUSTRY <span class="n">7</span></a>
+      <a class="soc" href="#social"><span class="dot"></span>POLITICS &amp; SOCIETY <span class="n">5</span></a>
+      <a class="mind" href="#mind"><span class="dot"></span>PSYCHOLOGY &amp; EDUCATION <span class="n">5</span></a>
+      <a class="hum" href="#humanities"><span class="dot"></span>HUMANITIES <span class="n">4</span></a>
       <a class="nat" href="#natural"><span class="dot"></span>NATURAL SCIENCE <span class="n">1</span></a>
-      <a class="tech" href="#tech"><span class="dot"></span>TECHNOLOGY <span class="n">5</span></a>
-      <a class="soc" href="#social"><span class="dot"></span>SOCIAL SCIENCE <span class="n">7</span></a>
-      <a class="hum" href="#humanities"><span class="dot"></span>HUMANITIES <span class="n">9</span></a>
     </div>
   </div>
 </header>
@@ -381,34 +383,6 @@
 
 <main>
 
-  <section class="group" id="natural">
-    <div class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
-        </svg>
-      </span>
-      <div>
-        <h2><span class="group-en">NATURAL SCIENCE</span></h2>
-      </div>
-      <span class="count">1 article</span>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="particle-physics.html">
-        <span class="kicker">PHYSICS</span>
-        <h3>素粒子物理学とは何か</h3>
-        <h4>原子から宇宙まで、ひと続きの物語</h4>
-        <p class="desc">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
-        <span class="go">読む</span>
-      </a>
-
-    </div>
-  </section>
-
   <section class="group" id="tech">
     <div class="group-head">
       <span class="icon">
@@ -419,9 +393,9 @@
         </svg>
       </span>
       <div>
-        <h2><span class="group-en">TECHNOLOGY</span></h2>
+        <h2>テクノロジーと産業<span class="group-en">TECHNOLOGY &amp; INDUSTRY</span></h2>
       </div>
-      <span class="count">5 articles</span>
+      <span class="count">7 articles</span>
     </div>
     <div class="grid">
 
@@ -430,14 +404,6 @@
         <h3>JavaScript ゼロからイチまで</h3>
         <h4>HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</h4>
         <p class="desc">変数・条件分岐・配列操作から DOM 操作、非同期処理、エラー対応まで。 1 日 1 章、全 10 章で「読めなかったコード」を「自分の言葉で説明できるコード」に変えていく実践書。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="ai_comparison.html">
-        <span class="kicker">AI / COMPARISON</span>
-        <h3>AI 比較表</h3>
-        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
-        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
         <span class="go">読む</span>
       </a>
 
@@ -457,40 +423,11 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="cdn-business-model.html">
-        <span class="kicker">TECH / BUSINESS</span>
-        <h3>CDN のビジネスモデルとインターネット相互接続の仕組み</h3>
-        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
-        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
-        <span class="go">読む</span>
-      </a>
-
-    </div>
-  </section>
-
-  <section class="group" id="social">
-    <div class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 20V11"/>
-          <path d="M10 20V6"/>
-          <path d="M16 20V13"/>
-          <path d="M20 20V9"/>
-          <path d="M2 20h20"/>
-        </svg>
-      </span>
-      <div>
-        <h2><span class="group-en">SOCIAL SCIENCE</span></h2>
-      </div>
-      <span class="count">7 articles</span>
-    </div>
-    <div class="grid">
-
-      <a class="card" href="cloud_and_ai_boom.html">
-        <span class="kicker">MARKET ANALYSIS</span>
-        <h3>クラウド市場と生成 AI ブーム</h3>
-        <h4>シェア・成長動向・今後の見通し</h4>
-        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+      <a class="card" href="ai_comparison.html">
+        <span class="kicker">AI / COMPARISON</span>
+        <h3>AI 比較表</h3>
+        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
+        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
         <span class="go">読む</span>
       </a>
 
@@ -502,11 +439,47 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="aidc-election-japan-us.html">
-        <span class="kicker">POLITICS / TECH POLICY</span>
-        <h3>AI データセンター問題の政治争点化</h3>
-        <h4>米国 2026 年中間選挙と日本・印西市の比較分析</h4>
-        <p class="desc">米国では選挙運動の争点となりつつある AI データセンター問題が、なぜ日本では地域紙の紙面や個別の訴訟に留まっているのか。政治制度・地方財政構造・言説環境の観点から、その非対称性を分析する。</p>
+      <a class="card" href="cloud_and_ai_boom.html">
+        <span class="kicker">MARKET ANALYSIS</span>
+        <h3>クラウド市場と生成 AI ブーム</h3>
+        <h4>シェア・成長動向・今後の見通し</h4>
+        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="cdn-business-model.html">
+        <span class="kicker">INFRASTRUCTURE / BUSINESS</span>
+        <h3>CDN のビジネスモデルとインターネット相互接続の仕組み</h3>
+        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
+        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして 4 つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="group" id="social">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 20v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </span>
+      <div>
+        <h2>政治と社会<span class="group-en">POLITICS &amp; SOCIETY</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="legitimacy-of-nations.html">
+        <span class="kicker">POLITICAL SCIENCE</span>
+        <h3>正統性の政治学―権威主義国家はなぜ歴史を書き換えるのか</h3>
+        <h4>国家が支配の正しさをどこに求めるかという視点から</h4>
+        <p class="desc">ウェーバーの正統性論を出発点に、歴史を武器化するロシア・中国・北朝鮮と、そこから逸脱するベトナム・シンガポールを比較する。最後に、この視点を選挙という装置の陰に隠れた民主主義国の現在へと投げ返す。</p>
         <span class="go">読む</span>
       </a>
 
@@ -518,6 +491,14 @@
         <span class="go">読む</span>
       </a>
 
+      <a class="card" href="emotion-as-political-resource.html">
+        <span class="kicker">U.S. POLITICS</span>
+        <h3>感情はいかに政治資源化されるか</h3>
+        <h4>米国社会の分断と不満のポピュリズム構造</h4>
+        <p class="desc">トランプ支持層の「奪われ感」がどこから生まれ、誰によってどう動員されるのかを分析し、熟議民主主義や知性の役割から民主主義の応答可能性を検討する。</p>
+        <span class="go">読む</span>
+      </a>
+
       <a class="card" href="one-party-multiple-policies.html">
         <span class="kicker">POLITICAL ESSAY / LAW</span>
         <h3>一つの政党、複数の政策</h3>
@@ -526,19 +507,70 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="legitimacy-of-nations.html">
-        <span class="kicker">POLITICAL SCIENCE</span>
-        <h3>正統性の政治学―権威主義国家はなぜ歴史を書き換えるのか</h3>
-        <h4>国家が支配の正しさをどこに求めるかという視点から</h4>
-        <p class="desc">ウェーバーの正統性論を出発点に、歴史を武器化するロシア・中国・北朝鮮と、そこから逸脱するベトナム・シンガポールを比較する。最後に、この視点を選挙という装置の陰に隠れた民主主義国の現在へと投げ返す。</p>
+      <a class="card" href="aidc-election-japan-us.html">
+        <span class="kicker">POLITICS / TECH POLICY</span>
+        <h3>AI データセンター問題の政治争点化</h3>
+        <h4>米国 2026 年中間選挙と日本・印西市の比較分析</h4>
+        <p class="desc">米国では選挙運動の争点となりつつある AI データセンター問題が、なぜ日本では地域紙の紙面や個別の訴訟に留まっているのか。政治制度・地方財政構造・言説環境の観点から、その非対称性を分析する。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="emotion-as-political-resource.html">
-        <span class="kicker">U.S. POLITICS</span>
-        <h3>感情はいかに政治資源化されるか</h3>
-        <h4>米国社会の分断と不満のポピュリズム構造</h4>
-        <p class="desc">トランプ支持層の「奪われ感」がどこから生まれ、誰によってどう動員されるのかを分析し、熟議民主主義や知性の役割から民主主義の応答可能性を検討する。</p>
+    </div>
+  </section>
+
+  <section class="group" id="mind">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5A5.6 5.6 0 0 0 18 8a6 6 0 0 0-12 0c0 1.4.5 2.7 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+          <path d="M9 18h6"/>
+          <path d="M10 21.5h4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>心理と教育<span class="group-en">PSYCHOLOGY &amp; EDUCATION</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="becomingyourself.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY</span>
+        <h3>本当の自分に出会う</h3>
+        <h4>ユング心理学とともに歩む、こころの旅</h4>
+        <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="jung_criticism.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY / CRITIQUE</span>
+        <h3>ユング心理学、光と影</h3>
+        <h4>よく指摘される弱点を集めてみた</h4>
+        <p class="desc">「本当の自分に出会う」の続編。反証可能性、 MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="give_and_take_essay.html">
+        <span class="kicker">BUSINESS / PSYCHOLOGY</span>
+        <h3>「与える人」は本当に勝つのか</h3>
+        <h4>GIVE &amp; TAKE の楽観論を検証する</h4>
+        <p class="desc">「与える人が成功する」というアダム・グラントのテーゼを、経営学・大衆的権力論の伝統・進化生物学とゲーム理論・犯罪心理学という四つの独立した対抗言説から読み直す書評エッセイ。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="liberal_arts.html">
+        <span class="kicker">EDUCATION / PHILOSOPHY</span>
+        <h3>リベラルアーツ考</h3>
+        <h4>教養教育の理念と米国モデル</h4>
+        <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・ STEM 重視との緊張関係をめぐる論争までを整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="education-tokuiku.html">
+        <span class="kicker">EDUCATION</span>
+        <h3>徳育のゆくえ</h3>
+        <h4>文部科学省の方針と諸外国の道徳教育を辿る</h4>
+        <p class="desc">「特別の教科 道徳」への転換の経緯から、宗教教育との距離が国ごとに異なる諸外国の事例まで。徳育・知育・体育という三分法の来歴に立ち返りながら、日本と世界の道徳教育・人格教育の制度設計を比較する。</p>
         <span class="go">読む</span>
       </a>
 
@@ -554,27 +586,11 @@
         </svg>
       </span>
       <div>
-        <h2><span class="group-en">HUMANITIES</span></h2>
+        <h2>人文科学<span class="group-en">HUMANITIES</span></h2>
       </div>
-      <span class="count">9 articles</span>
+      <span class="count">4 articles</span>
     </div>
     <div class="grid">
-
-      <a class="card" href="becomingyourself.html">
-        <span class="kicker">JUNGIAN PSYCHOLOGY</span>
-        <h3>本当の自分に出会う</h3>
-        <h4>ユング心理学とともに歩む、こころの旅</h4>
-        <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="jung_criticism.html">
-        <span class="kicker">JUNGIAN PSYCHOLOGY / 批判編</span>
-        <h3>ユング心理学、光と影</h3>
-        <h4>よく指摘される弱点を集めてみた</h4>
-        <p class="desc">「本当の自分に出会う」の続編。反証可能性、 MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
-        <span class="go">読む</span>
-      </a>
 
       <a class="card" href="kingendaishi.html">
         <span class="kicker">HISTORY</span>
@@ -592,11 +608,11 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="liberal_arts.html">
-        <span class="kicker">EDUCATION / PHILOSOPHY</span>
-        <h3>リベラルアーツ考</h3>
-        <h4>教養教育の理念と米国モデル</h4>
-        <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・ STEM 重視との緊張関係をめぐる論争までを整理する。</p>
+      <a class="card" href="language-philosophy-psycholinguistics.html">
+        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
+        <h3>言語哲学と言語心理学</h3>
+        <h4>概説</h4>
+        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
         <span class="go">読む</span>
       </a>
 
@@ -604,31 +620,35 @@
         <span class="kicker">LOGIC / RHETORIC</span>
         <h3>藁人形論法</h3>
         <h4>存在しない主張と戦う詭弁</h4>
-        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
+        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、 5 つの実例で見分け方を確かめる。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="give_and_take_essay.html">
-        <span class="kicker">BUSINESS / PSYCHOLOGY</span>
-        <h3>「与える人」は本当に勝つのか</h3>
-        <h4>GIVE &amp; TAKE の楽観論を検証する</h4>
-        <p class="desc">「与える人が成功する」というアダム・グラントのテーゼを、経営学・大衆的権力論の伝統・進化生物学とゲーム理論・犯罪心理学という四つの独立した対抗言説から読み直す書評エッセイ。</p>
-        <span class="go">読む</span>
-      </a>
+    </div>
+  </section>
 
-      <a class="card" href="education-tokuiku.html">
-        <span class="kicker">EDUCATION</span>
-        <h3>徳育のゆくえ</h3>
-        <h4>文部科学省の方針と諸外国の道徳教育を辿る</h4>
-        <p class="desc">「特別の教科 道徳」への転換の経緯から、宗教教育との距離が国ごとに異なる諸外国の事例まで。徳育・知育・体育という三分法の来歴に立ち返りながら、日本と世界の道徳教育・人格教育の制度設計を比較する。</p>
-        <span class="go">読む</span>
-      </a>
+  <section class="group" id="natural">
+    <div class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
+        </svg>
+      </span>
+      <div>
+        <h2>自然科学<span class="group-en">NATURAL SCIENCE</span></h2>
+      </div>
+      <span class="count">1 article</span>
+    </div>
+    <div class="grid">
 
-      <a class="card" href="language-philosophy-psycholinguistics.html">
-        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
-        <h3>言語哲学と言語心理学</h3>
-        <h4>概説</h4>
-        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
+      <a class="card" href="particle-physics.html">
+        <span class="kicker">PHYSICS</span>
+        <h3>素粒子物理学とは何か</h3>
+        <h4>原子から宇宙まで、ひと続きの物語</h4>
+        <p class="desc">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
         <span class="go">読む</span>
       </a>
 
@@ -647,7 +667,29 @@
   var cache = new Map();
   var debounceTimer = null;
   var searchToken = 0;
-  var groupLabel = { natural: '自然科学', tech: 'テクノロジー', social: '社会科学', humanities: '人文科学' };
+  var groupLabel = {};
+
+  // 記事数と分類名はカードの実数から組み立てる（ 手書きの数値がずれるのを防ぐ ）。
+  function syncGroups(){
+    var total = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('main section.group'), function(section){
+      var n = section.querySelectorAll('.card').length;
+      total += n;
+
+      var h2 = section.querySelector('h2');
+      var first = h2 && h2.firstChild;
+      groupLabel[section.id] = first && first.nodeType === 3 ? first.nodeValue.trim() : '';
+
+      var countEl = section.querySelector('.count');
+      if (countEl) countEl.textContent = n + (n === 1 ? ' article' : ' articles');
+
+      var chip = document.querySelector('.counters a[href="#' + section.id + '"] .n');
+      if (chip) chip.textContent = n;
+    });
+    var totalEl = document.getElementById('total-count');
+    if (totalEl) totalEl.textContent = total;
+  }
+  syncGroups();
 
   function collectSources(){
     return Array.prototype.map.call(document.querySelectorAll('main .card'), function(card){
