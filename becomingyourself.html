@@ -19,6 +19,10 @@
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
     --accent-bg: #f4f9f9;
+    /* ヒーロー: 陽の差す水面（ 続編 jung_criticism.html の深淵と対をなす ）*/
+    --surface-light:#1878b0;
+    --surface-mid:#0a5d92;
+    --surface-deep:#064b78;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior: smooth;}
@@ -50,7 +54,16 @@
     overflow:hidden;
     padding:80px 24px 100px;
     text-align:center;
-    background:linear-gradient(160deg, var(--sky) 0%, var(--sky-deep) 55%, #0277bd 100%);
+    background:
+      /* 右上から差す陽（ 本文背景の陽だまりと同じ位置 ）*/
+      radial-gradient(ellipse 60% 70% at 88% -12%,
+        rgba(255,236,179,0.16) 0%,
+        rgba(255,236,179,0.06) 38%,
+        rgba(255,236,179,0) 68%),
+      linear-gradient(160deg,
+        var(--surface-light) 0%,
+        var(--surface-mid) 52%,
+        var(--surface-deep) 100%);
     color:#ffffff;
   }
   .hero-inner{ position:relative; z-index:2; }
@@ -69,7 +82,7 @@
     margin:0 0 16px;
     font-size:clamp(2.2rem, 5vw, 3.5rem);
     font-weight:800;
-    text-shadow:0 3px 12px rgba(0,60,90,0.3);
+    text-shadow:0 3px 16px rgba(0,0,0,0.40);
   }
   .hero h2{
     margin:0 auto;
@@ -477,7 +490,7 @@
 
         <style>
           .path { fill: none; stroke: #ffffff; stroke-opacity: 0.55; stroke-width: 2.5; stroke-linecap: round; }
-          .dot { fill: #ffffff; stroke: #0288d1; stroke-width: 2; }
+          .dot { fill: #ffffff; stroke: #064b78; stroke-width: 2; }
           .dot.start { fill: #e3f7ff; }
           .dot.end { fill: #ffca28; stroke: #ffa000; }
           .lb { fill: #ffffff; font-size: 12.5px; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
@@ -509,7 +522,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">1</span>
-        <span class="title">この記事について</span>
+        <span class="title">はじめに</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">

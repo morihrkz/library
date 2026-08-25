@@ -19,10 +19,11 @@
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
     --accent-bg: #f4f9f9;
-    --sea-light:#4dd0e1;
-    --sea-deep:#00838f;
-    --sand-light:#ffe0b2;
-    --sand-deep:#ffb74d;
+    /* 深淵（ 前作 becomingyourself.html の水面の青から潜っていく色 ）*/
+    --abyss-surface:#0a3a5e;   /* 水面直下: 前作ヒーローの終端色 #0277bd の名残 */
+    --abyss-mid:#072940;
+    --abyss-deep:#041826;
+    --abyss-floor:#05141f;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior: smooth;}
@@ -54,13 +55,21 @@
     overflow:hidden;
     padding:80px 24px 100px;
     text-align:center;
-    background:linear-gradient(180deg,
-      #81d4fa 0%,
-      #b3e5fc 32%,
-      var(--sea-light) 34%,
-      var(--sea-deep) 66%,
-      var(--sand-light) 68%,
-      var(--sand-deep) 100%);
+    background:
+      /* 水面から差し込む一条の光 */
+      radial-gradient(ellipse 72% 58% at 50% -10%,
+        rgba(129,212,250,0.30) 0%,
+        rgba(41,182,246,0.11) 40%,
+        rgba(41,182,246,0) 72%),
+      /* 底に溜まる影 */
+      radial-gradient(ellipse 130% 72% at 50% 116%,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0) 64%),
+      linear-gradient(180deg,
+        var(--abyss-surface) 0%,
+        var(--abyss-mid) 38%,
+        var(--abyss-deep) 74%,
+        var(--abyss-floor) 100%);
     color:#ffffff;
   }
 
@@ -69,8 +78,9 @@
     display:inline-block;
     font-size:0.85rem;
     letter-spacing:0.35em;
-    background:rgba(255,255,255,0.18);
-    border:1px solid rgba(255,255,255,0.5);
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.38);
+    color:#dceefb;
     border-radius:999px;
     padding:8px 22px;
     margin-bottom:24px;
@@ -80,14 +90,14 @@
     margin:0 0 16px;
     font-size:clamp(2.2rem, 5vw, 3.5rem);
     font-weight:800;
-    text-shadow:0 3px 12px rgba(0,60,90,0.3);
+    text-shadow:0 3px 16px rgba(0,0,0,0.45);
   }
   .hero h2{
     margin:0 auto;
     max-width:600px;
     font-size:clamp(1.1rem, 2.5vw, 1.35rem);
     font-weight:500;
-    color:#e3f7ff;
+    color:#cfe6f6;
     line-height:1.6;
   }
   .wave{
@@ -104,7 +114,7 @@
   }
   .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#e3f7ff; }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#b9d5e8; }
   .toc-note{
     text-align:center;
     color:var(--ink-soft);
@@ -434,7 +444,7 @@
         <desc id="jcDesc">左の「光」の欄には自己理解の物語としての実用性など評価点が二つ、右の「影」の欄には反証可能性の弱さ、検証の難しさ、商業的流用、共時性への懐疑という四つの批判点が並び、影の欄のほうが項目が多いことで、本稿が批判的検討に重きを置いていることを示す。</desc>
 
         <rect x="16" y="16" width="290" height="178" rx="10" class="panel light"/>
-        <text x="161" y="44" class="head">光</text>
+        <text x="161" y="44" class="head light">光</text>
         <rect x="34" y="60" width="254" height="40" rx="6" class="chip"/>
         <text x="161" y="84" class="chipT">自己理解の物語としての実用性</text>
         <rect x="34" y="112" width="254" height="40" rx="6" class="chip"/>
@@ -442,7 +452,7 @@
         <text x="161" y="144" class="chipT">定着した語彙</text>
 
         <rect x="322" y="16" width="382" height="178" rx="10" class="panel shadow"/>
-        <text x="513" y="44" class="head">影</text>
+        <text x="513" y="44" class="head shadow">影</text>
         <rect x="340" y="58" width="166" height="40" rx="6" class="chip dim"/>
         <text x="423" y="82" class="chipT">反証可能性の弱さ</text>
         <rect x="520" y="58" width="166" height="40" rx="6" class="chip dim"/>
@@ -454,13 +464,15 @@
         <text x="513" y="172" class="note">項目の多さは、本稿が批判の検討に重きを置くことの表れ</text>
 
         <style>
-          .panel { fill: #ffffff; fill-opacity: 0.10; stroke: #ffffff; stroke-opacity: 0.4; }
-          .panel.shadow { fill-opacity: 0.06; }
-          .head { fill: #ffffff; font-size: 20px; font-weight: 800; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
-          .chip { fill: #ffffff; fill-opacity: 0.14; }
-          .chip.dim { fill-opacity: 0.10; }
+          .panel { fill: #ffffff; fill-opacity: 0.13; stroke: #ffffff; stroke-opacity: 0.42; }
+          .panel.shadow { fill: #000000; fill-opacity: 0.30; stroke-opacity: 0.20; }
+          .head { font-size: 20px; font-weight: 800; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+          .head.light { fill: #ffd76a; }
+          .head.shadow { fill: #a8c4d8; }
+          .chip { fill: #ffffff; fill-opacity: 0.18; }
+          .chip.dim { fill: #ffffff; fill-opacity: 0.07; stroke: #ffffff; stroke-opacity: 0.18; }
           .chipT { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
-          .note { fill: #e3f7ff; font-size: 10px; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
+          .note { fill: #a8c4d8; font-size: 10px; text-anchor: middle; font-family: -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif; }
         </style>
       </svg>
       <figcaption>本稿が集めた光と影。「影」（批判点）のほうが項目が多いのは、本稿が擁護よりも批判的検討に重心を置いているためで、ユング心理学の評価がこの比率どおりというわけではない。</figcaption>
@@ -487,7 +499,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">1</span>
-        <span class="title">この記事について</span>
+        <span class="title">はじめに</span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
