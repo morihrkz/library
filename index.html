@@ -149,13 +149,33 @@
     padding:clamp(40px,6vw,64px) clamp(24px,4vw,64px) 40px;
   }
 
-  section.group{ margin-bottom:clamp(48px,7vw,72px); scroll-margin-top:24px; }
+  section.group{ margin-bottom:clamp(28px,4vw,40px); scroll-margin-top:88px; }
+
+  .group-details{ border:1px solid var(--line); border-radius:16px; background:var(--paper); overflow:hidden; }
+  .group-details > summary.group-head{
+    list-style:none;
+    cursor:pointer;
+    padding:20px clamp(20px,3vw,28px);
+    transition:background .15s ease;
+  }
+  .group-details > summary.group-head::-webkit-details-marker{ display:none; }
+  .group-details > summary.group-head::marker{ content:""; }
+  .group-details > summary.group-head:hover{ background:var(--bg); }
+  .group-details[open] > summary.group-head{ border-bottom:1px solid var(--line); }
+  .group-details > .grid{ padding:24px clamp(20px,3vw,28px) 26px; }
+
   section.group .group-head{
     display:flex;
     align-items:center;
     gap:16px;
-    margin-bottom:26px;
   }
+  section.group .chev{
+    width:18px; height:18px;
+    color:var(--muted);
+    flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .group-details[open] .chev{ transform:rotate(180deg); }
   section.group .icon{
     width:44px; height:44px;
     border-radius:12px;
@@ -282,6 +302,32 @@
     background:var(--paper);
     border-bottom:1px solid var(--line);
   }
+
+  .toolbar-container{
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .toolbar{
+    max-width:none;
+    margin:0 auto;
+    padding:12px clamp(24px,4vw,64px);
+    display:flex;
+    gap:10px;
+  }
+  .toolbar button{
+    font-family:inherit;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:7px 16px;
+    cursor:pointer;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .toolbar button:hover{ color:var(--ink); border-color:var(--muted); }
   .search-wrap{
     max-width:none;
     margin:0 auto;
@@ -373,12 +419,12 @@
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
     <h1>書庫</h1>
-    <p class="lead"><span id="total-count">22</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
+    <p class="lead"><span id="total-count">23</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</p>
     <div class="counters">
       <a class="tech" href="#tech"><span class="dot"></span>TECHNOLOGY &amp; INDUSTRY <span class="n">7</span></a>
       <a class="soc" href="#social"><span class="dot"></span>POLITICS &amp; SOCIETY <span class="n">5</span></a>
       <a class="mind" href="#mind"><span class="dot"></span>PSYCHOLOGY &amp; EDUCATION <span class="n">5</span></a>
-      <a class="hum" href="#humanities"><span class="dot"></span>HUMANITIES <span class="n">4</span></a>
+      <a class="hum" href="#humanities"><span class="dot"></span>HUMANITIES <span class="n">5</span></a>
       <a class="nat" href="#natural"><span class="dot"></span>NATURAL SCIENCE <span class="n">1</span></a>
     </div>
   </div>
@@ -398,10 +444,18 @@
   </div>
 </section>
 
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll">すべて開く</button>
+    <button id="collapseAll">すべて閉じる</button>
+  </div>
+</div>
+
 <main>
 
   <section class="group" id="tech">
-    <div class="group-head">
+    <details class="group-details">
+    <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="16" rx="2"/>
@@ -413,7 +467,8 @@
         <h2>テクノロジーと産業<span class="group-en">TECHNOLOGY &amp; INDUSTRY</span></h2>
       </div>
       <span class="count">7 articles</span>
-    </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
     <div class="grid">
 
       <a class="card" href="js-zeroichi.html">
@@ -473,10 +528,12 @@
       </a>
 
     </div>
+    </details>
   </section>
 
   <section class="group" id="social">
-    <div class="group-head">
+    <details class="group-details">
+    <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -489,7 +546,8 @@
         <h2>政治と社会<span class="group-en">POLITICS &amp; SOCIETY</span></h2>
       </div>
       <span class="count">5 articles</span>
-    </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
     <div class="grid">
 
       <a class="card" href="legitimacy-of-nations.html">
@@ -533,10 +591,12 @@
       </a>
 
     </div>
+    </details>
   </section>
 
   <section class="group" id="mind">
-    <div class="group-head">
+    <details class="group-details">
+    <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 14c.2-1 .7-1.7 1.5-2.5A5.6 5.6 0 0 0 18 8a6 6 0 0 0-12 0c0 1.4.5 2.7 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
@@ -548,7 +608,8 @@
         <h2>心理と教育<span class="group-en">PSYCHOLOGY &amp; EDUCATION</span></h2>
       </div>
       <span class="count">5 articles</span>
-    </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
     <div class="grid">
 
       <a class="card" href="becomingyourself.html">
@@ -592,10 +653,12 @@
       </a>
 
     </div>
+    </details>
   </section>
 
   <section class="group" id="humanities">
-    <div class="group-head">
+    <details class="group-details">
+    <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 6.5c-1.8-1.4-4.2-2-6.5-2-1 0-2 .12-3 .35v13.4c1-.23 2-.35 3-.35 2.3 0 4.7.6 6.5 2 1.8-1.4 4.2-2 6.5-2 1 0 2 .12 3 .35V4.85c-1-.23-2-.35-3-.35-2.3 0-4.7.6-6.5 2Z"/>
@@ -605,8 +668,9 @@
       <div>
         <h2>人文科学<span class="group-en">HUMANITIES</span></h2>
       </div>
-      <span class="count">4 articles</span>
-    </div>
+      <span class="count">5 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
     <div class="grid">
 
       <a class="card" href="modern-to-contemporary.html">
@@ -641,11 +705,21 @@
         <span class="go">読む</span>
       </a>
 
+      <a class="card" href="logic-intro-selective-surnames.html">
+        <span class="kicker">LOGIC / ARGUMENT ANALYSIS</span>
+        <h3>「全員が選べる制度」に、なぜ反対が出るのか</h3>
+        <h4>選択的夫婦別姓で学ぶ論理学のてほどき</h4>
+        <p class="desc">選択的夫婦別姓をめぐる反対論を教材に、論証を点検する道具を 8 つ学ぶ。反対論を「論証が立っていない型」「制度設計型」「事実命題型」の三群に仕分け、隠れた前提や妥当性・健全性の違いを具体例で確かめる。</p>
+        <span class="go">読む</span>
+      </a>
+
     </div>
+    </details>
   </section>
 
   <section class="group" id="natural">
-    <div class="group-head">
+    <details class="group-details">
+    <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
@@ -658,7 +732,8 @@
         <h2>自然科学<span class="group-en">NATURAL SCIENCE</span></h2>
       </div>
       <span class="count">1 article</span>
-    </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
     <div class="grid">
 
       <a class="card" href="particle-physics.html">
@@ -670,6 +745,7 @@
       </a>
 
     </div>
+    </details>
   </section>
 
 </main>
@@ -852,6 +928,33 @@
       runSearch(input.value);
     }
   });
+
+  // カテゴリの開閉（ アコーディオン ）。
+  var allDetails = Array.prototype.slice.call(document.querySelectorAll('.group-details'));
+  var expandAllBtn = document.getElementById('expandAll');
+  var collapseAllBtn = document.getElementById('collapseAll');
+  if (expandAllBtn) expandAllBtn.addEventListener('click', function(){
+    allDetails.forEach(function(d){ d.open = true; });
+  });
+  if (collapseAllBtn) collapseAllBtn.addEventListener('click', function(){
+    allDetails.forEach(function(d){ d.open = false; });
+  });
+
+  function openGroupFor(hash){
+    if (!hash) return;
+    var target = document.getElementById(hash.replace(/^#/, ''));
+    if (!target) return;
+    var details = target.matches('.group-details') ? target : target.querySelector('.group-details');
+    if (details && !details.open) details.open = true;
+  }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    openGroupFor(a.getAttribute('href'));
+  });
+
+  if (location.hash) openGroupFor(location.hash);
 })();
 </script>
 
