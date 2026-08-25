@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
@@ -25,10 +28,23 @@
     --gold-bg:#f1ecdc;
     --quote-bg:#eef1f7;
   }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#0d1119;
+      --card:#131a26;
+      --ink:#e5e9f2;
+      --ink-soft:#a7b0c2;
+      --line:#263047;
+      --gold:#c9a24a;
+      --gold-deep:#9c7b34;
+      --gold-bg:#241f15;
+      --quote-bg:#171c28;
+    }
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+    font-family:"Zen Kaku Gothic New", -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.95;
@@ -321,15 +337,15 @@
         <text x="10" y="30" class="lb">スケールの見取り図 ─ 原子から宇宙まで、ひと続きの道筋</text>
 
         <style>
-          .lb { fill: #d6dfef; font-size: 12.5px; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .lb { fill: #d6dfef; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
           .node { fill: #ffffff; fill-opacity: 0.07; stroke: #93a9c8; stroke-opacity: 0.6; }
           .node.accent { stroke: #9c7b34; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef1f9; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .nodeT { fill: #eef1f9; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
           .arrow { stroke: #93a9c8; stroke-opacity: 0.7; stroke-width: 2; fill: none; }
           .arrow.loop { stroke: #c9a24a; stroke-opacity: 0.8; }
           .arrowHead { fill: #93a9c8; fill-opacity: 0.85; }
           .arrowHead.loop { fill: #c9a24a; fill-opacity: 0.85; }
-          .tag { fill: #d9c48a; font-size: 10.5px; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .tag { fill: #d9c48a; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
         </style>
       </svg>
       <figcaption>本稿が追う道筋。原子から素粒子へとスケールを下げていく探究が、最後は初期宇宙や宇宙の進化という最大スケールの理解へとつながる ─ 同じ物理法則が両端を貫いているという、本稿の中心的な見立て。</figcaption>

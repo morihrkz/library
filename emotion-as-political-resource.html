@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>「奪われ感」 - 感情はいかに政治資源化されるか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
@@ -23,10 +26,24 @@
     --line: #ddd6cb;
     --note-bg: #f6f1e6;
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17140f;
+      --card: #1e1b16;
+      --ink: #ece7de;
+      --ink-soft: #b3aca0;
+      --muted: #948d80;
+      --line: #332e26;
+      --note-bg: #241d14;
+      --accent-500: #c94a3d;
+      --accent-600: #a83c30;
+      --accent-300: #e0a894;
+    }
+  }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; scroll-behavior: smooth; scroll-padding-top: 76px; }
   body {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     color: var(--ink);
     background: var(--paper);
     line-height: 1.95;
@@ -274,13 +291,13 @@
         <path d="M500 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
 
         <style>
-          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
         </style>
       </svg>
       <figcaption>本稿がたどる回路の見取り図。客観的な貧しさではなく比較から生まれる不満が、集団の境界線と結びついて「奪われた」という感情になり、敵を名指す物語によって投票先へと変換される。アテンション・エコノミーはこの流れを増幅し、熟議の設計とリテラシー教育は制動をかける側に立つ。</figcaption>

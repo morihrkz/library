@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Code 環境移植ガイド（ Windows 11 ⇔ Mac ）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
@@ -23,13 +26,30 @@
     --warn: #b3261e;
     --warn-soft: #fdecea;
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c15;
+      --ink: #ece6da;
+      --ink-soft: #b3ab9c;
+      --accent: #e08a3c;
+      --accent-soft: #2e2313;
+      --border: #332c22;
+      --mac: #7ea3d6;
+      --mac-soft: #17222f;
+      --win: #2ea884;
+      --win-soft: #10241c;
+      --warn: #e0564a;
+      --warn-soft: #2c1512;
+    }
+  }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1.08rem;
     line-height: 1.75;
     padding: 0 0 60px 0;
@@ -404,16 +424,16 @@
         <text x="556" y="223" class="note">手で書き写す</text>
 
         <style>
-          .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
           .dev.win { fill: #7fd0b4; }
           .dev.mac { fill: #9dbbe4; }
-          .devsub { fill: #c7bda1; font-size: 11px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .devsub { fill: #c7bda1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
           .mono { fill: #e8ddc4; font-size: 10.5px; text-anchor: middle; font-family: "SFMono-Regular",Consolas,Menlo,monospace; }
-          .row { fill: #f0e9db; font-size: 12.5px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .row { fill: #f0e9db; font-size: 12.5px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
           .row.out { fill: #f0c9c2; font-size: 11.5px; }
           .idx { fill: #e0a95f; font-weight: 700; }
           .idx.out { fill: #e08b7f; }
-          .note { fill: #e08b7f; font-size: 11px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .note { fill: #e08b7f; font-size: 11px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
         </style>
       </svg>
       <figcaption>移植の全体像。①〜④・⑥ は持ち運べるが、⑤ の Auto Memory だけはマシンローカルに残る。番号は本文の各節に対応している。</figcaption>

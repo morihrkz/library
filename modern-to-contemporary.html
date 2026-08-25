@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>「近代」と「現代」の境界はどこに引かれるのか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
@@ -25,16 +28,34 @@
     --accent-bg:#f4f9f4;
     --tape:rgba(255,224,130,0.75);
   }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --card:#201d15;
+      --paper:#17150f;
+      --ink:#e7e4d8;
+      --ink-soft:#ada99a;
+      --line:#332f24;
+      --pause-bg:#332b12;
+      --accent-bg:#16211a;
+    }
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;}
   body{
-    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+    font-family:"Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
     color:var(--ink);
     background:
       radial-gradient(circle at 88% -8%, #fff3c4 0%, rgba(255,243,196,0) 42%),
       linear-gradient(180deg, #dff3fb 0%, #fdf9ec 20%, #fdf9ec 100%);
     line-height:2.0;
     letter-spacing:0.035em;
+  }
+  @media (prefers-color-scheme: dark){
+    body{
+      background:
+        radial-gradient(circle at 88% -8%, #2e2712 0%, rgba(46,39,18,0) 42%),
+        linear-gradient(180deg, #0d1c22 0%, #14120c 20%, #14120c 100%);
+    }
   }
 
   /* ---------- Progress Bar ---------- */
@@ -366,12 +387,12 @@
         <text x="360" y="18" class="head">「近代」と「現代」の境界候補（概念図・年代は正確な縮尺ではない）</text>
 
         <style>
-          .head { fill: #e8f8ff; font-size: 12px; text-anchor: middle; font-family: "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
-          .lb { fill: #ffffff; font-size: 11.5px; font-family: "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
+          .head { fill: #e8f8ff; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
+          .lb { fill: #ffffff; font-size: 11.5px; font-family: "Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
           .lb.end { text-anchor: end; }
           .dot { fill: #ffca28; stroke: #ffffff; stroke-width: 2; }
           .tick { stroke: #ffca28; stroke-opacity: 0.8; stroke-width: 1.5; }
-          .tag { fill: #ffffff; font-size: 12.5px; font-weight: 800; text-anchor: middle; font-family: "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
+          .tag { fill: #ffffff; font-size: 12.5px; font-weight: 800; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
           .tag.sub { fill: #e8f8ff; font-size: 10.5px; font-weight: 400; }
         </style>
       </svg>

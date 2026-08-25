@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>一つの政党、複数の政策―自民党という枠組みを支える法的構造</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
   body {
     margin: 0;
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
     font-size: 1.15rem;
     line-height: 1.9;
     color: #1a1a1a;
@@ -127,7 +130,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    text-align: left; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
     color: #1a1a1a; -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -157,6 +160,19 @@
     .acc-header { padding: 15px 16px; gap: 10px; }
     .acc-header .title { font-size: 1rem; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6ddd0; background: #16140f; }
+    section#refs { border-top-color: #3a352c; color: #b9b0a0; }
+    section#note { background: #241f16; }
+    section#note p { color: #c2b9a8; }
+    .toolbar-container { background: rgba(22,20,15,.9); }
+    .toolbar button { color: #d9c49a; background: #201c15; border-color: #a58a5e; }
+    .acc-item { background: #1e1a13; border-color: #3a3226; }
+    .acc-header { color: #e6ddd0; }
+    .acc-header .num { color: #d9c49a; background: #332c20; }
+    .acc-header .chev { color: #d9c49a; }
+    .acc-item.open > .acc-header { background: #332c20; border-bottom-color: #3a3226; }
   }
 </style>
 </head>
@@ -203,15 +219,15 @@
         <text x="613" y="146" class="sideS">資金・人事を担う</text>
 
         <style>
-          .grp { fill: #e8dcc0; font-size: 13px; font-weight: 700; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .grp { fill: #e8dcc0; font-size: 13px; font-weight: 700; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
           .chip { fill: #ffffff; fill-opacity: 0.06; }
           .chipL { stroke: #c9a24a; stroke-opacity: 0.7; }
           .chipR { stroke: #6a9a8a; stroke-opacity: 0.7; }
-          .chipT { fill: #f0e6ce; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .chipS { fill: #cbb88f; font-size: 11px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .req { fill: #b8a985; font-size: 11.5px; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .sideT { fill: #f0c9c2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .sideS { fill: #d9a89f; font-size: 10.5px; text-anchor: middle; font-family: "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .chipT { fill: #f0e6ce; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .chipS { fill: #cbb88f; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .req { fill: #b8a985; font-size: 11.5px; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .sideT { fill: #f0c9c2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .sideS { fill: #d9a89f; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
         </style>
       </svg>
       <figcaption>本稿の骨子。「政党」の法的要件は議員数・得票率のみで、党内の政策的立場の統一は求められない。この多様性を組織的に担ってきたのが「派閥」という別法人である。</figcaption>

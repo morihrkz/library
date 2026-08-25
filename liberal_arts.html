@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>リベラルアーツ考 ― 教養教育の理念と米国モデル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
@@ -27,10 +30,24 @@
     --qa-bg:#f6efe0;
     --stripe:#f4efe2;
   }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#16110c;
+      --card:#1c1712;
+      --ink:#ece3d6;
+      --ink-soft:#b3a693;
+      --line:#332a20;
+      --sage:#7fa583;
+      --sage-deep:#4f6d52;
+      --sage-bg:#17231a;
+      --qa-bg:#241d13;
+      --stripe:#1c1712;
+    }
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+    font-family:"Zen Kaku Gothic New", -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.95;
@@ -316,11 +333,11 @@
           .node.root { fill-opacity: 0.12; }
           .node.grp { fill-opacity: 0.05; stroke-opacity: 0.35; }
           .node.leaf { stroke-opacity: 0.7; }
-          .nodeT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
-          .grpT { fill: #e3d6bd; font-size: 11px; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
-          .leafT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .nodeT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .grpT { fill: #e3d6bd; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .leafT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
           .branch { fill: none; stroke: #e6c67a; stroke-opacity: 0.5; stroke-width: 1.5; }
-          .note { fill: #c7b596; font-size: 10.5px; text-anchor: middle; font-family: -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .note { fill: #c7b596; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
         </style>
       </svg>
       <figcaption>リベラルアーツの語源にある「自由七科」。言語を扱うトリビウムと数学を扱うクアドリビウムの七科が、専門に偏らず横断的に学ぶという理念の原型になっている。</figcaption>

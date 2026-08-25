@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
@@ -21,13 +24,26 @@
     --hero-ink: #f3ece2;
     --hero-dim: #cbb9a8;
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --paper: #1d1a14;
+      --text: #ece7de;
+      --sub: #b3ac9f;
+      --muted: #948d80;
+      --accent: #c9573f;
+      --line: #332e26;
+      --table-head: #241f18;
+      --note-bg: #241d14;
+    }
+  }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 1.1rem;
     line-height: 1.95;
   }
@@ -42,7 +58,7 @@
   header.hero .wrap { max-width: 960px; margin: 0 auto; }
   header.hero .eyebrow {
     display: block;
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 0.78rem;
     letter-spacing: 0.24em;
     color: var(--hero-dim);
@@ -55,7 +71,7 @@
     font-weight: 700;
   }
   header.hero p.sub {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     margin: 0;
     color: var(--hero-dim);
     line-height: 1.85;
@@ -65,7 +81,7 @@
   .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
   .hero-figure svg { display: block; width: 100%; height: auto; }
   .hero-figure figcaption {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     margin-top: 0.9rem;
     font-size: 0.85rem;
     color: var(--hero-dim);
@@ -83,7 +99,7 @@
     margin-bottom: 2.5rem;
   }
   h2 {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 1.28rem;
     line-height: 1.6;
     margin-top: 3.2rem;
@@ -103,7 +119,7 @@
     width: 100%;
     margin: 1.6em 0;
     font-size: 0.95rem;
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
   }
   caption {
     caption-side: top;
@@ -124,13 +140,13 @@
     border-left: 3px solid var(--accent);
     padding: 0.9em 1.2em;
     margin: 1.6em 0;
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 0.95rem;
     color: var(--sub);
   }
   .cite { font-size: 0.85em; color: var(--muted); }
   ol.refs {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 0.86rem;
     color: var(--muted);
     line-height: 1.9;
@@ -164,7 +180,7 @@
   .toolbar {
     display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
     margin: 0 0 2.4rem;
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
   }
   .toolbar button {
     font-family: inherit; font-size: 0.88rem; font-weight: 700;
@@ -182,7 +198,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    text-align: left; font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     color: var(--text); -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -222,7 +238,7 @@
   .acc-item.column .acc-panel-inner { background: var(--paper); }
   .acc-item.column .acc-header .title { font-size: 1.08rem; }
   .column-kicker {
-    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     font-size: 0.8rem; letter-spacing: 0.18em; color: var(--muted);
     text-indent: 0; margin: 0 0 0.4rem;
   }
@@ -279,12 +295,12 @@
         <text x="575" y="178" class="src" text-anchor="middle">歴史的正統性が主</text>
 
         <style>
-          .axisTitle { fill: #f3ece2; font-size: 13px; text-anchor: middle; font-weight: 700; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .pole { fill: #cbb9a8; font-size: 12px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .axisTitle { fill: #f3ece2; font-size: 13px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .pole { fill: #cbb9a8; font-size: 12px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
           .pole.end { text-anchor: end; }
-          .demo { fill: #e3d2c2; font-size: 11.5px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .country { fill: #f3ece2; font-size: 12px; text-anchor: middle; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .src { fill: #b7a493; font-size: 10.5px; font-family: "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .demo { fill: #e3d2c2; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .country { fill: #f3ece2; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .src { fill: #b7a493; font-size: 10.5px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
         </style>
       </svg>
       <figcaption>対外的敵意動員の程度を軸に見た五か国・体制の位置づけ。シンガポール・ベトナムは業績正統性に依拠して動員を避け、ロシア・北朝鮮は歴史的正統性への依存が強く動員も高い。中国はその中間で局面に応じて変動し、民主主義国一般はこの軸上を選挙という装置の陰で常に移動している。</figcaption>
