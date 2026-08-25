@@ -21,7 +21,9 @@
     --line:#e3f2fb;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
+    --pause-ink:#6d4c00;
     --accent-bg: #f4f9f9;
+    --acc-open-bg: linear-gradient(90deg, #f0f9ff, #ffffff);
     /* ヒーロー: 陽の差す水面（ 続編 jung_criticism.html の深淵と対をなす ）*/
     --surface-light:#1878b0;
     --surface-mid:#0a5d92;
@@ -34,7 +36,9 @@
       --ink-soft:#9fb3c4;
       --line:#223140;
       --pause-bg:#332b12;
+      --pause-ink:#e6c375;
       --accent-bg:#16211f;
+      --acc-open-bg: var(--card);
     }
   }
   *{box-sizing:border-box;}
@@ -232,7 +236,7 @@
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:linear-gradient(90deg, #f0f9ff, #ffffff);
+    background:var(--acc-open-bg);
     border-bottom: 1px solid var(--line);
   }
 
@@ -325,7 +329,7 @@
   p{
     margin:0 0 1.2em;
     font-size:1.12rem;
-    color: #37474f;
+    color: var(--ink);
     text-indent:1em;
   }
   .no-indent{ text-indent:0; }
@@ -401,7 +405,7 @@
   .pause p{
     margin:0;
     text-indent:0;
-    color:#6d4c00;
+    color:var(--pause-ink);
     font-weight:600;
     text-align: left;
     font-size: 1.1rem;
@@ -427,7 +431,7 @@
   }
   .dl-term dd{
     margin:0;
-    color:#37474f;
+    color:var(--ink);
     font-size:1rem;
   }
   .book-group h4{
@@ -444,7 +448,7 @@
   .book-group li{
     margin-bottom:0.8em;
     font-size:1rem;
-    color: #37474f;
+    color: var(--ink);
   }
   .closing{
     text-align:center;
@@ -452,7 +456,7 @@
     color:var(--ink-soft);
     margin-top:2em;
     padding: 20px;
-    background: rgba(255,255,255,0.5);
+    background: var(--accent-bg);
     border-radius: 12px;
   }
 

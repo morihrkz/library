@@ -21,7 +21,9 @@
     --line:#e3f2fb;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
+    --pause-ink:#6d4c00;
     --accent-bg: #f4f9f9;
+    --acc-open-bg: linear-gradient(90deg, #f0f9ff, #ffffff);
     /* 深淵（ 前作 becomingyourself.html の水面の青から潜っていく色 ）*/
     --abyss-surface:#0a3a5e;   /* 水面直下: 前作ヒーローの終端色 #0277bd の名残 */
     --abyss-mid:#072940;
@@ -35,7 +37,9 @@
       --ink-soft:#9caebc;
       --line:#232b34;
       --pause-bg:#332b12;
+      --pause-ink:#e6c375;
       --accent-bg:#141d1c;
+      --acc-open-bg: var(--card);
     }
   }
   *{box-sizing:border-box;}
@@ -240,7 +244,7 @@
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:linear-gradient(90deg, #f0f9ff, #ffffff);
+    background:var(--acc-open-bg);
     border-bottom: 1px solid var(--line);
   }
 
@@ -333,7 +337,7 @@
   p{
     margin:0 0 1.2em;
     font-size:1.12rem;
-    color: #37474f;
+    color: var(--ink);
     text-indent:1em;
   }
   .no-indent{ text-indent:0; }
@@ -390,7 +394,7 @@
   .pause p{
     margin:0;
     text-indent:0;
-    color:#6d4c00;
+    color:var(--pause-ink);
     font-weight:600;
     text-align: left;
     font-size: 1.1rem;
@@ -416,7 +420,7 @@
   .book-group li{
     margin-bottom:0.8em;
     font-size:1rem;
-    color: #37474f;
+    color: var(--ink);
   }
   .closing{
     text-align:center;
@@ -424,7 +428,7 @@
     color:var(--ink-soft);
     margin-top:2em;
     padding: 20px;
-    background: rgba(255,255,255,0.5);
+    background: var(--accent-bg);
     border-radius: 12px;
   }
 

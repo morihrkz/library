@@ -27,6 +27,8 @@
     --gold-deep:#7c5f24;
     --gold-bg:#f1ecdc;
     --quote-bg:#eef1f7;
+    --ink-accent:#14243c;
+    --open-bg:#e2e8f4;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -39,6 +41,8 @@
       --gold-deep:#9c7b34;
       --gold-bg:#241f15;
       --quote-bg:#171c28;
+      --ink-accent:#9fb3d4;
+      --open-bg:#1c2534;
     }
   }
   *{box-sizing:border-box;}
@@ -121,7 +125,7 @@
 
   .toolbar-container{
     position:sticky; top:8px; z-index:100;
-    background:rgba(245,247,251,.94);
+    background:color-mix(in srgb, var(--card) 94%, transparent);
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
@@ -132,7 +136,7 @@
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
   .toolbar button{
     font-family:inherit; font-size:.88rem; font-weight:600;
-    color:var(--navy-800); background:var(--card);
+    color:var(--ink-accent); background:var(--card);
     border:1.5px solid var(--navy-500); border-radius:999px;
     padding:9px 22px; cursor:pointer;
     transition:all .2s ease;
@@ -172,7 +176,7 @@
   .acc-header .chev{flex:0 0 auto; width:20px; height:20px; color:var(--navy-700); transition:transform .3s cubic-bezier(.4,0,.2,1);}
   .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
   .acc-item.open > .acc-header{
-    background:var(--navy-100);
+    background:var(--open-bg);
     border-bottom:1px solid var(--line);
   }
   .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;}
@@ -184,7 +188,7 @@
   p{margin:0 0 1.15em; font-size:1.12rem; color:var(--ink); line-height:1.95; text-indent:1em;}
   p:last-child{margin-bottom:0;}
   h3.sec{
-    font-size:1.02rem; color:var(--navy-800);
+    font-size:1.02rem; color:var(--ink-accent);
     margin:1.7em 0 .8em; padding-left:12px;
     border-left:4px solid var(--navy-500);
     letter-spacing:.04em; font-weight:700;
@@ -203,7 +207,7 @@
     font-size:.93rem; color:var(--ink-soft); line-height:1.8;
     margin-bottom:.85em; padding-left:.2em; word-break:break-word;
   }
-  .fn-list li em{color:var(--navy-800); font-style:italic;}
+  .fn-list li em{color:var(--ink-accent); font-style:italic;}
   .fn-list li a:not(.fn-back){color:var(--navy-600);}
   .fn-back{
     color:var(--navy-600); text-decoration:none; font-weight:700;
@@ -211,12 +215,12 @@
   }
 
   em{font-style:italic;}
-  strong{color:var(--navy-900); font-weight:700;}
+  strong{color:var(--ink-accent); font-weight:700;}
 
   /* ---------- Formula ---------- */
   .formula{
     text-align:center; margin:1.5em 0; padding:.4em 0;
-    font-size:1.3rem; color:var(--navy-900);
+    font-size:1.3rem; color:var(--ink-accent);
     font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
     letter-spacing:.02em;
   }
@@ -259,11 +263,11 @@
     background:var(--navy-800); color:#eef1f9; font-weight:700; letter-spacing:.02em;
   }
   table.data-table tbody tr:nth-child(odd){background:var(--quote-bg);}
-  table.data-table tbody td:first-child{font-weight:700; color:var(--navy-800); white-space:nowrap;}
+  table.data-table tbody td:first-child{font-weight:700; color:var(--ink-accent); white-space:nowrap;}
 
   footer{
     text-align:center; color:var(--ink-soft); font-size:.84rem;
-    padding:30px 20px 44px; background:var(--navy-100); border-top:1px solid var(--line);
+    padding:30px 20px 44px; background:var(--open-bg); border-top:1px solid var(--line);
     line-height:1.9;
   }
 

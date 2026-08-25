@@ -26,6 +26,7 @@
     --pause-bg:#fff7e2;
     --pause-border:#e3b23c;
     --field-bg:#f2f8ef;
+    --acc-open-bg: linear-gradient(90deg, #fff8e6, #fffdf6);
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -36,6 +37,7 @@
       --line:#332c1e;
       --pause-bg:#332912;
       --field-bg:#16211a;
+      --acc-open-bg: var(--card);
     }
   }
   *{box-sizing:border-box;}
@@ -104,7 +106,7 @@
 
   .toolbar-container{
     position:sticky; top:10px; z-index:100;
-    background:rgba(251,245,230,.93);
+    background:color-mix(in srgb, var(--card) 93%, transparent);
     backdrop-filter:blur(8px);
     padding:10px 0; border-radius:999px;
     margin-bottom:30px;
@@ -156,7 +158,7 @@
   .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--sky-deep); transition:transform .3s cubic-bezier(.4,0,.2,1);}
   .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
   .acc-item.open > .acc-header{
-    background:linear-gradient(90deg, #fff8e6, #fffdf6);
+    background:var(--acc-open-bg);
     border-bottom:1px solid var(--line);
   }
   .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
@@ -190,7 +192,7 @@
   .sub-item.open > .sub-panel > .sub-panel-inner{padding:14px 22px 22px; opacity:1;}
 
   /* ---------- Body typography ---------- */
-  p{margin:0 0 1.2em; font-size:1.12rem; color:#3b3627; text-indent:1em;}
+  p{margin:0 0 1.2em; font-size:1.12rem; color:var(--ink); text-indent:1em;}
   .no-indent{text-indent:0;}
 
   .dialogue{
@@ -288,7 +290,7 @@
   .closing{
     text-align:center; font-style:italic; color:var(--ink-soft);
     margin-top:2em; padding:22px;
-    background:rgba(255,255,255,.65); border-radius:12px;
+    background:var(--field-bg); border-radius:12px;
     line-height:2;
   }
 

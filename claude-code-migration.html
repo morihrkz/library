@@ -112,7 +112,7 @@
     border: 1px solid #f0d9b5;
     border-radius: 10px;
     padding: 14px 18px;
-    color: #6b4a1f;
+    color: var(--accent);
   }
 
   table {
@@ -137,12 +137,13 @@
     border-top: 1px solid var(--border);
     vertical-align: top;
   }
-  tbody tr:nth-child(even) { background: #fbfaf7; }
+  tbody tr:nth-child(even) { background: var(--bg); }
   td.path, td code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
   td.path { color: var(--accent); white-space: nowrap; }
 
   code {
-    background: #f1ece0;
+    background: var(--mono-bg);
+    color: var(--mono-ink);
     padding: 1px 6px;
     border-radius: 4px;
     font-size: 1em;
@@ -212,14 +213,14 @@
   }
   .platform-box.win .plabel { color: var(--win); }
   .platform-box.mac .plabel { color: var(--mac); }
-  .platform-box code { background: rgba(255,255,255,0.6); word-break: break-all; }
+  .platform-box code { background: color-mix(in srgb, var(--card-bg) 70%, transparent); color: var(--ink); word-break: break-all; }
 
   .callout {
     border-radius: 10px;
     padding: 12px 16px;
     margin: 14px 0;
   }
-  .callout.warn { background: var(--warn-soft); border: 1px solid #f3c6c1; color: #7a251e; }
+  .callout.warn { background: var(--warn-soft); border: 1px solid #f3c6c1; color: var(--warn); }
   .callout.tip { background: #eaf3ec; border: 1px solid #c3ddc9; color: #2e5e3a; }
   .callout strong { display: block; margin-bottom: 4px; }
 

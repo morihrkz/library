@@ -25,7 +25,9 @@
     --line:#e8e0cc;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
+    --pause-ink:#6d4c00;
     --accent-bg:#f4f9f4;
+    --acc-open-bg: linear-gradient(90deg, #f2fbff, #fffdf7);
     --tape:rgba(255,224,130,0.75);
   }
   @media (prefers-color-scheme: dark){
@@ -36,7 +38,9 @@
       --ink-soft:#ada99a;
       --line:#332f24;
       --pause-bg:#332b12;
+      --pause-ink:#e6c375;
       --accent-bg:#16211a;
+      --acc-open-bg: var(--card);
     }
   }
   *{box-sizing:border-box;}
@@ -109,7 +113,7 @@
 
   .toolbar-container{
     position:sticky; top:10px; z-index:100;
-    background:rgba(253,249,236,.92);
+    background:color-mix(in srgb, var(--card) 92%, transparent);
     backdrop-filter:blur(8px);
     padding:10px 0; border-radius:999px;
     margin-bottom:30px;
@@ -161,7 +165,7 @@
   .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--sky-deep); transition:transform .3s cubic-bezier(.4,0,.2,1);}
   .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
   .acc-item.open > .acc-header{
-    background:linear-gradient(90deg, #f2fbff, #fffdf7);
+    background:var(--acc-open-bg);
     border-bottom:1px solid var(--line);
   }
   .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
@@ -194,7 +198,7 @@
   .sub-item.open > .sub-panel > .sub-panel-inner{padding:16px 24px 24px; opacity:1;}
 
   /* ---------- Body typography ---------- */
-  p{margin:0 0 1.2em; font-size:1.12rem; color:#3b3a35; text-indent:1em;}
+  p{margin:0 0 1.2em; font-size:1.12rem; color:var(--ink); text-indent:1em;}
   .no-indent{text-indent:0;}
   h3.sec{
     font-size:1.05rem; color:var(--sky-deep);
@@ -233,7 +237,7 @@
     background:var(--pause-bg); padding:0 8px;
     font-size:.74rem; font-weight:700; letter-spacing:.06em; color:#c79100;
   }
-  .pause p{margin:0; text-indent:0; color:#6d4c00; font-weight:600; text-align:left; font-size:1.06rem; line-height:1.75;}
+  .pause p{margin:0; text-indent:0; color:var(--pause-ink); font-weight:600; text-align:left; font-size:1.06rem; line-height:1.75;}
   .pause p + p{margin-top:.7em;}
 
   .memo{
@@ -303,7 +307,7 @@
 
   /* 表 */
   .tablewrap{overflow-x:auto; margin:1.6em 0;}
-  table{border-collapse:collapse; width:100%; min-width:460px; font-size:.96rem; background:#fff;}
+  table{border-collapse:collapse; width:100%; min-width:460px; font-size:.96rem; background:var(--card);}
   th,td{border:1px solid var(--line); padding:10px 12px; text-align:left; line-height:1.7;}
   th{background:#f3f8ec; color:var(--green-deep); font-weight:700; white-space:nowrap;}
   td b{color:var(--coral);}
@@ -311,16 +315,16 @@
   .dl-term{margin:0 0 1.5em; padding-bottom:1.5em; border-bottom:1px solid var(--line);}
   .dl-term:last-child{border-bottom:none;}
   .dl-term dt{font-weight:700; font-size:1.06rem; color:var(--sky-deep); margin-bottom:6px;}
-  .dl-term dd{margin:0; color:#3b3a35; font-size:1rem;}
+  .dl-term dd{margin:0; color:var(--ink); font-size:1rem;}
 
   .book-group h4{color:var(--coral); font-size:1.06rem; margin:1.5em 0 .8em; border-left:4px solid var(--coral); padding-left:10px;}
   .book-group ul{margin:0 0 1em; padding-left:1.5em;}
-  .book-group li{margin-bottom:.8em; font-size:1rem; color:#3b3a35;}
+  .book-group li{margin-bottom:.8em; font-size:1rem; color:var(--ink);}
 
   .closing{
     text-align:center; font-style:italic; color:var(--ink-soft);
     margin-top:2em; padding:20px;
-    background:rgba(255,255,255,.6); border-radius:12px;
+    background:var(--accent-bg); border-radius:12px;
   }
 
   footer{

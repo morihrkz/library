@@ -22,7 +22,9 @@
     --line:#ece7f6;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
+    --pause-ink:#6d4c00;
     --accent-bg:#f7f5fb;
+    --acc-open-bg: linear-gradient(90deg, #f4f2fc, #ffffff);
     --dusk-mid:#8e7cc3;
     --dusk-light:#f3c9a0;
   }
@@ -33,7 +35,9 @@
       --ink-soft:#9d97b8;
       --line:#2c2740;
       --pause-bg:#332b12;
+      --pause-ink:#e6c375;
       --accent-bg:#17141f;
+      --acc-open-bg: var(--card);
     }
   }
   *{box-sizing:border-box;}
@@ -229,7 +233,7 @@
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:linear-gradient(90deg, #f4f2fc, #ffffff);
+    background:var(--acc-open-bg);
     border-bottom: 1px solid var(--line);
   }
 
@@ -322,7 +326,7 @@
   p{
     margin:0 0 1.2em;
     font-size:1.12rem;
-    color: #37474f;
+    color: var(--ink);
     text-indent:1em;
   }
   .no-indent{ text-indent:0; }
@@ -370,7 +374,7 @@
   .pause p{
     margin:0;
     text-indent:0;
-    color:#6d4c00;
+    color:var(--pause-ink);
     font-weight:600;
     text-align: left;
     font-size: 1.05rem;
@@ -408,7 +412,7 @@
     margin:0 0 1em;
     text-indent:0;
     font-size:0.98rem;
-    color:#37474f;
+    color:var(--ink);
     line-height:1.75;
   }
   .column p:last-child{ margin-bottom:0; }
@@ -432,7 +436,7 @@
   }
   .dl-term dd{
     margin:0;
-    color:#37474f;
+    color:var(--ink);
     font-size:1rem;
   }
   .book-group h4{
@@ -449,7 +453,7 @@
   .book-group li{
     margin-bottom:0.8em;
     font-size:1rem;
-    color: #37474f;
+    color: var(--ink);
   }
   .closing{
     text-align:center;
@@ -457,7 +461,7 @@
     color:var(--ink-soft);
     margin-top:2em;
     padding: 20px;
-    background: rgba(255,255,255,0.5);
+    background: var(--accent-bg);
     border-radius: 12px;
   }
 
@@ -487,7 +491,7 @@
     font-weight:700;
     white-space:nowrap;
   }
-  .info-table td{ color:#37474f; }
+  .info-table td{ color:var(--ink); }
   .info-table tr:last-child td{ border-bottom:none; }
   .info-table tr:nth-child(even) td{ background:rgba(57,73,171,0.02); }
 
