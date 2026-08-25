@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>「似た宇宙」と「宇宙の前」 - 私たちは、どこまで宇宙の始まりを語れるのか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f5;--ink:#1c1d21;--sub:#5a606b;--accent:#315f96;
+  --accent2:#7c5aa6;--line:#e2ded4;--hero1:#050a18;--hero2:#1b3055;
+  --hero-ink:#eef4ff;--hero-dim:#a9bcdb;--hero-faint:#7e93b5;
+  --card:#fff;--soft:#f2f5f9;--gold:#c39b42;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif;
+ line-height:2.05;letter-spacing:.025em;-webkit-font-smoothing:antialiased}
+/* ---- hero ---- */
+header.hero{background:linear-gradient(140deg,var(--hero1) 0%,var(--hero2) 100%);
+ color:var(--hero-ink);padding:3.6rem 0 2.8rem;margin-bottom:2.8rem}
+header.hero .wrap{max-width:960px;margin:0 auto;padding:0 clamp(1.5rem,3vw,3rem)}
+header.hero .eyebrow{display:block;font-size:.78rem;letter-spacing:.24em;
+ color:var(--hero-dim);font-weight:700;margin-bottom:.9rem}
+header.hero h1{font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.6;margin:0 0 .8rem;font-weight:700}
+header.hero h1 .grad{background:linear-gradient(90deg,#b7d1ff,#e5d8f6,#f2cbe7);
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+header.hero p.sub{margin:0;color:var(--hero-dim);line-height:1.85;font-size:.98rem}
+header.hero .hero-meta{display:flex;flex-wrap:wrap;gap:1.2em;color:var(--hero-faint);
+ font-size:.84rem;border-top:1px solid #ffffff20;margin-top:1.7rem;padding-top:1.2em}
+.hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto}
+.hero-figure svg{display:block;width:100%;height:auto}
+.hero-figure figcaption{margin-top:.9rem;font-size:.85rem;color:var(--hero-dim);line-height:1.75}
+.wrap{margin:auto;padding:0 clamp(1.5rem,3vw,3rem) 7em}
+.kicker{font:500 .88rem "Zen Kaku Gothic New";color:#667085;letter-spacing:.12em}
+.tag{display:inline-block;border:1px solid #cbd5e1;background:#f1f5f9;border-radius:999px;
+ padding:.15em .75em;margin:.2em .35em .2em 0;font:500 .78rem "Zen Kaku Gothic New";color:#475569}
+h2{font-size:1.72rem;line-height:1.4;margin:3.5em 0 1.1em;padding-bottom:.45em;border-bottom:2px solid var(--line);position:relative}
+h2:after{content:"";position:absolute;bottom:-2px;left:0;width:64px;height:2px;background:var(--accent)}
+h3{font-size:1.22rem;margin:2.7em 0 .8em;color:#26364b}
+h4{font-size:1.05rem;margin:2em 0 .6em}
+p{font-size:1.04rem;margin:1.35em 0;text-align:justify;text-indent:1em}
+header.hero p,.hero-figure figcaption,.kicker,.cap,.note p,.concept p,.evidence p,.figure p,blockquote p,
+ .flow div,.refs li,footer,td,th,.endmark{text-indent:0}
+.note,.concept,.evidence{margin:2.2em 0;padding:1.3em 1.45em;border-radius:12px;
+ font-family:"Zen Kaku Gothic New",sans-serif;font-size:.94rem;line-height:1.9}
+.note{background:#f2f5f9;border:1px solid #d7e1ed}.concept{background:#f8f6fb;border-left:4px solid var(--accent2)}
+.evidence{background:#f8f7f2;border:1px solid #e3dccb}
+.note strong,.concept strong,.evidence strong{color:#234d80}
+blockquote{margin:2.3em 0;padding:1.2em 1.5em;border-left:4px solid var(--accent);background:#f3f5f9;
+ border-radius:0 12px 12px 0}
+table{width:100%;border-collapse:collapse;margin:2em 0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:.91rem}
+th,td{padding:.8em;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:#f1f4f8}
+.figure{margin:2.5em 0;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.figure .diagram{padding:22px;background:linear-gradient(135deg,#f7f9fc,#f4f0f8);font-family:"Zen Kaku Gothic New",sans-serif}
+.figure .cap{padding:.85em 1.2em;background:#f8f7f4;border-top:1px solid var(--line);font: .82rem "Zen Kaku Gothic New";color:#596273}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flow div{padding:15px;border:1px solid #ccd7e5;border-radius:10px;background:#fff}
+.flow b{display:block;color:#315f96;margin-bottom:5px}
+.refs{font-size:.9rem;line-height:1.8}.refs li{margin-bottom:1em}.refs a{color:#315f96;word-break:break-all}
+.endmark{text-align:center;color:#315f96;letter-spacing:.8em;margin:3em 0}
+footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid var(--line);padding-top:1.5em}
+
+/* ---- accordion ---- */
+.toolbar-container{position:sticky;top:8px;z-index:100;background:var(--bg);
+ background:color-mix(in srgb,var(--bg) 94%,transparent);
+ backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+ padding:9px 0;border-radius:999px;margin:0 0 2.4rem;border:1px solid var(--line);
+ box-shadow:0 4px 14px rgba(0,0,0,.10)}
+.toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0}
+.toolbar button{font-family:inherit;font-size:.88rem;font-weight:700;color:var(--accent);
+ background:var(--card);border:1.5px solid var(--accent);border-radius:999px;
+ padding:8px 20px;cursor:pointer;transition:all .2s ease}
+.toolbar button:hover{background:var(--accent);color:#fff}
+#accordion{margin-bottom:2.6rem}
+.acc-item{background:var(--card);border:1px solid var(--line);border-radius:10px;
+ margin-bottom:16px;overflow:hidden;overflow-anchor:none}
+.acc-item:last-child{margin-bottom:0}
+.acc-header{width:100%;display:flex;align-items:center;gap:14px;background:none;border:none;
+ padding:18px 22px;cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);
+ -webkit-tap-highlight-color:transparent}
+.acc-header .num{flex:0 0 auto;color:var(--accent);font-size:.82rem;font-weight:700;
+ background:var(--soft);padding:4px 11px;border-radius:999px;white-space:nowrap;
+ font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.acc-header .title{flex:1 1 auto;font-size:1.15rem;font-weight:700;line-height:1.5;text-indent:0}
+.acc-header .chev{flex:0 0 auto;width:20px;height:20px;color:var(--accent);
+ transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.acc-item.open>.acc-header .chev{transform:rotate(180deg)}
+.acc-item.open>.acc-header{background:var(--soft);border-bottom:1px solid var(--line)}
+.acc-panel{display:grid;grid-template-rows:0fr;
+ transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);overflow-anchor:none}
+.acc-item.open>.acc-panel{grid-template-rows:1fr}
+.acc-panel-inner{overflow:hidden;min-height:0;padding:0 22px;opacity:0;
+ transition:opacity .3s ease .08s}
+.acc-item.open>.acc-panel>.acc-panel-inner{padding:6px 22px 26px;opacity:1}
+.acc-panel-inner>:first-child{margin-top:.4em}
+.acc-panel-inner>h3:first-child{margin-top:.6em}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:700px){.wrap{padding:0 19px 5em}
+ header.hero{padding:2.6rem 0 2.2rem;margin-bottom:2.2rem}
+ .hero-figure svg{min-width:600px}
+ p{font-size:1rem;text-align:left}.flow{grid-template-columns:1fr}h2{font-size:1.45rem}
+ .acc-header{padding:15px 16px;gap:10px}.acc-header .title{font-size:1rem}
+ .acc-item.open>.acc-panel>.acc-panel-inner{padding:4px 16px 22px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">THE MULTIVERSE · THE EARLY UNIVERSE · QUANTUM GRAVITY</span>
+    <h1>「似た宇宙」と「宇宙の前」 - <span class="grad">私たちは、どこまで宇宙の始まりを語れるのか</span></h1>
+    <p class="sub">無数の宇宙があるのか。そもそも「宇宙の外」や「宇宙の前」という言葉には、物理的な意味があるのか。この二つの問いは、どちらも強烈な想像力を刺激する。けれど、本当に面白いのは想像の先にある。そこには、観測できること、数学から導かれること、そしてまだ分からないことを厳密に切り分けようとする、現代宇宙論の仕事がある。</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 300" role="img" aria-labelledby="lcTitle lcDesc">
+        <title id="lcTitle">過去光円錐と最終散乱面の関係を示す概念図</title>
+        <desc id="lcDesc">図の上端に現在の観測者を置き、そこから過去へ向かって開く過去光円錐を描く。円錐の下端は最終散乱面と交わり、そこで放たれた光が宇宙マイクロ波背景放射として観測される。最終散乱面より下は不透明な高温プラズマの時代で、光は自由に進めない。さらに下には古典一般相対論が破綻する領域を破線で示す。</desc>
+
+        <line x1="30" y1="278" x2="30" y2="52" class="axis"/>
+        <path d="M25 60 L30 48 L35 60" class="axis" fill="none"/>
+        <text x="46" y="62" class="axlab">現在</text>
+        <text x="46" y="276" class="axlab">過去</text>
+
+        <path d="M410 58 L680 200 L140 200 Z" class="coneFill"/>
+        <path d="M410 58 L680 200" class="coneEdge"/>
+        <path d="M410 58 L140 200" class="coneEdge"/>
+
+        <circle cx="410" cy="58" r="4" class="nowDot"/>
+        <text x="410" y="40" class="now">現在 - 観測する私たち</text>
+
+        <text x="596" y="148" class="side">過去光円錐</text>
+        <text x="224" y="148" class="side end">光円錐の外</text>
+
+        <text x="410" y="190" class="inCone">私たちが見る最も古い光（ CMB ）</text>
+
+        <rect x="70" y="200" width="630" height="36" class="plasma"/>
+        <line x1="70" y1="200" x2="700" y2="200" class="lss"/>
+        <text x="76" y="192" class="lsslab">最終散乱面</text>
+        <text x="410" y="223" class="plasmalab">不透明な高温プラズマ - 光は自由に進めない</text>
+
+        <line x1="70" y1="250" x2="700" y2="250" class="sing"/>
+        <text x="410" y="272" class="singlab">古典一般相対論の破綻 - 量子重力の領域</text>
+
+        <style>
+          .axis { stroke: #6d81a3; stroke-width: 1.5; }
+          .axlab { fill: #7e93b5; font-size: 11px; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .coneFill { fill: #8fb4ff; fill-opacity: .07; }
+          .coneEdge { fill: none; stroke: #9dbcf5; stroke-opacity: .55; stroke-width: 1.5; }
+          .nowDot { fill: #dbe8ff; }
+          .now { fill: #eef4ff; font-size: 12.5px; font-weight: 700; text-anchor: middle; letter-spacing: .06em; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .side { fill: #a9bcdb; font-size: 11.5px; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .side.end { text-anchor: end; }
+          .inCone { fill: #cfe0ff; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .lss { stroke: #d6e6ff; stroke-opacity: .85; stroke-width: 1.5; }
+          .lsslab { fill: #d6e6ff; font-size: 11px; letter-spacing: .1em; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .plasma { fill: #7c5aa6; fill-opacity: .22; }
+          .plasmalab { fill: #cbbde0; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .sing { stroke: #f2cbe7; stroke-opacity: .5; stroke-width: 1.5; stroke-dasharray: 5 5; }
+          .singlab { fill: #b9a7c9; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+        </style>
+      </svg>
+      <figcaption>現在の私たちから過去へ開く過去光円錐と、それが最終散乱面と交わる面としての宇宙マイクロ波背景放射。最終散乱面はビッグバンから約 38 万年後にあたり、それ以前の宇宙は不透明な高温プラズマで、光は電子に散乱されて自由に進めない。図はあくまで因果構造を示す概念図であり、縮尺・時間軸の比率は正確ではない。</figcaption>
+    </figure>
+
+    <div class="hero-meta">
+      <span>理論宇宙論</span><span>インフレーション</span><span>マルチバース</span><span>量子重力</span>
+      <span>事実と仮説を峻別する拡張版</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="kicker"><span class="tag">理論宇宙論</span><span class="tag">宇宙論</span><span class="tag">量子重力</span><span class="tag">科学哲学</span></p>
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">0</span>
+    <span class="title">最初に、この文章の読み方を</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      以下では、観測によって確かめられていること、そこから強く支持される理論、理論上は整合的だが未検証の提案、そして哲学的な解釈をできるだけ分けて扱う。<br>
+      とりわけ「インフレーションが支持される」ことと「永久インフレーションやマルチバースが観測された」ことは同じではない。
+      また「ビッグバン以前」を語るモデルが存在することと、ビッグバン以前の宇宙が実在すると確認されたことも同じではない。<br>
+      この区別を崩さないことが、本稿の出発点である。
+    </p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">まず、二つの違和感から始めよう</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      夜空を見上げて、「この宇宙は一つだけなのだろうか」と考えることは難しくない。けれど、「別の宇宙」という言葉を物理学の文脈で使った瞬間、話は急に難しくなる。<br>
+      それは、 SF でいう並行世界と同じなのか。そこには別の地球があり、別の自分がいるのか。物理法則まで違うのか。
+      あるいは、そもそも「宇宙」という言葉を、私たちは何を指して使っているのか。
+    </p>
+    <p>
+      もう一つの問いも同じくらい厄介だ。「宇宙は約 138 億年前から膨張している」と聞けば、ほとんど自動的に「では、その前は？」と聞きたくなる。<br>
+      しかし、この問いには一つの重要な落とし穴がある。「前」という言葉は、すでに時間が存在することを前提としているからだ。
+    </p>
+    <p>
+      この二つの問いは、一見すると別物である。前者は空間の広がり、後者は時間の始まりの問題だ。<br>
+      ところが、どちらにも共通するのは、日常生活で身につけた言葉と直観を、そのまま宇宙全体へ適用してよいのか、という問題である。<br>
+      私たちは「物には隣がある」「出来事にはその前がある」という世界に生きている。しかし、宇宙論が扱うのは、その日常世界そのものが成立する条件なのである。
+    </p>
+    <div class="concept">
+      <strong>ここで最初の線引き。</strong><br>
+      「マルチバースがある」と「マルチバースという仮説が物理学の中で研究されている」は違う。
+      「ビッグバンに以前の相がある」というモデルと、「それが観測で確認された」は違う。
+      本稿は、この二つを混ぜない。
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">ビッグバンは「宇宙の爆発」ではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      「ビッグバン」という名前は、どうしても一個の爆弾が空間の中で爆発したような映像を呼び起こす。<br>
+      しかし標準的な宇宙論が描いているのは、そういう出来事ではない。宇宙は膨張しており、過去へ遡るほど高温・高密度になっていく。<br>
+      ESA/Hubble の用語解説も、「ビッグバン」という語は爆発を指すのではなく、空間そのものの膨張を指す言葉なのだと明示している。
+    </p>
+    <p>
+      私たちが直接見られる最も古い光は、宇宙マイクロ波背景放射（ CMB ）である。 NASA の解説によれば、これはビッグバンから約 38 万年後、宇宙がまだ高温・高密度で不透明だった時代の終わりに放たれた光である。<br>
+      それ以前の宇宙は高温のプラズマで、光は電子によって頻繁に散乱され、現在のように自由に遠くまで進めなかった。<br>
+      つまり、宇宙の「最初」を語るとき、私たちは映像を直接見ているのではない。現在に残された痕跡を使って、より早い時代を推定している。
+    </p>
+    <p>
+      ここは重要だ。宇宙論は「 138 億年前の現場をカメラで撮った学問」ではない。<br>
+      CMB 、銀河の分布、元素の存在量、宇宙膨張など、異なる観測を一つの理論体系に照らし合わせることで、過去の宇宙を復元している。
+      だからこそ、理論のどこまでが観測に支えられているかを丁寧に見る必要がある。
+    </p>
+    <div class="figure">
+      <div class="diagram">
+        <div class="flow">
+          <div><b>観測</b> CMB ・銀河・元素組成・宇宙膨張</div>
+          <div><b>理論</b>一般相対論＋標準宇宙論</div>
+          <div><b>推論</b>より初期の宇宙へ遡る</div>
+        </div>
+      </div>
+      <div class="cap">宇宙論では「見えない過去」を、現在に残された観測可能な痕跡から復元する。</div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">インフレーションは何を説明し、何をまだ説明していないのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      初期宇宙を考えるうえで重要な仮説が、宇宙インフレーションである。非常に早い時代に、空間が急激な加速膨張を経験したと考える。<br>
+      この考え方は、宇宙が大規模には非常に平坦に見えることや、遠く離れた領域の性質が驚くほど似ていることを説明する枠組みを与えた。<br>
+      さらに、量子的な揺らぎが宇宙の膨張によって大きなスケールへ引き伸ばされ、後の銀河や大規模構造の種になったという描像も、現在の宇宙論の重要な柱になっている。
+    </p>
+    <p>
+      ただし、ここで「インフレーションは観測された」と言い切ってしまうと、話を一段飛ばしてしまう。<br>
+      CMB の統計的性質はインフレーションの予測と整合的だが、インフレーションそのものを直接撮影したわけではない。
+      とくに、インフレーションを駆動した物理的機構や、その最初の条件はまだ分かっていない。
+    </p>
+    <div class="evidence">
+      <strong>証拠の強さを整理すると：</strong><br>
+      CMB などの観測は、初期宇宙の平坦性や密度ゆらぎの性質を非常に精密に制約している。
+      それらは多くのインフレーション模型と整合する。一方、どのインフレーション模型が正しいのか、そもそもインフレーションが唯一の説明なのか、
+      そしてインフレーション以前に何があったのかは、別問題として残っている。
+    </div>
+    <p>
+      この「別問題として残る」というところが、次の話につながる。<br>
+      インフレーションを考えたとき、ある模型では、インフレーションを終える領域が生まれても、その外側では膨張が続き、新しい領域が次々と生じることがある。
+      そこから「永久インフレーション」という考え方が現れる。
+    </p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">永久インフレーションとマルチバース - 数学から出てくる「別の宇宙」</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      永久インフレーションは、単純な意味で「宇宙が永遠に存在する」という主張ではない。<br>
+      インフレーションする領域の一部で相転移が起き、局所的に通常の膨張宇宙へ移行しても、残りのインフレーション領域の体積が増え続けるなら、
+      全体としてインフレーションが未来へ向かって終わらないという構造が生じうる。
+      その過程で「ポケット宇宙」や「泡宇宙」と呼ばれる領域を考えることができる。
+    </p>
+    <p>
+      ただし、ここで一つ注意がいる。「インフレーションを採用した瞬間、マルチバースが数学的必然として立ち現れる」という言い方は強すぎる。<br>
+      Alan Guth 自身のレビューは、多くのインフレーション模型が未来方向に終わらないインフレーションへ至ると論じる一方で、
+      インフレーションする時空は過去方向には測地線的に不完全であり（ Borde–Guth–Vilenkin の定理）、
+      インフレーション領域の過去側の境界を記述するには、インフレーション以外の物理が必要だと明言している。<br>
+      つまり「未来に向かって永久」という話と、「過去から無限に続く」という話を混同してはいけない。
+    </p>
+    <p>
+      さらに、泡宇宙そのものを直接観測できるわけではない。私たちが観測できるのは、私たちの宇宙の内部に残る痕跡だけである。<br>
+      他の泡との衝突が CMB に特徴を残す可能性なども研究されているが、これまでの観測がマルチバースの存在を確認したわけではない。
+    </p>
+    <div class="concept">
+      <strong>ここで「マルチバース」という言葉を慎重に使う。</strong><br>
+      永久インフレーションから生じる泡宇宙は、理論的に研究されている一つのマルチバース像である。
+      「別の宇宙が実在する」という言い方は、その理論的描像を採用した場合の帰結であって、観測事実そのものではない。
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">真空エネルギーと宇宙定数 - 120 桁問題の本当の姿</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      マルチバース論が魅力を持つもう一つの理由は、宇宙定数問題である。<br>
+      現在の宇宙は加速膨張しており、その原因を最も単純に表す候補の一つが宇宙定数、すなわち真空エネルギーに対応する項である。
+      ところが、量子場理論から真空のゼロ点エネルギーを素朴に見積もった値と、宇宙論的に観測される値には、極端な隔たりがある。
+    </p>
+    <p>
+      ここでよく登場する「 120 桁」という数字は、非常に印象的だ。しかし、それを「量子力学が観測値を 120 桁間違えた」と表現するのも正確ではない。<br>
+      量子場理論の真空エネルギーの扱いには、正則化、繰り込み、重力との結合などが関わり、単純なゼロ点エネルギーの足し算をそのまま観測可能な宇宙定数と同一視することはできない。<br>
+      本当の問題は、重力と量子場理論を組み合わせたとき、なぜ観測される宇宙定数がこれほど小さいのかを自然に説明できないことである。
+      実際、この問題を包括的に検討した Jerome Martin のレビューは、しばしば引かれる「 122 桁」という数字そのものが、
+      自由場の真空エネルギーを正しく繰り込んだ場合には成り立たないと指摘している。
+    </p>
+    <p>
+      そこで、もし宇宙ごとに真空エネルギーが異なるならどうなるか、という発想が出てくる。<br>
+      ある値が大きすぎれば銀河形成が難しくなる。すると、観測者が存在できる宇宙は、その条件を満たす領域に偏る。
+      Steven Weinberg は 1987 年、宇宙定数に対するこの種の人間原理的な上限を論じ、後のダークエネルギー観測と比較して大きな影響を与えた。
+    </p>
+    <p>
+      ただし、ここでも「人間原理が宇宙定数を予言した」と単純化しない方がよい。<br>
+      何を確率分布として採用するか、観測者をどう定義するか、どのようなマルチバースを想定するかによって結論が変わりうるからである。
+      人間原理は強力な説明の候補だが、それだけで問題が完全に解決したわけではない。
+    </p>
+    <div class="note">
+      <strong>「 10<sup>500</sup> 」という数字にも注意。</strong><br>
+      超弦理論のランドスケープでは、余剰次元のコンパクト化にどうフラックスを載せるかによって、非常に多数の真空解が生じうると議論されている。
+      よく引かれる 10<sup>500</sup> は、その真空を数え上げる試みから出てきた見積もりの一つにすぎない。
+      数え方や対象とする構成を変えれば桁数そのものが大きく変わり、たとえば F 理論のあるコンパクト化については 10<sup>272000</sup> という見積もりも報告されている。
+      いずれにせよ、これは「宇宙が 10<sup>500</sup> 個存在する」という意味ではないし、ランドスケープの解が実際に実現していることが観測で確認されたわけでもない。
+      「膨大な数の理論的真空候補」と「膨大な数の実在宇宙」を同じ文章にしないことが重要である。
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">「似た宇宙」を四つに分ける - テグマークと多世界解釈</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      「マルチバース」という言葉が混乱を招く最大の理由の一つは、異なる種類のアイデアが同じ単語で呼ばれていることだ。<br>
+      Max Tegmark は、マルチバースについて四つのレベルを区別する分類を提示した。
+      これは「四種類の宇宙が観測された」という分類ではなく、異なる理論的アイデアを整理するための概念的な地図である。
+    </p>
+    <table>
+      <thead><tr><th>レベル</th><th>何が違うのか</th><th>位置づけ</th></tr></thead>
+      <tbody>
+        <tr><td>Level I</td><td>観測可能な宇宙の外側に広がる、同じ物理法則の領域</td><td>宇宙が十分に広大・平坦であるという仮定からの延長</td></tr>
+        <tr><td>Level II</td><td>異なる真空・物理定数を持ちうる泡宇宙</td><td>永久インフレーション等と関連する理論的描像</td></tr>
+        <tr><td>Level III</td><td>量子力学の多世界解釈における分岐</td><td>量子力学の解釈に関する問題</td></tr>
+        <tr><td>Level IV</td><td>異なる数学的構造そのもの</td><td>数学的宇宙仮説という非常に大胆な哲学的・物理的立場</td></tr>
+      </tbody>
+    </table>
+    <p>
+      ここで「自分とそっくりな人が別宇宙にいる」という話を考えると、少なくとも Level I と Level III はまったく同じ話ではない。<br>
+      Level I は、非常に広大な空間の中で物質配置が再現される可能性を論じる。
+      Level III は、量子状態のユニタリーな時間発展を多世界的に解釈する。<br>
+      「パラレルワールド」という一語で両者を包むと、物理的な違いが消えてしまう。
+    </p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">野村泰紀氏の量子マルチバース - 魅力的だが、まだ確立理論ではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      ここで野村泰紀氏（カリフォルニア大学バークレー校）の仕事が登場する。野村氏は 2011 年の論文で、永久インフレーションによるマルチバースと量子力学の多世界は同じものだ、とする枠組みを提示した。<br>
+      その発想の魅力は、「無限に増殖する宇宙を外側から数える」という描像そのものを疑い、観測者がアクセスできる有限の領域と、その量子状態の記述から宇宙論を考え直そうとする点にある。
+    </p>
+    <p>
+      これは、永久インフレーションに伴う「測度問題」とも関係する。無限個の泡宇宙が存在するなら、「どの種類の宇宙がどのくらいの割合で存在するか」をどう定義すればよいのか。<br>
+      無限個どうしを単純に数えて比率を取ることはできない。どこで切って、どの順番で極限を取るかによって結果が変わりうるからだ。
+    </p>
+    <p>
+      野村氏のアプローチは、宇宙を量子状態として記述し、観測者の地平線に関連する自由度を重視することで、この問題を量子力学の枠組みから捉え直そうとする。<br>
+      さらに 2012 年には、マルチバースを記述する量子状態は始まりも終わりもない「静的」なものであるべきだ、という踏み込んだ提案も行っている。
+      ここには、一般相対論と量子力学をどう一つの理論にまとめるかという、現代物理学最大級の問題が横たわっている。
+    </p>
+    <p>
+      しかし、ここは本稿で最も慎重に扱うべき場所でもある。<br>
+      「永久インフレーションと多世界解釈は完全に同一の実在だ」と観測によって確定したわけではない。
+      野村氏の提案は、非常に興味深い理論的研究である一方、量子重力そのものが未完成であり、学界全体の確立した標準理論ではない。<br>
+      理論の美しさと実証の強さは、別の尺度で評価しなければならない。
+    </p>
+    <div class="evidence">
+      <strong>この章の結論：</strong><br>
+      野村氏の量子マルチバースは「マルチバースについての確定した観測事実」ではない。
+      それは、量子力学・一般相対論・宇宙論を統一的に理解するための、最前線の理論的試みとして読むべきものである。
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">では「ビッグバンの前」はどうなるのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      ここで、最初の問いに戻ろう。「ビッグバンの前には何があったのか」。<br>
+      まず、一般相対論の古典的な宇宙解を過去へ延長すると、非常に高い密度・曲率に到達し、特異点が現れる。<br>
+      これは「そこに小さな球があって爆発した」という意味ではない。一般相対論の記述そのものが、そこでは破綻するという意味を持つ。
+    </p>
+    <p>
+      だから「特異点の前」を古典理論だけで尋ねても、答えは出ない。<br>
+      これは「前に何もなかった」と証明したことではない。むしろ「この理論だけでは、その領域を記述できない」ということだ。
+      ここは非常に大きな違いである。
+    </p>
+    <p>
+      そして、量子重力を考えると状況はさらに面白くなる。<br>
+      一般相対論では連続した時空として扱われるものが、プランクスケールでは量子的な性質を持つ可能性がある。
+      もしそうなら、特異点は本当の「宇宙の端」ではなく、古典理論の近似が壊れる場所なのかもしれない。<br>
+      ただし、その「かもしれない」を確認するには、量子重力の実験的検証が必要である。
+    </p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec9" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">9</span>
+    <span class="title">無境界・トンネル・量子バウンス - 三つの「その先」の描像</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <h3>9-1. ハートル＝ホーキングの無境界提案</h3>
+    <p>
+      Hartle と Hawking は 1983 年、「宇宙の波動関数」を量子論的に記述する際、宇宙の初期状態に通常の時間的境界を置かないという無境界提案を示した。
+      重要なのは、「宇宙が時間の中の一点から始まった」と単純に考えるのではなく、初期宇宙の幾何そのものを量子的に扱うことだ。
+    </p>
+    <p>
+      よく使われる「南極より南には行けない」という比喩は、数学的構造を直感的に説明するためのものだ。
+      それは「宇宙の南極が実際に丸い空間だった」という観測結果ではない。<br>
+      また、虚時間を使った定式化は、日常語でいう「時間を別の方向へ流す」という話でもない。
+    </p>
+
+    <h3>9-2. ヴィレンキンのトンネル提案</h3>
+    <p>
+      Alexander Vilenkin は、宇宙の波動関数に異なる境界条件を与え、量子トンネル効果によって宇宙が生成されるという提案を行った。<br>
+      ここでいう「 nothing （無）」は、日常語の「何もない空間」と同じではない。
+      物理学では、理論が何を前提にしているかを明確にしなければならず、「無」という一語から哲学的な絶対無を連想してはいけない。
+    </p>
+
+    <h3>9-3. ループ量子宇宙論と量子バウンス</h3>
+    <p>
+      ループ量子宇宙論（ LQC ）では、量子幾何学の効果によって、古典一般相対論が予測する特異点が回避され、収縮宇宙がバウンスして膨張宇宙へ移行する可能性が研究されている。<br>
+      これは「ビッグバンの前にも宇宙があった」という非常に魅力的な描像を与える。
+      しかし、それはあくまで LQC という理論枠組みの中で得られる結果であり、私たちの宇宙が実際にその歴史をたどったと観測で確定したわけではない。
+    </p>
+    <div class="figure">
+      <div class="diagram">
+        <div class="flow">
+          <div><b>無境界</b>「始まり」を通常の境界として置かない</div>
+          <div><b>トンネル</b>量子宇宙の生成を境界条件で記述</div>
+          <div><b>バウンス</b>収縮相から膨張相への量子遷移</div>
+        </div>
+      </div>
+      <div class="cap">三つは「ビッグバン以前」を同じ意味で説明しているわけではない。数学的出発点も、物理的含意も異なる。</div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec10" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">10</span>
+    <span class="title">なぜ「前」という言葉が難しいのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      「前」という言葉には、少なくとも二つの意味がある。一つは時計の針を逆向きに進めるという意味。
+      もう一つは、現在の状態を生み出した原因を探すという意味である。<br>
+      宇宙論では、この二つが混同されやすい。
+    </p>
+    <p>
+      たとえば「宇宙が膨張する前に何があったのか」と問うとき、私たちは「膨張していない宇宙」という状態を想像しやすい。
+      しかし、一般相対論では時間も時空の一部であり、「時間の背景の上で宇宙が変化する」というニュートン的な絵がそのまま使えるわけではない。
+    </p>
+    <p>
+      もっとも、ここから「だから時間の始まりは完全に説明された」と結論してしまうのも誤りだ。<br>
+      古典一般相対論は特異点で限界に達する。量子重力理論はその先を記述しようとしているが、まだ決着していない。<br>
+      したがって、現時点で最も科学的に正確な答えは、「ビッグバン以前について複数の理論的可能性が研究されているが、どれが現実なのかは分かっていない」である。
+    </p>
+    <blockquote>
+      <p>
+        「分からない」は、宇宙論の敗北を意味しない。<br>
+        何が分かっていて、何が分からないかを境界線として描けること自体が、科学の重要な成果である。
+      </p>
+    </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec11" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">11</span>
+    <span class="title">最後に残るもの - 宇宙論の強さは「分からない」と言えることにある</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p>
+      ここまで来ると、最初の二つの違和感は少し違って見えてくる。<br>
+      「似た宇宙があるのか」という問いは、マルチバースという一つの巨大な物語にまとめる必要はない。
+      無限空間、永久インフレーション、超弦理論のランドスケープ、量子多世界解釈など、互いに異なる理論的構造を区別しなければならない。
+    </p>
+    <p>
+      「ビッグバンの前は何か」という問いも同じだ。<br>
+      古典一般相対論では特異点が現れ、そこで理論の適用限界が露呈する。
+      無境界提案は「前」という問いそのものを別の幾何学へ置き換える。
+      トンネル提案は宇宙の量子生成を考える。
+      量子バウンスは過去の収縮相を許す。<br>
+      どれも「 138 億年前の実写映像」ではない。それぞれが、既存理論の限界を越えるための異なる数学的提案なのである。
+    </p>
+    <p>
+      そして、ここに現代宇宙論のおもしろさがある。<br>
+      私たちが知っているのは、宇宙が膨張していること、 CMB が存在すること、初期宇宙の密度ゆらぎが後の構造形成につながったこと、そして現在の宇宙が加速膨張していることなどだ。<br>
+      そこから先は、理論を組み立て、観測可能な予測を引き出し、データによって絞り込む。
+      まだ観測できない部分については、理論の整合性と予測能力を比較する。
+    </p>
+    <p>
+      だから、宇宙論を読むときに最も危険なのは、「壮大な話だから正しいだろう」と感じてしまうことだ。
+      逆に、最も面白いのは、壮大な話を前にしても「これは観測事実か」「理論的帰結か」「一つの解釈か」と問い直せることだろう。
+    </p>
+    <p>
+      マルチバースは確認された事実ではない。ビッグバン以前の宇宙も確認されていない。<br>
+      それでも、それらをめぐる研究が無意味なわけではない。
+      なぜなら、そこへ向かう途中で、私たちは一般相対論、量子力学、宇宙膨張、真空エネルギー、確率、観測者、時空そのものの意味を、これまでになく厳密に問い直すことになるからだ。
+    </p>
+    <p>
+      宇宙の始まりを知るとは、単に「最初の一秒より前」を覗き込むことではない。
+      むしろ、私たちが「始まり」「前」「外」「存在」という言葉を、宇宙全体について使うとき、何を前提にしているのかを問い直すことなのだ。
+    </p>
+    <p>
+      そして最後に残るのは、意外にも控えめな結論である。<br>
+      私たちは宇宙の初期について、驚くほど多くのことを知るようになった。しかし、最初の瞬間そのもの、量子重力が支配する領域、そしてマルチバースの実在性については、まだ決着していない。<br>
+      その「まだ」を隠さずに残すことこそ、科学を物語から科学のままにしておくための最低条件なのである。
+    </p>
+
+    <div class="note">
+      <strong>結論を一行で言えば：</strong><br>
+      「マルチバースも、ビッグバン以前も、現代物理学が真剣に研究している問題ではある。しかし、研究されていることと、確認されたことは同じではない。」
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ref-title" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">付録</span>
+    <span class="title">主要参考文献・確認資料</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+    <p class="kicker" style="margin-bottom:1.6em">
+      以下はすべて、査読誌の原論文または公的機関の公開資料である。書誌情報（誌名・巻・ページ・年）は一件ずつ原典に当たって確認した。
+    </p>
+    <ol class="refs">
+      <li>Alan H. Guth, <em>Eternal inflation and its implications</em>, Journal of Physics A <strong>40</strong>, 6811–6826 (2007).
+        <a href="https://arxiv.org/abs/hep-th/0702178" target="_blank" rel="noopener">arXiv:hep-th/0702178</a></li>
+      <li>Arvind Borde, Alan H. Guth, Alexander Vilenkin, <em>Inflationary spacetimes are not past-complete</em>, Physical Review Letters <strong>90</strong>, 151301 (2003).
+        <a href="https://arxiv.org/abs/gr-qc/0110012" target="_blank" rel="noopener">arXiv:gr-qc/0110012</a>
+        - インフレーションする時空が過去方向に測地線的不完全であることを示した定理。</li>
+      <li>Alan H. Guth, <em>Inflation</em>, Carnegie Observatories Astrophysics Series, Vol. 2: <em>Measuring and Modeling the Universe</em> (2004).
+        <a href="https://arxiv.org/abs/astro-ph/0404546" target="_blank" rel="noopener">arXiv:astro-ph/0404546</a></li>
+      <li>Planck Collaboration, <em>Planck 2018 results. X. Constraints on inflation</em>, Astronomy &amp; Astrophysics <strong>641</strong>, A10 (2020).
+        <a href="https://arxiv.org/abs/1807.06211" target="_blank" rel="noopener">arXiv:1807.06211</a>
+        - 空間曲率やスペクトル指数の制約はこの最終成果に基づく。</li>
+      <li>NASA Science, <em>Big Bang and the Evolution of the Universe</em>.
+        <a href="https://science.nasa.gov/astrophysics/programs/physics-of-the-cosmos/big-bang-and-the-evolution-of-the-universe/" target="_blank" rel="noopener">science.nasa.gov</a>
+        - CMB がビッグバンから約 38 万年後に放たれたという記述の出典。</li>
+      <li>ESA/Hubble, <em>Word Bank: Big Bang</em>.
+        <a href="https://esahubble.org/wordbank/big-bang/" target="_blank" rel="noopener">esahubble.org</a>
+        - 「ビッグバン」が爆発ではなく空間の膨張を指すという記述の出典。</li>
+      <li>J. B. Hartle and S. W. Hawking, <em>Wave function of the Universe</em>, Physical Review D <strong>28</strong>, 2960 (1983).
+        <a href="https://doi.org/10.1103/PhysRevD.28.2960" target="_blank" rel="noopener">DOI</a></li>
+      <li>Alexander Vilenkin, <em>Creation of universes from nothing</em>, Physics Letters B <strong>117</strong>, 25–28 (1982).
+        <a href="https://ui.adsabs.harvard.edu/abs/1982PhLB..117...25V/abstract" target="_blank" rel="noopener">ADS</a></li>
+      <li>Abhay Ashtekar, Tomasz Pawlowski, Parampreet Singh, <em>Quantum Nature of the Big Bang: Improved dynamics</em>, Physical Review D <strong>74</strong>, 084003 (2006).
+        <a href="https://arxiv.org/abs/gr-qc/0607039" target="_blank" rel="noopener">arXiv:gr-qc/0607039</a></li>
+      <li>Steven Weinberg, <em>Anthropic Bound on the Cosmological Constant</em>, Physical Review Letters <strong>59</strong>, 2607–2610 (1987).
+        <a href="https://doi.org/10.1103/PhysRevLett.59.2607" target="_blank" rel="noopener">DOI</a></li>
+      <li>Jerome Martin, <em>Everything You Always Wanted To Know About The Cosmological Constant Problem (But Were Afraid To Ask)</em>, Comptes Rendus Physique <strong>13</strong>, 566–665 (2012).
+        <a href="https://arxiv.org/abs/1205.3365" target="_blank" rel="noopener">arXiv:1205.3365</a>
+        - 「 120 桁のずれ」という通説そのものを批判的に検討した総説。</li>
+      <li>Michael R. Douglas, <em>The String Theory Landscape</em>, Universe <strong>5</strong>, 176 (2019).
+        <a href="https://doi.org/10.3390/universe5070176" target="_blank" rel="noopener">DOI</a>
+        - ランドスケープと真空の数え上げに関する総説。</li>
+      <li>Washington Taylor and Yi-Nan Wang, <em>The F-theory geometry with most flux vacua</em>, JHEP <strong>12</strong> (2015) 164.
+        <a href="https://arxiv.org/abs/1511.03209" target="_blank" rel="noopener">arXiv:1511.03209</a>
+        - 真空数の見積もりが数え方に強く依存することを示す例（ 10<sup>272000</sup> ）。</li>
+      <li>Yasunori Nomura, <em>Physical Theories, Eternal Inflation, and Quantum Universe</em>, JHEP <strong>11</strong> (2011) 063.
+        <a href="https://arxiv.org/abs/1104.2324" target="_blank" rel="noopener">arXiv:1104.2324</a>
+        - 「永久インフレーションのマルチバースと量子力学の多世界は同じもの」と結論する論文。</li>
+      <li>Yasunori Nomura, <em>The Static Quantum Multiverse</em>, Physical Review D <strong>86</strong>, 083505 (2012).
+        <a href="https://arxiv.org/abs/1205.5550" target="_blank" rel="noopener">arXiv:1205.5550</a></li>
+      <li>Yasunori Nomura, <em>Quantum Mechanics, Gravity, and the Multiverse</em>, Astronomical Review <strong>7</strong>, 36 (2012).
+        <a href="https://arxiv.org/abs/1205.2675" target="_blank" rel="noopener">arXiv:1205.2675</a></li>
+      <li>Max Tegmark, <em>Parallel Universes</em>, in <em>Science and Ultimate Reality: From Quantum to Cosmos</em>, eds. J. D. Barrow, P. C. W. Davies, C. L. Harper (Cambridge University Press, 2004).
+        <a href="https://arxiv.org/abs/astro-ph/0302131" target="_blank" rel="noopener">arXiv:astro-ph/0302131</a>
+        - Level I 〜 IV の四分類の原典。</li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+</div>
+
+  <div class="endmark">⁂</div>
+
+  <footer>
+    本稿は、理論宇宙論の現状を一般読者向けに説明することを目的とした解説であり、特定の未検証理論を事実として断定するものではない。
+    数値・年代・書誌情報は、上に挙げた原論文および公的な科学資料に一件ずつ照らして確認している。
+    観測事実・理論的帰結・未検証の仮説・哲学的解釈を混ぜないことを、本稿の編集方針としている。<br>
+    ページ上部の意匠は概念図である。ゆらぎの模様は手続き的に生成したものであり、観測データの再現ではない。
+  </footer>
+</main>
+
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  document.querySelectorAll("[data-acc]").forEach(function(item){
+    var toggle = item.querySelector("[data-acc-toggle]");
+    toggle.addEventListener("click", function(){
+      var willOpen = !item.classList.contains("open");
+      if(willOpen){
+        Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+          if(sibling !== item && sibling.matches && sibling.matches("[data-acc]")){
+            sibling.classList.remove("open");
+          }
+        });
+      }
+      item.classList.toggle("open", willOpen);
+      if(willOpen){
+        setTimeout(function(){
+          item.scrollIntoView({behavior:"smooth", block:"start"});
+        }, OPEN_SCROLL_DELAY);
+      }
+    });
+  });
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  function openFor(target, delayScroll){
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return false;
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : delayScroll);
+    return true;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    if(openFor(target, OPEN_SCROLL_DELAY)) e.preventDefault();
+  });
+
+  if(location.hash.length > 1){
+    var t = document.getElementById(location.hash.slice(1));
+    if(t) setTimeout(function(){ openFor(t, OPEN_SCROLL_DELAY); }, 60);
+  }
+})();
+</script>
+
+</body>
+</html>
