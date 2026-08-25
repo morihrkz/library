@@ -29,9 +29,9 @@
     font-size: 16px;
   }
   .wrap {
-    max-width: 920px;
+    max-width: none;
     margin: 0 auto;
-    padding: 48px 32px 120px;
+    padding: 48px clamp(24px, 4vw, 64px) 120px;
   }
   header.hero {
     background: linear-gradient(140deg, #14231b 0%, #23412f 100%);
@@ -39,9 +39,9 @@
     padding: 56px 0 44px;
   }
   header.hero .hero-inner {
-    max-width: 920px;
+    max-width: none;
     margin: 0 auto;
-    padding: 0 32px;
+    padding: 0 clamp(24px, 4vw, 64px);
   }
   header.hero .kicker { color: #8fc79c; }
   header.hero h1 { color: #f2f7f3; }
