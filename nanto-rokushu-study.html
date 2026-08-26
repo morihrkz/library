@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南都六宗 - 1300 年生き延びた「古い仏教」の正体</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #faf6ef;
+    --paper: #fffdf9;
+    --ink: #2b2620;
+    --sub: #6b6255;
+    --muted: #8a8072;
+    --accent: #9a4b32;
+    --accent-soft: #c98a63;
+    --line: #e3d9c6;
+    --note-bg: #f6efe1;
+    --hero-1: #241a15;
+    --hero-2: #4a271d;
+    --hero-ink: #f3ece2;
+    --hero-dim: #cbb9a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #17140f;
+      --paper: #1d1a14;
+      --ink: #ece7de;
+      --sub: #b3ac9f;
+      --muted: #948d80;
+      --accent: #d97a57;
+      --accent-soft: #c98a63;
+      --line: #332e26;
+      --note-bg: #241d14;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:76px;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+    line-height:1.95;
+    letter-spacing:0.02em;
+  }
+  .wrap{
+    margin:0 auto;
+    padding:0 clamp(1.5rem, 3vw, 3rem) 6rem;
+  }
+  header.hero{
+    background:linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    color:var(--hero-ink);
+    padding:3.6rem 0 2.8rem;
+    margin-bottom:2.8rem;
+  }
+  header.hero .wrap{max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,3vw,3rem);}
+  .eyebrow{
+    display:block;
+    letter-spacing:0.24em;
+    font-size:0.78rem;
+    color:var(--hero-dim);
+    text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  h1{
+    font-size:clamp(1.5rem, 3.6vw, 2.1rem);
+    line-height:1.6;
+    margin:0 0 1rem;
+    font-weight:700;
+  }
+  p.sub{
+    margin:0;
+    font-size:1.02rem;
+    color:var(--hero-dim);
+    line-height:1.85;
+    text-indent:0;
+  }
+  .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
+  .hero-figure svg{display:block; width:100%; height:auto;}
+  .hero-figure figcaption{
+    margin-top:0.9rem;
+    font-size:0.85rem;
+    color:var(--hero-dim);
+    line-height:1.75;
+  }
+  main.wrap{padding-top:0;}
+  h2{
+    font-size:1.4rem;
+    margin:0 0 1.6rem;
+  }
+  h3{
+    font-size:1.1rem;
+    margin:2.2rem 0 1rem;
+    color:var(--accent);
+  }
+  p{margin:0 0 1.3rem; text-indent:1em;}
+  p.lede, p.beat, p.signoff, .note{text-indent:0;}
+  .beat{margin:0 0 0.15rem;}
+  .pull{
+    font-size:1.2rem;
+    line-height:1.8;
+    color:var(--accent);
+    font-weight:700;
+    margin:2.2rem 0;
+    padding:1.4rem 1.6rem;
+    background:var(--note-bg);
+    border-left:3px solid var(--accent-soft);
+    border-radius:2px;
+    text-indent:0;
+  }
+  ul{margin:0 0 1.5rem; padding-left:1.4rem;}
+  li{margin-bottom:0.4rem;}
+  sup.fn a{
+    color:var(--accent);
+    text-decoration:none;
+    font-size:0.75rem;
+  }
+  .signoff{
+    font-size:1.25rem;
+    color:var(--accent);
+    font-weight:700;
+    text-align:center;
+    margin:2.4rem 0 0;
+    line-height:1.9;
+  }
+  footer.refs ol{padding-left:1.4rem; margin:0;}
+  footer.refs li{margin-bottom:1rem; text-indent:0;}
+  footer.refs a{color:var(--accent); word-break:break-all;}
+  .note{margin-top:1.5rem; font-style:italic; color:var(--sub); font-size:0.92rem;}
+
+  .toolbar-container{
+    position:sticky; top:8px; z-index:100;
+    background:var(--bg);
+    background:color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:9px 0;
+    border-radius:999px;
+    margin:0 0 2.4rem;
+    border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar{margin:0;}
+  .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:0;}
+  .toolbar button{
+    font-size:0.88rem; font-weight:700;
+    color:var(--accent); background:var(--paper);
+    border:1.5px solid var(--accent); border-radius:999px;
+    padding:8px 20px; cursor:pointer; transition:all .2s ease;
+  }
+  .toolbar button:hover{background:var(--accent); color:#fff;}
+  #accordion{margin-bottom:2.6rem;}
+  .acc-item{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    margin-bottom:16px; overflow:hidden; overflow-anchor:none;
+  }
+  .acc-item:last-child{margin-bottom:0;}
+  .acc-header{
+    width:100%; display:flex; align-items:center; gap:14px;
+    background:none; border:none; padding:18px 22px; cursor:pointer;
+    text-align:left; color:var(--ink); -webkit-tap-highlight-color:transparent;
+  }
+  .acc-header .num{
+    flex:0 0 auto; color:var(--accent); font-size:0.82rem; font-weight:700;
+    background:var(--note-bg); padding:4px 11px; border-radius:999px; white-space:nowrap;
+  }
+  .acc-header .title{flex:1 1 auto; font-size:1.15rem; font-weight:700; line-height:1.5;}
+  .acc-header .chev{
+    flex:0 0 auto; width:20px; height:20px; color:var(--accent);
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
+  .acc-item.open > .acc-header{background:var(--note-bg); border-bottom:1px solid var(--line);}
+  .acc-panel{
+    display:grid; grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;
+  }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
+  .acc-panel-inner{
+    overflow:hidden; min-height:0; padding:0 22px; opacity:0;
+    transition:opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner{padding:6px 22px 26px; opacity:1;}
+  @media (max-width:600px){
+    .acc-header{padding:15px 16px; gap:10px;}
+    .acc-header .title{font-size:1rem;}
+    .acc-item.open > .acc-panel > .acc-panel-inner{padding:4px 16px 22px;}
+    .hero-figure svg{min-width:560px;}
+  }
+</style>
+<style>
+  /* 本文フォントサイズを本文以外にも統一 */
+  html { font-size: 16px !important; }
+  body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+</style>
+<style>
+  /* フォント統一設定 */
+  html { font-size: 16px; }
+  body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Nanto Rokushu · 南都仏教史</span>
+    <h1>1300 年、消えなかった仏教 - 南都六宗という「知の生き延び方」</h1>
+    <p class="sub">古代の学問仏教が、新しい宗派の台頭・戦乱・近代化を経てもなお生き続けている理由を、南都六宗という言葉の中身から読み解く</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 230" role="img" aria-labelledby="nrTitle nrDesc">
+        <title id="nrTitle">南都の大寺院を貫く 1300 年の時間軸</title>
+        <desc id="nrDesc">奈良時代の学問仏教の成立から、平安・鎌倉の新仏教の登場、戦乱による焼失と再建、近代の制度変化を経て、現代の世界遺産登録に至るまでを一本の時間軸として示す概念図。年代は目安であり、実際の出来事の正確な期日を示すものではない。</desc>
+
+        <line x1="50" y1="150" x2="670" y2="150" stroke="#cbb9a8" stroke-opacity="0.6" stroke-width="2"/>
+        <path d="M664 144 l10 6 l-10 -6" fill="none" stroke="#cbb9a8" stroke-opacity="0.8" stroke-width="2"/>
+
+        <g>
+          <circle cx="90" cy="150" r="7" fill="#c98a63"/>
+          <text x="90" y="130" class="lbl" text-anchor="middle">奈良時代</text>
+          <text x="90" y="176" class="sub2" text-anchor="middle">学問仏教の成立</text>
+
+          <circle cx="230" cy="150" r="7" fill="#e3d2c2"/>
+          <text x="230" y="130" class="lbl" text-anchor="middle">平安 ・ 鎌倉</text>
+          <text x="230" y="176" class="sub2" text-anchor="middle">新しい宗派が台頭</text>
+
+          <circle cx="370" cy="150" r="7" fill="#c9584a"/>
+          <text x="370" y="130" class="lbl" text-anchor="middle">戦乱期</text>
+          <text x="370" y="176" class="sub2" text-anchor="middle">伽藍の焼失</text>
+
+          <circle cx="500" cy="150" r="7" fill="#7fae8f"/>
+          <text x="500" y="130" class="lbl" text-anchor="middle">近代 ・ 現代</text>
+          <text x="500" y="176" class="sub2" text-anchor="middle">写経勧進による再建</text>
+
+          <circle cx="630" cy="150" r="7" fill="#c98a63"/>
+          <text x="630" y="130" class="lbl" text-anchor="middle">1998 年 〜</text>
+          <text x="630" y="176" class="sub2" text-anchor="middle">世界遺産登録</text>
+        </g>
+
+        <text x="360" y="40" class="axisTitle" text-anchor="middle">失っても、作り直せる - 1300 年続いた理由</text>
+
+        <style>
+          .axisTitle{ fill:#f3ece2; font-size:14px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lbl{ fill:#f3ece2; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .sub2{ fill:#b7a493; font-size:10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        </style>
+      </svg>
+      <figcaption>奈良の大寺院が経てきた大きな転換点を一本の時間軸として示した概念図。年代の間隔や位置は模式的なものであり、正確な縮尺・年表ではない。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">0</span>
+    <span class="title">はじめに</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p class="lede">奈良で大寺院を歩くと、少し奇妙な感覚に襲われる。</p>
+<p class="lede">東大寺の大仏殿。興福寺の五重塔。薬師寺の東塔。唐招提寺の金堂。</p>
+<p>
+どれも「古い寺」と紹介される。だが、よく考えると、この言い方自体が謎めいている。古い寺なら、なぜ今もここにあるのか。その間に平安京が生まれ、武士が台頭し、鎌倉幕府が興り、戦国の炎が奈良を舐め、江戸幕府が倒れ、明治国家が生まれた。宗教制度も社会も、人々の暮らしも、何度も別物になった。
+</p>
+<p>
+それでも奈良の大寺院は残った。しかも建物が奇跡的に生き延びただけではない。そこでは教学が研究され続け、経典が受け渡され続け、儀礼が絶えず、伽藍は焼けるたびに立ち上がり直してきた。
+</p>
+<p>
+この長い持続を象徴するのが、<strong>南都六宗</strong>という言葉である。三論宗、成実宗、倶舎宗、法相宗、華厳宗、律宗。だがこの「六宗」、実は現代人がそのまま鵜呑みにすると足をすくわれる言葉なのだ。
+</p>
+<div class="pull">古い仏教は、なぜ新しい仏教が次々に現れる日本の歴史をくぐり抜けて、今も生きているのか。</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">「六宗」は、六つの教団ではなかった</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+南都六宗 - 三論宗、成実宗、倶舎宗、法相宗、華厳宗、律宗。文化庁の『宗教年鑑』は、奈良時代に遣唐使を通じて唐から伝わった「学問仏教」が奈良の諸大寺院で学ばれたものをこの六宗とし、なかでも法相宗については、現在も興福寺と薬師寺が二大本山としてその伝統を継承していると説明する <sup class="fn"><a href="#fn1">[1]</a></sup> 。
+</p>
+<p>
+ここで注意したいのは、「宗」という一文字の重みだ。私たちが今「宗派」と聞いて思い浮かべるのは、浄土宗や曹洞宗、日蓮宗のような、独立した教団であり、専属の寺院であり、僧侶と信徒の組織である。だが奈良時代の「宗」は、そうした意味を必ずしも持たない。むしろそれは、<strong>どの経典や論書を、どの思想体系で研究するかという、学問上のまとまり</strong>に近かった。
+</p>
+<p>
+だから奈良の大寺院を「六つの宗派が別々に本部を構えていた場所」と想像すると、実態から外れてしまう。東大寺はその好例だ。 2026 年現在、東大寺は自らを「八宗兼学の寺」と称し、南都六宗のうち三論宗と成実宗に焦点を当てた特集展示を行っている。東大寺自身の説明によれば、この二宗は現在は独立した宗として残っていないが、東大寺では華厳宗と並ぶ柱として江戸時代まで存続したという <sup class="fn"><a href="#fn2">[2]</a></sup> 。
+</p>
+<p>
+一つの寺に、複数の教学が同居していた。現代人には少し飲み込みにくい構図だが、裏を返せば実に面白い。奈良の大寺院は「宗派の本部」ではなく、<strong>仏教を研究しつづける、巨大な知的空間</strong>だったのである。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">奈良に集まったのは、信仰だけではなかった</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+なぜそんな空間が奈良に生まれたのか。答えの一つは単純で、奈良時代の日本が大陸文化を猛烈な勢いで吸収していたからだ。遣唐使が持ち帰ったのは、制度や工芸だけではない。経典を読み、論書を研究し、戒律を学び、思想を議論し、それを日本の社会に定着させていく - その全工程の受け皿になったのが、奈良の大寺院だった。文化庁が「学問仏教」という言葉をあえて使うのも、この性格ゆえである <sup class="fn"><a href="#fn1">[1]</a></sup> 。
+</p>
+<p>
+もちろん、国家との結びつきも濃かった。東大寺は聖武天皇の発願による官寺であり、大仏造立という国家的大事業の中心地となった。奈良市も、東大寺を聖武天皇発願の官寺として位置づけている <sup class="fn"><a href="#fn3">[3]</a></sup> 。だが、それだけで「国家のための宗教施設」と片づけるのは早計だ。そこには経典を読む人がいた。議論する人がいた。教義を整理する人、戒律を学ぶ人、そしてその知を次の世代へ渡す人がいた。
+</p>
+<p class="pull">南都の大寺院とは、宗教であると同時に、巨大な知識の保存 ・ 生産装置だった。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">新しい仏教が来ても、奈良は退場しなかった</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+日本仏教史には、大きな転換点が何度もある。平安時代には最澄の天台宗、空海の真言宗が立ち上がる。鎌倉時代になれば、浄土宗、浄土真宗、日蓮宗、禅宗 - 後の日本仏教を代表する顔ぶれが、次々と舞台に上がる。ふつうに考えれば、この時点で奈良仏教は「時代遅れの遺物」になっているはずだ。
+</p>
+<p>
+ところが、そうならなかった。奈良の大寺院では、教学そのものが生き続けた。それを一身に体現するのが、鎌倉時代の東大寺学僧・凝然 (1240-1321) である。戒壇院の円照に師事した凝然は、華厳・法相・天台・真言・律・浄土・禅と、当時の仏教のほぼ全域を修めたことで知られ、生涯に千二百余部ともいわれる著作を残した。日本の華厳教学の大成者とも評される人物だ <sup class="fn"><a href="#fn4">[4]</a></sup> 。
+</p>
+<p>
+新しい宗派が生まれた。だから古い教学が消える - 奈良では、その方程式が成り立たなかった。むしろ奈良は、新しい仏教を研究し、整理し、自らの知の体系に組み込む側に回った。<strong>古い場所で、新しいものまで学ぶ。</strong>この柔軟さこそが、南都仏教の長い生命力を解く鍵になる。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">「 1300 年、同じだった」わけではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+1300 年という数字を聞くと、私たちはつい「ずっと同じものが残った」と考えてしまう。だが、実際にはむしろ逆ではないか。 1300 年も続いたからこそ、同じではいられなかったのだ。
+</p>
+<p>
+国家の制度が変わる。政治権力が変わる。宗教の勢力図が変わる。寺院の経済基盤が変わる。人々の信仰のかたちも変わる。そのたびに寺院は、自分たちが何を担うのかを、少しずつ書き換えてきた。
+</p>
+<p>
+だから「南都六宗が 1300 年間生き残った」という言い方は、厳密には正確ではない。六宗が一つの組織として 1300 年間存続したわけではないからだ。三論宗や成実宗のように、現在は独立した宗派として残っていないものもある。東大寺自身が、この二宗についてそのことを明記している <sup class="fn"><a href="#fn2">[2]</a></sup> 。
+</p>
+<p>
+残ったのは「六宗という組織」ではない。<strong>教学、寺院、経典、儀礼、文化財、そしてそれらを受け継いだ人々の連鎖</strong>である。この見方に立った瞬間、奈良の歴史は急に面白くなる。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">寺は「建物」ではなく、巨大な記憶装置だった</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+奈良の寺を訪れると、どうしても建築や仏像に目を奪われる。だが 1300 年という時間の厚みを前にすると、それだけでは足りない。寺院には、建物以外にも膨大なものが積み重なっている。経典。古文書。仏像。儀礼。教義。僧侶の教育。法会の作法。建築技術。そして、過去についての記憶。東大寺には、長い年月を生き延びてきた聖教が今も伝わっている。
+</p>
+<p>
+つまり寺院とは、巨大な<strong>記憶装置</strong>でもあった。建物が失われても、記録が残る。僧侶が代替わりしても、経典が残る。伽藍が焼失しても、再建するための知識が残る。そして次の世代が、それを手がかりにもう一度、寺を立ち上げ直す。この「失っても、作り直せる」という能力こそ、 1300 年という時間軸のなかでは、建物そのものより重要だったのかもしれない。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">薬師寺が見せる、もう一つの「長寿」の秘密</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+それを最も分かりやすく体現しているのが薬師寺である。薬師寺は 680 年、天武天皇の発願によって創建されたと伝わる。だが、 1300 年前の建物がそのまま今も建っているわけではない。むしろ逆だ。長い歴史のなかで、多くの堂塔が火災によって失われた。とりわけ 1528 年の兵火は決定的で、金堂、西塔、大講堂などが焼け落ち、創建当初から現存する主要建築は東塔ただ一棟になったと、薬師寺自身が説明している <sup class="fn"><a href="#fn5">[5]</a></sup> 。
+</p>
+<p>
+では、どうしたか。作り直したのだ。しかも 20 世紀後半、驚くほどユニークな方法で。
+</p>
+<p>
+1968 年、薬師寺は「百万巻お写経勧進による金堂復興」を始める。一巻の写経を納めてもらい、その納経料を伽藍復興の資金にあてる。全国の人に参加してもらう。そして 1976 年、百万巻を達成し、金堂が甦った <sup class="fn"><a href="#fn6">[6]</a></sup> 。
+</p>
+<p>
+復興はそこで終わらない。 1981 年に西塔。 1984 年に中門。 2003 年に大講堂。 2017 年には食堂。そして 2023 年、国宝東塔の初となる全面解体修理を終え、落慶法要が営まれた <sup class="fn"><a href="#fn6">[6]</a></sup> 。
+</p>
+<p>
+ここで重要なのは、「昔の建物をそのまま保存した」という話では<em>ない</em>ということだ。<strong>失われたものを、後世の人々がもう一度作った。</strong>しかも、その再建の輪に、全国の名もない人々が加わった。薬師寺は現在、この写経勧進を「ただ寄付を募るのではなく」、写経という修行を通じて伽藍復興に参加してもらう仕組みだったと説明している <sup class="fn"><a href="#fn7">[7]</a></sup> 。
+</p>
+<p class="pull">「自分も参加する。その参加が、寺の未来を作る。」 - 現代のクラウドファンディングそのものではないが、この構造には、私たちにも直感的にわかるものがある。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">古い寺を支えているのは、古い人々だけではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+東大寺にしても薬師寺にしても、今そこにあるものすべてが奈良時代からそのまま残っているわけではない。むしろ現在の奈良は、<strong>古代の人々が作ったものを、後世の人々が何度も引き受け直してきた結果</strong>である。だとすれば、今日の参拝者も完全な部外者ではない。寺を訪れる。拝観する。写経する。文化財について知る。寄付する。その一つ一つが、直接的であれ間接的であれ、現代における寺との新しい接点になる。そして寺院側もまた、時代に応じてその接点を作り直してきた。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">世界遺産になった奈良</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+現代の奈良を考えるうえで、もう一つ大きな変化がある。寺院が「宗教施設」であるだけでなく、<strong>文化遺産として認識されるようになったこと</strong>だ。「古都奈良の文化財」は 1998 年、世界遺産に登録された。構成資産は東大寺、興福寺、春日大社、春日山原始林、元興寺、薬師寺、唐招提寺、平城宮跡の八つ。奈良市は、この八資産によって、古代日本の首都に花開いた文化や、中国・朝鮮との交流による文化的発展が示されると説明する <sup class="fn"><a href="#fn8">[8]</a></sup> 。
+</p>
+<p>
+ここで注意したい。世界遺産に登録されているのは「南都六宗」そのものではないし、「南都六宗の寺院だけ」でもない。それでも、東大寺、興福寺、元興寺、薬師寺、唐招提寺という、南都仏教の歴史と深く結びついた寺院が、構成資産の中核を占めている。古代には宗教と国家のための場所だった。中世には教学と信仰の拠点だった。そして現代では、宗教施設であると同時に、世界的な文化遺産でもある。一つの建物が、時代ごとに異なる意味を獲得していく - これもまた、南都の歴史なのだ。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec9" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">9</span>
+    <span class="title">「葬式をしない寺」という見方では見えないもの</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+現代の私たちが寺に抱くイメージは、多くの場合こうだ。檀家がいる。葬儀をする。墓を管理する。法事をする。もちろんこれは日本の寺院を理解するうえで大切な現実である。しかし、それだけが寺の歴史ではない。南都の大寺院を見れば、それがよくわかる。そこには、仏教教学を研究する場所、僧侶を育てる場所、経典を伝える場所、国家や社会の安寧を祈る場所、大規模な法会を行う場所、伽藍を維持・再建する場所、文化財を保存する場所、現代の人々が祈りや学びに触れる場所 - これほど多くの役割が重なり合っている。
+</p>
+<p>
+だから南都六宗を「葬式をしない寺」として理解するより、<strong>「日本の寺院には、葬送以外にもこれほど多くの役割があり得た」</strong>と考えるほうが、はるかに豊かな歴史が見えてくる。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec10" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">10</span>
+    <span class="title">長寿の秘密は、「変わらないこと」ではなかった</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+ここまで来れば、最初の疑問に答えられる。なぜ奈良の大寺院は長く残ったのか。「葬儀をしなかったから」ではない。「檀家制度の外にいたから」でもない。「拝観料を集めたから」でもない。そんな単純な一つの理由では説明できない。むしろ見えてくるのは、<strong>時代が変わるたびに、寺院の意味そのものが変わってきた</strong>という事実だ。
+</p>
+<p>
+奈良時代には、国家と結びついた大寺院であり、最新の仏教教学を学ぶ場所だった。新しい仏教が登場すると、それと対話しながら教学を発展させた。戦乱で伽藍を失えば、再建した。近代に制度が大きく変わると、それに適応した。そして現代では、宗教施設であると同時に、文化財、研究対象、教育の場、観光地としても存在している。これは計画された「 1300 年経営戦略」ではない。そんなものが奈良時代から存在したはずはない。むしろ、危機が来るたびに、その時代の人々が寺を引き受け直してきた結果である。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec11" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">11</span>
+    <span class="title">古いものを守るとは、古いままにすることではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+南都六宗から学べる、最も興味深いことがここにある。文化を保存するというと、私たちは「昔の状態を変えずに残す」ことを想像しがちだ。しかし 1300 年を生きてきた寺院を見ると、それだけでは説明できない。焼けた。壊れた。建て直した。教学が変わった。新しい宗派が現れた。政治制度が変わった。社会が変わった。それでも、その都度「何を次の世代に渡すのか」が選び直されてきた。
+</p>
+<p>
+薬師寺の伽藍復興は、そのことを何より分かりやすく示している。 1968 年に始まった写経勧進によって、失われた伽藍が再び姿を現した。それは、古代の人々がそのまま現在まで保存したのではない。<strong>昭和・平成・令和の人々が、古代の遺産を自分たちの時代にもう一度引き受けたのである</strong> <sup class="fn"><a href="#fn6">[6]</a></sup> 。この意味で、奈良の寺院は「古い」のではない。毎世代、少しずつ新しくなっている。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secEnd" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">終</span>
+    <span class="title">おわりに - 奈良の大仏の前で、少しだけ時間を長くする</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>
+奈良で大仏を見るとき、私たちは普通、目の前の巨大な仏像だけを見ている。しかし、その背後にはもっと巨大なものがある。時間である。
+</p>
+<p class="beat">大仏が造られた。</p>
+<p class="beat">寺が栄えた。</p>
+<p class="beat">時代が変わった。</p>
+<p class="beat">戦乱が起きた。</p>
+<p class="beat">建物が焼けた。</p>
+<p class="beat">再建された。</p>
+<p class="beat">新しい仏教が登場した。</p>
+<p class="beat">古い教学が学び直された。</p>
+<p class="beat">近代国家が成立した。</p>
+<p class="beat">文化財という新しい価値が生まれた。</p>
+<p>そして今、世界中から人が奈良を訪れている。</p>
+<p>
+私たちが目にしているのは、「 1300 年前の日本」そのものではない。<strong> 1300 年間、何度も失われ、何度も作り直され、そのたびに新しい意味を与えられてきた日本</strong>である。
+</p>
+<p>
+南都六宗という言葉も、その長い時間の一部にすぎない。三論宗、成実宗、倶舎宗、法相宗、華厳宗、律宗。六つの名前を暗記するだけなら、歴史の試験問題で終わってしまう。しかし、その六つが奈良の大寺院で学ばれ、複数の教学が交差し、新しい仏教が登場しても知的伝統が絶えず、伽藍が失われても人々が再建し、現代では文化遺産として新しい生命を得ていることまで見れば、話はまったく変わる。
+</p>
+<p>
+そこにあるのは、<strong>「古い宗派が残った」という物語ではない。</strong>
+</p>
+<p class="signoff">
+人間が、過去を何度も引き受け直しながら、次の時代へ渡していく - その物語である。
+</p>
+<p class="signoff">
+変わらなかったから、ではない。<br>変わり続けながら、残すべきものを選び続けたからだ。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secRefs" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">付録</span>
+    <span class="title">参考文献・出典</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<footer class="refs">
+<ol>
+<li id="fn1">文化庁『宗教年鑑』。奈良時代の「学問仏教」と南都六宗、現在の法相宗の伝統について。<br>
+<a href="https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/" target="_blank" rel="noopener">https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/</a></li>
+<li id="fn2">東大寺「開館 15 周年記念リレー展示『八宗兼学の寺』第 7 弾『南都東大寺の教学 - 三論と成実 - 』」東大寺ミュージアム。<br>
+<a href="https://www.todaiji.or.jp/museum/" target="_blank" rel="noopener">https://www.todaiji.or.jp/museum/</a></li>
+<li id="fn3">奈良市「世界遺産 古都奈良の文化財」関連資料。東大寺など 8 資産の概要。<br>
+<a href="https://www.city.nara.lg.jp/site/world-heritage/" target="_blank" rel="noopener">https://www.city.nara.lg.jp/site/world-heritage/</a></li>
+<li id="fn4">奈良国立博物館「重要文化財 華厳十重唯識瑺鑑記 巻第四 凝然筆」、新纂浄土宗大辞典「凝然」項。<br>
+<a href="https://www.narahaku.go.jp/collection/v-1310-0.html" target="_blank" rel="noopener">https://www.narahaku.go.jp/collection/v-1310-0.html</a><br>
+<a href="https://jodoshuzensho.jp/daijiten/index.php/凝然" target="_blank" rel="noopener">https://jodoshuzensho.jp/daijiten/index.php/ 凝然</a></li>
+<li id="fn5">奈良薬師寺「薬師寺について」。伽藍の焼失と復興について。<br>
+<a href="https://yakushiji.or.jp/guide/index.html" target="_blank" rel="noopener">https://yakushiji.or.jp/guide/index.html</a></li>
+<li id="fn6">奈良薬師寺「薬師寺デジタル絵巻」「薬師寺の歴史」。 1968 年の百万巻写経勧進から、金堂・西塔・中門・大講堂・食堂の復興、 2023 年の東塔落慶まで。<br>
+<a href="https://www.yakushiji.or.jp/digital-emaki/" target="_blank" rel="noopener">https://www.yakushiji.or.jp/digital-emaki/</a><br>
+<a href="https://yakushiji.or.jp/guide/history.html" target="_blank" rel="noopener">https://yakushiji.or.jp/guide/history.html</a></li>
+<li id="fn7">奈良薬師寺「お写経について」。写経勧進の目的と意義について。<br>
+<a href="https://www.yakushiji.or.jp/osyakyo/" target="_blank" rel="noopener">https://www.yakushiji.or.jp/osyakyo/</a></li>
+<li id="fn8">奈良市「世界遺産 古都奈良の文化財」。 8 資産と世界遺産としての価値について。<br>
+<a href="https://www.city.nara.lg.jp/site/world-heritage/" target="_blank" rel="noopener">https://www.city.nara.lg.jp/site/world-heritage/</a></li>
+</ol>
+<p class="note">本稿は一般読者向けの歴史エッセイとして執筆した。個々の歴史的事項については、文化庁、奈良市、東大寺、薬師寺、奈良国立博物館などの公式資料およびそれに基づく解説を優先して確認している。学術論文としての厳密な一次史料検証は行っていない。</p>
+</footer>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+})();
+</script>
+</body>
+</html>
