@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ他人のキラキラは胸を刺すのか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf8f5;
+    --paper:#ffffff;
+    --text:#2a2622;
+    --sub:#5c564e;
+    --muted:#8b8478;
+    --accent:#a13d2f;
+    --accent-soft:#c8735f;
+    --line:#e5ddd0;
+    --quote-bg:#f3ede2;
+    --note-bg:#fbf1e6;
+    --note-border:#d9a25a;
+    --phil-bg:#eef0f1;
+    --phil-border:#5f6b73;
+    --hero-1:#2c1712;
+    --hero-2:#6b2a1f;
+    --hero-ink:#f3ece2;
+    --hero-dim:#d9b8ab;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1b1815;
+      --paper:#242019;
+      --text:#ece6db;
+      --sub:#b9b0a0;
+      --muted:#847b6c;
+      --accent:#e08a6f;
+      --accent-soft:#c8735f;
+      --line:#3a352c;
+      --quote-bg:#2c2720;
+      --note-bg:#2b2620;
+      --note-border:#a8763f;
+      --phil-bg:#20242a;
+      --phil-border:#7c8a94;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{font-size:16px;scroll-padding-top:76px;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+    font-size:1rem;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{margin:0;padding:0 clamp(1.5rem,3vw,3rem);}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:linear-gradient(140deg,var(--hero-1) 0%,var(--hero-2) 100%);
+    color:var(--hero-ink);
+    padding:3.6rem 0 2.8rem;
+    margin-bottom:2.8rem;
+  }
+  header.hero .wrap{max-width:960px;margin:0 auto;}
+  header.hero .eyebrow{
+    display:block;
+    font-size:0.78rem;
+    letter-spacing:0.24em;
+    color:var(--hero-dim);
+    margin-bottom:0.9rem;
+  }
+  header.hero h1{
+    font-size:clamp(1.6rem,3.8vw,2.15rem);
+    line-height:1.6;
+    margin:0 0 0.9rem;
+    font-weight:700;
+  }
+  header.hero p.sub{
+    margin:0;
+    color:var(--hero-dim);
+    line-height:1.85;
+    font-size:1rem;
+    text-indent:0;
+  }
+  .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto;}
+  .hero-figure svg{display:block;width:100%;height:auto;}
+  .hero-figure figcaption{
+    margin-top:0.9rem;
+    font-size:0.85rem;
+    color:var(--hero-dim);
+    line-height:1.75;
+  }
+
+  main.wrap{padding-bottom:4rem;}
+
+  h2{
+    font-size:1.28rem;
+    line-height:1.6;
+    margin:0;
+  }
+  h3{
+    font-size:1.1rem;
+    font-weight:700;
+    margin:2rem 0 1rem;
+    color:var(--accent);
+  }
+  h4{
+    font-size:1rem;
+    font-weight:700;
+    margin:1.7rem 0 0.6rem;
+    color:var(--accent);
+  }
+  p{margin:1.1em 0;text-indent:1em;}
+  p.lead{font-size:1.12rem;color:var(--sub);text-indent:0;}
+  a{color:var(--accent);}
+
+  blockquote{
+    margin:1.4em 0;
+    padding:0.2em 0 0.2em 1.2em;
+    border-left:3px solid var(--accent-soft);
+    color:var(--sub);
+    font-size:1rem;
+  }
+  blockquote p{margin:0 0 0.5em;text-indent:0;}
+  blockquote p:last-child{margin-bottom:0;}
+
+  .scene{
+    margin-top:2rem;
+    padding:1.6rem 1.5rem;
+    background:var(--quote-bg);
+    border-radius:8px;
+    font-size:1rem;
+    color:var(--sub);
+    line-height:2.05;
+  }
+  .scene .beat{margin:0 0 0.8em;text-indent:0;}
+  .scene .beat:last-child{margin-bottom:0;}
+  .scene strong{color:var(--text);}
+
+  .pull{
+    margin:2rem 0;
+    padding:1.7rem 1.8rem;
+    background:var(--quote-bg);
+    border-radius:8px;
+    font-size:1.2rem;
+    line-height:1.85;
+    color:var(--text);
+    text-align:center;
+    font-weight:500;
+  }
+  .pull.small{font-size:1.05rem;}
+
+  .note{
+    margin:1.6em 0;
+    padding:1.25em 1.4em;
+    background:var(--note-bg);
+    border:1px solid var(--note-border);
+    border-radius:8px;
+  }
+  .note-label{
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    color:var(--note-border);
+    margin-bottom:0.6em;
+  }
+  .note p{margin:0 0 0.6em;font-size:0.95rem;text-indent:0;}
+  .note p:last-child{margin-bottom:0;}
+  .note .cite{
+    font-size:0.8rem;
+    color:var(--muted);
+    margin-top:0.7em;
+  }
+
+  .caution{
+    margin:1.6em 0;
+    padding:1.1em 1.4em;
+    border-left:3px solid var(--muted);
+    background:transparent;
+  }
+  .caution .note-label{color:var(--muted);}
+  .caution p{font-size:0.92rem;color:var(--sub);margin:0;text-indent:0;}
+
+  .phil-card{
+    margin:1.8em 0;
+    padding:1.5em 1.6em;
+    background:var(--phil-bg);
+    border-radius:8px;
+    border-top:3px solid var(--phil-border);
+  }
+  .phil-card h3{margin-top:0;}
+  .phil-name{
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    color:var(--phil-border);
+    font-weight:700;
+    margin-bottom:0.4em;
+  }
+
+  .divider{
+    text-align:center;
+    color:var(--muted);
+    letter-spacing:0.4em;
+    margin:3rem 0;
+    font-size:0.8rem;
+  }
+
+  .qcards{
+    display:grid;
+    gap:1rem;
+    margin:1.8em 0;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:1.4em 1.5em;
+  }
+  .qcard .qn{
+    font-size:0.8rem;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:0.4em;
+  }
+  .qcard h4{margin:0 0 0.5em;color:var(--text);}
+  .qcard p{margin:0;font-size:0.95rem;color:var(--sub);text-indent:0;}
+
+  .closing strong{color:var(--text);}
+
+  .sig{
+    text-align:center;
+    margin:2.4rem 0;
+    font-size:1.15rem;
+    color:var(--text);
+  }
+
+  ol.refs{
+    font-size:0.88rem;
+    color:var(--muted);
+    line-height:1.9;
+    padding-left:1.4em;
+    margin:0;
+  }
+  ol.refs li{margin-bottom:0.6em;}
+
+  @media (max-width:640px){
+    .hero-figure svg{min-width:560px;}
+  }
+
+  /* ---------- アコーディオン ---------- */
+  .toolbar-container{
+    position:sticky;top:8px;z-index:100;
+    background:var(--bg);
+    background:color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:9px 0;
+    border-radius:999px;
+    margin:0 0 2.4rem;
+    border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar{
+    display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin:0;
+  }
+  .toolbar button{
+    font-family:inherit;font-size:0.88rem;font-weight:700;
+    color:var(--accent);background:var(--paper);
+    border:1.5px solid var(--accent);border-radius:999px;
+    padding:8px 20px;cursor:pointer;transition:all .2s ease;
+  }
+  .toolbar button:hover{background:var(--accent);color:#fff;}
+  #accordion{margin-bottom:2.6rem;}
+  .acc-item{
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    margin-bottom:16px;overflow:hidden;overflow-anchor:none;
+  }
+  .acc-item:last-child{margin-bottom:0;}
+  .acc-header{
+    width:100%;display:flex;align-items:center;gap:14px;
+    background:none;border:none;padding:18px 22px;cursor:pointer;
+    text-align:left;font-family:inherit;
+    color:var(--text);-webkit-tap-highlight-color:transparent;
+  }
+  .acc-header .num{
+    flex:0 0 auto;color:var(--accent);font-size:0.82rem;font-weight:700;
+    background:var(--note-bg);padding:4px 11px;border-radius:999px;white-space:nowrap;
+  }
+  .acc-header .title{flex:1 1 auto;font-size:1.1rem;font-weight:700;line-height:1.5;}
+  .acc-header .chev{
+    flex:0 0 auto;width:20px;height:20px;color:var(--accent);
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
+  .acc-item.open > .acc-header{background:var(--note-bg);border-bottom:1px solid var(--line);}
+  .acc-panel{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);overflow-anchor:none;
+  }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
+  .acc-panel-inner{
+    overflow:hidden;min-height:0;padding:0 22px;opacity:0;
+    transition:opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner{padding:6px 22px 26px;opacity:1;}
+
+  .acc-item.column{
+    border-color:var(--accent-soft);
+    border-left:4px solid var(--accent);
+  }
+  .acc-item.column .acc-header .num{
+    background:var(--accent);color:#fff;letter-spacing:0.06em;
+  }
+  .column-kicker{
+    font-size:0.78rem;letter-spacing:0.14em;color:var(--muted);
+    text-indent:0;margin:0 0 0.5em;
+  }
+
+  @media (max-width:600px){
+    .acc-header{padding:15px 16px;gap:10px;}
+    .acc-header .title{font-size:1rem;}
+    .acc-item.open > .acc-panel > .acc-panel-inner{padding:4px 16px 22px;}
+  }
+</style>
+  <style>
+    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
+    html { font-size: 16px !important; }
+    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">ESSAY / 心理学・神経科学・進化・哲学</span>
+    <h1>なぜ他人のキラキラは胸を刺すのか</h1>
+    <p class="sub">羨望と社会的比較を、複数の研究と哲学の視点から読み解く</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 260" role="img" aria-labelledby="ecTitle ecDesc">
+        <title id="ecTitle">比較対象との心理的な近さと、羨望の強さの関係</title>
+        <desc id="ecDesc">横軸を比較対象との心理的な近さ（遠いから近いへ）、縦軸を羨望として感じる強さとした概念図。遠い世界的著名人はほとんど反応を生まないが、同期・同級生のような近い他者ほど「自分にもできたのではないか」という反実仮想を伴い、反応が強まることを示す。</desc>
+
+        <text x="360" y="26" class="axisTitle">比較対象との心理的な近さ →</text>
+        <line x1="60" y1="190" x2="620" y2="190" stroke="#d9b8ab" stroke-opacity="0.55" stroke-width="2"/>
+        <path d="M614 184 l10 6 l-10 -6" fill="none" stroke="#d9b8ab" stroke-opacity="0.8" stroke-width="2"/>
+        <text x="60" y="214" class="pole">遠い</text>
+        <text x="620" y="214" class="pole end">近い</text>
+
+        <path d="M90 178 C 210 176, 280 160, 350 120 S 500 46, 570 40" fill="none" stroke="#e0a48e" stroke-width="2.5"/>
+
+        <g>
+          <circle cx="90" cy="178" r="7" fill="#8fae9f"/>
+          <text x="90" y="160" class="node">世界的な大富豪</text>
+          <text x="90" y="234" class="src" text-anchor="middle">「別の世界の話」</text>
+
+          <circle cx="320" cy="140" r="7" fill="#c99b6a"/>
+          <text x="320" y="122" class="node">遠い知人の成功</text>
+
+          <circle cx="570" cy="40" r="7" fill="#d9584a"/>
+          <text x="570" y="24" class="node" text-anchor="end">同期・同級生の成功</text>
+          <text x="570" y="60" class="src" text-anchor="end">「自分にもできたのでは」</text>
+        </g>
+
+        <text x="30" y="120" class="axisSide" transform="rotate(-90 30 120)">羨望の強さ</text>
+
+        <style>
+          .axisTitle{fill:#f3ece2;font-size:13px;text-anchor:middle;font-weight:700;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .axisSide{fill:#cbb3a5;font-size:11.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .pole{fill:#d9b8ab;font-size:12px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .pole.end{text-anchor:end;}
+          .node{fill:#f3ece2;font-size:12.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .src{fill:#c9a996;font-size:10.5px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+        </style>
+      </svg>
+      <figcaption>比較対象との心理的な近さと、羨望として感じる強さの関係を示した概念図。実際の心理反応の強度を数値化して測定したものではなく、社会的比較理論などが示す傾向を模式的に表したもの。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">0</span>
+    <span class="title">はじめに</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<div class="scene">
+  <p class="beat">深夜 11 時 23 分。ベッドの中で SNS を開く。</p>
+  <p class="beat">同期の起業報告。友人の旅行写真。誰かの「月収 7 桁達成」。</p>
+  <p class="beat">指は画面をスクロールし続ける。なのに、胸の奥だけが、少しずつ冷えていく。</p>
+  <p class="beat">「おめでとう」と思う気持ちがある。その一方で、「自分は何をしているんだろう」と思ってしまう。</p>
+  <p class="beat">この二つは、同時に存在していい。</p>
+  <p class="beat">問題は、その不快な感情を持ったことではない。<strong>その感情が、いったい何を知らせているのかを読み違えること</strong>だ。</p>
+</div>
+
+<p class="lead">人間は、自分の人生を「絶対値」だけで評価するのが難しい生き物です。</p>
+<p>収入、仕事、容姿、能力、人間関係、幸福感。こうしたものには、温度計のような単純な絶対尺度がありません。そこで私たちは、ときに他人を鏡にして、自分の位置を確かめます。</p>
+<p>この仕組みを理解する鍵が、<strong>社会的比較</strong>と<strong>羨望 (envy) </strong>です。</p>
+
+<div class="caution">
+  <div class="note-label">はじめに、ひとつだけ注意</div>
+  <p>本稿で扱うのは、心理学・神経科学・哲学などで研究されてきた現象です。しかし、「脳のこの場所が光ったから、この感情はこういう意味だ」と単純に断定することはできません。進化についても、「昔はこうだった」と確定的な物語を作ることは避ける必要があります。むしろ面白いのは、複数の研究を重ねると、私たちの日常的な「胸のざわつき」がどのように説明できるのか、という点です。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">人は絶対値では自分を測れない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>「私は幸せだろうか?」</p>
+<p>この質問に、誰もが納得する客観的な答えを出すのは難しいでしょう。では、私たちはどうやって自分の状態を判断しているのでしょうか。その一つが、<strong>他人との比較</strong>です。</p>
+
+<p>1954 年、心理学者レオン・フェスティンガー (Leon Festinger) は、<strong>社会的比較理論 (Social Comparison Theory) </strong>を提唱しました。フェスティンガーが注目したのは、人間が自分の意見や能力を評価するとき、他者を参照することです。特に、自分と比較的近い人が比較対象になりやすいという点が重要です。</p>
+
+<p>たとえば、オリンピック選手の能力を見て、</p>
+<blockquote><p>「自分は運動能力が低い」</p></blockquote>
+<p>と感じることはあるでしょう。しかし、同じ会社の同期が自分より早く昇進したときには、もっと直接的な衝撃を受けるかもしれません。「自分にもできたのではないか」という問いが生まれるからです。ここには、<strong>比較可能性</strong>があります。</p>
+
+<h3>上方比較と下方比較</h3>
+<p>社会的比較には、大きく分けて二つの方向があります。</p>
+
+<h4>上方比較 (upward comparison) </h4>
+<p>自分より優れている、あるいは恵まれていると思う相手を見ることです。これは必ずしも悪いものではありません。「あの人のやり方を学びたい」「自分もあそこまで行きたい」という動機になることがあります。しかし、「なぜ自分にはできないのだろう」「自分は負けている」という評価につながれば、苦痛にもなります。</p>
+
+<h4>下方比較 (downward comparison) </h4>
+<p>自分より不利な状況にあると思う人と比較することです。これによって自尊感情が一時的に守られる場合があります。心理学者 T. A. Wills は 1981 年に、こうした下方比較について体系的に論じました。</p>
+
+<p>つまり、比較そのものが善でも悪でもありません。<strong>比較した結果を、自分がどう解釈するか</strong>が重要なのです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">なぜ遠い成功者より近い成功者が刺さるのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここで、少し奇妙な現象を考えてみましょう。世界的な大富豪が豪邸を公開しても、それほど気にならない。ところが、昔の同級生が、</p>
+<blockquote><p>「独立して会社を始めました」</p></blockquote>
+<p>と投稿すると、なぜか心がざわつく。なぜでしょう。</p>
+
+<p>一つの理由は、<strong>比較可能性</strong>です。相手があまりにも遠い存在なら、</p>
+<blockquote><p>「あの人と自分は別の世界だ」</p></blockquote>
+<p>と処理できます。ところが、自分と年齢、学校、職業、生活圏などが近い人なら、</p>
+<blockquote><p>「もし自分が別の選択をしていたら?」</p></blockquote>
+<p>という反実仮想が生まれやすくなります。ここで比較は、単なる観察ではなくなります。</p>
+
+<div class="pull">「あの人の人生」と「自分が選ばなかった人生」が重なり始める。</div>
+
+<p>これが、羨望を強くすることがあります。</p>
+
+<div class="caution">
+  <div class="note-label">単純化への注意</div>
+  <p>「自分に似た人ほど必ず強く羨望する」と単純化するのも正確ではありません。比較の影響は、比較する領域、相手との関係、自分の目標、状況などによって変わります。それでも、フェスティンガーの理論が示した「比較対象との近さ」という視点は、SNS 時代の感情を考えるうえで非常に有用です。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">「羨ましい」は、脳の中で何が起きているのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここから話は、少し意外な方向へ進みます。他人の成功を見て生じる不快感には、脳の報酬・痛み・社会的評価に関わる複数の領域が関係します。</p>
+
+<div class="note">
+  <div class="note-label">研究ノート - 羨望とシャーデンフロイデの fMRI 研究</div>
+  <p>2009 年、高橋英彦らは<em>Science</em>誌に、羨望とシャーデンフロイデ (他人の不幸を喜ぶ感情) に関する fMRI 研究を発表しました。他者との相対的な成功・失敗に対する反応を調べたこの研究では、<strong>他者の成功を羨ましく感じる状況で、背側前帯状皮質 (dACC) などを含む領域の活動</strong>が観察されました。一方、羨望の対象となる人物の不運に関連しては、報酬に関係する<strong>腹側線条体 (ventral striatum) </strong>の活動が観察されました。さらに、研究 1 での dACC 活動の強さは、研究 2 での線条体活動を予測する関係にあったことも報告されています。</p>
+  <div class="cite">Takahashi, H., et al. (2009). Science, 323(5916), 937–939.</div>
+</div>
+
+<p>ここから、非常に興味深いことが見えてきます。私たちの脳は、他人との比較を単なる「情報」として処理しているわけではないらしい。そこには、<strong>自分にとって重要な社会的情報として反応する仕組み</strong>があります。</p>
+
+<h3>ただし、「羨望 = 肉体的な痛み」ではない</h3>
+<p>ここは、慎重に書くべき重要なポイントです。「羨望は肉体的な怪我と同じ痛みである」という言い方は、研究結果を強く言い換えすぎています。</p>
+
+<div class="note">
+  <div class="note-label">研究ノート - 社会的排除の fMRI 研究</div>
+  <p>2003 年の Eisenberger 、Lieberman 、Williams による社会的排除の fMRI 研究では、社会的苦痛と身体的痛みに関連する神経活動の重なりが検討されました。</p>
+  <div class="cite">Eisenberger, N. I., Lieberman, M. D., & Williams, K. D. (2003). Science, 302(5643), 290–292.</div>
+</div>
+
+<p>しかし、これは、</p>
+<blockquote><p>「社会的苦痛と身体的痛みは完全に同じものだ」</p></blockquote>
+<p>という意味ではありません。脳画像研究では、ある領域が活動したことだけから、そこに対応する一つの感情を「読み取る」ことはできません。したがって、より正確に言えば、</p>
+
+<div class="pull small">社会的な拒絶や比較に伴う苦痛には、身体的痛みの処理と一部重なる神経系が関与する可能性がある。</div>
+
+<p>ということです。この違いは小さく見えて、実は科学的にはかなり重要です。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">そして、他人の失敗にほっとする自分が現れる</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>もう一つ、気になる現象があります。自分より成功している人が失敗したとき、</p>
+<blockquote><p>「……少し、ほっとした」</p></blockquote>
+<p>と思ってしまうことです。認めたくない感情かもしれません。しかし、これも人間の心理として研究されています。前述の高橋らの研究では、羨望の対象となっていた人物の不運に関連して、腹側線条体の活動が観察されました。このような現象は、ドイツ語の<strong>Schadenfreude (シャーデンフロイデ) </strong>という言葉で知られています。</p>
+
+<p>ここで大切なのは、</p>
+<blockquote><p>「人間は本質的に意地悪だ」</p></blockquote>
+<p>という結論に飛びつかないことです。むしろ興味深いのは、<strong>他人の成功・自分との相対的な位置・他人の失敗が、一つの比較関係の中で連続している</strong>ことです。</p>
+
+<p>相手の成功によって「自分との差」が大きく感じられる。その相手が失敗すると、その差が縮まったように感じられる。すると、報酬に関係する反応が生じる可能性がある。</p>
+
+<p>感情は、私たちの人格そのものではありません。<strong>何を見たとき、どのような関係の中で、どんな反応が起きたのか。</strong>そこまで分解して考えると、自分自身を必要以上に嫌悪せずに済みます。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item column" id="colA" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">☕ COLUMN</span>
+    <span class="title">コーヒーブレイク - 嫉妬と羨望は違う</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p class="column-kicker">COLUMN / Envy と Jealousy の区別</p>
+
+<p>日本語では、嫉妬と羨望がしばしば同じ意味で使われます。英語では、典型的には次のように区別されます。</p>
+
+<h3>Envy - 羨望</h3>
+<p>他人が持っているものを、自分も欲しい。たとえば、</p>
+<blockquote><p>「あの人の才能がうらやましい」<br>「あの人の生活がうらやましい」</p></blockquote>
+<p>という感情です。典型的には、<strong>自分と他者の二者関係</strong>として説明されます。</p>
+
+<h3>Jealousy - 嫉妬</h3>
+<p>自分が持っている大切な関係やものを、第三者に奪われるのではないかと恐れる。たとえば、</p>
+<blockquote><p>「恋人を誰かに取られるのではないか」</p></blockquote>
+<p>という不安です。こちらは典型的には<strong>三者関係</strong>です。</p>
+
+<p>この区別は、心理学・哲学で広く使われる整理ですが、日常言語の用法はもっと自由です。日本語の「嫉妬」を「envy」の意味で使うことも珍しくありません。したがって、</p>
+<blockquote><p>「才能に嫉妬する」は絶対に誤用だ</p></blockquote>
+<p>と断定する必要はありません。ただ、</p>
+
+<div class="pull small">自分が持っていないものを欲しがっているのか。それとも、自分が持っているものを奪われるのを恐れているのか。</div>
+
+<p>と問い直すと、自分の感情がかなり見えやすくなります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">哲学者たちはこの不快感をどう考えたか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>心理学が「どう起きるか」を調べるのに対して、哲学は「それは人間にとって何を意味するのか」を問います。</p>
+
+<div class="phil-card">
+  <div class="phil-name">紀元前 4 世紀 · ギリシャ</div>
+  <h3>アリストテレス - なぜ「自分に近い人」が気になるのか</h3>
+  <p>アリストテレスは『弁論術』で、<strong>phthonos (妬み) </strong>について論じています。そこで重要なのは、他人の幸運一般ではなく、比較対象との関係です。自分と無関係な人の成功よりも、</p>
+  <blockquote><p>「自分と同じくらいの人が、自分より上に行った」</p></blockquote>
+  <p>という出来事が感情を刺激する。この視点は、現代の社会的比較研究とも響き合います。もちろん、古代ギリシャの議論と現代の実験心理学をそのまま同一視することはできません。しかし、<strong>人間が他者との相対的位置を気にする</strong>という問題が、非常に古くから考えられてきたことは確かです。</p>
+</div>
+
+<div class="phil-card">
+  <div class="phil-name">17 世紀 · オランダ</div>
+  <h3>スピノザ - 感情を「善悪」ではなく構造として見る</h3>
+  <p>スピノザの『エチカ』では、人間の感情が体系的に分析されています。彼の<strong>コナトゥス (conatus) </strong>という考え方は、人間が自分の存在を維持・増大させようとする力として知られています。ここから他者との比較を考えると、他人の卓越が単なる外部情報ではなく、自分自身の力や状態を意識させる出来事になることが見えてきます。</p>
+  <div class="caution" style="margin:1.2em 0 0;padding:0.8em 1.1em;">
+    <p style="margin:0;">「スピノザは SNS 時代の羨望を説明した」などと考えてはいけません。彼が論じたのは 17 世紀の哲学です。重要なのは、彼の感情論を現代の問題を考えるための<strong>思考道具として読むこと</strong>です。</p>
+  </div>
+</div>
+
+<div class="phil-card">
+  <div class="phil-name">19 世紀 · ドイツ</div>
+  <h3>ニーチェ - 羨望は、価値判断を変えてしまうのか</h3>
+  <p>ニーチェの『道徳の系譜』で重要な概念の一つが、<strong>Ressentiment (ルサンチマン) </strong>です。ここでは、直接的に力を行使できない状態にある人間が、価値判断そのものを反転させていく過程が論じられます。たとえば、</p>
+  <blockquote><p>「あの人の成功はくだらない」<br>「あんなものを欲しがる人間は浅い」<br>「成功よりも、成功を望まない自分のほうが立派だ」</p></blockquote>
+  <p>という考え方です。もちろん、誰かの成功を批判したからといって、それだけで「ルサンチマンだ」と診断することはできません。しかし、ここには重要な自己点検があります。</p>
+  <div class="pull small">私は本当にその成功を批判しているのか。それとも、手に入れられない自分を慰めるために、成功そのものの価値を下げようとしているのか。</div>
+  <p>この問いは、今でも有効です。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">羨望は悪い感情なのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここで、一度立ち止まりましょう。羨望は不快です。できれば感じたくありません。しかし、それだけで「悪い感情」と決めてしまうと、大事なものを見落とします。</p>
+
+<p>たとえば、誰かの文章力を羨ましいと思ったとします。その感情の奥には、</p>
+<blockquote><p>「自分も文章を書く力が欲しい」</p></blockquote>
+<p>という願望が隠れているかもしれません。誰かの旅行生活を羨ましいと思ったなら、</p>
+<blockquote><p>「自分も自由に移動できる生活がしたい」</p></blockquote>
+<p>のかもしれない。誰かの人間関係を羨ましいと思ったなら、</p>
+<blockquote><p>「自分にも、あのようなつながりが欲しい」</p></blockquote>
+<p>という欲求があるのかもしれません。つまり羨望は、ときとして<strong>欲求のセンサー</strong>になります。</p>
+
+<p>もちろん、すべての羨望を「本当の願望」と解釈するのも危険です。相手への敵意、疲労、劣等感、孤独、不安など、さまざまな要因が混ざっている可能性があります。</p>
+
+<p>だからこそ、</p>
+<blockquote><p>「羨ましい。終わり。」</p></blockquote>
+<p>ではなく、</p>
+<div class="pull">「私は何を羨ましがっているのだろう?」</div>
+<p>と一段深く問いかける価値があります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">進化は何故こんな感情を残したのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここからは、さらに大きな問いです。なぜ人間には、他人との順位を気にしてしまうような仕組みがあるのでしょうか。</p>
+
+<p>進化心理学では、社会的な地位や他者との関係が、人間にとって重要な問題だった可能性が論じられています。ただし、ここでは慎重である必要があります。</p>
+
+<div class="caution">
+  <div class="note-label">断定を避ける</div>
+  <p>「狩猟採集社会では順位が生存を決めていた。だから羨望が進化した」という一本の物語を、科学的事実として断定することはできません。人類の進化は、そんなに単純ではないからです。</p>
+</div>
+
+<p>それでも、人間が長い進化史の中で、他者との協力、競争、評判、地位、資源、配偶関係などをめぐる複雑な社会環境に適応してきたことは重要な前提になります。そのような社会では、</p>
+<blockquote><p>「自分は集団の中でどう見られているか」<br>「あの人は何を持っているか」<br>「自分は何を得られる可能性があるか」</p></blockquote>
+<p>といった情報が無意味だったとは考えにくいでしょう。したがって、羨望を、</p>
+
+<div class="pull small">「人間の脳に残った欠陥」とだけ見るより、「他者との比較に反応する心理の一部が、現代では思わぬ形で刺激されている」と考えるほうが慎重です。</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">SNS は比較の量と速度を変えた</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>そして、私たちはかつてない環境にいます。スマートフォンを開けば、知人、同級生、同業者、著名人、インフルエンサーの生活が次々と現れます。</p>
+
+<p>ここで SNS が生み出した大きな変化は、単に「比較するようになった」ことではありません。</p>
+<div class="pull small">比較できる相手の数と、比較する機会の頻度が大きくなったこと。</div>
+
+<h3>1. 他人の人生は「編集」されている</h3>
+<p>SNS に投稿されるのは、人生全体ではありません。旅行なら、一番美しい景色。仕事なら、成功した瞬間。食事なら、きれいに盛り付けられた一皿。私たちが見ているのは、多くの場合、相手の人生そのものではなく、<strong>相手が公開した一部分</strong>です。</p>
+<p>それなのに、自分については、</p>
+<blockquote><p>「今日は何もしていない」<br>「仕事で失敗した」<br>「家が散らかっている」</p></blockquote>
+<p>といった非公開の部分まで含めて知っています。そのため、</p>
+<div class="pull">他人のハイライトと、自分の舞台裏を比較するという、かなり不利な比較が起きます。</div>
+
+<h3>2. 比較相手が爆発的に増える</h3>
+<p>フェスティンガーが社会的比較を論じた時代には、比較対象へのアクセスは現在ほど容易ではありませんでした。いまは、スマートフォンを数回操作するだけで、世界中の人の成功談を見ることができます。しかも、アルゴリズムによって、自分が関心を持ちそうな投稿が次々に表示されます。</p>
+<p>ここで重要なのは、「SNS が必ず比較を悪化させる」と決めつけることではありません。SNS には、学習、交流、支援、情報収集など多くの利点もあります。問題は、</p>
+<div class="pull small">比較刺激を自分の意思とは無関係に大量に浴び続ける環境が、作られ得ることです。</div>
+
+<h3>3. 数字が「順位」を見せる</h3>
+<p>フォロワー数。「いいね」の数。再生回数。収入を示す数字。SNS やオンラインサービスでは、人気や反応が数値として表示される場面が増えています。数字は便利です。しかし同時に、数字は比較を容易にします。</p>
+<blockquote><p>「自分は何人に評価されているのか?」</p></blockquote>
+<p>という問いが、いつでも目の前に出てくるからです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec9" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">9</span>
+    <span class="title">SNS を減らすと本当に楽になるのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここでは、具体的な研究を一つ見てみましょう。</p>
+
+<div class="note">
+  <div class="note-label">研究ノート - SNS 利用制限の実験</div>
+  <p>Hunt らは 2018 年、大学生を対象に SNS 利用時間を制限する実験を行い、孤独感や抑うつ症状などへの影響を調べました。結果は、SNS 利用を制限したグループで、孤独感や抑うつ症状が低下したことを示しました。</p>
+  <div class="cite">Hunt, M. G., et al. (2018). Journal of Social and Clinical Psychology, 37(10), 751–768.</div>
+</div>
+
+<p>これは興味深い結果です。ただし、ここから、</p>
+<blockquote><p>「SNS が孤独や抑うつの主犯である」</p></blockquote>
+<p>と結論づけることはできません。研究対象や期間には限界がありますし、SNS 利用と心理状態の関係は単純な一方向の因果関係ではありません。それでも、この研究が示唆することはあります。</p>
+
+<div class="pull small">「使い方を変えることで、心理状態が変化する可能性がある」ということです。</div>
+
+<p>つまり、</p>
+<blockquote><p>SNS を完全に捨てるか、何も変えないか。</p></blockquote>
+<p>その二択ではありません。通知を減らす。見る時間帯を変える。比較して苦しくなるアカウントをミュートする。目的なくスクロールする時間を減らす。こうした小さな環境調整にも意味があります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secEnd" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">終</span>
+    <span class="title">羨望を消すのではなく、何を教えているのかを読む</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここまで来ると、最初の問いに戻れます。なぜ、他人のキラキラは胸を刺すのでしょうか。一つの答えは、</p>
+
+<div class="pull">人間が他者との比較を通じて、自分自身を理解しようとする生き物だから。</div>
+
+<p>心理学は、社会的比較という仕組みを示しました。神経科学は、社会的な比較や排除、報酬に関連する反応が脳内で起こることを示してきました。哲学は、羨望や妬みを、人間の欲望や価値判断の問題として考えてきました。進化的な視点からは、人間が複雑な社会環境の中で生きてきたことを無視できません。そして現代の SNS は、その比較刺激を大量かつ高速に届ける環境を作りました。</p>
+
+<p>しかし、ここから、</p>
+<blockquote><p>「だから自分は仕方なく苦しんでいる」</p></blockquote>
+<p>と結論する必要はありません。むしろ、逆です。</p>
+
+<div class="pull">感情の正体が少し見えれば、感情との距離を取ることができます。</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secQ" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">実践</span>
+    <span class="title">今日、誰かを羨ましいと思ったら</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>次に SNS を見て、胸がざわついたとき。いきなり、</p>
+<blockquote><p>「こんなことを思う自分は最低だ」</p></blockquote>
+<p>と判断しないでください。代わりに、三つだけ質問してみます。</p>
+
+<div class="qcards">
+  <div class="qcard">
+    <div class="qn">Q1</div>
+    <h4>私は何を羨ましいと思ったのか?</h4>
+    <p>「成功」では曖昧すぎます。お金なのか。自由なのか。能力なのか。人間関係なのか。認められていることなのか。具体的にしてみる。</p>
+  </div>
+  <div class="qcard">
+    <div class="qn">Q2</div>
+    <h4>私は、それを本当に欲しいのか?</h4>
+    <p>ここは意外に重要です。相手の人生そのものが欲しいわけではないかもしれません。その人が持っている「一部分」だけが欲しいのかもしれない。</p>
+  </div>
+  <div class="qcard">
+    <div class="qn">Q3</div>
+    <h4>その感情を、行動に変えられるか?</h4>
+    <p>羨望を、「自分はダメだ」で終わらせるのか、「自分はこれを望んでいるのだな」という情報に変えるのか。そこには大きな違いがあります。</p>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secLast" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">最後に</span>
+    <span class="title">他人の成功は、あなたの失敗ではない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<div class="closing">
+  <p>他人の成功は、あなたの失敗ではありません。</p>
+  <p>誰かが旅行に行ったからといって、あなたの人生から旅行が一つ消えるわけではない。誰かが昇進したからといって、あなたの能力が一つ減るわけでもない。誰かが注目されたからといって、あなたの存在価値が一つ削られるわけでもありません。</p>
+  <p>それでも苦しくなる。そのこと自体は、人間として不思議ではありません。</p>
+  <p>だから、羨望を感じた自分を、すぐに裁く必要はありません。一歩引いて、</p>
+</div>
+
+<div class="pull">「いま、私は何を見て、何を欲しがっているのだろう?」</div>
+
+<div class="closing">
+  <p>と観察してみる。もしかすると、そこには自分でも気づいていなかった願望があるかもしれません。もしかすると、ただ疲れているだけかもしれません。あるいは、比較する必要のない相手と、比較してしまっているだけかもしれません。</p>
+  <p><strong>感情は命令ではありません。感情は、情報です。</strong></p>
+  <p>その情報をどう読むか。そして、読んだあとに何を選ぶか。そこから先は、あなた自身の領域です。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="refs" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">参考</span>
+    <span class="title">参考文献</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<ol class="refs">
+<li>Aristotle. <em>Rhetoric</em>. Translated by W. Rhys Roberts.</li>
+<li>Eisenberger, N. I., Lieberman, M. D., &amp; Williams, K. D. (2003). Does rejection hurt? An fMRI study of social exclusion. <em>Science</em>, 302(5643), 290–292.</li>
+<li>Festinger, L. (1954). A theory of social comparison processes. <em>Human Relations</em>, 7(2), 117–140.</li>
+<li>Hunt, M. G., Marx, R., Lipson, C., &amp; Young, J. (2018). No More FOMO: Limiting Social Media Decreases Loneliness and Depression. <em>Journal of Social and Clinical Psychology</em>, 37(10), 751–768.</li>
+<li>Nietzsche, F. (1887). <em>On the Genealogy of Morality</em>.</li>
+<li>Spinoza, B. (1677). <em>Ethica</em>.</li>
+<li>Takahashi, H., Kato, M., Matsuura, M., Mobbs, D., Suhara, T., &amp; Okubo, Y. (2009). When your gain is my pain and your pain is my gain: neural correlates of envy and schadenfreude. <em>Science</em>, 323(5916), 937–939.</li>
+<li>Wills, T. A. (1981). Downward comparison principles in social psychology. <em>Psychological Bulletin</em>, 90(2), 245–271.</li>
+</ol>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+
+  if(location.hash){
+    var initial = document.getElementById(location.hash.slice(1));
+    if(initial){
+      var initItem = initial.closest("[data-acc]");
+      if(initItem){
+        initItem.classList.add("open");
+        setTimeout(function(){
+          initial.scrollIntoView({behavior:"smooth", block:"start"});
+        }, OPEN_SCROLL_DELAY);
+      }
+    }
+  }
+})();
+</script>
+</body>
+</html>

@@ -31,11 +31,31 @@
 
 ## 本文フォント
 
-- 本文(`body` / `article` など読者が読む主要テキスト)のフォントはセリフ体にしない。サイト全体でサンセリフ体に統一する。
-  - 見出し等、部分的な意匠として `.serif` のようなセリフ体クラスを使うのは可(本文そのものに適用しなければ問題ない)。
-  - サイト内の他記事(例: `claude-code-migration.html`, `legitimacy-of-nations.html`)で使っているサンセリフ・スタックに合わせればよい。新しいスタックを増やす必要はない。
-    - 例: `"Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif`
-    - 例: `-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif`
+- フォントの種類は `"Zen Kaku Gothic New"` を第一候補とし、`<head>` で Google Fonts から読み込む。フォールバックも含め、ディレクトリ全体で次のスタックに統一する(新しいスタックを増やさない)。
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+      font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+
+  - セリフ体は使わない。`.serif` のような部分的な意匠クラスも含め、既存記事に残っていれば削除してサンセリフに統一する。
+  - `body` に一度設定すれば継承されるので、見出し・注記・カード等の個別セレクタで `font-family` を重ねて指定する必要はない。ただし SVG 内の `<text>` はフォントを継承しないため、SVG 内の `<style>` でも同じスタックを明示する。
+- 文字サイズ(フォントサイズ)は `html` を `16px`、本文を含む SVG 以外のほぼ全要素を `1rem` に統一する。見出し・キャプション・注記・カードなど、記事ごとに個別の `font-size` を設定していても、次の 2 つの `<style>` ブロックを他の `<style>` より後、`</head>` の直前に置くことで一括して上書きする(`body, body :not(svg):not(svg *)` という複合セレクタが個別セレクタより詳細度で勝つため、`!important` なしのブロックも機能する)。
+
+      <style>
+        /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
+        html { font-size: 16px !important; }
+        body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+      </style>
+      <style>
+        /* フォント統一設定 */
+        html { font-size: 16px; }
+        body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+      </style>
+
+  - 対象外: SVG 内の `<text>`(`:not(svg):not(svg *)` により自動的に除外される)。ヒーロー図などの SVG ラベルは独自の `font-size` を保ってよい。
+  - 理由: 2026-08-26 、ディレクトリ内の全 25 記事に対して、フォント種類とフォントサイズをそれぞれ横断的に統一する作業を行った(コミット `97e1eef` 「全記事でフォントサイズを統一」、`b2b9b02` 「すべてのファイルでフォントを Zen Kaku Gothic New に統一」)。見出しや注記ボックスなど記事ごとに異なっていた文字サイズを本文と同じ 1 rem に揃えることで、記事間の見た目のばらつきをなくした。新規記事もこの 2 ブロックを最初から含める。
 
 ## 段落の字下げ(読みやすさのための整形)
 
