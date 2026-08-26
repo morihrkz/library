@@ -42,8 +42,7 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;}
-  body{
-    font-family:"Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
     background:
       radial-gradient(circle at 90% -6%, #fff3c4 0%, rgba(255,243,196,0) 40%),
@@ -114,7 +113,7 @@
   }
   .toolbar{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
   .toolbar button{
-    font-family:inherit; font-size:.9rem; font-weight:600;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.9rem; font-weight:600;
     color:var(--field-deep); background:#fff;
     border:1.5px solid var(--field); border-radius:999px;
     padding:10px 24px; cursor:pointer;
@@ -141,7 +140,7 @@
   .acc-header{
     width:100%; display:flex; align-items:center; gap:16px;
     background:none; border:none; padding:20px 24px;
-    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
   }
   .acc-header .num{
     flex:0 0 auto; width:38px; height:38px; border-radius:50%;
@@ -172,7 +171,7 @@
   .sub-header{
     width:100%; display:flex; align-items:center; gap:14px;
     background:none; border:none; padding:16px 20px;
-    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
   }
   .sub-header:hover{background:rgba(255,255,255,.65);}
   .sub-header .num{
@@ -322,6 +321,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -367,13 +371,13 @@
         <path d="M110 70 L110 138" class="branch"/>
 
         <style>
-          .row-lb { font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
+          .row-lb { font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .row-lb.bad { fill: #ffe3d6; }
           .row-lb.good { fill: #e3f7e6; }
           .node { fill: #ffffff; fill-opacity: 0.14; stroke: #ffffff; stroke-opacity: 0.5; }
           .node.bad { stroke: #ffb199; stroke-opacity: 0.85; fill: #e0624a; fill-opacity: 0.25; }
           .node.good { stroke: #a8e0ac; stroke-opacity: 0.85; fill: #5da35f; fill-opacity: 0.25; }
-          .nodeT { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",sans-serif; }
+          .nodeT { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .arrow { stroke-width: 2; }
           .arrow.bad, .arrowHead.bad { stroke: #ffb199; fill: #ffb199; }
           .arrow.good, .arrowHead.good { stroke: #a8e0ac; fill: #a8e0ac; }

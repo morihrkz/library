@@ -47,15 +47,14 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
-  body{
-    font-family:"Zen Kaku Gothic New", -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.95;
     letter-spacing:.02em;
     -webkit-text-size-adjust:100%;
   }
-  .serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;}
+  
 
   /* ---------- Progress Bar ---------- */
   #progress-bar{
@@ -135,7 +134,7 @@
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
   .toolbar button{
-    font-family:inherit; font-size:.88rem; font-weight:600;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.88rem; font-weight:600;
     color:var(--ink-accent); background:var(--card);
     border:1.5px solid var(--navy-500); border-radius:999px;
     padding:9px 22px; cursor:pointer;
@@ -158,7 +157,7 @@
   .acc-header{
     width:100%; display:flex; align-items:center; gap:15px;
     background:none; border:none; padding:18px 20px;
-    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
     -webkit-tap-highlight-color:transparent;
   }
   .acc-header .num{
@@ -221,7 +220,7 @@
   .formula{
     text-align:center; margin:1.5em 0; padding:.4em 0;
     font-size:1.3rem; color:var(--ink-accent);
-    font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     letter-spacing:.02em;
   }
   .formula em{font-style:italic;}
@@ -295,6 +294,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -346,15 +350,15 @@
         <text x="10" y="30" class="lb">スケールの見取り図 ─ 原子から宇宙まで、ひと続きの道筋</text>
 
         <style>
-          .lb { fill: #d6dfef; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .lb { fill: #d6dfef; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .node { fill: #ffffff; fill-opacity: 0.07; stroke: #93a9c8; stroke-opacity: 0.6; }
           .node.accent { stroke: #9c7b34; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef1f9; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .nodeT { fill: #eef1f9; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .arrow { stroke: #93a9c8; stroke-opacity: 0.7; stroke-width: 2; fill: none; }
           .arrow.loop { stroke: #c9a24a; stroke-opacity: 0.8; }
           .arrowHead { fill: #93a9c8; fill-opacity: 0.85; }
           .arrowHead.loop { fill: #c9a24a; fill-opacity: 0.85; }
-          .tag { fill: #d9c48a; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .tag { fill: #d9c48a; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>本稿が追う道筋。原子から素粒子へとスケールを下げていく探究が、最後は初期宇宙や宇宙の進化という最大スケールの理解へとつながる ─ 同じ物理法則が両端を貫いているという、本稿の中心的な見立て。</figcaption>

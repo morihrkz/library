@@ -29,8 +29,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);
- font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif;
+body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
  line-height:2.05;letter-spacing:.025em;-webkit-font-smoothing:antialiased}
 /* ---- hero ---- */
 header.hero{background:linear-gradient(140deg,var(--hero1) 0%,var(--hero2) 100%);
@@ -59,17 +58,16 @@ p{font-size:1.04rem;margin:1.35em 0;text-align:justify;text-indent:1em}
 header.hero p,.hero-figure figcaption,.kicker,.cap,.note p,.concept p,.evidence p,.figure p,blockquote p,
  .flow div,.refs li,footer,td,th,.endmark{text-indent:0}
 .note,.concept,.evidence{margin:2.2em 0;padding:1.3em 1.45em;border-radius:12px;
- font-family:"Zen Kaku Gothic New",sans-serif;font-size:.94rem;line-height:1.9}
+ font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.94rem;line-height:1.9}
 .note{background:var(--soft);border:1px solid #d7e1ed}.concept{background:var(--concept-bg);border-left:4px solid var(--accent2)}
 .evidence{background:var(--evidence-bg);border:1px solid var(--evidence-border)}
 .note strong,.concept strong,.evidence strong{color:var(--callout-strong)}
 blockquote{margin:2.3em 0;padding:1.2em 1.5em;border-left:4px solid var(--accent);background:var(--blockquote-bg);
  border-radius:0 12px 12px 0}
-table{width:100%;border-collapse:collapse;margin:2em 0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:.91rem}
+table{width:100%;border-collapse:collapse;margin:2em 0;font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.91rem}
 th,td{padding:.8em;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:var(--soft)}
 .figure{margin:2.5em 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
-.figure .diagram{padding:22px;background:var(--diagram-bg);font-family:"Zen Kaku Gothic New",sans-serif}
-.figure .cap{padding:.85em 1.2em;background:#f8f7f4;border-top:1px solid var(--line);font: .82rem "Zen Kaku Gothic New";color:#596273}
+.figure .diagram{padding:22px;background:var(--diagram-bg);font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;background:#f8f7f4;border-top:1px solid var(--line);font: .82rem "Zen Kaku Gothic New";color:#596273}
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flow div{padding:15px;border:1px solid #ccd7e5;border-radius:10px;background:var(--card)}
 .flow b{display:block;color:#315f96;margin-bottom:5px}
 .refs{font-size:.9rem;line-height:1.8}.refs li{margin-bottom:1em}.refs a{color:#315f96;word-break:break-all}
@@ -83,7 +81,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
  padding:9px 0;border-radius:999px;margin:0 0 2.4rem;border:1px solid var(--line);
  box-shadow:0 4px 14px rgba(0,0,0,.10)}
 .toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0}
-.toolbar button{font-family:inherit;font-size:.88rem;font-weight:700;color:var(--accent);
+.toolbar button{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.88rem;font-weight:700;color:var(--accent);
  background:var(--card);border:1.5px solid var(--accent);border-radius:999px;
  padding:8px 20px;cursor:pointer;transition:all .2s ease}
 .toolbar button:hover{background:var(--accent);color:#fff}
@@ -92,7 +90,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
  margin-bottom:16px;overflow:hidden;overflow-anchor:none}
 .acc-item:last-child{margin-bottom:0}
 .acc-header{width:100%;display:flex;align-items:center;gap:14px;background:none;border:none;
- padding:18px 22px;cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);
+ padding:18px 22px;cursor:pointer;text-align:left;font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;color:var(--ink);
  -webkit-tap-highlight-color:transparent}
 .acc-header .num{flex:0 0 auto;color:var(--accent);font-size:.82rem;font-weight:700;
  background:var(--soft);padding:4px 11px;border-radius:999px;white-space:nowrap;
@@ -122,6 +120,11 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
     html { font-size: 17px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -164,20 +167,20 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
 
         <style>
           .axis { stroke: #6d81a3; stroke-width: 1.5; }
-          .axlab { fill: #7e93b5; font-size: 11px; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .axlab { fill: #7e93b5; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .coneFill { fill: #8fb4ff; fill-opacity: .07; }
           .coneEdge { fill: none; stroke: #9dbcf5; stroke-opacity: .55; stroke-width: 1.5; }
           .nowDot { fill: #dbe8ff; }
-          .now { fill: #eef4ff; font-size: 12.5px; font-weight: 700; text-anchor: middle; letter-spacing: .06em; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .side { fill: #a9bcdb; font-size: 11.5px; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .now { fill: #eef4ff; font-size: 12.5px; font-weight: 700; text-anchor: middle; letter-spacing: .06em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side { fill: #a9bcdb; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .side.end { text-anchor: end; }
-          .inCone { fill: #cfe0ff; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .inCone { fill: #cfe0ff; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .lss { stroke: #d6e6ff; stroke-opacity: .85; stroke-width: 1.5; }
-          .lsslab { fill: #d6e6ff; font-size: 11px; letter-spacing: .1em; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .lsslab { fill: #d6e6ff; font-size: 11px; letter-spacing: .1em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .plasma { fill: #7c5aa6; fill-opacity: .22; }
-          .plasmalab { fill: #cbbde0; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .plasmalab { fill: #cbbde0; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .sing { stroke: #f2cbe7; stroke-opacity: .5; stroke-width: 1.5; stroke-dasharray: 5 5; }
-          .singlab { fill: #b9a7c9; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .singlab { fill: #b9a7c9; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>現在の私たちから過去へ開く過去光円錐と、それが最終散乱面と交わる面としての宇宙マイクロ波背景放射。最終散乱面はビッグバンから約 38 万年後にあたり、それ以前の宇宙は不透明な高温プラズマで、光は電子に散乱されて自由に進めない。図はあくまで因果構造を示す概念図であり、縮尺・時間軸の比率は正確ではない。</figcaption>

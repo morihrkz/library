@@ -45,11 +45,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.08rem;
     line-height: 1.75;
     padding: 0 0 60px 0;
@@ -138,7 +134,7 @@
     vertical-align: top;
   }
   tbody tr:nth-child(even) { background: var(--bg); }
-  td.path, td code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+  td.path, td code { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
   td.path { color: var(--accent); white-space: nowrap; }
 
   code {
@@ -280,7 +276,7 @@
     margin: 0 0 24px;
   }
   .toolbar button {
-    font-family: inherit;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--accent);
@@ -313,7 +309,7 @@
     padding: 18px 22px;
     cursor: pointer;
     text-align: left;
-    font-family: inherit;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color: var(--ink);
     -webkit-tap-highlight-color: transparent;
   }
@@ -364,6 +360,11 @@
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -430,16 +431,16 @@
         <text x="556" y="223" class="note">手で書き写す</text>
 
         <style>
-          .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .dev.win { fill: #7fd0b4; }
           .dev.mac { fill: #9dbbe4; }
-          .devsub { fill: #c7bda1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .mono { fill: #e8ddc4; font-size: 10.5px; text-anchor: middle; font-family: "SFMono-Regular",Consolas,Menlo,monospace; }
-          .row { fill: #f0e9db; font-size: 12.5px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .devsub { fill: #c7bda1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .mono { fill: #e8ddc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .row { fill: #f0e9db; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .row.out { fill: #f0c9c2; font-size: 11.5px; }
           .idx { fill: #e0a95f; font-weight: 700; }
           .idx.out { fill: #e08b7f; }
-          .note { fill: #e08b7f; font-size: 11px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .note { fill: #e08b7f; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>移植の全体像。①〜④・⑥ は持ち運べるが、⑤ の Auto Memory だけはマシンローカルに残る。番号は本文の各節に対応している。</figcaption>

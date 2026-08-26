@@ -37,11 +37,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.15rem;
     line-height: 1.9;
   }
@@ -162,7 +158,7 @@
     margin: 0 0 2.4rem;
   }
   .toolbar button {
-    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
     color: var(--accent); background: var(--paper);
     border: 1.5px solid var(--accent); border-radius: 999px;
     padding: 8px 20px; cursor: pointer; transition: all .2s ease;
@@ -177,7 +173,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: inherit; color: var(--ink);
+    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color: var(--ink);
     -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -212,6 +208,11 @@
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -264,10 +265,10 @@
         <text x="554" y="222" class="tag">記録の連続性が残る</text>
 
         <style>
-          .lb { fill: #eee9de; font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .sm { fill: #a9b8b6; font-size: 11.5px; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .ax { fill: #8fd4c8; font-size: 11.5px; letter-spacing: .04em; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .tag { fill: #cfe6e1; font-size: 11.5px; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .lb { fill: #eee9de; font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .sm { fill: #a9b8b6; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .ax { fill: #8fd4c8; font-size: 11.5px; letter-spacing: .04em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .tag { fill: #cfe6e1; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .dim { fill-opacity: .75; }
         </style>
       </svg>

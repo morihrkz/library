@@ -43,8 +43,7 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; scroll-behavior: smooth; scroll-padding-top: 76px; }
-  body {
-    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color: var(--ink);
     background: var(--paper);
     line-height: 1.95;
@@ -129,7 +128,7 @@
   }
   .toolbar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
   .toolbar button {
-    font-family: inherit; font-size: .88rem; font-weight: 600;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: .88rem; font-weight: 600;
     color: var(--accent-600); background: var(--card);
     border: 1.5px solid var(--accent-500); border-radius: 999px;
     padding: 9px 22px; cursor: pointer;
@@ -152,7 +151,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 15px;
     background: none; border: none; padding: 18px 20px;
-    cursor: pointer; text-align: left; font-family: inherit; color: var(--ink);
+    cursor: pointer; text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color: var(--ink);
     -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -233,6 +232,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -297,13 +301,13 @@
         <path d="M500 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
 
         <style>
-          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>本稿がたどる回路の見取り図。客観的な貧しさではなく比較から生まれる不満が、集団の境界線と結びついて「奪われた」という感情になり、敵を名指す物語によって投票先へと変換される。アテンション・エコノミーはこの流れを増幅し、熟議の設計とリテラシー教育は制動をかける側に立つ。</figcaption>

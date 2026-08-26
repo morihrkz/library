@@ -51,8 +51,7 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
-  body{
-    font-family:"Zen Kaku Gothic New", -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.95;
@@ -133,7 +132,7 @@
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
   .toolbar button{
-    font-family:inherit; font-size:.88rem; font-weight:600;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.88rem; font-weight:600;
     color:var(--ink-accent); background:var(--card);
     border:1.5px solid var(--cyan-600); border-radius:999px;
     padding:9px 22px; cursor:pointer;
@@ -156,7 +155,7 @@
   .acc-header{
     width:100%; display:flex; align-items:center; gap:15px;
     background:none; border:none; padding:18px 20px;
-    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
     -webkit-tap-highlight-color:transparent;
   }
   .acc-header .num{
@@ -214,7 +213,7 @@
   ul:last-child, ol:last-child{margin-bottom:0;}
 
   code{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     background:var(--stripe); color:var(--ink-accent);
     padding:.1em .4em; border-radius:4px; font-size:.9em;
   }
@@ -289,6 +288,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -343,7 +347,7 @@
         <style>
           .node { fill: #ffffff; fill-opacity: 0.07; stroke: #7fe0f5; stroke-opacity: 0.55; }
           .node.accent { stroke: #1fb8e6; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef4fb; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .nodeT { fill: #eef4fb; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .nodeT.small { font-size: 11px; font-weight: 400; }
           .arrow { stroke: #7fe0f5; stroke-opacity: 0.6; stroke-width: 2; fill: none; }
           .arrow.good { stroke: #6fd08a; }
@@ -351,7 +355,7 @@
           .arrowHead { fill: #7fe0f5; fill-opacity: 0.8; }
           .arrowHead.good { fill: #6fd08a; }
           .arrowHead.warn { fill: #d6a24a; }
-          .tag { fill: #cfdcf0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .tag { fill: #cfdcf0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .tag.good { fill: #a8e6ba; }
           .tag.warn { fill: #e6c088; }
         </style>

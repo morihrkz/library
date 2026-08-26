@@ -47,15 +47,14 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
-  body{
-    font-family:"Zen Kaku Gothic New", -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Noto Sans JP","Meiryo",sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
     background:var(--paper);
     line-height:1.95;
     letter-spacing:.02em;
     -webkit-text-size-adjust:100%;
   }
-  .serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;}
+  
 
   /* ---------- Progress Bar ---------- */
   #progress-bar{
@@ -135,7 +134,7 @@
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
   .toolbar button{
-    font-family:inherit; font-size:.88rem; font-weight:600;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.88rem; font-weight:600;
     color:var(--ink-accent); background:var(--card);
     border:1.5px solid var(--olive-500); border-radius:999px;
     padding:9px 22px; cursor:pointer;
@@ -158,7 +157,7 @@
   .acc-header{
     width:100%; display:flex; align-items:center; gap:15px;
     background:none; border:none; padding:18px 20px;
-    cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);
+    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
     -webkit-tap-highlight-color:transparent;
   }
   .acc-header .num{
@@ -250,6 +249,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -293,16 +297,16 @@
         <text x="540" y="210" class="outT">内戦・混乱</text>
 
         <style>
-          .q { fill: #e3e6d5; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
-          .pole { fill: #f3f2e8; font-size: 14px; font-weight: 700; text-anchor: start; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .q { fill: #e3e6d5; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .pole { fill: #f3f2e8; font-size: 14px; font-weight: 700; text-anchor: start; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .pole.end { text-anchor: end; }
-          .qmark { fill: #e3d9b8; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,sans-serif; }
+          .qmark { fill: #e3d9b8; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .node { fill: #ffffff; fill-opacity: 0.08; stroke: #aab493; stroke-opacity: 0.7; }
-          .nodeT { fill: #f3f2e8; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .nodeT { fill: #f3f2e8; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .out { fill-opacity: 0.12; stroke-width: 1.5; }
           .out.good { fill: #7f8f5c; stroke: #aab493; }
           .out.bad { fill: #a35a4a; stroke: #c99b8f; }
-          .outT { fill: #f3f2e8; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; }
+          .outT { fill: #f3f2e8; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>本稿が検討する二つの問い。①権威主義と民主主義の優劣は単純に決められるか、②体制転換（民主化）は平和をもたらすか ─ 史実は一様ではなく、どちらの矢印も現実に起きている。</figcaption>

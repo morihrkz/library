@@ -11,9 +11,7 @@
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
-  body {
-    margin: 0;
-    font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.15rem;
     line-height: 1.9;
     color: #1a1a1a;
@@ -115,7 +113,7 @@
     margin: 0 0 2.4rem;
   }
   .toolbar button {
-    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
     color: #7a6a4f; background: #fff;
     border: 1.5px solid #7a6a4f; border-radius: 999px;
     padding: 8px 20px; cursor: pointer; transition: all .2s ease;
@@ -130,7 +128,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color: #1a1a1a; -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -180,6 +178,11 @@
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -224,15 +227,15 @@
         <text x="613" y="146" class="sideS">資金・人事を担う</text>
 
         <style>
-          .grp { fill: #e8dcc0; font-size: 13px; font-weight: 700; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .grp { fill: #e8dcc0; font-size: 13px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .chip { fill: #ffffff; fill-opacity: 0.06; }
           .chipL { stroke: #c9a24a; stroke-opacity: 0.7; }
           .chipR { stroke: #6a9a8a; stroke-opacity: 0.7; }
-          .chipT { fill: #f0e6ce; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .chipS { fill: #cbb88f; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .req { fill: #b8a985; font-size: 11.5px; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .sideT { fill: #f0c9c2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
-          .sideS { fill: #d9a89f; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif; }
+          .chipT { fill: #f0e6ce; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .chipS { fill: #cbb88f; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .req { fill: #b8a985; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .sideT { fill: #f0c9c2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .sideS { fill: #d9a89f; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>本稿の骨子。「政党」の法的要件は議員数・得票率のみで、党内の政策的立場の統一は求められない。この多様性を組織的に担ってきたのが「派閥」という別法人である。</figcaption>

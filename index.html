@@ -53,11 +53,7 @@
     }
   }
   *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:"Zen Kaku Gothic New", "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     line-height:1.75;
   }
 
@@ -318,7 +314,7 @@
     gap:10px;
   }
   .toolbar button{
-    font-family:inherit;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size:12.5px;
     font-weight:600;
     letter-spacing:.02em;
@@ -355,7 +351,7 @@
     outline:none;
     font-size:15px;
     color:var(--ink);
-    font-family:inherit;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
   }
   .search-box input::placeholder{ color:var(--muted); }
   .search-status{
@@ -419,6 +415,11 @@
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
     html { font-size: 17px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
 </head>
 <body>

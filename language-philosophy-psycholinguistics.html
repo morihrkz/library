@@ -39,11 +39,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.1rem;
     line-height: 1.95;
   }
@@ -130,7 +126,7 @@
     margin: 0 0 2.4rem;
   }
   .toolbar button {
-    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
     color: var(--accent); background: var(--paper);
     border: 1.5px solid var(--accent); border-radius: 999px;
     padding: 8px 20px; cursor: pointer; transition: all .2s ease;
@@ -145,7 +141,7 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: inherit;
+    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color: var(--text); -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
@@ -180,6 +176,11 @@
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
     html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -241,14 +242,14 @@
         <text x="360" y="304" class="hubsub">概念の問いと実験データが往復する</text>
 
         <style>
-          .figTitle { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .side { fill: #cbbcf2; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .figTitle { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side { fill: #cbbcf2; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .side.alt { fill: #a8d3e6; }
-          .method { fill: #b3a9cf; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .item { fill: #ede9f7; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .lineage { fill: #a79dc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .hub { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
-          .hubsub { fill: #b3a9cf; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", "Hiragino Sans","Yu Gothic","Segoe UI",sans-serif; }
+          .method { fill: #b3a9cf; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .item { fill: #ede9f7; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lineage { fill: #a79dc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .hub { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .hubsub { fill: #b3a9cf; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
       <figcaption>同じ「言語」を対象としながら、言語哲学は概念分析で意味の成り立ちを問い、心理言語学は実験と計測で処理の実態を調べる。方法は異なるが、両者は認知科学という学際的な枠組みで交差し、概念の問いと経験的データが双方向に往復する。</figcaption>
