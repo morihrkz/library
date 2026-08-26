@@ -27,6 +27,8 @@
     --pause-border:#e3b23c;
     --field-bg:#f2f8ef;
     --acc-open-bg: linear-gradient(90deg, #fff8e6, #fffdf6);
+    --compare-original-bg:#eef6ec;
+    --compare-straw-bg:#fdf1ec;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -38,6 +40,12 @@
       --pause-bg:#332912;
       --field-bg:#16211a;
       --acc-open-bg: var(--card);
+      --sky-deep:#7fd4ef;
+      --straw-deep:#e8b563;
+      --field-deep:#7fc282;
+      --coral-deep:#e8836c;
+      --compare-original-bg:#1a2418;
+      --compare-straw-bg:#2a1c17;
     }
   }
   *{box-sizing:border-box;}
@@ -114,7 +122,7 @@
   .toolbar{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
   .toolbar button{
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.9rem; font-weight:600;
-    color:var(--field-deep); background:#fff;
+    color:#2f6b34; background:#fff;
     border:1.5px solid var(--field); border-radius:999px;
     padding:10px 24px; cursor:pointer;
     transition:all .2s ease;
@@ -207,15 +215,15 @@
 
   .compare{display:flex; flex-wrap:wrap; gap:12px; margin:1.2em 0;}
   .compare-box{flex:1 1 220px; border-radius:12px; padding:14px 18px;}
-  .compare-box.original{background:#eef6ec; border:1px solid #cfe3c8;}
-  .compare-box.straw{background:#fdf1ec; border:1px solid #f0cdc0;}
+  .compare-box.original{background:var(--compare-original-bg,#eef6ec); border:1px solid #cfe3c8;}
+  .compare-box.straw{background:var(--compare-straw-bg,#fdf1ec); border:1px solid #f0cdc0;}
   .compare-box .tag{
     display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.08em;
     padding:2px 10px; border-radius:999px; margin-bottom:8px;
   }
   .compare-box.original .tag{background:var(--field); color:#fff;}
   .compare-box.straw .tag{background:var(--coral); color:#fff;}
-  .compare-box p{margin:0; font-size:.96rem; color:#3b3627;}
+  .compare-box p{margin:0; font-size:.96rem; color:var(--ink);}
   .gap-note{
     margin:1em 0 0; padding:12px 18px;
     background:var(--pause-bg); border-left:4px solid var(--straw);
@@ -237,17 +245,17 @@
   }
 
   .steps{display:flex; flex-wrap:wrap; gap:12px; margin:1.4em 0;}
-  .step{flex:1 1 200px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .step{flex:1 1 200px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
   .step .n{
     display:inline-flex; align-items:center; justify-content:center;
-    width:26px; height:26px; border-radius:50%; background:var(--sky-deep); color:#fff;
+    width:26px; height:26px; border-radius:50%; background:#1f7fa8; color:#fff;
     font-size:.8rem; font-weight:700; margin-bottom:8px;
   }
-  .step p{margin:0; font-size:.93rem; color:#3b3627;}
+  .step p{margin:0; font-size:.93rem; color:var(--ink);}
 
   .card-note{
     margin:1.7em 0; padding:22px 24px 20px;
-    background:#fff;
+    background:var(--card);
     border:1px solid var(--line);
     border-radius:12px;
     box-shadow:0 3px 10px rgba(90,60,10,.06);
@@ -275,7 +283,7 @@
   .term-row{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); align-items:baseline;}
   .term-row:last-child{border-bottom:none;}
   .term-row .t{flex:0 0 128px; font-weight:700; color:var(--coral-deep); font-size:.96rem;}
-  .term-row .d{flex:1 1 auto; font-size:.94rem; color:#3b3627;}
+  .term-row .d{flex:1 1 auto; font-size:.94rem; color:var(--ink);}
 
   .refs{list-style:none; margin:0; padding:0;}
   .refs li{
