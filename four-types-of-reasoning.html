@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思考を拡張する知の道具箱 - 推論の四つのかたち</title>
+<meta name="description" content="演繹・帰納・アブダクション・類推という四つの推論を、ゼンメルワイス、ジョン・スノウ、ケプラー、ラザフォードなどの実例からたどる。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f3f7f1;
+    --paper: #fcfefa;
+    --ink: #1d251f;
+    --sub: #56675a;
+    --muted: #7c8b7d;
+    --accent: #2c6a44;
+    --accent-soft: #6ba384;
+    --line: #d9e4d5;
+    --note-bg: #e8f1e5;
+    --hero-1: #05100a;
+    --hero-2: #1c4630;
+    --hero-ink: #edf4ea;
+    --hero-dim: #a6bfad;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #0c1210;
+      --paper: #121a15;
+      --ink: #e3ebe1;
+      --sub: #a3b3a3;
+      --muted: #82907f;
+      --accent: #7fc99c;
+      --accent-soft: #5c9b76;
+      --line: #232f28;
+      --note-bg: #15221a;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:76px;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+    line-height:1.95;
+    letter-spacing:0.02em;
+  }
+  .wrap{
+    margin:0 auto;
+    padding:0 clamp(1.5rem, 3vw, 3rem) 6rem;
+  }
+  header.hero{
+    background:linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    color:var(--hero-ink);
+    padding:3.6rem 0 2.8rem;
+    margin-bottom:2.8rem;
+  }
+  header.hero .wrap{max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,3vw,3rem);}
+  .eyebrow{
+    display:block;
+    letter-spacing:0.24em;
+    font-size:0.78rem;
+    color:var(--hero-dim);
+    text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  h1{
+    font-size:clamp(1.5rem, 3.6vw, 2.1rem);
+    line-height:1.6;
+    margin:0 0 1rem;
+    font-weight:700;
+  }
+  p.sub{
+    margin:0;
+    color:var(--hero-dim);
+    line-height:1.85;
+    text-indent:0;
+  }
+  .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
+  .hero-figure svg{display:block; width:100%; height:auto;}
+  .hero-figure figcaption{
+    margin-top:0.9rem;
+    color:var(--hero-dim);
+    line-height:1.75;
+  }
+  main.wrap{padding-top:0;}
+  h2{font-size:1.4rem; margin:0 0 1.6rem;}
+  h3{
+    margin:2.2rem 0 1rem;
+    color:var(--accent);
+    font-weight:700;
+  }
+  h3:first-child{margin-top:0.4rem;}
+  p{margin:0 0 1.3rem; text-indent:1em;}
+  p.lede, p.signoff, .note, .callout p, .schema, .pull{text-indent:0;}
+  p.lede{color:var(--sub);}
+  strong{font-weight:700;}
+  a{color:var(--accent);}
+
+  .pull{
+    line-height:1.8;
+    color:var(--accent);
+    font-weight:700;
+    margin:2.2rem 0;
+    padding:1.4rem 1.6rem;
+    background:var(--note-bg);
+    border-left:3px solid var(--accent-soft);
+    border-radius:2px;
+  }
+  .callout{
+    margin:2rem 0;
+    padding:1.2rem 1.5rem;
+    background:var(--note-bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+  }
+  .callout > :last-child{margin-bottom:0;}
+  .callout .ttl{
+    display:block;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:0.5rem;
+    letter-spacing:0.04em;
+  }
+  .callout ol, .callout ul{margin:0; padding-left:1.4rem;}
+  .schema{
+    margin:1.7rem 0;
+    padding:1.2rem 1.5rem;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent-soft);
+    border-radius:6px;
+    line-height:2.1;
+    color:var(--sub);
+  }
+  .schema span{display:block;}
+  .schema span.arrow{color:var(--accent); font-weight:700; margin-top:0.5rem;}
+  .schema span.gap{height:0.6rem;}
+
+  .cycle{
+    margin:2rem 0;
+    padding:1.4rem 1.6rem;
+    background:var(--note-bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+    line-height:2.1;
+  }
+  .cycle .ttl{display:block; color:var(--accent); font-weight:700; margin-bottom:0.7rem;}
+  .cycle .step{display:block;}
+  .cycle .step b{color:var(--ink);}
+  .cycle .down{display:block; color:var(--accent-soft);}
+
+  ul, ol{margin:0 0 1.5rem; padding-left:1.4rem;}
+  li{margin-bottom:0.4rem;}
+  .signoff{
+    color:var(--accent);
+    font-weight:700;
+    text-align:center;
+    margin:2.4rem 0 0;
+    line-height:1.9;
+  }
+  footer.refs ol{padding-left:1.4rem; margin:0;}
+  footer.refs li{margin-bottom:0.9rem; text-indent:0;}
+  footer.refs a{color:var(--accent); word-break:break-word;}
+  .note{margin-top:1.6rem; color:var(--sub);}
+
+  .toolbar-container{
+    position:sticky; top:8px; z-index:100;
+    background:var(--bg);
+    background:color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:9px 0;
+    border-radius:999px;
+    margin:0 0 2.4rem;
+    border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(0,0,0,.10);
+  }
+  .toolbar-container .toolbar{margin:0;}
+  .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:0;}
+  .toolbar button{
+    font-family:inherit;
+    font-weight:700;
+    color:var(--accent); background:var(--paper);
+    border:1.5px solid var(--accent); border-radius:999px;
+    padding:8px 20px; cursor:pointer; transition:all .2s ease;
+  }
+  .toolbar button:hover{background:var(--accent); color:var(--paper);}
+  #accordion{margin-bottom:2.6rem;}
+  .acc-item{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    margin-bottom:16px; overflow:hidden; overflow-anchor:none;
+  }
+  .acc-item:last-child{margin-bottom:0;}
+  .acc-header{
+    width:100%; display:flex; align-items:center; gap:14px;
+    background:none; border:none; padding:18px 22px; cursor:pointer;
+    text-align:left; color:var(--ink); font-family:inherit;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .acc-header .num{
+    flex:0 0 auto; color:var(--accent); font-weight:700;
+    background:var(--note-bg); padding:4px 11px; border-radius:999px; white-space:nowrap;
+  }
+  .acc-header .title{flex:1 1 auto; font-weight:700; line-height:1.5;}
+  .acc-header .chev{
+    flex:0 0 auto; width:20px; height:20px; color:var(--accent);
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
+  .acc-item.open > .acc-header{background:var(--note-bg); border-bottom:1px solid var(--line);}
+  .acc-panel{
+    display:grid; grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;
+  }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
+  .acc-panel-inner{
+    overflow:hidden; min-height:0; padding:0 22px; opacity:0;
+    transition:opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner{padding:6px 22px 26px; opacity:1;}
+  @media (max-width:600px){
+    .acc-header{padding:15px 16px; gap:10px;}
+    .acc-item.open > .acc-panel > .acc-panel-inner{padding:4px 16px 22px;}
+    .hero-figure svg{min-width:600px;}
+  }
+</style>
+<style>
+  /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
+  html { font-size: 16px !important; }
+  body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+</style>
+<style>
+  /* フォント統一設定 */
+  html { font-size: 16px; }
+  body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Logic · Philosophy · Cognition</span>
+    <h1>思考を拡張する知の道具箱 - 推論の四つのかたち</h1>
+    <p class="sub">演繹・帰納・アブダクション・類推。ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。</p>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 340" role="img" aria-labelledby="brTitle brDesc">
+        <title id="brTitle">既知の山から未知の山へ架かる四つの橋</title>
+        <desc id="brDesc">左右に夏の山の稜線が向かい合い、その間の谷に四本の橋が高さを変えて架かっている概念図。上から順に、太い実線の橋が演繹、破線の橋が帰納、上の橋を参照して架けられた橋が類推、点線で描かれた未完成の橋がアブダクションを表す。左の山が既知、右の山が未知にあたる。橋の高さや長さに定量的な意味はなく、推論の性格の違いを視覚的に対比させるための模式図である。</desc>
+
+        <!-- 見出し -->
+        <text x="360" y="26" class="ttl" text-anchor="middle">同じ谷に、性格の違う四本の橋が架かっている</text>
+        <text x="360" y="46" class="ttl2" text-anchor="middle">どれが優れているかではなく、いまどの橋を渡っているのかが問題になる</text>
+
+        <!-- 遠景の稜線 -->
+        <path d="M0,340 L0,120 L80,72 L150,106 L215,66 L300,90 L372,68 L446,94 L520,70 L600,100 L666,74 L720,116 L720,340 Z" fill="#2f6a4b" fill-opacity="0.30"/>
+        <path d="M0,340 L0,164 L70,138 L150,162 L215,126 L290,110 L370,116 L440,104 L505,128 L580,152 L650,132 L720,162 L720,340 Z" fill="#1b3f2c" fill-opacity="0.55"/>
+
+        <!-- 谷底の霧 -->
+        <ellipse cx="360" cy="320" rx="145" ry="13" fill="#9fe0bb" fill-opacity="0.10"/>
+        <ellipse cx="360" cy="334" rx="108" ry="9" fill="#9fe0bb" fill-opacity="0.07"/>
+
+        <!-- 左の山（既知） -->
+        <path d="M0,340 L0,150 L48,126 L96,142 L146,114 L196,138 L215,132 L215,340 Z" fill="#07170f"/>
+        <path d="M0,150 L48,126 L96,142 L146,114 L196,138 L215,132" fill="none" stroke="#3d7a58" stroke-width="1.6"/>
+        <!-- 右の山（未知） -->
+        <path d="M505,340 L505,136 L548,118 L598,142 L646,114 L690,138 L720,124 L720,340 Z" fill="#07170f"/>
+        <path d="M505,136 L548,118 L598,142 L646,114 L690,138 L720,124" fill="none" stroke="#3d7a58" stroke-width="1.6"/>
+
+        <!-- 橋 1 : 演繹 -->
+        <text x="360" y="139" class="lbl" text-anchor="middle">演繹 - 前提を受け入れたら、結論は逃げない</text>
+        <line x1="215" y1="154" x2="505" y2="154" stroke="#aee3c2" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="262" y1="154" x2="262" y2="169" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="360" y1="154" x2="360" y2="173" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="458" y1="154" x2="458" y2="169" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
+
+        <!-- 橋 2 : 帰納 -->
+        <text x="360" y="187" class="lbl" text-anchor="middle">帰納 - 遠くまで伸びるが、途中で崩れうる</text>
+        <line x1="215" y1="202" x2="505" y2="202" stroke="#8ccfa6" stroke-width="3.2" stroke-dasharray="16 8" stroke-linecap="round"/>
+
+        <!-- 橋 3 : 類推（上の橋を参照して架ける） -->
+        <text x="360" y="235" class="lbl" text-anchor="middle">類推 - 別の場所の橋を、参考にして架ける</text>
+        <path d="M296,206 C296,222 308,232 314,246" fill="none" stroke="#8ccfa6" stroke-width="1.4" stroke-dasharray="3 5" stroke-opacity="0.75"/>
+        <line x1="215" y1="250" x2="505" y2="250" stroke="#7fc99c" stroke-width="3.2" stroke-dasharray="30 7 7 7" stroke-linecap="round"/>
+
+        <!-- 橋 4 : アブダクション（まだ設計図） -->
+        <text x="360" y="283" class="lbl" text-anchor="middle">アブダクション - まだ設計図しかない</text>
+        <line x1="215" y1="298" x2="505" y2="298" stroke="#6fae8c" stroke-width="2.6" stroke-dasharray="1.5 7" stroke-linecap="round"/>
+
+        <!-- 既知・未知のラベル -->
+        <text x="104" y="196" class="side" text-anchor="middle">既知</text>
+        <text x="104" y="218" class="side2" text-anchor="middle">ここまで分かっている</text>
+        <text x="612" y="196" class="side" text-anchor="middle">未知</text>
+        <text x="612" y="218" class="side2" text-anchor="middle">まだ分かっていない</text>
+
+        <style>
+          .ttl{ fill:#edf4ea; font-size:14.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .ttl2{ fill:#a6bfad; font-size:11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lbl{ fill:#edf4ea; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side{ fill:#c8ddce; font-size:13px; font-weight:700; letter-spacing:0.16em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side2{ fill:#89a692; font-size:10px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        </style>
+      </svg>
+      <figcaption>終章で述べる「推論とは橋である」という比喩を、そのまま図にしたもの。橋の高さ・長さ・本数に定量的な意味はなく、四つの推論の性格の違いを対比させるための概念図である。実在の谷や橋を描いたものではない。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
+  </div>
+</div>
+
+<div id="accordion">
+
+<section class="acc-item" id="sec0" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">0</span>
+    <span class="title">はじめに - 同じ建物の中で、死亡率だけが違った</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p class="lede">1847 年、ウィーン総合病院。同じ建物の中に、同じように妊婦を受け入れる二つの産科クリニックがあった。</p>
+<p>
+片方は医師と医学生が担当し、もう片方は助産師が担当する。設備も、患者の階層も、ほとんど変わらない。ところが、医師が担当するクリニックでは、出産後に高熱を出して命を落とす女性の割合が、助産師のクリニックの数倍に達していた。
+</p>
+<p>
+患者たちはこの違いに気づいていた。医師のクリニックに割り当てられた日に運ばれてきた妊婦が、廊下で泣きながら助産師のクリニックへ移してほしいと懇願したという記録さえ残っている。<br>
+なぜ、より高度な訓練を受けた医師が担当する側で、より多くの母親が死んでいくのか。
+</p>
+<p>
+この謎を解いたのは、ハンガリー出身の若い医師イグナーツ・ゼンメルワイスだった。彼がたどり着いた答えは、当時の医学の常識からすると突飛なものだった。<br>
+そして、その答えにたどり着くまでの思考の道筋こそが、この記事が扱う「推論」という営みの一つの見本になっている。ゼンメルワイスが実際に何を観察し、何を疑い、何を確かめたのかは、第 4 章で詳しく見ることにする。
+</p>
+<h3>推論という、目に見えない道具</h3>
+<p>
+人間は、見えているものだけを知って生きているわけではない。目の前の事実からまだ見ていない事実を予測し、意外な現象を説明する仮説をつくり、別の分野に見つけた構造を未知の問題へ持ち込む。そのたびに、私たちは推論している。<br>
+ゼンメルワイスが二つの病棟の死亡率の違いから病原の伝わり方を疑ったときも、天文学者が惑星の観測データから軌道の形を割り出したときも、技術者が鳥の姿から乗り物の形を考えたときも、働いていたのは同じ「推論」という営みの、しかし性質の異なる型だった。
+</p>
+<p>
+ところが「推論」という一語の中には、性質の異なる仕事が折り重なっている。前提から必然的な結論を出す演繹。観察から一般化や予測へ進む帰納。驚くべき事実から説明候補を生み出すアブダクション。そして、既知の対象に見つかった関係を未知の対象へ移す類推。<br>
+この記事では、この四つを一つの固定的な「正式分類」としてではなく、思考の働きを理解するための四つの重要な様式として整理する。
+</p>
+<div class="callout">
+  <span class="ttl">分類についての注意</span>
+  <p>演繹・帰納・アブダクションの三分法は、とりわけ C ・ S ・パースの仕事を理解するうえで重要である。一方、類推をそこへ「第四の正式分類」として加えることには議論がある。類推的推論を広義の帰納に含める立場もあれば、独自の推論様式として分析する立場もある。この記事はこの違いを隠さない。</p>
+</div>
+<div class="pull">推論とは、既知の地点から未知の地点へ進むための橋である。ただし、橋の種類によって、渡るときの注意点は違う。</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">推論とは何か - 既知から未知へ渡る</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>「考える」と「推論する」は同じではない</h3>
+<p>
+頭の中に浮かんだことが、そのまま推論なのではない。推論には、少なくとも「何を根拠として、何を結論としているのか」という構造がある。
+</p>
+<p>
+たとえば、窓の外が暗いことに気づき、「雨が降りそうだ」と考えたとする。これは単なる連想かもしれないし、気圧、雲、季節、過去の経験などを踏まえた推測かもしれない。<br>
+後者なら、観察された情報を根拠として、まだ観察していない未来の状態へ進んでいる。
+</p>
+<p>
+論理学では、こうした関係を「前提」と「結論」の関係として分析する。重要なのは、結論が真か偽かだけではない。その結論を、どのような根拠から、どの程度の強さで導いたのかが問題になる。
+</p>
+<h3>確実性と新規性は別の軸である</h3>
+<p>
+推論を理解するとき、「確実な推論」と「新しいことを教えてくれる推論」という二つの性質を分けると見通しがよくなる。演繹は、妥当な形式と真なる前提があれば結論の真を保証できる。しかし、経験的世界についての新しい情報を前提に追加するわけではない。<br>
+帰納やアブダクション、類推は結論を必然的には保証しない。その代わり、観察済みの情報を超えて予測、説明、着想を広げる。
+</p>
+<p>
+ここから重要な原則が見えてくる。「確実だから優れている」「不確実だから劣っている」と単純には言えない。何をしたいのかによって必要な推論が違うからである。
+</p>
+<div class="callout">
+  <span class="ttl">この記事の見取り図</span>
+  <p>演繹は「何が必然的に言えるか」。帰納は「何がまだ見ていない世界にも成り立ちそうか」。アブダクションは「何がこの事実を説明しうるか」。類推は「別の場所に、この問題を考えるための構造がないか」。</p>
+</div>
+<h3>「四つ」は自然法則ではない</h3>
+<p>
+最初に、この点をはっきりさせておきたい。この記事は「論理学には四種類の推論しかない」と主張するものではない。実際、推論には確率的推論、統計的推論、類推的推論、反事実的推論、意思決定に関わる推論など、さまざまな分類と細分化がある。
+</p>
+<p>
+さらに、類推を独立した第四類型とすることにも議論がある。 Stanford Encyclopedia of Philosophy が指摘するように、類推的議論は広義の帰納的・拡張的推論として扱われることもある。<br>
+したがって、ここでいう「四つ」は、パースの三分法に類推を機械的に追加した学説上の完成図ではなく、一般読者が思考の違いを見分けるための実用的な枠組みと考えるのが適切である。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">演繹 - 前提が真なら、結論を逃がさない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>必然性を扱う推論</h3>
+<p>
+演繹の力は、結論を「もっともらしくする」ことではなく、一定の前提を受け入れたなら、その結論を拒否できない形にすることにある。
+</p>
+<div class="schema">
+  <span>すべての M は P である。</span>
+  <span>S は M である。</span>
+  <span class="arrow">したがって、 S は P である。</span>
+</div>
+<p>
+これは古典的な三段論法の基本形である。具体的には「すべての人間は死すべきものである」「ソクラテスは人間である」「ゆえにソクラテスは死すべきものである」といった形になる。
+</p>
+<p>
+現代論理学では、ここで「妥当性 (validity) 」と「健全性 (soundness) 」を区別する。妥当な議論とは、前提がすべて真である場合に結論が偽になることがない議論である。健全な議論とは、妥当であり、しかも実際に前提が真である議論である。
+</p>
+<h3>「演繹は新しい知識を生まない」の正しい意味</h3>
+<p>
+演繹について「新しい知識を生まない」という説明は、論理的にはある意味で正しい。しかし日常語としては誤解を招く。<br>
+前提に論理的に含まれていた帰結を人間がまだ知らなかった場合、その帰結を明示することには大きな知的価値がある。
+</p>
+<p>
+したがって、より正確には、演繹は前提に含まれる情報を論理的に展開するのであり、前提を超える経験的情報を保証する推論ではない、と考えるべきである。
+</p>
+<h3>数学だけの道具ではない</h3>
+<p>
+演繹は数学や論理学だけで使われるものではない。法律では、一般的な規則と具体的な事実を組み合わせて法的帰結を導く。プログラムの仕様から必然的な帰結を確認する場面にも形式的推論が関わる。<br>
+科学でも、仮説から「もし仮説が正しければ何が観察されるはずか」を導くとき、演繹的な段階が現れる。
+</p>
+<p>
+17 世紀の天文学者ヨハネス・ケプラーが火星の軌道を調べたときにも、まずこの演繹の段階があった。当時の標準的な前提は「惑星の軌道は円である」というものだった。もしこの前提が正しいなら、観測できるはずの位置が計算によって必然的に導かれる。<br>
+ケプラーはこの演繹的な予測を、恩師ティコ・ブラーエが遺した精密な観測データと突き合わせた。次章で見るように、この照合こそが、演繹だけでは閉じない探究の入り口になった。
+</p>
+<div class="callout">
+  <span class="ttl">演繹の問い</span>
+  <p>私はいま、前提から必然的に導いているのか。それとも、経験や確率を使って推測しているのか。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">帰納 - 観察の列から、まだ見ていない世界へ</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>未来を保証できなくても、予測する</h3>
+<p>
+帰納は、すでに観察したものから、まだ観察していないものへ進む。だからこそ便利であり、だからこそ演繹のような確実性を持たない。
+</p>
+<div class="schema">
+  <span>これまで観察した同種の白鳥は、すべて白かった。</span>
+  <span class="arrow">したがって、まだ観察していない一羽も白いだろう。</span>
+</div>
+<p>
+この推論は、どれほど多くの白鳥を観察しても、論理的には次の一羽が白いことを保証しない。<br>
+この問題は、単なる「観察数が少ない」という話ではない。有限の過去の観察から、未来や未観察の事例についてどこまで正当化できるのかという、より根本的な問題である。
+</p>
+<h3>ヒュームと「帰納の問題」</h3>
+<p>
+デイヴィッド・ヒュームは、経験から未来について推論する際に、自然がこれまでと同じように振る舞うという前提が必要になることを指摘した。しかし、その前提を過去の経験から正当化しようとすると、再び帰納に頼ることになる。この問題が、近代哲学における「帰納の問題」の核心である。
+</p>
+<p>
+この問題があるからといって、帰納が無価値になるわけではない。むしろ科学、日常生活、統計的判断では、未来について何らかの期待を形成せずには行動できない。<br>
+問題は「帰納は確実か」ではなく、どのような帰納が、どの程度の支持を与えるのかへ移る。
+</p>
+<h3>「たくさん見た」は「正しく見た」と同じではない</h3>
+<p>
+帰納的推論の強さは観察数だけでは決まらない。標本の取り方、代表性、測定誤差、観察条件、選択バイアスなどが関わる。<br>
+たとえば、ある都市の住民を調査したつもりで、実際には特定の年齢層だけを集めていたなら、回答者が一万人いても一般人口についての推論は弱い。
+</p>
+<p>
+19 世紀のロンドンでは、コレラの原因について「不衛生な空気そのものが病気を運ぶ」という説が広く信じられていた。悪臭のある場所で流行が多いという観察は、確かに繰り返し得られていた。しかし、この一般化は結果として的外れだった。<br>
+数多く観察したことと、正しく観察したことは別だという教訓は、次のアブダクションの章で扱う医師ジョン・スノウの仕事によって、より具体的な形をとる。
+</p>
+<h3>科学は帰納だけでは動かない</h3>
+<p>
+科学的探究には、観察、仮説形成、演繹的予測、実験、統計的評価、モデル比較など複数の推論が関わる。パース自身も成熟期には、アブダクション、演繹、帰納を科学的探究の異なる局面として結びつけて考えた。
+</p>
+<div class="callout">
+  <span class="ttl">帰納の問い</span>
+  <p>観察した事例を超えて、どこまで一般化してよいのか。その一般化を支えるデータは、どのように集められたのか。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">アブダクション - 意外な事実から説明を探す</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>「何が起きたなら、この事実は自然に見えるか」</h3>
+<p>
+アブダクションは、観察された現象を説明する仮説を生み出す推論である。パースはこの推論を、科学的探究における重要な働きとして位置づけた。
+</p>
+<div class="schema">
+  <span>意外な事実 C が観察された。</span>
+  <span>しかし、 A が真なら C は当然のこととして説明できる。</span>
+  <span class="arrow">したがって、 A を仮説として検討する理由がある。</span>
+</div>
+<p>
+ここで「したがって A は真である」と言い切ってはいけない。アブダクションの結論は仮説であり、調査すべき候補である。<br>
+現代の哲学では、 abduction という語が「最良の説明への推論 (Inference to the Best Explanation) 」という意味で使われる場合もあるが、パース自身の概念は現代のこの用法と完全には一致しない。
+</p>
+<h3>冒頭の謎 - ゼンメルワイスが疑ったもの</h3>
+<p>
+冒頭で触れたウィーン総合病院の謎に戻ろう。 1847 年当時、二つの産科クリニックの死亡率の差は誰の目にも明らかだった。同時代の記録によれば、医師と医学生が担当する第一クリニックの産褥熱による死亡率は、助産師だけが担当する第二クリニックの数倍に達し、一部の年では一割前後にのぼっていたという。<br>
+設備も患者層もほぼ同じ環境で、なぜこれほどの差が生まれるのか。この意外な事実こそが、アブダクションの出発点である「驚くべき事実 C 」にあたる。
+</p>
+<p>
+ゼンメルワイスは、当時信じられていた「悪い空気 ( 瘴気 ) が病気を運ぶ」という説明では、二つのクリニックの差を説明できないことに気づいていた。空気は同じ建物の中を流れているからである。<br>
+転機になったのは、同僚の法医学者が、解剖中に誤って自分の指を傷つけ、産褥熱とよく似た症状で亡くなったという出来事だった。ここでゼンメルワイスは一つの仮説に至る。「医師や医学生が、死体の解剖を行った後に、手を洗わないまま産科の診察に向かっているとしたら、この死亡率の差は当然のこととして説明できる」。これがアブダクションの核心にある思考の運びである。
+</p>
+<p>
+この仮説は、まだ証明されたわけではない。しかしゼンメルワイスは、そこから検証可能な次の一手を導いた。もし仮説が正しいなら、医師に塩素石灰水で手を洗わせれば死亡率は下がるはずだ、という演繹的な予測である。<br>
+1847 年にこの手洗いを義務づけたところ、死亡率は数か月のうちに大きく下がったと記録されている。ある集計では、彼が受け持った病棟の死亡率は導入前の 18.27 パーセントから、導入後の 1848 年には 1.27 パーセントにまで下がったとされる。
+</p>
+<p>
+ここで注意したいのは、この結果が仮説を「証明した」わけではないという点である。死亡率の低下は、仮説と矛盾しない強い証拠にはなるが、当時のゼンメルワイス自身、なぜ手洗いが効くのかを微生物学的に説明することはできなかった。<br>
+彼の主張は、細菌説が確立する以前の医学界で長く受け入れられず、彼自身は晩年に不遇のうちに世を去っている。仮説が事実によって支持されることと、仮説が学界に受け入れられることは、また別の問題なのである。
+</p>
+<h3>もう一つの実例 - ジョン・スノウとポンプの取っ手</h3>
+<p>
+もう一つ、意外な事実から仮説を立てた実例を見ておきたい。 1854 年、ロンドンのソーホー地区でコレラが猛威をふるい、十日足らずで数百人が命を落とした。<br>
+医師ジョン・スノウは、亡くなった人々の住所を地図上に一つずつ書き込んでいった。できあがった地図は、死者が街の一角に集中して分布していることを示していた。その中心には、ブロード街の共同水道ポンプがあった。
+</p>
+<p>
+「不衛生な空気が原因」という当時の常識では、この地理的な集中は説明しにくい。しかし「このポンプの水が汚染されているとすれば、この分布は当然のこととして説明できる」と考えれば、意外な事実は筋の通った仮説に置き換わる。スノウは 1854 年 9 月 7 日、この分析を町の当局に示し、ポンプの取っ手を外させた。
+</p>
+<p>
+ただし、ここでも慎重でありたい。流行はその時点ですでに下火になりつつあったとする研究もあり、「取っ手を外したことが流行を止めた」と単純に言い切ることには注意が必要である。<br>
+それでも、地図という形で空間的な偏りを可視化し、そこから汚染源という仮説を引き出したスノウの推論の運び方そのものは、その後の疫学という分野の基礎になった。
+</p>
+<h3>パースの「新しいアイデア」</h3>
+<p>
+パースの後期の説明では、アブダクションは説明的仮説を形成する論理的操作とされる。彼は、演繹が仮説からテスト可能な帰結を導き、帰納が実験や観察を通じて仮説を評価する一方、アブダクションがそもそも「何を試すべきか」という候補を生み出す段階を担うと考えた。<br>
+ゼンメルワイスの仮説形成、そこから導かれた「手洗いをすれば死亡率が下がるはずだ」という予測、そして実際の死亡率という観察による評価は、まさにこの三つの段階に対応している。
+</p>
+<p>
+ただし、パースはこの概念を 50 年以上にわたって改訂した。 1878 年には「仮説」という語を中心に論じ、後年に abduction という用語を明確に展開している。したがって、「パースが最初から完成した三段階モデルを持っていた」と描くのは適切ではない。
+</p>
+<h3>医師の診断は、アブダクションだけではない</h3>
+<p>
+患者に発熱、咳、呼吸困難などの症状があるとする。医師はそれらを観察し、感染症、炎症、心肺系の問題など複数の可能性を考える。<br>
+症状を説明する候補をつくる点ではアブダクションが働く。そこから「この病気なら検査値はこうなるはずだ」と予測する場面では演繹的な構造が現れる。検査結果を蓄積し、どの仮説がどの程度支持されるかを考える際には確率的推論が関わる。
+</p>
+<h3>探偵小説がわかりやすい理由</h3>
+<p>
+探偵小説では、読者は「誰が犯人か」を知らない。現場に残された奇妙な痕跡から、「もしこの人物が関与していたなら、この痕跡が存在する理由を説明できる」と考える。これはアブダクションを直感的に理解するのに適している。<br>
+ただし、これはあくまで虚構の中の思考実験である。ゼンメルワイスやスノウの例が示すように、現実の探究では、同じ事実を説明する仮説が複数存在する。だから「説明できた」だけで終わらず、競合する仮説を比較し、追加の証拠を集める必要がある。
+</p>
+<div class="callout">
+  <span class="ttl">アブダクションの問い</span>
+  <p>この現象を説明するために、どんな仮説を立てられるか。そして、その仮説が正しければ、次に何が観察されるはずか。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">類推 - 別の世界で見つけた構造を、こちらへ持ち込む</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>「似ている」から一歩進んで、「同じ関係があるか」を考える</h3>
+<p>
+類推は、二つの対象や状況の間に重要な類似を見つけ、既知の側で成立している関係を未知の側について考える手がかりにする。
+</p>
+<div class="schema">
+  <span>既知の領域 (source / base) : A と B の間には関係 R がある。</span>
+  <span class="gap"></span>
+  <span>未知の領域 (target) : C と D は、重要な構造で A と B に対応する。</span>
+  <span class="arrow">したがって、 C と D にも、 R に対応する関係があるかもしれない。</span>
+</div>
+<p>
+類推的議論は一般に、結論を必然的には保証しない。二つの対象にいくつかの共通点があったとしても、別の点まで共通しているとは限らない。だから類推は「証明」というより、しばしば推論の方向を与える道具として働く。
+</p>
+<h3>表面ではなく構造を見る</h3>
+<p>
+認知科学者ダドリー・ジェントナーの 1983 年の構造写像理論は、類推を考えるうえで重要である。この理論では、対象そのものの表面的属性よりも、対象間の関係を対応づけることが重視される。また、高次の関係が組み上がる「 systematicity 」が、どの対応を採用するかに関係する。
+</p>
+<p>
+「 A は赤く、 B も赤い」という類似と、「 A が B を押すと B が C を動かし、その結果 C が変化する。別の領域でも同じ因果的な関係が組み上がっている」という類似では、思考上の価値が違う。<br>
+後者では、色や形ではなく関係構造が移されているからである。
+</p>
+<h3>太陽系という借り物のかたち</h3>
+<p>
+科学史には、既知の領域の構造を別の領域の理解に利用する例が多い。 1909 年、物理学者アーネスト・ラザフォードの研究室で、ガイガーとマースデンが金の薄膜にアルファ粒子を撃ち込む実験を行った。大半の粒子はそのまま通り抜けたが、ごく一部が大きく跳ね返ってきた。<br>
+この意外な結果から、ラザフォードは原子の質量のほとんどが中心の小さな核に集中しているという仮説にたどり着き、 1911 年、電子がその核の周りを回るという原子模型を発表した。このとき彼が借りてきた構造が、太陽の周りを惑星が回るという、当時すでによく知られていた太陽系の姿だった。
+</p>
+<p>
+しかし、この類推には早くから限界が見えていた。古典物理学の法則をそのまま当てはめると、軌道を回る電子はエネルギーを失って徐々に核へ落ち込み、原子はすぐに崩壊してしまうはずである。<br>
+1913 年、ニールス・ボーアはこの問題に取り組み、電子が特定のとびとびの軌道だけを取りうるという量子論的な条件を付け加えることで、原子の安定性を説明した。太陽系モデルは、原子の構造を理解するための最初の足がかりとしては有効だったが、どこまでが本当に「同じ」で、どこからが借り物にすぎないのかを見極める作業を経て、初めて次の理解へつながったのである。
+</p>
+<p>
+もちろん、類推には限界がある。電気回路を水の流れにたとえるモデルも、水流のすべてが電気の性質と対応するわけではない。何が対応し、何が対応しないかを切り分けることが類推の品質を決める。
+</p>
+<h3>カワセミと 500 系新幹線 - 着想を移すということ</h3>
+<p>
+日本の 500 系新幹線の先頭形状は、カワセミのくちばしを着想源とした設計例として広く紹介されている。 JR 西日本の技術者だった仲津英治は、趣味の野鳥観察を通じてカワセミに親しんでいた。カワセミは水面へ飛び込む瞬間、ほとんど水しぶきを立てない。<br>
+この姿から着想を得たのが、高速走行時に新幹線がトンネルに突入すると発生する「トンネル微気圧波」という騒音問題への対応だった。
+</p>
+<p>
+開発チームは、さまざまな形状の弾丸を細いパイプに撃ち込んで生じる圧力波を測定する実験や、スーパーコンピューターによるトンネル内走行のシミュレーションを重ねた。そうして解析から浮かび上がった理想的な形状は、カワセミのくちばしの輪郭にきわめて近いものだったという。<br>
+500 系の先頭車両は、全長 27 メートルのうち半分を超える 15 メートルにわたって断面を徐々に絞り込む、戦闘機を思わせる鋭い形状になっている。
+</p>
+<p>
+ここで大切なのは、「カワセミの形をそのままコピーした」という話ではないことだ。自然界の形状から着想を得ても、実際の設計には流体力学的解析、模型試験、設計上の制約などが必要になる。<br>
+類推は解答そのものではなく、解答を探す方向を変える発見的手がかりなのである。
+</p>
+<div class="callout">
+  <span class="ttl">類推の問い</span>
+  <p>この問題と構造的に似ているものは、別の分野にないか。そして、その類似から移してよい関係は何か。</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">アリストテレスからパースへ - 推論を分類する歴史</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>「推論の種類」は、時代とともに姿を変えてきた</h3>
+<p>
+四つの推論を一枚の表に並べると、最初から人類がそのように分類してきたように見える。しかし実際には、推論の分類そのものが長い歴史を持つ。
+</p>
+<h3>アリストテレス - 形式を捉える</h3>
+<p>
+アリストテレスの論理学は、推論を形式として分析する伝統の出発点の一つである。三段論法は、前提の内容を変えても成立する形式を取り出すことで、「なぜこの結論が導かれるのか」を明示した。
+</p>
+<p>
+この伝統の強みは、個々の議論を離れて形式そのものを検査できる点にある。「すべての M は P 、 S は M 、ゆえに S は P 」という構造を取り出せば、個々の固有名詞や話題に左右されず妥当性を調べられる。
+</p>
+<h3>近代哲学 - 経験から一般化できるのか</h3>
+<p>
+近代になると、経験科学の発展とともに、観察された事例から一般的法則へ進む推論が大きな問題になる。 1620 年、フランシス・ベーコンは著書『新機関 ( ノヴム・オルガヌム ) 』で、個別の観察を積み重ねて一般的な法則へ登っていく方法を論じ、アリストテレス的な三段論法とは別の道筋を示した。<br>
+ヒュームはさらに進んで、その積み重ねの正当化そのものに鋭い問題を提起した。
+</p>
+<p>
+ここで「論理的に必然な推論」と「経験からもっともらしく進む推論」の違いが鮮明になる。後者をどう評価するかは、現在に至るまで哲学の重要なテーマである。
+</p>
+<h3>ポパー - 「確かめる」から「反証する」へ</h3>
+<p>
+ヒュームが投げかけた問題に、 20 世紀に別の角度から応答したのが哲学者カール・ポパーである。 1934 年の著書『研究の論理』で、ポパーは、科学の仮説は観察を積み重ねて確かめられるのではなく、反証されうる形で大胆に提示され、実際に反証を試みられることで鍛えられるのだと論じた。
+</p>
+<p>
+この見方に立つと、ケプラーが円軌道の仮説を捨てた場面は、単に「観測によって帰納的に確かめそこねた」というより、「反証にさらされて、より良い仮説に置き換わった」という形で理解できる。<br>
+帰納の問題そのものが解決したかどうかは今も議論があるが、少なくとも科学的探究を「仮説を大胆に立て、それを壊せるかどうか試す」という運動として見る視点は、アブダクションと演繹と帰納の連携を考えるうえで、もう一つの補助線になる。
+</p>
+<h3>ケプラーの「火星との戦争」 - 三つの推論が組み合わさった探究</h3>
+<p>
+パースが三分法を論じるよりも二世紀以上前、天文学者ヨハネス・ケプラーは、まさにこの三つの推論を実地で組み合わせていた。彼は 1600 年頃から、恩師ティコ・ブラーエが遺した膨大な観測記録をもとに火星の軌道を割り出す作業に取りかかり、後年これを自ら「火星との戦争」と呼んでいる。
+</p>
+<p>
+ケプラーは当時の標準的な前提である「軌道は円である」から出発し、円軌道が正しければ観測されるはずの位置を演繹的に導いた。ところが、その予測はティコの観測データと最大で 8 分角ほど食い違った。<br>
+ティコの観測誤差はふだん 2 分角以内に収まっていたから、この食い違いは測定の誤差では片づけられない大きさだった。ここでケプラーは「軌道は円ではなく、別の形なのではないか」という仮説に踏み出す。これがアブダクションにあたる段階である。
+</p>
+<p>
+1605 年までに、ケプラーは軌道が太陽を一つの焦点とする楕円であるという仮説にたどり着いた。この仮説から演繹される位置は、円軌道の場合よりもはるかに精度よくティコのデータと一致した。予測と観測を繰り返し突き合わせるこの過程は帰納的な検証にあたる。 1609 年、ケプラーはこの成果を『新天文学』として発表した。<br>
+演繹によって予測を立て、意外な食い違いからアブダクションで新しい仮説を立て、その仮説を再び演繹と観測の突き合わせで確かめる。この一連の流れは、パースが後に理論として整理することになる探究の循環を、実地で先取りしていたと見ることができる。
+</p>
+<h3>パース - 科学的探究そのものを推論として見る</h3>
+<p>
+19 世紀後半のパースは、演繹と帰納だけでは科学者が実際に行っていることを十分に説明できないと考えた。未知の現象に直面して仮説を考え出すという働きを独立した問題として取り上げ、アブダクションを論じた。
+</p>
+<p>
+成熟期のパースにとって、アブダクションは仮説形成、演繹は仮説からテスト可能な帰結を導く段階、帰納は実験や観察によって仮説を評価する段階という、科学的探究の循環と結びついていった。<br>
+ただし、これは現在のすべての科学研究を一枚の公式にしたものではない。パース自身の思想も生涯にわたって変化した。
+</p>
+<h3>類推はどこに入るのか</h3>
+<p>
+ここで四分類の核心的な注意点に戻る。類推は重要な推論である。しかし、パースの三分法に「第四番目」として単純に追加すればよいわけではない。 Stanford Encyclopedia of Philosophy は、パース自身が類推を帰納に含めるのかアブダクションに近づけるのかについて揺れを見せたことを紹介している。
+</p>
+<p>
+したがって、この記事では類推を「パースが確立した第四の形式」とは呼ばない。類推を独立した思考様式として詳しく扱うことで、パースの三分法と現代の認知科学的研究を橋渡ししているのである。
+</p>
+<h3>認知科学へ - 推論を「実際の思考」として研究する</h3>
+<p>
+20 世紀後半になると、心理学や認知科学は、人間が実際にどのように類推し、カテゴリー化し、仮説を形成し、問題を解決するのかを実験的に研究するようになる。 Gentner の構造写像理論もその流れに位置づけられる。
+</p>
+<p>
+ここでは「論理的に正しい推論」と「人間が実際に行う推論」が同じ問題ではないことが見えてくる。<br>
+論理学が規範的な問い - どう推論すべきか - を扱う一方、認知科学は記述的な問い - 人間は実際にはどう推論しているか - を扱う。両者は関係するが、同一ではない。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">医学・裁判・科学・探偵 - 四つの推論を実戦で使う</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>現実の問題では、推論は一種類では終わらない</h3>
+<p>
+四つの推論を本当に理解するには、現実の問題に置いてみるのが早い。<br>
+重要なのは、どの場面にも「四種類が一つずつ割り当てられる」のではなく、一つの問題の中で役割が切り替わることだ。ゼンメルワイスやスノウの物語は、まさにこの切り替えの実例だった。
+</p>
+<h3>医学診断 - 症状から仮説へ</h3>
+<p>
+医師が症状を見るとき、症状そのものが病名を直接示すとは限らない。観察された事実を説明する候補をつくる点ではアブダクションが働く。<br>
+仮説から検査結果の予測を導く場面では演繹的な構造が現れる。検査結果や既往歴などを踏まえて仮説の確率を更新する場面では確率的推論が関わる。
+</p>
+<h3>裁判 - 証拠、規則、類似事例</h3>
+<p>
+法的推論も一つの形式に還元できない。法規範を事案に適用する場面には演繹的な構造が現れる。証拠から何が起きたかを推定する場面には説明的推論が現れる。過去の判例と現在の事案の重要な共通点を探す場面では類推が役立つ。<br>
+実際、英米法系の国々では「先例拘束の原則」として、過去の判決が類似の事案を拘束するしくみそのものが制度化されている。ここで問われるのは、二つの事案が表面的に似ているかではなく、判決の理由づけを支えた事実関係のどこが共通しているかである。これは、ジェントナーが強調した「表面ではなく構造」という論点が、法廷という現実の場でそのまま働く例でもある。
+</p>
+<h3>科学研究 - 仮説をつくり、予測し、調べる</h3>
+<p>
+科学者が予想外の観察に出会い、「この現象を説明するには何を仮定すればよいか」と考えるとき、アブダクションが働く。仮説から観察可能な帰結を導くときには演繹が使われる。データを集め、仮説がどの程度支持されるかを評価するときには統計的推論が関わる。別分野の理論やモデルから新しい見方を得る場面では類推が働く。<br>
+ケプラーの火星研究は、この四つがひとつの探究の中でどう連携するかを示す好例である。
+</p>
+<h3>探偵 - 一つの痕跡をどう読むか</h3>
+<p>
+探偵が現場に落ちた泥の跡を見る。「雨でできたのか」「誰かが外から入ったのか」「以前の靴跡が残っていたのか」。説明候補を並べること自体がアブダクション的である。<br>
+候補から「もし A なら、廊下にも同じ泥があるはずだ」と考えれば演繹的な予測になる。過去の事件との類似から手がかりを得れば類推が働く。
+</p>
+<div class="pull">現実の思考は「四択問題」ではない。一つの問題の中で推論の役割が切り替わる。優れた思考とは、常に一つの方法だけを使うことではなく、いま必要な仕事に合った推論へ切り替えることである。</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">誤推論の地図 - もっともらしさに騙されないために</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>推論の弱点を知ることは、推論を疑うことではない</h3>
+<p>
+論理を学ぶ目的は、何でも疑うことではない。むしろ、自分がどこで飛躍しているかを知ることにある。
+</p>
+<h3>演繹 - 前提が正しいとは限らない</h3>
+<p>
+妥当な形式でも、前提が誤っていれば健全な議論にはならない。「もし A なら B 」「 A である」「したがって B 」という形式が正しくても、最初の「 A である」が現実に正しいかどうかは別問題である。<br>
+ケプラーが最初に置いた「軌道は円である」という前提も、形式そのものは正しく使われていたが、前提自体が誤っていた。
+</p>
+<h3>帰納 - 代表性のないデータ</h3>
+<p>
+「十人中八人がそうだった」からといって、社会全体の八割がそうだとは限らない。どの十人なのかが問題になる。<br>
+オンライン投票、顧客アンケート、検索データなど、観察可能なデータがそのまま母集団の縮図とは限らない。
+</p>
+<h3>アブダクション - 説明可能性を真理と取り違える</h3>
+<p>
+「 A ならこの現象を説明できる」は、「 A が真である」の証明ではない。しかも B という別仮説でも同じ現象を説明できるかもしれない。現実の探究では、説明力だけでなく、独立した証拠、予測、既存知識との整合性など、多くの要素を比較する必要がある。<br>
+ゼンメルワイスの仮説が長く受け入れられなかったのも、病原体という当時の医学が持ち合わせていなかった概念を必要としたためだった。説明として筋が通っていることと、既存の知識体系にすんなり収まることは、別の話なのである。
+</p>
+<h3>類推 - 似ているところだけを見つける</h3>
+<p>
+人間は類似を見つけるのが得意である。しかし、似ている点が結論に関係しているとは限らない。良い類推では、何が対応しているのかを明示し、その対応が結論を支える理由を説明する必要がある。<br>
+ラザフォードの太陽系モデルが電子の崩壊という問題を抱えていたように、優れた類推であっても、どこかで対応が破綻する地点を見極める作業は避けられない。
+</p>
+<h3>相関から因果へ飛ばない</h3>
+<p>
+二つの変数が一緒に変化していても、片方がもう片方を引き起こしているとは限らない。第三の要因、逆方向の因果、選択効果など、複数の説明がありうる。これは帰納的推論の評価で特に重要である。<br>
+悪臭のある場所でコレラが多いという 19 世紀の観察が導いた「瘴気説」も、相関を因果と取り違えた例として読むことができる。
+</p>
+<div class="callout">
+  <span class="ttl">推論を点検する五つの質問</span>
+  <ol>
+    <li>前提は何か。</li>
+    <li>結論は何か。</li>
+    <li>結論は必然なのか、蓋然的なのか、仮説なのか。</li>
+    <li>別の説明や反例はないか。</li>
+    <li>どの追加情報があれば判断を更新できるか。</li>
+  </ol>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec9" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">9</span>
+    <span class="title">AI 時代の推論 - 「答え」を受け取る前に、推論の種類を見る</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>AI の文章は、どの推論として読むべきか</h3>
+<p>
+AI は推論について語るだけでなく、推論らしく見える出力を大量に生成できる。しかし、もっともらしい文章が、そのまま正しい推論であるとは限らない。
+</p>
+<p>
+ここでは「 AI は帰納する」「 AI はアブダクションする」といった単純な断定を避けたい。機械学習には統計的学習、最適化、確率モデル、検索、論理的推論など多様な仕組みがあり、「推論」という言葉も文脈によって意味が異なるからである。
+</p>
+<div class="callout">
+  <span class="ttl">AI の出力を読む四つのフィルター</span>
+  <ol>
+    <li><strong>演繹</strong> - 提示された前提から、本当に結論が必然的に出るか。</li>
+    <li><strong>帰納</strong> - 一般化はどんなデータに基づくのか。データの偏りはないか。</li>
+    <li><strong>アブダクション</strong> - これは確認された事実なのか、それとも説明候補なのか。</li>
+    <li><strong>類推</strong> - 二つの対象は、表面的に似ているだけではなく、重要な関係構造を共有しているか。</li>
+  </ol>
+</div>
+<h3>AI に仮説を出させることは、必ずしも悪くない</h3>
+<p>
+アブダクションの価値は、仮説が正しいと保証することではなく、探究すべき候補を生み出すことにある。したがって、 AI を「仮説候補の発生器」として使うことには合理的な場面がある。
+</p>
+<p>
+しかし、その次の段階が重要である。 AI が生成した仮説を事実として採用してはいけない。仮説から検証可能な予測を導き、一次資料、実験、信頼できるデータによって確かめる必要がある。<br>
+ゼンメルワイスが仮説を思いついただけで満足せず、手洗いという検証可能な一手を導いたように、仮説と検証は常に対になっている。
+</p>
+<p>
+いわゆる「ハルシネーション」と呼ばれる現象も、この段階を飛ばしたときに起きると理解すると見通しがよい。もっともらしい説明候補を生み出す働き自体は、アブダクションの一種として理解できる。<br>
+しかし、そこで生まれた候補を検証もせずに確定した事実として提示してしまえば、それはもはや推論ではなく、単なる断定である。読み手の側も、 AI の出力を「仮説の提示」として受け取るのか「事実の報告」として受け取るのかを、常に見分ける必要がある。
+</p>
+<h3>AI 時代にこそ類推力が重要になる</h3>
+<p>
+AI は異なる分野の概念を結びつける候補を大量に生成できる。しかし、関連が見つかったことと、意味のある構造的類似があることは別である。 Gentner が重視したように、重要なのは「何が何に対応するのか」である。<br>
+ラザフォードの太陽系モデルやカワセミと新幹線の例が示すように、良い類推は表面的な形の一致ではなく、関係の対応から生まれる。 AI が提示する「似ている事例」も、この基準で吟味する必要がある。
+</p>
+<p>
+結局のところ、 AI 時代のリテラシーは「 AI を信じるか、信じないか」という二択ではない。 AI が出したもののうち、事実、演繹的帰結、経験的推測、説明仮説、類推的着想を区別する能力が重要になる。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="sec10" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">終</span>
+    <span class="title">エピローグ - 推論とは、未知へ向かうための道具箱である</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<h3>四つの推論を「使い分ける」</h3>
+<p>
+推論を学ぶことは、論理用語を暗記することではない。自分がいま、どの種類の飛躍をしているのかを自覚することである。
+</p>
+<p>
+演繹を使っているなら、前提を受け入れた以上、何を拒否できないのかを見る。帰納を使っているなら、観察を超えてどこまで一般化してよいのかを見る。アブダクションなら、説明候補を生み出しているだけなのか、それとも証拠によって評価されつつあるのかを見る。類推なら、表面ではなく、どの構造を別の領域へ移そうとしているのかを見る。
+</p>
+<p>
+そして、実際の探究ではこれらが連携する。ケプラーが火星との戦争を戦ったときも、ゼンメルワイスが病棟の謎を追ったときも、この連携は同じ形をとっていた。
+</p>
+<div class="cycle">
+  <span class="ttl">探究の一つの循環</span>
+  <span class="step"><b>驚き・問題</b> → アブダクションで仮説をつくる</span>
+  <span class="down">↓</span>
+  <span class="step"><b>予測</b> → 演繹で「もし正しければ」を導く</span>
+  <span class="down">↓</span>
+  <span class="step"><b>検証</b> → 観察・実験・データ分析を行う</span>
+  <span class="down">↓</span>
+  <span class="step"><b>評価</b> → 帰納的・統計的に証拠を評価する</span>
+  <span class="down">↓</span>
+  <span class="step"><b>再発見</b> → 類推から別のモデルや問題設定を得る</span>
+  <span class="down">↓</span>
+  <span class="step"><b>新しい問題</b> → 再び仮説へ</span>
+</div>
+<p>
+これは一つの固定された「科学的方法」を定義する図ではない。実際の科学研究はもっと複雑で、観察と理論、モデルと実験、計算と議論が相互に影響する。<br>
+それでも、この循環は、四つの推論が互いに競合するものではなく、異なる役割を持つことを示している。
+</p>
+<h3>「正しさ」と「発見」は同じ仕事ではない</h3>
+<p>
+演繹は、前提から何が必然的に出るかを明確にする。帰納は、観察を超えて期待を形成する。アブダクションは、まだ知られていない説明候補を生み出す。類推は、別の領域に眠っている構造をこちらへ持ち込む。
+</p>
+<p>
+この違いを知ると、「論理的であること」と「創造的であること」を対立させる必要がなくなる。創造的な仮説は、演繹によって予測可能な形にされ、経験によって試される。経験的に得られた結果は、さらに新しい仮説を促す。類推は、既存の問題設定そのものを変えることさえある。
+</p>
+<p>
+推論とは、既知の地点から未知の地点へ進むための橋である。しかし、橋の種類によって、渡るときの注意点は違う。<br>
+演繹の橋は強固だが、出発点の前提に依存する。帰納の橋は遠くへ伸びるが、途中で崩れる可能性がある。アブダクションの橋は、まだ設計図しかない。類推の橋は、別の場所にある橋を参考にして新しい場所へ架ける。
+</p>
+<p>
+だから重要なのは、「どの推論が一番優れているか」ではない。いま自分が何を知っていて、何をまだ知らず、どの種類の橋を渡っているのかを知ることである。
+</p>
+<div class="callout">
+  <span class="ttl">四つの問いを、一度に手元に置く</span>
+  <ul>
+    <li>これは前提から必然的に出てくることか ( 演繹 ) 。</li>
+    <li>これは限られた観察から広げた見込みにすぎないことか ( 帰納 ) 。</li>
+    <li>これはまだ確かめられていない説明候補にすぎないことか ( アブダクション ) 。</li>
+    <li>これは別の場所で通用した構造を、確かめずに借りてきただけのことか ( 類推 ) 。</li>
+  </ul>
+  <p>一つの主張を読むたびに、この四つのどれに当たるのかを一度自分に問い直す。それだけで、もっともらしさに流される速度は目に見えて落ちる。</p>
+</div>
+<p>
+それができるようになると、論理学は抽象的な学問ではなくなる。ニュースを読むときも、研究結果を見るときも、 AI の回答を読むときも、誰かの主張を聞くときも、「これは何を根拠に、どこまで言っているのか」と考えられるようになる。
+</p>
+<p>
+そして、冒頭のウィーンの病棟で、ゼンメルワイスが「なぜこちらの死亡率だけが高いのか」と問うたときに始まった思考の運びは、その一つの見本だった。
+</p>
+<p class="signoff">
+答えを持っていることではなく、問いを持てること。<br>それが、推論を学ぶ最大の効用なのかもしれない。
+</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="secRefs" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">付録</span>
+    <span class="title">主要参考文献・出典</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<footer class="refs">
+<ol>
+<li id="fn1">Charles S. Peirce, &ldquo;Deduction, Induction, and Hypothesis,&rdquo; <em>Popular Science Monthly</em>, 13 (1878), 470–482.<br>
+<a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI" target="_blank" rel="noopener">Wikisource ( 原文 )</a></li>
+<li id="fn2">Stanford Encyclopedia of Philosophy, &ldquo;Abduction&rdquo; および &ldquo;Peirce on Abduction.&rdquo;<br>
+<a href="https://plato.stanford.edu/entries/abduction/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/abduction/</a></li>
+<li id="fn3">Stanford Encyclopedia of Philosophy, &ldquo;Charles Sanders Peirce.&rdquo;<br>
+<a href="https://plato.stanford.edu/entries/peirce/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/peirce/</a></li>
+<li id="fn4">Stanford Encyclopedia of Philosophy, &ldquo;Analogy and Analogical Reasoning.&rdquo;<br>
+<a href="https://plato.stanford.edu/entries/reasoning-analogy/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/reasoning-analogy/</a></li>
+<li id="fn5">Dedre Gentner, &ldquo;Structure-Mapping: A Theoretical Framework for Analogy,&rdquo; <em>Cognitive Science</em>, 7(2), 1983, 155–170.<br>
+<a href="https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog0702_3" target="_blank" rel="noopener">Wiley Online Library</a></li>
+<li id="fn6">David Hume, <em>An Enquiry Concerning Human Understanding</em>, Section IV–V. 帰納と因果推論をめぐる古典的問題。</li>
+<li id="fn7">Aristotle, <em>Prior Analytics</em>. 三段論法を含む古典論理の基礎文献。</li>
+<li id="fn8">Ignaz Semmelweis の産褥熱に関する記録について、 James Lind Library, &ldquo;Ignaz Phillip Semmelweis&rsquo; studies of death in childbirth.&rdquo;<br>
+<a href="https://www.jameslindlibrary.org/articles/ignaz-phillip-semmelweis-studies-of-death-in-childbirth/" target="_blank" rel="noopener">James Lind Library</a></li>
+<li id="fn9">John Snow と 1854 年ブロード街コレラ流行について、 London Museum, &ldquo;John Snow: Cholera &amp; the Broad Street pump.&rdquo;<br>
+<a href="https://www.londonmuseum.org.uk/collections/london-stories/john-snow-cholera-broad-street-pump/" target="_blank" rel="noopener">London Museum</a></li>
+<li id="fn10">Johannes Kepler の火星研究について、 Johannes Kepler, <em>Astronomia Nova</em> (1609) 、および &ldquo;The great Martian catastrophe and how Kepler fixed it,&rdquo; <em>Physics Today</em> 。<br>
+<a href="https://physicstoday.aip.org/features/the-great-martian-catastrophe-and-how-kepler-fixed-it" target="_blank" rel="noopener">Physics Today</a></li>
+<li id="fn11">Ernest Rutherford の原子模型と Niels Bohr による修正について、 American Physical Society, &ldquo;May, 1911: Rutherford and the Discovery of the Atomic Nucleus&rdquo; および &ldquo;March 6, 1913: Bohr describes his model of atom to Rutherford.&rdquo;<br>
+<a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus" target="_blank" rel="noopener">APS News</a></li>
+<li id="fn12">500 系新幹線とカワセミの関係について、仲津英治氏インタビュー、 Japan for Sustainability 。<br>
+<a href="https://www.japanfs.org/ja/projects/biomimicry/biomimicry_id033307.html" target="_blank" rel="noopener">Japan for Sustainability</a></li>
+<li id="fn13">Francis Bacon, <em>Novum Organum</em> (1620). 帰納法を論じた古典。</li>
+<li id="fn14">Karl Popper, <em>Logik der Forschung</em> (1934; 英訳 <em>The Logic of Scientific Discovery</em>, 1959). 反証可能性の議論。</li>
+</ol>
+<p class="note"><strong>編集方針 :</strong> この記事は一般読者向けの解説であり、学術論文ではない。特に「類推＝パースの第四の正式分類」「科学＝単純な帰納の積み重ね」「説明できる＝真である」といった短絡を避けた。歴史的なエピソードについては、複数の資料で確認できる事実のみを採用し、数値が資料によって食い違う場合は幅を持たせるか、代表的な一つの出典に基づく数値であることを明示した。ジョン・スノウのポンプの取っ手の逸話についても、「取っ手を外したことで流行が止まった」という単純化された通説をそのまま採らず、流行がすでに下火になっていたという指摘があることを併記している。カワセミと 500 系新幹線の事例も、設計史の細部を未確認のまま膨らませず、公開されているインタビュー等で確認できる範囲に限定して扱っている。</p>
+</footer>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+
+  if(location.hash){
+    var initial = document.querySelector(location.hash);
+    if(initial){
+      var item = initial.closest("[data-acc]");
+      if(item){
+        item.classList.add("open");
+        setTimeout(function(){
+          initial.scrollIntoView({behavior:"smooth", block:"start"});
+        }, OPEN_SCROLL_DELAY);
+      }
+    }
+  }
+})();
+</script>
+</body>
+</html>

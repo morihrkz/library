@@ -15,6 +15,7 @@
     --ink: #1c1e26;
     --muted: #62677a;
     --line: #e3e5ee;
+    --shadow: 0 16px 34px rgba(20,24,45,.10);
 
     --nat: #0891b2;
     --nat-soft: #e0f6fb;
@@ -39,6 +40,7 @@
       --ink: #eceef5;
       --muted: #9498ab;
       --line: #2c2f3c;
+      --shadow: 0 16px 34px rgba(0,0,0,.38);
 
       --nat-soft: #103744;
       --nat-ink: #7fdcf2;
@@ -53,41 +55,59 @@
     }
   }
   *{ box-sizing:border-box; }
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     line-height:1.75;
     color: var(--ink);
     background: var(--bg);
   }
 
+  /* ---------- ヒーロー ---------- */
   header.hero{
+    position:relative;
+    overflow:hidden;
     background:
-      radial-gradient(circle at 15% 20%, rgba(8,145,178,.35), transparent 45%),
-      radial-gradient(circle at 85% 15%, rgba(180,83,9,.30), transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(124,58,237,.30), transparent 55%),
-      linear-gradient(160deg, #14151f 0%, #1d1a2b 60%, #201826 100%);
+      radial-gradient(circle at 12% 18%, rgba(8,145,178,.34), transparent 46%),
+      radial-gradient(circle at 88% 12%, rgba(180,83,9,.28), transparent 44%),
+      radial-gradient(circle at 72% 88%, rgba(124,58,237,.30), transparent 52%),
+      radial-gradient(circle at 26% 92%, rgba(190,18,60,.22), transparent 50%),
+      linear-gradient(160deg, #101119 0%, #1a1728 58%, #1d1622 100%);
     color:#f4f2fa;
-    padding:clamp(56px,9vw,96px) 24px clamp(44px,7vw,64px);
+    padding:clamp(56px,9vw,100px) 24px clamp(44px,7vw,68px);
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
   }
   header.hero .wrap{
+    position:relative;
     max-width:960px;
     margin:0 auto;
     text-align:center;
   }
   .eyebrow{
     display:inline-block;
-    font-size:12px;
     letter-spacing:.32em;
     color:#b9b4cf;
     margin-bottom:20px;
   }
   header.hero h1{
-    font-size:clamp(32px,5.5vw,46px);
     font-weight:800;
     margin:0 0 16px;
     letter-spacing:.03em;
+    line-height:1.5;
+  }
+  header.hero h1 .big{
+    background:linear-gradient(100deg,#7fdcf2 0%,#b3aef8 48%,#fba8bd 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:800;
   }
   header.hero p.lead{
-    font-size:clamp(14.5px,2vw,16.5px);
     color:#c9c5de;
     margin:0 auto;
     max-width:640px;
@@ -97,17 +117,16 @@
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:12px;
-    margin-top:32px;
+    gap:10px;
+    margin-top:30px;
   }
   .counters a{
-    display:flex;
+    display:inline-flex;
     align-items:center;
     gap:8px;
     text-decoration:none;
-    padding:9px 18px;
+    padding:8px 17px;
     border-radius:999px;
-    font-size:13.5px;
     font-weight:600;
     letter-spacing:.02em;
     border:1px solid rgba(255,255,255,.16);
@@ -115,7 +134,7 @@
     color:#f4f2fa;
     transition:transform .18s ease, background .18s ease, border-color .18s ease;
   }
-  .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12); }
+  .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.34); }
   .counters a.nat{ --accent:var(--nat); }
   .counters a.tech{ --accent:var(--tech); }
   .counters a.soc{ --accent:var(--soc); }
@@ -125,42 +144,168 @@
     width:8px; height:8px; border-radius:50%; flex-shrink:0;
     background:var(--accent); box-shadow:0 0 10px var(--accent);
   }
-  .counters .n{ opacity:.72; font-weight:400; }
+  .counters .n{ opacity:.7; font-weight:400; }
 
   .hero-figure{
     max-width:760px;
-    margin:36px auto 0;
+    margin:38px auto 0;
     overflow-x:auto;
     text-align:left;
   }
   .hero-figure svg{ display:block; width:100%; height:auto; }
   .hero-figure figcaption{
     margin-top:12px;
-    font-size:13px;
     line-height:1.8;
     color:#b3aecb;
+    text-align:center;
   }
   @media (max-width:640px){
     .hero-figure svg{ min-width:600px; }
   }
 
+  /* ---------- 操作バー（検索・開閉） ---------- */
+  .controls{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:var(--paper);
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .controls-inner{
+    margin:0 auto;
+    padding:12px clamp(24px,4vw,64px);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .search-box{
+    flex:1 1 260px;
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 18px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .search-box:focus-within{ border-color:var(--tech); box-shadow:0 0 0 3px color-mix(in srgb, var(--tech) 18%, transparent); }
+  .search-box svg{ width:18px; height:18px; color:var(--muted); flex-shrink:0; }
+  .search-box input{
+    flex:1;
+    min-width:0;
+    border:none;
+    background:transparent;
+    outline:none;
+    color:var(--ink);
+    font-family:inherit;
+  }
+  .search-box input::placeholder{ color:var(--muted); }
+  .toolbar{ display:flex; gap:8px; flex-shrink:0; }
+  .toolbar button{
+    font-family:inherit;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 16px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .toolbar button:hover{ color:var(--ink); border-color:var(--muted); background:var(--bg); }
+
+  .search-panel{ padding:0 clamp(24px,4vw,64px); }
+  .search-status{
+    margin:14px 0 0;
+    color:var(--muted);
+  }
+  .search-status:empty{ display:none; }
+  .search-results{
+    margin-top:14px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .search-empty{ color:var(--muted); margin:0; }
+  .result-item{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    background:var(--paper);
+  }
+  .result-title{
+    font-weight:700;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .result-title:hover{ text-decoration:underline; }
+  .result-cat{
+    margin-left:10px;
+    color:var(--muted);
+    letter-spacing:.03em;
+  }
+  .result-snippets{
+    margin-top:8px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .snippet{
+    display:block;
+    line-height:1.7;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .snippet:hover{ color:var(--ink); }
+  .snippet mark{
+    background:var(--nat-soft);
+    color:var(--nat-ink);
+    padding:0 2px;
+    border-radius:3px;
+  }
+
+  /* ---------- 分類とカード ---------- */
   main{
     max-width:none;
     margin:0 auto;
-    padding:clamp(40px,6vw,64px) clamp(24px,4vw,64px) 40px;
+    padding:clamp(32px,5vw,52px) clamp(24px,4vw,64px) 40px;
   }
 
-  section.group{ margin-bottom:clamp(28px,4vw,40px); scroll-margin-top:88px; }
+  section.group{ margin-bottom:clamp(24px,3.4vw,34px); scroll-margin-top:76px; }
 
-  .group-details{ border:1px solid var(--line); border-radius:16px; background:var(--paper); overflow:hidden; }
+  .group-details{
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:var(--paper);
+    overflow:hidden;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .group-details:hover{ border-color:color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .group-details[open]{ box-shadow:var(--shadow); }
   .group-details > summary.group-head{
     list-style:none;
     cursor:pointer;
     padding:20px clamp(20px,3vw,28px);
+    position:relative;
     transition:background .15s ease;
   }
   .group-details > summary.group-head::-webkit-details-marker{ display:none; }
   .group-details > summary.group-head::marker{ content:""; }
+  .group-details > summary.group-head::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:4px;
+    background:var(--accent);
+    opacity:.85;
+  }
   .group-details > summary.group-head:hover{ background:var(--bg); }
   .group-details[open] > summary.group-head{ border-bottom:1px solid var(--line); }
   .group-details > .grid{ padding:24px clamp(20px,3vw,28px) 26px; }
@@ -189,20 +334,19 @@
   }
   section.group .icon svg{ width:24px; height:24px; }
   section.group h2{
-    font-size:clamp(20px,2.6vw,25px);
     margin:0;
     letter-spacing:.02em;
+    font-weight:700;
   }
   section.group .group-en{
     display:block;
-    font-size:11.5px;
     letter-spacing:.22em;
     color:var(--muted);
     margin-top:3px;
+    font-weight:400;
   }
   section.group .count{
     margin-left:auto;
-    font-size:13px;
     color:var(--muted);
     white-space:nowrap;
   }
@@ -239,16 +383,24 @@
     width:4px;
     background:var(--accent);
   }
-
+  .card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%);
+    opacity:0;
+    transition:opacity .2s ease;
+    pointer-events:none;
+  }
   .card:hover{
     transform:translateY(-4px);
-    box-shadow:0 16px 34px rgba(0,0,0,.10);
+    box-shadow:var(--shadow);
     border-color:var(--accent);
   }
+  .card:hover::after{ opacity:1; }
 
   .card .kicker{
     display:inline-block;
-    font-size:10.5px;
     font-weight:700;
     letter-spacing:.14em;
     padding:4px 10px;
@@ -260,22 +412,21 @@
   }
 
   .card h3{
-    font-size:17.5px;
     font-weight:700;
     margin:0 0 8px;
     letter-spacing:.01em;
+    line-height:1.6;
   }
   .card h4{
-    font-size:12.5px;
     font-weight:500;
     color:var(--muted);
     margin:0 0 13px;
+    line-height:1.7;
   }
   .card p.desc{
-    font-size:13px;
     color:var(--muted);
     margin:0;
-    line-height:1.75;
+    line-height:1.8;
     flex-grow:1;
   }
   .card .go{
@@ -283,7 +434,6 @@
     align-items:center;
     gap:5px;
     margin-top:18px;
-    font-size:12px;
     font-weight:700;
     letter-spacing:.03em;
     color:var(--accent-ink);
@@ -294,128 +444,13 @@
   footer{
     text-align:center;
     padding:0 24px 60px;
-    font-size:11.5px;
     color:var(--muted);
     letter-spacing:.04em;
-  }
-
-  .search-panel{
-    background:var(--paper);
-    border-bottom:1px solid var(--line);
-  }
-
-  .toolbar-container{
-    background:var(--bg);
-    border-bottom:1px solid var(--line);
-  }
-  .toolbar{
-    max-width:none;
-    margin:0 auto;
-    padding:12px clamp(24px,4vw,64px);
-    display:flex;
-    gap:10px;
-  }
-  .toolbar button{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:12.5px;
-    font-weight:600;
-    letter-spacing:.02em;
-    color:var(--muted);
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:7px 16px;
-    cursor:pointer;
-    transition:color .15s ease, border-color .15s ease;
-  }
-  .toolbar button:hover{ color:var(--ink); border-color:var(--muted); }
-  .search-wrap{
-    max-width:none;
-    margin:0 auto;
-    padding:28px clamp(24px,4vw,64px);
-  }
-  .search-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:var(--bg);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:12px 16px;
-  }
-  .search-box:focus-within{ border-color:var(--nat); }
-  .search-box svg{ width:18px; height:18px; color:var(--muted); flex-shrink:0; }
-  .search-box input{
-    flex:1;
-    min-width:0;
-    border:none;
-    background:transparent;
-    outline:none;
-    font-size:15px;
-    color:var(--ink);
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-  }
-  .search-box input::placeholder{ color:var(--muted); }
-  .search-status{
-    margin:10px 0 0;
-    font-size:12.5px;
-    color:var(--muted);
-    min-height:1.2em;
-  }
-  .search-results{
-    margin-top:16px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
-  .search-empty{
-    font-size:13.5px;
-    color:var(--muted);
-    margin:0;
-  }
-  .result-item{
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:16px 18px;
-    background:var(--bg);
-  }
-  .result-title{
-    font-size:15px;
-    font-weight:700;
-    color:var(--ink);
-    text-decoration:none;
-  }
-  .result-title:hover{ text-decoration:underline; }
-  .result-cat{
-    margin-left:10px;
-    font-size:11px;
-    color:var(--muted);
-    letter-spacing:.03em;
-  }
-  .result-snippets{
-    margin-top:8px;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-  .snippet{
-    display:block;
-    font-size:13px;
-    line-height:1.7;
-    color:var(--muted);
-    text-decoration:none;
-  }
-  .snippet:hover{ color:var(--ink); }
-  .snippet mark{
-    background:var(--nat-soft);
-    color:var(--nat-ink);
-    padding:0 2px;
-    border-radius:3px;
   }
 </style>
   <style>
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 17px !important; }
+    html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
   <style>
@@ -429,12 +464,68 @@
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
-    <h1><span id="total-count">24</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
+    <h1><span class="big" id="total-count">29</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
+    <p class="lead">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
+
+    <nav class="counters" aria-label="分野">
+      <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
+      <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">5</span></a>
+      <a class="mind" href="#mind"><span class="dot"></span>心理と教育 <span class="n">7</span></a>
+      <a class="hum" href="#humanities"><span class="dot"></span>人文科学 <span class="n">8</span></a>
+      <a class="nat" href="#natural"><span class="dot"></span>自然科学 <span class="n">2</span></a>
+    </nav>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 268" role="img" aria-labelledby="shelfTitle shelfDesc">
+        <title id="shelfTitle">分野ごとの記事数</title>
+        <desc id="shelfDesc">テクノロジーと産業、政治と社会、心理と教育、人文科学、自然科学の五分野について、それぞれに収めた記事の本数を棒の高さで比べた図。棒の高さは各分野の記事数に比例し、数値はページ内のカードの実数から自動的に算出される。</desc>
+
+        <line x1="24" y1="210" x2="696" y2="210" stroke="#6b6786" stroke-width="1"/>
+
+        <g>
+          <rect data-bar="tech" x="55" y="79" width="72" height="131" rx="5" fill="#4f46e5" fill-opacity="0.88"/>
+          <text data-bar-count="tech" x="91" y="69" class="num" text-anchor="middle">7</text>
+          <text x="91" y="232" class="lab" text-anchor="middle">テクノロジー</text>
+          <text x="91" y="249" class="lab2" text-anchor="middle">TECHNOLOGY</text>
+        </g>
+        <g>
+          <rect data-bar="social" x="190" y="116" width="72" height="94" rx="5" fill="#b45309" fill-opacity="0.88"/>
+          <text data-bar-count="social" x="226" y="106" class="num" text-anchor="middle">5</text>
+          <text x="226" y="232" class="lab" text-anchor="middle">政治と社会</text>
+          <text x="226" y="249" class="lab2" text-anchor="middle">SOCIETY</text>
+        </g>
+        <g>
+          <rect data-bar="mind" x="324" y="79" width="72" height="131" rx="5" fill="#be123c" fill-opacity="0.88"/>
+          <text data-bar-count="mind" x="360" y="69" class="num" text-anchor="middle">7</text>
+          <text x="360" y="232" class="lab" text-anchor="middle">心理と教育</text>
+          <text x="360" y="249" class="lab2" text-anchor="middle">PSYCHOLOGY</text>
+        </g>
+        <g>
+          <rect data-bar="humanities" x="458" y="60" width="72" height="150" rx="5" fill="#7c3aed" fill-opacity="0.88"/>
+          <text data-bar-count="humanities" x="494" y="50" class="num" text-anchor="middle">8</text>
+          <text x="494" y="232" class="lab" text-anchor="middle">人文科学</text>
+          <text x="494" y="249" class="lab2" text-anchor="middle">HUMANITIES</text>
+        </g>
+        <g>
+          <rect data-bar="natural" x="593" y="172" width="72" height="38" rx="5" fill="#0891b2" fill-opacity="0.88"/>
+          <text data-bar-count="natural" x="629" y="162" class="num" text-anchor="middle">2</text>
+          <text x="629" y="232" class="lab" text-anchor="middle">自然科学</text>
+          <text x="629" y="249" class="lab2" text-anchor="middle">SCIENCE</text>
+        </g>
+
+        <style>
+          .num{ fill:#f4f2fa; font-size:14px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lab{ fill:#d7d3e8; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lab2{ fill:#8f8bab; font-size:9.5px; letter-spacing:0.16em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        </style>
+      </svg>
+      <figcaption>棚の中身の内訳。棒の高さと数値は、このページに並んだカードの実数から毎回組み立てている。</figcaption>
+    </figure>
   </div>
 </header>
 
-<section class="search-panel">
-  <div class="search-wrap">
+<div class="controls">
+  <div class="controls-inner">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="7"/>
@@ -442,10 +533,17 @@
       </svg>
       <input type="search" id="search-input" placeholder="記事本文を検索…" aria-label="記事本文を検索">
     </div>
-    <p class="search-status" id="search-status"></p>
-    <div class="search-results" id="search-results" hidden></div>
+    <div class="toolbar">
+      <button id="expandAll" type="button">すべて開く</button>
+      <button id="collapseAll" type="button">すべて閉じる</button>
+    </div>
   </div>
-</section>
+</div>
+
+<div class="search-panel">
+  <p class="search-status" id="search-status"></p>
+  <div class="search-results" id="search-results" hidden></div>
+</div>
 
 <main>
 
@@ -548,7 +646,7 @@
 
       <a class="card" href="legitimacy-of-nations.html">
         <span class="kicker">POLITICAL SCIENCE</span>
-        <h3>正統性の政治学―権威主義国家はなぜ歴史を書き換えるのか</h3>
+        <h3>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</h3>
         <h4>国家が支配の正しさをどこに求めるかという視点から</h4>
         <p class="desc">ウェーバーの正統性論を出発点に、歴史を武器化するロシア・中国・北朝鮮と、そこから逸脱するベトナム・シンガポールを比較する。最後に、この視点を選挙という装置の陰に隠れた民主主義国の現在へと投げ返す。</p>
         <span class="go">読む</span>
@@ -603,7 +701,7 @@
       <div>
         <h2>心理と教育 <span class="group-en">PSYCHOLOGY &amp; EDUCATION</span></h2>
       </div>
-      <span class="count">5 articles</span>
+      <span class="count">7 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
@@ -680,10 +778,18 @@
       <div>
         <h2>人文科学 <span class="group-en">HUMANITIES</span></h2>
       </div>
-      <span class="count">5 articles</span>
+      <span class="count">8 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
+
+      <a class="card" href="four-types-of-reasoning.html">
+        <span class="kicker">LOGIC / EPISTEMOLOGY</span>
+        <h3>思考を拡張する知の道具箱 - 推論の四つのかたち</h3>
+        <h4>演繹・帰納・アブダクション・類推</h4>
+        <p class="desc">ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。パースの三分法に類推を安易に足さない留保も含めて整理する。</p>
+        <span class="go">読む</span>
+      </a>
 
       <a class="card" href="modern-to-contemporary.html">
         <span class="kicker">HISTORY</span>
@@ -965,7 +1071,7 @@
     }
   });
 
-  // カテゴリの開閉（ アコーディオン ）。
+  // カテゴリの開閉（ アコーディオン ）。初期状態はすべて折りたたみ。
   var allDetails = Array.prototype.slice.call(document.querySelectorAll('.group-details'));
   var expandAllBtn = document.getElementById('expandAll');
   var collapseAllBtn = document.getElementById('collapseAll');
