@@ -1111,6 +1111,8 @@
     openGroupFor(a.getAttribute('href'));
   });
 
+  window.addEventListener('hashchange', function(){ openGroupFor(location.hash); });
+
   if (location.hash) openGroupFor(location.hash);
 })();
 </script>
