@@ -334,12 +334,16 @@
     html { font-size: 16px; }
     body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
+<style>
+  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
+  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+</style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
 
-<div class="hero">
+<header class="hero">
   <div class="hero-inner">
     <span class="kicker">現代社会 | ことばの観察ノート</span>
     <h1>藁人形論法<br>- 存在しない主張と戦う詭弁 -</h1>
@@ -395,7 +399,7 @@
       <figcaption>同じ「相手の主張」から分かれる二つの道筋。藁人形論法は歪めた主張を攻撃して勝利を宣言するが、スチールマン化は相手の主張を最も強い形で理解したうえで反論する。</figcaption>
     </figure>
   </div>
-</div>
+</header>
 
 <div class="wrap">
   <div class="pause"><p>【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</p></div>

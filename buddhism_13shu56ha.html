@@ -529,12 +529,16 @@
     html { font-size: 16px; }
     body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
+<style>
+  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
+  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+</style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
 
-<div class="hero">
+<header class="hero">
   <div class="hero-inner">
     <span class="kicker">日本仏教 / 宗派ガイド</span>
     <h1>十三宗五十六派を歩く</h1>
@@ -586,7 +590,7 @@
   <div class="wave">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fffdf5" d="M0,60 L90,32 L180,55 L280,18 L360,48 L450,24 L540,58 L640,26 L730,52 L820,20 L910,50 L1000,30 L1090,56 L1180,24 L1280,50 L1360,28 L1440,46 L1440,90 L0,90 Z"/></svg>
   </div>
-</div>
+</header>
 
 <div class="wrap">
   <div><p>【分類について】「十三宗五十六派」は、仏教史の入門で用いられてきた整理の一つであり、現在の宗教法人の包括・被包括関係を数えた公式統計ではない。宗派・派の数え方は資料と時点で変わる。本記事では歴史的な見取り図として用い、現行の法人統計は文化庁「宗教年鑑」で確認できる。</p></div>

@@ -293,12 +293,16 @@
     html { font-size: 16px; }
     body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
   </style>
+<style>
+  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
+  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+</style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
 
-<div class="hero">
+<header class="hero">
   <div class="hero-inner">
     <span class="kicker">技術解説 / HOW THE INTERNET (AND CDNS) ARE PAID FOR</span>
     <h1>CDN のビジネスモデルとインターネット相互接続の仕組み</h1>
@@ -366,7 +370,7 @@
   <div class="wave">
     <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f8fc" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
   </div>
-</div>
+</header>
 
 <div class="wrap">
   <div class="pause"><p>【データの読み方】料金・ PoP 数・市場規模・財務数値は変動し、事業者ごとに開示範囲も異なる。本稿では、ネットワークの一般的な仕組みと個社の事業実績を区別する。市場比較では対象サービス、通貨、会計期間、一次資料か推計かを必ず確認してほしい。</p></div>
