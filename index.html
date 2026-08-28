@@ -17,15 +17,15 @@
     --line: #e3e5ee;
     --shadow: 0 16px 34px rgba(20,24,45,.10);
 
-    --nat: #0891b2;
-    --nat-soft: #e0f6fb;
-    --nat-ink: #075366;
+    --world: #0891b2;
+    --world-soft: #e0f6fb;
+    --world-ink: #075366;
     --soc: #b45309;
     --soc-soft: #fef3e2;
     --soc-ink: #7a3a06;
-    --hum: #7c3aed;
-    --hum-soft: #f3ebfe;
-    --hum-ink: #55229e;
+    --logic: #7c3aed;
+    --logic-soft: #f3ebfe;
+    --logic-ink: #55229e;
     --tech: #4f46e5;
     --tech-soft: #eceafe;
     --tech-ink: #3730a3;
@@ -42,12 +42,12 @@
       --line: #2c2f3c;
       --shadow: 0 16px 34px rgba(0,0,0,.38);
 
-      --nat-soft: #103744;
-      --nat-ink: #7fdcf2;
+      --world-soft: #103744;
+      --world-ink: #7fdcf2;
       --soc-soft: #3f2a0f;
       --soc-ink: #f3b775;
-      --hum-soft: #33224f;
-      --hum-ink: #d3b3fb;
+      --logic-soft: #33224f;
+      --logic-ink: #d3b3fb;
       --tech-soft: #262454;
       --tech-ink: #b3aef8;
       --mind-soft: #4a1526;
@@ -135,11 +135,11 @@
     transition:transform .18s ease, background .18s ease, border-color .18s ease;
   }
   .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.34); }
-  .counters a.nat{ --accent:var(--nat); }
+  .counters a.world{ --accent:var(--world); }
   .counters a.tech{ --accent:var(--tech); }
   .counters a.soc{ --accent:var(--soc); }
   .counters a.mind{ --accent:var(--mind); }
-  .counters a.hum{ --accent:var(--hum); }
+  .counters a.logic{ --accent:var(--logic); }
   .counters .dot{
     width:8px; height:8px; border-radius:50%; flex-shrink:0;
     background:var(--accent); box-shadow:0 0 10px var(--accent);
@@ -266,8 +266,8 @@
   }
   .snippet:hover{ color:var(--ink); }
   .snippet mark{
-    background:var(--nat-soft);
-    color:var(--nat-ink);
+    background:var(--world-soft);
+    color:var(--world-ink);
     padding:0 2px;
     border-radius:3px;
   }
@@ -351,11 +351,11 @@
     white-space:nowrap;
   }
 
-  #natural{    --accent:var(--nat);  --accent-soft:var(--nat-soft);  --accent-ink:var(--nat-ink); }
+  #world{      --accent:var(--world); --accent-soft:var(--world-soft); --accent-ink:var(--world-ink); }
   #tech{       --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
   #social{     --accent:var(--soc);  --accent-soft:var(--soc-soft);  --accent-ink:var(--soc-ink); }
   #mind{       --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
-  #humanities{ --accent:var(--hum);  --accent-soft:var(--hum-soft);  --accent-ink:var(--hum-ink); }
+  #logic{      --accent:var(--logic); --accent-soft:var(--logic-soft); --accent-ink:var(--logic-ink); }
 
   .grid{
     display:grid;
@@ -464,21 +464,21 @@
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
-    <h1><span class="big" id="total-count">29</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
+    <h1><span class="big" id="total-count">30</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
     <p class="lead">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
 
     <nav class="counters" aria-label="分野">
       <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
-      <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">5</span></a>
-      <a class="mind" href="#mind"><span class="dot"></span>心理と教育 <span class="n">7</span></a>
-      <a class="hum" href="#humanities"><span class="dot"></span>人文科学 <span class="n">8</span></a>
-      <a class="nat" href="#natural"><span class="dot"></span>自然科学 <span class="n">2</span></a>
+      <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">6</span></a>
+      <a class="logic" href="#logic"><span class="dot"></span>論理と言葉 <span class="n">5</span></a>
+      <a class="mind" href="#mind"><span class="dot"></span>心・教育・生き方 <span class="n">7</span></a>
+      <a class="world" href="#world"><span class="dot"></span>世界のなりたち <span class="n">5</span></a>
     </nav>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 268" role="img" aria-labelledby="shelfTitle shelfDesc">
         <title id="shelfTitle">分野ごとの記事数</title>
-        <desc id="shelfDesc">テクノロジーと産業、政治と社会、心理と教育、人文科学、自然科学の五分野について、それぞれに収めた記事の本数を棒の高さで比べた図。棒の高さは各分野の記事数に比例し、数値はページ内のカードの実数から自動的に算出される。</desc>
+        <desc id="shelfDesc">テクノロジーと産業、政治と社会、論理と言葉、心・教育・生き方、世界のなりたちの五分野について、それぞれに収めた記事の本数を棒の高さで比べた図。棒の高さは各分野の記事数に比例し、数値はページ内のカードの実数から自動的に算出される。</desc>
 
         <line x1="24" y1="210" x2="696" y2="210" stroke="#6b6786" stroke-width="1"/>
 
@@ -489,28 +489,28 @@
           <text x="91" y="249" class="lab2" text-anchor="middle">TECHNOLOGY</text>
         </g>
         <g>
-          <rect data-bar="social" x="190" y="116" width="72" height="94" rx="5" fill="#b45309" fill-opacity="0.88"/>
-          <text data-bar-count="social" x="226" y="106" class="num" text-anchor="middle">5</text>
+          <rect data-bar="social" x="190" y="81" width="72" height="129" rx="5" fill="#b45309" fill-opacity="0.88"/>
+          <text data-bar-count="social" x="226" y="71" class="num" text-anchor="middle">6</text>
           <text x="226" y="232" class="lab" text-anchor="middle">政治と社会</text>
           <text x="226" y="249" class="lab2" text-anchor="middle">SOCIETY</text>
         </g>
         <g>
-          <rect data-bar="mind" x="324" y="79" width="72" height="131" rx="5" fill="#be123c" fill-opacity="0.88"/>
-          <text data-bar-count="mind" x="360" y="69" class="num" text-anchor="middle">7</text>
-          <text x="360" y="232" class="lab" text-anchor="middle">心理と教育</text>
-          <text x="360" y="249" class="lab2" text-anchor="middle">PSYCHOLOGY</text>
+          <rect data-bar="logic" x="324" y="103" width="72" height="107" rx="5" fill="#7c3aed" fill-opacity="0.88"/>
+          <text data-bar-count="logic" x="360" y="93" class="num" text-anchor="middle">5</text>
+          <text x="360" y="232" class="lab" text-anchor="middle">論理と言葉</text>
+          <text x="360" y="249" class="lab2" text-anchor="middle">LOGIC</text>
         </g>
         <g>
-          <rect data-bar="humanities" x="458" y="60" width="72" height="150" rx="5" fill="#7c3aed" fill-opacity="0.88"/>
-          <text data-bar-count="humanities" x="494" y="50" class="num" text-anchor="middle">8</text>
-          <text x="494" y="232" class="lab" text-anchor="middle">人文科学</text>
-          <text x="494" y="249" class="lab2" text-anchor="middle">HUMANITIES</text>
+          <rect data-bar="mind" x="458" y="60" width="72" height="150" rx="5" fill="#be123c" fill-opacity="0.88"/>
+          <text data-bar-count="mind" x="494" y="50" class="num" text-anchor="middle">7</text>
+          <text x="494" y="232" class="lab" text-anchor="middle">心と生き方</text>
+          <text x="494" y="249" class="lab2" text-anchor="middle">MIND</text>
         </g>
         <g>
-          <rect data-bar="natural" x="593" y="172" width="72" height="38" rx="5" fill="#0891b2" fill-opacity="0.88"/>
-          <text data-bar-count="natural" x="629" y="162" class="num" text-anchor="middle">2</text>
-          <text x="629" y="232" class="lab" text-anchor="middle">自然科学</text>
-          <text x="629" y="249" class="lab2" text-anchor="middle">SCIENCE</text>
+          <rect data-bar="world" x="593" y="103" width="72" height="107" rx="5" fill="#0891b2" fill-opacity="0.88"/>
+          <text data-bar-count="world" x="629" y="93" class="num" text-anchor="middle">5</text>
+          <text x="629" y="232" class="lab" text-anchor="middle">世界のなりたち</text>
+          <text x="629" y="249" class="lab2" text-anchor="middle">ORIGINS</text>
         </g>
 
         <style>
@@ -621,6 +621,7 @@
         <span class="go">読む</span>
       </a>
 
+
     </div>
     </details>
   </section>
@@ -692,6 +693,72 @@
         <span class="go">読む</span>
       </a>
 
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="logic">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="5.5" r="2.5"/>
+          <circle cx="18" cy="5.5" r="2.5"/>
+          <circle cx="12" cy="18.5" r="2.5"/>
+          <path d="m7.6 7.7 2.8 8.6"/>
+          <path d="m16.4 7.7-2.8 8.6"/>
+        </svg>
+      </span>
+      <div>
+        <h2>論理と言葉 <span class="group-en">LOGIC &amp; LANGUAGE</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
+      <a class="card" href="four-types-of-reasoning.html">
+        <span class="kicker">LOGIC / EPISTEMOLOGY</span>
+        <h3>思考を拡張する知の道具箱 - 推論の四つのかたち</h3>
+        <h4>演繹・帰納・アブダクション・類推</h4>
+        <p class="desc">ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。パースの三分法に類推を安易に足さない留保も含めて整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="logic-for-beginners.html">
+        <span class="kicker">LOGIC / ARGUMENT ANALYSIS</span>
+        <h3>「全員が選べる制度」に、なぜ反対が出るのか</h3>
+        <h4>選択的夫婦別姓で学ぶ論理学のてほどき</h4>
+        <p class="desc">選択的夫婦別姓をめぐる反対論を教材に、論証を点検する道具を 8 つ学ぶ。反対論を「論証が立っていない型」「制度設計型」「事実命題型」の三群に仕分け、隠れた前提や妥当性・健全性の違いを具体例で確かめる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="strawman-article.html">
+        <span class="kicker">LOGIC / RHETORIC</span>
+        <h3>藁人形論法</h3>
+        <h4>存在しない主張と戦う詭弁</h4>
+        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、 5 つの実例で見分け方を確かめる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="engaging-writing-techniques.html">
+        <span class="kicker">RHETORIC / WRITING</span>
+        <h3>魅力的な文章の技法 - 実践カタログ</h3>
+        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
+        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="language-philosophy-psycholinguistics.html">
+        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
+        <h3>言語哲学と心理言語学</h3>
+        <h4>概説</h4>
+        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
+        <span class="go">読む</span>
+      </a>
+
+
     </div>
     </details>
   </section>
@@ -707,7 +774,7 @@
         </svg>
       </span>
       <div>
-        <h2>心理と教育 <span class="group-en">PSYCHOLOGY &amp; EDUCATION</span></h2>
+        <h2>心・教育・生き方 <span class="group-en">MIND &amp; LEARNING</span></h2>
       </div>
       <span class="count">7 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
@@ -730,11 +797,27 @@
         <span class="go">読む</span>
       </a>
 
+      <a class="card" href="envy-and-comparison.html">
+        <span class="kicker">PSYCHOLOGY / PHILOSOPHY</span>
+        <h3>なぜ他人のキラキラは胸を刺すのか</h3>
+        <h4>羨望と社会的比較を、心理学・神経科学・進化・哲学から読み解く</h4>
+        <p class="desc">フェスティンガーの社会的比較理論から、羨望とシャーデンフロイデをめぐる fMRI 研究、アリストテレス・スピノザ・ニーチェの議論、そして SNS が比較の量と速度を変えた現代まで。胸をざわつかせる感情の正体をたどる。</p>
+        <span class="go">読む</span>
+      </a>
+
       <a class="card" href="give_and_take_essay.html">
         <span class="kicker">BUSINESS / PSYCHOLOGY</span>
         <h3>「与える人」は本当に勝つのか</h3>
         <h4>GIVE &amp; TAKE の楽観論を検証する</h4>
         <p class="desc">「与える人が成功する」というアダム・グラントのテーゼを、経営学・大衆的権力論の伝統・進化生物学とゲーム理論・犯罪心理学という四つの独立した対抗言説から読み直す書評エッセイ。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="journey-of-antinatalism.html">
+        <span class="kicker">PHILOSOPHY</span>
+        <h3>生まれてこない方が幸せなのか</h3>
+        <h4>反出生主義をめぐる思考の旅</h4>
+        <p class="desc">「生まれてこない方がよかった」という反出生主義 (antinatalism) の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
         <span class="go">読む</span>
       </a>
 
@@ -754,50 +837,28 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="envy-and-comparison.html">
-        <span class="kicker">PSYCHOLOGY / PHILOSOPHY</span>
-        <h3>なぜ他人のキラキラは胸を刺すのか</h3>
-        <h4>羨望と社会的比較を、心理学・神経科学・進化・哲学から読み解く</h4>
-        <p class="desc">フェスティンガーの社会的比較理論から、羨望とシャーデンフロイデをめぐる fMRI 研究、アリストテレス・スピノザ・ニーチェの議論、そして SNS が比較の量と速度を変えた現代まで。胸をざわつかせる感情の正体をたどる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="journey-of-antinatalism.html">
-        <span class="kicker">PHILOSOPHY</span>
-        <h3>生まれてこない方が幸せなのか</h3>
-        <h4>反出生主義をめぐる思考の旅</h4>
-        <p class="desc">「生まれてこない方がよかった」という反出生主義 (antinatalism) の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
-        <span class="go">読む</span>
-      </a>
 
     </div>
     </details>
   </section>
 
-  <section class="group" id="humanities">
+  <section class="group" id="world">
     <details class="group-details">
     <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 6.5c-1.8-1.4-4.2-2-6.5-2-1 0-2 .12-3 .35v13.4c1-.23 2-.35 3-.35 2.3 0 4.7.6 6.5 2 1.8-1.4 4.2-2 6.5-2 1 0 2 .12 3 .35V4.85c-1-.23-2-.35-3-.35-2.3 0-4.7.6-6.5 2Z"/>
-          <path d="M12 6.5v13.4"/>
+          <circle cx="12" cy="12" r="9.2"/>
+          <path d="M2.8 12h18.4"/>
+          <path d="M12 2.8a14 14 0 0 1 3.7 9.2 14 14 0 0 1-3.7 9.2 14 14 0 0 1-3.7-9.2A14 14 0 0 1 12 2.8Z"/>
         </svg>
       </span>
       <div>
-        <h2>人文科学 <span class="group-en">HUMANITIES</span></h2>
+        <h2>世界のなりたち <span class="group-en">ORIGINS &amp; STRUCTURE</span></h2>
       </div>
-      <span class="count">8 articles</span>
+      <span class="count">5 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
-
-      <a class="card" href="four-types-of-reasoning.html">
-        <span class="kicker">LOGIC / EPISTEMOLOGY</span>
-        <h3>思考を拡張する知の道具箱 - 推論の四つのかたち</h3>
-        <h4>演繹・帰納・アブダクション・類推</h4>
-        <p class="desc">ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。パースの三分法に類推を安易に足さない留保も含めて整理する。</p>
-        <span class="go">読む</span>
-      </a>
 
       <a class="card" href="modern-to-contemporary.html">
         <span class="kicker">HISTORY</span>
@@ -823,61 +884,6 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="language-philosophy-psycholinguistics.html">
-        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
-        <h3>言語哲学と心理言語学</h3>
-        <h4>概説</h4>
-        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="strawman-article.html">
-        <span class="kicker">LOGIC / RHETORIC</span>
-        <h3>藁人形論法</h3>
-        <h4>存在しない主張と戦う詭弁</h4>
-        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、 5 つの実例で見分け方を確かめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="logic-for-beginners.html">
-        <span class="kicker">LOGIC / ARGUMENT ANALYSIS</span>
-        <h3>「全員が選べる制度」に、なぜ反対が出るのか</h3>
-        <h4>選択的夫婦別姓で学ぶ論理学のてほどき</h4>
-        <p class="desc">選択的夫婦別姓をめぐる反対論を教材に、論証を点検する道具を 8 つ学ぶ。反対論を「論証が立っていない型」「制度設計型」「事実命題型」の三群に仕分け、隠れた前提や妥当性・健全性の違いを具体例で確かめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="engaging-writing-techniques.html">
-        <span class="kicker">RHETORIC / WRITING</span>
-        <h3>魅力的な文章の技法 - 実践カタログ</h3>
-        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
-        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
-        <span class="go">読む</span>
-      </a>
-
-    </div>
-    </details>
-  </section>
-
-  <section class="group" id="natural">
-    <details class="group-details">
-    <summary class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
-          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
-        </svg>
-      </span>
-      <div>
-        <h2>自然科学 <span class="group-en">NATURAL SCIENCE</span></h2>
-      </div>
-      <span class="count">2 articles</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="grid">
-
       <a class="card" href="particle-physics.html">
         <span class="kicker">PHYSICS</span>
         <h3>素粒子物理学とは何か</h3>
@@ -893,6 +899,7 @@
         <p class="desc">マルチバースとビッグバン以前をめぐる議論を、観測された事実・理論的帰結・未検証の仮説・哲学的解釈に切り分けながらたどる。</p>
         <span class="go">読む</span>
       </a>
+
 
     </div>
     </details>
