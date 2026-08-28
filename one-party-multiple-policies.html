@@ -2,773 +2,895 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>同じ看板の下で</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同じ看板の下で - 政党ラベルと選挙制度</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#faf8f3;
-    --surface:#ffffff;
-    --surface-alt:#f4f1ea;
-    --ink:#1c1e22;
-    --ink-soft:#4a4f57;
-    --ink-faint:#7c8290;
-    --rule:#e2ddd2;
-    --accent:#1f4e6b;
-    --accent-2:#8a6a2f;
-    --accent-soft:#e8eff4;
-    --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
-    --sans:"Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
-    --mono:"SFMono-Regular",Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;
+  :root {
+    --bg: #faf8f3;
+    --paper: #ffffff;
+    --text: #1c1e22;
+    --sub: #4a4f57;
+    --muted: #7c8290;
+    --accent: #1f4e6b;
+    --accent-2: #8a6a2f;
+    --line: #e2ddd2;
+    --table-head: #f4f1ea;
+    --note-bg: #e8eff4;
+    --hero-1: #16324a;
+    --hero-2: #1f4e6b;
+    --hero-ink: #f1ece1;
+    --hero-dim: #b7c9d6;
+    --column-header-bg: linear-gradient(180deg, #eef3f7 0%, #fbfcfd 100%);
+    --column-header-open-bg: #e8eff4;
   }
-  @media (prefers-color-scheme:dark){
-    :root{
-      --bg:#15171b;
-      --surface:#1d2026;
-      --surface-alt:#212530;
-      --ink:#e8e6e1;
-      --ink-soft:#b6b8be;
-      --ink-faint:#878b94;
-      --rule:#31353d;
-      --accent:#8ab6d1;
-      --accent-2:#c9a24a;
-      --accent-soft:#1c2933;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15171b;
+      --paper: #1d2026;
+      --text: #e8e6e1;
+      --sub: #b6b8be;
+      --muted: #878b94;
+      --accent: #8ab6d1;
+      --accent-2: #c9a24a;
+      --line: #31353d;
+      --table-head: #212530;
+      --note-bg: #1c2933;
+      --column-header-bg: linear-gradient(180deg, #1c2933 0%, #1d2026 100%);
+      --column-header-open-bg: #1c2933;
     }
   }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--serif);
-    font-size:17px;
-    line-height:2.0;
-    text-align:justify;
-    line-break:strict;
-    overflow-wrap:anywhere;
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
+  body {
+    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.95;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
   }
-  .wrap{max-width:44rem;margin:0 auto;padding:0 1.4rem 6rem}
+  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
-  header.hero{
-    padding:4.5rem 0 2.2rem;
-    border-bottom:1px solid var(--rule);
-    margin-bottom:2.4rem;
+  header.hero {
+    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    color: var(--hero-ink);
+    padding: 3.6rem 0 2.8rem;
+    margin-bottom: 2.8rem;
   }
-  .kicker{
-    font-family:var(--sans);
-    font-size:.72rem;
-    letter-spacing:.18em;
-    color:var(--accent);
-    margin:0 0 1.1rem;
-    font-weight:700;
+  header.hero .wrap { max-width: 960px; margin: 0 auto; }
+  header.hero .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    color: var(--hero-dim);
+    margin-bottom: 0.9rem;
   }
-  h1{
-    font-family:var(--sans);
-    font-size:clamp(2rem,7vw,3rem);
-    line-height:1.4;
-    letter-spacing:.02em;
-    font-weight:800;
-    margin:0 0 1.2rem;
+  header.hero h1 {
+    font-size: clamp(1.5rem, 3.6vw, 2rem);
+    line-height: 1.6;
+    margin: 0 0 0.8rem;
+    font-weight: 700;
   }
-  .lede{
-    font-size:1.02rem;
-    color:var(--ink-soft);
-    margin:0 0 1.6rem;
+  header.hero p.sub {
+    margin: 0;
+    color: var(--hero-dim);
+    line-height: 1.85;
+    font-size: 0.98rem;
+    text-indent: 0;
   }
-  .meta{
-    font-family:var(--sans);
-    font-size:.8rem;
-    color:var(--ink-faint);
-    display:flex;
-    flex-wrap:wrap;
-    gap:.5rem 1.2rem;
-    line-height:1.6;
-    text-align:left;
+  header.hero .meta {
+    margin: 1.1rem 0 0;
+    font-size: 0.82rem;
+    color: var(--hero-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
   }
-
-  nav.toc{
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-radius:10px;
-    padding:1.3rem 1.5rem;
-    margin:0 0 3rem;
-    font-family:var(--sans);
-    text-align:left;
-  }
-  nav.toc h2{
-    font-size:.74rem;
-    letter-spacing:.16em;
-    color:var(--ink-faint);
-    margin:0 0 .9rem;
-    font-weight:700;
-  }
-  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc}
-  nav.toc li{
-    counter-increment:toc;
-    line-height:1.7;
-    padding:.28rem 0;
-    display:flex;
-    gap:.7rem;
-  }
-  nav.toc li::before{
-    content:counter(toc,decimal-leading-zero);
-    font-family:var(--mono);
-    font-size:.75rem;
-    color:var(--accent);
-    padding-top:.22rem;
-    flex:none;
-  }
-  nav.toc a{
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-    font-size:.94rem;
-  }
-  nav.toc a:hover{border-bottom-color:var(--accent)}
-
-  section{margin:0 0 3.4rem;scroll-margin-top:1.5rem}
-  h2.chapter{
-    font-family:var(--sans);
-    font-size:1.4rem;
-    line-height:1.55;
-    font-weight:800;
-    margin:0 0 1.6rem;
-    padding-top:.6rem;
-    text-align:left;
-  }
-  h2.chapter .num{
-    display:block;
-    font-family:var(--mono);
-    font-size:.72rem;
-    letter-spacing:.2em;
-    color:var(--accent);
-    font-weight:600;
-    margin-bottom:.5rem;
-  }
-  p{margin:0 0 1.5rem}
-  strong{font-weight:700}
-  a.ref{
-    font-family:var(--mono);
-    font-size:.68em;
-    vertical-align:.45em;
-    color:var(--accent);
-    text-decoration:none;
-    padding:0 .1em;
-  }
-  a.ref:hover{text-decoration:underline}
-  hr.divider{
-    border:0;
-    height:1px;
-    background:var(--rule);
-    margin:0 0 3.2rem;
+  .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
+  .hero-figure svg { display: block; width: 100%; height: auto; }
+  .hero-figure figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--hero-dim);
+    line-height: 1.75;
   }
 
-  .pull{
-    font-family:var(--sans);
-    font-size:1.1rem;
-    line-height:1.9;
-    font-weight:700;
-    border-left:3px solid var(--accent);
-    padding:.2rem 0 .2rem 1.2rem;
-    margin:2rem 0;
-    text-align:left;
+  main.wrap { padding-bottom: 4rem; }
+  h2 {
+    font-size: 1.28rem;
+    line-height: 1.6;
+    margin-top: 0;
+    padding-top: 0;
   }
+  h3 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    color: var(--accent);
+  }
+  p { margin: 1.1em 0; text-indent: 1em; }
+  p.lead { text-indent: 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.6em 0;
+    font-size: 0.95rem;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.6em;
+    color: var(--accent);
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 0.7em 0.9em;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--table-head); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.focus td { background: var(--note-bg); font-weight: 700; }
+  .barcell { display: flex; align-items: center; gap: 0.5rem; justify-content: flex-end; }
+  .minibar { height: 6px; width: 4.5rem; background: var(--line); border-radius: 3px; overflow: hidden; flex: none; }
+  .minibar span { display: block; height: 100%; background: var(--accent); }
+  .scroll { overflow-x: auto; }
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--accent);
+    padding: 0.9em 1.2em;
+    margin: 1.6em 0;
+    font-size: 0.95rem;
+    color: var(--sub);
+  }
+  .note p { text-indent: 0; }
+  .law {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent-2);
+    border-radius: 0 10px 10px 0;
+    padding: 1.1em 1.3em;
+    margin: 1.6em 0;
+    font-size: 0.95rem;
+  }
+  .law p { text-indent: 0; margin: 0 0 0.6em; }
+  .law p:last-child { margin: 0; }
+  .law cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.6em;
+  }
+  .pull {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    font-weight: 700;
+    border-left: 3px solid var(--accent);
+    padding: 0.2rem 0 0.2rem 1.2rem;
+    margin: 1.8rem 0;
+    text-indent: 0;
+  }
+  .cite { font-size: 0.85em; color: var(--muted); }
+  a.ref {
+    font-size: 0.7em;
+    vertical-align: 0.4em;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0 0.1em;
+  }
+  a.ref:hover { text-decoration: underline; }
+  ol.refs {
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  ol.refs li { margin-bottom: 0.6em; }
+  a { color: var(--accent); }
+  hr { border: none; border-top: 1px solid var(--line); margin: 3rem 0; }
 
-  figure.data,figure.diagram{
-    margin:0 0 1.8rem;
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-radius:10px;
-    padding:1.3rem 1.4rem 1.1rem;
+  .label-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem 1.1rem;
+    margin: 1.6em 0;
   }
-  figure.data figcaption,figure.diagram figcaption{
-    font-family:var(--sans);
-    font-size:.78rem;
-    font-weight:700;
-    letter-spacing:.04em;
-    color:var(--ink-soft);
-    margin-bottom:1rem;
-    line-height:1.7;
-    text-align:left;
+  .label-card .cap {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-weight: 700;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
-  figure.diagram .svgwrap{overflow-x:auto}
-  figure.diagram svg{width:100%;min-width:32rem;height:auto;display:block}
-  figure.diagram .credit{
-    font-family:var(--sans);
-    font-size:.74rem;
-    color:var(--ink-faint);
-    line-height:1.8;
-    border-top:1px solid var(--rule);
-    padding-top:.7rem;
-    margin:1rem 0 0;
-    text-align:left;
+  .label-card .foot {
+    font-size: 0.76rem;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--line);
+    padding-top: 0.7rem;
+    margin-top: 0.3rem;
+    text-indent: 0;
   }
+  .row { margin: 0 0 1rem; }
+  .row .txt {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.2rem 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+  .bar { height: 7px; background: var(--line); border-radius: 4px; overflow: hidden; display: flex; }
+  .bar span { display: block; height: 100%; }
+  .bar .fill { background: var(--accent); }
+
+  ol.steps {
+    list-style: none;
+    counter-reset: st;
+    margin: 1.6em 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  ol.steps li {
+    counter-increment: st;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.15rem 1.3rem 1.15rem 3.4rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    text-indent: 0;
+  }
+  ol.steps li::before {
+    content: counter(st);
+    position: absolute;
+    left: 1.25rem;
+    top: 1.1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  ol.steps .t { display: block; font-weight: 800; margin-bottom: 0.25rem; }
+
+  figure.diagram {
+    margin: 1.6em 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem 1.1rem;
+  }
+  figure.diagram figcaption {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--sub);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  figure.diagram .svgwrap { overflow-x: auto; }
+  figure.diagram svg { width: 100%; min-width: 32rem; height: auto; display: block; }
   .dgm-frame{fill:none;stroke:var(--accent-2);stroke-opacity:.65;stroke-dasharray:6 5}
-  .dgm-grp{fill:var(--ink);font-family:var(--sans);font-size:13px;font-weight:700}
-  .dgm-chip{fill:var(--surface-alt)}
+  .dgm-grp{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:13px;font-weight:700}
+  .dgm-chip{fill:var(--table-head)}
   .dgm-chipL{stroke:var(--accent);stroke-opacity:.75}
   .dgm-chipR{stroke:var(--accent-2);stroke-opacity:.75}
-  .dgm-chipT{fill:var(--ink);font-family:var(--sans);font-size:12.5px;font-weight:700;text-anchor:middle}
-  .dgm-chipS{fill:var(--ink-soft);font-family:var(--sans);font-size:11px;text-anchor:middle}
-  .dgm-note{fill:var(--ink-faint);font-family:var(--sans);font-size:11.5px}
-  .dgm-arrow{stroke:var(--ink-faint);stroke-width:2;fill:none}
-  .dgm-arrowhead{fill:var(--ink-faint)}
-  .dgm-side{fill:var(--surface-alt);stroke:var(--ink-faint);stroke-opacity:.6}
-  .dgm-sideT{fill:var(--ink);font-family:var(--sans);font-size:12.5px;font-weight:700;text-anchor:middle}
-  .dgm-sideS{fill:var(--ink-soft);font-family:var(--sans);font-size:10.5px;text-anchor:middle}
+  .dgm-chipT{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
+  .dgm-chipS{fill:var(--sub);font-family:"Zen Kaku Gothic New", sans-serif;font-size:11px;text-anchor:middle}
+  .dgm-note{fill:var(--muted);font-family:"Zen Kaku Gothic New", sans-serif;font-size:11.5px}
+  .dgm-arrow{stroke:var(--muted);stroke-width:2;fill:none}
+  .dgm-arrowhead{fill:var(--muted)}
+  .dgm-side{fill:var(--table-head);stroke:var(--muted);stroke-opacity:.6}
+  .dgm-sideT{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
+  .dgm-sideS{fill:var(--sub);font-family:"Zen Kaku Gothic New", sans-serif;font-size:10.5px;text-anchor:middle}
 
-  .scroll{overflow-x:auto}
-  table{
-    border-collapse:collapse;
-    width:100%;
-    font-family:var(--sans);
-    font-size:.84rem;
-    line-height:1.6;
-    min-width:30rem;
+  footer.notes-foot {
+    margin-top: 1rem;
+    font-size: 0.84rem;
+    color: var(--sub);
+    line-height: 1.9;
   }
-  th,td{
-    padding:.55rem .5rem;
-    text-align:right;
-    border-bottom:1px solid var(--rule);
-    white-space:nowrap;
-  }
-  th{
-    color:var(--ink-faint);
-    font-weight:700;
-    font-size:.76rem;
-    border-bottom:2px solid var(--rule);
-  }
-  th:first-child,td:first-child{text-align:left}
-  tbody tr:last-child td{border-bottom:0}
-  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
-  tr.focus td{background:var(--accent-soft);font-weight:700}
-  .barcell{display:flex;align-items:center;gap:.5rem;justify-content:flex-end}
-  .minibar{
-    height:6px;
-    width:4.5rem;
-    background:var(--rule);
-    border-radius:3px;
-    overflow:hidden;
-    flex:none;
-  }
-  .minibar span{display:block;height:100%;background:var(--accent)}
-
-  aside.side{
-    background:var(--surface-alt);
-    border:1px solid var(--rule);
-    border-left:3px solid var(--accent);
-    border-radius:0 10px 10px 0;
-    padding:1.2rem 1.4rem;
-    margin:0 0 1.8rem;
-    font-size:.92rem;
-    line-height:1.9;
-  }
-  aside.side h3{
-    font-family:var(--sans);
-    font-size:.78rem;
-    letter-spacing:.1em;
-    color:var(--accent);
-    margin:0 0 .7rem;
-    font-weight:700;
-    text-align:left;
-  }
-  aside.side p{margin:0 0 .8rem}
-  aside.side p:last-child{margin:0}
-
-  blockquote.law{
-    margin:0 0 1.8rem;
-    padding:1.1rem 1.3rem;
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-left:3px solid var(--accent-2);
-    border-radius:0 10px 10px 0;
-    font-size:.92rem;
-    line-height:1.9;
-  }
-  blockquote.law p{margin:0 0 .6rem}
-  blockquote.law p:last-child{margin:0}
-  blockquote.law cite{
-    display:block;
-    font-style:normal;
-    font-family:var(--sans);
-    font-size:.76rem;
-    color:var(--ink-faint);
-    margin-top:.6rem;
+  .disclaimer {
+    font-size: 0.82rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 1.2rem;
+    margin-top: 1.6rem;
   }
 
-  .label-card{
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-radius:10px;
-    padding:1.4rem 1.5rem 1.1rem;
-    margin:0 0 1.8rem;
-    font-family:var(--sans);
-    text-align:left;
-  }
-  .label-card .cap{
-    font-size:.72rem;
-    letter-spacing:.14em;
-    color:var(--ink-faint);
-    font-weight:700;
-    border-bottom:2px solid var(--ink);
-    padding-bottom:.5rem;
-    margin-bottom:1rem;
-  }
-  .label-card .foot{
-    font-size:.76rem;
-    color:var(--ink-faint);
-    line-height:1.8;
-    border-top:1px solid var(--rule);
-    padding-top:.7rem;
-    margin-top:.3rem;
-  }
-  .row{margin:0 0 1rem}
-  .row .txt{
-    font-size:.88rem;
-    line-height:1.7;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    gap:.2rem .6rem;
-    margin-bottom:.35rem;
-  }
-  .bar{
-    height:7px;
-    background:var(--rule);
-    border-radius:4px;
-    overflow:hidden;
-    display:flex;
-  }
-  .bar span{display:block;height:100%}
-  .bar .fill{background:var(--accent)}
-
-  ol.steps{
-    list-style:none;
-    counter-reset:st;
-    margin:0 0 1.8rem;
-    padding:0;
-    display:grid;
-    gap:1rem;
-  }
-  ol.steps li{
-    counter-increment:st;
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-radius:10px;
-    padding:1.15rem 1.3rem 1.15rem 3.4rem;
-    position:relative;
-    font-size:.95rem;
-    line-height:1.9;
-  }
-  ol.steps li::before{
-    content:counter(st);
-    position:absolute;
-    left:1.25rem;
-    top:1.1rem;
-    font-family:var(--mono);
-    font-size:1rem;
-    font-weight:700;
-    color:var(--accent);
-  }
-  ol.steps .t{
-    display:block;
-    font-family:var(--sans);
-    font-weight:800;
-    margin-bottom:.25rem;
-    text-align:left;
+  @media (max-width: 640px) {
+    table { font-size: 0.82rem; }
+    th, td { padding: 0.5em 0.6em; }
+    .hero-figure svg { min-width: 560px; }
   }
 
-  footer.notes{
-    border-top:1px solid var(--rule);
-    padding-top:1.8rem;
-    margin-top:3rem;
-    font-size:.84rem;
-    color:var(--ink-soft);
-    line-height:1.9;
+  .toolbar-container {
+    position: sticky; top: 8px; z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-radius: 999px;
+    margin: 0 0 2.4rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.10);
   }
-  footer.notes h2{
-    font-family:var(--sans);
-    font-size:.76rem;
-    letter-spacing:.14em;
-    color:var(--ink-faint);
-    margin:0 0 1rem;
-    font-weight:700;
+  .toolbar-container .toolbar { margin: 0; }
+  .toolbar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 0 0 2.4rem; }
+  .toolbar button {
+    font-size: 0.88rem; font-weight: 700;
+    color: var(--accent); background: var(--paper);
+    border: 1.5px solid var(--accent); border-radius: 999px;
+    padding: 8px 20px; cursor: pointer; transition: all .2s ease;
   }
-  footer.notes ol{padding-left:1.6rem;margin:0 0 1.6rem}
-  footer.notes li{margin-bottom:.6rem;text-align:left}
-  footer.notes a{color:var(--accent);word-break:break-all}
-  .disclaimer{
-    font-size:.82rem;
-    color:var(--ink-faint);
-    border-top:1px solid var(--rule);
-    padding-top:1.2rem;
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+  #accordion { margin-bottom: 2.6rem; }
+  .acc-item {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 16px; overflow: hidden; overflow-anchor: none;
   }
-  .totop{
-    display:inline-block;
-    margin-top:1rem;
-    font-family:var(--sans);
-    font-size:.8rem;
-    color:var(--ink-faint);
-    text-decoration:none;
+  .acc-item:last-child { margin-bottom: 0; }
+  .acc-header {
+    width: 100%; display: flex; align-items: center; gap: 14px;
+    background: none; border: none; padding: 18px 22px; cursor: pointer;
+    text-align: left; font-family: inherit;
+    color: var(--text); -webkit-tap-highlight-color: transparent;
   }
-  .totop:hover{color:var(--accent)}
-
-  @media (max-width:600px){
-    body{font-size:16px;line-height:1.95;text-align:left}
-    header.hero{padding-top:3rem}
-    .wrap{padding:0 1.1rem 4rem}
+  .acc-header .num {
+    flex: 0 0 auto; color: var(--accent); font-size: 0.82rem; font-weight: 700;
+    background: var(--note-bg); padding: 4px 11px; border-radius: 999px; white-space: nowrap;
   }
-  @media print{
-    :root{--bg:#fff;--surface:#fff;--surface-alt:#fff;--ink:#000;--rule:#ccc;--accent:#000;--accent-2:#555}
-    body{font-size:10.5pt;line-height:1.8}
-    nav.toc{display:none}
-    h2.chapter{page-break-after:avoid}
-    figure.data,figure.diagram,aside.side,.label-card,blockquote.law{page-break-inside:avoid}
+  .acc-header .title { flex: 1 1 auto; font-size: 1.15rem; font-weight: 700; line-height: 1.5; }
+  .acc-header .chev {
+    flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
+  .acc-item.open > .acc-header { background: var(--note-bg); border-bottom: 1px solid var(--line); }
+  .acc-panel {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
+  }
+  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner {
+    overflow: hidden; min-height: 0; padding: 0 22px; opacity: 0;
+    transition: opacity .3s ease .08s;
+  }
+  .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
+  .acc-panel-inner h2 { margin-top: 0; border-top: none; padding-top: 0; }
+  @media (max-width: 600px) {
+    .acc-header { padding: 15px 16px; gap: 10px; }
+    .acc-header .title { font-size: 1rem; }
+    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
   }
 </style>
+  <style>
+    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
+    html { font-size: 16px !important; }
+    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
+  </style>
+  <style>
+    /* フォント統一設定 */
+    html { font-size: 16px; }
+    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
+  </style>
 </head>
 <body>
-<div class="wrap">
 
 <header class="hero">
-  <p class="kicker">論考 / 政党ラベルと選挙制度</p>
-  <h1>同じ看板の下で</h1>
-  <p class="lede">憲法観も安全保障観も異なる二人の議員が、同じ政党の公認で議席を得る。このとき有権者の一票は、何を選んだことになるのか。法制度・選挙制度・党内組織の三つの層から検討する。</p>
-  <div class="meta">
-    <span>全 8 章</span>
-    <span>約 20 分</span>
-    <span>2026 年 8 月</span>
+  <div class="wrap">
+    <span class="eyebrow">論考 / 政党ラベルと選挙制度</span>
+    <h1>同じ看板の下で</h1>
+    <p class="sub">憲法観も安全保障観も異なる二人の議員が、同じ政党の公認で議席を得る。このとき有権者の一票は、何を選んだことになるのか。法制度・選挙制度・党内組織の三つの層から検討する。</p>
+    <div class="meta">
+      <span>全 8 章</span>
+      <span>約 20 分</span>
+      <span>2026 年 8 月</span>
+    </div>
+
+    <figure class="hero-figure">
+      <svg viewBox="0 0 720 250" role="img" aria-labelledby="dgmTitle dgmDesc">
+        <title id="dgmTitle">一つの政党の中に複数の政策的立場が同居できる法的構造</title>
+        <desc id="dgmDesc">政党という一つの枠を表す破線の外枠の中に、防衛政策・経済政策それぞれで対立する二つの立場を示す四つの箱が並ぶ。外枠の下には、政党としての法的要件が議員数と得票率のみである旨の注記があり、右側には、この多様性を組織的に担ってきた派閥が、政治資金規正法上の別法人として矢印でつながれている。</desc>
+        <rect x="24" y="20" width="470" height="176" rx="10" fill="none" stroke="#c9a24a" stroke-opacity="0.75" stroke-dasharray="6 5"/>
+        <text x="44" y="44" fill="#f1ece1" font-size="13" font-weight="700">一つの政治団体（法律上の「政党」）</text>
+        <rect x="44" y="60" width="205" height="46" rx="6" fill="#12283a" stroke="#8ab6d1" stroke-opacity="0.75"/>
+        <text x="146" y="80" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
+        <text x="146" y="99" fill="#b7c9d6" font-size="11" text-anchor="middle">改憲・防衛強化派</text>
+        <rect x="269" y="60" width="205" height="46" rx="6" fill="#12283a" stroke="#c9a24a" stroke-opacity="0.75"/>
+        <text x="371" y="80" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
+        <text x="371" y="99" fill="#b7c9d6" font-size="11" text-anchor="middle">慎重・護憲派</text>
+        <rect x="44" y="118" width="205" height="46" rx="6" fill="#12283a" stroke="#8ab6d1" stroke-opacity="0.75"/>
+        <text x="146" y="138" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
+        <text x="146" y="157" fill="#b7c9d6" font-size="11" text-anchor="middle">積極財政派</text>
+        <rect x="269" y="118" width="205" height="46" rx="6" fill="#12283a" stroke="#c9a24a" stroke-opacity="0.75"/>
+        <text x="371" y="138" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
+        <text x="371" y="157" fill="#b7c9d6" font-size="11" text-anchor="middle">緊縮財政派</text>
+        <text x="44" y="182" fill="#b7c9d6" font-size="11.5">法的要件（政党助成法 2 条）：議員数 5 人以上 または 得票率 2% 以上 - 政策の一致は不要</text>
+        <path d="M494 108 h34" stroke="#b7c9d6" stroke-width="2" fill="none"/>
+        <path d="M528 108 l-10 -6 v12 z" fill="#b7c9d6"/>
+        <rect x="538" y="66" width="150" height="84" rx="8" fill="#12283a" stroke="#b7c9d6" stroke-opacity="0.6"/>
+        <text x="613" y="94" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">派閥</text>
+        <text x="613" y="114" fill="#b7c9d6" font-size="10.5" text-anchor="middle">政治資金規正法上の</text>
+        <text x="613" y="130" fill="#b7c9d6" font-size="10.5" text-anchor="middle">別法人として</text>
+        <text x="613" y="146" fill="#b7c9d6" font-size="10.5" text-anchor="middle">資金・人事を担う</text>
+      </svg>
+      <figcaption>一つの政党の中に複数の政策的立場が同居できる法的構造。政党助成法が定める要件は議員数と得票率のみで、政策の一致は求められていない。派閥は政治資金規正法上、党本部とは別個の政治団体として、この多様性を組織的に担ってきた。あくまで法的構造の概念図であり、特定の政党の実際の派閥配置を示すものではない。</figcaption>
+    </figure>
   </div>
 </header>
 
-<nav class="toc">
-  <h2>目次</h2>
-  <ol>
-    <li><a href="#ch1">二人の議員と、一つの看板</a></li>
-    <li><a href="#ch2">一票は三つのことを同時に決めている</a></li>
-    <li><a href="#ch3">一つの政党であるために、政策の一致は要らない</a></li>
-    <li><a href="#ch4">なぜ看板は大きくなるのか</a></li>
-    <li><a href="#ch5">同じ力学は、野党の側でも働いた</a></li>
-    <li><a href="#ch6">検証：一本化は何を変え、何を変えなかったか</a></li>
-    <li><a href="#ch7">看板の内側は、どこで決まっているのか</a></li>
-    <li><a href="#ch8">縛るのではなく、見えるようにする</a></li>
-  </ol>
-</nav>
-
-<section id="ch1">
-  <h2 class="chapter"><span class="num">01</span> 二人の議員と、一つの看板</h2>
-
-  <p>2026 年 6 月 30 日、衆議院本会議。国旗損壊罪を新設する刑法改正案の採決を前に、一人の自民党議員が議場を出た。岩屋毅。石破内閣で外務大臣を務めた当選 11 回のベテランである。 <a class="ref" href="#n1">[1]</a></p>
-
-  <p>棄権の理由を、本人はこう説明している。国旗を尊重する意識は自然な形で育まれるべきもので、刑罰で強制されるべきではない。党として決めた以上、所属議員として反対はしない。しかし積極的に賛成することもできない。 <a class="ref" href="#n1">[1]</a></p>
-
-  <p>この法案を推し進めたのは、彼自身が所属する自民党だった。総裁は高市早苗首相。法案は同日、可決されている。</p>
-
-  <p>ここで論じたいのは、二人のどちらが正しいかではない。次の一点だけである。 2026 年 2 月 8 日の総選挙で、奈良 2 区の有権者は高市氏に、大分 3 区の有権者は岩屋氏に投票した。二人はそれぞれ 11 回目の当選を果たした。同じ「自民党公認」という四文字を掲げて。 <a class="ref" href="#n2">[2]</a></p>
-
-  <p class="pull">では、二つの選挙区の有権者は、同じものを選んだのだろうか。</p>
-
-  <p>本稿の主張は単純である。政党のラベルは、有権者の選好を議席に翻訳する装置だ。その装置の解像度がいま下がっている。そしてそれは、特定の政党の体質の問題ではなく、法制度が中身の一致を求めておらず、選挙制度が看板を大きくする方向に働き、党内組織がその多様性を吸収してきたことの、複合的な帰結である。以下、順に検討する。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch2">
-  <h2 class="chapter"><span class="num">02</span> 一票は三つのことを同時に決めている</h2>
-
-  <p>小選挙区に投じられる一票は、分離できない三つの選択を同時に行っている。第一に、候補者個人を選ぶこと。第二に、その候補者が属する政党を選ぶこと。第三に、その政党が構成する政権を選ぶこと。用紙に書けるのは一つの名前だけであり、三つを別々に表明する手段はない。</p>
-
-  <p>政党の内部が均質であれば、この三つはほぼ一致する。候補者を支持することは政党を支持することであり、政党を支持することは政権の方向を支持することだからだ。ラベルは中身を正確に示し、有権者は名前を見ただけで残りを推測できる。政党という制度が果たしてきた最大の機能は、この推測を可能にする情報の圧縮にある。</p>
-
-  <p>問題は、内部が不均質な場合である。このとき票は候補者に投じられ、議席として党に渡り、党の意思決定のなかで一議席として数えられる。奈良 2 区で投じられた票と、大分 3 区で投じられた票は、党内では等価な一票になる。国旗損壊罪に賛成する有権者の票も、反対する有権者の票も、同じ「自民党の議席」に合流する。</p>
-
-  <p>その先で、票が何を意味していたのかを解釈する権限は、有権者の側にはない。自分の一票が何に賛成し、何に反対したことになるのかは、投票日ではなく、その後の党内調整と採決によって事後的に確定する。委任の内容が、委任の時点では確定していないのである。</p>
-
-  <p class="pull">有権者は投票日に選択を終える。しかしその選択が何を意味したのかは、採決の日にしか分からない。</p>
-
-  <p>6 月 30 日の議場で起きたことは、この構造がまれに可視化された瞬間だった。ふつう、看板の内側の距離は外から見えない。見えたのは、一人の議員が退場という手段を選んだからである。</p>
-
-  <p>ここから二つの問いが出てくる。なぜ看板の中身は揃っていないままでいられるのか。そして、揃っていないことが、なぜ問題として扱われてこなかったのか。前者は法と制度の問題であり、後者は党内組織の問題である。順に見ていく。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch3">
-  <h2 class="chapter"><span class="num">03</span> 一つの政党であるために、政策の一致は要らない</h2>
-
-  <p>看板の中身が揃っていない理由は、法制度の側から見ると単純である。揃えることを、誰も求めていない。</p>
-
-  <p>日本国憲法に、政党という語を直接定義する条文は存在しない。政党の結成・加入・脱退は、憲法 21 条 1 項が保障する「集会、結社…の自由」の一環として理解されている。 <a class="ref" href="#n3">[3]</a> 憲法のレベルでは、政党を結成する条件として政策や理念の統一性を求める規定はない。</p>
-
-  <p>この建付けは、政党に特別の法的地位を与える個別法にも引き継がれている。政党助成法 2 条 1 項は、「政党」を次のいずれかに該当する政治団体と定義する。第一に、所属する衆議院議員または参議院議員を 5 人以上有すること。第二に、直近の衆議院議員総選挙または参議院議員通常選挙において、小選挙区・比例代表いずれかの得票総数が有効投票総数の 100 分の 2 以上であること。 <a class="ref" href="#n4">[4]</a></p>
-
-  <blockquote class="law">
-    <p>要件は、所属国会議員数と得票率という定量的な基準のみである。党の綱領や政策内容の同一性・一貫性を求める文言は、どこにも存在しない。届出に際して綱領等の文書提出は求められるが（同法 5 条 2 項）、これは届出書類であって、政策の統一性を資格要件とするものではない。公職選挙法上の政党要件についても、同様に議員数・得票率という定量基準が採用されている。</p>
-    <cite>政党助成法 2 条 1 項・ 5 条 2 項、公職選挙法上の政党要件 <a class="ref" href="#n4">[4]</a></cite>
-  </blockquote>
-
-  <p>したがって、ある政治団体が「一つの政党」として扱われるか否かは、その構成員の政策的立場が一致しているかどうかとは無関係に決まる。政策の多様性を抱えたまま一つの政党であり続けることは、現行法制の要件充足という観点からは、何ら特別な問題を生じさせない。</p>
-
-  <figure class="diagram">
-    <figcaption>一つの政党の中に複数の政策的立場が同居できる法的構造</figcaption>
-    <div class="svgwrap">
-    <svg viewBox="0 0 720 250" role="img" aria-labelledby="dgmTitle dgmDesc">
-      <title id="dgmTitle">一つの政党の中に複数の政策的立場が同居できる法的構造</title>
-      <desc id="dgmDesc">政党という一つの枠を表す破線の外枠の中に、防衛政策・経済政策それぞれで対立する二つの立場を示す四つの箱が並ぶ。外枠の下には、政党としての法的要件が議員数と得票率のみである旨の注記があり、右側には、この多様性を組織的に担ってきた派閥が、政治資金規正法上の別法人として矢印でつながれている。</desc>
-      <rect class="dgm-frame" x="24" y="20" width="470" height="176" rx="10"/>
-      <text class="dgm-grp" x="44" y="44">一つの政治団体（法律上の「政党」）</text>
-      <rect class="dgm-chip dgm-chipL" x="44" y="60" width="205" height="46" rx="6"/>
-      <text class="dgm-chipT" x="146" y="80">防衛政策</text>
-      <text class="dgm-chipS" x="146" y="99">改憲・防衛強化派</text>
-      <rect class="dgm-chip dgm-chipR" x="269" y="60" width="205" height="46" rx="6"/>
-      <text class="dgm-chipT" x="371" y="80">防衛政策</text>
-      <text class="dgm-chipS" x="371" y="99">慎重・護憲派</text>
-      <rect class="dgm-chip dgm-chipL" x="44" y="118" width="205" height="46" rx="6"/>
-      <text class="dgm-chipT" x="146" y="138">経済政策</text>
-      <text class="dgm-chipS" x="146" y="157">積極財政派</text>
-      <rect class="dgm-chip dgm-chipR" x="269" y="118" width="205" height="46" rx="6"/>
-      <text class="dgm-chipT" x="371" y="138">経済政策</text>
-      <text class="dgm-chipS" x="371" y="157">緊縮財政派</text>
-      <text class="dgm-note" x="44" y="182">法的要件（政党助成法 2 条）：議員数 5 人以上 または 得票率 2% 以上 ─ 政策の一致は不要</text>
-      <path class="dgm-arrow" d="M494 108 h34"/>
-      <path class="dgm-arrowhead" d="M528 108 l-10 -6 v12 z"/>
-      <rect class="dgm-side" x="538" y="66" width="150" height="84" rx="8"/>
-      <text class="dgm-sideT" x="613" y="94">派閥</text>
-      <text class="dgm-sideS" x="613" y="114">政治資金規正法上の</text>
-      <text class="dgm-sideS" x="613" y="130">別法人として</text>
-      <text class="dgm-sideS" x="613" y="146">資金・人事を担う</text>
-    </svg>
-    </div>
-  </figure>
-
-  <p>内部の運営についても同じことが言える。最高裁判所第三小法廷は 1988 年 12 月 20 日の判決（いわゆる共産党袴田事件）において、政党を「政治上の信条、意見等を共通にする者が任意に結成する政治結社であって、内部的には、通常、自律的規範を有し、その成員に対して政治的忠誠を要求し、あるいは一定の統制を施すなどの自治権能を有するもの」と位置づけた。そのうえで、政党が党員に対して行った処分は、一般市民法秩序と直接の関係を有しない内部的な問題にとどまる限り、党内の自律的な手続に則った適正な運用がなされている限りにおいて、司法審査の対象にならないと判示している。 <a class="ref" href="#n5">[5]</a></p>
-
-  <p>どのような政策的立場の議員を党内に抱えるか、党内でどう意見を調整するかは、政党自身の自律的な規範に委ねられている。国家機関が介入すべき事柄として扱われていない領域なのである。</p>
-
-  <p>そして、党の方針に沿った表決を所属議員に事実上求める「党議拘束」も、法律に明文の根拠を持つ制度ではない。これは各政党が党則等に基づいて自律的に運用している内部規律であり、法律上の用語ですらない。憲法 51 条は「両議院の議員は、議院で行つた演説、討論又は表決について、院外で責任を問はれない」と定めるが、これは国家権力による議院内活動への事後的な責任追及を禁じたものであって、政党という私的結社が党内手続で構成員に規律を課すことまでを禁じる趣旨ではないと理解されている。 <a class="ref" href="#n6">[6]</a> 生命倫理に関わる法案などでは、党議拘束を外して議員個人の判断に委ねる自由投票の運用も行われてきた。</p>
-
-  <p>この整理を踏まえると、冒頭の場面の意味がはっきりする。「党として決めた以上、所属議員として反対はしない。しかし積極的に賛成することもできない」という岩屋氏の説明は、法的な義務についての発言ではない。党内規律に対する応答である。そして退場は、法が禁じていない選択肢のなかで、彼が取りうる最も強い意思表示だった。</p>
-
-  <p class="pull">看板の均質性を保証する仕組みは、法のどこにも存在しない。ラベルが中身を表しているかどうかは、制度の保証ではなく、政党の慣行に依存している。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch4">
-  <h2 class="chapter"><span class="num">04</span> なぜ看板は大きくなるのか</h2>
-
-  <p>法が一致を求めないことと、実際に看板が大きくなることは、別の事柄である。前者は可能性の条件にすぎない。看板が中身より大きくなるのは、制度がそれを合理的な戦略にしているためである。</p>
-
-  <p>出発点は結党の経緯にある。 1955 年 11 月 15 日、保守勢力であった自由党と日本民主党が合併して自民党が結成された。いわゆる保守合同である。この合流は、同年の総選挙で日本社会党が勢力を伸ばし、左右に分裂していた社会党の統一が実現したことへの対抗という政治的事情を主な背景としており、両党のあいだにあった政策的な立場の違いが、合併に先立って解消されていたわけではない。 <a class="ref" href="#n7">[7]</a> 自民党は当初から、政策の一致ではなく勢力の結集として出発している。</p>
-
-  <p>次に、選挙制度がこの構造を組織として固定した。 1994 年の改革以前、衆議院議員選挙は一つの選挙区からおおむね 2 名から 5 名が当選する中選挙区制だった。この制度の下で自民党が国会の過半数を確保するには、同一選挙区に複数の公認候補を擁立する必要がある。ところが、政党名だけでは同じ党の候補者同士を区別できない。</p>
-
-  <p>そこで、候補者ごとに異なる資金源と支援組織を持つ派閥が、党内で候補者を差別化し、選挙資金や人事の配分を担う機能を持つようになったとされる。 <a class="ref" href="#n8">[8]</a> 派閥は、政治資金規正法上、党本部とは別個の政治団体として届出・会計処理を行う法主体として扱われてきた。</p>
-
-  <p>ここで見落とされがちな点がある。この制度の下では、<strong>有権者は「自民党のなかのどの系譜か」を投票で選ぶことができた</strong>。同じ選挙区に並ぶ複数の自民党候補は、それぞれ異なる派閥に属し、異なる政策的傾向を代表していたからである。看板の内側は、選挙の対象だった。</p>
-
-  <p>1994 年に成立した政治改革関連法により、衆議院議員選挙は中選挙区制から小選挙区比例代表並立制へ移行した。改革の目的の一つは、候補者個人や派閥を単位とした選挙から、政党や政策を単位とした選挙への転換にあったとされる。 <a class="ref" href="#n9">[9]</a> 小選挙区は当初 300 、その後の区割り改定を経て現在は 289 である。</p>
-
-  <p>移行の帰結は非対称だった。選挙は政党単位になった。しかし党内の政策的多元性は解消されなかった。有権者は看板を選ぶ手段を得た代わりに、内側を選ぶ手段を失ったのである。</p>
-
-  <p>そして新しい制度は、看板をさらに大きくする方向に働いた。各選挙区で当選するのは一人、次点以下の票は議席に反映されない。この方式のもとでは、政党の数は選挙区ごとに二つへ収斂していく傾向がある。政治学でデュヴェルジェの法則と呼ばれてきた経験則だ。勝てそうにない候補への投票は死票になるため、有権者は次善の選択に流れ、候補者や政党の側も事前に競合を避ける。</p>
-
-  <aside class="side">
-    <h3>包括政党（ catch-all party ）</h3>
-    <p>特定の階級や信条に立脚した「大衆統合政党」に代わり、支持層を限定せず幅広い有権者に訴える政党類型。オットー・キルヒハイマーが 1960 年代に定式化した。イデオロギー的な純度を下げ、獲得できる票の幅を最大化する戦略であり、多数決型の選挙制度と親和性が高い。</p>
-  </aside>
-
-  <p>結果として、政党にとっては内部に多様性を抱え込むことが合理的になる。信条の違いは党内の調整で処理し、対外的には一枚の看板で戦う。分裂すれば両方が落選し、同居すれば片方は当選する。制度が課すこの計算の前では、思想の一貫性は高くつく贅沢になる。</p>
-
-  <p>この増幅作用は、数字にはっきり表れる。直近四回の総選挙における自民党の得票率と、小選挙区での議席の関係を並べる。</p>
-
-  <figure class="data">
-    <figcaption>自民党の得票率と小選挙区議席（第 48 〜 51 回衆院選、小選挙区定数 289 ）</figcaption>
-    <div class="scroll">
-      <table>
-        <thead>
-          <tr><th>総選挙</th><th>比例得票率</th><th>小選挙区得票率</th><th>小選挙区議席</th><th>議席率</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>2017 年（第 48 回）</td><td class="num">33.28%</td><td class="num">47.82%</td><td class="num">218</td><td><div class="barcell"><span class="minibar"><span style="width:75.4%"></span></span><span class="num">75.4%</span></div></td></tr>
-          <tr><td>2021 年（第 49 回）</td><td class="num">34.66%</td><td class="num">48.08%</td><td class="num">189</td><td><div class="barcell"><span class="minibar"><span style="width:65.4%"></span></span><span class="num">65.4%</span></div></td></tr>
-          <tr><td>2024 年（第 50 回）</td><td class="num">26.73%</td><td class="num">38.46%</td><td class="num">132</td><td><div class="barcell"><span class="minibar"><span style="width:45.7%"></span></span><span class="num">45.7%</span></div></td></tr>
-          <tr class="focus"><td>2026 年（第 51 回）</td><td class="num">36.72%</td><td class="num">49.23%</td><td class="num">255</td><td><div class="barcell"><span class="minibar"><span style="width:88.2%"></span></span><span class="num">88.2%</span></div></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </figure>
-
-  <p>2026 年 2 月、自民党は比例代表で 36.72% の票を得て、小選挙区では 289 議席中 255 議席、割合にして 88.2% を占めた。比例区で自民党と書いた有権者は三人に一人強である。それが小選挙区では九割近い議席になる。</p>
-
-  <p>ただし、この表から「制度は常に自民党を勝たせる」という結論を引き出すことはできない。 2024 年の同党は比例 26.73% 、小選挙区議席 132 、議席率 45.7% にとどまり、与党は 15 年ぶりに過半数を失った。制度が増幅するのは特定の政党ではなく、<strong>相対的にまとまっている側</strong>である。この二回のあいだに何が起きたのかは、第 6 章で検討する。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch5">
-  <h2 class="chapter"><span class="num">05</span> 同じ力学は、野党の側でも働いた</h2>
-
-  <p>ここまでの議論を「自民党という包括政党の問題」として読むことはできる。しかし 2026 年の政党再編は、それが一党の体質ではないことを示した。</p>
-
-  <p>2026 年 1 月 16 日、立憲民主党の野田佳彦代表と公明党の斉藤鉄夫代表が合流を発表し、新党の名称を「中道改革連合」（略称「中道」）と公表した。 22 日の結党大会で両氏が共同代表に就任し、 2 月 8 日投開票の総選挙に向けて 227 人の一次公認を決めている。 <a class="ref" href="#n10">[10]</a></p>
-
-  <p>注目すべきは綱領と基本政策の中身である。新党は、存立危機事態における自衛権の行使を合憲と明記し、安全性の確認と地元合意を条件に原発の再稼働を認めた。憲法改正論議の深化も掲げている。 <a class="ref" href="#n11">[11]</a> それまで立憲民主党が掲げてきた安保法制の違憲部分の廃止や、原発ゼロ社会の早期実現という方針は、新しい看板には引き継がれなかった。</p>
-
-  <p>これを変節として非難するのは容易だが、あまり生産的ではない。選挙区で一人しか当選しない制度のもとで、中道の票を分け合っていた二つの政党が合流するのは、むしろ制度が推奨する合理的な行動である。第 3 章で見たとおり、それを妨げる法的な要件も存在しない。第 4 章で見た力学が、そのまま反対側でも作動したにすぎない。</p>
-
-  <p class="pull">看板が中身より大きくなるのは、政党の性格ではなく、法と選挙制度の帰結である。</p>
-
-  <p>だが有権者の側から見れば、事情は異なる。前回の総選挙で原発ゼロを理由に立憲民主党に投じた人の一票は、今回は別の意味を持つ看板に吸収される。公明党を長く支持してきた人の一票についても同じことが言える。どちらの支持者も、自分の選好が新しい看板のどこに位置づけられたのかを、綱領を読んで事後に確認するほかない。</p>
-
-  <p>結果として、中道改革連合は 49 議席、比例得票率 18.23% を得た。 <a class="ref" href="#n2">[2]</a> この数字の評価は本稿の主題ではない。重要なのは、看板の統合が政策の希釈をともなったという事実が、自民党についてだけでなく、その対抗勢力についても観察されたことである。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch6">
-  <h2 class="chapter"><span class="num">06</span> 検証：一本化は何を変え、何を変えなかったか</h2>
-
-  <p>「野党が候補者を一本化すれば議席の配分は変わる」という主張は、しばしば処方箋として語られる。これは検証可能な命題である。日本は近年、対照的な二つの実例を持っている。</p>
-
-  <p>2021 年の総選挙では、立憲民主党・共産党・れいわ新選組・社民党の 4 党が全 289 選挙区の 75% にあたる 217 選挙区で候補者を一本化し、およそ半数の 142 選挙区で与党候補との一騎打ちが実現した。 <a class="ref" href="#n12">[12]</a> 2026 年の総選挙では、野党間の一本化や共闘はほとんど行われず、各党が独自の選挙戦を展開した。中道改革連合の結成は、選挙協力ではなく合流という別の形をとっている。 <a class="ref" href="#n2">[2]</a></p>
-
-  <figure class="data">
-    <figcaption>自民党の小選挙区得票率と獲得議席：野党が一本化した 2021 年と、しなかった 2026 年</figcaption>
-    <div class="scroll">
-      <table>
-        <thead>
-          <tr><th>比較項目</th><th>2021 年</th><th>2026 年</th><th>差</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>野党の候補一本化</td><td>217 選挙区</td><td>ほぼ無し</td><td>—</td></tr>
-          <tr><td>自民の小選挙区得票率</td><td class="num">48.08%</td><td class="num">49.23%</td><td class="num">+1.15 pt</td></tr>
-          <tr class="focus"><td>自民の小選挙区議席</td><td class="num">189</td><td class="num">255</td><td class="num">+66</td></tr>
-          <tr><td>自民の総議席</td><td class="num">261</td><td class="num">316</td><td class="num">+55</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </figure>
-
-  <p>自民党の小選挙区得票率は 48.08% から 49.23% へ、 1.15 ポイントしか動いていない。同じ期間に小選挙区の議席は 189 から 255 へ、 66 議席増えた。得票の変化に対して議席の変化が著しく大きい。制度が翻訳の段階で何を増幅しているかが、この対比によく表れている。</p>
-
-  <p>もっとも、この差をすべて一本化の有無に帰することはできない。 2026 年には参政党が 15 議席・比例 7.44% 、国民民主党が 28 議席・比例 9.73% を得ており、対抗勢力の分立そのものが前回と異なる。投票率も 56.26% と 2.41 ポイント上昇した。 <a class="ref" href="#n2">[2]</a> 政党の再編、争点の変化、候補者個人の事情も加わる。言えるのは、対抗側の集約度が議席配分に大きく効くという方向性までである。</p>
-
-  <p>そのうえで、本稿の主題にとって重要なのは次の点である。<strong>候補者の一本化は、議席の翻訳効率を改善するが、看板の解像度は改善しない。</strong></p>
-
-  <p>統一候補は、安全保障政策で対立する複数の政党の支持者から票を集める。当選後、その議員が何を代表しているのかは、投票の時点では確定していない。これは第 2 章で見た構図とまったく同じである。むしろ、集約が進むほど一つの看板が抱える信条の幅は広がり、委任の内容はさらに曖昧になりうる。</p>
-
-  <p>つまり、包括政党は解決すべき病理ではなく、多数決型の制度がもたらす構造的な帰結である。そして一本化はその帰結を、反対側に複製する。私たちが問うべきなのは、どちらの看板が大きいかではない。看板の内側を、有権者が投票日の時点で見られるかどうかである。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch7">
-  <h2 class="chapter"><span class="num">07</span> 看板の内側は、どこで決まっているのか</h2>
-
-  <p>第 4 章で見たとおり、中選挙区制の時代には、有権者は同一政党のどの系譜を支持するかを投票で表明できた。小選挙区制への移行はその手段を失わせた。ではその選択は、消えてしまったのだろうか。</p>
-
-  <p>消えてはいない。移っただけである。</p>
-
-  <p>自民党総裁選挙は、党則に基づき国会議員および党員・党友の投票によって総裁を選出する、あくまで党内部の手続である。しかし自民党が衆参両院で多数を占める状況下では、総裁に選出された者が国会の首相指名選挙で事実上首相に選ばれることになる。党内の手続が、国の行政府の長を実質的に決める。</p>
-
-  <p>政治学では、複数政党による自由な選挙が行われているにもかかわらず特定の一政党が長期にわたり政権を維持し続ける政党制を「一党優位政党制」と呼ぶ。イタリアの政治学者ジョヴァンニ・サルトーリが提唱した概念であり、 1955 年から 1993 年までのいわゆる 55 年体制期の自民党は、その典型例として位置づけられてきた。この時期については、党内における実質的な権力形成——誰が総裁・首相になり、どの政策的立場が優先されるか——が、総裁選出過程における派閥間の競争を通じて行われてきたとする分析が示されている。 <a class="ref" href="#n13">[13]</a></p>
-
-  <aside class="side">
-    <h3>この節の位置づけ</h3>
-    <p>一党優位政党制に関する記述は政治学上の学説・分析であり、法律や判例によって確立した事実ではない。その評価や機能については論者によって見解が分かれうる。第 3 章で整理した政党の法的要件・内部自律性に関する記述（確立した事実）とは、区別して読まれる必要がある。</p>
-  </aside>
-
-  <p>この分析を前提とすれば、有権者やメディアが党内の政策的多様性を格別に問題視してこなかった背景も見えてくる。党内の総裁選挙や派閥間の力学が、政党間競争が本来担うはずの政策選択・指導者選択の機能を、一定程度代替してきたという実態上の事情である。看板の内側を選ぶ競争は、なくなったのではなく、選挙区から党内へ場所を変えた。</p>
-
-  <p>そして、その場に参加できるのは、国会議員と党員・党友に限られる。</p>
-
-  <p>この構造が過去のものではないことは、直近の経緯が示している。 2023 年から 2024 年にかけて発覚した自民党派閥の政治資金パーティー収入をめぐる問題では、複数の派閥所属議員が政治資金規正法違反の罪で立件され、 2024 年 1 月から 4 月にかけて、麻生派を除く主要派閥（岸田派・安倍派・二階派など）が解散を決定した。 <a class="ref" href="#n14">[14]</a> だが 2025 年から 2026 年にかけては、旧派閥を軸とした議員グループが「政策集団」や「研究会」の名称で相次いで発足しており、派閥に類似した機能を果たす組織が党内に存続していることが報じられている。 <a class="ref" href="#n15">[15]</a></p>
-
-  <p>名称は変わった。政治資金規正法上の位置づけも変わった。しかし、党内の政策的・人的なまとまりが、党の意思決定と人事に影響を及ぼす構造そのものは残っている。</p>
-
-  <p class="pull">看板の内側を選ぶ競争は、消えたのではない。有権者が参加できない場所へ移った。</p>
-</section>
-
-<hr class="divider">
-
-<section id="ch8">
-  <h2 class="chapter"><span class="num">08</span> 縛るのではなく、見えるようにする</h2>
-
-  <p>ひとつの極端な案から考えてみたい。候補者の政策位置を数値化し、一定以上離れた者どうしは同一政党の公認を受けられない、と法で定める。看板と中身の乖離を、入口で禁じる方法である。</p>
-
-  <p>この案は採用できない。理由は三つある。</p>
-
-  <p>第一に、政党の公認は結社の自由の核心にある。第 3 章で見たとおり、最高裁は政党の内部運営を「自律的規範」の領域として位置づけ、司法審査から一定の距離を置いた。 <a class="ref" href="#n5">[5]</a> 国家が思想的な距離を理由に公認を制限する制度は、この構造と正面から衝突する。第二に、思想は連続的であり、どこに閾値を引くかは本質的に恣意的である。第三に、そして最も重い理由として、政治家の思想を測定し公認資格を判定する権限を政府が持つ制度は、それ自体が濫用の対象になる。</p>
-
-  <p>だが、この案が捉えようとした問題は本物である。景品表示法が企業の不当表示を禁じるのは、消費者が中身を確かめられないからだ。政治において不足しているのも、禁止規定ではなく、中身を確かめる手段の方である。</p>
-
-  <p>そして測定の技術は、すでに存在する。東京大学谷口研究室と朝日新聞社の共同調査（ UTAS ）は 2003 年から国政選挙のたびに候補者調査と有権者調査を実施し、共通の設問によって両者の政策位置を直接比較できる形で公開してきた。 <a class="ref" href="#n16">[16]</a> 報道各社が選挙のたびに提供するボートマッチも、同じ発想に立つ。次のような「成分表示」は、技術的にはすでに可能な範囲にある。</p>
-
-  <div class="label-card">
-    <div class="cap">政策位置の表示例</div>
-    <div class="row">
-      <div class="txt"><span>憲法改正</span><span>賛成寄り</span></div>
-      <div class="bar"><span class="fill" style="width:85%"></span></div>
-    </div>
-    <div class="row">
-      <div class="txt"><span>防衛力の強化</span><span>積極寄り</span></div>
-      <div class="bar"><span class="fill" style="width:90%"></span></div>
-    </div>
-    <div class="row">
-      <div class="txt"><span>財政運営</span><span>拡張寄り</span></div>
-      <div class="bar"><span class="fill" style="width:70%"></span></div>
-    </div>
-    <div class="row">
-      <div class="txt"><span>所属政党の平均との距離</span><span>党内で近い</span></div>
-      <div class="bar"><span class="fill" style="width:25%"></span></div>
-    </div>
-    <p class="foot">表示形式を示すための架空の例であり、特定の政治家の実測値ではない。 UTAS などの候補者調査は、これに近い情報を実際に公開している。</p>
+<main class="wrap">
+
+<div class="toolbar-container">
+  <div class="toolbar">
+    <button id="expandAll" type="button">すべて開く</button>
+    <button id="collapseAll" type="button">すべて閉じる</button>
   </div>
+</div>
 
-  <p>足りないのは測定そのものではなく、その位置づけである。候補者調査への回答は任意であり、参照されるのは選挙期間の数日に限られ、当選後の投票行動とは接続されていない。有権者が看板の内側を見られるのは、投票日ではなく、退場が起きた採決の日だけだ、という第 2 章の状態はここから生まれている。</p>
+<div id="accordion">
 
-  <p>法で縛らずに解像度を上げる方法として、少なくとも三つの方向がある。</p>
+<section class="acc-item" id="ch1" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">1</span>
+    <span class="title">二人の議員と、一つの看板</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>2026 年 6 月 30 日、衆議院本会議。国旗損壊罪を新設する刑法改正案の採決を前に、一人の自民党議員が議場を出た。岩屋毅。石破内閣で外務大臣を務めた当選 11 回のベテランである。 <a class="ref" href="#n1">[1]</a></p>
 
-  <ol class="steps">
-    <li><span class="t">公認の条件として、政策位置の開示を求める</span>国家が課すのではなく、政党が自らの規律として、公認候補に主要争点への回答と公表を求める。第 3 章で見たとおり、党内の運営は政党の自律に委ねられている。これは法改正を要さず、党の判断だけで明日から実行できる領域である。</li>
-    <li><span class="t">議員個人の投票行動を、継続的に追える形で公開する</span>本会議や委員会での賛否、棄権や欠席の記録が、議員ごとに時系列で参照できれば、公約と行動の一致は選挙のたびに検証可能になる。退場という劇的な行動がなくとも、看板の内側の距離は数字として現れる。</li>
-    <li><span class="t">有権者の側が、党名ではなく位置で読む</span>情報が公開されても、参照されなければ制度は変わらない。政党名という圧縮された情報を解凍して読む習慣は、有権者が自分の一票の宛先を確かめるための、最も直接的な手段である。</li>
-  </ol>
+<p>棄権の理由を、本人はこう説明している。国旗を尊重する意識は自然な形で育まれるべきもので、刑罰で強制されるべきではない。党として決めた以上、所属議員として反対はしない。しかし積極的に賛成することもできない。 <a class="ref" href="#n1">[1]</a></p>
 
-  <p>これらはいずれも劇的ではない。選挙制度の設計を変えるわけでも、政党を分割するわけでもない。ただ、一票が何に委任されたのかを、投票の前に確認できる状態へ少しずつ近づける方法である。</p>
+<p>この法案を推し進めたのは、彼自身が所属する自民党だった。総裁は高市早苗首相。法案は同日、可決されている。</p>
 
-  <p>冒頭の問いに戻る。奈良 2 区と大分 3 区の有権者は、同じものを選んだのか。答えは、同じ看板を選んだが、同じ中身を選んだわけではない、というものになる。そのこと自体は、政党内に異論が存在するという意味で、むしろ健全である。異論を抱えられる政党は、それだけ幅広い有権者を代表しうる。</p>
+<p>ここで論じたいのは、二人のどちらが正しいかではない。次の一点だけである。 2026 年 2 月 8 日の総選挙で、奈良 2 区の有権者は高市氏に、大分 3 区の有権者は岩屋氏に投票した。二人はそれぞれ 11 回目の当選を果たした。同じ「自民党公認」という四文字を掲げて。 <a class="ref" href="#n2">[2]</a></p>
 
-  <p class="pull">問題は、異論があることではない。異論の所在が、投票日には見えないことである。</p>
+<p class="pull">では、二つの選挙区の有権者は、同じものを選んだのだろうか。</p>
 
-  <p>民主主義において投票は、支持の表明であると同時に、権限の委任である。委任の内容が委任の時点で分からないなら、それは選択と呼ぶには曖昧すぎる。かつて中選挙区制の下では、有権者は看板の内側まで含めて選ぶことができた。その手段が失われたまま、内側の多様性だけが残っている。看板の解像度を上げることは、政党を弱めることではない。有権者の選択を、選択として成立させるための条件である。</p>
+<p>本稿の主張は単純である。政党のラベルは、有権者の選好を議席に翻訳する装置だ。その装置の解像度がいま下がっている。そしてそれは、特定の政党の体質の問題ではなく、法制度が中身の一致を求めておらず、選挙制度が看板を大きくする方向に働き、党内組織がその多様性を吸収してきたことの、複合的な帰結である。以下、順に検討する。</p>
+    </div>
+  </div>
 </section>
 
-<footer class="notes">
-  <h2>注・出典</h2>
-  <ol>
-    <li id="n1">国旗損壊罪法案の衆院可決と岩屋毅氏の採決棄権について。<a href="https://www.jiji.com/jc/article?k=2026063000124&amp;g=pol">時事ドットコム「『国旗損壊罪』衆院通過 全野党が欠席、岩屋前外相棄権」</a>、<a href="https://www.tokyo-np.co.jp/article/498464">東京新聞「岩屋毅前外相『国旗損壊罪』法案採決を棄権 コメント全文」</a>、<a href="https://www.nikkei.com/article/DGXZQOUA307O90Q6A630C2000000/">日本経済新聞「自民党・岩屋前外相が採決棄権 国旗尊重の強制に反対」</a>（いずれも 2026 年 6 月 30 日）。</li>
-    <li id="n2">第 51 回衆議院議員総選挙（ 2026 年 2 月 8 日投開票）の議席数・得票率・投票率、および野党間の共闘状況。<a href="https://ja.wikipedia.org/wiki/%E7%AC%AC51%E5%9B%9E%E8%A1%86%E8%AD%B0%E9%99%A2%E8%AD%B0%E5%93%A1%E7%B7%8F%E9%81%B8%E6%8C%99">「第 51 回衆議院議員総選挙」（ウィキペディア）</a>の集計による。高市早苗氏・岩屋毅氏の当選は各社の開票報道による。第 48 回（ 2017 年）・第 49 回（ 2021 年）・第 50 回（ 2024 年）の数値も、それぞれの総選挙に関する同種の集計による。一次資料としては総務省が公表する選挙関係資料にあたられたい。</li>
-    <li id="n3">日本国憲法 21 条 1 項。</li>
-    <li id="n4">政党助成法 2 条 1 項・ 5 条 2 項（法律第五号、平成 6 年 2 月 4 日）。条文は<a href="https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/houritsu/12819940204005.htm">衆議院ホームページ「法律第五号（平 6 ・ 2 ・ 4 ）」</a>。公職選挙法上の政党要件については<a href="https://www.soumu.go.jp/senkyo/seiji_s/naruhodo02.html">総務省「なるほど！政治資金 政党助成制度」</a>。</li>
-    <li id="n5">最高裁判所第三小法廷判決 昭和 63 年 12 月 20 日、民集 42 巻 10 号 924 頁（いわゆる共産党袴田事件）。</li>
-    <li id="n6">日本国憲法 51 条。党議拘束は法律上の用語ではなく、各政党が党則等に基づき自律的に運用する内部規律である。</li>
-    <li id="n7">保守合同（ 1955 年 11 月 15 日）について。<a href="https://www.nikkei.com/article/DGKKZO79473230Z01C14A1KB2000/">日本経済新聞「 1955 年 11 月 15 日 自由民主党が結党」</a>、およびウィキペディア「保守合同」（ 2026 年 8 月 11 日閲覧）。</li>
-    <li id="n8">中選挙区制下における派閥の機能について。 <a href="https://www.nippon.com/ja/features/c00404/">nippon.com 「選挙制度改革後の自民党」</a>。</li>
-    <li id="n9">1994 年の政治改革四法と小選挙区比例代表並立制の導入について。ウィキペディア「政治改革四法」「小選挙区比例代表並立制」（いずれも 2026 年 8 月 11 日閲覧）。</li>
-    <li id="n10">中道改革連合の名称発表と結党大会について。<a href="https://cdp-japan.jp/news/20260116_0071">立憲民主党「新党名は『中道改革連合』、略称『中道』に」</a>（ 2026 年 1 月 16 日）、<a href="https://www.komei.or.jp/komeinews/p504963/">公明党「中道改革連合が結党大会」</a>。</li>
-    <li id="n11">中道改革連合の綱領・基本政策について。<a href="https://www.jiji.com/jc/article?k=2026011900292&amp;g=pol">時事ドットコム「中道、安保法『合憲』 原発再稼働を限定容認 ― 基本政策」</a>（ 2026 年 1 月 19 日）、<a href="https://www.tokyo-np.co.jp/article/463441">東京新聞 社説「新党『中道改革連合』の政策 安全保障・原発、説明尽くせ」</a>。</li>
-    <li id="n12">2021 年総選挙における野党の候補者一本化の規模について。<a href="https://ja.wikipedia.org/wiki/%E7%AC%AC49%E5%9B%9E%E8%A1%86%E8%AD%B0%E9%99%A2%E8%AD%B0%E5%93%A1%E7%B7%8F%E9%81%B8%E6%8C%99">「第 49 回衆議院議員総選挙」（ウィキペディア）</a>が引く報道による。</li>
-    <li id="n13">一党優位政党制（ジョヴァンニ・サルトーリ）および 55 年体制期の分析について。ウィキペディア「一党優位政党制」（ 2026 年 8 月 11 日閲覧）。政治学上の学説であり、法律・判例により確立した事実ではない。</li>
-    <li id="n14">派閥の政治資金パーティー収入をめぐる問題と主要派閥の解散について。<a href="https://www.nikkei.com/topics/23120300">日本経済新聞トピックス「自民党安倍派の裏金疑惑など派閥のパーティー収入を巡る政治資金問題」</a>、<a href="https://www.kobe-u.ac.jp/ja/news/article/20240226-21790/">神戸大学「自民党派閥の政治資金パーティー裏金事件を問う」</a>（ 2024 年 2 月 26 日）。</li>
-    <li id="n15">派閥的組織の再編について。<a href="https://www.nikkei.com/article/DGXZQOUA21CGV0R20C26A4000000/">日本経済新聞「自民党、派閥禁止の落とし穴 『必要悪』が消えた後のガバナンス」</a>（ 2026 年 4 月）、<a href="https://www.jiji.com/jc/article?k=2026050400264&amp;g=pol">時事ドットコム「自民グループが活発化 人事・総裁選視野に」</a>（ 2026 年 5 月 4 日）。</li>
-    <li id="n16">東京大学谷口研究室・朝日新聞社共同調査（ UTAS ）。 2003 年以降の国政選挙で候補者調査と有権者調査を実施している。<a href="https://www.masaki.j.u-tokyo.ac.jp/utas/utasindex.html">調査ウェブサイト</a>。</li>
-  </ol>
-  <p class="disclaimer">本稿は制度分析にもとづく論考であり、特定の政党・候補者への支持または不支持を呼びかけるものではない。法令・判例・報道により確認できる事実と、政治学上の解釈とは、本文中で区別して記述した。数値は執筆時点（ 2026 年 8 月）に公開されていた情報による。</p>
-  <a class="totop" href="#">↑ ページ先頭へ戻る</a>
+<section class="acc-item" id="ch2" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">2</span>
+    <span class="title">一票は三つのことを同時に決めている</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>小選挙区に投じられる一票は、分離できない三つの選択を同時に行っている。第一に、候補者個人を選ぶこと。第二に、その候補者が属する政党を選ぶこと。第三に、その政党が構成する政権を選ぶこと。用紙に書けるのは一つの名前だけであり、三つを別々に表明する手段はない。</p>
+
+<p>政党の内部が均質であれば、この三つはほぼ一致する。候補者を支持することは政党を支持することであり、政党を支持することは政権の方向を支持することだからだ。ラベルは中身を正確に示し、有権者は名前を見ただけで残りを推測できる。政党という制度が果たしてきた最大の機能は、この推測を可能にする情報の圧縮にある。</p>
+
+<p>問題は、内部が不均質な場合である。このとき票は候補者に投じられ、議席として党に渡り、党の意思決定のなかで一議席として数えられる。奈良 2 区で投じられた票と、大分 3 区で投じられた票は、党内では等価な一票になる。国旗損壊罪に賛成する有権者の票も、反対する有権者の票も、同じ「自民党の議席」に合流する。</p>
+
+<p>その先で、票が何を意味していたのかを解釈する権限は、有権者の側にはない。自分の一票が何に賛成し、何に反対したことになるのかは、投票日ではなく、その後の党内調整と採決によって事後的に確定する。委任の内容が、委任の時点では確定していないのである。</p>
+
+<p class="pull">有権者は投票日に選択を終える。しかしその選択が何を意味したのかは、採決の日にしか分からない。</p>
+
+<p>6 月 30 日の議場で起きたことは、この構造がまれに可視化された瞬間だった。ふつう、看板の内側の距離は外から見えない。見えたのは、一人の議員が退場という手段を選んだからである。</p>
+
+<p>ここから二つの問いが出てくる。なぜ看板の中身は揃っていないままでいられるのか。そして、揃っていないことが、なぜ問題として扱われてこなかったのか。前者は法と制度の問題であり、後者は党内組織の問題である。順に見ていく。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch3" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">3</span>
+    <span class="title">一つの政党であるために、政策の一致は要らない</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>看板の中身が揃っていない理由は、法制度の側から見ると単純である。揃えることを、誰も求めていない。</p>
+
+<p>日本国憲法に、政党という語を直接定義する条文は存在しない。政党の結成・加入・脱退は、憲法 21 条 1 項が保障する「集会、結社…の自由」の一環として理解されている。 <a class="ref" href="#n3">[3]</a> 憲法のレベルでは、政党を結成する条件として政策や理念の統一性を求める規定はない。</p>
+
+<p>この建付けは、政党に特別の法的地位を与える個別法にも引き継がれている。政党助成法 2 条 1 項は、「政党」を次のいずれかに該当する政治団体と定義する。第一に、所属する衆議院議員または参議院議員を 5 人以上有すること。第二に、直近の衆議院議員総選挙または参議院議員通常選挙において、小選挙区・比例代表いずれかの得票総数が有効投票総数の 100 分の 2 以上であること。 <a class="ref" href="#n4">[4]</a></p>
+
+<div class="law">
+  <p>要件は、所属国会議員数と得票率という定量的な基準のみである。党の綱領や政策内容の同一性・一貫性を求める文言は、どこにも存在しない。届出に際して綱領等の文書提出は求められるが（同法 5 条 2 項）、これは届出書類であって、政策の統一性を資格要件とするものではない。公職選挙法上の政党要件についても、同様に議員数・得票率という定量基準が採用されている。</p>
+  <cite>政党助成法 2 条 1 項・ 5 条 2 項、公職選挙法上の政党要件 <a class="ref" href="#n4">[4]</a></cite>
+</div>
+
+<p>したがって、ある政治団体が「一つの政党」として扱われるか否かは、その構成員の政策的立場が一致しているかどうかとは無関係に決まる。政策の多様性を抱えたまま一つの政党であり続けることは、現行法制の要件充足という観点からは、何ら特別な問題を生じさせない。</p>
+
+<figure class="diagram">
+  <figcaption>一つの政党の中に複数の政策的立場が同居できる法的構造</figcaption>
+  <div class="svgwrap">
+  <svg viewBox="0 0 720 250" role="img" aria-labelledby="dgmTitle2 dgmDesc2">
+    <title id="dgmTitle2">一つの政党の中に複数の政策的立場が同居できる法的構造</title>
+    <desc id="dgmDesc2">政党という一つの枠を表す破線の外枠の中に、防衛政策・経済政策それぞれで対立する二つの立場を示す四つの箱が並ぶ。外枠の下には、政党としての法的要件が議員数と得票率のみである旨の注記があり、右側には、この多様性を組織的に担ってきた派閥が、政治資金規正法上の別法人として矢印でつながれている。</desc>
+    <rect class="dgm-frame" x="24" y="20" width="470" height="176" rx="10"/>
+    <text class="dgm-grp" x="44" y="44">一つの政治団体（法律上の「政党」）</text>
+    <rect class="dgm-chip dgm-chipL" x="44" y="60" width="205" height="46" rx="6"/>
+    <text class="dgm-chipT" x="146" y="80">防衛政策</text>
+    <text class="dgm-chipS" x="146" y="99">改憲・防衛強化派</text>
+    <rect class="dgm-chip dgm-chipR" x="269" y="60" width="205" height="46" rx="6"/>
+    <text class="dgm-chipT" x="371" y="80">防衛政策</text>
+    <text class="dgm-chipS" x="371" y="99">慎重・護憲派</text>
+    <rect class="dgm-chip dgm-chipL" x="44" y="118" width="205" height="46" rx="6"/>
+    <text class="dgm-chipT" x="146" y="138">経済政策</text>
+    <text class="dgm-chipS" x="146" y="157">積極財政派</text>
+    <rect class="dgm-chip dgm-chipR" x="269" y="118" width="205" height="46" rx="6"/>
+    <text class="dgm-chipT" x="371" y="138">経済政策</text>
+    <text class="dgm-chipS" x="371" y="157">緊縮財政派</text>
+    <text class="dgm-note" x="44" y="182">法的要件（政党助成法 2 条）：議員数 5 人以上 または 得票率 2% 以上 - 政策の一致は不要</text>
+    <path class="dgm-arrow" d="M494 108 h34"/>
+    <path class="dgm-arrowhead" d="M528 108 l-10 -6 v12 z"/>
+    <rect class="dgm-side" x="538" y="66" width="150" height="84" rx="8"/>
+    <text class="dgm-sideT" x="613" y="94">派閥</text>
+    <text class="dgm-sideS" x="613" y="114">政治資金規正法上の</text>
+    <text class="dgm-sideS" x="613" y="130">別法人として</text>
+    <text class="dgm-sideS" x="613" y="146">資金・人事を担う</text>
+  </svg>
+  </div>
+</figure>
+
+<p>内部の運営についても同じことが言える。最高裁判所第三小法廷は 1988 年 12 月 20 日の判決（いわゆる共産党袴田事件）において、政党を「政治上の信条、意見等を共通にする者が任意に結成する政治結社であって、内部的には、通常、自律的規範を有し、その成員に対して政治的忠誠を要求し、あるいは一定の統制を施すなどの自治権能を有するもの」と位置づけた。そのうえで、政党が党員に対して行った処分は、一般市民法秩序と直接の関係を有しない内部的な問題にとどまる限り、党内の自律的な手続に則った適正な運用がなされている限りにおいて、司法審査の対象にならないと判示している。 <a class="ref" href="#n5">[5]</a></p>
+
+<p>どのような政策的立場の議員を党内に抱えるか、党内でどう意見を調整するかは、政党自身の自律的な規範に委ねられている。国家機関が介入すべき事柄として扱われていない領域なのである。</p>
+
+<p>そして、党の方針に沿った表決を所属議員に事実上求める「党議拘束」も、法律に明文の根拠を持つ制度ではない。これは各政党が党則等に基づいて自律的に運用している内部規律であり、法律上の用語ですらない。憲法 51 条は「両議院の議員は、議院で行つた演説、討論又は表決について、院外で責任を問はれない」と定めるが、これは国家権力による議院内活動への事後的な責任追及を禁じたものであって、政党という私的結社が党内手続で構成員に規律を課すことまでを禁じる趣旨ではないと理解されている。 <a class="ref" href="#n6">[6]</a> 生命倫理に関わる法案などでは、党議拘束を外して議員個人の判断に委ねる自由投票の運用も行われてきた。</p>
+
+<p>この整理を踏まえると、冒頭の場面の意味がはっきりする。「党として決めた以上、所属議員として反対はしない。しかし積極的に賛成することもできない」という岩屋氏の説明は、法的な義務についての発言ではない。党内規律に対する応答である。そして退場は、法が禁じていない選択肢のなかで、彼が取りうる最も強い意思表示だった。</p>
+
+<p class="pull">看板の均質性を保証する仕組みは、法のどこにも存在しない。ラベルが中身を表しているかどうかは、制度の保証ではなく、政党の慣行に依存している。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch4" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">4</span>
+    <span class="title">なぜ看板は大きくなるのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>法が一致を求めないことと、実際に看板が大きくなることは、別の事柄である。前者は可能性の条件にすぎない。看板が中身より大きくなるのは、制度がそれを合理的な戦略にしているためである。</p>
+
+<p>出発点は結党の経緯にある。 1955 年 11 月 15 日、保守勢力であった自由党と日本民主党が合併して自民党が結成された。いわゆる保守合同である。この合流は、同年の総選挙で日本社会党が勢力を伸ばし、左右に分裂していた社会党の統一が実現したことへの対抗という政治的事情を主な背景としており、両党のあいだにあった政策的な立場の違いが、合併に先立って解消されていたわけではない。 <a class="ref" href="#n7">[7]</a> 自民党は当初から、政策の一致ではなく勢力の結集として出発している。</p>
+
+<p>次に、選挙制度がこの構造を組織として固定した。 1994 年の改革以前、衆議院議員選挙は一つの選挙区からおおむね 2 名から 5 名が当選する中選挙区制だった。この制度の下で自民党が国会の過半数を確保するには、同一選挙区に複数の公認候補を擁立する必要がある。ところが、政党名だけでは同じ党の候補者同士を区別できない。</p>
+
+<p>そこで、候補者ごとに異なる資金源と支援組織を持つ派閥が、党内で候補者を差別化し、選挙資金や人事の配分を担う機能を持つようになったとされる。 <a class="ref" href="#n8">[8]</a> 派閥は、政治資金規正法上、党本部とは別個の政治団体として届出・会計処理を行う法主体として扱われてきた。</p>
+
+<p>ここで見落とされがちな点がある。この制度の下では、<strong>有権者は「自民党のなかのどの系譜か」を投票で選ぶことができた</strong>。同じ選挙区に並ぶ複数の自民党候補は、それぞれ異なる派閥に属し、異なる政策的傾向を代表していたからである。看板の内側は、選挙の対象だった。</p>
+
+<p>1994 年に成立した政治改革関連法により、衆議院議員選挙は中選挙区制から小選挙区比例代表並立制へ移行した。改革の目的の一つは、候補者個人や派閥を単位とした選挙から、政党や政策を単位とした選挙への転換にあったとされる。 <a class="ref" href="#n9">[9]</a> 小選挙区は当初 300 、その後の区割り改定を経て現在は 289 である。</p>
+
+<p>移行の帰結は非対称だった。選挙は政党単位になった。しかし党内の政策的多元性は解消されなかった。有権者は看板を選ぶ手段を得た代わりに、内側を選ぶ手段を失ったのである。</p>
+
+<p>そして新しい制度は、看板をさらに大きくする方向に働いた。各選挙区で当選するのは一人、次点以下の票は議席に反映されない。この方式のもとでは、政党の数は選挙区ごとに二つへ収斂していく傾向がある。政治学でデュヴェルジェの法則と呼ばれてきた経験則だ。勝てそうにない候補への投票は死票になるため、有権者は次善の選択に流れ、候補者や政党の側も事前に競合を避ける。</p>
+
+<div class="note">
+  <h3 style="margin-top:0">包括政党（ catch-all party ）</h3>
+  <p>特定の階級や信条に立脚した「大衆統合政党」に代わり、支持層を限定せず幅広い有権者に訴える政党類型。オットー・キルヒハイマーが 1960 年代に定式化した。イデオロギー的な純度を下げ、獲得できる票の幅を最大化する戦略であり、多数決型の選挙制度と親和性が高い。</p>
+</div>
+
+<p>結果として、政党にとっては内部に多様性を抱え込むことが合理的になる。信条の違いは党内の調整で処理し、対外的には一枚の看板で戦う。分裂すれば両方が落選し、同居すれば片方は当選する。制度が課すこの計算の前では、思想の一貫性は高くつく贅沢になる。</p>
+
+<p>この増幅作用は、数字にはっきり表れる。直近四回の総選挙における自民党の得票率と、小選挙区での議席の関係を並べる。</p>
+
+<div class="scroll">
+<table>
+<caption>自民党の得票率と小選挙区議席（第 48 〜 51 回衆院選、小選挙区定数 289 ）</caption>
+<thead>
+  <tr><th>総選挙</th><th class="num">比例得票率</th><th class="num">小選挙区得票率</th><th class="num">小選挙区議席</th><th>議席率</th></tr>
+</thead>
+<tbody>
+  <tr><td>2017 年（第 48 回）</td><td class="num">33.28%</td><td class="num">47.82%</td><td class="num">218</td><td><div class="barcell"><span class="minibar"><span style="width:75.4%"></span></span><span class="num">75.4%</span></div></td></tr>
+  <tr><td>2021 年（第 49 回）</td><td class="num">34.66%</td><td class="num">48.08%</td><td class="num">189</td><td><div class="barcell"><span class="minibar"><span style="width:65.4%"></span></span><span class="num">65.4%</span></div></td></tr>
+  <tr><td>2024 年（第 50 回）</td><td class="num">26.73%</td><td class="num">38.46%</td><td class="num">132</td><td><div class="barcell"><span class="minibar"><span style="width:45.7%"></span></span><span class="num">45.7%</span></div></td></tr>
+  <tr class="focus"><td>2026 年（第 51 回）</td><td class="num">36.72%</td><td class="num">49.23%</td><td class="num">255</td><td><div class="barcell"><span class="minibar"><span style="width:88.2%"></span></span><span class="num">88.2%</span></div></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>2026 年 2 月、自民党は比例代表で 36.72% の票を得て、小選挙区では 289 議席中 255 議席、割合にして 88.2% を占めた。比例区で自民党と書いた有権者は三人に一人強である。それが小選挙区では九割近い議席になる。</p>
+
+<p>ただし、この表から「制度は常に自民党を勝たせる」という結論を引き出すことはできない。 2024 年の同党は比例 26.73% 、小選挙区議席 132 、議席率 45.7% にとどまり、与党は 15 年ぶりに過半数を失った。制度が増幅するのは特定の政党ではなく、<strong>相対的にまとまっている側</strong>である。この二回のあいだに何が起きたのかは、第 6 章で検討する。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch5" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">5</span>
+    <span class="title">同じ力学は、野党の側でも働いた</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ここまでの議論を「自民党という包括政党の問題」として読むことはできる。しかし 2026 年の政党再編は、それが一党の体質ではないことを示した。</p>
+
+<p>2026 年 1 月 16 日、立憲民主党の野田佳彦代表と公明党の斉藤鉄夫代表が合流を発表し、新党の名称を「中道改革連合」（略称「中道」）と公表した。 22 日の結党大会で両氏が共同代表に就任し、 2 月 8 日投開票の総選挙に向けて 227 人の一次公認を決めている。 <a class="ref" href="#n10">[10]</a></p>
+
+<p>注目すべきは綱領と基本政策の中身である。新党は、存立危機事態における自衛権の行使を合憲と明記し、安全性の確認と地元合意を条件に原発の再稼働を認めた。憲法改正論議の深化も掲げている。 <a class="ref" href="#n11">[11]</a> それまで立憲民主党が掲げてきた安保法制の違憲部分の廃止や、原発ゼロ社会の早期実現という方針は、新しい看板には引き継がれなかった。</p>
+
+<p>これを変節として非難するのは容易だが、あまり生産的ではない。選挙区で一人しか当選しない制度のもとで、中道の票を分け合っていた二つの政党が合流するのは、むしろ制度が推奨する合理的な行動である。第 3 章で見たとおり、それを妨げる法的な要件も存在しない。第 4 章で見た力学が、そのまま反対側でも作動したにすぎない。</p>
+
+<p class="pull">看板が中身より大きくなるのは、政党の性格ではなく、法と選挙制度の帰結である。</p>
+
+<p>だが有権者の側から見れば、事情は異なる。前回の総選挙で原発ゼロを理由に立憲民主党に投じた人の一票は、今回は別の意味を持つ看板に吸収される。公明党を長く支持してきた人の一票についても同じことが言える。どちらの支持者も、自分の選好が新しい看板のどこに位置づけられたのかを、綱領を読んで事後に確認するほかない。</p>
+
+<p>結果として、中道改革連合は 49 議席、比例得票率 18.23% を得た。 <a class="ref" href="#n2">[2]</a> この数字の評価は本稿の主題ではない。重要なのは、看板の統合が政策の希釈をともなったという事実が、自民党についてだけでなく、その対抗勢力についても観察されたことである。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch6" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">6</span>
+    <span class="title">検証：一本化は何を変え、何を変えなかったか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>「野党が候補者を一本化すれば議席の配分は変わる」という主張は、しばしば処方箋として語られる。これは検証可能な命題である。日本は近年、対照的な二つの実例を持っている。</p>
+
+<p>2021 年の総選挙では、立憲民主党・共産党・れいわ新選組・社民党の 4 党が全 289 選挙区の 75% にあたる 217 選挙区で候補者を一本化し、およそ半数の 142 選挙区で与党候補との一騎打ちが実現した。 <a class="ref" href="#n12">[12]</a> 2026 年の総選挙では、野党間の一本化や共闘はほとんど行われず、各党が独自の選挙戦を展開した。中道改革連合の結成は、選挙協力ではなく合流という別の形をとっている。 <a class="ref" href="#n2">[2]</a></p>
+
+<div class="scroll">
+<table>
+<caption>自民党の小選挙区得票率と獲得議席：野党が一本化した 2021 年と、しなかった 2026 年</caption>
+<thead>
+  <tr><th>比較項目</th><th>2021 年</th><th>2026 年</th><th>差</th></tr>
+</thead>
+<tbody>
+  <tr><td>野党の候補一本化</td><td>217 選挙区</td><td>ほぼ無し</td><td>-</td></tr>
+  <tr><td>自民の小選挙区得票率</td><td class="num">48.08%</td><td class="num">49.23%</td><td class="num">+1.15 pt</td></tr>
+  <tr class="focus"><td>自民の小選挙区議席</td><td class="num">189</td><td class="num">255</td><td class="num">+66</td></tr>
+  <tr><td>自民の総議席</td><td class="num">261</td><td class="num">316</td><td class="num">+55</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>自民党の小選挙区得票率は 48.08% から 49.23% へ、 1.15 ポイントしか動いていない。同じ期間に小選挙区の議席は 189 から 255 へ、 66 議席増えた。得票の変化に対して議席の変化が著しく大きい。制度が翻訳の段階で何を増幅しているかが、この対比によく表れている。</p>
+
+<p>もっとも、この差をすべて一本化の有無に帰することはできない。 2026 年には参政党が 15 議席・比例 7.44% 、国民民主党が 28 議席・比例 9.73% を得ており、対抗勢力の分立そのものが前回と異なる。投票率も 56.26% と 2.41 ポイント上昇した。 <a class="ref" href="#n2">[2]</a> 政党の再編、争点の変化、候補者個人の事情も加わる。言えるのは、対抗側の集約度が議席配分に大きく効くという方向性までである。</p>
+
+<p>そのうえで、本稿の主題にとって重要なのは次の点である。<strong>候補者の一本化は、議席の翻訳効率を改善するが、看板の解像度は改善しない。</strong></p>
+
+<p>統一候補は、安全保障政策で対立する複数の政党の支持者から票を集める。当選後、その議員が何を代表しているのかは、投票の時点では確定していない。これは第 2 章で見た構図とまったく同じである。むしろ、集約が進むほど一つの看板が抱える信条の幅は広がり、委任の内容はさらに曖昧になりうる。</p>
+
+<p>つまり、包括政党は解決すべき病理ではなく、多数決型の制度がもたらす構造的な帰結である。そして一本化はその帰結を、反対側に複製する。私たちが問うべきなのは、どちらの看板が大きいかではない。看板の内側を、有権者が投票日の時点で見られるかどうかである。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch7" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">7</span>
+    <span class="title">看板の内側は、どこで決まっているのか</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>第 4 章で見たとおり、中選挙区制の時代には、有権者は同一政党のどの系譜を支持するかを投票で表明できた。小選挙区制への移行はその手段を失わせた。ではその選択は、消えてしまったのだろうか。</p>
+
+<p>消えてはいない。移っただけである。</p>
+
+<p>自民党総裁選挙は、党則に基づき国会議員および党員・党友の投票によって総裁を選出する、あくまで党内部の手続である。しかし自民党が衆参両院で多数を占める状況下では、総裁に選出された者が国会の首相指名選挙で事実上首相に選ばれることになる。党内の手続が、国の行政府の長を実質的に決める。</p>
+
+<p>政治学では、複数政党による自由な選挙が行われているにもかかわらず特定の一政党が長期にわたり政権を維持し続ける政党制を「一党優位政党制」と呼ぶ。イタリアの政治学者ジョヴァンニ・サルトーリが提唱した概念であり、 1955 年から 1993 年までのいわゆる 55 年体制期の自民党は、その典型例として位置づけられてきた。この時期については、党内における実質的な権力形成 - 誰が総裁・首相になり、どの政策的立場が優先されるか - が、総裁選出過程における派閥間の競争を通じて行われてきたとする分析が示されている。 <a class="ref" href="#n13">[13]</a></p>
+
+<div class="note">
+  <h3 style="margin-top:0">この節の位置づけ</h3>
+  <p>一党優位政党制に関する記述は政治学上の学説・分析であり、法律や判例によって確立した事実ではない。その評価や機能については論者によって見解が分かれうる。第 3 章で整理した政党の法的要件・内部自律性に関する記述（確立した事実）とは、区別して読まれる必要がある。</p>
+</div>
+
+<p>この分析を前提とすれば、有権者やメディアが党内の政策的多様性を格別に問題視してこなかった背景も見えてくる。党内の総裁選挙や派閥間の力学が、政党間競争が本来担うはずの政策選択・指導者選択の機能を、一定程度代替してきたという実態上の事情である。看板の内側を選ぶ競争は、なくなったのではなく、選挙区から党内へ場所を変えた。</p>
+
+<p>そして、その場に参加できるのは、国会議員と党員・党友に限られる。</p>
+
+<p>この構造が過去のものではないことは、直近の経緯が示している。 2023 年から 2024 年にかけて発覚した自民党派閥の政治資金パーティー収入をめぐる問題では、複数の派閥所属議員が政治資金規正法違反の罪で立件され、 2024 年 1 月から 4 月にかけて、麻生派を除く主要派閥（岸田派・安倍派・二階派など）が解散を決定した。 <a class="ref" href="#n14">[14]</a> だが 2025 年から 2026 年にかけては、旧派閥を軸とした議員グループが「政策集団」や「研究会」の名称で相次いで発足しており、派閥に類似した機能を果たす組織が党内に存続していることが報じられている。 <a class="ref" href="#n15">[15]</a></p>
+
+<p>名称は変わった。政治資金規正法上の位置づけも変わった。しかし、党内の政策的・人的なまとまりが、党の意思決定と人事に影響を及ぼす構造そのものは残っている。</p>
+
+<p class="pull">看板の内側を選ぶ競争は、消えたのではない。有権者が参加できない場所へ移った。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="ch8" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">8</span>
+    <span class="title">縛るのではなく、見えるようにする</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<p>ひとつの極端な案から考えてみたい。候補者の政策位置を数値化し、一定以上離れた者どうしは同一政党の公認を受けられない、と法で定める。看板と中身の乖離を、入口で禁じる方法である。</p>
+
+<p>この案は採用できない。理由は三つある。</p>
+
+<p>第一に、政党の公認は結社の自由の核心にある。第 3 章で見たとおり、最高裁は政党の内部運営を「自律的規範」の領域として位置づけ、司法審査から一定の距離を置いた。 <a class="ref" href="#n5">[5]</a> 国家が思想的な距離を理由に公認を制限する制度は、この構造と正面から衝突する。第二に、思想は連続的であり、どこに閾値を引くかは本質的に恣意的である。第三に、そして最も重い理由として、政治家の思想を測定し公認資格を判定する権限を政府が持つ制度は、それ自体が濫用の対象になる。</p>
+
+<p>だが、この案が捉えようとした問題は本物である。景品表示法が企業の不当表示を禁じるのは、消費者が中身を確かめられないからだ。政治において不足しているのも、禁止規定ではなく、中身を確かめる手段の方である。</p>
+
+<p>そして測定の技術は、すでに存在する。東京大学谷口研究室と朝日新聞社の共同調査（ UTAS ）は 2003 年から国政選挙のたびに候補者調査と有権者調査を実施し、共通の設問によって両者の政策位置を直接比較できる形で公開してきた。 <a class="ref" href="#n16">[16]</a> 報道各社が選挙のたびに提供するボートマッチも、同じ発想に立つ。次のような「成分表示」は、技術的にはすでに可能な範囲にある。</p>
+
+<div class="label-card">
+  <div class="cap">政策位置の表示例</div>
+  <div class="row">
+    <div class="txt"><span>憲法改正</span><span>賛成寄り</span></div>
+    <div class="bar"><span class="fill" style="width:85%"></span></div>
+  </div>
+  <div class="row">
+    <div class="txt"><span>防衛力の強化</span><span>積極寄り</span></div>
+    <div class="bar"><span class="fill" style="width:90%"></span></div>
+  </div>
+  <div class="row">
+    <div class="txt"><span>財政運営</span><span>拡張寄り</span></div>
+    <div class="bar"><span class="fill" style="width:70%"></span></div>
+  </div>
+  <div class="row">
+    <div class="txt"><span>所属政党の平均との距離</span><span>党内で近い</span></div>
+    <div class="bar"><span class="fill" style="width:25%"></span></div>
+  </div>
+  <p class="foot">表示形式を示すための架空の例であり、特定の政治家の実測値ではない。 UTAS などの候補者調査は、これに近い情報を実際に公開している。</p>
+</div>
+
+<p>足りないのは測定そのものではなく、その位置づけである。候補者調査への回答は任意であり、参照されるのは選挙期間の数日に限られ、当選後の投票行動とは接続されていない。有権者が看板の内側を見られるのは、投票日ではなく、退場が起きた採決の日だけだ、という第 2 章の状態はここから生まれている。</p>
+
+<p>法で縛らずに解像度を上げる方法として、少なくとも三つの方向がある。</p>
+
+<ol class="steps">
+  <li><span class="t">公認の条件として、政策位置の開示を求める</span>国家が課すのではなく、政党が自らの規律として、公認候補に主要争点への回答と公表を求める。第 3 章で見たとおり、党内の運営は政党の自律に委ねられている。これは法改正を要さず、党の判断だけで明日から実行できる領域である。</li>
+  <li><span class="t">議員個人の投票行動を、継続的に追える形で公開する</span>本会議や委員会での賛否、棄権や欠席の記録が、議員ごとに時系列で参照できれば、公約と行動の一致は選挙のたびに検証可能になる。退場という劇的な行動がなくとも、看板の内側の距離は数字として現れる。</li>
+  <li><span class="t">有権者の側が、党名ではなく位置で読む</span>情報が公開されても、参照されなければ制度は変わらない。政党名という圧縮された情報を解凍して読む習慣は、有権者が自分の一票の宛先を確かめるための、最も直接的な手段である。</li>
+</ol>
+
+<p>これらはいずれも劇的ではない。選挙制度の設計を変えるわけでも、政党を分割するわけでもない。ただ、一票が何に委任されたのかを、投票の前に確認できる状態へ少しずつ近づける方法である。</p>
+
+<p>冒頭の問いに戻る。奈良 2 区と大分 3 区の有権者は、同じものを選んだのか。答えは、同じ看板を選んだが、同じ中身を選んだわけではない、というものになる。そのこと自体は、政党内に異論が存在するという意味で、むしろ健全である。異論を抱えられる政党は、それだけ幅広い有権者を代表しうる。</p>
+
+<p class="pull">問題は、異論があることではない。異論の所在が、投票日には見えないことである。</p>
+
+<p>民主主義において投票は、支持の表明であると同時に、権限の委任である。委任の内容が委任の時点で分からないなら、それは選択と呼ぶには曖昧すぎる。かつて中選挙区制の下では、有権者は看板の内側まで含めて選ぶことができた。その手段が失われたまま、内側の多様性だけが残っている。看板の解像度を上げることは、政党を弱めることではない。有権者の選択を、選択として成立させるための条件である。</p>
+    </div>
+  </div>
+</section>
+
+<section class="acc-item" id="notes" data-acc>
+  <button class="acc-header" data-acc-toggle>
+    <span class="num">注</span>
+    <span class="title">注・出典</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="acc-panel">
+    <div class="acc-panel-inner">
+<footer class="notes-foot">
+<ol class="refs">
+  <li id="n1">国旗損壊罪法案の衆院可決と岩屋毅氏の採決棄権について。<a href="https://www.jiji.com/jc/article?k=2026063000124&amp;g=pol" target="_blank" rel="noopener">時事ドットコム「『国旗損壊罪』衆院通過 全野党が欠席、岩屋前外相棄権」</a>、<a href="https://www.tokyo-np.co.jp/article/498464" target="_blank" rel="noopener">東京新聞「岩屋毅前外相『国旗損壊罪』法案採決を棄権 コメント全文」</a>、<a href="https://www.nikkei.com/article/DGXZQOUA307O90Q6A630C2000000/" target="_blank" rel="noopener">日本経済新聞「自民党・岩屋前外相が採決棄権 国旗尊重の強制に反対」</a>（いずれも 2026 年 6 月 30 日）。</li>
+  <li id="n2">第 51 回衆議院議員総選挙（ 2026 年 2 月 8 日投開票）の議席数・得票率・投票率、および野党間の共闘状況。<a href="https://ja.wikipedia.org/wiki/%E7%AC%AC51%E5%9B%9E%E8%A1%86%E8%AD%B0%E9%99%A2%E8%AD%B0%E5%93%A1%E7%B7%8F%E9%81%B8%E6%8C%99" target="_blank" rel="noopener">「第 51 回衆議院議員総選挙」（ウィキペディア）</a>の集計による。高市早苗氏・岩屋毅氏の当選は各社の開票報道による。第 48 回（ 2017 年）・第 49 回（ 2021 年）・第 50 回（ 2024 年）の数値も、それぞれの総選挙に関する同種の集計による。一次資料としては総務省が公表する選挙関係資料にあたられたい。</li>
+  <li id="n3">日本国憲法 21 条 1 項。</li>
+  <li id="n4">政党助成法 2 条 1 項・ 5 条 2 項（法律第五号、平成 6 年 2 月 4 日）。条文は<a href="https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/houritsu/12819940204005.htm" target="_blank" rel="noopener">衆議院ホームページ「法律第五号（平 6 ・ 2 ・ 4 ）」</a>。公職選挙法上の政党要件については<a href="https://www.soumu.go.jp/senkyo/seiji_s/naruhodo02.html" target="_blank" rel="noopener">総務省「なるほど！政治資金 政党助成制度」</a>。</li>
+  <li id="n5">最高裁判所第三小法廷判決 昭和 63 年 12 月 20 日、民集 42 巻 10 号 924 頁（いわゆる共産党袴田事件）。</li>
+  <li id="n6">日本国憲法 51 条。党議拘束は法律上の用語ではなく、各政党が党則等に基づき自律的に運用する内部規律である。</li>
+  <li id="n7">保守合同（ 1955 年 11 月 15 日）について。<a href="https://www.nikkei.com/article/DGKKZO79473230Z01C14A1KB2000/" target="_blank" rel="noopener">日本経済新聞「 1955 年 11 月 15 日 自由民主党が結党」</a>、およびウィキペディア「保守合同」（ 2026 年 8 月 11 日閲覧）。</li>
+  <li id="n8">中選挙区制下における派閥の機能について。 <a href="https://www.nippon.com/ja/features/c00404/" target="_blank" rel="noopener">nippon.com 「選挙制度改革後の自民党」</a>。</li>
+  <li id="n9">1994 年の政治改革四法と小選挙区比例代表並立制の導入について。ウィキペディア「政治改革四法」「小選挙区比例代表並立制」（いずれも 2026 年 8 月 11 日閲覧）。</li>
+  <li id="n10">中道改革連合の名称発表と結党大会について。<a href="https://cdp-japan.jp/news/20260116_0071" target="_blank" rel="noopener">立憲民主党「新党名は『中道改革連合』、略称『中道』に」</a>（ 2026 年 1 月 16 日）、<a href="https://www.komei.or.jp/komeinews/p504963/" target="_blank" rel="noopener">公明党「中道改革連合が結党大会」</a>。</li>
+  <li id="n11">中道改革連合の綱領・基本政策について。<a href="https://www.jiji.com/jc/article?k=2026011900292&amp;g=pol" target="_blank" rel="noopener">時事ドットコム「中道、安保法『合憲』 原発再稼働を限定容認 - 基本政策」</a>（ 2026 年 1 月 19 日）、<a href="https://www.tokyo-np.co.jp/article/463441" target="_blank" rel="noopener">東京新聞 社説「新党『中道改革連合』の政策 安全保障・原発、説明尽くせ」</a>。</li>
+  <li id="n12">2021 年総選挙における野党の候補者一本化の規模について。<a href="https://ja.wikipedia.org/wiki/%E7%AC%AC49%E5%9B%9E%E8%A1%86%E8%AD%B0%E9%99%A2%E8%AD%B0%E5%93%A1%E7%B7%8F%E9%81%B8%E6%8C%99" target="_blank" rel="noopener">「第 49 回衆議院議員総選挙」（ウィキペディア）</a>が引く報道による。</li>
+  <li id="n13">一党優位政党制（ジョヴァンニ・サルトーリ）および 55 年体制期の分析について。ウィキペディア「一党優位政党制」（ 2026 年 8 月 11 日閲覧）。政治学上の学説であり、法律・判例により確立した事実ではない。</li>
+  <li id="n14">派閥の政治資金パーティー収入をめぐる問題と主要派閥の解散について。<a href="https://www.nikkei.com/topics/23120300" target="_blank" rel="noopener">日本経済新聞トピックス「自民党安倍派の裏金疑惑など派閥のパーティー収入を巡る政治資金問題」</a>、<a href="https://www.kobe-u.ac.jp/ja/news/article/20240226-21790/" target="_blank" rel="noopener">神戸大学「自民党派閥の政治資金パーティー裏金事件を問う」</a>（ 2024 年 2 月 26 日）。</li>
+  <li id="n15">派閥的組織の再編について。<a href="https://www.nikkei.com/article/DGXZQOUA21CGV0R20C26A4000000/" target="_blank" rel="noopener">日本経済新聞「自民党、派閥禁止の落とし穴 『必要悪』が消えた後のガバナンス」</a>（ 2026 年 4 月）、<a href="https://www.jiji.com/jc/article?k=2026050400264&amp;g=pol" target="_blank" rel="noopener">時事ドットコム「自民グループが活発化 人事・総裁選視野に」</a>（ 2026 年 5 月 4 日）。</li>
+  <li id="n16">東京大学谷口研究室・朝日新聞社共同調査（ UTAS ）。 2003 年以降の国政選挙で候補者調査と有権者調査を実施している。<a href="https://www.masaki.j.u-tokyo.ac.jp/utas/utasindex.html" target="_blank" rel="noopener">調査ウェブサイト</a>。</li>
+</ol>
+<p class="disclaimer">本稿は制度分析にもとづく論考であり、特定の政党・候補者への支持または不支持を呼びかけるものではない。法令・判例・報道により確認できる事実と、政治学上の解釈とは、本文中で区別して記述した。数値は執筆時点（ 2026 年 8 月）に公開されていた情報による。</p>
 </footer>
+    </div>
+  </div>
+</section>
 
 </div>
+</main>
+
+<script>
+(function(){
+  var OPEN_SCROLL_DELAY = 400;
+
+  function bindAccordion(itemSelector, toggleSelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var toggle = item.querySelector(toggleSelector);
+      toggle.addEventListener("click", function(){
+        var willOpen = !item.classList.contains("open");
+        if(willOpen){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+        item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  }
+
+  bindAccordion("[data-acc]", "[data-acc-toggle]");
+
+  document.getElementById("expandAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.add("open");
+    });
+  });
+
+  document.getElementById("collapseAll").addEventListener("click", function(){
+    document.querySelectorAll("[data-acc]").forEach(function(item){
+      item.classList.remove("open");
+    });
+  });
+
+  function openTarget(hash){
+    if(!hash) return;
+    var id = hash.replace(/^#/, "");
+    var target = document.getElementById(id);
+    if(!target) return null;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return target;
+    var wasOpen = accItem.classList.contains("open");
+    if(!wasOpen){
+      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
+        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
+          sibling.classList.remove("open");
+        }
+      });
+      accItem.classList.add("open");
+    }
+    return target;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    var accItem = target.closest("[data-acc]");
+    if(!accItem) return;
+    e.preventDefault();
+
+    var wasOpen = accItem.classList.contains("open");
+    openTarget(a.getAttribute("href"));
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  });
+
+  window.addEventListener("hashchange", function(){
+    var target = openTarget(location.hash);
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, OPEN_SCROLL_DELAY);
+    }
+  });
+
+  if (location.hash) openTarget(location.hash);
+})();
+</script>
 </body>
 </html>
