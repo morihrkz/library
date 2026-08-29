@@ -69,14 +69,18 @@
       </style>
 
   - 対象外: SVG 内の `<text>`(`:not(svg):not(svg *)` により自動的に除外される)。ヒーロー図などの SVG ラベルは独自の `font-size` を保ってよい。
+  - `html` の `16px` は記事ごとに変えない。ここを `17px` 等にすると、`1rem` を基準にした題名・図注・バッジまで一斉にずれ、記事間で文字の大きさが揃わなくなる。
   - 見出しや注記ボックスなど個別に文字サイズを持つ要素も本文と同じ 1 rem に揃え、記事間の見た目のばらつきをなくす。新規記事もこの 2 ブロックを最初から含める。
 - 唯一の例外は記事題名(`header.hero h1`)。ここだけは本文の約 3 倍のサイズに拡大し、セリフ体にする。上の 2 つの `<style>` ブロックより後に、次を追記する(数値は既存記事間で多少ぶれるが、下記が標準)。
 
       <style>
         /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
         header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+        /* 題名内のインライン要素(.grad 等)にも題名のサイズ・書体を継承させる */
+        header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
       </style>
 
+  - 2 行目(`header.hero h1 *`)を省かない。統一ブロックの `body :not(svg):not(svg *)` は「 svg 以外の全要素」に当たるため、題名を `<span class="grad">` などで部分的に包むと、**その部分だけが本文サイズ・サンセリフに引き戻される**。1 行目は `h1` 要素だけを狙っており、子要素には届かない(子に直接当たった `!important` 宣言は、親からの継承値より強い)。グラデーション見出しを足してよいという後述の許可は、この 2 行目があって初めて成り立つ。
   - 対象はヒーロー帯の `h1`(記事題名)のみ。`.sub`(リード文)・見出し・本文・注記など他の要素は上記のとおりサンセリフ・1rem のまま変えない。
   - タイトル文字列が長い記事では、この `h1` がブラウザ幅に応じて折り返され、視覚上「一行目(`.eyebrow` )の下に大きなセリフ体の行が続く」ように見えるが、`::first-line` 等で行を狙い撃ちしているわけではなく、`h1` 要素全体への指定である。
   - 新規記事もヒーローの `h1` にはこの上書きを最初から含める。
@@ -96,6 +100,46 @@
 - 対象外: ヒーロー見出し(`header.hero` 内の `h1` ・リード文・`.hero-figure` など)や、検索ボックス・カードグリッドの列定義といった個々の UI 部品の幅。これらは可読性・意匠上の理由で意図的に幅を絞ってよい。ここで撤廃するのは、記事本文(地の文)を包む外側コンテナの幅制限に限る。
 - 新規作成する記事は最初からこの形式(本文コンテナに `max-width` を設けない)で書く。既存記事を編集する際に気づいたら合わせて直す。
 
+## 配色(色の変数名と標準値)
+
+- 色は必ず `:root` の CSS カスタムプロパティにまとめ、個々のセレクタに生の色値を書かない。後述の夜間モード対応はこの前提の上に成り立っている。
+- 変数名はディレクトリ共通の次の語彙を使う。同じ役割に別名を与えない(`--text` `--card-bg` のような同義の新設をしない)。
+
+  | 変数 | 役割 |
+  | --- | --- |
+  | `--bg` | ページ全体の地 |
+  | `--paper` | 地の上に載る面(アコーディオン項目・注記の枠など) |
+  | `--card` | `--paper` の上にさらに載せる二層目の面。面を一層しか使わない記事では設けない |
+  | `--ink` | 本文の文字色 |
+  | `--sub` | 本文よりやや弱い文字(注記・引用の中) |
+  | `--muted` | さらに弱い文字(出典・図注・キャプション) |
+  | `--line` | 罫線・ボーダー |
+  | `--accent` | リンク・小見出し・バッジなど記事の基調色 |
+  | `--accent-2` | 補助の基調色(図版で二系統を対比させるとき。無くてよい) |
+  | `--note-bg` | 注記ボックスと、開いているアコーディオン見出しの淡い背景 |
+  | `--hero-1` `--hero-2` | ヒーロー帯のグラデーションの両端 |
+  | `--hero-ink` | ヒーロー帯の文字 |
+  | `--hero-dim` | ヒーロー帯の弱い文字(eyebrow ・リード・`.meta` ・図注) |
+
+- 標準値。色相は記事の主題に合わせて変えてよいが、明度・彩度の関係(地と面の差、本文と弱い文字の段階)はこの比率を保つ。
+
+      :root{
+        --bg:#fafaf8; --paper:#ffffff; --ink:#1a1c20; --sub:#454a52; --muted:#6d727b;
+        --accent:#0052cc; --accent-2:#a97f28; --line:#e2e0da; --note-bg:#e8effa;
+        --hero-1:#003366; --hero-2:#004499; --hero-ink:#f4f7fb; --hero-dim:#b9cde4;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#15171b; --paper:#1d2026; --ink:#e8e6e1; --sub:#b6b8be; --muted:#878b94;
+          --accent:#6fb3ff; --accent-2:#c9a24a; --line:#31353d; --note-bg:#1b2634;
+        }
+      }
+
+  - ダーク側で `--hero-*` を上書きしないのは意図的。ヒーロー帯はもともと濃色のグラデーションで、暗い環境でもそのまま成立する。
+  - 2026-08-29 に全記事を点検し、本文文字色は `--ink` 、一層目の面は `--paper` 、罫線は `--line` に統一済み。この節の CSS 断片や、アコーディオンの CSS をどの記事へ貼っても変数名が解決する状態になっている。
+  - 記事固有の役割には名前を足してよい(`--warn` `--mono-bg` 、 OS 比較記事の `--mac` `--win` など)。上の語彙と役割が重ならないものに限る。
+  - `--border` を「半透明の縁取り」、`--line` を「実線の罫線」として使い分けている記事が 1 件ある(`give_and_take_essay.html`)。役割が違うので統合しない。
+
 ## ヒーロー(記事冒頭の見出し帯)
 
 - 記事冒頭のヒーローは `<header class="hero">` の帯とし、その中に内容を縦に並べる。全画面(`min-height:100svh` 等)にはしない。ディレクトリ内の全記事がこの形をとっている。
@@ -106,6 +150,11 @@
           <span class="eyebrow">分野 / CATEGORY</span>
           <h1>主題 - 副題</h1>
           <p class="sub">記事の内容を 1 〜 3 文で要約したリード</p>
+          <div class="meta">
+            <span>全 8 章</span>
+            <span>約 20 分</span>
+            <span>2026 年 8 月</span>
+          </div>
           <figure class="hero-figure">
             <svg viewBox="0 0 720 300" role="img" aria-labelledby="xxTitle xxDesc"> … </svg>
             <figcaption>図の読み方と、図が何を表していないかの断り</figcaption>
@@ -113,6 +162,7 @@
         </div>
       </header>
 
+- `.eyebrow` は分野・カテゴリを字間を空けた小さな文字で置く。`.meta` は「全 N 章」「約 N 分」「公開年月」を横並びで置く(章立てのない記事では章数を省く)。どちらも `--hero-dim` の弱い文字にして、`h1` と `.sub` を前に出す。
 - 図版は**静的なインライン SVG** 1 枚とし、`<figure class="hero-figure">` で包む。
   - `role="img"` と `aria-labelledby` を付け、SVG 内に `<title id>`(図の一行タイトル)と `<desc id>`(図の内容の言葉による説明)を置く。読み上げ環境ではこれが図の代替になるので省略しない。
   - 文字色・線色の指定は SVG 内の `<style>` にクラスとしてまとめる。フォントは本文と同じサンセリフ・スタックを指定する。
@@ -121,11 +171,18 @@
   - 理由: 静的 SVG なら図の内容がマークアップとして残り、読み上げ・印刷・差分レビューのいずれでも同じものが見える。装飾のために JS を動かす必要もない。
 - CSS の目安(記事ごとの色に置き換えて使う。数値は既存記事間でも多少ぶれており、下記はその中央値):
 
-      header.hero{background:linear-gradient(140deg,var(--hero1) 0%,var(--hero2) 100%);
+      header.hero{background:linear-gradient(140deg,var(--hero-1) 0%,var(--hero-2) 100%);
        color:var(--hero-ink);padding:3.6rem 0 2.8rem;margin-bottom:2.8rem}
       header.hero .wrap{max-width:960px;margin:0 auto;padding:0 clamp(1.5rem,3vw,3rem)}
+      header.hero .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;
+       color:var(--hero-dim);margin-bottom:0.9rem}
+      header.hero p.sub{margin:0;color:var(--hero-dim);line-height:1.85;text-indent:0}
+      header.hero .meta{margin:1.1rem 0 0;font-size:0.82rem;color:var(--hero-dim);
+       display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem}
       .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto}
       .hero-figure svg{display:block;width:100%;height:auto}
+      .hero-figure figcaption{margin-top:0.9rem;font-size:0.85rem;
+       color:var(--hero-dim);line-height:1.75}
 
   - 狭い画面では図を縮小せず、`.hero-figure` の `overflow-x:auto` の中で横スクロールさせる(`@media` で `.hero-figure svg{min-width:560px}` 前後を指定)。
   - ヒーローの `margin-bottom` が本文との間隔を作るので、`main.wrap` 側に上パディングを重ねない。両方効かせると余白が二重になる。
@@ -136,11 +193,137 @@
 
 - 複数の章(`第 N 章` 等の見出し単位)を持つ長文記事は、本文をアコーディオン(開閉式)にする。これはディレクトリ内の大半の記事がすでに採用している標準仕様であり、新規作成時は最初から適用する。単一の短い記事(章立てのないエッセイ等)には適用しなくてよい。
 - 実装(次の構造・クラス名を用いる):
-  - 本文冒頭(ヒーローの直後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll">すべて開く</button><button id="collapseAll">すべて閉じる</button></div></div>`
+  - 本文冒頭(ヒーローの直後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll" type="button">すべて開く</button><button id="collapseAll" type="button">すべて閉じる</button></div></div>` 。導入・前書きにあたる文章も裸で置かず、`序` などの章にしてアコーディオンに入れる(ツールバーより前に本文を置かない)。
   - 続けて `<div id="accordion">` の中に、章ごとの `<section class="acc-item" id="secN" data-acc>` を並べる。出典・付録の章も同様にアコーディオン項目にする。
   - 各項目の内部は `<button class="acc-header" data-acc-toggle><span class="num">N</span><span class="title">見出し文</span><svg class="chev">…</svg></button>` + `<div class="acc-panel"><div class="acc-panel-inner">…本文…</div></div>` 。見出し文からは「第 N 章」などの接頭辞を外し、`.num` バッジ側だけに短く表示する(例: `0` 、`1` 、`終` 、`付録` )。
-  - CSS は次の見え方を満たすように書く: `.acc-header` はクリック可能な帯として項目の全幅に敷き、`.num` バッジ・`.title` ・シェブロン(`.chev`)を横並びにする。開いている項目は `--accent` を使った縁取りや淡い背景色などで他の項目と視覚的に区別する。`.acc-panel` は開閉時に高さをトランジションさせ、閉じているときは中身が見えないようにする(例: `max-height` と `overflow:hidden` の組み合わせ)。シェブロンは開閉状態に応じて回転させる。色は各記事の CSS カスタムプロパティ(`--accent` 等)に合わせる。
-  - JS は次を満たす自己完結したスクリプトとする: 「クリックした項目だけが開き、他の項目は閉じる(単一開閉)」「開いたら該当セクションまで滑らかにスクロール」「ページ内の `#id` リンク(脚注番号など)をクリックしたとき、リンク先が閉じたアコーディオン内にあれば自動で開いてからスクロール」「URL に `#id` を伴って直接開いたときも同様に自動展開する」。
+  - 開閉状態は `.acc-item` に付け外しする **`open` クラス**で表す。`<details>` 要素や `open` 属性は使わない。
+  - シェブロンは `<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>` (下向き `▾` )とし、開いている項目で 180 度回転させる。
+- CSS は次のとおり。`--accent` 等の変数は「配色」の語彙に従う。
+
+      .toolbar-container{position:sticky;top:8px;z-index:100;
+       background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);
+       backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+       padding:9px 0;border-radius:999px;margin:0 0 2.4rem;
+       border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.10)}
+      .toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0}
+      .toolbar button{font-weight:700;color:var(--accent);background:var(--paper);
+       border:1.5px solid var(--accent);border-radius:999px;padding:8px 20px;
+       cursor:pointer;transition:all .2s ease;font-family:inherit}
+      .toolbar button:hover{background:var(--accent);color:#fff}
+      #accordion{margin-bottom:2.6rem}
+      .acc-item{background:var(--paper);border:1px solid var(--line);border-radius:10px;
+       margin-bottom:16px;overflow:hidden;overflow-anchor:none}
+      .acc-item:last-child{margin-bottom:0}
+      .acc-header{width:100%;display:flex;align-items:center;gap:14px;
+       background:none;border:none;padding:18px 22px;cursor:pointer;
+       text-align:left;font-family:inherit;color:var(--ink);
+       -webkit-tap-highlight-color:transparent}
+      .acc-header .num{flex:0 0 auto;color:var(--accent);font-weight:700;
+       background:var(--note-bg);padding:4px 11px;border-radius:999px;white-space:nowrap}
+      .acc-header .title{flex:1 1 auto;font-weight:700;line-height:1.5}
+      .acc-header .chev{flex:0 0 auto;width:20px;height:20px;color:var(--accent);
+       transition:transform .3s cubic-bezier(.4,0,.2,1)}
+      .acc-item.open > .acc-header .chev{transform:rotate(180deg)}
+      .acc-item.open > .acc-header{background:var(--note-bg);
+       border-bottom:1px solid var(--line)}
+      .acc-panel{display:grid;grid-template-rows:0fr;
+       transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);overflow-anchor:none}
+      .acc-item.open > .acc-panel{grid-template-rows:1fr}
+      .acc-panel-inner{overflow:hidden;min-height:0;padding:0 22px;opacity:0;
+       transition:opacity .3s ease .08s}
+      .acc-item.open > .acc-panel > .acc-panel-inner{padding:6px 22px 26px;opacity:1}
+      @media (max-width:600px){
+        .acc-header{padding:15px 16px;gap:10px}
+        .acc-item.open > .acc-panel > .acc-panel-inner{padding:4px 16px 22px}
+      }
+
+  - パネルの開閉は `grid-template-rows` の `0fr` ↔ `1fr` で行う。`max-height` に大きな固定値を置く方式は使わない。
+    - 理由: `max-height:10000px` 方式では、実際の高さが指定値に届かない短い章ほど閉じ始めが遅れて見え、章ごとに開閉の速さが変わる。`0fr` ↔ `1fr` なら中身の長さに依らず同じ速度で、閉じたときは必ず高さ 0 になる。
+  - ツールバーは丸ピル型で、スクロール中も画面上端に留まる(`position:sticky`)。どの章を読んでいても「すべて閉じる」に戻れるようにするため。
+- JS は次の自己完結したスクリプトをそのまま使う。挙動は「単一開閉」「開いたら該当セクションへ滑らかにスクロール」「ページ内 `#id` リンクの飛び先が閉じた項目の中にあれば自動で開いてからスクロール」「`#id` 付き URL で直接開いたときも自動展開」の四つ。
+
+      <script>
+      (function(){
+        var OPEN_SCROLL_DELAY = 400;
+
+        function closeSiblings(item){
+          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+            if(sibling !== item && sibling.matches && sibling.matches("[data-acc]")){
+              sibling.classList.remove("open");
+            }
+          });
+        }
+
+        document.querySelectorAll("[data-acc]").forEach(function(item){
+          var toggle = item.querySelector("[data-acc-toggle]");
+          if(!toggle) return;
+          toggle.addEventListener("click", function(){
+            var willOpen = !item.classList.contains("open");
+            if(willOpen) closeSiblings(item);
+            item.classList.toggle("open", willOpen);
+            if(willOpen){
+              setTimeout(function(){
+                item.scrollIntoView({behavior:"smooth", block:"start"});
+              }, OPEN_SCROLL_DELAY);
+            }
+          });
+        });
+
+        document.getElementById("expandAll").addEventListener("click", function(){
+          document.querySelectorAll("[data-acc]").forEach(function(item){
+            item.classList.add("open");
+          });
+        });
+
+        document.getElementById("collapseAll").addEventListener("click", function(){
+          document.querySelectorAll("[data-acc]").forEach(function(item){
+            item.classList.remove("open");
+          });
+        });
+
+        function openTarget(hash){
+          if(!hash) return null;
+          var target = document.getElementById(hash.replace(/^#/, ""));
+          if(!target) return null;
+          var accItem = target.closest("[data-acc]");
+          if(!accItem) return target;
+          if(!accItem.classList.contains("open")){
+            closeSiblings(accItem);
+            accItem.classList.add("open");
+          }
+          return target;
+        }
+
+        document.addEventListener("click", function(e){
+          var a = e.target.closest('a[href^="#"]');
+          if(!a) return;
+          var target = document.getElementById(a.getAttribute("href").slice(1));
+          if(!target) return;
+          var accItem = target.closest("[data-acc]");
+          if(!accItem) return;
+          e.preventDefault();
+          var wasOpen = accItem.classList.contains("open");
+          openTarget(a.getAttribute("href"));
+          setTimeout(function(){
+            target.scrollIntoView({behavior:"smooth", block:"start"});
+          }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+        });
+
+        window.addEventListener("hashchange", function(){
+          var target = openTarget(location.hash);
+          if(target){
+            setTimeout(function(){
+              target.scrollIntoView({behavior:"smooth", block:"start"});
+            }, OPEN_SCROLL_DELAY);
+          }
+        });
+
+        if(location.hash) openTarget(location.hash);
+      })();
+      </script>
+
+  - `OPEN_SCROLL_DELAY` はパネルの開き切り(`.35s`)より少し長く取る。開き切る前にスクロールすると、移動先の位置が途中でずれる。
+  - 脚注リンクは `document` 上の一つのリスナーで拾う(個々の `a` に付けない)。閉じたパネル内のリンクにも同じ処理が効く。
 - 対象外: 「本文コンテナの横幅」のルールと同様、この機構は記事本文の章構成に関するものであり、独立した短い記事(手順書・単発コラム等)にまで強制しない。
 
 ## 句点位置での改行(意味のまとまりごとの区切り)
@@ -155,12 +338,14 @@
 ## 夜間モード（ダークモード）対応
 
 - 全記事で `prefers-color-scheme: dark` に対応する。読者のブラウザ・ OS 設定に応じて夜間は暗い配色になることをディレクトリの標準方針とする。
+- 新規記事は「配色」節の変数語彙と標準値をそのまま使えばよい。以下は、その形になっていない既存記事を直すときの手順。
 - 実装パターン(次の方式に従う):
   - 記事が色を CSS カスタムプロパティ(`:root{ --bg: ...; --ink: ...; }` 等)で管理している場合、その `:root{...}` ブロックの直後に `@media (prefers-color-scheme: dark){ :root{ ...同じ変数名をダーク値で上書き... } }` を追記する。
-  - 上書きするのは背景・紙面・カード・本文文字色・薄い文字色(muted / soft)・罫線 / ボーダーなど、地の文を載せる面の変数のみでよい。ヒーロー帯(`header.hero`)はもともと濃い色のグラデーションで設計されているため、ライト/ダークどちらでも据え置きでよい。
+  - 上書きは `--bg` (地)だけでは足りない。`--paper` (カード・アコーディオン項目の面)・`--line` ・`--note-bg` まで含めないと、暗い地の上に明るいカードが浮いたままになる。地の文を載せる面の変数を一式で反転させる。ヒーロー帯(`header.hero`)はもともと濃い色のグラデーションで設計されているため、ライト/ダークどちらでも据え置きでよい。
   - アクセントカラー(リンク色・強調色)がライト値のまま暗い背景でコントラスト不足になる場合は、その変数も明るめの値に調整してよい。
   - `body` の背景を変数ではなく `background: radial-gradient(...), linear-gradient(...)` のように直接指定している記事では、`@media (prefers-color-scheme: dark){ body{ background: ...ダーク相当のグラデーション... } }` を別途追加する。
   - CSS カスタムプロパティを使わず色を直書きしている記事(例外的な構成)では、`@media (prefers-color-scheme: dark){ }` の中に該当セレクタを列挙してダーク値を直接上書きする。
+- 変数を足しただけで済ませず、**実際に描画して確かめる**(手順は「作業時の注意」)。目安は本文で 7:1 以上、`--muted` の弱い文字でも 4.5:1 以上のコントラスト比。
 - 新規作成する記事は最初からこの形式で書く。既存記事を編集する際に気づいたら合わせて直す。ディレクトリ全体への一括適用は依頼されたときにまとめて行う。
 
 ## 作業時の注意
@@ -172,3 +357,16 @@
   - `wa_o_spacing.py --in-place` のようにスクリプトが自動生成するバックアップも、生成後にスクラッチパッドへ移し、commit 前に作業ディレクトリから取り除く。
   - 従来の `old/` 配下への世代バックアップ方式は使わない。
 - 上記(日付の半角数字化・本文サンセリフ化・段落の字下げ・句点位置での改行)は、新規記事作成時は最初から適用し、既存記事を編集する際に気づいたら合わせて直す。ディレクトリ全体への一括適用は、依頼されたときにまとめて行う。
+
+### 意匠を変えたときの描画確認
+
+- 記事の見た目に関わる変更をしたら、ブラウザで実際に描画して確かめる。ブラウザ拡張は `file://` を開けないので、簡易サーバを立てて `http://127.0.0.1:<port>/<ファイル名>` を開く。確認が済んだらサーバは止める。
+
+      python -m http.server 8765 --bind 127.0.0.1
+
+- 見るのは次の四点。
+  - ライト・ダーク両方での本文コントラスト(数値は `getComputedStyle` で色を取り、相対輝度から比を計算して確認する)。
+  - アコーディオンの単一開閉と、開いた章へのスクロール。
+  - `#secN` を付けた URL で直接開いたときの自動展開。
+  - ヒーロー SVG の文字が枠からはみ出していないか。
+- OS がライトモードのままダークを確かめるには、ダーク値だけを `:root` に流し込む `<style>` を一時的に注入して描画を見る。変数が定義されているかを読むだけでは不十分で、面の色が反転しきっていない不具合はそれでは見つからない。

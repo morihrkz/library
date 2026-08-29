@@ -11,7 +11,7 @@
   :root {
     --bg: #faf8f3;
     --paper: #ffffff;
-    --text: #1c1e22;
+    --ink: #1c1e22;
     --sub: #4a4f57;
     --muted: #7c8290;
     --accent: #1f4e6b;
@@ -30,7 +30,7 @@
     :root {
       --bg: #15171b;
       --paper: #1d2026;
-      --text: #e8e6e1;
+      --ink: #e8e6e1;
       --sub: #b6b8be;
       --muted: #878b94;
       --accent: #8ab6d1;
@@ -48,7 +48,7 @@
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.1rem;
     line-height: 1.95;
-    color: var(--text);
+    color: var(--ink);
     background: var(--bg);
     margin: 0;
   }
@@ -204,7 +204,7 @@
     letter-spacing: 0.14em;
     color: var(--muted);
     font-weight: 700;
-    border-bottom: 2px solid var(--text);
+    border-bottom: 2px solid var(--ink);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
   }
@@ -279,17 +279,17 @@
   figure.diagram .svgwrap { overflow-x: auto; }
   figure.diagram svg { width: 100%; min-width: 32rem; height: auto; display: block; }
   .dgm-frame{fill:none;stroke:var(--accent-2);stroke-opacity:.65;stroke-dasharray:6 5}
-  .dgm-grp{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:13px;font-weight:700}
+  .dgm-grp{fill:var(--ink);font-family:"Zen Kaku Gothic New", sans-serif;font-size:13px;font-weight:700}
   .dgm-chip{fill:var(--table-head)}
   .dgm-chipL{stroke:var(--accent);stroke-opacity:.75}
   .dgm-chipR{stroke:var(--accent-2);stroke-opacity:.75}
-  .dgm-chipT{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
+  .dgm-chipT{fill:var(--ink);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
   .dgm-chipS{fill:var(--sub);font-family:"Zen Kaku Gothic New", sans-serif;font-size:11px;text-anchor:middle}
   .dgm-note{fill:var(--muted);font-family:"Zen Kaku Gothic New", sans-serif;font-size:11.5px}
   .dgm-arrow{stroke:var(--muted);stroke-width:2;fill:none}
   .dgm-arrowhead{fill:var(--muted)}
   .dgm-side{fill:var(--table-head);stroke:var(--muted);stroke-opacity:.6}
-  .dgm-sideT{fill:var(--text);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
+  .dgm-sideT{fill:var(--ink);font-family:"Zen Kaku Gothic New", sans-serif;font-size:12.5px;font-weight:700;text-anchor:middle}
   .dgm-sideS{fill:var(--sub);font-family:"Zen Kaku Gothic New", sans-serif;font-size:10.5px;text-anchor:middle}
 
   footer.notes-foot {
@@ -343,7 +343,7 @@
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
     text-align: left; font-family: inherit;
-    color: var(--text); -webkit-tap-highlight-color: transparent;
+    color: var(--ink); -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
     flex: 0 0 auto; color: var(--accent); font-size: 0.82rem; font-weight: 700;

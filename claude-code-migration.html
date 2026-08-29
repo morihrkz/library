@@ -11,12 +11,12 @@
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #faf9f7;
-    --card-bg: #ffffff;
+    --paper: #ffffff;
     --ink: #2a2620;
     --ink-soft: #5b564c;
     --accent: #b45309;
     --accent-soft: #fef3e2;
-    --border: #e8e2d6;
+    --line: #e8e2d6;
     --mono-bg: #2d2a24;
     --mono-ink: #f0e9db;
     --mac: #4a6fa5;
@@ -29,12 +29,12 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #17140f;
-      --card-bg: #201c15;
+      --paper: #201c15;
       --ink: #ece6da;
       --ink-soft: #b3ab9c;
       --accent: #e08a3c;
       --accent-soft: #2e2313;
-      --border: #332c22;
+      --line: #332c22;
       --mac: #7ea3d6;
       --mac-soft: #17222f;
       --win: #2ea884;
@@ -117,7 +117,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 14px 0 22px;
-    background: var(--card-bg);
+    background: var(--paper);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
@@ -132,7 +132,7 @@
   }
   tbody td {
     padding: 10px 14px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
     vertical-align: top;
   }
   tbody tr:nth-child(even) { background: var(--bg); }
@@ -159,8 +159,8 @@
   pre code { background: none; padding: 0; color: inherit; }
 
   .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    background: var(--paper);
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 20px 22px;
     margin-bottom: 16px;
@@ -211,7 +211,7 @@
   }
   .platform-box.win .plabel { color: var(--win); }
   .platform-box.mac .plabel { color: var(--mac); }
-  .platform-box code { background: color-mix(in srgb, var(--card-bg) 70%, transparent); color: var(--ink); word-break: break-all; }
+  .platform-box code { background: color-mix(in srgb, var(--paper) 70%, transparent); color: var(--ink); word-break: break-all; }
 
   .callout {
     border-radius: 10px;
@@ -232,7 +232,7 @@
     align-items: flex-start;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--line);
     color: var(--ink-soft);
   }
   .checklist li:last-child { border-bottom: none; }
@@ -266,7 +266,7 @@
     padding: 9px 0;
     border-radius: 999px;
     margin: 0 0 24px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     box-shadow: 0 4px 14px rgba(0,0,0,.10);
   }
   .toolbar-container .toolbar { margin: 0; }
@@ -282,7 +282,7 @@
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--accent);
-    background: var(--card-bg);
+    background: var(--paper);
     border: 1.5px solid var(--accent);
     border-radius: 999px;
     padding: 8px 20px;
@@ -292,8 +292,8 @@
   .toolbar button:hover { background: var(--accent); color: #fff; }
   #accordion { margin-bottom: 40px; }
   .acc-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    background: var(--paper);
+    border: 1px solid var(--line);
     border-radius: 12px;
     margin-bottom: 16px;
     overflow: hidden;
@@ -331,7 +331,7 @@
   .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
   .acc-item.open > .acc-header {
     background: var(--accent-soft);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
   }
   .acc-panel {
     display: grid;

@@ -12,7 +12,7 @@
   --bg:#faf9f5;--ink:#1c1d21;--sub:#5a606b;--accent:#315f96;
   --accent2:#7c5aa6;--line:#e2ded4;--hero1:#050a18;--hero2:#1b3055;
   --hero-ink:#eef4ff;--hero-dim:#a9bcdb;--hero-faint:#7e93b5;
-  --card:#fff;--soft:#f2f5f9;--gold:#c39b42;
+  --paper:#fff;--soft:#f2f5f9;--gold:#c39b42;
   --concept-bg:#f8f6fb;--evidence-bg:#f8f7f2;--evidence-border:#e3dccb;
   --blockquote-bg:#f3f5f9;--diagram-bg:linear-gradient(135deg,#f7f9fc,#f4f0f8);
   --callout-strong:#234d80;
@@ -21,7 +21,7 @@
   :root{
     --bg:#131419;--ink:#e7e7ec;--sub:#9a9fac;--accent:#6a9bd6;
     --accent2:#a98cd6;--line:#2b2c33;
-    --card:#1a1b21;--soft:#1c1f28;--gold:#d9b366;
+    --paper:#1a1b21;--soft:#1c1f28;--gold:#d9b366;
     --concept-bg:#211f29;--evidence-bg:#211f19;--evidence-border:#3a3426;
     --blockquote-bg:#1c1f28;--diagram-bg:linear-gradient(135deg,#1c2028,#211d28);
     --callout-strong:#8fb4ea;
@@ -66,9 +66,9 @@ blockquote{margin:2.3em 0;padding:1.2em 1.5em;border-left:4px solid var(--accent
  border-radius:0 12px 12px 0}
 table{width:100%;border-collapse:collapse;margin:2em 0;font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.91rem}
 th,td{padding:.8em;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:var(--soft)}
-.figure{margin:2.5em 0;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.figure{margin:2.5em 0;border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden}
 .figure .diagram{padding:22px;background:var(--diagram-bg);font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;background:#f8f7f4;border-top:1px solid var(--line);font: .82rem "Zen Kaku Gothic New";color:#596273}
-.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flow div{padding:15px;border:1px solid #ccd7e5;border-radius:10px;background:var(--card)}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flow div{padding:15px;border:1px solid #ccd7e5;border-radius:10px;background:var(--paper)}
 .flow b{display:block;color:#315f96;margin-bottom:5px}
 .refs{font-size:.9rem;line-height:1.8}.refs li{margin-bottom:1em}.refs a{color:var(--accent);word-break:break-all}
 .endmark{text-align:center;color:#315f96;letter-spacing:.8em;margin:3em 0}
@@ -82,11 +82,11 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
  box-shadow:0 4px 14px rgba(0,0,0,.10)}
 .toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0}
 .toolbar button{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.88rem;font-weight:700;color:var(--accent);
- background:var(--card);border:1.5px solid var(--accent);border-radius:999px;
+ background:var(--paper);border:1.5px solid var(--accent);border-radius:999px;
  padding:8px 20px;cursor:pointer;transition:all .2s ease}
 .toolbar button:hover{background:var(--accent);color:#fff}
 #accordion{margin-bottom:2.6rem}
-.acc-item{background:var(--card);border:1px solid var(--line);border-radius:10px;
+.acc-item{background:var(--paper);border:1px solid var(--line);border-radius:10px;
  margin-bottom:16px;overflow:hidden;overflow-anchor:none}
 .acc-item:last-child{margin-bottom:0}
 .acc-header{width:100%;display:flex;align-items:center;gap:14px;background:none;border:none;
@@ -118,7 +118,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
 </style>
   <style>
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 17px !important; }
+    html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
   <style>
@@ -129,6 +129,8 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素(.grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -136,7 +138,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">THE MULTIVERSE / THE EARLY UNIVERSE / QUANTUM GRAVITY</span>
-    <h1>「似た宇宙」と「宇宙の前」 - <span class="grad">私たちは、どこまで宇宙の始まりを語れるのか</span></h1>
+    <h1>「似た宇宙」と「宇宙の前」 - 私たちは、どこまで宇宙の始まりを語れるのか</h1>
     <p class="sub">無数の宇宙があるのか。そもそも「宇宙の外」や「宇宙の前」という言葉には、物理的な意味があるのか。この二つの問いは、どちらも強烈な想像力を刺激する。けれど、本当に面白いのは想像の先にある。そこには、観測できること、数学から導かれること、そしてまだ分からないことを厳密に切り分けようとする、現代宇宙論の仕事がある。</p>
 
     <figure class="hero-figure">

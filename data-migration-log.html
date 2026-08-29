@@ -11,12 +11,12 @@
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
     --bg: #fdfcf9;
-    --text: #2b2a28;
+    --ink: #2b2a28;
     --sub: #6b6863;
     --accent: #2f6f4f;
     --accent-light: #e7f2ec;
     --line: #e4e0d8;
-    --card: #ffffff;
+    --paper: #ffffff;
     --code-bg: #f4f1ea;
     --warn-bg: #fff4e5;
     --warn-border: #e0a94b;
@@ -26,7 +26,7 @@
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     line-height: 1.9;
     font-size: 16px;
-    color: var(--text);
+    color: var(--ink);
     background: var(--bg);
   }
   .wrap {
@@ -100,7 +100,7 @@
   h3 {
     font-size: 18px;
     margin-top: 36px;
-    color: var(--text);
+    color: var(--ink);
   }
   h4 {
     font-size: 15px;
@@ -113,7 +113,7 @@
   li { margin: 8px 0; }
   a { color: var(--accent); }
   .diagram-box {
-    background: var(--card);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 20px;
@@ -175,12 +175,12 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1c1b19;
-      --text: #eae7e0;
+      --ink: #eae7e0;
       --sub: #a9a49a;
       --accent: #6fcf9c;
       --accent-light: #22332a;
       --line: #3a382f;
-      --card: #262420;
+      --paper: #262420;
       --code-bg: #2a2822;
       --warn-bg: #33291a;
       --warn-border: #c78f3d;
@@ -188,7 +188,7 @@
     th { background: var(--code-bg); }
   }
   .check {
-    background: var(--card);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 20px 24px;
@@ -229,7 +229,7 @@
     padding: 5px 11px;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: var(--card);
+    background: var(--paper);
     color: var(--sub);
     font-size: 12px;
     text-indent: 0;
@@ -241,7 +241,7 @@
     margin: 28px 0;
   }
   .fact-card {
-    background: var(--card);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 18px;
@@ -306,7 +306,7 @@
     font-size: 13px;
     font-weight: 700;
     color: var(--accent);
-    background: var(--card);
+    background: var(--paper);
     border: 1.5px solid var(--accent);
     border-radius: 999px;
     padding: 8px 20px;
@@ -316,7 +316,7 @@
   .toolbar button:hover { background: var(--accent); color: #fff; }
   #accordion { margin-bottom: 40px; }
   .acc-item {
-    background: var(--card);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 12px;
     margin-bottom: 16px;
@@ -336,7 +336,7 @@
     cursor: pointer;
     text-align: left;
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color: var(--text);
+    color: var(--ink);
     -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
