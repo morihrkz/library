@@ -13,8 +13,8 @@
     --bg: #f3f7f1;
     --paper: #fcfefa;
     --ink: #1d251f;
-    --sub: #56675a;
-    --muted: #7c8b7d;
+    --sub: #4c5b4f;
+
     --accent: #2c6a44;
     --accent-soft: #6ba384;
     --line: #d9e4d5;
@@ -30,7 +30,7 @@
       --paper: #121a15;
       --ink: #e3ebe1;
       --sub: #a3b3a3;
-      --muted: #82907f;
+
       --accent: #7fc99c;
       --accent-soft: #5c9b76;
       --line: #232f28;
@@ -78,6 +78,8 @@
     line-height:1.85;
     text-indent:0;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
   .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
@@ -240,6 +242,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -249,6 +253,10 @@
     <span class="eyebrow">Logic · Philosophy · Cognition</span>
     <h1>思考を拡張する知の道具箱 - 推論の四つのかたち</h1>
     <p class="sub">演繹・帰納・アブダクション・類推。ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。</p>
+    <div class="meta">
+      <span>全 10 章</span>
+      <span>約 30 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 340" role="img" aria-labelledby="brTitle brDesc">
@@ -426,7 +434,7 @@
 これは古典的な三段論法の基本形である。具体的には「すべての人間は死すべきものである」「ソクラテスは人間である」「ゆえにソクラテスは死すべきものである」といった形になる。
 </p>
 <p>
-現代論理学では、ここで「妥当性 (validity) 」と「健全性 (soundness) 」を区別する。妥当な議論とは、前提がすべて真である場合に結論が偽になることがない議論である。健全な議論とは、妥当であり、しかも実際に前提が真である議論である。
+現代論理学では、ここで「妥当性（ validity ）」と「健全性（ soundness ）」を区別する。妥当な議論とは、前提がすべて真である場合に結論が偽になることがない議論である。健全な議論とは、妥当であり、しかも実際に前提が真である議論である。
 </p>
 <h3>「演繹は新しい知識を生まない」の正しい意味</h3>
 <p>
@@ -521,7 +529,7 @@
 </div>
 <p>
 ここで「したがって A は真である」と言い切ってはいけない。アブダクションの結論は仮説であり、調査すべき候補である。<br>
-現代の哲学では、 abduction という語が「最良の説明への推論 (Inference to the Best Explanation) 」という意味で使われる場合もあるが、パース自身の概念は現代のこの用法と完全には一致しない。
+現代の哲学では、 abduction という語が「最良の説明への推論（ Inference to the Best Explanation ）」という意味で使われる場合もあるが、パース自身の概念は現代のこの用法と完全には一致しない。
 </p>
 <h3>冒頭の謎 - ゼンメルワイスが疑ったもの</h3>
 <p>
@@ -529,7 +537,7 @@
 設備も患者層もほぼ同じ環境で、なぜこれほどの差が生まれるのか。この意外な事実こそが、アブダクションの出発点である「驚くべき事実 C 」にあたる。
 </p>
 <p>
-ゼンメルワイスは、当時信じられていた「悪い空気 ( 瘴気 ) が病気を運ぶ」という説明では、二つのクリニックの差を説明できないことに気づいていた。空気は同じ建物の中を流れているからである。<br>
+ゼンメルワイスは、当時信じられていた「悪い空気（瘴気）が病気を運ぶ」という説明では、二つのクリニックの差を説明できないことに気づいていた。空気は同じ建物の中を流れているからである。<br>
 転機になったのは、同僚の法医学者が、解剖中に誤って自分の指を傷つけ、産褥熱とよく似た症状で亡くなったという出来事だった。ここでゼンメルワイスは一つの仮説に至る。「医師や医学生が、死体の解剖を行った後に、手を洗わないまま産科の診察に向かっているとしたら、この死亡率の差は当然のこととして説明できる」。これがアブダクションの核心にある思考の運びである。
 </p>
 <p>
@@ -591,9 +599,9 @@
 類推は、二つの対象や状況の間に重要な類似を見つけ、既知の側で成立している関係を未知の側について考える手がかりにする。
 </p>
 <div class="schema">
-  <span>既知の領域 (source / base) : A と B の間には関係 R がある。</span>
+  <span>既知の領域（ source / base): A と B の間には関係 R がある。</span>
   <span class="gap"></span>
-  <span>未知の領域 (target) : C と D は、重要な構造で A と B に対応する。</span>
+  <span>未知の領域（ target): C と D は、重要な構造で A と B に対応する。</span>
   <span class="arrow">したがって、 C と D にも、 R に対応する関係があるかもしれない。</span>
 </div>
 <p>
@@ -661,7 +669,7 @@
 </p>
 <h3>近代哲学 - 経験から一般化できるのか</h3>
 <p>
-近代になると、経験科学の発展とともに、観察された事例から一般的法則へ進む推論が大きな問題になる。 1620 年、フランシス・ベーコンは著書『新機関 ( ノヴム・オルガヌム ) 』で、個別の観察を積み重ねて一般的な法則へ登っていく方法を論じ、アリストテレス的な三段論法とは別の道筋を示した。<br>
+近代になると、経験科学の発展とともに、観察された事例から一般的法則へ進む推論が大きな問題になる。 1620 年、フランシス・ベーコンは著書『新機関（ノヴム・オルガヌム）』で、個別の観察を積み重ねて一般的な法則へ登っていく方法を論じ、アリストテレス的な三段論法とは別の道筋を示した。<br>
 ヒュームはさらに進んで、その積み重ねの正当化そのものに鋭い問題を提起した。
 </p>
 <p>
@@ -904,10 +912,10 @@ AI は異なる分野の概念を結びつける候補を大量に生成でき�
 <div class="callout">
   <span class="ttl">四つの問いを、一度に手元に置く</span>
   <ul>
-    <li>これは前提から必然的に出てくることか ( 演繹 ) 。</li>
-    <li>これは限られた観察から広げた見込みにすぎないことか ( 帰納 ) 。</li>
-    <li>これはまだ確かめられていない説明候補にすぎないことか ( アブダクション ) 。</li>
-    <li>これは別の場所で通用した構造を、確かめずに借りてきただけのことか ( 類推 ) 。</li>
+    <li>これは前提から必然的に出てくることか（演繹）。</li>
+    <li>これは限られた観察から広げた見込みにすぎないことか（帰納）。</li>
+    <li>これはまだ確かめられていない説明候補にすぎないことか（アブダクション）。</li>
+    <li>これは別の場所で通用した構造を、確かめずに借りてきただけのことか（類推）。</li>
   </ul>
   <p>一つの主張を読むたびに、この四つのどれに当たるのかを一度自分に問い直す。それだけで、もっともらしさに流される速度は目に見えて落ちる。</p>
 </div>
@@ -935,14 +943,14 @@ AI は異なる分野の概念を結びつける候補を大量に生成でき�
 <footer class="refs">
 <ol>
 <li id="fn1">Charles S. Peirce, &ldquo;Deduction, Induction, and Hypothesis,&rdquo; <em>Popular Science Monthly</em>, 13 (1878), 470–482.<br>
-<a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI" target="_blank" rel="noopener">Wikisource ( 原文 )</a></li>
+<a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI" target="_blank" rel="noopener">Wikisource （原文）</a></li>
 <li id="fn2">Stanford Encyclopedia of Philosophy, &ldquo;Abduction&rdquo; および &ldquo;Peirce on Abduction.&rdquo;<br>
 <a href="https://plato.stanford.edu/entries/abduction/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/abduction/</a></li>
 <li id="fn3">Stanford Encyclopedia of Philosophy, &ldquo;Charles Sanders Peirce.&rdquo;<br>
 <a href="https://plato.stanford.edu/entries/peirce/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/peirce/</a></li>
 <li id="fn4">Stanford Encyclopedia of Philosophy, &ldquo;Analogy and Analogical Reasoning.&rdquo;<br>
 <a href="https://plato.stanford.edu/entries/reasoning-analogy/" target="_blank" rel="noopener">https://plato.stanford.edu/entries/reasoning-analogy/</a></li>
-<li id="fn5">Dedre Gentner, &ldquo;Structure-Mapping: A Theoretical Framework for Analogy,&rdquo; <em>Cognitive Science</em>, 7(2), 1983, 155–170.<br>
+<li id="fn5">Dedre Gentner, &ldquo;Structure-Mapping: A Theoretical Framework for Analogy,&rdquo; <em>Cognitive Science</em>, 7 (2), 1983, 155–170.<br>
 <a href="https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog0702_3" target="_blank" rel="noopener">Wiley Online Library</a></li>
 <li id="fn6">David Hume, <em>An Enquiry Concerning Human Understanding</em>, Section IV–V. 帰納と因果推論をめぐる古典的問題。</li>
 <li id="fn7">Aristotle, <em>Prior Analytics</em>. 三段論法を含む古典論理の基礎文献。</li>
@@ -950,14 +958,14 @@ AI は異なる分野の概念を結びつける候補を大量に生成でき�
 <a href="https://www.jameslindlibrary.org/articles/ignaz-phillip-semmelweis-studies-of-death-in-childbirth/" target="_blank" rel="noopener">James Lind Library</a></li>
 <li id="fn9">John Snow と 1854 年ブロード街コレラ流行について、 London Museum, &ldquo;John Snow: Cholera &amp; the Broad Street pump.&rdquo;<br>
 <a href="https://www.londonmuseum.org.uk/collections/london-stories/john-snow-cholera-broad-street-pump/" target="_blank" rel="noopener">London Museum</a></li>
-<li id="fn10">Johannes Kepler の火星研究について、 Johannes Kepler, <em>Astronomia Nova</em> (1609) 、および &ldquo;The great Martian catastrophe and how Kepler fixed it,&rdquo; <em>Physics Today</em> 。<br>
+<li id="fn10">Johannes Kepler の火星研究について、 Johannes Kepler, <em>Astronomia Nova</em>(1609 ）、および &ldquo;The great Martian catastrophe and how Kepler fixed it,&rdquo; <em>Physics Today</em> 。<br>
 <a href="https://physicstoday.aip.org/features/the-great-martian-catastrophe-and-how-kepler-fixed-it" target="_blank" rel="noopener">Physics Today</a></li>
 <li id="fn11">Ernest Rutherford の原子模型と Niels Bohr による修正について、 American Physical Society, &ldquo;May, 1911: Rutherford and the Discovery of the Atomic Nucleus&rdquo; および &ldquo;March 6, 1913: Bohr describes his model of atom to Rutherford.&rdquo;<br>
 <a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus" target="_blank" rel="noopener">APS News</a></li>
 <li id="fn12">500 系新幹線とカワセミの関係について、仲津英治氏インタビュー、 Japan for Sustainability 。<br>
 <a href="https://www.japanfs.org/ja/projects/biomimicry/biomimicry_id033307.html" target="_blank" rel="noopener">Japan for Sustainability</a></li>
-<li id="fn13">Francis Bacon, <em>Novum Organum</em> (1620). 帰納法を論じた古典。</li>
-<li id="fn14">Karl Popper, <em>Logik der Forschung</em> (1934; 英訳 <em>The Logic of Scientific Discovery</em>, 1959). 反証可能性の議論。</li>
+<li id="fn13">Francis Bacon, <em>Novum Organum</em>(1620). 帰納法を論じた古典。</li>
+<li id="fn14">Karl Popper, <em>Logik der Forschung</em>(1934; 英訳 <em>The Logic of Scientific Discovery</em>, 1959). 反証可能性の議論。</li>
 </ol>
 <p class="note"><strong>編集方針 :</strong> この記事は一般読者向けの解説であり、学術論文ではない。特に「類推＝パースの第四の正式分類」「科学＝単純な帰納の積み重ね」「説明できる＝真である」といった短絡を避けた。歴史的なエピソードについては、複数の資料で確認できる事実のみを採用し、数値が資料によって食い違う場合は幅を持たせるか、代表的な一つの出典に基づく数値であることを明示した。ジョン・スノウのポンプの取っ手の逸話についても、「取っ手を外したことで流行が止まった」という単純化された通説をそのまま採らず、流行がすでに下火になっていたという指摘があることを併記している。カワセミと 500 系新幹線の事例も、設計史の細部を未確認のまま膨らませず、公開されているインタビュー等で確認できる範囲に限定して扱っている。</p>
 </footer>

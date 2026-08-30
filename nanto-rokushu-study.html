@@ -12,8 +12,8 @@
     --bg: #faf6ef;
     --paper: #fffdf9;
     --ink: #2b2620;
-    --sub: #6b6255;
-    --muted: #8a8072;
+    --sub: #5d564a;
+
     --accent: #9a4b32;
     --accent-soft: #c98a63;
     --line: #e3d9c6;
@@ -29,7 +29,7 @@
       --paper: #1d1a14;
       --ink: #ece7de;
       --sub: #b3ac9f;
-      --muted: #948d80;
+
       --accent: #d97a57;
       --accent-soft: #c98a63;
       --line: #332e26;
@@ -78,6 +78,8 @@
     line-height:1.85;
     text-indent:0;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
   .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
@@ -204,6 +206,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -213,6 +217,10 @@
     <span class="eyebrow">Nanto Rokushu · 南都仏教史</span>
     <h1>1300 年、消えなかった仏教 - 南都六宗という「知の生き延び方」</h1>
     <p class="sub">古代の学問仏教が、新しい宗派の台頭・戦乱・近代化を経てもなお生き続けている理由を、南都六宗という言葉の中身から読み解く</p>
+    <div class="meta">
+      <span>全 5 章</span>
+      <span>約 12 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 230" role="img" aria-labelledby="nrTitle nrDesc">
@@ -326,7 +334,7 @@
 日本仏教史には、大きな転換点が何度もある。平安時代には最澄の天台宗、空海の真言宗が立ち上がる。鎌倉時代になれば、浄土宗、浄土真宗、日蓮宗、禅宗 - 後の日本仏教を代表する顔ぶれが、次々と舞台に上がる。ふつうに考えれば、この時点で奈良仏教は「時代遅れの遺物」になっているはずだ。
 </p>
 <p>
-ところが、そうならなかった。奈良の大寺院では、教学そのものが生き続けた。それを一身に体現するのが、鎌倉時代の東大寺学僧・凝然 (1240-1321) である。戒壇院の円照に師事した凝然は、華厳・法相・天台・真言・律・浄土・禅と、当時の仏教のほぼ全域を修めたことで知られ、生涯に千二百余部ともいわれる著作を残した。日本の華厳教学の大成者とも評される人物だ <sup class="fn"><a href="#fn4">[4]</a></sup> 。
+ところが、そうならなかった。奈良の大寺院では、教学そのものが生き続けた。それを一身に体現するのが、鎌倉時代の東大寺学僧・凝然（ 1240-1321 ）である。戒壇院の円照に師事した凝然は、華厳・法相・天台・真言・律・浄土・禅と、当時の仏教のほぼ全域を修めたことで知られ、生涯に千二百余部ともいわれる著作を残した。日本の華厳教学の大成者とも評される人物だ <sup class="fn"><a href="#fn4">[4]</a></sup> 。
 </p>
 <p>
 新しい宗派が生まれた。だから古い教学が消える - 奈良では、その方程式が成り立たなかった。むしろ奈良は、新しい仏教を研究し、整理し、自らの知の体系に組み込む側に回った。<strong>古い場所で、新しいものまで学ぶ。</strong>この柔軟さこそが、南都仏教の長い生命力を解く鍵になる。

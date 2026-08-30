@@ -10,37 +10,36 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
+    --hero-1:#10496a; --hero-2:#0b3a55; --hero-ink:#ffffff; --hero-dim:#f3fdfb;
     --sky:#5ec8e6;
-    --sky-deep:#1f7fa8;
+    --accent:#1e7ba3;
     --straw:#e3b23c;
     --straw-deep:#b9791a;
     --field:#5da35f;
     --field-deep:#2f6b34;
     --coral:#e0624a;
     --coral-deep:#b6402c;
-    --card:#fffdf6;
-    --paper:#fbf5e4;
+    --paper:#fffdf6;
     --ink:#332b1f;
-    --ink-soft:#78705f;
+    --sub:#5c5548;
     --line:#eadfc2;
     --pause-bg:#fff7e2;
-    --pause-border:#e3b23c;
+
     --field-bg:#f2f8ef;
-    --acc-open-bg: linear-gradient(90deg, #fff8e6, #fffdf6);
+    --note-bg:#fff5e0;
     --compare-original-bg:#eef6ec;
     --compare-straw-bg:#fdf1ec;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --card:#1f1c14;
-      --paper:#16130d;
+      --paper:#1f1c14;
       --ink:#e9e2d2;
-      --ink-soft:#b3a98f;
+      --sub:#b3a98f;
       --line:#332c1e;
       --pause-bg:#332912;
       --field-bg:#16211a;
-      --acc-open-bg: var(--card);
-      --sky-deep:#7fd4ef;
+      --note-bg:#2e2717;
+      --accent:#7fd4ef;
       --straw-deep:#e8b563;
       --field-deep:#7fc282;
       --coral-deep:#e8836c;
@@ -80,11 +79,11 @@
     overflow:hidden;
     padding:78px 24px 84px;
     text-align:center;
-    background:linear-gradient(180deg, #10496a 0%, #17698f 46%, #0b3a55 100%);
-    color:#fff;
+    background:linear-gradient(180deg, var(--hero-1) 0%, #17698f 46%, var(--hero-2) 100%);
+    color:var(--hero-ink);
   }
-  .hero-inner{position:relative; z-index:2;}
-  .kicker{
+  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
+  header.hero .eyebrow{
     display:inline-block;
     font-size:.8rem; letter-spacing:.28em;
     background:rgba(255,255,255,.2);
@@ -99,21 +98,36 @@
     font-weight:800;
     text-shadow:0 3px 12px rgba(0,50,70,.32);
   }
-  .hero h2{
+  header.hero p.sub{
     margin:0 auto; max-width:600px;
     font-size:clamp(1rem, 2.2vw, 1.24rem);
-    font-weight:500; color:#f3fdfb; line-height:1.75;
+    font-weight:500; color:var(--hero-dim); line-height:1.75;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
   .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#f3fdfb; }
-  .toc-note{text-align:center; color:var(--ink-soft); font-size:.94rem; margin:36px 0 26px;}
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
+  .caveat{
+    margin:0 0 26px;
+    padding:16px 20px;
+    background:var(--note-bg);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+  }
+  .caveat p{
+    margin:0;
+    text-indent:0;
+    color:var(--sub);
+    line-height:1.85;
+  }
 
   .toolbar-container{
     position:sticky; top:10px; z-index:100;
-    background:color-mix(in srgb, var(--card) 93%, transparent);
+    background:color-mix(in srgb, var(--paper) 93%, transparent);
     backdrop-filter:blur(8px);
     padding:10px 0; border-radius:999px;
     margin-bottom:30px;
@@ -136,7 +150,7 @@
 
   /* ---------- Accordion ---------- */
   .acc-item{
-    background:var(--card);
+    background:var(--paper);
     border-radius:18px;
     margin-bottom:16px;
     box-shadow:0 4px 20px rgba(90,60,10,.07);
@@ -160,12 +174,12 @@
   .acc-header .title{flex:1 1 auto; font-size:1.12rem; font-weight:700; letter-spacing:.03em;}
   .acc-header .title small{
     display:block; font-weight:500; font-size:.83rem;
-    color:var(--ink-soft); margin-top:4px; letter-spacing:.01em;
+    color:var(--sub); margin-top:4px; letter-spacing:.01em;
   }
-  .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--sky-deep); transition:transform .3s cubic-bezier(.4,0,.2,1);}
+  .acc-header .chev{flex:0 0 auto; width:24px; height:24px; color:var(--accent); transition:transform .3s cubic-bezier(.4,0,.2,1);}
   .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
   .acc-item.open > .acc-header{
-    background:var(--acc-open-bg);
+    background:var(--note-bg);
     border-bottom:1px solid var(--line);
   }
   .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
@@ -189,7 +203,7 @@
     font-weight:700; font-size:.78rem;
   }
   .sub-header .title{flex:1 1 auto; font-size:1.01rem; font-weight:700;}
-  .sub-header .title small{display:block; font-weight:500; font-size:.78rem; color:var(--ink-soft); margin-top:3px;}
+  .sub-header .title small{display:block; font-weight:500; font-size:.78rem; color:var(--sub); margin-top:3px;}
   .sub-header .chev{width:20px; height:20px; color:var(--field-deep); transition:transform .3s ease;}
   .sub-item.open > .sub-header .chev{transform:rotate(180deg);}
   .sub-item.open > .sub-header{border-bottom:1px dashed #cfe0c9;}
@@ -231,7 +245,7 @@
   }
   .gap-note b{color:var(--straw-deep);}
   .cite-line{
-    margin:.9em 0 0; font-size:.82rem; color:var(--ink-soft);
+    margin:.9em 0 0; font-size:.82rem; color:var(--sub);
     text-align:right; font-style:italic;
   }
 
@@ -245,7 +259,7 @@
   }
 
   .steps{display:flex; flex-wrap:wrap; gap:12px; margin:1.4em 0;}
-  .step{flex:1 1 200px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+  .step{flex:1 1 200px; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
   .step .n{
     display:inline-flex; align-items:center; justify-content:center;
     width:26px; height:26px; border-radius:50%; background:#1f7fa8; color:#fff;
@@ -255,7 +269,7 @@
 
   .card-note{
     margin:1.7em 0; padding:22px 24px 20px;
-    background:var(--card);
+    background:var(--paper);
     border:1px solid var(--line);
     border-radius:12px;
     box-shadow:0 3px 10px rgba(90,60,10,.06);
@@ -273,12 +287,6 @@
     letter-spacing:.04em;
   }
   .card-note p:last-child{margin-bottom:0;}
-
-  strong.term{
-    color:var(--ink); font-weight:700;
-    background:linear-gradient(180deg, transparent 64%, rgba(227,178,60,.55) 64%);
-    padding:0 2px;
-  }
   .terms-grid{display:flex; flex-direction:column; gap:10px; margin:1.2em 0 0;}
   .term-row{display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); align-items:baseline;}
   .term-row:last-child{border-bottom:none;}
@@ -290,19 +298,19 @@
     padding:16px 0; border-bottom:1px solid var(--line);
   }
   .refs li:last-child{border-bottom:none;}
-  .refs a{color:var(--sky-deep); font-weight:700; text-decoration:none; font-size:.98rem;}
+  .refs a{color:var(--accent); font-weight:700; text-decoration:none; font-size:.98rem;}
   .refs a:hover{text-decoration:underline;}
-  .refs .meta{display:block; margin-top:5px; font-size:.82rem; color:var(--ink-soft);}
+  .refs .meta{display:block; margin-top:5px; font-size:.82rem; color:var(--sub);}
 
   .closing{
-    text-align:center; font-style:italic; color:var(--ink-soft);
+    text-align:center; font-style:italic; color:var(--sub);
     margin-top:2em; padding:22px;
     background:var(--field-bg); border-radius:12px;
     line-height:2;
   }
 
   footer{
-    text-align:center; color:var(--ink-soft); font-size:.86rem;
+    text-align:center; color:var(--sub); font-size:.86rem;
     padding:30px 20px; background:#f4f0e2; border-top:1px solid var(--line);
     line-height:1.9;
   }
@@ -321,7 +329,7 @@
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
-  .hero-inner{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
   <style>
@@ -337,6 +345,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -344,10 +354,14 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <span class="kicker">現代社会 | ことばの観察ノート</span>
+  <div class="wrap">
+    <span class="eyebrow">現代社会 | ことばの観察ノート</span>
     <h1>藁人形論法<br>- 存在しない主張と戦う詭弁 -</h1>
-    <h2>かかしを叩いて「勝った」と言っていないか。実例から確かめる。</h2>
+    <p class="sub">かかしを叩いて「勝った」と言っていないか。実例から確かめる。</p>
+    <div class="meta">
+      <span>全 5 章</span>
+      <span>約 7 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="smTitle smDesc">
@@ -402,7 +416,7 @@
 </header>
 
 <div class="wrap">
-  <div class="pause"><p>【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</p></div>
+  <div class="caveat"><p>【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</p></div>
 
   <div class="toolbar-container">
     <div class="toolbar">
@@ -440,7 +454,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">2</span>
-        <span class="title">なぜ人はこの詭弁に陥るのか<small>三段階の仕組みと、SNS 時代のわな</small></span>
+        <span class="title">なぜ人はこの詭弁に陥るのか<small>三段階の仕組みと、 SNS 時代のわな</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -453,12 +467,12 @@
             <div class="step"><span class="n">3</span><p>藁人形を倒したことをもって、元の主張そのものを論破したかのように錯覚させる。</p></div>
           </div>
           <p>人がこの詭弁に陥りやすい理由は単純だ。相手の主張をそのままの強さで受け止めて反論するより、極端な形に描き直したほうが圧倒的に反論しやすい。<br>
-加えて、SNS のように短い言葉が拡散されやすい環境では、複雑な留保つきの主張よりも、単純化され感情を刺激する主張のほうが目に留まりやすい。切り取られた動画や発言が「わかりやすい」からこそ拡散し、元の文脈は置き去りにされる。</p>
+加えて、 SNS のように短い言葉が拡散されやすい環境では、複雑な留保つきの主張よりも、単純化され感情を刺激する主張のほうが目に留まりやすい。切り取られた動画や発言が「わかりやすい」からこそ拡散し、元の文脈は置き去りにされる。</p>
           <p>有害さは学術的な議論の場でも指摘されてきた。反対意見を不当に弱めて紹介すれば、それに続く反論もまた説得力を失う。<br>
 読者や聴衆は、歪められた主張しか知らないまま「論破された」と信じ込み、実際の論点についての理解はむしろ後退する。</p>
           <div class="card-note">
-            <h4>用語メモ:スチールマンと好意的解釈の原則</h4>
-            <p>だからこそ、相手の主張は「その論者が言いうる最も強い形」で提示したうえで検討すべきだとされる。この姿勢はスチールマン(steel man、鋼鉄人形)や、好意的解釈の原則(principle of charity)と呼ばれ、藁人形論法の対概念として繰り返し語られてきた。</p>
+            <h4>用語メモ : スチールマンと好意的解釈の原則</h4>
+            <p>だからこそ、相手の主張は「その論者が言いうる最も強い形」で提示したうえで検討すべきだとされる。この姿勢はスチールマン（ steel man 、鋼鉄人形）や、好意的解釈の原則（ principle of charity ）と呼ばれ、藁人形論法の対概念として繰り返し語られてきた。</p>
           </div>
         </div>
       </div>
@@ -481,18 +495,18 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">1</span>
-                <span class="title">小泉進次郎氏の会見動画<small>日本/政治家の発言そのものを作り替える</small></span>
+                <span class="title">小泉進次郎氏の会見動画<small>日本 / 政治家の発言そのものを作り替える</small></span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>2025 年 5 月、「小泉進次郎氏が消費税 15%を主張している」とする 45 秒の動画が X 上で拡散し、1 万回以上リポストされた。動画は 2017 年 6 月 1 日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
+                  <p>2025 年 5 月、「小泉進次郎氏が消費税 15% を主張している」とする 45 秒の動画が X 上で拡散し、 1 万回以上リポストされた。動画は 2017 年 6 月 1 日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
                   <div class="compare">
-                    <div class="compare-box original"><span class="tag">元の主張</span><p>増税には慎重、少子化対策は待ったなし(同じ会見で「消費増税というのは選択肢にはなり得ない」と発言)</p></div>
-                    <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>消費税 15%を積極的に推進している</p></div>
+                    <div class="compare-box original"><span class="tag">元の主張</span><p>増税には慎重、少子化対策は待ったなし（同じ会見で「消費増税というのは選択肢にはなり得ない」と発言）</p></div>
+                    <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>消費税 15% を積極的に推進している</p></div>
                   </div>
-                  <p class="gap-note"><b>歪曲点:</b>両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
-                  <p class="cite-line">出典:日本ファクトチェックセンター(2025 年 5 月 23 日)</p>
+                  <p class="gap-note"><b>歪曲点 :</b> 両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
+                  <p class="cite-line">出典 : 日本ファクトチェックセンター（ 2025 年 5 月 23 日）</p>
                 </div>
               </div>
             </div>
@@ -500,18 +514,18 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">2</span>
-                <span class="title">「オープンボーダー」への飛躍<small>米国/2016 年大統領選、討論会での応酬</small></span>
+                <span class="title">「オープンボーダー」への飛躍<small>米国 /2016 年大統領選、討論会での応酬</small></span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>2016 年 10 月 19 日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー(国境の撤廃)を望んでいる」と述べた。根拠とされたのは、2013 年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
+                  <p>2016 年 10 月 19 日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー（国境の撤廃）を望んでいる」と述べた。根拠とされたのは、 2013 年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
                   <div class="compare">
-                    <div class="compare-box original"><span class="tag">元の主張</span><p>エネルギー・貿易面での地域統合(国境警備強化を含む 2013 年の移民改革法案は支持)</p></div>
+                    <div class="compare-box original"><span class="tag">元の主張</span><p>エネルギー・貿易面での地域統合（国境警備強化を含む 2013 年の移民改革法案は支持）</p></div>
                     <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>移民の無制限受け入れ</p></div>
                   </div>
-                  <p class="gap-note"><b>歪曲点:</b>両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
-                  <p class="cite-line">出典:PolitiFact(2016 年 10 月 20 日)</p>
+                  <p class="gap-note"><b>歪曲点 :</b> 両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
+                  <p class="cite-line">出典 :PolitiFact (2016 年 10 月 20 日）</p>
                 </div>
               </div>
             </div>
@@ -519,18 +533,18 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">3</span>
-                <span class="title">発言の後半を切り落とす<small>日本/テレビ報道発言の切り抜き</small></span>
+                <span class="title">発言の後半を切り落とす<small>日本 / テレビ報道発言の切り抜き</small></span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
                   <p>2026 年 1 月、中道改革連合の斉藤鉄夫共同代表が TBS テレビの番組で発言した場面を切り取った動画が X で拡散した。</p>
                   <div class="compare">
-                    <div class="compare-box original"><span class="tag">元の発言(全文)</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある……そういう考え方には立たない。人間を中心に考えていくことが中道主義の本質だ」</p></div>
-                    <div class="compare-box straw"><span class="tag">拡散した動画(後半カット)</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある」</p></div>
+                    <div class="compare-box original"><span class="tag">元の発言（全文）</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある……そういう考え方には立たない。人間を中心に考えていくことが中道主義の本質だ」</p></div>
+                    <div class="compare-box straw"><span class="tag">拡散した動画（後半カット）</span><p>「人間の幸せ以上、人間より他にもっと大事なものがある」</p></div>
                   </div>
-                  <p class="gap-note"><b>歪曲点:</b>発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
-                  <p class="cite-line">出典:時事通信(2026 年 2 月 2 日)</p>
+                  <p class="gap-note"><b>歪曲点 :</b> 発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
+                  <p class="cite-line">出典 : 時事通信（ 2026 年 2 月 2 日）</p>
                 </div>
               </div>
             </div>
@@ -538,7 +552,7 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">4</span>
-                <span class="title">「カナダ型医療」の脅し<small>米国/2009 年、医療保険改革をめぐる広告</small></span>
+                <span class="title">「カナダ型医療」の脅し<small>米国 /2009 年、医療保険改革をめぐる広告</small></span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
@@ -548,8 +562,8 @@
                     <div class="compare-box original"><span class="tag">元の提案</span><p>公的保険の選択肢を追加する案</p></div>
                     <div class="compare-box straw"><span class="tag">すり替えられた主張</span><p>カナダのような完全な政府運営制度への移行</p></div>
                   </div>
-                  <p class="gap-note"><b>歪曲点:</b>専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
-                  <p class="cite-line">出典:FactCheck.org(2009 年 7 月 17 日)</p>
+                  <p class="gap-note"><b>歪曲点 :</b> 専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
+                  <p class="cite-line">出典 :FactCheck.org (2009 年 7 月 17 日）</p>
                 </div>
               </div>
             </div>
@@ -557,7 +571,7 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">5</span>
-                <span class="title">同じ党内でも起きる<small>米国/2019 年、民主党予備選討論会</small></span>
+                <span class="title">同じ党内でも起きる<small>米国 /2019 年、民主党予備選討論会</small></span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
@@ -567,8 +581,8 @@
                     <div class="compare-box original"><span class="tag">サンダース氏の法案</span><p>病院への診療報酬をメディケア水準に固定するとは規定していない</p></div>
                     <div class="compare-box straw"><span class="tag">デラニー氏の主張</span><p>「すべての病院がメディケア並みの支払いになれば経営が立ち行かなくなる」</p></div>
                   </div>
-                  <p class="gap-note"><b>歪曲点:</b>米公共放送 PBS はデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
-                  <p class="cite-line">出典:PBS NewsHour(2019 年 6 月 27 日)</p>
+                  <p class="gap-note"><b>歪曲点 :</b> 米公共放送 PBS はデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
+                  <p class="cite-line">出典 :PBS NewsHour (2019 年 6 月 27 日）</p>
                 </div>
               </div>
             </div>
@@ -617,8 +631,8 @@
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <ul class="refs">
-            <li><a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/" target="_blank" rel="noopener">小泉進次郎氏が消費増税を主張?恣意的な切り貼り【ファクトチェック】</a><span class="meta">日本ファクトチェックセンター, 2025 年 5 月 23 日</span></li>
-            <li><a href="https://www.jiji.com/jc/article?k=2026020200704&g=pol" target="_blank" rel="noopener">中道・斉藤氏「人間より大事なものある」動画は誤り テレビ番組発言の切り抜きが拡散【チェック!選挙】</a><span class="meta">時事通信, 2026 年 2 月 2 日</span></li>
+            <li><a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/" target="_blank" rel="noopener">小泉進次郎氏が消費増税を主張 ? 恣意的な切り貼り【ファクトチェック】</a><span class="meta">日本ファクトチェックセンター , 2025 年 5 月 23 日</span></li>
+            <li><a href="https://www.jiji.com/jc/article?k=2026020200704&g=pol" target="_blank" rel="noopener">中道・斉藤氏「人間より大事なものある」動画は誤り テレビ番組発言の切り抜きが拡散【チェック ! 選挙】</a><span class="meta">時事通信 , 2026 年 2 月 2 日</span></li>
             <li><a href="https://www.politifact.com/factchecks/2016/oct/20/donald-trump/donald-trump-says-hillary-clinton-wants-have-open-/" target="_blank" rel="noopener">In final debate, Trump wrongly says Clinton wants open borders</a><span class="meta">PolitiFact, 2016 年 10 月 20 日</span></li>
             <li><a href="https://www.factcheck.org/2009/07/canadian-straw-man/" target="_blank" rel="noopener">Canadian Straw Man</a><span class="meta">FactCheck.org, 2009 年 7 月 17 日</span></li>
             <li><a href="https://www.pbs.org/newshour/politics/fact-check-delaneys-debate-claim-that-medicare-for-all-will-shutter-hospitals-goes-overboard" target="_blank" rel="noopener">Fact check: Delaney's debate claim that 'Medicare For All' will shutter hospitals goes overboard</a><span class="meta">PBS NewsHour, 2019 年 6 月 27 日</span></li>
@@ -639,46 +653,102 @@
 
 <script>
 (function(){
-  function bindAccordion(itemSelector, toggleSelector){
+  var OPEN_SCROLL_DELAY = 400;
+  var GROUPS = [["[data-acc]", "[data-acc-toggle]"], ["[data-sub]", "[data-sub-toggle]"]];
+
+  function groupOf(item){
+    for(var i = 0; i < GROUPS.length; i++){
+      if(item.matches(GROUPS[i][0])) return GROUPS[i];
+    }
+    return null;
+  }
+
+  function closeSiblings(item, itemSelector){
+    Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+      if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+        sibling.classList.remove("open");
+      }
+    });
+  }
+
+  GROUPS.forEach(function(group){
+    var itemSelector = group[0], toggleSelector = group[1];
     document.querySelectorAll(itemSelector).forEach(function(item){
       var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(e){
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
+      if(!toggle) return;
+      toggle.addEventListener("click", function(){
+        if(window.getSelection().toString().length > 0) return;
         var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
+        if(willOpen) closeSiblings(item, itemSelector);
         item.classList.toggle("open", willOpen);
+        if(willOpen){
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
+        }
+      });
+    });
+  });
+
+  function setAll(open){
+    GROUPS.forEach(function(group){
+      document.querySelectorAll(group[0]).forEach(function(item){
+        item.classList.toggle("open", open);
       });
     });
   }
 
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-  bindAccordion("[data-sub]", "[data-sub-toggle]");
+  document.getElementById("expandAll").addEventListener("click", function(){ setAll(true); });
+  document.getElementById("collapseAll").addEventListener("click", function(){ setAll(false); });
 
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
-      item.classList.add("open");
-    });
+  function openTarget(hash){
+    if(!hash) return null;
+    var target = document.getElementById(hash.replace(/^#/, ""));
+    if(!target) return null;
+    var node = target;
+    while(node){
+      var item = node.closest("[data-acc], [data-sub]");
+      if(!item) break;
+      if(!item.classList.contains("open")){
+        var group = groupOf(item);
+        if(group) closeSiblings(item, group[0]);
+        item.classList.add("open");
+      }
+      node = item.parentElement;
+    }
+    return target;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    if(!target) return;
+    var accItem = target.closest("[data-acc], [data-sub]");
+    if(!accItem) return;
+    e.preventDefault();
+    var wasOpen = accItem.classList.contains("open");
+    openTarget(a.getAttribute("href"));
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
   });
 
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc], [data-sub]").forEach(function(item){
-      item.classList.remove("open");
-    });
+  window.addEventListener("hashchange", function(){
+    var target = openTarget(location.hash);
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, OPEN_SCROLL_DELAY);
+    }
   });
 
-  window.addEventListener('scroll', function(){
+  if(location.hash) openTarget(location.hash);
+
+  window.addEventListener("scroll", function(){
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+    document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
   });
 })();
 </script>

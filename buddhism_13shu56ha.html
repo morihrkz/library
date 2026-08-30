@@ -10,21 +10,22 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
+    --hero-1:#1a237e; --hero-2:#e64a19; --hero-ink:#ffffff; --hero-dim:#fff3e0;
     --night:#3949ab;
-    --night-deep:#1a237e;
+    --accent:#1a237e;
     --gold:#ffca28;
     --gold-deep:#ffa000;
     --vermilion:#e64a19;
-    --vermilion-deep:#bf360c;
+
     --paper:#ffffff;
     --ink:#2c3e50;
-    --ink-soft:#546e7a;
+    --sub:#455a64;
     --line:#ece7f6;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
     --pause-ink:#6d4c00;
-    --accent-bg:#f7f5fb;
-    --acc-open-bg: linear-gradient(90deg, #f4f2fc, #ffffff);
+    --card:#f7f5fb;
+    --note-bg:#f0edfa;
     --dusk-mid:#8e7cc3;
     --dusk-light:#f3c9a0;
   }
@@ -32,13 +33,13 @@
     :root{
       --paper:#1c1a26;
       --ink:#e3e0ec;
-      --ink-soft:#9d97b8;
+      --sub:#aaa4c1;
       --line:#2c2740;
       --pause-bg:#332b12;
       --pause-ink:#e6c375;
-      --accent-bg:#17141f;
-      --acc-open-bg: var(--paper);
-      --night-deep:#9fa8da;
+      --card:#17141f;
+      --note-bg:#241f33;
+      --accent:#9fa8da; --hero-1:#9fa8da;
     }
   }
   *{box-sizing:border-box;}
@@ -78,17 +79,17 @@
     padding:80px 24px 100px;
     text-align:center;
     background:linear-gradient(180deg,
-      var(--night-deep) 0%,
+      var(--hero-1) 0%,
       var(--night) 26%,
       var(--dusk-mid) 46%,
       var(--dusk-light) 68%,
       var(--gold-deep) 88%,
-      var(--vermilion) 100%);
-    color:#ffffff;
+      var(--hero-2) 100%);
+    color:var(--hero-ink);
   }
 
-  .hero-inner{ position:relative; z-index:2; }
-  .kicker{
+  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
+  header.hero .eyebrow{
     display:inline-block;
     font-size:0.85rem;
     letter-spacing:0.35em;
@@ -105,14 +106,16 @@
     font-weight:800;
     text-shadow:0 3px 12px rgba(20,10,50,0.35);
   }
-  .hero h2{
+  header.hero p.sub{
     margin:0 auto;
     max-width:600px;
     font-size:clamp(1.05rem, 2.5vw, 1.3rem);
     font-weight:500;
-    color:#fff3e0;
+    color:var(--hero-dim);
     line-height:1.6;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
   .wave{
     position:absolute;
     left:0; right:0; bottom:-2px;
@@ -127,15 +130,23 @@
   }
   .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#fff3e0; }
-  .toc-note{
-    text-align:center;
-    color:var(--ink-soft);
-    font-size:0.95rem;
-    margin:40px 0 30px;
-  }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
 
   /* Sticky Toolbar */
+  .caveat{
+    margin:0 0 26px;
+    padding:16px 20px;
+    background:var(--note-bg);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:8px;
+  }
+  .caveat p{
+    margin:0;
+    text-indent:0;
+    color:var(--sub);
+    line-height:1.85;
+  }
   .toolbar-container {
     position: sticky;
     top: 10px;
@@ -222,27 +233,31 @@
     display:block;
     font-weight:500;
     font-size:0.85rem;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:4px;
   }
   .acc-header .chev{
     flex:0 0 auto;
     width:24px; height:24px;
-    color:var(--night-deep);
+    color:var(--accent);
     transition:transform .3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:var(--acc-open-bg);
+    background:var(--note-bg);
     border-bottom: 1px solid var(--line);
   }
 
   .acc-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
   .acc-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 28px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -260,7 +275,7 @@
     margin-top:8px;
   }
   .sub-item{
-    background:var(--accent-bg);
+    background:var(--card);
     border:1px solid #e4defa;
     border-radius:14px;
     overflow:hidden;
@@ -308,11 +323,15 @@
     border-bottom: 1px dashed #e4defa;
   }
   .sub-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
   .sub-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 24px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -334,7 +353,7 @@
     text-align:center;
     font-size:1.2rem;
     font-weight:700;
-    color:var(--night-deep);
+    color:var(--accent);
     margin:1.8em 0;
     text-indent:0;
     padding: 0 20px;
@@ -345,45 +364,42 @@
     display: inline-block;
     width: 20px;
     height: 2px;
-    background: var(--night-deep);
+    background: var(--accent);
     vertical-align: middle;
     margin: 0 15px;
     opacity: 0.3;
   }
   .pause{
-    margin-top:2em;
+    margin:2em 0 0;
     padding:24px;
     background:var(--pause-bg);
     border:2px dashed var(--pause-border);
     border-radius:16px;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(255,202,40,0.1);
+    position:relative;
+    box-shadow:0 4px 12px color-mix(in srgb, var(--pause-border) 16%, transparent);
   }
-  .pause::before {
-    content: "ひと休み";
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: var(--pause-bg);
-    padding: 0 8px;
-    font-size: 0.75rem;
+  .pause::before{
+    content:"ひと休み";
+    position:absolute;
+    top:-10px;
+    left:20px;
+    background:var(--pause-bg);
+    padding:0 8px;
     font-weight:700;
-    letter-spacing: 0.05em;
-    color: var(--pause-border);
+    letter-spacing:.05em;
+    color:var(--pause-ink);
   }
   .pause p{
     margin:0;
     text-indent:0;
     color:var(--pause-ink);
     font-weight:600;
-    text-align: left;
-    font-size: 1.05rem;
-    line-height: 1.6;
+    line-height:1.6;
   }
   .column{
     margin-top:2em;
     padding:24px;
-    background:var(--accent-bg);
+    background:var(--card);
     border:1px solid var(--line);
     border-left:6px solid var(--night);
     border-radius:0 16px 16px 0;
@@ -395,17 +411,17 @@
     position:absolute;
     top:-10px;
     left:20px;
-    background:var(--accent-bg);
+    background:var(--card);
     padding:0 8px;
     font-size:0.75rem;
     font-weight:700;
     letter-spacing:0.05em;
-    color:var(--night-deep);
+    color:var(--accent);
   }
   .column h4{
     margin:4px 0 12px;
     font-size:1.05rem;
-    color:var(--night-deep);
+    color:var(--accent);
     font-weight:700;
   }
   .column p{
@@ -431,7 +447,7 @@
   .dl-term dt{
     font-weight:700;
     font-size: 1.1rem;
-    color:var(--night-deep);
+    color:var(--accent);
     margin-bottom:6px;
   }
   .dl-term dd{
@@ -458,10 +474,10 @@
   .closing{
     text-align:center;
     font-style:italic;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:2em;
     padding: 20px;
-    background: var(--accent-bg);
+    background: var(--card);
     border-radius: 12px;
   }
 
@@ -486,8 +502,8 @@
     vertical-align:top;
   }
   .info-table th{
-    background:var(--accent-bg);
-    color:var(--night-deep);
+    background:var(--card);
+    color:var(--accent);
     font-weight:700;
     white-space:nowrap;
   }
@@ -497,7 +513,7 @@
 
   footer{
     text-align:center;
-    color:var(--ink-soft);
+    color:var(--sub);
     font-size:0.9rem;
     padding:30px 20px;
     background: #f7f5fb;
@@ -516,7 +532,7 @@
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
-  .hero-inner{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}.hero .kicker{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
+  header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
   <style>
@@ -532,6 +548,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -539,10 +557,14 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <span class="kicker">日本仏教 / 宗派ガイド</span>
+  <div class="wrap">
+    <span class="eyebrow">日本仏教 / 宗派ガイド</span>
     <h1>十三宗五十六派を歩く</h1>
-    <h2>初めての方にも、詳しい方にも―日本仏教の宗派地図をたどる</h2>
+    <p class="sub">初めての方にも、詳しい方にも - 日本仏教の宗派地図をたどる</p>
+    <div class="meta">
+      <span>全 13 章</span>
+      <span>約 16 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="bdTitle bdDesc">
@@ -593,7 +615,7 @@
 </header>
 
 <div class="wrap">
-  <div><p>【分類について】「十三宗五十六派」は、仏教史の入門で用いられてきた整理の一つであり、現在の宗教法人の包括・被包括関係を数えた公式統計ではない。宗派・派の数え方は資料と時点で変わる。本記事では歴史的な見取り図として用い、現行の法人統計は文化庁「宗教年鑑」で確認できる。</p></div>
+  <div class="caveat"><p>【分類について】「十三宗五十六派」は、仏教史の入門で用いられてきた整理の一つであり、現在の宗教法人の包括・被包括関係を数えた公式統計ではない。宗派・派の数え方は資料と時点で変わる。本記事では歴史的な見取り図として用い、現行の法人統計は文化庁「宗教年鑑」で確認できる。</p></div>
 
 
   <div class="toolbar-container">
@@ -637,19 +659,19 @@
             <table class="info-table">
               <thead><tr><th>宗名</th><th>開祖・開宗年</th><th>本山</th><th>ひとことで言うと</th></tr></thead>
               <tbody>
-<tr><td>法相宗</td><td>道昭ら(奈良時代)</td><td>興福寺・薬師寺</td><td>認識のあり方を精密に考察する唯識を重視する</td></tr>
-                <tr><td>律宗</td><td>鑑真(753 年来日)</td><td>唐招提寺</td><td>戒律を守り抜くことを実践の中心に</td></tr>
-                <tr><td>華厳宗</td><td>審祥ら(奈良時代)</td><td>東大寺</td><td>一即一切、あらゆるものが響き合う</td></tr>
-                <tr><td>天台宗</td><td>最澄(806 年)</td><td>比叡山延暦寺</td><td>法華経中心の総合仏教、鎌倉仏教の母山</td></tr>
-                <tr><td>真言宗</td><td>空海(816 年)</td><td>金剛峯寺・東寺</td><td>密教の修法でこの身のまま仏になる</td></tr>
-                <tr><td>融通念仏宗</td><td>良忍(1117 年)</td><td>大念佛寺</td><td>一人の念仏がみんなに融け通う</td></tr>
-                <tr><td>浄土宗</td><td>法然(1175 年)</td><td>知恩院</td><td>ひたすら念仏を称える専修念仏</td></tr>
-                <tr><td>浄土真宗</td><td>親鸞</td><td>本願寺(西・東)</td><td>阿弥陀仏にすべてを委ねる絶対他力</td></tr>
-                <tr><td>臨済宗</td><td>栄西(1191 年)</td><td>建仁寺ほか</td><td>公案と問答で悟りに向かう禅</td></tr>
+<tr><td>法相宗</td><td>道昭ら（奈良時代）</td><td>興福寺・薬師寺</td><td>認識のあり方を精密に考察する唯識を重視する</td></tr>
+                <tr><td>律宗</td><td>鑑真（ 753 年来日）</td><td>唐招提寺</td><td>戒律を守り抜くことを実践の中心に</td></tr>
+                <tr><td>華厳宗</td><td>審祥ら（奈良時代）</td><td>東大寺</td><td>一即一切、あらゆるものが響き合う</td></tr>
+                <tr><td>天台宗</td><td>最澄（ 806 年）</td><td>比叡山延暦寺</td><td>法華経中心の総合仏教、鎌倉仏教の母山</td></tr>
+                <tr><td>真言宗</td><td>空海（ 816 年）</td><td>金剛峯寺・東寺</td><td>密教の修法でこの身のまま仏になる</td></tr>
+                <tr><td>融通念仏宗</td><td>良忍（ 1117 年）</td><td>大念佛寺</td><td>一人の念仏がみんなに融け通う</td></tr>
+                <tr><td>浄土宗</td><td>法然（ 1175 年）</td><td>知恩院</td><td>ひたすら念仏を称える専修念仏</td></tr>
+                <tr><td>浄土真宗</td><td>親鸞</td><td>本願寺（西・東）</td><td>阿弥陀仏にすべてを委ねる絶対他力</td></tr>
+                <tr><td>臨済宗</td><td>栄西（ 1191 年）</td><td>建仁寺ほか</td><td>公案と問答で悟りに向かう禅</td></tr>
                 <tr><td>曹洞宗</td><td>道元</td><td>永平寺・總持寺</td><td>ひたすら坐る、只管打坐の禅</td></tr>
-                <tr><td>時宗</td><td>一遍(1276 年頃)</td><td>清浄光寺(遊行寺)</td><td>踊り念仏とともに諸国を遊行する</td></tr>
-                <tr><td>日蓮宗</td><td>日蓮(1253 年)</td><td>身延山久遠寺</td><td>法華経こそ真の教え、南無妙法蓮華経</td></tr>
-                <tr><td>黄檗宗</td><td>隠元(1654 年来日)</td><td>萬福寺</td><td>中国明代の様式を伝える禅</td></tr>
+                <tr><td>時宗</td><td>一遍（ 1276 年頃）</td><td>清浄光寺（遊行寺）</td><td>踊り念仏とともに諸国を遊行する</td></tr>
+                <tr><td>日蓮宗</td><td>日蓮（ 1253 年）</td><td>身延山久遠寺</td><td>法華経こそ真の教え、南無妙法蓮華経</td></tr>
+                <tr><td>黄檗宗</td><td>隠元（ 1654 年来日）</td><td>萬福寺</td><td>中国明代の様式を伝える禅</td></tr>
               </tbody>
             </table>
           </div>
@@ -673,7 +695,7 @@
           <dl>
             <div class="dl-term">
               <dt>法相宗</dt>
-              <dd>遣唐使とともに渡った道昭が、唐で玄奘三蔵に学び持ち帰った「唯識(ゆいしき)」の思想を教学の柱とする。唯識とは、私たちが「外側にある」と信じている世界も、実は心の働き(識)が生み出した現れにすぎない、と説く思想である。本山は興福寺と薬師寺。興福寺の阿修羅像は、日本の仏教美術を代表する存在として広く知られている。</dd>
+              <dd>遣唐使とともに渡った道昭が、唐で玄奘三蔵に学び持ち帰った「唯識（ゆいしき）」の思想を教学の柱とする。唯識とは、私たちが「外側にある」と信じている世界も、実は心の働き（識）が生み出した現れにすぎない、と説く思想である。本山は興福寺と薬師寺。興福寺の阿修羅像は、日本の仏教美術を代表する存在として広く知られている。</dd>
             </div>
             <div class="dl-term">
               <dt>律宗</dt>
@@ -681,7 +703,7 @@
             </div>
             <div class="dl-term">
               <dt>華厳宗</dt>
-              <dd>『華厳経』が説く「一即一切、一切即一」―一つの存在の中にすべてが映り込み、すべての存在が一つに響き合っているという壮大な世界観を教学の核とする。東大寺の大仏(盧舎那仏)は、この教えを説く教主そのものを表した像である。</dd>
+              <dd>『華厳経』が説く「一即一切、一切即一」 - 一つの存在の中にすべてが映り込み、すべての存在が一つに響き合っているという壮大な世界観を教学の核とする。東大寺の大仏（盧舎那仏）は、この教えを説く教主そのものを表した像である。</dd>
             </div>
           </dl>
           <p class="no-indent">これら三宗は、鎌倉新仏教のような大衆への布教運動というより、今も研究・教学の府としての性格を色濃く残している。</p>
@@ -698,11 +720,11 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>最澄は 804 年、遣唐使船で唐に渡り、翌年、天台山で学んだ教えを携えて帰国、806 年に天台宗を開いた。本山は比叡山延暦寺である。</p>
+          <p>最澄は 804 年、遣唐使船で唐に渡り、翌年、天台山で学んだ教えを携えて帰国、 806 年に天台宗を開いた。本山は比叡山延暦寺である。</p>
           <p>天台宗の最大の特徴は、<strong class="term">法華経</strong>を中心に据えながらも、禅・密教・戒律・念仏といった複数の実践を「すべて仏の教えの現れ」として体系の中に取り込んだ、総合仏教としての性格にある。</p>
-          <p class="pullquote">法然も、親鸞も、栄西も、道元も、日蓮も―鎌倉仏教の開祖たちは、みな若き日に比叡山で学んでいる。</p>
+          <p class="pullquote">法然も、親鸞も、栄西も、道元も、日蓮も - 鎌倉仏教の開祖たちは、みな若き日に比叡山で学んでいる。</p>
           <p>このため天台宗は「日本仏教の母山」としばしば呼ばれる。比叡山という一つの山から、後の鎌倉新仏教の担い手たちがそれぞれの答えを携えて下山していった、という構図である。</p>
-          <p class="no-indent">天台宗系は、比叡山の天台宗本体のほか、大津の三井寺(園城寺)を本山とする天台寺門宗、西教寺を本山とする天台真盛宗などに分かれている。同じ最澄の教えを源としながら、平安時代なかばの円仁・円珍の教学をめぐる対立や、後世の教団の独立の経緯によって、本山を異にする派が生まれた。</p>
+          <p class="no-indent">天台宗系は、比叡山の天台宗本体のほか、大津の三井寺（園城寺）を本山とする天台寺門宗、西教寺を本山とする天台真盛宗などに分かれている。同じ最澄の教えを源としながら、平安時代なかばの円仁・円珍の教学をめぐる対立や、後世の教団の独立の経緯によって、本山を異にする派が生まれた。</p>
         </div>
       </div>
     </section>
@@ -716,9 +738,9 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>空海は最澄と同じ 804 年の遣唐使船で唐に渡り、長安の青龍寺で恵果から密教の正統な伝法を受けて 806 年に帰国、816 年に高野山を開いた。<br>
-真言宗の教えの核心は<strong class="term">即身成仏</strong>―この身のままで仏になれる、という主張である。手に印を結び(身密)、口に真言を唱え(口密)、心に本尊を観想する(意密)、という「三密」の修法を通じて、大日如来と一体化していくと説く。</p>
-          <p class="no-indent">真言宗は、宗派の中でもとりわけ多くの派に分かれた宗の一つである。大きな分かれ目は、平安時代なかばまでの教学をそのまま継承しようとする「古義真言宗」と、平安末期の学僧・覚鑁(かくばん)が唱えた新しい教学的立場に連なる「新義真言宗」の違いである。</p>
+          <p>空海は最澄と同じ 804 年の遣唐使船で唐に渡り、長安の青龍寺で恵果から密教の正統な伝法を受けて 806 年に帰国、 816 年に高野山を開いた。<br>
+真言宗の教えの核心は<strong class="term">即身成仏</strong> - この身のままで仏になれる、という主張である。手に印を結び（身密）、口に真言を唱え（口密）、心に本尊を観想する（意密）、という「三密」の修法を通じて、大日如来と一体化していくと説く。</p>
+          <p class="no-indent">真言宗は、宗派の中でもとりわけ多くの派に分かれた宗の一つである。大きな分かれ目は、平安時代なかばまでの教学をそのまま継承しようとする「古義真言宗」と、平安末期の学僧・覚鑁（かくばん）が唱えた新しい教学的立場に連なる「新義真言宗」の違いである。</p>
 
           <div class="sub-list">
             <div class="sub-item" data-sub>
@@ -729,7 +751,7 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>空海の教えを直接継承する立場である。東寺(教王護国寺)を本山とする東寺真言宗、高野山を本山とする高野山真言宗のほか、京都の仁和寺を本山とする真言宗御室派、大覚寺を本山とする真言宗大覚寺派、泉涌寺を本山とする真言宗泉涌寺派、勧修寺を本山とする真言宗山階派、醍醐寺を本山とする真言宗醍醐派、香川の善通寺を本山とする真言宗善通寺派など、平安京とその周辺に由来する寺院が、それぞれ独立した本山系統を築いてきた。</p>
+                  <p>空海の教えを直接継承する立場である。東寺（教王護国寺）を本山とする東寺真言宗、高野山を本山とする高野山真言宗のほか、京都の仁和寺を本山とする真言宗御室派、大覚寺を本山とする真言宗大覚寺派、泉涌寺を本山とする真言宗泉涌寺派、勧修寺を本山とする真言宗山階派、醍醐寺を本山とする真言宗醍醐派、香川の善通寺を本山とする真言宗善通寺派など、平安京とその周辺に由来する寺院が、それぞれ独立した本山系統を築いてきた。</p>
                 </div>
               </div>
             </div>
@@ -789,8 +811,8 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>親鸞の没後、その教えを継ぐ本願寺は、戦国時代の本山継承をめぐる内紛や、豊臣秀吉・徳川家康の宗教政策に翻弄され、1602 年に東西二つの本願寺に分裂する。西本願寺を本山とする浄土真宗本願寺派と、東本願寺を本山とする真宗大谷派である。<br>
-この東西分裂に加え、親鸞の弟子や高弟の系譜を独自に伝えてきた寺院―三重県の専修寺を本山とする真宗高田派、京都の仏光寺を本山とする真宗仏光寺派、同じく京都の興正寺を本山とする真宗興正派、滋賀県の錦織寺を本山とする真宗木辺派、福井県の寺院をそれぞれ本山とする真宗出雲路派・真宗誠照寺派・真宗三門徒派・真宗山元派―が独立を保ち、合わせて「真宗十派」と呼ばれる体制ができあがった。これら十派は現在、真宗教団連合という緩やかな連合組織を通じて交流を続けている。</p>
+                  <p>親鸞の没後、その教えを継ぐ本願寺は、戦国時代の本山継承をめぐる内紛や、豊臣秀吉・徳川家康の宗教政策に翻弄され、 1602 年に東西二つの本願寺に分裂する。西本願寺を本山とする浄土真宗本願寺派と、東本願寺を本山とする真宗大谷派である。<br>
+この東西分裂に加え、親鸞の弟子や高弟の系譜を独自に伝えてきた寺院 - 三重県の専修寺を本山とする真宗高田派、京都の仏光寺を本山とする真宗仏光寺派、同じく京都の興正寺を本山とする真宗興正派、滋賀県の錦織寺を本山とする真宗木辺派、福井県の寺院をそれぞれ本山とする真宗出雲路派・真宗誠照寺派・真宗三門徒派・真宗山元派 - が独立を保ち、合わせて「真宗十派」と呼ばれる体制ができあがった。これら十派は現在、真宗教団連合という緩やかな連合組織を通じて交流を続けている。</p>
                 </div>
               </div>
             </div>
@@ -802,15 +824,15 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>浄土宗にも枝分かれがある。法然の弟子の一人、証空の系譜を汲む一派は、京都西山の地に拠点を持ったことから「西山派」と呼ばれ、本山を異にする浄土宗西山禅林寺派(永観堂)、浄土宗西山深草派(誓願寺)、西山浄土宗(粟生光明寺)の三派に分かれて今日まで続いている。<br>
+                  <p>浄土宗にも枝分かれがある。法然の弟子の一人、証空の系譜を汲む一派は、京都西山の地に拠点を持ったことから「西山派」と呼ばれ、本山を異にする浄土宗西山禅林寺派（永観堂）、浄土宗西山深草派（誓願寺）、西山浄土宗（粟生光明寺）の三派に分かれて今日まで続いている。<br>
 教義の大枠は法然の専修念仏を継ぎながらも、往生の理解の仕方に、証空独自の解釈がにじんでいる。</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <p class="no-indent" style="margin-top:1.5em;">最後に<strong class="term">時宗</strong>。一遍は 1276 年ごろから、賦算(念仏の札を配ること)と踊り念仏を携えて日本各地を遊行し、特定の寺に定住しない布教のスタイルを貫いた。<br>
-本山は神奈川県藤沢市の清浄光寺(遊行寺)である。</p>
+          <p class="no-indent" style="margin-top:1.5em;">最後に<strong class="term">時宗</strong>。一遍は 1276 年ごろから、賦算（念仏の札を配ること）と踊り念仏を携えて日本各地を遊行し、特定の寺に定住しない布教のスタイルを貫いた。<br>
+本山は神奈川県藤沢市の清浄光寺（遊行寺）である。</p>
         </div>
       </div>
     </section>
@@ -825,7 +847,7 @@
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <p>禅は「坐禅によって自己の内に仏性を見出す」という実践を核とする仏教の一系統で、日本には鎌倉時代に本格的に伝わった。</p>
-          <p class="no-indent">栄西は 1191 年に宋から帰国し、公案(師から与えられる問いに向き合い、言葉を超えた気づきを目指す課題)を用いる<strong class="term">臨済宗</strong>を伝えた。本山は京都の建仁寺をはじめ、複数存在する。</p>
+          <p class="no-indent">栄西は 1191 年に宋から帰国し、公案（師から与えられる問いに向き合い、言葉を超えた気づきを目指す課題）を用いる<strong class="term">臨済宗</strong>を伝えた。本山は京都の建仁寺をはじめ、複数存在する。</p>
 
           <div class="sub-list">
             <div class="sub-item" data-sub>
@@ -843,10 +865,10 @@
             </div>
           </div>
 
-          <p style="margin-top:1.5em;">道元は栄西よりやや遅れて宋に渡り、<strong class="term">只管打坐</strong>(ひたすら坐ること自体が悟りの現れである、とする考え方)を掲げて<strong class="term">曹洞宗</strong>を開いた。公案を手がかりとする臨済宗に対し、悟りを目的地として設定せず、坐ること自体を目的とする点が対照的である。<br>
+          <p style="margin-top:1.5em;">道元は栄西よりやや遅れて宋に渡り、<strong class="term">只管打坐</strong>（ひたすら坐ること自体が悟りの現れである、とする考え方）を掲げて<strong class="term">曹洞宗</strong>を開いた。公案を手がかりとする臨済宗に対し、悟りを目的地として設定せず、坐ること自体を目的とする点が対照的である。<br>
 本山は福井県の永平寺と、横浜市の總持寺の二つだが、宗としては一つにまとまっている。</p>
-          <p class="no-indent">江戸時代に入り、1654 年に来日した中国僧・隠元隆琦によって伝えられたのが<strong class="term">黄檗宗</strong>である。1661 年、京都・宇治に萬福寺を開いた。<br>
-臨済宗の一系統として伝わったが、明代中国の様式を色濃く残す伽藍や、中国語の発音に近い読経(黄檗唐音)、そして禅の修行に念仏を組み合わせる「念仏禅」的な性格から、後に独立した宗として扱われるようになった。インゲン豆の名の由来になったことでも知られている。</p>
+          <p class="no-indent">江戸時代に入り、 1654 年に来日した中国僧・隠元隆琦によって伝えられたのが<strong class="term">黄檗宗</strong>である。 1661 年、京都・宇治に萬福寺を開いた。<br>
+臨済宗の一系統として伝わったが、明代中国の様式を色濃く残す伽藍や、中国語の発音に近い読経（黄檗唐音）、そして禅の修行に念仏を組み合わせる「念仏禅」的な性格から、後に独立した宗として扱われるようになった。インゲン豆の名の由来になったことでも知られている。</p>
         </div>
       </div>
     </section>
@@ -860,9 +882,9 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>日蓮は 1253 年、房総の清澄寺で「南無妙法蓮華経」と初めて題目を唱え、法華経こそが釈迦の教えの真髄であるという立場を鮮明にした(立教開宗)。他宗、とりわけ念仏や禅、真言宗を厳しく批判したことで知られ、たびたび迫害を受けながらも、その教えを曲げなかった。<br>
+          <p>日蓮は 1253 年、房総の清澄寺で「南無妙法蓮華経」と初めて題目を唱え、法華経こそが釈迦の教えの真髄であるという立場を鮮明にした（立教開宗）。他宗、とりわけ念仏や禅、真言宗を厳しく批判したことで知られ、たびたび迫害を受けながらも、その教えを曲げなかった。<br>
 本山は山梨県の身延山久遠寺である。</p>
-          <p class="no-indent">日蓮の没後、教団は解釈の違いから複数の系統に分かれていく。大きな分岐点の一つは、法華経二十八品すべてを等しく重んじる「一致派」と、後半十四品(本門)を前半十四品(迹門)より上位に置く「勝劣派」という立場の違いである。</p>
+          <p class="no-indent">日蓮の没後、教団は解釈の違いから複数の系統に分かれていく。大きな分岐点の一つは、法華経二十八品すべてを等しく重んじる「一致派」と、後半十四品（本門）を前半十四品（迹門）より上位に置く「勝劣派」という立場の違いである。</p>
 
           <div class="sub-list">
             <div class="sub-item" data-sub>
@@ -873,7 +895,7 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>身延山久遠寺を本山とする日蓮宗(いわゆる日蓮宗の本体)は一致派の立場を取る。これに対し、京都・妙満寺を本山とする顕本法華宗、京都・本能寺を本山とする本門法華宗、そして法華宗真門流(本隆寺)・法華宗陣門流(本成寺)・法華宗本門流(光長寺・鷲山寺など)といった「法華宗」を名乗る系統の多くは、勝劣派の立場から独自の本山を築いてきた。</p>
+                  <p>身延山久遠寺を本山とする日蓮宗（いわゆる日蓮宗の本体）は一致派の立場を取る。これに対し、京都・妙満寺を本山とする顕本法華宗、京都・本能寺を本山とする本門法華宗、そして法華宗真門流（本隆寺）・法華宗陣門流（本成寺）・法華宗本門流（光長寺・鷲山寺など）といった「法華宗」を名乗る系統の多くは、勝劣派の立場から独自の本山を築いてきた。</p>
                 </div>
               </div>
             </div>
@@ -885,8 +907,8 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>もう一つ触れておきたいのが、日蓮の高弟の一人・日興の系譜を汲む日蓮正宗である。静岡県の大石寺を総本山とし、日蓮の教えのうち特定の本尊と血脈相承(師から弟子へ教えの正統性が受け継がれるという考え方)を重んじる独自の教義を持つ。<br>
-在家信者の団体である創価学会は、長らく日蓮正宗の信徒組織として活動していたが、1991 年に教義解釈をめぐる対立から、日蓮正宗との関係が断絶した。この経緯は、伝統宗派と、そこから派生した在家教団との関係を考えるうえで、しばしば取り上げられる事例である。</p>
+                  <p>もう一つ触れておきたいのが、日蓮の高弟の一人・日興の系譜を汲む日蓮正宗である。静岡県の大石寺を総本山とし、日蓮の教えのうち特定の本尊と血脈相承（師から弟子へ教えの正統性が受け継がれるという考え方）を重んじる独自の教義を持つ。<br>
+在家信者の団体である創価学会は、長らく日蓮正宗の信徒組織として活動していたが、 1991 年に教義解釈をめぐる対立から、日蓮正宗との関係が断絶した。この経緯は、伝統宗派と、そこから派生した在家教団との関係を考えるうえで、しばしば取り上げられる事例である。</p>
                 </div>
               </div>
             </div>
@@ -909,21 +931,21 @@
           <p>ここまで見てきた宗ごとの違いを、「自力か他力か」「中心とする経典」「代表的な実践」という三つの軸で、簡単な表にまとめてみる。厳密な教学上の分類というより、大づかみに特徴をつかむための見取り図として捉えてほしい。</p>
           <div class="table-scroll">
             <table class="info-table">
-              <thead><tr><th>宗</th><th>自力/他力</th><th>中心的な経典</th><th>代表的な実践</th></tr></thead>
+              <thead><tr><th>宗</th><th>自力 / 他力</th><th>中心的な経典</th><th>代表的な実践</th></tr></thead>
               <tbody>
                 <tr><td>法相宗</td><td>自力</td><td>解深密経など唯識経典</td><td>唯識観による瞑想</td></tr>
                 <tr><td>華厳宗</td><td>自力</td><td>華厳経</td><td>法界を観じる瞑想・教学研究</td></tr>
                 <tr><td>律宗</td><td>自力</td><td>四分律など戒律書</td><td>戒律の厳格な実践</td></tr>
-                <tr><td>天台宗</td><td>自力(諸行を統合)</td><td>法華経</td><td>止観、念仏、密教など多様な実践</td></tr>
-                <tr><td>真言宗</td><td>自力(即身成仏)</td><td>大日経・金剛頂経</td><td>三密加持(印・真言・観想)</td></tr>
-                <tr><td>融通念仏宗</td><td>他力</td><td>華厳経・法華経の融通念仏思想</td><td>念仏の融通(勧進による勧化)</td></tr>
-                <tr><td>浄土宗</td><td>他力</td><td>浄土三部経</td><td>称名念仏(専修念仏)</td></tr>
-                <tr><td>浄土真宗</td><td>絶対他力</td><td>浄土三部経(特に無量寿経)</td><td>信心をいただくこと、報恩の念仏</td></tr>
+                <tr><td>天台宗</td><td>自力（諸行を統合）</td><td>法華経</td><td>止観、念仏、密教など多様な実践</td></tr>
+                <tr><td>真言宗</td><td>自力（即身成仏）</td><td>大日経・金剛頂経</td><td>三密加持（印・真言・観想）</td></tr>
+                <tr><td>融通念仏宗</td><td>他力</td><td>華厳経・法華経の融通念仏思想</td><td>念仏の融通（勧進による勧化）</td></tr>
+                <tr><td>浄土宗</td><td>他力</td><td>浄土三部経</td><td>称名念仏（専修念仏）</td></tr>
+                <tr><td>浄土真宗</td><td>絶対他力</td><td>浄土三部経（特に無量寿経）</td><td>信心をいただくこと、報恩の念仏</td></tr>
                 <tr><td>時宗</td><td>他力</td><td>浄土三部経</td><td>賦算、踊り念仏</td></tr>
                 <tr><td>臨済宗</td><td>自力</td><td>般若経典・禅の語録</td><td>公案による問答</td></tr>
                 <tr><td>曹洞宗</td><td>自力</td><td>正法眼蔵・禅の語録</td><td>只管打坐</td></tr>
-                <tr><td>黄檗宗</td><td>自力+念仏的要素</td><td>禅の語録</td><td>念仏禅</td></tr>
-                <tr><td>日蓮宗</td><td>自力+題目の力</td><td>法華経</td><td>唱題(南無妙法蓮華経)</td></tr>
+                <tr><td>黄檗宗</td><td>自力 + 念仏的要素</td><td>禅の語録</td><td>念仏禅</td></tr>
+                <tr><td>日蓮宗</td><td>自力 + 題目の力</td><td>法華経</td><td>唱題（南無妙法蓮華経）</td></tr>
               </tbody>
             </table>
           </div>
@@ -943,7 +965,7 @@
         <div class="acc-panel-inner">
           <p>「十三宗五十六派」という数え方そのものは、実は特定の一冊の経典や法律に定められているわけではない。これは、明治政府が寺院や僧侶を管理するために宗派を公認・登録していった近代以降の宗教行政の積み重ねの中で、実務上定着してきた、いわば慣用的な分類である。<br>
 江戸時代までの寺院は幕府の寺請制度のもとで本山・末寺の関係を築いていたが、明治維新後、政府はあらためて各宗派に体制の整備を求め、この過程で独立していたはずの本山系統が正式な「派」として届け出られ、逆に力の弱い系統は統合されるといった再編が繰り返された。</p>
-          <p class="no-indent">戦後は、1951 年に施行された宗教法人法のもとで、寺院や教団は「宗教法人」として法人格を取得する体制に移行した。個々の寺院(単位宗教法人)を束ねる本山・宗務庁は「包括宗教法人」と呼ばれ、この包括宗教法人の数え方が、実質的に「何派あるか」という問いへの答えになる。</p>
+          <p class="no-indent">戦後は、 1951 年に施行された宗教法人法のもとで、寺院や教団は「宗教法人」として法人格を取得する体制に移行した。個々の寺院（単位宗教法人）を束ねる本山・宗務庁は「包括宗教法人」と呼ばれ、この包括宗教法人の数え方が、実質的に「何派あるか」という問いへの答えになる。</p>
           <div class="pause">
             <p>十三宗五十六派という数字は、今の実態を正確に映した統計というより、「日本仏教の伝統的な骨格を把握するための、歴史的な見取り図」だと考えるのが実用的である。</p>
           </div>
@@ -953,11 +975,11 @@
 
           <div class="column">
             <h4>菩提寺との「檀家」関係、実はいつからか</h4>
-            <p>「うちは代々〇〇宗××派の菩提寺の檀家だ」という感覚は、実はそれほど古いものではない。すべての家が特定の寺に所属し、葬儀や法事を任せるという関係が社会全体に行き渡ったのは、江戸時代に確立された「寺請制度(てらうけせいど)」による、というのが定説である。</p>
-            <p>きっかけは 1637〜38 年の島原の乱だった。幕府はこれを機にキリスト教禁制を強化し、すべての民衆がキリシタンでないことを寺院に証明させる仕組みを整えていく。<br>
+            <p>「うちは代々〇〇宗××派の菩提寺の檀家だ」という感覚は、実はそれほど古いものではない。すべての家が特定の寺に所属し、葬儀や法事を任せるという関係が社会全体に行き渡ったのは、江戸時代に確立された「寺請制度（てらうけせいど）」による、というのが定説である。</p>
+            <p>きっかけは 1637 〜 38 年の島原の乱だった。幕府はこれを機にキリスト教禁制を強化し、すべての民衆がキリシタンでないことを寺院に証明させる仕組みを整えていく。<br>
 1660 年代以降、諸藩に「宗門改め」の実施が義務づけられ、住民一人ひとりがどこかの寺の檀家であることを記した「宗門人別改帳」が、事実上の戸籍として機能するようになった。結婚や奉公、旅行にも寺院が発行する「寺請証文」が必要とされ、寺は行政の末端機関としての役割を担うことになる。</p>
             <p>それ以前の中世までは、寺院との結びつきは貴族や武士など一部の階層で厚く、庶民が「家」単位で特定の寺に固定的に属する慣行は一般的ではなかった。寺請制度は、幕府にとっては人民統制の手段であり、寺院にとっては葬祭に伴う布施という安定した経済基盤でもあり、両者の利害が一致する形で二百数十年をかけて社会に深く根づいていく。<br>
-制度そのものは明治 4 年(1871 年)に法的には廃止されたが、「先祖代々の菩提寺」という慣習は、その後も社会の習わしとして生き続け、今日に至っている。</p>
+制度そのものは明治 4 年（ 1871 年）に法的には廃止されたが、「先祖代々の菩提寺」という慣習は、その後も社会の習わしとして生き続け、今日に至っている。</p>
           </div>
         </div>
       </div>
@@ -974,20 +996,20 @@
         <div class="acc-panel-inner">
           <dl>
             <div class="dl-term">
-              <dt>Q. 「宗」と「派」は、何がどう違うのか?</dt>
-              <dd>「宗」は、開祖や教義の系統によって区分される、いちばん大きな括りである。「派」は、同じ宗の中で、本山の違いや解釈の違いによってさらに分かれた単位を指す。多くの場合、派ごとに独立した宗教法人(包括宗教法人)を持ち、それぞれ本山・宗務庁・僧侶養成機関を備えている。同じ宗でも派が違えば、実務上は別の教団として運営されている、とイメージすると分かりやすい。</dd>
+              <dt>Q. 「宗」と「派」は、何がどう違うのか ?</dt>
+              <dd>「宗」は、開祖や教義の系統によって区分される、いちばん大きな括りである。「派」は、同じ宗の中で、本山の違いや解釈の違いによってさらに分かれた単位を指す。多くの場合、派ごとに独立した宗教法人（包括宗教法人）を持ち、それぞれ本山・宗務庁・僧侶養成機関を備えている。同じ宗でも派が違えば、実務上は別の教団として運営されている、とイメージすると分かりやすい。</dd>
             </div>
             <div class="dl-term">
-              <dt>Q. 「本山」と「末寺」とは?</dt>
+              <dt>Q. 「本山」と「末寺」とは ?</dt>
               <dd>本山は、その宗・派の中心となる寺院で、宗としての正統性の源であり、僧侶の資格認定などを担う宗務機関が置かれている。末寺は、本山の傘下にある個々の寺院である。近所のお寺にお参りするとき、その奥に本山という、もう一段大きな組織があると考えると、宗派どうしの関係が見えやすくなる。</dd>
             </div>
             <div class="dl-term">
-              <dt>Q. なぜ同じ仏教なのに、こんなに分かれてしまったのか?</dt>
-              <dd>理由は一つではない。教義の解釈の違い(自力か他力か、経典のどこを重視するか)、政治的な事情(戦国期の本願寺の東西分裂のように、時の権力者の意向が関わった例もある)、地理的な事情(地方の有力寺院がそれぞれ独自の本山として自立した)、そして師弟関係の系譜の違いなど、複数の要因が積み重なった結果である。一つの宗が枝分かれしていく様子は、生きた宗教運動が各地に根を張っていった痕跡だと捉えることもできる。</dd>
+              <dt>Q. なぜ同じ仏教なのに、こんなに分かれてしまったのか ?</dt>
+              <dd>理由は一つではない。教義の解釈の違い（自力か他力か、経典のどこを重視するか）、政治的な事情（戦国期の本願寺の東西分裂のように、時の権力者の意向が関わった例もある）、地理的な事情（地方の有力寺院がそれぞれ独自の本山として自立した）、そして師弟関係の系譜の違いなど、複数の要因が積み重なった結果である。一つの宗が枝分かれしていく様子は、生きた宗教運動が各地に根を張っていった痕跡だと捉えることもできる。</dd>
             </div>
             <div class="dl-term">
-              <dt>Q. 十三宗五十六派に入らない仏教はあるか?</dt>
-              <dd>ある。創価学会・立正佼成会・霊友会のように、明治以降、多くは在家信者を中心に成立した教団は、伝統的な十三宗五十六派の数え方には含まれない。また、修験道(山岳信仰と密教が結びついた実践の系統)も、独自の歴史を持ちながら、この分類の枠外に位置づけられることが一般的である。</dd>
+              <dt>Q. 十三宗五十六派に入らない仏教はあるか ?</dt>
+              <dd>ある。創価学会・立正佼成会・霊友会のように、明治以降、多くは在家信者を中心に成立した教団は、伝統的な十三宗五十六派の数え方には含まれない。また、修験道（山岳信仰と密教が結びついた実践の系統）も、独自の歴史を持ちながら、この分類の枠外に位置づけられることが一般的である。</dd>
             </div>
           </dl>
         </div>
@@ -1017,7 +1039,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">13</span>
-        <span class="title">参考にした視点<small>further reading</small></span>
+        <span class="title">参考にした視点 <small>further reading</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -1042,106 +1064,106 @@
   </div>
 </div>
 
-<footer>十三宗五十六派を歩く - 日本仏教の宗派地図<br>分類・法人統計の参照先: <a href="https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/index.html">文化庁「宗教年鑑」</a>（最終確認 2026-08-08）</footer>
+<footer>十三宗五十六派を歩く - 日本仏教の宗派地図<br>分類・法人統計の参照先 : <a href="https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/index.html">文化庁「宗教年鑑」</a>（最終確認 2026-08-08)</footer>
 
 <script>
 (function(){
-  // Accordion Logic
-  // Panel height is driven explicitly in JS (rather than the CSS grid-template-rows
-  // 0fr/1fr trick) because iOS Safari does not always collapse a 0fr grid row all
-  // the way to zero, leaving a residual gap under the header.
-  function getPanel(item, toggleSelector){
-    var toggle = item.querySelector(toggleSelector);
-    return toggle.nextElementSibling;
-  }
+  var OPEN_SCROLL_DELAY = 400;
+  var GROUPS = [["[data-acc]", "[data-acc-toggle]"], ["[data-sub]", "[data-sub-toggle]"]];
 
-  function setItemOpen(item, toggleSelector, willOpen){
-    var panel = getPanel(item, toggleSelector);
-    if(!panel) return;
-    var isOpen = item.classList.contains("open");
-
-    if(willOpen){
-      item.classList.add("open");
-      var target = panel.scrollHeight;
-      panel.style.height = target + "px";
-      panel.addEventListener("transitionend", function onEnd(e){
-        if(e.propertyName === "height"){
-          panel.style.height = "auto";
-          panel.removeEventListener("transitionend", onEnd);
-        }
-      });
-    } else {
-      if(!isOpen) return;
-      var current = panel.scrollHeight;
-      panel.style.height = current + "px";
-      panel.offsetHeight; // force reflow so the browser registers the starting height
-      requestAnimationFrame(function(){
-        item.classList.remove("open");
-        panel.style.height = "0px";
-      });
+  function groupOf(item){
+    for(var i = 0; i < GROUPS.length; i++){
+      if(item.matches(GROUPS[i][0])) return GROUPS[i];
     }
+    return null;
   }
 
-  function bindAccordion(itemSelector, toggleSelector){
+  function closeSiblings(item, itemSelector){
+    Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+      if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+        sibling.classList.remove("open");
+      }
+    });
+  }
+
+  GROUPS.forEach(function(group){
+    var itemSelector = group[0], toggleSelector = group[1];
     document.querySelectorAll(itemSelector).forEach(function(item){
       var toggle = item.querySelector(toggleSelector);
-      var panel = toggle.nextElementSibling;
-      toggle.addEventListener("click", function(e){
-        // Do not toggle if text is being selected
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
+      if(!toggle) return;
+      toggle.addEventListener("click", function(){
+        if(window.getSelection().toString().length > 0) return;
         var willOpen = !item.classList.contains("open");
+        if(willOpen) closeSiblings(item, itemSelector);
+        item.classList.toggle("open", willOpen);
         if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches(itemSelector)){
-              setItemOpen(sibling, toggleSelector, false);
-            }
-          });
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
         }
-        setItemOpen(item, toggleSelector, willOpen);
+      });
+    });
+  });
 
-        if(willOpen){
-          var scrolled = false;
-          var doScroll = function(){
-            if(scrolled) return;
-            scrolled = true;
-            toggle.scrollIntoView({behavior:"smooth", block:"start"});
-          };
-          panel.addEventListener("transitionend", doScroll, {once:true});
-          setTimeout(doScroll, 450);
-        }
+  function setAll(open){
+    GROUPS.forEach(function(group){
+      document.querySelectorAll(group[0]).forEach(function(item){
+        item.classList.toggle("open", open);
       });
     });
   }
 
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-  bindAccordion("[data-sub]", "[data-sub-toggle]");
+  document.getElementById("expandAll").addEventListener("click", function(){ setAll(true); });
+  document.getElementById("collapseAll").addEventListener("click", function(){ setAll(false); });
 
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", true);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", true);
-    });
+  function openTarget(hash){
+    if(!hash) return null;
+    var target = document.getElementById(hash.replace(/^#/, ""));
+    if(!target) return null;
+    var node = target;
+    while(node){
+      var item = node.closest("[data-acc], [data-sub]");
+      if(!item) break;
+      if(!item.classList.contains("open")){
+        var group = groupOf(item);
+        if(group) closeSiblings(item, group[0]);
+        item.classList.add("open");
+      }
+      node = item.parentElement;
+    }
+    return target;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    if(!target) return;
+    var accItem = target.closest("[data-acc], [data-sub]");
+    if(!accItem) return;
+    e.preventDefault();
+    var wasOpen = accItem.classList.contains("open");
+    openTarget(a.getAttribute("href"));
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
   });
 
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", false);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", false);
-    });
+  window.addEventListener("hashchange", function(){
+    var target = openTarget(location.hash);
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, OPEN_SCROLL_DELAY);
+    }
   });
 
-  // Scroll Progress Bar
-  window.addEventListener('scroll', function() {
+  if(location.hash) openTarget(location.hash);
+
+  window.addEventListener("scroll", function(){
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+    document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
   });
 })();
 </script>

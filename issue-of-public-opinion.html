@@ -9,33 +9,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f4f2ec;
-  --ink:#161513; --ink-2:#4a4741; --ink-3:#7d786e;
-  --rule:#ddd8cd; --rule-2:#e9e5db;
+  --bg:#fbfaf7; --paper:#ffffff; --card:#f4f2ec;
+  --ink:#161513; --sub:#4a4741; --muted:#79746a;
+  --line:#ddd8cd; --line-2:#e9e5db;
   --accent:#7a4a1e; --accent-soft:#f0e6d8;
   --series-1:#2a78d6; --series-2:#eb6834;
-  --box:#f6f3ec; --box-rule:#c9bfa8;
+  --note-bg:#f6f3ec; --note-border:#c9bfa8;
   --quote:#1f1e1b;
   --hero-1:#241a15; --hero-2:#4a2f1d; --hero-ink:#f3ece2; --hero-dim:#cbb9a8;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#141413; --surface:#1a1a19; --surface-2:#232321;
-    --ink:#f2f0ea; --ink-2:#c3c2b7; --ink-3:#8f8d84;
-    --rule:#3a3936; --rule-2:#2c2b29;
+    --bg:#141413; --paper:#1a1a19; --card:#232321;
+    --ink:#f2f0ea; --sub:#c3c2b7; --muted:#8f8d84;
+    --line:#3a3936; --line-2:#2c2b29;
     --accent:#d9a86a; --accent-soft:#2b2620;
     --series-1:#3987e5; --series-2:#d95926;
-    --box:#1f1f1d; --box-rule:#4a463c;
+    --note-bg:#1f1f1d; --note-border:#4a463c;
     --quote:#f2f0ea;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#141413; --surface:#1a1a19; --surface-2:#232321;
-  --ink:#f2f0ea; --ink-2:#c3c2b7; --ink-3:#8f8d84;
-  --rule:#3a3936; --rule-2:#2c2b29;
+  --bg:#141413; --paper:#1a1a19; --card:#232321;
+  --ink:#f2f0ea; --sub:#c3c2b7; --muted:#8f8d84;
+  --line:#3a3936; --line-2:#2c2b29;
   --accent:#d9a86a; --accent-soft:#2b2620;
   --series-1:#3987e5; --series-2:#d95926;
-  --box:#1f1f1d; --box-rule:#4a463c;
+  --note-bg:#1f1f1d; --note-border:#4a463c;
   --quote:#f2f0ea;
 }
 *{box-sizing:border-box}
@@ -56,6 +56,8 @@ header.hero .wrap{max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,3vw,3re
 .eyebrow{display:block; letter-spacing:.16em; font-size:.78rem; color:var(--hero-dim); margin-bottom:1.1rem}
 h1{font-size:clamp(1.7rem,4.4vw,2.4rem); line-height:1.5; margin:0 0 1rem; font-weight:700}
 p.sub{margin:0 0 1.1rem; font-size:1.02rem; color:var(--hero-dim); line-height:1.85; text-indent:0}
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
 p.byline{margin:0; font-size:.85rem; color:var(--hero-dim); line-height:1.85; text-indent:0}
 .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto}
 .hero-figure svg{display:block; width:100%; height:auto}
@@ -68,17 +70,16 @@ h3{font-size:1.03rem; margin:2.2rem 0 .9rem; font-weight:600; color:var(--accent
 
 .part-divider{
   margin:3.4rem 0 1.8rem; padding:1.6rem 0 1.3rem;
-  border-top:3px double var(--rule); text-align:center;
+  border-top:3px double var(--line); text-align:center;
 }
 .part-divider .pnum{font-size:.72rem; letter-spacing:.24em; color:var(--accent); display:block; margin-bottom:.6rem}
 .part-divider .ptitle{font-size:1.3rem; font-weight:700; line-height:1.6; margin:0 0 .6rem}
-.part-divider .plede{font-size:.9rem; color:var(--ink-2); line-height:1.85; margin:0 auto; max-width:32rem; text-indent:0}
+.part-divider .plede{font-size:.9rem; color:var(--sub); line-height:1.85; margin:0 auto; max-width:32rem; text-indent:0}
 
 p{margin:0 0 1.35rem; text-indent:1em}
-p.lede{text-indent:0}
 a{color:var(--accent)}
 strong{font-weight:600; background:linear-gradient(transparent 62%, var(--accent-soft) 62%)}
-em{font-style:normal; border-bottom:1px dotted var(--ink-3)}
+em{font-style:normal; border-bottom:1px dotted var(--muted)}
 
 blockquote.pull{
   margin:2rem 0; padding:.4rem 0 .4rem 1.4rem; border-left:3px solid var(--accent);
@@ -87,7 +88,7 @@ blockquote.pull{
 blockquote.pull p{margin:0; text-indent:0}
 
 .box{
-  background:var(--box); border:1px solid var(--box-rule); border-radius:2px;
+  background:var(--note-bg); border:1px solid var(--note-border); border-radius:2px;
   padding:1.4rem 1.4rem .3rem; margin:2.2rem 0; line-height:1.92;
 }
 .box .boxhead{letter-spacing:.14em; color:var(--accent); margin:0 0 .8rem; font-weight:700; text-indent:0}
@@ -95,25 +96,25 @@ blockquote.pull p{margin:0; text-indent:0}
 .box .term{font-weight:600}
 
 figure{margin:2.2rem 0; padding:0}
-figcaption{color:var(--ink-3); line-height:1.85; margin-top:1rem; text-indent:0}
+figcaption{color:var(--muted); line-height:1.85; margin-top:1rem; text-indent:0}
 
-.chart{background:var(--surface); border:1px solid var(--rule); border-radius:2px; padding:1.5rem 1.3rem 1.2rem}
+.chart{background:var(--paper); border:1px solid var(--line); border-radius:2px; padding:1.5rem 1.3rem 1.2rem}
 .chart .ctitle{font-weight:700; margin:0 0 .3rem; line-height:1.6; text-indent:0}
-.chart .csub{color:var(--ink-3); margin:0 0 1.3rem; line-height:1.7; text-indent:0}
-.legend{display:flex; gap:1.2rem; flex-wrap:wrap; margin:0 0 1.4rem; color:var(--ink-2)}
+.chart .csub{color:var(--muted); margin:0 0 1.3rem; line-height:1.7; text-indent:0}
+.legend{display:flex; gap:1.2rem; flex-wrap:wrap; margin:0 0 1.4rem; color:var(--sub)}
 .legend span{display:inline-flex; align-items:center; gap:.4rem}
 .swatch{width:11px; height:11px; border-radius:2px; display:inline-block}
 .grp{margin:0 0 1.35rem}
-.grp .glab{color:var(--ink-2); margin:0 0 .45rem; text-indent:0}
+.grp .glab{color:var(--sub); margin:0 0 .45rem; text-indent:0}
 .bar{display:flex; align-items:center; gap:.6rem; margin:0 0 3px}
-.track{flex:1; height:13px; background:var(--surface-2); border-radius:2px; overflow:hidden}
+.track{flex:1; height:13px; background:var(--card); border-radius:2px; overflow:hidden}
 .fill{height:100%; border-radius:0 4px 4px 0}
-.val{color:var(--ink-2); min-width:3.6rem; text-align:right; font-variant-numeric:tabular-nums}
+.val{color:var(--sub); min-width:3.6rem; text-align:right; font-variant-numeric:tabular-nums}
 
 table{border-collapse:collapse; width:100%; line-height:1.8; margin:1.6rem 0}
-th,td{border-bottom:1px solid var(--rule-2); padding:.55rem .5rem; text-align:right}
+th,td{border-bottom:1px solid var(--line-2); padding:.55rem .5rem; text-align:right}
 th:first-child,td:first-child{text-align:left}
-thead th{border-bottom:1px solid var(--rule); color:var(--ink-2); font-weight:600}
+thead th{border-bottom:1px solid var(--line); color:var(--sub); font-weight:600}
 td.num{font-variant-numeric:tabular-nums}
 .tablewrap{overflow-x:auto}
 caption{text-indent:0}
@@ -124,24 +125,24 @@ li{margin:0 0 .5rem}
 .refs{line-height:1.9}
 .refs h3{letter-spacing:.1em; color:var(--accent); margin:2rem 0 .8rem}
 .refs ol{padding-left:1.8rem}
-.refs li{margin:0 0 .55rem; color:var(--ink-2)}
+.refs li{margin:0 0 .55rem; color:var(--sub)}
 .refs cite{font-style:italic}
 .refs a{word-break:break-all}
 .refs p{text-indent:0}
 
-.note{color:var(--ink-2); line-height:1.95; border-top:1px solid var(--rule); padding-top:1.6rem; margin-top:1rem; text-indent:0}
+.note{color:var(--sub); line-height:1.95; border-top:1px solid var(--line); padding-top:1.6rem; margin-top:1rem; text-indent:0}
 
 .toolbar-container{
   position:sticky; top:8px; z-index:100;
   background:var(--bg); background:color-mix(in srgb, var(--bg) 94%, transparent);
   backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
   padding:9px 0; border-radius:999px; margin:0 0 2.4rem;
-  border:1px solid var(--rule); box-shadow:0 4px 14px rgba(0,0,0,.10);
+  border:1px solid var(--line); box-shadow:0 4px 14px rgba(0,0,0,.10);
 }
 .toolbar-container .toolbar{margin:0}
 .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:0}
 .toolbar button{
-  font-weight:700; color:var(--accent); background:var(--surface);
+  font-weight:700; color:var(--accent); background:var(--paper);
   border:1.5px solid var(--accent); border-radius:999px; padding:8px 20px;
   cursor:pointer; transition:all .2s ease;
 }
@@ -149,7 +150,7 @@ li{margin:0 0 .5rem}
 
 #accordion{margin-bottom:2.6rem}
 .acc-item{
-  background:var(--surface); border:1px solid var(--rule); border-radius:10px;
+  background:var(--paper); border:1px solid var(--line); border-radius:10px;
   margin-bottom:16px; overflow:hidden; overflow-anchor:none;
 }
 .acc-item:last-child{margin-bottom:0}
@@ -159,12 +160,12 @@ li{margin:0 0 .5rem}
 }
 .acc-header .num{
   flex:0 0 auto; color:var(--accent); font-weight:700;
-  background:var(--box); padding:4px 11px; border-radius:999px; white-space:nowrap;
+  background:var(--note-bg); padding:4px 11px; border-radius:999px; white-space:nowrap;
 }
 .acc-header .title{flex:1 1 auto; font-weight:700; line-height:1.5}
 .acc-header .chev{flex:0 0 auto; width:20px; height:20px; color:var(--accent); transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .acc-item.open > .acc-header .chev{transform:rotate(180deg)}
-.acc-item.open > .acc-header{background:var(--box); border-bottom:1px solid var(--rule)}
+.acc-item.open > .acc-header{background:var(--note-bg); border-bottom:1px solid var(--line)}
 .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none}
 .acc-item.open > .acc-panel{grid-template-rows:1fr}
 .acc-panel-inner{overflow:hidden; min-height:0; padding:0 22px; opacity:0; transition:opacity .3s ease .08s}
@@ -189,6 +190,8 @@ li{margin:0 0 .5rem}
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -197,6 +200,10 @@ li{margin:0 0 .5rem}
     <span class="eyebrow sans">政治学 / 社会選択論 / 政治心理学 / 政治哲学</span>
     <h1>民意という難問</h1>
     <p class="sub">一票が政治的決定へ変換されるまでに、何が起きているのか - 四つの学問からの案内</p>
+    <div class="meta">
+      <span>全 31 章</span>
+      <span>約 70 分</span>
+    </div>
     <p class="byline">本稿は、 2026 年 2 月 8 日に執行された第 51 回衆議院議員総選挙の確定結果を出発点に、「私の一票は届くのか」という素朴な問いを、人文・社会科学がどのように扱ってきたかを紹介するものである。特定の政党・政治家を支持あるいは批判することを目的としない。</p>
     <figure class="hero-figure">
       <svg viewBox="0 0 720 260" role="img" aria-labelledby="ipoTitle ipoDesc">
@@ -289,7 +296,8 @@ li{margin:0 0 .5rem}
 <p><strong>心理学</strong>は問う - 投票する主体は、どのように政治的判断を形成しているのか。</p>
 <p><strong>哲学</strong>は問う - なぜ私たちは、自分が反対した決定に従わなければならないのか。</p>
 
-<p>この四つは、順番に並んでいるのではない。互いに前提を突き崩し合っている。政治学が「制度を設計すればよい」と言えば、社会選択論が「完璧な制度は論理的に存在しない」と応じる。社会選択論が「有権者の選好順序」を仮定すれば、心理学が「そんな安定した選好は多くの場合そもそも存在しない」と反論する。心理学が「人間は偏った情報処理をする」と言えば、哲学が「では偏りのない専門家が統治すればよいのか。なぜそれではいけないのか」と問い返す。</p>
+<p>この四つは、順番に並んでいるのではない。互いに前提を突き崩し合っている。<br>
+政治学が「制度を設計すればよい」と言えば、社会選択論が「完璧な制度は論理的に存在しない」と応じる。社会選択論が「有権者の選好順序」を仮定すれば、心理学が「そんな安定した選好は多くの場合そもそも存在しない」と反論する。心理学が「人間は偏った情報処理をする」と言えば、哲学が「では偏りのない専門家が統治すればよいのか。なぜそれではいけないのか」と問い返す。</p>
 
 <p>本稿は、その相互批判の現場を歩く。順番に、しかし後戻りしながら。</p>
     </div>
@@ -356,14 +364,15 @@ li{margin:0 0 .5rem}
 
 <div class="box">
   <p class="boxhead sans">用語 - 相対得票率と絶対得票率</p>
-  <p><span class="term">相対得票率</span>は、実際に投じられた有効票に占める割合。<span class="term">絶対得票率</span>は、有権者全体（棄権者を含む）に占める割合。投票率が 50% なら、両者はおよそ二倍離れる。政治報道が「得票率」と言うとき、通常は前者を指す。どちらが正しいという話ではなく、<em>問いが違えば使うべき指標も違う</em>という話である。「投票した人のなかでどれだけ支持されたか」を知りたいなら相対、「社会全体のなかでどれだけの人が積極的に支持したか」を知りたいなら絶対を見る。</p>
+  <p><span class="term">相対得票率</span>は、実際に投じられた有効票に占める割合。<span class="term">絶対得票率</span>は、有権者全体（棄権者を含む）に占める割合。投票率が 50% なら、両者はおよそ二倍離れる。政治報道が「得票率」と言うとき、通常は前者を指す。<br>
+どちらが正しいという話ではなく、<em>問いが違えば使うべき指標も違う</em>という話である。「投票した人のなかでどれだけ支持されたか」を知りたいなら相対、「社会全体のなかでどれだけの人が積極的に支持したか」を知りたいなら絶対を見る。</p>
 </div>
 
 <p>この落差を、二年前の同じ選挙と比べてみる。</p>
 
 <div class="tablewrap">
 <table>
-<caption class="sans" style="text-align:left; font-size:.78rem; color:var(--ink-3); margin-bottom:.6rem">自由民主党の小選挙区における得票率と議席</caption>
+<caption class="sans" style="text-align:left; font-size:.78rem; color:var(--muted); margin-bottom:.6rem">自由民主党の小選挙区における得票率と議席</caption>
 <thead>
 <tr><th>選挙</th><th>得票率</th><th>獲得議席</th><th>議席占有率</th><th>優位比</th></tr>
 </thead>
@@ -398,7 +407,8 @@ li{margin:0 0 .5rem}
 
 <p>第二は<strong>心理的効果</strong>。機械的効果を予期した有権者と政治家が、あらかじめ行動を変える。当選しそうもない候補に投票するのは票の無駄だと考えれば、有権者は二番目に好きな候補へ移る。同じ計算をした政治家や政党は、そもそも候補を立てない、あるいは他党と手を組む。</p>
 
-<p>第 51 回衆院選の細部には、この二つが同時に見える。中道改革連合は 202 の小選挙区に候補を立て、 7 人が当選し、 195 人が敗れた（うち 13 人が比例代表で復活した）。参政党は 182 の小選挙区に候補を立てて全敗し、比例代表で 7.44% の票を得て 15 議席を確保した。共産党は 158 の小選挙区で全敗し、比例で 4 議席を得た。<em>小選挙区では消え、比例では残る</em>という非対称は、二つの効果が同じ日に別々の紙の上で働いた痕跡である。</p>
+<p>第 51 回衆院選の細部には、この二つが同時に見える。中道改革連合は 202 の小選挙区に候補を立て、 7 人が当選し、 195 人が敗れた（うち 13 人が比例代表で復活した）。参政党は 182 の小選挙区に候補を立てて全敗し、比例代表で 7.44% の票を得て 15 議席を確保した。共産党は 158 の小選挙区で全敗し、比例で 4 議席を得た。<br>
+<em>小選挙区では消え、比例では残る</em>という非対称は、二つの効果が同じ日に別々の紙の上で働いた痕跡である。</p>
 
 <div class="box">
   <p class="boxhead sans">補論 - M+1 の法則と、日本という実験場</p>
@@ -498,7 +508,8 @@ li{margin:0 0 .5rem}
 
 <p>この予測は、部分的にしか実現しなかった。</p>
 
-<p>興味深いのは、<em>なぜ部分的にしか実現しなかったか</em>である。ヨッヘン・レーメルトの研究は、改革の直後、自民党が抱えていた現職議員の数が新制度の小選挙区の数を大きく上回るという「現職過剰」の問題に直面したことを分析している。 [7] 党は、あぶれた現職を比例代表名簿の有望な順位に配分することで、地方レベルでの決裂を系統的に回避した。<em>比例代表という新しい制度部品が、旧制度が生んだ人的資産を温存する緩衝材として使われた</em>のである。</p>
+<p>興味深いのは、<em>なぜ部分的にしか実現しなかったか</em>である。ヨッヘン・レーメルトの研究は、改革の直後、自民党が抱えていた現職議員の数が新制度の小選挙区の数を大きく上回るという「現職過剰」の問題に直面したことを分析している。 [7] 党は、あぶれた現職を比例代表名簿の有望な順位に配分することで、地方レベルでの決裂を系統的に回避した。<br>
+<em>比例代表という新しい制度部品が、旧制度が生んだ人的資産を温存する緩衝材として使われた</em>のである。</p>
 
 <p>これは制度設計についての深い教訓を含んでいる。</p>
 
@@ -527,8 +538,8 @@ li{margin:0 0 .5rem}
 
 <div class="box">
   <p class="boxhead sans">用語 - 委任と信託</p>
-  <p><span class="term">委任モデル（ delegate ）</span> : 代表者は選挙民の意思を伝達する管である。自分の判断を差し挟むことは、越権である。</p>
-  <p><span class="term">信託モデル（ trustee ）</span> : 代表者は選挙民から判断を託されている。審議を通じて考えを変えることこそが職務であり、常に選挙民の現在の意見をなぞることは職務放棄である。</p>
+  <p><span class="term">委任モデル（ delegate)</span> : 代表者は選挙民の意思を伝達する管である。自分の判断を差し挟むことは、越権である。</p>
+  <p><span class="term">信託モデル（ trustee)</span> : 代表者は選挙民から判断を託されている。審議を通じて考えを変えることこそが職務であり、常に選挙民の現在の意見をなぞることは職務放棄である。</p>
   <p>どちらか一方が正しいのではない。近代の代表制は、この二つの緊張のうえに立っている。そして政党の登場は、この二項対立に第三の極を持ち込んだ - <span class="term">政党の集合的判断</span>である。</p>
 </div>
 
@@ -540,7 +551,8 @@ li{margin:0 0 .5rem}
 
 <p>だからこそ、稀な例外が研究上きわめて貴重になる。 2005 年 7 月、郵政民営化法案の衆議院採決で、自民党から多数の造反者が出た。クラウス、根元邦朗、ペッカネンはこの事例を分析し、造反の有無が何によって説明されるかを検証している。 [11] 一つの投票が学術論文の対象になりうるのは、それが日本ではほとんど唯一の観測機会だったからである。</p>
 
-<p>したがって、「党議拘束があるから有権者の意思は消される」という説明は、単純すぎる。より正確に言えばこうなる - <strong>有権者は候補者個人を選ぶと同時に、政党という集合的行為者を選んでいる。そのため、議員個人の判断、政党の集合的判断、選挙で示された有権者の意思のあいだには、原理的に解消できない緊張が生じる。</strong> 制度設計の問題は、この緊張を「なくす」ことではなく、どこで、どのように、どれだけ可視化された形で処理するかにある。</p>
+<p>したがって、「党議拘束があるから有権者の意思は消される」という説明は、単純すぎる。<br>
+より正確に言えばこうなる - <strong>有権者は候補者個人を選ぶと同時に、政党という集合的行為者を選んでいる。そのため、議員個人の判断、政党の集合的判断、選挙で示された有権者の意思のあいだには、原理的に解消できない緊張が生じる。</strong> 制度設計の問題は、この緊張を「なくす」ことではなく、どこで、どのように、どれだけ可視化された形で処理するかにある。</p>
     </div>
   </div>
 </section>
@@ -555,7 +567,8 @@ li{margin:0 0 .5rem}
     <div class="acc-panel-inner">
 <p>ジョヴァンニ・サルトーリは政党システムの類型論のなかで、<strong>一党優位制</strong>という概念を立てた。 [12] 複数政党が自由に競争し、政権交代が法的にも実際にも可能でありながら、事実として一つの政党が長期にわたって政権を維持する状態を指す。競争が禁じられている一党制とは、質的に異なる。</p>
 
-<p>戦後日本は、この類型のもっとも重要な事例研究の対象であり続けてきた。イーサン・シャイナーは、日本の一党優位を<em>与党の強さ</em>ではなく<em>野党の失敗</em>から説明する研究を提示している。 [13] 中央から地方への財政移転の構造、地方政治における自民党の圧倒的な基盤、そしてそれが野党にとって有能な候補者を確保することを構造的に困難にしていること - こうした条件が、有権者の不満が高まっても信頼できる代替勢力が現れない状況を作り出す、という議論である。</p>
+<p>戦後日本は、この類型のもっとも重要な事例研究の対象であり続けてきた。イーサン・シャイナーは、日本の一党優位を<em>与党の強さ</em>ではなく<em>野党の失敗</em>から説明する研究を提示している。 [13]<br>
+中央から地方への財政移転の構造、地方政治における自民党の圧倒的な基盤、そしてそれが野党にとって有能な候補者を確保することを構造的に困難にしていること - こうした条件が、有権者の不満が高まっても信頼できる代替勢力が現れない状況を作り出す、という議論である。</p>
 
 <p>ここで、ここ数年の日本政治を並べてみると、興味深いことが起きている。</p>
 
@@ -577,7 +590,8 @@ li{margin:0 0 .5rem}
 
 <p>この振幅は、一党優位という概念にとって何を意味するだろうか。</p>
 
-<p>二つの読み方がある。一つは、<em>優位は続いている</em>という読み方。政権交代が起きたわけではなく、自民党は一時的な後退から復帰したにすぎない。もう一つは、<em>優位の性質が変わった</em>という読み方。かつての自民党優位は安定した基盤に支えられていたが、いまの議席数は、有権者の強固な支持というより、小選挙区制の増幅効果と野党側の分裂・再編の混乱が重なった結果として説明できる部分が大きい。有権者の四人に一人の積極的支持で三分の二の議席が生まれる構造は、逆向きにも同じだけ振れうる。</p>
+<p>二つの読み方がある。一つは、<em>優位は続いている</em>という読み方。政権交代が起きたわけではなく、自民党は一時的な後退から復帰したにすぎない。<br>
+もう一つは、<em>優位の性質が変わった</em>という読み方。かつての自民党優位は安定した基盤に支えられていたが、いまの議席数は、有権者の強固な支持というより、小選挙区制の増幅効果と野党側の分裂・再編の混乱が重なった結果として説明できる部分が大きい。有権者の四人に一人の積極的支持で三分の二の議席が生まれる構造は、逆向きにも同じだけ振れうる。</p>
 
 <p>どちらが正しいかを、いま断定することはできない。政治学は予測の学問としては弱く、これは学問の未熟さというより、対象の性質による。ただし、確実に言えることが一つある。</p>
 
@@ -654,7 +668,7 @@ li{margin:0 0 .5rem}
   <p class="boxhead sans">アローの四条件</p>
   <p><span class="term">定義域の非限定性</span> - どんな選好の組み合わせが入力されても、規則は必ず何らかの社会的順序を出力しなければならない。「そんな変な選好を持つ人がいる場合は計算しません」は認められない。</p>
   <p><span class="term">パレート条件</span> - 全員が X を Y より好むなら、社会も X を Y より上に置く。全員一致を無視するルールは論外である。</p>
-  <p><span class="term">無関係な選択肢からの独立性（ IIA ）</span> - 社会が X と Y のどちらを上に置くかは、 X と Y に対する各人の相対的な評価だけで決まり、第三の選択肢 Z の位置には影響されない。</p>
+  <p><span class="term">無関係な選択肢からの独立性（ IIA)</span> - 社会が X と Y のどちらを上に置くかは、 X と Y に対する各人の相対的な評価だけで決まり、第三の選択肢 Z の位置には影響されない。</p>
   <p><span class="term">非独裁性</span> - ある一人の選好が、他の全員の選好にかかわらず常に社会的順序になる、そのような人物が存在しない。</p>
 </div>
 
@@ -750,7 +764,8 @@ li{margin:0 0 .5rem}
     <div class="acc-panel-inner">
 <p>ここまでの定理群を、政治理論にどう接続するか。この点で、二十世紀後半に大きな論争があった。</p>
 
-<p>ウィリアム・リカーは 1982 年の著作で、強い主張を展開した。 [18] 社会選択論の諸定理は、民主主義についての一つの見方 - 彼が<strong>ポピュリズム的民主主義観</strong>と呼ぶもの - を論駁している、というのである。ポピュリズム的民主主義観とは、選挙結果は「人民の意思」を表現しており、だからこそ政府の行為は正当化される、という考え方である。リカーによれば、集計結果が規則と議題の順序に依存する以上、そこに「人民の意思」を読み取ることはできない。</p>
+<p>ウィリアム・リカーは 1982 年の著作で、強い主張を展開した。 [18] 社会選択論の諸定理は、民主主義についての一つの見方 - 彼が<strong>ポピュリズム的民主主義観</strong>と呼ぶもの - を論駁している、というのである。<br>
+ポピュリズム的民主主義観とは、選挙結果は「人民の意思」を表現しており、だからこそ政府の行為は正当化される、という考え方である。リカーによれば、集計結果が規則と議題の順序に依存する以上、そこに「人民の意思」を読み取ることはできない。</p>
 
 <p>ではリカーは民主主義を否定したのか。していない。彼は代わりに<strong>リベラルな民主主義観</strong>を擁護した。選挙の機能は人民の意思を表現することではなく、<em>悪い統治者を追い出すこと</em>にある。選挙は肯定的な指令ではなく、否定的な拒否権である。この見方なら、集計の不確定性に依存しない。</p>
 
@@ -876,7 +891,8 @@ li{margin:0 0 .5rem}
 
 <p>対立する二つの説明を並べると、争点がはっきりする。</p>
 
-<p><strong>動機づけられた推論</strong>という説明では、人は結論を先に持っており、推論はその結論を守るために動員される。チャールズ・テイバーとミルトン・ロッジの実験は、政治的に強い意見を持つ人ほど、自分に反する論拠を厳しく吟味し、自分に沿う論拠を甘く受け入れることを示した。 [26] ダン・カハンらの研究はさらに踏み込み、数量的推論能力が<em>高い</em>人ほど、政治的に敏感な争点では偏った結論を導く傾向が強まることを報告している。 [27] 能力は、偏りの解毒剤ではなく、増幅器として働きうる。</p>
+<p><strong>動機づけられた推論</strong>という説明では、人は結論を先に持っており、推論はその結論を守るために動員される。チャールズ・テイバーとミルトン・ロッジの実験は、政治的に強い意見を持つ人ほど、自分に反する論拠を厳しく吟味し、自分に沿う論拠を甘く受け入れることを示した。 [26]<br>
+ダン・カハンらの研究はさらに踏み込み、数量的推論能力が<em>高い</em>人ほど、政治的に敏感な争点では偏った結論を導く傾向が強まることを報告している。 [27] 能力は、偏りの解毒剤ではなく、増幅器として働きうる。</p>
 
 <p><strong>ベイズ的更新</strong>という説明では、同じ現象が合理性の枠内で説明される。人は新しい情報を、それまでの信念（事前確率）と情報源への信頼度に照らして評価する。長年信頼してきた情報源からの情報を重く、繰り返し裏切られた情報源からの情報を軽く扱うことは、統計的推論として正しい。同じ証拠を見た二人が異なる結論に至ることは、事前確率が違えば当然起きる。</p>
 
@@ -1068,8 +1084,8 @@ li{margin:0 0 .5rem}
 
 <div class="box">
   <p class="boxhead sans">用語 - 正しさと正当性</p>
-  <p><span class="term">正しさ（ correctness ）</span> - その決定は、良い決定だったか。政策として賢明だったか。結果として人々を利したか。決定の<em>内容</em>を評価する。</p>
-  <p><span class="term">正当性（ legitimacy ）</span> - その決定は、拘束力を持つ資格があるか。人々がそれに従う理由があるか。権力の行使が正当化されるか。決定の<em>資格</em>を評価する。</p>
+  <p><span class="term">正しさ（ correctness)</span> - その決定は、良い決定だったか。政策として賢明だったか。結果として人々を利したか。決定の<em>内容</em>を評価する。</p>
+  <p><span class="term">正当性（ legitimacy)</span> - その決定は、拘束力を持つ資格があるか。人々がそれに従う理由があるか。権力の行使が正当化されるか。決定の<em>資格</em>を評価する。</p>
   <p>二つは独立に変動する。正しいが正当でない決定（適法な手続きを経ずに実施された賢明な政策）があり、正当だが正しくない決定（適法な手続きを経て採択された愚かな政策）がある。</p>
 </div>
 
@@ -1100,7 +1116,7 @@ li{margin:0 0 .5rem}
 
 <p>この論法は、しばしば次のように要約される - <em>あなたが私より正しいとしても、それはあなたが私のボスであることを意味しない</em>。</p>
 
-<p>エストランドの積極的な立場は<strong>認識的手続き主義</strong>と呼ばれる。民主的手続きは、 (1) すべての人に受け入れ可能な理由によって正当化され、かつ (2) ランダムな決定よりは真理に到達しやすい、という二つの条件を満たすがゆえに正当である。真理に確実に到達するからではない。真理に到達する<em>傾向</em>を持ちながら、同時に、その手続きを誰も合理的に拒否できないからである。</p>
+<p>エストランドの積極的な立場は<strong>認識的手続き主義</strong>と呼ばれる。民主的手続きは、（ 1 ）すべての人に受け入れ可能な理由によって正当化され、かつ（ 2 ）ランダムな決定よりは真理に到達しやすい、という二つの条件を満たすがゆえに正当である。真理に確実に到達するからではない。真理に到達する<em>傾向</em>を持ちながら、同時に、その手続きを誰も合理的に拒否できないからである。</p>
 
 <p>ここに、ジョン・ロールズの<strong>公共的理性</strong>の議論が接続する。 [40] 多元的な社会では、人々は宗教的・哲学的に異なる包括的教説を抱いている。にもかかわらず、基本的な政治的問題については、そうした教説に依拠しない、すべての市民が理にかなって受け入れうる理由によって議論しなければならない - というのがロールズの要請である。</p>
 
@@ -1193,7 +1209,8 @@ li{margin:0 0 .5rem}
     <div class="acc-panel-inner">
 <p>この記事が扱ってきた論点のほとんどは、 1920 年代のアメリカで、二人の思想家のあいだで一度戦われている。</p>
 
-<p>ウォルター・リップマンは 1922 年の『世論』で、根本的な懐疑を提示した。 [49] 現代社会はあまりに複雑で、あまりに広大で、市民が直接経験できる範囲をはるかに超えている。市民が政治について持っているのは、実際の環境ではなく、頭のなかの<em>疑似環境</em>であり、それはステレオタイプによって構成されている。続く『幻の公衆』でリップマンはさらに踏み込み、あらゆる問題に通じた「全能の市民」という理想は幻想であり、統治は情報を持つ専門家が担い、公衆の役割は限定されるべきだと論じた。</p>
+<p>ウォルター・リップマンは 1922 年の『世論』で、根本的な懐疑を提示した。 [49] 現代社会はあまりに複雑で、あまりに広大で、市民が直接経験できる範囲をはるかに超えている。市民が政治について持っているのは、実際の環境ではなく、頭のなかの<em>疑似環境</em>であり、それはステレオタイプによって構成されている。<br>
+続く『幻の公衆』でリップマンはさらに踏み込み、あらゆる問題に通じた「全能の市民」という理想は幻想であり、統治は情報を持つ専門家が担い、公衆の役割は限定されるべきだと論じた。</p>
 
 <p>リップマンの診断は、第 III 部で見た経験的知見を、驚くほど先取りしている。有権者は情報を持たない。判断は近道に依存する。認知は構造的に偏っている。</p>
 
@@ -1387,7 +1404,8 @@ li{margin:0 0 .5rem}
 
 <p>だが、ここには三つの問題がある。</p>
 
-<p><strong>第一に、選択肢の圧縮は消えない。移動するだけである。</strong> 政策的に大きく異なる複数の政党の支持者が、一人の候補に集約されたとする。その候補が当選したとき、その勝利は何を意味するのか。「与党ではない候補を選んだ」ことか、「その候補の政策を支持した」ことか。この二つはまったく別である。自民党という大きな包摂政党を問題視して分割を求めながら、対抗側に「反与党」というより大きな包摂連合を作るなら、圧縮の問題は解決していない。場所を変えただけである。第 I 部で見た包摂と凝集のトレードオフは、どの政治勢力にも同じように働く。</p>
+<p><strong>第一に、選択肢の圧縮は消えない。移動するだけである。</strong> 政策的に大きく異なる複数の政党の支持者が、一人の候補に集約されたとする。その候補が当選したとき、その勝利は何を意味するのか。「与党ではない候補を選んだ」ことか、「その候補の政策を支持した」ことか。この二つはまったく別である。<br>
+自民党という大きな包摂政党を問題視して分割を求めながら、対抗側に「反与党」というより大きな包摂連合を作るなら、圧縮の問題は解決していない。場所を変えただけである。第 I 部で見た包摂と凝集のトレードオフは、どの政治勢力にも同じように働く。</p>
 
 <p><strong>第二に、予備選そのものが集約規則の問題を抱える。</strong> 複数政党の支持者が一つの予備選で候補を選ぶとき、その予備選もまた投票である。どの集約規則を使うのか。単純多数決なら、第 II 部で見たすべての問題 - 選好の循環、議題設定の効果、戦略的操作 - がそのまま現れる。予備選は、集約の問題を解決するのではなく、集約を一段階増やす。</p>
 
@@ -1465,7 +1483,8 @@ li{margin:0 0 .5rem}
     <div class="acc-panel-inner">
 <p>本稿の記述の性格を明示しておく。</p>
 
-<p><strong>選挙結果の数値</strong>は、第 51 回衆議院議員総選挙（ 2026 年 2 月 8 日執行）および第 50 回衆議院議員総選挙（ 2024 年 10 月 27 日執行）の確定結果にもとづく。得票数・得票率・議席数は複数の集計を突き合わせて確認した。小選挙区の定数は 289 、比例代表の定数は 176 、総定数 465 。第 51 回の小選挙区投票率は 56.26% 、第 50 回は 53.85% 。自民党の小選挙区における議席占有率 86.2% 、絶対得票率 26.9% は、公表されている選挙結果分析の数値である。</p>
+<p><strong>選挙結果の数値</strong>は、第 51 回衆議院議員総選挙（ 2026 年 2 月 8 日執行）および第 50 回衆議院議員総選挙（ 2024 年 10 月 27 日執行）の確定結果にもとづく。得票数・得票率・議席数は複数の集計を突き合わせて確認した。<br>
+小選挙区の定数は 289 、比例代表の定数は 176 、総定数 465 。第 51 回の小選挙区投票率は 56.26% 、第 50 回は 53.85% 。自民党の小選挙区における議席占有率 86.2% 、絶対得票率 26.9% は、公表されている選挙結果分析の数値である。</p>
 
 <p><strong>学術的な主張</strong>については、原典の書誌情報を確認したうえで参照している。ただし、本稿は概説であり、参照した研究のすべてを原典で通読したわけではない。とくに以下の三点については、通説として流通している理解と、現在の研究状況が食い違っているため、本文中で明示的に扱った。</p>
 
@@ -1498,15 +1517,15 @@ li{margin:0 0 .5rem}
 <ol>
 <li>Maurice Duverger, <cite>Political Parties: Their Organization and Activity in the Modern State</cite>, Methuen, 1954 （原著 1951 年） .</li>
 <li>Gary W. Cox, <cite>Making Votes Count: Strategic Coordination in the World's Electoral Systems</cite>, Cambridge University Press, 1997.</li>
-<li>Steven R. Reed, "Structure and Behaviour: Extending Duverger's Law to the Japanese Case," <cite>British Journal of Political Science</cite>, 20(3), 1990, pp. 335-356.</li>
-<li>Michael Gallagher, "Proportionality, Disproportionality and Electoral Systems," <cite>Electoral Studies</cite>, 10(1), 1991, pp. 33-51.</li>
+<li>Steven R. Reed, "Structure and Behaviour: Extending Duverger's Law to the Japanese Case," <cite>British Journal of Political Science</cite>, 20 (3), 1990, pp. 335-356.</li>
+<li>Michael Gallagher, "Proportionality, Disproportionality and Electoral Systems," <cite>Electoral Studies</cite>, 10 (1), 1991, pp. 33-51.</li>
 <li>Seymour M. Lipset and Stein Rokkan (eds.), <cite>Party Systems and Voter Alignments: Cross-National Perspectives</cite>, Free Press, 1967.</li>
-<li>Gary W. Cox, Frances McCall Rosenbluth and Michael F. Thies, "Electoral Reform and the Fate of Factions: The Case of Japan's Liberal Democratic Party," <cite>British Journal of Political Science</cite>, 29(1), 1999, pp. 33-56.</li>
-<li>Jochen Rehmert, "Coordinating Nominations: How to Deal with an Incumbent Surplus after Electoral Reform," <cite>Japanese Journal of Political Science</cite>, 23(1), 2022, pp. 55-72.</li>
+<li>Gary W. Cox, Frances McCall Rosenbluth and Michael F. Thies, "Electoral Reform and the Fate of Factions: The Case of Japan's Liberal Democratic Party," <cite>British Journal of Political Science</cite>, 29 (1), 1999, pp. 33-56.</li>
+<li>Jochen Rehmert, "Coordinating Nominations: How to Deal with an Incumbent Surplus after Electoral Reform," <cite>Japanese Journal of Political Science</cite>, 23 (1), 2022, pp. 55-72.</li>
 <li>Ellis S. Krauss and Robert J. Pekkanen, <cite>The Rise and Fall of Japan's LDP: Political Party Organizations as Historical Institutions</cite>, Cornell University Press, 2011.</li>
 <li>Edmund Burke, "Speech to the Electors of Bristol," 1774.</li>
 <li>American Political Science Association, Committee on Political Parties, "Toward a More Responsible Two-Party System," <cite>American Political Science Review</cite> 補遺 , 1950.</li>
-<li>Ellis S. Krauss, Kuniaki Nemoto and Robert J. Pekkanen, "Policy Dissension and Party Discipline: The July 2005 Vote on Postal Privatization in Japan," <cite>British Journal of Political Science</cite>, 38(3), 2008, pp. 499-525.</li>
+<li>Ellis S. Krauss, Kuniaki Nemoto and Robert J. Pekkanen, "Policy Dissension and Party Discipline: The July 2005 Vote on Postal Privatization in Japan," <cite>British Journal of Political Science</cite>, 38 (3), 2008, pp. 499-525.</li>
 <li>Giovanni Sartori, <cite>Parties and Party Systems: A Framework for Analysis</cite>, Cambridge University Press, 1976.</li>
 <li>Ethan Scheiner, <cite>Democracy without Competition in Japan: Opposition Failure in a One-Party Dominant State</cite>, Cambridge University Press, 2006.</li>
 </ol>
@@ -1515,13 +1534,13 @@ li{margin:0 0 .5rem}
 <ol start="14">
 <li>Marquis de Condorcet, <cite>Essai sur l'application de l'analyse à la probabilité des décisions rendues à la pluralité des voix</cite>, 1785.</li>
 <li>Kenneth J. Arrow, <cite>Social Choice and Individual Values</cite>, Wiley, 1951 （第 2 版 1963 年） .</li>
-<li>Kenneth O. May, "A Set of Independent Necessary and Sufficient Conditions for Simple Majority Decision," <cite>Econometrica</cite>, 20(4), 1952, pp. 680-684.</li>
-<li>Allan Gibbard, "Manipulation of Voting Schemes: A General Result," <cite>Econometrica</cite>, 41(4), 1973, pp. 587-601; Mark A. Satterthwaite, "Strategy-proofness and Arrow's Conditions," <cite>Journal of Economic Theory</cite>, 10(2), 1975, pp. 187-217.</li>
+<li>Kenneth O. May, "A Set of Independent Necessary and Sufficient Conditions for Simple Majority Decision," <cite>Econometrica</cite>, 20 (4), 1952, pp. 680-684.</li>
+<li>Allan Gibbard, "Manipulation of Voting Schemes: A General Result," <cite>Econometrica</cite>, 41 (4), 1973, pp. 587-601; Mark A. Satterthwaite, "Strategy-proofness and Arrow's Conditions," <cite>Journal of Economic Theory</cite>, 10 (2), 1975, pp. 187-217.</li>
 <li>William H. Riker, <cite>Liberalism against Populism: A Confrontation between the Theory of Democracy and the Theory of Social Choice</cite>, W. H. Freeman, 1982.</li>
 <li>Gerry Mackie, <cite>Democracy Defended</cite>, Cambridge University Press, 2003.</li>
-<li>Amartya Sen, <cite>Collective Choice and Social Welfare</cite>, Holden-Day, 1970; 同 "The Possibility of Social Choice," <cite>American Economic Review</cite>, 89(3), 1999, pp. 349-378.</li>
+<li>Amartya Sen, <cite>Collective Choice and Social Welfare</cite>, Holden-Day, 1970; 同 "The Possibility of Social Choice," <cite>American Economic Review</cite>, 89 (3), 1999, pp. 349-378.</li>
 <li>コンドルセの陪審定理。前掲 [14] および Stanford Encyclopedia of Philosophy, "Voting Methods" 所収の解説を参照。</li>
-<li>Christian List and Robert E. Goodin, "Epistemic Democracy: Generalizing the Condorcet Jury Theorem," <cite>Journal of Political Philosophy</cite>, 9(3), 2001, pp. 277-306.</li>
+<li>Christian List and Robert E. Goodin, "Epistemic Democracy: Generalizing the Condorcet Jury Theorem," <cite>Journal of Political Philosophy</cite>, 9 (3), 2001, pp. 277-306.</li>
 </ol>
 
 <h3 class="sans">政治心理学（第 III 部）</h3>
@@ -1529,33 +1548,33 @@ li{margin:0 0 .5rem}
 <li>Philip E. Converse, "The Nature of Belief Systems in Mass Publics," in David E. Apter (ed.), <cite>Ideology and Discontent</cite>, Free Press, 1964.</li>
 <li>John R. Zaller, <cite>The Nature and Origins of Mass Opinion</cite>, Cambridge University Press, 1992.</li>
 <li>Peter H. Ditto, Jared B. Celniker, Shiri Spitz Siddiqi, Mertcan Güngör and Daniel P. Relihan, "Partisan Bias in Political Judgment," <cite>Annual Review of Psychology</cite>, 76, 2025, pp. 717-740.</li>
-<li>Charles S. Taber and Milton Lodge, "Motivated Skepticism in the Evaluation of Political Beliefs," <cite>American Journal of Political Science</cite>, 50(3), 2006, pp. 755-769.</li>
-<li>Dan M. Kahan, Ellen Peters, Erica Cantrell Dawson and Paul Slovic, "Motivated Numeracy and Enlightened Self-Government," <cite>Behavioural Public Policy</cite>, 1(1), 2017, pp. 54-86.</li>
+<li>Charles S. Taber and Milton Lodge, "Motivated Skepticism in the Evaluation of Political Beliefs," <cite>American Journal of Political Science</cite>, 50 (3), 2006, pp. 755-769.</li>
+<li>Dan M. Kahan, Ellen Peters, Erica Cantrell Dawson and Paul Slovic, "Motivated Numeracy and Enlightened Self-Government," <cite>Behavioural Public Policy</cite>, 1 (1), 2017, pp. 54-86.</li>
 <li>Henri Tajfel and John C. Turner, "An Integrative Theory of Intergroup Conflict," in W. G. Austin and S. Worchel (eds.), <cite>The Social Psychology of Intergroup Relations</cite>, Brooks/Cole, 1979.</li>
 <li>Shanto Iyengar, Yphtach Lelkes, Matthew Levendusky, Neil Malhotra and Sean J. Westwood, "The Origins and Consequences of Affective Polarization in the United States," <cite>Annual Review of Political Science</cite>, 22, 2019, pp. 129-146.</li>
-<li>Brendan Nyhan and Jason Reifler, "When Corrections Fail: The Persistence of Political Misperceptions," <cite>Political Behavior</cite>, 32(2), 2010, pp. 303-330.</li>
-<li>Thomas Wood and Ethan Porter, "The Elusive Backfire Effect: Mass Attitudes' Steadfast Factual Adherence," <cite>Political Behavior</cite>, 41(1), 2019, pp. 135-163.</li>
-<li>Brendan Nyhan, "Why the Backfire Effect Does Not Explain the Durability of Political Misperceptions," <cite>PNAS</cite>, 118(15), 2021.</li>
-<li>Arthur Lupia, "Shortcuts versus Encyclopedias: Information and Voting Behavior in California Insurance Reform Elections," <cite>American Political Science Review</cite>, 88(1), 1994, pp. 63-76.</li>
+<li>Brendan Nyhan and Jason Reifler, "When Corrections Fail: The Persistence of Political Misperceptions," <cite>Political Behavior</cite>, 32 (2), 2010, pp. 303-330.</li>
+<li>Thomas Wood and Ethan Porter, "The Elusive Backfire Effect: Mass Attitudes' Steadfast Factual Adherence," <cite>Political Behavior</cite>, 41 (1), 2019, pp. 135-163.</li>
+<li>Brendan Nyhan, "Why the Backfire Effect Does Not Explain the Durability of Political Misperceptions," <cite>PNAS</cite>, 118 (15), 2021.</li>
+<li>Arthur Lupia, "Shortcuts versus Encyclopedias: Information and Voting Behavior in California Insurance Reform Elections," <cite>American Political Science Review</cite>, 88 (1), 1994, pp. 63-76.</li>
 <li>Samuel L. Popkin, <cite>The Reasoning Voter: Communication and Persuasion in Presidential Campaigns</cite>, University of Chicago Press, 1991.</li>
-<li>Steven F. Maier and Martin E. P. Seligman, "Learned Helplessness at Fifty: Insights from Neuroscience," <cite>Psychological Review</cite>, 123(4), 2016, pp. 349-367.</li>
+<li>Steven F. Maier and Martin E. P. Seligman, "Learned Helplessness at Fifty: Insights from Neuroscience," <cite>Psychological Review</cite>, 123 (4), 2016, pp. 349-367.</li>
 <li>Angus Campbell, Gerald Gurin and Warren E. Miller, <cite>The Voter Decides</cite>, Row, Peterson, 1954.</li>
 <li>Christopher H. Achen and Larry M. Bartels, <cite>Democracy for Realists: Why Elections Do Not Produce Responsive Government</cite>, Princeton University Press, 2016.</li>
-<li>Anthony Fowler and Andrew B. Hall, "Do Shark Attacks Influence Presidential Elections? Reassessing a Prominent Finding on Voter Competence," <cite>Journal of Politics</cite>, 80(4), 2018, pp. 1423-1437.</li>
+<li>Anthony Fowler and Andrew B. Hall, "Do Shark Attacks Influence Presidential Elections? Reassessing a Prominent Finding on Voter Competence," <cite>Journal of Politics</cite>, 80 (4), 2018, pp. 1423-1437.</li>
 </ol>
 
 <h3 class="sans">政治哲学（第 IV 部）</h3>
 <ol start="39">
 <li>David Estlund, <cite>Democratic Authority: A Philosophical Framework</cite>, Princeton University Press, 2008.</li>
 <li>John Rawls, <cite>Political Liberalism</cite>, Columbia University Press, 1993.</li>
-<li>Jürgen Habermas, <cite>Faktizität und Geltung</cite>, Suhrkamp, 1992 （英訳 <cite>Between Facts and Norms</cite>, MIT Press, 1996 ） .</li>
-<li>Cass R. Sunstein, "The Law of Group Polarization," <cite>Journal of Political Philosophy</cite>, 10(2), 2002, pp. 175-195.</li>
-<li>Hugo Mercier and Dan Sperber, "Why Do Humans Reason? Arguments for an Argumentative Theory," <cite>Behavioral and Brain Sciences</cite>, 34(2), 2011, pp. 57-74.</li>
+<li>Jürgen Habermas, <cite>Faktizität und Geltung</cite>, Suhrkamp, 1992 （英訳 <cite>Between Facts and Norms</cite>, MIT Press, 1996).</li>
+<li>Cass R. Sunstein, "The Law of Group Polarization," <cite>Journal of Political Philosophy</cite>, 10 (2), 2002, pp. 175-195.</li>
+<li>Hugo Mercier and Dan Sperber, "Why Do Humans Reason? Arguments for an Argumentative Theory," <cite>Behavioral and Brain Sciences</cite>, 34 (2), 2011, pp. 57-74.</li>
 <li>James S. Fishkin, <cite>When the People Speak: Deliberative Democracy and Public Consultation</cite>, Oxford University Press, 2009.</li>
 <li>David M. Farrell and Jane Suiter, <cite>Reimagining Democracy: Lessons in Deliberative Democracy from the Irish Front Line</cite>, Cornell University Press, 2019.</li>
-<li>Lu Hong and Scott E. Page, "Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers," <cite>PNAS</cite>, 101(46), 2004, pp. 16385-16389.</li>
+<li>Lu Hong and Scott E. Page, "Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers," <cite>PNAS</cite>, 101 (46), 2004, pp. 16385-16389.</li>
 <li>Hélène Landemore, <cite>Democratic Reason: Politics, Collective Intelligence, and the Rule of the Many</cite>, Princeton University Press, 2013.</li>
-<li>Abigail Thompson, "Does Diversity Trump Ability? An Example of the Misuse of Mathematics in the Social Sciences," <cite>Notices of the American Mathematical Society</cite>, 61(9), 2014, pp. 1024-1030.</li>
+<li>Abigail Thompson, "Does Diversity Trump Ability? An Example of the Misuse of Mathematics in the Social Sciences," <cite>Notices of the American Mathematical Society</cite>, 61 (9), 2014, pp. 1024-1030.</li>
 <li>Walter Lippmann, <cite>Public Opinion</cite>, Harcourt, Brace, 1922; 同 <cite>The Phantom Public</cite>, Harcourt, Brace, 1925.</li>
 <li>John Dewey, <cite>The Public and Its Problems</cite>, Henry Holt, 1927.</li>
 <li>John Dewey, <cite>Democracy and Education</cite>, Macmillan, 1916.</li>
@@ -1566,7 +1585,7 @@ li{margin:0 0 .5rem}
 <ol start="53">
 <li>Keith T. Poole and Howard Rosenthal, <cite>Congress: A Political-Economic History of Roll Call Voting</cite>, Oxford University Press, 1997; 同 <cite>Ideology and Congress</cite>, Transaction, 2007.</li>
 <li>東京大学谷口研究室・朝日新聞社共同調査（ UTAS ）。国政選挙のたびに実施される候補者・当選者への政策態度調査。</li>
-<li>Michael Laver, Kenneth Benoit and John Garry, "Extracting Policy Positions from Political Texts Using Words as Data," <cite>American Political Science Review</cite>, 97(2), 2003, pp. 311-331; Jonathan B. Slapin and Sven-Oliver Proksch, "A Scaling Model for Estimating Time-Series Party Positions from Texts," <cite>American Journal of Political Science</cite>, 52(3), 2008, pp. 705-722.</li>
+<li>Michael Laver, Kenneth Benoit and John Garry, "Extracting Policy Positions from Political Texts Using Words as Data," <cite>American Political Science Review</cite>, 97 (2), 2003, pp. 311-331; Jonathan B. Slapin and Sven-Oliver Proksch, "A Scaling Model for Estimating Time-Series Party Positions from Texts," <cite>American Journal of Political Science</cite>, 52 (3), 2008, pp. 705-722.</li>
 </ol>
 
 <h3 class="sans">概説・事典</h3>
@@ -1583,7 +1602,8 @@ li{margin:0 0 .5rem}
 
 </div>
 
-<p class="note">本稿は、既存の原稿を全面的に書き改めたものである。原稿にあった議論の骨格 - 選挙は民意の変換装置であること、政党内の多様性は欠陥ではないこと、「死票」概念には注意が必要であること、「学習性無力感」の用語法は不正確であること、制度改革はトレードオフの選択であること - は継承したうえで、 (1) 具体的な選挙データによる裏づけ、 (2) 各主張の出典の特定と書誌情報の訂正、 (3) 通説と現在の研究状況が食い違う三つの論点の明示、 (4) 論理学・心理学・哲学の各分野からの概念の追加を行った。</p>
+<p class="note">本稿は、既存の原稿を全面的に書き改めたものである。<br>
+原稿にあった議論の骨格 - 選挙は民意の変換装置であること、政党内の多様性は欠陥ではないこと、「死票」概念には注意が必要であること、「学習性無力感」の用語法は不正確であること、制度改革はトレードオフの選択であること - は継承したうえで、（ 1 ）具体的な選挙データによる裏づけ、（ 2 ）各主張の出典の特定と書誌情報の訂正、（ 3 ）通説と現在の研究状況が食い違う三つの論点の明示、（ 4 ）論理学・心理学・哲学の各分野からの概念の追加を行った。</p>
     </div>
   </div>
 </section>

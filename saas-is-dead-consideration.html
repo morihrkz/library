@@ -13,7 +13,7 @@
     --bg: #fdfcf9;
     --paper: #ffffff;
     --ink: #1a1a1a;
-    --ink-soft: #4a4a4a;
+    --sub: #4a4a4a;
     --muted: #6f6a63;
     --line: #ddd8cd;
     --accent: #2f5d5b;
@@ -28,7 +28,7 @@
       --bg: #14140f;
       --paper: #191912;
       --ink: #e6e4de;
-      --ink-soft: #b0aea6;
+      --sub: #b0aea6;
       --muted: #948f85;
       --line: #322f26;
       --accent: #4f8f8a;
@@ -40,6 +40,8 @@
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 1.15rem;
     line-height: 1.9;
+    color: var(--ink);
+    background: var(--bg);
   }
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
@@ -73,6 +75,8 @@
     line-height: 1.8;
     text-indent: 0;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
   .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
   .hero-figure svg { display: block; width: 100%; height: auto; }
   .hero-figure figcaption {
@@ -96,7 +100,7 @@
     padding-left: 0.7rem;
     scroll-margin-top: 1rem;
   }
-  p { margin: 1.1rem 0; text-align: justify; color: var(--ink-soft); text-indent: 1em; }
+  p { margin: 1.1rem 0; text-align: justify; color: var(--sub); text-indent: 1em; }
   strong { color: var(--ink); }
   ul.layers { list-style: none; padding: 0; margin: 1.4rem 0; }
   ul.layers li {
@@ -107,7 +111,7 @@
     padding: 0.9rem 1.1rem;
     margin-bottom: 0.7rem;
     line-height: 1.85;
-    color: var(--ink-soft);
+    color: var(--sub);
   }
   sup.fn { font-size: 0.8rem; }
   sup.fn a { text-decoration: none; color: var(--accent); }
@@ -217,6 +221,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -226,6 +232,10 @@
     <span class="eyebrow">TECH &middot; BUSINESS / ESSAY</span>
     <h1>「 SaaS is dead 」言説を検証する</h1>
     <p class="sub">UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</p>
+    <div class="meta">
+      <span>全 8 章</span>
+      <span>約 20 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 272" role="img" aria-labelledby="heroTitle heroDesc">
@@ -355,7 +365,7 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 <p>
-Salesforce の株価は、 2026 年に入って大きく下落した。 TIKR.com （ 2026 年 6 月 16 日更新の記事）によれば、同社株は 2026 年の年初来で約 33% 下落し、 52 週高値 276.80 ドルに対し 52 週安値 161.40 ドルまで落ち込み、記事執筆時点の株価は 164.55 ドルと 52 週安値近辺で推移していた <sup class="fn"><a href="#fn7">[7]</a></sup> 。<br>
+Salesforce の株価は、 2026 年に入って大きく下落した。 TIKR.com (2026 年 6 月 16 日更新の記事）によれば、同社株は 2026 年の年初来で約 33% 下落し、 52 週高値 276.80 ドルに対し 52 週安値 161.40 ドルまで落ち込み、記事執筆時点の株価は 164.55 ドルと 52 週安値近辺で推移していた <sup class="fn"><a href="#fn7">[7]</a></sup> 。<br>
  7 月下旬にはモルガン・スタンレーが目標株価を 35% 引き下げたとの報道もあり <sup class="fn"><a href="#fn8">[8]</a></sup> 、下落基調は少なくとも夏場まで続いていたとみられる。
 </p>
 
@@ -544,7 +554,7 @@ CNBC の報道（ 2026 年 5 月 27 日付）によれば、この四半期決�
 <li id="fn14">Tidemark, "AI's Impact on Data Gravity: Insights from Tidemark." <a href="https://www.tidemarkcap.com/post/does-ai-remove-the-incumbent-data-gravity-advantage">https://www.tidemarkcap.com/post/does-ai-remove-the-incumbent-data-gravity-advantage</a></li>
 <li id="fn15">Flexera Blog, "Is Enterprise SaaS Shifting From UX to Agentic Infrastructure?" <a href="https://www.flexera.com/blog/perspectives/enterprise-saas-strategy-data-gravity-agentic-ai/">https://www.flexera.com/blog/perspectives/enterprise-saas-strategy-data-gravity-agentic-ai/</a> （データの重力優位性が弱まりつつあるという見方の紹介元）</li>
 <li id="fn16">Stromasys, "AI-Driven Migration Mitigate Compliance Blind Spots in 2026." <a href="https://www.stromasys.com/resources/ai-driven-vs-traditional-legacy-migration/">https://www.stromasys.com/resources/ai-driven-vs-traditional-legacy-migration/</a> （ベンダー発信のブログ記事であり、記載事例の第三者検証は未確認）</li>
-<li id="fn17">FutureAGI, "AI Agent Compliance and Governance in 2026: A Practical Guide." （ EU AI 法の高リスク AI システムに関する義務適用開始時期＝ 2026 年 8 月についての言及元） <a href="https://futureagi.com/blog/ai-agent-compliance-governance-2026">https://futureagi.com/blog/ai-agent-compliance-governance-2026</a></li>
+<li id="fn17">FutureAGI, "AI Agent Compliance and Governance in 2026: A Practical Guide."(EU AI 法の高リスク AI システムに関する義務適用開始時期＝ 2026 年 8 月についての言及元） <a href="https://futureagi.com/blog/ai-agent-compliance-governance-2026">https://futureagi.com/blog/ai-agent-compliance-governance-2026</a></li>
 </ol>
     </div>
   </div>

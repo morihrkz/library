@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --hero-1:#101119; --hero-2:#1d1622; --hero-ink:#f4f2fa; --hero-dim:#c9c5de;
     --bg: #f5f6fa;
     --paper: #ffffff;
     --ink: #1c1e26;
@@ -73,8 +74,8 @@
       radial-gradient(circle at 88% 12%, rgba(180,83,9,.28), transparent 44%),
       radial-gradient(circle at 72% 88%, rgba(124,58,237,.30), transparent 52%),
       radial-gradient(circle at 26% 92%, rgba(190,18,60,.22), transparent 50%),
-      linear-gradient(160deg, #101119 0%, #1a1728 58%, #1d1622 100%);
-    color:#f4f2fa;
+      linear-gradient(160deg, var(--hero-1) 0%, #1a1728 58%, var(--hero-2) 100%);
+    color:var(--hero-ink);
     padding:clamp(56px,9vw,100px) 24px clamp(44px,7vw,68px);
   }
   header.hero::after{
@@ -91,7 +92,7 @@
   .eyebrow{
     display:inline-block;
     letter-spacing:.32em;
-    color:#b9b4cf;
+    color:var(--hero-dim);
     margin-bottom:20px;
   }
   header.hero h1{
@@ -107,8 +108,8 @@
     color:transparent;
     font-weight:800;
   }
-  header.hero p.lead{
-    color:#c9c5de;
+  header.hero p.sub{
+    color:var(--hero-dim);
     margin:0 auto;
     max-width:640px;
   }
@@ -131,7 +132,7 @@
     letter-spacing:.02em;
     border:1px solid rgba(255,255,255,.16);
     background:rgba(255,255,255,.06);
-    color:#f4f2fa;
+    color:var(--hero-ink);
     transition:transform .18s ease, background .18s ease, border-color .18s ease;
   }
   .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.34); }
@@ -156,7 +157,7 @@
   .hero-figure figcaption{
     margin-top:12px;
     line-height:1.8;
-    color:#b3aecb;
+    color:var(--hero-dim);
     text-align:center;
   }
   @media (max-width:640px){
@@ -469,7 +470,7 @@
   <div class="wrap">
     <span class="eyebrow">PERSONAL ARCHIVE</span>
     <h1><span class="big" id="total-count">30</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
-    <p class="lead">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
+    <p class="sub">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
 
     <nav class="counters" aria-label="分野">
       <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
@@ -821,7 +822,7 @@
         <span class="kicker">PHILOSOPHY</span>
         <h3>生まれてこない方が幸せなのか</h3>
         <h4>反出生主義をめぐる思考の旅</h4>
-        <p class="desc">「生まれてこない方がよかった」という反出生主義 (antinatalism) の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
+        <p class="desc">「生まれてこない方がよかった」という反出生主義（ antinatalism ）の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
         <span class="go">読む</span>
       </a>
 

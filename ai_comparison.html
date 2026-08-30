@@ -11,8 +11,9 @@
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
 /* ---- Design tokens ---- */
 :root{
-  --primary:#1a365d;
-  --primary2:#0f172a;
+    --hero-ink:#eef2f7; --hero-dim:#c3d0e2;
+  --hero-2:#1a365d;
+  --hero-1:#0f172a;
   --bg:#f7fafc;
   --paper:#fff;
   --ink:#2d3748;
@@ -58,8 +59,8 @@ body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hir
 
 /* ---- hero ---- */
 header.hero{
-  background:linear-gradient(135deg,#0f172a 0%,#1a365d 100%);
-  color:#eef2f7;
+  background:linear-gradient(135deg,var(--hero-1) 0%,var(--hero-2) 100%);
+  color:var(--hero-ink);
   padding:3.4rem 0 2.6rem;
   margin-bottom:2.4rem;
 }
@@ -68,28 +69,30 @@ header.hero .eyebrow{
   display:block;
   font-size:.78rem;
   letter-spacing:.22em;
-  color:#9db4d4;
+  color:var(--hero-dim);
   margin-bottom:.9rem;
 }
 header.hero h1{
   margin:0 0 .7rem;
-  color:#fff;
+  color:var(--hero-ink);
   font-size:clamp(1.5rem,3.2vw,1.9rem);
   letter-spacing:.02em;
 }
-header.hero p.lead{
+header.hero p.sub{
   margin:0;
-  color:#c3d0e2;
+  color:var(--hero-dim);
   font-size:1.05rem;
   line-height:1.8;
 }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
 .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto}
 .hero-figure svg{display:block;width:100%;height:auto}
 .hero-figure figcaption{
   margin-top:.9rem;
   font-size:.85rem;
   line-height:1.7;
-  color:#a8b8cc;
+  color:var(--hero-dim);
 }
 
 /* ---- Comparison table ---- */
@@ -99,14 +102,14 @@ th,td{padding:15px;border-bottom:1px solid var(--line);border-right:1px solid va
 th:last-child,td:last-child{border-right:none}
 tr:last-child td{border-bottom:none}
 
-thead th{background:var(--primary);color:#fff;font-weight:650;white-space:nowrap}
-thead th:first-child{background:var(--primary2);width:1%;white-space:nowrap;position:sticky;left:0;z-index:3}
+thead th{background:var(--hero-2);color:#fff;font-weight:650;white-space:nowrap}
+thead th:first-child{background:var(--hero-1);width:1%;white-space:nowrap;position:sticky;left:0;z-index:3}
 .vendor{font-size:15px}
 
 .category{
   font-weight:700;
   background:#f8fafc;
-  color:var(--primary);
+  color:var(--hero-2);
   white-space:nowrap;
   position:sticky;
   left:0;
@@ -211,6 +214,8 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -219,12 +224,15 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
   <div class="wrap">
     <span class="eyebrow">TECH REFERENCE / AI VENDOR COMPARISON</span>
     <h1>AI 比較表</h1>
-    <p class="lead">生成 AI ・ AI エージェント・ AI コーディングを中心に比較。「企業」「基盤モデル」「製品」「コーディングツール」を混同しないよう、項目を分けて整理している。 SpaceX による xAI ・ Anysphere (Cursor) の買収完了に伴い、両社は表の上では「 SpaceX 」 1 列にまとめている。</p>
+    <p class="sub">生成 AI ・ AI エージェント・ AI コーディングを中心に比較。「企業」「基盤モデル」「製品」「コーディングツール」を混同しないよう、項目を分けて整理している。 SpaceX による xAI ・ Anysphere (Cursor ）の買収完了に伴い、両社は表の上では「 SpaceX 」 1 列にまとめている。</p>
+    <div class="meta">
+      <span>約 8 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="aiTitle aiDesc">
         <title id="aiTitle">5 社を一言で表すなら</title>
-        <desc id="aiDesc">Google ・ OpenAI ・ Anthropic ・ SpaceX ・ Meta の 5 社を、それぞれ一言のタグラインとともに並べた要約図 ( 上段 3 社・下段 2 社 ) 。旧 xAI/SpaceX と旧 Anysphere は SpaceX 1 社にまとめている。</desc>
+        <desc id="aiDesc">Google ・ OpenAI ・ Anthropic ・ SpaceX ・ Meta の 5 社を、それぞれ一言のタグラインとともに並べた要約図（上段 3 社・下段 2 社）。旧 xAI/SpaceX と旧 Anysphere は SpaceX 1 社にまとめている。</desc>
 
         <g class="chip">
           <rect x="8" y="10" width="228" height="76" rx="8"/>
@@ -287,8 +295,8 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
         <td data-label="Google">Google 自身が AI 研究・モデル・クラウド・消費者向けサービスを一体的に展開。</td>
         <td data-label="OpenAI">基盤モデルと ChatGPT 、 Codex 、 API などを自社で広く展開する AI 企業。</td>
         <td data-label="Anthropic">Claude を中心に、基盤モデル・ AI エージェント・企業向け AI を展開。</td>
-        <td data-label="SpaceX"><span class="status ok">買収完了</span> 2026 年 2 月に SpaceX が xAI を取得し、 Grok を中心とする AI 事業を自社の計算資源・インフラ戦略と結び付けた。続いて 2026 年 6 月 16 日締結・ 8 月 14 日クロージングの約 <strong>600 億ドル</strong>相当の全株式交換で、 Cursor 開発元 Anysphere も買収。両社は新設の <strong>SpaceXAI</strong> 部門にまとまり、基盤モデル (xAI) とコーディング環境 (Anysphere) を 1 社で垂直統合する唯一の例になった。</td>
-        <td data-label="Meta">2025 年、<strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進める。</td>
+        <td data-label="SpaceX"><span class="status ok">買収完了</span> 2026 年 2 月に SpaceX が xAI を取得し、 Grok を中心とする AI 事業を自社の計算資源・インフラ戦略と結び付けた。続いて 2026 年 6 月 16 日締結・ 8 月 14 日クロージングの約 <strong>600 億ドル</strong>相当の全株式交換で、 Cursor 開発元 Anysphere も買収。両社は新設の <strong>SpaceXAI</strong> 部門にまとまり、基盤モデル（ xAI ）とコーディング環境（ Anysphere ）を 1 社で垂直統合する唯一の例になった。</td>
+        <td data-label="Meta">2025 年、 <strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進める。</td>
       </tr>
 
       <tr>
@@ -305,7 +313,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
         <td data-label="Google">
           <strong>Gemini 3 系</strong>
           <ul>
-            <li>Gemini 3.6 Flash : 一般提供 (2026 年 7 月、現行の主力 )</li>
+            <li>Gemini 3.6 Flash : 一般提供（ 2026 年 7 月、現行の主力）</li>
             <li>Gemini 3.1 Pro : <span class="status warn">Preview</span> 最上位 Pro だが正式提供前</li>
             <li>Gemini 3.5 Flash / Flash-Lite : 一般提供</li>
             <li>Gemini 3.5 Flash Cyber  セキュリティ特化。政府・信頼パートナー限定の試験提供</li>
@@ -315,9 +323,9 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
         <td data-label="OpenAI">
           <strong>GPT-5.6/GPT 系</strong>
           <ul>
-            <li>GPT-5.6 : Luna/Terra/Sol の 3 構成 ( 2026 年 7 月公開の最新世代 )</li>
+            <li>GPT-5.6 : Luna/Terra/Sol の 3 構成（ 2026 年 7 月公開の最新世代）</li>
             <li>最上位 Sol はコーディング・科学研究・セキュリティ用途を強化</li>
-            <li>GPT-5.5 ( Instant/Thinking/Pro ) は前世代</li>
+            <li>GPT-5.5 (Instant/Thinking/Pro ）は前世代</li>
             <li>Codex 系のコーディング・エージェント専用モデル</li>
           </ul>
         </td>
@@ -334,15 +342,15 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
           <strong>Grok 系 + Cursor Tab</strong>
           <ul>
             <li>Grok 4.5 、続いて買収統合後に Grok 4.6 を公開。 Cursor Agent ・ Grok Build 双方を支える基盤モデルとして共有する方針</li>
-            <li>Cursor は従来、独自補完モデル (Cursor Tab) と外部モデル API を組み合わせる立場だったが、買収後は Colossus の GPU リソースを活用できるようになった</li>
-            <li>学習基盤は Memphis の Colossus (Nvidia GPU 約 20 万基、将来的に 100 万基規模へ拡張予定 )</li>
+            <li>Cursor は従来、独自補完モデル（ Cursor Tab ）と外部モデル API を組み合わせる立場だったが、買収後は Colossus の GPU リソースを活用できるようになった</li>
+            <li>学習基盤は Memphis の Colossus (Nvidia GPU 約 20 万基、将来的に 100 万基規模へ拡張予定）</li>
           </ul>
         </td>
         <td data-label="Meta">
           <strong>Llama 4 + Muse Spark 二層構造</strong>
           <ul>
-            <li>Llama 4( オープンウェイト ) : Scout / Maverick / Behemoth 。 Scout は 10M トークンの長文脈に対応</li>
-            <li>Muse Spark( プロプライエタリ ) : MSL 初のフロンティアモデル群。 1.1 は 100 万トークン対応、 1.2 が 2026 年 8 月に公開</li>
+            <li>Llama 4 （オープンウェイト） : Scout / Maverick / Behemoth 。 Scout は 10M トークンの長文脈に対応</li>
+            <li>Muse Spark （プロプライエタリ） : MSL 初のフロンティアモデル群。 1.1 は 100 万トークン対応、 1.2 が 2026 年 8 月に公開</li>
             <li>「完全オープン」から「オープン + プロプライエタリ収益化」へ戦略転換</li>
           </ul>
         </td>
@@ -355,7 +363,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
           <ul>
             <li>ターミナル型 AI エージェント。コマンドは <code>agy</code> 、 Go 製のクローズドソース</li>
             <li>Antigravity 2.0 と同一のエージェント基盤を共有、複数エージェントの並行実行に対応</li>
-            <li><span class="status warn">提供終了</span> 旧 Gemini CLI( オープンソース ) は 2026 年 6 月 18 日に個人向け終了。法人の Gemini Code Assist Standard / Enterprise 契約者のみ継続利用可</li>
+            <li><span class="status warn">提供終了</span> 旧 Gemini CLI （オープンソース）は 2026 年 6 月 18 日に個人向け終了。法人の Gemini Code Assist Standard / Enterprise 契約者のみ継続利用可</li>
           </ul>
         </td>
         <td data-label="OpenAI">
@@ -377,7 +385,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
           <ul>
             <li><strong>Grok Build</strong> : 2026 年 5 月に early beta として公開されたターミナル TUI 。 Plan → 承認 → 実行のワークフローを持つエージェント</li>
             <li><strong>Cursor Agent</strong> : エディタ内でコードベース全体を扱う AI エージェント。複数モデルを柔軟に切り替えられる点が特徴</li>
-            <li>買収完了 3 日後の 2026 年 8 月 17 日、 Cursor はリポジトリ・ PR ・コード閲覧・ GitHub 同期をまとめた <strong>Origin</strong> ( コードホスティング ) を早期ベータ公開。既存の有料プランに含まれ追加課金なし</li>
+            <li>買収完了 3 日後の 2026 年 8 月 17 日、 Cursor はリポジトリ・ PR ・コード閲覧・ GitHub 同期をまとめた <strong>Origin</strong> （コードホスティング）を早期ベータ公開。既存の有料プランに含まれ追加課金なし</li>
             <li>2026 年 8 月時点では 2 系統のエージェント CLI/ ツールが併存しており、統合の行方が今後の焦点</li>
           </ul>
         </td>
@@ -392,11 +400,11 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
 
       <tr>
         <th scope="row" class="category">コーディング環境</th>
-        <td data-label="Google"><strong>Antigravity 2.0 / Antigravity CLI</strong><br>デスクトップアプリと CLI が同一基盤。法人向けは Gemini Code Assist Enterprise(VS Code 、 JetBrains 統合 ) が継続。</td>
+        <td data-label="Google"><strong>Antigravity 2.0 / Antigravity CLI</strong><br>デスクトップアプリと CLI が同一基盤。法人向けは Gemini Code Assist Enterprise (VS Code 、 JetBrains 統合）が継続。</td>
         <td data-label="OpenAI"><strong>Codex / Codex CLI</strong><br>ChatGPT 、エディタ、ターミナルを横断。</td>
         <td data-label="Anthropic"><strong>Claude Code</strong><br>ターミナル中心。 Web 検索、 Git 、 MCP なども利用可能。</td>
-        <td data-label="SpaceX"><strong>Grok Build (TUI) + Cursor ( エディタ )</strong><br>ターミナル型の Grok Build は ACP により他社エディタ・開発環境との連携も展開。 Cursor は AI を中心に再設計したコードエディタで、単なる補完ツールでなく Agent 型開発環境として位置づける方が適切。 SpaceX 傘下で 1 社が性格の異なる 2 種類のコーディング環境を並行運用する、他社にない構図になっている。</td>
-        <td data-label="Meta"><strong>Muse Code / Meta Model API</strong><br>CLI 中心の beta 提供。 Meta Model API ( 2026 年 7 月 public preview 開始 ) により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</td>
+        <td data-label="SpaceX"><strong>Grok Build (TUI)+ Cursor （エディタ）</strong><br>ターミナル型の Grok Build は ACP により他社エディタ・開発環境との連携も展開。 Cursor は AI を中心に再設計したコードエディタで、単なる補完ツールでなく Agent 型開発環境として位置づける方が適切。 SpaceX 傘下で 1 社が性格の異なる 2 種類のコーディング環境を並行運用する、他社にない構図になっている。</td>
+        <td data-label="Meta"><strong>Muse Code / Meta Model API</strong><br>CLI 中心の beta 提供。 Meta Model API (2026 年 7 月 public preview 開始）により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</td>
       </tr>
 
       <tr>
@@ -404,7 +412,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
         <td data-label="Google">
           <ul>
             <li>Google Search 、 Workspace 、 Android 、 Google Cloud</li>
-            <li>Antigravity 2.0 に統合された開発環境 ( デスクトップ +CLI)</li>
+            <li>Antigravity 2.0 に統合された開発環境（デスクトップ +CLI)</li>
             <li>大規模クラウド・検索・データ基盤</li>
           </ul>
         </td>
@@ -419,13 +427,13 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
           <ul>
             <li>Claude の長文・高度推論・コーディング能力</li>
             <li>Claude Code による agentic coding</li>
-            <li>MCP(Model Context Protocol) を策定・公開。 AI エージェントと外部ツールの接続規格として業界標準化</li>
+            <li>MCP (Model Context Protocol ）を策定・公開。 AI エージェントと外部ツールの接続規格として業界標準化</li>
             <li>企業・主要クラウド各社との密接な連携</li>
           </ul>
         </td>
         <td data-label="SpaceX">
           <ul>
-            <li>X とのリアルタイム情報環境、 SpaceX の大規模計算資源 (Colossus) ・ AI インフラ</li>
+            <li>X とのリアルタイム情報環境、 SpaceX の大規模計算資源（ Colossus ）・ AI インフラ</li>
             <li>Grok ・ Grok Build ・ Cursor ・ Cursor Agent ・ Origin を 1 グループで保有し、基盤モデルからコーディング環境まで垂直統合</li>
             <li>Cursor はモデル・アグノスティックな UI/UX 設計を維持しつつ、 Colossus の GPU リソースと基盤モデル共有という後ろ盾を獲得</li>
           </ul>
@@ -433,7 +441,7 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
         <td data-label="Meta">
           <ul>
             <li>30 億人規模の配布網 : Facebook, Instagram, WhatsApp, Messenger, Threads に Meta AI を直接統合</li>
-            <li>二層戦略 : Llama ( オープン ) + Muse ( プロプライエタリ ) のハイブリッド</li>
+            <li>二層戦略 : Llama （オープン） + Muse （プロプライエタリ）のハイブリッド</li>
             <li>MSL への巨額投資と低価格 API によるコスト競争力</li>
           </ul>
         </td>
@@ -464,12 +472,12 @@ footer{margin-top:18px;font-size:12px;color:var(--muted)}
       各項目は公表情報および報道に基づく整理であり、非公開の内部資料は含まない。重要な判断に用いる場合は各社公式発表で再確認することが望ましい。
     </p>
     <p>
-      SpaceX による Anysphere (Cursor) 買収については、特に次を参照 : <a href="https://gigazine.net/news/20260816-spacex-officially-closes-cursor-acquisition/">GIGAZINE 「 SpaceX が Cursor の買収を正式に完了」 ( 2026 年 8 月 16 日 )</a> 、 <a href="https://www.digitalapplied.com/blog/spacex-anysphere-close-first-product-move">Digital Applied 「 Three Days After Closing, Cursor Shipped Code Hosting 」</a> 。
+      SpaceX による Anysphere (Cursor ）買収については、特に次を参照 : <a href="https://gigazine.net/news/20260816-spacex-officially-closes-cursor-acquisition/">GIGAZINE 「 SpaceX が Cursor の買収を正式に完了」（ 2026 年 8 月 16 日）</a> 、 <a href="https://www.digitalapplied.com/blog/spacex-anysphere-close-first-product-move">Digital Applied 「 Three Days After Closing, Cursor Shipped Code Hosting 」</a> 。
     </p>
   </div>
 
   <footer>
-    情報基準日 : 2026 年 8 月 29 日 ( うち SpaceX/Cursor 関連は 2026 年 8 月 17 日時点の報道まで反映 ) 。<br>
+    情報基準日 : 2026 年 8 月 29 日（うち SpaceX/Cursor 関連は 2026 年 8 月 17 日時点の報道まで反映）。<br>
     このページは「 AI 各社の違いを把握するための概観表」であり、ベンチマーク順位や性能の絶対評価を示すものではない。
   </footer>
 </div>

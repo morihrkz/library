@@ -10,36 +10,38 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
+    --hero-1:#0a3a5e; --hero-2:#05141f; --hero-ink:#ffffff; --hero-dim:#cfe6f6;
     --sky:#29b6f6;
-    --sky-deep:#0288d1;
+    --accent:#0276b5;
     --sun:#ffca28;
     --sun-deep:#ffa000;
-    --coral:#ff7043;
+    --coral:#ff7043;--coral-deep:#d43300;
     --paper:#ffffff;
     --ink:#2c3e50;
-    --ink-soft:#546e7a;
+    --sub:#455a64;
     --line:#e3f2fb;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
     --pause-ink:#6d4c00;
-    --accent-bg: #f4f9f9;
-    --acc-open-bg: linear-gradient(90deg, #f0f9ff, #ffffff);
+    --card: #f4f9f9;
+    --note-bg:#eaf4fb;
     /* 深淵（ 前作 becomingyourself.html の水面の青から潜っていく色 ）*/
-    --abyss-surface:#0a3a5e;   /* 水面直下: 前作ヒーローの終端色 #0277bd の名残 */
+/* 水面直下: 前作ヒーローの終端色 #0277bd の名残 */
     --abyss-mid:#072940;
     --abyss-deep:#041826;
-    --abyss-floor:#05141f;
   }
   @media (prefers-color-scheme: dark){
     :root{
+      --coral-deep:#ff8a65;
+      --accent:#028dd9;
       --paper:#1a1e26;
       --ink:#dfe6ec;
-      --ink-soft:#9caebc;
+      --sub:#9caebc;
       --line:#232b34;
       --pause-bg:#332b12;
       --pause-ink:#e6c375;
-      --accent-bg:#141d1c;
-      --acc-open-bg: var(--paper);
+      --card:#141d1c;
+      --note-bg:#1c2733;
     }
   }
   *{box-sizing:border-box;}
@@ -89,15 +91,15 @@
         rgba(0,0,0,0.55) 0%,
         rgba(0,0,0,0) 64%),
       linear-gradient(180deg,
-        var(--abyss-surface) 0%,
+        var(--hero-1) 0%,
         var(--abyss-mid) 38%,
         var(--abyss-deep) 74%,
-        var(--abyss-floor) 100%);
-    color:#ffffff;
+        var(--hero-2) 100%);
+    color:var(--hero-ink);
   }
 
-  .hero-inner{ position:relative; z-index:2; }
-  .kicker{
+  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
+  header.hero .eyebrow{
     display:inline-block;
     font-size:0.85rem;
     letter-spacing:0.35em;
@@ -115,14 +117,16 @@
     font-weight:800;
     text-shadow:0 3px 16px rgba(0,0,0,0.45);
   }
-  .hero h2{
+  header.hero p.sub{
     margin:0 auto;
     max-width:600px;
     font-size:clamp(1.1rem, 2.5vw, 1.35rem);
     font-weight:500;
-    color:#cfe6f6;
+    color:var(--hero-dim);
     line-height:1.6;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
   .wave{
     position:absolute;
     left:0; right:0; bottom:-2px;
@@ -137,12 +141,13 @@
   }
   .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#b9d5e8; }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
   .toc-note{
+    margin:0 0 26px;
     text-align:center;
-    color:var(--ink-soft);
-    font-size:0.95rem;
-    margin:40px 0 30px;
+    color:var(--sub);
+    line-height:1.85;
+    text-indent:0;
   }
 
   /* Sticky Toolbar */
@@ -167,7 +172,7 @@
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size:0.9rem;
     font-weight: 600;
-    color:var(--sky-deep);
+    color:var(--accent);
     background:#ffffff;
     border:1.5px solid var(--sky);
     border-radius:999px;
@@ -232,27 +237,31 @@
     display:block;
     font-weight:500;
     font-size:0.85rem;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:4px;
   }
   .acc-header .chev{
     flex:0 0 auto;
     width:24px; height:24px;
-    color:var(--sky-deep);
+    color:var(--accent);
     transition:transform .3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:var(--acc-open-bg);
+    background:var(--note-bg);
     border-bottom: 1px solid var(--line);
   }
 
   .acc-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
   .acc-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 28px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -270,7 +279,7 @@
     margin-top:8px;
   }
   .sub-item{
-    background:var(--accent-bg);
+    background:var(--card);
     border:1px solid #dceef5;
     border-radius:14px;
     overflow:hidden;
@@ -310,7 +319,7 @@
   }
   .sub-header .chev{
     width:20px; height:20px;
-    color:var(--coral);
+    color:var(--coral-deep);
     transition:transform .3s ease;
   }
   .sub-item.open > .sub-header .chev{ transform:rotate(180deg); }
@@ -318,11 +327,15 @@
     border-bottom: 1px dashed #dceef5;
   }
   .sub-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
   .sub-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 24px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -344,7 +357,7 @@
     text-align:center;
     font-size:1.25rem;
     font-weight:700;
-    color:var(--sky-deep);
+    color:var(--accent);
     margin:1.8em 0;
     text-indent:0;
     padding: 0 20px;
@@ -355,7 +368,7 @@
     display: inline-block;
     width: 20px;
     height: 2px;
-    background: var(--sky-deep);
+    background: var(--accent);
     vertical-align: middle;
     margin: 0 15px;
     opacity: 0.3;
@@ -363,41 +376,38 @@
   .italicquote{
     text-align:center;
     font-style:italic;
-    color:var(--coral);
+    color:var(--coral-deep);
     font-weight:700;
     font-size: 1.15rem;
     margin:1.8em 0;
     text-indent:0;
   }
   .pause{
-    margin-top:2em;
+    margin:2em 0 0;
     padding:24px;
     background:var(--pause-bg);
     border:2px dashed var(--pause-border);
     border-radius:16px;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(255,202,40,0.1);
+    position:relative;
+    box-shadow:0 4px 12px color-mix(in srgb, var(--pause-border) 16%, transparent);
   }
-  .pause::before {
-    content: "ひと休み";
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: var(--pause-bg);
-    padding: 0 8px;
-    font-size: 0.75rem;
+  .pause::before{
+    content:"ひと休み";
+    position:absolute;
+    top:-10px;
+    left:20px;
+    background:var(--pause-bg);
+    padding:0 8px;
     font-weight:700;
-    letter-spacing: 0.05em;
-    color: var(--pause-border);
+    letter-spacing:.05em;
+    color:var(--pause-ink);
   }
   .pause p{
     margin:0;
     text-indent:0;
     color:var(--pause-ink);
     font-weight:600;
-    text-align: left;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    line-height:1.6;
   }
   strong.term{
     color:var(--ink);
@@ -406,7 +416,7 @@
     padding:0 2px;
   }
   .book-group h4{
-    color:var(--coral);
+    color:var(--coral-deep);
     font-size:1.1rem;
     margin:1.5em 0 0.8em;
     border-left: 4px solid var(--coral);
@@ -424,16 +434,16 @@
   .closing{
     text-align:center;
     font-style:italic;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:2em;
     padding: 20px;
-    background: var(--accent-bg);
+    background: var(--card);
     border-radius: 12px;
   }
 
   footer{
     text-align:center;
-    color:var(--ink-soft);
+    color:var(--sub);
     font-size:0.9rem;
     padding:30px 20px;
     background: #f4f9f9;
@@ -463,6 +473,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -470,10 +482,14 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <span class="kicker">JUNGIAN PSYCHOLOGY / 批判編</span>
+  <div class="wrap">
+    <span class="eyebrow">JUNGIAN PSYCHOLOGY / 批判編</span>
     <h1>ユング心理学、光と影</h1>
-    <h2>よく指摘される弱点を集めてみた</h2>
+    <p class="sub">よく指摘される弱点を集めてみた</p>
+    <div class="meta">
+      <span>全 12 章</span>
+      <span>約 11 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="jcTitle jcDesc">
@@ -559,7 +575,7 @@
         <div class="acc-panel-inner">
           <p>ユング心理学に対して最も繰り返されてきた批判は、「<strong class="term">反証可能性</strong>」の問題である。科学哲学者カール・ポパーは、ある理論が科学的であるためには、それを覆しうる観察や実験が原理的に存在しなければならないと論じた。<br>
 フロイトやアドラーの精神分析はこの基準を満たさない典型例としてしばしば名指しされてきたが、後の批判者たちは同じ論理をユング心理学にもしばしば当てはめている。</p>
-          <p>たとえば「元型」や「集合的無意識」は、夢や神話、空想の中に「見出される」ものであって、それを直接観測したり、実験で反証したりする方法がない。ユング自身、形而上学的な断定には慎重で、自分の記述はあくまで臨床上の経験に基づくものだと述べていたが、それでも「都合よく解釈できてしまう」という構造そのものが、科学としての妥当性・信頼性・再現性(誰がやっても同じ結果になること)を満たしにくい、という指摘は根強く残っている。</p>
+          <p>たとえば「元型」や「集合的無意識」は、夢や神話、空想の中に「見出される」ものであって、それを直接観測したり、実験で反証したりする方法がない。ユング自身、形而上学的な断定には慎重で、自分の記述はあくまで臨床上の経験に基づくものだと述べていたが、それでも「都合よく解釈できてしまう」という構造そのものが、科学としての妥当性・信頼性・再現性（誰がやっても同じ結果になること）を満たしにくい、という指摘は根強く残っている。</p>
         </div>
       </div>
     </section>
@@ -590,12 +606,12 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>ユングの「タイプ論」を土台に作られた性格診断<strong class="term">MBTI</strong>(いわゆる 16 タイプ診断)は、世界中で親しまれているが、心理測定の専門家からの評判はあまり芳しくない。</p>
+          <p>ユングの「タイプ論」を土台に作られた性格診断 <strong class="term">MBTI</strong> （いわゆる 16 タイプ診断）は、世界中で親しまれているが、心理測定の専門家からの評判はあまり芳しくない。</p>
           <p>代表的な問題は「信頼性」の低さである。<br>
 同じ人が数週間後に再受検すると、かなりの割合で別のタイプに判定される、という調査結果が繰り返し報告されている。多くの人の回答が各軸の中央付近に集まりやすく、わずかな気分の違いでタイプが変わってしまうためである。<br>
-仕事のパフォーマンスなど実際の結果を予測する力(妥当性)についても、心理学界で標準的に使われる「ビッグファイブ」性格モデルほどの裏付けは無いとされている。</p>
-          <p>念のため付け加えると、MBTI とユング自身の理論は同じものではない。MBTI はユングのタイプ論を土台にしつつ、大きく単純化・商業化されたものである。<br>
-それでも「ユング心理学=科学的に検証されている」という誤解を広げてしまった一因として、しばしば槍玉に挙げられる。</p>
+仕事のパフォーマンスなど実際の結果を予測する力（妥当性）についても、心理学界で標準的に使われる「ビッグファイブ」性格モデルほどの裏付けは無いとされている。</p>
+          <p>念のため付け加えると、 MBTI とユング自身の理論は同じものではない。 MBTI はユングのタイプ論を土台にしつつ、大きく単純化・商業化されたものである。<br>
+それでも「ユング心理学 = 科学的に検証されている」という誤解を広げてしまった一因として、しばしば槍玉に挙げられる。</p>
         </div>
       </div>
     </section>
@@ -604,13 +620,13 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">5</span>
-        <span class="title">アニマとアニムス<small>時代が生んだ性別観?</small></span>
+        <span class="title">アニマとアニムス<small>時代が生んだ性別観 ?</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>「男性の無意識には女性的な側面(<strong class="term">アニマ</strong>)が、女性の無意識には男性的な側面(<strong class="term">アニムス</strong>)が眠っている」というユングの発想は、フェミニズムの立場から長く批判の対象になってきた。</p>
-          <p>批判の骨子はシンプルである。アニマ/アニムス概念は、「女性は感情的・受容的」「男性は論理的・能動的」という、ユングが生きた 20 世紀前半のヨーロッパ的な性別観をそのまま反映しているのではないか、というものである。<br>
+          <p>「男性の無意識には女性的な側面（<strong class="term">アニマ</strong>）が、女性の無意識には男性的な側面（<strong class="term">アニムス</strong>）が眠っている」というユングの発想は、フェミニズムの立場から長く批判の対象になってきた。</p>
+          <p>批判の骨子はシンプルである。アニマ / アニムス概念は、「女性は感情的・受容的」「男性は論理的・能動的」という、ユングが生きた 20 世紀前半のヨーロッパ的な性別観をそのまま反映しているのではないか、というものである。<br>
 とりわけアニムス概念は、アニマに比べて臨床的な裏付けが薄いまま体系化されたとも指摘されている。<br>
 もっとも、近年のポスト・ユング派の研究者たちは、この概念を性別に固定されないものとして再解釈する試みも進めており、「時代遅れの部分を認めた上でどう活かすか」という議論が続いている。</p>
         </div>
@@ -626,8 +642,8 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>「意味のある偶然の一致」を指すユングの概念、<strong class="term">共時性(シンクロニシティ)</strong>も、科学者からは疑似科学として扱われることが多い分野である。</p>
-          <p>人間の脳は、もともとランダムな出来事の中にもパターンや意味を見出そうとする性質を持っている(アポフェニアと呼ばれる)。「虫の知らせ」のような体験の多くは、確率的にはさほど珍しくない偶然を、自分の信じたい物語に沿って選択的に記憶している(確証バイアス)結果である、というのが心理学の標準的な説明である。<br>
+          <p>「意味のある偶然の一致」を指すユングの概念、<strong class="term">共時性（シンクロニシティ）</strong>も、科学者からは疑似科学として扱われることが多い分野である。</p>
+          <p>人間の脳は、もともとランダムな出来事の中にもパターンや意味を見出そうとする性質を持っている（アポフェニアと呼ばれる）。「虫の知らせ」のような体験の多くは、確率的にはさほど珍しくない偶然を、自分の信じたい物語に沿って選択的に記憶している（確証バイアス）結果である、というのが心理学の標準的な説明である。<br>
 興味深いのは、ユング自身もこうした偶然の多くが確率や偏った記憶で説明できることをある程度自覚していた、とされる点である。それでもなお「因果を超えた繋がり」を積極的に理論化したところに、神秘主義的だという批判が向けられ続けている。</p>
         </div>
       </div>
@@ -654,10 +670,10 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>河合の「<strong class="term">中空構造論</strong>」―日本神話の中心に強い支配者がいるのではなく、複数の神々が力を空けたまま並び立っている、という読み解き―は、「日本人論」と呼ばれるジャンルの一部として批判の対象にもなってきた。日本人論とは、「日本人には独自の国民性がある」という前提で語られる一連の言説群を指す言葉で、社会学者のピーター・ N ・デールやハルミ・ベフ、吉野耕作といった研究者たちは、こうした語りの多くが検証しづらい文化的本質主義に陥りやすく、時に文化的なナショナリズムの一形態として機能してしまう危うさを指摘している。<br>
+                  <p>河合の「<strong class="term">中空構造論</strong>」 - 日本神話の中心に強い支配者がいるのではなく、複数の神々が力を空けたまま並び立っている、という読み解き - は、「日本人論」と呼ばれるジャンルの一部として批判の対象にもなってきた。日本人論とは、「日本人には独自の国民性がある」という前提で語られる一連の言説群を指す言葉で、社会学者のピーター・ N ・デールやハルミ・ベフ、吉野耕作といった研究者たちは、こうした語りの多くが検証しづらい文化的本質主義に陥りやすく、時に文化的なナショナリズムの一形態として機能してしまう危うさを指摘している。<br>
 「日本人はこういうものだ」という物語は、心地よく響く分だけ、反証しにくいという問題を抱えているわけである。</p>
-                  <p>さらに、中空構造そのものについても、「中心が本当に“空"のまま機能しなくなったとき、誰も責任を取らない無責任体制を生みかねない」という指摘がある。実際、この構造が太平洋戦争へ向かう過程の意思決定のあいまいさと重ねて論じられることもあり、単なる文化的特徴の記述にとどまらない、両義的な概念として読まれている。</p>
-                  <p>もっとも河合自身は、こうした批判に対して無防備だったわけではない。彼は、戦後日本に輸入されたアメリカ流の自我心理学(エゴ・サイコロジー)を無反省にそのまま当てはめる方が、むしろ日本の臨床現場では十分に機能しなかったと論じ、「普遍的な心理学」を掲げる側にも実証面での限界があった、と反論している。</p>
+                  <p>さらに、中空構造そのものについても、「中心が本当に“空 " のまま機能しなくなったとき、誰も責任を取らない無責任体制を生みかねない」という指摘がある。実際、この構造が太平洋戦争へ向かう過程の意思決定のあいまいさと重ねて論じられることもあり、単なる文化的特徴の記述にとどまらない、両義的な概念として読まれている。</p>
+                  <p>もっとも河合自身は、こうした批判に対して無防備だったわけではない。彼は、戦後日本に輸入されたアメリカ流の自我心理学（エゴ・サイコロジー）を無反省にそのまま当てはめる方が、むしろ日本の臨床現場では十分に機能しなかったと論じ、「普遍的な心理学」を掲げる側にも実証面での限界があった、と反論している。</p>
                 </div>
               </div>
             </div>
@@ -671,7 +687,7 @@
               <div class="sub-panel">
                 <div class="sub-panel-inner">
                   <p>もう一つの批判は、ユング派全般に向けられる方法論的な弱さの延長線上にある。河合の仕事は、個々のクライアントとの箱庭療法や対話を丁寧に記述する「事例研究」を中心に据えている点に特徴があるが、懐疑的な立場の研究者たちは、こうした逸話的な事例の積み重ねは、治療群と対照群を無作為に割り付けて比較する対照試験のような、より客観的な検証手続きに置き換わるものではない、と指摘してきた。<br>
-河合自身は、一つの事例が読み手に与える力を重視する立場を明確にしており、この対立は「何をもって“わかった"とするか」という、心理学内部でも長く続く論争の縮図でもある。</p>
+河合自身は、一つの事例が読み手に与える力を重視する立場を明確にしており、この対立は「何をもって“わかった " とするか」という、心理学内部でも長く続く論争の縮図でもある。</p>
                 </div>
               </div>
             </div>
@@ -697,11 +713,11 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>河合の代表作の一つ『母性社会日本の病理』(1976 年)は、「母性原理(包み込む)」と「父性原理(切り分ける)」という対概念を軸に、日本社会を「母性優位の社会」として描き出した著作である。この枠組みは広く読まれた一方、フェミニズムの立場から明確な批判も受けている。</p>
+                  <p>河合の代表作の一つ『母性社会日本の病理』（ 1976 年）は、「母性原理（包み込む）」と「父性原理（切り分ける）」という対概念を軸に、日本社会を「母性優位の社会」として描き出した著作である。この枠組みは広く読まれた一方、フェミニズムの立場から明確な批判も受けている。</p>
                   <p class="italicquote">女装した家父長制</p>
-                  <p>社会学者の上野千鶴子は、1997 年の論考「女装した家父長制」の中で、河合が用いる「母性」というメタファーそのものを問題視した。上野の指摘は、日本社会の権力構造は実質的には家父長制でありながら、それが「母性」という包み込むような優しいイメージの名のもとに行使されるため、批判すべき「敵」の所在がかえって見えにくくなってしまう、というものである。<br>
+                  <p>社会学者の上野千鶴子は、 1997 年の論考「女装した家父長制」の中で、河合が用いる「母性」というメタファーそのものを問題視した。上野の指摘は、日本社会の権力構造は実質的には家父長制でありながら、それが「母性」という包み込むような優しいイメージの名のもとに行使されるため、批判すべき「敵」の所在がかえって見えにくくなってしまう、というものである。<br>
 つまり、「母性社会」という診断そのものが、性別に基づく役割分担を自然なものとして固定化しかねない、という懸念である。</p>
-                  <p>なお河合は、心理学者としての理論活動だけでなく、2002 年から 2007 年まで文化庁長官を務め、その間には小中学生向けの道徳教育教材「心のノート」の作成にも中心的な立場で関わった。この教材は、「愛国心」を含む項目が盛り込まれていたことなどから、一部の教育学者やジャーナリストから、国が定める規範意識を子ども自身に「書かせる」ことで内面化させる、政治的に偏った教材だという批判を受けている。<br>
+                  <p>なお河合は、心理学者としての理論活動だけでなく、 2002 年から 2007 年まで文化庁長官を務め、その間には小中学生向けの道徳教育教材「心のノート」の作成にも中心的な立場で関わった。この教材は、「愛国心」を含む項目が盛り込まれていたことなどから、一部の教育学者やジャーナリストから、国が定める規範意識を子ども自身に「書かせる」ことで内面化させる、政治的に偏った教材だという批判を受けている。<br>
 理論そのものへの批判とは別に、こうした公的な立場での活動が、河合の思想の受け止められ方に複雑な影を落としている面もある。</p>
                 </div>
               </div>
@@ -721,9 +737,9 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>近年は、箱庭療法の効果を検証した系統的レビュー(複数の研究をまとめて評価する手法)がいくつか登場し、感情の調整や不安の軽減などについて前向きな結果を示す報告も増えてきた。<br>
-ただし、医学・心理学の世界で「効果の確からしさ」を測る最も厳密な基準とされる無作為化比較試験(RCT、治療を受けるグループと受けないグループをランダムに分けて比較する手法)は、ユング派の心理療法全体で見ると今なお非常に少ない、という状況が続いている。<br>
-エビデンスが「無い」というより、「他の主要な心理療法(認知行動療法など)に比べて、まだ十分に積み上がっていない」というのが実情に近いようである。</p>
+          <p>近年は、箱庭療法の効果を検証した系統的レビュー（複数の研究をまとめて評価する手法）がいくつか登場し、感情の調整や不安の軽減などについて前向きな結果を示す報告も増えてきた。<br>
+ただし、医学・心理学の世界で「効果の確からしさ」を測る最も厳密な基準とされる無作為化比較試験（ RCT 、治療を受けるグループと受けないグループをランダムに分けて比較する手法）は、ユング派の心理療法全体で見ると今なお非常に少ない、という状況が続いている。<br>
+エビデンスが「無い」というより、「他の主要な心理療法（認知行動療法など）に比べて、まだ十分に積み上がっていない」というのが実情に近いようである。</p>
         </div>
       </div>
     </section>
@@ -737,9 +753,9 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>理論そのものへの批判とは別に、ユング自身の伝記的な事実をめぐる論争もある。中でも大きいのが、1930 年代、ナチス政権下のドイツで拡大した「一般医学的心理療法学会」の会長職をユングが引き受けていた時期をめぐる議論である。</p>
+          <p>理論そのものへの批判とは別に、ユング自身の伝記的な事実をめぐる論争もある。中でも大きいのが、 1930 年代、ナチス政権下のドイツで拡大した「一般医学的心理療法学会」の会長職をユングが引き受けていた時期をめぐる議論である。</p>
           <p>ユング擁護派は、彼がこの学会を国際組織に改編し、ドイツ国内では排除されていたユダヤ人の精神療法家を個人会員として受け入れられるようにした、という事実を根拠に挙げる。一方で、この時期にユングが発表した文章の中には、「アーリア人の無意識」と「ユダヤ人の無意識」を対比的に語った一節など、今日から見て強い違和感を覚える表現も残されており、歴史家アンドリュー・サミュエルズらはこの時期のユングの態度を「単純な善悪では割り切れない、矛盾に満ちたもの」と評している。</p>
-          <p>また、精神科医リチャード・ノルは著書『The Jung Cult』(1994 年)と『The Aryan Christ』(1997 年)の中で、ユングを「賢者」としてではなく、自らを半ば神格化した新異教的な運動の教祖として描き、ユング派コミュニティから激しい反発を招いた。ノルの解釈自体、根拠が偏っているという再批判も多く、学界での評価が定まった説というわけではないが、「聖人化されがちなユング像」に一石を投じた論争として、今なお参照され続けている。</p>
+          <p>また、精神科医リチャード・ノルは著書『 The Jung Cult 』（ 1994 年）と『 The Aryan Christ 』（ 1997 年）の中で、ユングを「賢者」としてではなく、自らを半ば神格化した新異教的な運動の教祖として描き、ユング派コミュニティから激しい反発を招いた。ノルの解釈自体、根拠が偏っているという再批判も多く、学界での評価が定まった説というわけではないが、「聖人化されがちなユング像」に一石を投じた論争として、今なお参照され続けている。</p>
         </div>
       </div>
     </section>
@@ -754,7 +770,7 @@
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <p>ユングの概念は、学術の外側でも広く使われている。<br>
-中でも「元型(アーキタイプ)」は、ブランディングやマーケティングの世界で「英雄」「賢者」「反逆者」といった性格類型としてすっかり定着した。企業のブランド戦略講座で「あなたの会社はどの元型か」というワークショップが開かれることも珍しくない。</p>
+中でも「元型（アーキタイプ）」は、ブランディングやマーケティングの世界で「英雄」「賢者」「反逆者」といった性格類型としてすっかり定着した。企業のブランド戦略講座で「あなたの会社はどの元型か」というワークショップが開かれることも珍しくない。</p>
           <p>こうした広がりは、ユングの思想が持つ分かりやすさの証でもあるが、同時に、臨床的な文脈から切り離され、当初の複雑さが単純化されすぎているという批判も招いている。占いやタロット、自己啓発本の中で「集合的無意識」や「シャドウ」といった言葉が、検証も定義も曖昧なまま、いわば雰囲気を出すための便利な言葉として消費されている場面も少なくない。<br>
 ユング心理学そのものへの評価とは別に、「言葉だけが独り歩きしている」という状況自体が、この理論の科学的な信頼性をさらに分かりにくくしている、という指摘もある。</p>
         </div>
@@ -772,7 +788,7 @@
         <div class="acc-panel-inner">
           <p>こうして並べてみると、ユング心理学は「科学」としての厳密さという物差しで測ると、かなり分が悪い理論だということが分かる。<br>
 反証しづらい概念、偏りのある普遍性の主張、時代の限界を引きずった性別観、そして創始者自身の伝記をめぐる論争。批判の材料には事欠かない。</p>
-          <p>それでも、この思想が 100 年近く読まれ続けているのは、それが「正しいかどうか」だけでなく、「自分自身をどう眺めるか」という、もっと個人的な問いに向き合うための言葉を与えてくれるからだと考えられる。科学としての限界を知った上で、一つの物の見方・比喩の体系として付き合う―そのくらいの距離感が、案外ちょうどよいのかもしれない。</p>
+          <p>それでも、この思想が 100 年近く読まれ続けているのは、それが「正しいかどうか」だけでなく、「自分自身をどう眺めるか」という、もっと個人的な問いに向き合うための言葉を与えてくれるからだと考えられる。科学としての限界を知った上で、一つの物の見方・比喩の体系として付き合う - そのくらいの距離感が、案外ちょうどよいのかもしれない。</p>
           <div class="pause">
             <p>ユングや河合隼雄の言葉を読むとき、どこまでを「比喩」として受け取り、どこまでを「事実」として受け取っているだろうか。</p>
           </div>
@@ -784,7 +800,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">12</span>
-        <span class="title">参考にした視点<small>further reading</small></span>
+        <span class="title">参考にした視点 <small>further reading</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -792,12 +808,12 @@
           <div class="book-group">
             <ul>
               <li><strong>Karl Popper, <em>Conjectures and Refutations</em></strong> - 反証可能性という科学基準の提唱。</li>
-              <li><strong>Richard Noll, <em>The Jung Cult</em> (1994) / <em>The Aryan Christ</em> (1997)</strong> - ユング像を問い直した論争的な伝記研究。</li>
+              <li><strong>Richard Noll, <em>The Jung Cult</em>(1994)/ <em>The Aryan Christ</em>(1997)</strong> - ユング像を問い直した論争的な伝記研究。</li>
               <li><strong>Andrew Samuels, "Jung and Antisemitism"</strong> - ナチス期のユングをめぐる歴史的検証。</li>
-              <li><strong>Susan Rowland, <em>Jung: A Feminist Revision</em></strong> - アニマ/アニムス概念のフェミニズムからの再評価。</li>
+              <li><strong>Susan Rowland, <em>Jung: A Feminist Revision</em></strong> - アニマ / アニムス概念のフェミニズムからの再評価。</li>
               <li><strong>Peter N. Dale, <em>The Myth of Japanese Uniqueness</em></strong> - 日本人論批判の代表的研究。</li>
-              <li><strong>上野千鶴子「女装した家父長制」(1997 年)</strong> - 河合隼雄『母性社会日本の病理』へのフェミニズムからの批判。</li>
-              <li><strong>「心のノート」(2002 年、文部科学省)</strong> - 河合隼雄が作成に中心的に関与した道徳教育教材をめぐる教育学的議論。</li>
+              <li><strong>上野千鶴子「女装した家父長制」（ 1997 年）</strong> - 河合隼雄『母性社会日本の病理』へのフェミニズムからの批判。</li>
+              <li><strong>「心のノート」（ 2002 年、文部科学省）</strong> - 河合隼雄が作成に中心的に関与した道徳教育教材をめぐる教育学的議論。</li>
               <li><strong>MBTI の信頼性・妥当性に関する各種レビュー</strong> - Myers-Briggs 財団および批判側双方の資料。</li>
               <li><strong>ユング派心理療法・箱庭療法のエビデンスに関する系統的レビュー各種</strong></li>
             </ul>
@@ -814,102 +830,102 @@
 
 <script>
 (function(){
-  // Accordion Logic
-  // Panel height is driven explicitly in JS (rather than the CSS grid-template-rows
-  // 0fr/1fr trick) because iOS Safari does not always collapse a 0fr grid row all
-  // the way to zero, leaving a residual gap under the header.
-  function getPanel(item, toggleSelector){
-    var toggle = item.querySelector(toggleSelector);
-    return toggle.nextElementSibling;
-  }
+  var OPEN_SCROLL_DELAY = 400;
+  var GROUPS = [["[data-acc]", "[data-acc-toggle]"], ["[data-sub]", "[data-sub-toggle]"]];
 
-  function setItemOpen(item, toggleSelector, willOpen){
-    var panel = getPanel(item, toggleSelector);
-    if(!panel) return;
-    var isOpen = item.classList.contains("open");
-
-    if(willOpen){
-      item.classList.add("open");
-      var target = panel.scrollHeight;
-      panel.style.height = target + "px";
-      panel.addEventListener("transitionend", function onEnd(e){
-        if(e.propertyName === "height"){
-          panel.style.height = "auto";
-          panel.removeEventListener("transitionend", onEnd);
-        }
-      });
-    } else {
-      if(!isOpen) return;
-      var current = panel.scrollHeight;
-      panel.style.height = current + "px";
-      panel.offsetHeight; // force reflow so the browser registers the starting height
-      requestAnimationFrame(function(){
-        item.classList.remove("open");
-        panel.style.height = "0px";
-      });
+  function groupOf(item){
+    for(var i = 0; i < GROUPS.length; i++){
+      if(item.matches(GROUPS[i][0])) return GROUPS[i];
     }
+    return null;
   }
 
-  function bindAccordion(itemSelector, toggleSelector){
+  function closeSiblings(item, itemSelector){
+    Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+      if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+        sibling.classList.remove("open");
+      }
+    });
+  }
+
+  GROUPS.forEach(function(group){
+    var itemSelector = group[0], toggleSelector = group[1];
     document.querySelectorAll(itemSelector).forEach(function(item){
       var toggle = item.querySelector(toggleSelector);
-      var panel = toggle.nextElementSibling;
-      toggle.addEventListener("click", function(e){
-        // Do not toggle if text is being selected
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
+      if(!toggle) return;
+      toggle.addEventListener("click", function(){
+        if(window.getSelection().toString().length > 0) return;
         var willOpen = !item.classList.contains("open");
+        if(willOpen) closeSiblings(item, itemSelector);
+        item.classList.toggle("open", willOpen);
         if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches(itemSelector)){
-              setItemOpen(sibling, toggleSelector, false);
-            }
-          });
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
         }
-        setItemOpen(item, toggleSelector, willOpen);
+      });
+    });
+  });
 
-        if(willOpen){
-          var scrolled = false;
-          var doScroll = function(){
-            if(scrolled) return;
-            scrolled = true;
-            toggle.scrollIntoView({behavior:"smooth", block:"start"});
-          };
-          panel.addEventListener("transitionend", doScroll, {once:true});
-          setTimeout(doScroll, 450);
-        }
+  function setAll(open){
+    GROUPS.forEach(function(group){
+      document.querySelectorAll(group[0]).forEach(function(item){
+        item.classList.toggle("open", open);
       });
     });
   }
 
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-  bindAccordion("[data-sub]", "[data-sub-toggle]");
+  document.getElementById("expandAll").addEventListener("click", function(){ setAll(true); });
+  document.getElementById("collapseAll").addEventListener("click", function(){ setAll(false); });
 
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", true);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", true);
-    });
+  function openTarget(hash){
+    if(!hash) return null;
+    var target = document.getElementById(hash.replace(/^#/, ""));
+    if(!target) return null;
+    var node = target;
+    while(node){
+      var item = node.closest("[data-acc], [data-sub]");
+      if(!item) break;
+      if(!item.classList.contains("open")){
+        var group = groupOf(item);
+        if(group) closeSiblings(item, group[0]);
+        item.classList.add("open");
+      }
+      node = item.parentElement;
+    }
+    return target;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    if(!target) return;
+    var accItem = target.closest("[data-acc], [data-sub]");
+    if(!accItem) return;
+    e.preventDefault();
+    var wasOpen = accItem.classList.contains("open");
+    openTarget(a.getAttribute("href"));
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
   });
 
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", false);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", false);
-    });
+  window.addEventListener("hashchange", function(){
+    var target = openTarget(location.hash);
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, OPEN_SCROLL_DELAY);
+    }
   });
 
-  // Scroll Progress Bar
-  window.addEventListener('scroll', function() {
+  if(location.hash) openTarget(location.hash);
+
+  window.addEventListener("scroll", function(){
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+    document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
   });
 })();
 </script>

@@ -10,12 +10,12 @@
 <style>
   :root {
     --bg: #fbfaf7;
-    --bg-raised: #ffffff;
+    --paper: #ffffff;
     --ink: #1f1c18;
-    --ink-soft: #55504a;
-    --ink-faint: #8b857d;
-    --rule: #e0dbd2;
-    --rule-strong: #c9c2b6;
+    --sub: #55504a;
+    --muted: #736e66;
+    --line: #e0dbd2;
+    --line-2: #c9c2b6;
     --accent: #8a4b2a;
     --accent-soft: #f2e9e2;
     --quote-bg: #f5f2ec;
@@ -27,7 +27,7 @@
     --warn-rule: #d9b998;
     --code-bg: #efece6;
     --sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", system-ui, sans-serif;
-    --mono: "SFMono-Regular", "Consolas", "Menlo", "Courier New", monospace;
+
     --hero-1: #221712;
     --hero-2: #4a2f1a;
     --hero-ink: #f5ede2;
@@ -36,12 +36,12 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #16171a;
-      --bg-raised: #1d1f23;
+      --paper: #1d1f23;
       --ink: #e6e2db;
-      --ink-soft: #b0aaa1;
-      --ink-faint: #7e7871;
-      --rule: #33363c;
-      --rule-strong: #4a4e56;
+      --sub: #b0aaa1;
+      --muted: #908a83;
+      --line: #33363c;
+      --line-2: #4a4e56;
       --accent: #d99a72;
       --accent-soft: #2c2520;
       --quote-bg: #212328;
@@ -56,12 +56,12 @@
   }
   :root[data-theme="dark"] {
     --bg: #16171a;
-    --bg-raised: #1d1f23;
+    --paper: #1d1f23;
     --ink: #e6e2db;
-    --ink-soft: #b0aaa1;
-    --ink-faint: #7e7871;
-    --rule: #33363c;
-    --rule-strong: #4a4e56;
+    --sub: #b0aaa1;
+    --muted: #908a83;
+    --line: #33363c;
+    --line-2: #4a4e56;
     --accent: #d99a72;
     --accent-soft: #2c2520;
     --quote-bg: #212328;
@@ -94,7 +94,7 @@
     color: var(--hero-ink);
     padding: 3.6rem 0 3rem;
   }
-  header.hero .hero-inner { max-width: none; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 4rem); }
+  header.hero .wrap { max-width: none; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 4rem); }
   header.hero .eyebrow {
     display: block;
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
@@ -116,15 +116,8 @@
     font-weight: 400;
     text-indent: 0;
   }
-  header.hero .meta {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.8rem;
-    color: var(--hero-dim);
-    border-top: 1px solid rgba(245, 237, 226, 0.2);
-    padding-top: 1rem;
-    line-height: 1.8;
-    text-indent: 0;
-  }
+  header.hero .meta { margin: 1.1rem 0 0; font-size: 0.82rem; color: var(--hero-dim);
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; text-indent: 0; }
   .hero-figure { max-width: 100%; margin: 2.4rem 0 0; overflow-x: auto; }
   .hero-figure svg { display: block; width: 100%; height: auto; }
   .hero-figure figcaption {
@@ -150,7 +143,7 @@
     line-height: 1.6;
     margin: 4.5rem 0 1.8rem;
     padding-top: 2rem;
-    border-top: 2px solid var(--rule-strong);
+    border-top: 2px solid var(--line-2);
     font-weight: 600;
     text-align: left;
   }
@@ -192,7 +185,7 @@
     margin: 2rem 0;
     padding: 1.4rem 1.5rem 1.1rem;
     background: var(--quote-bg);
-    border-left: 3px solid var(--rule-strong);
+    border-left: 3px solid var(--line-2);
     font-size: 0.95rem;
     line-height: 1.95;
   }
@@ -204,7 +197,7 @@
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 0.78rem;
     font-style: normal;
-    color: var(--ink-faint);
+    color: var(--muted);
     line-height: 1.7;
     text-align: left;
   }
@@ -224,7 +217,7 @@
   .arg .caption {
     font-size: 0.75rem;
     letter-spacing: 0.1em;
-    color: var(--ink-faint);
+    color: var(--muted);
     margin: 0 0 0.9rem;
     padding-bottom: 0.6rem;
     border-bottom: 1px dashed var(--arg-rule);
@@ -235,7 +228,7 @@
   .arg .lab {
     flex: 0 0 4.6rem;
     font-size: 0.72rem;
-    color: var(--ink-faint);
+    color: var(--muted);
     letter-spacing: 0.05em;
     padding-top: 0.15em;
   }
@@ -261,7 +254,7 @@
   .exercise .caption {
     font-size: 0.74rem;
     letter-spacing: 0.12em;
-    color: var(--ink-faint);
+    color: var(--muted);
     margin: 0 0 0.7rem;
   }
   .exercise p { margin: 0 0 0.7rem; text-indent: 0; }
@@ -300,15 +293,15 @@
     line-height: 1.7;
   }
   th, td {
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--line);
     padding: 0.7rem 0.8rem;
     text-align: left;
     vertical-align: top;
   }
   thead th {
-    border-bottom: 2px solid var(--rule-strong);
+    border-bottom: 2px solid var(--line-2);
     font-weight: 600;
-    color: var(--ink-soft);
+    color: var(--sub);
     font-size: 0.8rem;
     letter-spacing: 0.04em;
   }
@@ -357,8 +350,8 @@
   .summary {
     margin: 2.5rem 0;
     padding: 1.5rem 1.6rem;
-    background: var(--bg-raised);
-    border: 1px solid var(--rule-strong);
+    background: var(--paper);
+    border: 1px solid var(--line-2);
     border-radius: 3px;
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size: 0.92rem;
@@ -377,7 +370,7 @@
 
   hr.sep {
     border: 0;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--line);
     margin: 3rem auto;
     width: 5rem;
   }
@@ -386,7 +379,7 @@
     body { font-size: 16px; line-height: 1.95; }
     .wrap { padding: 2.5rem 1.1rem 4rem; }
     header.hero { padding: 2.6rem 0 2.2rem; }
-    header.hero .hero-inner { padding: 0 1.1rem; }
+    header.hero .wrap { padding: 0 1.1rem; }
     .acc-header { padding: 15px 16px; gap: 10px; }
     .acc-header .title { font-size: 1rem; }
     .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
@@ -404,7 +397,7 @@
     padding: 9px 0;
     border-radius: 999px;
     margin: 0 0 2.4rem;
-    border: 1px solid var(--rule);
+    border: 1px solid var(--line);
     box-shadow: 0 4px 14px rgba(0,0,0,.10);
   }
   .toolbar-container .toolbar { margin: 0; }
@@ -415,14 +408,14 @@
   }
   .toolbar button {
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
-    color: var(--accent); background: var(--bg-raised);
+    color: var(--accent); background: var(--paper);
     border: 1.5px solid var(--accent); border-radius: 999px;
     padding: 8px 20px; cursor: pointer; transition: all .2s ease;
   }
   .toolbar button:hover { background: var(--accent); color: #fff; }
   #accordion { margin-bottom: 2.6rem; }
   .acc-item {
-    background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 10px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
     margin-bottom: 16px; overflow: hidden; overflow-anchor: none;
   }
   .acc-item:last-child { margin-bottom: 0; }
@@ -442,7 +435,7 @@
     transition: transform .3s cubic-bezier(.4,0,.2,1);
   }
   .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
-  .acc-item.open > .acc-header { background: var(--accent-soft); border-bottom: 1px solid var(--rule); }
+  .acc-item.open > .acc-header { background: var(--accent-soft); border-bottom: 1px solid var(--line); }
   .acc-panel {
     display: grid; grid-template-rows: 0fr;
     transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
@@ -458,7 +451,7 @@
 </style>
   <style>
     /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 17px !important; }
+    html { font-size: 16px !important; }
     body, body :not(svg):not(svg *) { font-size: 1rem !important; }
   </style>
   <style>
@@ -469,15 +462,23 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="hero-inner">
+  <div class="wrap">
     <span class="eyebrow">論理学のてほどき / ARGUMENT ANALYSIS</span>
     <h1>「全員が選べる制度」に、なぜ反対が出るのか</h1>
     <p class="sub">選択的夫婦別姓をめぐる議論を教材に、論理を点検する道具を八つ学ぶ</p>
+    <div class="meta">
+      <span>全 10 章</span>
+      <span>約 36 分</span>
+      <span>2026 年 8 月</span>
+      <span>本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 250" role="img" aria-labelledby="lgTitle lgDesc">
@@ -529,10 +530,6 @@
       <figcaption>第 9 章で導く、反対論の仕分け結果。論証の形と前提の真偽を、群ごとに別々に判定する。</figcaption>
     </figure>
 
-    <p class="meta">
-      本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。<br>
-      2026 年 8 月
-    </p>
   </div>
 </header>
 
@@ -603,23 +600,23 @@
   <p class="line"><span class="lab">制度 C</span> <span class="txt">それぞれの夫婦は、同じ姓と別の姓のどちらかを選ぶ。（選択的夫婦別姓）</span></p>
 </div>
 
-<p>記号で書くと違いがはっきりする。夫婦の集まりを考え、ある夫婦 <code>x</code> が同姓であることを <code>S(x)</code> と書く。</p>
+<p>記号で書くと違いがはっきりする。夫婦の集まりを考え、ある夫婦 <code>x</code> が同姓であることを <code>S (x)</code> と書く。</p>
 
 <ul>
-<li>制度 A は <code>∀x S(x)</code> - 「すべての <code>x</code> について <code>S(x)</code> 」</li>
-<li>制度 B は <code>∀x ¬S(x)</code> - 「すべての <code>x</code> について <code>S(x)</code> でない」</li>
-<li>制度 C は、どちらも許す。つまり <code>∃x S(x)</code> と <code>∃x ¬S(x)</code> のどちらも成り立ちうる状態を法が認める。</li>
+<li>制度 A は <code>∀x S (x)</code> - 「すべての <code>x</code> について <code>S (x)</code> 」</li>
+<li>制度 B は <code>∀x ¬S (x)</code> - 「すべての <code>x</code> について <code>S (x)</code> でない」</li>
+<li>制度 C は、どちらも許す。つまり <code>∃x S (x)</code> と <code>∃x ¬S (x)</code> のどちらも成り立ちうる状態を法が認める。</li>
 </ul>
 
 <p>この <code>∀</code>（すべての）と <code>∃</code>（ある）を<strong>量化子</strong>という。論理学の入門で最初に覚える記号のひとつで、これを区別できるようになるだけで、議論の見え方がかなり変わる。</p>
 
 <p>さて、ここで冒頭の疑問の正体が姿を現す。<strong>制度 C に反対するとは、論理的にはどういう主張なのか</strong>を書き取ってみよう。</p>
 
-<p>制度 C の眼目は <code>∃x ¬S(x)</code> を法的に可能にすることである。したがって制度 C への反対とは、<code>∃x ¬S(x)</code> を否定することである。そして論理学の基本的な規則により、「そういうものがある」を否定することは、「どれもそうではない」と言い切ることと同じになる。</p>
+<p>制度 C の眼目は <code>∃x ¬S (x)</code> を法的に可能にすることである。したがって制度 C への反対とは、<code>∃x ¬S (x)</code> を否定することである。そして論理学の基本的な規則により、「そういうものがある」を否定することは、「どれもそうではない」と言い切ることと同じになる。</p>
 
 <div class="arg">
   <p class="caption">量化子の否定</p>
-  <p class="line"><span class="lab"></span><span class="txt"><code>¬∃x ¬S(x)</code> は <code>∀x S(x)</code> と同値である</span></p>
+  <p class="line"><span class="lab"></span><span class="txt"><code>¬∃x ¬S (x)</code> は <code>∀x S (x)</code> と同値である</span></p>
   <p class="line"><span class="lab">読み下し</span><span class="txt">「別姓の夫婦が存在することを認めない」は「すべての夫婦は同姓でなければならない」と同じことを言っている</span></p>
 </div>
 
@@ -651,11 +648,11 @@
 <p>法務省が反対論としてまとめている論拠は、次の三つである。</p>
 
 <blockquote>
-<p>（ 1 ）夫婦同氏が日本社会に定着した制度であること、（ 2 ）氏は個人の自由の問題ではなく、公的制度の問題であること、（ 3 ）家族が同氏となることで夫婦・家族の一体感が生まれ、子の利益にも資すること</p>
+<p>(1 ）夫婦同氏が日本社会に定着した制度であること、（ 2 ）氏は個人の自由の問題ではなく、公的制度の問題であること、（ 3 ）家族が同氏となることで夫婦・家族の一体感が生まれ、子の利益にも資すること</p>
 <cite>法務省「選択的夫婦別氏制度について」 <sup class="ref"><a href="#s1" id="r1b">1</a></sup></cite>
 </blockquote>
 
-<p>（ 3 ）を取り上げる。これを論証の形に書き取ると、こうなる。</p>
+<p>(3 ）を取り上げる。これを論証の形に書き取ると、こうなる。</p>
 
 <div class="arg">
   <p class="caption">論証 1 - そのまま書き取ったもの</p>
@@ -780,7 +777,7 @@
 <table>
 <thead><tr><th>調査</th><th>結果</th></tr></thead>
 <tbody>
-<tr><td>内閣府「家族の法制に関する世論調査」（ 2021 年 12 月）問 5<br><span style="color:var(--ink-faint)">改姓に不便・不利益があると答えた 1,503 人が対象</span></td><td>「通称を使うことができても、それだけでは対処しきれない不便・不利益があると思う」 <strong>59.3%</strong><sup class="ref"><a href="#s6" id="r6">6</a></sup></td></tr>
+<tr><td>内閣府「家族の法制に関する世論調査」（ 2021 年 12 月）問 5<br><span style="color:var(--muted)">改姓に不便・不利益があると答えた 1,503 人が対象</span></td><td>「通称を使うことができても、それだけでは対処しきれない不便・不利益があると思う」 <strong>59.3%</strong><sup class="ref"><a href="#s6" id="r6">6</a></sup></td></tr>
 <tr><td>経団連調査（女性役員対象）</td><td><strong>88%</strong> が、旧姓の通称使用が可能である場合でも「何かしら不便さ・不都合、不利益が生じると思う」と回答 <sup class="ref"><a href="#s7" id="r7">7</a></sup></td></tr>
 </tbody>
 </table>
@@ -896,7 +893,7 @@
 <cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官宮崎裕子・同宇賀克也の反対意見 <sup class="ref"><a href="#s8" id="r8c">8</a></sup></cite>
 </blockquote>
 
-<p>これは論理学でいう<strong>反例による反駁</strong>の典型例である。「すべての <code>x</code> について <code>P(x)</code> 」という形の主張は、 <code>P</code> が成り立たない <code>x</code> がひとつでも見つかれば偽になる。「民法は、子と親が同氏であることを常に要求している」という前提は、離婚・再婚のケースという反例ひとつで崩れる。</p>
+<p>これは論理学でいう<strong>反例による反駁</strong>の典型例である。「すべての <code>x</code> について <code>P (x)</code> 」という形の主張は、 <code>P</code> が成り立たない <code>x</code> がひとつでも見つかれば偽になる。「民法は、子と親が同氏であることを常に要求している」という前提は、離婚・再婚のケースという反例ひとつで崩れる。</p>
 
 <p>木内裁判官も同じ構造を指摘している。「夫婦同氏によって育成に当たる父母が同氏であることが保障されるのは、初婚が維持されている夫婦間の子だけである」。 <sup class="ref"><a href="#s2" id="r2g">2</a></sup></p>
 
@@ -936,7 +933,7 @@
 <tr><td><strong>問 11</strong> （問 10 で影響があると答えた 1,989 人に）どのような影響があると思いますか（複数回答）</td><td>「友人から親と名字・姓が異なることを指摘されて、嫌な思いをするなどして、対人関係で心理的負担が生じる」 <strong>78.6%</strong><br>「名字・姓の異なる親との関係で違和感や不安感を覚える」 60.1%<br>「家族の一体感が失われて子の健全な育成が阻害される」 23.1%</td></tr>
 </tbody>
 </table>
-<p style="font-family:var(--sans);font-size:0.78rem;color:var(--ink-faint);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」（ 2021 年 12 月調査） <sup class="ref"><a href="#s6" id="r6c">6</a></sup></p>
+<p style="font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」（ 2021 年 12 月調査） <sup class="ref"><a href="#s6" id="r6c">6</a></sup></p>
 </div>
 
 <p>問 11 の内訳をよく読んでほしい。もっとも多く選ばれた「害」は、別姓それ自体が生む害ではない。<strong>「友人から指摘されて、嫌な思いをする」</strong> - つまり、周囲の人間が別姓を奇異なものとして扱うことによって生じる害である。</p>
@@ -997,7 +994,7 @@
 <tbody>
 <tr>
 <td>内閣府<br>2017 年 12 月</td>
-<td>2 択（賛否を問う形）<br><span style="color:var(--ink-faint)">「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</span></td>
+<td>2 択（賛否を問う形）<br><span style="color:var(--muted)">「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</span></td>
 <td>法改正してよい <strong>42.5%</strong><br>改める必要はない 29.3%<br>通称使用の法制度でよい 24.4%</td>
 </tr>
 <tr>
@@ -1007,7 +1004,7 @@
 </tr>
 </tbody>
 </table>
-<p style="font-family:var(--sans);font-size:0.78rem;color:var(--ink-faint);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」 <sup class="ref"><a href="#s6" id="r6d">6</a></sup></p>
+<p style="font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」 <sup class="ref"><a href="#s6" id="r6d">6</a></sup></p>
 </div>
 
 <p>賛成が 42.5% から 28.9% に落ちた - このように読むことができる。実際、そう報じられもした。しかし、それは誤りである。内閣府自身が、報告書に次の注記を置いている。</p>
@@ -1070,7 +1067,7 @@
 
 <p>後者に驚かれたかもしれない。しかし「不便がある」からただちに「制度を変えるべき」が出るなら、あらゆる不便が法改正の理由になってしまう。この論証を成立させるには、たとえば「本人の意思に反する不利益を、他に十分な理由なく法が課してはならない」といった規範的な前提が必要である。</p>
 
-<p>この作業は、議論をややこしくするためのものではない。逆である。<strong>隠れている価値前提を言葉にすると、争点がどこにあるかがはっきりする</strong>のである。日本の夫婦の 94.1% （ 2024 年、 456,453 組）が夫の姓を選んでいるという事実 <sup class="ref"><a href="#s13" id="r13">13</a></sup> は、それ自体では何の結論も支えない。しかし「この偏りは真に自由な選択の結果か」という価値の問いを立てれば、話は先に進む。実際、 2015 年の最高裁多数意見は、その問いを立てている。</p>
+<p>この作業は、議論をややこしくするためのものではない。逆である。<strong>隠れている価値前提を言葉にすると、争点がどこにあるかがはっきりする</strong>のである。日本の夫婦の 94.1%(2024 年、 456,453 組）が夫の姓を選んでいるという事実 <sup class="ref"><a href="#s13" id="r13">13</a></sup> は、それ自体では何の結論も支えない。しかし「この偏りは真に自由な選択の結果か」という価値の問いを立てれば、話は先に進む。実際、 2015 年の最高裁多数意見は、その問いを立てている。</p>
 
 <blockquote>
 <p>この現状が、夫婦となろうとする者双方の真に自由な選択の結果によるものかについて留意が求められるところであり、仮に、社会に存する差別的な意識や慣習による影響があるのであれば、その影響を排除して夫婦間に実質的な平等が保たれるように図ることは、憲法 14 条 1 項の趣旨に沿うものであるといえる。</p>
@@ -1225,31 +1222,31 @@
     <div class="acc-panel-inner">
 
 <ol>
-<li id="s1">法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」<br><a href="https://www.moj.go.jp/MINJI/minji36.html">https://www.moj.go.jp/MINJI/minji36.html</a><br><span style="color:var(--ink-faint)">制度の定義、賛成論・反対論の整理、平成 8 年（ 1996 年） 2 月の法制審議会答申「民法の一部を改正する法律案要綱」、最高裁の判断、世論調査結果を掲載。</span></li>
+<li id="s1">法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」<br><a href="https://www.moj.go.jp/MINJI/minji36.html">https://www.moj.go.jp/MINJI/minji36.html</a><br><span style="color:var(--muted)">制度の定義、賛成論・反対論の整理、平成 8 年（ 1996 年） 2 月の法制審議会答申「民法の一部を改正する法律案要綱」、最高裁の判断、世論調査結果を掲載。</span></li>
 
-<li id="s2">最高裁判所大法廷 平成 27 年 12 月 16 日判決（平成 26 年（オ）第 1023 号 損害賠償請求事件）判決文<br><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf</a><br><span style="color:var(--ink-faint)">本文で引用した多数意見（憲法 13 条・ 14 条 1 項・ 24 条についての判断、通称使用に関する説示、「国会で論ぜられ、判断されるべき事柄」）は本文前半。裁判官寺田逸郎の補足意見、裁判官岡部喜代子・櫻井龍子・鬼丸かおる・木内道祥の各意見、裁判官山浦善樹の反対意見が続く。</span></li>
+<li id="s2">最高裁判所大法廷 平成 27 年 12 月 16 日判決（平成 26 年（オ）第 1023 号 損害賠償請求事件）判決文<br><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf</a><br><span style="color:var(--muted)">本文で引用した多数意見（憲法 13 条・ 14 条 1 項・ 24 条についての判断、通称使用に関する説示、「国会で論ぜられ、判断されるべき事柄」）は本文前半。裁判官寺田逸郎の補足意見、裁判官岡部喜代子・櫻井龍子・鬼丸かおる・木内道祥の各意見、裁判官山浦善樹の反対意見が続く。</span></li>
 
-<li id="s3">佐藤潤司「「選択的夫婦別姓」論議に関する考察 - 全国紙の社説の分析を通じて」『メディア研究』 101 号（ 2022 年） 255-272 頁<br><a href="https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja</a><br><span style="color:var(--ink-faint)">読売・朝日・毎日・日経・産経の社説 152 件を計量テキスト分析したもの。本文で引用した産経新聞社説の文言（「子供のことを考えず、家族の絆（きずな）を壊す恐れ」「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている」「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」）は 270 頁。</span></li>
+<li id="s3">佐藤潤司「「選択的夫婦別姓」論議に関する考察 - 全国紙の社説の分析を通じて」『メディア研究』 101 号（ 2022 年） 255-272 頁<br><a href="https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja</a><br><span style="color:var(--muted)">読売・朝日・毎日・日経・産経の社説 152 件を計量テキスト分析したもの。本文で引用した産経新聞社説の文言（「子供のことを考えず、家族の絆（きずな）を壊す恐れ」「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている」「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」）は 270 頁。</span></li>
 
 <li id="s4">同上、 258-259 頁（久武綾子ほかの研究を引用しつつ、 1875 年の苗字義務化、 1876 年の太政官指令、 1898 年明治民法による夫婦同氏の成立を整理）。あわせて、国立国会図書館レファレンス協同データベース「明治 9 年に出されたという夫婦別氏に関する制度の本文と解説を読みたい」<br><a href="https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373&amp;page=ref_view">https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373</a></li>
 
-<li id="s5">酒井智大「明治前期は夫婦別氏だったのか」有斐閣 Online ロージャーナル、 2025 年 6 月 4 日<br><a href="https://yuhikaku.com/articles/-/27967">https://yuhikaku.com/articles/-/27967</a><br><span style="color:var(--ink-faint)">明治 9 年太政官指令の位置づけと、民法起草者が同指令を「実際ノ慣習」に反するとして重視しなかった経緯を、史料に基づいて検証している。</span></li>
+<li id="s5">酒井智大「明治前期は夫婦別氏だったのか」有斐閣 Online ロージャーナル、 2025 年 6 月 4 日<br><a href="https://yuhikaku.com/articles/-/27967">https://yuhikaku.com/articles/-/27967</a><br><span style="color:var(--muted)">明治 9 年太政官指令の位置づけと、民法起草者が同指令を「実際ノ慣習」に反するとして重視しなかった経緯を、史料に基づいて検証している。</span></li>
 
-<li id="s6">内閣府政府広報室「家族の法制に関する世論調査」（令和 3 年 12 月調査、令和 4 年 3 月公表）<br>調査結果ページ <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/">https://survey.gov-online.go.jp/r03/r03-kazoku/</a><br>概要 PDF <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf">https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf</a><br><span style="color:var(--ink-faint)">調査対象 5,000 人、有効回収数 2,884 人（ 57.7% ）、郵送法。本文引用箇所は、問 5 （通称使用の限界、 59.3% ）、問 8 （一体感、 37.8% ／ 61.6% ）、問 10 （子どもへの影響、 69.0% ／ 30.3% ）、問 11 （影響の内訳、 78.6% ／ 60.1% ／ 23.1% ）、問 12 （制度の選択、 27.0% ／ 42.2% ／ 28.9% ）、および表 12- 参考（平成 29 年 12 月調査の設問文と 42.5% ／ 29.3% ／ 24.4% ）。「単純比較は行わない」旨の注記は概要 2 頁。</span></li>
+<li id="s6">内閣府政府広報室「家族の法制に関する世論調査」（令和 3 年 12 月調査、令和 4 年 3 月公表）<br>調査結果ページ <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/">https://survey.gov-online.go.jp/r03/r03-kazoku/</a><br>概要 PDF <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf">https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf</a><br><span style="color:var(--muted)">調査対象 5,000 人、有効回収数 2,884 人（ 57.7% ）、郵送法。本文引用箇所は、問 5 （通称使用の限界、 59.3% ）、問 8 （一体感、 37.8% ／ 61.6% ）、問 10 （子どもへの影響、 69.0% ／ 30.3% ）、問 11 （影響の内訳、 78.6% ／ 60.1% ／ 23.1% ）、問 12 （制度の選択、 27.0% ／ 42.2% ／ 28.9% ）、および表 12- 参考（平成 29 年 12 月調査の設問文と 42.5% ／ 29.3% ／ 24.4% ）。「単純比較は行わない」旨の注記は概要 2 頁。</span></li>
 
-<li id="s7">経団連提言「選択肢のある社会の実現を目指して 〜女性活躍に対する制度の壁を乗り越える〜」（概要） 2024 年 6 月 18 日、 2025 年 5 月 7 日改訂<br><a href="https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf">https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf</a><br><span style="color:var(--ink-faint)">本文引用箇所は 3 頁（女性役員の 88% 、企業の 91% 、婚姻時に夫婦同姓しか選択できない国は日本のみとされること、 CEDAW の 2003 年・ 2009 年・ 2016 年の是正勧告）、 4 頁（ 1991 年からの法制審議会の議論、 1996 年答申、法務省による 1996 年・ 2010 年の改正法案準備）、 5 頁（旧姓の通称使用の限界）。</span></li>
+<li id="s7">経団連提言「選択肢のある社会の実現を目指して 〜女性活躍に対する制度の壁を乗り越える〜」（概要） 2024 年 6 月 18 日、 2025 年 5 月 7 日改訂<br><a href="https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf">https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf</a><br><span style="color:var(--muted)">本文引用箇所は 3 頁（女性役員の 88% 、企業の 91% 、婚姻時に夫婦同姓しか選択できない国は日本のみとされること、 CEDAW の 2003 年・ 2009 年・ 2016 年の是正勧告）、 4 頁（ 1991 年からの法制審議会の議論、 1996 年答申、法務省による 1996 年・ 2010 年の改正法案準備）、 5 頁（旧姓の通称使用の限界）。</span></li>
 
-<li id="s8">最高裁判所大法廷 令和 3 年 6 月 23 日決定（令和 2 年（ク）第 102 号 市町村長処分不服申立て却下審判に対する抗告棄却決定に対する特別抗告事件）決定文<br><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf</a><br><span style="color:var(--ink-faint)">多数意見（「次元を異にする」）は 2 頁。裁判官深山卓也・岡村和美・長嶺安政の補足意見、裁判官三浦守の意見、裁判官宮崎裕子・宇賀克也の反対意見（子の氏と離婚・再婚に関する論述）、裁判官草野耕一の反対意見（福利の比較衡量、 43-49 頁）を含む。</span></li>
+<li id="s8">最高裁判所大法廷 令和 3 年 6 月 23 日決定（令和 2 年（ク）第 102 号 市町村長処分不服申立て却下審判に対する抗告棄却決定に対する特別抗告事件）決定文<br><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf</a><br><span style="color:var(--muted)">多数意見（「次元を異にする」）は 2 頁。裁判官深山卓也・岡村和美・長嶺安政の補足意見、裁判官三浦守の意見、裁判官宮崎裕子・宇賀克也の反対意見（子の氏と離婚・再婚に関する論述）、裁判官草野耕一の反対意見（福利の比較衡量、 43-49 頁）を含む。</span></li>
 
-<li id="s9">"Fallacies", <em>Stanford Encyclopedia of Philosophy</em> （初出 2015 年 5 月 29 日、最終改訂 2024 年 8 月 30 日）<br><a href="https://plato.stanford.edu/entries/fallacies/">https://plato.stanford.edu/entries/fallacies/</a><br><span style="color:var(--ink-faint)">藁人形論法（ straw man ）は "an opponent's point of view is distorted in order to make it easier to refute" 、人身攻撃（ ad hominem ）は "bringing negative aspects of an arguer, or their situation, to bear on the view they are advancing" と定義されている。</span></li>
+<li id="s9">"Fallacies", <em>Stanford Encyclopedia of Philosophy</em> （初出 2015 年 5 月 29 日、最終改訂 2024 年 8 月 30 日）<br><a href="https://plato.stanford.edu/entries/fallacies/">https://plato.stanford.edu/entries/fallacies/</a><br><span style="color:var(--muted)">藁人形論法（ straw man ）は "an opponent's point of view is distorted in order to make it easier to refute" 、人身攻撃（ ad hominem ）は "bringing negative aspects of an arguer, or their situation, to bear on the view they are advancing" と定義されている。</span></li>
 
 <li id="s10">「別姓、 3 野党の法案審議入り 衆院法務委、 28 年ぶり」時事ドットコム、 2025 年 5 月 30 日<br><a href="https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol">https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol</a><br>あわせて「選択的別姓法案審議入り／衆院法務委で 28 年ぶり」しんぶん赤旗、 2025 年 5 月 31 日<br><a href="https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html">https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html</a></li>
 
 <li id="s11">論理学の基礎概念（命題、量化子、妥当性と健全性、省略三段論法、場合分け）については、日本語の入門書として次を参照。野矢茂樹『まったくゼロからの論理学』岩波書店<br><a href="https://www.iwanami.co.jp/book/b496835.html">https://www.iwanami.co.jp/book/b496835.html</a><br>同『新版 論理トレーニング』産業図書、 2006 年（哲学教科書シリーズ）</li>
 
-<li id="s12">David Hume, <em>A Treatise of Human Nature</em>, Book III, Part I, Section I （ 1739-1740 年）<br><a href="https://www.gutenberg.org/ebooks/4705">https://www.gutenberg.org/ebooks/4705</a><br><span style="color:var(--ink-faint)">「 is 」から「 ought 」への移行が説明なしに行われていることを指摘した箇所。いわゆる「ヒュームの法則」の出典。</span></li>
+<li id="s12">David Hume, <em>A Treatise of Human Nature</em>, Book III, Part I, Section I (1739-1740 年）<br><a href="https://www.gutenberg.org/ebooks/4705">https://www.gutenberg.org/ebooks/4705</a><br><span style="color:var(--muted)">「 is 」から「 ought 」への移行が説明なしに行われていることを指摘した箇所。いわゆる「ヒュームの法則」の出典。</span></li>
 
-<li id="s13">内閣府男女共同参画局「夫婦の姓（名字・氏）に関するデータ」<br><a href="https://www.gender.go.jp/research/fufusei/index.html">https://www.gender.go.jp/research/fufusei/index.html</a><br><span style="color:var(--ink-faint)">厚生労働省「人口動態統計」に基づく。令和 6 年（ 2024 年）に婚姻した夫婦のうち、夫の姓を選んだのは 456,453 組（ 94.1% ）。なお 2015 年最高裁判決は当時の状況を「 96% 以上」としている。</span></li>
+<li id="s13">内閣府男女共同参画局「夫婦の姓（名字・氏）に関するデータ」<br><a href="https://www.gender.go.jp/research/fufusei/index.html">https://www.gender.go.jp/research/fufusei/index.html</a><br><span style="color:var(--muted)">厚生労働省「人口動態統計」に基づく。令和 6 年（ 2024 年）に婚姻した夫婦のうち、夫の姓を選んだのは 456,453 組（ 94.1% ）。なお 2015 年最高裁判決は当時の状況を「 96% 以上」としている。</span></li>
 
 <li id="s14">「自民党と日本維新の会、連立政権合意書の全文」日本経済新聞、 2025 年 10 月<br><a href="https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/">https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/</a><br>進捗については「自維 連立政権合意書の要旨と進捗」時事ドットコム<br><a href="https://www.jiji.com/jc/v8?id=20251021jiirenritu">https://www.jiji.com/jc/v8?id=20251021jiirenritu</a></li>
 

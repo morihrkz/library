@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -10,34 +10,35 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
+    --hero-1:#201a12; --hero-2:#4a341c; --hero-ink:#f5eddc; --hero-dim:#d9c6a3;
     --bg: #fbfaf7;
-    --fg: #262220;
+    --ink: #262220;
     --accent: #a05a2c;
     --accent-dark: #7a4220;
-    --tip-bg: #fff6e6;
-    --tip-border: #d9a441;
+    --note-bg: #fff6e6;
+    --note-border: #d9a441;
     --column-bg: #eef3f1;
     --column-border: #5c8a7a;
     --code-bg: #2b2622;
     --code-fg: #f1ece2;
     --muted: #6b6560;
-    --rule: #dcd5c8;
+    --line: #dcd5c8;
     --link: #a05a2c;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1c1a17;
-      --fg: #e9e4da;
+      --ink: #e9e4da;
       --accent: #e0a86c;
       --accent-dark: #f0c088;
-      --tip-bg: #332a17;
-      --tip-border: #b8863f;
+      --note-bg: #332a17;
+      --note-border: #b8863f;
       --column-bg: #172420;
       --column-border: #5c8a7a;
       --code-bg: #100e0c;
       --code-fg: #ecE6da;
       --muted: #a39c8f;
-      --rule: #3a352d;
+      --line: #3a352d;
       --link: #e0a86c;
     }
   }
@@ -47,7 +48,7 @@
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     line-height: 1.9;
     font-size: 1.08rem;
-    color: var(--fg);
+    color: var(--ink);
     background: var(--bg);
   }
   .page {
@@ -55,8 +56,8 @@
     padding: 2.5rem clamp(1.5rem, 3vw, 3rem) 6rem;
   }
   header.hero {
-    background: linear-gradient(135deg, #201a12 0%, #4a341c 100%);
-    color: #f5eddc;
+    background: linear-gradient(135deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    color: var(--hero-ink);
     padding: 3.4rem 0 2.6rem;
     margin-bottom: 0;
   }
@@ -69,7 +70,7 @@
     display: block;
     font-size: 0.78rem;
     letter-spacing: 0.22em;
-    color: #cbb188;
+    color: var(--hero-dim);
     margin-bottom: 0.9rem;
   }
   header.hero h1 {
@@ -77,39 +78,21 @@
     margin: 0 0 0.6rem;
     letter-spacing: 0.02em;
   }
-  header.hero p.subtitle {
-    color: #d9c6a3;
+  header.hero p.sub {
+    color: var(--hero-dim);
     font-size: 1.08rem;
     margin: 0;
     text-indent: 0;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
   .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
   .hero-figure svg { display: block; width: 100%; height: auto; }
   .hero-figure figcaption {
     margin-top: 0.9rem;
     font-size: 0.85rem;
     line-height: 1.7;
-    color: #c7b596;
-  }
-  section.chapter {
-    margin: 4rem 0;
-    scroll-margin-top: 1rem;
-  }
-  section.chapter > h2 {
-    font-size: 1.55rem;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 0.6rem;
-    margin-bottom: 0.4rem;
-  }
-  .day-badge {
-    display: inline-block;
-    font-size: 0.8rem;
-    color: var(--accent-dark);
-    background: color-mix(in srgb, var(--tip-bg) 70%, transparent);
-    border: 1px solid var(--tip-border);
-    border-radius: 999px;
-    padding: 0.15rem 0.8rem;
-    margin-bottom: 0.8rem;
+    color: var(--hero-dim);
   }
   h3 { font-size: 1.2rem; margin-top: 2.2rem; }
   h4 { font-size: 1.05rem; margin-top: 1.6rem; }
@@ -117,7 +100,7 @@
   a { color: var(--link); }
   code {
     background: color-mix(in srgb, var(--code-bg) 12%, transparent);
-    border: 1px solid var(--rule);
+    border: 1px solid var(--line);
     border-radius: 4px;
     padding: 0.05rem 0.35rem;
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
@@ -145,8 +128,8 @@
     border: 1px solid;
   }
   .tip-box {
-    background: var(--tip-bg);
-    border-color: var(--tip-border);
+    background: var(--note-bg);
+    border-color: var(--note-border);
   }
   .column-box {
     background: var(--column-bg);
@@ -159,7 +142,7 @@
     letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
   }
-  .tip-box .box-label { color: var(--tip-border); }
+  .tip-box .box-label { color: var(--note-border); }
   .column-box .box-label { color: var(--column-border); }
   .tip-box p, .column-box p { text-indent: 0; }
   .tip-box p:first-of-type, .column-box p:first-of-type { margin-top: 0; }
@@ -172,19 +155,20 @@
   section.footnotes {
     margin-top: 2.5rem;
     padding-top: 1rem;
-    border-top: 1px dashed var(--rule);
+    border-top: 1px dashed var(--line);
     font-size: 0.85rem;
     color: var(--muted);
   }
   section.footnotes h4 {
     margin-top: 0;
     font-size: 0.9rem;
-    color: var(--fg);
+    color: var(--ink);
   }
   section.footnotes ol {
     padding-left: 1.3rem;
   }
   section.footnotes li { margin: 0.4rem 0; }
+  .fnsrc { color: var(--muted); font-size: 0.95em; }
   a.fnback { margin-left: 0.4rem; font-size: 0.75rem; }
   table {
     width: 100%;
@@ -192,24 +176,19 @@
     margin: 1.4rem 0;
   }
   th, td {
-    border: 1px solid var(--rule);
+    border: 1px solid var(--line);
     padding: 0.5rem 0.7rem;
     text-align: left;
     vertical-align: top;
   }
   th { background: color-mix(in srgb, var(--column-bg) 60%, transparent); }
-  hr.chapter-end {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 3.5rem 0 0;
-  }
   footer.book-footer {
     text-align: center;
     color: var(--muted);
     font-size: 0.85rem;
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--line);
   }
   @media (max-width: 600px) {
     body { font-size: 15px; }
@@ -225,7 +204,7 @@
     padding: 9px 0;
     border-radius: 999px;
     margin: 0 0 2rem;
-    border: 1px solid var(--rule);
+    border: 1px solid var(--line);
     box-shadow: 0 4px 14px rgba(0,0,0,.10);
   }
   .toolbar-container .toolbar { margin: 0; }
@@ -242,7 +221,7 @@
   .toolbar button:hover { background: var(--accent); color: #fff; }
   #accordion { margin-bottom: 2.4rem; }
   .acc-item {
-    background: var(--bg); border: 1px solid var(--rule); border-radius: 10px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
     margin-bottom: 18px; overflow: hidden; overflow-anchor: none;
     scroll-margin-top: 1rem;
   }
@@ -250,13 +229,13 @@
   .acc-header {
     width: 100%; display: flex; align-items: center; gap: 14px;
     background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color: var(--fg);
+    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color: var(--ink);
     -webkit-tap-highlight-color: transparent;
   }
   .acc-header .num {
     flex: 0 0 auto; color: var(--accent-dark); font-size: 0.8rem; font-weight: 700;
-    background: color-mix(in srgb, var(--tip-bg) 70%, transparent);
-    border: 1px solid var(--tip-border);
+    background: color-mix(in srgb, var(--note-bg) 70%, transparent);
+    border: 1px solid var(--note-border);
     padding: 3px 12px; border-radius: 999px; white-space: nowrap;
   }
   .acc-header .title { flex: 1 1 auto; font-size: 1.2rem; font-weight: 700; }
@@ -297,6 +276,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -305,7 +286,11 @@
   <div class="wrap">
     <span class="eyebrow">JAVASCRIPT / 10-DAY GUIDE</span>
     <h1>JavaScript ゼロからイチまで</h1>
-    <p class="subtitle">HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</p>
+    <p class="sub">HTML は書けるけど、 JavaScript は長年ナナメ読みしてきた人のための 10 日間</p>
+    <div class="meta">
+      <span>全 10 章</span>
+      <span>約 54 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 200" role="img" aria-labelledby="jsTitle jsDesc">
@@ -414,16 +399,16 @@
 あなたが本当に必要としているのは、目の前のコードが「何をしようとしているのか」を読み解ける力と、自分でも簡単なものなら書ける力だからである。</p>
 
   <h3>JavaScript はどこで生きている言語か</h3>
-  <p>JavaScript は、もともと Web ブラウザの中で HTML ページに動きを与えるために作られたプログラミング言語である。 HTML が「ページの構造 ( 見出しはここ、段落はここ ) 」を決め、 CSS が「見た目 ( 色やレイアウト ) 」を決めるのに対して、 JavaScript は「振る舞い ( クリックしたら何が起きるか、入力値に応じて何が変わるか ) 」を担当する。<br>
+  <p>JavaScript は、もともと Web ブラウザの中で HTML ページに動きを与えるために作られたプログラミング言語である。 HTML が「ページの構造（見出しはここ、段落はここ）」を決め、 CSS が「見た目（色やレイアウト）」を決めるのに対して、 JavaScript は「振る舞い（クリックしたら何が起きるか、入力値に応じて何が変わるか）」を担当する。<br>
 よく「 HTML は骨格、 CSS は服装、 JavaScript は筋肉や神経」というたとえ方をされるが、感覚としては近いだろう。</p>
   <p>今では JavaScript はブラウザの中だけの言語ではなくなった。<br>
  Node.js という仕組みを使えば、サーバー側のプログラムやコマンドラインツールも JavaScript で書ける。本稿では主にブラウザの中で動く JavaScript 、つまり皆さんが普段目にしている HTML ファイルの中のコードを中心に扱うが、覚えた文法や考え方の多くはサーバー側の JavaScript にもそのまま通用する。</p>
 
   <div class="column-box">
-    <span class="box-label">コラム ( 事実 ): なぜ 10 日間で作られた、と言われるのか</span>
-    <p>JavaScript は 1995 年、 Netscape 社の Brendan Eich( ブレンダン・アイク ) という技術者によって作られた。 Eich 本人が自身のブログで振り返っているところによれば、当初「 Mocha 」という名前で試作されたプロトタイプは、 1995 年 5 月のごく短い期間で作られたとされている <sup class="fnref" id="fnref-1-1"><a href="#fn-1-1">1 </a></sup>。<br>
+    <span class="box-label">コラム（事実） : なぜ 10 日間で作られた、と言われるのか</span>
+    <p>JavaScript は 1995 年、 Netscape 社の Brendan Eich （ブレンダン・アイク）という技術者によって作られた。 Eich 本人が自身のブログで振り返っているところによれば、当初「 Mocha 」という名前で試作されたプロトタイプは、 1995 年 5 月のごく短い期間で作られたとされている <sup class="fnref" id="fnref-1-1"><a href="#fn-1-1">1 </a></sup>。<br>
 この逸話は「たった 10 日間で一つの言語が生まれた」という劇的なストーリーとしてしばしば語られるが、その後 Netscape がブラウザへの実装や仕様の細部を詰めるのにはさらに長い時間をかけている。つまり「 10 日間で完成品ができた」というより「 10 日間で最初の動く試作品ができた」と捉えるほうが実態に近い、という指摘もある <sup class="fnref" id="fnref-1-2"><a href="#fn-1-2">2 </a></sup>。</p>
-    <p>名前についても紆余曲折がある。最初は「 Mocha 」、ベータ版では「 LiveScript 」と呼ばれていたが、 1995 年 12 月、 Netscape と Sun Microsystems( 当時人気のあった Java 言語を開発していた会社 ) の提携にあわせて「 JavaScript 」という名前に変更された <sup class="fnref" id="fnref-1-3"><a href="#fn-1-3">3 </a></sup>。<br>
+    <p>名前についても紆余曲折がある。最初は「 Mocha 」、ベータ版では「 LiveScript 」と呼ばれていたが、 1995 年 12 月、 Netscape と Sun Microsystems （当時人気のあった Java 言語を開発していた会社）の提携にあわせて「 JavaScript 」という名前に変更された <sup class="fnref" id="fnref-1-3"><a href="#fn-1-3">3 </a></sup>。<br>
 ただし JavaScript は Java を土台にした言語ではなく、文法の一部が似ている程度で、設計思想はかなり異なる。「名前は似ているけれど別物」という点は、この先ずっと覚えておいて損はない。</p>
   </div>
 
@@ -431,7 +416,7 @@
   <p>JavaScript のコードを実際に動かす方法は、大きく分けて三つある。どれも今日から試せるので、実際に手元でやってみよう。</p>
 
   <h4>方法 1: ブラウザの開発者ツールのコンソールに直接書く</h4>
-  <p>Chrome ・ Edge ・ Firefox などのブラウザには「開発者ツール」という機能が組み込まれている。適当な Web ページを開いた状態でキーボードの <code>F12</code> キー (Mac では Command+Option+I) を押すと、画面の一部に開発者ツールが表示される。<br>
+  <p>Chrome ・ Edge ・ Firefox などのブラウザには「開発者ツール」という機能が組み込まれている。適当な Web ページを開いた状態でキーボードの <code>F12</code> キー（ Mac では Command+Option+I ）を押すと、画面の一部に開発者ツールが表示される。<br>
 その中の「コンソール」というタブを開くと、 JavaScript のコードを 1 行ずつ試しに書いて実行できる場所が出てくる。ここに次のように打ち込んで Enter キーを押してみてほしい。</p>
   <pre><code>console.log("こんにちは、JavaScript");</code></pre>
   <p>コンソールに「こんにちは、 JavaScript 」という文字列が表示されれば成功である。 <code>console.log()</code> は、カッコの中に書いたものをコンソールに表示する命令で、本稿でも今後、動作確認のために何度も登場する。</p>
@@ -458,26 +443,26 @@
 // main.js
 console.log("外部ファイルから実行されました");</code></pre>
   <p>HTML と CSS を別ファイルに分けるのと同じ発想で、 JavaScript も別ファイルに分けておくと、コードの見通しがよくなり、複数の HTML ページから同じ <code>.js</code> ファイルを使い回すこともできる。<br>
- <code>&lt;script&gt;</code> タグを置く位置は、歴史的には <code>&lt;/body&gt;</code> の直前 ( ページの中身を先に表示してから読み込む ) がよく使われてきたが、 <code>defer</code> 属性を使う書き方 (<code>&lt;script src="main.js" defer&gt;&lt;/script&gt;</code>) も広く使われている。これは「どちらが絶対的に正しい」という話ではなく、ページの構成やパフォーマンス方針によって選び方が変わる部分である。<br>
+ <code>&lt;script&gt;</code> タグを置く位置は、歴史的には <code>&lt;/body&gt;</code> の直前（ページの中身を先に表示してから読み込む）がよく使われてきたが、 <code>defer</code> 属性を使う書き方（ <code>&lt;script src="main.js" defer&gt;&lt;/script&gt;</code> ）も広く使われている。これは「どちらが絶対的に正しい」という話ではなく、ページの構成やパフォーマンス方針によって選び方が変わる部分である。<br>
 この記事では以降のサンプルコードを、断りがない限り外部ファイル読み込みを前提に記述する。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>普段から AI のコーディング支援を使っている方に向けて、本稿での付き合い方を一つ提案する。本稿を読みながら「このコード、 AI に聞けば一瞬で書いてくれるのでは」と思う場面が何度もあるはずだ。それは事実その通りである。<br>
 ただし、本稿の目的は「 AI が書いたコードを読んで、何が起きているか自分の言葉で説明できるようになること」である。手を動かすパートでは、まず AI に頼らず自分で書いてみて、動かなかったときに初めて AI に「なぜ動かないか」を聞く、という順番を試してみてほしい。答え合わせに AI を使うのは効果的だが、最初の一手まで委ねてしまうと、本稿を読む意味が半減してしまう。</p>
   </div>
 
   <h3>今日の実習</h3>
   <p>次の三つを実際にやってみよう。<br>
- (1) 適当な Web ページを開き、開発者ツールのコンソールで <code>console.log()</code> を試す。 (2)<code>&lt;script&gt;</code> タグを直接埋め込んだ HTML ファイルを一つ作り、ブラウザで開く。 (3)HTML と <code>.js</code> ファイルを分けた構成を作り、外部ファイルとして読み込む。<br>
+（ 1 ）適当な Web ページを開き、開発者ツールのコンソールで <code>console.log()</code> を試す。（ 2)<code>&lt;script&gt;</code> タグを直接埋め込んだ HTML ファイルを一つ作り、ブラウザで開く。（ 3) HTML と <code>.js</code> ファイルを分けた構成を作り、外部ファイルとして読み込む。<br>
 三つとも「画面に何かが表示された / 起きた」ことを目で確認できたら、 1 日目は達成である。</p>
 
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-1-1"><span class="fnsrc">Brendan Eich, "Popularity," Brendan Eich's blog, April 2008. https://brendaneich.com/2008/04/popularity/(2026 年 8 月閲覧 )</span><a href="#fnref-1-1" class="fnback">↩本文へ</a></li>
-      <li id="fn-1-2"><span class="fnsrc">"The 10-Day Programming Language (Is Kind of a Myth)," The History of the Web. https://thehistoryoftheweb.com/the-10-day-programming-language-is-a-myth/(2026 年 8 月閲覧、二次情報 )</span><a href="#fnref-1-2" class="fnback">↩本文へ</a></li>
-      <li id="fn-1-3"><span class="fnsrc">"A Brief History of JavaScript," Auth0 Blog. https://auth0.com/blog/a-brief-history-of-javascript/(2026 年 8 月閲覧、二次情報 )</span><a href="#fnref-1-3" class="fnback">↩本文へ</a></li>
+      <li id="fn-1-1"><span class="fnsrc">Brendan Eich, "Popularity," Brendan Eich's blog, April 2008. https://brendaneich.com/2008/04/popularity/(2026 年 8 月閲覧）</span><a href="#fnref-1-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-1-2"><span class="fnsrc">"The 10-Day Programming Language (Is Kind of a Myth)," The History of the Web. https://thehistoryoftheweb.com/the-10-day-programming-language-is-a-myth/(2026 年 8 月閲覧、二次情報）</span><a href="#fnref-1-2" class="fnback">↩本文へ</a></li>
+      <li id="fn-1-3"><span class="fnsrc">"A Brief History of JavaScript," Auth0 Blog. https://auth0.com/blog/a-brief-history-of-javascript/(2026 年 8 月閲覧、二次情報）</span><a href="#fnref-1-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -504,18 +489,18 @@ userName = "佐藤"; // letは後から書き換えられる
 迷ったときは、まず <code>const</code> で書いてみて、どうしても値を書き換える必要が出てきたときだけ <code>let</code> に変える、という進め方がよく勧められる。ただしこれは絶対のルールではなく、チームやプロジェクトの方針によっては最初から用途に応じて使い分ける流儀もある。</p>
 
   <div class="column-box">
-    <span class="box-label">コラム ( 事実 ):var という古い書き方</span>
-    <p>古い JavaScript のコードや Web 上の記事では、 <code>let</code> や <code>const</code> の代わりに <code>var</code> というキーワードで変数を宣言しているものによく出会う。 <code>let</code> と <code>const</code> は 2015 年に標準化された仕様 ( 通称 ES2015 、 ECMAScript 2015) で追加されたもので、それ以前は <code>var</code> しか存在しなかった <sup class="fnref" id="fnref-2-1"><a href="#fn-2-1">1 </a></sup>。<br>
- <code>var</code> は挙動に癖があり ( たとえば <code>{ }</code> のブロックの中で宣言しても外から参照できてしまう ) 、現在新しく書くコードでは <code>let</code> ・ <code>const</code> を使うのが主流である。ただし 20 年以上蓄積されてきた既存のコードは今も <code>var</code> のままのものが大量にあるため、読めるようにはしておく必要がある。</p>
+    <span class="box-label">コラム（事実） :var という古い書き方</span>
+    <p>古い JavaScript のコードや Web 上の記事では、 <code>let</code> や <code>const</code> の代わりに <code>var</code> というキーワードで変数を宣言しているものによく出会う。 <code>let</code> と <code>const</code> は 2015 年に標準化された仕様（通称 ES2015 、 ECMAScript 2015 ）で追加されたもので、それ以前は <code>var</code> しか存在しなかった <sup class="fnref" id="fnref-2-1"><a href="#fn-2-1">1 </a></sup>。<br>
+ <code>var</code> は挙動に癖があり（たとえば <code>{ }</code> のブロックの中で宣言しても外から参照できてしまう）、現在新しく書くコードでは <code>let</code> ・ <code>const</code> を使うのが主流である。ただし 20 年以上蓄積されてきた既存のコードは今も <code>var</code> のままのものが大量にあるため、読めるようにはしておく必要がある。</p>
   </div>
 
   <h3>JavaScript の主なデータ型</h3>
   <p>変数に入れる値には「型」がある。 JavaScript でよく使う基本的な型は次の通りである。</p>
   <table>
     <tr><th>型</th><th>意味</th><th>書き方の例</th></tr>
-    <tr><td>文字列 (string) </td><td>テキストデータ </td><td><code>"こんにちは"</code></td></tr>
-    <tr><td>数値 (number) </td><td>整数も小数も区別なく扱う </td><td><code>42</code>, <code>3.14</code></td></tr>
-    <tr><td>真偽値 (boolean) </td><td>真か偽かの 2 択 </td><td><code>true</code>, <code>false</code></td></tr>
+    <tr><td>文字列（ string)</td><td>テキストデータ </td><td><code>"こんにちは"</code></td></tr>
+    <tr><td>数値（ number)</td><td>整数も小数も区別なく扱う </td><td><code>42</code>, <code>3.14</code></td></tr>
+    <tr><td>真偽値（ boolean)</td><td>真か偽かの 2 択 </td><td><code>true</code>, <code>false</code></td></tr>
     <tr><td>undefined </td><td>まだ値が代入されていない状態 </td><td><code>let x;</code> のときの <code>x</code></td></tr>
     <tr><td>null </td><td>「値が空である」と意図的に示す状態 </td><td><code>let x = null;</code></td></tr>
   </table>
@@ -523,17 +508,17 @@ userName = "佐藤"; // letは後から書き換えられる
 この使い分けはチームやコードベースによって流儀が分かれる部分でもある。</p>
 
   <div class="column-box">
-    <span class="box-label">コラム ( 事実 ):typeof null が "object" になる有名な癖</span>
+    <span class="box-label">コラム（事実） :typeof null が "object" になる有名な癖</span>
     <p>ブラウザのコンソールで <code>typeof null</code> と打つと、直感に反して <code>"object"</code> という結果が返ってくる。これは JavaScript 最初期の実装上、値の型を内部的に管理する仕組みに由来する既知の癖で、後から修正しようとすると世の中の大量の既存コードが壊れてしまうため、あえてそのまま残されていると説明されている <sup class="fnref" id="fnref-2-2"><a href="#fn-2-2">2 </a></sup>。<br>
 「言語の挙動は必ずしも直感通りとは限らない」ことを示す例として覚えておくとよいだろう。</p>
   </div>
 
   <h3>文字列の中に変数を埋め込む : テンプレートリテラル</h3>
-  <p>文字列と変数をつなげたいとき、バッククォート (<code>`</code>) で囲んで <code>${ }</code> の中に変数を書く「テンプレートリテラル」という書き方が便利である。</p>
+  <p>文字列と変数をつなげたいとき、バッククォート（ <code>`</code> ）で囲んで <code>${ }</code> の中に変数を書く「テンプレートリテラル」という書き方が便利である。</p>
   <pre><code>const name = "田中";
 const age = 34;
 
-// 従来の書き方(文字列の連結)
+// 従来の書き方（文字列の連結）
 console.log("私は" + name + "です。" + age + "歳です。");
 
 // テンプレートリテラル
@@ -541,10 +526,10 @@ console.log(`私は${name}です。${age}歳です。`);</code></pre>
   <p>どちらも結果は同じだが、変数の数が増えるほどテンプレートリテラルの方が読みやすくなる。改行を含む長い文字列を書くときにも扱いやすいため、現在のコードではこちらが広く使われている。</p>
 
   <h3>複数の値をまとめる : 配列とオブジェクト</h3>
-  <p>値が一つだけでなく複数まとまっている場合には、配列 (array) かオブジェクト (object) を使う。配列は「順番のあるリスト」、オブジェクトは「名前 ( キー ) と値のペアの集まり」である。</p>
+  <p>値が一つだけでなく複数まとまっている場合には、配列（ array ）かオブジェクト（ object ）を使う。配列は「順番のあるリスト」、オブジェクトは「名前（キー）と値のペアの集まり」である。</p>
   <pre><code>// 配列:順番のあるリスト
 const fruits = ["りんご", "みかん", "ぶどう"];
-console.log(fruits[0]); // "りんご"(先頭は0番目)
+console.log (fruits[0]); // "りんご" （先頭は0番目）
 
 // オブジェクト:名前と値のペア
 const user = {
@@ -552,7 +537,7 @@ const user = {
   age: 34,
   isAdmin: false
 };
-console.log(user.name); // "田中"</code></pre>
+console.log (user.name); // "田中"</code></pre>
   <p>HTML の構造を「入れ子になったタグの集まり」として捉えられるように、配列とオブジェクトも「入れ子」にできる。配列の中にオブジェクトを入れたり、オブジェクトの中の値として配列を入れたりすることも日常的に行われる。<br>
 この「入れ子にできる」という性質は、次の章以降で扱うデータ処理でも繰り返し登場する。</p>
 
@@ -560,13 +545,13 @@ console.log(user.name); // "田中"</code></pre>
   <p>「 <code>const</code> は値を変えられない」と説明したが、これには少し補足が必要である。 <code>const</code> が禁止しているのは「変数に別の値を再代入すること」であって、配列やオブジェクトの中身そのものを書き換えることまでは禁止していない。</p>
   <pre><code>const fruits = ["りんご", "みかん"];
 fruits.push("ぶどう"); // これはOK:配列の中身を追加している
-console.log(fruits); // ["りんご", "みかん", "ぶどう"]
+console.log (fruits); // ["りんご", "みかん", "ぶどう"]
 
 // fruits = ["別の配列"]; // これはNG:変数そのものへの再代入はエラーになる</code></pre>
   <p><code>const</code> で宣言した <code>fruits</code> という「箱」自体を別の配列に差し替えることはできないが、箱の中に新しい果物を追加したり、既存の要素を書き換えたりすることはできる。この「箱を差し替えるのは NG 、箱の中身をいじるのは OK 」という区別は、配列やオブジェクトを扱い始めた学習者がつまずきやすいポイントの一つなので、頭の片隅に置いておいてほしい。</p>
 
   <h3>分割代入 : 必要な値だけを取り出す</h3>
-  <p>オブジェクトや配列から特定の値だけを取り出して変数にしたいとき、いちいち <code>user.name</code> のように書かなくても済む「分割代入 ( デストラクチャリング ) 」という書き方がある。これも ES2015 で追加された機能である <sup class="fnref" id="fnref-2-3"><a href="#fn-2-3">3 </a></sup>。</p>
+  <p>オブジェクトや配列から特定の値だけを取り出して変数にしたいとき、いちいち <code>user.name</code> のように書かなくても済む「分割代入（デストラクチャリング）」という書き方がある。これも ES2015 で追加された機能である <sup class="fnref" id="fnref-2-3"><a href="#fn-2-3">3 </a></sup>。</p>
   <pre><code>const user = { name: "田中", age: 34, isAdmin: false };
 
 // 従来の書き方
@@ -575,25 +560,25 @@ const age1 = user.age;
 
 // 分割代入
 const { name, age } = user;
-console.log(name, age); // "田中" 34</code></pre>
-  <p>オブジェクトが持つプロパティのうち、必要なものだけを同じ名前の変数として一気に取り出せるため、特にオブジェクトの一部分だけを使いたい場面でコードがすっきりする。配列に対しても同様の書き方 (<code>const [first, second] = fruits;</code>) ができる。</p>
+console.log (name, age); // "田中" 34</code></pre>
+  <p>オブジェクトが持つプロパティのうち、必要なものだけを同じ名前の変数として一気に取り出せるため、特にオブジェクトの一部分だけを使いたい場面でコードがすっきりする。配列に対しても同様の書き方（ <code>const [first, second] = fruits;</code> ）ができる。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
-    <p>この章に出てきた用語 ( 型、配列、オブジェクト ) を全部暗記しようとしなくて大丈夫である。<br>
+    <span class="box-label">アドバイス（筆者の見解）</span>
+    <p>この章に出てきた用語（型、配列、オブジェクト）を全部暗記しようとしなくて大丈夫である。<br>
 実務でコードを読むときも、覚えているというより「あ、これは名前と値のペアの集まりだから、たぶんオブジェクトだな」と、形を見て思い出す使い方がほとんどである。何度もコードを書いたり読んだりする中で自然と身につく感覚なので、 1 回で覚えきれなくても先に進んで構わない。</p>
   </div>
 
   <h3>今日の実習</h3>
   <p>自分の名前・年齢・好きな食べ物を持つオブジェクトを一つ作り、テンプレートリテラルを使って「私は◯◯です。◯◯歳で、好きな食べ物は◯◯です。」という文章を <code>console.log()</code> で表示してみよう。<br>
-次に、好きな食べ物を三つ持つ配列を作り、それぞれを <code>console.log()</code> で一つずつ表示してみてほしい ( この「一つずつ」を効率よくやる方法は、次章の繰り返し処理で学ぶ ) 。</p>
+次に、好きな食べ物を三つ持つ配列を作り、それぞれを <code>console.log()</code> で一つずつ表示してみてほしい（この「一つずつ」を効率よくやる方法は、次章の繰り返し処理で学ぶ）。</p>
 
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-2-1"><span class="fnsrc">"let - JavaScript," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let(2026 年 8 月閲覧 ) 。 ES2015(ECMAScript 2015) の内容は Ecma International "ECMA-262" にも準拠。</span><a href="#fnref-2-1" class="fnback">↩本文へ</a></li>
-      <li id="fn-2-2"><span class="fnsrc">Brendan Eich の TC39 メーリングリストでの発言を引用した複数の技術記事による ( 二次情報 ) 。例 :"Inspecting one of the most famous JavaScript bugs of all time," Bomberbot Blog. https://www.bomberbot.com/javascript/inspecting-one-of-the-most-famous-javascript-bugs-of-all-time/(2026 年 8 月閲覧 )</span><a href="#fnref-2-2" class="fnback">↩本文へ</a></li>
-      <li id="fn-2-3"><span class="fnsrc">"Destructuring assignment," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment(2026 年 8 月閲覧 )</span><a href="#fnref-2-3" class="fnback">↩本文へ</a></li>
+      <li id="fn-2-1"><span class="fnsrc">"let - JavaScript," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let (2026 年 8 月閲覧）。 ES2015 (ECMAScript 2015 ）の内容は Ecma International "ECMA-262" にも準拠。</span><a href="#fnref-2-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-2-2"><span class="fnsrc">Brendan Eich の TC39 メーリングリストでの発言を引用した複数の技術記事による（二次情報）。例 :"Inspecting one of the most famous JavaScript bugs of all time," Bomberbot Blog. https://www.bomberbot.com/javascript/inspecting-one-of-the-most-famous-javascript-bugs-of-all-time/(2026 年 8 月閲覧）</span><a href="#fnref-2-2" class="fnback">↩本文へ</a></li>
+      <li id="fn-2-3"><span class="fnsrc">"Destructuring assignment," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment (2026 年 8 月閲覧）</span><a href="#fnref-2-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -608,59 +593,59 @@ console.log(name, age); // "田中" 34</code></pre>
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
-  <h3>比較演算子 :二つの値を比べる</h3>
+  <h3>比較演算子 : 二つの値を比べる</h3>
   <p>「もし◯◯だったら△△する」という処理を書くには、まず二つの値を比べる方法が必要である。 JavaScript には次のような比較演算子がある。</p>
-  <pre><code>5 > 3   // true(5は3より大きい)
+  <pre><code>5 > 3   // true (5は3より大きい）
 5 &lt; 3   // false
-5 === 5 // true(等しい)
-5 !== 3 // true(等しくない)</code></pre>
-  <p>ここで注意したいのが、「等しいかどうか」を調べる演算子が <code>===</code>( イコール三つ ) と <code>==</code>( イコール二つ ) の 2 種類あることである。 <code>==</code> は型が違っても値を無理やり揃えてから比較する ( 型変換してから比較する ) のに対し、 <code>===</code> は型も含めて厳密に比較する。</p>
-  <pre><code>"5" == 5   // true(文字列の"5"を数値5に変換してから比較する)
-"5" === 5  // false(型が文字列と数値で違うので、等しくないと判定される)</code></pre>
+5 === 5 // true （等しい）
+5 !== 3 // true （等しくない）</code></pre>
+  <p>ここで注意したいのが、「等しいかどうか」を調べる演算子が <code>===</code> （イコール三つ）と <code>==</code> （イコール二つ）の 2 種類あることである。 <code>==</code> は型が違っても値を無理やり揃えてから比較する（型変換してから比較する）のに対し、 <code>===</code> は型も含めて厳密に比較する。</p>
+  <pre><code>"5" == 5   // true （文字列の"5"を数値5に変換してから比較する）
+"5" === 5  // false （型が文字列と数値で違うので、等しくないと判定される）</code></pre>
   <p>この <code>==</code> の「よしなに変換してから比較する」という挙動は、慣れないうちは直感に反する結果を生みやすいため、実務では基本的に <code>===</code> ・ <code>!==</code> を使うことが広く推奨されている。ブラウザで実際に <code>console.log("5" == 5)</code> と <code>console.log("5" === 5)</code> を打ち比べてみると、この違いを体感できる。</p>
 
   <h3>if 文で処理を分岐させる</h3>
   <pre><code>const score = 72;
 
-if (score >= 80) {
+if (score >= 80){
   console.log("優");
-} else if (score >= 60) {
+} else if (score >= 60){
   console.log("良");
 } else {
   console.log("再テスト");
 }</code></pre>
-  <p><code>if</code> の後ろの <code>( )</code> の中身が <code>true</code> になれば、続く <code>{ }</code> の中の処理が実行される。 <code>true</code> にならなければ、 <code>else if</code> や <code>else</code> のブロックが順番に確認される。<br>
+  <p><code>if</code> の後ろの <code>()</code> の中身が <code>true</code> になれば、続く <code>{ }</code> の中の処理が実行される。 <code>true</code> にならなければ、 <code>else if</code> や <code>else</code> のブロックが順番に確認される。<br>
  HTML の入れ子構造に慣れている方であれば、 <code>{ }</code> の対応関係を追う感覚はそれほど遠くないはずだ。</p>
 
   <h3>論理演算子 : 条件を組み合わせる</h3>
   <p>複数の条件を組み合わせたいときは、論理演算子を使う。</p>
   <table>
     <tr><th>演算子</th><th>意味</th><th>例</th></tr>
-    <tr><td><code>&amp;&amp;</code></td><td> 両方とも true なら true( かつ )</td><td><code>age &gt;= 18 &amp;&amp; hasTicket</code></td></tr>
-    <tr><td><code>||</code></td><td> どちらかが true なら true( または )</td><td><code>isAdmin || isOwner</code></td></tr>
-    <tr><td><code>!</code></td><td>true/false を反転させる ( 否定 )</td><td><code>!isLoggedIn</code></td></tr>
+    <tr><td><code>&amp;&amp;</code></td><td> 両方とも true なら true （かつ）</td><td><code>age &gt;= 18 &amp;&amp; hasTicket</code></td></tr>
+    <tr><td><code>||</code></td><td> どちらかが true なら true （または）</td><td><code>isAdmin || isOwner</code></td></tr>
+    <tr><td><code>!</code></td><td>true/false を反転させる（否定）</td><td><code>!isLoggedIn</code></td></tr>
   </table>
   <p>これらは if 文の条件だけでなく、単独でもよく使われる。特に <code>&amp;&amp;</code> は「左側が true のときだけ右側を評価する」という性質を利用して、条件付きで処理を実行する簡易的な書き方としても使われる。</p>
   <pre><code>const isLoggedIn = true;
 isLoggedIn && console.log("ログイン済みです");</code></pre>
 
   <h3>true と false だけじゃない :truthy と falsy</h3>
-  <p>JavaScript の if 文は、 <code>( )</code> の中身が必ずしも <code>true</code>/<code>false</code> そのものでなくても動く。<br>
- <code>0</code> や空文字列 <code>""</code> のような値も、 if 文の条件としては自動的に「 false のようなもの」として扱われるからである。この性質を「 falsy(false 的な値 ) 」、逆に「 true のように扱われる値」を「 truthy 」と呼ぶ。<br>
+  <p>JavaScript の if 文は、 <code>()</code> の中身が必ずしも <code>true</code>/<code>false</code> そのものでなくても動く。<br>
+ <code>0</code> や空文字列 <code>""</code> のような値も、 if 文の条件としては自動的に「 false のようなもの」として扱われるからである。この性質を「 falsy (false 的な値）」、逆に「 true のように扱われる値」を「 truthy 」と呼ぶ。<br>
  falsy として扱われる値は、実質的に次の 6 種類だけである。</p>
   <pre><code>0
-""(空文字列)
+"" （空文字列）
 null
 undefined
-NaN(数値として不正な値)
+NaN （数値として不正な値）
 false</code></pre>
-  <p>これら以外の値 ( 文字数が 1 文字以上ある文字列、 0 以外の数値、中身が空でも配列やオブジェクトそのものなど ) は、すべて truthy として扱われる。</p>
-  <pre><code>if ("") {
+  <p>これら以外の値（文字数が 1 文字以上ある文字列、 0 以外の数値、中身が空でも配列やオブジェクトそのものなど）は、すべて truthy として扱われる。</p>
+  <pre><code>if(""){
   console.log("表示されない"); // 空文字列はfalsyなので実行されない
 }
 
-if ("0") {
-  console.log("表示される"); // 文字列としての"0"はtruthy(空文字列ではないため)
+if("0"){
+  console.log("表示される"); // 文字列としての"0"はtruthy （空文字列ではないため）
 }</code></pre>
   <p>二つ目の例のように、数値の <code>0</code> は falsy だが、文字列の <code>"0"</code> は truthy になる点は特に混同しやすいので注意してほしい。先ほど紹介した Null 合体演算子 <code>??</code> が生まれた背景には、まさにこの「 <code>0</code> や <code>""</code> のような、意図的に使われることもある値まで falsy 扱いで巻き込んでしまう」という <code>||</code> の性質への対応があった。</p>
 
@@ -668,7 +653,7 @@ if ("0") {
   <p>if/else if が同じ変数の値だけを何度も比較する形になる場合、 <code>switch</code> 文を使うと意図が伝わりやすくなることがある。</p>
   <pre><code>const fruit = "みかん";
 
-switch (fruit) {
+switch (fruit){
   case "りんご":
     console.log("赤い果物です");
     break;
@@ -678,32 +663,32 @@ switch (fruit) {
   default:
     console.log("知らない果物です");
 }</code></pre>
-  <p>各 <code>case</code> の最後に <code>break</code> を書き忘れると、次の <code>case</code> の処理までそのまま実行され続けてしまう ( 「フォールスルー」と呼ばれる挙動 ) ため注意が必要である。 if/else if と switch のどちらを使うかは好みやチームの方針によるところが大きく、「同じ変数の値を複数の候補と比較する」場面では switch が、「複数の異なる条件を組み合わせる」場面では if/else if が選ばれやすい、という程度の目安で捉えておくとよいだろう。</p>
+  <p>各 <code>case</code> の最後に <code>break</code> を書き忘れると、次の <code>case</code> の処理までそのまま実行され続けてしまう（「フォールスルー」と呼ばれる挙動）ため注意が必要である。 if/else if と switch のどちらを使うかは好みやチームの方針によるところが大きく、「同じ変数の値を複数の候補と比較する」場面では switch が、「複数の異なる条件を組み合わせる」場面では if/else if が選ばれやすい、という程度の目安で捉えておくとよいだろう。</p>
 
   <h3>三項演算子と、値が空かどうかを調べる新しい書き方</h3>
-  <p>if/else を 1 行で書きたいときには、三項演算子 ( <code>条件 ? Aの場合の値 : Bの場合の値</code> ) がよく使われる。</p>
+  <p>if/else を 1 行で書きたいときには、三項演算子（<code>条件 ? Aの場合の値 : Bの場合の値</code>）がよく使われる。</p>
   <pre><code>const age = 20;
 const message = age >= 20 ? "成人です" : "未成年です";</code></pre>
-  <p>また、「値が <code>null</code> や <code>undefined</code> のときだけデフォルト値を使いたい」という場面のために、 Null 合体演算子 <code>??</code> という書き方もある。これは 2020 年に標準化された仕様 (ES2020) で追加された比較的新しい機能である <sup class="fnref" id="fnref-3-1"><a href="#fn-3-1">1 </a></sup>。</p>
+  <p>また、「値が <code>null</code> や <code>undefined</code> のときだけデフォルト値を使いたい」という場面のために、 Null 合体演算子 <code>??</code> という書き方もある。これは 2020 年に標準化された仕様（ ES2020 ）で追加された比較的新しい機能である <sup class="fnref" id="fnref-3-1"><a href="#fn-3-1">1 </a></sup>。</p>
   <pre><code>const nickname = null;
 const displayName = nickname ?? "名無しさん";
-console.log(displayName); // "名無しさん"</code></pre>
+console.log (displayName); // "名無しさん"</code></pre>
   <p>似た働きをする <code>||</code> との違いは、 <code>||</code> が <code>0</code> や空文字列 <code>""</code> のような「 falsy だけれど意図的な値」までデフォルト値に置き換えてしまうのに対し、 <code>??</code> は <code>null</code> と <code>undefined</code> のときだけ反応する点である。たとえば得点が 0 点のユーザーの表示で <code>score || "未回答"</code> と書くと、 0 点も「未回答」に変換されてしまうため、こうした場面では <code>??</code> の方が意図に沿った挙動になる。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p><code>===</code> と <code>==</code> のどちらを使うべきかは、 JavaScript 学習者の間で繰り返し話題になる論点である。<br>
 この記事では基本的に <code>===</code> を使う書き方で統一しているが、これは「 <code>==</code> が絶対に悪い」という意味ではない。意図的に型変換を利用したい場面ではあえて <code>==</code> を使う書き方も存在する。<br>
 ただし初学者のうちは、意図しない型変換によるバグを避けるために、まず <code>===</code> を基本にしておくことをおすすめする。</p>
   </div>
 
   <h3>今日の実習</h3>
-  <p>変数 <code>temperature</code>( 気温 ) を用意し、 30 以上なら「暑い」、 15 以上 30 未満なら「過ごしやすい」、 15 未満なら「寒い」と表示する if 文を書いてみよう。書けたら <code>temperature</code> の値をいくつか変えて、条件分岐が正しく動くか確認してほしい。</p>
+  <p>変数 <code>temperature</code> （気温）を用意し、 30 以上なら「暑い」、 15 以上 30 未満なら「過ごしやすい」、 15 未満なら「寒い」と表示する if 文を書いてみよう。書けたら <code>temperature</code> の値をいくつか変えて、条件分岐が正しく動くか確認してほしい。</p>
 
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-3-1"><span class="fnsrc">Null 合体演算子 (Nullish coalescing operator) の ES2020 導入について、複数の技術記事による確認 ( 二次情報 ) 。例 :"ES2020 Optional Chaining &amp; Nullish Coalescing," Eric Feminella Blog. https://www.ericfeminella.com/blog/2020/03/10/es2020-optional-chaining-nullish-coalescing/(2026 年 8 月閲覧 ) 。あわせて MDN Web Docs "Nullish coalescing operator (??)" も参照。</span><a href="#fnref-3-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-3-1"><span class="fnsrc">Null 合体演算子（ Nullish coalescing operator ）の ES2020 導入について、複数の技術記事による確認（二次情報）。例 :"ES2020 Optional Chaining &amp; Nullish Coalescing," Eric Feminella Blog. https://www.ericfeminella.com/blog/2020/03/10/es2020-optional-chaining-nullish-coalescing/(2026 年 8 月閲覧）。あわせて MDN Web Docs "Nullish coalescing operator(??)" も参照。</span><a href="#fnref-3-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -720,92 +705,92 @@ console.log(displayName); // "名無しさん"</code></pre>
     <div class="acc-panel-inner">
   <h3>for 文 : 決まった回数だけ繰り返す</h3>
   <p>同じ処理を何度も繰り返したいとき、毎回コードを書き写すのは非効率である。 <code>for</code> 文を使うと、繰り返しの回数や条件を指定して同じ処理を自動で繰り返せる。</p>
-  <pre><code>for (let i = 0; i &lt; 5; i++) {
+  <pre><code>for (let i = 0; i &lt; 5; i++){
   console.log(`${i}回目です`);
 }
 // 0回目です 〜 4回目です まで、5回表示される</code></pre>
-  <p><code>( )</code> の中は「開始時にすること (<code>let i = 0</code>) 」「繰り返しを続ける条件 (<code>i &lt; 5</code>) 」「 1 回ごとに行うこと (<code>i++</code> 、 i を 1 増やす ) 」の三つに分かれている。最初はとっつきにくく見えるかもしれないが、「 0 から始めて、 5 未満の間、 1 ずつ増やしながら繰り返す」と声に出して読んでみると構造がつかみやすくなる。</p>
+  <p><code>()</code> の中は「開始時にすること（ <code>let i = 0</code> ）」「繰り返しを続ける条件（ <code>i &lt; 5</code> ）」「 1 回ごとに行うこと（ <code>i++</code> 、 i を 1 増やす）」の三つに分かれている。最初はとっつきにくく見えるかもしれないが、「 0 から始めて、 5 未満の間、 1 ずつ増やしながら繰り返す」と声に出して読んでみると構造がつかみやすくなる。</p>
 
   <h3>配列と組み合わせて使う for 文</h3>
-  <p>配列の中身を一つずつ処理したいときは、配列の要素数 (<code>length</code>) を使って for 文を書くのが基本形である。</p>
+  <p>配列の中身を一つずつ処理したいときは、配列の要素数（ <code>length</code> ）を使って for 文を書くのが基本形である。</p>
   <pre><code>const fruits = ["りんご", "みかん", "ぶどう"];
 
-for (let i = 0; i &lt; fruits.length; i++) {
-  console.log(fruits[i]);
+for (let i = 0; i &lt; fruits.length; i++){
+  console.log (fruits[i]);
 }</code></pre>
 
   <h3>配列専用の繰り返し :forEach ・ map ・ filter</h3>
   <p>配列の中身を一つずつ処理するだけなら、 <code>for</code> 文よりも簡潔に書ける専用の書き方がある。代表的なものが <code>forEach</code> ・ <code>map</code> ・ <code>filter</code> である。</p>
   <pre><code>const fruits = ["りんご", "みかん", "ぶどう"];
 
-// forEach:1つずつ処理するだけ(戻り値はなし)
-fruits.forEach((fruit) => {
-  console.log(fruit);
+// forEach:1つずつ処理するだけ（戻り値はなし）
+fruits.forEach((fruit)=> {
+  console.log (fruit);
 });
 
 // map:1つずつ加工して、新しい配列を作る
-const upperFruits = fruits.map((fruit) => fruit.toUpperCase());
-console.log(upperFruits); // ["RINGO"は入らない。もとの文字列を大文字化しただけの配列]
+const upperFruits = fruits.map((fruit)=> fruit.toUpperCase());
+console.log (upperFruits); // ["RINGO"は入らない。もとの文字列を大文字化しただけの配列]
 
 // filter:条件に合うものだけを残した新しい配列を作る
-const longNameFruits = fruits.filter((fruit) => fruit.length >= 3);
-console.log(longNameFruits); // ["りんご", "みかん", "ぶどう"] のうち文字数条件を満たすもの</code></pre>
-  <p><code>forEach</code> は「ただ順番に処理したいだけ」のとき、 <code>map</code> は「それぞれを加工した新しい配列がほしい」とき、 <code>filter</code> は「条件に合うものだけを絞り込んだ新しい配列がほしい」ときに使う、と覚えると使い分けやすくなる。共通しているのは、どれも <code>( )</code> の中に「配列の要素一つひとつに対して行いたい処理」を関数の形で渡している点である。<br>
+const longNameFruits = fruits.filter((fruit)=> fruit.length >= 3);
+console.log (longNameFruits); // ["りんご", "みかん", "ぶどう"] のうち文字数条件を満たすもの</code></pre>
+  <p><code>forEach</code> は「ただ順番に処理したいだけ」のとき、 <code>map</code> は「それぞれを加工した新しい配列がほしい」とき、 <code>filter</code> は「条件に合うものだけを絞り込んだ新しい配列がほしい」ときに使う、と覚えると使い分けやすくなる。共通しているのは、どれも <code>()</code> の中に「配列の要素一つひとつに対して行いたい処理」を関数の形で渡している点である。<br>
 この「関数を値として渡す」という書き方は、次章で扱う関数の理解が深まると、より自然に読めるようになる。</p>
 
   <h3>for...of: 配列の中身を直接取り出す for 文</h3>
-  <p>添字 (<code>i</code>) を経由せず、配列の中身を直接一つずつ取り出せる <code>for...of</code> という書き方もある。これも ES2015 で追加されたものである <sup class="fnref" id="fnref-4-1"><a href="#fn-4-1">1 </a></sup>。</p>
+  <p>添字（ <code>i</code> ）を経由せず、配列の中身を直接一つずつ取り出せる <code>for...of</code> という書き方もある。これも ES2015 で追加されたものである <sup class="fnref" id="fnref-4-1"><a href="#fn-4-1">1 </a></sup>。</p>
   <pre><code>const fruits = ["りんご", "みかん", "ぶどう"];
 
-for (const fruit of fruits) {
-  console.log(fruit);
+for (const fruit of fruits){
+  console.log (fruit);
 }</code></pre>
-  <p><code>fruits[i]</code> のように添字を経由する必要がなく、 <code>forEach</code> と近い読みやすさを持ちながら、 <code>forEach</code> にはできない <code>break</code>( 繰り返しを途中で打ち切る ) や <code>continue</code>( その回だけ処理を飛ばして次に進む ) が使えるという特徴がある。</p>
-  <pre><code>for (const fruit of fruits) {
-  if (fruit === "みかん") {
+  <p><code>fruits[i]</code> のように添字を経由する必要がなく、 <code>forEach</code> と近い読みやすさを持ちながら、 <code>forEach</code> にはできない <code>break</code> （繰り返しを途中で打ち切る）や <code>continue</code> （その回だけ処理を飛ばして次に進む）が使えるという特徴がある。</p>
+  <pre><code>for (const fruit of fruits){
+  if (fruit === "みかん"){
     continue; // みかんのときだけ表示をスキップ
   }
-  console.log(fruit);
+  console.log (fruit);
 }</code></pre>
 
   <h3>reduce: 配列全体を一つの値にまとめる</h3>
   <p><code>forEach</code> ・ <code>map</code> ・ <code>filter</code> に加えてもう一つ、配列を扱う上でよく登場するのが <code>reduce</code> である。配列の要素を先頭から順に一つの値へと集約していく。</p>
   <pre><code>const prices = [100, 200, 300];
 
-const total = prices.reduce((sum, price) => sum + price, 0);
-console.log(total); // 600</code></pre>
-  <p><code>reduce</code> は「それまでの集計結果 (<code>sum</code>) 」と「今見ている要素 (<code>price</code>) 」を受け取り、新しい集計結果を返す、という処理を配列の要素の数だけ繰り返す。最後の <code>0</code> は集計を開始する初期値である。<br>
+const total = prices.reduce((sum, price)=> sum + price, 0);
+console.log (total); // 600</code></pre>
+  <p><code>reduce</code> は「それまでの集計結果（ <code>sum</code> ）」と「今見ている要素（ <code>price</code> ）」を受け取り、新しい集計結果を返す、という処理を配列の要素の数だけ繰り返す。最後の <code>0</code> は集計を開始する初期値である。<br>
  <code>map</code> や <code>filter</code> に比べると理解に少し時間がかかる関数だが、「合計を出す」「最大値を探す」「配列をオブジェクトに変換する」など応用範囲が広く、覚えておくと便利である。最初は無理に使いこなそうとせず、必要になったときに読み返す形で構わない。</p>
 
   <h3>for 文と forEach/map は、どちらを使うべきか</h3>
   <p>「昔ながらの for 文」と「 forEach や map のような配列専用メソッド」のどちらを使うべきかは、状況によって答えが変わる論点である。<br>
- forEach や map は書く量が少なく、意図 ( 加工したいのか、絞り込みたいのか ) がコードの見た目からも伝わりやすいという利点がある。一方で、処理を途中で打ち切りたい場合 (<code>break</code> で繰り返しを中断する場合 ) や、配列以外のもの ( 数値を使った単純な繰り返しなど ) を扱う場合には、昔ながらの for 文の方が素直に書けることもある。<br>
+ forEach や map は書く量が少なく、意図（加工したいのか、絞り込みたいのか）がコードの見た目からも伝わりやすいという利点がある。一方で、処理を途中で打ち切りたい場合（ <code>break</code> で繰り返しを中断する場合）や、配列以外のもの（数値を使った単純な繰り返しなど）を扱う場合には、昔ながらの for 文の方が素直に書けることもある。<br>
 どちらか一方が常に正しいという話ではなく、目的に応じて選ぶものだと捉えておくとよいだろう。</p>
 
   <h3>while 文 : 条件が満たされる間ずっと繰り返す</h3>
   <p>繰り返す回数があらかじめ決まっていない場合には、 <code>while</code> 文が使われる。</p>
   <pre><code>let count = 0;
-while (count &lt; 3) {
+while (count &lt; 3){
   console.log(`カウント: ${count}`);
   count++;
 }</code></pre>
   <p><code>while</code> は「条件が true である間、ずっと繰り返す」という文である。<br>
-繰り返しの中で条件が変化する処理 ( たとえば <code>count++</code>) を書き忘れると、条件が永遠に true のままになり、ブラウザが固まってしまう「無限ループ」に陥る。開発者ツールのコンソールで試していて反応がなくなった場合は、タブごと閉じて作業をやり直すのが確実である。</p>
+繰り返しの中で条件が変化する処理（たとえば <code>count++</code> ）を書き忘れると、条件が永遠に true のままになり、ブラウザが固まってしまう「無限ループ」に陥る。開発者ツールのコンソールで試していて反応がなくなった場合は、タブごと閉じて作業をやり直すのが確実である。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>この章の内容は、実際に手を動かして「表示される回数」や「表示される中身」を目で確認しながら覚えるのが一番の近道である。<br>
 特に <code>map</code> と <code>filter</code> は、頭の中だけで結果を予想しようとせず、 <code>console.log()</code> で毎回結果を出力しながら試すことを強くおすすめする。何度も繰り返すうちに、配列に対して「加工したいのか、絞り込みたいのか、ただ処理したいだけなのか」を先に考えるくせがついてくる。</p>
   </div>
 
   <h3>今日の実習</h3>
-  <p>1 から 10 までの数値が入った配列を作り、 (1)for 文を使って偶数だけを <code>console.log()</code> で表示する、 (2) 同じことを <code>filter</code> を使って書き直す、の 2 通りを試してみよう。同じ結果になることを確認できたら、両者の書き方の違いを自分の言葉で説明できるか振り返ってみてほしい。<br>
+  <p>1 から 10 までの数値が入った配列を作り、（ 1) for 文を使って偶数だけを <code>console.log()</code> で表示する、（ 2 ）同じことを <code>filter</code> を使って書き直す、の 2 通りを試してみよう。同じ結果になることを確認できたら、両者の書き方の違いを自分の言葉で説明できるか振り返ってみてほしい。<br>
 余力があれば、同じ配列の合計値を <code>reduce</code> で求めることにも挑戦してみてほしい。</p>
 
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-4-1"><span class="fnsrc">"for...of," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of(2026 年 8 月閲覧 ) 。 ES2015 での導入について。</span><a href="#fnref-4-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-4-1"><span class="fnsrc">"for...of," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of (2026 年 8 月閲覧）。 ES2015 での導入について。</span><a href="#fnref-4-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -822,77 +807,77 @@ while (count &lt; 3) {
     <div class="acc-panel-inner">
   <h3>関数とは、名前のついた処理のまとまり</h3>
   <p>これまでの章で書いてきたコードは、上から下に 1 回だけ実行されるものだった。しかし実際のプログラムでは「同じ処理を、違う値で何度も使い回したい」という場面がよく出てくる。<br>
-そこで使うのが関数である。関数は「入力 ( 引数 ) を受け取り、何らかの処理をして、出力 ( 戻り値 ) を返す」というひとまとまりの処理に名前をつけたものである。</p>
-  <pre><code>function greet(name) {
+そこで使うのが関数である。関数は「入力（引数）を受け取り、何らかの処理をして、出力（戻り値）を返す」というひとまとまりの処理に名前をつけたものである。</p>
+  <pre><code>function greet (name){
   return `こんにちは、${name}さん`;
 }
 
-console.log(greet("田中")); // "こんにちは、田中さん"
-console.log(greet("佐藤")); // "こんにちは、佐藤さん"</code></pre>
-  <p><code>function</code> というキーワードで関数を定義し、 <code>( )</code> の中に受け取る値 ( 引数、この例では <code>name</code>) を書く。 <code>return</code> の後ろに書いた値が、関数を呼び出した側に返ってくる。<br>
+console.log (greet("田中")); // "こんにちは、田中さん"
+console.log (greet("佐藤")); // "こんにちは、佐藤さん"</code></pre>
+  <p><code>function</code> というキーワードで関数を定義し、 <code>()</code> の中に受け取る値（引数、この例では <code>name</code> ）を書く。 <code>return</code> の後ろに書いた値が、関数を呼び出した側に返ってくる。<br>
 一度定義してしまえば、 <code>greet("田中")</code> のように何度でも呼び出せる。</p>
 
   <h3>アロー関数という、もう一つの書き方</h3>
   <p>ES2015 以降の JavaScript では、関数を書くもう一つの方法として「アロー関数」という書き方も広く使われている <sup class="fnref" id="fnref-5-1"><a href="#fn-5-1">1 </a></sup>。</p>
   <pre><code>// 従来の書き方
-function add(a, b) {
+function add (a, b){
   return a + b;
 }
 
 // アロー関数
-const add2 = (a, b) => {
+const add2 =(a, b)=> {
   return a + b;
 };
 
 // 処理が1行で済むときは、さらに省略できる
-const add3 = (a, b) => a + b;</code></pre>
-  <p>前章の <code>map</code> や <code>filter</code> で <code>(fruit) =&gt; fruit.toUpperCase()</code> のように書いていたのが、まさにこのアロー関数である。短く書けることに加えて、配列メソッドに「その場で使い捨ての処理」を渡すような場面と相性がよいため、現在のコードでは非常によく見かける。</p>
-  <p>従来の <code>function</code> とアロー関数には、書き方の違い以外にも技術的な差 ( 関数の中で <code>this</code> という特別な値が指すものが異なる、など ) があるが、この差が問題になる場面はある程度 JavaScript に慣れてから遭遇するものである。この記事の段階では「同じようなことができる二つの書き方がある」という理解で十分で、まずはコードを読むときにどちらの形が出てきても戸惑わないことを目標にしよう。</p>
+const add3 =(a, b)=> a + b;</code></pre>
+  <p>前章の <code>map</code> や <code>filter</code> で <code>(fruit)=&gt; fruit.toUpperCase()</code> のように書いていたのが、まさにこのアロー関数である。短く書けることに加えて、配列メソッドに「その場で使い捨ての処理」を渡すような場面と相性がよいため、現在のコードでは非常によく見かける。</p>
+  <p>従来の <code>function</code> とアロー関数には、書き方の違い以外にも技術的な差（関数の中で <code>this</code> という特別な値が指すものが異なる、など）があるが、この差が問題になる場面はある程度 JavaScript に慣れてから遭遇するものである。この記事の段階では「同じようなことができる二つの書き方がある」という理解で十分で、まずはコードを読むときにどちらの形が出てきても戸惑わないことを目標にしよう。</p>
 
   <h3>引数のデフォルト値</h3>
   <p>関数を呼び出すときに値を渡さなかった場合の「デフォルト値」を、引数の宣言時に指定できる。</p>
-  <pre><code>function greet(name = "ゲスト") {
+  <pre><code>function greet (name = "ゲスト"){
   return `こんにちは、${name}さん`;
 }
 
-console.log(greet());       // "こんにちは、ゲストさん"
-console.log(greet("田中")); // "こんにちは、田中さん"</code></pre>
+console.log (greet());       // "こんにちは、ゲストさん"
+console.log (greet("田中")); // "こんにちは、田中さん"</code></pre>
 
   <h3>スコープ : 変数が「見える」範囲</h3>
   <p>関数の中で <code>let</code> や <code>const</code> で作った変数は、その関数の外からは見えない。この「変数が有効な範囲」のことをスコープと呼ぶ。</p>
-  <pre><code>function calculate() {
+  <pre><code>function calculate(){
   const result = 42;
-  console.log(result); // 42(関数の中からは見える)
+  console.log (result); // 42 （関数の中からは見える）
 }
 
 calculate();
-// console.log(result); // エラー:関数の外からresultは見えない</code></pre>
+// console.log (result); // エラー:関数の外からresultは見えない</code></pre>
   <p>スコープがあることで、それぞれの関数の中で自由に変数名をつけても、他の関数の変数とうっかり混ざってしまう心配がなくなる。 <code>let</code> と <code>const</code> は <code>{ }</code> で囲まれたブロックの範囲でスコープが区切られる「ブロックスコープ」という性質を持っており、これは if 文や for 文の <code>{ }</code> にもあてはまる <sup class="fnref" id="fnref-5-2"><a href="#fn-5-2">2 </a></sup>。</p>
 
   <h3>関数を値として渡す : 高階関数という考え方</h3>
-  <p>第 4 章で登場した <code>map</code> や <code>filter</code> は、 <code>( )</code> の中に関数そのものを渡していた。<br>
+  <p>第 4 章で登場した <code>map</code> や <code>filter</code> は、 <code>()</code> の中に関数そのものを渡していた。<br>
  JavaScript では関数を、数値や文字列と同じように「値の一種」として扱える。変数に入れることも、別の関数の引数として渡すこともできる。<br>
 このように「関数を受け取ったり返したりする関数」のことを高階関数と呼ぶ。</p>
-  <pre><code>function repeatTwice(task) {
+  <pre><code>function repeatTwice (task){
   task();
   task();
 }
 
-repeatTwice(() => console.log("こんにちは"));
+repeatTwice(()=> console.log("こんにちは"));
 // "こんにちは" が2回表示される</code></pre>
   <p><code>repeatTwice</code> は、引数として受け取った <code>task</code> という関数を、自分の中で 2 回呼び出しているだけである。何を 2 回実行するかは、呼び出す側が自由に決められる。<br>
-この「処理そのものを引数として渡す」という考え方は、 <code>map</code> ・ <code>filter</code> ・ <code>addEventListener</code>( 第 7 章 ) ・ <code>then</code>( 第 8 章 ) など、この先の章でも繰り返し登場する、 JavaScript らしい書き方の一つである。</p>
+この「処理そのものを引数として渡す」という考え方は、 <code>map</code> ・ <code>filter</code> ・ <code>addEventListener</code> （第 7 章）・ <code>then</code> （第 8 章）など、この先の章でも繰り返し登場する、 JavaScript らしい書き方の一つである。</p>
 
   <div class="column-box">
-    <span class="box-label">コラム ( 事実 ): 宣言する前に使うとどうなるか</span>
-    <p><code>let</code> や <code>const</code> で宣言した変数は、実際に宣言される行に到達するまでの間、その変数名自体は認識されているのに値を読み書きしようとするとエラーになる、という特殊な期間がある。この期間は「一時的な死角」を意味する「 Temporal Dead Zone(TDZ) 」と呼ばれている <sup class="fnref" id="fnref-5-3"><a href="#fn-5-3">3 </a></sup>。<br>
+    <span class="box-label">コラム（事実） : 宣言する前に使うとどうなるか</span>
+    <p><code>let</code> や <code>const</code> で宣言した変数は、実際に宣言される行に到達するまでの間、その変数名自体は認識されているのに値を読み書きしようとするとエラーになる、という特殊な期間がある。この期間は「一時的な死角」を意味する「 Temporal Dead Zone (TDZ ）」と呼ばれている <sup class="fnref" id="fnref-5-3"><a href="#fn-5-3">3 </a></sup>。<br>
 古い書き方の <code>var</code> では、宣言前に参照してもエラーにならず <code>undefined</code> が返ってくるため、両者は似ているようで挙動が異なる。実務でこの名称そのものを使う場面は多くないが、「宣言より前で <code>let</code>/<code>const</code> の変数を使おうとするとエラーになる」という現象自体はよく遭遇するので、覚えておくと役立つ。</p>
   </div>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>関数の名前のつけ方に少し時間をかけることをおすすめする。<br>
- <code>function f(x)</code> のような名前でも動作はするが、半年後の自分やチームメンバーが読んだときに「これは何をする関数か」が名前だけで伝わるようにしておくと、読み返すときの負担が大きく減る。 <code>calculateTotalPrice</code> や <code>isValidEmail</code> のように、「動詞 + 目的語」や「 is/has+ 状態」の形で名づけると意図が伝わりやすくなる、という慣習が広く使われている。</p>
+ <code>function f (x)</code> のような名前でも動作はするが、半年後の自分やチームメンバーが読んだときに「これは何をする関数か」が名前だけで伝わるようにしておくと、読み返すときの負担が大きく減る。 <code>calculateTotalPrice</code> や <code>isValidEmail</code> のように、「動詞 + 目的語」や「 is/has+ 状態」の形で名づけると意図が伝わりやすくなる、という慣習が広く使われている。</p>
   </div>
 
   <h3>今日の実習</h3>
@@ -901,9 +886,9 @@ repeatTwice(() => console.log("こんにちは"));
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-5-1"><span class="fnsrc">アロー関数の ES2015 導入について。 "Arrow function expressions," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions(2026 年 8 月閲覧 )</span><a href="#fnref-5-1" class="fnback">↩本文へ</a></li>
-      <li id="fn-5-2"><span class="fnsrc">"let - JavaScript," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let(2026 年 8 月閲覧 )</span><a href="#fnref-5-2" class="fnback">↩本文へ</a></li>
-      <li id="fn-5-3"><span class="fnsrc">同上、 MDN "let" ページ内 "Temporal dead zone (TDZ)" の項 (2026 年 8 月閲覧 )</span><a href="#fnref-5-3" class="fnback">↩本文へ</a></li>
+      <li id="fn-5-1"><span class="fnsrc">アロー関数の ES2015 導入について。 "Arrow function expressions," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions (2026 年 8 月閲覧）</span><a href="#fnref-5-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-5-2"><span class="fnsrc">"let - JavaScript," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let (2026 年 8 月閲覧）</span><a href="#fnref-5-2" class="fnback">↩本文へ</a></li>
+      <li id="fn-5-3"><span class="fnsrc">同上、 MDN "let" ページ内 "Temporal dead zone (TDZ)" の項（ 2026 年 8 月閲覧）</span><a href="#fnref-5-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -919,7 +904,7 @@ repeatTwice(() => console.log("こんにちは"));
   <div class="acc-panel">
     <div class="acc-panel-inner">
   <h3>DOM とは何か</h3>
-  <p>ブラウザは HTML ファイルを読み込むと、そのタグの入れ子構造をもとに「 DOM(Document Object Model) 」と呼ばれる、プログラムから操作できるオブジェクトの木構造を内部に作る。<br>
+  <p>ブラウザは HTML ファイルを読み込むと、そのタグの入れ子構造をもとに「 DOM (Document Object Model ）」と呼ばれる、プログラムから操作できるオブジェクトの木構造を内部に作る。<br>
  JavaScript から見たとき、 HTML の見出しや段落、ボタンなどは、 DOM というオブジェクトとして触れる対象になる。「ページの見た目や中身を JavaScript から書き換える」というのは、実際には「この DOM というオブジェクトを操作する」ことにほかならない。</p>
 
   <h3>要素を探す :querySelector</h3>
@@ -939,7 +924,7 @@ repeatTwice(() => console.log("こんにちは"));
   <pre><code>const titleEl = document.querySelector("#title");
 
 titleEl.textContent = "新しいタイトル";       // 文字だけを書き換える
-titleEl.style.color = "red";                  // 見た目(CSS)を直接書き換える</code></pre>
+titleEl.style.color = "red";                  // 見た目（CSS）を直接書き換える</code></pre>
   <p><code>textContent</code> は要素の中の文字だけを書き換える。<br>
  <code>innerHTML</code> という似たプロパティもあり、こちらは HTML タグを含んだ文字列をそのまま挿入できて便利だが、ユーザーが入力した文字列をそのまま <code>innerHTML</code> に代入すると、意図しないタグやスクリプトが実行されてしまう危険がある。表示するのが単なる文字列なら <code>textContent</code> を使い、 HTML タグを含む内容を挿入する必要がある場合だけ、その内容の出どころを十分に確認した上で <code>innerHTML</code> を使う、という使い分けが安全側の基本方針である。</p>
 
@@ -958,7 +943,7 @@ titleEl.style.color = "red";                  // 見た目(CSS)を直接書き�
   // messageEl.classList.toggle("highlight"); // あれば外す、なければ付ける
 &lt;/script&gt;</code></pre>
   <p>この方法の利点は、「何色にするか、どんな見た目にするか」というデザインの詳細は CSS 側にまとめておき、 JavaScript 側は「このクラスを付けるか外すか」という状態の切り替えだけに専念できることである。デザインを変更したくなったとき、 JavaScript のコードを触らず CSS だけ直せばよいという役割分担ができるため、 <code>style</code> を直接書き換える方法よりも保守しやすいとされることが多い書き方である。<br>
-とはいえ、動的に計算した値 ( たとえばマウスの位置に応じた座標 ) を反映するような場面では <code>style</code> を直接操作する方が自然な場合もあり、状況に応じて両方を使い分けることになる。</p>
+とはいえ、動的に計算した値（たとえばマウスの位置に応じた座標）を反映するような場面では <code>style</code> を直接操作する方が自然な場合もあり、状況に応じて両方を使い分けることになる。</p>
 
   <h3>新しい要素を作ってページに追加する</h3>
   <p>既にある要素を書き換えるだけでなく、新しい要素そのものを JavaScript で作り、ページに追加することもできる。</p>
@@ -966,7 +951,7 @@ titleEl.style.color = "red";                  // 見た目(CSS)を直接書き�
 
 const newItem = document.createElement("li");
 newItem.textContent = "パイナップル";
-list.appendChild(newItem);</code></pre>
+list.appendChild (newItem);</code></pre>
   <p><code>document.createElement()</code> で新しい要素を作り、 <code>textContent</code> などで中身を設定し、既存の要素に対して <code>appendChild()</code> で追加する、という 3 ステップである。この組み合わせは、一覧に項目を追加する機能など、実際の Web ページで非常によく使われるパターンである。</p>
 
   <h3>要素を消す・順番を変える</h3>
@@ -977,19 +962,19 @@ item.remove(); // その要素をページから取り除く
 const list = document.querySelector("#fruit-list");
 const firstItem = document.createElement("li");
 firstItem.textContent = "先頭に追加する要素";
-list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追加)</code></pre>
+list.prepend (firstItem); // 一覧の先頭に追加（appendChildは末尾に追加）</code></pre>
   <p><code>appendChild()</code> が要素の末尾に追加するのに対し、 <code>prepend()</code> は先頭に追加する。<br>
 要素を消したいときは、対象の要素を取得して <code>remove()</code> を呼び出すだけで済む。以前は親要素から <code>removeChild()</code> を呼び出す、少し回りくどい書き方が必要だったが、現在は <code>remove()</code> で直接消せるようになっている。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>DOM 操作は、本稿の中でも「動きが目に見えて楽しい」章である。<br>
-一方で、要素が見つからないときに <code>querySelector()</code> が <code>null</code> を返し、その <code>null</code> に対して <code>.textContent</code> のような操作をしようとしてエラーになる、というつまずきが非常に多いところでもある。エラーが出たら、まず「そもそも要素が見つかっているか」を <code>console.log(要素)</code> で確認するくせをつけておくと、原因の切り分けが早くなる。<br>
+一方で、要素が見つからないときに <code>querySelector()</code> が <code>null</code> を返し、その <code>null</code> に対して <code>.textContent</code> のような操作をしようとしてエラーになる、というつまずきが非常に多いところでもある。エラーが出たら、まず「そもそも要素が見つかっているか」を <code>console.log （要素）</code> で確認するくせをつけておくと、原因の切り分けが早くなる。<br>
 この点は次の第 9 章でも改めて扱う。</p>
   </div>
 
   <h3>今日の実習</h3>
-  <p>ボタンと空の <code>&lt;ul&gt;&lt;/ul&gt;</code> を持つ HTML ファイルを作り、ボタンの <code>id</code> を使って要素を取得し ( クリックイベントはまだ習っていないので、ここではコンソールから直接関数を呼び出す形で構わない ) 、 <code>&lt;li&gt;</code> 要素を一つ作って <code>&lt;ul&gt;</code> に追加する処理を書いてみよう。追加するたびにリストの項目が増えていく様子を確認できたら成功である。</p>
+  <p>ボタンと空の <code>&lt;ul&gt;&lt;/ul&gt;</code> を持つ HTML ファイルを作り、ボタンの <code>id</code> を使って要素を取得し（クリックイベントはまだ習っていないので、ここではコンソールから直接関数を呼び出す形で構わない）、 <code>&lt;li&gt;</code> 要素を一つ作って <code>&lt;ul&gt;</code> に追加する処理を書いてみよう。追加するたびにリストの項目が増えていく様子を確認できたら成功である。</p>
 
     </div>
   </div>
@@ -1011,11 +996,11 @@ list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追�
 &lt;script&gt;
   const button = document.querySelector("#my-button");
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click",()=> {
     alert("クリックされました");
   });
 &lt;/script&gt;</code></pre>
-  <p><code>addEventListener()</code> には「どんな種類の操作に反応するか ( この例では <code>"click"</code>) 」と「実際に反応したときに実行する処理 ( 関数 ) 」の二つを渡す。ボタンがクリックされるたびに、渡した関数がブラウザによって自動的に呼び出される仕組みである。</p>
+  <p><code>addEventListener()</code> には「どんな種類の操作に反応するか（この例では <code>"click"</code> ）」と「実際に反応したときに実行する処理（関数）」の二つを渡す。ボタンがクリックされるたびに、渡した関数がブラウザによって自動的に呼び出される仕組みである。</p>
 
   <h3>よく使うイベントの種類</h3>
   <table>
@@ -1026,7 +1011,7 @@ list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追�
     <tr><td><code>keydown</code></td><td> キーが押されたとき</td></tr>
     <tr><td><code>DOMContentLoaded</code></td><td>HTML の読み込みと解析が完了したとき</td></tr>
   </table>
-  <p><code>DOMContentLoaded</code> はページ全体に対して使うイベントで、「ページの中身 (DOM) が揃うまで待ってから、 JavaScript の処理を開始したい」という場面で使われる。 <code>&lt;script&gt;</code> タグを <code>&lt;head&gt;</code> 内に置く場合など、 DOM がまだ準備できていないタイミングでコードが実行されてしまう可能性がある構成では、このイベントで処理の開始を待つ書き方がよく使われる。</p>
+  <p><code>DOMContentLoaded</code> はページ全体に対して使うイベントで、「ページの中身（ DOM ）が揃うまで待ってから、 JavaScript の処理を開始したい」という場面で使われる。 <code>&lt;script&gt;</code> タグを <code>&lt;head&gt;</code> 内に置く場合など、 DOM がまだ準備できていないタイミングでコードが実行されてしまう可能性がある構成では、このイベントで処理の開始を待つ書き方がよく使われる。</p>
 
   <h3>入力値を受け取る</h3>
   <p>フォームの入力欄の値を取得するには、 <code>value</code> プロパティを使う。</p>
@@ -1039,24 +1024,24 @@ list.prepend(firstItem); // 一覧の先頭に追加(appendChildは末尾に追�
   const button = document.querySelector("#submit-button");
   const result = document.querySelector("#result");
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click",()=> {
     const name = input.value;
     result.textContent = `こんにちは、${name}さん`;
   });
 &lt;/script&gt;</code></pre>
-  <p>この例では、ボタンがクリックされた瞬間の <code>input.value</code>( 入力欄の中身 ) を読み取り、それをもとに別の要素の表示を書き換えている。「入力を受け取る」「加工する」「表示する」という 3 ステップは、フォームまわりの処理でくり返し登場する基本パターンである。</p>
+  <p>この例では、ボタンがクリックされた瞬間の <code>input.value</code> （入力欄の中身）を読み取り、それをもとに別の要素の表示を書き換えている。「入力を受け取る」「加工する」「表示する」という 3 ステップは、フォームまわりの処理でくり返し登場する基本パターンである。</p>
 
   <h3>フォームの送信を止める :preventDefault</h3>
   <p><code>&lt;form&gt;</code> タグは、通常は送信ボタンが押されるとページ全体が再読み込みされる。 JavaScript だけでその場の表示を切り替えたい場合、この標準の動きを止める必要がある。</p>
   <pre><code>const form = document.querySelector("#my-form");
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", (event)=> {
   event.preventDefault(); // ページの再読み込みを止める
-  console.log("フォームが送信されました(ページは再読み込みされません)");
+  console.log("フォームが送信されました（ページは再読み込みされません） ");
 });</code></pre>
-  <p>イベントに反応する関数の引数 ( この例での <code>event</code>) には、発生したイベントに関する情報がまとまって渡される。 <code>event.preventDefault()</code> は「このイベントが本来引き起こすはずだった標準の動作をキャンセルする」という命令で、フォームの <code>submit</code> イベント以外でも、リンクのクリックによるページ遷移を止めたい場合などに使われる。</p>
+  <p>イベントに反応する関数の引数（この例での <code>event</code> ）には、発生したイベントに関する情報がまとまって渡される。 <code>event.preventDefault()</code> は「このイベントが本来引き起こすはずだった標準の動作をキャンセルする」という命令で、フォームの <code>submit</code> イベント以外でも、リンクのクリックによるページ遷移を止めたい場合などに使われる。</p>
 
-  <h3>イベント委譲 :一つずつ登録するか、まとめて登録するか</h3>
+  <h3>イベント委譲 : 一つずつ登録するか、まとめて登録するか</h3>
   <p>一覧の項目それぞれにボタンがあり、どのボタンが押されても似た処理をしたい、という場面を考える。項目一つずつに <code>addEventListener()</code> を登録する方法のほかに、親要素一つだけにイベントを登録し、どの子要素が実際にクリックされたかを後から判定する「イベント委譲」という方法もよく使われる。</p>
   <pre><code>&lt;ul id="fruit-list"&gt;
   &lt;li&gt;りんご&lt;/li&gt;
@@ -1066,22 +1051,22 @@ form.addEventListener("submit", (event) => {
 &lt;script&gt;
   const list = document.querySelector("#fruit-list");
 
-  list.addEventListener("click", (event) => {
+  list.addEventListener("click", (event)=> {
     console.log(`クリックされたのは: ${event.target.textContent}`);
   });
 &lt;/script&gt;</code></pre>
-  <p><code>event.target</code> には、実際にクリックされた要素そのものが入る。 <code>&lt;ul&gt;</code> の中でどの <code>&lt;li&gt;</code> がクリックされても、そのクリックは親である <code>&lt;ul&gt;</code> まで伝わってくる ( これを「イベントのバブリング」と呼ぶ ) 性質を利用している。</p>
+  <p><code>event.target</code> には、実際にクリックされた要素そのものが入る。 <code>&lt;ul&gt;</code> の中でどの <code>&lt;li&gt;</code> がクリックされても、そのクリックは親である <code>&lt;ul&gt;</code> まで伝わってくる（これを「イベントのバブリング」と呼ぶ）性質を利用している。</p>
   <p>この方法には、要素の数が多いときにイベント登録の処理が 1 回で済むという利点や、後から <code>&lt;li&gt;</code> を動的に追加した場合でも、新しい要素に対して改めて <code>addEventListener()</code> を書き直す必要がないという利点がある。<br>
 一方で、素直に「それぞれの要素に直接登録する」方法の方が、コードを読んだときに「何が何に反応しているか」を追いやすいという見方もある。要素の数が少なく、後から動的に増減しない場面では、無理にイベント委譲を使わなくても構わない。</p>
 
   <div class="column-box">
-    <span class="box-label">コラム ( 事実 ):HTML 属性に直接書く onclick という古い方法</span>
-    <p>古い Web ページのソースでは、 <code>&lt;button onclick="doSomething()"&gt;</code> のように、 HTML タグの属性として直接 JavaScript の処理を書き込むスタイルもよく見かける。この書き方自体は今もブラウザで動くが、 HTML( 構造 ) と JavaScript( 振る舞い ) が同じ場所に混ざってしまい、規模が大きくなると管理が難しくなるため、現在は本章で紹介した <code>addEventListener()</code> を使い、 HTML と JavaScript のファイルを分離しておく書き方が広く好まれている。<br>
+    <span class="box-label">コラム（事実） :HTML 属性に直接書く onclick という古い方法</span>
+    <p>古い Web ページのソースでは、 <code>&lt;button onclick="doSomething()"&gt;</code> のように、 HTML タグの属性として直接 JavaScript の処理を書き込むスタイルもよく見かける。この書き方自体は今もブラウザで動くが、 HTML （構造）と JavaScript （振る舞い）が同じ場所に混ざってしまい、規模が大きくなると管理が難しくなるため、現在は本章で紹介した <code>addEventListener()</code> を使い、 HTML と JavaScript のファイルを分離しておく書き方が広く好まれている。<br>
 ただし、ごく小規模な検証用コードやプロトタイプで <code>onclick</code> 属性を手早く使うこと自体が誤りというわけではなく、目的に応じた判断である。</p>
   </div>
 
   <h3>今日の実習</h3>
-  <p>テキスト入力欄・ボタン・空の <code>&lt;ul&gt;</code> を用意し、「入力欄に文字を入れてボタンを押すと、その文字が新しい <code>&lt;li&gt;</code> としてリストに追加され、入力欄は空になる」というミニアプリを作ってみよう。前章の DOM 操作 (<code>createElement</code> ・ <code>appendChild</code>) と、本章のイベント処理を組み合わせる練習になる。</p>
+  <p>テキスト入力欄・ボタン・空の <code>&lt;ul&gt;</code> を用意し、「入力欄に文字を入れてボタンを押すと、その文字が新しい <code>&lt;li&gt;</code> としてリストに追加され、入力欄は空になる」というミニアプリを作ってみよう。前章の DOM 操作（ <code>createElement</code> ・ <code>appendChild</code> ）と、本章のイベント処理を組み合わせる練習になる。</p>
 
     </div>
   </div>
@@ -1097,12 +1082,12 @@ form.addEventListener("submit", (event) => {
     <div class="acc-panel-inner">
   <h3>「時間がかかる処理」をどう扱うか</h3>
   <p>これまでのコードはすべて、上から下へ順番に、しかも一瞬で実行される前提で書かれていた。しかし実際の Web ページでは「サーバーにデータを問い合わせて、返ってくるまで待つ」といった、時間のかかる処理がよく登場する。<br>
-このとき、返事が返ってくるまでブラウザ全体の動きを止めてしまう ( ボタンも押せない、画面もスクロールできない ) のは、多くの場合望ましくない。そこで JavaScript には「時間のかかる処理を裏側で進めておいて、終わったら結果を受け取る」という非同期処理の仕組みが用意されている。</p>
+このとき、返事が返ってくるまでブラウザ全体の動きを止めてしまう（ボタンも押せない、画面もスクロールできない）のは、多くの場合望ましくない。そこで JavaScript には「時間のかかる処理を裏側で進めておいて、終わったら結果を受け取る」という非同期処理の仕組みが用意されている。</p>
   <p>もっとも単純な例が <code>setTimeout()</code> である。</p>
   <pre><code>console.log("1番目");
 
-setTimeout(() => {
-  console.log("3番目(2秒後)");
+setTimeout(()=> {
+  console.log("3番目（2秒後） ");
 }, 2000);
 
 console.log("2番目");</code></pre>
@@ -1111,27 +1096,27 @@ console.log("2番目");</code></pre>
 
   <h3>Promise という「結果の予約券」</h3>
   <p>非同期処理の結果を扱いやすくするための仕組みが Promise である。 Promise は 2015 年の ES2015 で標準化された機能で <sup class="fnref" id="fnref-8-1"><a href="#fn-8-1">1 </a></sup>、「今はまだ結果がないが、いずれ成功か失敗の結果が届く」という状態を表すオブジェクトである。<br>
-よく「レストランの順番待ちの呼び出しベル」にたとえられる。ベルを受け取った時点では料理はまだできていないが、「いずれ鳴る」ことが約束されていて、鳴ったら結果 ( 料理 ) を受け取れる。</p>
-  <pre><code>function waitAndGreet() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
+よく「レストランの順番待ちの呼び出しベル」にたとえられる。ベルを受け取った時点では料理はまだできていないが、「いずれ鳴る」ことが約束されていて、鳴ったら結果（料理）を受け取れる。</p>
+  <pre><code>function waitAndGreet(){
+  return new Promise((resolve)=> {
+    setTimeout(()=> {
       resolve("お待たせしました");
     }, 1000);
   });
 }
 
-waitAndGreet().then((message) => {
-  console.log(message); // 1秒後に "お待たせしました"
+waitAndGreet().then((message)=> {
+  console.log (message); // 1秒後に "お待たせしました"
 });</code></pre>
-  <p><code>.then()</code> に渡した関数は、 Promise の処理が成功したときに、その結果 ( この例では <code>"お待たせしました"</code>) を受け取って呼び出される。</p>
+  <p><code>.then()</code> に渡した関数は、 Promise の処理が成功したときに、その結果（この例では <code>"お待たせしました"</code> ）を受け取って呼び出される。</p>
 
   <h3>async/await:Promise をもっと読みやすく書く</h3>
   <p><code>.then()</code> を使った書き方は、非同期処理が何段階も連なると読みにくくなりがちである。<br>
 そこで 2017 年の ES2017 で追加されたのが <code>async</code>/<code>await</code> という書き方である <sup class="fnref" id="fnref-8-2"><a href="#fn-8-2">2 </a></sup>。これを使うと、同じ処理を見た目上ほとんど「上から下に順番に書いたコード」のように書ける。</p>
-  <pre><code>async function main() {
+  <pre><code>async function main(){
   console.log("処理を開始します");
   const message = await waitAndGreet(); // ここで結果が届くまで待つ
-  console.log(message);
+  console.log (message);
   console.log("処理を終了します");
 }
 
@@ -1141,24 +1126,24 @@ main();</code></pre>
 
   <h3>fetch() でサーバーからデータを取得する</h3>
   <p>非同期処理がもっとも活躍する場面の一つが、サーバーとの通信である。<br>
-ブラウザに標準で備わっている <code>fetch()</code> という関数を使うと、指定した URL にリクエストを送り、返ってきたデータを扱える。 <code>fetch()</code> は WHATWG という標準化団体が策定する仕様 (Fetch Standard) で定義されており、 2015 年前後から主要ブラウザに順次実装された <sup class="fnref" id="fnref-8-3"><a href="#fn-8-3">3 </a></sup>。</p>
-  <pre><code>async function loadData() {
+ブラウザに標準で備わっている <code>fetch()</code> という関数を使うと、指定した URL にリクエストを送り、返ってきたデータを扱える。 <code>fetch()</code> は WHATWG という標準化団体が策定する仕様（ Fetch Standard ）で定義されており、 2015 年前後から主要ブラウザに順次実装された <sup class="fnref" id="fnref-8-3"><a href="#fn-8-3">3 </a></sup>。</p>
+  <pre><code>async function loadData(){
   const response = await fetch("https://example.com/api/data");
   const data = await response.json(); // JSON形式のデータを取り出す
-  console.log(data);
+  console.log (data);
 }
 
 loadData();</code></pre>
-  <p><code>fetch()</code> は最初にリクエストを送った時点でのレスポンス ( 通信の応答 ) を Promise として返し、続けて <code>response.json()</code> で、その中身を JavaScript のオブジェクトとして取り出している。ここで登場する「 JSON 」というデータ形式については、次章で改めて扱う。</p>
+  <p><code>fetch()</code> は最初にリクエストを送った時点でのレスポンス（通信の応答）を Promise として返し、続けて <code>response.json()</code> で、その中身を JavaScript のオブジェクトとして取り出している。ここで登場する「 JSON 」というデータ形式については、次章で改めて扱う。</p>
 
   <h3>非同期処理の中でエラーに備える</h3>
   <p>通信が失敗したり、サーバーがエラーを返したりする可能性は常にある。 <code>async</code>/<code>await</code> を使ったコードでエラーに備えるときは、次章で扱う <code>try</code>/<code>catch</code> をそのまま組み合わせられる。</p>
-  <pre><code>async function loadData() {
+  <pre><code>async function loadData(){
   try {
     const response = await fetch("https://example.com/api/data");
     const data = await response.json();
-    console.log(data);
-  } catch (error) {
+    console.log (data);
+  } catch (error){
     console.log("読み込みに失敗しました:", error.message);
   }
 }</code></pre>
@@ -1166,17 +1151,17 @@ loadData();</code></pre>
 
   <h3>複数の非同期処理を同時に進める :Promise.all</h3>
   <p><code>await</code> を複数回、上から順番に書くと、一つ目が終わってから二つ目が始まる、という具合に処理が直列に進む。互いに関係のない複数の非同期処理を同時に進めたい場合は、 <code>Promise.all()</code> を使うと、すべてが終わるのを一度に待てる。</p>
-  <pre><code>async function loadAll() {
+  <pre><code>async function loadAll(){
   const [users, posts] = await Promise.all([
-    fetch("https://example.com/api/users").then((r) => r.json()),
-    fetch("https://example.com/api/posts").then((r) => r.json())
+    fetch("https://example.com/api/users").then((r)=> r.json()),
+    fetch("https://example.com/api/posts").then((r)=> r.json())
   ]);
-  console.log(users, posts);
+  console.log (users, posts);
 }</code></pre>
   <p>二つの <code>fetch</code> を順番に <code>await</code> すると、待ち時間が単純に足し算されてしまうが、 <code>Promise.all()</code> でまとめて渡すと、両方を同時に進めておいて、両方とも終わった時点で先に進める。すべての非同期処理を <code>Promise.all()</code> にすればよいわけではなく、「二つ目の処理が一つ目の結果を必要とする」場合には、そのまま順番に <code>await</code> する書き方が必要になる。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>非同期処理は、本稿の中でもっともつまずきやすいところだと感じる方が多い章である。<br>
 「なぜ結果がすぐ返ってこないのか」「 <code>await</code> を書き忘れるとどうなるか」といったことは、説明を読むだけでなく実際に <code>console.log()</code> を複数箇所に仕込んで、処理がどの順番で実行されているかを自分の目で追いかけると理解が進みやすくなる。一度ですべてを飲み込もうとせず、今日は「時間のかかる処理は、先に進んでおいて後から結果を受け取る」という大枠だけ持ち帰れば十分である。</p>
   </div>
@@ -1187,9 +1172,9 @@ loadData();</code></pre>
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-8-1"><span class="fnsrc">"Promise," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise(2026 年 8 月閲覧 ) 。 ES2015 での導入について。</span><a href="#fnref-8-1" class="fnback">↩本文へ</a></li>
-      <li id="fn-8-2"><span class="fnsrc">async/await の ES2017 導入について、複数の技術記事による確認 ( 二次情報 ) 。例 :"Using ES2017 Async Functions," CSS-Tricks. https://css-tricks.com/using-es2017-async-functions/(2026 年 8 月閲覧 )</span><a href="#fnref-8-2" class="fnback">↩本文へ</a></li>
-      <li id="fn-8-3"><span class="fnsrc">"Fetch Standard," WHATWG. https://fetch.spec.whatwg.org/(2026 年 8 月閲覧、一次情報 ) 。ブラウザ対応時期について :"Fetch API," MDN Web Docs および caniuse.com "fetch API" のデータ (Chrome 42 、 Firefox 39 、 Safari 10.1 などから対応開始 ) 。</span><a href="#fnref-8-3" class="fnback">↩本文へ</a></li>
+      <li id="fn-8-1"><span class="fnsrc">"Promise," MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise (2026 年 8 月閲覧）。 ES2015 での導入について。</span><a href="#fnref-8-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-8-2"><span class="fnsrc">async/await の ES2017 導入について、複数の技術記事による確認（二次情報）。例 :"Using ES2017 Async Functions," CSS-Tricks. https://css-tricks.com/using-es2017-async-functions/(2026 年 8 月閲覧）</span><a href="#fnref-8-2" class="fnback">↩本文へ</a></li>
+      <li id="fn-8-3"><span class="fnsrc">"Fetch Standard," WHATWG. https://fetch.spec.whatwg.org/(2026 年 8 月閲覧、一次情報）。ブラウザ対応時期について :"Fetch API," MDN Web Docs および caniuse.com "fetch API" のデータ（ Chrome 42 、 Firefox 39 、 Safari 10.1 などから対応開始）。</span><a href="#fnref-8-3" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -1219,8 +1204,8 @@ loadData();</code></pre>
   <h3>開発者ツールを使いこなす</h3>
   <p>第 1 章で開いた開発者ツールには、コンソール以外にも便利な機能がいくつもある。</p>
   <ul>
-    <li><strong>Elements パネル ( 要素の検証 )</strong>: 現在のページの DOM 構造を直接見たり、その場で書き換えて見た目の変化を試したりできる。 CSS がどう適用されているかもここで確認できる。</li>
-    <li><strong>Console パネル </strong>:<code>console.log()</code> の出力先であると同時に、その場で JavaScript を直接実行できる場所でもある。エラーが起きたときは、赤字でエラーメッセージとスタック ( どの関数からどの関数が呼び出されて、どこでエラーになったかの経路 ) が表示される。</li>
+    <li><strong>Elements パネル（要素の検証）</strong> : 現在のページの DOM 構造を直接見たり、その場で書き換えて見た目の変化を試したりできる。 CSS がどう適用されているかもここで確認できる。</li>
+    <li><strong>Console パネル </strong>:<code>console.log()</code> の出力先であると同時に、その場で JavaScript を直接実行できる場所でもある。エラーが起きたときは、赤字でエラーメッセージとスタック（どの関数からどの関数が呼び出されて、どこでエラーになったかの経路）が表示される。</li>
     <li><strong>Sources パネル </strong>: 実際に読み込まれている <code>.js</code> ファイルの中身を表示し、特定の行に「ブレークポイント」を置いて、そこで処理を一時停止させながら変数の中身を一つずつ確認できる。</li>
     <li><strong>Network パネル </strong>: 前章の <code>fetch()</code> のような通信が、どの URL に対して、どんなデータをやり取りしているかを確認できる。</li>
   </ul>
@@ -1230,26 +1215,26 @@ loadData();</code></pre>
   <p>エラーが起きる可能性がある処理を、あらかじめ「エラーが起きても止まらないように」書いておくこともできる。</p>
   <pre><code>try {
   const data = JSON.parse("これは正しいJSONではない");
-  console.log(data);
-} catch (error) {
+  console.log (data);
+} catch (error){
   console.log("データの読み込みに失敗しました:", error.message);
 }</code></pre>
-  <p><code>try</code> の中に書いた処理でエラーが発生すると、そこで処理が中断され、 <code>catch</code> の中の処理に切り替わる。特に外部から届くデータを扱う場面 ( たとえば前章の <code>fetch()</code> で取得したデータの形式が想定と違った場合など ) では、 try/catch でエラーに備えておくことで、アプリ全体が予期せず止まってしまう事態を避けられる。</p>
+  <p><code>try</code> の中に書いた処理でエラーが発生すると、そこで処理が中断され、 <code>catch</code> の中の処理に切り替わる。特に外部から届くデータを扱う場面（たとえば前章の <code>fetch()</code> で取得したデータの形式が想定と違った場合など）では、 try/catch でエラーに備えておくことで、アプリ全体が予期せず止まってしまう事態を避けられる。</p>
 
   <h3>JSON:JavaScript からも他の言語からも読み書きしやすいデータ形式</h3>
-  <p>前章の <code>response.json()</code> や、上のコード例に出てきた <code>JSON.parse()</code> で触れている JSON(JavaScript Object Notation) は、データをやり取りするための軽量なテキスト形式である。名前の通り JavaScript のオブジェクトの書き方をもとにしているが、現在では JavaScript 以外の多くのプログラミング言語でも読み書きできる、事実上の共通フォーマットとして使われている。<br>
-この形式は 2000 年代初頭に Douglas Crockford 氏によって整理され、 json.org というサイトで仕様として公開されたのが始まりとされ、 2006 年にはインターネット標準の一つ (RFC 4627) として正式に仕様化された <sup class="fnref" id="fnref-9-1"><a href="#fn-9-1">1 </a></sup>。</p>
+  <p>前章の <code>response.json()</code> や、上のコード例に出てきた <code>JSON.parse()</code> で触れている JSON (JavaScript Object Notation ）は、データをやり取りするための軽量なテキスト形式である。名前の通り JavaScript のオブジェクトの書き方をもとにしているが、現在では JavaScript 以外の多くのプログラミング言語でも読み書きできる、事実上の共通フォーマットとして使われている。<br>
+この形式は 2000 年代初頭に Douglas Crockford 氏によって整理され、 json.org というサイトで仕様として公開されたのが始まりとされ、 2006 年にはインターネット標準の一つ（ RFC 4627 ）として正式に仕様化された <sup class="fnref" id="fnref-9-1"><a href="#fn-9-1">1 </a></sup>。</p>
   <pre><code>const jsonText = '{"name": "田中", "age": 34}';
 
-const obj = JSON.parse(jsonText);   // JSON文字列 → JavaScriptのオブジェクト
-console.log(obj.name);              // "田中"
+const obj = JSON.parse (jsonText);   // JSON文字列 → JavaScriptのオブジェクト
+console.log (obj.name);              // "田中"
 
-const backToText = JSON.stringify(obj); // JavaScriptのオブジェクト → JSON文字列
-console.log(backToText);</code></pre>
+const backToText = JSON.stringify (obj); // JavaScriptのオブジェクト → JSON文字列
+console.log (backToText);</code></pre>
   <p><code>JSON.parse()</code> と <code>JSON.stringify()</code> は対になる関数で、「テキストとオブジェクトを行き来させる」役割を持っている。サーバーとブラウザの間でデータをやり取りするとき、多くの場合この JSON 形式に変換してから送受信が行われる。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>エラーに遭遇したとき、エラーメッセージ全文をそのまま AI のコーディング支援に貼り付けて質問するのは、非常に効率のよい使い方だと感じる。ただし、その回答をそのまま貼り付けて終わりにするのではなく、「なぜそのエラーが起きたのか」の説明部分だけは自分の言葉で言い直せるかを、一呼吸置いて確認してみてほしい。<br>
 この一手間が、次に似たエラーに 1 人で遭遇したときの対応力につながる。</p>
   </div>
@@ -1260,7 +1245,7 @@ console.log(backToText);</code></pre>
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-9-1"><span class="fnsrc">JSON の成立史について複数の技術記事による確認 ( 二次情報 ) 。例 :"The History of JSON and the People That Created It," HackerNoon. https://hackernoon.com/the-history-of-json-and-the-people-that-created-it(2026 年 8 月閲覧 ) 。 RFC 4627(2006 年 ) は IETF による一次情報。</span><a href="#fnref-9-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-9-1"><span class="fnsrc">JSON の成立史について複数の技術記事による確認（二次情報）。例 :"The History of JSON and the People That Created It," HackerNoon. https://hackernoon.com/the-history-of-json-and-the-people-that-created-it (2026 年 8 月閲覧）。 RFC 4627 (2006 年）は IETF による一次情報。</span><a href="#fnref-9-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>
@@ -1276,15 +1261,15 @@ console.log(backToText);</code></pre>
   <div class="acc-panel">
     <div class="acc-panel-inner">
   <h3>ファイルを分割する :ES Modules</h3>
-  <p>第 1 章で「 HTML と JavaScript をファイルとして分ける」話をしたが、 JavaScript のコード自体も、規模が大きくなれば複数のファイルに分けたくなる。そのための標準の仕組みが ES Modules(<code>import</code>/<code>export</code>) である。</p>
+  <p>第 1 章で「 HTML と JavaScript をファイルとして分ける」話をしたが、 JavaScript のコード自体も、規模が大きくなれば複数のファイルに分けたくなる。そのための標準の仕組みが ES Modules(<code>import</code>/<code>export</code> ）である。</p>
   <pre><code>// math.js
-export function add(a, b) {
+export function add (a, b){
   return a + b;
 }
 
 // main.js
 import { add } from "./math.js";
-console.log(add(2, 3)); // 5</code></pre>
+console.log (add (2, 3)); // 5</code></pre>
   <p>使う側は <code>&lt;script&gt;</code> タグに <code>type="module"</code> を指定する。</p>
   <pre><code>&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
   <p>この仕組みの文法自体は ES2015 で定義されたが、ブラウザが実際に <code>&lt;script type="module"&gt;</code> を解釈できるようになったのは少し遅れて、 2017 年前後のことである。当時の Web 開発者向けの技術記事によれば、 2017 年 3 月にリリースされた Safari 10.1 が先陣を切り、同年のうちに Chrome ・ Firefox ・ Edge も追随したと報告されている <sup class="fnref" id="fnref-10-1"><a href="#fn-10-1">1 </a></sup>。<br>
@@ -1292,8 +1277,8 @@ console.log(add(2, 3)); // 5</code></pre>
   <p>モジュールに分けることで、「一つのファイルに全部書く」状態から抜け出し、機能ごとにファイルを整理できる。この先、複数人でのチーム開発や、外部のライブラリを取り込む場面では、ほぼ前提として登場する考え方である。</p>
 
   <h3>フレームワークという選択肢</h3>
-  <p>ここまでの 10 日間で学んだのは、いわば「素の JavaScript(Vanilla JS) 」と呼ばれる、追加の道具立てなしの基本文法である。<br>
-実際の大規模な Web サービス開発では、 React ・ Vue ・ Svelte といった「フレームワーク」または「ライブラリ」と呼ばれる仕組みを使うことが多くある。これらは、 DOM 操作 ( 第 6 章 ) やイベント処理 ( 第 7 章 ) を、より効率的に、大規模なアプリケーションでも破綻しにくい形で書けるようにするための道具である。</p>
+  <p>ここまでの 10 日間で学んだのは、いわば「素の JavaScript (Vanilla JS ）」と呼ばれる、追加の道具立てなしの基本文法である。<br>
+実際の大規模な Web サービス開発では、 React ・ Vue ・ Svelte といった「フレームワーク」または「ライブラリ」と呼ばれる仕組みを使うことが多くある。これらは、 DOM 操作（第 6 章）やイベント処理（第 7 章）を、より効率的に、大規模なアプリケーションでも破綻しにくい形で書けるようにするための道具である。</p>
   <p>「フレームワークを使うべきか、素の JavaScript のままでよいか」は、プロジェクトの規模や目的によって答えが変わる論点で、どちらか一方が常に正解というものではない。<br>
 小規模なページの部分的な演出や、学習目的であれば、素の JavaScript のままで十分に目的を達成できる。一方で、画面の状態が複雑に絡み合う大規模なアプリケーションを複数人で開発する場合には、フレームワークが提供する「決まったパターンに沿って書く」という制約が、コードの見通しや保守性を保つ助けになる。<br>
 逆にフレームワークには、学習コストや、ビルドツールなど周辺環境の準備が必要になるという負担もある。本稿で身につけた変数・関数・ DOM ・イベント・非同期処理の知識は、どのフレームワークを選ぶ場合であっても土台として必要になるものなので、遠回りにはならない。</p>
@@ -1304,7 +1289,7 @@ console.log(add(2, 3)); // 5</code></pre>
 そうした場面で、コードの構造を自分でも読み解けることは、 AI への質問の精度を上げ、遠回りを減らすことにつながる。本稿で得た「読む力」は、 AI に頼らず全部自分で書けるようになることそのものよりも、 AI との共同作業をより効果的にすることに、より直接役立つはずである。</p>
 
   <div class="tip-box">
-    <span class="box-label">アドバイス ( 筆者の見解 )</span>
+    <span class="box-label">アドバイス（筆者の見解）</span>
     <p>この先の学習をどう続けるかについて、一つだけ提案する。<br>
 新しい文法や機能を次々と追いかけるより、この 10 日間で作った小さなサンプルたちを、少しずつ改造してみることをおすすめする。第 7 章で作ったミニアプリにボタンを一つ増やしてみる、第 6 章の一覧にスタイルを足してみる、といった小さな改造の積み重ねが、体系立った知識よりも先に、実務での「手が動く感覚」を育ててくれる。</p>
   </div>
@@ -1318,7 +1303,7 @@ console.log(add(2, 3)); // 5</code></pre>
   <section class="footnotes">
     <h4>脚注</h4>
     <ol>
-      <li id="fn-10-1"><span class="fnsrc">Jake Archibald, "ES modules in browsers," jakearchibald.com, 2017 年 5 月 2 日 . https://jakearchibald.com/2017/es-modules-in-browsers/(2026 年 8 月閲覧、著者は Google Chrome チームの開発者による実務ブログのため実装状況の一次的な観測記録として扱う )</span><a href="#fnref-10-1" class="fnback">↩本文へ</a></li>
+      <li id="fn-10-1"><span class="fnsrc">Jake Archibald, "ES modules in browsers," jakearchibald.com, 2017 年 5 月 2 日 . https://jakearchibald.com/2017/es-modules-in-browsers/(2026 年 8 月閲覧、著者は Google Chrome チームの開発者による実務ブログのため実装状況の一次的な観測記録として扱う）</span><a href="#fnref-10-1" class="fnback">↩本文へ</a></li>
     </ol>
   </section>
     </div>

@@ -193,7 +193,7 @@
 
 - 複数の章(`第 N 章` 等の見出し単位)を持つ長文記事は、本文をアコーディオン(開閉式)にする。これはディレクトリ内の大半の記事がすでに採用している標準仕様であり、新規作成時は最初から適用する。単一の短い記事(章立てのないエッセイ等)には適用しなくてよい。
 - 実装(次の構造・クラス名を用いる):
-  - 本文冒頭(ヒーローの直後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll" type="button">すべて開く</button><button id="collapseAll" type="button">すべて閉じる</button></div></div>` 。導入・前書きにあたる文章も裸で置かず、`序` などの章にしてアコーディオンに入れる(ツールバーより前に本文を置かない)。
+  - 本文冒頭(ヒーローの直後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll" type="button">すべて開く</button><button id="collapseAll" type="button">すべて閉じる</button></div></div>` 。導入・前書きにあたる文章も裸で置かず、`序` などの章にしてアコーディオンに入れる(ツールバーより前に本文を置かない)。例外は「注記・補足のボックス」の `.caveat` と `.toc-note` だけで、これらは本文ではないのでツールバーの直前に置く。
   - 続けて `<div id="accordion">` の中に、章ごとの `<section class="acc-item" id="secN" data-acc>` を並べる。出典・付録の章も同様にアコーディオン項目にする。
   - 各項目の内部は `<button class="acc-header" data-acc-toggle><span class="num">N</span><span class="title">見出し文</span><svg class="chev">…</svg></button>` + `<div class="acc-panel"><div class="acc-panel-inner">…本文…</div></div>` 。見出し文からは「第 N 章」などの接頭辞を外し、`.num` バッジ側だけに短く表示する(例: `0` 、`1` 、`終` 、`付録` )。
   - 開閉状態は `.acc-item` に付け外しする **`open` クラス**で表す。`<details>` 要素や `open` 属性は使わない。
@@ -325,6 +325,105 @@
   - `OPEN_SCROLL_DELAY` はパネルの開き切り(`.35s`)より少し長く取る。開き切る前にスクロールすると、移動先の位置が途中でずれる。
   - 脚注リンクは `document` 上の一つのリスナーで拾う(個々の `a` に付けない)。閉じたパネル内のリンクにも同じ処理が効く。
 - 対象外: 「本文コンテナの横幅」のルールと同様、この機構は記事本文の章構成に関するものであり、独立した短い記事(手順書・単発コラム等)にまで強制しない。
+
+## 注記・補足のボックス
+
+本文とは別の階層で読者に語りかける短い囲みは、次の三つに限る。役割が違うので、同じ見た目に別名を与えない。三つのどれにも当てはまらない文章は、囲みではなく章の本文として書く。
+
+| クラス | 役割 | 置く場所 | 見た目 |
+| --- | --- | --- | --- |
+| `.pause` | 章の途中でいったん本文の流れを止め、読者に問いかける。脇道の補足にも使う | 章のパネル内(`.acc-panel-inner` の中)、段落の合間。1 章に 1 〜 2 個まで | 破線の角丸枠。枠線に食い込む位置に小さなラベル |
+| `.caveat` | 記事全体の前提・方法・限界の断り書き。`【…】` で始める | ツールバーの直前。記事に 1 つだけ | 実線の枠 + 左端にアクセント色の太罫 |
+| `.toc-note` | 読み方の一行案内(開閉操作の説明、続編である旨など) | ツールバーの直前。記事に 1 つだけ | 枠なし・中央寄せの弱い文字 |
+
+- 「長文記事のアコーディオン機構」の「ツールバーより前に本文を置かない」に対する唯一の例外が `.caveat` と `.toc-note` である。どちらも本文ではなく記事の読み方に関する断り書きなので、章に入れずツールバーの直前に置く。両方を置く記事では `.caveat` を先にする。
+- `.pause` は章の中身なので、必ずアコーディオンのパネル内に置く。ツールバーより前には置かない。
+- 導入・前書きにあたる文章をこれらの囲みで代用しない。前書きは `序` などの章にしてアコーディオンに入れる。
+
+### マークアップ
+
+      <p class="toc-note">気になる章をタップするとそこが開く。</p>
+      <div class="caveat"><p>【方法と限界】本稿では…を区別する。</p></div>
+
+      <!-- 章のパネル内 -->
+      <div class="pause"><p>最後に自分自身に驚いたのは、いつだっただろうか。</p></div>
+
+- `.pause` と `.caveat` は `<div>` で包み、中に `<p>` を置く。字下げと行間をこの `<p>` に対して個別に指定するため、囲み自体に本文を直接書かない。
+- `.toc-note` は一行なので `<p>` 単体に付ける。
+
+### CSS
+
+      .pause{
+        margin:2em 0 0;
+        padding:24px;
+        background:var(--pause-bg);
+        border:2px dashed var(--pause-border);
+        border-radius:16px;
+        position:relative;
+        box-shadow:0 4px 12px color-mix(in srgb, var(--pause-border) 16%, transparent);
+      }
+      .pause::before{
+        content:"ひと休み";
+        position:absolute;
+        top:-10px;
+        left:20px;
+        background:var(--pause-bg);
+        padding:0 8px;
+        font-weight:700;
+        letter-spacing:.05em;
+        color:var(--pause-ink);
+      }
+      .pause p{
+        margin:0;
+        text-indent:0;
+        color:var(--pause-ink);
+        font-weight:600;
+        line-height:1.6;
+      }
+
+      .caveat{
+        margin:0 0 26px;
+        padding:16px 20px;
+        background:var(--note-bg);
+        border:1px solid var(--line);
+        border-left:3px solid var(--accent);
+        border-radius:8px;
+      }
+      .caveat p{
+        margin:0;
+        text-indent:0;
+        color:var(--sub);
+        line-height:1.85;
+      }
+
+      .toc-note{
+        margin:0 0 26px;
+        text-align:center;
+        color:var(--sub);
+        line-height:1.85;
+        text-indent:0;
+      }
+
+      @media (max-width:600px){
+        .pause{padding:20px 16px}
+      }
+
+- 三つとも `font-size` を書かない。「本文フォント」の統一ブロックがすべて 1rem に上書きするため、ここでの指定は効かない。
+- `.pause` の `::before` のラベル文字列は記事に合わせて決める(「ひと休み」「メモ」など)。同じ記事の中では 1 種類に統一する。
+
+### 変数
+
+- `.caveat` と `.toc-note` は「配色」の標準語彙だけで足りる(`--note-bg` `--line` `--accent` `--sub`)。新しい変数を足さない。
+- `.pause` にだけ専用の三つを `:root` に足す。標準値は次のとおり(色相は記事の基調に合わせて変えてよい)。
+
+      :root{ --pause-bg:#fff8e1; --pause-border:#ffca28; --pause-ink:#6d4c00; }
+      @media (prefers-color-scheme: dark){
+        :root{ --pause-bg:#332b12; --pause-ink:#e6c375; }
+      }
+
+  - ラベルと本文はどちらも `--pause-ink` を使う。枠線色 `--pause-border` を文字色に流用しない。枠線として成立する明るさの色は、同系の淡い背景の上ではコントラストが 1.5:1 程度まで落ち、ラベルがほとんど読めなくなる。
+  - `--pause-border` はダーク側で据え置いてよい(枠線は暗い背景の上でもそのまま成立する)。`--pause-bg` と `--pause-ink` は反転させる。
+- 新規作成する記事は最初からこの形式で書く。既存記事を編集する際に気づいたら合わせて直す。
 
 ## 句点位置での改行(意味のまとまりごとの区切り)
 

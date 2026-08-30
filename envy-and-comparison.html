@@ -12,8 +12,8 @@
     --bg:#faf8f5;
     --paper:#ffffff;
     --ink:#2a2622;
-    --sub:#5c564e;
-    --muted:#8b8478;
+    --sub:#524d46;
+    --muted:#7a7369;
     --accent:#a13d2f;
     --accent-soft:#c8735f;
     --line:#e5ddd0;
@@ -32,8 +32,8 @@
       --bg:#1b1815;
       --paper:#242019;
       --ink:#ece6db;
-      --sub:#b9b0a0;
-      --muted:#847b6c;
+      --sub:#bcb3a4;
+      --muted:#918879;
       --accent:#e08a6f;
       --accent-soft:#c8735f;
       --line:#3a352c;
@@ -85,6 +85,8 @@
     font-size:1rem;
     text-indent:0;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
   .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto;}
   .hero-figure svg{display:block;width:100%;height:auto;}
   .hero-figure figcaption{
@@ -200,14 +202,6 @@
     margin-bottom:0.4em;
   }
 
-  .divider{
-    text-align:center;
-    color:var(--muted);
-    letter-spacing:0.4em;
-    margin:3rem 0;
-    font-size:0.8rem;
-  }
-
   .qcards{
     display:grid;
     gap:1rem;
@@ -229,13 +223,6 @@
   .qcard p{margin:0;font-size:0.95rem;color:var(--sub);text-indent:0;}
 
   .closing strong{color:var(--ink);}
-
-  .sig{
-    text-align:center;
-    margin:2.4rem 0;
-    font-size:1.15rem;
-    color:var(--ink);
-  }
 
   ol.refs{
     font-size:0.88rem;
@@ -339,6 +326,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -348,6 +337,10 @@
     <span class="eyebrow">ESSAY / 心理学・神経科学・進化・哲学</span>
     <h1>なぜ他人のキラキラは胸を刺すのか</h1>
     <p class="sub">羨望と社会的比較を、複数の研究と哲学の視点から読み解く</p>
+    <div class="meta">
+      <span>全 10 章</span>
+      <span>約 15 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 260" role="img" aria-labelledby="ecTitle ecDesc">
@@ -422,7 +415,7 @@
 
 <p class="lead">人間は、自分の人生を「絶対値」だけで評価するのが難しい生き物である。</p>
 <p>収入、仕事、容姿、能力、人間関係、幸福感。こうしたものには、温度計のような単純な絶対尺度がない。そこで私たちは、ときに他人を鏡にして、自分の位置を確かめる。</p>
-<p>この仕組みを理解する鍵が、<strong>社会的比較</strong>と<strong>羨望 (envy) </strong>である。</p>
+<p>この仕組みを理解する鍵が、<strong>社会的比較</strong>と<strong>羨望（ envy)</strong> である。</p>
 
 <div class="caution">
   <div class="note-label">はじめに、ひとつだけ注意</div>
@@ -440,10 +433,10 @@
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
-<p>「私は幸せだろうか?」</p>
+<p>「私は幸せだろうか ? 」</p>
 <p>この質問に、誰もが納得する客観的な答えを出すのは難しいだろう。では、私たちはどうやって自分の状態を判断しているのだろうか。その一つが、<strong>他人との比較</strong>である。</p>
 
-<p>1954 年、心理学者レオン・フェスティンガー (Leon Festinger) は、<strong>社会的比較理論 (Social Comparison Theory) </strong>を提唱した。フェスティンガーが注目したのは、人間が自分の意見や能力を評価するとき、他者を参照することである。特に、自分と比較的近い人が比較対象になりやすいという点が重要である。</p>
+<p>1954 年、心理学者レオン・フェスティンガー（ Leon Festinger ）は、<strong>社会的比較理論（ Social Comparison Theory)</strong> を提唱した。フェスティンガーが注目したのは、人間が自分の意見や能力を評価するとき、他者を参照することである。特に、自分と比較的近い人が比較対象になりやすいという点が重要である。</p>
 
 <p>たとえば、オリンピック選手の能力を見て、</p>
 <blockquote><p>「自分は運動能力が低い」</p></blockquote>
@@ -452,10 +445,10 @@
 <h3>上方比較と下方比較</h3>
 <p>社会的比較には、大きく分けて二つの方向がある。</p>
 
-<h4>上方比較 (upward comparison) </h4>
+<h4>上方比較（ upward comparison)</h4>
 <p>自分より優れている、あるいは恵まれていると思う相手を見ることである。これは必ずしも悪いものではない。「あの人のやり方を学びたい」「自分もあそこまで行きたい」という動機になることがある。しかし、「なぜ自分にはできないのだろう」「自分は負けている」という評価につながれば、苦痛にもなる。</p>
 
-<h4>下方比較 (downward comparison) </h4>
+<h4>下方比較（ downward comparison)</h4>
 <p>自分より不利な状況にあると思う人と比較することである。これによって自尊感情が一時的に守られる場合がある。心理学者 T. A. Wills は 1981 年に、こうした下方比較について体系的に論じた。</p>
 
 <p>つまり、比較そのものが善でも悪でもない。<strong>比較した結果を、自分がどう解釈するか</strong>が重要なのである。</p>
@@ -478,7 +471,7 @@
 <p>一つの理由は、<strong>比較可能性</strong>である。相手があまりにも遠い存在なら、</p>
 <blockquote><p>「あの人と自分は別の世界だ」</p></blockquote>
 <p>と処理できる。ところが、自分と年齢、学校、職業、生活圏などが近い人なら、</p>
-<blockquote><p>「もし自分が別の選択をしていたら?」</p></blockquote>
+<blockquote><p>「もし自分が別の選択をしていたら ? 」</p></blockquote>
 <p>という反実仮想が生まれやすくなる。ここで比較は、単なる観察ではなくなる。</p>
 
 <div class="pull">「あの人の人生」と「自分が選ばなかった人生」が重なり始める。</div>
@@ -487,7 +480,7 @@
 
 <div class="caution">
   <div class="note-label">単純化への注意</div>
-  <p>「自分に似た人ほど必ず強く羨望する」と単純化するのも正確ではない。比較の影響は、比較する領域、相手との関係、自分の目標、状況などによって変わる。それでも、フェスティンガーの理論が示した「比較対象との近さ」という視点は、SNS 時代の感情を考えるうえで非常に有用である。</p>
+  <p>「自分に似た人ほど必ず強く羨望する」と単純化するのも正確ではない。比較の影響は、比較する領域、相手との関係、自分の目標、状況などによって変わる。それでも、フェスティンガーの理論が示した「比較対象との近さ」という視点は、 SNS 時代の感情を考えるうえで非常に有用である。</p>
 </div>
     </div>
   </div>
@@ -505,8 +498,8 @@
 
 <div class="note">
   <div class="note-label">研究ノート - 羨望とシャーデンフロイデの fMRI 研究</div>
-  <p>2009 年、高橋英彦らは<em>Science</em>誌に、羨望とシャーデンフロイデ (他人の不幸を喜ぶ感情) に関する fMRI 研究を発表した。他者との相対的な成功・失敗に対する反応を調べたこの研究では、<strong>他者の成功を羨ましく感じる状況で、背側前帯状皮質 (dACC) などを含む領域の活動</strong>が観察された。一方、羨望の対象となる人物の不運に関連しては、報酬に関係する<strong>腹側線条体 (ventral striatum) </strong>の活動が観察された。さらに、研究 1 での dACC 活動の強さは、研究 2 での線条体活動を予測する関係にあったことも報告されている。</p>
-  <div class="cite">Takahashi, H., et al. (2009). Science, 323(5916), 937–939.</div>
+  <p>2009 年、高橋英彦らは <em>Science</em> 誌に、羨望とシャーデンフロイデ（他人の不幸を喜ぶ感情）に関する fMRI 研究を発表した。他者との相対的な成功・失敗に対する反応を調べたこの研究では、<strong>他者の成功を羨ましく感じる状況で、背側前帯状皮質（ dACC ）などを含む領域の活動</strong>が観察された。一方、羨望の対象となる人物の不運に関連しては、報酬に関係する<strong>腹側線条体（ ventral striatum)</strong> の活動が観察された。さらに、研究 1 での dACC 活動の強さは、研究 2 での線条体活動を予測する関係にあったことも報告されている。</p>
+  <div class="cite">Takahashi, H., et al.(2009). Science, 323 (5916), 937–939.</div>
 </div>
 
 <p>ここから、非常に興味深いことが見えてくる。私たちの脳は、他人との比較を単なる「情報」として処理しているわけではないらしい。そこには、<strong>自分にとって重要な社会的情報として反応する仕組み</strong>がある。</p>
@@ -516,8 +509,8 @@
 
 <div class="note">
   <div class="note-label">研究ノート - 社会的排除の fMRI 研究</div>
-  <p>2003 年の Eisenberger 、Lieberman 、Williams による社会的排除の fMRI 研究では、社会的苦痛と身体的痛みに関連する神経活動の重なりが検討された。</p>
-  <div class="cite">Eisenberger, N. I., Lieberman, M. D., & Williams, K. D. (2003). Science, 302(5643), 290–292.</div>
+  <p>2003 年の Eisenberger 、 Lieberman 、 Williams による社会的排除の fMRI 研究では、社会的苦痛と身体的痛みに関連する神経活動の重なりが検討された。</p>
+  <div class="cite">Eisenberger, N. I., Lieberman, M. D., & Williams, K. D.(2003). Science, 302 (5643), 290–292.</div>
 </div>
 
 <p>しかし、これは、</p>
@@ -541,7 +534,7 @@
     <div class="acc-panel-inner">
 <p>もう一つ、気になる現象がある。自分より成功している人が失敗したとき、</p>
 <blockquote><p>「……少し、ほっとした」</p></blockquote>
-<p>と思ってしまうことである。認めたくない感情かもしれない。しかし、これも人間の心理として研究されている。前述の高橋らの研究では、羨望の対象となっていた人物の不運に関連して、腹側線条体の活動が観察された。このような現象は、ドイツ語の<strong>Schadenfreude (シャーデンフロイデ) </strong>という言葉で知られている。</p>
+<p>と思ってしまうことである。認めたくない感情かもしれない。しかし、これも人間の心理として研究されている。前述の高橋らの研究では、羨望の対象となっていた人物の不運に関連して、腹側線条体の活動が観察された。このような現象は、ドイツ語の <strong>Schadenfreude （シャーデンフロイデ）</strong>という言葉で知られている。</p>
 
 <p>ここで大切なのは、</p>
 <blockquote><p>「人間は本質的に意地悪だ」</p></blockquote>
@@ -601,7 +594,7 @@
 <div class="phil-card">
   <div class="phil-name">紀元前 4 世紀 · ギリシャ</div>
   <h3>アリストテレス - なぜ「自分に近い人」が気になるのか</h3>
-  <p>アリストテレスは『弁論術』で、<strong>phthonos (妬み) </strong>について論じている。そこで重要なのは、他人の幸運一般ではなく、比較対象との関係である。自分と無関係な人の成功よりも、</p>
+  <p>アリストテレスは『弁論術』で、 <strong>phthonos （妬み）</strong>について論じている。そこで重要なのは、他人の幸運一般ではなく、比較対象との関係である。自分と無関係な人の成功よりも、</p>
   <blockquote><p>「自分と同じくらいの人が、自分より上に行った」</p></blockquote>
   <p>という出来事が感情を刺激する。この視点は、現代の社会的比較研究とも響き合う。もちろん、古代ギリシャの議論と現代の実験心理学をそのまま同一視することはできない。しかし、<strong>人間が他者との相対的位置を気にする</strong>という問題が、非常に古くから考えられてきたことは確かである。</p>
 </div>
@@ -609,7 +602,7 @@
 <div class="phil-card">
   <div class="phil-name">17 世紀 · オランダ</div>
   <h3>スピノザ - 感情を「善悪」ではなく構造として見る</h3>
-  <p>スピノザの『エチカ』では、人間の感情が体系的に分析されている。彼の<strong>コナトゥス (conatus) </strong>という考え方は、人間が自分の存在を維持・増大させようとする力として知られている。ここから他者との比較を考えると、他人の卓越が単なる外部情報ではなく、自分自身の力や状態を意識させる出来事になることが見えてくる。</p>
+  <p>スピノザの『エチカ』では、人間の感情が体系的に分析されている。彼の<strong>コナトゥス（ conatus)</strong> という考え方は、人間が自分の存在を維持・増大させようとする力として知られている。ここから他者との比較を考えると、他人の卓越が単なる外部情報ではなく、自分自身の力や状態を意識させる出来事になることが見えてくる。</p>
   <div class="caution" style="margin:1.2em 0 0;padding:0.8em 1.1em;">
     <p style="margin:0;">「スピノザは SNS 時代の羨望を説明した」などと考えてはいけない。彼が論じたのは 17 世紀の哲学である。重要なのは、彼の感情論を現代の問題を考えるための<strong>思考道具として読むこと</strong>である。</p>
   </div>
@@ -618,7 +611,7 @@
 <div class="phil-card">
   <div class="phil-name">19 世紀 · ドイツ</div>
   <h3>ニーチェ - 羨望は、価値判断を変えてしまうのか</h3>
-  <p>ニーチェの『道徳の系譜』で重要な概念の一つが、<strong>Ressentiment (ルサンチマン) </strong>である。ここでは、直接的に力を行使できない状態にある人間が、価値判断そのものを反転させていく過程が論じられる。たとえば、</p>
+  <p>ニーチェの『道徳の系譜』で重要な概念の一つが、 <strong>Ressentiment （ルサンチマン）</strong>である。ここでは、直接的に力を行使できない状態にある人間が、価値判断そのものを反転させていく過程が論じられる。たとえば、</p>
   <blockquote><p>「あの人の成功はくだらない」<br>「あんなものを欲しがる人間は浅い」<br>「成功よりも、成功を望まない自分のほうが立派だ」</p></blockquote>
   <p>という考え方である。もちろん、誰かの成功を批判したからといって、それだけで「ルサンチマンだ」と診断することはできない。しかし、ここには重要な自己点検がある。</p>
   <div class="pull small">私は本当にその成功を批判しているのか。それとも、手に入れられない自分を慰めるために、成功そのものの価値を下げようとしているのか。</div>
@@ -651,7 +644,7 @@
 <p>だからこそ、</p>
 <blockquote><p>「羨ましい。終わり。」</p></blockquote>
 <p>ではなく、</p>
-<div class="pull">「私は何を羨ましがっているのだろう?」</div>
+<div class="pull">「私は何を羨ましがっているのだろう ? 」</div>
 <p>と一段深く問いかける価値がある。</p>
     </div>
   </div>
@@ -705,12 +698,12 @@
 
 <h3>2. 比較相手が爆発的に増える</h3>
 <p>フェスティンガーが社会的比較を論じた時代には、比較対象へのアクセスは現在ほど容易ではなかった。いまは、スマートフォンを数回操作するだけで、世界中の人の成功談を見ることができる。しかも、アルゴリズムによって、自分が関心を持ちそうな投稿が次々に表示される。</p>
-<p>ここで重要なのは、「SNS が必ず比較を悪化させる」と決めつけることではない。SNS には、学習、交流、支援、情報収集など多くの利点もある。問題は、</p>
+<p>ここで重要なのは、「 SNS が必ず比較を悪化させる」と決めつけることではない。 SNS には、学習、交流、支援、情報収集など多くの利点もある。問題は、</p>
 <div class="pull small">比較刺激を自分の意思とは無関係に大量に浴び続ける環境が、作られ得ることである。</div>
 
 <h3>3. 数字が「順位」を見せる</h3>
-<p>フォロワー数。「いいね」の数。再生回数。収入を示す数字。SNS やオンラインサービスでは、人気や反応が数値として表示される場面が増えている。数字は便利だ。しかし同時に、数字は比較を容易にする。</p>
-<blockquote><p>「自分は何人に評価されているのか?」</p></blockquote>
+<p>フォロワー数。「いいね」の数。再生回数。収入を示す数字。 SNS やオンラインサービスでは、人気や反応が数値として表示される場面が増えている。数字は便利だ。しかし同時に、数字は比較を容易にする。</p>
+<blockquote><p>「自分は何人に評価されているのか ? 」</p></blockquote>
 <p>という問いが、いつでも目の前に出てくるからである。</p>
     </div>
   </div>
@@ -728,13 +721,13 @@
 
 <div class="note">
   <div class="note-label">研究ノート - SNS 利用制限の実験</div>
-  <p>Hunt らは 2018 年、大学生を対象に SNS 利用時間を制限する実験を行い、孤独感や抑うつ症状などへの影響を調べた。結果は、SNS 利用を制限したグループで、孤独感や抑うつ症状が低下したことを示した。</p>
-  <div class="cite">Hunt, M. G., et al. (2018). Journal of Social and Clinical Psychology, 37(10), 751–768.</div>
+  <p>Hunt らは 2018 年、大学生を対象に SNS 利用時間を制限する実験を行い、孤独感や抑うつ症状などへの影響を調べた。結果は、 SNS 利用を制限したグループで、孤独感や抑うつ症状が低下したことを示した。</p>
+  <div class="cite">Hunt, M. G., et al.(2018). Journal of Social and Clinical Psychology, 37 (10), 751–768.</div>
 </div>
 
 <p>これは興味深い結果である。ただし、ここから、</p>
-<blockquote><p>「SNS が孤独や抑うつの主犯である」</p></blockquote>
-<p>と結論づけることはできない。研究対象や期間には限界があるし、SNS 利用と心理状態の関係は単純な一方向の因果関係ではない。それでも、この研究が示唆することはある。</p>
+<blockquote><p>「 SNS が孤独や抑うつの主犯である」</p></blockquote>
+<p>と結論づけることはできない。研究対象や期間には限界があるし、 SNS 利用と心理状態の関係は単純な一方向の因果関係ではない。それでも、この研究が示唆することはある。</p>
 
 <div class="pull small">「使い方を変えることで、心理状態が変化する可能性がある」ということである。</div>
 
@@ -783,17 +776,17 @@
 <div class="qcards">
   <div class="qcard">
     <div class="qn">Q1</div>
-    <h4>私は何を羨ましいと思ったのか?</h4>
+    <h4>私は何を羨ましいと思ったのか ?</h4>
     <p>「成功」では曖昧すぎる。お金なのか。自由なのか。能力なのか。人間関係なのか。認められていることなのか。具体的にしてみる。</p>
   </div>
   <div class="qcard">
     <div class="qn">Q2</div>
-    <h4>私は、それを本当に欲しいのか?</h4>
+    <h4>私は、それを本当に欲しいのか ?</h4>
     <p>ここは意外に重要である。相手の人生そのものが欲しいわけではないかもしれない。その人が持っている「一部分」だけが欲しいのかもしれない。</p>
   </div>
   <div class="qcard">
     <div class="qn">Q3</div>
-    <h4>その感情を、行動に変えられるか?</h4>
+    <h4>その感情を、行動に変えられるか ?</h4>
     <p>羨望を、「自分はダメだ」で終わらせるのか、「自分はこれを望んでいるのだな」という情報に変えるのか。そこには大きな違いがある。</p>
   </div>
 </div>
@@ -816,7 +809,7 @@
   <p>だから、羨望を感じた自分を、すぐに裁く必要はない。一歩引いて、</p>
 </div>
 
-<div class="pull">「いま、私は何を見て、何を欲しがっているのだろう?」</div>
+<div class="pull">「いま、私は何を見て、何を欲しがっているのだろう ? 」</div>
 
 <div class="closing">
   <p>と観察してみる。もしかすると、そこには自分でも気づいていなかった願望があるかもしれない。もしかすると、ただ疲れているだけかもしれない。あるいは、比較する必要のない相手と、比較してしまっているだけかもしれない。</p>
@@ -837,13 +830,13 @@
     <div class="acc-panel-inner">
 <ol class="refs">
 <li>Aristotle. <em>Rhetoric</em>. Translated by W. Rhys Roberts.</li>
-<li>Eisenberger, N. I., Lieberman, M. D., &amp; Williams, K. D. (2003). Does rejection hurt? An fMRI study of social exclusion. <em>Science</em>, 302(5643), 290–292.</li>
-<li>Festinger, L. (1954). A theory of social comparison processes. <em>Human Relations</em>, 7(2), 117–140.</li>
-<li>Hunt, M. G., Marx, R., Lipson, C., &amp; Young, J. (2018). No More FOMO: Limiting Social Media Decreases Loneliness and Depression. <em>Journal of Social and Clinical Psychology</em>, 37(10), 751–768.</li>
-<li>Nietzsche, F. (1887). <em>On the Genealogy of Morality</em>.</li>
-<li>Spinoza, B. (1677). <em>Ethica</em>.</li>
-<li>Takahashi, H., Kato, M., Matsuura, M., Mobbs, D., Suhara, T., &amp; Okubo, Y. (2009). When your gain is my pain and your pain is my gain: neural correlates of envy and schadenfreude. <em>Science</em>, 323(5916), 937–939.</li>
-<li>Wills, T. A. (1981). Downward comparison principles in social psychology. <em>Psychological Bulletin</em>, 90(2), 245–271.</li>
+<li>Eisenberger, N. I., Lieberman, M. D., &amp; Williams, K. D.(2003). Does rejection hurt? An fMRI study of social exclusion. <em>Science</em>, 302 (5643), 290–292.</li>
+<li>Festinger, L.(1954). A theory of social comparison processes. <em>Human Relations</em>, 7 (2), 117–140.</li>
+<li>Hunt, M. G., Marx, R., Lipson, C., &amp; Young, J.(2018). No More FOMO: Limiting Social Media Decreases Loneliness and Depression. <em>Journal of Social and Clinical Psychology</em>, 37 (10), 751–768.</li>
+<li>Nietzsche, F.(1887). <em>On the Genealogy of Morality</em>.</li>
+<li>Spinoza, B.(1677). <em>Ethica</em>.</li>
+<li>Takahashi, H., Kato, M., Matsuura, M., Mobbs, D., Suhara, T., &amp; Okubo, Y.(2009). When your gain is my pain and your pain is my gain: neural correlates of envy and schadenfreude. <em>Science</em>, 323 (5916), 937–939.</li>
+<li>Wills, T. A.(1981). Downward comparison principles in social psychology. <em>Psychological Bulletin</em>, 90 (2), 245–271.</li>
 </ol>
     </div>
   </div>

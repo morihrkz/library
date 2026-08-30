@@ -3,50 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AI データセンター問題の政治争点化 — 米国と日本（印西市）の比較分析</title>
+<title>AI データセンター問題の政治争点化 - 米国と日本（印西市）の比較分析</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --navy-950:#0a1220;
+    --hero-1:#0a1220; --hero-2:#213a63; --hero-ink:#f2f4f8; --hero-dim:#c9d2e0;
+
     --navy-900:#101c33;
     --navy-800:#182a4a;
-    --navy-700:#213a63;
-    --navy-600:#2d4d80;
+
+
     --amber-500:#c8863c;
     --amber-600:#a86e2c;
     --amber-300:#e3bd82;
     --amber-100:#f6e9d4;
-    --paper:#f7f7f4;
-    --card:#ffffff;
+    --bg:#f7f7f4;
+    --paper:#ffffff;
     --ink:#181c22;
-    --ink-soft:#57616d;
+    --sub:#505964;
     --line:#e2e2dc;
-    --stripe:#eef0ec;
-    --ink-accent:#213a63;
+
+    --accent:#213a63;
     --note-bg:#fdf3e2;
-    --open-bg:#f6e9d4;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --paper:#15140f;
-      --card:#1c1b17;
+      --bg:#15140f;
+      --paper:#1c1b17;
       --ink:#eceae4;
-      --ink-soft:#a7a89e;
+      --sub:#a7a89e;
       --line:#2c2b26;
-      --stripe:#201f1a;
-      --ink-accent:#9db4d6;
+
+      --accent:#9db4d6;
       --note-bg:#2e2413;
-      --open-bg:#232016;
     }
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
-    background:var(--paper);
+    background:var(--bg);
     line-height:1.95;
     letter-spacing:.02em;
     -webkit-text-size-adjust:100%;
@@ -69,11 +68,11 @@
     text-align:center;
     background:
       radial-gradient(circle at 18% 15%, rgba(227,189,130,.10) 0%, rgba(227,189,130,0) 42%),
-      linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 46%, var(--navy-700) 100%);
-    color:#f2f4f8;
+      linear-gradient(160deg, var(--hero-1) 0%, var(--navy-900) 46%, var(--hero-2) 100%);
+    color:var(--hero-ink);
   }
-  .hero-inner{position:relative; z-index:2;}
-  .kicker{
+  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
+  header.hero .eyebrow{
     display:inline-block;
     font-size:.78rem; letter-spacing:.28em;
     color:var(--amber-100);
@@ -88,24 +87,23 @@
     line-height:1.55;
     letter-spacing:.02em;
   }
-  .hero .subtitle{
+  header.hero p.sub{
     margin:0 auto; max-width:640px;
     font-size:clamp(.9rem, 2.1vw, 1.02rem);
-    font-weight:400; color:#c9d2e0; line-height:1.85;
+    font-weight:400; color:var(--hero-dim); line-height:1.85;
     letter-spacing:.03em;
   }
   .hero .divider{
     width:64px; height:1px; margin:24px auto;
     background:linear-gradient(90deg, transparent, var(--amber-300), transparent);
   }
-  .hero .meta{
-    font-size:.86rem; color:#a9b4c6; letter-spacing:.06em;
-  }
+  header.hero .meta{margin:1.1rem 0 0; display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;
+    font-size:.86rem; color:var(--hero-dim); letter-spacing:.06em;}
   .hero-figure{max-width:960px; margin:30px auto 0; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
     margin-top:12px; font-size:.85rem; line-height:1.8;
-    color:#a9b4c6; letter-spacing:.02em;
+    color:var(--hero-dim); letter-spacing:.02em;
   }
   .wave{position:absolute; left:0; right:0; bottom:-1px; line-height:0;}
   .wave svg{width:100%; height:44px; display:block;}
@@ -115,7 +113,7 @@
 
   .toolbar-container{
     position:sticky; top:8px; z-index:100;
-    background:color-mix(in srgb, var(--card) 94%, transparent);
+    background:color-mix(in srgb, var(--paper) 94%, transparent);
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
@@ -126,7 +124,7 @@
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
   .toolbar button{
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.88rem; font-weight:600;
-    color:var(--ink-accent); background:var(--card);
+    color:var(--accent); background:var(--paper);
     border:1.5px solid var(--amber-600); border-radius:999px;
     padding:9px 22px; cursor:pointer;
     transition:all .2s ease;
@@ -137,7 +135,7 @@
 
   /* ---------- Accordion ---------- */
   .acc-item{
-    background:var(--card);
+    background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
     box-shadow:0 2px 12px rgba(10,18,32,.07);
@@ -160,29 +158,22 @@
   #accordion > .acc-item{box-shadow:0 3px 16px rgba(10,18,32,.10);}
   #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
   #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
-
-  /* ---------- Nested (level-2) accordion ---------- */
-  .part-summary{
-    font-size:1rem; color:var(--ink-soft); font-style:italic;
-    border-left:3px solid var(--amber-300); padding-left:14px;
-    margin:0 0 20px; text-indent:0; line-height:1.9;
-  }
   .acc-nested{margin:0 0 1.3em;}
   .acc-nested:last-child{margin-bottom:0;}
   .acc-nested .acc-item{
-    box-shadow:none; border:1px solid var(--line); margin-bottom:10px; background:var(--paper);
+    box-shadow:none; border:1px solid var(--line); margin-bottom:10px; background:var(--bg);
   }
   .acc-nested .acc-item:last-child{margin-bottom:0;}
   .acc-nested .acc-header{padding:14px 16px; gap:12px;}
   .acc-nested .acc-header .num{min-width:44px; height:30px; font-size:.74rem; padding:0 8px;}
   .acc-nested .acc-header .title{font-size:.98rem;}
-  .acc-nested .acc-item.open > .acc-header{background:var(--open-bg);}
+  .acc-nested .acc-item.open > .acc-header{background:var(--note-bg);}
   .acc-nested .acc-item.open > .acc-panel > .acc-panel-inner{padding:14px 18px 20px;}
   .acc-header .title{flex:1 1 auto; font-size:1.05rem; font-weight:700; letter-spacing:.02em; line-height:1.5;}
   .acc-header .chev{flex:0 0 auto; width:20px; height:20px; color:var(--amber-600); transition:transform .3s cubic-bezier(.4,0,.2,1);}
   .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
   .acc-item.open > .acc-header{
-    background:var(--open-bg);
+    background:var(--note-bg);
     border-bottom:1px solid var(--line);
   }
   .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;}
@@ -194,24 +185,24 @@
   p{margin:0 0 1.15em; font-size:1.08rem; color:var(--ink); line-height:1.95; text-align:justify;}
   p:last-child{margin-bottom:0;}
   .acc-panel-inner p{text-indent:1em;}
-  p.lead{color:var(--ink-soft); font-size:.96em; border-left:3px solid #ccc; padding-left:1em; text-align:left; text-indent:0;}
+  p.lead{color:var(--sub); font-size:.96em; border-left:3px solid #ccc; padding-left:1em; text-align:left; text-indent:0;}
   sup a{text-decoration:none; color:var(--amber-600); font-size:.8em;}
 
   .note-box{background:var(--note-bg); border-left:4px solid var(--amber-600); padding:.8em 1.2em; margin:0 0 1.15em; font-size:.9em; text-align:left;}
   .note-box:last-child{margin-bottom:0;}
 
-  ol.refs{font-size:.88rem; padding-left:1.6em; margin:0; color:var(--ink-soft); line-height:1.85;}
+  ol.refs{font-size:.88rem; padding-left:1.6em; margin:0; color:var(--sub); line-height:1.85;}
   ol.refs li{margin-bottom:.9em; word-break:break-all;}
   ol.refs li:last-child{margin-bottom:0;}
-  ol.refs a{color:var(--ink-accent); text-decoration:none; border-bottom:1px solid var(--line);}
+  ol.refs a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line);}
   ol.refs a:hover{color:var(--amber-600); border-color:var(--amber-500);}
 
   em{font-style:italic;}
-  strong{color:var(--ink-accent); font-weight:700;}
+  strong{color:var(--accent); font-weight:700;}
 
   footer{
-    text-align:center; color:var(--ink-soft); font-size:.84rem;
-    padding:30px 20px 44px; background:var(--open-bg); border-top:1px solid var(--line);
+    text-align:center; color:var(--sub); font-size:.84rem;
+    padding:30px 20px 44px; background:var(--note-bg); border-top:1px solid var(--line);
     line-height:1.9;
   }
 
@@ -241,6 +232,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -248,12 +241,16 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <span class="kicker">比較分析ノート / DATA CENTER POLITICS</span>
+  <div class="wrap">
+    <span class="eyebrow">比較分析ノート / DATA CENTER POLITICS</span>
     <h1>AI データセンター問題の政治争点化</h1>
     <div class="divider"></div>
-    <p class="subtitle">米国 2026 年中間選挙と日本・印西市を比較し、同種の物理的・経済的圧力がなぜ一方では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのかを、政治制度・地方財政構造・言説環境の観点から分析する。</p>
-    <p class="meta">本稿は 2026 年 8 月 15 日を調査基準日として作成した。</p>
+    <p class="sub">米国 2026 年中間選挙と日本・印西市を比較し、同種の物理的・経済的圧力がなぜ一方では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのかを、政治制度・地方財政構造・言説環境の観点から分析する。</p>
+    <div class="meta">
+      <span>全 6 章</span>
+      <span>約 28 分</span>
+      <span>本稿は 2026 年 8 月 15 日を調査基準日として作成した。</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 316" role="img" aria-labelledby="dcTitle dcDesc">
@@ -371,9 +368,9 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 <p>AI の学習・推論を担う物理インフラであるデータセンターは、これまで主に立地選定・電力調達・環境影響評価といった技術的・行政的な争点として扱われてきた。しかし 2026 年に入り、少なくとも米国においては、この施設群が選挙運動という明確に政治的な場に登場するようになった。<br>
-電気料金の上昇、水資源の逼迫、日々の生活空間に忽然と現れる巨大な無窓の建造物——これらは有権者の生活実感に直結する具体的な不満として言語化され、党派を超えて候補者の争点リストに組み込まれつつある。</p>
+電気料金の上昇、水資源の逼迫、日々の生活空間に忽然と現れる巨大な無窓の建造物 - これらは有権者の生活実感に直結する具体的な不満として言語化され、党派を超えて候補者の争点リストに組み込まれつつある。</p>
 <p>一方、日本国内でも、世界有数のデータセンター集積地となった千葉県印西市をはじめ、各地で住民との摩擦、訴訟、首長の姿勢転換といった事象が現に生じている。にもかかわらず、これらは今のところ国政選挙の争点として明確に「翻訳」されるには至っていない。</p>
-<p>本稿は、この非対称性——同種の物理的・経済的圧力が、なぜ一方の国では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのか——を、政治制度・地方財政構造・言説環境という観点から分析する。単に「米国は進んでいる、日本は遅れている」という価値判断を下すのではなく、両国の制度的・構造的な違いがどのように争点化の経路を規定しているかを検討することが、本稿の目的である。</p>
+<p>本稿は、この非対称性 - 同種の物理的・経済的圧力が、なぜ一方の国では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのか - を、政治制度・地方財政構造・言説環境という観点から分析する。単に「米国は進んでいる、日本は遅れている」という価値判断を下すのではなく、両国の制度的・構造的な違いがどのように争点化の経路を規定しているかを検討することが、本稿の目的である。</p>
 <p>あらかじめ断っておくべきことが二点ある。<br>
 第一に、本稿は「 AI 」「データセンター」「監視（サーベイランス）」を同義には扱わない。 AI の政府利用や顔認識技術など監視技術一般をめぐる論点は、それがデータセンターという物理的立地問題と実際に接続していることが一次情報で確認できる範囲でのみ取り上げる。今回の調査では、この接続を明確に裏付ける一次資料は確認できなかったため、監視問題そのものは本稿の分析対象としない。<br>
 第二に、「米国で急速に争点化した」「日本では争点化していない」という本稿の出発点となる二つの命題自体を、以下でまず検証の対象とする。</p>
@@ -407,7 +404,7 @@
 反対運動を担う地域団体の数も、 2025 年末の 396 団体から 2026 年 3 月時点で 833 団体へと倍増しており、運動の担い手自体が急速に拡大していることがうかがえる <sup><a href="#ref1">[1]</a></sup> 。</p>
 <p>こうした反対運動を受け、州レベルでは具体的な規制の動きが相次いでいる。<br>
 ニューヨーク州のキャシー・ホークル知事は 2026 年 7 月 14 日、 50 メガワット超のデータセンターに対する新規環境許可を一時停止する行政命令（ Executive Order No. 62 ）に署名した。ホークル知事は声明で「データセンターの開発が公共料金の高騰を招き、天然資源を枯渇させ、ニューヨーク州民に不確実性をもたらす恐れがある以上、行動を起こし主導することが私の責務である」と述べている（筆者訳） <sup><a href="#ref3">[3]</a></sup> 。これとは別に、ニューヨーク州議会は同年 6 月 4 日、「責任あるデータセンター開発法」案を上院 44 対 16 、下院 102 対 39 で可決しており、知事の署名を待つ状態にあった <sup><a href="#ref4">[4]</a></sup><sup><a href="#ref5">[5]</a></sup> 。<br>
-行政命令と議会法案という二つの法的トラックが並行して進んでいる状況であり、両者の関係——行政命令が議会法案を代替するものか、両者が独立に効力を持つのか——は本稿執筆時点では確認できていない。</p>
+行政命令と議会法案という二つの法的トラックが並行して進んでいる状況であり、両者の関係 - 行政命令が議会法案を代替するものか、両者が独立に効力を持つのか - は本稿執筆時点では確認できていない。</p>
 <p>一方、規制強化の動きが必ずしも一枚岩ではないことを示す事例もある。<br>
 メイン州では、 20 メガワット以上のデータセンターに 18 か月のモラトリアムを課す法案（ LD 307 ）が、民主党が多数を占める州議会で可決されたにもかかわらず、同党のジャネット・ミルズ知事が 2026 年 4 月 24 日に拒否権を行使した。知事は、自身が求めていた同州ジェイ町の 5 億 5000 万ドル規模のデータセンター計画への適用除外が法案に盛り込まれなかったことを理由に挙げている。州下院は拒否権の再議決を試みたが 72 対 65 で三分の二の要件に届かず、否決は確定した <sup><a href="#ref6">[6]</a></sup><sup><a href="#ref7">[7]</a></sup> 。<br>
 これは、データセンター誘致・容認の論拠（雇用創出、地域経済への投資）が、反対派と同じ民主党内でも軽視されているわけではないことを示す反証事例として重要である。</p>
@@ -741,34 +738,34 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 <ol class="refs">
-<li id="ref1">NBC News, "Data center opponents have blocked or delayed projects worth nearly $130 billion in 2026, study finds," NBC News, 2026 年 6 月頃 , <a href="https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728" target="_blank">https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728</a> （参照日： 2026-08-15 ）</li>
-<li id="ref2">Data Center Watch, "Q1 2026 Report," <a href="https://www.datacenterwatch.org/q1-2026" target="_blank">https://www.datacenterwatch.org/q1-2026</a> （参照日： 2026-08-15 ）</li>
-<li id="ref3">Governor Kathy Hochul, "Executive Order No. 62: Establishing a Temporary Moratorium on Data Centers in New York State While the State Develops a Generic Environmental Impact Statement," New York State, 2026 年 7 月 14 日 , <a href="https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops" target="_blank">https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops</a> （参照日： 2026-08-15 ）</li>
-<li id="ref4">Mintz, "New York Legislature Passes First-in-the-Nation Data Center Moratorium, Awaiting Governor's Signature," 2026 年 6 月 12 日 , <a href="https://www.mintz.com/insights-center/viewpoints/55076/2026-06-12-new-york-legislature-passes-first-nation-data-center" target="_blank">https://www.mintz.com/insights-center/viewpoints/55076/2026-06-12-new-york-legislature-passes-first-nation-data-center</a> （参照日： 2026-08-15 ）</li>
-<li id="ref5">Harris Beach Murtha, "New York State Legislature Passes First-in-the-Nation Data Center Moratorium," <a href="https://www.harrisbeachmurtha.com/insights/new-york-state-legislature-passes-first-in-the-nation-data-center-moratorium/" target="_blank">https://www.harrisbeachmurtha.com/insights/new-york-state-legislature-passes-first-in-the-nation-data-center-moratorium/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref6">Office of Governor Janet T. Mills, "Governor Mills Announces Decision on LD 307," 2026 年 4 月 24 日 , <a href="https://www.maine.gov/governor/mills/news/governor-mills-announces-decision-ld-307-2026-04-24" target="_blank">https://www.maine.gov/governor/mills/news/governor-mills-announces-decision-ld-307-2026-04-24</a> （参照日： 2026-08-15 ）</li>
-<li id="ref7">Maine Morning Star, "Despite initial support, Legislature fails to override Mills' veto of landmark data center ban," 2026 年 4 月 29 日 , <a href="https://mainemorningstar.com/2026/04/29/despite-initial-support-legislature-fails-to-override-mills-veto-of-landmark-data-center-ban/" target="_blank">https://mainemorningstar.com/2026/04/29/despite-initial-support-legislature-fails-to-override-mills-veto-of-landmark-data-center-ban/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref8">Good Jobs First, "Data Center Moratorium Bills Are Spreading in 2026," <a href="https://goodjobsfirst.org/data-center-moratorium-bills-are-spreading-in-2026/" target="_blank">https://goodjobsfirst.org/data-center-moratorium-bills-are-spreading-in-2026/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref9">Gallup, "Americans Oppose AI Data Centers in Their Area," 2026 年 5 月 13 日 , <a href="https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx" target="_blank">https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx</a> （参照日： 2026-08-15 ）</li>
-<li id="ref10">Anthony Leiserowitz et al., Yale Program on Climate Change Communication, "Climate Change in the American Mind: Politics &amp; Policy, Spring 2026," <a href="https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-politics-policy-spring-2026/toc/10/" target="_blank">https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-politics-policy-spring-2026/toc/10/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref11">Tamara Keith, NPR, "Data centers are a political issue crossing party lines, driving voters to candidates," 2026 年 8 月 8 日 , <a href="https://www.npr.org/2026/08/08/g-s1-137853/data-centers-are-a-political-issue-crossing-party-lines-driving-voters-to-candidates" target="_blank">https://www.npr.org/2026/08/08/g-s1-137853/data-centers-are-a-political-issue-crossing-party-lines-driving-voters-to-candidates</a> （参照日： 2026-08-15 ）</li>
-<li id="ref12">The White House / Federal Register, "Executive Order 14365—Ensuring a National Policy Framework for Artificial Intelligence," 署名日： 2025 年 12 月 11 日、官報掲載： 2025 年 12 月 16 日 , <a href="https://www.govinfo.gov/app/details/DCPD-202501186" target="_blank">https://www.govinfo.gov/app/details/DCPD-202501186</a> （参照日： 2026-08-15 ）</li>
-<li id="ref13">MLex, "Bondi stands up AI Litigation Task Force at US DOJ," 2026 年 1 月 , <a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2429780/bondi-stands-up-ai-litigation-task-force-at-us-doj" target="_blank">https://www.mlex.com/mlex/artificial-intelligence/articles/2429780/bondi-stands-up-ai-litigation-task-force-at-us-doj</a> （参照日： 2026-08-15 ）</li>
-<li id="ref14">TechPolicy.Press, "Where State AI Legislation Stands Half Way Into 2026," <a href="https://www.techpolicy.press/where-state-ai-legislation-stands-half-way-into-2026/" target="_blank">https://www.techpolicy.press/where-state-ai-legislation-stands-half-way-into-2026/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref15">Axios, "Voters face uneven AI deepfake protections," 2026 年 8 月 7 日 , <a href="https://www.axios.com/2026/08/07/election-ai-deepfake-rules-states" target="_blank">https://www.axios.com/2026/08/07/election-ai-deepfake-rules-states</a> （参照日： 2026-08-15 ）</li>
-<li id="ref16">SCSK 「印西が『データセンター銀座』と呼ばれる歴史的背景と立地要件」 <a href="https://www.scsk.jp/sp/netxdc/column/inzai_datacenter.html" target="_blank">https://www.scsk.jp/sp/netxdc/column/inzai_datacenter.html</a> （参照日： 2026-08-15 ）</li>
-<li id="ref17">日本経済新聞「『データセンター銀座』千葉・印西市、新設続く 駅前計画に反発も」 <a href="https://www.nikkei.com/article/DGXZQOCC09BU10Z01C25A2000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC09BU10Z01C25A2000000/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref18">みやかわ伸（衆議院議員）「 10/20 『世界の印西データセンター』板倉市長との対談レポート」 2023 年 10 月 22 日 , <a href="https://smiyakawa.com/2023/10/22/" target="_blank">https://smiyakawa.com/2023/10/22/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref19">東京新聞「反対していた市長が突然『容認』に転じた 千葉・印西市の駅前『データセンター』建設計画 住民は怒っている」 <a href="https://www.tokyo-np.co.jp/article/459865" target="_blank">https://www.tokyo-np.co.jp/article/459865</a> （参照日： 2026-08-15 ）</li>
-<li id="ref20">日本経済新聞「『データセンター銀座』千葉・印西、駅前建設で物議 日照権巡り懸念」 2025 年 4 月 25 日 , <a href="https://www.nikkei.com/article/DGXZQOCC112WK0R10C25A4000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC112WK0R10C25A4000000/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref21">日本経済新聞「千葉・印西の駅前データセンター、建築確認取り消し求め住民提訴」 <a href="https://www.nikkei.com/article/DGXZQOCC2738X0X20C26A2000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC2738X0X20C26A2000000/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref22">山田稔「住みやすい街ランキングの常連、千葉県印西市が持つもう一つの『意外な顔』」 JBpress, 2023 年 2 月 26 日 , <a href="https://jbpress.ismedia.jp/articles/-/74099?page=3" target="_blank">https://jbpress.ismedia.jp/articles/-/74099?page=3</a> （参照日： 2026-08-15 ）</li>
-<li id="ref23">日経ビジネス「相模原市のデータセンター誘致に関する報道」 2026 年 6 月 , <a href="https://business.nikkei.com/atcl/gen/19/00332/060200105/" target="_blank">https://business.nikkei.com/atcl/gen/19/00332/060200105/</a> （参照日： 2026-08-15 ）</li>
-<li id="ref24">しんぶん赤旗「巨大データセンター、住民説明を　山添議員が求める」 2025 年 1 月 17 日 , <a href="https://www.jcp.or.jp/akahata/aik24/2025-01-17/2025011704_02_0.html" target="_blank">https://www.jcp.or.jp/akahata/aik24/2025-01-17/2025011704_02_0.html</a> （参照日： 2026-08-15 ）</li>
-<li id="ref25">千葉日報オンライン「データセンター許可取消訴訟、白井市は棄却求める 千葉地裁、第 1 回弁論」 <a href="https://www.chibanippo.co.jp/articles/1576734" target="_blank">https://www.chibanippo.co.jp/articles/1576734</a> （参照日： 2026-08-15 ）</li>
-<li id="ref26">東京新聞「白井・富ケ谷のデータセンター建設許可 取り消し求め市を提訴 住民の弁護士『安全か問いたい』」 2026 年 1 月 9 日 , <a href="https://www.tokyo-np.co.jp/article/460809" target="_blank">https://www.tokyo-np.co.jp/article/460809</a> （参照日： 2026-08-15 ）</li>
-<li id="ref27">日本共産党東京都委員会「巨大 DC 建設で環境悪化」 2026 年 6 月 16 日 , <a href="https://www.jcp-tokyo.net/2026/0616/121287" target="_blank">https://www.jcp-tokyo.net/2026/0616/121287</a> （参照日： 2026-08-15 ）</li>
-<li id="ref28">総務省「令和 6 年版情報通信白書」 <a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html" target="_blank">https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html</a> （参照日： 2026-08-15 ）</li>
+<li id="ref1">NBC News, "Data center opponents have blocked or delayed projects worth nearly $130 billion in 2026, study finds," NBC News, 2026 年 6 月頃 , <a href="https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728" target="_blank">https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728</a> （参照日： 2026-08-15)</li>
+<li id="ref2">Data Center Watch, "Q1 2026 Report," <a href="https://www.datacenterwatch.org/q1-2026" target="_blank">https://www.datacenterwatch.org/q1-2026</a> （参照日： 2026-08-15)</li>
+<li id="ref3">Governor Kathy Hochul, "Executive Order No. 62: Establishing a Temporary Moratorium on Data Centers in New York State While the State Develops a Generic Environmental Impact Statement," New York State, 2026 年 7 月 14 日 , <a href="https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops" target="_blank">https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops</a> （参照日： 2026-08-15)</li>
+<li id="ref4">Mintz, "New York Legislature Passes First-in-the-Nation Data Center Moratorium, Awaiting Governor's Signature," 2026 年 6 月 12 日 , <a href="https://www.mintz.com/insights-center/viewpoints/55076/2026-06-12-new-york-legislature-passes-first-nation-data-center" target="_blank">https://www.mintz.com/insights-center/viewpoints/55076/2026-06-12-new-york-legislature-passes-first-nation-data-center</a> （参照日： 2026-08-15)</li>
+<li id="ref5">Harris Beach Murtha, "New York State Legislature Passes First-in-the-Nation Data Center Moratorium," <a href="https://www.harrisbeachmurtha.com/insights/new-york-state-legislature-passes-first-in-the-nation-data-center-moratorium/" target="_blank">https://www.harrisbeachmurtha.com/insights/new-york-state-legislature-passes-first-in-the-nation-data-center-moratorium/</a> （参照日： 2026-08-15)</li>
+<li id="ref6">Office of Governor Janet T. Mills, "Governor Mills Announces Decision on LD 307," 2026 年 4 月 24 日 , <a href="https://www.maine.gov/governor/mills/news/governor-mills-announces-decision-ld-307-2026-04-24" target="_blank">https://www.maine.gov/governor/mills/news/governor-mills-announces-decision-ld-307-2026-04-24</a> （参照日： 2026-08-15)</li>
+<li id="ref7">Maine Morning Star, "Despite initial support, Legislature fails to override Mills' veto of landmark data center ban," 2026 年 4 月 29 日 , <a href="https://mainemorningstar.com/2026/04/29/despite-initial-support-legislature-fails-to-override-mills-veto-of-landmark-data-center-ban/" target="_blank">https://mainemorningstar.com/2026/04/29/despite-initial-support-legislature-fails-to-override-mills-veto-of-landmark-data-center-ban/</a> （参照日： 2026-08-15)</li>
+<li id="ref8">Good Jobs First, "Data Center Moratorium Bills Are Spreading in 2026," <a href="https://goodjobsfirst.org/data-center-moratorium-bills-are-spreading-in-2026/" target="_blank">https://goodjobsfirst.org/data-center-moratorium-bills-are-spreading-in-2026/</a> （参照日： 2026-08-15)</li>
+<li id="ref9">Gallup, "Americans Oppose AI Data Centers in Their Area," 2026 年 5 月 13 日 , <a href="https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx" target="_blank">https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx</a> （参照日： 2026-08-15)</li>
+<li id="ref10">Anthony Leiserowitz et al., Yale Program on Climate Change Communication, "Climate Change in the American Mind: Politics &amp; Policy, Spring 2026," <a href="https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-politics-policy-spring-2026/toc/10/" target="_blank">https://climatecommunication.yale.edu/publications/climate-change-in-the-american-mind-politics-policy-spring-2026/toc/10/</a> （参照日： 2026-08-15)</li>
+<li id="ref11">Tamara Keith, NPR, "Data centers are a political issue crossing party lines, driving voters to candidates," 2026 年 8 月 8 日 , <a href="https://www.npr.org/2026/08/08/g-s1-137853/data-centers-are-a-political-issue-crossing-party-lines-driving-voters-to-candidates" target="_blank">https://www.npr.org/2026/08/08/g-s1-137853/data-centers-are-a-political-issue-crossing-party-lines-driving-voters-to-candidates</a> （参照日： 2026-08-15)</li>
+<li id="ref12">The White House / Federal Register, "Executive Order 14365—Ensuring a National Policy Framework for Artificial Intelligence," 署名日： 2025 年 12 月 11 日、官報掲載： 2025 年 12 月 16 日 , <a href="https://www.govinfo.gov/app/details/DCPD-202501186" target="_blank">https://www.govinfo.gov/app/details/DCPD-202501186</a> （参照日： 2026-08-15)</li>
+<li id="ref13">MLex, "Bondi stands up AI Litigation Task Force at US DOJ," 2026 年 1 月 , <a href="https://www.mlex.com/mlex/artificial-intelligence/articles/2429780/bondi-stands-up-ai-litigation-task-force-at-us-doj" target="_blank">https://www.mlex.com/mlex/artificial-intelligence/articles/2429780/bondi-stands-up-ai-litigation-task-force-at-us-doj</a> （参照日： 2026-08-15)</li>
+<li id="ref14">TechPolicy.Press, "Where State AI Legislation Stands Half Way Into 2026," <a href="https://www.techpolicy.press/where-state-ai-legislation-stands-half-way-into-2026/" target="_blank">https://www.techpolicy.press/where-state-ai-legislation-stands-half-way-into-2026/</a> （参照日： 2026-08-15)</li>
+<li id="ref15">Axios, "Voters face uneven AI deepfake protections," 2026 年 8 月 7 日 , <a href="https://www.axios.com/2026/08/07/election-ai-deepfake-rules-states" target="_blank">https://www.axios.com/2026/08/07/election-ai-deepfake-rules-states</a> （参照日： 2026-08-15)</li>
+<li id="ref16">SCSK 「印西が『データセンター銀座』と呼ばれる歴史的背景と立地要件」 <a href="https://www.scsk.jp/sp/netxdc/column/inzai_datacenter.html" target="_blank">https://www.scsk.jp/sp/netxdc/column/inzai_datacenter.html</a> （参照日： 2026-08-15)</li>
+<li id="ref17">日本経済新聞「『データセンター銀座』千葉・印西市、新設続く 駅前計画に反発も」 <a href="https://www.nikkei.com/article/DGXZQOCC09BU10Z01C25A2000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC09BU10Z01C25A2000000/</a> （参照日： 2026-08-15)</li>
+<li id="ref18">みやかわ伸（衆議院議員）「 10/20 『世界の印西データセンター』板倉市長との対談レポート」 2023 年 10 月 22 日 , <a href="https://smiyakawa.com/2023/10/22/" target="_blank">https://smiyakawa.com/2023/10/22/</a> （参照日： 2026-08-15)</li>
+<li id="ref19">東京新聞「反対していた市長が突然『容認』に転じた 千葉・印西市の駅前『データセンター』建設計画 住民は怒っている」 <a href="https://www.tokyo-np.co.jp/article/459865" target="_blank">https://www.tokyo-np.co.jp/article/459865</a> （参照日： 2026-08-15)</li>
+<li id="ref20">日本経済新聞「『データセンター銀座』千葉・印西、駅前建設で物議 日照権巡り懸念」 2025 年 4 月 25 日 , <a href="https://www.nikkei.com/article/DGXZQOCC112WK0R10C25A4000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC112WK0R10C25A4000000/</a> （参照日： 2026-08-15)</li>
+<li id="ref21">日本経済新聞「千葉・印西の駅前データセンター、建築確認取り消し求め住民提訴」 <a href="https://www.nikkei.com/article/DGXZQOCC2738X0X20C26A2000000/" target="_blank">https://www.nikkei.com/article/DGXZQOCC2738X0X20C26A2000000/</a> （参照日： 2026-08-15)</li>
+<li id="ref22">山田稔「住みやすい街ランキングの常連、千葉県印西市が持つもう一つの『意外な顔』」 JBpress, 2023 年 2 月 26 日 , <a href="https://jbpress.ismedia.jp/articles/-/74099?page=3" target="_blank">https://jbpress.ismedia.jp/articles/-/74099?page=3</a> （参照日： 2026-08-15)</li>
+<li id="ref23">日経ビジネス「相模原市のデータセンター誘致に関する報道」 2026 年 6 月 , <a href="https://business.nikkei.com/atcl/gen/19/00332/060200105/" target="_blank">https://business.nikkei.com/atcl/gen/19/00332/060200105/</a> （参照日： 2026-08-15)</li>
+<li id="ref24">しんぶん赤旗「巨大データセンター、住民説明を　山添議員が求める」 2025 年 1 月 17 日 , <a href="https://www.jcp.or.jp/akahata/aik24/2025-01-17/2025011704_02_0.html" target="_blank">https://www.jcp.or.jp/akahata/aik24/2025-01-17/2025011704_02_0.html</a> （参照日： 2026-08-15)</li>
+<li id="ref25">千葉日報オンライン「データセンター許可取消訴訟、白井市は棄却求める 千葉地裁、第 1 回弁論」 <a href="https://www.chibanippo.co.jp/articles/1576734" target="_blank">https://www.chibanippo.co.jp/articles/1576734</a> （参照日： 2026-08-15)</li>
+<li id="ref26">東京新聞「白井・富ケ谷のデータセンター建設許可 取り消し求め市を提訴 住民の弁護士『安全か問いたい』」 2026 年 1 月 9 日 , <a href="https://www.tokyo-np.co.jp/article/460809" target="_blank">https://www.tokyo-np.co.jp/article/460809</a> （参照日： 2026-08-15)</li>
+<li id="ref27">日本共産党東京都委員会「巨大 DC 建設で環境悪化」 2026 年 6 月 16 日 , <a href="https://www.jcp-tokyo.net/2026/0616/121287" target="_blank">https://www.jcp-tokyo.net/2026/0616/121287</a> （参照日： 2026-08-15)</li>
+<li id="ref28">総務省「令和 6 年版情報通信白書」 <a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html" target="_blank">https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html</a> （参照日： 2026-08-15)</li>
 </ol>
     </div>
   </div>

@@ -9,19 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#faf9f5;--ink:#1c1d21;--sub:#5a606b;--accent:#315f96;
-  --accent2:#7c5aa6;--line:#e2ded4;--hero1:#050a18;--hero2:#1b3055;
+  --bg:#faf9f5;--sub:#4a5160;--muted:#5f6673;--tag-bg:#f1f5f9;--tag-line:#cbd5e1;--ink:#1c1d21;--accent:#315f96;
+  --accent2:#7c5aa6;--line:#e2ded4;--hero-1:#050a18;--hero-2:#1b3055;
   --hero-ink:#eef4ff;--hero-dim:#a9bcdb;--hero-faint:#7e93b5;
-  --paper:#fff;--soft:#f2f5f9;--gold:#c39b42;
+  --paper:#fff;--note-bg:#f2f5f9;
   --concept-bg:#f8f6fb;--evidence-bg:#f8f7f2;--evidence-border:#e3dccb;
   --blockquote-bg:#f3f5f9;--diagram-bg:linear-gradient(135deg,#f7f9fc,#f4f0f8);
   --callout-strong:#234d80;
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:#131419;--ink:#e7e7ec;--sub:#9a9fac;--accent:#6a9bd6;
+    --bg:#131419;--sub:#b9bec9;--muted:#9aa0ad;--tag-bg:#20242c;--tag-line:#3a3f4a;--ink:#e7e7ec;--accent:#6a9bd6;
     --accent2:#a98cd6;--line:#2b2c33;
-    --paper:#1a1b21;--soft:#1c1f28;--gold:#d9b366;
+    --paper:#1a1b21;--note-bg:#1c1f28;
     --concept-bg:#211f29;--evidence-bg:#211f19;--evidence-border:#3a3426;
     --blockquote-bg:#1c1f28;--diagram-bg:linear-gradient(135deg,#1c2028,#211d28);
     --callout-strong:#8fb4ea;
@@ -32,24 +32,24 @@ html{scroll-behavior:smooth}
 body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
  line-height:2.05;letter-spacing:.025em;-webkit-font-smoothing:antialiased;color:var(--ink);background:var(--bg)}
 /* ---- hero ---- */
-header.hero{background:linear-gradient(140deg,var(--hero1) 0%,var(--hero2) 100%);
+header.hero{background:linear-gradient(140deg,var(--hero-1) 0%,var(--hero-2) 100%);
  color:var(--hero-ink);padding:3.6rem 0 2.8rem;margin-bottom:2.8rem}
 header.hero .wrap{max-width:960px;margin:0 auto;padding:0 clamp(1.5rem,3vw,3rem)}
 header.hero .eyebrow{display:block;font-size:.78rem;letter-spacing:.24em;
  color:var(--hero-dim);font-weight:700;margin-bottom:.9rem}
 header.hero h1{font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.6;margin:0 0 .8rem;font-weight:700}
-header.hero h1 .grad{background:linear-gradient(90deg,#b7d1ff,#e5d8f6,#f2cbe7);
- -webkit-background-clip:text;background-clip:text;color:transparent}
 header.hero p.sub{margin:0;color:var(--hero-dim);line-height:1.85;font-size:.98rem}
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
 header.hero .hero-meta{display:flex;flex-wrap:wrap;gap:1.2em;color:var(--hero-faint);
  font-size:.84rem;border-top:1px solid #ffffff20;margin-top:1.7rem;padding-top:1.2em}
 .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto}
 .hero-figure svg{display:block;width:100%;height:auto}
 .hero-figure figcaption{margin-top:.9rem;font-size:.85rem;color:var(--hero-dim);line-height:1.75}
 .wrap{margin:auto;padding:0 clamp(1.5rem,3vw,3rem) 7em}
-.kicker{font:500 .88rem "Zen Kaku Gothic New";color:#667085;letter-spacing:.12em}
-.tag{display:inline-block;border:1px solid #cbd5e1;background:#f1f5f9;border-radius:999px;
- padding:.15em .75em;margin:.2em .35em .2em 0;font:500 .78rem "Zen Kaku Gothic New";color:#475569}
+.kicker{font:500 .88rem "Zen Kaku Gothic New";color:var(--muted);letter-spacing:.12em}
+.tag{display:inline-block;border:1px solid var(--tag-line);background:var(--tag-bg);border-radius:999px;
+ padding:.15em .75em;margin:.2em .35em .2em 0;font:500 .78rem "Zen Kaku Gothic New";color:var(--sub)}
 h2{font-size:1.72rem;line-height:1.4;margin:3.5em 0 1.1em;padding-bottom:.45em;border-bottom:2px solid var(--line);position:relative}
 h2:after{content:"";position:absolute;bottom:-2px;left:0;width:64px;height:2px;background:var(--accent)}
 h3{font-size:1.22rem;margin:2.7em 0 .8em;color:var(--ink)}
@@ -59,13 +59,13 @@ header.hero p,.hero-figure figcaption,.kicker,.cap,.note p,.concept p,.evidence 
  .flow div,.refs li,footer,td,th,.endmark{text-indent:0}
 .note,.concept,.evidence{margin:2.2em 0;padding:1.3em 1.45em;border-radius:12px;
  font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.94rem;line-height:1.9}
-.note{background:var(--soft);border:1px solid #d7e1ed}.concept{background:var(--concept-bg);border-left:4px solid var(--accent2)}
+.note{background:var(--note-bg);border:1px solid #d7e1ed}.concept{background:var(--concept-bg);border-left:4px solid var(--accent2)}
 .evidence{background:var(--evidence-bg);border:1px solid var(--evidence-border)}
 .note strong,.concept strong,.evidence strong{color:var(--callout-strong)}
 blockquote{margin:2.3em 0;padding:1.2em 1.5em;border-left:4px solid var(--accent);background:var(--blockquote-bg);
  border-radius:0 12px 12px 0}
 table{width:100%;border-collapse:collapse;margin:2em 0;font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;font-size:.91rem}
-th,td{padding:.8em;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:var(--soft)}
+th,td{padding:.8em;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}th{background:var(--note-bg)}
 .figure{margin:2.5em 0;border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden}
 .figure .diagram{padding:22px;background:var(--diagram-bg);font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;background:#f8f7f4;border-top:1px solid var(--line);font: .82rem "Zen Kaku Gothic New";color:#596273}
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.flow div{padding:15px;border:1px solid #ccd7e5;border-radius:10px;background:var(--paper)}
@@ -93,13 +93,13 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
  padding:18px 22px;cursor:pointer;text-align:left;font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;color:var(--ink);
  -webkit-tap-highlight-color:transparent}
 .acc-header .num{flex:0 0 auto;color:var(--accent);font-size:.82rem;font-weight:700;
- background:var(--soft);padding:4px 11px;border-radius:999px;white-space:nowrap;
+ background:var(--note-bg);padding:4px 11px;border-radius:999px;white-space:nowrap;
  font-variant-numeric:tabular-nums;letter-spacing:.06em}
 .acc-header .title{flex:1 1 auto;font-size:1.15rem;font-weight:700;line-height:1.5;text-indent:0}
 .acc-header .chev{flex:0 0 auto;width:20px;height:20px;color:var(--accent);
  transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .acc-item.open>.acc-header .chev{transform:rotate(180deg)}
-.acc-item.open>.acc-header{background:var(--soft);border-bottom:1px solid var(--line)}
+.acc-item.open>.acc-header{background:var(--note-bg);border-bottom:1px solid var(--line)}
 .acc-panel{display:grid;grid-template-rows:0fr;
  transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);overflow-anchor:none}
 .acc-item.open>.acc-panel{grid-template-rows:1fr}
@@ -140,6 +140,10 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
     <span class="eyebrow">THE MULTIVERSE / THE EARLY UNIVERSE / QUANTUM GRAVITY</span>
     <h1>「似た宇宙」と「宇宙の前」 - 私たちは、どこまで宇宙の始まりを語れるのか</h1>
     <p class="sub">無数の宇宙があるのか。そもそも「宇宙の外」や「宇宙の前」という言葉には、物理的な意味があるのか。この二つの問いは、どちらも強烈な想像力を刺激する。けれど、本当に面白いのは想像の先にある。そこには、観測できること、数学から導かれること、そしてまだ分からないことを厳密に切り分けようとする、現代宇宙論の仕事がある。</p>
+    <div class="meta">
+      <span>全 12 章</span>
+      <span>約 19 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 300" role="img" aria-labelledby="lcTitle lcDesc">
@@ -161,7 +165,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
         <text x="596" y="148" class="side">過去光円錐</text>
         <text x="224" y="148" class="side end">光円錐の外</text>
 
-        <text x="410" y="190" class="inCone">私たちが見る最も古い光 (CMB)</text>
+        <text x="410" y="190" class="inCone">私たちが見る最も古い光（ CMB)</text>
 
         <rect x="70" y="200" width="630" height="36" class="plasma"/>
         <line x1="70" y1="200" x2="700" y2="200" class="lss"/>
@@ -268,7 +272,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
       ESA/Hubble の用語解説も、ビッグバンという語は爆発を指すのではなく、空間そのものの膨張を指す言葉なのだと明示している。
     </p>
     <p>
-      私たちが直接見られる最も古い光は、宇宙マイクロ波背景放射 (CMB) である。 NASA の解説によれば、これはビッグバンから約 38 万年後、宇宙がまだ高温・高密度で不透明だった時代の終わりに放たれた光である。<br>
+      私たちが直接見られる最も古い光は、宇宙マイクロ波背景放射（ CMB ）である。 NASA の解説によれば、これはビッグバンから約 38 万年後、宇宙がまだ高温・高密度で不透明だった時代の終わりに放たれた光である。<br>
       それ以前の宇宙は高温のプラズマで、光は電子によって頻繁に散乱され、現在のように自由に遠くまで進めなかった。<br>
       つまり、宇宙の「最初」を語るとき、私たちは映像を直接見ているのではない。現在に残された痕跡を使って、より早い時代を推定している。
     </p>
@@ -645,7 +649,7 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
       <li>Arvind Borde, Alan H. Guth, Alexander Vilenkin, <em>Inflationary spacetimes are not past-complete</em>, Physical Review Letters <strong>90</strong>, 151301 (2003).
         <a href="https://arxiv.org/abs/gr-qc/0110012" target="_blank" rel="noopener">arXiv:gr-qc/0110012</a>
         - インフレーションする時空が過去方向に測地線的不完全であることを示した定理。</li>
-      <li>Alan H. Guth, <em>Inflation</em>, Carnegie Observatories Astrophysics Series, Vol. 2: <em>Measuring and Modeling the Universe</em> (2004).
+      <li>Alan H. Guth, <em>Inflation</em>, Carnegie Observatories Astrophysics Series, Vol. 2: <em>Measuring and Modeling the Universe</em>(2004).
         <a href="https://arxiv.org/abs/astro-ph/0404546" target="_blank" rel="noopener">arXiv:astro-ph/0404546</a></li>
       <li>Planck Collaboration, <em>Planck 2018 results. X. Constraints on inflation</em>, Astronomy &amp; Astrophysics <strong>641</strong>, A10 (2020).
         <a href="https://arxiv.org/abs/1807.06211" target="_blank" rel="noopener">arXiv:1807.06211</a>
@@ -670,10 +674,10 @@ footer{font: .82rem/1.8 "Zen Kaku Gothic New";color:#687180;border-top:1px solid
       <li>Michael R. Douglas, <em>The String Theory Landscape</em>, Universe <strong>5</strong>, 176 (2019).
         <a href="https://doi.org/10.3390/universe5070176" target="_blank" rel="noopener">DOI</a>
         - ランドスケープと真空の数え上げに関する総説。</li>
-      <li>Washington Taylor and Yi-Nan Wang, <em>The F-theory geometry with most flux vacua</em>, JHEP <strong>12</strong> (2015) 164.
+      <li>Washington Taylor and Yi-Nan Wang, <em>The F-theory geometry with most flux vacua</em>, JHEP <strong>12</strong>(2015) 164.
         <a href="https://arxiv.org/abs/1511.03209" target="_blank" rel="noopener">arXiv:1511.03209</a>
         - 真空数の見積もりが数え方に強く依存することを示す例（ 10<sup>272000</sup> ）。</li>
-      <li>Yasunori Nomura, <em>Physical Theories, Eternal Inflation, and Quantum Universe</em>, JHEP <strong>11</strong> (2011) 063.
+      <li>Yasunori Nomura, <em>Physical Theories, Eternal Inflation, and Quantum Universe</em>, JHEP <strong>11</strong>(2011) 063.
         <a href="https://arxiv.org/abs/1104.2324" target="_blank" rel="noopener">arXiv:1104.2324</a>
         - 「永久インフレーションのマルチバースと量子力学の多世界は同じもの」と結論する論文。</li>
       <li>Yasunori Nomura, <em>The Static Quantum Multiverse</em>, Physical Review D <strong>86</strong>, 083505 (2012).

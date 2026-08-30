@@ -10,35 +10,37 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
+    --hero-1:#1878b0; --hero-2:#064b78; --hero-ink:#ffffff; --hero-dim:#e3f7ff;
     --sky:#29b6f6;
-    --sky-deep:#0288d1;
+    --accent:#0276b5;
     --sun:#ffca28;
     --sun-deep:#ffa000;
-    --coral:#ff7043;
+    --coral:#ff7043;--coral-deep:#d43300;
     --paper:#ffffff;
     --ink:#2c3e50;
-    --ink-soft:#546e7a;
+    --sub:#455a64;
     --line:#e3f2fb;
     --pause-bg:#fff8e1;
     --pause-border:#ffca28;
     --pause-ink:#6d4c00;
-    --accent-bg: #f4f9f9;
-    --acc-open-bg: linear-gradient(90deg, #f0f9ff, #ffffff);
+    --card: #f4f9f9;
+    --note-bg:#eaf5fd;
     /* ヒーロー: 陽の差す水面（ 続編 jung_criticism.html の深淵と対をなす ）*/
-    --surface-light:#1878b0;
+
     --surface-mid:#0a5d92;
-    --surface-deep:#064b78;
   }
   @media (prefers-color-scheme: dark){
     :root{
+      --coral-deep:#ff8a65;
+      --accent:#0293e1;
       --paper:#1b2430;
       --ink:#dce6ee;
-      --ink-soft:#9fb3c4;
+      --sub:#9fb3c4;
       --line:#223140;
       --pause-bg:#332b12;
       --pause-ink:#e6c375;
-      --accent-bg:#16211f;
-      --acc-open-bg: var(--paper);
+      --card:#16211f;
+      --note-bg:#1f2a36;
     }
   }
   *{box-sizing:border-box;}
@@ -84,13 +86,13 @@
         rgba(255,236,179,0.06) 38%,
         rgba(255,236,179,0) 68%),
       linear-gradient(160deg,
-        var(--surface-light) 0%,
+        var(--hero-1) 0%,
         var(--surface-mid) 52%,
-        var(--surface-deep) 100%);
-    color:#ffffff;
+        var(--hero-2) 100%);
+    color:var(--hero-ink);
   }
-  .hero-inner{ position:relative; z-index:2; }
-  .kicker{
+  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
+  header.hero .eyebrow{
     display:inline-block;
     font-size:0.85rem;
     letter-spacing:0.35em;
@@ -107,14 +109,16 @@
     font-weight:800;
     text-shadow:0 3px 16px rgba(0,0,0,0.40);
   }
-  .hero h2{
+  header.hero p.sub{
     margin:0 auto;
     max-width:600px;
     font-size:clamp(1.1rem, 2.5vw, 1.35rem);
     font-weight:500;
-    color:#e3f7ff;
+    color:var(--hero-dim);
     line-height:1.6;
   }
+  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
   .wave{
     position:absolute;
     left:0; right:0; bottom:-2px;
@@ -129,12 +133,13 @@
   }
   .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:#e3f7ff; }
+  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
   .toc-note{
+    margin:0 0 26px;
     text-align:center;
-    color:var(--ink-soft);
-    font-size:0.95rem;
-    margin:40px 0 30px;
+    color:var(--sub);
+    line-height:1.85;
+    text-indent:0;
   }
   
   /* Sticky Toolbar */
@@ -159,7 +164,7 @@
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     font-size:0.9rem;
     font-weight: 600;
-    color:var(--sky-deep);
+    color:var(--accent);
     background:#ffffff;
     border:1.5px solid var(--sky);
     border-radius:999px;
@@ -224,27 +229,31 @@
     display:block;
     font-weight:500;
     font-size:0.85rem;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:4px;
   }
   .acc-header .chev{
     flex:0 0 auto;
     width:24px; height:24px;
-    color:var(--sky-deep);
+    color:var(--accent);
     transition:transform .3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
   .acc-item.open > .acc-header{
-    background:var(--acc-open-bg);
+    background:var(--note-bg);
     border-bottom: 1px solid var(--line);
   }
 
   .acc-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
   .acc-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 28px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -262,7 +271,7 @@
     margin-top:8px;
   }
   .sub-item{
-    background:var(--accent-bg);
+    background:var(--card);
     border:1px solid #dceef5;
     border-radius:14px;
     overflow:hidden;
@@ -302,7 +311,7 @@
   }
   .sub-header .chev{
     width:20px; height:20px;
-    color:var(--coral);
+    color:var(--coral-deep);
     transition:transform .3s ease;
   }
   .sub-item.open > .sub-header .chev{ transform:rotate(180deg); }
@@ -310,11 +319,15 @@
     border-bottom: 1px dashed #dceef5;
   }
   .sub-panel{
-    height:0;
-    overflow:hidden;
-    transition:height .4s cubic-bezier(.4,0,.2,1);
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
+    overflow-anchor:none;
   }
+  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
   .sub-panel-inner{
+    overflow:hidden;
+    min-height:0;
     padding:0 24px;
     opacity: 0;
     transition: opacity 0.3s ease 0.1s;
@@ -348,14 +361,14 @@
     font-style:normal;
     font-size:0.9rem;
     text-align:right;
-    color: var(--sky-deep);
+    color: var(--accent);
     font-weight: bold;
   }
   .pullquote{
     text-align:center;
     font-size:1.25rem;
     font-weight:700;
-    color:var(--sky-deep);
+    color:var(--accent);
     margin:1.8em 0;
     text-indent:0;
     padding: 0 20px;
@@ -366,7 +379,7 @@
     display: inline-block;
     width: 20px;
     height: 2px;
-    background: var(--sky-deep);
+    background: var(--accent);
     vertical-align: middle;
     margin: 0 15px;
     opacity: 0.3;
@@ -374,41 +387,38 @@
   .italicquote{
     text-align:center;
     font-style:italic;
-    color:var(--coral);
+    color:var(--coral-deep);
     font-weight:700;
     font-size: 1.15rem;
     margin:1.8em 0;
     text-indent:0;
   }
   .pause{
-    margin-top:2em;
+    margin:2em 0 0;
     padding:24px;
     background:var(--pause-bg);
     border:2px dashed var(--pause-border);
     border-radius:16px;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(255,202,40,0.1);
+    position:relative;
+    box-shadow:0 4px 12px color-mix(in srgb, var(--pause-border) 16%, transparent);
   }
-  .pause::before {
-    content: "ひと休み";
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: var(--pause-bg);
-    padding: 0 8px;
-    font-size: 0.75rem;
+  .pause::before{
+    content:"ひと休み";
+    position:absolute;
+    top:-10px;
+    left:20px;
+    background:var(--pause-bg);
+    padding:0 8px;
     font-weight:700;
-    letter-spacing: 0.05em;
-    color: var(--pause-border);
+    letter-spacing:.05em;
+    color:var(--pause-ink);
   }
   .pause p{
     margin:0;
     text-indent:0;
     color:var(--pause-ink);
     font-weight:600;
-    text-align: left;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    line-height:1.6;
   }
   strong.term{
     color:var(--ink);
@@ -425,7 +435,7 @@
   .dl-term dt{
     font-weight:700;
     font-size: 1.1rem;
-    color:var(--sky-deep);
+    color:var(--accent);
     margin-bottom:6px;
   }
   .dl-term dd{
@@ -434,7 +444,7 @@
     font-size:1rem;
   }
   .book-group h4{
-    color:var(--coral);
+    color:var(--coral-deep);
     font-size:1.1rem;
     margin:1.5em 0 0.8em;
     border-left: 4px solid var(--coral);
@@ -452,16 +462,16 @@
   .closing{
     text-align:center;
     font-style:italic;
-    color:var(--ink-soft);
+    color:var(--sub);
     margin-top:2em;
     padding: 20px;
-    background: var(--accent-bg);
+    background: var(--card);
     border-radius: 12px;
   }
 
   footer{
     text-align:center;
-    color:var(--ink-soft);
+    color:var(--sub);
     font-size:0.9rem;
     padding:30px 20px;
     background: #f4f9f9;
@@ -491,6 +501,8 @@
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
   header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
+  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
@@ -498,10 +510,14 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <span class="kicker">JUNGIAN PSYCHOLOGY</span>
+  <div class="wrap">
+    <span class="eyebrow">JUNGIAN PSYCHOLOGY</span>
     <h1>本当の自分に出会う</h1>
-    <h2>ユング心理学とともに歩む、こころの旅</h2>
+    <p class="sub">ユング心理学とともに歩む、こころの旅</p>
+    <div class="meta">
+      <span>全 11 章</span>
+      <span>約 41 分</span>
+    </div>
 
     <figure class="hero-figure">
       <svg viewBox="0 0 720 200" role="img" aria-labelledby="byTitle byDesc">
@@ -605,11 +621,11 @@
       </button>
       <div class="acc-panel">
         <div class="acc-panel-inner">
-          <p>カール・グスタフ・ユング (1875 年〜1961 年) は、スイスの精神科医だった。ジークムント・フロイトと共に精神分析の草創期を担った後、独自の「分析心理学(ユング心理学)」を打ち立て、現代心理学に最も大きな影響を与えた思想家の一人として記憶されている。</p>
+          <p>カール・グスタフ・ユング（ 1875 年〜 1961 年）は、スイスの精神科医だった。ジークムント・フロイトと共に精神分析の草創期を担った後、独自の「分析心理学（ユング心理学）」を打ち立て、現代心理学に最も大きな影響を与えた思想家の一人として記憶されている。</p>
           <p>ユングは、すべての人が豊かな内面世界を持っていると考えた。<br>
 その世界の一部は、見えやすいものである。その他の部分は、隠れたままである。</p>
           <p>彼は、こうした隠れたパターンの多くに名前を与えた。たとえば「<strong class="term">ペルソナ</strong>」、「<strong class="term">影</strong>」、「<strong class="term">自己</strong>」などである。<br>
-彼の思想は、単なる医療の枠を超え、神話学、教育、文学、芸術、さらにはビジネスのリーダーシップや現代の性格診断(MBTI など)にまで深い影響を与え続けている。</p>
+彼の思想は、単なる医療の枠を超え、神話学、教育、文学、芸術、さらにはビジネスのリーダーシップや現代の性格診断（ MBTI など）にまで深い影響を与え続けている。</p>
           <p>この記事は、ユングの仕事の完全な解説書ではない。その代わりに、優しい最初の一歩を提供する。<br>
 目標は、専門家になることではない。目標は、より好奇心を持つことである。</p>
         </div>
@@ -626,10 +642,10 @@
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <p>ユングの思想は、スイスという遠い国で生まれた。しかしそれは、海を越えて日本にたどり着いたとき、単なる輸入品としてではなく、日本の風土の中で独自に根を張っていった。</p>
-          <p>その最大の立役者が、臨床心理学者の<strong class="term">河合隼雄</strong> (1928 年〜2007 年) である。<br>
+          <p>その最大の立役者が、臨床心理学者の<strong class="term">河合隼雄</strong> (1928 年〜 2007 年）である。<br>
 河合隼雄は、日本人として初めてスイスのユング研究所で正式な資格を得た分析家であり、日本にユング心理学を紹介し、根づかせた人物として知られている。彼は、ユングの理論をそのまま輸入するのではなく、日本の神話、昔話、そして日本人のこころのあり方と照らし合わせながら、独自の視点を加えていった。</p>
           <p>たとえば河合は、日本神話を丹念に読み解き、西洋の神話にしばしば見られる「一人の強い神が中心に立ち、対立するものを征服する」という構造とは異なる、日本神話に特有のパターンを見出した。彼はこれを<strong class="term">中空構造</strong>と呼んだ。<br>
-日本神話の中心には、しばしば力強く支配する神ではなく、アマテラス、ツクヨミ、スサノオのように、互いに異なる性質を持つ神々が並び立ち、中心そのものは「空 (から) 」のまま保たれている。</p>
+日本神話の中心には、しばしば力強く支配する神ではなく、アマテラス、ツクヨミ、スサノオのように、互いに異なる性質を持つ神々が並び立ち、中心そのものは「空（から）」のまま保たれている。</p>
           <p>対立するものを、一方が他方を打ち負かすことで解決するのではなく、中心を空けたまま、両方をそのまま共存させる。河合は、この構造が、日本人のこころのあり方や、対立や葛藤への向き合い方にも通じていると考えた。</p>
           <p>また河合は、スイスの分析家ドラ・カルフから学んだ<strong class="term">箱庭療法</strong>を日本に導入したことでも知られている。これは、砂の入った箱の中に、小さな人形や自然物を自由に置いていくことで、言葉にならない内なる世界を表現する心理療法である。</p>
           <p>日本では、言葉で自分の内面を語ることを得意としない人も少なくない。<strong class="term">箱庭療法</strong>は、そうした「語られないこころ」に、言葉を介さずに触れる方法として、日本の臨床現場に深く根づいていった。</p>
@@ -663,7 +679,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">6</span>
-        <span class="title">パート I<small>自分自身と出会う (会話 1〜12) </small></span>
+        <span class="title">パート I <small>自分自身と出会う（会話 1 〜 12)</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -678,7 +694,7 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p class="quote no-indent">「外を見る者は夢を見る。内を見る者は目覚める。」<span class="author">— カール・グスタフ・ユング</span></p>
+                  <p class="quote no-indent">「外を見る者は夢を見る。内を見る者は目覚める。」<span class="author"> - カール・グスタフ・ユング</span></p>
                   <p>この記事を読む前に、少しの間、立ち止まってほしい。<br>
 勉強する必要はない。すべての言葉を覚える必要もない。<br>
 必要なのは、たった一つのことである。好奇心である。</p>
@@ -768,7 +784,7 @@
 仮面は役に立つ。それは私たちが社会に溶け込み、他者と円滑な関係を築き、働くことを助けてくれる。</p>
                   <p>問題が起こるのは、それがただの仮面であることを、私たちが忘れてしまったときである。<br>
 心理学ではこれを「<strong class="term">ペルソナ</strong>との同一化」と呼ぶ。「仕事ができる自分」「いつも優しい親」といった仮面と自分自身を同一視しすぎると、仮面の下にある本当の素顔が窒息してしまう。</p>
-                  <p>他人を喜ばせることに多くの時間を費やしすぎて、自分が本当は何を考え、何を感じているのかを忘れてしまうと、突然の燃え尽き(バーンアウト)や深い虚無感に襲われることがある。</p>
+                  <p>他人を喜ばせることに多くの時間を費やしすぎて、自分が本当は何を考え、何を感じているのかを忘れてしまうと、突然の燃え尽き（バーンアウト）や深い虚無感に襲われることがある。</p>
                   <p>目標は、仮面を捨てることではない。社会で生きる以上、私たちは<strong class="term">ペルソナ</strong>を必要としている。<br>
 真の目標は、自分がいつそれをかぶっているかを知り、必要に応じて仮面を外す柔軟性を持つことである。自由は、気づくことから始まる。</p>
                   <div class="pause">
@@ -864,7 +880,7 @@
                   <p>理由もはっきりわからないまま、誰かを深く尊敬したことはないだろうか。まるで前から知っていたかのように、すぐに誰かに恋をしたことはないだろうか。<br>
 あるいは逆に、論理では説明のつかない強い反発を感じたことはないだろうか。</p>
                   <p>ユングは、私たち一人ひとりが、無意識の深いレベルに「異性の心的イメージ」を持っていると考えた。彼はそれを、男性の心の中にある女性的側面の<strong class="term">元型</strong>を<strong class="term">アニマ</strong>、女性の心の中にある男性的側面の<strong class="term">元型</strong>を<strong class="term">アニムス</strong>と呼んだ。</p>
-                  <p>この内なる姿は、神話や物語において、主人公を未知の世界へ導く案内人としてしばしば登場する(たとえば、ダンテの『神曲』におけるベアトリーチェのように)。</p>
+                  <p>この内なる姿は、神話や物語において、主人公を未知の世界へ導く案内人としてしばしば登場する（たとえば、ダンテの『神曲』におけるベアトリーチェのように）。</p>
                   <p>現実の恋愛においても、私たちは無意識に自分の<strong class="term">アニマ</strong>や<strong class="term">アニムス</strong>を相手に<strong class="term">投影</strong>してしまう。相手の本当の姿ではなく、自分の心の中の理想像を相手に重ね合わせているとき、人は熱狂的な恋に落ちる。<br>
 しかし、<strong class="term">投影</strong>が剥がれ落ち、相手のありのままの姿が見え始めたときにこそ、真の関係性が始まるとユング心理学では考える。</p>
                   <p>ユングは、この内なる姿を単なる恋愛のメカニズムとしてではなく「橋」として見た。それは、世界に見せている自分と、まだ出会っていない自分とをつなぐ橋である。<br>
@@ -942,7 +958,7 @@
                   <p>彼は、目覚めている間にも、同じような内なる声に耳を傾ける方法を編み出した。彼はそれを<strong class="term">アクティブ・イマジネーション</strong> - 能動的想像法 - と呼んだ。</p>
                   <p>やり方は、シンプルだが少しの練習が必要である。<br>
 心に浮かんだ一つのイメージ - 夢に出てきた人物でも、ふと浮かんだ感情や情景でも構わない - を、そのまま心の中にとどめておく。そして、それが自然に動いたり、語りかけたりするのを、ただ見守る。</p>
-                  <p>大切なのは、その先を自分の頭(意識)で作り上げようとしないことである。意図的に物語を作文するのではない。<br>
+                  <p>大切なのは、その先を自分の頭（意識）で作り上げようとしないことである。意図的に物語を作文するのではない。<br>
 むしろ、無意識がすでに持っているものが現れるための、十分な時間と場所を与えるだけである。イメージの中の人物に話しかけ、相手の返事をじっと待つこともある。</p>
                   <p>これは、慣れるまでは奇妙に感じられるかもしれない。<br>
 私たちは通常、自分の想像力をコントロールしようとする。<strong class="term">アクティブ・イマジネーション</strong>は、その逆を求める - 手放し、ただ耳を傾け、対話することを。</p>
@@ -964,7 +980,7 @@
                   <p>人でいっぱいの部屋にいると、元気になる人がいる。一時間、一人で本を読んだあとに、元気になる人もいる。<br>
 どちらの生き方が優れているということはない。</p>
                   <p>今日、私たちが日常的に使っている<strong class="term">外向性</strong>と<strong class="term">内向性</strong>という概念を最初に提唱したのはユングだった。</p>
-                  <p>外向的な態度は、心のエネルギー(リビドー)が外の世界 - 人々、活動、客観的な事実 - に向かう。内向的な態度は、エネルギーが内なる世界 - 思考、内省、主観的な印象 - に向かう。</p>
+                  <p>外向的な態度は、心のエネルギー（リビドー）が外の世界 - 人々、活動、客観的な事実 - に向かう。内向的な態度は、エネルギーが内なる世界 - 思考、内省、主観的な印象 - に向かう。</p>
                   <p>大抵の人は、純粋にどちらか一方というわけではない。私たちは、両方の機能を持っているが、無意識のうちにどちらか一方を「得意な手」として好んで使っている。</p>
                   <p>問題が起こるのは、社会の価値観によって、自分本来の態度を「間違っている」と判断してしまうときである。<br>
 とくに現代社会は<strong class="term">外向性</strong>を高く評価しがちだが、物静かな人が壊れているわけではない。よくしゃべる人が浅はかというわけでもない。どちらも、ただ違う場所からエネルギーを得ているだけである。</p>
@@ -985,7 +1001,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">7</span>
-        <span class="title">パート II<small>内側から成長する (会話 13〜19) </small></span>
+        <span class="title">パート II <small>内側から成長する（会話 13 〜 19)</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -1022,13 +1038,13 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p><strong class="term">集合的無意識</strong>の中に、ユングは繰り返し現れる象徴的な人物像やパターンを見出した。彼は、それらを<strong class="term">元型</strong>(アーキタイプ)と呼んだ。</p>
+                  <p><strong class="term">集合的無意識</strong>の中に、ユングは繰り返し現れる象徴的な人物像やパターンを見出した。彼は、それらを<strong class="term">元型</strong>（アーキタイプ）と呼んだ。</p>
                   <p><strong class="term">元型</strong>は、具体的な中身を持たない「型」のようなものである。そこに個人の経験や文化が注ぎ込まれることで、初めて具体的なイメージとして現れる。</p>
-                  <p>たとえば、「グレート・マザー(太母)」の<strong class="term">元型</strong>は、すべてを包み込む豊穣の女神として現れることもあれば、すべてを飲み込み破壊する恐ろしい魔女として現れることもある。「老賢人(オールド・ワイズマン)」は、導きを与える賢者として、あるいはスター・ウォーズのヨーダのような姿で物語に登場する。</p>
+                  <p>たとえば、「グレート・マザー（太母）」の<strong class="term">元型</strong>は、すべてを包み込む豊穣の女神として現れることもあれば、すべてを飲み込み破壊する恐ろしい魔女として現れることもある。「老賢人（オールド・ワイズマン）」は、導きを与える賢者として、あるいはスター・ウォーズのヨーダのような姿で物語に登場する。</p>
                   <p>河合隼雄は著書『昔話と日本人の心』の中で、「鶴の恩返し」「浦島太郎」といった日本の昔話を、この<strong class="term">元型</strong>の視点から丹念に読み解いた。「鶴の恩返し」で、正体を見てはいけないと約束されながらも、その約束が破られてしまう場面は、西洋の神話にも広く見られる「見るなのタブー」という普遍的なパターンである。</p>
                   <p>一方で、鶴が黙って去っていき、罰も和解も描かれずに物語が終わるところには、日本の物語に特有の、静かで余白の多い結末のあり方が表れている。同じ<strong class="term">元型</strong>的なパターンでも、それがどのように表現されるかには、文化の個性が映し出されるのである。</p>
                   <div class="pause">
-                    <p>「英雄」「賢者」「トリックスター(いたずら者)」、あるいは「母」など、今のあなたの人生の物語には、どんな<strong class="term">元型</strong>が登場しているように感じるだろうか。</p>
+                    <p>「英雄」「賢者」「トリックスター（いたずら者）」、あるいは「母」など、今のあなたの人生の物語には、どんな<strong class="term">元型</strong>が登場しているように感じるだろうか。</p>
                   </div>
                 </div>
               </div>
@@ -1104,15 +1120,15 @@
                 <div class="sub-panel-inner">
                   <p>小さな一言に対して、驚くほど強い感情で反応してしまったことはないだろうか。<br>
 職場での些細な批判が、突然、耐えがたく感じられる。自分の外見についての小さな冗談が、一日中頭から離れない。</p>
-                  <p>ユングは、言語連想検査(言葉の連想から心の反応を測るテスト)の研究を通じて、人間の心の中には強い感情を伴った記憶の結び目があることを発見した。<br>
+                  <p>ユングは、言語連想検査（言葉の連想から心の反応を測るテスト）の研究を通じて、人間の心の中には強い感情を伴った記憶の結び目があることを発見した。<br>
 彼はこれを<strong class="term">コンプレックス </strong>と呼んだ。日常語で「劣等感」という意味で使われがちだが、本来はもっと広い意味を持つ。</p>
-                  <p><strong class="term">コンプレックス</strong>とは、一つのテーマ(たとえば「権威」「お金」「母親」など)の周りに集まった、記憶、感情、信念の集合体である。それはしばしば、完全には癒えなかった傷の周りに形成される。</p>
+                  <p><strong class="term">コンプレックス</strong>とは、一つのテーマ（たとえば「権威」「お金」「母親」など）の周りに集まった、記憶、感情、信念の集合体である。それはしばしば、完全には癒えなかった傷の周りに形成される。</p>
                   <p><strong class="term">コンプレックス</strong>を持つことは、珍しいことではない。誰もがいくつか持っている。</p>
                   <p>危険なのは、<strong class="term">コンプレックス</strong>を持っていることそのものではない。危険なのは、自分がそれを持っていることに気づいていないことである。<br>
 <strong class="term">コンプレックス</strong>のスイッチが押されると、それは自我を乗っ取り、一時的に主導権を握ることがある。嵐が過ぎ去った後、私たちはしばしば「どうしてあんなに怒ってしまったのだろう」と自分自身の反応に戸惑う。</p>
                   <p>「この反応は、この状況にしては大きすぎる」と気づくことが、自由への第一歩である。嵐を完全に止めることはできなくても、その存在に気づくことで、嵐に飲み込まれる時間を短くすることはできる。</p>
                   <div class="pause">
-                    <p>その状況にしては大きすぎる反応を、決まって引き起こしてしまうような「心の地雷(スイッチ)」はあるだろうか。</p>
+                    <p>その状況にしては大きすぎる反応を、決まって引き起こしてしまうような「心の地雷（スイッチ）」はあるだろうか。</p>
                   </div>
                 </div>
               </div>
@@ -1126,11 +1142,11 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>もし、<strong class="term">ペルソナ</strong>、<strong class="term">影</strong>、<strong class="term">アニマ</strong>/<strong class="term">アニムス</strong>、そして<strong class="term">コンプレックス</strong>が、すべて心のバラバラの断片だとしたら、それらをまとめ上げる何かがあるのだろうか。<br>
+                  <p>もし、<strong class="term">ペルソナ</strong>、<strong class="term">影</strong>、<strong class="term">アニマ</strong> / <strong class="term">アニムス</strong>、そして<strong class="term">コンプレックス</strong>が、すべて心のバラバラの断片だとしたら、それらをまとめ上げる何かがあるのだろうか。<br>
 ユングは、あると考えた。彼はそれを、大文字の<strong class="term">自己</strong>と呼んだ。</p>
-                  <p><strong class="term">自己</strong>は、あなたのスケジュールを立て、メールに返信する日常の「私」(自我:エゴ)とは異なる。<strong class="term">自己</strong>とは、意識と無意識をすべて包み込んだ、心の全体の中心であり、本来のあなたの完全な姿である。</p>
-                  <p>ユングは、人間がこの<strong class="term">自己</strong>(全体の中心)へ向かって、バラバラだった要素を統合し、本来の自分になっていく生涯にわたるプロセスを、<strong class="term">個性化</strong>と呼んだ。</p>
-                  <p><strong class="term">個性化</strong>とは、完璧(パーフェクト)になることを意味しない。欠点をなくすことでもない。<br>
+                  <p><strong class="term">自己</strong>は、あなたのスケジュールを立て、メールに返信する日常の「私」（自我 : エゴ）とは異なる。<strong class="term">自己</strong>とは、意識と無意識をすべて包み込んだ、心の全体の中心であり、本来のあなたの完全な姿である。</p>
+                  <p>ユングは、人間がこの<strong class="term">自己</strong>（全体の中心）へ向かって、バラバラだった要素を統合し、本来の自分になっていく生涯にわたるプロセスを、<strong class="term">個性化</strong>と呼んだ。</p>
+                  <p><strong class="term">個性化</strong>とは、完璧（パーフェクト）になることを意味しない。欠点をなくすことでもない。<br>
 それは、自分の中の光も<strong class="term">影</strong>も含めて<strong class="term">全体性</strong>を取り戻し、より正直に、自分自身になることを意味する。</p>
                   <p>このプロセスは、めったにすぐには起こらない。<br>
 それはしばしば、人生全体を必要とし、めったに一直線には進まない。しかし、たとえどんなに小さくとも、正直な一歩一歩が、あなたを<strong class="term">全体性</strong>へと近づけていく。</p>
@@ -1149,7 +1165,7 @@
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p><strong class="term">個性化</strong>は、どこへ向かうのだろうか。決まった目的地へではなく、自分自身の深い中心(<strong class="term">自己</strong>)とのより静かな関係へと向かう。</p>
+                  <p><strong class="term">個性化</strong>は、どこへ向かうのだろうか。決まった目的地へではなく、自分自身の深い中心（<strong class="term">自己</strong>）とのより静かな関係へと向かう。</p>
                   <p>ユングはしばしば、<strong class="term">自己</strong>を、私たちが気づくよりずっと前から存在している、内なる案内人として描写した。<br>
 それは叫ばない。日々の悩みのように、注意を要求することもない。</p>
                   <p>それは静かに語りかける。しばしば象徴を通して - 繰り返し見る夢、突然のひらめき、ある道へと説明のつかない形で引き寄せられる感覚を通して。</p>
@@ -1174,7 +1190,7 @@
     <section class="acc-item" data-acc>
       <button class="acc-header" data-acc-toggle>
         <span class="num">8</span>
-        <span class="title">パート III<small>賢く生きる (会話 20〜31) </small></span>
+        <span class="title">パート III <small>賢く生きる（会話 20 〜 31)</small></span>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="acc-panel">
@@ -1191,7 +1207,7 @@
                 <div class="sub-panel-inner">
                   <p>人には、他者に受け入れられたい、社会に適合したいという自然な欲求がある。それ自体は、少しもおかしなことではない。</p>
                   <p>けれども、周囲に合わせることが、自分自身の内なる真実を押し殺すことを求めてくるとき、そこには静かな苦しみが生まれる。ユングは、社会がしばしば私たちに、一人ひとりの個性を育てるよりも、集団のルールに従うことを求めてくると指摘した。</p>
-                  <p>本当の意味での<strong class="term">真正性</strong>(Authenticity)とは、集団から完全に切り離されることではない。人間の普遍的な土台(<strong class="term">集合的無意識</strong>)に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくことである。</p>
+                  <p>本当の意味での<strong class="term">真正性</strong> (Authenticity ）とは、集団から完全に切り離されることではない。人間の普遍的な土台（<strong class="term">集合的無意識</strong>）に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくことである。</p>
                   <p>そのためには、静かで、日々繰り返される勇気が必要である。<br>
 多数派とは異なる価値観を、それでも大切にし続ける勇気。自分の限界を、隠さずに認める勇気。自分の内なる中心に沿って生きる勇気である。</p>
                   <p>外部からの承認に頼ることをやめたとき、人ははじめて、内側からの安定を手に入れる。</p>
@@ -1205,18 +1221,18 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">21</span>
-                <span class="title">人生の後半(中年の危機)</span>
+                <span class="title">人生の後半（中年の危機）</span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
                   <p>ユングは、自分の患者たちの中に、ある明確な転換期があることを見出した。人生の前半にいる多くの人は、「外側の世界を築くこと」に集中している - キャリア、家族、評判、社会の中での自分の居場所。<br>
 これは重要で、必要な仕事である。</p>
-                  <p>しかし、30 代後半から 40 代にかけての人生の半ばで、しばしば静かに、新しい問いが浮かび上がってくる。</p>
+                  <p>しかし、 30 代後半から 40 代にかけての人生の半ばで、しばしば静かに、新しい問いが浮かび上がってくる。</p>
                   <p class="italicquote">これで全部なのだろうか</p>
-                  <p>これまで価値を置いてきたものが急に色褪せて見え、深い虚無感や焦燥感に襲われる。心理学ではこれを「中年の危機(ミッドライフ・クライシス)」と呼ぶ。</p>
+                  <p>これまで価値を置いてきたものが急に色褪せて見え、深い虚無感や焦燥感に襲われる。心理学ではこれを「中年の危機（ミッドライフ・クライシス）」と呼ぶ。</p>
                   <p>ユングは、「人生の午前中のプログラムに従って、午後を生きることはできない」と語った。人生の後半は、異なる種類の課題を求める。<br>
-前半は、アイデンティティを築くことを求める。後半は、それを深めることを求める - 内側へ向き直り、まだ生きていない自分の一部(<strong class="term">影</strong>や<strong class="term">アニマ</strong>、<strong class="term">アニムス</strong>)と折り合いをつけ、達成よりも「意味」を探し求めることを。</p>
+前半は、アイデンティティを築くことを求める。後半は、それを深めることを求める - 内側へ向き直り、まだ生きていない自分の一部（<strong class="term">影</strong>や<strong class="term">アニマ</strong>、<strong class="term">アニムス</strong>）と折り合いをつけ、達成よりも「意味」を探し求めることを。</p>
                   <p>この変化は、治すべき病気ではない。それは、新しい方向へ成長するための、魂からの招待状である。</p>
                   <div class="pause">
                     <p>かつては大切だったのに、今はもうそれほど重要に感じられなくなった価値観はあるだろうか。</p>
@@ -1268,9 +1284,9 @@
                   <p>ここで、河合隼雄の<strong class="term">中空構造</strong>を思い出してみたい。<br>
 西洋の物語では、光が闇を打ち破るように、対立はしばしば「勝敗」によって解決される。しかし日本神話では、アマテラスとスサノオのように、性質の異なる神々が、どちらかが消え去ることなく並び立ち続ける。<br>
 中心は空のまま保たれ、対立するものどうしが共存し続けるのである。</p>
-                  <p><strong class="term">超越機能</strong>が、対立から新しい何かが「生まれてくる」ことに重きを置くとすれば、<strong class="term">中空構造</strong>は、対立を無理に解消せずに「共存させておく」ことに重きを置いている。白黒を急いでつけず、グレーの領域に耐える「ネガティブ・ケイパビリティ(消極的能力)」とも通じるこの態度は、人生の複雑さを生きるための深い知恵となる。</p>
+                  <p><strong class="term">超越機能</strong>が、対立から新しい何かが「生まれてくる」ことに重きを置くとすれば、<strong class="term">中空構造</strong>は、対立を無理に解消せずに「共存させておく」ことに重きを置いている。白黒を急いでつけず、グレーの領域に耐える「ネガティブ・ケイパビリティ（消極的能力）」とも通じるこの態度は、人生の複雑さを生きるための深い知恵となる。</p>
                   <div class="pause">
-                    <p>自分自身の中で対立しているように感じられる二つの側面(例:自由でいたい気持ちと、安定したい気持ち)は何だろうか。</p>
+                    <p>自分自身の中で対立しているように感じられる二つの側面（例 : 自由でいたい気持ちと、安定したい気持ち）は何だろうか。</p>
                   </div>
                 </div>
               </div>
@@ -1305,15 +1321,15 @@
             <div class="sub-item" data-sub>
               <button class="sub-header" data-sub-toggle>
                 <span class="num">25</span>
-                <span class="title">意味のある偶然(共時性)</span>
+                <span class="title">意味のある偶然（共時性）</span>
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="sub-panel">
                 <div class="sub-panel-inner">
-                  <p>物理的な因果関係(A が起きたから B が起きた)だけでは説明がつかないのに、深い意味を感じる偶然の一致を経験したことはないだろうか。</p>
-                  <p>ユングは、内なる心の状態と、外側の現実の出来事が、因果律を超えて意味的に結びつく現象を<strong class="term">共時性</strong> (シンクロニシティ) と名づけた。彼はこれを、ノーベル物理学賞を受賞した量子力学者ヴォルフガング・パウリと共に探求した。</p>
+                  <p>物理的な因果関係（ A が起きたから B が起きた）だけでは説明がつかないのに、深い意味を感じる偶然の一致を経験したことはないだろうか。</p>
+                  <p>ユングは、内なる心の状態と、外側の現実の出来事が、因果律を超えて意味的に結びつく現象を<strong class="term">共時性</strong>（シンクロニシティ）と名づけた。彼はこれを、ノーベル物理学賞を受賞した量子力学者ヴォルフガング・パウリと共に探求した。</p>
                   <p>ユング自身の有名なエピソードがある。<br>
-ある患者が、夢に「黄金のスカラベ(コガネムシ)」が出てきたと語っていた。まさにその時、背後の窓をコツコツと叩く音がした。ユングが窓を開けると、そこには夢に現れたのと同じような、黄金色に近い緑色をしたハナムグリ(コガネムシの一種)が飛び込んできたのである。<br>
+ある患者が、夢に「黄金のスカラベ（コガネムシ）」が出てきたと語っていた。まさにその時、背後の窓をコツコツと叩く音がした。ユングが窓を開けると、そこには夢に現れたのと同じような、黄金色に近い緑色をしたハナムグリ（コガネムシの一種）が飛び込んできたのである。<br>
 この衝撃的な偶然の一致は、極めて論理的で閉ざされていた患者の心を開く劇的なきっかけとなった。</p>
                   <p><strong class="term">共時性</strong>は、私たちが孤立した存在ではなく、より大きな世界の意味の網の目の中につながっていることを感じさせてくれる。<br>
 それをオカルトや魔法として証明しようとする必要はない。それよりも、日々の暮らしの中に現れる、こうした「意味のある一致」に心を開き、注意深く目を向けてみる姿勢が大切である。</p>
@@ -1414,7 +1430,7 @@
                 <div class="sub-panel-inner">
                   <p>人生の終わりに近づいた頃、ユングは「何が最も大切だったか」と尋ねられた。<br>
 彼は、富、快適さ、名声で答えることはなかった。彼は、意味について語った。</p>
-                  <p>ユングは、人生が意味を持つと感じられるなら、人はほとんどどんな困難にも耐えられると考えた。そして、たとえ快適な暮らしの中にいても、人生が空虚に感じられるなら、人は道に迷った気持ちになりうると考えた(彼はこれを「意味の喪失の神経症」と呼んだ)。</p>
+                  <p>ユングは、人生が意味を持つと感じられるなら、人はほとんどどんな困難にも耐えられると考えた。そして、たとえ快適な暮らしの中にいても、人生が空虚に感じられるなら、人は道に迷った気持ちになりうると考えた（彼はこれを「意味の喪失の神経症」と呼んだ）。</p>
                   <p>意味は、直接それを探し求めることによって見つかることはめったにない。それはむしろ、正直な人間関係、心を込めてなされた仕事、自分自身や他者との本物のつながりの瞬間を通して、副産物のように静かに現れる傾向がある。</p>
                   <p>意味を見出すために、劇的な人生は必要ない。注意深く、正直に生きられた平凡な人生も、深く意味のあるものになり得る。</p>
                   <p>問うべきなのは、「どうすれば自分の人生を特別なものにできるか」ではない。問うべきなのは、「どうすれば、この平凡な一日を、完全に目覚めて生きられるか」である。</p>
@@ -1511,26 +1527,26 @@
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <dl>
-            <div class="dl-term"><dt><strong class="term">自我 (Ego) </strong></dt><dd>日常の意識の中心であり、「私は」という感覚の主体。決断し、記憶し、計画する働きを担うが、心全体からすればごく一部にすぎない。</dd></div>
-            <div class="dl-term"><dt><strong class="term">自己理解 (Self-understanding) </strong></dt><dd>意識だけでなく無意識にも気づき、自分が本当は何者であるかを深く知ろうとする、生涯にわたる営み。知識の暗記によってではなく、繰り返し立ち止まることによって育まれる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">ペルソナ (Persona) </strong></dt><dd>人が世間に見せる社会的な仮面。社会適応のために必要だが、同一化しすぎると本来の自分を見失う原因となる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">影 (Shadow) </strong></dt><dd>人が否定したり拒んだりしがちな、人格の隠れた部分。無意識に抑圧され、しばしば他人に<strong class="term">投影</strong>される。弱さだけでなく、未開発の可能性も含む。</dd></div>
-            <div class="dl-term"><dt><strong class="term">投影 (Projection) </strong></dt><dd>自分の中にある、認めたくない感情や性質を無意識のうちに他人の中に見出し、映し出すこと。影やアニマ/アニムスとの関わりの中でよく起こる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">アニマ (Anima) </strong><br><strong class="term">アニムス (Animus) </strong></dt><dd>心の中にある、異性の内なる心的イメージ。男性の無意識にある女性的<strong class="term">元型</strong>を「<strong class="term">アニマ</strong>」、女性の無意識にある男性的<strong class="term">元型</strong>を「<strong class="term">アニムス</strong>」と呼ぶ。恋愛において相手に<strong class="term">投影</strong>されることが多い。</dd></div>
-            <div class="dl-term"><dt><strong class="term">アクティブ・イマジネーション (Active Imagination) </strong></dt><dd>ユングが編み出した、目覚めている間に無意識からのイメージと対話する能動的想像法。</dd></div>
-            <div class="dl-term"><dt><strong class="term">象徴 (Symbol) </strong></dt><dd>言葉だけでは語りきれない意味を指し示すイメージ。無意識は言葉よりもイメージによって思考するため、夢や神話はしばしば象徴によって語られる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">集合的無意識 (Collective Unconscious) </strong></dt><dd>個人の経験を超えた、人類全体に共通して遺伝的に受け継がれている深い心の層。</dd></div>
-            <div class="dl-term"><dt><strong class="term">元型 (Archetype) </strong></dt><dd><strong class="term">集合的無意識</strong>の中で繰り返し現れるパターンや象徴的なイメージの「型」。グレート・マザー、老賢人、トリックスターなど。</dd></div>
-            <div class="dl-term"><dt><strong class="term">コンプレックス (Complex) </strong></dt><dd>一つの共通するテーマの周りに組織化された、強い感情を伴う記憶や観念の複合体。ユングが言語連想検査によって発見した。</dd></div>
-            <div class="dl-term"><dt><strong class="term">自己 (Self) </strong></dt><dd>意識(自我)と無意識をすべて含んだ、心全体の中心であり総体。<strong class="term">個性化</strong>の目標となる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">個性化 (Individuation) </strong></dt><dd>無意識の要素(<strong class="term">影</strong>や<strong class="term">アニマ</strong>など)を意識に統合し、より完全で独自の<strong class="term">全体性</strong>を持った自分自身になっていく生涯にわたるプロセス(自己実現)。</dd></div>
-            <div class="dl-term"><dt><strong class="term">全体性 (Wholeness) </strong></dt><dd>意識と無意識、光と<strong class="term">影</strong>を含めた人格のあらゆる側面が、切り捨てられることなく統合された状態。</dd></div>
-            <div class="dl-term"><dt><strong class="term">真正性 (Authenticity) </strong></dt><dd>集団から完全に切り離されることではなく、人間の普遍的な土台(<strong class="term">集合的無意識</strong>)に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくこと。</dd></div>
-            <div class="dl-term"><dt><strong class="term">外向性 (Extraversion) </strong><br><strong class="term">内向性 (Introversion) </strong></dt><dd>心のエネルギー(リビドー)が外の世界に向かうか、内なる世界に向かうかを表す二つの基本的態度。ユングが提唱した概念。</dd></div>
-            <div class="dl-term"><dt><strong class="term">超越機能 (Transcendent Function) </strong></dt><dd>意識と無意識、あるいは対立する二つのものの間の葛藤に耐えることで、無意識から新しく統一的な解決策が生み出される心の働き。</dd></div>
-            <div class="dl-term"><dt><strong class="term">共時性 (Synchronicity) </strong></dt><dd>物理的な因果関係はないが、主観的な意味において深く結びついている偶然の一致(シンクロニシティ)。</dd></div>
+            <div class="dl-term"><dt><strong class="term">自我（ Ego)</strong></dt><dd>日常の意識の中心であり、「私は」という感覚の主体。決断し、記憶し、計画する働きを担うが、心全体からすればごく一部にすぎない。</dd></div>
+            <div class="dl-term"><dt><strong class="term">自己理解（ Self-understanding)</strong></dt><dd>意識だけでなく無意識にも気づき、自分が本当は何者であるかを深く知ろうとする、生涯にわたる営み。知識の暗記によってではなく、繰り返し立ち止まることによって育まれる。</dd></div>
+            <div class="dl-term"><dt><strong class="term">ペルソナ（ Persona)</strong></dt><dd>人が世間に見せる社会的な仮面。社会適応のために必要だが、同一化しすぎると本来の自分を見失う原因となる。</dd></div>
+            <div class="dl-term"><dt><strong class="term">影（ Shadow)</strong></dt><dd>人が否定したり拒んだりしがちな、人格の隠れた部分。無意識に抑圧され、しばしば他人に<strong class="term">投影</strong>される。弱さだけでなく、未開発の可能性も含む。</dd></div>
+            <div class="dl-term"><dt><strong class="term">投影（ Projection)</strong></dt><dd>自分の中にある、認めたくない感情や性質を無意識のうちに他人の中に見出し、映し出すこと。影やアニマ / アニムスとの関わりの中でよく起こる。</dd></div>
+            <div class="dl-term"><dt><strong class="term">アニマ（ Anima)</strong><br><strong class="term">アニムス（ Animus)</strong></dt><dd>心の中にある、異性の内なる心的イメージ。男性の無意識にある女性的<strong class="term">元型</strong>を「<strong class="term">アニマ</strong>」、女性の無意識にある男性的<strong class="term">元型</strong>を「<strong class="term">アニムス</strong>」と呼ぶ。恋愛において相手に<strong class="term">投影</strong>されることが多い。</dd></div>
+            <div class="dl-term"><dt><strong class="term">アクティブ・イマジネーション（ Active Imagination)</strong></dt><dd>ユングが編み出した、目覚めている間に無意識からのイメージと対話する能動的想像法。</dd></div>
+            <div class="dl-term"><dt><strong class="term">象徴（ Symbol)</strong></dt><dd>言葉だけでは語りきれない意味を指し示すイメージ。無意識は言葉よりもイメージによって思考するため、夢や神話はしばしば象徴によって語られる。</dd></div>
+            <div class="dl-term"><dt><strong class="term">集合的無意識（ Collective Unconscious)</strong></dt><dd>個人の経験を超えた、人類全体に共通して遺伝的に受け継がれている深い心の層。</dd></div>
+            <div class="dl-term"><dt><strong class="term">元型（ Archetype)</strong></dt><dd><strong class="term">集合的無意識</strong>の中で繰り返し現れるパターンや象徴的なイメージの「型」。グレート・マザー、老賢人、トリックスターなど。</dd></div>
+            <div class="dl-term"><dt><strong class="term">コンプレックス（ Complex)</strong></dt><dd>一つの共通するテーマの周りに組織化された、強い感情を伴う記憶や観念の複合体。ユングが言語連想検査によって発見した。</dd></div>
+            <div class="dl-term"><dt><strong class="term">自己（ Self)</strong></dt><dd>意識（自我）と無意識をすべて含んだ、心全体の中心であり総体。<strong class="term">個性化</strong>の目標となる。</dd></div>
+            <div class="dl-term"><dt><strong class="term">個性化（ Individuation)</strong></dt><dd>無意識の要素（<strong class="term">影</strong>や<strong class="term">アニマ</strong>など）を意識に統合し、より完全で独自の<strong class="term">全体性</strong>を持った自分自身になっていく生涯にわたるプロセス（自己実現）。</dd></div>
+            <div class="dl-term"><dt><strong class="term">全体性（ Wholeness)</strong></dt><dd>意識と無意識、光と<strong class="term">影</strong>を含めた人格のあらゆる側面が、切り捨てられることなく統合された状態。</dd></div>
+            <div class="dl-term"><dt><strong class="term">真正性（ Authenticity)</strong></dt><dd>集団から完全に切り離されることではなく、人間の普遍的な土台（<strong class="term">集合的無意識</strong>）に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくこと。</dd></div>
+            <div class="dl-term"><dt><strong class="term">外向性（ Extraversion)</strong><br><strong class="term">内向性（ Introversion)</strong></dt><dd>心のエネルギー（リビドー）が外の世界に向かうか、内なる世界に向かうかを表す二つの基本的態度。ユングが提唱した概念。</dd></div>
+            <div class="dl-term"><dt><strong class="term">超越機能（ Transcendent Function)</strong></dt><dd>意識と無意識、あるいは対立する二つのものの間の葛藤に耐えることで、無意識から新しく統一的な解決策が生み出される心の働き。</dd></div>
+            <div class="dl-term"><dt><strong class="term">共時性（ Synchronicity)</strong></dt><dd>物理的な因果関係はないが、主観的な意味において深く結びついている偶然の一致（シンクロニシティ）。</dd></div>
             <div class="dl-term"><dt><strong class="term">中空構造</strong></dt><dd>河合隼雄が日本神話の分析から見出した構造。中心に絶対的な権力を置かず、対立するものどうしを空なる中心の周囲に並び立たせておく日本的な心のあり方。</dd></div>
-            <div class="dl-term"><dt><strong class="term">箱庭療法 (Sandplay Therapy) </strong></dt><dd>ドラ・カルフが確立し、河合隼雄が日本に導入した心理療法。砂箱の中にミニチュアを置くことで、言葉にならない無意識の世界を表現し、治癒を促す。</dd></div>
+            <div class="dl-term"><dt><strong class="term">箱庭療法（ Sandplay Therapy)</strong></dt><dd>ドラ・カルフが確立し、河合隼雄が日本に導入した心理療法。砂箱の中にミニチュアを置くことで、言葉にならない無意識の世界を表現し、治癒を促す。</dd></div>
           </dl>
         </div>
       </div>
@@ -1549,16 +1565,16 @@
           <div class="book-group">
             <h4>ユング自身の著作</h4>
             <ul>
-              <li><strong>『ユング自伝 1 ・ 2 - 思い出・夢・思想』</strong> C.G.ユング (みすず書房) — ユング自身が、人生の終盤に語った自らの人生についての回想録。</li>
-              <li><strong>『人間と象徴 - 無意識の世界』</strong> C.G.ユング編 (河出書房新社) — 豊富な図版とともに、もともと一般読者向けに書かれた、読みやすい入門書。</li>
+              <li><strong>『ユング自伝 1 ・ 2 - 思い出・夢・思想』</strong> C.G. ユング（みすず書房） - ユング自身が、人生の終盤に語った自らの人生についての回想録。</li>
+              <li><strong>『人間と象徴 - 無意識の世界』</strong> C.G. ユング編（河出書房新社） - 豊富な図版とともに、もともと一般読者向けに書かれた、読みやすい入門書。</li>
             </ul>
             <h4>河合隼雄の著作</h4>
             <ul>
-              <li><strong>『ユング心理学入門』</strong> 河合隼雄 (岩波現代文庫) — 日本語で読めるユング心理学の定番的な入門書。</li>
-              <li><strong>『影の現象学』</strong> 河合隼雄 (講談社学術文庫) — <strong class="term">影 (Shadow) </strong>について、日本の臨床経験を踏まえて掘り下げた一冊。</li>
-              <li><strong>『昔話と日本人の心』</strong> 河合隼雄 (岩波現代文庫) — 日本の昔話を、ユング心理学の視点から読み解く。</li>
-              <li><strong>『中空構造日本の深層』</strong> 河合隼雄 (中公文庫) — 日本神話の分析から、日本人のこころの構造を論じた代表作。</li>
-              <li><strong>『こころの処方箋』</strong> 河合隼雄 (新潮文庫) — 専門用語をほとんど使わずに書かれた、日常のこころをめぐる短いエッセイ集。</li>
+              <li><strong>『ユング心理学入門』</strong> 河合隼雄（岩波現代文庫） - 日本語で読めるユング心理学の定番的な入門書。</li>
+              <li><strong>『影の現象学』</strong> 河合隼雄（講談社学術文庫） - <strong class="term">影（ Shadow)</strong> について、日本の臨床経験を踏まえて掘り下げた一冊。</li>
+              <li><strong>『昔話と日本人の心』</strong> 河合隼雄（岩波現代文庫） - 日本の昔話を、ユング心理学の視点から読み解く。</li>
+              <li><strong>『中空構造日本の深層』</strong> 河合隼雄（中公文庫） - 日本神話の分析から、日本人のこころの構造を論じた代表作。</li>
+              <li><strong>『こころの処方箋』</strong> 河合隼雄（新潮文庫） - 専門用語をほとんど使わずに書かれた、日常のこころをめぐる短いエッセイ集。</li>
             </ul>
           </div>
           <p class="closing">この記事を読み、そして自分自身になるという静かな仕事に取り組んでくれたことに、感謝する。</p>
@@ -1573,102 +1589,102 @@
 
 <script>
 (function(){
-  // Accordion Logic
-  // Panel height is driven explicitly in JS (rather than the CSS grid-template-rows
-  // 0fr/1fr trick) because iOS Safari does not always collapse a 0fr grid row all
-  // the way to zero, leaving a residual gap under the header.
-  function getPanel(item, toggleSelector){
-    var toggle = item.querySelector(toggleSelector);
-    return toggle.nextElementSibling;
-  }
+  var OPEN_SCROLL_DELAY = 400;
+  var GROUPS = [["[data-acc]", "[data-acc-toggle]"], ["[data-sub]", "[data-sub-toggle]"]];
 
-  function setItemOpen(item, toggleSelector, willOpen){
-    var panel = getPanel(item, toggleSelector);
-    if(!panel) return;
-    var isOpen = item.classList.contains("open");
-
-    if(willOpen){
-      item.classList.add("open");
-      var target = panel.scrollHeight;
-      panel.style.height = target + "px";
-      panel.addEventListener("transitionend", function onEnd(e){
-        if(e.propertyName === "height"){
-          panel.style.height = "auto";
-          panel.removeEventListener("transitionend", onEnd);
-        }
-      });
-    } else {
-      if(!isOpen) return;
-      var current = panel.scrollHeight;
-      panel.style.height = current + "px";
-      panel.offsetHeight; // force reflow so the browser registers the starting height
-      requestAnimationFrame(function(){
-        item.classList.remove("open");
-        panel.style.height = "0px";
-      });
+  function groupOf(item){
+    for(var i = 0; i < GROUPS.length; i++){
+      if(item.matches(GROUPS[i][0])) return GROUPS[i];
     }
+    return null;
   }
 
-  function bindAccordion(itemSelector, toggleSelector){
+  function closeSiblings(item, itemSelector){
+    Array.prototype.forEach.call(item.parentElement.children, function(sibling){
+      if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
+        sibling.classList.remove("open");
+      }
+    });
+  }
+
+  GROUPS.forEach(function(group){
+    var itemSelector = group[0], toggleSelector = group[1];
     document.querySelectorAll(itemSelector).forEach(function(item){
       var toggle = item.querySelector(toggleSelector);
-      var panel = toggle.nextElementSibling;
-      toggle.addEventListener("click", function(e){
-        // Do not toggle if text is being selected
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
+      if(!toggle) return;
+      toggle.addEventListener("click", function(){
+        if(window.getSelection().toString().length > 0) return;
         var willOpen = !item.classList.contains("open");
+        if(willOpen) closeSiblings(item, itemSelector);
+        item.classList.toggle("open", willOpen);
         if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches(itemSelector)){
-              setItemOpen(sibling, toggleSelector, false);
-            }
-          });
+          setTimeout(function(){
+            item.scrollIntoView({behavior:"smooth", block:"start"});
+          }, OPEN_SCROLL_DELAY);
         }
-        setItemOpen(item, toggleSelector, willOpen);
+      });
+    });
+  });
 
-        if(willOpen){
-          var scrolled = false;
-          var doScroll = function(){
-            if(scrolled) return;
-            scrolled = true;
-            toggle.scrollIntoView({behavior:"smooth", block:"start"});
-          };
-          panel.addEventListener("transitionend", doScroll, {once:true});
-          setTimeout(doScroll, 450);
-        }
+  function setAll(open){
+    GROUPS.forEach(function(group){
+      document.querySelectorAll(group[0]).forEach(function(item){
+        item.classList.toggle("open", open);
       });
     });
   }
 
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-  bindAccordion("[data-sub]", "[data-sub-toggle]");
+  document.getElementById("expandAll").addEventListener("click", function(){ setAll(true); });
+  document.getElementById("collapseAll").addEventListener("click", function(){ setAll(false); });
 
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", true);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", true);
-    });
+  function openTarget(hash){
+    if(!hash) return null;
+    var target = document.getElementById(hash.replace(/^#/, ""));
+    if(!target) return null;
+    var node = target;
+    while(node){
+      var item = node.closest("[data-acc], [data-sub]");
+      if(!item) break;
+      if(!item.classList.contains("open")){
+        var group = groupOf(item);
+        if(group) closeSiblings(item, group[0]);
+        item.classList.add("open");
+      }
+      node = item.parentElement;
+    }
+    return target;
+  }
+
+  document.addEventListener("click", function(e){
+    var a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    if(!target) return;
+    var accItem = target.closest("[data-acc], [data-sub]");
+    if(!accItem) return;
+    e.preventDefault();
+    var wasOpen = accItem.classList.contains("open");
+    openTarget(a.getAttribute("href"));
+    setTimeout(function(){
+      target.scrollIntoView({behavior:"smooth", block:"start"});
+    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
   });
 
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      setItemOpen(item, "[data-acc-toggle]", false);
-    });
-    document.querySelectorAll("[data-sub]").forEach(function(item){
-      setItemOpen(item, "[data-sub-toggle]", false);
-    });
+  window.addEventListener("hashchange", function(){
+    var target = openTarget(location.hash);
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, OPEN_SCROLL_DELAY);
+    }
   });
 
-  // Scroll Progress Bar
-  window.addEventListener('scroll', function() {
+  if(location.hash) openTarget(location.hash);
+
+  window.addEventListener("scroll", function(){
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+    document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
   });
 })();
 </script>
