@@ -71,19 +71,19 @@
   - 対象外: SVG 内の `<text>`(`:not(svg):not(svg *)` により自動的に除外される)。ヒーロー図などの SVG ラベルは独自の `font-size` を保ってよい。
   - `html` の `16px` は記事ごとに変えない。ここを `17px` 等にすると、`1rem` を基準にした題名・図注・バッジまで一斉にずれ、記事間で文字の大きさが揃わなくなる。
   - 見出しや注記ボックスなど個別に文字サイズを持つ要素も本文と同じ 1 rem に揃え、記事間の見た目のばらつきをなくす。新規記事もこの 2 ブロックを最初から含める。
-- 唯一の例外は記事題名(`header.hero h1`)。ここだけは本文の約 3 倍のサイズに拡大し、セリフ体にする。上の 2 つの `<style>` ブロックより後に、次を追記する(数値は既存記事間で多少ぶれるが、下記が標準)。
+- 唯一の例外は記事題名(`.page-head h1` 。ヒーローから本文側へ移設したタイトルブロック内の h1)。ここだけは本文より一回り大きくし、セリフ体にする。上の 2 つの `<style>` ブロックより後に、次を追記する(数値は既存記事間で多少ぶれるが、下記が標準)。
 
       <style>
-        /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-        header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-        /* 題名内のインライン要素(.grad 等)にも題名のサイズ・書体を継承させる */
-        header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+        /* 記事題名(h1)を本文より拡大し、セリフ体にする */
+        .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+        /* 題名内のインライン要素にも題名のサイズ・書体を継承させる */
+        .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
       </style>
 
-  - 2 行目(`header.hero h1 *`)を省かない。統一ブロックの `body :not(svg):not(svg *)` は「 svg 以外の全要素」に当たるため、題名を `<span class="grad">` などで部分的に包むと、**その部分だけが本文サイズ・サンセリフに引き戻される**。1 行目は `h1` 要素だけを狙っており、子要素には届かない(子に直接当たった `!important` 宣言は、親からの継承値より強い)。グラデーション見出しを足してよいという後述の許可は、この 2 行目があって初めて成り立つ。
-  - 対象はヒーロー帯の `h1`(記事題名)のみ。`.sub`(リード文)・見出し・本文・注記など他の要素は上記のとおりサンセリフ・1rem のまま変えない。
-  - タイトル文字列が長い記事では、この `h1` がブラウザ幅に応じて折り返され、視覚上「一行目(`.eyebrow` )の下に大きなセリフ体の行が続く」ように見えるが、`::first-line` 等で行を狙い撃ちしているわけではなく、`h1` 要素全体への指定である。
-  - 新規記事もヒーローの `h1` にはこの上書きを最初から含める。
+  - 2 行目(`.page-head h1 *`)を省かない。統一ブロックの `body :not(svg):not(svg *)` は「 svg 以外の全要素」に当たるため、題名を `<span>` などで部分的に包むと、**その部分だけが本文サイズ・サンセリフに引き戻される**。1 行目は `h1` 要素だけを狙っており、子要素には届かない(子に直接当たった `!important` 宣言は、親からの継承値より強い)。
+  - かつてはヒーロー帯内の `header.hero h1` を本文の約 3 倍(`clamp(2.4rem,6vw,3.4rem)`)にしていたが、2026-09-01 のヒーロー簡素化(タイトルの本文側移設)に伴い、対象セレクタとサイズを上記へ変更した。
+  - 対象は `.page-head` の `h1`(記事題名)のみ。`.sub`(リード文)・見出し・本文・注記など他の要素は上記のとおりサンセリフ・1rem のまま変えない。
+  - 新規記事も `.page-head h1` にはこの上書きを最初から含める。
 
 ## 段落の字下げ(読みやすさのための整形)
 
@@ -97,12 +97,13 @@
 
 - 本文(記事の地の文を包む `.wrap` / `main.wrap` など)に、`960px` や `60rem` のような固定の `max-width` を設けない。閲覧中のブラウザ幅を常に十分に活用する(実質 `max-width: none` )。
   - ただし、画面の端に文字が接すると読みにくいため、左右の余白(`padding`)は必ず確保する。目安は `padding: 0 clamp(1.5rem, 3vw, 3rem)` のように、画面幅に応じてゆるやかに変化する指定を使う(固定 px の余白でもよいが、極端に狭くしない)。
-- 対象外: ヒーロー見出し(`header.hero` 内の `h1` ・リード文・`.hero-figure` など)や、検索ボックス・カードグリッドの列定義といった個々の UI 部品の幅。これらは可読性・意匠上の理由で意図的に幅を絞ってよい。ここで撤廃するのは、記事本文(地の文)を包む外側コンテナの幅制限に限る。
+- 対象外: ヒーローの図(`.hero-figure`)・タイトルブロック(`.page-head`)や、検索ボックス・カードグリッドの列定義といった個々の UI 部品の幅。これらは可読性・意匠上の理由で意図的に幅を絞ってよい。ここで撤廃するのは、記事本文(地の文)を包む外側コンテナの幅制限に限る。
 - 新規作成する記事は最初からこの形式(本文コンテナに `max-width` を設けない)で書く。既存記事を編集する際に気づいたら合わせて直す。
 
 ## 配色(色の変数名と標準値)
 
-- 色は必ず `:root` の CSS カスタムプロパティにまとめ、個々のセレクタに生の色値を書かない。後述の夜間モード対応はこの前提の上に成り立っている。
+- 配色の正(基準)は別プロジェクト `~/Documents/GitHub/drone-flight-plan` の `theme.css` が定義する色遣いとする(2026-09-01 に全記事を統一)。`theme.css` を `<link>` で読み込むのではなく、各記事の `<style>` 内 `:root` に値を書き写して使う(このディレクトリは各ページ自己完結の方針)。
+- 色は必ず `:root` の CSS カスタムプロパティにまとめ、個々のセレクタに生の色値を書かない。
 - 変数名はディレクトリ共通の次の語彙を使う。同じ役割に別名を与えない(`--text` `--card-bg` のような同義の新設をしない)。
 
   | 変数 | 役割 |
@@ -117,83 +118,89 @@
   | `--accent` | リンク・小見出し・バッジなど記事の基調色 |
   | `--accent-2` | 補助の基調色(図版で二系統を対比させるとき。無くてよい) |
   | `--note-bg` | 注記ボックスと、開いているアコーディオン見出しの淡い背景 |
-  | `--hero-1` `--hero-2` | ヒーロー帯のグラデーションの両端 |
-  | `--hero-ink` | ヒーロー帯の文字 |
-  | `--hero-dim` | ヒーロー帯の弱い文字(eyebrow ・リード・`.meta` ・図注) |
+  | `--hero-1` `--hero-2` | ヒーロー帯の地色。現行は両方同値で無地(グラデーションにしない) |
+  | `--hero-ink` | ヒーロー帯上の SVG の明るい文字・線 |
+  | `--hero-dim` | ヒーロー帯上の SVG の弱い文字・線 |
 
-- 標準値。色相は記事の主題に合わせて変えてよいが、明度・彩度の関係(地と面の差、本文と弱い文字の段階)はこの比率を保つ。
+- 標準値。**色相を記事ごとに変えることはしない**(かつては記事の主題に合わせて色相を変えていたが、2026-09-01 の統一でディレクトリ全体を単一パレットに揃えた)。
 
       :root{
-        --bg:#fafaf8; --paper:#ffffff; --ink:#1a1c20; --sub:#454a52; --muted:#6d727b;
-        --accent:#0052cc; --accent-2:#a97f28; --line:#e2e0da; --note-bg:#e8effa;
-        --hero-1:#003366; --hero-2:#004499; --hero-ink:#f4f7fb; --hero-dim:#b9cde4;
-      }
-      @media (prefers-color-scheme: dark){
-        :root{
-          --bg:#15171b; --paper:#1d2026; --ink:#e8e6e1; --sub:#b6b8be; --muted:#878b94;
-          --accent:#6fb3ff; --accent-2:#c9a24a; --line:#31353d; --note-bg:#1b2634;
-        }
+        --bg:#F5F3EC; --paper:#fff; --card:#F5F3EC; --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
+        --accent:#25364A; --accent-2:#3E5226; --line:#C8CEC0; --note-bg:#EEF2E4;
+        --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
       }
 
-  - ダーク側で `--hero-*` を上書きしないのは意図的。ヒーロー帯はもともと濃色のグラデーションで、暗い環境でもそのまま成立する。
-  - 2026-08-29 に全記事を点検し、本文文字色は `--ink` 、一層目の面は `--paper` 、罫線は `--line` に統一済み。この節の CSS 断片や、アコーディオンの CSS をどの記事へ貼っても変数名が解決する状態になっている。
-  - 記事固有の役割には名前を足してよい(`--warn` `--mono-bg` 、 OS 比較記事の `--mac` `--win` など)。上の語彙と役割が重ならないものに限る。
+  - `theme.css` との対応: `--bg` `--line`(=`--border`)`--ink`(=`--text`)`--muted` `--accent` はそのまま。`--sub` には `--label:#3A4032` を充てる(弱い文字の 2 段階を保つため。theme.css の `--muted` 一本に潰さない)。`--note-bg` は `--accent-light:#EEF2E4` 。`--accent-2` は `--ok-text:#3E5226` 。
+  - 記事固有の役割には名前を足してよい(`--warn` `--mono-bg` 、 OS 比較記事の `--mac` `--win` など)。ただし値は次の 4 族から選ぶ(明度は用途に合わせて動かしてよいが、色相・彩度はこの族に収める)。
+    - 濃紺族(基調): `#25364A` とその明暗(色相 213° 前後、彩度 0.35 以下)
+    - オリーブ緑族(良好・肯定系): `#9DB87C` / `#F2F7EA` / `#3E5226`(色相 95° 前後)
+    - 弱い赤族(警告・否定系): `#b03a3a` / `#8a2f2f` と淡背景(色相 3° 前後、彩度 0.40 以下)
+    - カーキ・生成り族(中間・強調の淡色): `#F5F3EC` 系の濃淡(色相 50° 前後)
+    - 鮮やかな青・紫・橙・金などこの範囲外の色相は使わない。
   - `--border` を「半透明の縁取り」、`--line` を「実線の罫線」として使い分けている記事が 1 件ある(`give_and_take_essay.html`)。役割が違うので統合しない。
 
-## ヒーロー(記事冒頭の見出し帯)
+## ライト配色固定(ダークモード非対応)
 
-- 記事冒頭のヒーローは `<header class="hero">` の帯とし、その中に内容を縦に並べる。全画面(`min-height:100svh` 等)にはしない。ディレクトリ内の全記事がこの形をとっている。
-- 中身の並び(次のクラス名を使う):
+- 全記事とも配色は常にライト固定とする。`@media (prefers-color-scheme: dark)` ブロック、ダーク切り替え JS(`matchMedia` 判定・`data-theme` 付け替え等)は**書かない**。既存記事に見つけたら削除する(2026-09-01 に全記事から削除済み)。
+- かつては全記事で夜間モード対応を標準としていたが、`drone-flight-plan` の色遣いへの統一に伴い廃止した。復活させるときはこの節ごと書き換えること。
+
+## ヒーロー(記事冒頭の図案帯)とタイトルブロック
+
+- 記事冒頭のヒーローは `<header class="hero">` の**無地の濃紺帯(`--hero-1`)に SVG 図案 1 枚だけ**を置く構成とする(2026-09-01 の統一。指示書 202609010100)。全画面(`min-height:100svh` 等)にはしない。
+- **ヒーローの中に文字要素を置かない。** 見出し・eyebrow・リード・`.meta`・`<figcaption>`・カウンター・検索導線はすべてヒーローの外。SVG 図案の内部のラベル文字(チップ名・軸ラベル等)は図案の一部なので置いてよい。
+- タイトル類はヒーロー直後の `<div class="page-head">` に置く。構造は次のとおり:
 
       <header class="hero">
         <div class="wrap">
-          <span class="eyebrow">分野 / CATEGORY</span>
-          <h1>主題 - 副題</h1>
-          <p class="sub">記事の内容を 1 〜 3 文で要約したリード</p>
-          <div class="meta">
-            <span>全 8 章</span>
-            <span>約 20 分</span>
-            <span>2026 年 8 月</span>
-          </div>
           <figure class="hero-figure">
             <svg viewBox="0 0 720 300" role="img" aria-labelledby="xxTitle xxDesc"> … </svg>
-            <figcaption>図の読み方と、図が何を表していないかの断り</figcaption>
           </figure>
         </div>
       </header>
 
-- `.eyebrow` は分野・カテゴリを字間を空けた小さな文字で置く。`.meta` は「全 N 章」「約 N 分」「公開年月」を横並びで置く(章立てのない記事では章数を省く)。どちらも `--hero-dim` の弱い文字にして、`h1` と `.sub` を前に出す。
-- 図版は**静的なインライン SVG** 1 枚とし、`<figure class="hero-figure">` で包む。
-  - `role="img"` と `aria-labelledby` を付け、SVG 内に `<title id>`(図の一行タイトル)と `<desc id>`(図の内容の言葉による説明)を置く。読み上げ環境ではこれが図の代替になるので省略しない。
-  - 文字色・線色の指定は SVG 内の `<style>` にクラスとしてまとめる。フォントは本文と同じサンセリフ・スタックを指定する。
-  - `<figcaption>` には、図の読み方に加えて「これは概念図であり縮尺は正確でない」「観測データそのものではない」といった留保を書く。
-- **アニメーション・動的描画は持ち込まない。** `<canvas>` 、`requestAnimationFrame` 、手続き的な模様生成、ヒーロー専用の `<script>` はいずれも使わない。
-  - 理由: 静的 SVG なら図の内容がマークアップとして残り、読み上げ・印刷・差分レビューのいずれでも同じものが見える。装飾のために JS を動かす必要もない。
-- CSS の目安(記事ごとの色に置き換えて使う。数値は既存記事間でも多少ぶれており、下記はその中央値):
+      <div class="page-head">
+        <span class="eyebrow">分野 / CATEGORY</span>
+        <h1>主題 - 副題</h1>
+        <p class="sub">記事の内容を 1 〜 3 文で要約したリード</p>
+        <div class="meta">
+          <span>全 8 章</span>
+          <span>約 20 分</span>
+          <span>2026 年 8 月</span>
+        </div>
+      </div>
 
-      header.hero{background:linear-gradient(140deg,var(--hero-1) 0%,var(--hero-2) 100%);
-       color:var(--hero-ink);padding:3.6rem 0 2.8rem;margin-bottom:2.8rem}
+- `.eyebrow` は分野・カテゴリを字間を空けた小さな文字で置く。`.meta` は「全 N 章」「約 N 分」「公開年月」を横並びで置く(章立てのない記事では章数を省く)。どちらも `--muted` の弱い文字にして、`h1` と `.sub` を前に出す。
+- 図案は**静的なインライン SVG** 1 枚とし、`<figure class="hero-figure">` で包む。
+  - 記事の主題・論旨を抽象化した個別の構図とする(論証構造の図式、対比の二極、時系列の軸、分類の樹形など)。写実的なイラスト・人物・実在組織の描写はしない。テンプレートの機械的流用もしない。
+  - 色は「配色」節のパレット範囲内。濃紺帯の上に載るので、文字・線は `--hero-ink` / `--hero-dim` 相当の明色を基本とし、暗い文字を使うときは図案内の明るい面の上に限る(帯地に対して 4.5:1 以上を目安)。
+  - `role="img"` と `aria-labelledby` を付け、SVG 内に `<title id>`(図の一行タイトル)と `<desc id>`(図の内容の言葉による説明)を置く。`<figcaption>` は使わない方針になったため、「概念図であり縮尺は正確でない」といった留保も `<desc>` に書く。読み上げ環境ではこれが図の唯一の代替になるので省略しない。
+  - 文字色・線色の指定は SVG 内の `<style>` にクラスとしてまとめる。フォントは本文と同じサンセリフ・スタックを指定する。
+- **アニメーション・動的描画・装飾を持ち込まない。** `<canvas>` 、`requestAnimationFrame` 、手続き的な模様生成、ヒーロー専用の `<script>` に加え、帯背景のグラデーション・波形の縁取り(`.wave`)・罫線パターン・`::before`/`::after` のオーバーレイも使わない。帯は無地、装飾は図案そのものだけ。
+- CSS の目安(数値は既存記事間でも多少ぶれており、下記はその中央値):
+
+      header.hero{background:var(--hero-1);color:var(--hero-ink);
+       padding:3.6rem 0 2.8rem;margin-bottom:2.8rem}
       header.hero .wrap{max-width:960px;margin:0 auto;padding:0 clamp(1.5rem,3vw,3rem)}
-      header.hero .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;
-       color:var(--hero-dim);margin-bottom:0.9rem}
-      header.hero p.sub{margin:0;color:var(--hero-dim);line-height:1.85;text-indent:0}
-      header.hero .meta{margin:1.1rem 0 0;font-size:0.82rem;color:var(--hero-dim);
-       display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem}
-      .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto}
+      .hero-figure{max-width:960px;margin:0;overflow-x:auto}
       .hero-figure svg{display:block;width:100%;height:auto}
-      .hero-figure figcaption{margin-top:0.9rem;font-size:0.85rem;
-       color:var(--hero-dim);line-height:1.75}
+      .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+      .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;
+       color:var(--muted);margin-bottom:0.6rem}
+      .page-head h1{margin:0;color:var(--accent)}
+      .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+      .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);
+       display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem}
 
   - 狭い画面では図を縮小せず、`.hero-figure` の `overflow-x:auto` の中で横スクロールさせる(`@media` で `.hero-figure svg{min-width:560px}` 前後を指定)。
-  - ヒーローの `margin-bottom` が本文との間隔を作るので、`main.wrap` 側に上パディングを重ねない。両方効かせると余白が二重になる。
-- ヒーロー内の要素は「本文コンテナの横幅」ルールの対象外で、`max-width: 960px` 程度に絞ってよい。絞るのはヒーローの中だけで、本文(`main.wrap`)には広げない。
-- グラデーション見出し(`h1 .grad`)のような部分的な意匠は、上の構造を保っている限り記事ごとに足してよい。
+  - ヒーローの `margin-bottom` と `.page-head` の `margin-bottom` が本文との間隔を作るので、`main.wrap` 側に上パディングを重ねない。
+- ヒーロー・`.page-head` 内の要素は「本文コンテナの横幅」ルールの対象外で、`max-width: 960px` 程度に絞ってよい。絞るのはこの二つの中だけで、本文(`main.wrap`)には広げない。
+- 部分的な意匠スパン(`h1 .grad` 等)は、タイトルが本文側に移った現行構成では原則使わない。使う場合もグラデーション文字にはせず、`--accent` の単色に留める。
 
 ## 長文記事のアコーディオン機構
 
 - 複数の章(`第 N 章` 等の見出し単位)を持つ長文記事は、本文をアコーディオン(開閉式)にする。これはディレクトリ内の大半の記事がすでに採用している標準仕様であり、新規作成時は最初から適用する。単一の短い記事(章立てのないエッセイ等)には適用しなくてよい。
 - 実装(次の構造・クラス名を用いる):
-  - 本文冒頭(ヒーローの直後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll" type="button">すべて開く</button><button id="collapseAll" type="button">すべて閉じる</button></div></div>` 。導入・前書きにあたる文章も裸で置かず、`序` などの章にしてアコーディオンに入れる(ツールバーより前に本文を置かない)。例外は「注記・補足のボックス」の `.caveat` と `.toc-note` だけで、これらは本文ではないのでツールバーの直前に置く。
+  - 本文冒頭(ヒーロー直後の `.page-head` の後)に開閉トグル用ツールバーを置く: `<div class="toolbar-container"><div class="toolbar"><button id="expandAll" type="button">すべて開く</button><button id="collapseAll" type="button">すべて閉じる</button></div></div>` 。導入・前書きにあたる文章も裸で置かず、`序` などの章にしてアコーディオンに入れる(ツールバーより前に本文を置かない)。例外は、タイトルブロックの `.page-head`(本文ではなく記事題名)と、「注記・補足のボックス」の `.caveat` ・`.toc-note` だけで、これらはツールバーより前に置く。
   - 続けて `<div id="accordion">` の中に、章ごとの `<section class="acc-item" id="secN" data-acc>` を並べる。出典・付録の章も同様にアコーディオン項目にする。
   - 各項目の内部は `<button class="acc-header" data-acc-toggle><span class="num">N</span><span class="title">見出し文</span><svg class="chev">…</svg></button>` + `<div class="acc-panel"><div class="acc-panel-inner">…本文…</div></div>` 。見出し文からは「第 N 章」などの接頭辞を外し、`.num` バッジ側だけに短く表示する(例: `0` 、`1` 、`終` 、`付録` )。
   - 開閉状態は `.acc-item` に付け外しする **`open` クラス**で表す。`<details>` 要素や `open` 属性は使わない。
@@ -336,7 +343,7 @@
 | `.caveat` | 記事全体の前提・方法・限界の断り書き。`【…】` で始める | ツールバーの直前。記事に 1 つだけ | 実線の枠 + 左端にアクセント色の太罫 |
 | `.toc-note` | 読み方の一行案内(開閉操作の説明、続編である旨など) | ツールバーの直前。記事に 1 つだけ | 枠なし・中央寄せの弱い文字 |
 
-- 「長文記事のアコーディオン機構」の「ツールバーより前に本文を置かない」に対する唯一の例外が `.caveat` と `.toc-note` である。どちらも本文ではなく記事の読み方に関する断り書きなので、章に入れずツールバーの直前に置く。両方を置く記事では `.caveat` を先にする。
+- 「長文記事のアコーディオン機構」の「ツールバーより前に本文を置かない」に対する例外が、タイトルブロックの `.page-head` とこの `.caveat` ・`.toc-note` である。`.caveat` と `.toc-note` はどちらも本文ではなく記事の読み方に関する断り書きなので、章に入れずツールバーの直前に置く。両方を置く記事では `.caveat` を先にする。
 - `.pause` は章の中身なので、必ずアコーディオンのパネル内に置く。ツールバーより前には置かない。
 - 導入・前書きにあたる文章をこれらの囲みで代用しない。前書きは `序` などの章にしてアコーディオンに入れる。
 
@@ -414,15 +421,11 @@
 ### 変数
 
 - `.caveat` と `.toc-note` は「配色」の標準語彙だけで足りる(`--note-bg` `--line` `--accent` `--sub`)。新しい変数を足さない。
-- `.pause` にだけ専用の三つを `:root` に足す。標準値は次のとおり(色相は記事の基調に合わせて変えてよい)。
+- `.pause` にだけ専用の三つを `:root` に足す。標準値は次のとおり(オリーブ緑族。「配色」節のパレット範囲内で運用する)。
 
-      :root{ --pause-bg:#fff8e1; --pause-border:#ffca28; --pause-ink:#6d4c00; }
-      @media (prefers-color-scheme: dark){
-        :root{ --pause-bg:#332b12; --pause-ink:#e6c375; }
-      }
+      :root{ --pause-bg:#F2F7EA; --pause-border:#9DB87C; --pause-ink:#3E5226; }
 
   - ラベルと本文はどちらも `--pause-ink` を使う。枠線色 `--pause-border` を文字色に流用しない。枠線として成立する明るさの色は、同系の淡い背景の上ではコントラストが 1.5:1 程度まで落ち、ラベルがほとんど読めなくなる。
-  - `--pause-border` はダーク側で据え置いてよい(枠線は暗い背景の上でもそのまま成立する)。`--pause-bg` と `--pause-ink` は反転させる。
 - 新規作成する記事は最初からこの形式で書く。既存記事を編集する際に気づいたら合わせて直す。
 
 ## 句点位置での改行(意味のまとまりごとの区切り)
@@ -434,18 +437,11 @@
 - 読点ルールとの関係: 読点(、)の位置への `<br>` 挿入は引き続き禁止(上記の禁止ルール)。ここで認めるのは句点の後の、意味の区切りに限った挿入のみ。
 - 字下げとの関係: `<br>` による 2 行目以降には `text-indent` が効かない。まとまりの先頭を字下げしたい場合は `<br>` ではなく段落(`p`)を分ける。
 
-## 夜間モード（ダークモード）対応
+## コントラストの目安
 
-- 全記事で `prefers-color-scheme: dark` に対応する。読者のブラウザ・ OS 設定に応じて夜間は暗い配色になることをディレクトリの標準方針とする。
-- 新規記事は「配色」節の変数語彙と標準値をそのまま使えばよい。以下は、その形になっていない既存記事を直すときの手順。
-- 実装パターン(次の方式に従う):
-  - 記事が色を CSS カスタムプロパティ(`:root{ --bg: ...; --ink: ...; }` 等)で管理している場合、その `:root{...}` ブロックの直後に `@media (prefers-color-scheme: dark){ :root{ ...同じ変数名をダーク値で上書き... } }` を追記する。
-  - 上書きは `--bg` (地)だけでは足りない。`--paper` (カード・アコーディオン項目の面)・`--line` ・`--note-bg` まで含めないと、暗い地の上に明るいカードが浮いたままになる。地の文を載せる面の変数を一式で反転させる。ヒーロー帯(`header.hero`)はもともと濃い色のグラデーションで設計されているため、ライト/ダークどちらでも据え置きでよい。
-  - アクセントカラー(リンク色・強調色)がライト値のまま暗い背景でコントラスト不足になる場合は、その変数も明るめの値に調整してよい。
-  - `body` の背景を変数ではなく `background: radial-gradient(...), linear-gradient(...)` のように直接指定している記事では、`@media (prefers-color-scheme: dark){ body{ background: ...ダーク相当のグラデーション... } }` を別途追加する。
-  - CSS カスタムプロパティを使わず色を直書きしている記事(例外的な構成)では、`@media (prefers-color-scheme: dark){ }` の中に該当セレクタを列挙してダーク値を直接上書きする。
-- 変数を足しただけで済ませず、**実際に描画して確かめる**(手順は「作業時の注意」)。目安は本文で 7:1 以上、`--muted` の弱い文字でも 4.5:1 以上のコントラスト比。
-- 新規作成する記事は最初からこの形式で書く。既存記事を編集する際に気づいたら合わせて直す。ディレクトリ全体への一括適用は依頼されたときにまとめて行う。
+- 配色はライト固定(「ライト配色固定」節)。コントラスト比の目安は、本文(`--ink` on `--bg`/`--paper`)で 7:1 以上。
+- 弱い文字は 4.5:1 以上が望ましいが、`--muted:#72786B` は `--bg:#F5F3EC` 上で **4.1:1** であり、`theme.css` の値を優先してこのまま使う(theme.css 側が変わったら追随する)。`--muted` を長文に使わず、出典・図注などの短い注記に限ることでこの妥協を吸収する。長めの注記には `--sub:#3A4032` を使う。
+- ヒーロー帯(濃紺 `#25364A`)上の SVG 文字は 4.5:1 以上を目安にする。`--hero-ink:#F5F3EC` と `--hero-dim:#C8CEC0` は十分。彩度のある色(弱い赤族など)を帯上の文字に使うときは、明度を上げた淡色(例: `#d9a29e`)にする。
 
 ## 作業時の注意
 
@@ -464,8 +460,7 @@
       python -m http.server 8765 --bind 127.0.0.1
 
 - 見るのは次の四点。
-  - ライト・ダーク両方での本文コントラスト(数値は `getComputedStyle` で色を取り、相対輝度から比を計算して確認する)。
+  - 本文と弱い文字のコントラスト(数値は `getComputedStyle` で色を取り、相対輝度から比を計算して確認する。目安は「コントラストの目安」節)。
   - アコーディオンの単一開閉と、開いた章へのスクロール。
   - `#secN` を付けた URL で直接開いたときの自動展開。
-  - ヒーロー SVG の文字が枠からはみ出していないか。
-- OS がライトモードのままダークを確かめるには、ダーク値だけを `:root` に流し込む `<style>` を一時的に注入して描画を見る。変数が定義されているかを読むだけでは不十分で、面の色が反転しきっていない不具合はそれでは見つからない。
+  - ヒーロー SVG の文字が枠からはみ出していないか、濃紺帯の上で読めているか。
