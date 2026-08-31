@@ -10,32 +10,19 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #f7f7fa;
-    --paper: #ffffff;
-    --ink: #201f26;
-    --sub: #55536b;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
 
-    --accent: #5b3fa3;
-    --line: #dedbe8;
+    --accent:#25364A;
+    --line:#C8CEC0;
 
-    --note-bg: #f2eefa;
-    --hero-1: #17141f;
-    --hero-2: #2c2143;
-    --hero-ink: #ede9f7;
-    --hero-dim: #c3b9dd;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121016;
-      --paper: #18151f;
-      --ink: #e7e5ee;
-      --sub: #b0acc4;
-
-      --accent: #8f6fd6;
-      --line: #2c2838;
-
-      --note-bg: #1e1a2a;
-    }
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -48,7 +35,7 @@
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 2.8rem;
     margin-bottom: 2.8rem;
@@ -188,23 +175,23 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">概説 / PHILOSOPHY OF LANGUAGE</span>
-    <h1>言語哲学と心理言語学</h1>
-    <p class="sub">概念分析で意味を問う言語哲学と、実験で心と脳の言語処理を調べる心理言語学。二つの学問的伝統を見取り図としてまとめる</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 15 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 330" role="img" aria-labelledby="lpTitle lpDesc">
         <title id="lpTitle">言語哲学と心理言語学の対象・方法・系譜と、認知科学での交差</title>
@@ -212,7 +199,7 @@
 
         <text x="360" y="24" class="figTitle">「意味とは何か」への二つの接近路</text>
 
-        <rect x="14" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#8f7fc4" stroke-opacity="0.45"/>
+        <rect x="14" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#819ec2" stroke-opacity="0.45"/>
         <text x="179" y="70" class="side">言語哲学</text>
         <text x="179" y="90" class="method">概念分析・論証で問う</text>
         <g>
@@ -229,7 +216,7 @@
         </g>
         <text x="179" y="210" class="lineage">フレーゲ → ラッセル → ウィトゲンシュタイン → クリプキ</text>
 
-        <rect x="376" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#7fb0c4" stroke-opacity="0.45"/>
+        <rect x="376" y="42" width="330" height="176" rx="10" fill="#ffffff" fill-opacity="0.06" stroke="#819ec2" stroke-opacity="0.45"/>
         <text x="541" y="70" class="side alt">心理言語学</text>
         <text x="541" y="90" class="method">行動実験・計算モデル・脳計測で調べる</text>
         <g>
@@ -246,30 +233,41 @@
         </g>
         <text x="541" y="210" class="lineage">チョムスキー 1957 ─ 生得説対経験説</text>
 
-        <path d="M179 226 V254 H300" fill="none" stroke="#8f7fc4" stroke-opacity="0.6" stroke-width="1.6"/>
-        <path d="M541 226 V254 H420" fill="none" stroke="#7fb0c4" stroke-opacity="0.6" stroke-width="1.6"/>
-        <path d="M306 254 l-10 -5 v10 z" fill="#8f7fc4" fill-opacity="0.8"/>
-        <path d="M414 254 l10 -5 v10 z" fill="#7fb0c4" fill-opacity="0.8"/>
+        <path d="M179 226 V254 H300" fill="none" stroke="#819ec2" stroke-opacity="0.6" stroke-width="1.6"/>
+        <path d="M541 226 V254 H420" fill="none" stroke="#819ec2" stroke-opacity="0.6" stroke-width="1.6"/>
+        <path d="M306 254 l-10 -5 v10 z" fill="#819ec2" fill-opacity="0.8"/>
+        <path d="M414 254 l10 -5 v10 z" fill="#819ec2" fill-opacity="0.8"/>
 
-        <rect x="240" y="266" width="240" height="44" rx="8" fill="#ffffff" fill-opacity="0.10" stroke="#c3b9dd" stroke-opacity="0.5"/>
+        <rect x="240" y="266" width="240" height="44" rx="8" fill="#ffffff" fill-opacity="0.10" stroke="#b9c9dd" stroke-opacity="0.5"/>
         <text x="360" y="288" class="hub">認知科学という交差点</text>
         <text x="360" y="304" class="hubsub">概念の問いと実験データが往復する</text>
 
         <style>
-          .figTitle { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .side { fill: #cbbcf2; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .side.alt { fill: #a8d3e6; }
-          .method { fill: #b3a9cf; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .item { fill: #ede9f7; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lineage { fill: #a79dc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .hub { fill: #ede9f7; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .hubsub { fill: #b3a9cf; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .figTitle { fill: #ebeff5; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side { fill: #c9d6e5; font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side.alt { fill: #b3c5db; }
+          .method { fill: #a9bacf; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .item { fill: #ebeff5; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lineage { fill: #9dafc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .hub { fill: #ebeff5; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .hubsub { fill: #a9bacf; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>同じ「言語」を対象としながら、言語哲学は概念分析で意味の成り立ちを問い、心理言語学は実験と計測で処理の実態を調べる。方法は異なるが、両者は認知科学という学際的な枠組みで交差し、概念の問いと経験的データが双方向に往復する。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">概説 / PHILOSOPHY OF LANGUAGE</span>
+  <h1>言語哲学と心理言語学</h1>
+  <p class="sub">概念分析で意味を問う言語哲学と、実験で心と脳の言語処理を調べる心理言語学。二つの学問的伝統を見取り図としてまとめる</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 15 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

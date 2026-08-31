@@ -10,39 +10,22 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #faf9f7;
-    --paper: #ffffff;
-    --ink: #2a2620;
-    --sub: #5b564c;
-    --accent: #b45309;
-    --accent-soft: #fef3e2;
-    --line: #e8e2d6;
-    --mono-bg: #2d2a24;
-    --mono-ink: #f0e9db;
-    --mac: #4a6fa5;
-    --mac-soft: #eaf0f8;
-    --win: #0e7a5f;
-    --win-soft: #e6f5f0;
-    --warn: #b3261e;
-    --warn-soft: #fdecea;
-    --hero-1: #201d18; --hero-2: #3a3020; --hero-ink: #fbf8f0; --hero-dim: #ecdfc2;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #17140f;
-      --paper: #201c15;
-      --ink: #ece6da;
-      --sub: #b3ab9c;
-      --accent: #e08a3c;
-      --accent-soft: #2e2313;
-      --line: #332c22;
-      --mac: #7ea3d6;
-      --mac-soft: #17222f;
-      --win: #2ea884;
-      --win-soft: #10241c;
-      --warn: #e0564a;
-      --warn-soft: #2c1512;
-    }
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --line:#C8CEC0;
+    --mono-bg: #2d2424;
+    --mono-ink: #f0dcdb;
+    --mac: #4e73a1;
+    --mac-soft: #ecf1f6;
+    --win: #405c2c;
+    --win-soft: #ecf4e7;
+    --warn: #92433f;
+    --warn-soft: #f8efef;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -55,7 +38,7 @@
   }
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
   header.hero {
-    background: linear-gradient(135deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 48px 24px 40px;
     margin-bottom: 36px;
@@ -102,7 +85,7 @@
     margin-top: 10px;
     font-size: 0.85rem;
     line-height: 1.7;
-    color: #c9bfa4;
+    color: #c9a6a4;
   }
 
   section { margin-bottom: 40px; }
@@ -115,7 +98,7 @@
   p { margin: 8px 0; color: var(--sub); text-indent: 1em; }
   .note-intro {
     background: var(--accent-soft);
-    border: 1px solid #f0d9b5;
+    border: 1px solid #e4c2c1;
     border-radius: 10px;
     padding: 14px 18px;
     color: var(--accent);
@@ -131,8 +114,8 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
   thead th {
-    background: #efe9dc;
-    color: #4a4436;
+    background: #efdddc;
+    color: #4a3736;
     text-align: left;
     padding: 10px 14px;
     font-weight: 700;
@@ -210,8 +193,8 @@
     border-radius: 10px;
     padding: 12px 14px;
   }
-  .platform-box.win { background: var(--win-soft); border: 1px solid #bfe3d5; }
-  .platform-box.mac { background: var(--mac-soft); border: 1px solid #c7d6ea; }
+  .platform-box.win { background: var(--win-soft); border: 1px solid #cee1c1; }
+  .platform-box.mac { background: var(--mac-soft); border: 1px solid #cbd7e6; }
   .platform-box .plabel {
     font-weight: 700;
     margin-bottom: 6px;
@@ -226,8 +209,8 @@
     padding: 12px 16px;
     margin: 14px 0;
   }
-  .callout.warn { background: var(--warn-soft); border: 1px solid #f3c6c1; color: var(--warn); }
-  .callout.tip { background: #eaf3ec; border: 1px solid #c3ddc9; color: #2e5e3a; }
+  .callout.warn { background: var(--warn-soft); border: 1px solid #e9cdcb; color: var(--warn); }
+  .callout.tip { background: #eef3ea; border: 1px solid #ceddc3; color: #425e2e; }
   .callout strong { display: block; margin-bottom: 4px; }
 
   .checklist {
@@ -260,7 +243,7 @@
 
   footer {
     text-align: center;
-    color: #a39d8c;
+    color: #a38d8c;
     font-size: 0.8rem;
     margin-top: 50px;
   }
@@ -378,34 +361,31 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">実践ガイド / CLAUDE CODE</span>
-    <h1>Claude Code 環境移植ガイド</h1>
-    <p class="sub">1 台の PC で育てた Claude Code の設定・記憶・ワークフローを、別の PC へ持ち運ぶための実践チェックリスト</p>
-    <div class="meta">
-      <span class="badge">全 7 章</span>
-      <span class="badge">約 7 分</span>
-      <span class="badge win">🪟 Windows 11</span>
-      <span class="badge mac">🍎 macOS</span>
-      <span class="badge date">2026 年 8 月時点の公式ドキュメントに基づく</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 250" role="img" aria-labelledby="mgTitle mgDesc">
         <title id="mgTitle">Claude Code の設定を別 PC へ移す五つの系統と、移らないもの</title>
         <desc id="mgDesc">左の Windows 機から右の Mac 機へ、ユーザー設定・認証・プロジェクト設定・ MCP サーバー・前提環境の五系統が矢印の帯に乗って移動する図。帯の下には、マシンローカルのため自動では移らない Auto Memory を破線で示している。</desc>
         <defs>
           <linearGradient id="belt" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#e0a95f" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#e0a95f" stop-opacity="0.28"/>
+            <stop offset="0%" stop-color="#c67d79" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#c67d79" stop-opacity="0.28"/>
           </linearGradient>
         </defs>
 
@@ -413,14 +393,14 @@
         <path d="M188 24 H534 L560 107 L534 190 H188 Z" fill="url(#belt)"/>
 
         <!-- 旧PC -->
-        <rect x="14" y="30" width="160" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#7fd0b4" stroke-opacity="0.5"/>
+        <rect x="14" y="30" width="160" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#a2c689" stroke-opacity="0.5"/>
         <text x="94" y="82" class="dev win">Windows 11</text>
         <text x="94" y="104" class="devsub">育てた側の PC</text>
         <text x="94" y="132" class="mono">%USERPROFILE%\.claude\</text>
-        <path d="M174 100 l14 7 -14 7 z" fill="#e0a95f"/>
+        <path d="M174 100 l14 7 -14 7 z" fill="#c67d79"/>
 
         <!-- 新PC -->
-        <rect x="568" y="30" width="138" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#9dbbe4" stroke-opacity="0.5"/>
+        <rect x="568" y="30" width="138" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#abbed6" stroke-opacity="0.5"/>
         <text x="637" y="82" class="dev mac">macOS</text>
         <text x="637" y="104" class="devsub">移す先の PC</text>
         <text x="637" y="132" class="mono">~/.claude/</text>
@@ -444,28 +424,42 @@
         </g>
 
         <!-- 移らないもの -->
-        <rect x="200" y="204" width="326" height="28" rx="4" fill="none" stroke="#e08b7f" stroke-opacity="0.75" stroke-dasharray="5 4"/>
+        <rect x="200" y="204" width="326" height="28" rx="4" fill="none" stroke="#cf9390" stroke-opacity="0.75" stroke-dasharray="5 4"/>
         <text x="212" y="223" class="row out"><tspan class="idx out">⑤</tspan> Auto Memory ─ マシンローカル。自動では移らない</text>
-        <path d="M546 218 l-12 -7 v14 z" fill="#e08b7f" fill-opacity="0.8"/>
+        <path d="M546 218 l-12 -7 v14 z" fill="#cf9390" fill-opacity="0.8"/>
         <text x="556" y="223" class="note">手で書き写す</text>
 
         <style>
           .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .dev.win { fill: #7fd0b4; }
-          .dev.mac { fill: #9dbbe4; }
-          .devsub { fill: #c7bda1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .mono { fill: #e8ddc4; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .row { fill: #f0e9db; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .row.out { fill: #f0c9c2; font-size: 11.5px; }
-          .idx { fill: #e0a95f; font-weight: 700; }
-          .idx.out { fill: #e08b7f; }
-          .note { fill: #e08b7f; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .dev.win { fill: #a2c689; }
+          .dev.mac { fill: #abbed6; }
+          .devsub { fill: #c7a3a1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .mono { fill: #e6c7c6; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .row { fill: #f0dcdb; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .row.out { fill: #e8cbca; font-size: 11.5px; }
+          .idx { fill: #c67d79; font-weight: 700; }
+          .idx.out { fill: #cf9390; }
+          .note { fill: #cf9390; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>移植の全体像。①〜④・⑥ は持ち運べるが、⑤ の Auto Memory だけはマシンローカルに残る。番号は本文の各節に対応している。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">実践ガイド / CLAUDE CODE</span>
+  <h1>Claude Code 環境移植ガイド</h1>
+  <p class="sub">1 台の PC で育てた Claude Code の設定・記憶・ワークフローを、別の PC へ持ち運ぶための実践チェックリスト</p>
+  <div class="meta">
+    <span class="badge">全 7 章</span>
+    <span class="badge">約 7 分</span>
+    <span class="badge win">🪟 Windows 11</span>
+    <span class="badge mac">🍎 macOS</span>
+    <span class="badge date">2026 年 8 月時点の公式ドキュメントに基づく</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
 

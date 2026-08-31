@@ -10,55 +10,33 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#1878b0; --hero-2:#064b78; --hero-ink:#ffffff; --hero-dim:#e3f7ff;
-    --sky:#29b6f6;
-    --accent:#0276b5;
-    --sun:#ffca28;
-    --sun-deep:#ffa000;
-    --coral:#ff7043;--coral-deep:#d43300;
-    --paper:#ffffff;
-    --ink:#2c3e50;
-    --sub:#455a64;
-    --line:#e3f2fb;
-    --pause-bg:#fff8e1;
-    --pause-border:#ffca28;
-    --pause-ink:#6d4c00;
-    --card: #f4f9f9;
-    --note-bg:#eaf5fd;
+    --bg:#F5F3EC;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --sky:#688cb7;
+    --accent:#25364A;
+    --sun:#b9ad6e;
+    --sun-deep:#b2524d;
+    --coral:#c77f7b;--coral-deep:#944440;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --pause-bg:#F2F7EA;
+    --pause-border:#9DB87C;
+    --pause-ink:#3E5226;
+    --card:#F5F3EC;
+    --note-bg:#EEF2E4;
     /* ヒーロー: 陽の差す水面（ 続編 jung_criticism.html の深淵と対をなす ）*/
 
-    --surface-mid:#0a5d92;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --coral-deep:#ff8a65;
-      --accent:#0293e1;
-      --paper:#1b2430;
-      --ink:#dce6ee;
-      --sub:#9fb3c4;
-      --line:#223140;
-      --pause-bg:#332b12;
-      --pause-ink:#e6c375;
-      --card:#16211f;
-      --note-bg:#1f2a36;
-    }
+    --surface-mid:#334b69;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior: smooth;}
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
-    background:
-      radial-gradient(circle at 90% -10%, #fff8d8 0%, rgba(255,248,216,0) 45%),
-      linear-gradient(180deg, #e1f5fe 0%, #fffdf5 22%, #fffdf5 100%);
+    background:var(--bg);
     line-height:1.8;
     letter-spacing:0.01em;
-  }
-  @media (prefers-color-scheme: dark){
-    body{
-      background:
-        radial-gradient(circle at 90% -10%, #0d2233 0%, rgba(13,34,51,0) 45%),
-        linear-gradient(180deg, #0a1420 0%, #0d1116 22%, #0d1116 100%);
-    }
   }
 
   /* ---------- Progress Bar ---------- */
@@ -79,16 +57,7 @@
     overflow:hidden;
     padding:80px 24px 100px;
     text-align:center;
-    background:
-      /* 右上から差す陽（ 本文背景の陽だまりと同じ位置 ）*/
-      radial-gradient(ellipse 60% 70% at 88% -12%,
-        rgba(255,236,179,0.16) 0%,
-        rgba(255,236,179,0.06) 38%,
-        rgba(255,236,179,0) 68%),
-      linear-gradient(160deg,
-        var(--hero-1) 0%,
-        var(--surface-mid) 52%,
-        var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -131,7 +100,7 @@
     margin:0;
     padding:0 clamp(1.5rem, 3vw, 3rem) 90px;
   }
-  .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
+  .hero-figure{ max-width:900px; margin:0 auto; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
   .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
   .toc-note{
@@ -147,7 +116,7 @@
     position: sticky;
     top: 10px;
     z-index: 100;
-    background: rgba(255, 253, 245, 0.9);
+    background: rgba(252,251,248, 0.9);
     backdrop-filter: blur(8px);
     padding: 10px 0;
     border-radius: 999px;
@@ -171,13 +140,13 @@
     padding:10px 24px;
     cursor:pointer;
     transition:all .2s ease;
-    box-shadow: 0 2px 6px rgba(41, 182, 246, 0.15);
+    box-shadow: 0 2px 6px rgba(104,140,183, 0.15);
   }
   .toolbar button:hover{
     background:var(--sky);
     color:#fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(41, 182, 246, 0.25);
+    box-shadow: 0 4px 10px rgba(104,140,183, 0.25);
   }
 
   /* ---------- Accordion ---------- */
@@ -185,13 +154,13 @@
     background:var(--paper);
     border-radius:18px;
     margin-bottom:16px;
-    box-shadow:0 4px 20px rgba(2,119,189,0.05);
+    box-shadow:0 4px 20px rgba(62,92,129,0.05);
     overflow:hidden;
     border:1px solid var(--line);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .acc-item:hover {
-    box-shadow:0 6px 25px rgba(2,119,189,0.08);
+    box-shadow:0 6px 25px rgba(62,92,129,0.08);
   }
   .acc-header{
     width:100%;
@@ -216,7 +185,7 @@
     display:flex; align-items:center; justify-content:center;
     font-weight:700;
     font-size:1rem;
-    box-shadow:0 3px 10px rgba(255,160,0,0.3);
+    box-shadow:0 3px 10px rgba(178,82,77,0.3);
   }
   .acc-header .title{
     flex:1 1 auto;
@@ -272,7 +241,7 @@
   }
   .sub-item{
     background:var(--card);
-    border:1px solid #dceef5;
+    border:1px solid #e1e8f0;
     border-radius:14px;
     overflow:hidden;
   }
@@ -297,7 +266,7 @@
     flex:0 0 auto;
     width:26px; height:26px;
     border-radius:50%;
-    background:linear-gradient(135deg, var(--coral), #ff8a65);
+    background:linear-gradient(135deg, var(--coral), #d19693);
     color:#fff;
     display:flex; align-items:center; justify-content:center;
     font-weight:700;
@@ -316,7 +285,7 @@
   }
   .sub-item.open > .sub-header .chev{ transform:rotate(180deg); }
   .sub-item.open > .sub-header{
-    border-bottom: 1px dashed #dceef5;
+    border-bottom: 1px dashed #e1e8f0;
   }
   .sub-panel{
     display:grid;
@@ -349,10 +318,10 @@
     margin:1.5em 0;
     padding:18px 24px;
     border-left:5px solid var(--sky);
-    background:#f0fafe;
+    background:#f4f7fa;
     border-radius:0 12px 12px 0;
     font-style:italic;
-    color:#455a64;
+    color:#455364;
     box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
   .quote .author{
@@ -423,7 +392,7 @@
   strong.term{
     color:var(--ink);
     font-weight:700;
-    background:linear-gradient(180deg, transparent 65%, rgba(255,202,40,0.6) 65%);
+    background:linear-gradient(180deg, transparent 65%, rgba(185,173,110,0.6) 65%);
     padding:0 2px;
   }
   .dl-term{
@@ -474,7 +443,7 @@
     color:var(--sub);
     font-size:0.9rem;
     padding:30px 20px;
-    background: #f4f9f9;
+    background: #f4f6f9;
     border-top: 1px solid var(--line);
   }
 
@@ -500,9 +469,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -511,14 +488,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">JUNGIAN PSYCHOLOGY</span>
-    <h1>本当の自分に出会う</h1>
-    <p class="sub">ユング心理学とともに歩む、こころの旅</p>
-    <div class="meta">
-      <span>全 11 章</span>
-      <span>約 41 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 200" role="img" aria-labelledby="byTitle byDesc">
         <title id="byTitle">この記事が歩む、こころの旅の三部構成</title>
@@ -543,21 +512,29 @@
 
         <style>
           .path { fill: none; stroke: #ffffff; stroke-opacity: 0.55; stroke-width: 2.5; stroke-linecap: round; }
-          .dot { fill: #ffffff; stroke: #064b78; stroke-width: 2; }
-          .dot.start { fill: #e3f7ff; }
-          .dot.end { fill: #ffca28; stroke: #ffa000; }
+          .dot { fill: #ffffff; stroke: #293d55; stroke-width: 2; }
+          .dot.start { fill: #ecf1f6; }
+          .dot.end { fill: #b9ad6e; stroke: #b2524d; }
           .lb { fill: #ffffff; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .lb.strong { font-weight: 800; font-size: 13.5px; }
           .lb.end { text-anchor: end; }
         </style>
       </svg>
-      <figcaption>この記事はこの一本道を、パート I, II, III の三部構成でゆっくりとたどる。会話形式の各章は、この道のどこに位置するかをそれぞれ示しながら進む。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fffdf5" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,90 L0,90 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">JUNGIAN PSYCHOLOGY</span>
+  <h1>本当の自分に出会う</h1>
+  <p class="sub">ユング心理学とともに歩む、こころの旅</p>
+  <div class="meta">
+    <span>全 11 章</span>
+    <span>約 41 分</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <p class="toc-note no-indent">気になる章をタップするとそこが開く。自分のペースでゆっくりと読み進めていただきたい。</p>

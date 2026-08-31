@@ -10,36 +10,21 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #fdfcf9;
-    --paper: #ffffff;
-    --ink: #1f1c18;
-    --sub: #55504a;
-    --muted: #7a746a;
-    --accent: #8a3324;
-    --line: #ddd6cb;
-    --table-head: #f1ece1;
-    --note-bg: #f6f1e6;
-    --hero-1: #241a15;
-    --hero-2: #4a271d;
-    --hero-ink: #f3ece2;
-    --hero-dim: #cbb9a8;
-    --column-header-bg: linear-gradient(180deg, #f6eeda 0%, #fdfaf3 100%);
-    --column-header-open-bg: #f2e8d5;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #17140f;
-      --paper: #1d1a14;
-      --ink: #ece7de;
-      --sub: #b3ac9f;
-      --muted: #948d80;
-      --accent: #cd654f;
-      --line: #332e26;
-      --table-head: #241f18;
-      --note-bg: #241d14;
-      --column-header-bg: linear-gradient(180deg, #241f18 0%, #1d1a14 100%);
-      --column-header-open-bg: #241f18;
-    }
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --accent:#25364A;
+    --line:#C8CEC0;
+    --table-head: #f1e2e1;
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
+    --column-header-bg: linear-gradient(180deg, #f1e0df 0%, #fbf5f5 100%);
+    --column-header-open-bg: #eedad9;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -52,7 +37,7 @@
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 2.8rem;
     margin-bottom: 2.8rem;
@@ -226,14 +211,14 @@
   /* コーヒーブレイク的なコラム用のカード */
   .acc-item.column {
     background: var(--paper);
-    border-color: #c9bda6;
+    border-color: #c9a8a6;
     border-left: 4px solid var(--accent);
   }
   .acc-item.column .acc-header { background: var(--column-header-bg); }
   .acc-item.column .acc-header .num {
     background: var(--accent); color: #fff; letter-spacing: 0.06em;
   }
-  .acc-item.column.open > .acc-header { background: var(--column-header-open-bg); border-bottom-color: #c9bda6; }
+  .acc-item.column.open > .acc-header { background: var(--column-header-open-bg); border-bottom-color: #c9a8a6; }
   .acc-item.column .acc-panel-inner { background: var(--paper); }
   .acc-item.column .acc-header .title { font-size: 1.08rem; }
   .column-kicker {
@@ -260,52 +245,52 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">論考 / POLITICAL SCIENCE</span>
-    <h1>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</h1>
-    <p class="sub">国家が支配の正しさをどこに求めるかという視点から、権威主義体制の比較と民主主義国の現在地を読み解く</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 34 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 230" role="img" aria-labelledby="lnTitle lnDesc">
         <title id="lnTitle">対外的敵意動員の程度による五か国・体制の位置づけ</title>
         <desc id="lnDesc">横軸を対外的敵意動員の程度（低から高）とし、シンガポールとベトナムを低い側に、中国を中間、ロシアと北朝鮮を高い側に配置する。民主主義国一般は、この軸上を局面によって移動する範囲として点線で示す。</desc>
 
         <text x="360" y="26" class="axisTitle">対外的敵意動員の程度</text>
-        <line x1="60" y1="130" x2="660" y2="130" stroke="#cbb9a8" stroke-opacity="0.6" stroke-width="2"/>
-        <path d="M654 124 l10 6 l-10 -6" fill="none" stroke="#cbb9a8" stroke-opacity="0.8" stroke-width="2"/>
+        <line x1="60" y1="130" x2="660" y2="130" stroke="#cbaaa8" stroke-opacity="0.6" stroke-width="2"/>
+        <path d="M654 124 l10 6 l-10 -6" fill="none" stroke="#cbaaa8" stroke-opacity="0.8" stroke-width="2"/>
         <text x="60" y="156" class="pole">低</text>
         <text x="660" y="156" class="pole end">高</text>
 
-        <path d="M250 78 H560" stroke="#cbb9a8" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-        <path d="M250 78 v10 M560 78 v10" stroke="#cbb9a8" stroke-width="1.5"/>
+        <path d="M250 78 H560" stroke="#cbaaa8" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+        <path d="M250 78 v10 M560 78 v10" stroke="#cbaaa8" stroke-width="1.5"/>
         <text x="405" y="66" class="demo">民主主義国（一般）─ 局面依存で移動</text>
 
         <g>
-          <circle cx="95" cy="130" r="7" fill="#7fae8f"/>
+          <circle cx="95" cy="130" r="7" fill="#93ae7f"/>
           <text x="95" y="112" class="country">シンガポール</text>
 
-          <circle cx="230" cy="130" r="7" fill="#7fae8f"/>
+          <circle cx="230" cy="130" r="7" fill="#93ae7f"/>
           <text x="230" y="112" class="country">ベトナム</text>
 
-          <circle cx="380" cy="130" r="7" fill="#c99b6a"/>
+          <circle cx="380" cy="130" r="7" fill="#c27571"/>
           <text x="380" y="112" class="country">中国（局面依存）</text>
 
-          <circle cx="520" cy="130" r="7" fill="#c9584a"/>
+          <circle cx="520" cy="130" r="7" fill="#b85f5a"/>
           <text x="520" y="112" class="country">ロシア</text>
 
-          <circle cx="630" cy="130" r="7" fill="#c9584a"/>
+          <circle cx="630" cy="130" r="7" fill="#b85f5a"/>
           <text x="630" y="112" class="country">北朝鮮</text>
         </g>
 
@@ -314,18 +299,29 @@
         <text x="575" y="178" class="src" text-anchor="middle">歴史的正統性が主</text>
 
         <style>
-          .axisTitle { fill: #f3ece2; font-size: 13px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .pole { fill: #cbb9a8; font-size: 12px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .axisTitle { fill: #f3e3e2; font-size: 13px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .pole { fill: #cbaaa8; font-size: 12px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .pole.end { text-anchor: end; }
-          .demo { fill: #e3d2c2; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .country { fill: #f3ece2; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .src { fill: #b7a493; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .demo { fill: #e3c4c2; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .country { fill: #f3e3e2; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .src { fill: #b79593; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>対外的敵意動員の程度を軸に見た五か国・体制の位置づけ。シンガポール・ベトナムは業績正統性に依拠して動員を避け、ロシア・北朝鮮は歴史的正統性への依存が強く動員も高い。中国はその中間で局面に応じて変動し、民主主義国一般はこの軸上を選挙という装置の陰で常に移動している。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">論考 / POLITICAL SCIENCE</span>
+  <h1>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</h1>
+  <p class="sub">国家が支配の正しさをどこに求めるかという視点から、権威主義体制の比較と民主主義国の現在地を読み解く</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 34 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

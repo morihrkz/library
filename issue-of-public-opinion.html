@@ -9,34 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fbfaf7; --paper:#ffffff; --card:#f4f2ec;
-  --ink:#161513; --sub:#4a4741; --muted:#79746a;
-  --line:#ddd8cd; --line-2:#e9e5db;
-  --accent:#7a4a1e; --accent-soft:#f0e6d8;
-  --series-1:#2a78d6; --series-2:#eb6834;
-  --note-bg:#f6f3ec; --note-border:#c9bfa8;
+  --bg:#F5F3EC; --paper:#fff; --card:#F5F3EC;
+  --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
+  --line:#C8CEC0; --line-2:#e9dcdb;
+  --accent:#25364A; --accent-soft:#EEF2E4;
+  --series-1:#547cac; --series-2:#bc6763;
+  --note-bg:#EEF2E4; --note-border:#C8CEC0;
   --quote:#1f1e1b;
-  --hero-1:#241a15; --hero-2:#4a2f1d; --hero-ink:#f3ece2; --hero-dim:#cbb9a8;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#141413; --paper:#1a1a19; --card:#232321;
-    --ink:#f2f0ea; --sub:#c3c2b7; --muted:#8f8d84;
-    --line:#3a3936; --line-2:#2c2b29;
-    --accent:#d9a86a; --accent-soft:#2b2620;
-    --series-1:#3987e5; --series-2:#d95926;
-    --note-bg:#1f1f1d; --note-border:#4a463c;
-    --quote:#f2f0ea;
-  }
+  --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
 }
 :root[data-theme="dark"]{
-  --bg:#141413; --paper:#1a1a19; --card:#232321;
-  --ink:#f2f0ea; --sub:#c3c2b7; --muted:#8f8d84;
-  --line:#3a3936; --line-2:#2c2b29;
-  --accent:#d9a86a; --accent-soft:#2b2620;
-  --series-1:#3987e5; --series-2:#d95926;
-  --note-bg:#1f1f1d; --note-border:#4a463c;
-  --quote:#f2f0ea;
+  --bg:#F5F3EC; --paper:#fff; --card:#F5F3EC;
+  --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
+  --line:#C8CEC0; --line-2:#2c2b29;
+  --accent:#25364A; --accent-soft:#EEF2E4;
+  --series-1:#688bb6; --series-2:#b2524d;
+  --note-bg:#EEF2E4; --note-border:#C8CEC0;
+  --quote:#f2f1ea;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; scroll-padding-top:12px}
@@ -49,7 +38,7 @@ body{
 .sans{font-family:inherit}
 
 header.hero{
-  background:linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+  background:var(--hero-1);
   color:var(--hero-ink); padding:3.6rem 0 2.8rem; margin-bottom:2.8rem;
 }
 header.hero .wrap{max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,3vw,3rem)}
@@ -59,7 +48,7 @@ p.sub{margin:0 0 1.1rem; font-size:1.02rem; color:var(--hero-dim); line-height:1
   header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
     display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
 p.byline{margin:0; font-size:.85rem; color:var(--hero-dim); line-height:1.85; text-indent:0}
-.hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto}
+.hero-figure{max-width:960px; margin:0; overflow-x:auto}
 .hero-figure svg{display:block; width:100%; height:auto}
 .hero-figure figcaption{margin-top:.9rem; font-size:.85rem; color:var(--hero-dim); line-height:1.75}
 
@@ -189,22 +178,22 @@ li{margin:0 0 .5rem}
 </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow sans">政治学 / 社会選択論 / 政治心理学 / 政治哲学</span>
-    <h1>民意という難問</h1>
-    <p class="sub">一票が政治的決定へ変換されるまでに、何が起きているのか - 四つの学問からの案内</p>
-    <div class="meta">
-      <span>全 31 章</span>
-      <span>約 70 分</span>
-    </div>
-    <p class="byline">本稿は、 2026 年 2 月 8 日に執行された第 51 回衆議院議員総選挙の確定結果を出発点に、「私の一票は届くのか」という素朴な問いを、人文・社会科学がどのように扱ってきたかを紹介するものである。特定の政党・政治家を支持あるいは批判することを目的としない。</p>
     <figure class="hero-figure">
       <svg viewBox="0 0 720 260" role="img" aria-labelledby="ipoTitle ipoDesc">
         <title id="ipoTitle">同じ有権者の意思が、四つの学問を通じて別々の姿を見せる</title>
@@ -238,20 +227,31 @@ li{margin:0 0 .5rem}
         <path d="M690 130 l10 6 l-10 6" fill="none" class="arrow-head"/>
 
         <style>
-          .node{ fill:#3a2c22; stroke:#cbb9a8; stroke-width:1.2; }
-          .device{ fill:none; stroke:#cbb9a8; stroke-width:1.2; stroke-dasharray:4 4; }
-          .sub-node{ fill:#4a2f1d; stroke:#c98a63; stroke-width:1; }
-          .axisTitle{ fill:#f3ece2; font-size:14px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .lbl{ fill:#f3ece2; font-size:13px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .sub-lbl{ fill:#e7d9c9; font-size:11px; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .arrow{ stroke:#cbb9a8; stroke-width:2; fill:none; }
-          .arrow-head{ stroke:#cbb9a8; stroke-width:2; }
+          .node{ fill:#3a2322; stroke:#cbaaa8; stroke-width:1.2; }
+          .device{ fill:none; stroke:#cbaaa8; stroke-width:1.2; stroke-dasharray:4 4; }
+          .sub-node{ fill:#48211f; stroke:#c0706c; stroke-width:1; }
+          .axisTitle{ fill:#f3e3e2; font-size:14px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
+          .lbl{ fill:#f3e3e2; font-size:13px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
+          .sub-lbl{ fill:#e7cbc9; font-size:11px; font-family:"Zen Kaku Gothic New",sans-serif; }
+          .arrow{ stroke:#cbaaa8; stroke-width:2; fill:none; }
+          .arrow-head{ stroke:#cbaaa8; stroke-width:2; }
         </style>
       </svg>
-      <figcaption>有権者の選好が選挙制度を通って政治的決定へ変換される過程を、本稿が扱う四つの学問の視点とあわせて示した概念図。実際の集計手続きや因果の強さを正確な縮尺で表したものではない。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow sans">政治学 / 社会選択論 / 政治心理学 / 政治哲学</span>
+  <h1>民意という難問</h1>
+  <p class="sub">一票が政治的決定へ変換されるまでに、何が起きているのか - 四つの学問からの案内</p>
+  <div class="meta">
+    <span>全 31 章</span>
+    <span>約 70 分</span>
+  </div>
+  <p class="byline">本稿は、 2026 年 2 月 8 日に執行された第 51 回衆議院議員総選挙の確定結果を出発点に、「私の一票は届くのか」という素朴な問いを、人文・社会科学がどのように扱ってきたかを紹介するものである。特定の政党・政治家を支持あるいは批判することを目的としない。</p>
+  
+</div>
+
 
 <main class="wrap">
 

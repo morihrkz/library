@@ -10,44 +10,28 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#170b08; --hero-2:#54281f; --hero-ink:#f7f1e6; --hero-dim:#e3d6bd;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
 
-    --maroon-900:#2a1310;
-    --maroon-800:#3c1c16;
+    --maroon-900:#291311;
+    --maroon-800:#391a19;
 
 
-    --gold-500:#c99a3c;
-    --gold-600:#a97e2c;
-    --gold-300:#e6c67a;
-    --gold-100:#f7ecd0;
-    --bg:#faf6ee;
-    --paper:#ffffff;
-    --ink:#241a13;
-    --sub:#5c4d3d;
-    --line:#e8ddc7;
-    --sage:#4f6d52;
-    --sage-deep:#375038;
-    --sage-bg:#eaf1e7;
-    --qa-bg:#f6efe0;
-    --stripe:#f4efe2;
-    --accent:#54281f;
-    --note-bg:#f7ecd0;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#16110c;
-      --paper:#1c1712;
-      --ink:#ece3d6;
-      --sub:#b3a693;
-      --line:#332a20;
-      --sage:#7fa583;
-      --sage-deep:#9bc9a1;
-      --sage-bg:#17231a;
-      --qa-bg:#241d13;
-      --stripe:#1c1712;
-      --accent:#dba98f;
-      --note-bg:#2c2015;
-    }
+    --gold-500:#b45651;
+    --gold-600:#954440;
+    --gold-300:#d09490;
+    --gold-100:#eedad9;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --sage:#5c6d4f;
+    --sage-deep:#415037;
+    --sage-bg:#ebf1e7;
+    --qa-bg:#f3e4e3;
+    --stripe:#f3e4e3;
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -74,9 +58,7 @@
     overflow:hidden;
     padding:64px 24px 84px;
     text-align:center;
-    background:
-      radial-gradient(circle at 18% 15%, rgba(230,198,122,.10) 0%, rgba(230,198,122,0) 42%),
-      linear-gradient(160deg, var(--hero-1) 0%, var(--maroon-900) 46%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -84,7 +66,7 @@
     display:inline-block;
     font-size:.78rem; letter-spacing:.32em;
     color:var(--gold-100);
-    border:1px solid rgba(230,198,122,.45);
+    border:1px solid rgba(208,148,144,.45);
     border-radius:2px;
     padding:7px 20px; margin-bottom:24px;
   }
@@ -113,7 +95,7 @@
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
 
-  .hero-figure{max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure{max-width:900px; margin:0 auto; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{margin-top:.8rem; font-size:.82rem; line-height:1.75; color:var(--hero-dim);}
 
@@ -125,7 +107,7 @@
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
     margin-bottom:26px;
-    box-shadow:0 4px 14px rgba(23,11,8,.10);
+    box-shadow:0 4px 14px rgba(22,10,9,.10);
     border:1px solid var(--line);
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
@@ -145,7 +127,7 @@
     background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(23,11,8,.07);
+    box-shadow:0 2px 12px rgba(22,10,9,.07);
     overflow:hidden;
     border:1px solid var(--line);
     overflow-anchor:none;
@@ -159,7 +141,7 @@
   .acc-header .num{
     flex:0 0 auto; min-width:34px; height:34px; padding:0 10px; border-radius:999px;
     background:linear-gradient(150deg, var(--gold-500), var(--maroon-900));
-    color:#fdfcf6; display:flex; align-items:center; justify-content:center;
+    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:.82rem; letter-spacing:0; white-space:nowrap;
   }
   .acc-header .num.ref{
@@ -167,7 +149,7 @@
     background:linear-gradient(150deg, var(--sage), var(--sage-deep));
     font-size:.78rem;
   }
-  #accordion > .acc-item{box-shadow:0 3px 16px rgba(23,11,8,.10);}
+  #accordion > .acc-item{box-shadow:0 3px 16px rgba(22,10,9,.10);}
   #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
   #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
 
@@ -219,7 +201,7 @@
   .table-wrap:last-child{margin-bottom:0;}
   table.data-table{width:100%; border-collapse:collapse; font-size:.9rem; min-width:460px;}
   table.data-table th{
-    background:var(--maroon-800); color:#f6ecd8; text-align:left;
+    background:var(--maroon-800); color:#f1dedd; text-align:left;
     padding:10px 14px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
   }
   table.data-table td{padding:9px 14px; border-bottom:1px solid var(--line); color:var(--sub); line-height:1.6;}
@@ -236,7 +218,7 @@
 
   /* ---------- Citation & interpretive tag ---------- */
   .cite{color:var(--sub); font-size:.95em;}
-  .cite a{color:var(--gold-600); text-decoration:none; border-bottom:1px solid rgba(169,126,44,.35);}
+  .cite a{color:var(--gold-600); text-decoration:none; border-bottom:1px solid rgba(149,68,64,.35);}
   .cite a:hover, .cite a:active{color:var(--gold-500); border-color:var(--gold-500);}
 
   .tag{
@@ -297,9 +279,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -308,16 +298,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">考察ノート / ON LIBERAL ARTS EDUCATION</span>
-    <h1>リベラルアーツ考<br> - 教養教育の理念と米国モデル</h1>
-    <div class="divider"></div>
-    <p class="sub">特定分野に偏らず人文・社会・自然科学を横断して学ぶ「リベラルアーツ（教養教育）」とは何かを、語源・歴史的展開から辿り、米国のリベラル・アーツ・カレッジと研究型大学の違い、そして実利主義や STEM 重視との緊張関係をめぐる論争までを整理する。</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 37 分</span>
-      <span>2026 年 8 月 6 日時点でまとめた考察</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 175" role="img" aria-labelledby="laTitle laDesc">
         <title id="laTitle">自由七科 - リベラルアーツの起源</title>
@@ -352,24 +332,34 @@
         <text x="360" y="160" class="note">現代のリベラルアーツは、この七科の精神を人文・社会・自然科学の横断に広げたもの</text>
 
         <style>
-          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #e6c67a; stroke-opacity: 0.55; }
+          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #d09490; stroke-opacity: 0.55; }
           .node.root { fill-opacity: 0.12; }
           .node.grp { fill-opacity: 0.05; stroke-opacity: 0.35; }
           .node.leaf { stroke-opacity: 0.7; }
-          .nodeT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .grpT { fill: #e3d6bd; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .leafT { fill: #f7ecd0; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .branch { fill: none; stroke: #e6c67a; stroke-opacity: 0.5; stroke-width: 1.5; }
-          .note { fill: #c7b596; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .nodeT { fill: #eedad9; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .grpT { fill: #e3bfbd; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .leafT { fill: #eedad9; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .branch { fill: none; stroke: #d09490; stroke-opacity: 0.5; stroke-width: 1.5; }
+          .note { fill: #c79896; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>リベラルアーツの語源にある「自由七科」。言語を扱うトリビウムと数学を扱うクアドリビウムの七科が、専門に偏らず横断的に学ぶという理念の原型になっている。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#faf6ee" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">考察ノート / ON LIBERAL ARTS EDUCATION</span>
+  <h1>リベラルアーツ考<br> - 教養教育の理念と米国モデル</h1>
+  <div class="divider"></div>
+  <p class="sub">特定分野に偏らず人文・社会・自然科学を横断して学ぶ「リベラルアーツ（教養教育）」とは何かを、語源・歴史的展開から辿り、米国のリベラル・アーツ・カレッジと研究型大学の違い、そして実利主義や STEM 重視との緊張関係をめぐる論争までを整理する。</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 37 分</span>
+    <span>2026 年 8 月 6 日時点でまとめた考察</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
 

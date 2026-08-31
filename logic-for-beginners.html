@@ -9,69 +9,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fbfaf7;
-    --paper: #ffffff;
-    --ink: #1f1c18;
-    --sub: #55504a;
-    --muted: #736e66;
-    --line: #e0dbd2;
-    --line-2: #c9c2b6;
-    --accent: #8a4b2a;
-    --accent-soft: #f2e9e2;
-    --quote-bg: #f5f2ec;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --line:#C8CEC0;
+    --line-2: #c9b7b6;
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --quote-bg: #f5ecec;
     --arg-bg: #f4f6f4;
     --arg-rule: #b9c4b9;
-    --ex-bg: #f3f4f8;
-    --ex-rule: #b6bcd0;
-    --warn-bg: #fbf3ec;
-    --warn-rule: #d9b998;
-    --code-bg: #efece6;
+    --ex-bg: #f3f5f8;
+    --ex-rule: #b6c2d0;
+    --warn-bg: #f8efef;
+    --warn-rule: #d59f9c;
+    --code-bg: #efe6e6;
     --sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", system-ui, sans-serif;
 
-    --hero-1: #221712;
-    --hero-2: #4a2f1a;
-    --hero-ink: #f5ede2;
-    --hero-dim: #d1b89a;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #16171a;
-      --paper: #1d1f23;
-      --ink: #e6e2db;
-      --sub: #b0aaa1;
-      --muted: #908a83;
-      --line: #33363c;
-      --line-2: #4a4e56;
-      --accent: #d99a72;
-      --accent-soft: #2c2520;
-      --quote-bg: #212328;
-      --arg-bg: #1e2321;
-      --arg-rule: #495247;
-      --ex-bg: #1e2029;
-      --ex-rule: #464c62;
-      --warn-bg: #26201a;
-      --warn-rule: #6b5236;
-      --code-bg: #24272c;
-    }
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   :root[data-theme="dark"] {
-    --bg: #16171a;
-    --paper: #1d1f23;
-    --ink: #e6e2db;
-    --sub: #b0aaa1;
-    --muted: #908a83;
-    --line: #33363c;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --line:#C8CEC0;
     --line-2: #4a4e56;
-    --accent: #d99a72;
-    --accent-soft: #2c2520;
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
     --quote-bg: #212328;
     --arg-bg: #1e2321;
     --arg-rule: #495247;
-    --ex-bg: #1e2029;
-    --ex-rule: #464c62;
-    --warn-bg: #26201a;
-    --warn-rule: #6b5236;
-    --code-bg: #24272c;
+    --ex-bg: #1e2329;
+    --ex-rule: #465362;
+    --warn-bg: #261b1a;
+    --warn-rule: #6b3936;
+    --code-bg: #24282c;
   }
 
   * { box-sizing: border-box; }
@@ -90,7 +69,7 @@
 
   /* ---- ヒーロー ---- */
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 3rem;
   }
@@ -461,77 +440,88 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">論理学のてほどき / ARGUMENT ANALYSIS</span>
-    <h1>「全員が選べる制度」に、なぜ反対が出るのか</h1>
-    <p class="sub">選択的夫婦別姓をめぐる議論を教材に、論理を点検する道具を八つ学ぶ</p>
-    <div class="meta">
-      <span>全 10 章</span>
-      <span>約 36 分</span>
-      <span>2026 年 8 月</span>
-      <span>本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 250" role="img" aria-labelledby="lgTitle lgDesc">
         <title id="lgTitle">選択的夫婦別姓への反対論を三つの群に仕分けた図</title>
         <desc id="lgDesc">反対論を群 A ・群 B ・群 C の三つに分類する図。群 A の「利点があるから禁止せよ型」は論証が立っておらず結論を支えない。群 B の「外部性・制度設計型」は論証として成立するが、支えるのは設計を詰める必要があるという結論までである。群 C の「事実命題型」は形は妥当だが前提が真でなく、やはり結論を支えない。</desc>
 
-        <text x="360" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f5ede2">反対論を、論証として仕分ける</text>
+        <text x="360" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#f3e4e4">反対論を、論証として仕分ける</text>
 
-        <rect x="298" y="34" width="124" height="34" rx="7" fill="#ffffff" fill-opacity="0.09" stroke="#d1b89a" stroke-opacity="0.45"/>
-        <text x="360" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#f5ede2">反対論</text>
+        <rect x="298" y="34" width="124" height="34" rx="7" fill="#ffffff" fill-opacity="0.09" stroke="#d19d9a" stroke-opacity="0.45"/>
+        <text x="360" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#f3e4e4">反対論</text>
 
-        <path d="M330 68 L150 96" stroke="#d1b89a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
-        <path d="M360 68 L360 96" stroke="#d1b89a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
-        <path d="M390 68 L570 96" stroke="#d1b89a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
+        <path d="M330 68 L150 96" stroke="#d19d9a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
+        <path d="M360 68 L360 96" stroke="#d19d9a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
+        <path d="M390 68 L570 96" stroke="#d19d9a" stroke-opacity="0.5" stroke-width="1.4" fill="none"/>
 
         <g>
-          <rect x="25" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d1b89a" stroke-opacity="0.35"/>
-          <rect x="25" y="96" width="4" height="146" fill="#c97a63"/>
-          <text x="43" y="120" font-size="13.5" font-weight="700" fill="#f5ede2">群 A - 利点があるから禁止せよ型</text>
-          <text x="43" y="146" font-size="11.5" fill="#d1b89a">論証は立っていない</text>
-          <text x="43" y="164" font-size="11.5" fill="#d1b89a">隠れた前提が支持されない</text>
-          <text x="43" y="182" font-size="11.5" fill="#d1b89a">「利点がある」から</text>
-          <text x="43" y="198" font-size="11.5" fill="#d1b89a">「禁止せよ」は出ない</text>
-          <text x="43" y="222" font-size="12" font-weight="700" fill="#e6c9b8">結論 : 支えられない</text>
+          <rect x="25" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d19d9a" stroke-opacity="0.35"/>
+          <rect x="25" y="96" width="4" height="146" fill="#c0706c"/>
+          <text x="43" y="120" font-size="13.5" font-weight="700" fill="#f3e4e4">群 A - 利点があるから禁止せよ型</text>
+          <text x="43" y="146" font-size="11.5" fill="#d19d9a">論証は立っていない</text>
+          <text x="43" y="164" font-size="11.5" fill="#d19d9a">隠れた前提が支持されない</text>
+          <text x="43" y="182" font-size="11.5" fill="#d19d9a">「利点がある」から</text>
+          <text x="43" y="198" font-size="11.5" fill="#d19d9a">「禁止せよ」は出ない</text>
+          <text x="43" y="222" font-size="12" font-weight="700" fill="#e2bebc">結論 : 支えられない</text>
         </g>
 
         <g>
-          <rect x="255" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d1b89a" stroke-opacity="0.35"/>
-          <rect x="255" y="96" width="4" height="146" fill="#8fbf8a"/>
-          <text x="273" y="120" font-size="13.5" font-weight="700" fill="#f5ede2">群 B - 外部性・制度設計型</text>
-          <text x="273" y="146" font-size="11.5" fill="#d1b89a">論証として成立している</text>
-          <text x="273" y="164" font-size="11.5" fill="#d1b89a">支えるのは「設計を詰める</text>
-          <text x="273" y="182" font-size="11.5" fill="#d1b89a">必要がある」まで</text>
-          <text x="273" y="198" font-size="11.5" fill="#d1b89a">「導入すべきでない」までは出ない</text>
-          <text x="273" y="222" font-size="12" font-weight="700" fill="#e6c9b8">結論 : 限定的に支える</text>
+          <rect x="255" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d19d9a" stroke-opacity="0.35"/>
+          <rect x="255" y="96" width="4" height="146" fill="#a0bf8a"/>
+          <text x="273" y="120" font-size="13.5" font-weight="700" fill="#f3e4e4">群 B - 外部性・制度設計型</text>
+          <text x="273" y="146" font-size="11.5" fill="#d19d9a">論証として成立している</text>
+          <text x="273" y="164" font-size="11.5" fill="#d19d9a">支えるのは「設計を詰める</text>
+          <text x="273" y="182" font-size="11.5" fill="#d19d9a">必要がある」まで</text>
+          <text x="273" y="198" font-size="11.5" fill="#d19d9a">「導入すべきでない」までは出ない</text>
+          <text x="273" y="222" font-size="12" font-weight="700" fill="#e2bebc">結論 : 限定的に支える</text>
         </g>
 
         <g>
-          <rect x="485" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d1b89a" stroke-opacity="0.35"/>
-          <rect x="485" y="96" width="4" height="146" fill="#d9b168"/>
-          <text x="503" y="120" font-size="13.5" font-weight="700" fill="#f5ede2">群 C - 事実命題型</text>
-          <text x="503" y="146" font-size="11.5" fill="#d1b89a">形は妥当、前提が真でない</text>
-          <text x="503" y="164" font-size="11.5" fill="#d1b89a">伝統・通称使用・一体感の</text>
-          <text x="503" y="182" font-size="11.5" fill="#d1b89a">主張はいずれも検証に耐えない</text>
-          <text x="503" y="198" font-size="11.5" fill="#d1b89a">（健全でない）</text>
-          <text x="503" y="222" font-size="12" font-weight="700" fill="#e6c9b8">結論 : 支えられない</text>
+          <rect x="485" y="96" width="210" height="146" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#d19d9a" stroke-opacity="0.35"/>
+          <rect x="485" y="96" width="4" height="146" fill="#c67e7b"/>
+          <text x="503" y="120" font-size="13.5" font-weight="700" fill="#f3e4e4">群 C - 事実命題型</text>
+          <text x="503" y="146" font-size="11.5" fill="#d19d9a">形は妥当、前提が真でない</text>
+          <text x="503" y="164" font-size="11.5" fill="#d19d9a">伝統・通称使用・一体感の</text>
+          <text x="503" y="182" font-size="11.5" fill="#d19d9a">主張はいずれも検証に耐えない</text>
+          <text x="503" y="198" font-size="11.5" fill="#d19d9a">（健全でない）</text>
+          <text x="503" y="222" font-size="12" font-weight="700" fill="#e2bebc">結論 : 支えられない</text>
         </g>
       </svg>
-      <figcaption>第 9 章で導く、反対論の仕分け結果。論証の形と前提の真偽を、群ごとに別々に判定する。</figcaption>
     </figure>
 
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">論理学のてほどき / ARGUMENT ANALYSIS</span>
+  <h1>「全員が選べる制度」に、なぜ反対が出るのか</h1>
+  <p class="sub">選択的夫婦別姓をめぐる議論を教材に、論理を点検する道具を八つ学ぶ</p>
+  <div class="meta">
+    <span>全 10 章</span>
+    <span>約 36 分</span>
+    <span>2026 年 8 月</span>
+    <span>本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
 

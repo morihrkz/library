@@ -10,59 +10,34 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#10496a; --hero-2:#0b3a55; --hero-ink:#ffffff; --hero-dim:#f3fdfb;
-    --sky:#5ec8e6;
-    --accent:#1e7ba3;
-    --straw:#e3b23c;
-    --straw-deep:#b9791a;
-    --field:#5da35f;
-    --field-deep:#2f6b34;
-    --coral:#e0624a;
-    --coral-deep:#b6402c;
-    --paper:#fffdf6;
-    --ink:#332b1f;
-    --sub:#5c5548;
-    --line:#eadfc2;
-    --pause-bg:#fff7e2;
+    --bg:#F5F3EC;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --sky:#819fc3;
+    --accent:#25364A;
+    --straw:#bc6763;
+    --straw-deep:#94443f;
+    --field:#7aa35d;
+    --field-deep:#496832;
+    --coral:#bf6f6b;
+    --coral-deep:#9e4844;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --pause-bg:#F2F7EA;
 
-    --field-bg:#f2f8ef;
-    --note-bg:#fff5e0;
-    --compare-original-bg:#eef6ec;
-    --compare-straw-bg:#fdf1ec;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --paper:#1f1c14;
-      --ink:#e9e2d2;
-      --sub:#b3a98f;
-      --line:#332c1e;
-      --pause-bg:#332912;
-      --field-bg:#16211a;
-      --note-bg:#2e2717;
-      --accent:#7fd4ef;
-      --straw-deep:#e8b563;
-      --field-deep:#7fc282;
-      --coral-deep:#e8836c;
-      --compare-original-bg:#1a2418;
-      --compare-straw-bg:#2a1c17;
-    }
+    --field-bg:#f3f8ef;
+    --note-bg:#EEF2E4;
+    --compare-original-bg:#f0f6ec;
+    --compare-straw-bg:#f9f1f0;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;}
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
-    background:
-      radial-gradient(circle at 90% -6%, #fff3c4 0%, rgba(255,243,196,0) 40%),
-      linear-gradient(180deg, #e4f6fb 0%, #fbf6e6 22%, #fbf6e6 100%);
+    background:var(--bg);
     line-height:2.0;
     letter-spacing:0.03em;
-  }
-  @media (prefers-color-scheme: dark){
-    body{
-      background:
-        radial-gradient(circle at 90% -6%, #2e2712 0%, rgba(46,39,18,0) 40%),
-        linear-gradient(180deg, #0e1e24 0%, #15130c 22%, #15130c 100%);
-    }
   }
 
   #progress-bar{
@@ -79,7 +54,7 @@
     overflow:hidden;
     padding:78px 24px 84px;
     text-align:center;
-    background:linear-gradient(180deg, var(--hero-1) 0%, #17698f 46%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -96,7 +71,7 @@
     margin:0 0 16px;
     font-size:clamp(1.7rem, 4.4vw, 2.9rem);
     font-weight:800;
-    text-shadow:0 3px 12px rgba(0,50,70,.32);
+    text-shadow:0 3px 12px rgba(23,34,47,.32);
   }
   header.hero p.sub{
     margin:0 auto; max-width:600px;
@@ -107,7 +82,7 @@
     display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
-  .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
+  .hero-figure{ max-width:900px; margin:0 auto; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
   .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
   .caveat{
@@ -136,16 +111,16 @@
   .toolbar{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
   .toolbar button{
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.9rem; font-weight:600;
-    color:#2f6b34; background:#fff;
+    color:#496832; background:#fff;
     border:1.5px solid var(--field); border-radius:999px;
     padding:10px 24px; cursor:pointer;
     transition:all .2s ease;
-    box-shadow:0 2px 6px rgba(93,163,95,.18);
+    box-shadow:0 2px 6px rgba(122,163,93,.18);
   }
   .toolbar button:hover{
     background:var(--field); color:#fff;
     transform:translateY(-2px);
-    box-shadow:0 4px 10px rgba(93,163,95,.28);
+    box-shadow:0 4px 10px rgba(122,163,93,.28);
   }
 
   /* ---------- Accordion ---------- */
@@ -153,12 +128,12 @@
     background:var(--paper);
     border-radius:18px;
     margin-bottom:16px;
-    box-shadow:0 4px 20px rgba(90,60,10,.07);
+    box-shadow:0 4px 20px rgba(70,32,30,.07);
     overflow:hidden;
     border:1px solid var(--line);
     transition:transform .2s ease, box-shadow .2s ease;
   }
-  .acc-item:hover{box-shadow:0 6px 25px rgba(90,60,10,.11);}
+  .acc-item:hover{box-shadow:0 6px 25px rgba(70,32,30,.11);}
   .acc-header{
     width:100%; display:flex; align-items:center; gap:16px;
     background:none; border:none; padding:20px 24px;
@@ -169,7 +144,7 @@
     background:linear-gradient(135deg, var(--straw), var(--straw-deep));
     color:#fff; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:1rem;
-    box-shadow:0 3px 10px rgba(185,121,26,.3);
+    box-shadow:0 3px 10px rgba(148,68,63,.3);
   }
   .acc-header .title{flex:1 1 auto; font-size:1.12rem; font-weight:700; letter-spacing:.03em;}
   .acc-header .title small{
@@ -189,7 +164,7 @@
 
   /* nested (事例) */
   .sub-list{display:flex; flex-direction:column; gap:12px; margin-top:14px;}
-  .sub-item{background:var(--field-bg); border:1px solid #dbe9d6; border-radius:14px; overflow:hidden;}
+  .sub-item{background:var(--field-bg); border:1px solid #dee9d6; border-radius:14px; overflow:hidden;}
   .sub-header{
     width:100%; display:flex; align-items:center; gap:14px;
     background:none; border:none; padding:16px 20px;
@@ -206,7 +181,7 @@
   .sub-header .title small{display:block; font-weight:500; font-size:.78rem; color:var(--sub); margin-top:3px;}
   .sub-header .chev{width:20px; height:20px; color:var(--field-deep); transition:transform .3s ease;}
   .sub-item.open > .sub-header .chev{transform:rotate(180deg);}
-  .sub-item.open > .sub-header{border-bottom:1px dashed #cfe0c9;}
+  .sub-item.open > .sub-header{border-bottom:1px dashed #d3e0c9;}
   .sub-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
   .sub-item.open > .sub-panel{grid-template-rows:1fr;}
   .sub-panel-inner{overflow:hidden; min-height:0; padding:0 22px; opacity:0; transition:opacity .3s ease .1s;}
@@ -221,16 +196,16 @@
     border:1px solid var(--line); background:#fff;
   }
   .dialogue .line{padding:14px 20px; font-size:.98rem;}
-  .dialogue .line.orig{background:#eef6ec; border-bottom:1px dashed var(--line);}
-  .dialogue .line.straw{background:#fdf1ec;}
+  .dialogue .line.orig{background:#f0f6ec; border-bottom:1px dashed var(--line);}
+  .dialogue .line.straw{background:#f9f1f0;}
   .dialogue .line b{display:block; font-size:.74rem; letter-spacing:.1em; margin-bottom:5px;}
   .dialogue .line.orig b{color:var(--field-deep);}
   .dialogue .line.straw b{color:var(--coral-deep);}
 
   .compare{display:flex; flex-wrap:wrap; gap:12px; margin:1.2em 0;}
   .compare-box{flex:1 1 220px; border-radius:12px; padding:14px 18px;}
-  .compare-box.original{background:var(--compare-original-bg,#eef6ec); border:1px solid #cfe3c8;}
-  .compare-box.straw{background:var(--compare-straw-bg,#fdf1ec); border:1px solid #f0cdc0;}
+  .compare-box.original{background:var(--compare-original-bg,#f0f6ec); border:1px solid #d3e3c8;}
+  .compare-box.straw{background:var(--compare-straw-bg,#f9f1f0); border:1px solid #e8cac8;}
   .compare-box .tag{
     display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.08em;
     padding:2px 10px; border-radius:999px; margin-bottom:8px;
@@ -262,7 +237,7 @@
   .step{flex:1 1 200px; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
   .step .n{
     display:inline-flex; align-items:center; justify-content:center;
-    width:26px; height:26px; border-radius:50%; background:#1f7fa8; color:#fff;
+    width:26px; height:26px; border-radius:50%; background:#416086; color:#fff;
     font-size:.8rem; font-weight:700; margin-bottom:8px;
   }
   .step p{margin:0; font-size:.93rem; color:var(--ink);}
@@ -272,13 +247,13 @@
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:12px;
-    box-shadow:0 3px 10px rgba(90,60,10,.06);
+    box-shadow:0 3px 10px rgba(70,32,30,.06);
     position:relative;
   }
   .card-note::after{
     content:""; position:absolute; top:-9px; left:50%;
     width:72px; height:18px; margin-left:-36px;
-    background:rgba(227,178,60,.7);
+    background:rgba(188,103,99,.7);
     transform:rotate(-2deg);
     box-shadow:0 1px 3px rgba(0,0,0,.08);
   }
@@ -311,7 +286,7 @@
 
   footer{
     text-align:center; color:var(--sub); font-size:.86rem;
-    padding:30px 20px; background:#f4f0e2; border-top:1px solid var(--line);
+    padding:30px 20px; background:#f2f0e4; border-top:1px solid var(--line);
     line-height:1.9;
   }
 
@@ -328,7 +303,6 @@
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
   header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
@@ -344,9 +318,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -355,14 +337,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">現代社会 | ことばの観察ノート</span>
-    <h1>藁人形論法<br>- 存在しない主張と戦う詭弁 -</h1>
-    <p class="sub">かかしを叩いて「勝った」と言っていないか。実例から確かめる。</p>
-    <div class="meta">
-      <span>全 5 章</span>
-      <span>約 7 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="smTitle smDesc">
         <title id="smTitle">藁人形論法とスチールマン化、二つの道筋</title>
@@ -398,22 +372,33 @@
 
         <style>
           .row-lb { font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .row-lb.bad { fill: #ffe3d6; }
-          .row-lb.good { fill: #e3f7e6; }
+          .row-lb.bad { fill: #f3e3e2; }
+          .row-lb.good { fill: #ecf3e7; }
           .node { fill: #ffffff; fill-opacity: 0.14; stroke: #ffffff; stroke-opacity: 0.5; }
-          .node.bad { stroke: #ffb199; stroke-opacity: 0.85; fill: #e0624a; fill-opacity: 0.25; }
-          .node.good { stroke: #a8e0ac; stroke-opacity: 0.85; fill: #5da35f; fill-opacity: 0.25; }
+          .node.bad { stroke: #e0bab8; stroke-opacity: 0.85; fill: #bf6f6b; fill-opacity: 0.25; }
+          .node.good { stroke: #c1d9af; stroke-opacity: 0.85; fill: #7aa35d; fill-opacity: 0.25; }
           .nodeT { fill: #ffffff; font-size: 11.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .arrow { stroke-width: 2; }
-          .arrow.bad, .arrowHead.bad { stroke: #ffb199; fill: #ffb199; }
-          .arrow.good, .arrowHead.good { stroke: #a8e0ac; fill: #a8e0ac; }
+          .arrow.bad, .arrowHead.bad { stroke: #e0bab8; fill: #e0bab8; }
+          .arrow.good, .arrowHead.good { stroke: #c1d9af; fill: #c1d9af; }
           .branch { fill: none; stroke: #ffffff; stroke-opacity: 0.4; stroke-width: 1.5; stroke-dasharray: 3 3; }
         </style>
       </svg>
-      <figcaption>同じ「相手の主張」から分かれる二つの道筋。藁人形論法は歪めた主張を攻撃して勝利を宣言するが、スチールマン化は相手の主張を最も強い形で理解したうえで反論する。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">現代社会 | ことばの観察ノート</span>
+  <h1>藁人形論法<br>- 存在しない主張と戦う詭弁 -</h1>
+  <p class="sub">かかしを叩いて「勝った」と言っていないか。実例から確かめる。</p>
+  <div class="meta">
+    <span>全 5 章</span>
+    <span>約 7 分</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <div class="caveat"><p>【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</p></div>

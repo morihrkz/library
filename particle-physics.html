@@ -10,41 +10,26 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#0d1b2e; --hero-2:#1c3252; --hero-ink:#eef1f9; --hero-dim:#d6dfef;
-    --navy-900:#0d1b2e;
-    --navy-800:#14243c;
-    --navy-700:#1c3252;
-    --navy-600:#284470;
-    --navy-500:#3d5d8c;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --navy-900:#131c28;
+    --navy-800:#1a2736;
+    --navy-700:#24354a;
+    --navy-600:#314967;
+    --navy-500:#416188;
 
-    --navy-200:#c4d1e4;
-    --navy-100:#e2e8f4;
-    --bg:#f5f7fb;
-    --paper:#ffffff;
-    --ink:#182234;
-    --sub:#4b586f;
-    --line:#dde3ee;
-    --gold:#9c7b34;
-    --gold-deep:#7c5f24;
+    --navy-200:#c5d2e3;
+    --navy-100:#e4eaf2;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --gold:#92433e;
+    --gold-deep:#703330;
 
-    --quote-bg:#eef1f7;
-    --accent:#14243c;
-    --note-bg:#e2e8f4;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d1119;
-      --paper:#131a26;
-      --ink:#e5e9f2;
-      --sub:#a7b0c2;
-      --line:#263047;
-      --gold:#c9a24a;
-      --gold-deep:#9c7b34;
-
-      --quote-bg:#171c28;
-      --accent:#9fb3d4;
-      --note-bg:#1c2534;
-    }
+    --quote-bg:#eef2f7;
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -72,22 +57,15 @@
     overflow:hidden;
     padding:64px 24px 84px;
     text-align:center;
-    background:
-      radial-gradient(circle at 15% 12%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 40%),
-      linear-gradient(160deg, var(--hero-1) 0%, var(--navy-800) 48%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
-  }
-  .hero .rule-pattern{
-    position:absolute; inset:0; z-index:0; opacity:.14;
-    background-image:repeating-linear-gradient(0deg, transparent 0 27px, rgba(255,255,255,.5) 27px 28px);
-    mask-image:linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
   header.hero .eyebrow{
     display:inline-block;
     font-size:.78rem; letter-spacing:.32em;
     color:var(--navy-100);
-    border:1px solid rgba(238,241,249,.45);
+    border:1px solid rgba(239,243,248,.45);
     border-radius:2px;
     padding:7px 20px; margin-bottom:24px;
   }
@@ -106,7 +84,7 @@
   }
   .hero .divider{
     width:64px; height:1px; margin:26px auto;
-    background:rgba(238,241,249,.5);
+    background:rgba(239,243,248,.5);
   }
   header.hero .meta{margin:1.1rem 0 0; display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;
     font-size:.86rem; color:var(--hero-dim); letter-spacing:.06em;}
@@ -116,7 +94,7 @@
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
 
-  .hero-figure{max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure{max-width:900px; margin:0 auto; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{margin-top:.8rem; font-size:.82rem; line-height:1.75; color:var(--hero-dim);}
 
@@ -160,7 +138,7 @@
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
     margin-bottom:26px;
-    box-shadow:0 4px 14px rgba(13,27,46,.08);
+    box-shadow:0 4px 14px rgba(19,28,40,.08);
     border:1px solid var(--navy-200);
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
@@ -180,7 +158,7 @@
     background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(13,27,46,.06);
+    box-shadow:0 2px 12px rgba(19,28,40,.06);
     overflow:hidden;
     border:1px solid var(--line);
     overflow-anchor:none;
@@ -194,7 +172,7 @@
   .acc-header .num{
     flex:0 0 auto; min-width:34px; height:34px; padding:0 6px; border-radius:50%;
     background:linear-gradient(150deg, var(--navy-600), var(--navy-900));
-    color:#fdfcf6; display:flex; align-items:center; justify-content:center;
+    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:.92rem; letter-spacing:0;
   }
   .acc-header .num.ref{
@@ -279,9 +257,9 @@
     font-size:.9em; font-weight:700; font-style:normal;
     white-space:nowrap; letter-spacing:.02em;
   }
-  .tag-a{background:#dde8f6; color:var(--navy-800);}
-  .tag-b{background:#f5edd7; color:var(--gold-deep);}
-  .tag-c{background:#f2e2e0; color:#8a3f38;}
+  .tag-a{background:#e2e9f1; color:var(--navy-800);}
+  .tag-b{background:#f0dddc; color:var(--gold-deep);}
+  .tag-c{background:#f2e1e0; color:#883e3a;}
 
   /* ---------- Table ---------- */
   .table-wrap{overflow-x:auto; margin:1.4em 0;}
@@ -316,7 +294,6 @@
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
   header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
@@ -332,9 +309,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -342,18 +327,7 @@
 <div id="progress-bar"></div>
 
 <header class="hero">
-  <div class="rule-pattern"></div>
   <div class="wrap">
-    <span class="eyebrow">解説 / POPULAR SCIENCE</span>
-    <h1>素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語</h1>
-    <div class="divider"></div>
-    <p class="sub">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
-    <div class="meta">
-      <span>全 10 章</span>
-      <span>約 64 分</span>
-      <span>2026 年 7 月</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 200" role="img" aria-labelledby="ppTitle ppDesc">
         <title id="ppTitle">スケールの見取り図 - 原子から宇宙まで、ひと続きの道筋</title>
@@ -391,24 +365,34 @@
         <text x="10" y="30" class="lb">スケールの見取り図 ─ 原子から宇宙まで、ひと続きの道筋</text>
 
         <style>
-          .lb { fill: #d6dfef; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #93a9c8; stroke-opacity: 0.6; }
-          .node.accent { stroke: #9c7b34; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef1f9; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .arrow { stroke: #93a9c8; stroke-opacity: 0.7; stroke-width: 2; fill: none; }
-          .arrow.loop { stroke: #c9a24a; stroke-opacity: 0.8; }
-          .arrowHead { fill: #93a9c8; fill-opacity: 0.85; }
-          .arrowHead.loop { fill: #c9a24a; fill-opacity: 0.85; }
-          .tag { fill: #d9c48a; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lb { fill: #d9e2ec; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #93abc8; stroke-opacity: 0.6; }
+          .node.accent { stroke: #92433e; stroke-opacity: 0.9; fill-opacity: 0.12; }
+          .nodeT { fill: #eff3f8; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .arrow { stroke: #93abc8; stroke-opacity: 0.7; stroke-width: 2; fill: none; }
+          .arrow.loop { stroke: #b85f5a; stroke-opacity: 0.8; }
+          .arrowHead { fill: #93abc8; fill-opacity: 0.85; }
+          .arrowHead.loop { fill: #b85f5a; fill-opacity: 0.85; }
+          .tag { fill: #d19692; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>本稿が追う道筋。原子から素粒子へとスケールを下げていく探究が、最後は初期宇宙や宇宙の進化という最大スケールの理解へとつながる - 同じ物理法則が両端を貫いているという、本稿の中心的な見立て。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f7fb" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">解説 / POPULAR SCIENCE</span>
+  <h1>素粒子物理学とは何か - 原子から宇宙まで、ひと続きの物語</h1>
+  <div class="divider"></div>
+  <p class="sub">原子核の内部から観測可能な宇宙まで。素粒子物理学を貫く一本の道筋を、確立した事実と未解決の問いを区別しながらたどる。</p>
+  <div class="meta">
+    <span>全 10 章</span>
+    <span>約 64 分</span>
+    <span>2026 年 7 月</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <div class="caveat"><p>【精度について】本文の「確立した事実」は、観測・実験による強い支持を意味し、数学的な厳密証明や、すべての条件での直接観測を意味しない。加速器実験は初期宇宙の一部の高エネルギー物理を検証する手掛かりを与えるが、膨張する宇宙全体を再現するものではない。</p></div>
@@ -639,14 +623,14 @@ W 粒子・ Z 粒子の質量はそれぞれおよそ 80.4 GeV 、 91.2 GeV で�
           <p>ここまでの章で、原子核・核子・クォークという階梯を下り、それぞれのスケールに対応する力を見てきた。本章では、いったん立ち止まり、序章で予告した縦糸の核心 - 「高いエネルギーで探ることと、小さいスケールを見ることが、なぜ同じ一つのことなのか」 - を具体的に示す。</p>
           <h3 class="sec">ド・ブロイ波長のおさらい</h3>
           <p>高校物理で、粒子には波としての性質があり、その波長（ド・ブロイ波長）が次の式で与えられることをすでに学んでいる。</p>
-          <div class="formula"><em>&#955;</em> = <span class="frac"><span class="num">h</span><span class="den">p</span></span></div>
-          <p>ここで <em>&#955;</em> は波長、 <em>h</em> はプランク定数、 <em>p</em> は粒子の運動量である。この式が述べているのは、粒子の運動量が大きいほど、その粒子に伴う波の波長は短くなる、という関係である。</p>
+          <div class="formula"><em>&#995855;</em> = <span class="frac"><span class="num">h</span><span class="den">p</span></span></div>
+          <p>ここで <em>&#995855;</em> は波長、 <em>h</em> はプランク定数、 <em>p</em> は粒子の運動量である。この式が述べているのは、粒子の運動量が大きいほど、その粒子に伴う波の波長は短くなる、という関係である。</p>
           <p>この関係は、顕微鏡の分解能の議論と同じ理屈でつながる。光学顕微鏡で見える物体の大きさには、使う光の波長程度という限界がある。波長より小さい構造は、光を波として扱う限りぼやけてしまい、見分けられない。電子顕微鏡が光学顕微鏡よりも小さい構造を見られるのは、電子線の波長を光よりずっと短くできるからである。<br>
 同じ理屈を一段推し進めると、次の結論に至る。ある粒子を使ってどこまで小さい構造を「見る」ことができるかは、その粒子の運動量 - 言い換えれば、その粒子が持つエネルギー - によって決まる。運動量が大きいほど、波長は短くなり、より小さい構造を分解できる。</p>
           <h3 class="sec">加速器のエネルギーと分解できるスケール</h3>
           <p>加速器は、荷電粒子を電場で加速し、大きな運動量（エネルギー）を持たせたうえで衝突させる装置である。衝突のエネルギーが大きいほど、ド・ブロイ波長は短くなり、より小さいスケールの構造を探ることができる。</p>
-          <p>具体的な桁を見積もっておく。粒子の静止質量エネルギーに比べて運動エネルギーが十分大きい場合、エネルギー <em>E</em> と運動量 <em>p</em> の間には近似的に <em>E</em> &asymp; <em>pc</em> という関係が成り立つ。これを先のド・ブロイ波長の式に代入すると、 <em>&#955;</em> &asymp; <em>hc</em>/<em>E</em> となる。 <em>hc</em> の値はおよそ 1.24&times;10<sup>-6</sup> eV&middot;m である。<br>
-CERN の LHC （大型ハドロン衝突型加速器）は、この記事執筆時点の運転（Run 3）で、陽子どうしを 13.6 兆電子ボルト（TeV）の衝突エネルギーで衝突させている <sup class="fn"><a href="#fn-18" id="fnref-18">18</a></sup> 。この値を代入すると、 <em>&#955;</em> はおよそ 10<sup>-19</sup> メートルのオーダーになる。<br>
+          <p>具体的な桁を見積もっておく。粒子の静止質量エネルギーに比べて運動エネルギーが十分大きい場合、エネルギー <em>E</em> と運動量 <em>p</em> の間には近似的に <em>E</em> &asymp; <em>pc</em> という関係が成り立つ。これを先のド・ブロイ波長の式に代入すると、 <em>&#995855;</em> &asymp; <em>hc</em>/<em>E</em> となる。 <em>hc</em> の値はおよそ 1.24&times;10<sup>-6</sup> eV&middot;m である。<br>
+CERN の LHC （大型ハドロン衝突型加速器）は、この記事執筆時点の運転（Run 3）で、陽子どうしを 13.6 兆電子ボルト（TeV）の衝突エネルギーで衝突させている <sup class="fn"><a href="#fn-18" id="fnref-18">18</a></sup> 。この値を代入すると、 <em>&#995855;</em> はおよそ 10<sup>-19</sup> メートルのオーダーになる。<br>
 これは、序章で述べたクォークの複合性探索の上限（10<sup>-18</sup> メートル程度）と同じ桁であり、両者が独立に得られた見積もりであることを踏まえると、この対応は偶然ではない。ただし、実際の陽子・陽子衝突では、衝突するのは陽子そのものではなく、陽子の中の個々のクォークやグルーオンであり、これらは陽子全体のエネルギーの一部だけを担っているため、この計算はあくまで到達しうるスケールの大雑把な目安である。</p>
           <p>この関係を歴史的に振り返ると、加速器が実現できる衝突エネルギーが上がるにつれて、探索できるスケールが小さくなり、それに伴って新しい粒子が次々と発見されてきたことが分かる。 1980 年代から 2000 年にかけて稼働した CERN の LEP （電子・陽電子衝突型加速器）は、最高でおよそ 209 GeV の衝突エネルギーに達し、電弱相互作用の精密な測定に大きく貢献した。この精密測定の中には、 Z 粒子の崩壊の仕方を調べることによって、軽いニュートリノの世代数がちょうど三つであることを示した結果も含まれる <sup class="fn"><a href="#fn-19" id="fnref-19">19</a></sup> 。<br>
 第 3 章で「 3 世代であることは実験的に確立している」と述べたが、その根拠の一つがこの LEP での測定である。 LEP の後継として建設された LHC は、 2010 年代以降、陽子どうしをテラ電子ボルト（TeV）級のエネルギーで衝突させ、 2012 年のヒッグス粒子発見（第 6 章）を含む数々の成果をあげている。</p>
@@ -908,53 +892,53 @@ r 過程が実際にどのような天体現象で起きているのかは長く
       <div class="acc-panel">
         <div class="acc-panel-inner">
           <ol class="fn-list">
-            <li id="fn-1">American Physical Society, <em>May, 1911: Rutherford and the Discovery of the Atomic Nucleus</em>, APS News, 2006. <a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus" target="_blank" rel="noopener">https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus</a> <a href="#fnref-1" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-2">Nobel Prize Outreach, <em>The Nobel Prize in Physics 1990</em> press release （Friedman, Kendall, Taylor による深非弾性散乱実験） . <a href="https://www.nobelprize.org/prizes/physics/1990/press-release/ii/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1990/press-release/ii/</a> <a href="#fnref-2" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-3">M. Riordan, <em>The Discovery of Quarks</em>, SLAC-PUB-5724, SLAC National Accelerator Laboratory, 1992. <a href="https://slac.stanford.edu/pubs/slacpubs/5500/slac-pub-5724.pdf" target="_blank" rel="noopener">https://slac.stanford.edu/pubs/slacpubs/5500/slac-pub-5724.pdf</a> <a href="#fnref-3" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-4">H1 Collaboration, <em>Search for Contact Interactions at HERA</em>, arXiv:0810.1420, 2008. クォーク半径の上限としておよそ 10<sup>-18</sup> 〜 10<sup>-19</sup> メートルが排除されている。 <a href="https://arxiv.org/pdf/0810.1420" target="_blank" rel="noopener">https://arxiv.org/pdf/0810.1420</a> <a href="#fnref-4" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-5">CERN, <em>Fifty years of quarks</em>, home.cern, 2014. <a href="https://home.cern/news/news/physics/fifty-years-quarks" target="_blank" rel="noopener">https://home.cern/news/news/physics/fifty-years-quarks</a> <a href="#fnref-5" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-6">EBSCO Research Starters, <em>Yukawa Proposes the Existence of Mesons</em>. <a href="https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons" target="_blank" rel="noopener">https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons</a> <a href="#fnref-6" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-7">American Physical Society, <em>April 17, 1912: Victor Hess's balloon flight during total eclipse to measure cosmic rays</em>, APS News, 2010. <a href="https://www.aps.org/publications/apsnews/201004/physicshistory.cfm" target="_blank" rel="noopener">https://www.aps.org/publications/apsnews/201004/physicshistory.cfm</a> / Nobel Prize Outreach, <em>Nobel Prize in Physics 1936</em> facts. <a href="https://www.nobelprize.org/prizes/physics/1936/hess/facts/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1936/hess/facts/</a> <a href="#fnref-7" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-8">EBSCO Research Starters, <em>Yukawa Proposes the Existence of Mesons</em>（同記事中、ミュー粒子発見の経緯にも言及） . <a href="https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons" target="_blank" rel="noopener">https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons</a> <a href="#fnref-8" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-9">fafnir.phyast.pitt.edu, <em>Discovery of the Pion — 1947</em>. <a href="http://fafnir.phyast.pitt.edu/particles/pion.html" target="_blank" rel="noopener">http://fafnir.phyast.pitt.edu/particles/pion.html</a> <a href="#fnref-9" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-10">American Physical Society, <em>August 1932: Discovery of the Positron</em>, APS News, 2004. <a href="https://www.aps.org/apsnews/2004/08/discovery-positron-1932" target="_blank" rel="noopener">https://www.aps.org/apsnews/2004/08/discovery-positron-1932</a> <a href="#fnref-10" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-11">同上（<a href="#fn-10">注 10</a> と同一の出典）。 <a href="#fnref-11" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-12">Particle Data Group (S. Navas et al.), <em>Review of Particle Physics</em>, Physical Review D 110, 030001, 2024 （2025 年更新版含む） . クォーク質量は <a href="https://pdg.lbl.gov/2024/tables/rpp2024-sum-quarks.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2024/tables/rpp2024-sum-quarks.pdf</a> 、レプトン質量は PDG 物理定数表による。 <a href="https://pdg.lbl.gov/2025/listings/contents_listings.html" target="_blank" rel="noopener">https://pdg.lbl.gov/2025/listings/contents_listings.html</a> <a href="#fnref-12" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-13">Nobel Prize Outreach, <em>The 2004 Nobel Prize in Physics — Popular information</em>（Gross, Politzer, Wilczek による漸近的自由性の発見） . <a href="https://www.nobelprize.org/prizes/physics/2004/popular-information/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2004/popular-information/</a> <a href="#fnref-13" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-14">CERN, <em>December 1930 – Pauli's Neutrino letter</em>, timeline.web.cern.ch. <a href="https://timeline.web.cern.ch/december-1930-paulis-neutrino-letter-now-music-and-art" target="_blank" rel="noopener">https://timeline.web.cern.ch/december-1930-paulis-neutrino-letter-now-music-and-art</a> <a href="#fnref-14" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-15">CERN, <em>W boson: Sunshine and stardust</em>, home.cern/<em>W and Z particles discovered</em>, timeline.web.cern.ch/Nobel Prize Outreach, <em>The 1984 Nobel Prize in Physics</em> press release. <a href="https://home.cern/science/physics/w-boson-sunshine-and-stardust/" target="_blank" rel="noopener">https://home.cern/science/physics/w-boson-sunshine-and-stardust/</a> / <a href="https://timeline.web.cern.ch/w-and-z-particles-discovered" target="_blank" rel="noopener">https://timeline.web.cern.ch/w-and-z-particles-discovered</a> / <a href="https://www.nobelprize.org/prizes/physics/1984/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1984/press-release/</a> <a href="#fnref-15" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-16">Nobel Prize Outreach, <em>The Nobel Prize in Physics 1979</em> press release （Glashow, Salam, Weinberg による電弱統一理論） . <a href="https://www.nobelprize.org/prizes/physics/1979/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1979/press-release/</a> <a href="#fnref-16" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-17">Particle Data Group, <em>Summary Tables — Gauge and Higgs Bosons</em>, 2025. W 粒子質量 80.3692±0.0133 GeV 、 Z 粒子質量 91.1876±0.0021 GeV 。 <a href="https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf</a> <a href="#fnref-17" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-18">CERN, <em>High-Luminosity LHC</em>, home.web.cern.ch/ATLAS Experiment, <em>Physics and performance with 13 TeV proton collisions</em>. <a href="https://home.web.cern.ch/resources/faqs/high-luminosity-lhc" target="_blank" rel="noopener">https://home.web.cern.ch/resources/faqs/high-luminosity-lhc</a> / <a href="https://atlas.cern/updates/news/physics-and-performance-13-tev-proton-collisions" target="_blank" rel="noopener">https://atlas.cern/updates/news/physics-and-performance-13-tev-proton-collisions</a> <a href="#fnref-18" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-19">CERN, <em>The Large Electron-Positron Collider</em>, home.cern. <a href="https://home.cern/science/accelerators/large-electron-positron-collider/" target="_blank" rel="noopener">https://home.cern/science/accelerators/large-electron-positron-collider/</a> <a href="#fnref-19" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-20">CERN Courier, <em>Five sigma revisited</em>. <a href="https://cerncourier.com/a/five-sigma-revisited/" target="_blank" rel="noopener">https://cerncourier.com/a/five-sigma-revisited/</a> <a href="#fnref-20" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-21">Nobel Prize Outreach, <em>The Nobel Prize in Physics 2013 — Popular information</em>（Englert, Higgs による 1964 年の理論提案） . <a href="https://www.nobelprize.org/prizes/physics/2013/popular-information/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2013/popular-information/</a> <a href="#fnref-21" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-22">CERN, <em>CERN70: Announcing the Higgs boson discovery</em>, home.cern. <a href="https://home.cern/news/series/cern70/cern70-announcing-higgs-boson-discovery" target="_blank" rel="noopener">https://home.cern/news/series/cern70/cern70-announcing-higgs-boson-discovery</a> <a href="#fnref-22" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-23">同上<a href="#fn-21">注 21</a> 。 <a href="#fnref-23" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-24">ATLAS Collaboration, <em>Combined measurement of the Higgs boson mass from the H→γγ and H→ZZ</em>→4ℓ decay channels with the ATLAS detector*, arXiv:2308.04775, 2023. 測定値 125.11±0.11 GeV 。 <a href="https://arxiv.org/pdf/2308.04775" target="_blank" rel="noopener">https://arxiv.org/pdf/2308.04775</a> <a href="#fnref-24" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-25">CERN Courier, <em>Ray Davis: indefatigable neutrino pioneer</em>（ホームステーク実験、太陽ニュートリノ欠損問題） . <a href="https://cerncourier.com/a/ray-davis-indefatigable-neutrino-pioneer/" target="_blank" rel="noopener">https://cerncourier.com/a/ray-davis-indefatigable-neutrino-pioneer/</a> <a href="#fnref-25" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-26">Y. Fukuda et al.(Super-Kamiokande Collaboration), <em>Evidence for Oscillation of Atmospheric Neutrinos</em>, Physical Review Letters 81, 1562, 1998/T. Kajita, <em>Discovery of Atmospheric Neutrino Oscillations</em>, Nobel Lecture, 2015. <a href="https://link.aps.org/doi/10.1103/PhysRevLett.81.1562" target="_blank" rel="noopener">https://link.aps.org/doi/10.1103/PhysRevLett.81.1562</a> / <a href="https://www.nobelprize.org/uploads/2018/06/kajita-lecture.pdf" target="_blank" rel="noopener">https://www.nobelprize.org/uploads/2018/06/kajita-lecture.pdf</a> <a href="#fnref-26" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-27">Q.R. Ahmad et al.(SNO Collaboration), <em>Direct Evidence for Neutrino Flavor Transformation from Neutral-Current Interactions in the Sudbury Neutrino Observatory</em>, Physical Review Letters 89, 011301, 2002. 書誌情報は SNO Collaboration 公式サイトの文献一覧により確認。 <a href="https://sno.phy.queensu.ca/publications.html" target="_blank" rel="noopener">https://sno.phy.queensu.ca/publications.html</a> <a href="#fnref-27" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-28">NASA, <em>Cosmic History</em>, science.nasa.gov. <a href="https://science.nasa.gov/universe/overview/" target="_blank" rel="noopener">https://science.nasa.gov/universe/overview/</a> <a href="#fnref-28" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-29">N. Wright (UCLA), <em>Big Bang Nucleosynthesis</em>. <a href="https://www.astro.ucla.edu/~wright/BBNS.html" target="_blank" rel="noopener">https://www.astro.ucla.edu/~wright/BBNS.html</a> <a href="#fnref-29" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-30">European Space Agency, <em>History of microwave astronomy</em>（Penzias, Wilson による 1965 年の CMB 発見の経緯） . <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/History_of_microwave_astronomy" target="_blank" rel="noopener">https://www.esa.int/Science_Exploration/Space_Science/Planck/History_of_microwave_astronomy</a> <a href="#fnref-30" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-31">European Space Agency, <em>Cosmic Microwave Background (CMB) radiation</em>/Planck Collaboration, <em>Planck 2018 results. VI. Cosmological parameters</em>, Astronomy & Astrophysics 641, A6, 2020. <a href="https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation" target="_blank" rel="noopener">https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation</a> / <a href="https://www.aanda.org/articles/aa/abs/2020/09/aa33910-18/aa33910-18.html" target="_blank" rel="noopener">https://www.aanda.org/articles/aa/abs/2020/09/aa33910-18/aa33910-18.html</a> <a href="#fnref-31" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-32">NASA/IPAC Extragalactic Database (NED), Vera C. Rubin, <em>100 Years of Rotating Galaxies</em>. <a href="https://ned.ipac.caltech.edu/level5/Sept04/Rubin/Rubin1.html" target="_blank" rel="noopener">https://ned.ipac.caltech.edu/level5/Sept04/Rubin/Rubin1.html</a> <a href="#fnref-32" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-33">astrobites, <em>The Bullet Cluster – A Smoking Gun for Dark Matter!</em>, 2016 （D. Clowe et al., 2006 の解説） . <a href="https://astrobites.org/2016/11/04/the-bullet-cluster-a-smoking-gun-for-dark-matter/" target="_blank" rel="noopener">https://astrobites.org/2016/11/04/the-bullet-cluster-a-smoking-gun-for-dark-matter/</a> <a href="#fnref-33" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-34">A.D. Sakharov, <em>Violation of CP invariance, C asymmetry, and baryon asymmetry of the universe</em>, JETP Letters 5, 24, 1967. （原論文。 URL 到達確認ができなかったため書誌情報のみ記載）<a href="#fnref-34" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-35">J.W. Cronin, <em>CP Symmetry Violation — The Search for its Origin</em>, Nobel Lecture, 1980. <a href="https://www.nobelprize.org/uploads/2018/06/cronin-lecture.pdf" target="_blank" rel="noopener">https://www.nobelprize.org/uploads/2018/06/cronin-lecture.pdf</a> <a href="#fnref-35" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-36">arXiv:hep-ph/9502327, <em>CP Violation and the Baryonic Asymmetry of the Universe</em>. <a href="https://arxiv.org/pdf/hep-ph/9502327" target="_blank" rel="noopener">https://arxiv.org/pdf/hep-ph/9502327</a> <a href="#fnref-36" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-37">Particle Data Group, <em>Big Bang Nucleosynthesis</em>, Review, 2024. <a href="https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf</a> <a href="#fnref-37" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-38">ScienceDirect Topics, <em>Stellar Nucleosynthesis</em>. <a href="https://www.sciencedirect.com/topics/physics-and-astronomy/stellar-nucleosynthesis" target="_blank" rel="noopener">https://www.sciencedirect.com/topics/physics-and-astronomy/stellar-nucleosynthesis</a> <a href="#fnref-38" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-39">M. Wang et al., <em>The AME 2020 atomic mass evaluation (II)</em>, Chinese Physics C 45, 030003, 2021. <a href="https://iopscience.iop.org/article/10.1088/1674-1137/abddaf" target="_blank" rel="noopener">https://iopscience.iop.org/article/10.1088/1674-1137/abddaf</a> <a href="#fnref-39" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-40">B.D. Metzger et al., <em>Spectroscopic identification of r-process nucleosynthesis in a double neutron-star merger</em>, Nature 551, 67, 2017 (arXiv:1710.05858)/Berkeley News, <em>Astronomers strike cosmic gold</em>, 2017. <a href="https://arxiv.org/abs/1710.05858" target="_blank" rel="noopener">https://arxiv.org/abs/1710.05858</a> / <a href="https://news.berkeley.edu/2017/10/16/astronomers-strike-cosmic-gold/" target="_blank" rel="noopener">https://news.berkeley.edu/2017/10/16/astronomers-strike-cosmic-gold/</a> <a href="#fnref-40" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-41">Visual Capitalist (Elements), <em>The Elemental Composition of the Human Body</em>. <a href="https://elements.visualcapitalist.com/the-elemental-composition-of-a-human-body/" target="_blank" rel="noopener">https://elements.visualcapitalist.com/the-elemental-composition-of-a-human-body/</a> <a href="#fnref-41" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-42">Particle Data Group, <em>Grand Unified Theories</em>, Review. <a href="https://pdg.lbl.gov/2011/reviews/rpp2011-rev-guts.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2011/reviews/rpp2011-rev-guts.pdf</a> <a href="#fnref-42" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-43">Super-Kamiokande Collaboration, <em>Search for Proton Decay via p→νK+ using 260 kiloton ・ year data of Super-Kamiokande</em>, arXiv:1408.1195/Quanta Magazine, <em>Grand Unification Dream Kept at Bay</em>, 2016. <a href="https://arxiv.org/pdf/1408.1195" target="_blank" rel="noopener">https://arxiv.org/pdf/1408.1195</a> / <a href="https://www.quantamagazine.org/no-proton-decay-means-grand-unification-must-wait-20161215/" target="_blank" rel="noopener">https://www.quantamagazine.org/no-proton-decay-means-grand-unification-must-wait-20161215/</a> <a href="#fnref-43" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-44">CERN Courier, <em>Naturalness after the Higgs</em>. <a href="https://cerncourier.com/a/naturalness-after-the-higgs/" target="_blank" rel="noopener">https://cerncourier.com/a/naturalness-after-the-higgs/</a> <a href="#fnref-44" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-45">arXiv:2506.06839, <em>Supersymmetry searches at ATLAS and CMS</em>, 2024. <a href="https://arxiv.org/html/2506.06839v1" target="_blank" rel="noopener">https://arxiv.org/html/2506.06839v1</a> <a href="#fnref-45" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-46">Nobel Prize Outreach, <em>The Nobel Prize in Physics 2011</em> press release （Perlmutter, Schmidt, Riess による 1998 年の超新星観測） . <a href="https://www.nobelprize.org/prizes/physics/2011/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2011/press-release/</a> <a href="#fnref-46" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-            <li id="fn-47">Scientific American, <em>The Cosmological Constant Is Physics' Most Embarrassing Problem</em>. <a href="https://www.scientificamerican.com/article/the-cosmological-constant-is-physics-most-embarrassing-problem/" target="_blank" rel="noopener">https://www.scientificamerican.com/article/the-cosmological-constant-is-physics-most-embarrassing-problem/</a> <a href="#fnref-47" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
+            <li id="fn-1">American Physical Society, <em>May, 1911: Rutherford and the Discovery of the Atomic Nucleus</em>, APS News, 2006. <a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus" target="_blank" rel="noopener">https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus</a> <a href="#fnref-1" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-2">Nobel Prize Outreach, <em>The Nobel Prize in Physics 1990</em> press release （Friedman, Kendall, Taylor による深非弾性散乱実験） . <a href="https://www.nobelprize.org/prizes/physics/1990/press-release/ii/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1990/press-release/ii/</a> <a href="#fnref-2" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-3">M. Riordan, <em>The Discovery of Quarks</em>, SLAC-PUB-5724, SLAC National Accelerator Laboratory, 1992. <a href="https://slac.stanford.edu/pubs/slacpubs/5500/slac-pub-5724.pdf" target="_blank" rel="noopener">https://slac.stanford.edu/pubs/slacpubs/5500/slac-pub-5724.pdf</a> <a href="#fnref-3" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-4">H1 Collaboration, <em>Search for Contact Interactions at HERA</em>, arXiv:0810.1420, 2008. クォーク半径の上限としておよそ 10<sup>-18</sup> 〜 10<sup>-19</sup> メートルが排除されている。 <a href="https://arxiv.org/pdf/0810.1420" target="_blank" rel="noopener">https://arxiv.org/pdf/0810.1420</a> <a href="#fnref-4" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-5">CERN, <em>Fifty years of quarks</em>, home.cern, 2014. <a href="https://home.cern/news/news/physics/fifty-years-quarks" target="_blank" rel="noopener">https://home.cern/news/news/physics/fifty-years-quarks</a> <a href="#fnref-5" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-6">EBSCO Research Starters, <em>Yukawa Proposes the Existence of Mesons</em>. <a href="https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons" target="_blank" rel="noopener">https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons</a> <a href="#fnref-6" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-7">American Physical Society, <em>April 17, 1912: Victor Hess's balloon flight during total eclipse to measure cosmic rays</em>, APS News, 2010. <a href="https://www.aps.org/publications/apsnews/201004/physicshistory.cfm" target="_blank" rel="noopener">https://www.aps.org/publications/apsnews/201004/physicshistory.cfm</a> / Nobel Prize Outreach, <em>Nobel Prize in Physics 1936</em> facts. <a href="https://www.nobelprize.org/prizes/physics/1936/hess/facts/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1936/hess/facts/</a> <a href="#fnref-7" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-8">EBSCO Research Starters, <em>Yukawa Proposes the Existence of Mesons</em>（同記事中、ミュー粒子発見の経緯にも言及） . <a href="https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons" target="_blank" rel="noopener">https://www.ebsco.com/research-starters/history/yukawa-proposes-existence-mesons</a> <a href="#fnref-8" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-9">fafnir.phyast.pitt.edu, <em>Discovery of the Pion — 1947</em>. <a href="http://fafnir.phyast.pitt.edu/particles/pion.html" target="_blank" rel="noopener">http://fafnir.phyast.pitt.edu/particles/pion.html</a> <a href="#fnref-9" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-10">American Physical Society, <em>August 1932: Discovery of the Positron</em>, APS News, 2004. <a href="https://www.aps.org/apsnews/2004/08/discovery-positron-1932" target="_blank" rel="noopener">https://www.aps.org/apsnews/2004/08/discovery-positron-1932</a> <a href="#fnref-10" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-11">同上（<a href="#fn-10">注 10</a> と同一の出典）。 <a href="#fnref-11" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-12">Particle Data Group (S. Navas et al.), <em>Review of Particle Physics</em>, Physical Review D 110, 030001, 2024 （2025 年更新版含む） . クォーク質量は <a href="https://pdg.lbl.gov/2024/tables/rpp2024-sum-quarks.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2024/tables/rpp2024-sum-quarks.pdf</a> 、レプトン質量は PDG 物理定数表による。 <a href="https://pdg.lbl.gov/2025/listings/contents_listings.html" target="_blank" rel="noopener">https://pdg.lbl.gov/2025/listings/contents_listings.html</a> <a href="#fnref-12" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-13">Nobel Prize Outreach, <em>The 2004 Nobel Prize in Physics — Popular information</em>（Gross, Politzer, Wilczek による漸近的自由性の発見） . <a href="https://www.nobelprize.org/prizes/physics/2004/popular-information/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2004/popular-information/</a> <a href="#fnref-13" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-14">CERN, <em>December 1930 – Pauli's Neutrino letter</em>, timeline.web.cern.ch. <a href="https://timeline.web.cern.ch/december-1930-paulis-neutrino-letter-now-music-and-art" target="_blank" rel="noopener">https://timeline.web.cern.ch/december-1930-paulis-neutrino-letter-now-music-and-art</a> <a href="#fnref-14" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-15">CERN, <em>W boson: Sunshine and stardust</em>, home.cern/<em>W and Z particles discovered</em>, timeline.web.cern.ch/Nobel Prize Outreach, <em>The 1984 Nobel Prize in Physics</em> press release. <a href="https://home.cern/science/physics/w-boson-sunshine-and-stardust/" target="_blank" rel="noopener">https://home.cern/science/physics/w-boson-sunshine-and-stardust/</a> / <a href="https://timeline.web.cern.ch/w-and-z-particles-discovered" target="_blank" rel="noopener">https://timeline.web.cern.ch/w-and-z-particles-discovered</a> / <a href="https://www.nobelprize.org/prizes/physics/1984/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1984/press-release/</a> <a href="#fnref-15" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-16">Nobel Prize Outreach, <em>The Nobel Prize in Physics 1979</em> press release （Glashow, Salam, Weinberg による電弱統一理論） . <a href="https://www.nobelprize.org/prizes/physics/1979/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/1979/press-release/</a> <a href="#fnref-16" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-17">Particle Data Group, <em>Summary Tables — Gauge and Higgs Bosons</em>, 2025. W 粒子質量 80.3692±0.0133 GeV 、 Z 粒子質量 91.1876±0.0021 GeV 。 <a href="https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf</a> <a href="#fnref-17" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-18">CERN, <em>High-Luminosity LHC</em>, home.web.cern.ch/ATLAS Experiment, <em>Physics and performance with 13 TeV proton collisions</em>. <a href="https://home.web.cern.ch/resources/faqs/high-luminosity-lhc" target="_blank" rel="noopener">https://home.web.cern.ch/resources/faqs/high-luminosity-lhc</a> / <a href="https://atlas.cern/updates/news/physics-and-performance-13-tev-proton-collisions" target="_blank" rel="noopener">https://atlas.cern/updates/news/physics-and-performance-13-tev-proton-collisions</a> <a href="#fnref-18" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-19">CERN, <em>The Large Electron-Positron Collider</em>, home.cern. <a href="https://home.cern/science/accelerators/large-electron-positron-collider/" target="_blank" rel="noopener">https://home.cern/science/accelerators/large-electron-positron-collider/</a> <a href="#fnref-19" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-20">CERN Courier, <em>Five sigma revisited</em>. <a href="https://cerncourier.com/a/five-sigma-revisited/" target="_blank" rel="noopener">https://cerncourier.com/a/five-sigma-revisited/</a> <a href="#fnref-20" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-21">Nobel Prize Outreach, <em>The Nobel Prize in Physics 2013 — Popular information</em>（Englert, Higgs による 1964 年の理論提案） . <a href="https://www.nobelprize.org/prizes/physics/2013/popular-information/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2013/popular-information/</a> <a href="#fnref-21" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-22">CERN, <em>CERN70: Announcing the Higgs boson discovery</em>, home.cern. <a href="https://home.cern/news/series/cern70/cern70-announcing-higgs-boson-discovery" target="_blank" rel="noopener">https://home.cern/news/series/cern70/cern70-announcing-higgs-boson-discovery</a> <a href="#fnref-22" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-23">同上<a href="#fn-21">注 21</a> 。 <a href="#fnref-23" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-24">ATLAS Collaboration, <em>Combined measurement of the Higgs boson mass from the H→γγ and H→ZZ</em>→4ℓ decay channels with the ATLAS detector*, arXiv:2308.04775, 2023. 測定値 125.11±0.11 GeV 。 <a href="https://arxiv.org/pdf/2308.04775" target="_blank" rel="noopener">https://arxiv.org/pdf/2308.04775</a> <a href="#fnref-24" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-25">CERN Courier, <em>Ray Davis: indefatigable neutrino pioneer</em>（ホームステーク実験、太陽ニュートリノ欠損問題） . <a href="https://cerncourier.com/a/ray-davis-indefatigable-neutrino-pioneer/" target="_blank" rel="noopener">https://cerncourier.com/a/ray-davis-indefatigable-neutrino-pioneer/</a> <a href="#fnref-25" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-26">Y. Fukuda et al.(Super-Kamiokande Collaboration), <em>Evidence for Oscillation of Atmospheric Neutrinos</em>, Physical Review Letters 81, 1562, 1998/T. Kajita, <em>Discovery of Atmospheric Neutrino Oscillations</em>, Nobel Lecture, 2015. <a href="https://link.aps.org/doi/10.1103/PhysRevLett.81.1562" target="_blank" rel="noopener">https://link.aps.org/doi/10.1103/PhysRevLett.81.1562</a> / <a href="https://www.nobelprize.org/uploads/2018/06/kajita-lecture.pdf" target="_blank" rel="noopener">https://www.nobelprize.org/uploads/2018/06/kajita-lecture.pdf</a> <a href="#fnref-26" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-27">Q.R. Ahmad et al.(SNO Collaboration), <em>Direct Evidence for Neutrino Flavor Transformation from Neutral-Current Interactions in the Sudbury Neutrino Observatory</em>, Physical Review Letters 89, 011301, 2002. 書誌情報は SNO Collaboration 公式サイトの文献一覧により確認。 <a href="https://sno.phy.queensu.ca/publications.html" target="_blank" rel="noopener">https://sno.phy.queensu.ca/publications.html</a> <a href="#fnref-27" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-28">NASA, <em>Cosmic History</em>, science.nasa.gov. <a href="https://science.nasa.gov/universe/overview/" target="_blank" rel="noopener">https://science.nasa.gov/universe/overview/</a> <a href="#fnref-28" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-29">N. Wright (UCLA), <em>Big Bang Nucleosynthesis</em>. <a href="https://www.astro.ucla.edu/~wright/BBNS.html" target="_blank" rel="noopener">https://www.astro.ucla.edu/~wright/BBNS.html</a> <a href="#fnref-29" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-30">European Space Agency, <em>History of microwave astronomy</em>（Penzias, Wilson による 1965 年の CMB 発見の経緯） . <a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/History_of_microwave_astronomy" target="_blank" rel="noopener">https://www.esa.int/Science_Exploration/Space_Science/Planck/History_of_microwave_astronomy</a> <a href="#fnref-30" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-31">European Space Agency, <em>Cosmic Microwave Background (CMB) radiation</em>/Planck Collaboration, <em>Planck 2018 results. VI. Cosmological parameters</em>, Astronomy & Astrophysics 641, A6, 2020. <a href="https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation" target="_blank" rel="noopener">https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation</a> / <a href="https://www.aanda.org/articles/aa/abs/2020/09/aa33910-18/aa33910-18.html" target="_blank" rel="noopener">https://www.aanda.org/articles/aa/abs/2020/09/aa33910-18/aa33910-18.html</a> <a href="#fnref-31" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-32">NASA/IPAC Extragalactic Database (NED), Vera C. Rubin, <em>100 Years of Rotating Galaxies</em>. <a href="https://ned.ipac.caltech.edu/level5/Sept04/Rubin/Rubin1.html" target="_blank" rel="noopener">https://ned.ipac.caltech.edu/level5/Sept04/Rubin/Rubin1.html</a> <a href="#fnref-32" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-33">astrobites, <em>The Bullet Cluster – A Smoking Gun for Dark Matter!</em>, 2016 （D. Clowe et al., 2006 の解説） . <a href="https://astrobites.org/2016/11/04/the-bullet-cluster-a-smoking-gun-for-dark-matter/" target="_blank" rel="noopener">https://astrobites.org/2016/11/04/the-bullet-cluster-a-smoking-gun-for-dark-matter/</a> <a href="#fnref-33" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-34">A.D. Sakharov, <em>Violation of CP invariance, C asymmetry, and baryon asymmetry of the universe</em>, JETP Letters 5, 24, 1967. （原論文。 URL 到達確認ができなかったため書誌情報のみ記載）<a href="#fnref-34" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-35">J.W. Cronin, <em>CP Symmetry Violation — The Search for its Origin</em>, Nobel Lecture, 1980. <a href="https://www.nobelprize.org/uploads/2018/06/cronin-lecture.pdf" target="_blank" rel="noopener">https://www.nobelprize.org/uploads/2018/06/cronin-lecture.pdf</a> <a href="#fnref-35" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-36">arXiv:hep-ph/9502327, <em>CP Violation and the Baryonic Asymmetry of the Universe</em>. <a href="https://arxiv.org/pdf/hep-ph/9502327" target="_blank" rel="noopener">https://arxiv.org/pdf/hep-ph/9502327</a> <a href="#fnref-36" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-37">Particle Data Group, <em>Big Bang Nucleosynthesis</em>, Review, 2024. <a href="https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf</a> <a href="#fnref-37" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-38">ScienceDirect Topics, <em>Stellar Nucleosynthesis</em>. <a href="https://www.sciencedirect.com/topics/physics-and-astronomy/stellar-nucleosynthesis" target="_blank" rel="noopener">https://www.sciencedirect.com/topics/physics-and-astronomy/stellar-nucleosynthesis</a> <a href="#fnref-38" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-39">M. Wang et al., <em>The AME 2020 atomic mass evaluation (II)</em>, Chinese Physics C 45, 030003, 2021. <a href="https://iopscience.iop.org/article/10.1088/1674-1137/abddaf" target="_blank" rel="noopener">https://iopscience.iop.org/article/10.1088/1674-1137/abddaf</a> <a href="#fnref-39" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-40">B.D. Metzger et al., <em>Spectroscopic identification of r-process nucleosynthesis in a double neutron-star merger</em>, Nature 551, 67, 2017 (arXiv:1710.05858)/Berkeley News, <em>Astronomers strike cosmic gold</em>, 2017. <a href="https://arxiv.org/abs/1710.05858" target="_blank" rel="noopener">https://arxiv.org/abs/1710.05858</a> / <a href="https://news.berkeley.edu/2017/10/16/astronomers-strike-cosmic-gold/" target="_blank" rel="noopener">https://news.berkeley.edu/2017/10/16/astronomers-strike-cosmic-gold/</a> <a href="#fnref-40" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-41">Visual Capitalist (Elements), <em>The Elemental Composition of the Human Body</em>. <a href="https://elements.visualcapitalist.com/the-elemental-composition-of-a-human-body/" target="_blank" rel="noopener">https://elements.visualcapitalist.com/the-elemental-composition-of-a-human-body/</a> <a href="#fnref-41" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-42">Particle Data Group, <em>Grand Unified Theories</em>, Review. <a href="https://pdg.lbl.gov/2011/reviews/rpp2011-rev-guts.pdf" target="_blank" rel="noopener">https://pdg.lbl.gov/2011/reviews/rpp2011-rev-guts.pdf</a> <a href="#fnref-42" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-43">Super-Kamiokande Collaboration, <em>Search for Proton Decay via p→νK+ using 260 kiloton ・ year data of Super-Kamiokande</em>, arXiv:1408.1195/Quanta Magazine, <em>Grand Unification Dream Kept at Bay</em>, 2016. <a href="https://arxiv.org/pdf/1408.1195" target="_blank" rel="noopener">https://arxiv.org/pdf/1408.1195</a> / <a href="https://www.quantamagazine.org/no-proton-decay-means-grand-unification-must-wait-20161215/" target="_blank" rel="noopener">https://www.quantamagazine.org/no-proton-decay-means-grand-unification-must-wait-20161215/</a> <a href="#fnref-43" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-44">CERN Courier, <em>Naturalness after the Higgs</em>. <a href="https://cerncourier.com/a/naturalness-after-the-higgs/" target="_blank" rel="noopener">https://cerncourier.com/a/naturalness-after-the-higgs/</a> <a href="#fnref-44" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-45">arXiv:2506.06839, <em>Supersymmetry searches at ATLAS and CMS</em>, 2024. <a href="https://arxiv.org/html/2506.06839v1" target="_blank" rel="noopener">https://arxiv.org/html/2506.06839v1</a> <a href="#fnref-45" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-46">Nobel Prize Outreach, <em>The Nobel Prize in Physics 2011</em> press release （Perlmutter, Schmidt, Riess による 1998 年の超新星観測） . <a href="https://www.nobelprize.org/prizes/physics/2011/press-release/" target="_blank" rel="noopener">https://www.nobelprize.org/prizes/physics/2011/press-release/</a> <a href="#fnref-46" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+            <li id="fn-47">Scientific American, <em>The Cosmological Constant Is Physics' Most Embarrassing Problem</em>. <a href="https://www.scientificamerican.com/article/the-cosmological-constant-is-physics-most-embarrassing-problem/" target="_blank" rel="noopener">https://www.scientificamerican.com/article/the-cosmological-constant-is-physics-most-embarrassing-problem/</a> <a href="#fnref-47" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
           </ol>
         </div>
       </div>

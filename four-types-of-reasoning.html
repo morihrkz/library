@@ -10,32 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #f3f7f1;
-    --paper: #fcfefa;
-    --ink: #1d251f;
-    --sub: #4c5b4f;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
 
-    --accent: #2c6a44;
-    --accent-soft: #6ba384;
-    --line: #d9e4d5;
-    --note-bg: #e8f1e5;
-    --hero-1: #05100a;
-    --hero-2: #1c4630;
-    --hero-ink: #edf4ea;
-    --hero-dim: #a6bfad;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg: #0c1210;
-      --paper: #121a15;
-      --ink: #e3ebe1;
-      --sub: #a3b3a3;
-
-      --accent: #7fc99c;
-      --accent-soft: #5c9b76;
-      --line: #232f28;
-      --note-bg: #15221a;
-    }
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --line:#C8CEC0;
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   *{box-sizing:border-box;}
   html{scroll-padding-top:76px;}
@@ -52,7 +39,7 @@
     padding:0 clamp(1.5rem, 3vw, 3rem) 6rem;
   }
   header.hero{
-    background:linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
     padding:3.6rem 0 2.8rem;
     margin-bottom:2.8rem;
@@ -80,7 +67,7 @@
   }
   header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
     display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
+  .hero-figure{max-width:960px; margin:0; overflow-x:auto;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
     margin-top:0.9rem;
@@ -241,23 +228,23 @@
 </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">Logic · Philosophy · Cognition</span>
-    <h1>思考を拡張する知の道具箱 - 推論の四つのかたち</h1>
-    <p class="sub">演繹・帰納・アブダクション・類推。ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。</p>
-    <div class="meta">
-      <span>全 10 章</span>
-      <span>約 30 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 340" role="img" aria-labelledby="brTitle brDesc">
         <title id="brTitle">既知の山から未知の山へ架かる四つの橋</title>
@@ -268,39 +255,39 @@
         <text x="360" y="46" class="ttl2" text-anchor="middle">どれが優れているかではなく、いまどの橋を渡っているのかが問題になる</text>
 
         <!-- 遠景の稜線 -->
-        <path d="M0,340 L0,120 L80,72 L150,106 L215,66 L300,90 L372,68 L446,94 L520,70 L600,100 L666,74 L720,116 L720,340 Z" fill="#2f6a4b" fill-opacity="0.30"/>
-        <path d="M0,340 L0,164 L70,138 L150,162 L215,126 L290,110 L370,116 L440,104 L505,128 L580,152 L650,132 L720,162 L720,340 Z" fill="#1b3f2c" fill-opacity="0.55"/>
+        <path d="M0,340 L0,120 L80,72 L150,106 L215,66 L300,90 L372,68 L446,94 L520,70 L600,100 L666,74 L720,116 L720,340 Z" fill="#486732" fill-opacity="0.30"/>
+        <path d="M0,340 L0,164 L70,138 L150,162 L215,126 L290,110 L370,116 L440,104 L505,128 L580,152 L650,132 L720,162 L720,340 Z" fill="#2a3d1d" fill-opacity="0.55"/>
 
         <!-- 谷底の霧 -->
-        <ellipse cx="360" cy="320" rx="145" ry="13" fill="#9fe0bb" fill-opacity="0.10"/>
-        <ellipse cx="360" cy="334" rx="108" ry="9" fill="#9fe0bb" fill-opacity="0.07"/>
+        <ellipse cx="360" cy="320" rx="145" ry="13" fill="#bcd6a9" fill-opacity="0.10"/>
+        <ellipse cx="360" cy="334" rx="108" ry="9" fill="#bcd6a9" fill-opacity="0.07"/>
 
         <!-- 左の山（既知） -->
-        <path d="M0,340 L0,150 L48,126 L96,142 L146,114 L196,138 L215,132 L215,340 Z" fill="#07170f"/>
-        <path d="M0,150 L48,126 L96,142 L146,114 L196,138 L215,132" fill="none" stroke="#3d7a58" stroke-width="1.6"/>
+        <path d="M0,340 L0,150 L48,126 L96,142 L146,114 L196,138 L215,132 L215,340 Z" fill="#0e140a"/>
+        <path d="M0,150 L48,126 L96,142 L146,114 L196,138 L215,132" fill="none" stroke="#567a3d" stroke-width="1.6"/>
         <!-- 右の山（未知） -->
-        <path d="M505,340 L505,136 L548,118 L598,142 L646,114 L690,138 L720,124 L720,340 Z" fill="#07170f"/>
-        <path d="M505,136 L548,118 L598,142 L646,114 L690,138 L720,124" fill="none" stroke="#3d7a58" stroke-width="1.6"/>
+        <path d="M505,340 L505,136 L548,118 L598,142 L646,114 L690,138 L720,124 L720,340 Z" fill="#0e140a"/>
+        <path d="M505,136 L548,118 L598,142 L646,114 L690,138 L720,124" fill="none" stroke="#567a3d" stroke-width="1.6"/>
 
         <!-- 橋 1 : 演繹 -->
         <text x="360" y="139" class="lbl" text-anchor="middle">演繹 - 前提を受け入れたら、結論は逃げない</text>
-        <line x1="215" y1="154" x2="505" y2="154" stroke="#aee3c2" stroke-width="4.5" stroke-linecap="round"/>
-        <line x1="262" y1="154" x2="262" y2="169" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
-        <line x1="360" y1="154" x2="360" y2="173" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
-        <line x1="458" y1="154" x2="458" y2="169" stroke="#aee3c2" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="215" y1="154" x2="505" y2="154" stroke="#c5dcb5" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="262" y1="154" x2="262" y2="169" stroke="#c5dcb5" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="360" y1="154" x2="360" y2="173" stroke="#c5dcb5" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="458" y1="154" x2="458" y2="169" stroke="#c5dcb5" stroke-width="2" stroke-opacity="0.6"/>
 
         <!-- 橋 2 : 帰納 -->
         <text x="360" y="187" class="lbl" text-anchor="middle">帰納 - 遠くまで伸びるが、途中で崩れうる</text>
-        <line x1="215" y1="202" x2="505" y2="202" stroke="#8ccfa6" stroke-width="3.2" stroke-dasharray="16 8" stroke-linecap="round"/>
+        <line x1="215" y1="202" x2="505" y2="202" stroke="#a9ca91" stroke-width="3.2" stroke-dasharray="16 8" stroke-linecap="round"/>
 
         <!-- 橋 3 : 類推（上の橋を参照して架ける） -->
         <text x="360" y="235" class="lbl" text-anchor="middle">類推 - 別の場所の橋を、参考にして架ける</text>
-        <path d="M296,206 C296,222 308,232 314,246" fill="none" stroke="#8ccfa6" stroke-width="1.4" stroke-dasharray="3 5" stroke-opacity="0.75"/>
-        <line x1="215" y1="250" x2="505" y2="250" stroke="#7fc99c" stroke-width="3.2" stroke-dasharray="30 7 7 7" stroke-linecap="round"/>
+        <path d="M296,206 C296,222 308,232 314,246" fill="none" stroke="#a9ca91" stroke-width="1.4" stroke-dasharray="3 5" stroke-opacity="0.75"/>
+        <line x1="215" y1="250" x2="505" y2="250" stroke="#9fc484" stroke-width="3.2" stroke-dasharray="30 7 7 7" stroke-linecap="round"/>
 
         <!-- 橋 4 : アブダクション（まだ設計図） -->
         <text x="360" y="283" class="lbl" text-anchor="middle">アブダクション - まだ設計図しかない</text>
-        <line x1="215" y1="298" x2="505" y2="298" stroke="#6fae8c" stroke-width="2.6" stroke-dasharray="1.5 7" stroke-linecap="round"/>
+        <line x1="215" y1="298" x2="505" y2="298" stroke="#89ae6f" stroke-width="2.6" stroke-dasharray="1.5 7" stroke-linecap="round"/>
 
         <!-- 既知・未知のラベル -->
         <text x="104" y="196" class="side" text-anchor="middle">既知</text>
@@ -309,17 +296,28 @@
         <text x="612" y="218" class="side2" text-anchor="middle">まだ分かっていない</text>
 
         <style>
-          .ttl{ fill:#edf4ea; font-size:14.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .ttl2{ fill:#a6bfad; font-size:11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lbl{ fill:#edf4ea; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .side{ fill:#c8ddce; font-size:13px; font-weight:700; letter-spacing:0.16em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .side2{ fill:#89a692; font-size:10px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .ttl{ fill:#eef4ea; font-size:14.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .ttl2{ fill:#b0bfa6; font-size:11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lbl{ fill:#eef4ea; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side{ fill:#d1ddc8; font-size:13px; font-weight:700; letter-spacing:0.16em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .side2{ fill:#95a689; font-size:10px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>終章で述べる「推論とは橋である」という比喩を、そのまま図にしたもの。橋の高さ・長さ・本数に定量的な意味はなく、四つの推論の性格の違いを対比させるための概念図である。実在の谷や橋を描いたものではない。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">Logic · Philosophy · Cognition</span>
+  <h1>思考を拡張する知の道具箱 - 推論の四つのかたち</h1>
+  <p class="sub">演繹・帰納・アブダクション・類推。ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。</p>
+  <div class="meta">
+    <span>全 10 章</span>
+    <span>約 30 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

@@ -9,36 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf8f3;
-    --paper: #ffffff;
-    --ink: #1c1e22;
-    --sub: #4a4f57;
-    --muted: #6f7583;
-    --accent: #1f4e6b;
-    --accent-2: #8a6a2f;
-    --line: #e2ddd2;
-    --table-head: #f4f1ea;
-    --note-bg: #e8eff4;
-    --hero-1: #16324a;
-    --hero-2: #1f4e6b;
-    --hero-ink: #f1ece1;
-    --hero-dim: #b7c9d6;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --accent:#25364A;
+    --accent-2:#3E5226;
+    --line:#C8CEC0;
+    --table-head: #f4ebea;
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
 
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #15171b;
-      --paper: #1d2026;
-      --ink: #e8e6e1;
-      --sub: #b6b8be;
-      --muted: #878b94;
-      --accent: #8ab6d1;
-      --accent-2: #c9a24a;
-      --line: #31353d;
-      --table-head: #212530;
-      --note-bg: #1c2933;
-
-    }
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -53,7 +38,7 @@
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 2.8rem;
     margin-bottom: 2.8rem;
@@ -381,55 +366,66 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">論考 / 政党ラベルと選挙制度</span>
-    <h1>同じ看板の下で</h1>
-    <p class="sub">憲法観も安全保障観も異なる二人の議員が、同じ政党の公認で議席を得る。このとき有権者の一票は、何を選んだことになるのか。法制度・選挙制度・党内組織の三つの層から検討する。</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 20 分</span>
-      <span>2026 年 8 月</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 250" role="img" aria-labelledby="dgmTitle dgmDesc">
         <title id="dgmTitle">一つの政党の中に複数の政策的立場が同居できる法的構造</title>
         <desc id="dgmDesc">政党という一つの枠を表す破線の外枠の中に、防衛政策・経済政策それぞれで対立する二つの立場を示す四つの箱が並ぶ。外枠の下には、政党としての法的要件が議員数と得票率のみである旨の注記があり、右側には、この多様性を組織的に担ってきた派閥が、政治資金規正法上の別法人として矢印でつながれている。</desc>
-        <rect x="24" y="20" width="470" height="176" rx="10" fill="none" stroke="#c9a24a" stroke-opacity="0.75" stroke-dasharray="6 5"/>
-        <text x="44" y="44" fill="#f1ece1" font-size="13" font-weight="700">一つの政治団体（法律上の「政党」）</text>
-        <rect x="44" y="60" width="205" height="46" rx="6" fill="#12283a" stroke="#8ab6d1" stroke-opacity="0.75"/>
-        <text x="146" y="80" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
-        <text x="146" y="99" fill="#b7c9d6" font-size="11" text-anchor="middle">改憲・防衛強化派</text>
-        <rect x="269" y="60" width="205" height="46" rx="6" fill="#12283a" stroke="#c9a24a" stroke-opacity="0.75"/>
-        <text x="371" y="80" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
-        <text x="371" y="99" fill="#b7c9d6" font-size="11" text-anchor="middle">慎重・護憲派</text>
-        <rect x="44" y="118" width="205" height="46" rx="6" fill="#12283a" stroke="#8ab6d1" stroke-opacity="0.75"/>
-        <text x="146" y="138" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
-        <text x="146" y="157" fill="#b7c9d6" font-size="11" text-anchor="middle">積極財政派</text>
-        <rect x="269" y="118" width="205" height="46" rx="6" fill="#12283a" stroke="#c9a24a" stroke-opacity="0.75"/>
-        <text x="371" y="138" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
-        <text x="371" y="157" fill="#b7c9d6" font-size="11" text-anchor="middle">緊縮財政派</text>
-        <text x="44" y="182" fill="#b7c9d6" font-size="11.5">法的要件（政党助成法 2 条）：議員数 5 人以上 または 得票率 2% 以上 - 政策の一致は不要</text>
-        <path d="M494 108 h34" stroke="#b7c9d6" stroke-width="2" fill="none"/>
-        <path d="M528 108 l-10 -6 v12 z" fill="#b7c9d6"/>
-        <rect x="538" y="66" width="150" height="84" rx="8" fill="#12283a" stroke="#b7c9d6" stroke-opacity="0.6"/>
-        <text x="613" y="94" fill="#f1ece1" font-size="12.5" font-weight="700" text-anchor="middle">派閥</text>
-        <text x="613" y="114" fill="#b7c9d6" font-size="10.5" text-anchor="middle">政治資金規正法上の</text>
-        <text x="613" y="130" fill="#b7c9d6" font-size="10.5" text-anchor="middle">別法人として</text>
-        <text x="613" y="146" fill="#b7c9d6" font-size="10.5" text-anchor="middle">資金・人事を担う</text>
+        <rect x="24" y="20" width="470" height="176" rx="10" fill="none" stroke="#b85f5a" stroke-opacity="0.75" stroke-dasharray="6 5"/>
+        <text x="44" y="44" fill="#f1e2e1" font-size="13" font-weight="700">一つの政治団体（法律上の「政党」）</text>
+        <rect x="44" y="60" width="205" height="46" rx="6" fill="#192533" stroke="#91abca" stroke-opacity="0.75"/>
+        <text x="146" y="80" fill="#f1e2e1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
+        <text x="146" y="99" fill="#b7c5d6" font-size="11" text-anchor="middle">改憲・防衛強化派</text>
+        <rect x="269" y="60" width="205" height="46" rx="6" fill="#192533" stroke="#b85f5a" stroke-opacity="0.75"/>
+        <text x="371" y="80" fill="#f1e2e1" font-size="12.5" font-weight="700" text-anchor="middle">防衛政策</text>
+        <text x="371" y="99" fill="#b7c5d6" font-size="11" text-anchor="middle">慎重・護憲派</text>
+        <rect x="44" y="118" width="205" height="46" rx="6" fill="#192533" stroke="#91abca" stroke-opacity="0.75"/>
+        <text x="146" y="138" fill="#f1e2e1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
+        <text x="146" y="157" fill="#b7c5d6" font-size="11" text-anchor="middle">積極財政派</text>
+        <rect x="269" y="118" width="205" height="46" rx="6" fill="#192533" stroke="#b85f5a" stroke-opacity="0.75"/>
+        <text x="371" y="138" fill="#f1e2e1" font-size="12.5" font-weight="700" text-anchor="middle">経済政策</text>
+        <text x="371" y="157" fill="#b7c5d6" font-size="11" text-anchor="middle">緊縮財政派</text>
+        <text x="44" y="182" fill="#b7c5d6" font-size="11.5">法的要件（政党助成法 2 条）：議員数 5 人以上 または 得票率 2% 以上 - 政策の一致は不要</text>
+        <path d="M494 108 h34" stroke="#b7c5d6" stroke-width="2" fill="none"/>
+        <path d="M528 108 l-10 -6 v12 z" fill="#b7c5d6"/>
+        <rect x="538" y="66" width="150" height="84" rx="8" fill="#192533" stroke="#b7c5d6" stroke-opacity="0.6"/>
+        <text x="613" y="94" fill="#f1e2e1" font-size="12.5" font-weight="700" text-anchor="middle">派閥</text>
+        <text x="613" y="114" fill="#b7c5d6" font-size="10.5" text-anchor="middle">政治資金規正法上の</text>
+        <text x="613" y="130" fill="#b7c5d6" font-size="10.5" text-anchor="middle">別法人として</text>
+        <text x="613" y="146" fill="#b7c5d6" font-size="10.5" text-anchor="middle">資金・人事を担う</text>
       </svg>
-      <figcaption>一つの政党の中に複数の政策的立場が同居できる法的構造。政党助成法が定める要件は議員数と得票率のみで、政策の一致は求められていない。派閥は政治資金規正法上、党本部とは別個の政治団体として、この多様性を組織的に担ってきた。あくまで法的構造の概念図であり、特定の政党の実際の派閥配置を示すものではない。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">論考 / 政党ラベルと選挙制度</span>
+  <h1>同じ看板の下で</h1>
+  <p class="sub">憲法観も安全保障観も異なる二人の議員が、同じ政党の公認で議席を得る。このとき有権者の一票は、何を選んだことになるのか。法制度・選挙制度・党内組織の三つの層から検討する。</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 20 分</span>
+    <span>2026 年 8 月</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

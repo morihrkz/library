@@ -10,17 +10,17 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #fdfcf9;
-    --ink: #2b2a28;
-    --sub: #5a5853;
-    --accent: #2f6f4f;
-    --note-bg: #e7f2ec;
-    --line: #e4e0d8;
-    --paper: #ffffff;
-    --code-bg: #f4f1ea;
-    --warn-bg: #fff4e5;
-    --warn-border: #e0a94b;
-    --hero-1: #14231b; --hero-2: #23412f; --hero-ink: #f2f7f3; --hero-dim: #bdd3c3;
+    --bg:#F5F3EC;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
+    --line:#C8CEC0;
+    --paper:#fff;
+    --code-bg: #f4ebea;
+    --warn-bg: #f7eded;
+    --warn-border: #c0706b;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -36,7 +36,7 @@
     padding: 48px clamp(24px, 4vw, 64px) 120px;
   }
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     border-bottom: 3px solid var(--accent);
     padding: 56px 0 44px;
@@ -50,8 +50,8 @@
   header.hero p.sub { color: var(--hero-dim); }
   header.hero .meta span {
     background: rgba(255,255,255,.06);
-    border-color: rgba(143,199,156,.35);
-    color: #cfe0d4;
+    border-color: rgba(166,199,143,.35);
+    color: #d6e0cf;
   }
   .hero-figure {
     margin: 30px 0 0;
@@ -62,7 +62,7 @@
     margin-top: 12px;
     font-size: 13px;
     line-height: 1.8;
-    color: #a9c4b2;
+    color: #b4c4a9;
     text-indent: 0;
   }
   header.hero .eyebrow {
@@ -175,21 +175,6 @@
     color: var(--sub);
     font-size: 13px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1c1b19;
-      --ink: #eae7e0;
-      --sub: #b4b0a7;
-      --accent: #6fcf9c;
-      --note-bg: #22332a;
-      --line: #3a382f;
-      --paper: #262420;
-      --code-bg: #2a2822;
-      --warn-bg: #33291a;
-      --warn-border: #c78f3d;
-    }
-    th { background: var(--code-bg); }
-  }
   .check {
     background: var(--paper);
     border: 1px solid var(--line);
@@ -218,8 +203,7 @@
     white-space: nowrap;
   }
   .pill.done { background: var(--note-bg); color: var(--accent); }
-  .pill.pending { background: var(--warn-bg); color: #a76a12; }
-  @media (prefers-color-scheme: dark) { .pill.pending { color: var(--warn-border); } }
+  .pill.pending { background: var(--warn-bg); color: #823b38; }
 
   .meta {
     display: flex;
@@ -406,29 +390,24 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-  <span class="eyebrow">実録・作業記録</span>
-  <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="sub">二年間にわたり更新していなかった自社ウェブサイトを、 WordPress が動くレンタルサーバーから GitHub Pages へ移した。その顛末を記す。</p>
-  <div class="meta">
-    <span>全 5 章</span>
-    <span>約 25 分</span>
-    <span>旧環境 : WordPress / XServer</span>
-    <span>新環境 : GitHub Pages</span>
-    <span>DNS : Xserver Domain</span>
-    <span>独自ドメイン : pyx.co.jp</span>
-    <span>サーバー契約期限 : 2026 年 8 月 31 日</span>
-  </div>
-
-  <figure class="hero-figure">
+    <figure class="hero-figure">
     <svg viewBox="0 0 720 268" role="img" aria-labelledby="mgTitle mgDesc">
       <title id="mgTitle">移行を六つの工程に分けた並びと、入れ替えられない順序</title>
       <desc id="mgDesc">左から右へ、 DNS レコードのバックアップ、ネームサーバーの切り替え、サイト構築と完成確認、旧 WordPress 環境の削除、 DNS を GitHub Pages へ向ける、切替後の検証という六工程が一本の線でつながる図。工程 2 にはサーバー契約の凍結前に済ませる必要があるという注記が付き、下部の破線の枠には入れ替えてはいけない四つの順序が並ぶ。</desc>
@@ -436,47 +415,47 @@
       <text x="360" y="24" class="figTitle">六つの工程と、入れ替えられない順序</text>
 
       <text x="192" y="52" class="warnnote">サーバー契約の凍結前に済ませる必要があった</text>
-      <path d="M192 58 V88" stroke="#e0a94b" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="4 3"/>
-      <path d="M192 94 l-5 -8 h10 z" fill="#e0a94b" fill-opacity="0.85"/>
+      <path d="M192 58 V88" stroke="#c0706b" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <path d="M192 94 l-5 -8 h10 z" fill="#c0706b" fill-opacity="0.85"/>
 
-      <line x1="80" y1="112" x2="640" y2="112" stroke="#8fc79c" stroke-opacity="0.35" stroke-width="1.6"/>
+      <line x1="80" y1="112" x2="640" y2="112" stroke="#a6c78f" stroke-opacity="0.35" stroke-width="1.6"/>
 
       <g>
-        <circle cx="80" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <circle cx="80" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
         <text x="80" y="117" class="num">1</text>
         <text x="80" y="145" class="step">DNS レコード</text>
         <text x="80" y="159" class="step">のバックアップ</text>
 
-        <circle cx="192" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <circle cx="192" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
         <text x="192" y="117" class="num">2</text>
         <text x="192" y="145" class="step">ネームサーバー</text>
         <text x="192" y="159" class="step">を切り替える</text>
 
-        <circle cx="304" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#cfe0d4" stroke-opacity="0.5"/>
+        <circle cx="304" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#d6e0cf" stroke-opacity="0.5"/>
         <text x="304" y="117" class="num light">3</text>
         <text x="304" y="145" class="step">サイト構築と</text>
         <text x="304" y="159" class="step">完成確認</text>
 
-        <circle cx="416" cy="112" r="15" fill="#e0a94b" fill-opacity="0.85"/>
+        <circle cx="416" cy="112" r="15" fill="#c0706b" fill-opacity="0.85"/>
         <text x="416" y="117" class="num">4</text>
         <text x="416" y="145" class="step">旧 WordPress</text>
         <text x="416" y="159" class="step">環境の削除</text>
 
-        <circle cx="528" cy="112" r="15" fill="#8fc79c" fill-opacity="0.85"/>
+        <circle cx="528" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
         <text x="528" y="117" class="num">5</text>
         <text x="528" y="145" class="step">DNS を GitHub</text>
         <text x="528" y="159" class="step">Pages へ向ける</text>
 
-        <circle cx="640" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#cfe0d4" stroke-opacity="0.5"/>
+        <circle cx="640" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#d6e0cf" stroke-opacity="0.5"/>
         <text x="640" y="117" class="num light">6</text>
         <text x="640" y="145" class="step">切替後の</text>
         <text x="640" y="159" class="step">検証</text>
       </g>
 
-      <path d="M192 88 q56 -22 112 0" fill="none" stroke="#cfe0d4" stroke-opacity="0.45" stroke-width="1.3" stroke-dasharray="4 3"/>
+      <path d="M192 88 q56 -22 112 0" fill="none" stroke="#d6e0cf" stroke-opacity="0.45" stroke-width="1.3" stroke-dasharray="4 3"/>
       <text x="248" y="74" class="para">2 と 3 は並行できた</text>
 
-      <rect x="46" y="180" width="628" height="74" rx="8" fill="none" stroke="#8fc79c" stroke-opacity="0.45" stroke-dasharray="5 4"/>
+      <rect x="46" y="180" width="628" height="74" rx="8" fill="none" stroke="#a6c78f" stroke-opacity="0.45" stroke-dasharray="5 4"/>
       <text x="66" y="200" class="boxttl">入れ替えてはいけない四つの順序</text>
       <text x="66" y="222" class="rule">DNS を控える → ネームサーバー切替</text>
       <text x="66" y="242" class="rule">標準 URL で確認 → Custom domain 設定</text>
@@ -484,20 +463,36 @@
       <text x="388" y="242" class="rule">完成を確認 → 旧環境を削除</text>
 
       <style>
-        .figTitle { fill: #f2f7f3; font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .num { fill: #16241c; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .num.light { fill: #eaf2ec; }
-        .step { fill: #dcebe0; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .warnnote { fill: #e0a94b; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .para { fill: #a9c4b2; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .boxttl { fill: #8fc79c; font-size: 11.5px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .rule { fill: #cfe0d4; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .figTitle { fill: #f4f7f2; font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .num { fill: #1c2416; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .num.light { fill: #edf2ea; }
+        .step { fill: #e2ebdc; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .warnnote { fill: #d9a29e; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .para { fill: #b4c4a9; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .boxttl { fill: #a6c78f; font-size: 11.5px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+        .rule { fill: #d6e0cf; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
       </style>
     </svg>
-    <figcaption>サーバー契約の期限から逆算して組んだ六工程。緑は DNS に触れる工程、橙は取り消しのきかない削除工程を示す。工程 2 と 3 は互いに独立していて並行できたが、下段の四か所だけは技術上・安全上の理由から順序が固定される。</figcaption>
   </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">実録・作業記録</span>
+  <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
+  <p class="sub">二年間にわたり更新していなかった自社ウェブサイトを、 WordPress が動くレンタルサーバーから GitHub Pages へ移した。その顛末を記す。</p>
+  <div class="meta">
+  <span>全 5 章</span>
+  <span>約 25 分</span>
+  <span>旧環境 : WordPress / XServer</span>
+  <span>新環境 : GitHub Pages</span>
+  <span>DNS : Xserver Domain</span>
+  <span>独自ドメイン : pyx.co.jp</span>
+  <span>サーバー契約期限 : 2026 年 8 月 31 日</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
 
@@ -563,16 +558,16 @@
 <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-d2d3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#2f6f4f"/>
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"/>
     </marker>
   </defs>
   <style>
-    .node { fill: #ffffff; stroke: #2f6f4f; stroke-width: 2; }
-    .node-alt { fill: #e7f2ec; stroke: #2f6f4f; stroke-width: 2; }
+    .node { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
+    .node-alt { fill: #ecf2e7; stroke: #4a6b33; stroke-width: 2; }
     .label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 14px; fill: #2b2a28; text-anchor: middle; }
     .sub { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 11px; fill: #6b6863; text-anchor: middle; }
-    .flow { stroke: #2f6f4f; stroke-width: 2; fill: none; marker-end: url(#arrow-d2d3); }
-    .title { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 13px; font-weight: bold; fill: #2f6f4f; }
+    .flow { stroke: #4a6b33; stroke-width: 2; fill: none; marker-end: url(#arrow-d2d3); }
+    .title { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 13px; font-weight: bold; fill: #4a6b33; }
   </style>
 
   <text x="20" y="30" class="title">動的サイト = アクセスされた都度、組み立てる</text>
@@ -589,7 +584,7 @@
   <path d="M440,110 Q295,170 150,110" class="flow"/>
   <text x="295" y="180" class="sub">その場で HTML を生成して返す（毎回・ PHP とデータベースが常時必要）</text>
 
-  <line x1="0" y1="220" x2="680" y2="220" stroke="#e4e0d8" stroke-dasharray="4 4"/>
+  <line x1="0" y1="220" x2="680" y2="220" stroke="#e4d9d8" stroke-dasharray="4 4"/>
 
   <text x="20" y="255" class="title">静的サイト = 用意しているファイルをそのまま渡す</text>
   <rect x="20" y="280" width="150" height="60" rx="10" class="node"/>
@@ -642,15 +637,15 @@
 <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow-d3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#2f6f4f"/>
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"/>
     </marker>
   </defs>
   <style>
-    .d3node { fill: #ffffff; stroke: #2f6f4f; stroke-width: 2; }
+    .d3node { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
     .d3label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 15px; fill: #2b2a28; text-anchor: middle; }
     .d3sub { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #6b6863; text-anchor: middle; }
-    .d3arrow-label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #2f6f4f; text-anchor: middle; }
-    .d3flow { stroke: #2f6f4f; stroke-width: 2; fill: none; marker-end: url(#arrow-d3); }
+    .d3arrow-label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #4a6b33; text-anchor: middle; }
+    .d3flow { stroke: #4a6b33; stroke-width: 2; fill: none; marker-end: url(#arrow-d3); }
   </style>
 
   <rect x="20" y="15" width="190" height="175" rx="24" class="d3node"/>
@@ -716,14 +711,14 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
 <div class="diagram-box">
 <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .d5box { fill: #ffffff; stroke: #2f6f4f; stroke-width: 2; }
-    .d5box-alt { fill: #e7f2ec; stroke: #2f6f4f; stroke-width: 2; }
-    .d5box-warn { fill: #fff4e5; stroke: #e0a94b; stroke-width: 2; }
+    .d5box { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
+    .d5box-alt { fill: #ecf2e7; stroke: #4a6b33; stroke-width: 2; }
+    .d5box-warn { fill: #f7eded; stroke: #c0706b; stroke-width: 2; }
     .d5lab { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 13px; fill: #2b2a28; text-anchor: middle; }
     .d5sub { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 10px; fill: #6b6863; text-anchor: middle; }
-    .d5ttl { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; font-weight: bold; fill: #2f6f4f; }
-    .d5bad { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #a76a12; text-anchor: middle; }
-    .d5ok { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #2f6f4f; text-anchor: middle; }
+    .d5ttl { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; font-weight: bold; fill: #4a6b33; }
+    .d5bad { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #823b38; text-anchor: middle; }
+    .d5ok { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #4a6b33; text-anchor: middle; }
   </style>
 
   <rect x="0" y="0" width="680" height="230" rx="8" fill="#ffffff"/>
@@ -735,7 +730,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <rect x="180" y="40" width="145" height="42" rx="8" class="d5box-warn"/>
   <text x="252" y="60" class="d5lab">サーバー契約</text>
   <text x="252" y="75" class="d5sub">（これをやめたい）</text>
-  <path d="M252,82 L252,97 M92,97 L252,97 M92,97 L92,112 M252,97 L252,112" fill="none" stroke="#e0a94b" stroke-width="2"/>
+  <path d="M252,82 L252,97 M92,97 L252,97 M92,97 L92,112 M252,97 L252,112" fill="none" stroke="#c0706b" stroke-width="2"/>
   <rect x="20" y="112" width="145" height="50" rx="8" class="d5box-warn"/>
   <text x="92" y="133" class="d5lab">レコードの編集</text>
   <text x="92" y="149" class="d5sub">（設定を書き換える）</text>
@@ -745,7 +740,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <text x="172" y="188" class="d5bad">✕　サーバー契約を終了すると、</text>
   <text x="172" y="206" class="d5bad">編集する手段も名前解決も同時に失う</text>
 
-  <line x1="340" y1="10" x2="340" y2="220" stroke="#e4e0d8" stroke-dasharray="4 4"/>
+  <line x1="340" y1="10" x2="340" y2="220" stroke="#e4d9d8" stroke-dasharray="4 4"/>
 
   <text x="355" y="24" class="d5ttl">切り替え後：二つともドメイン契約に紐づいている</text>
   <rect x="355" y="40" width="145" height="42" rx="8" class="d5box-alt"/>
@@ -754,7 +749,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
   <rect x="515" y="40" width="145" height="42" rx="8" class="d5box-warn"/>
   <text x="587" y="60" class="d5lab">サーバー契約</text>
   <text x="587" y="75" class="d5sub">（やめてよい）</text>
-  <path d="M427,82 L427,97 M427,97 L587,97 M587,97 L587,112 M427,97 L427,112" fill="none" stroke="#2f6f4f" stroke-width="2"/>
+  <path d="M427,82 L427,97 M427,97 L587,97 M587,97 L587,112 M427,97 L427,112" fill="none" stroke="#4a6b33" stroke-width="2"/>
   <rect x="355" y="112" width="145" height="50" rx="8" class="d5box-alt"/>
   <text x="427" y="133" class="d5lab">レコードの編集</text>
   <text x="427" y="149" class="d5sub">（設定を書き換える）</text>

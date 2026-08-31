@@ -10,36 +10,24 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#0a1220; --hero-2:#213a63; --hero-ink:#f2f4f8; --hero-dim:#c9d2e0;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
 
-    --navy-900:#101c33;
-    --navy-800:#182a4a;
+    --navy-900:#16202d;
+    --navy-800:#202f42;
 
 
-    --amber-500:#c8863c;
-    --amber-600:#a86e2c;
-    --amber-300:#e3bd82;
-    --amber-100:#f6e9d4;
-    --bg:#f7f7f4;
-    --paper:#ffffff;
-    --ink:#181c22;
-    --sub:#505964;
-    --line:#e2e2dc;
+    --amber-500:#b45550;
+    --amber-600:#944440;
+    --amber-300:#d19794;
+    --amber-100:#efdcdb;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
 
-    --accent:#213a63;
-    --note-bg:#fdf3e2;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#15140f;
-      --paper:#1c1b17;
-      --ink:#eceae4;
-      --sub:#a7a89e;
-      --line:#2c2b26;
-
-      --accent:#9db4d6;
-      --note-bg:#2e2413;
-    }
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -66,9 +54,7 @@
     overflow:hidden;
     padding:60px 24px 78px;
     text-align:center;
-    background:
-      radial-gradient(circle at 18% 15%, rgba(227,189,130,.10) 0%, rgba(227,189,130,0) 42%),
-      linear-gradient(160deg, var(--hero-1) 0%, var(--navy-900) 46%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -76,7 +62,7 @@
     display:inline-block;
     font-size:.78rem; letter-spacing:.28em;
     color:var(--amber-100);
-    border:1px solid rgba(227,189,130,.45);
+    border:1px solid rgba(209,151,148,.45);
     border-radius:2px;
     padding:7px 20px; margin-bottom:24px;
   }
@@ -99,7 +85,7 @@
   }
   header.hero .meta{margin:1.1rem 0 0; display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;
     font-size:.86rem; color:var(--hero-dim); letter-spacing:.06em;}
-  .hero-figure{max-width:960px; margin:30px auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure{max-width:960px; margin:0 auto; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
     margin-top:12px; font-size:.85rem; line-height:1.8;
@@ -118,7 +104,7 @@
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
     margin:24px 0 26px;
-    box-shadow:0 4px 14px rgba(10,18,32,.10);
+    box-shadow:0 4px 14px rgba(14,20,28,.10);
     border:1px solid var(--line);
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
@@ -138,7 +124,7 @@
     background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(10,18,32,.07);
+    box-shadow:0 2px 12px rgba(14,20,28,.07);
     overflow:hidden;
     border:1px solid var(--line);
     overflow-anchor:none;
@@ -152,10 +138,10 @@
   .acc-header .num{
     flex:0 0 auto; min-width:34px; height:34px; padding:0 10px; border-radius:999px;
     background:linear-gradient(150deg, var(--amber-500), var(--navy-900));
-    color:#fdfcf6; display:flex; align-items:center; justify-content:center;
+    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:.82rem; letter-spacing:0; white-space:nowrap;
   }
-  #accordion > .acc-item{box-shadow:0 3px 16px rgba(10,18,32,.10);}
+  #accordion > .acc-item{box-shadow:0 3px 16px rgba(14,20,28,.10);}
   #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
   #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
   .acc-nested{margin:0 0 1.3em;}
@@ -231,9 +217,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -242,16 +236,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">比較分析ノート / DATA CENTER POLITICS</span>
-    <h1>AI データセンター問題の政治争点化</h1>
-    <div class="divider"></div>
-    <p class="sub">米国 2026 年中間選挙と日本・印西市を比較し、同種の物理的・経済的圧力がなぜ一方では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのかを、政治制度・地方財政構造・言説環境の観点から分析する。</p>
-    <div class="meta">
-      <span>全 6 章</span>
-      <span>約 28 分</span>
-      <span>本稿は 2026 年 8 月 15 日を調査基準日として作成した。</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 316" role="img" aria-labelledby="dcTitle dcDesc">
         <title id="dcTitle">データセンター問題が争点へ押し上げられる階梯の日米比較</title>
@@ -266,87 +250,97 @@
         <text x="92" y="260" class="level">現場の摩擦</text>
 
         <g>
-          <rect x="106" y="54" width="244" height="44" rx="7" fill="#e3bd82" fill-opacity="0.18" stroke="#e3bd82" stroke-opacity="0.6"/>
+          <rect x="106" y="54" width="244" height="44" rx="7" fill="#d19794" fill-opacity="0.18" stroke="#d19794" stroke-opacity="0.6"/>
           <text x="228" y="74" class="box strong">2026 年中間選挙の争点</text>
           <text x="228" y="90" class="boxsub">知事選・上院選の候補者が明示的に掲げる</text>
 
-          <rect x="106" y="114" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#8fa8cc" stroke-opacity="0.45"/>
+          <rect x="106" y="114" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
           <text x="228" y="134" class="box">州レベルの規制と論争</text>
           <text x="228" y="150" class="boxsub">モラトリアム法案・連邦と州の権限対立</text>
 
-          <rect x="106" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#8fa8cc" stroke-opacity="0.45"/>
+          <rect x="106" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
           <text x="228" y="194" class="box">重層的な媒介者</text>
           <text x="228" y="210" class="boxsub">環境団体・州議員・全国メディア・世論調査</text>
 
-          <rect x="106" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#8fa8cc" stroke-opacity="0.45"/>
+          <rect x="106" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
           <text x="228" y="254" class="box">電気料金の上昇・水資源の逼迫</text>
           <text x="228" y="270" class="boxsub">広い有権者が体感する負担</text>
         </g>
 
-        <g fill="#e3bd82" fill-opacity="0.85">
+        <g fill="#d19794" fill-opacity="0.85">
           <path d="M228 226 l-5 8 h10 z"/>
           <path d="M228 166 l-5 8 h10 z"/>
           <path d="M228 106 l-5 8 h10 z"/>
         </g>
-        <g stroke="#e3bd82" stroke-opacity="0.6" stroke-width="1.6">
+        <g stroke="#d19794" stroke-opacity="0.6" stroke-width="1.6">
           <path d="M228 234 V228"/>
           <path d="M228 174 V168"/>
           <path d="M228 114 V108"/>
         </g>
 
         <g>
-          <rect x="440" y="54" width="244" height="44" rx="7" fill="none" stroke="#c98f7a" stroke-opacity="0.55" stroke-dasharray="5 4"/>
+          <rect x="440" y="54" width="244" height="44" rx="7" fill="none" stroke="#c7807c" stroke-opacity="0.55" stroke-dasharray="5 4"/>
           <text x="562" y="74" class="box dim">国政選挙の争点には至らず</text>
           <text x="562" y="90" class="boxsub dim">候補者による争点化は確認できなかった</text>
 
-          <rect x="440" y="114" width="244" height="44" rx="7" fill="none" stroke="#c98f7a" stroke-opacity="0.55" stroke-dasharray="5 4"/>
+          <rect x="440" y="114" width="244" height="44" rx="7" fill="none" stroke="#c7807c" stroke-opacity="0.55" stroke-dasharray="5 4"/>
           <text x="562" y="134" class="box dim">国政に接続する回路が細い</text>
           <text x="562" y="150" class="boxsub dim">言及は一議員の国会質疑にとどまる</text>
 
-          <rect x="440" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#8fa8cc" stroke-opacity="0.45"/>
+          <rect x="440" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
           <text x="562" y="194" class="box">限定的な媒介者</text>
           <text x="562" y="210" class="boxsub">住民団体・地方紙・弁護士</text>
 
-          <rect x="440" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#8fa8cc" stroke-opacity="0.45"/>
+          <rect x="440" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
           <text x="562" y="254" class="box">日照権・景観・手続きの不透明性</text>
           <text x="562" y="270" class="boxsub">近隣に集中する局所的な不満</text>
         </g>
 
-        <path d="M562 234 V228" stroke="#e3bd82" stroke-opacity="0.6" stroke-width="1.6"/>
-        <path d="M562 226 l-5 8 h10 z" fill="#e3bd82" fill-opacity="0.85"/>
-        <g stroke="#c98f7a" stroke-opacity="0.65" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
+        <path d="M562 234 V228" stroke="#d19794" stroke-opacity="0.6" stroke-width="1.6"/>
+        <path d="M562 226 l-5 8 h10 z" fill="#d19794" fill-opacity="0.85"/>
+        <g stroke="#c7807c" stroke-opacity="0.65" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
           <path d="M562 174 V168"/>
           <path d="M562 114 V108"/>
         </g>
-        <g fill="#c98f7a" fill-opacity="0.7">
+        <g fill="#c7807c" fill-opacity="0.7">
           <path d="M562 166 l-5 8 h10 z"/>
           <path d="M562 106 l-5 8 h10 z"/>
         </g>
 
-        <path d="M684 196 H700 V284" fill="none" stroke="#c98f7a" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="4 4"/>
-        <path d="M700 292 l-5 -9 h10 z" fill="#c98f7a" fill-opacity="0.75"/>
+        <path d="M684 196 H700 V284" fill="none" stroke="#c7807c" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <path d="M700 292 l-5 -9 h10 z" fill="#c7807c" fill-opacity="0.75"/>
         <text x="688" y="308" class="detour">不満は住民訴訟という司法的手段へ迂回</text>
 
         <style>
           .lane { font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lane.us { fill: #e3bd82; }
-          .lane.jp { fill: #c9d2e0; }
-          .level { fill: #8f9cb0; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .box { fill: #f2f4f8; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .box.strong { font-weight: 700; fill: #f6e9d4; }
-          .box.dim { fill: #e2c4b8; }
-          .boxsub { fill: #a9b4c6; font-size: 10px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .boxsub.dim { fill: #bfa197; }
-          .detour { fill: #c98f7a; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lane.us { fill: #d19794; }
+          .lane.jp { fill: #c9d3e0; }
+          .level { fill: #8f9eb0; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .box { fill: #f2f5f8; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .box.strong { font-weight: 700; fill: #efdcdb; }
+          .box.dim { fill: #e1bbb9; }
+          .boxsub { fill: #a9b6c6; font-size: 10px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .boxsub.dim { fill: #bf9997; }
+          .detour { fill: #d9a29e; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>同じ物理的・経済的圧力が、米国では媒介者の層を通って選挙の言語へ翻訳され、日本では現場の摩擦の水準にとどまる。本稿はこの非対称を、争点の「通貨」の可視化度、地方財政構造、政治的アクターの厚み、選挙制度、メディア環境、政策権限の所在、便益と負担の分布という複数の要因から検討する。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f7f7f4" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">比較分析ノート / DATA CENTER POLITICS</span>
+  <h1>AI データセンター問題の政治争点化</h1>
+  <div class="divider"></div>
+  <p class="sub">米国 2026 年中間選挙と日本・印西市を比較し、同種の物理的・経済的圧力がなぜ一方では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのかを、政治制度・地方財政構造・言説環境の観点から分析する。</p>
+  <div class="meta">
+    <span>全 6 章</span>
+    <span>約 28 分</span>
+    <span>本稿は 2026 年 8 月 15 日を調査基準日として作成した。</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
 

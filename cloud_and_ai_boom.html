@@ -10,45 +10,29 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#060b1a; --hero-2:#182c60; --hero-ink:#eef4fb; --hero-dim:#cfdcf0;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
 
-    --navy-900:#0b1530;
-    --navy-800:#122048;
+    --navy-900:#131c28;
+    --navy-800:#1d2b3d;
 
 
-    --blue-500:#3560d6;
-    --cyan-600:#0f9bc4;
-    --cyan-500:#1fb8e6;
-    --cyan-300:#7fe0f5;
-    --cyan-100:#d8f4fb;
-    --bg:#f5f8fc;
-    --paper:#ffffff;
-    --ink:#152036;
-    --sub:#4d5871;
-    --line:#dfe6f2;
-    --amber:#c9832f;
-    --amber-deep:#9f6a22;
-    --amber-bg:#faf0e0;
+    --blue-500:#5b81b0;
+    --cyan-600:#45668e;
+    --cyan-500:#577eae;
+    --cyan-300:#a2b8d2;
+    --cyan-100:#e2e9f1;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --amber:#ae4f4a;
+    --amber-deep:#873e3a;
+    --amber-bg:#f4e7e6;
 
-    --stripe:#f1f5fb;
-    --accent:#182c60;
-    --note-bg:#d8f4fb;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d1420;
-      --paper:#141b2b;
-      --ink:#e7ecf7;
-      --sub:#a9b3c9;
-      --line:#263049;
-      --amber:#e0a04c;
-      --amber-deep:#c9832f;
-      --amber-bg:#2e2416;
-
-      --stripe:#182236;
-      --accent:#9ab4e0;
-      --note-bg:#122630;
-    }
+    --stripe:#f3f6f9;
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -75,9 +59,7 @@
     overflow:hidden;
     padding:64px 24px 84px;
     text-align:center;
-    background:
-      radial-gradient(circle at 18% 15%, rgba(127,224,245,.10) 0%, rgba(127,224,245,0) 42%),
-      linear-gradient(160deg, var(--hero-1) 0%, var(--navy-900) 46%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -85,7 +67,7 @@
     display:inline-block;
     font-size:.78rem; letter-spacing:.32em;
     color:var(--cyan-100);
-    border:1px solid rgba(127,224,245,.45);
+    border:1px solid rgba(162,184,210,.45);
     border-radius:2px;
     padding:7px 20px; margin-bottom:24px;
   }
@@ -114,7 +96,7 @@
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
 
-  .hero-figure{max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure{max-width:900px; margin:0 auto; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{margin-top:.8rem; font-size:.82rem; line-height:1.75; color:var(--hero-dim);}
 
@@ -140,7 +122,7 @@
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
     margin-bottom:26px;
-    box-shadow:0 4px 14px rgba(11,21,48,.10);
+    box-shadow:0 4px 14px rgba(19,28,40,.10);
     border:1px solid var(--line);
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
@@ -160,7 +142,7 @@
     background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(11,21,48,.07);
+    box-shadow:0 2px 12px rgba(19,28,40,.07);
     overflow:hidden;
     border:1px solid var(--line);
     overflow-anchor:none;
@@ -174,7 +156,7 @@
   .acc-header .num{
     flex:0 0 auto; min-width:34px; height:34px; padding:0 10px; border-radius:999px;
     background:linear-gradient(150deg, var(--cyan-500), var(--navy-900));
-    color:#fdfcf6; display:flex; align-items:center; justify-content:center;
+    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:.82rem; letter-spacing:0; white-space:nowrap;
   }
   .acc-header .num.ref{
@@ -183,7 +165,7 @@
     font-size:.78rem;
   }
   /* top-level items (direct children of #accordion) get a bit more visual weight */
-  #accordion > .acc-item{box-shadow:0 3px 16px rgba(11,21,48,.10);}
+  #accordion > .acc-item{box-shadow:0 3px 16px rgba(19,28,40,.10);}
   #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
   #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
 
@@ -235,7 +217,7 @@
   .table-wrap:last-child{margin-bottom:0;}
   table.data-table{width:100%; border-collapse:collapse; font-size:.9rem; min-width:460px;}
   table.data-table th{
-    background:var(--navy-800); color:#eaf2fc; text-align:left;
+    background:var(--navy-800); color:#eff3f7; text-align:left;
     padding:10px 14px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
   }
   table.data-table td{padding:9px 14px; border-bottom:1px solid var(--line); color:var(--sub); line-height:1.6;}
@@ -244,7 +226,7 @@
 
   /* ---------- Citation & fact/prediction tags ---------- */
   .cite{color:var(--sub); font-size:.95em;}
-  .cite a{color:var(--amber-deep); text-decoration:none; border-bottom:1px solid rgba(159,106,34,.35);}
+  .cite a{color:var(--amber-deep); text-decoration:none; border-bottom:1px solid rgba(135,62,58,.35);}
   .cite a:hover, .cite a:active{color:var(--amber); border-color:var(--amber);}
 
   .tag{
@@ -294,7 +276,6 @@
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
   header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
@@ -310,9 +291,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -321,16 +310,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">調査レポート / CLOUD MARKET &amp; THE GENERATIVE AI BOOM</span>
-    <h1>クラウド市場と生成 AI ブーム<br> - シェア・成長動向・今後の見通し</h1>
-    <div class="divider"></div>
-    <p class="sub">AWS ・ Azure ・ Google Cloud 、および Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM を対象に、市場シェアと決算データで現状を整理し、各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
-    <div class="meta">
-      <span>全 6 章</span>
-      <span>約 26 分</span>
-      <span>2026 年 8 月 5 日時点の公開情報に基づく</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 210" role="img" aria-labelledby="cabTitle cabDesc">
         <title id="cabTitle">クラウド市場の顔ぶれと、 AI ブームがもたらす成長の連鎖</title>
@@ -338,9 +317,9 @@
 
         <text x="20" y="24" class="lb">クラウド市場の顔ぶれ（相対イメージ、正確な比率ではない）</text>
         <rect x="20" y="34" width="680" height="30" rx="4" fill="#ffffff" fill-opacity="0.06"/>
-        <rect x="20" y="34" width="230" height="30" fill="#1fb8e6" fill-opacity="0.55"/>
-        <rect x="250" y="34" width="170" height="30" fill="#3560d6" fill-opacity="0.55"/>
-        <rect x="420" y="34" width="120" height="30" fill="#7fe0f5" fill-opacity="0.45"/>
+        <rect x="20" y="34" width="230" height="30" fill="#577eae" fill-opacity="0.55"/>
+        <rect x="250" y="34" width="170" height="30" fill="#5b81b0" fill-opacity="0.55"/>
+        <rect x="420" y="34" width="120" height="30" fill="#a2b8d2" fill-opacity="0.45"/>
         <rect x="540" y="34" width="160" height="30" fill="#ffffff" fill-opacity="0.10"/>
         <text x="135" y="55" class="segT">AWS</text>
         <text x="335" y="55" class="segT">Azure</text>
@@ -366,24 +345,34 @@
         <text x="604" y="149" class="nodeT small">増収</text>
 
         <style>
-          .lb { fill: #cfdcf0; font-size: 12px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .segT { fill: #0b1530; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .segT.dim { fill: #cfdcf0; }
-          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #7fe0f5; stroke-opacity: 0.55; }
-          .node.accent { stroke: #1fb8e6; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef4fb; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lb { fill: #d4deeb; font-size: 12px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .segT { fill: #F5F3EC; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .segT.dim { fill: #d4deeb; }
+          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #a2b8d2; stroke-opacity: 0.55; }
+          .node.accent { stroke: #577eae; stroke-opacity: 0.9; fill-opacity: 0.12; }
+          .nodeT { fill: #f1f4f8; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .nodeT.small { font-size: 11px; font-weight: 400; }
-          .arrow { stroke: #7fe0f5; stroke-opacity: 0.6; stroke-width: 2; fill: none; }
-          .arrowHead { fill: #7fe0f5; fill-opacity: 0.8; }
+          .arrow { stroke: #a2b8d2; stroke-opacity: 0.6; stroke-width: 2; fill: none; }
+          .arrowHead { fill: #a2b8d2; fill-opacity: 0.8; }
         </style>
       </svg>
-      <figcaption>上段はクラウド市場の顔ぶれの相対イメージ（正確な比率は本文の決算データを参照）。下段は、 AI 需要の急増が設備投資を経てクラウド部門の増収に至る、本稿が追う成長の連鎖。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f8fc" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">調査レポート / CLOUD MARKET &amp; THE GENERATIVE AI BOOM</span>
+  <h1>クラウド市場と生成 AI ブーム<br> - シェア・成長動向・今後の見通し</h1>
+  <div class="divider"></div>
+  <p class="sub">AWS ・ Azure ・ Google Cloud 、および Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM を対象に、市場シェアと決算データで現状を整理し、各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+  <div class="meta">
+    <span>全 6 章</span>
+    <span>約 26 分</span>
+    <span>2026 年 8 月 5 日時点の公開情報に基づく</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <div class="caveat"><p>【比較の前提】市場シェアは、 IaaS ・ PaaS ・ SaaS の範囲、地域、四半期、売上かランレートかで値が変わる。各社の会計年度・開示セグメントも一致しない。本稿中の実績、会社ガイダンス、調査会社の予測、筆者のシナリオは同じ確度の情報ではない。</p></div>

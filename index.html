@@ -10,50 +10,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --hero-1:#101119; --hero-2:#1d1622; --hero-ink:#f4f2fa; --hero-dim:#c9c5de;
-    --bg: #f5f6fa;
-    --paper: #ffffff;
-    --ink: #1c1e26;
-    --muted: #62677a;
-    --line: #e3e5ee;
-    --shadow: 0 16px 34px rgba(20,24,45,.10);
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --muted:#72786B;
+    --line:#C8CEC0;
+    --shadow: 0 16px 34px rgba(21,31,44,.10);
 
-    --world: #0891b2;
-    --world-soft: #e0f6fb;
-    --world-ink: #075366;
-    --soc: #b45309;
-    --soc-soft: #fef3e2;
-    --soc-ink: #7a3a06;
-    --logic: #7c3aed;
-    --logic-soft: #f3ebfe;
-    --logic-ink: #55229e;
-    --tech: #4f46e5;
-    --tech-soft: #eceafe;
-    --tech-ink: #3730a3;
-    --mind: #be123c;
-    --mind-soft: #fdeaef;
-    --mind-ink: #9f1239;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg: #14151c;
-      --paper: #1d1f29;
-      --ink: #eceef5;
-      --muted: #9498ab;
-      --line: #2c2f3c;
-      --shadow: 0 16px 34px rgba(0,0,0,.38);
-
-      --world-soft: #103744;
-      --world-ink: #7fdcf2;
-      --soc-soft: #3f2a0f;
-      --soc-ink: #f3b775;
-      --logic-soft: #33224f;
-      --logic-ink: #d3b3fb;
-      --tech-soft: #262454;
-      --tech-ink: #b3aef8;
-      --mind-soft: #4a1526;
-      --mind-ink: #fba8bd;
-    }
+    --world: #3c5a7e;
+    --world-soft: #e7edf4;
+    --world-ink: #23354a;
+    --soc: #843c39;
+    --soc-soft: #f6ebea;
+    --soc-ink: #5a2926;
+    --logic: #6e90b9;
+    --logic-soft: #f1f4f8;
+    --logic-ink: #3e5d82;
+    --tech: #7192ba;
+    --tech-soft: #f0f4f8;
+    --tech-ink: #45668e;
+    --mind: #92433e;
+    --mind-soft: #f8efef;
+    --mind-ink: #7c3935;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -67,49 +46,41 @@
 
   /* ---------- ヒーロー ---------- */
   header.hero{
-    position:relative;
-    overflow:hidden;
-    background:
-      radial-gradient(circle at 12% 18%, rgba(8,145,178,.34), transparent 46%),
-      radial-gradient(circle at 88% 12%, rgba(180,83,9,.28), transparent 44%),
-      radial-gradient(circle at 72% 88%, rgba(124,58,237,.30), transparent 52%),
-      radial-gradient(circle at 26% 92%, rgba(190,18,60,.22), transparent 50%),
-      linear-gradient(160deg, var(--hero-1) 0%, #1a1728 58%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
-    padding:clamp(56px,9vw,100px) 24px clamp(44px,7vw,68px);
-  }
-  header.hero::after{
-    content:"";
-    position:absolute; left:0; right:0; bottom:0; height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+    padding:clamp(32px,5vw,56px) 24px;
   }
   header.hero .wrap{
-    position:relative;
     max-width:960px;
     margin:0 auto;
+    text-align:center;
+  }
+
+  /* ---------- ヒーローから移設したタイトルブロック ---------- */
+  .page-head{
+    max-width:960px;
+    margin:2.6rem auto 0;
+    padding:0 24px;
     text-align:center;
   }
   .eyebrow{
     display:inline-block;
     letter-spacing:.32em;
-    color:var(--hero-dim);
+    color:var(--muted);
     margin-bottom:20px;
   }
-  header.hero h1{
+  .page-head h1{
     font-weight:800;
     margin:0 0 16px;
     letter-spacing:.03em;
     line-height:1.5;
+    color:var(--accent, var(--ink));
   }
-  header.hero h1 .big{
-    background:linear-gradient(100deg,#7fdcf2 0%,#b3aef8 48%,#fba8bd 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+  .page-head h1 .big{
     font-weight:800;
   }
-  header.hero p.sub{
-    color:var(--hero-dim);
+  .page-head p.sub{
+    color:var(--muted);
     margin:0 auto;
     max-width:640px;
   }
@@ -130,12 +101,12 @@
     border-radius:999px;
     font-weight:600;
     letter-spacing:.02em;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.06);
-    color:var(--hero-ink);
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
     transition:transform .18s ease, background .18s ease, border-color .18s ease;
   }
-  .counters a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.34); }
+  .counters a:hover{ transform:translateY(-2px); background:#EEF2E4; border-color:var(--accent); }
   .counters a.world{ --accent:var(--world); }
   .counters a.tech{ --accent:var(--tech); }
   .counters a.soc{ --accent:var(--soc); }
@@ -149,7 +120,7 @@
 
   .hero-figure{
     max-width:760px;
-    margin:38px auto 0;
+    margin:0 auto;
     overflow-x:auto;
     text-align:left;
   }
@@ -461,73 +432,70 @@
   </style>
 <style>
   /* 見出し内のインライン要素(.big 等)にも見出しのサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">PERSONAL ARCHIVE</span>
-    <h1><span class="big" id="total-count">30</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
-    <p class="sub">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
-
-    <nav class="counters" aria-label="分野">
-      <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
-      <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">6</span></a>
-      <a class="logic" href="#logic"><span class="dot"></span>論理と言葉 <span class="n">5</span></a>
-      <a class="mind" href="#mind"><span class="dot"></span>心・教育・生き方 <span class="n">7</span></a>
-      <a class="world" href="#world"><span class="dot"></span>世界のなりたち <span class="n">5</span></a>
-    </nav>
-
     <figure class="hero-figure">
-      <svg viewBox="0 0 720 268" role="img" aria-labelledby="shelfTitle shelfDesc">
-        <title id="shelfTitle">分野ごとの記事数</title>
-        <desc id="shelfDesc">テクノロジーと産業、政治と社会、論理と言葉、心・教育・生き方、世界のなりたちの五分野について、それぞれに収めた記事の本数を棒の高さで比べた図。棒の高さは各分野の記事数に比例し、数値はページ内のカードの実数から自動的に算出される。</desc>
+      <svg viewBox="0 0 720 200" role="img" aria-labelledby="shelfTitle shelfDesc">
+        <title id="shelfTitle">五分野の本が並ぶ棚</title>
+        <desc id="shelfDesc">色の異なる五群の本の背表紙が、一つの棚板の上に並んでいる抽象図。五つの色は、このページの五分野（テクノロジーと産業、政治と社会、論理と言葉、心・教育・生き方、世界のなりたち）に対応する。冊数や比率などの数値を表すものではない。</desc>
 
-        <line x1="24" y1="210" x2="696" y2="210" stroke="#6b6786" stroke-width="1"/>
+        <rect x="24" y="168" width="672" height="5" rx="2.5" fill="#C8CEC0"/>
 
-        <g>
-          <rect data-bar="tech" x="55" y="79" width="72" height="131" rx="5" fill="#4f46e5" fill-opacity="0.88"/>
-          <text data-bar-count="tech" x="91" y="69" class="num" text-anchor="middle">7</text>
-          <text x="91" y="232" class="lab" text-anchor="middle">テクノロジー</text>
-          <text x="91" y="249" class="lab2" text-anchor="middle">TECHNOLOGY</text>
+        <g fill="var(--tech)">
+          <rect x="52"  y="96"  width="16" height="72" rx="2" fill-opacity=".95"/>
+          <rect x="72"  y="84"  width="14" height="84" rx="2" fill-opacity=".8"/>
+          <rect x="90"  y="104" width="18" height="64" rx="2" fill-opacity=".9"/>
+          <rect x="112" y="90"  width="14" height="78" rx="2" fill-opacity=".7"/>
+          <rect x="130" y="100" width="16" height="68" rx="2" fill-opacity=".85"/>
         </g>
-        <g>
-          <rect data-bar="social" x="190" y="81" width="72" height="129" rx="5" fill="#b45309" fill-opacity="0.88"/>
-          <text data-bar-count="social" x="226" y="71" class="num" text-anchor="middle">6</text>
-          <text x="226" y="232" class="lab" text-anchor="middle">政治と社会</text>
-          <text x="226" y="249" class="lab2" text-anchor="middle">SOCIETY</text>
+        <g fill="var(--soc)">
+          <rect x="184" y="88"  width="15" height="80" rx="2" fill-opacity=".9"/>
+          <rect x="203" y="102" width="17" height="66" rx="2" fill-opacity=".75"/>
+          <rect x="224" y="92"  width="14" height="76" rx="2" fill-opacity=".95"/>
+          <rect x="242" y="108" width="16" height="60" rx="2" fill-opacity=".8"/>
         </g>
-        <g>
-          <rect data-bar="logic" x="324" y="103" width="72" height="107" rx="5" fill="#7c3aed" fill-opacity="0.88"/>
-          <text data-bar-count="logic" x="360" y="93" class="num" text-anchor="middle">5</text>
-          <text x="360" y="232" class="lab" text-anchor="middle">論理と言葉</text>
-          <text x="360" y="249" class="lab2" text-anchor="middle">LOGIC</text>
+        <g fill="var(--logic)">
+          <rect x="308" y="100" width="16" height="68" rx="2" fill-opacity=".9"/>
+          <rect x="328" y="86"  width="14" height="82" rx="2" fill-opacity=".75"/>
+          <rect x="346" y="106" width="18" height="62" rx="2" fill-opacity=".95"/>
+          <rect x="368" y="94"  width="14" height="74" rx="2" fill-opacity=".8"/>
         </g>
-        <g>
-          <rect data-bar="mind" x="458" y="60" width="72" height="150" rx="5" fill="#be123c" fill-opacity="0.88"/>
-          <text data-bar-count="mind" x="494" y="50" class="num" text-anchor="middle">7</text>
-          <text x="494" y="232" class="lab" text-anchor="middle">心と生き方</text>
-          <text x="494" y="249" class="lab2" text-anchor="middle">MIND</text>
+        <g fill="var(--mind)">
+          <rect x="428" y="90"  width="16" height="78" rx="2" fill-opacity=".85"/>
+          <rect x="448" y="80"  width="14" height="88" rx="2" fill-opacity=".95"/>
+          <rect x="466" y="98"  width="17" height="70" rx="2" fill-opacity=".7"/>
+          <rect x="487" y="104" width="14" height="64" rx="2" fill-opacity=".9"/>
+          <rect x="505" y="92"  width="16" height="76" rx="2" fill-opacity=".8"/>
         </g>
-        <g>
-          <rect data-bar="world" x="593" y="103" width="72" height="107" rx="5" fill="#0891b2" fill-opacity="0.88"/>
-          <text data-bar-count="world" x="629" y="93" class="num" text-anchor="middle">5</text>
-          <text x="629" y="232" class="lab" text-anchor="middle">世界のなりたち</text>
-          <text x="629" y="249" class="lab2" text-anchor="middle">ORIGINS</text>
+        <g fill="var(--world)">
+          <rect x="562" y="94"  width="15" height="74" rx="2" fill-opacity=".9"/>
+          <rect x="581" y="84"  width="17" height="84" rx="2" fill-opacity=".8"/>
+          <rect x="602" y="102" width="14" height="66" rx="2" fill-opacity=".95"/>
+          <rect x="620" y="96"  width="16" height="72" rx="2" fill-opacity=".75"/>
         </g>
-
-        <style>
-          .num{ fill:#f4f2fa; font-size:14px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lab{ fill:#d7d3e8; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lab2{ fill:#8f8bab; font-size:9.5px; letter-spacing:0.16em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        </style>
       </svg>
-      <figcaption>棚の中身の内訳。棒の高さと数値は、このページに並んだカードの実数から毎回組み立てている。</figcaption>
     </figure>
   </div>
 </header>
+
+<div class="page-head">
+  <span class="eyebrow">PERSONAL ARCHIVE</span>
+  <h1><span class="big" id="total-count">30</span> 本の読み物。一次資料をたどりながら考えを積み上げていく。</h1>
+  <p class="sub">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
+
+  <nav class="counters" aria-label="分野">
+    <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
+    <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">6</span></a>
+    <a class="logic" href="#logic"><span class="dot"></span>論理と言葉 <span class="n">5</span></a>
+    <a class="mind" href="#mind"><span class="dot"></span>心・教育・生き方 <span class="n">7</span></a>
+    <a class="world" href="#world"><span class="dot"></span>世界のなりたち <span class="n">5</span></a>
+  </nav>
+</div>
 
 <div class="controls">
   <div class="controls-inner">

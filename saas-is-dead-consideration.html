@@ -10,30 +10,18 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #fdfcf9;
-    --paper: #ffffff;
-    --ink: #1a1a1a;
-    --sub: #4a4a4a;
-    --muted: #6f6a63;
-    --line: #ddd8cd;
-    --accent: #2f5d5b;
-    --accent-soft: #eaf1f0;
-    --hero-1: #1c2b2c;
-    --hero-2: #2f4a4b;
-    --hero-ink: #eee9de;
-    --hero-dim: #a9b8b6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14140f;
-      --paper: #191912;
-      --ink: #e6e4de;
-      --sub: #b0aea6;
-      --muted: #948f85;
-      --line: #322f26;
-      --accent: #4f8f8a;
-      --accent-soft: #16211f;
-    }
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --line:#C8CEC0;
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -47,7 +35,7 @@
 
   /* ---- hero ---- */
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.4rem 0 2.6rem;
     margin-bottom: 2.6rem;
@@ -220,76 +208,87 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">TECH &middot; BUSINESS / ESSAY</span>
-    <h1>「 SaaS is dead 」言説を検証する</h1>
-    <p class="sub">UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 20 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 272" role="img" aria-labelledby="heroTitle heroDesc">
         <title id="heroTitle">SaaS の三層モデルと、 AI エージェントによる代替されやすさ</title>
         <desc id="heroDesc">UI 層・ロジックワークフロー層・データ記録層の三段の帯を上から積み上げ、上の層ほど AI エージェントに代替されやすいことを、各層の下部に置いたバーの長さで表した模式図。</desc>
         <defs>
           <linearGradient id="axis" gradientUnits="userSpaceOnUse" x1="26" y1="20" x2="26" y2="250">
-            <stop offset="0%" stop-color="#8fd4c8" stop-opacity="0.95"/>
-            <stop offset="100%" stop-color="#8fd4c8" stop-opacity="0.18"/>
+            <stop offset="0%" stop-color="#adcd96" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#adcd96" stop-opacity="0.18"/>
           </linearGradient>
         </defs>
 
         <!-- 代替されやすさの軸 -->
         <line x1="26" y1="20" x2="26" y2="250" stroke="url(#axis)" stroke-width="2"/>
-        <path d="M26 12 L20 24 L32 24 Z" fill="#8fd4c8" fill-opacity="0.95"/>
+        <path d="M26 12 L20 24 L32 24 Z" fill="#adcd96" fill-opacity="0.95"/>
         <text x="40" y="26" class="ax">代替されやすい</text>
         <text x="40" y="254" class="ax dim">代替されにくい</text>
 
         <!-- UI 層 -->
-        <rect x="150" y="14" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <rect x="150" y="14" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#adcd96" stroke-opacity="0.45"/>
         <text x="166" y="38" class="lb">UI 層</text>
         <text x="166" y="58" class="sm">画面・入力フォーム・ダッシュボード</text>
         <rect x="166" y="68" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-        <rect x="166" y="68" width="268" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <rect x="166" y="68" width="268" height="8" rx="4" fill="#adcd96" fill-opacity="0.72"/>
         <text x="554" y="54" class="tag">生成で置き換わりやすい</text>
 
         <!-- ロジック・ワークフロー層 -->
-        <rect x="150" y="98" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <rect x="150" y="98" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#adcd96" stroke-opacity="0.45"/>
         <text x="166" y="122" class="lb">ロジック・ワークフロー層</text>
         <text x="166" y="142" class="sm">承認フロー・通知・自動化・外部連携</text>
         <rect x="166" y="152" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-        <rect x="166" y="152" width="143" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <rect x="166" y="152" width="143" height="8" rx="4" fill="#adcd96" fill-opacity="0.72"/>
         <text x="554" y="138" class="tag">中期的に競争が激化</text>
 
         <!-- データ・記録層 -->
-        <rect x="150" y="182" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#8fd4c8" stroke-opacity="0.45"/>
+        <rect x="150" y="182" width="390" height="74" rx="5" fill="#ffffff" fill-opacity="0.08" stroke="#adcd96" stroke-opacity="0.45"/>
         <text x="166" y="206" class="lb">データ・記録層</text>
         <text x="166" y="226" class="sm">顧客マスタ・取引履歴・権限・監査ログ</text>
         <rect x="166" y="236" width="358" height="8" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-        <rect x="166" y="236" width="43" height="8" rx="4" fill="#8fd4c8" fill-opacity="0.72"/>
+        <rect x="166" y="236" width="43" height="8" rx="4" fill="#adcd96" fill-opacity="0.72"/>
         <text x="554" y="222" class="tag">記録の連続性が残る</text>
 
         <style>
-          .lb { fill: #eee9de; font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lb { fill: #eedfde; font-size: 15px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .sm { fill: #a9b8b6; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .ax { fill: #8fd4c8; font-size: 11.5px; letter-spacing: .04em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .tag { fill: #cfe6e1; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .ax { fill: #adcd96; font-size: 11.5px; letter-spacing: .04em; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .tag { fill: #d9e6cf; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .dim { fill-opacity: .75; }
         </style>
       </svg>
-      <figcaption>本稿が採用する三層モデルの模式図。各層のバーの長さは代替の進みやすさの相対的なイメージであり、測定値ではない。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">TECH &middot; BUSINESS / ESSAY</span>
+  <h1>「 SaaS is dead 」言説を検証する</h1>
+  <p class="sub">UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 20 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

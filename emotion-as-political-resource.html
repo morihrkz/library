@@ -10,36 +10,21 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --hero-1: #241412;
-    --hero-2: #4a1d1a;
-    --hero-ink: #f3ece2;
-    --hero-dim: #cbb0a8;
-    --accent: #8a1f1f;
-    --accent-600: #6f1919;
-    --accent-300: #c98f7a;
-    --accent-100: #f6e9e2;
-    --bg: #fdfcf9;
-    --paper: #ffffff;
-    --ink: #1c1c1e;
-    --sub: #55504a;
-    --muted: #7a746a;
-    --line: #ddd6cb;
-    --note-bg: #f6f1e6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #17140f;
-      --paper: #1e1b16;
-      --ink: #ece7de;
-      --sub: #b3aca0;
-      --muted: #948d80;
-      --line: #332e26;
-      --note-bg: #241d14;
-      --accent: #d16358;
-      --accent-600: #a83c30;
-      --accent-300: #e0a894;
-      --accent-100: #2c1f19;
-    }
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
+    --accent:#25364A;
+    --accent-600: #5f2c29;
+    --accent-300: #c7807c;
+    --accent-100: #f4e5e4;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --line:#C8CEC0;
+    --note-bg:#EEF2E4;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; scroll-behavior: smooth; scroll-padding-top: 76px; }
@@ -63,7 +48,7 @@
   header.hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 4rem;
     text-align: left;
@@ -74,7 +59,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.24em;
     color: var(--hero-dim);
-    border: 1px solid rgba(203,176,168,.45);
+    border: 1px solid rgba(203,170,168,.45);
     border-radius: 2px;
     padding: 6px 18px;
     margin-bottom: 1.1rem;
@@ -112,13 +97,13 @@
 
   .toolbar-container {
     position: sticky; top: 8px; z-index: 100;
-    background: rgba(253,252,249,.94);
+    background: rgba(252,252,250,.94);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 9px 0;
     border-radius: 999px;
     margin: 2.2rem 0 2rem;
-    box-shadow: 0 4px 14px rgba(36,20,18,.10);
+    box-shadow: 0 4px 14px rgba(36,19,18,.10);
     border: 1px solid var(--line);
   }
   .toolbar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
@@ -138,7 +123,7 @@
     background: var(--paper);
     border-radius: 12px;
     margin-bottom: 14px;
-    box-shadow: 0 3px 16px rgba(36,20,18,.10);
+    box-shadow: 0 3px 16px rgba(36,19,18,.10);
     overflow: hidden;
     border: 1px solid var(--line);
     overflow-anchor: none;
@@ -152,7 +137,7 @@
   .acc-header .num {
     flex: 0 0 auto; min-width: 38px; height: 38px; padding: 0 10px; border-radius: 999px;
     background: linear-gradient(150deg, var(--accent), var(--hero-1));
-    color: #fdfcf6; display: flex; align-items: center; justify-content: center;
+    color: #fbfbf8; display: flex; align-items: center; justify-content: center;
     font-weight: 700; font-size: .85rem; letter-spacing: 0; white-space: nowrap;
   }
   .acc-header .title { flex: 1 1 auto; font-size: 1.1rem; font-weight: 700; letter-spacing: .01em; line-height: 1.5; }
@@ -234,9 +219,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -245,14 +238,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">論考 / COMPARATIVE POLITICS</span>
-    <h1>「奪われ感」 - 感情はいかに政治資源化されるか</h1>
-    <p class="sub">米国・欧州・日本に共通する分断とポピュリズムの構造 - 「奪われ感」はどこから生まれ、誰によってどう動員されるのか。心理学の知見から、その発生と伝播のメカニズムを読み解く</p>
-    <div class="meta">
-      <span>全 8 章</span>
-      <span>約 38 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 280" role="img" aria-labelledby="epTitle epDesc">
         <title id="epTitle">「奪われ感」が投票行動に変換されるまでの回路</title>
@@ -261,67 +246,75 @@
         <text x="360" y="24" class="figTitle">不満が「敵」への怒りに変換され、票になるまで</text>
 
         <g>
-          <rect x="14" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <rect x="14" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c7807c" stroke-opacity="0.4"/>
           <text x="80" y="68" class="step">相対的剥奪の知覚</text>
           <text x="80" y="88" class="stepsub">比較が生む不満</text>
 
-          <rect x="154" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <rect x="154" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c7807c" stroke-opacity="0.4"/>
           <text x="220" y="68" class="step">集団への帰属</text>
           <text x="220" y="88" class="stepsub">私たち 対 彼ら</text>
 
-          <rect x="294" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <rect x="294" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c7807c" stroke-opacity="0.4"/>
           <text x="360" y="68" class="step">感情の力学</text>
           <text x="360" y="88" class="stepsub">不安と喪失</text>
 
-          <rect x="434" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c98f7a" stroke-opacity="0.4"/>
+          <rect x="434" y="44" width="132" height="58" rx="8" fill="#ffffff" fill-opacity="0.09" stroke="#c7807c" stroke-opacity="0.4"/>
           <text x="500" y="68" class="step">問題の単純化</text>
           <text x="500" y="88" class="stepsub">敵を名指す物語</text>
 
-          <rect x="574" y="44" width="132" height="58" rx="8" fill="#e8a48c" fill-opacity="0.16" stroke="#e8a48c" stroke-opacity="0.55"/>
+          <rect x="574" y="44" width="132" height="58" rx="8" fill="#d6a19e" fill-opacity="0.16" stroke="#d6a19e" stroke-opacity="0.55"/>
           <text x="640" y="68" class="step">投票行動</text>
           <text x="640" y="88" class="stepsub">アイデンティティ投票</text>
         </g>
 
-        <g fill="#e8a48c" fill-opacity="0.8">
+        <g fill="#d6a19e" fill-opacity="0.8">
           <path d="M152 73 l-8 -5 v10 z"/>
           <path d="M292 73 l-8 -5 v10 z"/>
           <path d="M432 73 l-8 -5 v10 z"/>
           <path d="M572 73 l-8 -5 v10 z"/>
         </g>
 
-        <rect x="234" y="146" width="332" height="34" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#d8b48c" stroke-opacity="0.45"/>
+        <rect x="234" y="146" width="332" height="34" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#d19693" stroke-opacity="0.45"/>
         <text x="400" y="168" class="band">アテンション・エコノミー ─ 強い感情ほど速く広く届く</text>
-        <path d="M330 146 V112" fill="none" stroke="#d8b48c" stroke-opacity="0.7" stroke-width="1.6"/>
-        <path d="M330 104 l-5 9 h10 z" fill="#d8b48c" fill-opacity="0.85"/>
-        <path d="M470 146 V112" fill="none" stroke="#d8b48c" stroke-opacity="0.7" stroke-width="1.6"/>
-        <path d="M470 104 l-5 9 h10 z" fill="#d8b48c" fill-opacity="0.85"/>
+        <path d="M330 146 V112" fill="none" stroke="#d19693" stroke-opacity="0.7" stroke-width="1.6"/>
+        <path d="M330 104 l-5 9 h10 z" fill="#d19693" fill-opacity="0.85"/>
+        <path d="M470 146 V112" fill="none" stroke="#d19693" stroke-opacity="0.7" stroke-width="1.6"/>
+        <path d="M470 104 l-5 9 h10 z" fill="#d19693" fill-opacity="0.85"/>
         <text x="576" y="168" class="bandnote">増幅</text>
 
-        <rect x="120" y="216" width="480" height="42" rx="8" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-dasharray="5 4"/>
+        <rect x="120" y="216" width="480" height="42" rx="8" fill="none" stroke="#b4c4a8" stroke-opacity="0.6" stroke-dasharray="5 4"/>
         <text x="360" y="234" class="brake">対抗の装置 ─ メディアリテラシー教育 / ミニ・パブリックス / 社会的包摂</text>
         <text x="360" y="250" class="brakesub">単純化に抗う手間を、個人の努力ではなく制度の側で支える</text>
-        <path d="M220 216 V190" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
-        <path d="M220 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
-        <path d="M500 216 V190" fill="none" stroke="#a8c4b0" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
-        <path d="M500 182 l-5 9 h10 z" fill="#a8c4b0" fill-opacity="0.75"/>
+        <path d="M220 216 V190" fill="none" stroke="#b4c4a8" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <path d="M220 182 l-5 9 h10 z" fill="#b4c4a8" fill-opacity="0.75"/>
+        <path d="M500 216 V190" fill="none" stroke="#b4c4a8" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <path d="M500 182 l-5 9 h10 z" fill="#b4c4a8" fill-opacity="0.75"/>
 
         <style>
-          .figTitle { fill: #f3ece2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .step { fill: #f3ece2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .stepsub { fill: #d3b5aa; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .band { fill: #f0dcc4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .bandnote { fill: #d8b48c; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .brake { fill: #cfe0d4; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .brakesub { fill: #a8c4b0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .figTitle { fill: #f3e3e2; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .step { fill: #f3e3e2; font-size: 12.5px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .stepsub { fill: #d3acaa; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .band { fill: #e9cdcb; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .bandnote { fill: #d19693; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .brake { fill: #d6e0cf; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .brakesub { fill: #b4c4a8; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>本稿がたどる回路の見取り図。客観的な貧しさではなく比較から生まれる不満が、集団の境界線と結びついて「奪われた」という感情になり、敵を名指す物語によって投票先へと変換される。アテンション・エコノミーはこの流れを増幅し、熟議の設計とリテラシー教育は制動をかける側に立つ。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 40" preserveAspectRatio="none"><path fill="#fdfcf9" d="M0,18 C360,40 1080,0 1440,18 L1440,40 L0,40 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">論考 / COMPARATIVE POLITICS</span>
+  <h1>「奪われ感」 - 感情はいかに政治資源化されるか</h1>
+  <p class="sub">米国・欧州・日本に共通する分断とポピュリズムの構造 - 「奪われ感」はどこから生まれ、誰によってどう動員されるのか。心理学の知見から、その発生と伝播のメカニズムを読み解く</p>
+  <div class="meta">
+    <span>全 8 章</span>
+    <span>約 38 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

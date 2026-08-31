@@ -10,32 +10,21 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --bg:#f9f9f7; --paper:#fcfcfb; --ink:#0b0b0b; --sub:#52514e; --muted:#74726d;
-    --line:#e1e0d9; --border:rgba(11,11,11,0.10);
-    --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --violet:#4a3aa7;
-    --fact-bg:#e8f1fc; --fact-fg:#184f95;
-    --consensus-bg:#e6f7ef; --consensus-fg:#0d6b46;
-    --debate-bg:#fdf1e5; --debate-fg:#a04a12;
-    --hypo-bg:#f2eefb; --hypo-fg:#4a3aa7;
-    --hero-1:#1a1a1a; --hero-2:#3a3530; --hero-ink:#f3f1ea; --hero-dim:#c2bcae;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d0d0d; --paper:#1a1a19; --ink:#ffffff; --sub:#c3c2b7; --muted:#898781;
-      --line:#2c2c2a; --border:rgba(255,255,255,0.10);
-      --blue:#3987e5; --orange:#d95926; --aqua:#199e70; --violet:#9085e9;
-      --fact-bg:#122238; --fact-fg:#86b6ef;
-      --consensus-bg:#0f2a1e; --consensus-fg:#5fcf9a;
-      --debate-bg:#2e1f10; --debate-fg:#f0a15c;
-      --hypo-bg:#211b38; --hypo-fg:#b8aef0;
-    }
+    --bg:#F5F3EC; --paper:#fff; --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
+    --line:#C8CEC0; --border:rgba(11,11,11,0.10);
+    --blue:#547cac; --orange:#bc6763; --aqua:#5f8842; --violet:#496d98;
+    --fact-bg:#edf2f7; --fact-fg:#385375;
+    --consensus-bg:#eef4e9; --consensus-fg:#385127;
+    --debate-bg:#f7eceb; --debate-fg:#7d3935;
+    --hypo-bg:#f1f4f8; --hypo-fg:#496d98;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
   }
   *{box-sizing:border-box;}
   html { scroll-padding-top: 76px; }
   body{background:var(--bg); color:var(--ink); margin:0;}
 
   header.hero{
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 2.8rem;
   }
@@ -56,7 +45,7 @@
   }
   header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
     display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure{ max-width:900px; margin:2.2rem 0 0; padding:0; background:none; border:none; border-radius:0; overflow-x:auto; }
+  .hero-figure{ max-width:900px; margin:0; padding:0; background:none; border:none; border-radius:0; overflow-x:auto; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
   .hero-figure figcaption{
     font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
@@ -202,34 +191,34 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">書評・論考 / BUSINESS &amp; PSYCHOLOGY</span>
-    <h1>「与える人」は本当に勝つのか<br> -  GIVE &amp; TAKE の楽観論を検証する</h1>
-    <p class="sub">ギバー・マッチャー・テイカー論を、対抗言説の側から読み直す</p>
-    <div class="meta">
-      <span>全 12 章</span>
-      <span>約 19 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 260" role="img" aria-labelledby="gtTitle gtDesc">
         <title id="gtTitle">「与える人が勝つ」というテーゼと、四つの対抗言説の位置関係</title>
         <desc id="gtDesc">中央に「与える人が成功する」というグラントのテーゼを置き、周囲に経営学、大衆的権力論、進化生物学・ゲーム理論、犯罪心理学という四つの独立した対抗言説を配置し、それぞれが中央のテーゼに異なる角度から留保を投げかけている様子を示す図。</desc>
 
-        <line x1="360" y1="130" x2="140" y2="45" stroke="#c2bcae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="580" y2="45" stroke="#c2bcae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="140" y2="215" stroke="#c2bcae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="580" y2="215" stroke="#c2bcae" stroke-opacity="0.55" stroke-width="1.5"/>
+        <line x1="360" y1="130" x2="140" y2="45" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
+        <line x1="360" y1="130" x2="580" y2="45" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
+        <line x1="360" y1="130" x2="140" y2="215" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
+        <line x1="360" y1="130" x2="580" y2="215" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
 
-        <rect x="270" y="104" width="180" height="52" rx="10" fill="#ffffff" fill-opacity="0.08" stroke="#c2bcae" stroke-opacity="0.6"/>
+        <rect x="270" y="104" width="180" height="52" rx="10" fill="#ffffff" fill-opacity="0.08" stroke="#c2afae" stroke-opacity="0.6"/>
         <text x="360" y="126" class="hub">「与える人が勝つ」</text>
         <text x="360" y="145" class="hub">というグラントのテーゼ</text>
 
@@ -250,20 +239,31 @@
         <text x="580" y="227" class="nodeS">（ダークトライアド研究）</text>
 
         <style>
-          .hub { fill: #f3f1ea; font-size: 12.5px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .hub { fill: #f3f2ea; font-size: 12.5px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .node { fill-opacity: 0.14; stroke-width: 1.5; }
-          .node.blue { fill: #2a78d6; stroke: #6fa3e0; }
-          .node.orange { fill: #eb6834; stroke: #ef9a76; }
-          .node.aqua { fill: #1baf7a; stroke: #6fcfab; }
-          .node.violet { fill: #4a3aa7; stroke: #9085e9; }
-          .nodeT { fill: #f3f1ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .nodeS { fill: #c2bcae; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .node.blue { fill: #547cac; stroke: #89a4c6; }
+          .node.orange { fill: #bc6763; stroke: #d19794; }
+          .node.aqua { fill: #5f8842; stroke: #99c17d; }
+          .node.violet { fill: #496d98; stroke: #9eb4d0; }
+          .nodeT { fill: #f3f2ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .nodeS { fill: #c2afae; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>「与える人が成功する」というグラントのテーゼに対し、経営学・大衆的権力論・進化生物学 / ゲーム理論・犯罪心理学という四つの領域が、それぞれ独立に異なる角度から留保を投げかけている。いずれもグラントを名指しで批判した論者ではない点に注意。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">書評・論考 / BUSINESS &amp; PSYCHOLOGY</span>
+  <h1>「与える人」は本当に勝つのか<br> -  GIVE &amp; TAKE の楽観論を検証する</h1>
+  <p class="sub">ギバー・マッチャー・テイカー論を、対抗言説の側から読み直す</p>
+  <div class="meta">
+    <span>全 12 章</span>
+    <span>約 19 分</span>
+  </div>
+
+  
+</div>
+
 
 <article>
 

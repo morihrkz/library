@@ -9,40 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#faf8f5;
-    --paper:#ffffff;
-    --ink:#2a2622;
-    --sub:#524d46;
-    --muted:#7a7369;
-    --accent:#a13d2f;
-    --accent-soft:#c8735f;
-    --line:#e5ddd0;
-    --quote-bg:#f3ede2;
-    --note-bg:#fbf1e6;
-    --note-border:#d9a25a;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --line:#C8CEC0;
+    --quote-bg:#f3e3e2;
+    --note-bg:#EEF2E4;
+    --note-border:#C8CEC0;
     --phil-bg:#eef0f1;
     --phil-border:#5f6b73;
-    --hero-1:#2c1712;
-    --hero-2:#6b2a1f;
-    --hero-ink:#f3ece2;
-    --hero-dim:#d9b8ab;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#1b1815;
-      --paper:#242019;
-      --ink:#ece6db;
-      --sub:#bcb3a4;
-      --muted:#918879;
-      --accent:#e08a6f;
-      --accent-soft:#c8735f;
-      --line:#3a352c;
-      --quote-bg:#2c2720;
-      --note-bg:#2b2620;
-      --note-border:#a8763f;
-      --phil-bg:#20242a;
-      --phil-border:#7c8a94;
-    }
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   *{box-sizing:border-box;}
   html{font-size:16px;scroll-padding-top:76px;}
@@ -59,7 +42,7 @@
 
   /* ---------- Hero ---------- */
   header.hero{
-    background:linear-gradient(140deg,var(--hero-1) 0%,var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
     padding:3.6rem 0 2.8rem;
     margin-bottom:2.8rem;
@@ -87,7 +70,7 @@
   }
   header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
     display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure{max-width:960px;margin:2.2rem 0 0;overflow-x:auto;}
+  .hero-figure{max-width:960px;margin:0;overflow-x:auto;}
   .hero-figure svg{display:block;width:100%;height:auto;}
   .hero-figure figcaption{
     margin-top:0.9rem;
@@ -325,45 +308,45 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">ESSAY / 心理学・神経科学・進化・哲学</span>
-    <h1>なぜ他人のキラキラは胸を刺すのか</h1>
-    <p class="sub">羨望と社会的比較を、複数の研究と哲学の視点から読み解く</p>
-    <div class="meta">
-      <span>全 10 章</span>
-      <span>約 15 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 260" role="img" aria-labelledby="ecTitle ecDesc">
         <title id="ecTitle">比較対象との心理的な近さと、羨望の強さの関係</title>
         <desc id="ecDesc">横軸を比較対象との心理的な近さ（遠いから近いへ）、縦軸を羨望として感じる強さとした概念図。遠い世界的著名人はほとんど反応を生まないが、同期・同級生のような近い他者ほど「自分にもできたのではないか」という反実仮想を伴い、反応が強まることを示す。</desc>
 
         <text x="360" y="26" class="axisTitle">比較対象との心理的な近さ →</text>
-        <line x1="60" y1="190" x2="620" y2="190" stroke="#d9b8ab" stroke-opacity="0.55" stroke-width="2"/>
-        <path d="M614 184 l10 6 l-10 -6" fill="none" stroke="#d9b8ab" stroke-opacity="0.8" stroke-width="2"/>
+        <line x1="60" y1="190" x2="620" y2="190" stroke="#d9adab" stroke-opacity="0.55" stroke-width="2"/>
+        <path d="M614 184 l10 6 l-10 -6" fill="none" stroke="#d9adab" stroke-opacity="0.8" stroke-width="2"/>
         <text x="60" y="214" class="pole">遠い</text>
         <text x="620" y="214" class="pole end">近い</text>
 
-        <path d="M90 178 C 210 176, 280 160, 350 120 S 500 46, 570 40" fill="none" stroke="#e0a48e" stroke-width="2.5"/>
+        <path d="M90 178 C 210 176, 280 160, 350 120 S 500 46, 570 40" fill="none" stroke="#d49d9a" stroke-width="2.5"/>
 
         <g>
-          <circle cx="90" cy="178" r="7" fill="#8fae9f"/>
+          <circle cx="90" cy="178" r="7" fill="#9cae8f"/>
           <text x="90" y="160" class="node">世界的な大富豪</text>
           <text x="90" y="234" class="src" text-anchor="middle">「別の世界の話」</text>
 
-          <circle cx="320" cy="140" r="7" fill="#c99b6a"/>
+          <circle cx="320" cy="140" r="7" fill="#c27571"/>
           <text x="320" y="122" class="node">遠い知人の成功</text>
 
-          <circle cx="570" cy="40" r="7" fill="#d9584a"/>
+          <circle cx="570" cy="40" r="7" fill="#bd6a66"/>
           <text x="570" y="24" class="node" text-anchor="end">同期・同級生の成功</text>
           <text x="570" y="60" class="src" text-anchor="end">「自分にもできたのでは」</text>
         </g>
@@ -371,18 +354,29 @@
         <text x="30" y="120" class="axisSide" transform="rotate(-90 30 120)">羨望の強さ</text>
 
         <style>
-          .axisTitle{fill:#f3ece2;font-size:13px;text-anchor:middle;font-weight:700;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
-          .axisSide{fill:#cbb3a5;font-size:11.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
-          .pole{fill:#d9b8ab;font-size:12px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .axisTitle{fill:#f3e3e2;font-size:13px;text-anchor:middle;font-weight:700;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .axisSide{fill:#cba7a5;font-size:11.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .pole{fill:#d9adab;font-size:12px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
           .pole.end{text-anchor:end;}
-          .node{fill:#f3ece2;font-size:12.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
-          .src{fill:#c9a996;font-size:10.5px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .node{fill:#f3e3e2;font-size:12.5px;text-anchor:middle;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
+          .src{fill:#c99996;font-size:10.5px;font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;}
         </style>
       </svg>
-      <figcaption>比較対象との心理的な近さと、羨望として感じる強さの関係を示した概念図。実際の心理反応の強度を数値化して測定したものではなく、社会的比較理論などが示す傾向を模式的に表したもの。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">ESSAY / 心理学・神経科学・進化・哲学</span>
+  <h1>なぜ他人のキラキラは胸を刺すのか</h1>
+  <p class="sub">羨望と社会的比較を、複数の研究と哲学の視点から読み解く</p>
+  <div class="meta">
+    <span>全 10 章</span>
+    <span>約 15 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

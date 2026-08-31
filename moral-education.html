@@ -10,32 +10,19 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root {
-    --bg: #f7f8f5;
-    --paper: #ffffff;
-    --ink: #1e2119;
-    --sub: #4f5548;
-    --muted: #717769;
-    --accent: #3e6b4a;
-    --line: #dbe0d4;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --muted:#72786B;
+    --accent:#25364A;
+    --line:#C8CEC0;
 
-    --note-bg: #eff5ea;
-    --hero-1: #16221a;
-    --hero-2: #24402c;
-    --hero-ink: #eef3ea;
-    --hero-dim: #bcd0bf;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #12140f;
-      --paper: #181c14;
-      --ink: #e5e8de;
-      --sub: #a9b0a0;
-      --muted: #8d947f;
-      --accent: #5f9b76;
-      --line: #2a2f22;
-
-      --note-bg: #1c2116;
-    }
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   * { box-sizing: border-box; }
   html { scroll-padding-top: 76px; }
@@ -48,7 +35,7 @@
   .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
 
   header.hero {
-    background: linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color: var(--hero-ink);
     padding: 3.6rem 0 2.8rem;
     margin-bottom: 2.8rem;
@@ -187,23 +174,23 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">論考 / EDUCATION</span>
-    <h1>徳育のゆくえ</h1>
-    <p class="sub">文部科学省の方針と諸外国の道徳教育を辿る</p>
-    <div class="meta">
-      <span>全 6 章</span>
-      <span>約 17 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 320" role="img" aria-labelledby="meTitle meDesc">
         <title id="meTitle">道徳教育の制度設計を二つの軸で見た 6 か国の配置</title>
@@ -211,10 +198,10 @@
 
         <text x="360" y="22" class="figTitle">「教科として制度化するか」と「宗教と結びつけるか」の組み合わせ</text>
 
-        <line x1="70" y1="44" x2="70" y2="252" stroke="#7f9c85" stroke-opacity="0.55" stroke-width="1.6"/>
-        <path d="M70 40 l-5 9 h10 z" fill="#7f9c85" fill-opacity="0.7"/>
-        <line x1="70" y1="252" x2="694" y2="252" stroke="#7f9c85" stroke-opacity="0.55" stroke-width="1.6"/>
-        <path d="M698 252 l-9 -5 v10 z" fill="#7f9c85" fill-opacity="0.7"/>
+        <line x1="70" y1="44" x2="70" y2="252" stroke="#8b9c7f" stroke-opacity="0.55" stroke-width="1.6"/>
+        <path d="M70 40 l-5 9 h10 z" fill="#8b9c7f" fill-opacity="0.7"/>
+        <line x1="70" y1="252" x2="694" y2="252" stroke="#8b9c7f" stroke-opacity="0.55" stroke-width="1.6"/>
+        <path d="M698 252 l-9 -5 v10 z" fill="#8b9c7f" fill-opacity="0.7"/>
 
         <text x="26" y="148" class="axisName" transform="rotate(-90 26 148)">教科としての制度化</text>
         <text x="58" y="56" class="pole">高</text>
@@ -224,19 +211,19 @@
         <text x="694" y="274" class="poleSub end">世俗性を明示</text>
 
         <g>
-          <circle cx="150" cy="96" r="7" fill="#d9b168"/>
+          <circle cx="150" cy="96" r="7" fill="#c67e7b"/>
           <text x="150" y="78" class="country">ドイツ</text>
           <text x="150" y="118" class="note">憲法上の正規教科</text>
 
-          <circle cx="330" cy="138" r="7" fill="#c2b39a"/>
+          <circle cx="330" cy="138" r="7" fill="#c29c9a"/>
           <text x="330" y="120" class="country">イギリス</text>
           <text x="330" y="160" class="note">宗教教育と公民教育の二本立て</text>
 
-          <circle cx="470" cy="104" r="7" fill="#8fc79c"/>
+          <circle cx="470" cy="104" r="7" fill="#a6c78f"/>
           <text x="470" y="86" class="country">韓国</text>
           <text x="470" y="126" class="note">人性教育振興法</text>
 
-          <circle cx="630" cy="118" r="7" fill="#8fc79c"/>
+          <circle cx="630" cy="118" r="7" fill="#a6c78f"/>
           <text x="630" y="100" class="country">フランス</text>
           <text x="630" y="140" class="note">ライシテを教える</text>
 
@@ -245,27 +232,38 @@
           <text x="545" y="54" class="country self">日本</text>
           <text x="545" y="96" class="note self">特別の教科 道徳</text>
 
-          <circle cx="600" cy="196" r="7" fill="#8fc79c"/>
+          <circle cx="600" cy="196" r="7" fill="#a6c78f"/>
           <text x="600" y="178" class="country">アメリカ</text>
           <text x="600" y="218" class="note">州ごとの人格教育</text>
         </g>
 
         <style>
           .figTitle { fill: #eef3ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .axisName { fill: #bcd0bf; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .pole { fill: #9db4a2; font-size: 11px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .poleSub { fill: #9db4a2; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .axisName { fill: #c4d0bc; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .pole { fill: #a7b49d; font-size: 11px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .poleSub { fill: #a7b49d; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .poleSub.end { text-anchor: end; }
           .country { fill: #eef3ea; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .country.self { font-weight: 700; }
-          .note { fill: #a9bfae; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .note.self { fill: #cfe0d2; }
+          .note { fill: #b2bfa9; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .note.self { fill: #d6e0cf; }
         </style>
       </svg>
-      <figcaption>本稿で扱う 6 か国を、宗教との距離（横軸）と教科としての制度化の度合い（縦軸）で配置した。宗教を制度の中核に据えるのはドイツのみで、韓国・フランス・日本は世俗的な枠組みを国レベルで制度化している。イギリスは宗教教育と公民教育を並存させ、アメリカは州ごとの裁量に委ねる。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">論考 / EDUCATION</span>
+  <h1>徳育のゆくえ</h1>
+  <p class="sub">文部科学省の方針と諸外国の道徳教育を辿る</p>
+  <div class="meta">
+    <span>全 6 章</span>
+    <span>約 17 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

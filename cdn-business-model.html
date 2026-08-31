@@ -10,45 +10,29 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#060b1a; --hero-2:#182c60; --hero-ink:#eef4fb; --hero-dim:#cfdcf0;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
 
-    --navy-900:#0b1530;
-    --navy-800:#122048;
+    --navy-900:#131c28;
+    --navy-800:#1d2b3d;
 
 
-    --blue-500:#3560d6;
-    --cyan-600:#0f9bc4;
-    --cyan-500:#1fb8e6;
-    --cyan-300:#7fe0f5;
-    --cyan-100:#d8f4fb;
-    --bg:#f5f8fc;
-    --paper:#ffffff;
-    --ink:#152036;
-    --sub:#4d5871;
-    --line:#dfe6f2;
-    --amber:#c9832f;
-    --amber-deep:#9f6a22;
+    --blue-500:#5b81b0;
+    --cyan-600:#45668e;
+    --cyan-500:#577eae;
+    --cyan-300:#a2b8d2;
+    --cyan-100:#e2e9f1;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --amber:#ae4f4a;
+    --amber-deep:#873e3a;
 
-    --qa-bg:#eaf7fc;
-    --stripe:#f1f5fb;
-    --accent:#182c60;
-    --note-bg:#d8f4fb;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d1420;
-      --paper:#141b2b;
-      --ink:#e7ecf7;
-      --sub:#a9b3c9;
-      --line:#263049;
-      --amber:#e0a04c;
-      --amber-deep:#c9832f;
-
-      --qa-bg:#10222a;
-      --stripe:#182236;
-      --accent:#9ab4e0;
-      --note-bg:#122630;
-    }
+    --qa-bg:#eff3f7;
+    --stripe:#f3f6f9;
+    --accent:#25364A;
+    --note-bg:#EEF2E4;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
@@ -75,9 +59,7 @@
     overflow:hidden;
     padding:64px 24px 84px;
     text-align:center;
-    background:
-      radial-gradient(circle at 18% 15%, rgba(127,224,245,.10) 0%, rgba(127,224,245,0) 42%),
-      linear-gradient(160deg, var(--hero-1) 0%, var(--navy-900) 46%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -85,7 +67,7 @@
     display:inline-block;
     font-size:.78rem; letter-spacing:.32em;
     color:var(--cyan-100);
-    border:1px solid rgba(127,224,245,.45);
+    border:1px solid rgba(162,184,210,.45);
     border-radius:2px;
     padding:7px 20px; margin-bottom:24px;
   }
@@ -114,7 +96,7 @@
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
 
-  .hero-figure{max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left;}
+  .hero-figure{max-width:900px; margin:0 auto; overflow-x:auto; text-align:left;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{margin-top:.8rem; font-size:.82rem; line-height:1.75; color:var(--hero-dim);}
 
@@ -140,7 +122,7 @@
     -webkit-backdrop-filter:blur(8px);
     padding:9px 0; border-radius:999px;
     margin-bottom:26px;
-    box-shadow:0 4px 14px rgba(11,21,48,.10);
+    box-shadow:0 4px 14px rgba(19,28,40,.10);
     border:1px solid var(--line);
   }
   .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
@@ -160,7 +142,7 @@
     background:var(--paper);
     border-radius:12px;
     margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(11,21,48,.07);
+    box-shadow:0 2px 12px rgba(19,28,40,.07);
     overflow:hidden;
     border:1px solid var(--line);
     overflow-anchor:none;
@@ -174,7 +156,7 @@
   .acc-header .num{
     flex:0 0 auto; min-width:34px; height:34px; padding:0 10px; border-radius:999px;
     background:linear-gradient(150deg, var(--cyan-500), var(--navy-900));
-    color:#fdfcf6; display:flex; align-items:center; justify-content:center;
+    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:.82rem; letter-spacing:0; white-space:nowrap;
   }
   .acc-header .num.ref{
@@ -183,7 +165,7 @@
     font-size:.78rem;
   }
   /* top-level items (direct children of #accordion) get a bit more visual weight */
-  #accordion > .acc-item{box-shadow:0 3px 16px rgba(11,21,48,.10);}
+  #accordion > .acc-item{box-shadow:0 3px 16px rgba(19,28,40,.10);}
   #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
   #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
 
@@ -235,7 +217,7 @@
   .table-wrap:last-child{margin-bottom:0;}
   table.data-table{width:100%; border-collapse:collapse; font-size:.9rem; min-width:460px;}
   table.data-table th{
-    background:var(--navy-800); color:#eaf2fc; text-align:left;
+    background:var(--navy-800); color:#eff3f7; text-align:left;
     padding:10px 14px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
   }
   table.data-table td{padding:9px 14px; border-bottom:1px solid var(--line); color:var(--sub); line-height:1.6;}
@@ -292,7 +274,6 @@
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
   header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
@@ -308,9 +289,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -319,16 +308,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">技術解説 / HOW THE INTERNET (AND CDNS) ARE PAID FOR</span>
-    <h1>CDN のビジネスモデルとインターネット相互接続の仕組み</h1>
-    <div class="divider"></div>
-    <p class="sub">ピアリング・トランジット・ IX という相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして企業モデルの違いまで。実例と財務データを、比較条件を明示して読み解く。</p>
-    <div class="meta">
-      <span>全 5 章</span>
-      <span>約 83 分</span>
-      <span>2026 年 8 月</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 220" role="img" aria-labelledby="cdnTitle cdnDesc">
         <title id="cdnTitle">CDN を挟んだお金の流れ</title>
@@ -368,28 +347,38 @@
         <text x="662" y="128" class="nodeT small">ユーザー</text>
 
         <style>
-          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #7fe0f5; stroke-opacity: 0.55; }
-          .node.accent { stroke: #1fb8e6; stroke-opacity: 0.9; fill-opacity: 0.12; }
-          .nodeT { fill: #eef4fb; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .node { fill: #ffffff; fill-opacity: 0.07; stroke: #a2b8d2; stroke-opacity: 0.55; }
+          .node.accent { stroke: #577eae; stroke-opacity: 0.9; fill-opacity: 0.12; }
+          .nodeT { fill: #f1f4f8; font-size: 12px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .nodeT.small { font-size: 11px; font-weight: 400; }
-          .arrow { stroke: #7fe0f5; stroke-opacity: 0.6; stroke-width: 2; fill: none; }
-          .arrow.good { stroke: #6fd08a; }
-          .arrow.warn { stroke: #d6a24a; }
-          .arrowHead { fill: #7fe0f5; fill-opacity: 0.8; }
-          .arrowHead.good { fill: #6fd08a; }
-          .arrowHead.warn { fill: #d6a24a; }
-          .tag { fill: #cfdcf0; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .tag.good { fill: #a8e6ba; }
-          .tag.warn { fill: #e6c088; }
+          .arrow { stroke: #a2b8d2; stroke-opacity: 0.6; stroke-width: 2; fill: none; }
+          .arrow.good { stroke: #9ac17e; }
+          .arrow.warn { stroke: #bc6864; }
+          .arrowHead { fill: #a2b8d2; fill-opacity: 0.8; }
+          .arrowHead.good { fill: #9ac17e; }
+          .arrowHead.warn { fill: #bc6864; }
+          .tag { fill: #d4deeb; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .tag.good { fill: #c4dbb3; }
+          .tag.warn { fill: #d49d9a; }
         </style>
       </svg>
-      <figcaption>CDN を挟んだお金の流れの概略。コンテンツ事業者は CDN に配信契約料を払うが、その先の ISP との接続は、無料が多いピアリングと、帯域に応じて課金されるトランジットに分かれる。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path fill="#f5f8fc" d="M0,20 C360,44 1080,0 1440,20 L1440,44 L0,44 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">技術解説 / HOW THE INTERNET (AND CDNS) ARE PAID FOR</span>
+  <h1>CDN のビジネスモデルとインターネット相互接続の仕組み</h1>
+  <div class="divider"></div>
+  <p class="sub">ピアリング・トランジット・ IX という相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして企業モデルの違いまで。実例と財務データを、比較条件を明示して読み解く。</p>
+  <div class="meta">
+    <span>全 5 章</span>
+    <span>約 83 分</span>
+    <span>2026 年 8 月</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <div class="caveat"><p>【データの読み方】料金・ PoP 数・市場規模・財務数値は変動し、事業者ごとに開示範囲も異なる。本稿では、ネットワークの一般的な仕組みと個社の事業実績を区別する。市場比較では対象サービス、通貨、会計期間、一次資料か推計かを必ず確認してほしい。</p></div>
@@ -1156,65 +1145,65 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
 <ol class="fn-list">
-<li id="fn-1"><a href="https://knowledge.sakura.ad.jp/19830/" target="_blank" rel="noopener noreferrer">ピアリングとトランジット – インターネットの相互接続について（1）｜さくらのナレッジ</a> <a href="#fnref-1" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-2"><a href="https://resources.telegeography.com/settlement-free-paid-peering-definition" target="_blank" rel="noopener noreferrer">Understanding Peering - TeleGeography Resources</a> <a href="#fnref-2" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-3"><a href="https://par.nsf.gov/servlets/purl/10477675" target="_blank" rel="noopener noreferrer">Requirements of Settlement-Free Peering Policies - NSF Public Access Repository</a> <a href="#fnref-3" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-4"><a href="https://arxiv.org/pdf/1801.00095" target="_blank" rel="noopener noreferrer">Paid Peering, Settlement-Free Peering, or Both? - arXiv</a> <a href="#fnref-4" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-5"><a href="https://www.imperva.com/blog/content-delivery-network-peering/" target="_blank" rel="noopener noreferrer">CDN Peering: Adding IX to the Mix ｜ Imperva</a> <a href="#fnref-5" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-6"><a href="https://www.jpix.ad.jp/service/?p=3510" target="_blank" rel="noopener noreferrer">【 IX サービス】 IX ポートサービスの特徴｜株式会社 JPIX</a> <a href="#fnref-6" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-7"><a href="https://www.jpix.ad.jp/service/?p=3510" target="_blank" rel="noopener noreferrer">【 IX サービス】 IX ポートサービスの特徴｜株式会社 JPIX</a>（同上）<a href="#fnref-7" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-8"><a href="https://www.jpnap.net/internet-fundamentals/peering" target="_blank" rel="noopener noreferrer">ピアリングとは？｜ JPNAP</a> <a href="#fnref-8" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-9"><a href="https://www.bbix.net/en/information/press/2025-01-15/" target="_blank" rel="noopener noreferrer">JPNAP, JPIX, and BBIX to Establish Internet Exchange Points at OPTAGE Sonezaki Data Center (OC1)- BBIX</a> <a href="#fnref-9" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-10"><a href="https://blog.apnic.net/2023/09/04/the-internet-landscape-of-japan/" target="_blank" rel="noopener noreferrer">The Internet landscape of Japan ｜ APNIC Blog</a>（あわせて <a href="https://www.csis.org/analysis/strategic-future-subsea-cables-japan-case-study" target="_blank" rel="noopener noreferrer">The Strategic Future of Subsea Cables: Japan Case Study ｜ CSIS</a> も参照）<a href="#fnref-10" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-11"><a href="https://en.wikipedia.org/wiki/Tier_1_network" target="_blank" rel="noopener noreferrer">Tier 1 network - Wikipedia</a> <a href="#fnref-11" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-12"><a href="https://www.gtt.net/resources/blog/global-tier-1-ip-networks-everything-you-need-to-know/" target="_blank" rel="noopener noreferrer">Global Tier 1 IP Networks: Everything You Need To Know ｜ GTT</a> <a href="#fnref-12" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-13"><a href="https://macronetservices.com/who-are-the-leading-global-tier-1-isps/" target="_blank" rel="noopener noreferrer">The 8 Leading Global Tier 1 ISPs (Updated 2026)- Macronet Services</a> <a href="#fnref-13" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-14"><a href="https://www.cloudflare.com/learning/cdn/glossary/anycast-network/" target="_blank" rel="noopener noreferrer">What is Anycast? How does Anycast Work? ｜ Cloudflare Learning Center</a> <a href="#fnref-14" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-15"><a href="https://www.ipfly.net/blog/the-physics-of-cloudflare-ip-ranges-anycast-bgp-global-routing-complete-guide/" target="_blank" rel="noopener noreferrer">The Physics of Cloudflare IP Ranges: Anycast, BGP, and Global Routing - IPFLY</a> <a href="#fnref-15" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-16"><a href="https://www.noction.com/blog/bgp-best-path-selection-algorithm" target="_blank" rel="noopener noreferrer">How Does BGP Select the Best Routing Path ｜ Noction</a> <a href="#fnref-16" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-17"><a href="https://dev.to/linou518/http3-and-quic-in-production-a-practical-deployment-guide-for-2026-3n8e" target="_blank" rel="noopener noreferrer">HTTP/3 and QUIC in Production: A Practical Deployment Guide for 2026 - DEV Community</a>（あわせて <a href="https://developers.cloudflare.com/speed/optimization/protocol/http3/" target="_blank" rel="noopener noreferrer">HTTP/3 （with QUIC）｜ Cloudflare Speed docs</a> も参照）<a href="#fnref-17" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-18"><a href="https://cdn.sakura.ad.jp/column/cache-server/" target="_blank" rel="noopener noreferrer">キャッシュサーバーとは？ CDN における役割・重要性｜さくらのウェブアクセラレータ</a> <a href="#fnref-18" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-19"><a href="https://www.aws-services.info/cloudfront.html" target="_blank" rel="noopener noreferrer">Amazon CloudFront - AWS Services and Regions / AWS Edge Locations 解説</a> <a href="#fnref-19" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-20"><a href="https://www.alibabacloud.com/help/ja/cdn/use-cases/increase-the-cache-hit-ratios-of-alibaba-cloud-cdn" target="_blank" rel="noopener noreferrer">CDN のキャッシュヒット率を向上させる方法｜ Alibaba Cloud ドキュメントセンター</a> <a href="#fnref-20" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-21"><a href="https://blog.cloudflare.com/instant-purge/" target="_blank" rel="noopener noreferrer">Instant Purge: invalidating cached content in under 150ms ｜ The Cloudflare Blog</a> <a href="#fnref-21" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-22"><a href="https://developers.cloudflare.com/cache/concepts/revalidation/" target="_blank" rel="noopener noreferrer">Revalidation · Cloudflare Cache (CDN) docs</a> <a href="#fnref-22" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-23"><a href="https://wavesandalgorithms.com/reviews/edge-computing-comparisons-review" target="_blank" rel="noopener noreferrer">Best Edge Computing Platforms 2025: Cloudflare Workers vs AWS Lambda@Edge vs Fastly vs Akamai</a> <a href="#fnref-23" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-24"><a href="https://devstarsj.github.io/2026/03/26/edge-computing-cloudflare-workers-guide-2026/" target="_blank" rel="noopener noreferrer">Edge Computing 2026: Running Code at the CDN — Cloudflare Workers, Fastly Compute, and Lambda@Edge</a> <a href="#fnref-24" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-25"><a href="https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/" target="_blank" rel="noopener noreferrer">Using Modern Image Formats: AVIF And WebP ｜ Smashing Magazine</a> <a href="#fnref-25" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-26"><a href="https://cloud.google.com/cdn/pricing" target="_blank" rel="noopener noreferrer">Cloud CDN pricing ｜ Google Cloud</a> <a href="#fnref-26" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-27"><a href="https://www.cloudflare.com/press/press-releases/2026/cloudflare-announces-fourth-quarter-and-fiscal-year-2025-financial-results/" target="_blank" rel="noopener noreferrer">Cloudflare Announces Fourth Quarter and Fiscal Year 2025 Financial Results</a> <a href="#fnref-27" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-28"><a href="https://phoenixnap.com/blog/colocation-pricing-guide-to-costs" target="_blank" rel="noopener noreferrer">Colocation Pricing: Ultimate Guide to Colocation Costs - phoenixNAP</a> <a href="#fnref-28" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-29"><a href="https://openconnect.netflix.com/en/" target="_blank" rel="noopener noreferrer">Netflix | Open Connect</a> <a href="#fnref-29" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-30"><a href="https://en.wikipedia.org/wiki/Open_Connect" target="_blank" rel="noopener noreferrer">Open Connect - Wikipedia</a> <a href="#fnref-30" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-31"><a href="https://en.wikipedia.org/wiki/Open_Connect" target="_blank" rel="noopener noreferrer">Open Connect - Wikipedia</a>（ISP のコスト削減額の推定に関する記述箇所）<a href="#fnref-31" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-32"><a href="https://www.sec.gov/Archives/edgar/data/1065280/000106528025000176/nflx-20250331.htm" target="_blank" rel="noopener noreferrer">NETFLIX INC - Form 10-Q - FY2025 - SEC EDGAR</a> <a href="#fnref-32" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-33"><a href="https://variety.com/2025/digital/news/netflix-content-spending-2025-ceiling-cfo-1236328510/" target="_blank" rel="noopener noreferrer">Netflix Content Spending 2025 'Not Anywhere Near Ceiling': CFO - Variety</a> <a href="#fnref-33" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-34"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4178682" target="_blank" rel="noopener noreferrer">Are the Settlement-Free Peering Policy Requirements for ISPs and CDNs Based on Network Costs? - SSRN</a> <a href="#fnref-34" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-35"><a href="https://www.akamai.com/company/company-history" target="_blank" rel="noopener noreferrer">Akamai Company History - The Akamai Story ｜ Akamai</a>（あわせて <a href="https://www.invent.org/inductees/daniel-lewin" target="_blank" rel="noopener noreferrer">Daniel Lewin ｜ The National Inventors Hall of Fame</a> も参照）<a href="#fnref-35" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-36"><a href="https://www.ir.akamai.com/news-releases/news-release-details/akamai-reports-fourth-quarter-2025-and-full-year-2025-financial" target="_blank" rel="noopener noreferrer">Akamai Reports Fourth Quarter 2025 and Full-Year 2025 Financial Results</a> <a href="#fnref-36" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-37"><a href="https://www.sec.gov/Archives/edgar/data/1086222/000108622225000007/akamaiinvestoroverviewfe.htm" target="_blank" rel="noopener noreferrer">AKAMAI TECHNOLOGIES INC - Form 8-K - FY2025 - SEC EDGAR</a> <a href="#fnref-37" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-38"><a href="https://investors.fastly.com/node/6591/pdf" target="_blank" rel="noopener noreferrer">Fastly Announces Both Record Fourth Quarter and Full Year 2025 Financial Results</a> <a href="#fnref-38" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-39"><a href="https://www.sec.gov/Archives/edgar/data/1391127/000119312524215572/d795614dex991.htm" target="_blank" rel="noopener noreferrer">Edgio, Inc. - Form 8-K - FY2024 - SEC EDGAR</a> <a href="#fnref-39" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-40"><a href="https://ottverse.com/edgio-shuts-down-operations-following-bankruptcy-filing/" target="_blank" rel="noopener noreferrer">Edgio Shuts Down Operations Following Bankruptcy Filing - OTTVerse</a> <a href="#fnref-40" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-41"><a href="https://www.cloudflare.com/our-story/" target="_blank" rel="noopener noreferrer">Our Story ｜ Cloudflare</a> <a href="#fnref-41" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-42"><a href="https://www.investing.com/news/company-news/cloudflare-q2-2025-presentation-slides-revenue-surges-28-as-ai-strategy-advances-93CH-4321313" target="_blank" rel="noopener noreferrer">Cloudflare Q2 2025 presentation slides - Investing.com</a> <a href="#fnref-42" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-43"><a href="https://www.lastweekinaws.com/blog/the-compelling-economics-of-cloudflare-r2/" target="_blank" rel="noopener noreferrer">The Compelling Economics of Cloudflare R2 - Last Week in AWS Blog</a>（あわせて <a href="https://egresscost.com/cloudflare/" target="_blank" rel="noopener noreferrer">Cloudflare's zero-egress strategy: R2, Workers, Pages</a> も参照）<a href="#fnref-43" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-44"><a href="https://cloud.google.com/cdn" target="_blank" rel="noopener noreferrer">Cloud CDN: content delivery network ｜ Google Cloud</a> <a href="#fnref-44" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-45"><a href="https://finviz.com/news/300252/alphabet-q4-highlights-google-cloud-revenue-up-48-youtube-tops-60-billion-for-2025" target="_blank" rel="noopener noreferrer">Alphabet Q4 Highlights: Google Cloud Revenue Up 48%, YouTube Tops $60 Billion for 2025 - Finviz</a> <a href="#fnref-45" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-46"><a href="https://m.imdb.com/news/ni65251683" target="_blank" rel="noopener noreferrer">YouTube's quarterly ad revenue approaches $9 billion... - IMDb News</a> <a href="#fnref-46" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-47"><a href="https://finviz.com/news/300252/alphabet-q4-highlights-google-cloud-revenue-up-48-youtube-tops-60-billion-for-2025" target="_blank" rel="noopener noreferrer">Alphabet Q4 Highlights: Google Cloud Revenue Up 48%, YouTube Tops $60 Billion for 2025 - Finviz</a>（同上）<a href="#fnref-47" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-48"><a href="https://en.wikipedia.org/wiki/Google_Global_Cache" target="_blank" rel="noopener noreferrer">Google Global Cache - Wikipedia</a> <a href="#fnref-48" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-49"><a href="https://en.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" rel="noopener noreferrer">Amazon Web Services - Wikipedia</a> <a href="#fnref-49" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-50"><a href="https://techcrunch.com/2012/06/04/netflix-open-connect/" target="_blank" rel="noopener noreferrer">Netflix Rolls Out Its Own CDN: Open Connect ｜ TechCrunch</a>（あわせて <a href="https://www.forbes.com/sites/ericsavitz/2012/06/05/netflix-shifts-traffic-to-its-own-cdn-akamai-limelight-shrs-hit/" target="_blank" rel="noopener noreferrer">Netflix Shifts Traffic To Its Own CDN; Akamai, Limelight Shrs Hit ｜ Forbes</a> も参照）<a href="#fnref-50" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-51"><a href="https://markets.financialcontent.com/wral/article/predictstreet-2025-12-24-the-live-era-of-netflix-viewership-records-sports-strategy-and-the-2025-outlook" target="_blank" rel="noopener noreferrer">The Live Era of Netflix: Viewership Records, Sports Strategy, and the 2025 Outlook</a>（あわせて <a href="https://sports.yahoo.com/netflix-prepared-well-high-stakes-000843156.html" target="_blank" rel="noopener noreferrer">Netflix prepared well for its high-stakes NFL streaming debut on Christmas ｜ Yahoo Sports</a> も参照）<a href="#fnref-51" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-52"><a href="https://www.netify.ai/resources/cdn/meta-cdn" target="_blank" rel="noopener noreferrer">Meta CDN - Facebook Network Appliance （FNA）｜ Netify</a> <a href="#fnref-52" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-53"><a href="https://engineering.fb.com/2021/05/20/networking-traffic/peering-automation/" target="_blank" rel="noopener noreferrer">Peering automation at Facebook ｜ Engineering at Meta</a> <a href="#fnref-53" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-54"><a href="https://dgtlinfra.com/meta-data-center-locations-facebook/" target="_blank" rel="noopener noreferrer">Meta's Data Center Locations for Facebook and Instagram - dgtl infra</a> <a href="#fnref-54" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-55"><a href="https://www.grandviewresearch.com/industry-analysis/content-delivery-networks-cnd-market" target="_blank" rel="noopener noreferrer">Content Delivery Network Market Size Report, 2026-2033 ｜ Grand View Research</a> <a href="#fnref-55" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-56"><a href="https://www.precedenceresearch.com/content-delivery-network-market" target="_blank" rel="noopener noreferrer">Content Delivery Network (CDN) Market Size to Surpass USD 164.06 Billion by 2035 ｜ Precedence Research</a>（あわせて <a href="https://www.fortunebusinessinsights.com/content-delivery-network-market-105949" target="_blank" rel="noopener noreferrer">Content Delivery Network Market ｜ Fortune Business Insights</a> および <a href="https://www.imarcgroup.com/content-delivery-network-market" target="_blank" rel="noopener noreferrer">Content Delivery Network (CDN) Market ｜ IMARC Group</a> も参照）<a href="#fnref-56" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-57"><a href="https://omdia.tech.informa.com/pr/2026/feb/mainland-chinas-cloud-infrastructure-market-accelerates-to-24percent-growth-in-q3-2025" target="_blank" rel="noopener noreferrer">Omdia: Mainland China's cloud infrastructure market accelerates to 24% growth in Q3 2025</a> <a href="#fnref-57" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-58"><a href="https://bunny.net/network/" target="_blank" rel="noopener noreferrer">Global CDN Network | Low latency CDN with 119+ PoPs ｜ Bunny.net</a>（あわせて <a href="https://www.cdnhandbook.com/compare/bunnycdn-vs-keycdn/" target="_blank" rel="noopener noreferrer">bunnycdn vs keycdn ｜ CDN Handbook</a> も参照）<a href="#fnref-58" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
-<li id="fn-59"><a href="https://secure.macrotrends.net/stocks/charts/AKAM/akamai-technologies/gross-margin" target="_blank" rel="noopener noreferrer">Akamai Technologies Gross Margin 2010-2025 - Macrotrends</a> <a href="#fnref-59" class="fn-back" aria-label="本文へ戻る">&#8617;</a></li>
+<li id="fn-1"><a href="https://knowledge.sakura.ad.jp/19830/" target="_blank" rel="noopener noreferrer">ピアリングとトランジット – インターネットの相互接続について（1）｜さくらのナレッジ</a> <a href="#fnref-1" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-2"><a href="https://resources.telegeography.com/settlement-free-paid-peering-definition" target="_blank" rel="noopener noreferrer">Understanding Peering - TeleGeography Resources</a> <a href="#fnref-2" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-3"><a href="https://par.nsf.gov/servlets/purl/10477675" target="_blank" rel="noopener noreferrer">Requirements of Settlement-Free Peering Policies - NSF Public Access Repository</a> <a href="#fnref-3" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-4"><a href="https://arxiv.org/pdf/1801.00095" target="_blank" rel="noopener noreferrer">Paid Peering, Settlement-Free Peering, or Both? - arXiv</a> <a href="#fnref-4" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-5"><a href="https://www.imperva.com/blog/content-delivery-network-peering/" target="_blank" rel="noopener noreferrer">CDN Peering: Adding IX to the Mix ｜ Imperva</a> <a href="#fnref-5" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-6"><a href="https://www.jpix.ad.jp/service/?p=3510" target="_blank" rel="noopener noreferrer">【 IX サービス】 IX ポートサービスの特徴｜株式会社 JPIX</a> <a href="#fnref-6" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-7"><a href="https://www.jpix.ad.jp/service/?p=3510" target="_blank" rel="noopener noreferrer">【 IX サービス】 IX ポートサービスの特徴｜株式会社 JPIX</a>（同上）<a href="#fnref-7" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-8"><a href="https://www.jpnap.net/internet-fundamentals/peering" target="_blank" rel="noopener noreferrer">ピアリングとは？｜ JPNAP</a> <a href="#fnref-8" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-9"><a href="https://www.bbix.net/en/information/press/2025-01-15/" target="_blank" rel="noopener noreferrer">JPNAP, JPIX, and BBIX to Establish Internet Exchange Points at OPTAGE Sonezaki Data Center (OC1)- BBIX</a> <a href="#fnref-9" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-10"><a href="https://blog.apnic.net/2023/09/04/the-internet-landscape-of-japan/" target="_blank" rel="noopener noreferrer">The Internet landscape of Japan ｜ APNIC Blog</a>（あわせて <a href="https://www.csis.org/analysis/strategic-future-subsea-cables-japan-case-study" target="_blank" rel="noopener noreferrer">The Strategic Future of Subsea Cables: Japan Case Study ｜ CSIS</a> も参照）<a href="#fnref-10" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-11"><a href="https://en.wikipedia.org/wiki/Tier_1_network" target="_blank" rel="noopener noreferrer">Tier 1 network - Wikipedia</a> <a href="#fnref-11" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-12"><a href="https://www.gtt.net/resources/blog/global-tier-1-ip-networks-everything-you-need-to-know/" target="_blank" rel="noopener noreferrer">Global Tier 1 IP Networks: Everything You Need To Know ｜ GTT</a> <a href="#fnref-12" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-13"><a href="https://macronetservices.com/who-are-the-leading-global-tier-1-isps/" target="_blank" rel="noopener noreferrer">The 8 Leading Global Tier 1 ISPs (Updated 2026)- Macronet Services</a> <a href="#fnref-13" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-14"><a href="https://www.cloudflare.com/learning/cdn/glossary/anycast-network/" target="_blank" rel="noopener noreferrer">What is Anycast? How does Anycast Work? ｜ Cloudflare Learning Center</a> <a href="#fnref-14" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-15"><a href="https://www.ipfly.net/blog/the-physics-of-cloudflare-ip-ranges-anycast-bgp-global-routing-complete-guide/" target="_blank" rel="noopener noreferrer">The Physics of Cloudflare IP Ranges: Anycast, BGP, and Global Routing - IPFLY</a> <a href="#fnref-15" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-16"><a href="https://www.noction.com/blog/bgp-best-path-selection-algorithm" target="_blank" rel="noopener noreferrer">How Does BGP Select the Best Routing Path ｜ Noction</a> <a href="#fnref-16" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-17"><a href="https://dev.to/linou518/http3-and-quic-in-production-a-practical-deployment-guide-for-2026-3n8e" target="_blank" rel="noopener noreferrer">HTTP/3 and QUIC in Production: A Practical Deployment Guide for 2026 - DEV Community</a>（あわせて <a href="https://developers.cloudflare.com/speed/optimization/protocol/http3/" target="_blank" rel="noopener noreferrer">HTTP/3 （with QUIC）｜ Cloudflare Speed docs</a> も参照）<a href="#fnref-17" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-18"><a href="https://cdn.sakura.ad.jp/column/cache-server/" target="_blank" rel="noopener noreferrer">キャッシュサーバーとは？ CDN における役割・重要性｜さくらのウェブアクセラレータ</a> <a href="#fnref-18" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-19"><a href="https://www.aws-services.info/cloudfront.html" target="_blank" rel="noopener noreferrer">Amazon CloudFront - AWS Services and Regions / AWS Edge Locations 解説</a> <a href="#fnref-19" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-20"><a href="https://www.alibabacloud.com/help/ja/cdn/use-cases/increase-the-cache-hit-ratios-of-alibaba-cloud-cdn" target="_blank" rel="noopener noreferrer">CDN のキャッシュヒット率を向上させる方法｜ Alibaba Cloud ドキュメントセンター</a> <a href="#fnref-20" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-21"><a href="https://blog.cloudflare.com/instant-purge/" target="_blank" rel="noopener noreferrer">Instant Purge: invalidating cached content in under 150ms ｜ The Cloudflare Blog</a> <a href="#fnref-21" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-22"><a href="https://developers.cloudflare.com/cache/concepts/revalidation/" target="_blank" rel="noopener noreferrer">Revalidation · Cloudflare Cache (CDN) docs</a> <a href="#fnref-22" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-23"><a href="https://wavesandalgorithms.com/reviews/edge-computing-comparisons-review" target="_blank" rel="noopener noreferrer">Best Edge Computing Platforms 2025: Cloudflare Workers vs AWS Lambda@Edge vs Fastly vs Akamai</a> <a href="#fnref-23" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-24"><a href="https://devstarsj.github.io/2026/03/26/edge-computing-cloudflare-workers-guide-2026/" target="_blank" rel="noopener noreferrer">Edge Computing 2026: Running Code at the CDN — Cloudflare Workers, Fastly Compute, and Lambda@Edge</a> <a href="#fnref-24" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-25"><a href="https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/" target="_blank" rel="noopener noreferrer">Using Modern Image Formats: AVIF And WebP ｜ Smashing Magazine</a> <a href="#fnref-25" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-26"><a href="https://cloud.google.com/cdn/pricing" target="_blank" rel="noopener noreferrer">Cloud CDN pricing ｜ Google Cloud</a> <a href="#fnref-26" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-27"><a href="https://www.cloudflare.com/press/press-releases/2026/cloudflare-announces-fourth-quarter-and-fiscal-year-2025-financial-results/" target="_blank" rel="noopener noreferrer">Cloudflare Announces Fourth Quarter and Fiscal Year 2025 Financial Results</a> <a href="#fnref-27" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-28"><a href="https://phoenixnap.com/blog/colocation-pricing-guide-to-costs" target="_blank" rel="noopener noreferrer">Colocation Pricing: Ultimate Guide to Colocation Costs - phoenixNAP</a> <a href="#fnref-28" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-29"><a href="https://openconnect.netflix.com/en/" target="_blank" rel="noopener noreferrer">Netflix | Open Connect</a> <a href="#fnref-29" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-30"><a href="https://en.wikipedia.org/wiki/Open_Connect" target="_blank" rel="noopener noreferrer">Open Connect - Wikipedia</a> <a href="#fnref-30" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-31"><a href="https://en.wikipedia.org/wiki/Open_Connect" target="_blank" rel="noopener noreferrer">Open Connect - Wikipedia</a>（ISP のコスト削減額の推定に関する記述箇所）<a href="#fnref-31" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-32"><a href="https://www.sec.gov/Archives/edgar/data/1065280/000106528025000176/nflx-20250331.htm" target="_blank" rel="noopener noreferrer">NETFLIX INC - Form 10-Q - FY2025 - SEC EDGAR</a> <a href="#fnref-32" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-33"><a href="https://variety.com/2025/digital/news/netflix-content-spending-2025-ceiling-cfo-1236328510/" target="_blank" rel="noopener noreferrer">Netflix Content Spending 2025 'Not Anywhere Near Ceiling': CFO - Variety</a> <a href="#fnref-33" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-34"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4178682" target="_blank" rel="noopener noreferrer">Are the Settlement-Free Peering Policy Requirements for ISPs and CDNs Based on Network Costs? - SSRN</a> <a href="#fnref-34" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-35"><a href="https://www.akamai.com/company/company-history" target="_blank" rel="noopener noreferrer">Akamai Company History - The Akamai Story ｜ Akamai</a>（あわせて <a href="https://www.invent.org/inductees/daniel-lewin" target="_blank" rel="noopener noreferrer">Daniel Lewin ｜ The National Inventors Hall of Fame</a> も参照）<a href="#fnref-35" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-36"><a href="https://www.ir.akamai.com/news-releases/news-release-details/akamai-reports-fourth-quarter-2025-and-full-year-2025-financial" target="_blank" rel="noopener noreferrer">Akamai Reports Fourth Quarter 2025 and Full-Year 2025 Financial Results</a> <a href="#fnref-36" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-37"><a href="https://www.sec.gov/Archives/edgar/data/1086222/000108622225000007/akamaiinvestoroverviewfe.htm" target="_blank" rel="noopener noreferrer">AKAMAI TECHNOLOGIES INC - Form 8-K - FY2025 - SEC EDGAR</a> <a href="#fnref-37" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-38"><a href="https://investors.fastly.com/node/6591/pdf" target="_blank" rel="noopener noreferrer">Fastly Announces Both Record Fourth Quarter and Full Year 2025 Financial Results</a> <a href="#fnref-38" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-39"><a href="https://www.sec.gov/Archives/edgar/data/1391127/000119312524215572/d795614dex991.htm" target="_blank" rel="noopener noreferrer">Edgio, Inc. - Form 8-K - FY2024 - SEC EDGAR</a> <a href="#fnref-39" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-40"><a href="https://ottverse.com/edgio-shuts-down-operations-following-bankruptcy-filing/" target="_blank" rel="noopener noreferrer">Edgio Shuts Down Operations Following Bankruptcy Filing - OTTVerse</a> <a href="#fnref-40" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-41"><a href="https://www.cloudflare.com/our-story/" target="_blank" rel="noopener noreferrer">Our Story ｜ Cloudflare</a> <a href="#fnref-41" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-42"><a href="https://www.investing.com/news/company-news/cloudflare-q2-2025-presentation-slides-revenue-surges-28-as-ai-strategy-advances-93CH-4321313" target="_blank" rel="noopener noreferrer">Cloudflare Q2 2025 presentation slides - Investing.com</a> <a href="#fnref-42" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-43"><a href="https://www.lastweekinaws.com/blog/the-compelling-economics-of-cloudflare-r2/" target="_blank" rel="noopener noreferrer">The Compelling Economics of Cloudflare R2 - Last Week in AWS Blog</a>（あわせて <a href="https://egresscost.com/cloudflare/" target="_blank" rel="noopener noreferrer">Cloudflare's zero-egress strategy: R2, Workers, Pages</a> も参照）<a href="#fnref-43" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-44"><a href="https://cloud.google.com/cdn" target="_blank" rel="noopener noreferrer">Cloud CDN: content delivery network ｜ Google Cloud</a> <a href="#fnref-44" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-45"><a href="https://finviz.com/news/300252/alphabet-q4-highlights-google-cloud-revenue-up-48-youtube-tops-60-billion-for-2025" target="_blank" rel="noopener noreferrer">Alphabet Q4 Highlights: Google Cloud Revenue Up 48%, YouTube Tops $60 Billion for 2025 - Finviz</a> <a href="#fnref-45" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-46"><a href="https://m.imdb.com/news/ni65251683" target="_blank" rel="noopener noreferrer">YouTube's quarterly ad revenue approaches $9 billion... - IMDb News</a> <a href="#fnref-46" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-47"><a href="https://finviz.com/news/300252/alphabet-q4-highlights-google-cloud-revenue-up-48-youtube-tops-60-billion-for-2025" target="_blank" rel="noopener noreferrer">Alphabet Q4 Highlights: Google Cloud Revenue Up 48%, YouTube Tops $60 Billion for 2025 - Finviz</a>（同上）<a href="#fnref-47" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-48"><a href="https://en.wikipedia.org/wiki/Google_Global_Cache" target="_blank" rel="noopener noreferrer">Google Global Cache - Wikipedia</a> <a href="#fnref-48" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-49"><a href="https://en.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" rel="noopener noreferrer">Amazon Web Services - Wikipedia</a> <a href="#fnref-49" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-50"><a href="https://techcrunch.com/2012/06/04/netflix-open-connect/" target="_blank" rel="noopener noreferrer">Netflix Rolls Out Its Own CDN: Open Connect ｜ TechCrunch</a>（あわせて <a href="https://www.forbes.com/sites/ericsavitz/2012/06/05/netflix-shifts-traffic-to-its-own-cdn-akamai-limelight-shrs-hit/" target="_blank" rel="noopener noreferrer">Netflix Shifts Traffic To Its Own CDN; Akamai, Limelight Shrs Hit ｜ Forbes</a> も参照）<a href="#fnref-50" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-51"><a href="https://markets.financialcontent.com/wral/article/predictstreet-2025-12-24-the-live-era-of-netflix-viewership-records-sports-strategy-and-the-2025-outlook" target="_blank" rel="noopener noreferrer">The Live Era of Netflix: Viewership Records, Sports Strategy, and the 2025 Outlook</a>（あわせて <a href="https://sports.yahoo.com/netflix-prepared-well-high-stakes-000843156.html" target="_blank" rel="noopener noreferrer">Netflix prepared well for its high-stakes NFL streaming debut on Christmas ｜ Yahoo Sports</a> も参照）<a href="#fnref-51" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-52"><a href="https://www.netify.ai/resources/cdn/meta-cdn" target="_blank" rel="noopener noreferrer">Meta CDN - Facebook Network Appliance （FNA）｜ Netify</a> <a href="#fnref-52" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-53"><a href="https://engineering.fb.com/2021/05/20/networking-traffic/peering-automation/" target="_blank" rel="noopener noreferrer">Peering automation at Facebook ｜ Engineering at Meta</a> <a href="#fnref-53" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-54"><a href="https://dgtlinfra.com/meta-data-center-locations-facebook/" target="_blank" rel="noopener noreferrer">Meta's Data Center Locations for Facebook and Instagram - dgtl infra</a> <a href="#fnref-54" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-55"><a href="https://www.grandviewresearch.com/industry-analysis/content-delivery-networks-cnd-market" target="_blank" rel="noopener noreferrer">Content Delivery Network Market Size Report, 2026-2033 ｜ Grand View Research</a> <a href="#fnref-55" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-56"><a href="https://www.precedenceresearch.com/content-delivery-network-market" target="_blank" rel="noopener noreferrer">Content Delivery Network (CDN) Market Size to Surpass USD 164.06 Billion by 2035 ｜ Precedence Research</a>（あわせて <a href="https://www.fortunebusinessinsights.com/content-delivery-network-market-105949" target="_blank" rel="noopener noreferrer">Content Delivery Network Market ｜ Fortune Business Insights</a> および <a href="https://www.imarcgroup.com/content-delivery-network-market" target="_blank" rel="noopener noreferrer">Content Delivery Network (CDN) Market ｜ IMARC Group</a> も参照）<a href="#fnref-56" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-57"><a href="https://omdia.tech.informa.com/pr/2026/feb/mainland-chinas-cloud-infrastructure-market-accelerates-to-24percent-growth-in-q3-2025" target="_blank" rel="noopener noreferrer">Omdia: Mainland China's cloud infrastructure market accelerates to 24% growth in Q3 2025</a> <a href="#fnref-57" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-58"><a href="https://bunny.net/network/" target="_blank" rel="noopener noreferrer">Global CDN Network | Low latency CDN with 119+ PoPs ｜ Bunny.net</a>（あわせて <a href="https://www.cdnhandbook.com/compare/bunnycdn-vs-keycdn/" target="_blank" rel="noopener noreferrer">bunnycdn vs keycdn ｜ CDN Handbook</a> も参照）<a href="#fnref-58" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
+<li id="fn-59"><a href="https://secure.macrotrends.net/stocks/charts/AKAM/akamai-technologies/gross-margin" target="_blank" rel="noopener noreferrer">Akamai Technologies Gross Margin 2010-2025 - Macrotrends</a> <a href="#fnref-59" class="fn-back" aria-label="本文へ戻る">&#6b312e77;</a></li>
 </ol>
     </div>
   </div>

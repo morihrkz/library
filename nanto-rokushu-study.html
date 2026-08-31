@@ -9,32 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #faf6ef;
-    --paper: #fffdf9;
-    --ink: #2b2620;
-    --sub: #5d564a;
+    --bg:#F5F3EC;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
 
-    --accent: #9a4b32;
-    --accent-soft: #c98a63;
-    --line: #e3d9c6;
-    --note-bg: #f6efe1;
-    --hero-1: #241a15;
-    --hero-2: #4a271d;
-    --hero-ink: #f3ece2;
-    --hero-dim: #cbb9a8;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg: #17140f;
-      --paper: #1d1a14;
-      --ink: #ece7de;
-      --sub: #b3ac9f;
-
-      --accent: #d97a57;
-      --accent-soft: #c98a63;
-      --line: #332e26;
-      --note-bg: #241d14;
-    }
+    --accent:#25364A;
+    --accent-soft:#EEF2E4;
+    --line:#C8CEC0;
+    --note-bg:#EEF2E4;
+    --hero-1:#25364A;
+    --hero-2:#25364A;
+    --hero-ink:#F5F3EC;
+    --hero-dim:#C8CEC0;
   }
   *{box-sizing:border-box;}
   html{scroll-padding-top:76px;}
@@ -51,7 +38,7 @@
     padding:0 clamp(1.5rem, 3vw, 3rem) 6rem;
   }
   header.hero{
-    background:linear-gradient(140deg, var(--hero-1) 0%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
     padding:3.6rem 0 2.8rem;
     margin-bottom:2.8rem;
@@ -80,7 +67,7 @@
   }
   header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
     display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure{max-width:960px; margin:2.2rem 0 0; overflow-x:auto;}
+  .hero-figure{max-width:960px; margin:0; overflow-x:auto;}
   .hero-figure svg{display:block; width:100%; height:auto;}
   .hero-figure figcaption{
     margin-top:0.9rem;
@@ -205,49 +192,49 @@
 </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">Nanto Rokushu · 南都仏教史</span>
-    <h1>1300 年、消えなかった仏教 - 南都六宗という「知の生き延び方」</h1>
-    <p class="sub">古代の学問仏教が、新しい宗派の台頭・戦乱・近代化を経てもなお生き続けている理由を、南都六宗という言葉の中身から読み解く</p>
-    <div class="meta">
-      <span>全 5 章</span>
-      <span>約 12 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 230" role="img" aria-labelledby="nrTitle nrDesc">
         <title id="nrTitle">南都の大寺院を貫く 1300 年の時間軸</title>
         <desc id="nrDesc">奈良時代の学問仏教の成立から、平安・鎌倉の新仏教の登場、戦乱による焼失と再建、近代の制度変化を経て、現代の世界遺産登録に至るまでを一本の時間軸として示す概念図。年代は目安であり、実際の出来事の正確な期日を示すものではない。</desc>
 
-        <line x1="50" y1="150" x2="670" y2="150" stroke="#cbb9a8" stroke-opacity="0.6" stroke-width="2"/>
-        <path d="M664 144 l10 6 l-10 -6" fill="none" stroke="#cbb9a8" stroke-opacity="0.8" stroke-width="2"/>
+        <line x1="50" y1="150" x2="670" y2="150" stroke="#cbaaa8" stroke-opacity="0.6" stroke-width="2"/>
+        <path d="M664 144 l10 6 l-10 -6" fill="none" stroke="#cbaaa8" stroke-opacity="0.8" stroke-width="2"/>
 
         <g>
-          <circle cx="90" cy="150" r="7" fill="#c98a63"/>
+          <circle cx="90" cy="150" r="7" fill="#c0706c"/>
           <text x="90" y="130" class="lbl" text-anchor="middle">奈良時代</text>
           <text x="90" y="176" class="sub2" text-anchor="middle">学問仏教の成立</text>
 
-          <circle cx="230" cy="150" r="7" fill="#e3d2c2"/>
+          <circle cx="230" cy="150" r="7" fill="#e3c4c2"/>
           <text x="230" y="130" class="lbl" text-anchor="middle">平安 ・ 鎌倉</text>
           <text x="230" y="176" class="sub2" text-anchor="middle">新しい宗派が台頭</text>
 
-          <circle cx="370" cy="150" r="7" fill="#c9584a"/>
+          <circle cx="370" cy="150" r="7" fill="#b85f5a"/>
           <text x="370" y="130" class="lbl" text-anchor="middle">戦乱期</text>
           <text x="370" y="176" class="sub2" text-anchor="middle">伽藍の焼失</text>
 
-          <circle cx="500" cy="150" r="7" fill="#7fae8f"/>
+          <circle cx="500" cy="150" r="7" fill="#93ae7f"/>
           <text x="500" y="130" class="lbl" text-anchor="middle">近代 ・ 現代</text>
           <text x="500" y="176" class="sub2" text-anchor="middle">写経勧進による再建</text>
 
-          <circle cx="630" cy="150" r="7" fill="#c98a63"/>
+          <circle cx="630" cy="150" r="7" fill="#c0706c"/>
           <text x="630" y="130" class="lbl" text-anchor="middle">1998 年 〜</text>
           <text x="630" y="176" class="sub2" text-anchor="middle">世界遺産登録</text>
         </g>
@@ -255,15 +242,26 @@
         <text x="360" y="40" class="axisTitle" text-anchor="middle">失っても、作り直せる - 1300 年続いた理由</text>
 
         <style>
-          .axisTitle{ fill:#f3ece2; font-size:14px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lbl{ fill:#f3ece2; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .sub2{ fill:#b7a493; font-size:10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .axisTitle{ fill:#f3e3e2; font-size:14px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .lbl{ fill:#f3e3e2; font-size:12.5px; font-weight:700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .sub2{ fill:#b79593; font-size:10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
         </style>
       </svg>
-      <figcaption>奈良の大寺院が経てきた大きな転換点を一本の時間軸として示した概念図。年代の間隔や位置は模式的なものであり、正確な縮尺・年表ではない。</figcaption>
     </figure>
   </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">Nanto Rokushu · 南都仏教史</span>
+  <h1>1300 年、消えなかった仏教 - 南都六宗という「知の生き延び方」</h1>
+  <p class="sub">古代の学問仏教が、新しい宗派の台頭・戦乱・近代化を経てもなお生き続けている理由を、南都六宗という言葉の中身から読み解く</p>
+  <div class="meta">
+    <span>全 5 章</span>
+    <span>約 12 分</span>
+  </div>
+
+  
+</div>
+
 
 <main class="wrap">
 

@@ -10,56 +10,34 @@
 <style>
   html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
   :root{
-    --hero-1:#4fc3f7; --hero-2:#0277bd; --hero-ink:#ffffff; --hero-dim:#e8f8ff;
-    --sky:#4fc3f7;
-    --accent:#0277bd;
-    --sun:#ffca28;
-    --sun-deep:#f57f17;
-    --coral:#ef6c60;--coral-deep:#d43300;
-    --green:#66bb6a;
-    --green-deep:#2e7d32;
-    --grape:#7e57c2;
-    --paper:#fffdf7;
-    --ink:#33322e;
-    --sub:#59574f;
-    --line:#e8e0cc;
-    --pause-bg:#fff8e1;
-    --pause-border:#ffca28;
-    --pause-ink:#6d4c00;
-    --card:#f4f9f4;
-    --note-bg:#eaf6fd;
-    --tape:rgba(255,224,130,0.75);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --coral-deep:#ff8a65;
-      --accent:#028bdd;
-      --paper:#201d15;
-      --ink:#e7e4d8;
-      --sub:#ada99a;
-      --line:#332f24;
-      --pause-bg:#332b12;
-      --pause-ink:#e6c375;
-      --card:#16211a;
-      --note-bg:#1d2833;
-    }
+    --bg:#F5F3EC;
+    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --sky:#83a0c3;
+    --accent:#25364A;
+    --sun:#b9ad6e;
+    --sun-deep:#b65a56;
+    --coral:#cb8884;--coral-deep:#944440;
+    --green:#8ab76a;
+    --green-deep:#517338;
+    --grape:#6488b5;
+    --paper:#fff;
+    --ink:#2D3325;
+    --sub:#3A4032;
+    --line:#C8CEC0;
+    --pause-bg:#F2F7EA;
+    --pause-border:#9DB87C;
+    --pause-ink:#3E5226;
+    --card:#F5F3EC;
+    --note-bg:#EEF2E4;
+    --tape:rgba(214,207,171,0.75);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;scroll-behavior:smooth;}
   body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
     color:var(--ink);
-    background:
-      radial-gradient(circle at 88% -8%, #fff3c4 0%, rgba(255,243,196,0) 42%),
-      linear-gradient(180deg, #dff3fb 0%, #fdf9ec 20%, #fdf9ec 100%);
+    background:var(--bg);
     line-height:2.0;
     letter-spacing:0.035em;
-  }
-  @media (prefers-color-scheme: dark){
-    body{
-      background:
-        radial-gradient(circle at 88% -8%, #2e2712 0%, rgba(46,39,18,0) 42%),
-        linear-gradient(180deg, #0d1c22 0%, #14120c 20%, #14120c 100%);
-    }
   }
 
   /* ---------- Progress Bar ---------- */
@@ -77,7 +55,7 @@
     overflow:hidden;
     padding:74px 24px 100px;
     text-align:center;
-    background:linear-gradient(165deg, var(--hero-1) 0%, #29b6f6 50%, var(--hero-2) 100%);
+    background:var(--hero-1);
     color:var(--hero-ink);
   }
   header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
@@ -94,7 +72,7 @@
     margin:0 0 16px;
     font-size:clamp(1.9rem, 4.6vw, 3.1rem);
     font-weight:800;
-    text-shadow:0 3px 12px rgba(0,60,90,.3);
+    text-shadow:0 3px 12px rgba(29,43,61,.3);
   }
   header.hero p.sub{
     margin:0 auto; max-width:620px;
@@ -108,7 +86,7 @@
 
   /* ---------- Layout ---------- */
   .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
-  .hero-figure{ max-width:900px; margin:1.8rem auto 0; overflow-x:auto; text-align:left; }
+  .hero-figure{ max-width:900px; margin:0 auto; overflow-x:auto; text-align:left; }
   .hero-figure svg{ display:block; width:100%; height:auto; }
   .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
 
@@ -141,12 +119,12 @@
     border:1.5px solid var(--sky); border-radius:999px;
     padding:10px 24px; cursor:pointer;
     transition:all .2s ease;
-    box-shadow:0 2px 6px rgba(41,182,246,.15);
+    box-shadow:0 2px 6px rgba(104,140,183,.15);
   }
   .toolbar button:hover{
     background:var(--sky); color:#fff;
     transform:translateY(-2px);
-    box-shadow:0 4px 10px rgba(41,182,246,.25);
+    box-shadow:0 4px 10px rgba(104,140,183,.25);
   }
 
   /* ---------- Accordion ---------- */
@@ -154,12 +132,12 @@
     background:var(--paper);
     border-radius:18px;
     margin-bottom:16px;
-    box-shadow:0 4px 20px rgba(80,60,20,.06);
+    box-shadow:0 4px 20px rgba(70,32,30,.06);
     overflow:hidden;
     border:1px solid var(--line);
     transition:transform .2s ease, box-shadow .2s ease;
   }
-  .acc-item:hover{box-shadow:0 6px 25px rgba(80,60,20,.1);}
+  .acc-item:hover{box-shadow:0 6px 25px rgba(70,32,30,.1);}
   .acc-header{
     width:100%; display:flex; align-items:center; gap:16px;
     background:none; border:none; padding:20px 24px;
@@ -170,7 +148,7 @@
     background:linear-gradient(135deg, var(--sun), var(--sun-deep));
     color:#fff; display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:1rem;
-    box-shadow:0 3px 10px rgba(245,127,23,.28);
+    box-shadow:0 3px 10px rgba(182,90,86,.28);
   }
   .acc-header .title{flex:1 1 auto; font-size:1.13rem; font-weight:700; letter-spacing:.04em;}
   .acc-header .title small{
@@ -190,7 +168,7 @@
 
   /* nested */
   .sub-list{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
-  .sub-item{background:var(--card); border:1px solid #dde9dd; border-radius:14px; overflow:hidden;}
+  .sub-item{background:var(--card); border:1px solid #e2e9dd; border-radius:14px; overflow:hidden;}
   .sub-header{
     width:100%; display:flex; align-items:center; gap:14px;
     background:none; border:none; padding:16px 20px;
@@ -206,7 +184,7 @@
   .sub-header .title{flex:1 1 auto; font-size:1.02rem; font-weight:700;}
   .sub-header .chev{width:20px; height:20px; color:var(--green-deep); transition:transform .3s ease;}
   .sub-item.open > .sub-header .chev{transform:rotate(180deg);}
-  .sub-item.open > .sub-header{border-bottom:1px dashed #cfe3cf;}
+  .sub-item.open > .sub-header{border-bottom:1px dashed #d7e3cf;}
   .sub-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1);}
   .sub-item.open > .sub-panel{grid-template-rows:1fr;}
   .sub-panel-inner{overflow:hidden; min-height:0; padding:0 24px; opacity:0; transition:opacity .3s ease .1s;}
@@ -231,8 +209,8 @@
   .quote{
     margin:1.5em 0; padding:18px 24px;
     border-left:5px solid var(--grape);
-    background:#f6f3fc; border-radius:0 12px 12px 0;
-    font-style:italic; color:#4a4560;
+    background:#f5f7fa; border-radius:0 12px 12px 0;
+    font-style:italic; color:#455160;
     box-shadow:0 2px 8px rgba(0,0,0,.02);
   }
   .quote .author{display:block; margin-top:10px; font-style:normal; font-size:.88rem; text-align:right; color:var(--grape); font-weight:bold;}
@@ -269,17 +247,17 @@
 
   .memo{
     margin:1.8em 0; padding:22px 24px;
-    background:#eef7fd;
-    border:2px dashed #81d4fa;
+    background:#f2f5f9;
+    border:2px dashed #a7bbd4;
     border-radius:16px; position:relative;
   }
   .memo::before{
     content:"理解";
     position:absolute; top:-11px; left:20px;
-    background:#eef7fd; padding:0 8px;
+    background:#f2f5f9; padding:0 8px;
     font-size:.74rem; font-weight:700; letter-spacing:.06em; color:var(--accent);
   }
-  .memo p{margin:0; text-indent:0; color:#0d4a6b; font-size:1.02rem; line-height:1.8;}
+  .memo p{margin:0; text-indent:0; color:#273a51; font-size:1.02rem; line-height:1.8;}
   .memo p + p{margin-top:.7em;}
 
   .card-note{
@@ -287,7 +265,7 @@
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:12px;
-    box-shadow:0 3px 10px rgba(80,60,20,.06);
+    box-shadow:0 3px 10px rgba(70,32,30,.06);
     position:relative;
   }
   .card-note::after{
@@ -305,12 +283,12 @@
 
   strong.term{
     color:var(--ink); font-weight:700;
-    background:linear-gradient(180deg, transparent 64%, rgba(255,202,40,.65) 64%);
+    background:linear-gradient(180deg, transparent 64%, rgba(185,173,110,.65) 64%);
     padding:0 2px;
   }
   strong.term2{
     color:var(--ink); font-weight:700;
-    background:linear-gradient(180deg, transparent 64%, rgba(129,212,250,.6) 64%);
+    background:linear-gradient(180deg, transparent 64%, rgba(167,187,212,.6) 64%);
     padding:0 2px;
   }
 
@@ -318,7 +296,7 @@
   .chrono{list-style:none; margin:1.2em 0 0; padding:0 0 0 4px;}
   .chrono li{
     position:relative; padding:0 0 1.1em 26px;
-    border-left:3px solid #ffe082; margin-left:8px;
+    border-left:3px solid #d6cfab; margin-left:8px;
     font-size:1rem; line-height:1.8;
   }
   .chrono li::before{
@@ -328,7 +306,7 @@
   }
   .chrono li b{color:var(--sun-deep); margin-right:.6em; letter-spacing:.04em;}
   .chrono li:last-child{border-left-color:transparent;}
-  .chrono.blue li{border-left-color:#b3e5fc;}
+  .chrono.blue li{border-left-color:#cad6e5;}
   .chrono.blue li::before{border-color:var(--accent);}
   .chrono.blue li b{color:var(--accent);}
 
@@ -336,7 +314,7 @@
   .tablewrap{overflow-x:auto; margin:1.6em 0;}
   table{border-collapse:collapse; width:100%; min-width:460px; font-size:.96rem; background:var(--paper);}
   th,td{border:1px solid var(--line); padding:10px 12px; text-align:left; line-height:1.7;}
-  th{background:#f3f8ec; color:var(--green-deep); font-weight:700; white-space:nowrap;}
+  th{background:#f1f7ed; color:var(--green-deep); font-weight:700; white-space:nowrap;}
   td b{color:var(--coral-deep);}
 
   .dl-term{margin:0 0 1.5em; padding-bottom:1.5em; border-bottom:1px solid var(--line);}
@@ -356,7 +334,7 @@
 
   footer{
     text-align:center; color:var(--sub); font-size:.88rem;
-    padding:30px 20px; background:#f4f8ef; border-top:1px solid var(--line);
+    padding:30px 20px; background:#f3f8ef; border-top:1px solid var(--line);
     line-height:1.9;
   }
 
@@ -372,7 +350,6 @@
   }
   /* Publication polish: keeps decorative patterns subordinate to the title. */
   .hero{isolation:isolate;min-height:300px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding-block:64px}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(120deg,rgba(5,15,28,.32),transparent 55%,rgba(5,15,28,.18));pointer-events:none}
   header.hero .wrap{width:100%;min-width:0;max-width:900px;margin-inline:auto;padding-inline:24px;text-wrap:balance}header.hero .eyebrow{backdrop-filter:blur(7px);box-shadow:0 6px 22px rgba(0,0,0,.12)}
   @media (prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
 </style>
@@ -388,9 +365,17 @@
   </style>
 <style>
   /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  header.hero h1 { font-size: clamp(2.4rem, 6vw, 3.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
+  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
   /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  header.hero h1 * { font-size: inherit !important; font-family: inherit !important; }
+  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
+</style>
+<style>
+  /* ヒーローから移設したタイトルブロック */
+  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
+  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
+  .page-head h1{margin:0;color:var(--accent)}
+  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
+  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
@@ -399,14 +384,6 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">近現代史</span>
-    <h1>「近代」と「現代」の境界は<br>どこに引かれるのか</h1>
-    <p class="sub">世界史と日本史を一本の年表に重ね合わせて読む</p>
-    <div class="meta">
-      <span>全 17 章</span>
-      <span>約 39 分</span>
-    </div>
-
     <figure class="hero-figure">
       <svg viewBox="0 0 720 190" role="img" aria-labelledby="kgTitle kgDesc">
         <title id="kgTitle">「近代」と「現代」の境界候補</title>
@@ -439,22 +416,30 @@
         <text x="360" y="18" class="head">「近代」と「現代」の境界候補（概念図・年代は正確な縮尺ではない）</text>
 
         <style>
-          .head { fill: #e8f8ff; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
+          .head { fill: #eff3f8; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .lb { fill: #ffffff; font-size: 11.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
           .lb.end { text-anchor: end; }
-          .dot { fill: #ffca28; stroke: #ffffff; stroke-width: 2; }
-          .tick { stroke: #ffca28; stroke-opacity: 0.8; stroke-width: 1.5; }
+          .dot { fill: #b9ad6e; stroke: #ffffff; stroke-width: 2; }
+          .tick { stroke: #b9ad6e; stroke-opacity: 0.8; stroke-width: 1.5; }
           .tag { fill: #ffffff; font-size: 12.5px; font-weight: 800; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .tag.sub { fill: #e8f8ff; font-size: 10.5px; font-weight: 400; }
+          .tag.sub { fill: #eff3f8; font-size: 10.5px; font-weight: 400; }
         </style>
       </svg>
-      <figcaption>「近代」と「現代」を分ける決定版の一本線は存在せず、 1914 年・ 1945 年・ 1973 年・ 1989 〜 91 年など、視点によって複数の候補年が挙げられる - この記事はこの候補群を一つずつたどる。</figcaption>
     </figure>
   </div>
-  <div class="wave">
-    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#fdf9ec" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,90 L0,90 Z"/></svg>
-  </div>
 </header>
+<div class="page-head">
+  <span class="eyebrow">近現代史</span>
+  <h1>「近代」と「現代」の境界は<br>どこに引かれるのか</h1>
+  <p class="sub">世界史と日本史を一本の年表に重ね合わせて読む</p>
+  <div class="meta">
+    <span>全 17 章</span>
+    <span>約 39 分</span>
+  </div>
+
+  
+</div>
+
 
 <div class="wrap">
   <div class="caveat"><p>時代区分は、出来事そのものではなく、何を重視するかによって異なる歴史叙述上の道具である。本記事の年表は比較のための骨組みであり、同時期に起きた出来事が因果関係にあること、また一つの地域の変化を世界全体に一般化することを意味しない。</p></div>
