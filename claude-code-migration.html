@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Code 環境移植ガイド（Windows 11 ⇔ Mac)</title>
+<title>Claude Code 環境移植ガイド（Windows 11 ⇔ Mac）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -514,7 +514,7 @@
         </tr>
         <tr>
           <td class="path">~/.claude/agents/</td>
-          <td>カスタムサブエージェント定義（YAML frontmatter 付き Markdown)</td>
+          <td>カスタムサブエージェント定義（YAML frontmatter 付き Markdown）</td>
           <td>ディレクトリごとコピー</td>
         </tr>
         <tr>
@@ -561,7 +561,7 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
     <div class="card">
-      <h4><span class="num">1</span> ログインセッション（OAuth)</h4>
+      <h4><span class="num">1</span> ログインセッション（OAuth）</h4>
       <p>ログイン状態は <code>~/.claude.json</code> に保存されているが、トークンを直接コピーするのは推奨されない（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code>（またはコンソール上の OAuth フロー）で再ログインするのが確実である。</p>
     </div>
     <div class="card">
@@ -599,7 +599,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="path">CLAUDE.md<br><span style="color:var(--sub);font-weight:400;">（または .claude/CLAUDE.md)</span></td>
+          <td class="path">CLAUDE.md<br><span style="color:var(--sub);font-weight:400;">（または .claude/CLAUDE.md）</span></td>
           <td>プロジェクト固有の指示。チーム共有</td>
           <td>する（コミット対象）</td>
         </tr>
@@ -633,7 +633,7 @@
 
     <div class="callout tip">
       <strong>実質的にやること</strong>
-      Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現される。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong>(<code>settings.local.json</code> 、 <code>CLAUDE.local.md</code>）で、これらは手動でコピーしない限り引き継がれない。
+      Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現される。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong>（<code>settings.local.json</code> 、 <code>CLAUDE.local.md</code>）で、これらは手動でコピーしない限り引き継がれない。
     </div>
   
     </div>
@@ -648,7 +648,7 @@
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
-    <p>MCP (Model Context Protocol）サーバーの登録先はスコープによってファイルが異なる。</p>
+    <p>MCP （Model Context Protocol）サーバーの登録先はスコープによってファイルが異なる。</p>
     <table>
       <thead>
         <tr><th>スコープ</th><th>保存場所</th><th>備考</th></tr>
@@ -726,7 +726,7 @@
     <div class="acc-panel-inner">
     <ul class="checklist">
       <li><input type="checkbox"> Windows/Mac 双方に Node.js と <code>npm install -g @anthropic-ai/claude-code</code> で Claude Code 本体を用意する</li>
-      <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（<span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>)</li>
+      <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（<span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>）</li>
       <li><input type="checkbox"> <code>~/.claude/settings.json</code> をコピーし、中身のパス・環境変数が OS 依存でないか確認</li>
       <li><input type="checkbox"> <code>~/.claude/commands/</code> 、 <code>~/.claude/agents/</code> 、 <code>~/.claude/output-styles/</code> をまとめてコピー</li>
       <li><input type="checkbox"> 新 PC で <code>claude login</code> を実行し再ログイン（トークンの直接コピーはしない）</li>

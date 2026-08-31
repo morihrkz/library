@@ -655,7 +655,7 @@
 
   <rect x="20" y="15" width="190" height="175" rx="24" class="d3node"/>
   <text x="115" y="98" class="d3label">ブラウザ</text>
-  <text x="115" y="118" class="d3sub">(PC やスマホ）</text>
+  <text x="115" y="118" class="d3sub">（PC やスマホ）</text>
 
   <rect x="470" y="15" width="210" height="75" rx="12" class="d3node"/>
   <text x="575" y="48" class="d3label">DNS サーバー</text>
@@ -838,14 +838,14 @@ dig +short TXT pyx.co.jp</code></pre>
   <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
   <tr><td>NS</td><td>pyx.co.jp</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td></tr>
   <tr><td>A</td><td>pyx.co.jp</td><td>（旧サーバーの IP アドレス）</td></tr>
-  <tr><td>A</td><td>www.pyx.co.jp</td><td>(apex と同一）</td></tr>
+  <tr><td>A</td><td>www.pyx.co.jp</td><td>（apex と同一）</td></tr>
   <tr><td>MX</td><td>pyx.co.jp</td><td>0 pyx.co.jp</td></tr>
   <tr><td>TXT</td><td>pyx.co.jp</td><td>SPF レコード（メール送信元の指定）</td></tr>
 </table>
 
 <p>この控えは、単なる念のためのメモではなかった。後で DNS レコードが引き継がれなかったときに、何が失われたのかを特定するための照合資料になった。</p>
 
-<p>MX と TXT (SPF）の 2 件は、「全レコードを漏れなく控える」という保全要件を満たすために機械的に記録したものである。 <code>pyx.co.jp</code> のメールアドレスは使用したことがなく、今後も使う予定がなかったため、メール関連の移行・保全そのものは検討対象から外した。</p>
+<p>MX と TXT （SPF）の 2 件は、「全レコードを漏れなく控える」という保全要件を満たすために機械的に記録したものである。 <code>pyx.co.jp</code> のメールアドレスは使用したことがなく、今後も使う予定がなかったため、メール関連の移行・保全そのものは検討対象から外した。</p>
 <p>あわせて、 XServer アカウント（ドメイン契約管理ページ）にログインし、 DNS レコード設定画面をスクリーンショットで保存した。 <code>dig</code> の結果は管理画面上の表示と完全には一致しない場合があるため、両方を控えておくのが安全である。控えは Git リポジトリとは別の、ローカルの控え用フォルダに保存した。<br>この控えは、後の工程で実際に役に立った。ただし戻すためではなく、戻さなくてよいと判断するために使った。詳しくは次項に記す。</p>
 
 <h3>3-2. 工程 2 ：ネームサーバーを Xserver Domain へ切り替える</h3>
@@ -904,7 +904,7 @@ dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre>
 <table>
   <tr><th>調べ方</th><th>分かること</th><th>キャッシュの影響</th></tr>
   <tr><td>権威サーバーへ直接<br><code>dig @ns1.xdomain.ne.jp …</code></td><td>設定の実態。ゾーンに何が書かれているか</td><td>受けない。変更した直後から確認できる</td></tr>
-  <tr><td>通常の調べ方<br><code>dig …</code>(@ なし）</td><td>世間から見えている状態。浸透が完了したか</td><td>受ける。変更直後は旧情報と新情報が混在する</td></tr>
+  <tr><td>通常の調べ方<br><code>dig …</code>（@ なし）</td><td>世間から見えている状態。浸透が完了したか</td><td>受ける。変更直後は旧情報と新情報が混在する</td></tr>
 </table>
 
 <div class="verdict">設定を確かめたいときは、待つのではなく、聞く相手を変える。</div>
@@ -915,7 +915,7 @@ dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre>
 <p>作業は AI に指示を出しながら進めた。新規リポジトリ <code>pyx-site</code> を作成し、準備中であることを示す一枚物のページを、プレビュー URL で確認できる状態にするまでが、この工程の範囲である。</p>
 <table>
   <tr><th>項目</th><th>内容</th></tr>
-  <tr><td>構成</td><td>依存パッケージなしの単一 <code>index.html</code>(CSS/JavaScript を内包）。ビルド工程は無し</td></tr>
+  <tr><td>構成</td><td>依存パッケージなしの単一 <code>index.html</code>（CSS/JavaScript を内包）。ビルド工程は無し</td></tr>
   <tr><td>表示内容</td><td><code>PYX.CO.JP</code> と Something new is taking flight. の一言。都会の空を表現したビジュアルの中を、矢印キーまたはマウスポインタで操作できるドローンが飛ぶ、インタラクティブな演出</td></tr>
   <tr><td>対応端末</td><td>PC でのキーボード・マウス操作を前提とし、スマートフォン幅での表示も別途確認</td></tr>
 </table>
@@ -963,11 +963,11 @@ dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre>
 
 <table>
   <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
-  <tr><td>A</td><td>@(pyx.co.jp 自体）</td><td>185.199.108.153</td></tr>
+  <tr><td>A</td><td>@（pyx.co.jp 自体）</td><td>185.199.108.153</td></tr>
   <tr><td>A</td><td>@</td><td>185.199.109.153</td></tr>
   <tr><td>A</td><td>@</td><td>185.199.110.153</td></tr>
   <tr><td>A</td><td>@</td><td>185.199.111.153</td></tr>
-  <tr><td>CNAME</td><td>www</td><td>(GitHub のユーザー名） .github.io</td></tr>
+  <tr><td>CNAME</td><td>www</td><td>（GitHub のユーザー名） .github.io</td></tr>
 </table>
 
 <p>GitHub Pages 向けの A レコード 4 件は、 GitHub の公式ドキュメントに記載されている固定値である。 <code>www.pyx.co.jp</code> でアクセスした場合も <code>pyx.co.jp</code> へ転送されるよう、あわせて CNAME レコードも設定した（この CNAME の値にはリポジトリ名を含めない）。</p>
@@ -1008,7 +1008,7 @@ curl -I https://pyx.co.jp</code></pre>
   <tr><td>ネームサーバーの Xserver Domain への切替</td><td><span class="pill done">済み</span></td></tr>
   <tr><td>旧 WordPress 環境の削除</td><td><span class="pill done">済み</span></td></tr>
   <tr><td>GitHub Pages への DNS 切替・ HTTPS 化</td><td><span class="pill done">済み</span></td></tr>
-  <tr><td>ドメイン更新料の反映確認（whois)</td><td><span class="pill pending">要確認</span></td></tr>
+  <tr><td>ドメイン更新料の反映確認（whois）</td><td><span class="pill pending">要確認</span></td></tr>
 </table>
 
 <p>最後の一点だけ、この記事の執筆時点ではまだ確認できていない。<br>ドメインの登録有効期限は、支払いが済んでいても、レジストリへ実際に反映されるまでは古い期限のまま表示されることがある。更新料は既に支払い済みだが、<strong>更新の反映が正しく行われたかどうかは、期限が明けたあとに、あらためて自分で確認するつもりである。<br>
@@ -1040,12 +1040,12 @@ curl -I https://pyx.co.jp</code></pre>
 <h3>4-1. 「待つ」より先に、「誰に聞くか」を考える</h3>
 
 <ul>
-  <li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる（2-2)</li>
-  <li>DNS に触る前に、現在の設定を全件控える。使わないと分かっていても、「何を失うかを知る」ためだけに価値がある（3-1)</li>
-  <li>ネームサーバーを切り替えても、既存のレコードが引き継がれるとは限らない。画面に行が見えることと、設定が引き継がれていることは別（3-2)</li>
-  <li>設定を確かめたいときは、待つのではなく、聞く相手を変える。権威サーバーに直接聞けば、変更した直後から答えが分かる（3-2)</li>
-  <li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3 / 3-4)</li>
-  <li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5)</li>
+  <li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる（2-2）</li>
+  <li>DNS に触る前に、現在の設定を全件控える。使わないと分かっていても、「何を失うかを知る」ためだけに価値がある（3-1）</li>
+  <li>ネームサーバーを切り替えても、既存のレコードが引き継がれるとは限らない。画面に行が見えることと、設定が引き継がれていることは別（3-2）</li>
+  <li>設定を確かめたいときは、待つのではなく、聞く相手を変える。権威サーバーに直接聞けば、変更した直後から答えが分かる（3-2）</li>
+  <li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3 / 3-4）</li>
+  <li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5）</li>
 </ul>
 
 <h3>4-2. 移行で得たものは、費用よりも単純さだった</h3>
