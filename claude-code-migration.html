@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Code 環境移植ガイド（ Windows 11 ⇔ Mac)</title>
+<title>Claude Code 環境移植ガイド（Windows 11 ⇔ Mac)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -470,7 +470,7 @@
 <div class="wrap">
 
   <div class="note-intro">
-    Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（ Node.js 等）」の 5 系統に分かれている。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎない。以下、優先度の高い順に並べている。
+    Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（Node.js 等）」の 5 系統に分かれている。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎない。以下、優先度の高い順に並べている。
   </div>
 
   <div class="toolbar-container">
@@ -485,7 +485,7 @@
   <section class="acc-item" id="sec1" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">1</span>
-    <span class="title">ユーザーレベル設定（ <code>~/.claude/</code> 配下）</span>
+    <span class="title">ユーザーレベル設定（<code>~/.claude/</code> 配下）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -509,12 +509,12 @@
         </tr>
         <tr>
           <td class="path">~/.claude/commands/</td>
-          <td>カスタムスラッシュコマンド（ <code>.md</code> ファイル群）</td>
+          <td>カスタムスラッシュコマンド（<code>.md</code> ファイル群）</td>
           <td>ディレクトリごとコピー</td>
         </tr>
         <tr>
           <td class="path">~/.claude/agents/</td>
-          <td>カスタムサブエージェント定義（ YAML frontmatter 付き Markdown)</td>
+          <td>カスタムサブエージェント定義（YAML frontmatter 付き Markdown)</td>
           <td>ディレクトリごとコピー</td>
         </tr>
         <tr>
@@ -544,7 +544,7 @@
     </div>
 
     <div class="callout tip">
-      <strong>コピー方法の一例（ <code>.claude</code> フォルダごと）</strong>
+      <strong>コピー方法の一例（<code>.claude</code> フォルダごと）</strong>
       Windows 側の <code>%USERPROFILE%\.claude</code> フォルダを ZIP 化 → Mac 側で解凍し <code>~/.claude</code> に配置、で個別ファイルを気にせず一括移植できる。 <code>settings.json</code> 内のパスが OS 依存の値（後述の環境変数など）を含む場合は、コピー後に中身を確認する必要がある。
     </div>
   
@@ -561,12 +561,12 @@
   <div class="acc-panel">
     <div class="acc-panel-inner">
     <div class="card">
-      <h4><span class="num">1</span> ログインセッション（ OAuth)</h4>
-      <p>ログイン状態は <code>~/.claude.json</code> に保存されているが、トークンを直接コピーするのは推奨されない（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code> （またはコンソール上の OAuth フロー）で再ログインするのが確実である。</p>
+      <h4><span class="num">1</span> ログインセッション（OAuth)</h4>
+      <p>ログイン状態は <code>~/.claude.json</code> に保存されているが、トークンを直接コピーするのは推奨されない（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code>（またはコンソール上の OAuth フロー）で再ログインするのが確実である。</p>
     </div>
     <div class="card">
       <h4><span class="num">2</span>API 課金運用の場合</h4>
-      <p>API 直接課金で使っている場合は <code>ANTHROPIC_API_KEY</code> 環境変数、または <code>settings.json</code> の <code>env</code> ブロックや <code>apiKeyHelper</code> （外部スクリプトでキーを都度取得する仕組み）を移植する。</p>
+      <p>API 直接課金で使っている場合は <code>ANTHROPIC_API_KEY</code> 環境変数、または <code>settings.json</code> の <code>env</code> ブロックや <code>apiKeyHelper</code>（外部スクリプトでキーを都度取得する仕組み）を移植する。</p>
       <pre><code>// settings.json の env ブロック例
 {
   "env": {
@@ -575,7 +575,7 @@
 }</code></pre>
       <div class="callout warn">
         <strong>⚠️ API キーそのものをファイルに書いて渡すのは避ける</strong>
-        API キーは OS の環境変数やシークレット管理（ Windows なら「システム環境変数」、 Mac ならシェルの <code>~/.zshrc</code> 等）に個別設定し、設定ファイルには直接書き込まない運用が安全である。
+        API キーは OS の環境変数やシークレット管理（Windows なら「システム環境変数」、 Mac ならシェルの <code>~/.zshrc</code> 等）に個別設定し、設定ファイルには直接書き込まない運用が安全である。
       </div>
     </div>
   
@@ -611,7 +611,7 @@
         <tr>
           <td class="path">.claude/settings.local.json</td>
           <td>個人限定の上書き設定（実験用など）</td>
-          <td>しない（ gitignore 対象） - <strong>手動で移植が必要</strong></td>
+          <td>しない（gitignore 対象） - <strong>手動で移植が必要</strong></td>
         </tr>
         <tr>
           <td class="path">.claude/agents/</td>
@@ -633,7 +633,7 @@
 
     <div class="callout tip">
       <strong>実質的にやること</strong>
-      Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現される。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong> (<code>settings.local.json</code> 、 <code>CLAUDE.local.md</code> ）で、これらは手動でコピーしない限り引き継がれない。
+      Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現される。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong>(<code>settings.local.json</code> 、 <code>CLAUDE.local.md</code>）で、これらは手動でコピーしない限り引き継がれない。
     </div>
   
     </div>
@@ -648,7 +648,7 @@
   </button>
   <div class="acc-panel">
     <div class="acc-panel-inner">
-    <p>MCP (Model Context Protocol ）サーバーの登録先はスコープによってファイルが異なる。</p>
+    <p>MCP (Model Context Protocol）サーバーの登録先はスコープによってファイルが異なる。</p>
     <table>
       <thead>
         <tr><th>スコープ</th><th>保存場所</th><th>備考</th></tr>
@@ -690,7 +690,7 @@
     <div class="acc-panel-inner">
     <div class="callout warn">
       <strong>⚠️ Auto Memory はマシンローカルで、原則「移植されない」</strong>
-      Claude Code にはユーザーが書く <code>CLAUDE.md</code> とは別に、 Claude が会話中に自動で学習内容を書き留める「 Auto Memory 」機能がある（デフォルト ON ）。保存先は <strong>リポジトリごと・マシンごと</strong> に分かれており、 <code>~/.claude/projects/&lt;プロジェクト名&gt;/memory/</code> に置かれる。この機能はプロジェクトに紐づいたローカルの学習内容であり、他の PC へは自動的に引き継がれない。重要な決定事項が書かれていた場合は、内容を確認してプロジェクトの <code>CLAUDE.md</code> など永続的なファイルへ手動で書き写すことが推奨される。
+      Claude Code にはユーザーが書く <code>CLAUDE.md</code> とは別に、 Claude が会話中に自動で学習内容を書き留める「 Auto Memory 」機能がある（デフォルト ON）。保存先は <strong>リポジトリごと・マシンごと</strong> に分かれており、 <code>~/.claude/projects/&lt;プロジェクト名&gt;/memory/</code> に置かれる。この機能はプロジェクトに紐づいたローカルの学習内容であり、他の PC へは自動的に引き継がれない。重要な決定事項が書かれていた場合は、内容を確認してプロジェクトの <code>CLAUDE.md</code> など永続的なファイルへ手動で書き写すことが推奨される。
     </div>
     <p>セッション中に <code>/memory</code> コマンドを実行すると、現在読み込まれている <code>CLAUDE.md</code> ・ <code>CLAUDE.local.md</code> ・ Auto Memory の場所を一覧表示できるので、移植前に新旧環境で見比べると確実である。</p>
   
@@ -701,7 +701,7 @@
   <section class="acc-item" id="sec6" data-acc>
   <button class="acc-header" data-acc-toggle>
     <span class="num">6</span>
-    <span class="title">前提環境（ Node.js / Claude Code 本体）</span>
+    <span class="title">前提環境（Node.js / Claude Code 本体）</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
   </button>
   <div class="acc-panel">
@@ -709,7 +709,7 @@
     <ul class="bullets">
       <li>Claude Code 自体は npm 経由でグローバルインストールするツールのため、新 PC では <code>npm install -g @anthropic-ai/claude-code</code> を実行し直す</li>
       <li>Node.js のバージョンが前提要件を満たしているか確認（新 PC で未インストールなら Node.js 自体のセットアップも必要）</li>
-      <li>シェル補完（ bash/zsh/PowerShell ）を設定していた場合は、それぞれの環境向けに再設定</li>
+      <li>シェル補完（bash/zsh/PowerShell）を設定していた場合は、それぞれの環境向けに再設定</li>
     </ul>
   
     </div>
@@ -726,7 +726,7 @@
     <div class="acc-panel-inner">
     <ul class="checklist">
       <li><input type="checkbox"> Windows/Mac 双方に Node.js と <code>npm install -g @anthropic-ai/claude-code</code> で Claude Code 本体を用意する</li>
-      <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（ <span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>)</li>
+      <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（<span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>)</li>
       <li><input type="checkbox"> <code>~/.claude/settings.json</code> をコピーし、中身のパス・環境変数が OS 依存でないか確認</li>
       <li><input type="checkbox"> <code>~/.claude/commands/</code> 、 <code>~/.claude/agents/</code> 、 <code>~/.claude/output-styles/</code> をまとめてコピー</li>
       <li><input type="checkbox"> 新 PC で <code>claude login</code> を実行し再ログイン（トークンの直接コピーはしない）</li>
@@ -745,13 +745,13 @@
 
   <div class="callout tip">
     <strong>検証コマンド</strong>
-    移植後は <code>/status</code> （読み込まれた設定ソースの一覧）や <code>claude doctor</code> （設定の妥当性チェック）を実行すると、意図した設定ファイルが実際に読み込まれているか確認できる。
+    移植後は <code>/status</code>（読み込まれた設定ソースの一覧）や <code>claude doctor</code>（設定の妥当性チェック）を実行すると、意図した設定ファイルが実際に読み込まれているか確認できる。
   </div>
 
 </div>
 
 <footer>
-  出典： Claude Code 公式ドキュメント（ code.claude.com/docs ）を基に作成 ｜ 作成日： 2026 年 8 月 11 日
+  出典： Claude Code 公式ドキュメント（code.claude.com/docs）を基に作成 ｜ 作成日： 2026 年 8 月 11 日
 </footer>
 
 <script>
