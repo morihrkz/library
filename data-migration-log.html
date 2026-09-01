@@ -229,9 +229,7 @@
 <div class="container">
 
 
- <p class="doc-meta">旧環境: WordPress / XServer、新環境: GitHub Pages、DNS: Xserver Domain、独自ドメイン: pyx.co.jp。二年間更新していなかった自社ウェブサイトを、レンタルサーバーから GitHub Pages へ移した記録。全 5 章、約 25 分。</p>
-
- <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます(「すべて展開」時を除く)。</p>
+ <p class="doc-meta">二年間更新していなかった自社ウェブサイトを、レンタルサーバーから GitHub Pages へ移した記録。約 25 分。</p>
 
  <div class="accordion">
 
@@ -248,7 +246,9 @@
 <div class="value"><code>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp</code></div>
 <div class="small">Xserver Domain 側の DNS</div>
 </div>
-</div><p class="pp">以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものである。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記す。</p><p class="note-p">注 : 旧サーバーの各種識別情報は、記事の趣旨に必要ないため伏せてある。</p></div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. なぜサーバーを移すことにしたのか</button><div class="ch-body"><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-1. 二年間、放置されていたサイト</button><div class="sec-body"><p class="pp"><code>pyx.co.jp</code> は筆者の会社のサイトで、 WordPress を動かし、その環境で作ったものだった。<br/>ところが二年間、記事の更新も、プラグインの更新なども、手を付けていない状態が続いていた。動いてはいるが、誰も世話をしていないサイトである。<br/>そこに、レンタルサーバーの契約期限という具体的な締切がやってきた。残り三週間しかない。契約は自動更新が設定されておらず、支払いを行わなければ、期限日にアカウントが自然に凍結される見込みだった。<br/>この期限をきっかけに、「同じ構成のまま契約を更新するか」を考えることになった。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-2. 動的サイトと静的サイト</button><div class="sec-body"><p class="pp">WordPress の様な CMS （コンテンツ管理システム）で作られたサイトは、アクセスが来るたびにサーバー内のプログラム（PHP など）が動き、データベースから記事の内容を取り出して、その場で HTML を組み立てて返す。これを<strong>動的サイト</strong>と呼ぶ。<br/>一方の<strong>静的サイト</strong>は、あらかじめ完成させておいた HTML / CSS / 画像などのファイルを置いておくだけの仕組みである。アクセスが来ても、サーバーは「今から組み立てる」のではなく「もう完成しているファイルをそのまま渡す」だけである。</p><div class="diagram-box">
+</div><p class="pp">以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものである。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記す。</p>
+<p class="note-p">本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録である。<br/>移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> などは実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてある。<br/>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合がある。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してほしい。</p></div></div></div>
+<div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. なぜサーバーを移すことにしたのか</button><div class="ch-body"><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-1. 二年間、放置されていたサイト</button><div class="sec-body"><p class="pp"><code>pyx.co.jp</code> は筆者の会社のサイトで、 WordPress を動かし、その環境で作ったものだった。<br/>ところが二年間、記事の更新も、プラグインの更新なども、手を付けていない状態が続いていた。動いてはいるが、誰も世話をしていないサイトである。<br/>そこに、レンタルサーバーの契約期限という具体的な締切がやってきた。残り三週間しかない。契約は自動更新が設定されておらず、支払いを行わなければ、期限日にアカウントが自然に凍結される見込みだった。<br/>この期限をきっかけに、「同じ構成のまま契約を更新するか」を考えることになった。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-2. 動的サイトと静的サイト</button><div class="sec-body"><p class="pp">WordPress の様な CMS （コンテンツ管理システム）で作られたサイトは、アクセスが来るたびにサーバー内のプログラム（PHP など）が動き、データベースから記事の内容を取り出して、その場で HTML を組み立てて返す。これを<strong>動的サイト</strong>と呼ぶ。<br/>一方の<strong>静的サイト</strong>は、あらかじめ完成させておいた HTML / CSS / 画像などのファイルを置いておくだけの仕組みである。アクセスが来ても、サーバーは「今から組み立てる」のではなく「もう完成しているファイルをそのまま渡す」だけである。</p><div class="diagram-box">
 <svg viewbox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <marker id="arrow-d2d3" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3">
@@ -519,7 +519,7 @@ curl -I https://pyx.co.jp</code></pre><p class="pp">権威サーバー側の答�
 <li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5）</li>
 </ul></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">4-2. 移行で得たものは、費用よりも単純さだった</button><div class="sec-body"><p class="pp">費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになった。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果である。</p><p class="pp">ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要である。静的サイトはページを配信する部分の攻撃対象を大幅に減らすが、「公開する権限を持つアカウントを守る」という仕事は残る。<br/>
 ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事である。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">4-3. 移行後に残ったもの、消えたもの</button><div class="sec-body"><p class="pp">移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさである。 WordPress の管理画面・ PHP ・データベース・プラグイン更新・サーバー側の保守という一式を抱える必要がなくなり、サイトを更新するときは、基本的に HTML ファイルを更新したら Git 操作で commit ～ push するだけで済む様になった。<br/>
-もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残る。それでも、格段にシンプルな流れになったことは確かである。</p><p class="pp"><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けた。今回の移行は、その状態に区切りをつける作業でもあった。</p><p class="pp">結局、移したのはサイトというより、サイトを支える仕組みだった。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用である。</p></div></div><p class="note-p">本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録である。<br/>移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> などは実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてある。<br/>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合がある。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してほしい。</p></div></div>
+もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残る。それでも、格段にシンプルな流れになったことは確かである。</p><p class="pp"><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けた。今回の移行は、その状態に区切りをつける作業でもあった。</p><p class="pp">結局、移したのはサイトというより、サイトを支える仕組みだった。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用である。</p></div></div></div></div>
  </div>
 
 </div>
