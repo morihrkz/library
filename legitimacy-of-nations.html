@@ -4,908 +4,780 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
-  :root {
-    --bg:#F5F3EC;
-    --paper:#fff;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --muted:#72786B;
-    --accent:#25364A;
-    --line:#C8CEC0;
-    --table-head: #f1e2e1;
-    --note-bg:#EEF2E4;
-    --hero-1:#25364A;
-    --hero-2:#25364A;
-    --hero-ink:#F5F3EC;
-    --hero-dim:#C8CEC0;
-    --column-header-bg: linear-gradient(180deg, #f1e0df 0%, #fbf5f5 100%);
-    --column-header-open-bg: #eedad9;
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
+  :root{
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
   }
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: 76px; }
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.95;
-    color: var(--ink);
-    background: var(--bg);
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
   }
-  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-  header.hero {
-    background:var(--hero-1);
-    color: var(--hero-ink);
-    padding: 3.6rem 0 2.8rem;
-    margin-bottom: 2.8rem;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
-  header.hero .wrap { max-width: 960px; margin: 0 auto; }
-  header.hero .eyebrow {
-    display: block;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.24em;
-    color: var(--hero-dim);
-    margin-bottom: 0.9rem;
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
   }
-  header.hero h1 {
-    font-size: clamp(1.5rem, 3.6vw, 2rem);
-    line-height: 1.6;
-    margin: 0 0 0.8rem;
-    font-weight: 700;
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
   }
-  header.hero p.sub {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    margin: 0;
-    color: var(--hero-dim);
-    line-height: 1.85;
-    font-size: 0.98rem;
-    text-indent: 0;
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
   }
-  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
-    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure { max-width: 960px; margin: 2.2rem 0 0; overflow-x: auto; }
-  .hero-figure svg { display: block; width: 100%; height: auto; }
-  .hero-figure figcaption {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    margin-top: 0.9rem;
-    font-size: 0.85rem;
-    color: var(--hero-dim);
-    line-height: 1.75;
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
   }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  main.wrap { padding-bottom: 4rem; }
-  h1 {
-    font-size: 1.9rem;
-    line-height: 1.5;
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-  h2 {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 1.28rem;
-    line-height: 1.6;
-    margin-top: 3.2rem;
-    padding-top: 1.4rem;
-    border-top: 1px solid var(--line);
-    scroll-margin-top: 1rem;
-  }
-  h3 {
-    font-size: 1.1rem;
-    margin-top: 2rem;
-    color: var(--accent);
-  }
-  p { margin: 1.1em 0; text-indent: 1em; }
-  p.lead { text-indent: 0; }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1.6em 0;
-    font-size: 0.95rem;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-  }
-  caption {
-    caption-side: top;
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 0.6em;
-    color: var(--accent);
-  }
-  th, td {
-    border: 1px solid var(--line);
-    padding: 0.7em 0.9em;
-    text-align: left;
-    vertical-align: top;
-  }
-  th { background: var(--table-head); }
-  .note {
-    background: var(--note-bg);
-    border-left: 3px solid var(--accent);
-    padding: 0.9em 1.2em;
-    margin: 1.6em 0;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.95rem;
-    color: var(--sub);
-  }
-  .cite { font-size: 0.85em; color: var(--muted); }
-  ol.refs {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.86rem;
-    color: var(--muted);
-    line-height: 1.9;
-  }
-  ol.refs li { margin-bottom: 0.6em; }
-  a { color: var(--accent); }
-  hr { border: none; border-top: 1px solid var(--line); margin: 3rem 0; }
-  .lead {
-    font-size: 1.14rem;
-    color: var(--sub);
-  }
-  @media (max-width: 640px) {
-    table { font-size: 0.82rem; }
-    th, td { padding: 0.5em 0.6em; }
-    .hero-figure svg { min-width: 560px; }
-  }
-
-  .toolbar-container {
-    position: sticky; top: 8px; z-index: 100;
-    background: var(--bg);
-    background: color-mix(in srgb, var(--bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 9px 0;
-    border-radius: 999px;
-    margin: 0 0 2.4rem;
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
-  }
-  .toolbar-container .toolbar { margin: 0; }
-  .toolbar {
-    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
-    margin: 0 0 2.4rem;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-  }
-  .toolbar button {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
-    color: var(--accent); background: var(--paper);
-    border: 1.5px solid var(--accent); border-radius: 999px;
-    padding: 8px 20px; cursor: pointer; transition: all .2s ease;
-  }
-  .toolbar button:hover { background: var(--accent); color: #fff; }
-  #accordion { margin-bottom: 2.6rem; }
-  .acc-item {
-    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
-    margin-bottom: 16px; overflow: hidden; overflow-anchor: none;
-  }
-  .acc-item:last-child { margin-bottom: 0; }
-  .acc-header {
-    width: 100%; display: flex; align-items: center; gap: 14px;
-    background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color: var(--ink); -webkit-tap-highlight-color: transparent;
-  }
-  .acc-header .num {
-    flex: 0 0 auto; color: var(--accent); font-size: 0.82rem; font-weight: 700;
-    background: var(--note-bg); padding: 4px 11px; border-radius: 999px; white-space: nowrap;
-  }
-  .acc-header .title { flex: 1 1 auto; font-size: 1.15rem; font-weight: 700; line-height: 1.5; }
-  .acc-header .chev {
-    flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent);
-    transition: transform .3s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
-  .acc-item.open > .acc-header { background: var(--note-bg); border-bottom: 1px solid var(--line); }
-  .acc-panel {
-    display: grid; grid-template-rows: 0fr;
-    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
-  }
-  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
-  .acc-panel-inner {
-    overflow: hidden; min-height: 0; padding: 0 22px; opacity: 0;
-    transition: opacity .3s ease .08s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
-  .acc-panel-inner h2 { margin-top: 0; border-top: none; padding-top: 0; }
-
-  /* コーヒーブレイク的なコラム用のカード */
-  .acc-item.column {
-    background: var(--paper);
-    border-color: #c9a8a6;
-    border-left: 4px solid var(--accent);
-  }
-  .acc-item.column .acc-header { background: var(--column-header-bg); }
-  .acc-item.column .acc-header .num {
-    background: var(--accent); color: #fff; letter-spacing: 0.06em;
-  }
-  .acc-item.column.open > .acc-header { background: var(--column-header-open-bg); border-bottom-color: #c9a8a6; }
-  .acc-item.column .acc-panel-inner { background: var(--paper); }
-  .acc-item.column .acc-header .title { font-size: 1.08rem; }
-  .column-kicker {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.8rem; letter-spacing: 0.18em; color: var(--muted);
-    text-indent: 0; margin: 0 0 0.4rem;
-  }
-  .acc-item.column table { background: var(--paper); }
-  @media (max-width: 600px) {
-    .acc-header { padding: 15px 16px; gap: 10px; }
-    .acc-header .title { font-size: 1rem; }
-    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
 </style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
 <style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
+.lead{ font-size:1.05em; color:var(--label); text-indent:0; }
+  .column-kicker{ font-size:.8em; letter-spacing:.16em; color:var(--muted); text-indent:0; margin:0 0 .5em; }
+  .cite{ font-size:.85em; color:var(--muted); }
+  ol.refs{ font-size:.92em; color:var(--muted); line-height:1.9; padding-left:1.4em; }
+  ol.refs li{ margin-bottom:.6em; }
+  table caption{ caption-side:top; text-align:left; font-weight:bold; margin-bottom:.5em; color:var(--accent); }
+  .chapter.column{ border-left:4px solid var(--accent); }
+  .chapter.column > .ch-head{ background:var(--accent-light); }
+  .chapter.column.open > .ch-head, .chapter.column > .ch-head[aria-expanded="true"]{ background:var(--accent-light); }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 230" role="img" aria-labelledby="lnTitle lnDesc">
-        <title id="lnTitle">対外的敵意動員の程度による五か国・体制の位置づけ</title>
-        <desc id="lnDesc">横軸を対外的敵意動員の程度（低から高）とし、シンガポールとベトナムを低い側に、中国を中間、ロシアと北朝鮮を高い側に配置する。民主主義国一般は、この軸上を局面によって移動する範囲として点線で示す。</desc>
-
-        <text x="360" y="26" class="axisTitle">対外的敵意動員の程度</text>
-        <line x1="60" y1="130" x2="660" y2="130" stroke="#cbaaa8" stroke-opacity="0.6" stroke-width="2"/>
-        <path d="M654 124 l10 6 l-10 -6" fill="none" stroke="#cbaaa8" stroke-opacity="0.8" stroke-width="2"/>
-        <text x="60" y="156" class="pole">低</text>
-        <text x="660" y="156" class="pole end">高</text>
-
-        <path d="M250 78 H560" stroke="#cbaaa8" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
-        <path d="M250 78 v10 M560 78 v10" stroke="#cbaaa8" stroke-width="1.5"/>
-        <text x="405" y="66" class="demo">民主主義国（一般）─ 局面依存で移動</text>
-
-        <g>
-          <circle cx="95" cy="130" r="7" fill="#93ae7f"/>
-          <text x="95" y="112" class="country">シンガポール</text>
-
-          <circle cx="230" cy="130" r="7" fill="#93ae7f"/>
-          <text x="230" y="112" class="country">ベトナム</text>
-
-          <circle cx="380" cy="130" r="7" fill="#c27571"/>
-          <text x="380" y="112" class="country">中国（局面依存）</text>
-
-          <circle cx="520" cy="130" r="7" fill="#b85f5a"/>
-          <text x="520" y="112" class="country">ロシア</text>
-
-          <circle cx="630" cy="130" r="7" fill="#b85f5a"/>
-          <text x="630" y="112" class="country">北朝鮮</text>
-        </g>
-
-        <text x="95" y="178" class="src" text-anchor="middle">業績正統性が主</text>
-        <text x="380" y="178" class="src" text-anchor="middle">業績＋歴史＋イデオロギー</text>
-        <text x="575" y="178" class="src" text-anchor="middle">歴史的正統性が主</text>
-
-        <style>
-          .axisTitle { fill: #f3e3e2; font-size: 13px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .pole { fill: #cbaaa8; font-size: 12px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .pole.end { text-anchor: end; }
-          .demo { fill: #e3c4c2; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .country { fill: #f3e3e2; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .src { fill: #b79593; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">論考 / POLITICAL SCIENCE</span>
-  <h1>正統性の政治学 - 権威主義国家はなぜ歴史を書き換えるのか</h1>
-  <p class="sub">国家が支配の正しさをどこに求めるかという視点から、権威主義体制の比較と民主主義国の現在地を読み解く</p>
-  <div class="meta">
-    <span>全 8 章</span>
-    <span>約 34 分</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<main class="wrap">
+<p class="doc-meta">全 8 章、約 34 分。国家が支配の正しさをどこに求めるかという視点から、権威主義体制の比較と民主主義国の現在地を読み解く論考。</p>
 
-<div class="toolbar-container">
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
-  </div>
-</div>
 
-<div id="accordion">
+<p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます。</p>
 
-<section class="acc-item" id="sec0" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">0</span>
-    <span class="title">はじめに</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>なぜ権威主義国家は、しばしば手間と外交的コストを払ってまで歴史を書き換えようとするのか。ロシアは独ソ戦、いわゆる「大祖国戦争」の記憶を国家統合の中核的な物語として法律で保護し、その記憶に反する言説を犯罪とする法整備まで行った。中国共産党は結党百周年にあたる 2021 年、党の歩みを総括する「歴史決議」を採択し、アヘン戦争以来の「屈辱の世紀」から国家再興へと至る物語を公式化した。北朝鮮は金一族の権力継承のたびに、白頭山という特定の山にまつわる神話を再構成し、金正恩体制のもとでは「白頭の血統」という言葉が公式イデオロギーの中核に据えられるまでになった。</p>
-
-<p>一見すると、これらは単なるプロパガンダや権力者の自己満足に見えるかもしれない。しかし政治学の視点から見れば、これは驚くほど一貫した合理的行動である。<br>
-国家、とりわけ選挙という審判の仕組みを持たない権威主義体制は、暴力装置 - 軍・警察・治安機関 - だけで統治を維持することはできない。統治される側が「この政権には従うべき理由がある」と、積極的にせよ消極的にせよ受け入れて初めて、統治のコストは劇的に下がる。<br>
+<div class="accordion">
+<div class="chapter" id="sec0"><button aria-expanded="false" class="ch-head" type="button">0. はじめに</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">なぜ権威主義国家は、しばしば手間と外交的コストを払ってまで歴史を書き換えようとするのか。ロシアは独ソ戦、いわゆる「大祖国戦争」の記憶を国家統合の中核的な物語として法律で保護し、その記憶に反する言説を犯罪とする法整備まで行った。中国共産党は結党百周年にあたる 2021 年、党の歩みを総括する「歴史決議」を採択し、アヘン戦争以来の「屈辱の世紀」から国家再興へと至る物語を公式化した。北朝鮮は金一族の権力継承のたびに、白頭山という特定の山にまつわる神話を再構成し、金正恩体制のもとでは「白頭の血統」という言葉が公式イデオロギーの中核に据えられるまでになった。</p>
+<p class="pp">一見すると、これらは単なるプロパガンダや権力者の自己満足に見えるかもしれない。しかし政治学の視点から見れば、これは驚くほど一貫した合理的行動である。<br/>
+国家、とりわけ選挙という審判の仕組みを持たない権威主義体制は、暴力装置 - 軍・警察・治安機関 - だけで統治を維持することはできない。統治される側が「この政権には従うべき理由がある」と、積極的にせよ消極的にせよ受け入れて初めて、統治のコストは劇的に下がる。<br/>
 この「従うべき理由」を政治学では正統性（legitimacy）と呼ぶ。歴史の書き換えは、この正統性を調達するための、費用対効果に優れた手段のひとつなのである。</p>
-
-<p>だが、ここでもうひとつの疑問が浮かぶ。同じ一党支配体制でありながら、ベトナムやシンガポールは、ロシア・中国・北朝鮮ほど積極的に歴史や外部の敵を政治利用しているようには見えない。<br>
+<p class="pp">だが、ここでもうひとつの疑問が浮かぶ。同じ一党支配体制でありながら、ベトナムやシンガポールは、ロシア・中国・北朝鮮ほど積極的に歴史や外部の敵を政治利用しているようには見えない。<br/>
 単に「権威主義体制だから歴史を歪める」という図式では、この違いを説明できない。</p>
-
-<p>本稿は、「正統性の源泉」という分析軸を用いて、この謎を解きほぐすことを試みる。<br>
-そしてこの視点は、権威主義体制を分析するためだけの道具ではない。むしろ、選挙という制度によって正統性の調達過程が「見えにくくなっている」だけの民主主義国家を理解するうえでも、同じ枠組みは有効に機能する。<br>
+<p class="pp">本稿は、「正統性の源泉」という分析軸を用いて、この謎を解きほぐすことを試みる。<br/>
+そしてこの視点は、権威主義体制を分析するためだけの道具ではない。むしろ、選挙という制度によって正統性の調達過程が「見えにくくなっている」だけの民主主義国家を理解するうえでも、同じ枠組みは有効に機能する。<br/>
 以下ではまず「正統性」という概念そのものを整理したうえで、ロシア・中国・北朝鮮の歴史の政治利用を比較し、それとは対照的な道を歩むベトナムとシンガポールの事例を検討する。そのうえで最後に、この視点を私たち自身が生きる民主主義国の現在 - 政治的分極化やポピュリズムの高まり - に投げ返してみたい。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">正統性とは何か - ウェーバーから現代比較政治学へ</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>政治学における「正統性」の議論の出発点は、ドイツの社会学者マックス・ウェーバー（Max Weber 、 1864 〜 1920 年）である。ウェーバーは、死後に編纂された大著『経済と社会』や、 1919 年の講演「職業としての政治」の中で、人がなぜ権力者の命令に従うのかという問いを、「支配の正統性」という観点から三つの理念型に整理した <span class="cite">[1]</span> 。</p>
-
-<p>第一に伝統的支配。「昔からそうだったから」という慣習・伝統への信仰に基づく支配であり、世襲の王政などがその典型である。<br>
-第二にカリスマ的支配。指導者個人の非凡な資質 - 英雄性、預言者的な力、あるいは単なる強烈な個性 - への心酔に基づく支配で、革命指導者やカルト的な政治家に見られる。<br>
-第三に合法的支配。特定の人物への信仰ではなく、あらかじめ定められた法や手続きそのものへの信頼に基づく支配であり、近代官僚制国家や現代の民主主義国家の大半はこの類型に属する。<br>
+</div></div></div>
+<div class="chapter" id="sec1"><button aria-expanded="false" class="ch-head" type="button">1. 正統性とは何か - ウェーバーから現代比較政治学へ</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">政治学における「正統性」の議論の出発点は、ドイツの社会学者マックス・ウェーバー（Max Weber 、 1864 〜 1920 年）である。ウェーバーは、死後に編纂された大著『経済と社会』や、 1919 年の講演「職業としての政治」の中で、人がなぜ権力者の命令に従うのかという問いを、「支配の正統性」という観点から三つの理念型に整理した <span class="cite">[1]</span> 。</p>
+<p class="pp">第一に伝統的支配。「昔からそうだったから」という慣習・伝統への信仰に基づく支配であり、世襲の王政などがその典型である。<br/>
+第二にカリスマ的支配。指導者個人の非凡な資質 - 英雄性、預言者的な力、あるいは単なる強烈な個性 - への心酔に基づく支配で、革命指導者やカルト的な政治家に見られる。<br/>
+第三に合法的支配。特定の人物への信仰ではなく、あらかじめ定められた法や手続きそのものへの信頼に基づく支配であり、近代官僚制国家や現代の民主主義国家の大半はこの類型に属する。<br/>
 ウェーバー自身は、これらを現実の政治体制を分類するための厳密なラベルではなく、複数が混ざり合って現れる分析上の道具、いわゆる「理念型」として位置づけていた点には注意が必要である。</p>
-
-<p>ウェーバー以後の比較政治学、とりわけ権威主義体制を専門とする研究群は、この枠組みをさらに実務的な形に細分化してきた。論者によって呼称や区分の仕方には幅があるが、現代の権威主義体制研究では、政権が動員する正統性の源泉を、おおむね次の四つに整理することが多い。<br>
+<p class="pp">ウェーバー以後の比較政治学、とりわけ権威主義体制を専門とする研究群は、この枠組みをさらに実務的な形に細分化してきた。論者によって呼称や区分の仕方には幅があるが、現代の権威主義体制研究では、政権が動員する正統性の源泉を、おおむね次の四つに整理することが多い。<br/>
 本稿でもこの四分類を分析の軸として用いる。</p>
-
 <ul>
 <li><strong>業績正統性</strong>(performance legitimacy)- 経済成長や治安の安定、生活水準の向上といった「結果」によって支配を正当化する。</li>
 <li><strong>イデオロギー的正統性</strong> - 共産主義や特定の国家理念、宗教的世界観など、体制が掲げる思想への支持に基づく。</li>
 <li><strong>カリスマ的正統性</strong> - ウェーバーの用語をそのまま借りたもので、指導者個人の権威・カリスマに依拠する。</li>
 <li><strong>歴史的正統性</strong> - 体制の起源や指導者の系譜を、民族の受難や栄光の物語に結びつけることで正当性を調達する。</li>
 </ul>
-
-<p>権威主義体制の多くは、この四つの源泉を単独ではなく組み合わせて用いる。次章で見るロシア・中国・北朝鮮は、いずれも歴史的正統性を重視する点で共通するが、その動員の仕方 - どのような歴史を、どのように語るか - は驚くほど異なっている。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">歴史を武器化する国家 - ロシア・中国・北朝鮮の比較</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ロシア・中国・北朝鮮はいずれも、歴史的正統性を統治の重要な柱としている点で共通する。しかし、その手法を仔細に見ると、少なくとも三つの異なる型に分かれることが分かる。<br>
+<p class="pp">権威主義体制の多くは、この四つの源泉を単独ではなく組み合わせて用いる。次章で見るロシア・中国・北朝鮮は、いずれも歴史的正統性を重視する点で共通するが、その動員の仕方 - どのような歴史を、どのように語るか - は驚くほど異なっている。</p>
+</div></div></div>
+<div class="chapter" id="sec2"><button aria-expanded="false" class="ch-head" type="button">2. 歴史を武器化する国家 - ロシア・中国・北朝鮮の比較</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ロシア・中国・北朝鮮はいずれも、歴史的正統性を統治の重要な柱としている点で共通する。しかし、その手法を仔細に見ると、少なくとも三つの異なる型に分かれることが分かる。<br/>
 本稿ではこれを便宜的に「反論型」「選択的記憶型」「神話創造型」と呼ぶ。これは学界で確立した固有の分類名というより、以下で述べる各国の特徴を整理するために本稿が用いる分析上のラベルである。</p>
-
-<h3>ロシア - 「反論型」歴史修正</h3>
-
-<p>ロシアにおける歴史的正統性の中核は、第二次世界大戦、ロシアで言うところの「大祖国戦争」における対独戦勝の記憶である。毎年 5 月 9 日の対独戦勝記念日は、ロシアで最も重要な国民的祝祭であり続けている。<br>
+</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">ロシア - 「反論型」歴史修正</button><div class="sec-body">
+<p class="pp">ロシアにおける歴史的正統性の中核は、第二次世界大戦、ロシアで言うところの「大祖国戦争」における対独戦勝の記憶である。毎年 5 月 9 日の対独戦勝記念日は、ロシアで最も重要な国民的祝祭であり続けている。<br/>
 この記憶を守るため、ロシアは 2014 年、ナチズムの美化やソ連の対独戦における役割について虚偽の情報を広めることを犯罪とする法律 - 刑法 354 条の一を新設するいわゆる「ナチズム復権禁止法」 - を制定した <span class="cite">[4]</span> 。 2020 年の憲法改正では、新設された第 67 条の一に、歴史的真実の擁護と祖国防衛者の記憶の保護を国家の責務として明記するに至っている <span class="cite">[5]</span> 。</p>
-
-<p>この文脈で象徴的なのが、プーチン大統領が 2021 年 7 月に発表した論文「ロシア人とウクライナ人の歴史的一体性について」である <span class="cite">[3]</span> 。同論文は、ロシアとウクライナの歴史的な一体性を強調し、ウクライナの独自の国民的アイデンティティやソ連からの独立の正統性に疑義を呈する内容を含んでいた。<br>
+<p class="pp">この文脈で象徴的なのが、プーチン大統領が 2021 年 7 月に発表した論文「ロシア人とウクライナ人の歴史的一体性について」である <span class="cite">[3]</span> 。同論文は、ロシアとウクライナの歴史的な一体性を強調し、ウクライナの独自の国民的アイデンティティやソ連からの独立の正統性に疑義を呈する内容を含んでいた。<br/>
 この論文が、後のロシアによるウクライナ侵攻の思想的背景の一つとして国際的に強く注目されたことは、多くの研究者や国際機関が指摘するところである。</p>
-
-<p>ここでロシアの手法を「反論型」と呼ぶのは、その論理構成が、西側やウクライナ側の歴史認識 - ロシアからすれば自国の物語を脅かすとみなす言説 - に対する防御・反駁として組み立てられる傾向が強いためである。 NATO の東方拡大をめぐる経緯や、ソ連の対独戦における役割の評価、ウクライナの国民的アイデンティティの起源など、いずれも「相手の主張にどう反論するか」という構図の中で歴史が動員される。<br>
+<p class="pp">ここでロシアの手法を「反論型」と呼ぶのは、その論理構成が、西側やウクライナ側の歴史認識 - ロシアからすれば自国の物語を脅かすとみなす言説 - に対する防御・反駁として組み立てられる傾向が強いためである。 NATO の東方拡大をめぐる経緯や、ソ連の対独戦における役割の評価、ウクライナの国民的アイデンティティの起源など、いずれも「相手の主張にどう反論するか」という構図の中で歴史が動員される。<br/>
 なお、 NATO 拡大の経緯やソ連解体前後の外交上の「約束」の有無については、当事者間・研究者間でなお評価が分かれる論点であり、本稿はロシア側の主張の当否そのものを判定するものではない。</p>
-
-<h3>中国 - 「選択的記憶」型</h3>
-
-<p>中国共産党の歴史語りの土台にあるのは、 1840 年のアヘン戦争に始まる「屈辱の世紀」の物語である。<br>
- 2021 年 11 月、中国共産党第 19 期中央委員会第六回全体会議は、結党百年を総括する「党の百年奮闘の重大な成果と歴史的経験に関する決議」を採択した <span class="cite">[6]</span> 。この決議は、アヘン戦争後の中国が半植民地・半封建社会に転落し「深い屈辱」を味わったと総括したうえで、共産党の指導によって香港・マカオの主権回復など「屈辱の世紀」に終止符が打たれたという物語を公式化している。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">中国 - 「選択的記憶」型</button><div class="sec-body">
+<p class="pp">中国共産党の歴史語りの土台にあるのは、 1840 年のアヘン戦争に始まる「屈辱の世紀」の物語である。<br/>
+ 2021 年 11 月、中国共産党第 19 期中央委員会第六回全体会議は、結党百年を総括する「党の百年奮闘の重大な成果と歴史的経験に関する決議」を採択した <span class="cite">[6]</span> 。この決議は、アヘン戦争後の中国が半植民地・半封建社会に転落し「深い屈辱」を味わったと総括したうえで、共産党の指導によって香港・マカオの主権回復など「屈辱の世紀」に終止符が打たれたという物語を公式化している。<br/>
 この決議は、 1945 年の毛沢東による決議、 1981 年の鄧小平による決議に次ぐ、党史上三番目の「歴史決議」である。</p>
-
-<p>中国の手法の特徴は、選択的な強調と縮小の組み合わせにある。<br>
-たとえば 1981 年の決議は、文化大革命（1966 〜 1976 年）について「建国以来もっとも深刻な挫折と損失を党・国家・人民にもたらした」と公式に認め、これを「指導者の誤りによって引き起こされ、反革命集団に利用された」動乱と位置づけた <span class="cite">[7]</span> 。この 1981 年決議の評価は今日まで党の公式見解として維持されているが、具体的な犠牲者数や個々の弾圧の実態についての公的な議論は依然として限定的である。<br>
+<p class="pp">中国の手法の特徴は、選択的な強調と縮小の組み合わせにある。<br/>
+たとえば 1981 年の決議は、文化大革命（1966 〜 1976 年）について「建国以来もっとも深刻な挫折と損失を党・国家・人民にもたらした」と公式に認め、これを「指導者の誤りによって引き起こされ、反革命集団に利用された」動乱と位置づけた <span class="cite">[7]</span> 。この 1981 年決議の評価は今日まで党の公式見解として維持されているが、具体的な犠牲者数や個々の弾圧の実態についての公的な議論は依然として限定的である。<br/>
 さらに、 1950 年代末の大躍進政策に伴う大飢饉の死者数は公式統計として発表されておらず、 1989 年の天安門事件に至っては、文化大革命のような「誤りであった」という限定的な公式総括すら存在せず、国内の公的言説からほぼ完全に排除されている。同じ「不都合な過去」であっても、その扱われ方には明確な濃淡があるという点が、中国の歴史政治の特徴だと言える。</p>
-
-<h3>北朝鮮 - 「神話創造」型</h3>
-
-<p>北朝鮮の正統性の物語の中心にあるのは、中朝国境にまたがる白頭山（中国名・長白山）である。白頭山は朝鮮半島の建国神話における始祖・檀君生誕の地として古くから神聖視されてきた土地だが、北朝鮮の公式史観はここに金一族の物語を重ね合わせる。すなわち、金日成がこの山を拠点に抗日パルチザン闘争を戦い、その子である金正日もまた同地の秘密キャンプで 1942 年に生まれたとする物語である <span class="cite">[8]</span> 。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">北朝鮮 - 「神話創造」型</button><div class="sec-body">
+<p class="pp">北朝鮮の正統性の物語の中心にあるのは、中朝国境にまたがる白頭山（中国名・長白山）である。白頭山は朝鮮半島の建国神話における始祖・檀君生誕の地として古くから神聖視されてきた土地だが、北朝鮮の公式史観はここに金一族の物語を重ね合わせる。すなわち、金日成がこの山を拠点に抗日パルチザン闘争を戦い、その子である金正日もまた同地の秘密キャンプで 1942 年に生まれたとする物語である <span class="cite">[8]</span> 。<br/>
 もっとも、国外の研究者の多くは、金正日は実際には旧ソ連極東地域（現ロシア・ハバロフスク地方）で 1941 年に生まれたと見ており、これは北朝鮮国外ではおおむね有力視されている見立てである。北朝鮮国内でこの点を検証する手段は事実上存在せず、確定的な一次資料も乏しいため、本稿はどちらが「事実」であるかを断定する立場にはないが、少なくとも北朝鮮国内の公式説明と国外の歴史研究の間に明確な乖離があることは指摘しておきたい。</p>
-
-<p>「白頭の血統」という言葉自体は比較的新しく、金正恩への権力継承が本格化した 2000 年代以降に広まった概念であり、 2013 年に改定された北朝鮮の事実上の最高規範「唯一的領導体系確立の十大原則」第 10 条第二項には、党と革命を「永遠に」白頭の血統によって継承すると明記されるに至った <span class="cite">[9]</span> 。<br>
+<p class="pp">「白頭の血統」という言葉自体は比較的新しく、金正恩への権力継承が本格化した 2000 年代以降に広まった概念であり、 2013 年に改定された北朝鮮の事実上の最高規範「唯一的領導体系確立の十大原則」第 10 条第二項には、党と革命を「永遠に」白頭の血統によって継承すると明記されるに至った <span class="cite">[9]</span> 。<br/>
 これは、単に過去の出来事を選択的に語るというより、検証がきわめて困難な建国神話そのものを新たに創出・公式化する作業に近い。北朝鮮が置かれた特殊な条件 - 国際的な経済制裁下にあり業績正統性を発揮しにくく、複数政党制もイデオロギー上の開放性も持たない - を踏まえれば、世襲による権力継承を正当化する神話への依存度が突出して高くなるのは、ある意味で必然的な帰結だとも言える。</p>
-
-<table>
+<div class="table-wrap"><table>
 <caption>図表 1 ロシア・中国・北朝鮮の歴史修正の類型比較</caption>
 <thead>
 <tr><th>国</th><th>手法（本稿の分類）</th><th>具体例</th><th>特徴</th></tr>
 </thead>
 <tbody>
 <tr>
-  <td>ロシア</td>
-  <td>反論型</td>
-  <td>大祖国戦争の記憶の法的保護（2014 年ナチズム復権禁止法）、 2021 年論文「ロシア人とウクライナ人の歴史的一体性について」</td>
-  <td>西側・ウクライナ側の歴史認識に対する防御・反駁として構成される。対独戦勝の物語を守ることに主眼</td>
+<td>ロシア</td>
+<td>反論型</td>
+<td>大祖国戦争の記憶の法的保護（2014 年ナチズム復権禁止法）、 2021 年論文「ロシア人とウクライナ人の歴史的一体性について」</td>
+<td>西側・ウクライナ側の歴史認識に対する防御・反駁として構成される。対独戦勝の物語を守ることに主眼</td>
 </tr>
 <tr>
-  <td>中国</td>
-  <td>選択的記憶型</td>
-  <td>「屈辱の世紀」（1840 年アヘン戦争以降）の強調、文化大革命は「重大な誤り」と限定的に総括（1981 年決議）、天安門事件（1989 年）は公的言説からほぼ排除</td>
-  <td>都合の良い受難と勝利の物語を前景化する一方、党の失敗や弾圧は事案ごとに濃淡をつけて縮小・沈黙させる</td>
+<td>中国</td>
+<td>選択的記憶型</td>
+<td>「屈辱の世紀」（1840 年アヘン戦争以降）の強調、文化大革命は「重大な誤り」と限定的に総括（1981 年決議）、天安門事件（1989 年）は公的言説からほぼ排除</td>
+<td>都合の良い受難と勝利の物語を前景化する一方、党の失敗や弾圧は事案ごとに濃淡をつけて縮小・沈黙させる</td>
 </tr>
 <tr>
-  <td>北朝鮮</td>
-  <td>神話創造型</td>
-  <td>白頭山を金一族の「聖地」とする物語、金正日の白頭山生誕説（国外の研究ではソ連領内出生説が有力）、 2013 年「白頭の血統」の規範上の明文化</td>
-  <td>史実の選択的強調にとどまらず、検証困難な建国神話そのものを創出する。世襲の正当化に特化</td>
+<td>北朝鮮</td>
+<td>神話創造型</td>
+<td>白頭山を金一族の「聖地」とする物語、金正日の白頭山生誕説（国外の研究ではソ連領内出生説が有力）、 2013 年「白頭の血統」の規範上の明文化</td>
+<td>史実の選択的強調にとどまらず、検証困難な建国神話そのものを創出する。世襲の正当化に特化</td>
 </tr>
 </tbody>
-</table>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">逸脱するベトナム</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ロシア・中国・北朝鮮の共通点を踏まえると、「一党支配体制は歴史を政治利用し、対外的な敵意を動員することで正統性を調達する」という命題は、それなりの説得力を持って見える。しかし同じ一党独裁体制でありながら、ベトナムはこの図式にきれいには当てはまらない。</p>
-
-<p>ベトナムが中国に対して抱く歴史的な警戒感は、決して希薄なものではない。むしろ、ロシアや中国が動員する歴史よりも、はるかに具体的で根深い実体を持つ。ベトナムは紀元前後から千年以上にわたって中国王朝の支配下に置かれた歴史を持ち、独立後も幾度となく中国との軍事的緊張を経験してきた。<br>
-その最も新しい記憶が、 1979 年の中越国境紛争である。カンボジアに侵攻してポル・ポト政権を打倒したベトナムに対し、中国が「懲罰」を掲げて越境攻撃を行ったこの戦争では、双方合わせて数万人規模の死者が出たとされるが、正確な数字については双方の発表に開きがあり、確定的な統計は存在しない <span class="cite">[10]</span> 。<br>
+</table></div>
+</div></div></div></div>
+<div class="chapter" id="sec3"><button aria-expanded="false" class="ch-head" type="button">3. 逸脱するベトナム</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ロシア・中国・北朝鮮の共通点を踏まえると、「一党支配体制は歴史を政治利用し、対外的な敵意を動員することで正統性を調達する」という命題は、それなりの説得力を持って見える。しかし同じ一党独裁体制でありながら、ベトナムはこの図式にきれいには当てはまらない。</p>
+<p class="pp">ベトナムが中国に対して抱く歴史的な警戒感は、決して希薄なものではない。むしろ、ロシアや中国が動員する歴史よりも、はるかに具体的で根深い実体を持つ。ベトナムは紀元前後から千年以上にわたって中国王朝の支配下に置かれた歴史を持ち、独立後も幾度となく中国との軍事的緊張を経験してきた。<br/>
+その最も新しい記憶が、 1979 年の中越国境紛争である。カンボジアに侵攻してポル・ポト政権を打倒したベトナムに対し、中国が「懲罰」を掲げて越境攻撃を行ったこの戦争では、双方合わせて数万人規模の死者が出たとされるが、正確な数字については双方の発表に開きがあり、確定的な統計は存在しない <span class="cite">[10]</span> 。<br/>
 興味深いことに、 1991 年の国交正常化以降、この戦争は両国の公的な言説からほとんど姿を消しており、双方の政府とも記念行事などでこの戦争に触れることを避ける傾向が続いている。加えて南シナ海（ベトナムでは東海と呼ばれる）の島嶼をめぐる対立も、現在進行形の火種であり続けている。</p>
-
-<p>つまりベトナムは、ロシアや中国よりもよほど「歴史を対外的な敵意動員に使う実質的な理由」を持ちながら、それをほとんど行っていない。この逸脱はどこから来るのか。</p>
-
-<p>ここでまず公平のために、反対の見立ても検討しておきたい。すなわち「ベトナムが歴史を動員しないのは、単に今のところ経済的に順調で、その必要に迫られていないからにすぎない。もし深刻な経済危機や体制の正統性の危機に直面すれば、ベトナムもまた中国やロシアと同様、歴史的・民族主義的な動員に訴えるはずだ」という見方である。<br>
-この見立てには一定の説得力がある。実際、ベトナム共産党自身、フランスからの独立戦争（1945 〜 1954 年）やいわゆるベトナム戦争（1955 〜 1975 年）の記憶を、国内向けの歴史的正統性の柱として現在も用いている。<br>
+<p class="pp">つまりベトナムは、ロシアや中国よりもよほど「歴史を対外的な敵意動員に使う実質的な理由」を持ちながら、それをほとんど行っていない。この逸脱はどこから来るのか。</p>
+<p class="pp">ここでまず公平のために、反対の見立ても検討しておきたい。すなわち「ベトナムが歴史を動員しないのは、単に今のところ経済的に順調で、その必要に迫られていないからにすぎない。もし深刻な経済危機や体制の正統性の危機に直面すれば、ベトナムもまた中国やロシアと同様、歴史的・民族主義的な動員に訴えるはずだ」という見方である。<br/>
+この見立てには一定の説得力がある。実際、ベトナム共産党自身、フランスからの独立戦争（1945 〜 1954 年）やいわゆるベトナム戦争（1955 〜 1975 年）の記憶を、国内向けの歴史的正統性の柱として現在も用いている。<br/>
 つまりベトナムは「歴史を使わない国」なのではなく、「歴史を対外的な敵意動員には使わない国」というべきである。この対内 / 対外の使い分けにこそ、ベトナムの特徴がある。</p>
-
-<p>その背景には、 1986 年に始まったドイモイ（刷新）政策以降の、徹底した全方位外交がある。ベトナム共産党の故グエン・フー・チョン書記長が「太い根、頑丈な幹、しなやかな枝」を持つ竹にたとえて定式化したとされる、いわゆる「竹の外交」である <span class="cite">[12]</span> 。<br>
+<p class="pp">その背景には、 1986 年に始まったドイモイ（刷新）政策以降の、徹底した全方位外交がある。ベトナム共産党の故グエン・フー・チョン書記長が「太い根、頑丈な幹、しなやかな枝」を持つ竹にたとえて定式化したとされる、いわゆる「竹の外交」である <span class="cite">[12]</span> 。<br/>
 この方針は 2019 年の国防白書で「四つのノー」政策として明文化された。軍事同盟を結ばない、一国と結んで他国に対抗しない、外国に軍事基地を提供しない、そして武力行使や武力による威嚇を行わない、という四原則である <span class="cite">[11]</span> 。</p>
-
-<p>この全方位外交の到達点を象徴するのが、対米関係の劇的な進展である。ベトナムと米国は 1995 年 7 月 11 日に国交を正常化し、 2023 年 9 月 10 日、ハノイを訪れたバイデン米大統領とチョン書記長の会談により、両国関係はベトナムの外交序列で最上位にあたる「包括的戦略パートナーシップ」に格上げされた <span class="cite">[13]</span> 。両国の貿易額は、正常化当初の 1995 年には 4 億 5100 万ドルにすぎなかったが、 2023 年には約 1240 億ドルにまで拡大している <span class="cite">[14]</span> 。<br>
+<p class="pp">この全方位外交の到達点を象徴するのが、対米関係の劇的な進展である。ベトナムと米国は 1995 年 7 月 11 日に国交を正常化し、 2023 年 9 月 10 日、ハノイを訪れたバイデン米大統領とチョン書記長の会談により、両国関係はベトナムの外交序列で最上位にあたる「包括的戦略パートナーシップ」に格上げされた <span class="cite">[13]</span> 。両国の貿易額は、正常化当初の 1995 年には 4 億 5100 万ドルにすぎなかったが、 2023 年には約 1240 億ドルにまで拡大している <span class="cite">[14]</span> 。<br/>
 注目すべきは、ベトナムがこの対米関係の格上げと並行して、中国・ロシアとも同格の「包括的戦略パートナーシップ」を維持している点である。かつての戦争相手であった米国とも、歴史的な後ろ盾であり続けるロシアや、警戒対象である中国とも、同時に最高レベルの関係を築くという芸当は、イデオロギーよりも実利を徹底して優先する姿勢の表れだと言える。</p>
-
-<p>この実利重視の姿勢は、スポーツや観光といった分野にも表れている。<br>
- 2025 年 9 月、ダナンで開催された国際大会「 PPA ツアー・アジア MB ベトナムカップ 2025 」は、 7906 人の観客を集め、ピックルボール競技における最多観客動員数としてギネス世界記録に認定された <span class="cite">[16]</span> 。さらにベトナムは、 2026 年 8 月 30 日から 9 月 6 日にかけて、同じくダナンで「ピックルボール・ワールドカップ 2026 」を開催する権利を獲得しており、これはこの大会がアジアで開催される初めての事例となる <span class="cite">[15]</span> 。<br>
+<p class="pp">この実利重視の姿勢は、スポーツや観光といった分野にも表れている。<br/>
+ 2025 年 9 月、ダナンで開催された国際大会「 PPA ツアー・アジア MB ベトナムカップ 2025 」は、 7906 人の観客を集め、ピックルボール競技における最多観客動員数としてギネス世界記録に認定された <span class="cite">[16]</span> 。さらにベトナムは、 2026 年 8 月 30 日から 9 月 6 日にかけて、同じくダナンで「ピックルボール・ワールドカップ 2026 」を開催する権利を獲得しており、これはこの大会がアジアで開催される初めての事例となる <span class="cite">[15]</span> 。<br/>
 イデオロギー的な意味合いをほとんど持たないこうした国際スポーツイベントの誘致に積極的なことは、対外的な敵意動員とは対照的な、経済的実利と国際的な可視性の獲得を志向するベトナム外交の姿勢を象徴する一エピソードとして興味深い。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">敵を作らない一党優位 - シンガポール</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>シンガポールもまた、一党優位体制でありながら対外的な敵意動員をほとんど行わない国の代表例である。シンガポールの人民行動党（PAP）は、 1959 年の自治獲得以来、実に六十年以上にわたって政権の座を維持し続けている <span class="cite">[17]</span> 。<br>
-法制度上、シンガポールは複数政党制であり、野党の立候補や議席獲得も認められている。 2025 年 5 月 3 日に実施された総選挙では、ローレンス・ウォン首相（2024 年 5 月にリー・シェンロン前首相から政権を継承）のもとで初めての選挙が行われ、 PAP は全 97 議席中 87 議席を獲得し、得票率も前回 2020 年の 61.2% から 65.57% へと上昇する圧勝を収めた。最大野党の労働者党（WP）は既存の地盤を守り、議席数自体は維持したものの、新たな選挙区での勢力拡大には至らなかった <span class="cite">[18]</span> 。<br>
+</div></div></div>
+<div class="chapter" id="sec4"><button aria-expanded="false" class="ch-head" type="button">4. 敵を作らない一党優位 - シンガポール</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">シンガポールもまた、一党優位体制でありながら対外的な敵意動員をほとんど行わない国の代表例である。シンガポールの人民行動党（PAP）は、 1959 年の自治獲得以来、実に六十年以上にわたって政権の座を維持し続けている <span class="cite">[17]</span> 。<br/>
+法制度上、シンガポールは複数政党制であり、野党の立候補や議席獲得も認められている。 2025 年 5 月 3 日に実施された総選挙では、ローレンス・ウォン首相（2024 年 5 月にリー・シェンロン前首相から政権を継承）のもとで初めての選挙が行われ、 PAP は全 97 議席中 87 議席を獲得し、得票率も前回 2020 年の 61.2% から 65.57% へと上昇する圧勝を収めた。最大野党の労働者党（WP）は既存の地盤を守り、議席数自体は維持したものの、新たな選挙区での勢力拡大には至らなかった <span class="cite">[18]</span> 。<br/>
 制度上は競争的な選挙が存在しながら、実質的には長期にわたる一党優位が続いているという点で、シンガポールは「合法的支配」と「業績正統性」がきわめて強く結びついた事例だと言える。</p>
-
-<p>シンガポールがロシア・中国・北朝鮮のような対外的敵意動員に頼らない背景には、二つの構造的な制約がある。<br>
-第一に、多民族国家としての成り立ちである。 1965 年の独立は、マレーシアからの分離という経緯に加え、 1964 年や 1969 年に生じた人種暴動の記憶を伴うものであった。この経験から、シンガポール政府は中国系・マレー系・インド系・その他という区分（いわゆる CMIO モデル）を前提に、意図的な多民族主義政策を国是として掲げてきた。<br>
+<p class="pp">シンガポールがロシア・中国・北朝鮮のような対外的敵意動員に頼らない背景には、二つの構造的な制約がある。<br/>
+第一に、多民族国家としての成り立ちである。 1965 年の独立は、マレーシアからの分離という経緯に加え、 1964 年や 1969 年に生じた人種暴動の記憶を伴うものであった。この経験から、シンガポール政府は中国系・マレー系・インド系・その他という区分（いわゆる CMIO モデル）を前提に、意図的な多民族主義政策を国是として掲げてきた。<br/>
 多民族社会において特定の外部民族・国家への敵意を煽ることは、国内の民族間関係にただちに跳ね返ってくる危険な火遊びであり、統治の安定を損なう自傷行為になりかねない。</p>
-
-<p>第二に、貿易依存度のきわめて高い経済構造である。シンガポールの貿易総額の対 GDP 比は 2022 年時点で約 333% に達し、世界でも突出して高い水準にある <span class="cite">[19]</span> 。<br>
+<p class="pp">第二に、貿易依存度のきわめて高い経済構造である。シンガポールの貿易総額の対 GDP 比は 2022 年時点で約 333% に達し、世界でも突出して高い水準にある <span class="cite">[19]</span> 。<br/>
 中継貿易拠点・国際金融拠点としての性格を色濃く持つシンガポール経済にとって、特定の貿易相手国や地域を「敵」に設定することは、自国の存立基盤そのものを脅かす。ロシアや中国のように資源や巨大な国内市場を背景に一定の経済的自己完結性を持つ大国とは異なり、シンガポールにとって対外的な敵意動員は、割に合わないどころか自滅的な選択肢なのである。</p>
-
-<p>この結果、シンガポールの正統性は、経済成長・治安の安定・効率的で腐敗の少ない統治といった業績正統性にほぼ全面的に依拠する構造になっている。逆に言えば、この業績が大きく揺らいだとき、シンガポールがこれまでと同じ統治の安定を維持できるかどうかは、まだ十分に検証されていない未知数だとも言える。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item column" id="column-kr" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">☕</span>
-    <span class="title">コーヒーブレイク - 民主主義国が過去を掘り返すとき</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+<p class="pp">この結果、シンガポールの正統性は、経済成長・治安の安定・効率的で腐敗の少ない統治といった業績正統性にほぼ全面的に依拠する構造になっている。逆に言えば、この業績が大きく揺らいだとき、シンガポールがこれまでと同じ統治の安定を維持できるかどうかは、まだ十分に検証されていない未知数だとも言える。</p>
+</div></div></div>
+<div class="chapter column" id="column-kr"><button aria-expanded="false" class="ch-head" type="button">コーヒーブレイク - 民主主義国が過去を掘り返すとき</button><div class="ch-body"><div class="ch-intro">
 <p class="column-kicker">COLUMN / 大韓民国の「親日清算」をどう読むか</p>
-
-<p class="lead">ここで一息入れて、少し寄り道をしたい。ここまで見てきたのは、選挙という審判装置を持たない国々が歴史をどう扱うかという話だった。<br>
+<p class="lead">ここで一息入れて、少し寄り道をしたい。ここまで見てきたのは、選挙という審判装置を持たない国々が歴史をどう扱うかという話だった。<br/>
 では、その装置をきちんと備えた国が、同じくらいの熱量で過去を掘り返すとき、それは何を意味するのだろうか。関係があるとも、ないとも言える事例として、大韓民国を取り上げてみる。</p>
-
-<h3>八十年後に確定される「名簿」</h3>
-
-<p>韓国では、日本統治期に日本側に協力したとされる人物 - いわゆる親日派 - を特定し、公的な記録として確定する作業が、独立から八十年を経た現在も続いている。 2004 年に制定された「日帝強占下反民族行為真相糾明に関する特別法」に基づき、大統領直属の委員会が 2005 年から 2009 年にかけて調査を行い、おおよそ千名を「親日反民族行為者」として公式に認定した <span class="cite">[21]</span> 。<br>
+</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">八十年後に確定される「名簿」</button><div class="sec-body">
+<p class="pp">韓国では、日本統治期に日本側に協力したとされる人物 - いわゆる親日派 - を特定し、公的な記録として確定する作業が、独立から八十年を経た現在も続いている。 2004 年に制定された「日帝強占下反民族行為真相糾明に関する特別法」に基づき、大統領直属の委員会が 2005 年から 2009 年にかけて調査を行い、おおよそ千名を「親日反民族行為者」として公式に認定した <span class="cite">[21]</span> 。<br/>
 民間の民族問題研究所も 2009 年、 4,389 名を収録した『親日人名辞典』を刊行している <span class="cite">[23]</span> 。</p>
-
-<p>さらに 2005 年には、親日行為によって得られた財産を国庫に帰属させる特別法が制定された。子孫が相続した財産にまで法的効果が及ぶこの仕組みについて、韓国の憲法裁判所は 2011 年に合憲との判断を示している <span class="cite">[22]</span> 。<br>
+<p class="pp">さらに 2005 年には、親日行為によって得られた財産を国庫に帰属させる特別法が制定された。子孫が相続した財産にまで法的効果が及ぶこの仕組みについて、韓国の憲法裁判所は 2011 年に合憲との判断を示している <span class="cite">[22]</span> 。<br/>
 この立法の直接の引き金は、 1990 年代に李完用 - 韓国併合条約に署名した当時の大臣であり、韓国では「売国奴」の代名詞となっている人物 - の子孫が祖先名義の土地の返還を求めて提訴し、一部で勝訴したことへの世論の反発であったとされる。</p>
-
-<p>そして、この作業は歴史学の営みにとどまらない。名簿は、いま生きている人々の家系へと接続していく。<br>
+<p class="pp">そして、この作業は歴史学の営みにとどまらない。名簿は、いま生きている人々の家系へと接続していく。<br/>
 大韓民国の国歌「愛国歌」の作曲者である安益泰についてすら、日本統治期の活動をめぐる資料が公にされて以降、国歌そのものを変えるべきだという議論が繰り返し提起されてきた。芸能関係者や著名人について、曽祖父の代の行動が調べ上げられ、本人には何の関与もない過去について公の場で釈明や謝罪を求められる - そうした場面が、この二十年ほどのあいだ繰り返し生じている。</p>
-
-<h3>権威主義国家の歴史動員と通底するもの</h3>
-
-<p>では、これはロシアや中国や北朝鮮がやっていることと、地続きなのだろうか。少なくとも三点において、構造は明らかに似ている。</p>
-
-<p>第一に、過去が現在の権力配置をめぐる資源になっている点である。「誰が正統な後継者か」を、過去の物語によって決める構図は共通する。<br>
-第二に、受難の物語が国民統合の核に据えられている点である。中国の「屈辱の世紀」と、植民地支配という受難の記憶は、正統性の調達装置としての役割において相似形をなす。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">権威主義国家の歴史動員と通底するもの</button><div class="sec-body">
+<p class="pp">では、これはロシアや中国や北朝鮮がやっていることと、地続きなのだろうか。少なくとも三点において、構造は明らかに似ている。</p>
+<p class="pp">第一に、過去が現在の権力配置をめぐる資源になっている点である。「誰が正統な後継者か」を、過去の物語によって決める構図は共通する。<br/>
+第二に、受難の物語が国民統合の核に据えられている点である。中国の「屈辱の世紀」と、植民地支配という受難の記憶は、正統性の調達装置としての役割において相似形をなす。<br/>
 第三に - そしてこれが最も鋭い相似点だが - 法によって史観を裏書きする形式である。ロシアが記憶法制によって「大祖国戦争をどう語るべきか」を法的に囲い込んだのと、韓国が特別法と国家委員会によって「誰が加害者であったか」を法的に確定したのとは、国家が公式の歴史解釈を法的手続きで確定するという点で、形式上ほとんど同型と言ってよい。</p>
-
-<h3>しかし、決定的に異なるもの</h3>
-
-<p>ただし、そこで話を終えてしまうと、いちばん重要なことを取り落とす。</p>
-
-<p>まず、方向が逆である。権威主義国家の歴史動員は、体制にとって不都合な事実を縮小し、沈黙させ、都合の良い物語を前景化する作業だった。中国が天安門事件を公的言説から排除したように、それは基本的に「隠す」方向に働く。これに対して韓国の親日清算は、埋もれていた事実を掘り起こし、記録として残す方向に働く。少なくとも形式上は実証を競う営みであって、史料の隠蔽ではない。<br>
-次に、可逆性がある。 2015 年の日韓合意、 2018 年の「和解・癒やし財団」の解散決定、そして 2023 年の徴用工訴訟をめぐる「第三者弁済」解決策 <span class="cite">[24]</span> という振幅そのものが、ロシアや北朝鮮では起こりえない現象である。公式の歴史解釈が誰かに独占されていない、ということの何よりの証拠だろう。<br>
-第三に、対抗言説が国内で合法に流通する。 2019 年に刊行された『反日種族主義』が、激烈な批判を浴びながらもベストセラーとなり、公然と論争の対象になったこと <span class="cite">[25]</span> は、中国やロシアではおよそ想像しがたい。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">しかし、決定的に異なるもの</button><div class="sec-body">
+<p class="pp">ただし、そこで話を終えてしまうと、いちばん重要なことを取り落とす。</p>
+<p class="pp">まず、方向が逆である。権威主義国家の歴史動員は、体制にとって不都合な事実を縮小し、沈黙させ、都合の良い物語を前景化する作業だった。中国が天安門事件を公的言説から排除したように、それは基本的に「隠す」方向に働く。これに対して韓国の親日清算は、埋もれていた事実を掘り起こし、記録として残す方向に働く。少なくとも形式上は実証を競う営みであって、史料の隠蔽ではない。<br/>
+次に、可逆性がある。 2015 年の日韓合意、 2018 年の「和解・癒やし財団」の解散決定、そして 2023 年の徴用工訴訟をめぐる「第三者弁済」解決策 <span class="cite">[24]</span> という振幅そのものが、ロシアや北朝鮮では起こりえない現象である。公式の歴史解釈が誰かに独占されていない、ということの何よりの証拠だろう。<br/>
+第三に、対抗言説が国内で合法に流通する。 2019 年に刊行された『反日種族主義』が、激烈な批判を浴びながらもベストセラーとなり、公然と論争の対象になったこと <span class="cite">[25]</span> は、中国やロシアではおよそ想像しがたい。<br/>
 第四に、動員の主体が政府だけではない。民間の研究団体、司法、報道機関、そして世論が入り混じっており、党と国家が独占する権威主義国の構図とは根本的に異なる。</p>
-
-<table>
+<div class="table-wrap"><table>
 <caption>コラム図表 権威主義国家の歴史動員と、韓国の「親日清算」の対照</caption>
 <thead>
 <tr><th>論点</th><th>権威主義国家の歴史動員</th><th>韓国の「親日清算」</th></tr>
 </thead>
 <tbody>
 <tr>
-  <td>過去の扱い方</td>
-  <td>不都合な事実を縮小・沈黙させ、都合の良い物語を前景化する</td>
-  <td>埋もれた事実を掘り起こし、記録として確定させる（方向が逆）</td>
+<td>過去の扱い方</td>
+<td>不都合な事実を縮小・沈黙させ、都合の良い物語を前景化する</td>
+<td>埋もれた事実を掘り起こし、記録として確定させる（方向が逆）</td>
 </tr>
 <tr>
-  <td>史観の確定手段</td>
-  <td>法と公的決議で公式史観を裏書きする（記憶法制、歴史決議）</td>
-  <td>特別法と国家委員会で「誰が加害者か」を法的に確定する（形式は同型）</td>
+<td>史観の確定手段</td>
+<td>法と公的決議で公式史観を裏書きする（記憶法制、歴史決議）</td>
+<td>特別法と国家委員会で「誰が加害者か」を法的に確定する（形式は同型）</td>
 </tr>
 <tr>
-  <td>対抗言説</td>
-  <td>国内での反論はコストが高く、事実上流通しない</td>
-  <td>批判的な著作が公刊され論争になる。流通そのものは妨げられない</td>
+<td>対抗言説</td>
+<td>国内での反論はコストが高く、事実上流通しない</td>
+<td>批判的な著作が公刊され論争になる。流通そのものは妨げられない</td>
 </tr>
 <tr>
-  <td>可逆性</td>
-  <td>体制が続くかぎり公式史観は基本的に反転しない</td>
-  <td>政権交代のたびに対日政策が大きく振幅する</td>
+<td>可逆性</td>
+<td>体制が続くかぎり公式史観は基本的に反転しない</td>
+<td>政権交代のたびに対日政策が大きく振幅する</td>
 </tr>
 <tr>
-  <td>動員の主体</td>
-  <td>党・国家がほぼ独占する</td>
-  <td>政府・国会・司法・民間団体・報道・世論が入り混じる</td>
+<td>動員の主体</td>
+<td>党・国家がほぼ独占する</td>
+<td>政府・国会・司法・民間団体・報道・世論が入り混じる</td>
 </tr>
 <tr>
-  <td>停止装置</td>
-  <td>体制の内部には事実上存在しない</td>
-  <td>制度ではなく、有権者の関心の移ろいに依存する</td>
+<td>停止装置</td>
+<td>体制の内部には事実上存在しない</td>
+<td>制度ではなく、有権者の関心の移ろいに依存する</td>
 </tr>
 </tbody>
-</table>
-
-<h3>本稿の枠組みに置き直すと</h3>
-
-<p>この事例は、本稿の分析軸の上ではベトナムのちょうど逆像として位置づけられる。ベトナムは、歴史的正統性を対内的には用いながら、対外的な敵意動員には用いなかった。韓国の場合は、対内的な正統性闘争 - 大韓民国の正統性を独立運動の系譜に置くのか、それとも建国と産業化の実績に置くのか - が、日本という外部を経由して表現される構造になっている。<br>
+</table></div>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">本稿の枠組みに置き直すと</button><div class="sec-body">
+<p class="pp">この事例は、本稿の分析軸の上ではベトナムのちょうど逆像として位置づけられる。ベトナムは、歴史的正統性を対内的には用いながら、対外的な敵意動員には用いなかった。韓国の場合は、対内的な正統性闘争 - 大韓民国の正統性を独立運動の系譜に置くのか、それとも建国と産業化の実績に置くのか - が、日本という外部を経由して表現される構造になっている。<br/>
 その根には、建国時の「未清算」がある。李承晩政権下で反民族行為特別調査委員会が一年ももたずに解体され、植民地期の官僚機構や警察をほぼ温存したまま国家が出発したこと、後に長期政権を築いた朴正煕が満洲国軍の将校であったこと。この経緯があるかぎり、親日清算は過去の問題ではなく、現在の政治陣営どうしが互いの正統性を測り合うための物差しであり続ける。対外的な敵意は、目的そのものというより、国内の正統性闘争が外に漏れ出したものだという側面を持つ。</p>
-
-<p>ここから引き出せる論点は、次章の主題を先取りするものでもある。すなわち、民主主義であることは歴史動員の歯止めにはならない、ということだ。<br>
-権威主義体制では、歴史は上から動員される。民主主義体制では、票になるかぎりにおいて、下からの需要に応えるかたちで供給される。前者には制度的な停止装置がないが、後者の停止装置も結局は有権者の関心の移ろいでしかない。<br>
+<p class="pp">ここから引き出せる論点は、次章の主題を先取りするものでもある。すなわち、民主主義であることは歴史動員の歯止めにはならない、ということだ。<br/>
+権威主義体制では、歴史は上から動員される。民主主義体制では、票になるかぎりにおいて、下からの需要に応えるかたちで供給される。前者には制度的な停止装置がないが、後者の停止装置も結局は有権者の関心の移ろいでしかない。<br/>
 だからこそ大きく振幅するのであり、振幅すること自体は健全さの証でもあれば、政治的に利用しやすいという危うさの証でもある。冒頭の図で言えば、韓国はまさに「民主主義国（一般）」の点線の帯の上を、局面ごとに大きく往復している国だと言える。</p>
-
-<div class="note">
+<div class="fig-note">
 本稿の立場について。ここでの関心は、植民地支配という歴史的事実の評価そのものではなく、その記憶が現在の政治のなかでどう用いられるかという一点にある。前者を相対化する意図はない。また、この構造は一方の国だけのものでもない。相手国の歴史動員が自国の動員を正当化する材料として使われる相互強化の回路は、日本を含む当事国のいずれもが共有している。
 </div>
-
-<p>最後にひとつ、コーヒーが冷めないうちに。北朝鮮の「白頭の血統」は、血が栄光を伝えるという想定の上に立っている。親日派の子孫に対する責任追及は、血が罪を伝えるという想定の上に立っている。評価の符号は正反対だが、「血が価値を運ぶ」という前提そのものは共有されている。<br>
+<p class="pp">最後にひとつ、コーヒーが冷めないうちに。北朝鮮の「白頭の血統」は、血が栄光を伝えるという想定の上に立っている。親日派の子孫に対する責任追及は、血が罪を伝えるという想定の上に立っている。評価の符号は正反対だが、「血が価値を運ぶ」という前提そのものは共有されている。<br/>
 もちろん、一方は世襲独裁を正当化する神話であり、他方は法治国家の手続きを踏んだ制度である。両者を等価と見なすのは乱暴に過ぎる。それでもこの対比は、責任は本人に帰するという近代法の大原則が、どういう場面で、どんな正当な理由を掲げて揺らぐのかを照らしてくれる鏡ではある。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item column" id="column-tw" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">☕</span>
-    <span class="title">コーヒーブレイク 二杯目 - 敵意を輸入する野党</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+</div></div></div></div>
+<div class="chapter column" id="column-tw"><button aria-expanded="false" class="ch-head" type="button">コーヒーブレイク 二杯目 - 敵意を輸入する野党</button><div class="ch-body"><div class="ch-intro">
 <p class="column-kicker">COLUMN / 台湾・中国国民党の「抗日」という通貨</p>
-
-<p class="lead">もう一杯だけ付き合っていただきたい。前のコラムで見たのは、民主主義国が自国の過去を掘り返す話だった。<br>
+<p class="lead">もう一杯だけ付き合っていただきたい。前のコラムで見たのは、民主主義国が自国の過去を掘り返す話だった。<br/>
 今度は、その隣で起きているもう少し奇妙な現象を見る。民主主義国の政党が、権威主義国家の歴史の語りのほうへ、自分から歩み寄っていく場合である。</p>
-
-<h3>十年ぶりの国共トップ会談</h3>
-
-<p>2025 年 10 月 18 日、台湾の最大野党・中国国民党の主席選挙で、鄭麗文が 50.15% の得票率を得て当選した <span class="cite">[26]</span> 。彼女はかつて学生運動の側にあり、民進党に籍を置いていた経歴を持つ人物である。<br>
+</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">十年ぶりの国共トップ会談</button><div class="sec-body">
+<p class="pp">2025 年 10 月 18 日、台湾の最大野党・中国国民党の主席選挙で、鄭麗文が 50.15% の得票率を得て当選した <span class="cite">[26]</span> 。彼女はかつて学生運動の側にあり、民進党に籍を置いていた経歴を持つ人物である。<br/>
 就任後まもなく、白色テロの犠牲者を悼む集会に出席した際、追悼名簿に国共内戦期の中国共産党のスパイであった呉石が含まれていたことが判明し、党内からも批判が出るという一幕もあった。</p>
-
-<p>そして 2026 年 4 月 7 日から 12 日にかけて、鄭主席は中国共産党の招請を受けて江蘇省・上海・北京を訪問し、 4 月 10 日、北京の人民大会堂で習近平と会談した <span class="cite">[27]</span> 。国共両党のトップ会談としては、およそ十年ぶりのことである。握手は十三秒に及んだ。<br>
+<p class="pp">そして 2026 年 4 月 7 日から 12 日にかけて、鄭主席は中国共産党の招請を受けて江蘇省・上海・北京を訪問し、 4 月 10 日、北京の人民大会堂で習近平と会談した <span class="cite">[27]</span> 。国共両党のトップ会談としては、およそ十年ぶりのことである。握手は十三秒に及んだ。<br/>
 会談は約一時間の非公開で行われ、習近平の発言は録画も全文公開もされていない。公表された新華社の記事に日本への言及はなく、「社会制度の違いは分裂の口実にはならない」「『台湾独立』こそが台湾海峡の平和を損なう元凶である」といった従来の定型句が並ぶにとどまった。</p>
-
-<h3>南京で、日本は十回名指しされた</h3>
-
-<p>日本が前面に出てきたのは、会談の二日前である。 4 月 8 日、鄭主席は南京の中山陵に参拝し、孫文の霊前で談話を発表した。三千語あまりのこの演説のなかで、日本は十回前後にわたって名指しされている（報道によっては十一回と数えられている）<span class="cite">[28]</span> 。</p>
-
-<p>孫文の死を悼むことについて、彼女はこう語った。大陸では孫文を悼むことは当然かつ公然たる名誉ある行為であったが、台湾では人目を忍び、細心の注意を払い、あらゆる手立てを尽くしてそうするほかなかった、と。<br>
-台湾総督府が追悼を禁じ、弔辞を検閲したこと。台湾が植民地となったのは、そもそも中国が衰え、日清戦争に敗れたからであること。八年にわたる抗日戦争を経て日本が敗れ、ようやく台湾が五十年の植民地支配の災厄から抜け出したこと。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">南京で、日本は十回名指しされた</button><div class="sec-body">
+<p class="pp">日本が前面に出てきたのは、会談の二日前である。 4 月 8 日、鄭主席は南京の中山陵に参拝し、孫文の霊前で談話を発表した。三千語あまりのこの演説のなかで、日本は十回前後にわたって名指しされている（報道によっては十一回と数えられている）<span class="cite">[28]</span> 。</p>
+<p class="pp">孫文の死を悼むことについて、彼女はこう語った。大陸では孫文を悼むことは当然かつ公然たる名誉ある行為であったが、台湾では人目を忍び、細心の注意を払い、あらゆる手立てを尽くしてそうするほかなかった、と。<br/>
+台湾総督府が追悼を禁じ、弔辞を検閲したこと。台湾が植民地となったのは、そもそも中国が衰え、日清戦争に敗れたからであること。八年にわたる抗日戦争を経て日本が敗れ、ようやく台湾が五十年の植民地支配の災厄から抜け出したこと。<br/>
 そして演説はこう締めくくられる - 百三十年前の日清戦争で日本帝国主義が海峡に刻みつけた傷は、今日に至るまで癒えていない、と。</p>
-
-<p>台湾の大陸委員会は翌 4 月 9 日、これを厳しく批判した。副主任委員の梁文傑は、大陸を訪れること自体は構わないが、あちらに行って中国共産党の語りに唱和すべきではない、台湾の政党指導者がその語りに唱和するのは事実上中国共産党の側に立つことを意味する、と述べた <span class="cite">[29]</span> 。<br>
+<p class="pp">台湾の大陸委員会は翌 4 月 9 日、これを厳しく批判した。副主任委員の梁文傑は、大陸を訪れること自体は構わないが、あちらに行って中国共産党の語りに唱和すべきではない、台湾の政党指導者がその語りに唱和するのは事実上中国共産党の側に立つことを意味する、と述べた <span class="cite">[29]</span> 。<br/>
 さらに梁は、孫文自身が日本と深い関係を持っていた人物であることを踏まえれば、孫文を日本の植民地支配と戦った人物として描くのは「重大な歴史の歪曲」だとも指摘している。</p>
-
-<h3>なぜ日本だったのか - 正統性の在庫を数える</h3>
-
-<p>ここで、本稿の分析軸が効いてくる。国民党が中国共産党と向き合うとき、対等の立場で持ち出せる歴史的資産は、実はほとんど残っていない。<br>
-かつての「自由中国」対「共産中国」という物語は、和解を求める以上もはや使えない。台湾土着のアイデンティティに立脚する物語は民進党のものである。戦後の威権統治と白色テロは資産ではなく負債であり、呉石をめぐる一件は、その負債がいかに扱いにくいかを露呈させた。<br>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">なぜ日本だったのか - 正統性の在庫を数える</button><div class="sec-body">
+<p class="pp">ここで、本稿の分析軸が効いてくる。国民党が中国共産党と向き合うとき、対等の立場で持ち出せる歴史的資産は、実はほとんど残っていない。<br/>
+かつての「自由中国」対「共産中国」という物語は、和解を求める以上もはや使えない。台湾土着のアイデンティティに立脚する物語は民進党のものである。戦後の威権統治と白色テロは資産ではなく負債であり、呉石をめぐる一件は、その負債がいかに扱いにくいかを露呈させた。<br/>
 そのなかで唯一、両党が共有できる通貨として残っているのが、抗日戦争と台湾光復なのである。中華民国こそが抗日戦争を戦ったのだと言えるかぎりにおいて、国民党は北京に対して物乞いではなく共同の当事者として立つことができる。南京の中山陵という場所で、孫文と抗日を持ち出すという選択は、その意味できわめて計算されている。</p>
-
-<p>そしてこの構図は、前のコラムで見た韓国の事例と、形は似ていながら機能が正反対である。</p>
-
-<table>
+<p class="pp">そしてこの構図は、前のコラムで見た韓国の事例と、形は似ていながら機能が正反対である。</p>
+<div class="table-wrap"><table>
 <caption>コラム図表 二つの民主主義国における「歴史的正統性」の動員</caption>
 <thead>
 <tr><th>論点</th><th>韓国の「親日清算」</th><th>台湾・国民党の「抗日」語り</th></tr>
 </thead>
 <tbody>
 <tr>
-  <td>動員の向かう先</td>
-  <td>国内 - 陣営間の正統性闘争。対外的敵意はその副産物</td>
-  <td>国外 - 中国共産党との共通の土俵づくり。国内向けの効用は薄い</td>
+<td>動員の向かう先</td>
+<td>国内 - 陣営間の正統性闘争。対外的敵意はその副産物</td>
+<td>国外 - 中国共産党との共通の土俵づくり。国内向けの効用は薄い</td>
 </tr>
 <tr>
-  <td>国内の需要</td>
-  <td>ある。票につながるかぎりで供給される</td>
-  <td>ほとんどない。有権者の対日感情はきわめて良好</td>
+<td>国内の需要</td>
+<td>ある。票につながるかぎりで供給される</td>
+<td>ほとんどない。有権者の対日感情はきわめて良好</td>
 </tr>
 <tr>
-  <td>法による裏書き</td>
-  <td>特別法と国家委員会による認定（2004 年〜）</td>
-  <td>光復節の国定祝日への復活（2025 年、野党多数の立法院で可決）</td>
+<td>法による裏書き</td>
+<td>特別法と国家委員会による認定（2004 年〜）</td>
+<td>光復節の国定祝日への復活（2025 年、野党多数の立法院で可決）</td>
 </tr>
 <tr>
-  <td>誰が判定するか</td>
-  <td>有権者 - 政権交代のたびに対日政策が振幅する</td>
-  <td>有権者 - 2026 年 11 月 28 日の統一地方選挙が最初の審判となる</td>
+<td>誰が判定するか</td>
+<td>有権者 - 政権交代のたびに対日政策が振幅する</td>
+<td>有権者 - 2026 年 11 月 28 日の統一地方選挙が最初の審判となる</td>
 </tr>
 </tbody>
-</table>
-
-<h3>需要のない市場に売る</h3>
-
-<p>台湾の事例で際立つのは、この動員が国内世論に対してほとんど売れる見込みがない、という点である。<br>
-日本台湾交流協会が 2024 年末から 2025 年初めにかけて行った世論調査では、「最も好きな国・地域」として日本を挙げた台湾の回答者は 76% にのぼり、過去最高を記録した <span class="cite">[30]</span> 。二位の韓国が 4% 、中国と米国がそれぞれ 3% であることを考えれば、これは突出した数字である。<br>
+</table></div>
+</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">需要のない市場に売る</button><div class="sec-body">
+<p class="pp">台湾の事例で際立つのは、この動員が国内世論に対してほとんど売れる見込みがない、という点である。<br/>
+日本台湾交流協会が 2024 年末から 2025 年初めにかけて行った世論調査では、「最も好きな国・地域」として日本を挙げた台湾の回答者は 76% にのぼり、過去最高を記録した <span class="cite">[30]</span> 。二位の韓国が 4% 、中国と米国がそれぞれ 3% であることを考えれば、これは突出した数字である。<br/>
 鄭主席の訪中そのものについても、 4 月 16 日から 22 日に実施された調査では、否定的な評価が約 47% 、肯定的な評価が 35% と、否定が上回った <span class="cite">[31]</span> 。国民党支持層のなかでさえ、四分の一以上が評価を保留している。</p>
-
-<p>つまりこれは、有権者の需要に応えて供給された物語ではない。むしろ国内では代価を払いながら、国外の相手と語りを揃えるために支出された物語である。韓国の親日清算が「票になるから加速する」ものだとすれば、台湾のそれは「票にならないのに続けられる」ものだということになる。<br>
+<p class="pp">つまりこれは、有権者の需要に応えて供給された物語ではない。むしろ国内では代価を払いながら、国外の相手と語りを揃えるために支出された物語である。韓国の親日清算が「票になるから加速する」ものだとすれば、台湾のそれは「票にならないのに続けられる」ものだということになる。<br/>
 ここに、歴史的正統性という資源のもうひとつの性質が現れている。それは国境を越えて輸出入されうる、ということだ。自国の有権者が供給してくれない正統性を、外部の権威主義国家から調達する - 民主主義国の政党にとって、これは理屈のうえでは十分に合理的な選択でありうる。ただしその代金は、自国の有権者に対する説得力で支払われる。</p>
-
-<div class="note">
+<div class="fig-note">
 公平のための留保。鄭主席自身が対外政策の場面で掲げているのは、敵意ではなく戦争回避である。日本の首相が「台湾有事は日本有事」と述べたことに対して、彼女は「台湾は無事、日本も無事、みんな無事」という言い換えを好むと語り、米国や日本を戦火に巻き込まないことこそが望みだと説明している。歴史を語る場面での敵意の喚起と、政策を語る場面での言明とは、彼女のなかで明確に分離されている。本稿が問題にしているのは前者の register であって、彼女の対外政策上の主張の当否ではない。また、五十年の植民地支配という事実そのものは事実であり、それを語ること自体が不当なのではない。問われているのは、それが誰に向けて、いつ、どの相手との共通項として持ち出されるのか、という一点である。
 </div>
-
-<p>最後に、この二杯目のコラムの後味を記しておきたい。歴史的正統性は、それを信じてくれる聴衆がいて初めて通貨として機能する。同じ「抗日」という言葉が、北京の人民大会堂では正貨として通用し、台北の路上ではほとんど値がつかない。海峡を渡ると値段が変わるのである。<br>
+<p class="pp">最後に、この二杯目のコラムの後味を記しておきたい。歴史的正統性は、それを信じてくれる聴衆がいて初めて通貨として機能する。同じ「抗日」という言葉が、北京の人民大会堂では正貨として通用し、台北の路上ではほとんど値がつかない。海峡を渡ると値段が変わるのである。<br/>
 そして、その値段を最終的に決めるのは、 2026 年 11 月 28 日に投票所に向かう台湾の有権者である <span class="cite">[32]</span> 。権威主義体制において歴史の値付けを行うのが党と国家であるのに対し、民主主義体制ではそれが有権者に委ねられている - 本稿がここまで追ってきた区別は、結局のところこの一点に帰着する。さて、コーヒーはもう十分だろう。次章では、この区別そのものが揺らぎはじめている民主主義国一般の話に移ることにしよう。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec5" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">民主主義国にとっての正統性の問題</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまで権威主義体制、とりわけ一党支配体制における正統性調達の多様性を見てきた。しかし「正統性の源泉」という視点の真価は、権威主義体制の分析にとどまらない。<br>
+</div></div></div></div>
+<div class="chapter" id="sec5"><button aria-expanded="false" class="ch-head" type="button">5. 民主主義国にとっての正統性の問題</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ここまで権威主義体制、とりわけ一党支配体制における正統性調達の多様性を見てきた。しかし「正統性の源泉」という視点の真価は、権威主義体制の分析にとどまらない。<br/>
 むしろ、この視点を民主主義国家に向けたときにこそ、見えてくるものがある。</p>
-
-<p>しばしば「民主主義国には正統性の調達という問題がそもそも存在しない。選挙で選ばれているのだから当然正統だ」という理解がなされる。<br>
+<p class="pp">しばしば「民主主義国には正統性の調達という問題がそもそも存在しない。選挙で選ばれているのだから当然正統だ」という理解がなされる。<br/>
 しかし、これは半分正しく半分誤っている。より正確に言えば、民主主義国において正統性の調達が不要なのではなく、選挙という制度に埋め込まれることによって、その調達過程が「見えにくくなっている」だけなのである。</p>
-
-<p>政治学では、正統性を手続き的正統性（procedural legitimacy）と実質的正統性（substantive legitimacy）とに区別する考え方がある。手続き的正統性とは、意思決定がどのように行われたか - 公正な選挙、透明な手続き、法の適正な運用 - に基づく正統性であり、民主主義国はこれを強く重視する。これに対して実質的正統性とは、その意思決定が実際にどのような結果をもたらしたか、人々がその結果を望ましいと感じるかどうかに基づく正統性である <span class="cite">[2]</span> 。<br>
+<p class="pp">政治学では、正統性を手続き的正統性（procedural legitimacy）と実質的正統性（substantive legitimacy）とに区別する考え方がある。手続き的正統性とは、意思決定がどのように行われたか - 公正な選挙、透明な手続き、法の適正な運用 - に基づく正統性であり、民主主義国はこれを強く重視する。これに対して実質的正統性とは、その意思決定が実際にどのような結果をもたらしたか、人々がその結果を望ましいと感じるかどうかに基づく正統性である <span class="cite">[2]</span> 。<br/>
 選挙という手続きは、この二つのズレを定期的に「リセット」する装置として機能する。数年に一度、業績への不満や理念上の対立を投票行動に変換し、政権交代というかたちで正統性を更新し続けることで、権威主義体制であれば体制そのものの動揺につながりかねない不満が、制度の中に吸収されていく。</p>
-
-<p>しかし、この手続き的正統性と実質的正統性のあいだにズレが生じ続け、選挙という装置だけではそのズレを吸収しきれなくなったとき、何が起きるか。近年の政治学は、まさにこの局面として、ポピュリズムの台頭と政治的分極化の進行を分析してきた。<br>
+<p class="pp">しかし、この手続き的正統性と実質的正統性のあいだにズレが生じ続け、選挙という装置だけではそのズレを吸収しきれなくなったとき、何が起きるか。近年の政治学は、まさにこの局面として、ポピュリズムの台頭と政治的分極化の進行を分析してきた。<br/>
 ポピュリズム政治勢力の台頭は、既存の政党政治が有権者の実質的な要求を代表できていないという、民主主義における正統性の危機への反応として理解できるという指摘がある <span class="cite">[20]</span> 。政治的分極化もまた、政府への信頼や選挙結果そのものの正統性に対する信認を掘り崩す要因として、近年の研究で広く論じられている。</p>
-
-<p>この視点に立てば、権威主義体制の分析で用いた四つの正統性の源泉 - 業績・イデオロギー・カリスマ・歴史 - は、民主主義国の政治にもそのまま当てはめることができる。経済政策の成否が政権の支持率を直接左右する構図は業績正統性そのものであるし、文化戦争的な争点をめぐる価値観の対立はイデオロギー的正統性の争奪戦であり、強烈な個性を持つポピュリスト指導者への支持はカリスマ的正統性の一種であり、「かつての栄光」を掲げるナショナルなノスタルジアの政治的動員は、歴史的正統性の民主主義国版だと言ってよい。<br>
+<p class="pp">この視点に立てば、権威主義体制の分析で用いた四つの正統性の源泉 - 業績・イデオロギー・カリスマ・歴史 - は、民主主義国の政治にもそのまま当てはめることができる。経済政策の成否が政権の支持率を直接左右する構図は業績正統性そのものであるし、文化戦争的な争点をめぐる価値観の対立はイデオロギー的正統性の争奪戦であり、強烈な個性を持つポピュリスト指導者への支持はカリスマ的正統性の一種であり、「かつての栄光」を掲げるナショナルなノスタルジアの政治的動員は、歴史的正統性の民主主義国版だと言ってよい。<br/>
 権威主義国と民主主義国を分けるのは、正統性の調達それ自体の有無ではなく、その調達過程が制度によって可視化されているか、それとも選挙という装置の陰に隠されているか、という違いにすぎないのである。</p>
-
-<table>
+<div class="table-wrap"><table>
 <caption>図表 2 正統性の源泉と対外的敵意動員の比較マトリクス</caption>
 <thead>
 <tr><th>国・体制</th><th>主要な正統性の源泉</th><th>対外的敵意動員の程度</th><th>備考</th></tr>
 </thead>
 <tbody>
 <tr>
-  <td>ロシア</td>
-  <td>歴史的正統性（対独戦勝） + カリスマ的正統性（指導者個人） + 一部業績正統性</td>
-  <td>高い</td>
-  <td>西側・ウクライナの歴史認識への反論というかたちで対外的敵意が正当化される</td>
+<td>ロシア</td>
+<td>歴史的正統性（対独戦勝） + カリスマ的正統性（指導者個人） + 一部業績正統性</td>
+<td>高い</td>
+<td>西側・ウクライナの歴史認識への反論というかたちで対外的敵意が正当化される</td>
 </tr>
 <tr>
-  <td>中国</td>
-  <td>業績正統性（経済成長） + イデオロギー的正統性 + 歴史的正統性（屈辱の世紀からの復興）</td>
-  <td>中程度（局面依存）</td>
-  <td>経済成長が鈍化するほど、歴史的・民族主義的正統性への依存が強まる傾向が指摘される</td>
+<td>中国</td>
+<td>業績正統性（経済成長） + イデオロギー的正統性 + 歴史的正統性（屈辱の世紀からの復興）</td>
+<td>中程度（局面依存）</td>
+<td>経済成長が鈍化するほど、歴史的・民族主義的正統性への依存が強まる傾向が指摘される</td>
 </tr>
 <tr>
-  <td>北朝鮮</td>
-  <td>カリスマ的正統性（白頭の血統） + 歴史的正統性（建国神話）</td>
-  <td>高い（恒常的）</td>
-  <td>業績正統性が乏しいため、神話とカリスマへの依存度が最も高い</td>
+<td>北朝鮮</td>
+<td>カリスマ的正統性（白頭の血統） + 歴史的正統性（建国神話）</td>
+<td>高い（恒常的）</td>
+<td>業績正統性が乏しいため、神話とカリスマへの依存度が最も高い</td>
 </tr>
 <tr>
-  <td>ベトナム</td>
-  <td>歴史的正統性（抗仏・抗米戦争、対内向け） + 業績正統性（ドイモイ以降の経済成長）</td>
-  <td>低い</td>
-  <td>対中警戒という実質的な歴史的根拠を持ちながら、対外的には非動員を選択</td>
+<td>ベトナム</td>
+<td>歴史的正統性（抗仏・抗米戦争、対内向け） + 業績正統性（ドイモイ以降の経済成長）</td>
+<td>低い</td>
+<td>対中警戒という実質的な歴史的根拠を持ちながら、対外的には非動員を選択</td>
 </tr>
 <tr>
-  <td>シンガポール</td>
-  <td>業績正統性（経済成長・統治効率）がほぼ全面的</td>
-  <td>きわめて低い</td>
-  <td>多民族構成・貿易依存経済という構造上、対外的敵意動員は自傷行為になりかねない</td>
+<td>シンガポール</td>
+<td>業績正統性（経済成長・統治効率）がほぼ全面的</td>
+<td>きわめて低い</td>
+<td>多民族構成・貿易依存経済という構造上、対外的敵意動員は自傷行為になりかねない</td>
 </tr>
 <tr>
-  <td>民主主義国（一般）</td>
-  <td>手続き的正統性（選挙） + 業績正統性が基本、局面によりカリスマ・歴史も浮上</td>
-  <td>文脈依存（ポピュリズム台頭局面で上昇）</td>
-  <td>手続き的正統性への依存が、業績の不振や分極化のもとで露呈しやすい</td>
+<td>民主主義国（一般）</td>
+<td>手続き的正統性（選挙） + 業績正統性が基本、局面によりカリスマ・歴史も浮上</td>
+<td>文脈依存（ポピュリズム台頭局面で上昇）</td>
+<td>手続き的正統性への依存が、業績の不振や分極化のもとで露呈しやすい</td>
 </tr>
 </tbody>
-</table>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec6" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">結び - 正統性をどこに立脚させるか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>本稿は、「国家はなぜ、どのように正統性を調達するのか」という問いを軸に、ロシア・中国・北朝鮮という歴史を武器化する権威主義国家と、ベトナム・シンガポールという同じ一党支配体制でありながらそれを行わない、あるいは行う必要のない国々を比較してきた。その差異は、単純な「権威主義か否か」という区分ではなく、各国が置かれた構造的条件 - 経済的自己完結性の有無、民族構成、対外関係における実利の大きさ、そして代替可能な正統性の源泉をどれだけ持っているか - によって説明される。</p>
-
-<p>ロシアと北朝鮮は、業績正統性を十分に発揮しにくい構造的制約（前者は資源依存経済と国際的孤立、後者は経済制裁下の閉鎖経済）を抱えるがゆえに、歴史とカリスマへの依存を強めている。<br>
-中国は現在のところ高い業績正統性を維持しているが、それが今後鈍化した場合に歴史的・民族主義的動員への依存をどこまで強めるかは、この体制の今後を占ううえで重要な論点であり続けるだろう。<br>
+</table></div>
+</div></div></div>
+<div class="chapter" id="sec6"><button aria-expanded="false" class="ch-head" type="button">6. 結び - 正統性をどこに立脚させるか</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">本稿は、「国家はなぜ、どのように正統性を調達するのか」という問いを軸に、ロシア・中国・北朝鮮という歴史を武器化する権威主義国家と、ベトナム・シンガポールという同じ一党支配体制でありながらそれを行わない、あるいは行う必要のない国々を比較してきた。その差異は、単純な「権威主義か否か」という区分ではなく、各国が置かれた構造的条件 - 経済的自己完結性の有無、民族構成、対外関係における実利の大きさ、そして代替可能な正統性の源泉をどれだけ持っているか - によって説明される。</p>
+<p class="pp">ロシアと北朝鮮は、業績正統性を十分に発揮しにくい構造的制約（前者は資源依存経済と国際的孤立、後者は経済制裁下の閉鎖経済）を抱えるがゆえに、歴史とカリスマへの依存を強めている。<br/>
+中国は現在のところ高い業績正統性を維持しているが、それが今後鈍化した場合に歴史的・民族主義的動員への依存をどこまで強めるかは、この体制の今後を占ううえで重要な論点であり続けるだろう。<br/>
 一方でベトナムとシンガポールは、対外的な経済的相互依存の深さと、多民族性や地政学的な脆弱性ゆえに、対外的な敵意動員そのものが自国の利益を損なう構造に置かれている。</p>
-
-<p>そして、この「正統性をどこに立脚させるか」という視点は、権威主義体制の比較分析だけの道具ではない。手続き的正統性という強力だが万能ではない装置を持つ民主主義国もまた、業績・イデオロギー・カリスマ・歴史という同じ四つの源泉のあいだで、常に綱渡りを続けている。<br>
+<p class="pp">そして、この「正統性をどこに立脚させるか」という視点は、権威主義体制の比較分析だけの道具ではない。手続き的正統性という強力だが万能ではない装置を持つ民主主義国もまた、業績・イデオロギー・カリスマ・歴史という同じ四つの源泉のあいだで、常に綱渡りを続けている。<br/>
 近年の政治的分極化やポピュリズムの高まりは、この綱渡りが不安定化した徴候として理解することができる。民主主義国に生きる私たちが直面しているのは、権威主義体制とは無縁の特殊な危機ではなく、あらゆる政治体制が抱える普遍的な問い - 正統性をどこに立脚させるか - が、選挙という装置の陰から表舞台に姿を現しつつある局面なのかもしれない。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="refs" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">7</span>
-    <span class="title">出典・参考文献</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+</div></div></div>
+<div class="chapter" id="refs"><button aria-expanded="false" class="ch-head" type="button">7. 出典・参考文献</button><div class="ch-body"><div class="ch-intro">
 <ol class="refs">
 <li>Max Weber, <em>Wirtschaft und Gesellschaft</em>（『経済と社会』、死後編纂・ 1922 年刊）、および講演 "Politik als Beruf" （「職業としての政治」、 1919 年）。</li>
-<li>Stanford Encyclopedia of Philosophy, "Political Legitimacy"（<a href="https://plato.stanford.edu/entries/legitimacy/" target="_blank" rel="noopener">plato.stanford.edu</a>）。</li>
-<li>President of Russia (Kremlin), "Article by Vladimir Putin 'On the Historical Unity of Russians and Ukrainians,'" July 12, 2021（<a href="http://en.kremlin.ru/events/president/news/66181" target="_blank" rel="noopener">en.kremlin.ru</a> / <a href="https://www.prlib.ru/en/article-vladimir-putin-historical-unity-russians-and-ukrainians" target="_blank" rel="noopener">prlib.ru</a>）。</li>
-<li>RAPSI, "Putin criminalizes rehabilitation of Nazism," 2014; PONARS Eurasia, "The Implications of Russia's Law against the 'Rehabilitation of Nazism,'"（<a href="https://www.ponarseurasia.org/the-implications-of-russia-s-law-against-the-rehabilitation-of-nazism/" target="_blank" rel="noopener">ponarseurasia.org</a>）。</li>
-<li>Verfassungsblog, "Alarming Alterations: How Memory Politics Turned the Russian Constitution into a War Weapon"（<a href="https://www.ponarseurasia.org/alarming-alterations-how-memory-politics-turned-the-russian-constitution-into-a-war-weapon/" target="_blank" rel="noopener">ponarseurasia.org</a>）。</li>
-<li>中国共産党第 19 期中央委員会第六回全体会議「党の百年奮闘の重大な成果と歴史的経験に関する決議」 2021 年 11 月 11 日（英訳全文 : <a href="https://english.www.gov.cn/policies/latestreleases/202111/16/content_WS6193a935c6d0df57f98e50b0.html" target="_blank" rel="noopener">english.www.gov.cn</a>）。</li>
+<li>Stanford Encyclopedia of Philosophy, "Political Legitimacy"（<a href="https://plato.stanford.edu/entries/legitimacy/" rel="noopener" target="_blank">plato.stanford.edu</a>）。</li>
+<li>President of Russia (Kremlin), "Article by Vladimir Putin 'On the Historical Unity of Russians and Ukrainians,'" July 12, 2021（<a href="http://en.kremlin.ru/events/president/news/66181" rel="noopener" target="_blank">en.kremlin.ru</a> / <a href="https://www.prlib.ru/en/article-vladimir-putin-historical-unity-russians-and-ukrainians" rel="noopener" target="_blank">prlib.ru</a>）。</li>
+<li>RAPSI, "Putin criminalizes rehabilitation of Nazism," 2014; PONARS Eurasia, "The Implications of Russia's Law against the 'Rehabilitation of Nazism,'"（<a href="https://www.ponarseurasia.org/the-implications-of-russia-s-law-against-the-rehabilitation-of-nazism/" rel="noopener" target="_blank">ponarseurasia.org</a>）。</li>
+<li>Verfassungsblog, "Alarming Alterations: How Memory Politics Turned the Russian Constitution into a War Weapon"（<a href="https://www.ponarseurasia.org/alarming-alterations-how-memory-politics-turned-the-russian-constitution-into-a-war-weapon/" rel="noopener" target="_blank">ponarseurasia.org</a>）。</li>
+<li>中国共産党第 19 期中央委員会第六回全体会議「党の百年奮闘の重大な成果と歴史的経験に関する決議」 2021 年 11 月 11 日（英訳全文 : <a href="https://english.www.gov.cn/policies/latestreleases/202111/16/content_WS6193a935c6d0df57f98e50b0.html" rel="noopener" target="_blank">english.www.gov.cn</a>）。</li>
 <li>中国共産党第 11 期中央委員会第六回全体会議「建国以来の党の若干の歴史問題に関する決議」 1981 年 6 月。</li>
 <li>Straits Times 記事等の国際報道に基づく北朝鮮の白頭山神話・金正日生誕地をめぐる公式説明と国外研究の対比（Salon.com, "How a North Korean mountain and myth may have inspired murder," 2017 等）。</li>
 <li>北朝鮮「唯一的領導体系確立の十大原則」 2013 年改定版、第 10 条第二項。</li>
 <li>The Diplomat, "The Bitter Legacy of the 1979 China-Vietnam War," 2017; Hoover Institution, "The 1979 Sino-Vietnamese War and Its Consequences."</li>
 <li>ベトナム政府ポータル（baochinhphu.vn）, "'Four No's' Principle of National Defense Policy"; ベトナム国防白書 2019 年版。</li>
 <li>fulcrum.sg, "What's Behind Vietnam's 'Bamboo Diplomacy' Discourse?"</li>
-<li>American Presidency Project / U.S. Embassy & Consulate in Vietnam, "Joint Leaders' Statement: Elevating United States-Vietnam Relations to a Comprehensive Strategic Partnership," September 10, 2023 。</li>
-<li>U.S. Embassy & Consulate in Vietnam, "U.S. - Vietnam Relations" （国交正常化 1995 年 7 月 11 日、貿易額推移）。</li>
+<li>American Presidency Project / U.S. Embassy &amp; Consulate in Vietnam, "Joint Leaders' Statement: Elevating United States-Vietnam Relations to a Comprehensive Strategic Partnership," September 10, 2023 。</li>
+<li>U.S. Embassy &amp; Consulate in Vietnam, "U.S. - Vietnam Relations" （国交正常化 1995 年 7 月 11 日、貿易額推移）。</li>
 <li>VOV / Vietnamplus, "Pickleball World Cup 2026 heads to Da Nang (Vietnam), first time in Asia."</li>
 <li>pickleballtournaments.com, "PPA TOUR ASIA, MB VIETNAM CUP 2025" （ギネス世界記録認定）。</li>
 <li>The Diplomat, "Singapore's PAP: The Politics of Dominance," 2022 。</li>
 <li>IPU Parline, "Singapore Parliament May 2025 Election Results"; CNBC, "Singapore's Wong retains power as ruling People's Action Party boosts vote share in landslide victory," May 4, 2025 。</li>
-<li>World Bank, "Trade(% of GDP)- Singapore"（<a href="https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS?locations=SG" target="_blank" rel="noopener">data.worldbank.org</a>）。</li>
-<li>Annual Review of Law and Social Science, "Polarization, Populism, and the Crisis of American Democracy"（<a href="https://www.annualreviews.org/content/journals/10.1146/annurev-lawsocsci-041922-035113" target="_blank" rel="noopener">annualreviews.org</a>）。</li>
+<li>World Bank, "Trade(% of GDP)- Singapore"（<a href="https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS?locations=SG" rel="noopener" target="_blank">data.worldbank.org</a>）。</li>
+<li>Annual Review of Law and Social Science, "Polarization, Populism, and the Crisis of American Democracy"（<a href="https://www.annualreviews.org/content/journals/10.1146/annurev-lawsocsci-041922-035113" rel="noopener" target="_blank">annualreviews.org</a>）。</li>
 <li>大韓民国「日帝強占下反民族行為真相糾明に関する特別法」（2004 年制定）、および大統領直属「親日反民族行為真相糾明委員会」（2005 〜 2009 年）の調査・認定。</li>
 <li>大韓民国「親日反民族行為者財産の国家帰属に関する特別法」（2005 年制定）、および同法をめぐる韓国憲法裁判所の合憲判断（2011 年）。</li>
 <li>民族問題研究所『親日人名辞典』全三巻、 2009 年 11 月刊（収録 4,389 名）。</li>
 <li>2015 年 12 月の日韓合意と「和解・癒やし財団」の解散決定（2018 年）、および 2018 年の韓国大法院判決をめぐる 2023 年 3 月の「第三者弁済」解決策に関する各社報道。</li>
 <li>李栄薫編『反日種族主義』（2019 年）、および同書をめぐる韓国内の論争。</li>
-<li>中央社 CNA 「國民黨主席選舉 鄭麗文得票率過半當選」 2025 年 10 月 18 日（<a href="https://www.cna.com.tw/news/aipl/202510180204.aspx" target="_blank" rel="noopener">cna.com.tw</a>）。呉石をめぐる追悼集会の一件は聯合新聞網・中央社等の同年 11 月の報道による。</li>
-<li>Xinhua, "Xi meets KMT leader Cheng Li-wun in Beijing," April 10, 2026（<a href="https://english.news.cn/20260410/78f86165612f4ec9adba4788f7156586/c.html" target="_blank" rel="noopener">english.news.cn</a>）、および訪中日程（2026 年 4 月 7 〜 12 日）に関する各社報道。</li>
-<li>鄭麗文の南京・中山陵における談話（2026 年 4 月 8 日）。英訳全文は <a href="https://eastisread.com/p/full-text-cheng-li-wuns-speech-at-44a" target="_blank" rel="noopener">eastisread.com</a> 。関連報道として South China Morning Post, "Japan's 'imperialist forces' divided Taiwan from mainland, KMT's Cheng Li-wun says" 。日本への言及回数は訳出の数え方により九〜十一回と幅がある。</li>
-<li>Focus Taiwan (CNA), "MAC criticizes KMT's Cheng for echoing CCP narrative during China trip," April 9, 2026（<a href="https://focustaiwan.tw/politics/202604090017" target="_blank" rel="noopener">focustaiwan.tw</a>）。</li>
+<li>中央社 CNA 「國民黨主席選舉 鄭麗文得票率過半當選」 2025 年 10 月 18 日（<a href="https://www.cna.com.tw/news/aipl/202510180204.aspx" rel="noopener" target="_blank">cna.com.tw</a>）。呉石をめぐる追悼集会の一件は聯合新聞網・中央社等の同年 11 月の報道による。</li>
+<li>Xinhua, "Xi meets KMT leader Cheng Li-wun in Beijing," April 10, 2026（<a href="https://english.news.cn/20260410/78f86165612f4ec9adba4788f7156586/c.html" rel="noopener" target="_blank">english.news.cn</a>）、および訪中日程（2026 年 4 月 7 〜 12 日）に関する各社報道。</li>
+<li>鄭麗文の南京・中山陵における談話（2026 年 4 月 8 日）。英訳全文は <a href="https://eastisread.com/p/full-text-cheng-li-wuns-speech-at-44a" rel="noopener" target="_blank">eastisread.com</a> 。関連報道として South China Morning Post, "Japan's 'imperialist forces' divided Taiwan from mainland, KMT's Cheng Li-wun says" 。日本への言及回数は訳出の数え方により九〜十一回と幅がある。</li>
+<li>Focus Taiwan (CNA), "MAC criticizes KMT's Cheng for echoing CCP narrative during China trip," April 9, 2026（<a href="https://focustaiwan.tw/politics/202604090017" rel="noopener" target="_blank">focustaiwan.tw</a>）。</li>
 <li>日本台湾交流協会「台湾における対日世論調査」（2024 年 12 月 27 日〜 2025 年 1 月 5 日実施、有効回答 1,520）。 Taiwan News, "Record 76% of Taiwanese like Japan most," April 16, 2025 。</li>
-<li>Brookings, "How do Taiwanese feel about the Cheng-Xi meeting?"（<a href="https://www.brookings.edu/articles/how-do-taiwanese-feel-about-the-cheng-xi-meeting/" target="_blank" rel="noopener">brookings.edu</a>）。 2026 年 4 月 16 〜 22 日実施、有効回答 1,195 。</li>
+<li>Brookings, "How do Taiwanese feel about the Cheng-Xi meeting?"（<a href="https://www.brookings.edu/articles/how-do-taiwanese-feel-about-the-cheng-xi-meeting/" rel="noopener" target="_blank">brookings.edu</a>）。 2026 年 4 月 16 〜 22 日実施、有効回答 1,195 。</li>
 <li>台湾「紀念日及節日實施條例」改正（2025 年 5 月 9 日成立、同年 5 月 28 日公布）による光復節（10 月 25 日）の国定祝日化。および中央選挙委員会による 2026 年統一地方選挙（11 月 28 日投票）の公告。</li>
 </ol>
-    </div>
-  </div>
-</section>
+</div></div></div>
+</div>
 
 </div>
-</main>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
 
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(){
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
       });
+      breadcrumbNav.appendChild(btn);
     });
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
   document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute("href").slice(1);
-    var target = document.getElementById(id);
-    if(!target) return;
-    var accItem = target.closest("[data-acc]");
-    if(!accItem) return;
-    e.preventDefault();
-
-    var wasOpen = accItem.classList.contains("open");
-    if(!wasOpen){
-      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
-        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
-          sibling.classList.remove("open");
-        }
-      });
-      accItem.classList.add("open");
-    }
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
   });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+
+</body>
 </body>
 </html>

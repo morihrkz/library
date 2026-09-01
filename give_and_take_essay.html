@@ -3,355 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>「与える人」は本当に勝つのか</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<title>「与える人」は本当に勝つのか -  GIVE & TAKE の楽観論を検証する</title>
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
   :root{
-    --bg:#F5F3EC; --paper:#fff; --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
-    --line:#C8CEC0; --border:rgba(11,11,11,0.10);
-    --blue:#547cac; --orange:#bc6763; --aqua:#5f8842; --violet:#496d98;
-    --fact-bg:#edf2f7; --fact-fg:#385375;
-    --consensus-bg:#eef4e9; --consensus-fg:#385127;
-    --debate-bg:#f7eceb; --debate-fg:#7d3935;
-    --hypo-bg:#f1f4f8; --hypo-fg:#496d98;
-    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
   }
-  *{box-sizing:border-box;}
-  html { scroll-padding-top: 76px; }
-  body{background:var(--bg); color:var(--ink); margin:0;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
+  }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-  header.hero{
-    background:var(--hero-1);
-    color: var(--hero-ink);
-    padding: 3.6rem 0 2.8rem;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
-  header.hero .wrap{ max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem); }
-  header.hero .eyebrow{
-    display:block;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:0.78rem; letter-spacing:0.24em; color:var(--hero-dim);
-    margin-bottom:0.9rem;
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
   }
-  header.hero h1{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:clamp(1.5rem, 3.6vw, 1.95rem); line-height:1.6; margin:0 0 0.8rem; font-weight:700;
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
   }
-  header.hero p.sub{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    margin:0; color:var(--hero-dim); line-height:1.85; font-size:0.98rem; text-indent:0;
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
   }
-  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
-    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  .hero-figure{ max-width:900px; margin:0; padding:0; background:none; border:none; border-radius:0; overflow-x:auto; }
-  .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    margin-top:0.9rem; font-size:0.85rem; color:var(--hero-dim); line-height:1.75;
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
+
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
+  }
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
 
-  article{
-    margin:0; padding:2.8rem clamp(1.5rem, 3vw, 3rem) 96px;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    line-height:1.95; font-size:1.1rem; color:var(--ink);
-  }
-  h2{
-    font-size:1.35em; margin:2.6em 0 0.9em; padding-bottom:0.35em;
-    border-bottom:2px solid var(--ink); font-weight:700;
-    scroll-margin-top:1rem;
-  }
-  h3{ font-size:1.08em; margin:1.8em 0 0.6em; font-weight:700; color:var(--ink); }
-  p{ margin:0 0 1.3em; text-indent:1em; }
-  strong{ font-weight:700; }
-  blockquote{
-    margin:1.6em 0; padding:0.9em 1.3em; border-left:3px solid var(--muted);
-    color:var(--sub); font-style:italic; background:var(--paper);
-  }
-  .tag{
-    display:inline-block; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:0.72em; font-weight:700; padding:0.15em 0.55em; border-radius:5px;
-    white-space:nowrap; vertical-align:0.1em; letter-spacing:0.02em;
-  }
-  .tag-fact{ background:var(--fact-bg); color:var(--fact-fg); }
-  .tag-consensus{ background:var(--consensus-bg); color:var(--consensus-fg); }
-  .tag-debate{ background:var(--debate-bg); color:var(--debate-fg); }
-  .tag-hypo{ background:var(--hypo-bg); color:var(--hypo-fg); }
-  figure{ margin:2.2em 0; padding:1.4em 1.4em 1.1em; background:var(--paper);
-    border:1px solid var(--border); border-radius:12px; }
-  figcaption{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.86em;
-    color:var(--sub); margin-top:0.9em; line-height:1.7;
-  }
-  figcaption .fignum{ font-weight:700; color:var(--ink); }
-  table{ width:100%; border-collapse:collapse; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.88em; }
-  th,td{ border:1px solid var(--line); padding:0.7em 0.8em; text-align:left; vertical-align:top; line-height:1.7; }
-  th{ background:var(--paper); font-weight:700; }
-  .matrix{ display:grid; grid-template-columns:auto 1fr 1fr; gap:1px; background:var(--line);
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.85em; }
-  .matrix > div{ background:var(--paper); padding:1em; }
-  .matrix .hdr{ background:var(--ink); color:var(--paper); font-weight:700; text-align:center; }
-  .matrix .axis{ background:var(--ink); color:var(--paper); font-weight:700; writing-mode:vertical-rl; text-align:center; padding:1.2em 0.6em; }
-  .matrix .cell strong{ display:block; margin-bottom:0.4em; }
-  .quadmap{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line);
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.85em; }
-  .quadmap > div{ background:var(--paper); padding:1.1em 1.2em; }
-  .quadmap .qtitle{ font-weight:700; margin-bottom:0.4em; display:flex; align-items:center; gap:0.5em; }
-  .swatch{ width:10px; height:10px; border-radius:2px; display:inline-block; }
-  .notebox{
-    margin:1.8em 0; padding:1em 1.3em; background:var(--paper); border:1px solid var(--border);
-    border-radius:10px; font-size:0.92em; color:var(--sub); text-indent:0;
-  }
-  .sources{ font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.82em; color:var(--sub); line-height:1.9; }
-  .sources li{ margin-bottom:0.6em; }
-  .sources a{ color:var(--blue); }
-  hr{ border:none; border-top:1px solid var(--line); margin:3em 0; }
-  @media (max-width:600px){
-    .matrix{ grid-template-columns:1fr; }
-    .matrix .axis{ writing-mode:horizontal-tb; padding:0.6em; }
-    .quadmap{ grid-template-columns:1fr; }
-  }
+  /* ---- 記事固有スタイル ---- */
+:root{
+  --blue:#4d6d90; --orange:#a8615d; --aqua:#5a7a48; --violet:#465f82;
+  --fact-bg:#EAEEF2; --fact-fg:#3A4A5C;
+  --consensus-bg:var(--accent-light); --consensus-fg:#3E5226;
+  --debate-bg:#F3EAEA; --debate-fg:#7A3A36;
+  --hypo-bg:#EDEFF3; --hypo-fg:#465F82;
+}
+.tag{
+  display:inline-block; font-size:.78em; font-weight:700; padding:.15em .55em;
+  border-radius:5px; white-space:nowrap; vertical-align:.1em; letter-spacing:.02em;
+}
+.tag-fact{ background:var(--fact-bg); color:var(--fact-fg); }
+.tag-consensus{ background:var(--consensus-bg); color:var(--consensus-fg); }
+.tag-debate{ background:var(--debate-bg); color:var(--debate-fg); }
+.tag-hypo{ background:var(--hypo-bg); color:var(--hypo-fg); }
+figure{ margin:1.6em 0; padding:1.1em 1.2em 1em; background:var(--white);
+  border:1px solid var(--border); border-radius:10px; }
+figcaption{ font-size:.9em; color:var(--label); margin-top:.7em; line-height:1.7; }
+figcaption .fignum{ font-weight:700; color:var(--text); }
+blockquote{ margin:1.2em 0; padding:.8em 1.2em; border-left:3px solid var(--muted);
+  color:var(--label); font-style:italic; background:var(--white); }
+.matrix{ display:grid; grid-template-columns:auto 1fr 1fr; gap:1px; background:var(--border); font-size:.92em; }
+.matrix > div{ background:var(--white); padding:.9em; }
+.matrix .hdr{ background:var(--accent); color:var(--white); font-weight:700; text-align:center; }
+.matrix .axis{ background:var(--accent); color:var(--white); font-weight:700; writing-mode:vertical-rl; text-align:center; padding:1.1em .5em; }
+.matrix .cell strong{ display:block; margin-bottom:.35em; }
+.quadmap{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); font-size:.92em; }
+.quadmap > div{ background:var(--white); padding:1em 1.1em; }
+.quadmap .qtitle{ font-weight:700; margin-bottom:.35em; display:flex; align-items:center; gap:.5em; }
+.swatch{ width:10px; height:10px; border-radius:2px; display:inline-block; }
+.sources{ font-size:.92em; color:var(--label); line-height:1.9; padding-left:1.4em; }
+.sources li{ margin-bottom:.6em; }
+.sources a{ color:var(--accent); }
+hr{ border:none; border-top:1px solid var(--border); margin:2em 0; }
+@media (max-width:560px){
+  .matrix{ grid-template-columns:1fr; }
+  .matrix .axis{ writing-mode:horizontal-tb; padding:.5em; }
+  .quadmap{ grid-template-columns:1fr; }
+}
 
-  .toolbar-container {
-    position: sticky; top: 8px; z-index: 100;
-    background: var(--bg);
-    background: color-mix(in srgb, var(--bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 9px 0;
-    border-radius: 999px;
-    margin: 0 0 2.2em;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
-  }
-  .toolbar-container .toolbar { margin: 0; }
-  .toolbar{
-    display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
-    margin:0 0 2.2em;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-  }
-  .toolbar button{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:0.86rem; font-weight:700;
-    color:var(--blue); background:var(--paper);
-    border:1.5px solid var(--blue); border-radius:999px;
-    padding:8px 20px; cursor:pointer; transition:all .2s ease;
-  }
-  .toolbar button:hover{ background:var(--blue); color:#fff; }
-  #accordion{ margin-bottom:2.4em; }
-  .acc-item{
-    background:var(--paper); border:1px solid var(--border); border-radius:12px;
-    margin-bottom:16px; overflow:hidden; overflow-anchor:none;
-  }
-  .acc-item:last-child{ margin-bottom:0; }
-  .acc-header{
-    width:100%; display:flex; align-items:center; gap:14px;
-    background:none; border:none; padding:18px 22px; cursor:pointer;
-    text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:1rem;
-    color:var(--ink); -webkit-tap-highlight-color:transparent;
-  }
-  .acc-header .num{
-    flex:0 0 auto; color:var(--blue); font-size:0.82rem; font-weight:700;
-    background:var(--fact-bg); padding:4px 11px; border-radius:999px; white-space:nowrap;
-  }
-  .acc-header .title{ flex:1 1 auto; font-size:1.1em; font-weight:700; }
-  .acc-header .chev{
-    flex:0 0 auto; width:20px; height:20px; color:var(--blue);
-    transition:transform .3s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
-  .acc-item.open > .acc-header{ background:var(--fact-bg); border-bottom:1px solid var(--border); }
-  .acc-panel{
-    display:grid; grid-template-rows:0fr;
-    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;
-  }
-  .acc-item.open > .acc-panel{ grid-template-rows:1fr; }
-  .acc-panel-inner{
-    overflow:hidden; min-height:0; padding:0 22px; opacity:0;
-    transition:opacity .3s ease .08s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner{ padding:6px 22px 26px; opacity:1; }
-  .acc-panel-inner h2{ margin-top:0; }
-  @media (max-width:600px){
-    .acc-header{ padding:15px 16px; gap:10px; }
-    .acc-header .title{ font-size:1em; }
-    .acc-item.open > .acc-panel > .acc-panel-inner{ padding:4px 16px 22px; }
-  }
-</style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 260" role="img" aria-labelledby="gtTitle gtDesc">
-        <title id="gtTitle">「与える人が勝つ」というテーゼと、四つの対抗言説の位置関係</title>
-        <desc id="gtDesc">中央に「与える人が成功する」というグラントのテーゼを置き、周囲に経営学、大衆的権力論、進化生物学・ゲーム理論、犯罪心理学という四つの独立した対抗言説を配置し、それぞれが中央のテーゼに異なる角度から留保を投げかけている様子を示す図。</desc>
-
-        <line x1="360" y1="130" x2="140" y2="45" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="580" y2="45" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="140" y2="215" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
-        <line x1="360" y1="130" x2="580" y2="215" stroke="#c2afae" stroke-opacity="0.55" stroke-width="1.5"/>
-
-        <rect x="270" y="104" width="180" height="52" rx="10" fill="#ffffff" fill-opacity="0.08" stroke="#c2afae" stroke-opacity="0.6"/>
-        <text x="360" y="126" class="hub">「与える人が勝つ」</text>
-        <text x="360" y="145" class="hub">というグラントのテーゼ</text>
-
-        <rect x="50" y="18" width="180" height="52" rx="8" class="node blue"/>
-        <text x="140" y="40" class="nodeT">経営学</text>
-        <text x="140" y="57" class="nodeS">（フェファー）</text>
-
-        <rect x="490" y="18" width="180" height="52" rx="8" class="node orange"/>
-        <text x="580" y="40" class="nodeT">大衆的権力論</text>
-        <text x="580" y="57" class="nodeS">（グリーン / マキャベリ）</text>
-
-        <rect x="50" y="188" width="180" height="52" rx="8" class="node aqua"/>
-        <text x="140" y="210" class="nodeT">進化生物学</text>
-        <text x="140" y="227" class="nodeS">（ゲーム理論）</text>
-
-        <rect x="490" y="188" width="180" height="52" rx="8" class="node violet"/>
-        <text x="580" y="210" class="nodeT">犯罪心理学</text>
-        <text x="580" y="227" class="nodeS">（ダークトライアド研究）</text>
-
-        <style>
-          .hub { fill: #f3f2ea; font-size: 12.5px; text-anchor: middle; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .node { fill-opacity: 0.14; stroke-width: 1.5; }
-          .node.blue { fill: #547cac; stroke: #89a4c6; }
-          .node.orange { fill: #bc6763; stroke: #d19794; }
-          .node.aqua { fill: #5f8842; stroke: #99c17d; }
-          .node.violet { fill: #496d98; stroke: #9eb4d0; }
-          .nodeT { fill: #f3f2ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .nodeS { fill: #c2afae; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>「与える人」は本当に勝つのか -  GIVE & TAKE の楽観論を検証する</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">書評・論考 / BUSINESS &amp; PSYCHOLOGY</span>
-  <h1>「与える人」は本当に勝つのか<br> -  GIVE &amp; TAKE の楽観論を検証する</h1>
-  <p class="sub">ギバー・マッチャー・テイカー論を、対抗言説の側から読み直す</p>
-  <div class="meta">
-    <span>全 12 章</span>
-    <span>約 19 分</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<article>
+ <p class="doc-meta">元記事:個人サイト『書庫』所収の書評・論考。 GIVE &amp; TAKE のギバー論を対抗言説の側から読み直す。全 12 章・約 19 分。</p>
 
-<p class="notebox">
-本稿では、記述の性質に応じて次の 4 区分の <span class="tag tag-fact">確立した事実</span>
+ <div class="fig-note">本稿では、記述の性質に応じて次の 4 区分の <span class="tag tag-fact">確立した事実</span>
 <span class="tag tag-consensus">おおむね合意された解釈</span>
 <span class="tag tag-debate">議論の分かれる論点</span>
 <span class="tag tag-hypo">仮説・一つの見立て</span>
-というタグを本文中に付す。どの記述をどの区分に置くかは、出典の性質（一次資料の実証データか、単一の逸話か、複数の研究者が独立に到達した解釈か等）に基づき、筆者が判断した。
-</p>
+というタグを本文中に付す。どの記述をどの区分に置くかは、出典の性質（一次資料の実証データか、単一の逸話か、複数の研究者が独立に到達した解釈か等）に基づき、筆者が判断した。</div>
 
-<div class="toolbar-container">
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
-  </div>
-</div>
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。</p>
 
-<div id="accordion">
-
-<section class="acc-item" id="intro" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">0</span>
-    <span class="title">序章  -  なぜ「与える人が成功する」という物語はこれほど魅力的なのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ペンシルベニア大学ウォートン校の組織心理学者アダム・グラントが 2013 年に著した『 Give and Take 』<span class="tag tag-fact">事実</span>は、世界的なベストセラーとなり、日本でも 2014 年に『 GIVE&amp;TAKE 「与える人」こそ成功する時代』として三笠書房から刊行された（一橋大学の楠木建教授監訳）。<br>
-この本が支持を集めた理由は単純である。「他人を蹴落とす者が出世する」という冷めた現実主義への反発心を、多くの読者が抱えていたからだ。<br>
+ <div class="accordion">
+<div class="chapter"><button aria-expanded="false" class="ch-head" type="button">0. 序章  -  なぜ「与える人が成功する」という物語はこれほど魅力的なのか</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ペンシルベニア大学ウォートン校の組織心理学者アダム・グラントが 2013 年に著した『 Give and Take 』<span class="tag tag-fact">事実</span>は、世界的なベストセラーとなり、日本でも 2014 年に『 GIVE&amp;TAKE 「与える人」こそ成功する時代』として三笠書房から刊行された（一橋大学の楠木建教授監訳）。<br/>
+この本が支持を集めた理由は単純である。「他人を蹴落とす者が出世する」という冷めた現実主義への反発心を、多くの読者が抱えていたからだ。<br/>
 グラントは、生命保険営業員の成約率やエンジニアの業績評価といった実証データを引きながら、「与える人（ギバー）」こそが長期的には最も成功しやすいという、道徳的に心地よい結論を提示した。</p>
-
-<p>しかし、都合の良い物語ほど、慎重に検討する価値がある。本稿の目的は、グラントの主張を頭ごなしに否定することではない。<br>
+<p class="pp">しかし、都合の良い物語ほど、慎重に検討する価値がある。本稿の目的は、グラントの主張を頭ごなしに否定することではない。<br/>
 むしろ、彼の議論の内部にある繊細な留保 - 「賢く与えよ」という条件付きの主張 - を丁寧にたどったうえで、経営学・大衆的権力論・進化生物学・犯罪心理学という異なる領域から、実質的にこれと対立する議論がどのように独立に存在してきたかを検討することにある。そのうえで、「どのような条件下でギバー戦略が有効なのか」という、より実践的な問いへとつなげたい。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">グラント理論の骨格  -  3 類型と「双峰分布」という発見</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>グラントは、人が他者とどう関わるかという「互酬性のスタイル」を三つに分類する<span class="tag tag-fact">事実</span>。<br>
-自分の利益を最優先し、他者から得るものを最大化しようとする「テイカー」。与えたものと受け取るものの均衡を志向する「マッチャー」。そして見返りを計算せずに他者に与える「ギバー」である。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. グラント理論の骨格  -  3 類型と「双峰分布」という発見</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">グラントは、人が他者とどう関わるかという「互酬性のスタイル」を三つに分類する<span class="tag tag-fact">事実</span>。<br/>
+自分の利益を最優先し、他者から得るものを最大化しようとする「テイカー」。与えたものと受け取るものの均衡を志向する「マッチャー」。そして見返りを計算せずに他者に与える「ギバー」である。<br/>
 この分類自体は目新しいものではなく、社会心理学における互酬性研究の蓄積を踏まえたものだが、グラントの本が注目を集めた最大の理由は分類そのものではなく、成功とギバー的傾向との関係について彼が示したデータにある。</p>
-
-<p>グラントが紹介する調査の一つでは、営業成績が最も低い層は平均よりも「ギバー傾向」のスコアが約 25% 高く、しかし成績が最も高い層でも同様にギバー傾向のスコアが高かった<span class="tag tag-fact">事実</span>。しかもトップ層の年間売上は、テイカーやマッチャーよりも平均で約 50% 多かったという。<br>
+<p class="pp">グラントが紹介する調査の一つでは、営業成績が最も低い層は平均よりも「ギバー傾向」のスコアが約 25% 高く、しかし成績が最も高い層でも同様にギバー傾向のスコアが高かった<span class="tag tag-fact">事実</span>。しかもトップ層の年間売上は、テイカーやマッチャーよりも平均で約 50% 多かったという。<br/>
 つまりギバーは、成功の階層の最下層と最上層の双方に偏って分布する - 正規分布（ベルカーブ）ではなく、双峰分布（バイモーダル）を描くというのが、グラントの中心的な発見である。</p>
-
 <figure>
-<svg viewBox="0 0 640 300" width="100%" role="img" aria-label="ギバーの成績分布は双峰型、マッチャー・テイカーの分布は単峰型であることを示す概念図">
-  <line x1="50" y1="240" x2="600" y2="240" stroke="var(--muted)" stroke-width="1.5"/>
-  <text x="600" y="262" text-anchor="end" font-family="Zen Kaku Gothic New, system-ui,-apple-system,'Segoe UI',sans-serif" font-size="12" fill="var(--sub)">成績（低 → 高）</text>
-  <path d="M 60 238 C 130 238, 150 60, 210 55 C 270 50, 300 235, 330 238 C 360 235, 400 60, 460 55 C 520 50, 560 238, 595 238"
-        fill="none" stroke="var(--blue)" stroke-width="3"/>
-  <path d="M 60 238 C 160 238, 230 80, 325 78 C 420 76, 470 238, 595 238"
-        fill="none" stroke="var(--orange)" stroke-width="3" stroke-dasharray="7 5"/>
-  <circle cx="150" cy="30" r="5" fill="var(--blue)"/>
-  <text x="163" y="35" font-family="Zen Kaku Gothic New, system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" fill="var(--ink)">ギバーの分布（双峰）</text>
-  <circle cx="150" cy="52" r="5" fill="var(--orange)"/>
-  <text x="163" y="57" font-family="Zen Kaku Gothic New, system-ui,-apple-system,'Segoe UI',sans-serif" font-size="13" fill="var(--ink)">マッチャー / テイカーの分布（単峰）</text>
+<svg aria-label="ギバーの成績分布は双峰型、マッチャー・テイカーの分布は単峰型であることを示す概念図" role="img" viewbox="0 0 640 300" width="100%">
+<line stroke="var(--muted)" stroke-width="1.5" x1="50" x2="600" y1="240" y2="240"></line>
+<text fill="var(--label)" font-family="Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, Meiryo, sans-serif" font-size="12" text-anchor="end" x="600" y="262">成績（低 → 高）</text>
+<path d="M 60 238 C 130 238, 150 60, 210 55 C 270 50, 300 235, 330 238 C 360 235, 400 60, 460 55 C 520 50, 560 238, 595 238" fill="none" stroke="var(--blue)" stroke-width="3"></path>
+<path d="M 60 238 C 160 238, 230 80, 325 78 C 420 76, 470 238, 595 238" fill="none" stroke="var(--orange)" stroke-dasharray="7 5" stroke-width="3"></path>
+<circle cx="150" cy="30" fill="var(--blue)" r="5"></circle>
+<text fill="var(--text)" font-family="Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, Meiryo, sans-serif" font-size="13" x="163" y="35">ギバーの分布（双峰）</text>
+<circle cx="150" cy="52" fill="var(--orange)" r="5"></circle>
+<text fill="var(--text)" font-family="Hiragino Kaku Gothic ProN, Hiragino Sans, Noto Sans JP, Meiryo, sans-serif" font-size="13" x="163" y="57">マッチャー / テイカーの分布（単峰）</text>
 </svg>
 <figcaption><span class="fignum">図 1</span> ギバーの成績分布は、最下層と最上層の双方に山を持つ「双峰分布」を描くとグラントは報告している。これに対しマッチャーやテイカーは、中間層に山を持つ単峰型の分布に近いとされる。数値目盛りは概念を示すための模式であり、実データの正確な曲線ではない。</figcaption>
 </figure>
-
-<p>グラント自身、この発見を単純な「与えれば与えるほど得をする」という話にはしていない。無条件に、自己犠牲的に与え続ける人物（グラントの言う selfless giver）は、他者につけこまれ、燃え尽き、最下層に沈むリスクを負う<span class="tag tag-consensus">合意された解釈</span>。<br>
+<p class="pp">グラント自身、この発見を単純な「与えれば与えるほど得をする」という話にはしていない。無条件に、自己犠牲的に与え続ける人物（グラントの言う selfless giver）は、他者につけこまれ、燃え尽き、最下層に沈むリスクを負う<span class="tag tag-consensus">合意された解釈</span>。<br/>
 これに対し、他者の利益を配慮しつつも自分自身の利害を判断基準の視野から外さない「 otherish giver （賢く与えるギバー）」こそが、最上層に到達しうるというのがグラントの実際の主張である。この「賢く与える」という限定条件こそが、本稿で以下に紹介する対抗言説と接続する結節点になる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">「賢く与える」の内実  -  otherish giver とマッチャーは何が違うのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここで一つ、見過ごされがちな概念上の混同を整理しておく必要がある。テイカーを除けば、ギバーもマッチャーも「他者を助ける」という行動を取る点では変わらない。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">2. 「賢く与える」の内実  -  otherish giver とマッチャーは何が違うのか</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ここで一つ、見過ごされがちな概念上の混同を整理しておく必要がある。テイカーを除けば、ギバーもマッチャーも「他者を助ける」という行動を取る点では変わらない。<br/>
 そして otherish giver は、自己犠牲的なギバーと違って「境界線を引き、自分を消耗させない範囲で与える」<span class="tag tag-hypo">見立て</span>。この「限度をわきまえる」という性質が、割に合う範囲でしか動かないマッチャーの行動と、外形的には酷似して見える。</p>
-
-<p>しかし両者を分けているのは、与える行動の量や範囲ではなく、<strong>何を判断基準にして「与えるかどうか」を決めているか</strong>という、動機の起点の違いである。 otherish giver が問うのは「相手が何を必要としているか、そのコストと価値の比率はどうか」であるのに対し、マッチャーが問うのは「この関係の帳尻は合っているか」である。</p>
-
+<p class="pp">しかし両者を分けているのは、与える行動の量や範囲ではなく、<strong>何を判断基準にして「与えるかどうか」を決めているか</strong>という、動機の起点の違いである。 otherish giver が問うのは「相手が何を必要としているか、そのコストと価値の比率はどうか」であるのに対し、マッチャーが問うのは「この関係の帳尻は合っているか」である。</p>
 <figure>
 <table>
 <tr><th></th><th>otherish giver</th><th>matcher</th></tr>
@@ -363,212 +294,89 @@
 </table>
 <figcaption><span class="fignum">図 2</span> otherish giver とマッチャーの判断基準の違い。両者の行動が最も明確に分岐するのは、相手が二度と会わない・お返しできない立場にある場面である。</figcaption>
 </figure>
-
-<p>この違いが最も鮮明に表れるのは、継続的な関係ではなく、一回限りの非対称な関係 - 採用面接での紹介、学生への助言、匿名の質問への回答などの場面である<span class="tag tag-hypo">見立て</span>。<br>
+<p class="pp">この違いが最も鮮明に表れるのは、継続的な関係ではなく、一回限りの非対称な関係 - 採用面接での紹介、学生への助言、匿名の質問への回答などの場面である<span class="tag tag-hypo">見立て</span>。<br/>
 グラントが紹介するシリコンバレーの人脈家アダム・リフキンの「 5 分間の親切」という発想は、この otherish giver の判断様式を象徴している<span class="tag tag-fact">事実</span>。リフキンは「自分にとって 5 分以内で済むことなら、相手が誰であれ引き受ける」という単純なルールを掲げ、見返りの見込みを一切計算しない。グラント自身、 10 年に及ぶ調査の中で最も気に入った着想がこの「 5 分間の親切」だったと述べている。</p>
-
-<p>この区別を踏まえたうえで注目すべきは、「賢く与える」という条件が、実はそれ自体がすでに一種の自己利益の計算を内包しているという点である。次章以降で見る対抗言説の多くは、この「計算された自己利益」の比重をグラントよりもさらに強く見積もる立場だと整理することができる。</p>
-
-<hr>
-
-<p>ここからは、グラントの主張と実質的に対立する議論を、経営学、大衆的な権力論の系譜、進化生物学・ゲーム理論、犯罪心理学という四つの領域から検討する。<br>
+<p class="pp">この区別を踏まえたうえで注目すべきは、「賢く与える」という条件が、実はそれ自体がすでに一種の自己利益の計算を内包しているという点である。次章以降で見る対抗言説の多くは、この「計算された自己利益」の比重をグラントよりもさらに強く見積もる立場だと整理することができる。</p>
+<hr/>
+<p class="pp">ここからは、グラントの主張と実質的に対立する議論を、経営学、大衆的な権力論の系譜、進化生物学・ゲーム理論、犯罪心理学という四つの領域から検討する。<br/>
 あらかじめ断っておくと、これらの著者の多くはグラントを名指しで批判しているわけではない<span class="tag tag-fact">事実</span>。むしろ、それぞれが独立に、しかし収斂する形で「与えることは必ずしも成功の最善手ではない」という立場を築いてきたという点が重要である。</p>
-
 <figure>
 <div class="quadmap">
-  <div><div class="qtitle"><span class="swatch" style="background:var(--blue)"></span>経営学</div>ジェフリー・フェファー - 組織内で昇進するのは「与える人」ではなく、自己アピールと政治力を備えた人物であるとする実証的な組織行動論</div>
-  <div><div class="qtitle"><span class="swatch" style="background:var(--orange)"></span>大衆的権力論</div>ロバート・グリーン、マキャベリ - 「与える」より「出し抜く」「恐れられる」ことを説く、数百年に及ぶリアリズムの系譜</div>
-  <div><div class="qtitle"><span class="swatch" style="background:var(--aqua)"></span>進化生物学・ゲーム理論</div>アクセルロッド、トリヴァース - 純粋な利他性ではなく「条件付き互恵性」こそが進化的に安定する戦略だとする数理的知見</div>
-  <div><div class="qtitle"><span class="swatch" style="background:var(--violet)"></span>犯罪心理学</div>ヘア、バビアク、ロンソン - 冷酷さや良心の呵責のなさが、企業の出世競争で（短期的には）有利に働く場合があるとする臨床的知見</div>
+<div><div class="qtitle"><span class="swatch" style="background:var(--blue)"></span>経営学</div>ジェフリー・フェファー - 組織内で昇進するのは「与える人」ではなく、自己アピールと政治力を備えた人物であるとする実証的な組織行動論</div>
+<div><div class="qtitle"><span class="swatch" style="background:var(--orange)"></span>大衆的権力論</div>ロバート・グリーン、マキャベリ - 「与える」より「出し抜く」「恐れられる」ことを説く、数百年に及ぶリアリズムの系譜</div>
+<div><div class="qtitle"><span class="swatch" style="background:var(--aqua)"></span>進化生物学・ゲーム理論</div>アクセルロッド、トリヴァース - 純粋な利他性ではなく「条件付き互恵性」こそが進化的に安定する戦略だとする数理的知見</div>
+<div><div class="qtitle"><span class="swatch" style="background:var(--violet)"></span>犯罪心理学</div>ヘア、バビアク、ロンソン - 冷酷さや良心の呵責のなさが、企業の出世競争で（短期的には）有利に働く場合があるとする臨床的知見</div>
 </div>
 <figcaption><span class="fignum">図 3</span> 「与えることが必ずしも成功の最善手ではない」とする議論が独立に存在する四つの領域。いずれもグラントを直接の論駁対象としているわけではないが、実質的に対立する立場を取っている。</figcaption>
 </figure>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">対抗言説① -  権力を取りに行く者が勝つ（ジェフリー・フェファー）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>スタンフォード大学経営大学院の組織行動学者ジェフリー・フェファーは、著書『 Power: Why Some People Have It and Others Don't 』（2010 年）<span class="tag tag-fact">事実</span>で、知性・実務能力・人当たりの良さだけでは組織内の権力を得られないと論じる。むしろ昇進を決定づけるのは、自己アピール（セルフプロモーション）、人脈構築、支配的な物腰を身につける「政治力」であり、実務での成果だけでは権力は手に入らないというのがこの記事の中心的な主張である<span class="tag tag-fact">事実</span>。</p>
-
-<p>2015 年の『 Leadership BS: Fixing Workplaces and Careers One Truth at a Time 』では、この立場をさらに先鋭化させている<span class="tag tag-fact">事実</span>。フェファーは、リーダーシップ論の多くが「気分は良いが実証的裏付けが薄い物語」で満たされていると批判し、「リーダーシップ業界は寓話（フェイブル）で溢れている」「（その助言の多くは）データではなく願望に、科学ではなく信念に基づいている」と述べている<span class="tag tag-fact">事実</span>。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">3. 対抗言説① -  権力を取りに行く者が勝つ（ジェフリー・フェファー）</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">スタンフォード大学経営大学院の組織行動学者ジェフリー・フェファーは、著書『 Power: Why Some People Have It and Others Don't 』（2010 年）<span class="tag tag-fact">事実</span>で、知性・実務能力・人当たりの良さだけでは組織内の権力を得られないと論じる。むしろ昇進を決定づけるのは、自己アピール（セルフプロモーション）、人脈構築、支配的な物腰を身につける「政治力」であり、実務での成果だけでは権力は手に入らないというのがこの記事の中心的な主張である<span class="tag tag-fact">事実</span>。</p>
+<p class="pp">2015 年の『 Leadership BS: Fixing Workplaces and Careers One Truth at a Time 』では、この立場をさらに先鋭化させている<span class="tag tag-fact">事実</span>。フェファーは、リーダーシップ論の多くが「気分は良いが実証的裏付けが薄い物語」で満たされていると批判し、「リーダーシップ業界は寓話（フェイブル）で溢れている」「（その助言の多くは）データではなく願望に、科学ではなく信念に基づいている」と述べている<span class="tag tag-fact">事実</span>。<br/>
 誠実さ・謙虚さ・他者への配慮といった理想化された美徳は、実際に組織の頂点に立つ人物の行動様式とは乖離していることが多く、むしろナルシシズムやマキャベリズムの傾向を持つ人物のほうが、そうした美徳を体現する人物より過剰に代表されているとフェファーは指摘する<span class="tag tag-consensus">合意された解釈</span>。</p>
-
-<p>フェファーの議論を、藁人形にせずに正確に理解しておく必要がある。彼は「意地悪であれ」と勧めているわけではない。<br>
+<p class="pp">フェファーの議論を、藁人形にせずに正確に理解しておく必要がある。彼は「意地悪であれ」と勧めているわけではない。<br/>
 彼の主張は規範的というより記述的なものであり、「世の中はこうあるべきだ」という願望と、「実際に権力を得ている人物の行動パターンはこうだ」という観察を意図的に切り離すべきだ、という点にある。この意味でフェファーの立場は、グラントの otherish giver 論と全面的に矛盾するわけではなく、「与えることが出世の必要条件でも十分条件でもない」という、より控えめだが手強い異論として理解するのが適切だろう<span class="tag tag-hypo">見立て</span>。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">対抗言説② -  大衆的権力論の伝統（ロバート・グリーンとマキャベリ）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>フェファーが学術的な実証研究の枠内で議論するのに対し、ロバート・グリーンの『 The 48 Laws of Power 』（1998 年）<span class="tag tag-fact">事実</span>は、より直接的に処世術としての権力論を説く。同書は、「相手を出し抜け」「借りを作らせよ」「自分の手の内を明かすな」といった 48 の法則を、歴史上の権謀術数のエピソードとともに提示するもので、四半世紀以上が経った現在も版を重ねている<span class="tag tag-fact">事実</span>。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">4. 対抗言説② -  大衆的権力論の伝統（ロバート・グリーンとマキャベリ）</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">フェファーが学術的な実証研究の枠内で議論するのに対し、ロバート・グリーンの『 The 48 Laws of Power 』（1998 年）<span class="tag tag-fact">事実</span>は、より直接的に処世術としての権力論を説く。同書は、「相手を出し抜け」「借りを作らせよ」「自分の手の内を明かすな」といった 48 の法則を、歴史上の権謀術数のエピソードとともに提示するもので、四半世紀以上が経った現在も版を重ねている<span class="tag tag-fact">事実</span>。<br/>
 グラントの本の思想的立ち位置とは、ほぼ正反対の実践哲学だと言ってよい。</p>
-
-<p>グリーンの議論の源流をたどれば、ニッコロ・マキャベリの『君主論』（Il Principe）に行き着く。同書は 1513 年、フィレンツェを追放されていたマキャベリによって執筆され、著者の死後 5 年を経た 1532 年に公式に出版された<span class="tag tag-fact">事実</span>。<br>
+<p class="pp">グリーンの議論の源流をたどれば、ニッコロ・マキャベリの『君主論』（Il Principe）に行き着く。同書は 1513 年、フィレンツェを追放されていたマキャベリによって執筆され、著者の死後 5 年を経た 1532 年に公式に出版された<span class="tag tag-fact">事実</span>。<br/>
 その第 17 章には、「愛されるより恐れられるほうが安全である」という趣旨の一節がある。原文の含意をより正確に訳せば、「愛されることと恐れられること、両方を兼ね備えるのが理想だが、両立が難しい場合は、恐れられるほうがより安全である」という条件付きの命題であり<span class="tag tag-fact">事実</span>、しばしば流布する「恐怖政治を推奨する書」という単純化されたイメージよりも、実際にはやや慎重な議論である点には留意が必要である。</p>
-
 <blockquote>
 「両者を兼ね備えるのが最善だが、それがかなわぬ場合、人は愛されるより恐れられるほうに、より大きな安全を見出すだろう」 -  マキャベリ『君主論』第 17 章より
 </blockquote>
-
-<p>マキャベリの主眼は、統治者が必要とあらば信義を破ることも厭うべきではない、という点にある。現代の「与える人が成功する」という道徳的に心地よい物語に対し、権力・統治・競争の本質は利他性ではなく計算された自己保存にあるとするリアリズムの伝統は、実に 500 年近く前から存在し続けている<span class="tag tag-consensus">合意された解釈</span>。<br>
+<p class="pp">マキャベリの主眼は、統治者が必要とあらば信義を破ることも厭うべきではない、という点にある。現代の「与える人が成功する」という道徳的に心地よい物語に対し、権力・統治・競争の本質は利他性ではなく計算された自己保存にあるとするリアリズムの伝統は、実に 500 年近く前から存在し続けている<span class="tag tag-consensus">合意された解釈</span>。<br/>
 グリーンとマキャベリを並べて読むとき見えてくるのは、「与える者が勝つ」という物語がビジネス書市場の一つの潮流ではあっても、決して総意ではないという事実である。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec5" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">対抗言説③ -  進化生物学・ゲーム理論からの視座</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでの二つの対抗言説が、いわば「意図的な自己利益の追求」を勧める規範的・記述的議論だったのに対し、進化生物学とゲーム理論からの知見は、性質が異なる。これらは「無条件の利他性」が長期的に安定して生き残る戦略ではない、ということを数理的・実験的に示す議論である。</p>
-
-<p>政治学者ロバート・アクセルロッドは 1980 年、繰り返し囚人のジレンマ・ゲームの最適戦略を競わせるコンピュータ・トーナメントを実施した<span class="tag tag-fact">事実</span>。参加した多様な戦略の中で最終的に勝利したのは、「最初は協力し、以降は相手の直前の手をそのまま真似る」という単純な「しっぺ返し（Tit for Tat）」戦略だった。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">5. 対抗言説③ -  進化生物学・ゲーム理論からの視座</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ここまでの二つの対抗言説が、いわば「意図的な自己利益の追求」を勧める規範的・記述的議論だったのに対し、進化生物学とゲーム理論からの知見は、性質が異なる。これらは「無条件の利他性」が長期的に安定して生き残る戦略ではない、ということを数理的・実験的に示す議論である。</p>
+<p class="pp">政治学者ロバート・アクセルロッドは 1980 年、繰り返し囚人のジレンマ・ゲームの最適戦略を競わせるコンピュータ・トーナメントを実施した<span class="tag tag-fact">事実</span>。参加した多様な戦略の中で最終的に勝利したのは、「最初は協力し、以降は相手の直前の手をそのまま真似る」という単純な「しっぺ返し（Tit for Tat）」戦略だった。<br/>
 この結果は 1984 年の著書『 The Evolution of Cooperation 』にまとめられ、アクセルロッドは、安定して生き残る戦略に共通する性質として、「相手より先に裏切らない」「協力にも裏切りにも同じ手で応じる（= 見境なく協力し続けない）」「相手を出し抜こうとしすぎない」という教訓を導き出している<span class="tag tag-fact">事実</span>。</p>
-
-<p>これをさらに遡れば、進化生物学者ロバート・トリヴァースが 1971 年に『 Quarterly Review of Biology 』誌に発表した論文「 The Evolution of Reciprocal Altruism （互恵的利他主義の進化）」に行き着く<span class="tag tag-fact">事実</span>。トリヴァースは、生物における協力行動の多く - クリーナーフィッシュの共生関係や鳥の警戒声、そして人間の互恵行動 - が、見返りのない純粋な利他性としてではなく、長期的な互恵関係として進化的に説明できることを示した<span class="tag tag-fact">事実</span>（なお同論文は当初「遅延返報的利他主義の進化」という表題で構想されていたが、査読者だった W ・ D ・ハミルトンの提案で現在の表題に改められたという経緯がある）。</p>
-
-<p>これらの知見をどう位置づけるべきか。ここは慎重な書き分けが必要な箇所である。<br>
-進化生物学の知見は、グラント自身が提唱する「 otherish giver （見返りのなさすぎる与え方は避け、相手を見極めて与える）」という限定付きの主張とは、実はむしろ整合的である<span class="tag tag-hypo">見立て</span>。しっぺ返し戦略も、相手の協力には協力で応じるという意味で「互恵的」であり、無条件の自己犠牲とは一線を画す。<br>
+<p class="pp">これをさらに遡れば、進化生物学者ロバート・トリヴァースが 1971 年に『 Quarterly Review of Biology 』誌に発表した論文「 The Evolution of Reciprocal Altruism （互恵的利他主義の進化）」に行き着く<span class="tag tag-fact">事実</span>。トリヴァースは、生物における協力行動の多く - クリーナーフィッシュの共生関係や鳥の警戒声、そして人間の互恵行動 - が、見返りのない純粋な利他性としてではなく、長期的な互恵関係として進化的に説明できることを示した<span class="tag tag-fact">事実</span>（なお同論文は当初「遅延返報的利他主義の進化」という表題で構想されていたが、査読者だった W ・ D ・ハミルトンの提案で現在の表題に改められたという経緯がある）。</p>
+<p class="pp">これらの知見をどう位置づけるべきか。ここは慎重な書き分けが必要な箇所である。<br/>
+進化生物学の知見は、グラント自身が提唱する「 otherish giver （見返りのなさすぎる与え方は避け、相手を見極めて与える）」という限定付きの主張とは、実はむしろ整合的である<span class="tag tag-hypo">見立て</span>。しっぺ返し戦略も、相手の協力には協力で応じるという意味で「互恵的」であり、無条件の自己犠牲とは一線を画す。<br/>
 しかし、世間に流布しがちな「無条件に与えれば、いつか必ず報われる」という単純化された解釈に対しては、これらの知見は明確な反証になっていると言える<span class="tag tag-debate">議論の分かれる論点</span>。進化的・数理的に安定して勝ち残るのは、純粋な利他性ではなく、条件付きの互恵性だからである。</p>
-
-<p>言い換えれば、進化生物学・ゲーム理論からの視座は、グラントの精緻な主張（otherish giving）を補強する側面と、グラントの本の通俗的な受け止められ方（「とにかく与えれば良い」）を切り崩す側面の、両方を併せ持っている<span class="tag tag-hypo">見立て</span>。これは対抗言説というより、グラントの議論をより厳密にする役割を果たしていると理解するのが公平だろう。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec6" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">対抗言説④ -  ダークトライアド研究（ヘア、バビアク、ロンソン）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>四つ目の対抗言説は、より不穏な角度からのものである。犯罪心理学者ロバート・ヘアとその共同研究者ポール・バビアクは、著書『 Snakes in Suits: When Psychopaths Go to Work 』（2006 年）で、企業の管理職層におけるサイコパシー（精神病質）傾向の比率を調べた調査結果を紹介している<span class="tag tag-fact">事実</span>。<br>
+<p class="pp">言い換えれば、進化生物学・ゲーム理論からの視座は、グラントの精緻な主張（otherish giving）を補強する側面と、グラントの本の通俗的な受け止められ方（「とにかく与えれば良い」）を切り崩す側面の、両方を併せ持っている<span class="tag tag-hypo">見立て</span>。これは対抗言説というより、グラントの議論をより厳密にする役割を果たしていると理解するのが公平だろう。</p>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">6. 対抗言説④ -  ダークトライアド研究（ヘア、バビアク、ロンソン）</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">四つ目の対抗言説は、より不穏な角度からのものである。犯罪心理学者ロバート・ヘアとその共同研究者ポール・バビアクは、著書『 Snakes in Suits: When Psychopaths Go to Work 』（2006 年）で、企業の管理職層におけるサイコパシー（精神病質）傾向の比率を調べた調査結果を紹介している<span class="tag tag-fact">事実</span>。<br/>
 同書で示された推定値は、一般人口における比率が約 1% であるのに対し、企業の上級管理職層では約 3.9~4% に上るというものである<span class="tag tag-debate">議論の分かれる論点</span>。この数値は特定のサンプルに基づく一つの推定であり、その後の追試や母集団の取り方によって幅があることには注意が必要だが、魅力的な話術・大胆さ・良心の呵責のなさといった特性が、大企業の出世競争において（少なくとも短期的には）有利に働きうるという指摘そのものは、複数の研究者から繰り返しなされている<span class="tag tag-consensus">合意された解釈</span>。</p>
-
-<p>ジャーナリストのジョン・ロンソンも、著書『 The Psychopath Test 』（2011 年）<span class="tag tag-fact">事実</span>で、この論点を印象的なルポルタージュとして描いている。ロンソンは、大規模なリストラで知られた実業家アル・ダンラップ（通称「チェーンソー・アル」、家電メーカー サンビームの元 CEO）にインタビューし、ヘアが開発した精神病質チェックリスト（PCL-R）の項目を直接本人に突きつけた<span class="tag tag-fact">事実</span>。<br>
+<p class="pp">ジャーナリストのジョン・ロンソンも、著書『 The Psychopath Test 』（2011 年）<span class="tag tag-fact">事実</span>で、この論点を印象的なルポルタージュとして描いている。ロンソンは、大規模なリストラで知られた実業家アル・ダンラップ（通称「チェーンソー・アル」、家電メーカー サンビームの元 CEO）にインタビューし、ヘアが開発した精神病質チェックリスト（PCL-R）の項目を直接本人に突きつけた<span class="tag tag-fact">事実</span>。<br/>
 興味深いのは、ダンラップがこの検査結果を否定するのではなく、むしろその特性を「リーダーシップの美点」として読み替えてみせた点である。「操作性」は「統率力」、「誇大な自己評価」は「成功するにはまず自分を信じなければならないということだ」と言い換えたという<span class="tag tag-fact">事実</span>。冷徹に人員削減を断行し株主価値を優先する経営者像と、精神病質チェックリストの特性との一致を、このルポは印象的に描き出している。</p>
-
-<p>ここで藁人形論法を避けるために強調しておきたいのは、これらの研究が「サイコパスであることが出世の秘訣だ」と主張しているわけではない、という点である<span class="tag tag-fact">事実</span>。ヘアとバビアク自身、大多数の管理職は精神病質とは無縁であり、また精神病質的な経営者が組織に長期的な損害（従業員の士気低下、離職率上昇、コンプライアンス違反など）をもたらす例も多く報告していると付言している<span class="tag tag-consensus">合意された解釈</span>。<br>
+<p class="pp">ここで藁人形論法を避けるために強調しておきたいのは、これらの研究が「サイコパスであることが出世の秘訣だ」と主張しているわけではない、という点である<span class="tag tag-fact">事実</span>。ヘアとバビアク自身、大多数の管理職は精神病質とは無縁であり、また精神病質的な経営者が組織に長期的な損害（従業員の士気低下、離職率上昇、コンプライアンス違反など）をもたらす例も多く報告していると付言している<span class="tag tag-consensus">合意された解釈</span>。<br/>
 むしろこれらの研究が示しているのは、「他者への配慮の欠如が、少なくとも一部の環境・一部の時間軸においては、出世の妨げにならない、あるいはむしろ有利に働く場合がある」という、グラントのテーゼの前提そのものを揺さぶる観察である<span class="tag tag-hypo">見立て</span>。ロンソンの取材は学術的な因果関係の確立というより、逸話的・ルポルタージュ的な報告に近い性質のものであることも、あわせて明記しておく。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec7" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">7</span>
-    <span class="title">内在批判  -  グラント自身のデータが語るもう一つの物語</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでは外部からの対抗言説を見てきたが、グラントの提示したデータそのものへの内在的な疑問も指摘できる。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">7. 内在批判  -  グラント自身のデータが語るもう一つの物語</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ここまでは外部からの対抗言説を見てきたが、グラントの提示したデータそのものへの内在的な疑問も指摘できる。<br/>
 この記事の核心である「ギバーは成功の最下層と最上層の両方に偏る」という双峰分布は、裏を返せば次のようにも読める<span class="tag tag-hypo">見立て</span>。すなわち、「与えることは成功への近道」なのではなく、「与えることは同時にハイリスク・ハイリターンの戦略である」という読み方である。「与えれば成功する」のではなく、「与え方を誤れば真っ先に食い物にされて最下層に落ち、うまく制御できれば最上層に達する」という、リスクの物語として読み替えることも可能だろう。</p>
-
-<p>加えて、グラントが紹介する事例の多くは、営業職や資金調達など「与える行為が可視化されやすく、評判が資本になりやすい」特定の業種に偏っている<span class="tag tag-hypo">見立て</span>。逆に言えば、匿名性が高く一回限りの関係が支配する環境 - 短期的な取引、匿名のオークション、あるいは熾烈な政治的権力闘争のような場では、与える行為そのものが観測されにくく、評判として蓄積されない。<br>
+<p class="pp">加えて、グラントが紹介する事例の多くは、営業職や資金調達など「与える行為が可視化されやすく、評判が資本になりやすい」特定の業種に偏っている<span class="tag tag-hypo">見立て</span>。逆に言えば、匿名性が高く一回限りの関係が支配する環境 - 短期的な取引、匿名のオークション、あるいは熾烈な政治的権力闘争のような場では、与える行為そのものが観測されにくく、評判として蓄積されない。<br/>
 こうした環境において、ギバー戦略がどこまで一般化できるかは、この記事内でも十分に検証されているとは言い難い<span class="tag tag-debate">議論の分かれる論点</span>。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec8" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">8</span>
-    <span class="title">総合  -  ギバー戦略はどのような条件下で有効なのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまで見てきた対抗言説を突き合わせると、一つの整理軸が浮かび上がる。それは、「関係が継続するかどうか」と「与える行為・評判が周囲から見えるかどうか」という二つの軸である<span class="tag tag-hypo">見立て</span>。</p>
-
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">8. 総合  -  ギバー戦略はどのような条件下で有効なのか</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">ここまで見てきた対抗言説を突き合わせると、一つの整理軸が浮かび上がる。それは、「関係が継続するかどうか」と「与える行為・評判が周囲から見えるかどうか」という二つの軸である<span class="tag tag-hypo">見立て</span>。</p>
 <figure>
 <div class="matrix">
-  <div class="hdr"></div>
-  <div class="hdr">評判が可視化されやすい</div>
-  <div class="hdr">評判が可視化されにくい（匿名性が高い）</div>
-  <div class="axis">関係が継続する</div>
-  <div class="cell"><strong>ギバー戦略が最も有効な領域</strong>営業・紹介・社内評価など、与える行為が評判として蓄積されやすい環境。グラントの事例の多くはここに属する。</div>
-  <div class="cell"><strong>マッチャー戦略が優勢になりやすい領域</strong>継続的だが評判が伝わりにくい閉じた関係。互恵性が個別の記憶に頼るため、条件付き協力（しっぺ返し型）が安定しやすい。</div>
-  <div class="axis">関係が一回限り</div>
-  <div class="cell"><strong>otherish giver の非対称な利他性が際立つ領域</strong>採用面接での紹介、学生への助言など。評判は残るが相手からの直接の見返りは期待できない。</div>
-  <div class="cell"><strong>フェファー・グリーン・ダークトライアド研究が説明力を持つ領域</strong>匿名の取引、短期的な政治闘争。与えても観測されず、自己利益の追求や冷徹さが相対的に有利になりうる。</div>
+<div class="hdr"></div>
+<div class="hdr">評判が可視化されやすい</div>
+<div class="hdr">評判が可視化されにくい（匿名性が高い）</div>
+<div class="axis">関係が継続する</div>
+<div class="cell"><strong>ギバー戦略が最も有効な領域</strong>営業・紹介・社内評価など、与える行為が評判として蓄積されやすい環境。グラントの事例の多くはここに属する。</div>
+<div class="cell"><strong>マッチャー戦略が優勢になりやすい領域</strong>継続的だが評判が伝わりにくい閉じた関係。互恵性が個別の記憶に頼るため、条件付き協力（しっぺ返し型）が安定しやすい。</div>
+<div class="axis">関係が一回限り</div>
+<div class="cell"><strong>otherish giver の非対称な利他性が際立つ領域</strong>採用面接での紹介、学生への助言など。評判は残るが相手からの直接の見返りは期待できない。</div>
+<div class="cell"><strong>フェファー・グリーン・ダークトライアド研究が説明力を持つ領域</strong>匿名の取引、短期的な政治闘争。与えても観測されず、自己利益の追求や冷徹さが相対的に有利になりうる。</div>
 </div>
 <figcaption><span class="fignum">図 4</span> 関係の継続性と評判の可視性という 2 軸で見ると、ギバー戦略が有利な条件と、対抗言説が説明力を持つ条件を、ある程度切り分けて理解できる。ただしこの整理は本稿による一つの試論であり、実証的に検証された分類ではない。</figcaption>
 </figure>
-
-<p>この整理が示唆するのは、グラントと対抗言説の論者たちが、実は同じ現象の異なる側面を見ている可能性があるということである<span class="tag tag-hypo">見立て</span>。<br>
+<p class="pp">この整理が示唆するのは、グラントと対抗言説の論者たちが、実は同じ現象の異なる側面を見ている可能性があるということである<span class="tag tag-hypo">見立て</span>。<br/>
 グラントが主に依拠する事例 - 営業職、紹介による人脈形成、社内での長期的な評価 - は、与える行為が可視化され、評判として蓄積される環境に偏っている。これに対しフェファーやグリーンが念頭に置くのは、しばしばより流動的で、政治力学が支配的な権力闘争の場面である。ダークトライアド研究が示すのも、個人の評判よりも短期的な意思決定力・大胆さが評価されやすい局面での話である場合が多い。</p>
-
-<p>したがって、「与えることは成功の最善手か」という問いには、単一の正解があるわけではない<span class="tag tag-debate">議論の分かれる論点</span>。「どのような環境・業種・関係の継続性において、ギバー戦略が有効なのか」という条件を見極める視点を持つことが、グラントの本を鵜呑みにするのでも、対抗言説によって単純に相殺するのでもない、第三の読み方だと言えるだろう。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec9" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">9</span>
-    <span class="title">本稿の限界について  -  自己点検</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>最後に、本稿自体の限界について記しておく。本稿が批判の対象としているのは、「都合の良い事実だけを選び、一面的な物語を提示すること」であり、本稿自身がその陥穽に陥っていないかは、執筆の最終段階で改めて検討した。</p>
-
-<p>第一に、フェファー、グリーン、マキャベリ、アクセルロッド、トリヴァース、ヘア、バビアク、ロンソンのいずれも、グラントを名指しで批判した論者ではない<span class="tag tag-fact">事実</span>という点は重要である。<br>
+<p class="pp">したがって、「与えることは成功の最善手か」という問いには、単一の正解があるわけではない<span class="tag tag-debate">議論の分かれる論点</span>。「どのような環境・業種・関係の継続性において、ギバー戦略が有効なのか」という条件を見極める視点を持つことが、グラントの本を鵜呑みにするのでも、対抗言説によって単純に相殺するのでもない、第三の読み方だと言えるだろう。</p>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">9. 本稿の限界について  -  自己点検</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">最後に、本稿自体の限界について記しておく。本稿が批判の対象としているのは、「都合の良い事実だけを選び、一面的な物語を提示すること」であり、本稿自身がその陥穽に陥っていないかは、執筆の最終段階で改めて検討した。</p>
+<p class="pp">第一に、フェファー、グリーン、マキャベリ、アクセルロッド、トリヴァース、ヘア、バビアク、ロンソンのいずれも、グラントを名指しで批判した論者ではない<span class="tag tag-fact">事実</span>という点は重要である。<br/>
 本稿は、独立に存在するこれらの議論を「対抗言説」として一つの構図にまとめているが、これは筆者による整理・再構成であって、これらの論者自身が「グラントに反論している」わけではない。この点は繰り返し強調しておく必要がある。</p>
-
-<p>第二に、ヘア・バビアクの調査、ロンソンのルポルタージュは、いずれも特定のサンプルや個別の取材対象に基づくものであり、その一般化可能性には限界がある<span class="tag tag-debate">議論の分かれる論点</span>。「サイコパス的特性が出世に有利」という主張を、あたかも確立した法則であるかのように扱うことは、グラントの主張を単純化して批判するのと同じ誤りを犯すことになる。</p>
-
-<p>第三に、逆にグラント側の擁護 material - たとえば otherish giver が長期的に最も持続可能である、という主張を裏付ける追試データの有無 - について、本稿では深く掘り下げていない。この点は本稿の限界として明記しておく。<br>
+<p class="pp">第二に、ヘア・バビアクの調査、ロンソンのルポルタージュは、いずれも特定のサンプルや個別の取材対象に基づくものであり、その一般化可能性には限界がある<span class="tag tag-debate">議論の分かれる論点</span>。「サイコパス的特性が出世に有利」という主張を、あたかも確立した法則であるかのように扱うことは、グラントの主張を単純化して批判するのと同じ誤りを犯すことになる。</p>
+<p class="pp">第三に、逆にグラント側の擁護 material - たとえば otherish giver が長期的に最も持続可能である、という主張を裏付ける追試データの有無 - について、本稿では深く掘り下げていない。この点は本稿の限界として明記しておく。<br/>
 グラントの本自体が扱う実証データの妥当性（サンプルの代表性、因果関係と相関関係の区別など）を独立に検証することは、本稿の範囲を超える。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="conclusion" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">10</span>
-    <span class="title">結び</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>『 GIVE &amp; TAKE 』が示した「賢く与える者が長期的に成功しやすい」というテーゼは、少なくとも一部の環境 - 評判が可視化され、関係が継続する環境 - においては、説得力のある観察である。しかし、それは唯一の物語ではない。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">10. 結び</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">『 GIVE &amp; TAKE 』が示した「賢く与える者が長期的に成功しやすい」というテーゼは、少なくとも一部の環境 - 評判が可視化され、関係が継続する環境 - においては、説得力のある観察である。しかし、それは唯一の物語ではない。<br/>
 権力を意識的に追求する者が勝つという経営学の知見、与えるより出し抜くことを説く数百年来のリアリズムの伝統、純粋な利他性ではなく条件付きの互恵性こそが進化的に安定するという数理的知見、そして他者への配慮の欠如が特定の環境では出世を助けうるという臨床的知見 - これらはいずれも、「与えることが常に最善手である」という単純化された物語に対する、重要な留保として読むことができる。</p>
-
-<p>与えることを選ぶかどうかは、最終的には各人の価値観の問題である。しかし、その選択がどのような条件のもとで報われ、どのような条件のもとで裏切られるのかを見極める視点を持つことは、道徳的な物語をただ信じることよりも、はるかに実践的な知恵だと言えるのではないだろうか。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="refs" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">11</span>
-    <span class="title">出典</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+<p class="pp">与えることを選ぶかどうかは、最終的には各人の価値観の問題である。しかし、その選択がどのような条件のもとで報われ、どのような条件のもとで裏切られるのかを見極める視点を持つことは、道徳的な物語をただ信じることよりも、はるかに実践的な知恵だと言えるのではないだろうか。</p>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">11. 出典</button><div class="ch-body"><div class="ch-intro">
 <ol class="sources">
 <li>Adam Grant, <em>Give and Take: A Revolutionary Approach to Success</em>, Viking, 2013. <a href="https://www.penguinrandomhouse.com/books/312425/give-and-take-by-adam-grant/">Penguin Random House 書誌情報</a></li>
 <li>アダム・グラント（楠木建監訳）『 GIVE &amp; TAKE 「与える人」こそ成功する時代』三笠書房、 2014 年。<a href="https://www.mikasashobo.co.jp/c/books/?id=100574600">三笠書房 書誌情報</a></li>
@@ -584,77 +392,231 @@
 <li>Paul Babiak &amp; Robert D. Hare, <em>Snakes in Suits: When Psychopaths Go to Work</em>, HarperBusiness, 2006. <a href="https://en.wikipedia.org/wiki/Snakes_in_Suits">Wikipedia</a> / 管理職層における推定比率の言及 :<a href="https://www.forbes.com/sites/jackmccullough/2019/12/09/the-psychopathic-ceo/">Forbes, "The Psychopathic CEO"</a></li>
 <li>Jon Ronson, <em>The Psychopath Test: A Journey Through the Madness Industry</em>, Riverhead Books, 2011. <a href="https://en.wikipedia.org/wiki/The_Psychopath_Test">Wikipedia</a> / アル・ダンラップへの取材 :<a href="https://www.npr.org/2011/05/21/136462824/a-psychopath-walks-into-a-room-can-you-tell">NPR, "A Psychopath Walks Into A Room. Can You Tell?"</a></li>
 </ol>
-    </div>
-  </div>
-</section>
+</div></div></div>
+ </div>
 
 </div>
-</article>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
 
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(){
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
       });
+      breadcrumbNav.appendChild(btn);
     });
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
   document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute("href").slice(1);
-    var target = document.getElementById(id);
-    if(!target) return;
-    var accItem = target.closest("[data-acc]");
-    if(!accItem) return;
-    e.preventDefault();
-
-    var wasOpen = accItem.classList.contains("open");
-    if(!wasOpen){
-      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
-        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
-          sibling.classList.remove("open");
-        }
-      });
-      accItem.classList.add("open");
-    }
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
   });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+
 </body>
 </html>

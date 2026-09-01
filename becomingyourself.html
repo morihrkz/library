@@ -2,1514 +2,872 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>本当の自分に出会う - ユング心理学とともに歩む、こころの旅</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
   :root{
-    --bg:#F5F3EC;
-    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
-    --sky:#688cb7;
-    --accent:#25364A;
-    --sun:#b9ad6e;
-    --sun-deep:#b2524d;
-    --coral:#c77f7b;--coral-deep:#944440;
-    --paper:#fff;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --line:#C8CEC0;
-    --pause-bg:#F2F7EA;
-    --pause-border:#9DB87C;
-    --pause-ink:#3E5226;
-    --card:#F5F3EC;
-    --note-bg:#EEF2E4;
-    /* ヒーロー: 陽の差す水面（ 続編 jung_criticism.html の深淵と対をなす ）*/
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
+  }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-    --surface-mid:#334b69;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;scroll-behavior: smooth;}
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.8;
-    letter-spacing:0.01em;
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
   }
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
+  }
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
+  }
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  /* ---------- Progress Bar ---------- */
-  #progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--sky), var(--coral));
-    width: 0%;
-    z-index: 9999;
-    transition: width 0.1s ease-out;
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    overflow:hidden;
-    padding:80px 24px 100px;
-    text-align:center;
-    background:var(--hero-1);
-    color:var(--hero-ink);
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
-  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
-  header.hero .eyebrow{
-    display:inline-block;
-    font-size:0.85rem;
-    letter-spacing:0.35em;
-    background:rgba(255,255,255,0.18);
-    border:1px solid rgba(255,255,255,0.5);
-    border-radius:999px;
-    padding:8px 22px;
-    margin-bottom:24px;
-    backdrop-filter: blur(4px);
-  }
-  .hero h1{
-    margin:0 0 16px;
-    font-size:clamp(2.2rem, 5vw, 3.5rem);
-    font-weight:800;
-    text-shadow:0 3px 16px rgba(0,0,0,0.40);
-  }
-  header.hero p.sub{
-    margin:0 auto;
-    max-width:600px;
-    font-size:clamp(1.1rem, 2.5vw, 1.35rem);
-    font-weight:500;
-    color:var(--hero-dim);
-    line-height:1.6;
-  }
-  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
-    display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;}
-  .wave{
-    position:absolute;
-    left:0; right:0; bottom:-2px;
-    line-height:0;
-  }
-  .wave svg{ width:100%; height:70px; display:block; }
-
-  /* ---------- Layout ---------- */
-  .wrap{
-    margin:0;
-    padding:0 clamp(1.5rem, 3vw, 3rem) 90px;
-  }
-  .hero-figure{ max-width:900px; margin:0 auto; overflow-x:auto; text-align:left; }
-  .hero-figure svg{ display:block; width:100%; height:auto; }
-  .hero-figure figcaption{ margin-top:.8rem; font-size:.85rem; line-height:1.75; color:var(--hero-dim); }
-  .toc-note{
-    margin:0 0 26px;
-    text-align:center;
-    color:var(--sub);
-    line-height:1.85;
-    text-indent:0;
-  }
-  
-  /* Sticky Toolbar */
-  .toolbar-container {
-    position: sticky;
-    top: 10px;
-    z-index: 100;
-    background: rgba(252,251,248, 0.9);
-    backdrop-filter: blur(8px);
-    padding: 10px 0;
-    border-radius: 999px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  }
-  .toolbar{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  .toolbar button{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size:0.9rem;
-    font-weight: 600;
-    color:var(--accent);
-    background:#ffffff;
-    border:1.5px solid var(--sky);
-    border-radius:999px;
-    padding:10px 24px;
-    cursor:pointer;
-    transition:all .2s ease;
-    box-shadow: 0 2px 6px rgba(104,140,183, 0.15);
-  }
-  .toolbar button:hover{
-    background:var(--sky);
-    color:#fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(104,140,183, 0.25);
-  }
-
-  /* ---------- Accordion ---------- */
-  .acc-item{
-    background:var(--paper);
-    border-radius:18px;
-    margin-bottom:16px;
-    box-shadow:0 4px 20px rgba(62,92,129,0.05);
-    overflow:hidden;
-    border:1px solid var(--line);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .acc-item:hover {
-    box-shadow:0 6px 25px rgba(62,92,129,0.08);
-  }
-  .acc-header{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:16px;
-    background:none;
-    border:none;
-    padding:16px 20px;
-    cursor:pointer;
-    text-align:left;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color:var(--ink);
-    scroll-margin-top:90px;
-  }
-  .acc-header .num{
-    flex:0 0 auto;
-    width:38px; height:38px;
-    border-radius:50%;
-    background:linear-gradient(135deg, var(--sun), var(--sun-deep));
-    color:#fff;
-    display:flex; align-items:center; justify-content:center;
-    font-weight:700;
-    font-size:1rem;
-    box-shadow:0 3px 10px rgba(178,82,77,0.3);
-  }
-  .acc-header .title{
-    flex:1 1 auto;
-    font-size:1.15rem;
-    font-weight:700;
-    letter-spacing: 0.05em;
-    line-height:1.3;
-  }
-  .acc-header .title small{
-    display:block;
-    font-weight:500;
-    font-size:0.85rem;
-    color:var(--sub);
-    margin-top:4px;
-  }
-  .acc-header .chev{
-    flex:0 0 auto;
-    width:24px; height:24px;
-    color:var(--accent);
-    transition:transform .3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .acc-item.open > .acc-header .chev{ transform:rotate(180deg); }
-  .acc-item.open > .acc-header{
-    background:var(--note-bg);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .acc-panel{
-    display:grid;
-    grid-template-rows:0fr;
-    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
-    overflow-anchor:none;
-  }
-  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
-  .acc-panel-inner{
-    overflow:hidden;
-    min-height:0;
-    padding:0 28px;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner{
-    padding:16px 28px 32px;
-    opacity: 1;
-  }
-
-  /* nested */
-  .sub-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:8px;
-  }
-  .sub-item{
-    background:var(--card);
-    border:1px solid #e1e8f0;
-    border-radius:14px;
-    overflow:hidden;
-  }
-  .sub-header{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    background:none;
-    border:none;
-    padding:12px 18px;
-    cursor:pointer;
-    text-align:left;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color:var(--ink);
-    scroll-margin-top:90px;
-  }
-  .sub-header:hover {
-    background: rgba(255,255,255,0.5);
-  }
-  .sub-header .num{
-    flex:0 0 auto;
-    width:26px; height:26px;
-    border-radius:50%;
-    background:linear-gradient(135deg, var(--coral), #d19693);
-    color:#fff;
-    display:flex; align-items:center; justify-content:center;
-    font-weight:700;
-    font-size:0.85rem;
-  }
-  .sub-header .title{
-    flex:1 1 auto;
-    font-size:1.05rem;
-    font-weight:700;
-    line-height:1.3;
-  }
-  .sub-header .chev{
-    width:20px; height:20px;
-    color:var(--coral-deep);
-    transition:transform .3s ease;
-  }
-  .sub-item.open > .sub-header .chev{ transform:rotate(180deg); }
-  .sub-item.open > .sub-header{
-    border-bottom: 1px dashed #e1e8f0;
-  }
-  .sub-panel{
-    display:grid;
-    grid-template-rows:0fr;
-    transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1);
-    overflow-anchor:none;
-  }
-  .sub-item.open > .sub-panel{grid-template-rows:1fr;}
-  .sub-panel-inner{
-    overflow:hidden;
-    min-height:0;
-    padding:0 24px;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-  }
-  .sub-item.open > .sub-panel > .sub-panel-inner{
-    padding:16px 24px 24px;
-    opacity: 1;
-  }
-
-  /* ---------- Body typography ---------- */
-  p{
-    margin:0 0 1.2em;
-    font-size:1.12rem;
-    color: var(--ink);
-    text-indent:1em;
-  }
-  .no-indent{ text-indent:0; }
-  .quote{
-    margin:1.5em 0;
-    padding:18px 24px;
-    border-left:5px solid var(--sky);
-    background:#f4f7fa;
-    border-radius:0 12px 12px 0;
-    font-style:italic;
-    color:#455364;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-  }
-  .quote .author{
-    display:block;
-    margin-top:10px;
-    font-style:normal;
-    font-size:0.9rem;
-    text-align:right;
-    color: var(--accent);
-    font-weight: bold;
-  }
-  .pullquote{
-    text-align:center;
-    font-size:1.25rem;
-    font-weight:700;
-    color:var(--accent);
-    margin:1.8em 0;
-    text-indent:0;
-    padding: 0 20px;
-    position: relative;
-  }
-  .pullquote::before, .pullquote::after {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background: var(--accent);
-    vertical-align: middle;
-    margin: 0 15px;
-    opacity: 0.3;
-  }
-  .italicquote{
-    text-align:center;
-    font-style:italic;
-    color:var(--coral-deep);
-    font-weight:700;
-    font-size: 1.15rem;
-    margin:1.8em 0;
-    text-indent:0;
-  }
-  .pause{
-    margin:2em 0 0;
-    padding:24px;
-    background:var(--pause-bg);
-    border:2px dashed var(--pause-border);
-    border-radius:16px;
-    position:relative;
-    box-shadow:0 4px 12px color-mix(in srgb, var(--pause-border) 16%, transparent);
-  }
-  .pause::before{
-    content:"ひと休み";
-    position:absolute;
-    top:-10px;
-    left:20px;
-    background:var(--pause-bg);
-    padding:0 8px;
-    font-weight:700;
-    letter-spacing:.05em;
-    color:var(--pause-ink);
-  }
-  .pause p{
-    margin:0;
-    text-indent:0;
-    color:var(--pause-ink);
-    font-weight:600;
-    line-height:1.6;
-  }
-  strong.term{
-    color:var(--ink);
-    font-weight:700;
-    background:linear-gradient(180deg, transparent 65%, rgba(185,173,110,0.6) 65%);
-    padding:0 2px;
-  }
-  .dl-term{
-    margin:0 0 1.5em;
-    padding-bottom:1.5em;
-    border-bottom:1px solid var(--line);
-  }
-  .dl-term:last-child{ border-bottom:none; }
-  .dl-term dt{
-    font-weight:700;
-    font-size: 1.1rem;
-    color:var(--accent);
-    margin-bottom:6px;
-  }
-  .dl-term dd{
-    margin:0;
-    color:var(--ink);
-    font-size:1rem;
-  }
-  .book-group h4{
-    color:var(--coral-deep);
-    font-size:1.1rem;
-    margin:1.5em 0 0.8em;
-    border-left: 4px solid var(--coral);
-    padding-left: 10px;
-  }
-  .book-group ul{
-    margin:0 0 1em;
-    padding-left:1.5em;
-  }
-  .book-group li{
-    margin-bottom:0.8em;
-    font-size:1rem;
-    color: var(--ink);
-  }
-  .closing{
-    text-align:center;
-    font-style:italic;
-    color:var(--sub);
-    margin-top:2em;
-    padding: 20px;
-    background: var(--card);
-    border-radius: 12px;
-  }
-
-  footer{
-    text-align:center;
-    color:var(--sub);
-    font-size:0.9rem;
-    padding:30px 20px;
-    background: #f4f6f9;
-    border-top: 1px solid var(--line);
-  }
-
-  @media (max-width:600px){
-    .hero{ padding:60px 16px 80px; }
-    .hero-figure svg{ min-width:560px; }
-    .acc-header{ padding:16px 16px; }
-    .acc-panel-inner{ padding:12px 16px 24px; }
-    .sub-panel-inner{ padding:12px 16px 20px; }
-    .pause{ padding: 20px 16px; }
-    .pullquote::before, .pullquote::after { display: none; }
-  }
-</style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
+  .no-indent{text-indent:0;}
+  /* 記事固有: 引用 */
+  .quote{margin:1.2em 0;padding:14px 18px;border-left:4px solid var(--border);background:var(--accent-light);border-radius:0 8px 8px 0;font-style:italic;color:var(--label);}
+  .quote .author{display:block;margin-top:8px;font-style:normal;font-size:.85em;text-align:right;color:var(--accent);font-weight:bold;}
+  .pullquote{text-align:center;font-size:1.1em;font-weight:700;color:var(--accent);margin:1.4em 0;text-indent:0;padding:0 16px;position:relative;}
+  .pullquote::before,.pullquote::after{content:'';display:inline-block;width:18px;height:2px;background:var(--accent);vertical-align:middle;margin:0 12px;opacity:.3;}
+  .italicquote{text-align:center;font-style:italic;color:var(--accent);font-weight:700;font-size:1.05em;margin:1.4em 0;text-indent:0;}
+  /* 記事固有: 強調語 */
+  strong.term{color:var(--text);font-weight:700;background:linear-gradient(180deg, transparent 65%, var(--accent-light) 65%);padding:0 2px;}
+  /* 記事固有: 定義リスト */
+  .dl-term{margin:0 0 1.2em;padding-bottom:1.2em;border-bottom:1px solid var(--border);}
+  .dl-term:last-child{border-bottom:none;}
+  .dl-term dt{font-weight:700;font-size:1.02em;color:var(--accent);margin-bottom:5px;}
+  .dl-term dd{margin:0;color:var(--text);font-size:.96em;}
+  /* 記事固有: 読書案内グループ */
+  .book-group h4{color:var(--accent);font-size:1em;margin:1.2em 0 .6em;border-left:4px solid var(--border);padding-left:10px;}
+  .book-group ul{margin:0 0 .9em;padding-left:1.4em;}
+  .book-group li{margin-bottom:.7em;color:var(--text);}
+  /* 記事固有: 結びの一文 */
+  .closing{text-align:center;font-style:italic;color:var(--muted);margin-top:1.4em;padding:16px;background:var(--accent-light);border-radius:8px;}
 </style>
 </head>
 <body>
 
-<div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 200" role="img" aria-labelledby="byTitle byDesc">
-        <title id="byTitle">この記事が歩む、こころの旅の三部構成</title>
-        <desc id="byDesc">今の自分を出発点として、パート I 自分自身と出会う、パート II 内側から成長する、パート III 賢く生きる、という三つの節目を通り、自分自身になるという到達点へと右上がりに続く一本道を示す図。</desc>
-
-        <path d="M30,165 C120,150 180,140 260,125 C340,110 400,95 470,80 C540,65 610,50 690,35" class="path"/>
-
-        <circle cx="30" cy="165" r="5" class="dot start"/>
-        <text x="30" y="186" class="lb">今の自分</text>
-
-        <circle cx="260" cy="125" r="7" class="dot"/>
-        <text x="260" y="106" class="lb strong">パート I</text>
-        <text x="260" y="120" class="lb">自分自身と出会う</text>
-
-        <circle cx="470" cy="80" r="7" class="dot"/>
-        <text x="470" y="61" class="lb strong">パート II</text>
-        <text x="470" y="75" class="lb">内側から成長する</text>
-
-        <circle cx="690" cy="35" r="7" class="dot end"/>
-        <text x="644" y="18" class="lb strong end">パート III ・ 賢く生きる</text>
-        <text x="644" y="55" class="lb end">自分自身になる</text>
-
-        <style>
-          .path { fill: none; stroke: #ffffff; stroke-opacity: 0.55; stroke-width: 2.5; stroke-linecap: round; }
-          .dot { fill: #ffffff; stroke: #293d55; stroke-width: 2; }
-          .dot.start { fill: #ecf1f6; }
-          .dot.end { fill: #b9ad6e; stroke: #b2524d; }
-          .lb { fill: #ffffff; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lb.strong { font-weight: 800; font-size: 13.5px; }
-          .lb.end { text-anchor: end; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>本当の自分に出会う - ユング心理学とともに歩む、こころの旅</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">JUNGIAN PSYCHOLOGY</span>
-  <h1>本当の自分に出会う</h1>
-  <p class="sub">ユング心理学とともに歩む、こころの旅</p>
-  <div class="meta">
-    <span>全 11 章</span>
-    <span>約 41 分</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<div class="wrap">
-  <p class="toc-note no-indent">気になる章をタップするとそこが開く。自分のペースでゆっくりと読み進めていただきたい。</p>
-  
-  <div class="toolbar-container">
-    <div class="toolbar">
-      <button id="expandAll" type="button">すべて開く</button>
-      <button id="collapseAll" type="button">すべて閉じる</button>
-    </div>
-  </div>
+ <p class="doc-meta">ユング心理学とともに歩む、こころの旅。全 11 章、約 41 分。</p>
 
-  <div id="accordion">
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。 自分のペースでゆっくりと読み進めていただきたい。</p>
+
+ <div class="accordion">
 
     <!-- 1 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">1</span>
-        <span class="title">はじめに</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>この記事には一つの目標がある。カール・グスタフ・ユングの思想を通して、自分自身についてより深く考える手助けをすることである。</p>
-          <p>心理学の予備知識は必要ない。必要なのは、自分自身の内面へ向けた好奇心だけである。</p>
-          <p>なおこの記事では、ユングの思想そのものに加えて、それを日本という文化の中で受け止め、発展させてきた河合隼雄をはじめとする日本の臨床家たちの知見にも触れていく。ユングの思想は、遠い国の理論としてではなく、日本の神話や昔話、そして私たち自身の日常の中にも、静かに息づいているからである。</p>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">1. はじめに</button>
+      <div class="ch-body">
+          <p class="pp">この記事には一つの目標がある。カール・グスタフ・ユングの思想を通して、自分自身についてより深く考える手助けをすることである。</p>
+          <p class="pp">心理学の予備知識は必要ない。必要なのは、自分自身の内面へ向けた好奇心だけである。</p>
+          <p class="pp">なおこの記事では、ユングの思想そのものに加えて、それを日本という文化の中で受け止め、発展させてきた河合隼雄をはじめとする日本の臨床家たちの知見にも触れていく。ユングの思想は、遠い国の理論としてではなく、日本の神話や昔話、そして私たち自身の日常の中にも、静かに息づいているからである。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 2 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">2</span>
-        <span class="title">この記事の使い方</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>ようこそ。</p>
-          <p>これは急いで読む必要のある記事ではない。時間をかけてほしい。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">2. この記事の使い方</button>
+      <div class="ch-body">
+          <p class="pp">ようこそ。</p>
+          <p class="pp">これは急いで読む必要のある記事ではない。時間をかけてほしい。<br/>
 一つの「会話」ずつ読んでほしい。</p>
-          <p>すべての文を理解できたなら、それは素晴らしいことである。理解できなくても、それもまた構わない。<br>
+          <p class="pp">すべての文を理解できたなら、それは素晴らしいことである。理解できなくても、それもまた構わない。<br/>
 もう一度読んでみてほしい。読み返すたびに、新しい発見があるはずである。</p>
-          <p>すべての段落をすぐに理解しようとしなくても大丈夫である。それよりも、それぞれの言葉が自分の中に残す「感触」を大切にしてみてほしい。<br>
+          <p class="pp">すべての段落をすぐに理解しようとしなくても大丈夫である。それよりも、それぞれの言葉が自分の中に残す「感触」を大切にしてみてほしい。<br/>
 <strong class="term">自己理解</strong>は、知識の暗記によってではなく、繰り返し立ち止まることによって育つ。</p>
-          <p>それぞれの会話の終わりには、短い「ひと休み」がある。<br>
-これらの問いはテストではない。正解はない。<br>
+          <p class="pp">それぞれの会話の終わりには、短い「ひと休み」がある。<br/>
+これらの問いはテストではない。正解はない。<br/>
 これらは、考えるための招待状である。</p>
-          <p>ある問いは、一分だけあなたの心にとどまるかもしれない。別の問いは、何年もあなたの中に残るかもしれない。<br>
+          <p class="pp">ある問いは、一分だけあなたの心にとどまるかもしれない。別の問いは、何年もあなたの中に残るかもしれない。<br/>
 どちらも価値がある。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 3 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">3</span>
-        <span class="title">カール・ユングについて</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>カール・グスタフ・ユング（1875 年〜 1961 年）は、スイスの精神科医だった。ジークムント・フロイトと共に精神分析の草創期を担った後、独自の「分析心理学（ユング心理学）」を打ち立て、現代心理学に最も大きな影響を与えた思想家の一人として記憶されている。</p>
-          <p>ユングは、すべての人が豊かな内面世界を持っていると考えた。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">3. カール・ユングについて</button>
+      <div class="ch-body">
+          <p class="pp">カール・グスタフ・ユング（1875 年〜 1961 年）は、スイスの精神科医だった。ジークムント・フロイトと共に精神分析の草創期を担った後、独自の「分析心理学（ユング心理学）」を打ち立て、現代心理学に最も大きな影響を与えた思想家の一人として記憶されている。</p>
+          <p class="pp">ユングは、すべての人が豊かな内面世界を持っていると考えた。<br/>
 その世界の一部は、見えやすいものである。その他の部分は、隠れたままである。</p>
-          <p>彼は、こうした隠れたパターンの多くに名前を与えた。たとえば「<strong class="term">ペルソナ</strong>」、「<strong class="term">影</strong>」、「<strong class="term">自己</strong>」などである。<br>
+          <p class="pp">彼は、こうした隠れたパターンの多くに名前を与えた。たとえば「<strong class="term">ペルソナ</strong>」、「<strong class="term">影</strong>」、「<strong class="term">自己</strong>」などである。<br/>
 彼の思想は、単なる医療の枠を超え、神話学、教育、文学、芸術、さらにはビジネスのリーダーシップや現代の性格診断（MBTI など）にまで深い影響を与え続けている。</p>
-          <p>この記事は、ユングの仕事の完全な解説書ではない。その代わりに、優しい最初の一歩を提供する。<br>
+          <p class="pp">この記事は、ユングの仕事の完全な解説書ではない。その代わりに、優しい最初の一歩を提供する。<br/>
 目標は、専門家になることではない。目標は、より好奇心を持つことである。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 4 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">4</span>
-        <span class="title">日本におけるユング心理学<small>河合隼雄という橋渡し</small></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>ユングの思想は、スイスという遠い国で生まれた。しかしそれは、海を越えて日本にたどり着いたとき、単なる輸入品としてではなく、日本の風土の中で独自に根を張っていった。</p>
-          <p>その最大の立役者が、臨床心理学者の<strong class="term">河合隼雄</strong>（1928 年〜 2007 年）である。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">4. 日本におけるユング心理学 - 河合隼雄という橋渡し</button>
+      <div class="ch-body">
+          <p class="pp">ユングの思想は、スイスという遠い国で生まれた。しかしそれは、海を越えて日本にたどり着いたとき、単なる輸入品としてではなく、日本の風土の中で独自に根を張っていった。</p>
+          <p class="pp">その最大の立役者が、臨床心理学者の<strong class="term">河合隼雄</strong>（1928 年〜 2007 年）である。<br/>
 河合隼雄は、日本人として初めてスイスのユング研究所で正式な資格を得た分析家であり、日本にユング心理学を紹介し、根づかせた人物として知られている。彼は、ユングの理論をそのまま輸入するのではなく、日本の神話、昔話、そして日本人のこころのあり方と照らし合わせながら、独自の視点を加えていった。</p>
-          <p>たとえば河合は、日本神話を丹念に読み解き、西洋の神話にしばしば見られる「一人の強い神が中心に立ち、対立するものを征服する」という構造とは異なる、日本神話に特有のパターンを見出した。彼はこれを<strong class="term">中空構造</strong>と呼んだ。<br>
+          <p class="pp">たとえば河合は、日本神話を丹念に読み解き、西洋の神話にしばしば見られる「一人の強い神が中心に立ち、対立するものを征服する」という構造とは異なる、日本神話に特有のパターンを見出した。彼はこれを<strong class="term">中空構造</strong>と呼んだ。<br/>
 日本神話の中心には、しばしば力強く支配する神ではなく、アマテラス、ツクヨミ、スサノオのように、互いに異なる性質を持つ神々が並び立ち、中心そのものは「空（から）」のまま保たれている。</p>
-          <p>対立するものを、一方が他方を打ち負かすことで解決するのではなく、中心を空けたまま、両方をそのまま共存させる。河合は、この構造が、日本人のこころのあり方や、対立や葛藤への向き合い方にも通じていると考えた。</p>
-          <p>また河合は、スイスの分析家ドラ・カルフから学んだ<strong class="term">箱庭療法</strong>を日本に導入したことでも知られている。これは、砂の入った箱の中に、小さな人形や自然物を自由に置いていくことで、言葉にならない内なる世界を表現する心理療法である。</p>
-          <p>日本では、言葉で自分の内面を語ることを得意としない人も少なくない。<strong class="term">箱庭療法</strong>は、そうした「語られないこころ」に、言葉を介さずに触れる方法として、日本の臨床現場に深く根づいていった。</p>
-          <p>河合隼雄の仕事は、私たちに一つの大切なことを教えてくれる。ユングの思想は、一つの正解として受け取るものではなく、それぞれの文化、それぞれの人生の中で、もう一度発見し直すべきものだということである。</p>
+          <p class="pp">対立するものを、一方が他方を打ち負かすことで解決するのではなく、中心を空けたまま、両方をそのまま共存させる。河合は、この構造が、日本人のこころのあり方や、対立や葛藤への向き合い方にも通じていると考えた。</p>
+          <p class="pp">また河合は、スイスの分析家ドラ・カルフから学んだ<strong class="term">箱庭療法</strong>を日本に導入したことでも知られている。これは、砂の入った箱の中に、小さな人形や自然物を自由に置いていくことで、言葉にならない内なる世界を表現する心理療法である。</p>
+          <p class="pp">日本では、言葉で自分の内面を語ることを得意としない人も少なくない。<strong class="term">箱庭療法</strong>は、そうした「語られないこころ」に、言葉を介さずに触れる方法として、日本の臨床現場に深く根づいていった。</p>
+          <p class="pp">河合隼雄の仕事は、私たちに一つの大切なことを教えてくれる。ユングの思想は、一つの正解として受け取るものではなく、それぞれの文化、それぞれの人生の中で、もう一度発見し直すべきものだということである。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 5 プロローグ -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">5</span>
-        <span class="title">プロローグ<small>あなたは本当は誰なのか</small></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>この旅を始める前に、少しの間、立ち止まってほしい。ゆっくりと一つ、深呼吸をしてほしい。数秒間、このページから目を離してほしい。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">5. プロローグ - あなたは本当は誰なのか</button>
+      <div class="ch-body">
+          <p class="pp">この旅を始める前に、少しの間、立ち止まってほしい。ゆっくりと一つ、深呼吸をしてほしい。数秒間、このページから目を離してほしい。<br/>
 そして、自分自身にシンプルな問いを投げかけてほしい。</p>
           <p class="pullquote">あなたは本当は誰なのか</p>
-          <p>多くの人は、この問いに自分の名前で答える。別の人は、自分の仕事で答える。ある人は、家族の中での役割で答える。<br>
+          <p class="pp">多くの人は、この問いに自分の名前で答える。別の人は、自分の仕事で答える。ある人は、家族の中での役割で答える。<br/>
 しかし、それらの答えで十分だろうか。</p>
-          <p>ユングは、発見すべきことは常にもっとあると考えた。この記事は、その発見を始めるための招待状である。</p>
-          <p>あなたは、自分自身を変える必要はない。必要なのは、もう少し注意深く自分を見つめる勇気だけである。<br>
+          <p class="pp">ユングは、発見すべきことは常にもっとあると考えた。この記事は、その発見を始めるための招待状である。</p>
+          <p class="pp">あなたは、自分自身を変える必要はない。必要なのは、もう少し注意深く自分を見つめる勇気だけである。<br/>
 旅はここから始まる。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 6 パート I -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">6</span>
-        <span class="title">パート I <small>自分自身と出会う（会話 1 〜 12）</small></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <div class="sub-list">
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">1</span>
-                <span class="title">あなたは本当は誰なのか</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">6. パート I - 自分自身と出会う（会話 1 〜 12）</button>
+      <div class="ch-body"><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">1. あなたは本当は誰なのか</button>
+              <div class="sec-body">
                   <p class="quote no-indent">「外を見る者は夢を見る。内を見る者は目覚める。」<span class="author"> - カール・グスタフ・ユング</span></p>
-                  <p>この記事を読む前に、少しの間、立ち止まってほしい。<br>
-勉強する必要はない。すべての言葉を覚える必要もない。<br>
+                  <p class="pp">この記事を読む前に、少しの間、立ち止まってほしい。<br/>
+勉強する必要はない。すべての言葉を覚える必要もない。<br/>
 必要なのは、たった一つのことである。好奇心である。</p>
-                  <p>自分自身に驚いたことはあるだろうか。理由もわからないまま、腹を立ててしまったことはないだろうか。悲しいのに、なぜか笑ってしまったことはないだろうか。話したかったのに、黙ってしまったことはないだろうか。<br>
+                  <p class="pp">自分自身に驚いたことはあるだろうか。理由もわからないまま、腹を立ててしまったことはないだろうか。悲しいのに、なぜか笑ってしまったことはないだろうか。話したかったのに、黙ってしまったことはないだろうか。<br/>
 こうした瞬間は、ある大切な問いを私たちに投げかける。</p>
                   <p class="pullquote">私は本当に自分自身を知っているのだろうか</p>
-                  <p>大抵の人は、「知っている」と信じている。なにしろ、私たちは毎日、自分自身と一緒に過ごしているのだから。<br>
+                  <p class="pp">大抵の人は、「知っている」と信じている。なにしろ、私たちは毎日、自分自身と一緒に過ごしているのだから。<br/>
 それでも、私たちは自分自身に驚かされ続ける。カール・ユングは、これは私たちの心が、私たちが思っているよりもずっと大きいために起こると考えた。</p>
-                  <p>私たちの一部は、見えやすいものである。その他の部分は、深く豊かで、広大だが隠れたままである。<br>
+                  <p class="pp">私たちの一部は、見えやすいものである。その他の部分は、深く豊かで、広大だが隠れたままである。<br/>
 その無意識と呼ばれる隠れた部分に気づくことが、<strong class="term">自己理解</strong>の始まりである。</p>
-                  <p>これは、完璧になることについての記事ではない。より正直になることについての記事である。</p>
-                  <div class="pause">
-                    <p>最後に自分自身に驚いたのは、いつだっただろうか。</p>
+                  <p class="pp">これは、完璧になることについての記事ではない。より正直になることについての記事である。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>最後に自分自身に驚いたのは、いつだっただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">2</span>
-                <span class="title">自我という船長</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p><strong class="term">自我</strong>という言葉は、日常会話ではしばしば誤解されている。「あの人はエゴが強い」と言うとき、私たちは大抵、うぬぼれや傲慢さを指している。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">2. 自我という船長</button>
+              <div class="sec-body">
+                  <p class="pp"><strong class="term">自我</strong>という言葉は、日常会話ではしばしば誤解されている。「あの人はエゴが強い」と言うとき、私たちは大抵、うぬぼれや傲慢さを指している。<br/>
 しかし、ユングはこの言葉を、まったく違う意味で使った。</p>
-                  <p>ユングにとって<strong class="term">自我</strong>とは、単純に、私たちの意識の中心のことである。それは、あなたが「私は」と言うときの、その「私」である。朝目覚めて、自分の名前を思い出し、今日の予定を思い浮かべ、昨日の記憶を呼び戻すとき、そこで働いているのが<strong class="term">自我</strong>である。<br>
-<strong class="term">自我</strong>がなければ、日常生活そのものが成り立たない。それは経験を整理し、決断を助け、過去を記憶し、未来を計画する。<br>
+                  <p class="pp">ユングにとって<strong class="term">自我</strong>とは、単純に、私たちの意識の中心のことである。それは、あなたが「私は」と言うときの、その「私」である。朝目覚めて、自分の名前を思い出し、今日の予定を思い浮かべ、昨日の記憶を呼び戻すとき、そこで働いているのが<strong class="term">自我</strong>である。<br/>
+<strong class="term">自我</strong>がなければ、日常生活そのものが成り立たない。それは経験を整理し、決断を助け、過去を記憶し、未来を計画する。<br/>
 この意味で、<strong class="term">自我</strong>そのものは、少しも問題ではない。それは、なくてはならないものである。</p>
-                  <p>大海原を渡る一隻の船を思い浮かべてほしい。船長は舵を取り、天候を読み、進むべき方角を決める。船長は重要な存在である。<br>
+                  <p class="pp">大海原を渡る一隻の船を思い浮かべてほしい。船長は舵を取り、天候を読み、進むべき方角を決める。船長は重要な存在である。<br/>
 けれども、船長は海そのものではない。海は、船長よりもはるかに大きな存在である。</p>
-                  <p>ユングは、<strong class="term">自我</strong>を、この船長のようなものだと考えた。<strong class="term">自我</strong>は私たちの意識の航海を導くが、それは心全体のごく一部にすぎない。<br>
+                  <p class="pp">ユングは、<strong class="term">自我</strong>を、この船長のようなものだと考えた。<strong class="term">自我</strong>は私たちの意識の航海を導くが、それは心全体のごく一部にすぎない。<br/>
 意識の下には、はるかに広大な世界 - 無意識 - が広がっている。</p>
-                  <p>思いがけず浮かぶ考え。私たちを驚かせる夢。前触れもなくやってくるひらめき。理解する前に湧き上がる感情。これらはすべて、<strong class="term">自我</strong>がすべてを支配しているわけではないことを、そっと教えてくれる。<br>
-<strong class="term">自我</strong>は確実性を好む。無意識は、しばしば神秘を好む。<br>
+                  <p class="pp">思いがけず浮かぶ考え。私たちを驚かせる夢。前触れもなくやってくるひらめき。理解する前に湧き上がる感情。これらはすべて、<strong class="term">自我</strong>がすべてを支配しているわけではないことを、そっと教えてくれる。<br/>
+<strong class="term">自我</strong>は確実性を好む。無意識は、しばしば神秘を好む。<br/>
 心の成長は、<strong class="term">自我</strong>が謙虚さを学ぶところから始まる。謙虚さとは、弱さではない。それは、自分自身についてまだ知らないことがあると認める力である。</p>
-                  <div class="pause">
-                    <p>「絶対にこうだ」と確信していたのに、後になって間違いだとわかったことはあるだろうか。その経験は、あなたを弱くしただろうか、それとも、より学びに開かれた人にしただろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>「絶対にこうだ」と確信していたのに、後になって間違いだとわかったことはあるだろうか。その経験は、あなたを弱くしただろうか、それとも、より学びに開かれた人にしただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">3</span>
-                <span class="title">意識という海</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>砂浜に立っている自分を思い浮かべてほしい。<br>
-波が見える。風の音が聞こえる。足元には温かい砂の感触がある。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">3. 意識という海</button>
+              <div class="sec-body">
+                  <p class="pp">砂浜に立っている自分を思い浮かべてほしい。<br/>
+波が見える。風の音が聞こえる。足元には温かい砂の感触がある。<br/>
 すべてがはっきりとしている。</p>
-                  <p>次に、その水面の下へ、潜っていくところを思い浮かべてほしい。とたんに、まったく違う世界が広がる。<br>
+                  <p class="pp">次に、その水面の下へ、潜っていくところを思い浮かべてほしい。とたんに、まったく違う世界が広がる。<br/>
 魚たちが静かに泳ぎ、水草が水流に揺れ、水は少しずつ暗くなっていく。深く潜れば潜るほど、届く光は少なくなっていく。</p>
-                  <p>私たちの心も、この海によく似ている。日々気づいている思考は、いわば海面の部分である。ユングは、これを<strong class="term">意識</strong>と呼んだ。<br>
+                  <p class="pp">私たちの心も、この海によく似ている。日々気づいている思考は、いわば海面の部分である。ユングは、これを<strong class="term">意識</strong>と呼んだ。<br/>
 その下には、もう一つの世界が広がっている。<strong class="term">無意識</strong>である。</p>
-                  <p>無意識は、私たちの目に見えないからといって、消えてなくなるわけではない。深海が、私たちが訪れようと訪れまいと存在し続けるように、無意識もまた、私たちの人生の間じゅう、休むことなく働き続けている。<br>
-忘れられた記憶。古い恐れ。ひそかな願い。創造的なひらめき。まだ終わっていない感情。そうしたものの多くが、そこに住んでいる。<br>
+                  <p class="pp">無意識は、私たちの目に見えないからといって、消えてなくなるわけではない。深海が、私たちが訪れようと訪れまいと存在し続けるように、無意識もまた、私たちの人生の間じゅう、休むことなく働き続けている。<br/>
+忘れられた記憶。古い恐れ。ひそかな願い。創造的なひらめき。まだ終わっていない感情。そうしたものの多くが、そこに住んでいる。<br/>
 時の流れの中で沈んでいくものもあれば、あまりに痛みが強いために沈められるものもある。あるいは、ただ注意が他へと移っていっただけのものもある。それでも、そのどれもが完全に消え去ることはない。</p>
-                  <p>ふとした瞬間、それは思いがけない形で戻ってくる。<br>
-懐かしい匂いが、不意に子ども時代を思い出させる。ある旋律が、理由もわからないまま涙を誘う。一度も訪れたことのない場所が、なぜか奇妙に懐かしく感じられる。<br>
+                  <p class="pp">ふとした瞬間、それは思いがけない形で戻ってくる。<br/>
+懐かしい匂いが、不意に子ども時代を思い出させる。ある旋律が、理由もわからないまま涙を誘う。一度も訪れたことのない場所が、なぜか奇妙に懐かしく感じられる。<br/>
 こうした瞬間は、記憶とは単なる書庫ではなく、生きているものなのだと教えてくれる。</p>
-                  <p>ユングは、無意識を恐れるのではなく、敬意を持って向き合うことを勧めた。それは、暗闇に潜む敵ではない。それもまた、私たち自身の一部なのである。<br>
+                  <p class="pp">ユングは、無意識を恐れるのではなく、敬意を持って向き合うことを勧めた。それは、暗闇に潜む敵ではない。それもまた、私たち自身の一部なのである。<br/>
 賢い旅人は、地図の半分を見ないふりをしたりはしない。私たちもまた、そうあるべきなのだろう。</p>
-                  <div class="pause">
-                    <p>匂いや音楽、あるいはある場所が、思いがけず古い記憶を呼び覚ましたことはあるだろうか。その記憶は、なぜあなたの中に残り続けているのだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>匂いや音楽、あるいはある場所が、思いがけず古い記憶を呼び覚ましたことはあるだろうか。その記憶は、なぜあなたの中に残り続けているのだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">4</span>
-                <span class="title">なぜ私たちは仮面をかぶるのか</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>私たちは毎日、さまざまな役割を演じている。友人、教師、両親、見知らぬ人に対して、それぞれ違う話し方をする。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">4. なぜ私たちは仮面をかぶるのか</button>
+              <div class="sec-body">
+                  <p class="pp">私たちは毎日、さまざまな役割を演じている。友人、教師、両親、見知らぬ人に対して、それぞれ違う話し方をする。<br/>
 これは自然なことである。</p>
-                  <p>ユングは、この社会的な顔を<strong class="term">ペルソナ</strong>と呼んだ。<strong class="term">ペルソナ</strong>という言葉は、もともと古代ローマの演劇で役者がかぶっていた仮面を意味する。<br>
+                  <p class="pp">ユングは、この社会的な顔を<strong class="term">ペルソナ</strong>と呼んだ。<strong class="term">ペルソナ</strong>という言葉は、もともと古代ローマの演劇で役者がかぶっていた仮面を意味する。<br/>
 仮面は役に立つ。それは私たちが社会に溶け込み、他者と円滑な関係を築き、働くことを助けてくれる。</p>
-                  <p>問題が起こるのは、それがただの仮面であることを、私たちが忘れてしまったときである。<br>
+                  <p class="pp">問題が起こるのは、それがただの仮面であることを、私たちが忘れてしまったときである。<br/>
 心理学ではこれを「<strong class="term">ペルソナ</strong>との同一化」と呼ぶ。「仕事ができる自分」「いつも優しい親」といった仮面と自分自身を同一視しすぎると、仮面の下にある本当の素顔が窒息してしまう。</p>
-                  <p>他人を喜ばせることに多くの時間を費やしすぎて、自分が本当は何を考え、何を感じているのかを忘れてしまうと、突然の燃え尽き（バーンアウト）や深い虚無感に襲われることがある。</p>
-                  <p>目標は、仮面を捨てることではない。社会で生きる以上、私たちは<strong class="term">ペルソナ</strong>を必要としている。<br>
+                  <p class="pp">他人を喜ばせることに多くの時間を費やしすぎて、自分が本当は何を考え、何を感じているのかを忘れてしまうと、突然の燃え尽き（バーンアウト）や深い虚無感に襲われることがある。</p>
+                  <p class="pp">目標は、仮面を捨てることではない。社会で生きる以上、私たちは<strong class="term">ペルソナ</strong>を必要としている。<br/>
 真の目標は、自分がいつそれをかぶっているかを知り、必要に応じて仮面を外す柔軟性を持つことである。自由は、気づくことから始まる。</p>
-                  <div class="pause">
-                    <p>あなたが一番強い仮面をかぶっているのは、どんな場面だろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたが一番強い仮面をかぶっているのは、どんな場面だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">5</span>
-                <span class="title">自分の影と出会う</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>誰もが、自分の好きな性質を持っている。そして誰もが、できれば隠しておきたい性質も持っている。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">5. 自分の影と出会う</button>
+              <div class="sec-body">
+                  <p class="pp">誰もが、自分の好きな性質を持っている。そして誰もが、できれば隠しておきたい性質も持っている。<br/>
 ユングは、この私たちが無意識に押し込めた、認めたくない隠れた部分を<strong class="term">影</strong>と呼んだ。</p>
-                  <p><strong class="term">影</strong>とは、単純に「悪」であるわけではない。<br>
+                  <p class="pp"><strong class="term">影</strong>とは、単純に「悪」であるわけではない。<br/>
 それは、恐れ、嫉妬、利己心、怒りなどを含む。また、私たちがまだ自分のものとして受け入れていない才能や情熱を含むこともある。</p>
-                  <p>多くの人は、自分の<strong class="term">影</strong>が存在しないふりをしながら何年も過ごす。しかし、無意識に押し込められた感情は消えてなくなるわけではない。<br>
+                  <p class="pp">多くの人は、自分の<strong class="term">影</strong>が存在しないふりをしながら何年も過ごす。しかし、無意識に押し込められた感情は消えてなくなるわけではない。<br/>
 心理学ではこれを<strong class="term">投影</strong>と呼ぶ。他人のある欠点にどうしても我慢ならないとき、私たちは無意識のうちに、自分の中にある認めたくない<strong class="term">影</strong>をその人に映し出していることがよくあるのである。</p>
-                  <p><strong class="term">影</strong>を無視し続けると、それは背後で反乱を起こし、私たちをコントロールしようとする。しかし、自分の<strong class="term">影</strong>に光を当て、それが自分の一部であることを認めることは、計り知れないエネルギーの解放をもたらす。</p>
-                  <p><strong class="term">影</strong>と出会うことは、居心地の悪いことである。しかしそれは同時に、人ができる最も勇敢なことの一つでもある。<br>
+                  <p class="pp"><strong class="term">影</strong>を無視し続けると、それは背後で反乱を起こし、私たちをコントロールしようとする。しかし、自分の<strong class="term">影</strong>に光を当て、それが自分の一部であることを認めることは、計り知れないエネルギーの解放をもたらす。</p>
+                  <p class="pp"><strong class="term">影</strong>と出会うことは、居心地の悪いことである。しかしそれは同時に、人ができる最も勇敢なことの一つでもある。<br/>
 自分の中の「嫌な部分」を正直に見つめることは、私たちを弱くするのではない。それは、私たちを賢く、そして完全な人間へと導く。</p>
-                  <div class="pause">
-                    <p>あなたが他人に見て、どうしても苛立ってしまう性質は何だろうか。それは、あなた自身の中にある何かを教えてくれているのではないだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたが他人に見て、どうしても苛立ってしまう性質は何だろうか。それは、あなた自身の中にある何かを教えてくれているのではないだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">6</span>
-                <span class="title">自分に正直になる</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>古くから「正直は最良の策」と言われる。そして、私たちがふだん考える「正直」とは、大抵他人に対する正直さのことである。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">6. 自分に正直になる</button>
+              <div class="sec-body">
+                  <p class="pp">古くから「正直は最良の策」と言われる。そして、私たちがふだん考える「正直」とは、大抵他人に対する正直さのことである。<br/>
 ユングは、もう一つ別の問いを投げかけた。</p>
                   <p class="pullquote">あなたは、自分自身に対して正直でいられるだろうか</p>
-                  <p>これは、最初に思うよりもずっと難しい問いである。<br>
-多くの人は、自分自身について、いくつかの小さな「物語」を語りながら生きている。「私はいつも冷静でいられる」「嫉妬したことなんて一度もない」「ただ運が悪かっただけだ」 - こうした物語には、確かに真実が含まれていることもある。<br>
+                  <p class="pp">これは、最初に思うよりもずっと難しい問いである。<br/>
+多くの人は、自分自身について、いくつかの小さな「物語」を語りながら生きている。「私はいつも冷静でいられる」「嫉妬したことなんて一度もない」「ただ運が悪かっただけだ」 - こうした物語には、確かに真実が含まれていることもある。<br/>
 しかし同時に、それは私たちが直視したくない真実から、自分自身を守るための物語であることも少なくない。</p>
-                  <p>自分自身に正直になるとは、一日中自分を責め続けることではない。絶え間ない自己批判もまた、もう一つの思い込みにすぎない。<br>
-むしろ正直さは、静かな観察から始まる。自分の感情に気づくこと。自分の習慣に気づくこと。そして、自分が何度も繰り返し語っている「言い訳」に気づくこと。<br>
+                  <p class="pp">自分自身に正直になるとは、一日中自分を責め続けることではない。絶え間ない自己批判もまた、もう一つの思い込みにすぎない。<br/>
+むしろ正直さは、静かな観察から始まる。自分の感情に気づくこと。自分の習慣に気づくこと。そして、自分が何度も繰り返し語っている「言い訳」に気づくこと。<br/>
 そのうえで、こう問いかけてみるとよい。「これは、本当だろうか」。</p>
-                  <p>成長は、しばしば劇的な変化からではなく、一つの静かな一文から始まる。</p>
+                  <p class="pp">成長は、しばしば劇的な変化からではなく、一つの静かな一文から始まる。</p>
                   <p class="italicquote">私は、自分が思っていたほどには、自分自身をわかっていないのかもしれない。</p>
-                  <p>この一文を口にするには、勇気が要る。けれども、そこには同時に、自由も宿っている。<br>
+                  <p class="pp">この一文を口にするには、勇気が要る。けれども、そこには同時に、自由も宿っている。<br/>
 もしすでに自分のすべてを知っているつもりでいるなら、そこに成長の余地はない。まだ知らない自分がいると認められたなら、日々はそのまま、学びの機会になっていく。</p>
-                  <div class="pause">
-                    <p>最近、自分自身についてつい口にしてしまう「いつもの言い訳」はあるだろうか。それは、本当だろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>最近、自分自身についてつい口にしてしまう「いつもの言い訳」はあるだろうか。それは、本当だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">7</span>
-                <span class="title">恐れが語りかけるとき</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>不安や恐れは、人間であることから逃れられない感覚である。<br>
-失敗を恐れることもある。孤立を恐れることもある。物事をコントロールできなくなることを恐れることもある。ときには、成功することさえ恐れる。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">7. 恐れが語りかけるとき</button>
+              <div class="sec-body">
+                  <p class="pp">不安や恐れは、人間であることから逃れられない感覚である。<br/>
+失敗を恐れることもある。孤立を恐れることもある。物事をコントロールできなくなることを恐れることもある。ときには、成功することさえ恐れる。<br/>
 何かがうまくいくと、これまで慣れ親しんできた生き方を手放さなければならなくなるからである。</p>
-                  <p>ユングは、恐れをただ取り除くべき障害として扱うことを勧めなかった。彼はむしろ、恐れを無意識からの象徴的なメッセージとして読み解こうとした。</p>
-                  <p>「どうすればこの不安を消せるだろうか」と問う代わりに、彼はこう問い直すことを提案した。</p>
+                  <p class="pp">ユングは、恐れをただ取り除くべき障害として扱うことを勧めなかった。彼はむしろ、恐れを無意識からの象徴的なメッセージとして読み解こうとした。</p>
+                  <p class="pp">「どうすればこの不安を消せるだろうか」と問う代わりに、彼はこう問い直すことを提案した。</p>
                   <p class="pullquote">この不安は、私の人生の何に注意を向けさせようとしているのだろうか</p>
-                  <p>恐れはしばしば、あなたが慣れ親しんだ領域と、次の成長の段階との境界線に現れる。境界線に近づくとき、心がざわつくのは自然なことである。</p>
-                  <p>勇気とは、不安が完全に消えることではない。勇気とは、不安を意識にとどめたまま、その境界の向こう側を見つめようとする選択である。</p>
-                  <div class="pause">
-                    <p>今のあなたの不安が、もし言葉を話せるとしたら、あなたの人生のどの部分に注意を向けさせようとしているだろうか。</p>
+                  <p class="pp">恐れはしばしば、あなたが慣れ親しんだ領域と、次の成長の段階との境界線に現れる。境界線に近づくとき、心がざわつくのは自然なことである。</p>
+                  <p class="pp">勇気とは、不安が完全に消えることではない。勇気とは、不安を意識にとどめたまま、その境界の向こう側を見つめようとする選択である。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>今のあなたの不安が、もし言葉を話せるとしたら、あなたの人生のどの部分に注意を向けさせようとしているだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">8</span>
-                <span class="title">自分の中にいる見知らぬ者</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>理由もはっきりわからないまま、誰かを深く尊敬したことはないだろうか。まるで前から知っていたかのように、すぐに誰かに恋をしたことはないだろうか。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">8. 自分の中にいる見知らぬ者</button>
+              <div class="sec-body">
+                  <p class="pp">理由もはっきりわからないまま、誰かを深く尊敬したことはないだろうか。まるで前から知っていたかのように、すぐに誰かに恋をしたことはないだろうか。<br/>
 あるいは逆に、論理では説明のつかない強い反発を感じたことはないだろうか。</p>
-                  <p>ユングは、私たち一人ひとりが、無意識の深いレベルに「異性の心的イメージ」を持っていると考えた。彼はそれを、男性の心の中にある女性的側面の<strong class="term">元型</strong>を<strong class="term">アニマ</strong>、女性の心の中にある男性的側面の<strong class="term">元型</strong>を<strong class="term">アニムス</strong>と呼んだ。</p>
-                  <p>この内なる姿は、神話や物語において、主人公を未知の世界へ導く案内人としてしばしば登場する（たとえば、ダンテの『神曲』におけるベアトリーチェのように）。</p>
-                  <p>現実の恋愛においても、私たちは無意識に自分の<strong class="term">アニマ</strong>や<strong class="term">アニムス</strong>を相手に<strong class="term">投影</strong>してしまう。相手の本当の姿ではなく、自分の心の中の理想像を相手に重ね合わせているとき、人は熱狂的な恋に落ちる。<br>
+                  <p class="pp">ユングは、私たち一人ひとりが、無意識の深いレベルに「異性の心的イメージ」を持っていると考えた。彼はそれを、男性の心の中にある女性的側面の<strong class="term">元型</strong>を<strong class="term">アニマ</strong>、女性の心の中にある男性的側面の<strong class="term">元型</strong>を<strong class="term">アニムス</strong>と呼んだ。</p>
+                  <p class="pp">この内なる姿は、神話や物語において、主人公を未知の世界へ導く案内人としてしばしば登場する（たとえば、ダンテの『神曲』におけるベアトリーチェのように）。</p>
+                  <p class="pp">現実の恋愛においても、私たちは無意識に自分の<strong class="term">アニマ</strong>や<strong class="term">アニムス</strong>を相手に<strong class="term">投影</strong>してしまう。相手の本当の姿ではなく、自分の心の中の理想像を相手に重ね合わせているとき、人は熱狂的な恋に落ちる。<br/>
 しかし、<strong class="term">投影</strong>が剥がれ落ち、相手のありのままの姿が見え始めたときにこそ、真の関係性が始まるとユング心理学では考える。</p>
-                  <p>ユングは、この内なる姿を単なる恋愛のメカニズムとしてではなく「橋」として見た。それは、世界に見せている自分と、まだ出会っていない自分とをつなぐ橋である。<br>
+                  <p class="pp">ユングは、この内なる姿を単なる恋愛のメカニズムとしてではなく「橋」として見た。それは、世界に見せている自分と、まだ出会っていない自分とをつなぐ橋である。<br/>
 論理的な人が感情の豊かさを取り戻したり、実務的な人が内なる想像力を開花させたりする過程で、この内なる見知らぬ者は重要な導き手となる。</p>
-                  <div class="pause">
-                    <p>あなたが他人の中で深く魅了される性質のうち、自分自身の中ではめったに表現していないものはあるだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたが他人の中で深く魅了される性質のうち、自分自身の中ではめったに表現していないものはあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">9</span>
-                <span class="title">眠っている間に届くメッセージ</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>毎晩、私たちの心は、努力もなしに一つの物語を作り出す。私たちは、その物語を「夢」と呼ぶ。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">9. 眠っている間に届くメッセージ</button>
+              <div class="sec-body">
+                  <p class="pp">毎晩、私たちの心は、努力もなしに一つの物語を作り出す。私たちは、その物語を「夢」と呼ぶ。<br/>
 多くの人は、目覚めてから数分のうちに夢を忘れてしまう。一方で、何年もはっきりとそれを覚えている人もいる。</p>
-                  <p>ユングは、夢をとても真剣に受け止めた。<br>
+                  <p class="pp">ユングは、夢をとても真剣に受け止めた。<br/>
 彼は、それをただのランダムな雑音だとは考えなかった。彼は、それを、昼間は発言の機会を与えられない無意識からの「手紙」だと考えた。</p>
-                  <p>ユングが夢について指摘した重要な機能の一つが「補償作用」である。私たちが起きている間、ある一つの考えや態度に極端に偏っているとき、夢はバランスを取り戻すために反対の視点を提示してくる。<br>
+                  <p class="pp">ユングが夢について指摘した重要な機能の一つが「補償作用」である。私たちが起きている間、ある一つの考えや態度に極端に偏っているとき、夢はバランスを取り戻すために反対の視点を提示してくる。<br/>
 たとえば、現実で傲慢になっている人が、夢の中では非常に惨めな立場に置かれるといった具合である。</p>
-                  <p>夢は通常、論理的な言葉で自分自身を説明してくれるわけではない。夢は、イメージ、感情、象徴によって語る。</p>
-                  <p>鍵のかかったドアの夢は、実際のドアについての夢ではないかもしれない。それは、あなたがまだ自分に許していないチャンスについての夢かもしれない。<br>
+                  <p class="pp">夢は通常、論理的な言葉で自分自身を説明してくれるわけではない。夢は、イメージ、感情、象徴によって語る。</p>
+                  <p class="pp">鍵のかかったドアの夢は、実際のドアについての夢ではないかもしれない。それは、あなたがまだ自分に許していないチャンスについての夢かもしれない。<br/>
 道に迷う夢は、あなたが目覚めているときに避け続けている問いを指しているかもしれない。</p>
-                  <p>夢の言葉を理解し始めるために、専門家は必要ない。<br>
+                  <p class="pp">夢の言葉を理解し始めるために、専門家は必要ない。<br/>
 朝、夢が消えてしまう前に、ただそれを書き留めるだけでよい。時間が経つにつれて、パターンが見えてくる。</p>
-                  <div class="pause">
-                    <p>長い間、心に残り続けている夢、あるいは繰り返し見る夢はあるだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>長い間、心に残り続けている夢、あるいは繰り返し見る夢はあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">10</span>
-                <span class="title">象徴の言葉</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>「愛」を説明しようとしてみてほしい。あるいは「希望」を。「悲しみ」を。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">10. 象徴の言葉</button>
+              <div class="sec-body">
+                  <p class="pp">「愛」を説明しようとしてみてほしい。あるいは「希望」を。「悲しみ」を。<br/>
 言葉で定義することはできても、その定義だけでは、いつも何かが足りないと感じられるはずである。ある種の経験は、ふつうの言葉には大きすぎるのである。</p>
-                  <p>だからこそ、人間はいつの時代も<strong class="term">象徴</strong>を用いてきた。<br>
-結婚指輪。国旗。暗闇の中で燃える一本のろうそく。川に架かる橋。<br>
+                  <p class="pp">だからこそ、人間はいつの時代も<strong class="term">象徴</strong>を用いてきた。<br/>
+結婚指輪。国旗。暗闇の中で燃える一本のろうそく。川に架かる橋。<br/>
 これらのものは、それ自体である以上の何かになる。それらは、もっと深い意味を指し示すのである。</p>
-                  <p>ユングは、<strong class="term">象徴</strong>が心の中でも同じ働きをすると考えた。無意識は、もともと言葉ではなく、イメージによって思考する。<br>
+                  <p class="pp">ユングは、<strong class="term">象徴</strong>が心の中でも同じ働きをすると考えた。無意識は、もともと言葉ではなく、イメージによって思考する。<br/>
 夢が新聞記事のようにではなく、物語のように語られるのは、そのためである。一つのイメージが、何ページもの説明よりも雄弁に、一つの感情を語ることがある。</p>
-                  <p>一粒の種を思い浮かべてほしい。それはとても小さなものである。けれどもその中には、一本の大きな木になる可能性が、まるごと宿っている。種は「可能性」の<strong class="term">象徴</strong>となり、木は「成長」の<strong class="term">象徴</strong>となる。<br>
-どちらのイメージも、長い説明を必要としない。私たちはほとんど瞬時に、それを理解する。<br>
+                  <p class="pp">一粒の種を思い浮かべてほしい。それはとても小さなものである。けれどもその中には、一本の大きな木になる可能性が、まるごと宿っている。種は「可能性」の<strong class="term">象徴</strong>となり、木は「成長」の<strong class="term">象徴</strong>となる。<br/>
+どちらのイメージも、長い説明を必要としない。私たちはほとんど瞬時に、それを理解する。<br/>
 よい<strong class="term">象徴</strong>とは、そういうものである。それは、思考と感情の両方に、同時に語りかける。</p>
-                  <p>歴史を通じて、あらゆる場所の人々が<strong class="term">象徴</strong>を生み出してきた。山はしばしば、精神的な向上心を表す。海はしばしば、神秘を表す。日の出は再生を、夜は不確かさを表す。<br>
-こうした意味は、固定された規則ではない。けれども、それがあまりにも多くの文化に共通して現れることに、ユングは深い関心を寄せた。<br>
+                  <p class="pp">歴史を通じて、あらゆる場所の人々が<strong class="term">象徴</strong>を生み出してきた。山はしばしば、精神的な向上心を表す。海はしばしば、神秘を表す。日の出は再生を、夜は不確かさを表す。<br/>
+こうした意味は、固定された規則ではない。けれども、それがあまりにも多くの文化に共通して現れることに、ユングは深い関心を寄せた。<br/>
 彼は、こう問い始めた。何千年も、何千キロメートルも隔てられた人々が、なぜ似たような<strong class="term">象徴</strong>を思い描くのだろうか。この問いへの答えを探す旅が、やがて彼を、最もよく知られた思想の一つ - <strong class="term">集合的無意識</strong> - へと導いていくことになる。</p>
-                  <div class="pause">
-                    <p>あなたの人生の中で大切な、一つのモノを思い浮かべてほしい。時計、写真、本、楽器 - それは、実用的な役割を超えて、何を表しているだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたの人生の中で大切な、一つのモノを思い浮かべてほしい。時計、写真、本、楽器 - それは、実用的な役割を超えて、何を表しているだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">11</span>
-                <span class="title">目覚めたまま、その続きを見る</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>夢は、眠っている間に届くメッセージである。けれどもユングは、こうしたメッセージが、必ずしも眠っている間だけに現れるわけではないと考えた。</p>
-                  <p>彼は、目覚めている間にも、同じような内なる声に耳を傾ける方法を編み出した。彼はそれを<strong class="term">アクティブ・イマジネーション</strong> - 能動的想像法 - と呼んだ。</p>
-                  <p>やり方は、シンプルだが少しの練習が必要である。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">11. 目覚めたまま、その続きを見る</button>
+              <div class="sec-body">
+                  <p class="pp">夢は、眠っている間に届くメッセージである。けれどもユングは、こうしたメッセージが、必ずしも眠っている間だけに現れるわけではないと考えた。</p>
+                  <p class="pp">彼は、目覚めている間にも、同じような内なる声に耳を傾ける方法を編み出した。彼はそれを<strong class="term">アクティブ・イマジネーション</strong> - 能動的想像法 - と呼んだ。</p>
+                  <p class="pp">やり方は、シンプルだが少しの練習が必要である。<br/>
 心に浮かんだ一つのイメージ - 夢に出てきた人物でも、ふと浮かんだ感情や情景でも構わない - を、そのまま心の中にとどめておく。そして、それが自然に動いたり、語りかけたりするのを、ただ見守る。</p>
-                  <p>大切なのは、その先を自分の頭（意識）で作り上げようとしないことである。意図的に物語を作文するのではない。<br>
+                  <p class="pp">大切なのは、その先を自分の頭（意識）で作り上げようとしないことである。意図的に物語を作文するのではない。<br/>
 むしろ、無意識がすでに持っているものが現れるための、十分な時間と場所を与えるだけである。イメージの中の人物に話しかけ、相手の返事をじっと待つこともある。</p>
-                  <p>これは、慣れるまでは奇妙に感じられるかもしれない。<br>
+                  <p class="pp">これは、慣れるまでは奇妙に感じられるかもしれない。<br/>
 私たちは通常、自分の想像力をコントロールしようとする。<strong class="term">アクティブ・イマジネーション</strong>は、その逆を求める - 手放し、ただ耳を傾け、対話することを。</p>
-                  <div class="pause">
-                    <p>最近、心の中に浮かんだまま、まだきちんと向き合えていないイメージや感情はあるだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>最近、心の中に浮かんだまま、まだきちんと向き合えていないイメージや感情はあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">12</span>
-                <span class="title">内へ向かうか、外へ向かうか</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>人でいっぱいの部屋にいると、元気になる人がいる。一時間、一人で本を読んだあとに、元気になる人もいる。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">12. 内へ向かうか、外へ向かうか</button>
+              <div class="sec-body">
+                  <p class="pp">人でいっぱいの部屋にいると、元気になる人がいる。一時間、一人で本を読んだあとに、元気になる人もいる。<br/>
 どちらの生き方が優れているということはない。</p>
-                  <p>今日、私たちが日常的に使っている<strong class="term">外向性</strong>と<strong class="term">内向性</strong>という概念を最初に提唱したのはユングだった。</p>
-                  <p>外向的な態度は、心のエネルギー（リビドー）が外の世界 - 人々、活動、客観的な事実 - に向かう。内向的な態度は、エネルギーが内なる世界 - 思考、内省、主観的な印象 - に向かう。</p>
-                  <p>大抵の人は、純粋にどちらか一方というわけではない。私たちは、両方の機能を持っているが、無意識のうちにどちらか一方を「得意な手」として好んで使っている。</p>
-                  <p>問題が起こるのは、社会の価値観によって、自分本来の態度を「間違っている」と判断してしまうときである。<br>
+                  <p class="pp">今日、私たちが日常的に使っている<strong class="term">外向性</strong>と<strong class="term">内向性</strong>という概念を最初に提唱したのはユングだった。</p>
+                  <p class="pp">外向的な態度は、心のエネルギー（リビドー）が外の世界 - 人々、活動、客観的な事実 - に向かう。内向的な態度は、エネルギーが内なる世界 - 思考、内省、主観的な印象 - に向かう。</p>
+                  <p class="pp">大抵の人は、純粋にどちらか一方というわけではない。私たちは、両方の機能を持っているが、無意識のうちにどちらか一方を「得意な手」として好んで使っている。</p>
+                  <p class="pp">問題が起こるのは、社会の価値観によって、自分本来の態度を「間違っている」と判断してしまうときである。<br/>
 とくに現代社会は<strong class="term">外向性</strong>を高く評価しがちだが、物静かな人が壊れているわけではない。よくしゃべる人が浅はかというわけでもない。どちらも、ただ違う場所からエネルギーを得ているだけである。</p>
-                  <p>自分自身の自然な態度を、判断せずに理解し、受け入れることは、静かな形の自己尊重である。</p>
-                  <div class="pause">
-                    <p>長く大変な一日の後、あなたは人と一緒にいるときと、一人でいるとき、どちらのほうが早く回復するだろうか。</p>
+                  <p class="pp">自分自身の自然な態度を、判断せずに理解し、受け入れることは、静かな形の自己尊重である。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>長く大変な一日の後、あなたは人と一緒にいるときと、一人でいるとき、どちらのほうが早く回復するだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
+            </div></div>
+    </div>
 
     <!-- 7 パート II -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">7</span>
-        <span class="title">パート II <small>内側から成長する（会話 13 〜 19）</small></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <div class="sub-list">
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">13</span>
-                <span class="title">あなたより古い記憶</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>一度も出会ったことのない、まったく異なる文化の人々が、驚くほどよく似た物語を語ることがあるのは、なぜだろうか。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">7. パート II - 内側から成長する（会話 13 〜 19）</button>
+      <div class="ch-body"><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">13. あなたより古い記憶</button>
+              <div class="sec-body">
+                  <p class="pp">一度も出会ったことのない、まったく異なる文化の人々が、驚くほどよく似た物語を語ることがあるのは、なぜだろうか。<br/>
 賢い老いた教師の物語。すべてを飲み込む大洪水の物語。家を出て、危険に立ち向かい、変わって帰ってくる英雄の物語。</p>
-                  <p>ユングは、世界中の神話、宗教、そして精神を病んだ患者たちの幻覚の中にさえ、この共通のパターンがあることに気づいた。彼は、私たちの個人的な記憶や経験の下に、もっと深く、人類全体で共有された心の土台があると考えた。<br>
+                  <p class="pp">ユングは、世界中の神話、宗教、そして精神を病んだ患者たちの幻覚の中にさえ、この共通のパターンがあることに気づいた。彼は、私たちの個人的な記憶や経験の下に、もっと深く、人類全体で共有された心の土台があると考えた。<br/>
 彼はこれを<strong class="term">集合的無意識</strong>と呼んだ。</p>
-                  <p><strong class="term">集合的無意識</strong>は、個人的な経験によって獲得されたものではない。それはむしろ、人間という種が長い進化の過程で培ってきた、物事を感じ取ったり反応したりする「受け継がれたパターン」のようなものである。</p>
-                  <p>この考え方は、最初は奇妙に感じられるかもしれない。<br>
+                  <p class="pp"><strong class="term">集合的無意識</strong>は、個人的な経験によって獲得されたものではない。それはむしろ、人間という種が長い進化の過程で培ってきた、物事を感じ取ったり反応したりする「受け継がれたパターン」のようなものである。</p>
+                  <p class="pp">この考え方は、最初は奇妙に感じられるかもしれない。<br/>
 しかしそれは、一度も訪れたことのない国の古い物語や神話が、それでも深くあなたの心を動かす理由を説明してくれる。初めて出会ったはずなのに、その物語のどこかが、なぜか心の奥底で響き合うのである。</p>
-                  <div class="pause">
-                    <p>異なる文化の物語、映画、神話が、不思議と懐かしく、あるいは深く心に響いた経験はあるだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>異なる文化の物語、映画、神話が、不思議と懐かしく、あるいは深く心に響いた経験はあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">14</span>
-                <span class="title">古いパターン、新しい顔</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p><strong class="term">集合的無意識</strong>の中に、ユングは繰り返し現れる象徴的な人物像やパターンを見出した。彼は、それらを<strong class="term">元型</strong>（アーキタイプ）と呼んだ。</p>
-                  <p><strong class="term">元型</strong>は、具体的な中身を持たない「型」のようなものである。そこに個人の経験や文化が注ぎ込まれることで、初めて具体的なイメージとして現れる。</p>
-                  <p>たとえば、「グレート・マザー（太母）」の<strong class="term">元型</strong>は、すべてを包み込む豊穣の女神として現れることもあれば、すべてを飲み込み破壊する恐ろしい魔女として現れることもある。「老賢人（オールド・ワイズマン）」は、導きを与える賢者として、あるいはスター・ウォーズのヨーダのような姿で物語に登場する。</p>
-                  <p>河合隼雄は著書『昔話と日本人の心』の中で、「鶴の恩返し」「浦島太郎」といった日本の昔話を、この<strong class="term">元型</strong>の視点から丹念に読み解いた。「鶴の恩返し」で、正体を見てはいけないと約束されながらも、その約束が破られてしまう場面は、西洋の神話にも広く見られる「見るなのタブー」という普遍的なパターンである。</p>
-                  <p>一方で、鶴が黙って去っていき、罰も和解も描かれずに物語が終わるところには、日本の物語に特有の、静かで余白の多い結末のあり方が表れている。同じ<strong class="term">元型</strong>的なパターンでも、それがどのように表現されるかには、文化の個性が映し出されるのである。</p>
-                  <div class="pause">
-                    <p>「英雄」「賢者」「トリックスター（いたずら者）」、あるいは「母」など、今のあなたの人生の物語には、どんな<strong class="term">元型</strong>が登場しているように感じるだろうか。</p>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">14. 古いパターン、新しい顔</button>
+              <div class="sec-body">
+                  <p class="pp"><strong class="term">集合的無意識</strong>の中に、ユングは繰り返し現れる象徴的な人物像やパターンを見出した。彼は、それらを<strong class="term">元型</strong>（アーキタイプ）と呼んだ。</p>
+                  <p class="pp"><strong class="term">元型</strong>は、具体的な中身を持たない「型」のようなものである。そこに個人の経験や文化が注ぎ込まれることで、初めて具体的なイメージとして現れる。</p>
+                  <p class="pp">たとえば、「グレート・マザー（太母）」の<strong class="term">元型</strong>は、すべてを包み込む豊穣の女神として現れることもあれば、すべてを飲み込み破壊する恐ろしい魔女として現れることもある。「老賢人（オールド・ワイズマン）」は、導きを与える賢者として、あるいはスター・ウォーズのヨーダのような姿で物語に登場する。</p>
+                  <p class="pp">河合隼雄は著書『昔話と日本人の心』の中で、「鶴の恩返し」「浦島太郎」といった日本の昔話を、この<strong class="term">元型</strong>の視点から丹念に読み解いた。「鶴の恩返し」で、正体を見てはいけないと約束されながらも、その約束が破られてしまう場面は、西洋の神話にも広く見られる「見るなのタブー」という普遍的なパターンである。</p>
+                  <p class="pp">一方で、鶴が黙って去っていき、罰も和解も描かれずに物語が終わるところには、日本の物語に特有の、静かで余白の多い結末のあり方が表れている。同じ<strong class="term">元型</strong>的なパターンでも、それがどのように表現されるかには、文化の個性が映し出されるのである。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>「英雄」「賢者」「トリックスター（いたずら者）」、あるいは「母」など、今のあなたの人生の物語には、どんな<strong class="term">元型</strong>が登場しているように感じるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">15</span>
-                <span class="title">英雄の旅</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>ほとんどすべての文化が、英雄の物語を語り継いできた。<br>
-若者が故郷を離れる。不確かな道に踏み出す。思いがけない助け手に出会う。危険に立ち向かう。そして、変わり果てた姿で帰ってくる。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">15. 英雄の旅</button>
+              <div class="sec-body">
+                  <p class="pp">ほとんどすべての文化が、英雄の物語を語り継いできた。<br/>
+若者が故郷を離れる。不確かな道に踏み出す。思いがけない助け手に出会う。危険に立ち向かう。そして、変わり果てた姿で帰ってくる。<br/>
 こうした物語がいつの時代も愛され続けるのは、それが単なる冒険譚ではなく、成長そのものを描いているからである。</p>
-                  <p>ユングは、真の英雄とは、単に怪物を打ち倒す者のことではないと考えた。真の英雄とは、恐れに立ち向かう者のことである。<br>
+                  <p class="pp">ユングは、真の英雄とは、単に怪物を打ち倒す者のことではないと考えた。真の英雄とは、恐れに立ち向かう者のことである。<br/>
 その恐れは、時に外の世界にあり、時に自分自身の内側にある。</p>
-                  <p>山を登るところを思い浮かべてほしい。高く登るほど、空気は薄くなっていく。一歩ごとに、より大きな努力が必要になる。けれどもその登山は、山そのものだけでなく、登る人自身をも変えていく。<br>
-人生も、同じように働く。意味のある挑戦は、私たちに何かを求める。<br>
-勇気。忍耐。謙虚さ。思いやり。粘り強さ。<br>
+                  <p class="pp">山を登るところを思い浮かべてほしい。高く登るほど、空気は薄くなっていく。一歩ごとに、より大きな努力が必要になる。けれどもその登山は、山そのものだけでなく、登る人自身をも変えていく。<br/>
+人生も、同じように働く。意味のある挑戦は、私たちに何かを求める。<br/>
+勇気。忍耐。謙虚さ。思いやり。粘り強さ。<br/>
 挑戦がなければ、こうした資質の多くは、眠ったままになってしまう。</p>
-                  <p>英雄にとって最大の敵は、必ずしも他者ではない。時にそれは、プライドである。時に、居心地のよさへの執着である。時に、変化への恐れである。<br>
-もっとも重要な戦いは、しばしば静かに起こる。誰も拍手を送らない。誰も新聞に書き立てない。それでも、それは一つの人生全体を形づくっていく。<br>
-長年の恨みを抱えていた人が、ようやく謝る。ある人が、取り繕うことをやめて正直であることを選ぶ。別の人が、不確かさの中でも新しい仕事を始める。<br>
+                  <p class="pp">英雄にとって最大の敵は、必ずしも他者ではない。時にそれは、プライドである。時に、居心地のよさへの執着である。時に、変化への恐れである。<br/>
+もっとも重要な戦いは、しばしば静かに起こる。誰も拍手を送らない。誰も新聞に書き立てない。それでも、それは一つの人生全体を形づくっていく。<br/>
+長年の恨みを抱えていた人が、ようやく謝る。ある人が、取り繕うことをやめて正直であることを選ぶ。別の人が、不確かさの中でも新しい仕事を始める。<br/>
 こうした瞬間は、ドラマチックには見えない。それでも、心理学的には、それは紛れもない英雄の行為である。</p>
-                  <p>ユングは、すべての人が、この深い意味での英雄になるよう招かれていると信じていた。<br>
+                  <p class="pp">ユングは、すべての人が、この深い意味での英雄になるよう招かれていると信じていた。<br/>
 有名になることによってではない。ただ、誠実な自分自身になることによって。</p>
-                  <div class="pause">
-                    <p>あなたがこれまでに向き合ってきた、一つの困難を思い浮かべてほしい。<br>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたがこれまでに向き合ってきた、一つの困難を思い浮かべてほしい。<br/>
 振り返ってみて、それはあなたをどう変えただろうか。問題を解決しただけだろうか、それとも、それを解決したあなた自身もまた、変わったのではないだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">16</span>
-                <span class="title">老賢人という灯</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>そばにいるだけで、不思議と心が静まるような人に、出会ったことはあるだろうか。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">16. 老賢人という灯</button>
+              <div class="sec-body">
+                  <p class="pp">そばにいるだけで、不思議と心が静まるような人に、出会ったことはあるだろうか。<br/>
 その人はゆっくりと話すのかもしれない。話すよりも、聞くことのほうが多いのかもしれない。すべてを知っているとは、決して口にしないのかもしれない。それでも、その言葉には、なぜか重みがある。</p>
-                  <p>ユングは、多くの文化が、こうした人物像を思い描いてきたことに気づいた。<br>
-物知りな老女。賢い祖父。修道士。教師。庭師。旅人。<br>
+                  <p class="pp">ユングは、多くの文化が、こうした人物像を思い描いてきたことに気づいた。<br/>
+物知りな老女。賢い祖父。修道士。教師。庭師。旅人。<br/>
 姿かたちは変わっても、そこに流れるパターンは変わらない。彼はこれを<strong class="term">老賢人</strong>の<strong class="term">元型</strong>と呼んだ。</p>
-                  <p>ここで大切なことに気づいてほしい。<br>
-知恵は、知識と同じではない。多くの事実を知っていても、人生を深く理解しているとは限らない。逆に、正式な教育をほとんど受けていなくても、驚くほど鋭い洞察を持つ人もいる。<br>
+                  <p class="pp">ここで大切なことに気づいてほしい。<br/>
+知恵は、知識と同じではない。多くの事実を知っていても、人生を深く理解しているとは限らない。逆に、正式な教育をほとんど受けていなくても、驚くほど鋭い洞察を持つ人もいる。<br/>
 知恵は、じっくりと振り返られた経験から育つ。年齢を重ねるだけでは、知恵は生まれない。それを育てるのは、内省である。</p>
-                  <p><strong class="term">老賢人</strong>は、しばしば英雄が道に迷ったときに現れる。すべての困難を取り除くためではない。ただ、正しい問いを投げかけるためである。<br>
+                  <p class="pp"><strong class="term">老賢人</strong>は、しばしば英雄が道に迷ったときに現れる。すべての困難を取り除くためではない。ただ、正しい問いを投げかけるためである。<br/>
 よい教師は、私たちの人生の答えを代わりに出したりはしない。私たち自身が、自分の理解を見つける手助けをしてくれるのである。</p>
-                  <p>年を重ねるにつれて、ある不思議なことが起こる。かつて外側に探し求めていた賢明な導き手が、少しずつ自分自身の内側に育ち始めるのである。<br>
-経験は判断力になる。失敗は教師になる。忍耐が、せっかちさに取って代わる。<br>
+                  <p class="pp">年を重ねるにつれて、ある不思議なことが起こる。かつて外側に探し求めていた賢明な導き手が、少しずつ自分自身の内側に育ち始めるのである。<br/>
+経験は判断力になる。失敗は教師になる。忍耐が、せっかちさに取って代わる。<br/>
 ユングが、人生の後半は前半よりも心理学的に豊かなものになりうると考えたのは、おそらくこのためだろう。</p>
-                  <div class="pause">
-                    <p>あなたの人生に、静かに影響を与えてきた人はいるだろうか。劇的な助言によってではなく、ただその生き方によって。<br>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたの人生に、静かに影響を与えてきた人はいるだろうか。劇的な助言によってではなく、ただその生き方によって。<br/>
 その人が体現していた、あなたも育てたいと思う資質は何だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">17</span>
-                <span class="title">私たちの内なる小さな嵐</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>小さな一言に対して、驚くほど強い感情で反応してしまったことはないだろうか。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">17. 私たちの内なる小さな嵐</button>
+              <div class="sec-body">
+                  <p class="pp">小さな一言に対して、驚くほど強い感情で反応してしまったことはないだろうか。<br/>
 職場での些細な批判が、突然、耐えがたく感じられる。自分の外見についての小さな冗談が、一日中頭から離れない。</p>
-                  <p>ユングは、言語連想検査（言葉の連想から心の反応を測るテスト）の研究を通じて、人間の心の中には強い感情を伴った記憶の結び目があることを発見した。<br>
+                  <p class="pp">ユングは、言語連想検査（言葉の連想から心の反応を測るテスト）の研究を通じて、人間の心の中には強い感情を伴った記憶の結び目があることを発見した。<br/>
 彼はこれを<strong class="term">コンプレックス </strong>と呼んだ。日常語で「劣等感」という意味で使われがちだが、本来はもっと広い意味を持つ。</p>
-                  <p><strong class="term">コンプレックス</strong>とは、一つのテーマ（たとえば「権威」「お金」「母親」など）の周りに集まった、記憶、感情、信念の集合体である。それはしばしば、完全には癒えなかった傷の周りに形成される。</p>
-                  <p><strong class="term">コンプレックス</strong>を持つことは、珍しいことではない。誰もがいくつか持っている。</p>
-                  <p>危険なのは、<strong class="term">コンプレックス</strong>を持っていることそのものではない。危険なのは、自分がそれを持っていることに気づいていないことである。<br>
+                  <p class="pp"><strong class="term">コンプレックス</strong>とは、一つのテーマ（たとえば「権威」「お金」「母親」など）の周りに集まった、記憶、感情、信念の集合体である。それはしばしば、完全には癒えなかった傷の周りに形成される。</p>
+                  <p class="pp"><strong class="term">コンプレックス</strong>を持つことは、珍しいことではない。誰もがいくつか持っている。</p>
+                  <p class="pp">危険なのは、<strong class="term">コンプレックス</strong>を持っていることそのものではない。危険なのは、自分がそれを持っていることに気づいていないことである。<br/>
 <strong class="term">コンプレックス</strong>のスイッチが押されると、それは自我を乗っ取り、一時的に主導権を握ることがある。嵐が過ぎ去った後、私たちはしばしば「どうしてあんなに怒ってしまったのだろう」と自分自身の反応に戸惑う。</p>
-                  <p>「この反応は、この状況にしては大きすぎる」と気づくことが、自由への第一歩である。嵐を完全に止めることはできなくても、その存在に気づくことで、嵐に飲み込まれる時間を短くすることはできる。</p>
-                  <div class="pause">
-                    <p>その状況にしては大きすぎる反応を、決まって引き起こしてしまうような「心の地雷（スイッチ）」はあるだろうか。</p>
+                  <p class="pp">「この反応は、この状況にしては大きすぎる」と気づくことが、自由への第一歩である。嵐を完全に止めることはできなくても、その存在に気づくことで、嵐に飲み込まれる時間を短くすることはできる。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>その状況にしては大きすぎる反応を、決まって引き起こしてしまうような「心の地雷（スイッチ）」はあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">18</span>
-                <span class="title"><strong class="term">全体性</strong>を得る</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>もし、<strong class="term">ペルソナ</strong>、<strong class="term">影</strong>、<strong class="term">アニマ</strong> / <strong class="term">アニムス</strong>、そして<strong class="term">コンプレックス</strong>が、すべて心のバラバラの断片だとしたら、それらをまとめ上げる何かがあるのだろうか。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">18. 全体性を得る</button>
+              <div class="sec-body">
+                  <p class="pp">もし、<strong class="term">ペルソナ</strong>、<strong class="term">影</strong>、<strong class="term">アニマ</strong> / <strong class="term">アニムス</strong>、そして<strong class="term">コンプレックス</strong>が、すべて心のバラバラの断片だとしたら、それらをまとめ上げる何かがあるのだろうか。<br/>
 ユングは、あると考えた。彼はそれを、大文字の<strong class="term">自己</strong>と呼んだ。</p>
-                  <p><strong class="term">自己</strong>は、あなたのスケジュールを立て、メールに返信する日常の「私」（自我 : エゴ）とは異なる。<strong class="term">自己</strong>とは、意識と無意識をすべて包み込んだ、心の全体の中心であり、本来のあなたの完全な姿である。</p>
-                  <p>ユングは、人間がこの<strong class="term">自己</strong>（全体の中心）へ向かって、バラバラだった要素を統合し、本来の自分になっていく生涯にわたるプロセスを、<strong class="term">個性化</strong>と呼んだ。</p>
-                  <p><strong class="term">個性化</strong>とは、完璧（パーフェクト）になることを意味しない。欠点をなくすことでもない。<br>
+                  <p class="pp"><strong class="term">自己</strong>は、あなたのスケジュールを立て、メールに返信する日常の「私」（自我 : エゴ）とは異なる。<strong class="term">自己</strong>とは、意識と無意識をすべて包み込んだ、心の全体の中心であり、本来のあなたの完全な姿である。</p>
+                  <p class="pp">ユングは、人間がこの<strong class="term">自己</strong>（全体の中心）へ向かって、バラバラだった要素を統合し、本来の自分になっていく生涯にわたるプロセスを、<strong class="term">個性化</strong>と呼んだ。</p>
+                  <p class="pp"><strong class="term">個性化</strong>とは、完璧（パーフェクト）になることを意味しない。欠点をなくすことでもない。<br/>
 それは、自分の中の光も<strong class="term">影</strong>も含めて<strong class="term">全体性</strong>を取り戻し、より正直に、自分自身になることを意味する。</p>
-                  <p>このプロセスは、めったにすぐには起こらない。<br>
+                  <p class="pp">このプロセスは、めったにすぐには起こらない。<br/>
 それはしばしば、人生全体を必要とし、めったに一直線には進まない。しかし、たとえどんなに小さくとも、正直な一歩一歩が、あなたを<strong class="term">全体性</strong>へと近づけていく。</p>
-                  <div class="pause">
-                    <p>一年前を振り返って、あなたがより完全に自分自身になるために踏み出した、正直な一歩は何だっただろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>一年前を振り返って、あなたがより完全に自分自身になるために踏み出した、正直な一歩は何だっただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">19</span>
-                <span class="title">静かな案内人</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p><strong class="term">個性化</strong>は、どこへ向かうのだろうか。決まった目的地へではなく、自分自身の深い中心（<strong class="term">自己</strong>）とのより静かな関係へと向かう。</p>
-                  <p>ユングはしばしば、<strong class="term">自己</strong>を、私たちが気づくよりずっと前から存在している、内なる案内人として描写した。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">19. 静かな案内人</button>
+              <div class="sec-body">
+                  <p class="pp"><strong class="term">個性化</strong>は、どこへ向かうのだろうか。決まった目的地へではなく、自分自身の深い中心（<strong class="term">自己</strong>）とのより静かな関係へと向かう。</p>
+                  <p class="pp">ユングはしばしば、<strong class="term">自己</strong>を、私たちが気づくよりずっと前から存在している、内なる案内人として描写した。<br/>
 それは叫ばない。日々の悩みのように、注意を要求することもない。</p>
-                  <p>それは静かに語りかける。しばしば象徴を通して - 繰り返し見る夢、突然のひらめき、ある道へと説明のつかない形で引き寄せられる感覚を通して。</p>
-                  <p>多くの人は、この静かな声に気づかないまま、忙しく何年も過ごす。そして、しばしば危機の最中に、ようやく立ち止まり、耳を傾ける。<br>
+                  <p class="pp">それは静かに語りかける。しばしば象徴を通して - 繰り返し見る夢、突然のひらめき、ある道へと説明のつかない形で引き寄せられる感覚を通して。</p>
+                  <p class="pp">多くの人は、この静かな声に気づかないまま、忙しく何年も過ごす。そして、しばしば危機の最中に、ようやく立ち止まり、耳を傾ける。<br/>
 しかし、耳を傾け始めるために、危機は必要ない。ただ、自分自身に正直な問いを投げかけ、その答えを急いで通り過ぎるのではなく、待ってみるだけでよい。</p>
-                  <p>その声は、必ずしも言葉としてやってくるとは限らない。<br>
+                  <p class="pp">その声は、必ずしも言葉としてやってくるとは限らない。<br/>
 河合隼雄が日本に導入した<strong class="term">箱庭療法</strong>では、言葉を交わす代わりに、砂の上に人形や自然物をそっと置いていく。そうして置かれた小さな風景が、本人にもまだ言葉にできない、内なる何かを静かに映し出すことがある。</p>
-                  <p><strong class="term">自己</strong>は辛抱強いものである。それは、長い間、あなたを待ち続けている。</p>
-                  <div class="pause">
-                    <p>もしあなたの内なる案内人が、今日、あなたに一言だけ声をかけるとしたら、どんな言葉だろうか。</p>
+                  <p class="pp"><strong class="term">自己</strong>は辛抱強いものである。それは、長い間、あなたを待ち続けている。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>もしあなたの内なる案内人が、今日、あなたに一言だけ声をかけるとしたら、どんな言葉だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
+            </div></div>
+    </div>
 
     <!-- 8 パート III -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">8</span>
-        <span class="title">パート III <small>賢く生きる（会話 20 〜 31）</small></span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <div class="sub-list">
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">20</span>
-                <span class="title">誰の人生を生きているか</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>人には、他者に受け入れられたい、社会に適合したいという自然な欲求がある。それ自体は、少しもおかしなことではない。</p>
-                  <p>けれども、周囲に合わせることが、自分自身の内なる真実を押し殺すことを求めてくるとき、そこには静かな苦しみが生まれる。ユングは、社会がしばしば私たちに、一人ひとりの個性を育てるよりも、集団のルールに従うことを求めてくると指摘した。</p>
-                  <p>本当の意味での<strong class="term">真正性</strong>（Authenticity）とは、集団から完全に切り離されることではない。人間の普遍的な土台（<strong class="term">集合的無意識</strong>）に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくことである。</p>
-                  <p>そのためには、静かで、日々繰り返される勇気が必要である。<br>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">8. パート III - 賢く生きる（会話 20 〜 31）</button>
+      <div class="ch-body"><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">20. 誰の人生を生きているか</button>
+              <div class="sec-body">
+                  <p class="pp">人には、他者に受け入れられたい、社会に適合したいという自然な欲求がある。それ自体は、少しもおかしなことではない。</p>
+                  <p class="pp">けれども、周囲に合わせることが、自分自身の内なる真実を押し殺すことを求めてくるとき、そこには静かな苦しみが生まれる。ユングは、社会がしばしば私たちに、一人ひとりの個性を育てるよりも、集団のルールに従うことを求めてくると指摘した。</p>
+                  <p class="pp">本当の意味での<strong class="term">真正性</strong>（Authenticity）とは、集団から完全に切り離されることではない。人間の普遍的な土台（<strong class="term">集合的無意識</strong>）に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくことである。</p>
+                  <p class="pp">そのためには、静かで、日々繰り返される勇気が必要である。<br/>
 多数派とは異なる価値観を、それでも大切にし続ける勇気。自分の限界を、隠さずに認める勇気。自分の内なる中心に沿って生きる勇気である。</p>
-                  <p>外部からの承認に頼ることをやめたとき、人ははじめて、内側からの安定を手に入れる。</p>
-                  <div class="pause">
-                    <p>日々の暮らしの中で、手早く周囲の承認を得るために、自分の価値観を譲ってしまいそうになるのは、どんな場面だろうか。</p>
+                  <p class="pp">外部からの承認に頼ることをやめたとき、人ははじめて、内側からの安定を手に入れる。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>日々の暮らしの中で、手早く周囲の承認を得るために、自分の価値観を譲ってしまいそうになるのは、どんな場面だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">21</span>
-                <span class="title">人生の後半（中年の危機）</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>ユングは、自分の患者たちの中に、ある明確な転換期があることを見出した。人生の前半にいる多くの人は、「外側の世界を築くこと」に集中している - キャリア、家族、評判、社会の中での自分の居場所。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">21. 人生の後半（中年の危機）</button>
+              <div class="sec-body">
+                  <p class="pp">ユングは、自分の患者たちの中に、ある明確な転換期があることを見出した。人生の前半にいる多くの人は、「外側の世界を築くこと」に集中している - キャリア、家族、評判、社会の中での自分の居場所。<br/>
 これは重要で、必要な仕事である。</p>
-                  <p>しかし、 30 代後半から 40 代にかけての人生の半ばで、しばしば静かに、新しい問いが浮かび上がってくる。</p>
+                  <p class="pp">しかし、 30 代後半から 40 代にかけての人生の半ばで、しばしば静かに、新しい問いが浮かび上がってくる。</p>
                   <p class="italicquote">これで全部なのだろうか</p>
-                  <p>これまで価値を置いてきたものが急に色褪せて見え、深い虚無感や焦燥感に襲われる。心理学ではこれを「中年の危機（ミッドライフ・クライシス）」と呼ぶ。</p>
-                  <p>ユングは、「人生の午前中のプログラムに従って、午後を生きることはできない」と語った。人生の後半は、異なる種類の課題を求める。<br>
+                  <p class="pp">これまで価値を置いてきたものが急に色褪せて見え、深い虚無感や焦燥感に襲われる。心理学ではこれを「中年の危機（ミッドライフ・クライシス）」と呼ぶ。</p>
+                  <p class="pp">ユングは、「人生の午前中のプログラムに従って、午後を生きることはできない」と語った。人生の後半は、異なる種類の課題を求める。<br/>
 前半は、アイデンティティを築くことを求める。後半は、それを深めることを求める - 内側へ向き直り、まだ生きていない自分の一部（<strong class="term">影</strong>や<strong class="term">アニマ</strong>、<strong class="term">アニムス</strong>）と折り合いをつけ、達成よりも「意味」を探し求めることを。</p>
-                  <p>この変化は、治すべき病気ではない。それは、新しい方向へ成長するための、魂からの招待状である。</p>
-                  <div class="pause">
-                    <p>かつては大切だったのに、今はもうそれほど重要に感じられなくなった価値観はあるだろうか。</p>
+                  <p class="pp">この変化は、治すべき病気ではない。それは、新しい方向へ成長するための、魂からの招待状である。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>かつては大切だったのに、今はもうそれほど重要に感じられなくなった価値観はあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">22</span>
-                <span class="title">不完全である勇気</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>多くの人が、何年もかけて完璧さを追い求める。完璧なキャリア。完璧な人間関係。完璧な自分。<br>
-完璧さは、魅力的に見える。それは、安全を約束してくれるように思えるからである。「もし間違いを犯さなければ、すべてはうまくいくはずだ」と、私たちは考えがちである。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">22. 不完全である勇気</button>
+              <div class="sec-body">
+                  <p class="pp">多くの人が、何年もかけて完璧さを追い求める。完璧なキャリア。完璧な人間関係。完璧な自分。<br/>
+完璧さは、魅力的に見える。それは、安全を約束してくれるように思えるからである。「もし間違いを犯さなければ、すべてはうまくいくはずだ」と、私たちは考えがちである。<br/>
 しかし、人生は、めったにそのようには進まない。過ちは、人生の中断ではない。それは、人生そのものの一部である。</p>
-                  <p>ユングは、すべての人間が矛盾を抱えていることを理解していた。<br>
-優しい人も、時にせっかちになる。賢い人も、時に愚かにふるまう。自信に満ちた人も、時に自分自身を疑う。<br>
+                  <p class="pp">ユングは、すべての人間が矛盾を抱えていることを理解していた。<br/>
+優しい人も、時にせっかちになる。賢い人も、時に愚かにふるまう。自信に満ちた人も、時に自分自身を疑う。<br/>
 それは、その人が失敗しているということではない。それは、その人が人間である、ということである。</p>
-                  <p>美しい陶器の茶碗を思い浮かべてほしい。日本には、ひびの入った器を、金で継いで直すという伝統 - <strong class="term">金継ぎ</strong> - がある。<br>
+                  <p class="pp">美しい陶器の茶碗を思い浮かべてほしい。日本には、ひびの入った器を、金で継いで直すという伝統 - <strong class="term">金継ぎ</strong> - がある。<br/>
 そこでは、ひびは隠されない。それは、器の歴史の一部となる。その弱さそのものが、器の美しさの一部になるのである。</p>
-                  <p>人もまた、これによく似た形で成長する。私たちが最も消し去りたいと願う経験こそが、しばしば私たちに思いやりを教えてくれる。失敗を知った人は、他者に対してより忍耐強くなることがある。孤独を経験した人は、誰にも見えていないと感じている人に、より早く気づくことができる。<br>
-傷は、それだけで自動的に私たちを賢くしてくれるわけではない。けれども、その傷から何かを学んだとき、それは私たちの知恵の一部になる。<br>
+                  <p class="pp">人もまた、これによく似た形で成長する。私たちが最も消し去りたいと願う経験こそが、しばしば私たちに思いやりを教えてくれる。失敗を知った人は、他者に対してより忍耐強くなることがある。孤独を経験した人は、誰にも見えていないと感じている人に、より早く気づくことができる。<br/>
+傷は、それだけで自動的に私たちを賢くしてくれるわけではない。けれども、その傷から何かを学んだとき、それは私たちの知恵の一部になる。<br/>
 これは、苦しみを求めるべきだという意味ではない。ただ、苦しみは無意味である必要はない、ということである。</p>
-                  <div class="pause">
-                    <p>あなたの人生を変えた、一つの過ちを思い浮かべてほしい。それは、成功では決して教えてくれなかった何を、あなたに教えてくれただろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなたの人生を変えた、一つの過ちを思い浮かべてほしい。それは、成功では決して教えてくれなかった何を、あなたに教えてくれただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">23</span>
-                <span class="title">対立するものと共に生きる</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>ユングはしばしば、「対立するものの間の緊張」について語った。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">23. 対立するものと共に生きる</button>
+              <div class="sec-body">
+                  <p class="pp">ユングはしばしば、「対立するものの間の緊張」について語った。<br/>
 光と<strong class="term">影</strong>。強さと脆さ。理性と感情。</p>
-                  <p>私たちの多くは、一方を選び、もう一方を退けることで、この緊張を解消しようとする。私たちは「強い者」であろうと決め、あらゆる脆さを隠す。</p>
-                  <p>ユングは、別の道を提案した。一方を選ぶ代わりに、両方を同時に抱え続けることである。これは非常に居心地の悪い状態である。<br>
-しかしユングは、私たちがこの葛藤の中に十分辛抱強くとどまるなら、やがて予想もしなかった新しい、より高い次元の解決策が内側から生み出されると考えた。彼はこれを<strong class="term">超越機能</strong>と呼んだ。<br>
+                  <p class="pp">私たちの多くは、一方を選び、もう一方を退けることで、この緊張を解消しようとする。私たちは「強い者」であろうと決め、あらゆる脆さを隠す。</p>
+                  <p class="pp">ユングは、別の道を提案した。一方を選ぶ代わりに、両方を同時に抱え続けることである。これは非常に居心地の悪い状態である。<br/>
+しかしユングは、私たちがこの葛藤の中に十分辛抱強くとどまるなら、やがて予想もしなかった新しい、より高い次元の解決策が内側から生み出されると考えた。彼はこれを<strong class="term">超越機能</strong>と呼んだ。<br/>
 それは論理的に作り出すものではなく、無意識の底から自然に「湧き上がってくる」ものである。</p>
-                  <p>ここで、河合隼雄の<strong class="term">中空構造</strong>を思い出してみたい。<br>
-西洋の物語では、光が闇を打ち破るように、対立はしばしば「勝敗」によって解決される。しかし日本神話では、アマテラスとスサノオのように、性質の異なる神々が、どちらかが消え去ることなく並び立ち続ける。<br>
+                  <p class="pp">ここで、河合隼雄の<strong class="term">中空構造</strong>を思い出してみたい。<br/>
+西洋の物語では、光が闇を打ち破るように、対立はしばしば「勝敗」によって解決される。しかし日本神話では、アマテラスとスサノオのように、性質の異なる神々が、どちらかが消え去ることなく並び立ち続ける。<br/>
 中心は空のまま保たれ、対立するものどうしが共存し続けるのである。</p>
-                  <p><strong class="term">超越機能</strong>が、対立から新しい何かが「生まれてくる」ことに重きを置くとすれば、<strong class="term">中空構造</strong>は、対立を無理に解消せずに「共存させておく」ことに重きを置いている。白黒を急いでつけず、グレーの領域に耐える「ネガティブ・ケイパビリティ（消極的能力）」とも通じるこの態度は、人生の複雑さを生きるための深い知恵となる。</p>
-                  <div class="pause">
-                    <p>自分自身の中で対立しているように感じられる二つの側面（例 : 自由でいたい気持ちと、安定したい気持ち）は何だろうか。</p>
+                  <p class="pp"><strong class="term">超越機能</strong>が、対立から新しい何かが「生まれてくる」ことに重きを置くとすれば、<strong class="term">中空構造</strong>は、対立を無理に解消せずに「共存させておく」ことに重きを置いている。白黒を急いでつけず、グレーの領域に耐える「ネガティブ・ケイパビリティ（消極的能力）」とも通じるこの態度は、人生の複雑さを生きるための深い知恵となる。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>自分自身の中で対立しているように感じられる二つの側面（例 : 自由でいたい気持ちと、安定したい気持ち）は何だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">24</span>
-                <span class="title">不確実性とともに生きる</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>大抵の人は、確実であることを好む。はっきりとした答え。はっきりとした計画。はっきりとした見通し。<br>
-不確かさは、居心地の悪いものに感じられる。それは、道の全体を見通せないまま、前へ進むことを私たちに求めるからである。けれども、人生には、永続する確実さなど、ほとんど存在しない。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">24. 不確実性とともに生きる</button>
+              <div class="sec-body">
+                  <p class="pp">大抵の人は、確実であることを好む。はっきりとした答え。はっきりとした計画。はっきりとした見通し。<br/>
+不確かさは、居心地の悪いものに感じられる。それは、道の全体を見通せないまま、前へ進むことを私たちに求めるからである。けれども、人生には、永続する確実さなど、ほとんど存在しない。<br/>
 キャリアは変わる。人間関係は変わる。健康も変わる。夢さえも変わる。自分自身についての理解でさえ、変わり続ける。</p>
-                  <p>最初は、これは気の滅入る話に聞こえるかもしれない。<br>
+                  <p class="pp">最初は、これは気の滅入る話に聞こえるかもしれない。<br/>
 けれどもユングは、そこに一つの希望を見出した。もし人生が絶えず変化し続けるものなら、私たち自身もまた、絶えず変化する力を持っているということになるからである。</p>
-                  <p>一冊の小説の、最初の一章だけを読んでいる場面を思い浮かべてほしい。その結末を、自信を持って言い当てることができるだろうか。もちろん、できない。<br>
-人生も、これと似ている。多くの出来事は、後から振り返って初めて意味をなす。その渦中にいるときは、しばしば、ただ混乱としか感じられない。<br>
-ある失望が、人生の転機になる。ある失敗が、一つの学びになる。思いがけない出会いが、生涯続く友情の始まりになる。<br>
+                  <p class="pp">一冊の小説の、最初の一章だけを読んでいる場面を思い浮かべてほしい。その結末を、自信を持って言い当てることができるだろうか。もちろん、できない。<br/>
+人生も、これと似ている。多くの出来事は、後から振り返って初めて意味をなす。その渦中にいるときは、しばしば、ただ混乱としか感じられない。<br/>
+ある失望が、人生の転機になる。ある失敗が、一つの学びになる。思いがけない出会いが、生涯続く友情の始まりになる。<br/>
 未来は、隠されたままである。しかし、その「隠されている」ということ自体は、必ずしも敵ではない。それは時に、可能性が住んでいる場所でもあるのである。</p>
-                  <p>ユングは、不確かさを急いで取り除こうとするのではなく、それに耐えることを勧めた。いくつかの問いは、答えよりも、時間を必要としている。</p>
-                  <div class="pause">
-                    <p>かつて、ひどい失敗だと感じていた出来事を思い浮かべてほしい。今振り返ってみると、それは思いがけず、あなたをどこか価値ある場所へと導いてくれたのではないだろうか。<br>
+                  <p class="pp">ユングは、不確かさを急いで取り除こうとするのではなく、それに耐えることを勧めた。いくつかの問いは、答えよりも、時間を必要としている。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>かつて、ひどい失敗だと感じていた出来事を思い浮かべてほしい。今振り返ってみると、それは思いがけず、あなたをどこか価値ある場所へと導いてくれたのではないだろうか。<br/>
 時間は、あなたの理解をどのように変えただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">25</span>
-                <span class="title">意味のある偶然（共時性）</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>物理的な因果関係（A が起きたから B が起きた）だけでは説明がつかないのに、深い意味を感じる偶然の一致を経験したことはないだろうか。</p>
-                  <p>ユングは、内なる心の状態と、外側の現実の出来事が、因果律を超えて意味的に結びつく現象を<strong class="term">共時性</strong>（シンクロニシティ）と名づけた。彼はこれを、ノーベル物理学賞を受賞した量子力学者ヴォルフガング・パウリと共に探求した。</p>
-                  <p>ユング自身の有名なエピソードがある。<br>
-ある患者が、夢に「黄金のスカラベ（コガネムシ）」が出てきたと語っていた。まさにその時、背後の窓をコツコツと叩く音がした。ユングが窓を開けると、そこには夢に現れたのと同じような、黄金色に近い緑色をしたハナムグリ（コガネムシの一種）が飛び込んできたのである。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">25. 意味のある偶然（共時性）</button>
+              <div class="sec-body">
+                  <p class="pp">物理的な因果関係（A が起きたから B が起きた）だけでは説明がつかないのに、深い意味を感じる偶然の一致を経験したことはないだろうか。</p>
+                  <p class="pp">ユングは、内なる心の状態と、外側の現実の出来事が、因果律を超えて意味的に結びつく現象を<strong class="term">共時性</strong>（シンクロニシティ）と名づけた。彼はこれを、ノーベル物理学賞を受賞した量子力学者ヴォルフガング・パウリと共に探求した。</p>
+                  <p class="pp">ユング自身の有名なエピソードがある。<br/>
+ある患者が、夢に「黄金のスカラベ（コガネムシ）」が出てきたと語っていた。まさにその時、背後の窓をコツコツと叩く音がした。ユングが窓を開けると、そこには夢に現れたのと同じような、黄金色に近い緑色をしたハナムグリ（コガネムシの一種）が飛び込んできたのである。<br/>
 この衝撃的な偶然の一致は、極めて論理的で閉ざされていた患者の心を開く劇的なきっかけとなった。</p>
-                  <p><strong class="term">共時性</strong>は、私たちが孤立した存在ではなく、より大きな世界の意味の網の目の中につながっていることを感じさせてくれる。<br>
+                  <p class="pp"><strong class="term">共時性</strong>は、私たちが孤立した存在ではなく、より大きな世界の意味の網の目の中につながっていることを感じさせてくれる。<br/>
 それをオカルトや魔法として証明しようとする必要はない。それよりも、日々の暮らしの中に現れる、こうした「意味のある一致」に心を開き、注意深く目を向けてみる姿勢が大切である。</p>
-                  <div class="pause">
-                    <p>因果関係では説明がつかないのに、あなたの背中を押してくれたような「意味のある偶然」を経験したことはあるだろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>因果関係では説明がつかないのに、あなたの背中を押してくれたような「意味のある偶然」を経験したことはあるだろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">26</span>
-                <span class="title">判断する前に耳を傾ける</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>人は、判断することに素早い生き物である。時にそれは必要である。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">26. 判断する前に耳を傾ける</button>
+              <div class="sec-body">
+                  <p class="pp">人は、判断することに素早い生き物である。時にそれは必要である。<br/>
 子どもが車の多い道路に飛び出したなら、私たちはただちに行動しなければならない。誰かが危険にさらされているなら、ためらいが害になることもある。</p>
-                  <p>けれども、日常の多くの場面は、それとは違う。私たちの判断の多くは、理解よりも先にやってくる。<br>
-誰かがきつい言い方をする。私たちは「失礼な人だ」と決めつける。友人がメッセージへの返信を忘れる。私たちは「もう気にかけてもらえていないんだ」と結論づける。<br>
+                  <p class="pp">けれども、日常の多くの場面は、それとは違う。私たちの判断の多くは、理解よりも先にやってくる。<br/>
+誰かがきつい言い方をする。私たちは「失礼な人だ」と決めつける。友人がメッセージへの返信を忘れる。私たちは「もう気にかけてもらえていないんだ」と結論づける。<br/>
 同僚が会話を避ける。私たちは「嫌われているのだろう」と思い込む。</p>
-                  <p>しかし後になって、まったく別の物語が見えてくることがある。<br>
-失礼だと思われたその人は、子どもの体調が悪くて一晩中眠れなかったのかもしれない。友人は、携帯電話をなくしていただけかもしれない。同僚は、つらい病気の知らせを受けたばかりだったのかもしれない。<br>
+                  <p class="pp">しかし後になって、まったく別の物語が見えてくることがある。<br/>
+失礼だと思われたその人は、子どもの体調が悪くて一晩中眠れなかったのかもしれない。友人は、携帯電話をなくしていただけかもしれない。同僚は、つらい病気の知らせを受けたばかりだったのかもしれない。<br/>
 事実が変われば、私たちの判断も変わる。</p>
-                  <p>ユングは、私たちがしばしば、自分の最初の解釈を「現実そのもの」だと取り違えてしまうと考えた。それは、私たちが自分自身の経験というレンズを通してしか、世界を見ることができないからである。<br>
+                  <p class="pp">ユングは、私たちがしばしば、自分の最初の解釈を「現実そのもの」だと取り違えてしまうと考えた。それは、私たちが自分自身の経験というレンズを通してしか、世界を見ることができないからである。<br/>
 同じ出来事を目撃した二人が、まったく異なる形でそれを記憶することがある。どちらも嘘をついているわけではない。それぞれが、違う窓から外を見ているだけなのである。</p>
-                  <p>この気づきは、私たちに謙虚さを教えてくれる。「この人の、何がいけないのだろう」と問う代わりに、私たちはこう問い始めることができる。「私が、まだ理解できていないことは何だろう」。<br>
+                  <p class="pp">この気づきは、私たちに謙虚さを教えてくれる。「この人の、何がいけないのだろう」と問う代わりに、私たちはこう問い始めることができる。「私が、まだ理解できていないことは何だろう」。<br/>
 好奇心を持つことは、誰にでも同意することではない。それは、現実が私たちを驚かせる余地を、残しておくということである。</p>
-                  <div class="pause">
-                    <p>最初の印象が、後になって間違いだったとわかったことはあるだろうか。何が、あなたの見方を変えるきっかけになっただろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>最初の印象が、後になって間違いだったとわかったことはあるだろうか。何が、あなたの見方を変えるきっかけになっただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">27</span>
-                <span class="title">人間関係という鏡</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>私たちは、一人でいるときにこそ、自分自身を発見できると思い込みがちである。<br>
-孤独は大切である。静けさも大切である。内省も大切である。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">27. 人間関係という鏡</button>
+              <div class="sec-body">
+                  <p class="pp">私たちは、一人でいるときにこそ、自分自身を発見できると思い込みがちである。<br/>
+孤独は大切である。静けさも大切である。内省も大切である。<br/>
 けれども、人間関係だけが教えてくれることも、確かにある。</p>
-                  <p>他者は、私たち自身が見過ごしている癖に気づく。他者は、私たちの意見に異議を唱える。他者は、自分でも知らなかった感情を呼び覚ます。<br>
-この意味で、人間関係は一枚の鏡になる。時にそれは、私たちが誇りに思う資質を映し出す。時にそれは、できれば見て見ぬふりをしたい資質を映し出す。<br>
+                  <p class="pp">他者は、私たち自身が見過ごしている癖に気づく。他者は、私たちの意見に異議を唱える。他者は、自分でも知らなかった感情を呼び覚ます。<br/>
+この意味で、人間関係は一枚の鏡になる。時にそれは、私たちが誇りに思う資質を映し出す。時にそれは、できれば見て見ぬふりをしたい資質を映し出す。<br/>
 ユングは、そのどちらの鏡も、価値があると考えた。</p>
-                  <p>一枚の金属板を磨いているところを思い浮かべてほしい。表面が澄んでくるにつれて、初めてそれは、正確に物を映すようになる。<br>
-人間関係もまた、少しずつ私たちを磨いていく。それは、必ずしも優しいやり方によってではない。<br>
-対立は、プライドを映し出す。赦しは、寛容さを映し出す。失望は、期待していたものを映し出す。愛は、脆さを映し出す。<br>
+                  <p class="pp">一枚の金属板を磨いているところを思い浮かべてほしい。表面が澄んでくるにつれて、初めてそれは、正確に物を映すようになる。<br/>
+人間関係もまた、少しずつ私たちを磨いていく。それは、必ずしも優しいやり方によってではない。<br/>
+対立は、プライドを映し出す。赦しは、寛容さを映し出す。失望は、期待していたものを映し出す。愛は、脆さを映し出す。<br/>
 一つひとつの出会いが、私たち自身について、何かを教えてくれる。</p>
-                  <p>だからこそ、意味のある関係には、正直さが必要なのである。完璧な正直さではない。誰も、すべての考えを打ち明けたりはしない。けれども、誠実な正直さが必要である。<br>
-「私が間違っていた」「私は怖い」「助けてほしい」「あなたに感謝している」 - こうしたシンプルな言葉が、関係を強くする。なぜならそれは、現実そのものを強くするからである。<br>
+                  <p class="pp">だからこそ、意味のある関係には、正直さが必要なのである。完璧な正直さではない。誰も、すべての考えを打ち明けたりはしない。けれども、誠実な正直さが必要である。<br/>
+「私が間違っていた」「私は怖い」「助けてほしい」「あなたに感謝している」 - こうしたシンプルな言葉が、関係を強くする。なぜならそれは、現実そのものを強くするからである。<br/>
 見せかけの上に築かれた関係は、やがて脆くなる。真実の上に築かれた関係は、しなやかな強さを持つようになる。</p>
-                  <div class="pause">
-                    <p>あなた自身をより深く理解する手助けをしてくれたのは、誰だっただろうか。その人は、助言によって教えてくれただろうか、それとも、ただその人を知るという経験そのものが、あなたを教えてくれただろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>あなた自身をより深く理解する手助けをしてくれたのは、誰だっただろうか。その人は、助言によって教えてくれただろうか、それとも、ただその人を知るという経験そのものが、あなたを教えてくれただろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">28</span>
-                <span class="title">思いやりは内側から始まる</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>多くの人は、思いやりとは他者を気遣うことだと考えている。それは確かに真実である。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">28. 思いやりは内側から始まる</button>
+              <div class="sec-body">
+                  <p class="pp">多くの人は、思いやりとは他者を気遣うことだと考えている。それは確かに真実である。<br/>
 けれどもユングは、思いやりは、自分自身を理解することからも始まると考えた。</p>
-                  <p>森の中で道に迷った誰かを助けようとしながら、自分自身もまた道に迷っていることを認めようとしない場面を思い浮かべてほしい。まもなく、二人とも混乱してしまうだろう。<br>
+                  <p class="pp">森の中で道に迷った誰かを助けようとしながら、自分自身もまた道に迷っていることを認めようとしない場面を思い浮かべてほしい。まもなく、二人とも混乱してしまうだろう。<br/>
 自分自身を理解することは、思いやりを、より誠実なものにする。自分の中にある恐れに気づいているとき、私たちは他者の恐れに、それほど驚かなくなる。自分自身の不完全さを受け入れているとき、私たちは周りに見える不完全さを、それほど急いで責めなくなる。</p>
-                  <p>これは、有害な行為を容認するという意味ではない。思いやりは、許可を与えることとは違う。それはむしろ、誰もが、私たちには見えない苦労を抱えて生きているのだ、ということを忘れないということである。<br>
-せっかちに見える見知らぬ人は、悲しみの中にいるのかもしれない。物静かな同僚は、病気の親の世話をしているのかもしれない。明るい隣人は、深い孤独を隠しているのかもしれない。<br>
+                  <p class="pp">これは、有害な行為を容認するという意味ではない。思いやりは、許可を与えることとは違う。それはむしろ、誰もが、私たちには見えない苦労を抱えて生きているのだ、ということを忘れないということである。<br/>
+せっかちに見える見知らぬ人は、悲しみの中にいるのかもしれない。物静かな同僚は、病気の親の世話をしているのかもしれない。明るい隣人は、深い孤独を隠しているのかもしれない。<br/>
 私たちは、その物語のすべてを知ることは、めったにない。</p>
-                  <p>ユングは、自分自身を正直に理解すればするほど、私たちは他者に対して、より穏やかに接するようになると考えた。<br>
+                  <p class="pp">ユングは、自分自身を正直に理解すればするほど、私たちは他者に対して、より穏やかに接するようになると考えた。<br/>
 誰もが正しいからではない。誰もが、人間だからである。</p>
-                  <div class="pause">
-                    <p>次に誰かにがっかりさせられたとき、判断を下す前に、少しだけ立ち止まってみてほしい。「この人の人生について、私がまだ知らないことは何だろう」と、自分に問いかけてみてほしい。<br>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>次に誰かにがっかりさせられたとき、判断を下す前に、少しだけ立ち止まってみてほしい。「この人の人生について、私がまだ知らないことは何だろう」と、自分に問いかけてみてほしい。<br/>
 たとえ答えが見つからなくても、その問いそのものが、あなたの心を変えてくれるかもしれない。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">29</span>
-                <span class="title">意味のある人生</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>人生の終わりに近づいた頃、ユングは「何が最も大切だったか」と尋ねられた。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">29. 意味のある人生</button>
+              <div class="sec-body">
+                  <p class="pp">人生の終わりに近づいた頃、ユングは「何が最も大切だったか」と尋ねられた。<br/>
 彼は、富、快適さ、名声で答えることはなかった。彼は、意味について語った。</p>
-                  <p>ユングは、人生が意味を持つと感じられるなら、人はほとんどどんな困難にも耐えられると考えた。そして、たとえ快適な暮らしの中にいても、人生が空虚に感じられるなら、人は道に迷った気持ちになりうると考えた（彼はこれを「意味の喪失の神経症」と呼んだ）。</p>
-                  <p>意味は、直接それを探し求めることによって見つかることはめったにない。それはむしろ、正直な人間関係、心を込めてなされた仕事、自分自身や他者との本物のつながりの瞬間を通して、副産物のように静かに現れる傾向がある。</p>
-                  <p>意味を見出すために、劇的な人生は必要ない。注意深く、正直に生きられた平凡な人生も、深く意味のあるものになり得る。</p>
-                  <p>問うべきなのは、「どうすれば自分の人生を特別なものにできるか」ではない。問うべきなのは、「どうすれば、この平凡な一日を、完全に目覚めて生きられるか」である。</p>
-                  <div class="pause">
-                    <p>たとえ他の誰も気づかないとしても、あなたの人生の中で静かに意味を感じられる、ある平凡な部分は何だろうか。</p>
+                  <p class="pp">ユングは、人生が意味を持つと感じられるなら、人はほとんどどんな困難にも耐えられると考えた。そして、たとえ快適な暮らしの中にいても、人生が空虚に感じられるなら、人は道に迷った気持ちになりうると考えた（彼はこれを「意味の喪失の神経症」と呼んだ）。</p>
+                  <p class="pp">意味は、直接それを探し求めることによって見つかることはめったにない。それはむしろ、正直な人間関係、心を込めてなされた仕事、自分自身や他者との本物のつながりの瞬間を通して、副産物のように静かに現れる傾向がある。</p>
+                  <p class="pp">意味を見出すために、劇的な人生は必要ない。注意深く、正直に生きられた平凡な人生も、深く意味のあるものになり得る。</p>
+                  <p class="pp">問うべきなのは、「どうすれば自分の人生を特別なものにできるか」ではない。問うべきなのは、「どうすれば、この平凡な一日を、完全に目覚めて生きられるか」である。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>たとえ他の誰も気づかないとしても、あなたの人生の中で静かに意味を感じられる、ある平凡な部分は何だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">30</span>
-                <span class="title">気づきの日常的な実践</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>本を読むだけでは、人生は変わらない。違う生き方をすることが、人生を変えるのである。</p>
-                  <p>気づきは、ごくありふれた瞬間の積み重ねの中で育っていく。列に並んで待ちながら、自分がいらだっていることに気づく。状況のせいにする代わりに、好奇心を向けてみる。「なぜ私は、こんなに急いでいるのだろう」。<br>
-嫉妬を感じる。それを無いことにする代わりに、そっと認める。「この感情は、私のどんな願いを教えてくれているのだろう」。<br>
-過ちを犯す。言い訳を探す代わりに、謝る。そこから学ぶ。<br>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">30. 気づきの日常的な実践</button>
+              <div class="sec-body">
+                  <p class="pp">本を読むだけでは、人生は変わらない。違う生き方をすることが、人生を変えるのである。</p>
+                  <p class="pp">気づきは、ごくありふれた瞬間の積み重ねの中で育っていく。列に並んで待ちながら、自分がいらだっていることに気づく。状況のせいにする代わりに、好奇心を向けてみる。「なぜ私は、こんなに急いでいるのだろう」。<br/>
+嫉妬を感じる。それを無いことにする代わりに、そっと認める。「この感情は、私のどんな願いを教えてくれているのだろう」。<br/>
+過ちを犯す。言い訳を探す代わりに、謝る。そこから学ぶ。<br/>
 そして、また歩き続ける。</p>
-                  <p>こうした瞬間は、小さく見えるかもしれない。けれども、人生とは、小さな瞬間の積み重ねでできている。人格は、静かに育っていく。<br>
-一つの正直な会話。一つの思慮深い決断。一つの謝罪。一つの親切な行い。<br>
+                  <p class="pp">こうした瞬間は、小さく見えるかもしれない。けれども、人生とは、小さな瞬間の積み重ねでできている。人格は、静かに育っていく。<br/>
+一つの正直な会話。一つの思慮深い決断。一つの謝罪。一つの親切な行い。<br/>
 それが、繰り返されていくことによって。</p>
-                  <p>多くの人は、劇的な転機を待ち続ける。しかしユングは、変容とは大抵、もっと穏やかな形でやってくると考えた。<br>
+                  <p class="pp">多くの人は、劇的な転機を待ち続ける。しかしユングは、変容とは大抵、もっと穏やかな形でやってくると考えた。<br/>
 ちょうど、夜明けのように。闇が光へと変わる、その正確な瞬間に気づくことは、めったにない。それでも、気がつけば、世界はまったく違って見えているのである。</p>
-                  <div class="pause">
-                    <p>毎日、あなたが少しずつ気づきを深めていくのを助けてくれそうな、小さな習慣は何だろうか。<br>
-日記をつけること。静かに散歩すること。夢を書き留めること。あるいは、ただ五分間、何にも気を取られずに過ごすこと。<br>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>毎日、あなたが少しずつ気づきを深めていくのを助けてくれそうな、小さな習慣は何だろうか。<br/>
+日記をつけること。静かに散歩すること。夢を書き留めること。あるいは、ただ五分間、何にも気を取られずに過ごすこと。<br/>
 小さな実践が、しばしば豊かな人生を形づくる。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="sub-item" data-sub>
-              <button class="sub-header" data-sub-toggle>
-                <span class="num">31</span>
-                <span class="title">自分自身になる</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-              <div class="sub-panel">
-                <div class="sub-panel-inner">
-                  <p>この記事はシンプルな問いから始まった。</p>
+            </div><div class="section">
+              <button aria-expanded="false" class="sec-head" type="button">31. 自分自身になる</button>
+              <div class="sec-body">
+                  <p class="pp">この記事はシンプルな問いから始まった。</p>
                   <p class="pullquote">あなたは本当は誰なのか</p>
-                  <p>ここまで来ても、あなたはまだ最終的な答えを持っていないかもしれない。それは失敗ではない。</p>
-                  <p>ユング自身、誰も自分自身になることを完全に終えることはないと考えていた。<strong class="term">個性化</strong>のプロセスに終わりはない。</p>
-                  <p><strong class="term">ペルソナ</strong>は、新しい状況に合わせて調整され続けるだろう。<strong class="term">影</strong>は、新しい隅々を明らかにし続けるだろう。<br>
+                  <p class="pp">ここまで来ても、あなたはまだ最終的な答えを持っていないかもしれない。それは失敗ではない。</p>
+                  <p class="pp">ユング自身、誰も自分自身になることを完全に終えることはないと考えていた。<strong class="term">個性化</strong>のプロセスに終わりはない。</p>
+                  <p class="pp"><strong class="term">ペルソナ</strong>は、新しい状況に合わせて調整され続けるだろう。<strong class="term">影</strong>は、新しい隅々を明らかにし続けるだろう。<br/>
 内なる案内人は、あるときははっきりと、あるときはただのささやきとして、語りかけ続けるだろう。</p>
-                  <p>自分自身になるとは、どこかにたどり着いて立ち止まることではない。それは、あなたがすでにそうである中心へ向かって、ますます正直になりながら、歩み続けることである。</p>
-                  <p>あなたはこの記事を、ある一人の人間として読み始めた。あなたはこの記事を、たとえわずかであっても、自分自身の内側とつながった人間として終える。</p>
-                  <p>その好奇心を、この先へと持ち運んでほしい。<br>
+                  <p class="pp">自分自身になるとは、どこかにたどり着いて立ち止まることではない。それは、あなたがすでにそうである中心へ向かって、ますます正直になりながら、歩み続けることである。</p>
+                  <p class="pp">あなたはこの記事を、ある一人の人間として読み始めた。あなたはこの記事を、たとえわずかであっても、自分自身の内側とつながった人間として終える。</p>
+                  <p class="pp">その好奇心を、この先へと持ち運んでほしい。<br/>
 旅はここで終わらない。それはただ、正直な一日一日を重ねながら、続いていくのである。</p>
-                  <div class="pause">
-                    <p>もしあなたが自分自身の物語の次の章を書くとしたら、今週踏み出す、小さくて正直な一歩は何だろうか。</p>
+                  <div class="fig-note">
+                    <p><strong>ひと休み: </strong>もしあなたが自分自身の物語の次の章を書くとしたら、今週踏み出す、小さくて正直な一歩は何だろうか。</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
+            </div></div>
+    </div>
 
     <!-- 9 あとがき -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">9</span>
-        <span class="title">あとがき</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>この記事の目的はあなたをユング心理学の専門家にすることではない。もっと小さく、そしておそらくもっと大切な何かを目指している。</p>
-          <p>それは、一つひとつの短い「会話」と一つひとつの正直な問いを通してあなたが内側を見つめ続ける理由を与えることである。</p>
-          <p>そしてもう一つ、この記事が目指すのは、ユングの思想を遠い国の理論として眺めるのではなく、河合隼雄が日本の神話や昔話の中に見出した様に私たち自身の足元にある物語や日常の中にも同じ普遍的なパターンが息づくと気づいてもらうことである。</p>
-          <p><strong class="term">自己理解</strong>には、忍耐が必要である。それは、速さではなく、何度も繰り返し立ち返ること、そのたびに少しずつ丁寧になることに報いてくれる。</p>
-          <p>もしこの記事の中のたった一つの文でも、読む者を立ち止まらせ自分自身の人生について考えさせたなら、この記事はその役目を果たしたことになる。</p>
-          <p>ここまで読んでくれたことに、感謝したい。この先の旅は、読む者自身のものである。</p>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">9. あとがき</button>
+      <div class="ch-body">
+          <p class="pp">この記事の目的はあなたをユング心理学の専門家にすることではない。もっと小さく、そしておそらくもっと大切な何かを目指している。</p>
+          <p class="pp">それは、一つひとつの短い「会話」と一つひとつの正直な問いを通してあなたが内側を見つめ続ける理由を与えることである。</p>
+          <p class="pp">そしてもう一つ、この記事が目指すのは、ユングの思想を遠い国の理論として眺めるのではなく、河合隼雄が日本の神話や昔話の中に見出した様に私たち自身の足元にある物語や日常の中にも同じ普遍的なパターンが息づくと気づいてもらうことである。</p>
+          <p class="pp"><strong class="term">自己理解</strong>には、忍耐が必要である。それは、速さではなく、何度も繰り返し立ち返ること、そのたびに少しずつ丁寧になることに報いてくれる。</p>
+          <p class="pp">もしこの記事の中のたった一つの文でも、読む者を立ち止まらせ自分自身の人生について考えさせたなら、この記事はその役目を果たしたことになる。</p>
+          <p class="pp">ここまで読んでくれたことに、感謝したい。この先の旅は、読む者自身のものである。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 10 用語集 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">10</span>
-        <span class="title">用語集</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">10. 用語集</button>
+      <div class="ch-body">
           <dl>
             <div class="dl-term"><dt><strong class="term">自我（Ego）</strong></dt><dd>日常の意識の中心であり、「私は」という感覚の主体。決断し、記憶し、計画する働きを担うが、心全体からすればごく一部にすぎない。</dd></div>
             <div class="dl-term"><dt><strong class="term">自己理解（Self-understanding）</strong></dt><dd>意識だけでなく無意識にも気づき、自分が本当は何者であるかを深く知ろうとする、生涯にわたる営み。知識の暗記によってではなく、繰り返し立ち止まることによって育まれる。</dd></div>
             <div class="dl-term"><dt><strong class="term">ペルソナ（Persona）</strong></dt><dd>人が世間に見せる社会的な仮面。社会適応のために必要だが、同一化しすぎると本来の自分を見失う原因となる。</dd></div>
             <div class="dl-term"><dt><strong class="term">影（Shadow）</strong></dt><dd>人が否定したり拒んだりしがちな、人格の隠れた部分。無意識に抑圧され、しばしば他人に<strong class="term">投影</strong>される。弱さだけでなく、未開発の可能性も含む。</dd></div>
             <div class="dl-term"><dt><strong class="term">投影（Projection）</strong></dt><dd>自分の中にある、認めたくない感情や性質を無意識のうちに他人の中に見出し、映し出すこと。影やアニマ / アニムスとの関わりの中でよく起こる。</dd></div>
-            <div class="dl-term"><dt><strong class="term">アニマ（Anima）</strong><br><strong class="term">アニムス（Animus）</strong></dt><dd>心の中にある、異性の内なる心的イメージ。男性の無意識にある女性的<strong class="term">元型</strong>を「<strong class="term">アニマ</strong>」、女性の無意識にある男性的<strong class="term">元型</strong>を「<strong class="term">アニムス</strong>」と呼ぶ。恋愛において相手に<strong class="term">投影</strong>されることが多い。</dd></div>
+            <div class="dl-term"><dt><strong class="term">アニマ（Anima）</strong><br/><strong class="term">アニムス（Animus）</strong></dt><dd>心の中にある、異性の内なる心的イメージ。男性の無意識にある女性的<strong class="term">元型</strong>を「<strong class="term">アニマ</strong>」、女性の無意識にある男性的<strong class="term">元型</strong>を「<strong class="term">アニムス</strong>」と呼ぶ。恋愛において相手に<strong class="term">投影</strong>されることが多い。</dd></div>
             <div class="dl-term"><dt><strong class="term">アクティブ・イマジネーション（Active Imagination）</strong></dt><dd>ユングが編み出した、目覚めている間に無意識からのイメージと対話する能動的想像法。</dd></div>
             <div class="dl-term"><dt><strong class="term">象徴（Symbol）</strong></dt><dd>言葉だけでは語りきれない意味を指し示すイメージ。無意識は言葉よりもイメージによって思考するため、夢や神話はしばしば象徴によって語られる。</dd></div>
             <div class="dl-term"><dt><strong class="term">集合的無意識（Collective Unconscious）</strong></dt><dd>個人の経験を超えた、人類全体に共通して遺伝的に受け継がれている深い心の層。</dd></div>
@@ -1519,26 +877,20 @@
             <div class="dl-term"><dt><strong class="term">個性化（Individuation）</strong></dt><dd>無意識の要素（<strong class="term">影</strong>や<strong class="term">アニマ</strong>など）を意識に統合し、より完全で独自の<strong class="term">全体性</strong>を持った自分自身になっていく生涯にわたるプロセス（自己実現）。</dd></div>
             <div class="dl-term"><dt><strong class="term">全体性（Wholeness）</strong></dt><dd>意識と無意識、光と<strong class="term">影</strong>を含めた人格のあらゆる側面が、切り捨てられることなく統合された状態。</dd></div>
             <div class="dl-term"><dt><strong class="term">真正性（Authenticity）</strong></dt><dd>集団から完全に切り離されることではなく、人間の普遍的な土台（<strong class="term">集合的無意識</strong>）に根を下ろしながらも、そこから自分だけの、独自の人生の表現を選び取っていくこと。</dd></div>
-            <div class="dl-term"><dt><strong class="term">外向性（Extraversion）</strong><br><strong class="term">内向性（Introversion）</strong></dt><dd>心のエネルギー（リビドー）が外の世界に向かうか、内なる世界に向かうかを表す二つの基本的態度。ユングが提唱した概念。</dd></div>
+            <div class="dl-term"><dt><strong class="term">外向性（Extraversion）</strong><br/><strong class="term">内向性（Introversion）</strong></dt><dd>心のエネルギー（リビドー）が外の世界に向かうか、内なる世界に向かうかを表す二つの基本的態度。ユングが提唱した概念。</dd></div>
             <div class="dl-term"><dt><strong class="term">超越機能（Transcendent Function）</strong></dt><dd>意識と無意識、あるいは対立する二つのものの間の葛藤に耐えることで、無意識から新しく統一的な解決策が生み出される心の働き。</dd></div>
             <div class="dl-term"><dt><strong class="term">共時性（Synchronicity）</strong></dt><dd>物理的な因果関係はないが、主観的な意味において深く結びついている偶然の一致（シンクロニシティ）。</dd></div>
             <div class="dl-term"><dt><strong class="term">中空構造</strong></dt><dd>河合隼雄が日本神話の分析から見出した構造。中心に絶対的な権力を置かず、対立するものどうしを空なる中心の周囲に並び立たせておく日本的な心のあり方。</dd></div>
             <div class="dl-term"><dt><strong class="term">箱庭療法（Sandplay Therapy）</strong></dt><dd>ドラ・カルフが確立し、河合隼雄が日本に導入した心理療法。砂箱の中にミニチュアを置くことで、言葉にならない無意識の世界を表現し、治癒を促す。</dd></div>
           </dl>
         </div>
-      </div>
-    </section>
+    </div>
 
     <!-- 11 おすすめの書籍 -->
-    <section class="acc-item" data-acc>
-      <button class="acc-header" data-acc-toggle>
-        <span class="num">11</span>
-        <span class="title">おすすめの書籍</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="acc-panel">
-        <div class="acc-panel-inner">
-          <p>もしこの記事に好奇心を刺激されたなら、以下の作品が、ユングの思想へのより深い道を提供してくれる。</p>
+    <div class="chapter">
+      <button aria-expanded="false" class="ch-head" type="button">11. おすすめの書籍</button>
+      <div class="ch-body">
+          <p class="pp">もしこの記事に好奇心を刺激されたなら、以下の作品が、ユングの思想へのより深い道を提供してくれる。</p>
           <div class="book-group">
             <h4>ユング自身の著作</h4>
             <ul>
@@ -1556,114 +908,232 @@
           </div>
           <p class="closing">この記事を読み、そして自分自身になるという静かな仕事に取り組んでくれたことに、感謝する。</p>
         </div>
-      </div>
-    </section>
+    </div>
 
   </div>
-</div>
 
-<footer>本当の自分に出会う - ユング心理学とともに歩む、こころの旅</footer>
+</div>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
-  var GROUPS = [["[data-acc]", "[data-acc-toggle]"], ["[data-sub]", "[data-sub-toggle]"]];
-
-  function groupOf(item){
-    for(var i = 0; i < GROUPS.length; i++){
-      if(item.matches(GROUPS[i][0])) return GROUPS[i];
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
     }
-    return null;
   }
-
-  function closeSiblings(item, itemSelector){
-    Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-      if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-        sibling.classList.remove("open");
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
       }
-    });
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
   }
-
-  GROUPS.forEach(function(group){
-    var itemSelector = group[0], toggleSelector = group[1];
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      if(!toggle) return;
-      toggle.addEventListener("click", function(){
-        if(window.getSelection().toString().length > 0) return;
-        var willOpen = !item.classList.contains("open");
-        if(willOpen) closeSiblings(item, itemSelector);
-        item.classList.toggle("open", willOpen);
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
-      });
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
     });
   });
-
-  function setAll(open){
-    GROUPS.forEach(function(group){
-      document.querySelectorAll(group[0]).forEach(function(item){
-        item.classList.toggle("open", open);
-      });
-    });
-  }
-
-  document.getElementById("expandAll").addEventListener("click", function(){ setAll(true); });
-  document.getElementById("collapseAll").addEventListener("click", function(){ setAll(false); });
-
-  function openTarget(hash){
-    if(!hash) return null;
-    var target = document.getElementById(hash.replace(/^#/, ""));
-    if(!target) return null;
-    var node = target;
-    while(node){
-      var item = node.closest("[data-acc], [data-sub]");
-      if(!item) break;
-      if(!item.classList.contains("open")){
-        var group = groupOf(item);
-        if(group) closeSiblings(item, group[0]);
-        item.classList.add("open");
-      }
-      node = item.parentElement;
-    }
-    return target;
-  }
-
-  document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var target = document.getElementById(a.getAttribute("href").slice(1));
-    if(!target) return;
-    var accItem = target.closest("[data-acc], [data-sub]");
-    if(!accItem) return;
-    e.preventDefault();
-    var wasOpen = accItem.classList.contains("open");
-    openTarget(a.getAttribute("href"));
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
   });
 
-  window.addEventListener("hashchange", function(){
-    var target = openTarget(location.hash);
-    if(target){
-      setTimeout(function(){
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
         target.scrollIntoView({behavior:"smooth", block:"start"});
-      }, OPEN_SCROLL_DELAY);
-    }
+      });
+      breadcrumbNav.appendChild(btn);
+    });
+  }
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
   });
-
-  if(location.hash) openTarget(location.hash);
-
-  window.addEventListener("scroll", function(){
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-  });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
+</script>
 </script>
 
 </body>

@@ -4,507 +4,572 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>徳育のゆくえ - 文部科学省の方針と諸外国の道徳教育を辿る</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
-  :root {
-    --bg:#F5F3EC;
-    --paper:#fff;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --muted:#72786B;
-    --accent:#25364A;
-    --line:#C8CEC0;
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
+  :root{
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
+  }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-    --note-bg:#EEF2E4;
-    --hero-1:#25364A;
-    --hero-2:#25364A;
-    --hero-ink:#F5F3EC;
-    --hero-dim:#C8CEC0;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: 76px; }
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.95;
-    color: var(--ink);
-    background: var(--bg);
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
   }
-  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
+  }
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
+  }
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  header.hero {
-    background:var(--hero-1);
-    color: var(--hero-ink);
-    padding: 3.6rem 0 2.8rem;
-    margin-bottom: 2.8rem;
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-  header.hero .wrap { max-width: 960px; margin: 0 auto; }
-  header.hero .eyebrow {
-    display: block;
-    font-size: 0.78rem;
-    letter-spacing: 0.24em;
-    color: var(--hero-dim);
-    margin-bottom: 0.9rem;
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
-  header.hero h1 {
-    font-size: clamp(1.5rem, 3.6vw, 2rem);
-    line-height: 1.6;
-    margin: 0 0 0.8rem;
-    font-weight: 700;
-  }
-  header.hero p.sub {
-    margin: 0;
-    color: var(--hero-dim);
-    line-height: 1.85;
-    font-size: 0.98rem;
-    text-indent: 0;
-  }
-  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
-    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-  header.hero .hero-figure { max-width: 960px; margin: 2rem 0 0; overflow-x: auto; }
-  header.hero .hero-figure svg { display: block; width: 100%; height: auto; }
-  header.hero .hero-figure figcaption {
-    margin-top: 0.9rem;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: var(--hero-dim);
-    text-indent: 0;
-  }
-
-  main.wrap { padding-bottom: 4rem; }
-  h2 {
-    font-size: 1.28rem;
-    line-height: 1.6;
-    margin-top: 0;
-  }
-  h3 {
-    font-size: 1.1rem;
-    margin-top: 2rem;
-    color: var(--accent);
-  }
-  p { margin: 1.1em 0; text-indent: 1em; }
-  p.source {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.8;
-    text-indent: 0;
-  }
-  ul.refs, ol.refs { font-size: 0.9rem; color: var(--sub); }
-  ul.refs li, ol.refs li { margin-bottom: 0.6em; }
-  a { color: var(--accent); }
-  @media (max-width: 640px) {
-    table { font-size: 0.82rem; }
-  }
-
-  .toolbar-container {
-    position: sticky; top: 8px; z-index: 100;
-    background: var(--bg);
-    background: color-mix(in srgb, var(--bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 9px 0;
-    border-radius: 999px;
-    margin: 0 0 2.4rem;
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
-  }
-  .toolbar-container .toolbar { margin: 0; }
-  .toolbar {
-    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
-    margin: 0 0 2.4rem;
-  }
-  .toolbar button {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 0.88rem; font-weight: 700;
-    color: var(--accent); background: var(--paper);
-    border: 1.5px solid var(--accent); border-radius: 999px;
-    padding: 8px 20px; cursor: pointer; transition: all .2s ease;
-  }
-  .toolbar button:hover { background: var(--accent); color: #fff; }
-  #accordion { margin-bottom: 2.6rem; }
-  .acc-item {
-    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
-    margin-bottom: 16px; overflow: hidden; overflow-anchor: none;
-  }
-  .acc-item:last-child { margin-bottom: 0; }
-  .acc-header {
-    width: 100%; display: flex; align-items: center; gap: 14px;
-    background: none; border: none; padding: 18px 22px; cursor: pointer;
-    text-align: left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color: var(--ink); -webkit-tap-highlight-color: transparent;
-  }
-  .acc-header .num {
-    flex: 0 0 auto; color: var(--accent); font-size: 0.82rem; font-weight: 700;
-    background: var(--note-bg); padding: 4px 11px; border-radius: 999px; white-space: nowrap;
-  }
-  .acc-header .title { flex: 1 1 auto; font-size: 1.15rem; font-weight: 700; line-height: 1.5; }
-  .acc-header .chev {
-    flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent);
-    transition: transform .3s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
-  .acc-item.open > .acc-header { background: var(--note-bg); border-bottom: 1px solid var(--line); }
-  .acc-panel {
-    display: grid; grid-template-rows: 0fr;
-    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor: none;
-  }
-  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
-  .acc-panel-inner {
-    overflow: hidden; min-height: 0; padding: 0 22px; opacity: 0;
-    transition: opacity .3s ease .08s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner { padding: 6px 22px 26px; opacity: 1; }
-  @media (max-width: 600px) {
-    header.hero .hero-figure svg { min-width: 560px; }
-    .acc-header { padding: 15px 16px; gap: 10px; }
-    .acc-header .title { font-size: 1rem; }
-    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 22px; }
-  }
-</style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 320" role="img" aria-labelledby="meTitle meDesc">
-        <title id="meTitle">道徳教育の制度設計を二つの軸で見た 6 か国の配置</title>
-        <desc id="meDesc">横軸に宗教との距離、縦軸に教科としての制度化の度合いをとった散布図。ドイツは宗教が制度の中核にあり制度化も強い位置、イギリスはその中間、韓国・フランス・日本は世俗的かつ国レベルで制度化された位置、アメリカは世俗的だが州ごとの裁量に委ねる位置に置かれる。</desc>
-
-        <text x="360" y="22" class="figTitle">「教科として制度化するか」と「宗教と結びつけるか」の組み合わせ</text>
-
-        <line x1="70" y1="44" x2="70" y2="252" stroke="#8b9c7f" stroke-opacity="0.55" stroke-width="1.6"/>
-        <path d="M70 40 l-5 9 h10 z" fill="#8b9c7f" fill-opacity="0.7"/>
-        <line x1="70" y1="252" x2="694" y2="252" stroke="#8b9c7f" stroke-opacity="0.55" stroke-width="1.6"/>
-        <path d="M698 252 l-9 -5 v10 z" fill="#8b9c7f" fill-opacity="0.7"/>
-
-        <text x="26" y="148" class="axisName" transform="rotate(-90 26 148)">教科としての制度化</text>
-        <text x="58" y="56" class="pole">高</text>
-        <text x="58" y="248" class="pole">低</text>
-        <text x="382" y="300" class="axisName">宗教との距離</text>
-        <text x="74" y="274" class="poleSub">宗教が制度の中核</text>
-        <text x="694" y="274" class="poleSub end">世俗性を明示</text>
-
-        <g>
-          <circle cx="150" cy="96" r="7" fill="#c67e7b"/>
-          <text x="150" y="78" class="country">ドイツ</text>
-          <text x="150" y="118" class="note">憲法上の正規教科</text>
-
-          <circle cx="330" cy="138" r="7" fill="#c29c9a"/>
-          <text x="330" y="120" class="country">イギリス</text>
-          <text x="330" y="160" class="note">宗教教育と公民教育の二本立て</text>
-
-          <circle cx="470" cy="104" r="7" fill="#a6c78f"/>
-          <text x="470" y="86" class="country">韓国</text>
-          <text x="470" y="126" class="note">人性教育振興法</text>
-
-          <circle cx="630" cy="118" r="7" fill="#a6c78f"/>
-          <text x="630" y="100" class="country">フランス</text>
-          <text x="630" y="140" class="note">ライシテを教える</text>
-
-          <circle cx="545" cy="74" r="10" fill="none" stroke="#eef3ea" stroke-opacity="0.5" stroke-width="1.4"/>
-          <circle cx="545" cy="74" r="7" fill="#eef3ea"/>
-          <text x="545" y="54" class="country self">日本</text>
-          <text x="545" y="96" class="note self">特別の教科 道徳</text>
-
-          <circle cx="600" cy="196" r="7" fill="#a6c78f"/>
-          <text x="600" y="178" class="country">アメリカ</text>
-          <text x="600" y="218" class="note">州ごとの人格教育</text>
-        </g>
-
-        <style>
-          .figTitle { fill: #eef3ea; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .axisName { fill: #c4d0bc; font-size: 11.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .pole { fill: #a7b49d; font-size: 11px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .poleSub { fill: #a7b49d; font-size: 10.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .poleSub.end { text-anchor: end; }
-          .country { fill: #eef3ea; font-size: 12.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .country.self { font-weight: 700; }
-          .note { fill: #b2bfa9; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .note.self { fill: #d6e0cf; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>徳育のゆくえ - 文部科学省の方針と諸外国の道徳教育を辿る</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">論考 / EDUCATION</span>
-  <h1>徳育のゆくえ</h1>
-  <p class="sub">文部科学省の方針と諸外国の道徳教育を辿る</p>
-  <div class="meta">
-    <span>全 6 章</span>
-    <span>約 17 分</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<main class="wrap">
+ <p class="doc-meta">文部科学省の方針と諸外国の道徳教育を辿る論考。全 6 章 ・ 約 17 分。</p>
 
-<div class="toolbar-container">
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
-  </div>
-</div>
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。</p>
 
-<div id="accordion">
+ <div class="accordion">
 
-<section class="acc-item" id="sec0" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">0</span>
-    <span class="title">はじめに</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、 19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』（1861 年、原題 Education: Intellectual, Moral, and Physical）で示した「知育（intellectual education）・徳育（moral education）・体育（physical education）」という枠組みを、福沢諭吉が『学問のすゝめ』（1872 年）で紹介したことを一つの契機として日本に定着したとされる。<br>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">0. はじめに</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="pp">「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、 19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』（1861 年、原題 Education: Intellectual, Moral, and Physical）で示した「知育（intellectual education）・徳育（moral education）・体育（physical education）」という枠組みを、福沢諭吉が『学問のすゝめ』（1872 年）で紹介したことを一つの契機として日本に定着したとされる。<br>
 知育・体育が学力や運動能力という比較的測定しやすい対象を扱うのに対し、徳育、すなわち人格や道徳性の涵養を学校教育がどこまで、どのように担うべきかという問いは、明治期から今日に至るまで繰り返し論争の的になってきた。筆者自身、三育のうち徳育こそが人の生き方の基盤として特に重要ではないかと考えている一人だが、それが学校教育の制度として現にどう扱われているのかは、実のところよく知らなかった。<br>
 本稿では、文部科学省（文科省）が徳育に関してどのような方針を持っているのか、また諸外国では道徳教育・人格教育に相当する取り組みがどう行われているのかを、公表資料に基づいて確認する。諸外国の事例については、宗教教育との結びつきが強いのではないかという予想を出発点としつつ、その当否は調査結果に沿って判断する。</p>
     </div>
+   </div>
   </div>
-</section>
 
-<section class="acc-item" id="sec1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">文部科学省は「徳育」にどう向き合ってきたか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>まず確認しておくべきは、文科省が現在の公式文書で「徳育」という語をほとんど用いていないという点である。<br>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">1. 文部科学省は「徳育」にどう向き合ってきたか</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="pp">まず確認しておくべきは、文科省が現在の公式文書で「徳育」という語をほとんど用いていないという点である。<br>
 文科省が運営する「道徳教育アーカイブ」サイトを見ても、目標や制度の説明に使われているのは一貫して「道徳教育」であり、「徳育」という表記は見当たらない。教育振興基本計画などの近年の答申類でも、道徳教育の推進という語は用いられるが、「徳育」を前面に立てた記述は確認できなかった。<br>
 つまり「徳育」は近代教育の理念を語るうえでの一般名詞としては今も流通しているが、文科省の制度上の呼称としては「道徳教育」、より具体的には後述する「特別の教科 道徳」に置き換わっている、というのが現状である。</p>
 
-<p>道徳教育の学校教育における位置づけは、 2015 年（平成 27 年）を境に大きく変わった。それ以前、小中学校では「道徳の時間」が週 1 コマ設けられていたが、検定教科書もなく、数値評価も行われない、教科ではない領域として扱われていた。<br>
+     <p class="pp">道徳教育の学校教育における位置づけは、 2015 年（平成 27 年）を境に大きく変わった。それ以前、小中学校では「道徳の時間」が週 1 コマ設けられていたが、検定教科書もなく、数値評価も行われない、教科ではない領域として扱われていた。<br>
 この扱いを見直す議論が本格化したのは、 2012 年から 2013 年にかけて相次いだいじめ事案を受けてのことである。文科省は 2013 年に「道徳教育の充実に関する懇談会」を設置し、同年 12 月に報告書「今後の道徳教育の改善・充実方策について」をまとめた。<br>
 これを受けて中央教育審議会は 2014 年 10 月 21 日、答申「道徳に係る教育課程の改善等について」を取りまとめ、道徳の時間を教科外活動から「特別の教科 道徳」（通称「道徳科」）に位置づけ直すことを提言した。この提言に沿って 2015 年 3 月、学校教育法施行規則および学習指導要領が一部改正され、小学校は 2018 年度、中学校は 2019 年度から全面実施されている。</p>
 
-<p>教科化後の道徳科の目標は、学習指導要領解説において「自己の生き方を考え、主体的な判断の下に行動し、自立した一人の人間として他者と共によりよく生きるための基盤となる道徳性を養う」と定められている。指導方法についても、単に規範を教え込むのではなく、答えが一つに定まらない道徳的な課題に児童生徒自身が向き合う「考え、議論する道徳」への転換が掲げられている点は、文科省が繰り返し強調している方針である。<br>
+     <p class="pp">教科化後の道徳科の目標は、学習指導要領解説において「自己の生き方を考え、主体的な判断の下に行動し、自立した一人の人間として他者と共によりよく生きるための基盤となる道徳性を養う」と定められている。指導方法についても、単に規範を教え込むのではなく、答えが一つに定まらない道徳的な課題に児童生徒自身が向き合う「考え、議論する道徳」への転換が掲げられている点は、文科省が繰り返し強調している方針である。<br>
 これらは学習指導要領および同解説という一次資料に明記された、確立した事実として扱ってよい。</p>
 
-<p>もっとも、この教科化には慎重論・反対論も根強く存在する。<br>
+     <p class="pp">もっとも、この教科化には慎重論・反対論も根強く存在する。<br>
 仙台弁護士会は 2015 年、学校教育法施行規則および学習指導要領の改訂案に反対する意見書を公表し、検定教科書による画一的な価値観の伝達や、内心の自由・思想良心の自由（憲法第 19 条）への抵触のおそれを指摘した。自由法曹団も同様に、道徳の教科化が児童生徒の内心に立ち入り、特定の価値観を評価の対象とすることへの懸念を表明している。<br>
 これらの論者は、道徳性そのものを否定しているのではなく、それを検定教科書と数値化されない評価によって国家が方向づけようとする制度設計に反対している点で一貫しており、この論点は「見解が分かれる事項」として、確立した事実の記述とは区別して扱う必要がある。</p>
 
-<p>もう一点、日本の道徳教育を考えるうえで見落とせないのが、宗教との関係である。教育基本法第 15 条は第 1 項で宗教に関する寛容の態度や一般的な教養を教育上尊重すべきものと定める一方、第 2 項で国公立学校が特定の宗教のための宗教教育その他宗教的活動を行うことを禁じている。<br>
+     <p class="pp">もう一点、日本の道徳教育を考えるうえで見落とせないのが、宗教との関係である。教育基本法第 15 条は第 1 項で宗教に関する寛容の態度や一般的な教養を教育上尊重すべきものと定める一方、第 2 項で国公立学校が特定の宗教のための宗教教育その他宗教的活動を行うことを禁じている。<br>
 つまり日本の公立学校の道徳教育は、制度設計として宗教とは明確に切り離された世俗的な枠組みとして組み立てられている。この点は、後述する諸外国との比較において重要な軸になる。</p>
 
-<p class="source">（出典 : 文部科学省「道徳教育アーカイブ」 https://doutoku.mext.go.jp/html/basic.html ／中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日、 https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf ／文部科学省「小学校学習指導要領解説 特別の教科 道徳編」 https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf ／教育基本法（平成十八年法律第百二十号）第 15 条、 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm ／仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 https://senben.org/archives/5747 ／自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 https://www.jlaf.jp/kyokasho/2019/0305_60.html）</p>
+     <p class="note-p">（出典 : 文部科学省「道徳教育アーカイブ」 https://doutoku.mext.go.jp/html/basic.html ／中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日、 https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf ／文部科学省「小学校学習指導要領解説 特別の教科 道徳編」 https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf ／教育基本法（平成十八年法律第百二十号）第 15 条、 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm ／仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 https://senben.org/archives/5747 ／自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 https://www.jlaf.jp/kyokasho/2019/0305_60.html）</p>
     </div>
+   </div>
   </div>
-</section>
 
-<section class="acc-item" id="sec2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>諸外国では道徳教育に相当する取り組みが、宗教教育と密接に結びついた形で行われているのではないか、というのが筆者の当初の仮説であった。<br>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">2. 諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="pp">諸外国では道徳教育に相当する取り組みが、宗教教育と密接に結びついた形で行われているのではないか、というのが筆者の当初の仮説であった。<br>
 結論から言えば、調査した範囲では、この仮説は一部の国には当てはまるが、全体としては当てはまらない。以下、欧州・北米・東アジアの計 5 か国の事例を、宗教との関わりが強いものから弱いものへと並べて紹介する。</p>
-
-<h3>ドイツ - 宗教教育が憲法上の教科</h3>
-<p>ドイツでは、基本法（憲法）第 7 条第 3 項が「宗教科目は、無宗派学校を除き、公立学校における正規の教科である」と定めており、宗教教育は数学などと違って憲法上の地位を持つ数少ない教科である。実際の授業は各州の所管で、プロテスタント・カトリックなど宗派別に編成されるのが基本形だが、宗教科の履修を望まない、あるいは離脱した生徒のために、多くの州が世俗的な倫理科（"Ethik"）を代替科目として設けている。<br>
+    </div>
+    <div class="section">
+     <button type="button" class="sec-head" aria-expanded="false">ドイツ - 宗教教育が憲法上の教科</button>
+     <div class="sec-body">
+      <p class="pp">ドイツでは、基本法（憲法）第 7 条第 3 項が「宗教科目は、無宗派学校を除き、公立学校における正規の教科である」と定めており、宗教教育は数学などと違って憲法上の地位を持つ数少ない教科である。実際の授業は各州の所管で、プロテスタント・カトリックなど宗派別に編成されるのが基本形だが、宗教科の履修を望まない、あるいは離脱した生徒のために、多くの州が世俗的な倫理科（"Ethik"）を代替科目として設けている。<br>
 宗教教育を人格形成の中核に据える発想が、憲法レベルで制度化されている代表例といえる。</p>
-
-<h3>イギリス（イングランド） - 宗教教育と公民教育の二本立て</h3>
-<p>イングランドでは、公費維持学校において宗教教育（RE）が 5 歳から 16 歳まで必修とされているが、これは国の統一カリキュラム（ナショナル・カリキュラム）の一部ではなく、地方ごとに設置される「合意シラバス協議会」が定める地域別のシラバスに基づいて実施される。内容はキリスト教を中心としつつ複数の主要宗教や非宗教的な人生観・倫理も扱うことが求められており、保護者には子どもを授業から外させる権利が法律上認められている。<br>
+     </div>
+    </div>
+    <div class="section">
+     <button type="button" class="sec-head" aria-expanded="false">イギリス（イングランド） - 宗教教育と公民教育の二本立て</button>
+     <div class="sec-body">
+      <p class="pp">イングランドでは、公費維持学校において宗教教育（RE）が 5 歳から 16 歳まで必修とされているが、これは国の統一カリキュラム（ナショナル・カリキュラム）の一部ではなく、地方ごとに設置される「合意シラバス協議会」が定める地域別のシラバスに基づいて実施される。内容はキリスト教を中心としつつ複数の主要宗教や非宗教的な人生観・倫理も扱うことが求められており、保護者には子どもを授業から外させる権利が法律上認められている。<br>
 これとは別に、シティズンシップ教育（公民教育）は 2002 年からナショナル・カリキュラムの必修科目（中等教育段階）として法定化されており、社会的・道徳的責任、政治的リテラシー、地域社会への参加を三本柱としている。<br>
 イギリスの場合、宗教に関わる道徳教育と、宗教と切り離された公民教育とが並存している点が特徴的である。</p>
-
-<h3>韓国 - 世界初とされる人格教育の法制化</h3>
-<p>韓国は 2015 年、「人性教育振興法」を制定・施行した。健全な人格を備えた市民の育成を目的として、国・地方自治体に人格教育に関する体系的な施策の策定を義務づける内容で、特定の宗教を前提としない世俗的な人格教育を国が法律で義務化した世界初の事例とされる。<br>
+     </div>
+    </div>
+    <div class="section">
+     <button type="button" class="sec-head" aria-expanded="false">韓国 - 世界初とされる人格教育の法制化</button>
+     <div class="sec-body">
+      <p class="pp">韓国は 2015 年、「人性教育振興法」を制定・施行した。健全な人格を備えた市民の育成を目的として、国・地方自治体に人格教育に関する体系的な施策の策定を義務づける内容で、特定の宗教を前提としない世俗的な人格教育を国が法律で義務化した世界初の事例とされる。<br>
 これに先立ち、韓国の学校教育課程には「道徳」科が伝統的に置かれており、道徳的判断力や価値・態度、実践行動を評価する仕組みも組み込まれてきた。儒教的な人倫思想の影響は指摘されるものの、制度としては特定宗教の教義を教える枠組みではない。</p>
-
-<h3>フランス - 「ライシテ」に基づく世俗的な道徳・公民教育</h3>
-<p>フランスでは「道徳・公民教育」（EMC）が学校教育課程に組み込まれている。フランス教育省の資料によれば、 EMC が伝えるべき価値として、尊厳・自由・平等・連帯・ライシテ（政教分離・世俗性の原則）・正義の精神・他者の尊重・男女平等・寛容などが掲げられ、ライシテは「思想・良心の自由と公共空間における平等を保障する条件」として明示的に教えられる。<br>
+     </div>
+    </div>
+    <div class="section">
+     <button type="button" class="sec-head" aria-expanded="false">フランス - 「ライシテ」に基づく世俗的な道徳・公民教育</button>
+     <div class="sec-body">
+      <p class="pp">フランスでは「道徳・公民教育」（EMC）が学校教育課程に組み込まれている。フランス教育省の資料によれば、 EMC が伝えるべき価値として、尊厳・自由・平等・連帯・ライシテ（政教分離・世俗性の原則）・正義の精神・他者の尊重・男女平等・寛容などが掲げられ、ライシテは「思想・良心の自由と公共空間における平等を保障する条件」として明示的に教えられる。<br>
 フランスの道徳教育は、宗教を排除するという意味で世俗的なだけでなく、宗教からの中立を積極的に教える内容そのものに組み込んでいる点が特徴である。</p>
-
-<h3>アメリカ合衆国 - 政教分離原則の下での「人格教育」</h3>
-<p>アメリカの公教育は、合衆国憲法修正第 1 条が定める政教分離原則の下、宗派教育を行うことができない。フロリダ州など各州が定める「人格教育（character education）」の基準は、尊重・責任・信頼・公正・思いやり・奉仕・リーダーシップといった、特定の宗教に依拠しない徳目を掲げるものとして設計されており、反差別問題を扱う団体の資料でも、宗教を扱う場合は特定の信仰を推奨も否定もしない、中立的・客観的な扱いにとどめるべきことが強調されている。<br>
+     </div>
+    </div>
+    <div class="section">
+     <button type="button" class="sec-head" aria-expanded="false">アメリカ合衆国 - 政教分離原則の下での「人格教育」</button>
+     <div class="sec-body">
+      <p class="pp">アメリカの公教育は、合衆国憲法修正第 1 条が定める政教分離原則の下、宗派教育を行うことができない。フロリダ州など各州が定める「人格教育（character education）」の基準は、尊重・責任・信頼・公正・思いやり・奉仕・リーダーシップといった、特定の宗教に依拠しない徳目を掲げるものとして設計されており、反差別問題を扱う団体の資料でも、宗教を扱う場合は特定の信仰を推奨も否定もしない、中立的・客観的な扱いにとどめるべきことが強調されている。<br>
 全米で統一された道徳教育制度があるわけではなく、州や学区ごとの裁量が大きい点も付言しておく。</p>
-
-<p>以上 5 か国を見る限り、道徳教育・人格教育に相当する制度が広く見られる一方で、宗教との関係は国によって大きく異なる。<br>
+     </div>
+    </div>
+    <p class="pp">以上 5 か国を見る限り、道徳教育・人格教育に相当する制度が広く見られる一方で、宗教との関係は国によって大きく異なる。<br>
 ドイツのように宗教教育を憲法上の教科として制度の中心に据える国がある一方、韓国・フランス・アメリカのように、法制度としては宗教から独立した（あるいは宗教からの中立性そのものを教育内容とする）世俗的な人格教育・公民教育を採用する国も複数見られた。イギリスはその中間で、宗教教育と世俗的な公民教育を並存させている。<br>
 筆者の当初の仮説、すなわち諸外国の徳育相当の取り組みは宗教と密接に関わるものが多いのではないかという予想は、調査した事例の範囲では支持されなかった。少なくとも本稿で扱った 5 か国のうち、宗教を制度の中核に置くのはドイツのみであり、残る 4 か国は世俗的な枠組みを採用しているか、宗教教育と世俗教育を切り分ける形を取っている。</p>
 
-<p class="source">（出典 : ドイツ連邦共和国基本法第 7 条、 https://www.gesetze-im-internet.de/gg/art_7.html ／ konfessionen.org 「 Religionsunterricht in Deutschland 」 https://konfessionen.org/religionsunterricht-deutschland/ （二次情報）／ Religion Media Centre 「 Factsheet: Religious Education in schools 」 https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/ （二次情報）／ Association for Citizenship Teaching 「 Citizenship national curriculum 」 https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/ （二次情報）／ The Korea Herald 「 Progress of Character Education Promotion Act 」 https://www.koreaherald.com/article/1383433 （二次情報）／フランス教育省（éduscol）「 Enseignement moral et civique 」 https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique ／ Anti-Defamation League 「 Religion in the Public Schools 」 https://www.adl.org/media/15792/download （二次情報）／ Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」 https://nwef.org/2021/08/09/character-education-in-school/ （二次情報））</p>
-    </div>
+    <p class="note-p">（出典 : ドイツ連邦共和国基本法第 7 条、 https://www.gesetze-im-internet.de/gg/art_7.html ／ konfessionen.org 「 Religionsunterricht in Deutschland 」 https://konfessionen.org/religionsunterricht-deutschland/ （二次情報）／ Religion Media Centre 「 Factsheet: Religious Education in schools 」 https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/ （二次情報）／ Association for Citizenship Teaching 「 Citizenship national curriculum 」 https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/ （二次情報）／ The Korea Herald 「 Progress of Character Education Promotion Act 」 https://www.koreaherald.com/article/1383433 （二次情報）／フランス教育省（éduscol）「 Enseignement moral et civique 」 https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique ／ Anti-Defamation League 「 Religion in the Public Schools 」 https://www.adl.org/media/15792/download （二次情報）／ Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」 https://nwef.org/2021/08/09/character-education-in-school/ （二次情報））</p>
+   </div>
   </div>
-</section>
 
-<section class="acc-item" id="sec3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">考察 - 制度の多様性から何が見えるか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>日本と諸外国を並べて見えてくるのは、道徳教育・人格教育という営みが「教科として制度化するかどうか」「宗教と結びつけるかどうか」という、独立した二つの軸の組み合わせとして存在しているという構図である。<br>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">3. 考察 - 制度の多様性から何が見えるか</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="pp">日本と諸外国を並べて見えてくるのは、道徳教育・人格教育という営みが「教科として制度化するかどうか」「宗教と結びつけるかどうか」という、独立した二つの軸の組み合わせとして存在しているという構図である。<br>
 日本は、道徳を独立教科として制度化する一方、宗教とは明確に切り離すという選択をしている。これはフランスの世俗的な EMC や、韓国の人性教育振興法に近い立ち位置といえる。他方、ドイツは教科としての制度化と宗教との結びつきの両方を選び、イギリスは宗教教育と世俗的公民教育を別建てで両方とも制度化し、アメリカは州ごとの裁量に委ねる形で緩やかに制度化している。<br>
 どの組み合わせが望ましいかは、政教分離の憲法上の位置づけや、社会における宗教の存在感、教育行政の集権・分権の度合いといった、各国固有の条件に左右される話であり、一意の正解があるとは考えにくい。</p>
 
-<p>もう一点、本稿の調査を通じて気づかされたのは、知育・徳育・体育という三分法が明治期以来掲げられてきたにもかかわらず、公共の言説では「教育」という言葉が、しばしば知育とほぼ同義のものとして扱われがちだという構造である。<br>
+     <p class="pp">もう一点、本稿の調査を通じて気づかされたのは、知育・徳育・体育という三分法が明治期以来掲げられてきたにもかかわらず、公共の言説では「教育」という言葉が、しばしば知育とほぼ同義のものとして扱われがちだという構造である。<br>
 この印象を裏づける手がかりの一つが、全国規模の調査制度の設計に見て取れる。文部科学省が毎年実施する「全国学力・学習状況調査」は国語・算数（数学）・理科等を対象としており、道徳科はその対象に含まれていない。他方、スポーツ庁が 1964 年（昭和 39 年）以来毎年実施する「体力・運動能力調査」（現「全国体力・運動能力、運動習慣等調査」）は、子供の体力・運動能力を全国規模かつ経年で数値把握する仕組みを持つ。<br>
 つまり知育と体育には、成果を全国規模で可視化・比較する制度的な装置がそれぞれ用意されているのに対し、道徳科は「数値などによる評価は行わない」という方針が文部科学省によって明確に定められており、全国的な達成度調査の対象にもなっていない。徳育が知育・体育と並ぶ三育の一つでありながら、公共の議論や政策評価の場面で相対的に見えにくい位置に置かれやすいとすれば、その一因はこうした測定制度の有無という構造にあるのかもしれない。<br>
 これは徳育が軽んじられてよいという主張ではなく、むしろ数値による測定になじみにくい価値を教育がどう扱うかという、三育の三分法が本来はらんでいた難問を、そのまま映し出しているようにも見える。</p>
 
-<p class="source">（出典 : 文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/ ／スポーツ庁「全国体力・運動能力、運動習慣等調査」 https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm ／文部科学省「論点メモ（道徳科における評価について）」 https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm）</p>
+     <p class="note-p">（出典 : 文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/ ／スポーツ庁「全国体力・運動能力、運動習慣等調査」 https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm ／文部科学省「論点メモ（道徳科における評価について）」 https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm）</p>
 
-<p>徳育を重要だと考える立場から見れば、日本が道徳を教科として制度化したこと自体は、諸外国の少なからぬ事例と軌を一にする選択に見えるかもしれない。他方で、検定教科書と評価という手法を通じて価値観の伝達を国が主導することへの懸念は、仙台弁護士会や自由法曹団の意見書が示すように、日本国内でも解消されていない。<br>
+     <p class="pp">徳育を重要だと考える立場から見れば、日本が道徳を教科として制度化したこと自体は、諸外国の少なからぬ事例と軌を一にする選択に見えるかもしれない。他方で、検定教科書と評価という手法を通じて価値観の伝達を国が主導することへの懸念は、仙台弁護士会や自由法曹団の意見書が示すように、日本国内でも解消されていない。<br>
 この対立は、道徳教育の必要性そのものというより、それをどのような手段・制度で担わせるかという設計の問題に関わっている。筆者自身は徳育の重要性を否定しないが、その重要性から直ちに現行の教科化の是非が導かれるわけではないという点は、調査を通じて改めて意識させられた。<br>
 この是非についての判断は、本稿の範囲を超えるものとして読者に委ねたい。</p>
     </div>
+   </div>
   </div>
-</section>
 
-<section class="acc-item" id="sec4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">結び</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>文科省は「徳育」という語こそ前面に用いていないものの、「特別の教科 道徳」という形で道徳教育を制度化し、宗教とは切り離した世俗的な枠組みでこれを運用している。<br>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">4. 結び</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="pp">文科省は「徳育」という語こそ前面に用いていないものの、「特別の教科 道徳」という形で道徳教育を制度化し、宗教とは切り離した世俗的な枠組みでこれを運用している。<br>
 諸外国に目を向けると、道徳教育・人格教育に相当する取り組み自体は広く見られるものの、宗教との関わり方は一様ではなく、宗教を制度の中心に据える国もあれば、世俗性を積極的に掲げる国もあった。「諸外国の徳育は宗教と結びつきやすい」という仮説は、少なくとも本稿が調査した範囲では裏づけられなかった。<br>
 徳育をめぐる制度設計は、国ごとの歴史的・憲法的条件を映す鏡のようなものであり、その先にある「徳育は重要か、重要だとしてどう担うべきか」という問いへの答えは、読者それぞれの判断に委ねられている。</p>
     </div>
+   </div>
   </div>
-</section>
 
-<section class="acc-item" id="refs" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">参考文献・出典一覧</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<ul class="refs">
-<li>文部科学省「道徳教育アーカイブ」 https://doutoku.mext.go.jp/html/basic.html</li>
-<li>中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日 https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf</li>
-<li>文部科学省「小学校学習指導要領解説 特別の教科 道徳編」平成 27 年 7 月 https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf</li>
-<li>教育基本法（平成十八年法律第百二十号）第 15 条 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm</li>
-<li>仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 https://senben.org/archives/5747</li>
-<li>自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 https://www.jlaf.jp/kyokasho/2019/0305_60.html</li>
-<li>ドイツ連邦共和国基本法（Grundgesetz）第 7 条 https://www.gesetze-im-internet.de/gg/art_7.html</li>
-<li>konfessionen.org 「 Religionsunterricht in Deutschland 」（二次情報） https://konfessionen.org/religionsunterricht-deutschland/</li>
-<li>Religion Media Centre 「 Factsheet: Religious Education in schools 」（二次情報） https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/</li>
-<li>Association for Citizenship Teaching 「 Citizenship national curriculum 」（二次情報） https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/</li>
-<li>The Korea Herald 「 [Ahn Byung-il] Progress of Character Education Promotion Act 」（二次情報） https://www.koreaherald.com/article/1383433</li>
-<li>한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」（二次情報） https://news.knue.ac.kr/news/articleView.html?idxno=1519</li>
-<li>フランス教育省 éduscol 「 Enseignement moral et civique 」 https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique</li>
-<li>Anti-Defamation League 「 Religion in the Public Schools 」（二次情報） https://www.adl.org/media/15792/download</li>
-<li>Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」（二次情報） https://nwef.org/2021/08/09/character-education-in-school/</li>
-<li>manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」（二次情報、スペンサー・福沢諭吉に関する記述の典拠） https://manabitoya.com/about-san-iku</li>
-<li>Herbert Spencer, "Education: Intellectual, Moral, and Physical"(1861)(原典、知育・徳育・体育の英語表現の典拠) https://archive.org/details/spencereducation00spen</li>
-<li>文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/</li>
-<li>スポーツ庁「全国体力・運動能力、運動習慣等調査」 https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm</li>
-<li>文部科学省「論点メモ（道徳科における評価について）」 https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm</li>
-</ul>
+  <div class="chapter">
+   <button type="button" class="ch-head" aria-expanded="false">5. 参考文献・出典一覧</button>
+   <div class="ch-body">
+    <div class="ch-intro">
+     <p class="li-b">文部科学省「道徳教育アーカイブ」 https://doutoku.mext.go.jp/html/basic.html</p>
+     <p class="li-b">中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日 https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf</p>
+     <p class="li-b">文部科学省「小学校学習指導要領解説 特別の教科 道徳編」平成 27 年 7 月 https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf</p>
+     <p class="li-b">教育基本法（平成十八年法律第百二十号）第 15 条 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm</p>
+     <p class="li-b">仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 https://senben.org/archives/5747</p>
+     <p class="li-b">自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 https://www.jlaf.jp/kyokasho/2019/0305_60.html</p>
+     <p class="li-b">ドイツ連邦共和国基本法（Grundgesetz）第 7 条 https://www.gesetze-im-internet.de/gg/art_7.html</p>
+     <p class="li-b">konfessionen.org 「 Religionsunterricht in Deutschland 」（二次情報） https://konfessionen.org/religionsunterricht-deutschland/</p>
+     <p class="li-b">Religion Media Centre 「 Factsheet: Religious Education in schools 」（二次情報） https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/</p>
+     <p class="li-b">Association for Citizenship Teaching 「 Citizenship national curriculum 」（二次情報） https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/</p>
+     <p class="li-b">The Korea Herald 「 [Ahn Byung-il] Progress of Character Education Promotion Act 」（二次情報） https://www.koreaherald.com/article/1383433</p>
+     <p class="li-b">한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」（二次情報） https://news.knue.ac.kr/news/articleView.html?idxno=1519</p>
+     <p class="li-b">フランス教育省 éduscol 「 Enseignement moral et civique 」 https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique</p>
+     <p class="li-b">Anti-Defamation League 「 Religion in the Public Schools 」（二次情報） https://www.adl.org/media/15792/download</p>
+     <p class="li-b">Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」（二次情報） https://nwef.org/2021/08/09/character-education-in-school/</p>
+     <p class="li-b">manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」（二次情報、スペンサー・福沢諭吉に関する記述の典拠） https://manabitoya.com/about-san-iku</p>
+     <p class="li-b">Herbert Spencer, "Education: Intellectual, Moral, and Physical"(1861)(原典、知育・徳育・体育の英語表現の典拠) https://archive.org/details/spencereducation00spen</p>
+     <p class="li-b">文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/</p>
+     <p class="li-b">スポーツ庁「全国体力・運動能力、運動習慣等調査」 https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm</p>
+     <p class="li-b">文部科学省「論点メモ（道徳科における評価について）」 https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm</p>
     </div>
+   </div>
   </div>
-</section>
 
+ </div>
 </div>
-</main>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
 
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(){
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
       });
+      breadcrumbNav.appendChild(btn);
     });
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
   document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute("href").slice(1);
-    var target = document.getElementById(id);
-    if(!target) return;
-    var accItem = target.closest("[data-acc]");
-    if(!accItem) return;
-    e.preventDefault();
-
-    var wasOpen = accItem.classList.contains("open");
-    if(!wasOpen){
-      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
-        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
-          sibling.classList.remove("open");
-        }
-      });
-      accItem.classList.add("open");
-    }
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
   });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+
 </body>
 </html>

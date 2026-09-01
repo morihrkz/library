@@ -2,735 +2,343 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI データセンター問題の政治争点化 - 米国と日本（印西市）の比較分析</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
   :root{
-    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
-
-    --navy-900:#16202d;
-    --navy-800:#202f42;
-
-
-    --amber-500:#b45550;
-    --amber-600:#944440;
-    --amber-300:#d19794;
-    --amber-100:#efdcdb;
-    --bg:#F5F3EC;
-    --paper:#fff;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --line:#C8CEC0;
-
-    --accent:#25364A;
-    --note-bg:#EEF2E4;
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;scroll-behavior:smooth;scroll-padding-top:76px;}
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.95;
-    letter-spacing:.02em;
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
     -webkit-text-size-adjust:100%;
   }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-  /* ---------- Progress Bar ---------- */
-  #progress-bar{
-    position:fixed; top:0; left:0;
-    height:4px; width:0%;
-    background:linear-gradient(90deg, var(--amber-600), var(--amber-300));
-    z-index:9999;
-    transition:width .1s ease-out;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
+  }
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
+  }
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
+  }
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    overflow:hidden;
-    padding:60px 24px 78px;
-    text-align:center;
-    background:var(--hero-1);
-    color:var(--hero-ink);
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-  header.hero .wrap{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 clamp(1.5rem, 3vw, 3rem);}
-  header.hero .eyebrow{
-    display:inline-block;
-    font-size:.78rem; letter-spacing:.28em;
-    color:var(--amber-100);
-    border:1px solid rgba(209,151,148,.45);
-    border-radius:2px;
-    padding:7px 20px; margin-bottom:24px;
-  }
-  .hero h1{
-    margin:0 0 14px;
-    font-size:clamp(1.35rem, 4.2vw, 2.1rem);
-    font-weight:800;
-    line-height:1.55;
-    letter-spacing:.02em;
-  }
-  header.hero p.sub{
-    margin:0 auto; max-width:640px;
-    font-size:clamp(.9rem, 2.1vw, 1.02rem);
-    font-weight:400; color:var(--hero-dim); line-height:1.85;
-    letter-spacing:.03em;
-  }
-  .hero .divider{
-    width:64px; height:1px; margin:24px auto;
-    background:linear-gradient(90deg, transparent, var(--amber-300), transparent);
-  }
-  header.hero .meta{margin:1.1rem 0 0; display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem 1.1rem;
-    font-size:.86rem; color:var(--hero-dim); letter-spacing:.06em;}
-  .hero-figure{max-width:960px; margin:0 auto; overflow-x:auto; text-align:left;}
-  .hero-figure svg{display:block; width:100%; height:auto;}
-  .hero-figure figcaption{
-    margin-top:12px; font-size:.85rem; line-height:1.8;
-    color:var(--hero-dim); letter-spacing:.02em;
-  }
-  .wave{position:absolute; left:0; right:0; bottom:-1px; line-height:0;}
-  .wave svg{width:100%; height:44px; display:block;}
-
-  /* ---------- Layout ---------- */
-  .wrap{margin:0; padding:0 clamp(1.5rem, 3vw, 3rem) 90px;}
-
-  .toolbar-container{
-    position:sticky; top:8px; z-index:100;
-    background:color-mix(in srgb, var(--paper) 94%, transparent);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-    padding:9px 0; border-radius:999px;
-    margin:24px 0 26px;
-    box-shadow:0 4px 14px rgba(14,20,28,.10);
-    border:1px solid var(--line);
-  }
-  .toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap;}
-  .toolbar button{
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size:.88rem; font-weight:600;
-    color:var(--accent); background:var(--paper);
-    border:1.5px solid var(--amber-600); border-radius:999px;
-    padding:9px 22px; cursor:pointer;
-    transition:all .2s ease;
-  }
-  .toolbar button:hover, .toolbar button:active{
-    background:var(--navy-800); color:#fff; border-color:var(--navy-800);
-  }
-
-  /* ---------- Accordion ---------- */
-  .acc-item{
-    background:var(--paper);
-    border-radius:12px;
-    margin-bottom:14px;
-    box-shadow:0 2px 12px rgba(14,20,28,.07);
-    overflow:hidden;
-    border:1px solid var(--line);
-    overflow-anchor:none;
-  }
-  .acc-header{
-    width:100%; display:flex; align-items:center; gap:15px;
-    background:none; border:none; padding:18px 20px;
-    cursor:pointer; text-align:left; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; color:var(--ink);
-    -webkit-tap-highlight-color:transparent;
-  }
-  .acc-header .num{
-    flex:0 0 auto; min-width:34px; height:34px; padding:0 10px; border-radius:999px;
-    background:linear-gradient(150deg, var(--amber-500), var(--navy-900));
-    color:#fbfbf8; display:flex; align-items:center; justify-content:center;
-    font-weight:700; font-size:.82rem; letter-spacing:0; white-space:nowrap;
-  }
-  #accordion > .acc-item{box-shadow:0 3px 16px rgba(14,20,28,.10);}
-  #accordion > .acc-item > .acc-header .title{font-size:1.12rem;}
-  #accordion > .acc-item > .acc-header .num{min-width:38px; height:38px; font-size:.85rem;}
-  .acc-nested{margin:0 0 1.3em;}
-  .acc-nested:last-child{margin-bottom:0;}
-  .acc-nested .acc-item{
-    box-shadow:none; border:1px solid var(--line); margin-bottom:10px; background:var(--bg);
-  }
-  .acc-nested .acc-item:last-child{margin-bottom:0;}
-  .acc-nested .acc-header{padding:14px 16px; gap:12px;}
-  .acc-nested .acc-header .num{min-width:44px; height:30px; font-size:.74rem; padding:0 8px;}
-  .acc-nested .acc-header .title{font-size:.98rem;}
-  .acc-nested .acc-item.open > .acc-header{background:var(--note-bg);}
-  .acc-nested .acc-item.open > .acc-panel > .acc-panel-inner{padding:14px 18px 20px;}
-  .acc-header .title{flex:1 1 auto; font-size:1.05rem; font-weight:700; letter-spacing:.02em; line-height:1.5;}
-  .acc-header .chev{flex:0 0 auto; width:20px; height:20px; color:var(--amber-600); transition:transform .3s cubic-bezier(.4,0,.2,1);}
-  .acc-item.open > .acc-header .chev{transform:rotate(180deg);}
-  .acc-item.open > .acc-header{
-    background:var(--note-bg);
-    border-bottom:1px solid var(--line);
-  }
-  .acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none;}
-  .acc-item.open > .acc-panel{grid-template-rows:1fr;}
-  .acc-panel-inner{overflow:hidden; min-height:0; padding:0 22px; opacity:0; transition:opacity .3s ease .08s;}
-  .acc-item.open > .acc-panel > .acc-panel-inner{padding:16px 22px 26px; opacity:1;}
-
-  /* ---------- Body typography ---------- */
-  p{margin:0 0 1.15em; font-size:1.08rem; color:var(--ink); line-height:1.95; text-align:justify;}
-  p:last-child{margin-bottom:0;}
-  .acc-panel-inner p{text-indent:1em;}
-  p.lead{color:var(--sub); font-size:.96em; border-left:3px solid #ccc; padding-left:1em; text-align:left; text-indent:0;}
-  sup a{text-decoration:none; color:var(--amber-600); font-size:.8em;}
-
-  .note-box{background:var(--note-bg); border-left:4px solid var(--amber-600); padding:.8em 1.2em; margin:0 0 1.15em; font-size:.9em; text-align:left;}
-  .note-box:last-child{margin-bottom:0;}
-
-  ol.refs{font-size:.88rem; padding-left:1.6em; margin:0; color:var(--sub); line-height:1.85;}
-  ol.refs li{margin-bottom:.9em; word-break:break-all;}
-  ol.refs li:last-child{margin-bottom:0;}
-  ol.refs a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--line);}
-  ol.refs a:hover{color:var(--amber-600); border-color:var(--amber-500);}
-
-  em{font-style:italic;}
-  strong{color:var(--accent); font-weight:700;}
-
-  footer{
-    text-align:center; color:var(--sub); font-size:.84rem;
-    padding:30px 20px 44px; background:var(--note-bg); border-top:1px solid var(--line);
-    line-height:1.9;
-  }
-
-  @media (max-width:600px){
-    .hero{padding:48px 18px 64px;}
-    .hero-figure svg{min-width:620px;}
-    .acc-header{padding:15px 14px; gap:12px;}
-    .acc-header .title{font-size:1rem;}
-    .acc-item.open > .acc-panel > .acc-panel-inner{padding:13px 16px 22px;}
-    p{font-size:1.04rem;}
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
 
-  @media (max-width:380px){
-    .hero h1{font-size:1.2rem;}
-  }
-</style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
+  /* ---- 記事固有スタイル ---- */
+.lead{ color:var(--label); border-left:3px solid var(--muted); padding-left:1em; text-indent:0; font-size:.94em; }
+.note-box{ background:var(--accent-light); border-left:4px solid var(--accent); padding:.9em 1.2em; margin:1em 0; font-size:.94em; color:var(--label); }
+sup a{ text-decoration:none; color:var(--accent); font-size:.82em; }
+.refs{ font-size:.92em; padding-left:1.5em; color:var(--label); line-height:1.85; }
+.refs li{ margin-bottom:.8em; word-break:break-all; }
+.refs a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--border); }
+.refs a:hover{ color:var(--accent); border-color:var(--muted); }
+
 </style>
 </head>
 <body>
 
-<div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 316" role="img" aria-labelledby="dcTitle dcDesc">
-        <title id="dcTitle">データセンター問題が争点へ押し上げられる階梯の日米比較</title>
-        <desc id="dcDesc">下から現場の摩擦、媒介者、全国的な争点、投票選択という四段の階梯を、米国と日本の二列で比較した図。米国側は各段が実線の矢印でつながり中間選挙の争点に達する。日本側は媒介者から上の接続が破線で、国政選挙の争点には至らず、司法的手段へ迂回する形で描かれている。</desc>
-
-        <text x="228" y="30" class="lane us">米国</text>
-        <text x="562" y="30" class="lane jp">日本</text>
-
-        <text x="92" y="80" class="level">投票選択</text>
-        <text x="92" y="140" class="level">全国的な争点</text>
-        <text x="92" y="200" class="level">媒介者</text>
-        <text x="92" y="260" class="level">現場の摩擦</text>
-
-        <g>
-          <rect x="106" y="54" width="244" height="44" rx="7" fill="#d19794" fill-opacity="0.18" stroke="#d19794" stroke-opacity="0.6"/>
-          <text x="228" y="74" class="box strong">2026 年中間選挙の争点</text>
-          <text x="228" y="90" class="boxsub">知事選・上院選の候補者が明示的に掲げる</text>
-
-          <rect x="106" y="114" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
-          <text x="228" y="134" class="box">州レベルの規制と論争</text>
-          <text x="228" y="150" class="boxsub">モラトリアム法案・連邦と州の権限対立</text>
-
-          <rect x="106" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
-          <text x="228" y="194" class="box">重層的な媒介者</text>
-          <text x="228" y="210" class="boxsub">環境団体・州議員・全国メディア・世論調査</text>
-
-          <rect x="106" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
-          <text x="228" y="254" class="box">電気料金の上昇・水資源の逼迫</text>
-          <text x="228" y="270" class="boxsub">広い有権者が体感する負担</text>
-        </g>
-
-        <g fill="#d19794" fill-opacity="0.85">
-          <path d="M228 226 l-5 8 h10 z"/>
-          <path d="M228 166 l-5 8 h10 z"/>
-          <path d="M228 106 l-5 8 h10 z"/>
-        </g>
-        <g stroke="#d19794" stroke-opacity="0.6" stroke-width="1.6">
-          <path d="M228 234 V228"/>
-          <path d="M228 174 V168"/>
-          <path d="M228 114 V108"/>
-        </g>
-
-        <g>
-          <rect x="440" y="54" width="244" height="44" rx="7" fill="none" stroke="#c7807c" stroke-opacity="0.55" stroke-dasharray="5 4"/>
-          <text x="562" y="74" class="box dim">国政選挙の争点には至らず</text>
-          <text x="562" y="90" class="boxsub dim">候補者による争点化は確認できなかった</text>
-
-          <rect x="440" y="114" width="244" height="44" rx="7" fill="none" stroke="#c7807c" stroke-opacity="0.55" stroke-dasharray="5 4"/>
-          <text x="562" y="134" class="box dim">国政に接続する回路が細い</text>
-          <text x="562" y="150" class="boxsub dim">言及は一議員の国会質疑にとどまる</text>
-
-          <rect x="440" y="174" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
-          <text x="562" y="194" class="box">限定的な媒介者</text>
-          <text x="562" y="210" class="boxsub">住民団体・地方紙・弁護士</text>
-
-          <rect x="440" y="234" width="244" height="44" rx="7" fill="#ffffff" fill-opacity="0.08" stroke="#91abca" stroke-opacity="0.45"/>
-          <text x="562" y="254" class="box">日照権・景観・手続きの不透明性</text>
-          <text x="562" y="270" class="boxsub">近隣に集中する局所的な不満</text>
-        </g>
-
-        <path d="M562 234 V228" stroke="#d19794" stroke-opacity="0.6" stroke-width="1.6"/>
-        <path d="M562 226 l-5 8 h10 z" fill="#d19794" fill-opacity="0.85"/>
-        <g stroke="#c7807c" stroke-opacity="0.65" stroke-width="1.4" stroke-dasharray="4 4" fill="none">
-          <path d="M562 174 V168"/>
-          <path d="M562 114 V108"/>
-        </g>
-        <g fill="#c7807c" fill-opacity="0.7">
-          <path d="M562 166 l-5 8 h10 z"/>
-          <path d="M562 106 l-5 8 h10 z"/>
-        </g>
-
-        <path d="M684 196 H700 V284" fill="none" stroke="#c7807c" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="4 4"/>
-        <path d="M700 292 l-5 -9 h10 z" fill="#c7807c" fill-opacity="0.75"/>
-        <text x="688" y="308" class="detour">不満は住民訴訟という司法的手段へ迂回</text>
-
-        <style>
-          .lane { font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .lane.us { fill: #d19794; }
-          .lane.jp { fill: #c9d3e0; }
-          .level { fill: #8f9eb0; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .box { fill: #f2f5f8; font-size: 12px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .box.strong { font-weight: 700; fill: #efdcdb; }
-          .box.dim { fill: #e1bbb9; }
-          .boxsub { fill: #a9b6c6; font-size: 10px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .boxsub.dim { fill: #bf9997; }
-          .detour { fill: #d9a29e; font-size: 10.5px; text-anchor: end; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>AI データセンター問題の政治争点化 - 米国と日本（印西市）の比較分析</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">比較分析ノート / DATA CENTER POLITICS</span>
-  <h1>AI データセンター問題の政治争点化</h1>
-  <div class="divider"></div>
-  <p class="sub">米国 2026 年中間選挙と日本・印西市を比較し、同種の物理的・経済的圧力がなぜ一方では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのかを、政治制度・地方財政構造・言説環境の観点から分析する。</p>
-  <div class="meta">
-    <span>全 6 章</span>
-    <span>約 28 分</span>
-    <span>本稿は 2026 年 8 月 15 日を調査基準日として作成した。</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<div class="wrap">
+ <p class="doc-meta">元記事:個人サイト『書庫』所収の比較分析ノート。米国 2026 年中間選挙と日本・印西市を比較し、データセンター問題の政治争点化の違いを検討する。全 6 章・約 28 分。調査基準日:2026 年 8 月 15 日。</p>
 
-  <div class="toolbar-container">
-    <div class="toolbar">
-      <button id="expandAll" type="button">すべて開く</button>
-      <button id="collapseAll" type="button">すべて閉じる</button>
-    </div>
-  </div>
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。</p>
 
-  <div id="accordion">
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">はじめに</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>AI の学習・推論を担う物理インフラであるデータセンターは、これまで主に立地選定・電力調達・環境影響評価といった技術的・行政的な争点として扱われてきた。しかし 2026 年に入り、少なくとも米国においては、この施設群が選挙運動という明確に政治的な場に登場するようになった。<br>
+ <div class="accordion">
+<div class="accordion"><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. はじめに</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">AI の学習・推論を担う物理インフラであるデータセンターは、これまで主に立地選定・電力調達・環境影響評価といった技術的・行政的な争点として扱われてきた。しかし 2026 年に入り、少なくとも米国においては、この施設群が選挙運動という明確に政治的な場に登場するようになった。<br/>
 電気料金の上昇、水資源の逼迫、日々の生活空間に忽然と現れる巨大な無窓の建造物 - これらは有権者の生活実感に直結する具体的な不満として言語化され、党派を超えて候補者の争点リストに組み込まれつつある。</p>
-<p>一方、日本国内でも、世界有数のデータセンター集積地となった千葉県印西市をはじめ、各地で住民との摩擦、訴訟、首長の姿勢転換といった事象が現に生じている。にもかかわらず、これらは今のところ国政選挙の争点として明確に「翻訳」されるには至っていない。</p>
-<p>本稿は、この非対称性 - 同種の物理的・経済的圧力が、なぜ一方の国では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのか - を、政治制度・地方財政構造・言説環境という観点から分析する。単に「米国は進んでいる、日本は遅れている」という価値判断を下すのではなく、両国の制度的・構造的な違いがどのように争点化の経路を規定しているかを検討することが、本稿の目的である。</p>
-<p>あらかじめ断っておくべきことが二点ある。<br>
-第一に、本稿は「 AI 」「データセンター」「監視（サーベイランス）」を同義には扱わない。 AI の政府利用や顔認識技術など監視技術一般をめぐる論点は、それがデータセンターという物理的立地問題と実際に接続していることが一次情報で確認できる範囲でのみ取り上げる。今回の調査では、この接続を明確に裏付ける一次資料は確認できなかったため、監視問題そのものは本稿の分析対象としない。<br>
+<p class="pp">一方、日本国内でも、世界有数のデータセンター集積地となった千葉県印西市をはじめ、各地で住民との摩擦、訴訟、首長の姿勢転換といった事象が現に生じている。にもかかわらず、これらは今のところ国政選挙の争点として明確に「翻訳」されるには至っていない。</p>
+<p class="pp">本稿は、この非対称性 - 同種の物理的・経済的圧力が、なぜ一方の国では選挙政治の言語に翻訳され、他方では地域紙の紙面や個別の訴訟に留まっているのか - を、政治制度・地方財政構造・言説環境という観点から分析する。単に「米国は進んでいる、日本は遅れている」という価値判断を下すのではなく、両国の制度的・構造的な違いがどのように争点化の経路を規定しているかを検討することが、本稿の目的である。</p>
+<p class="pp">あらかじめ断っておくべきことが二点ある。<br/>
+第一に、本稿は「 AI 」「データセンター」「監視（サーベイランス）」を同義には扱わない。 AI の政府利用や顔認識技術など監視技術一般をめぐる論点は、それがデータセンターという物理的立地問題と実際に接続していることが一次情報で確認できる範囲でのみ取り上げる。今回の調査では、この接続を明確に裏付ける一次資料は確認できなかったため、監視問題そのものは本稿の分析対象としない。<br/>
 第二に、「米国で急速に争点化した」「日本では争点化していない」という本稿の出発点となる二つの命題自体を、以下でまず検証の対象とする。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">米国： 2026 年中間選挙における争点化の実態</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>当初の仮説である「米国で 2026 年中間選挙の争点として急速に可視化された」という命題を、まず検証する必要がある。この点については、 NBC ニュース、ブルッキングス研究所、 Axios 、 NPR といった独立した複数の報道機関・研究機関が、ほぼ同時期に同種の分析を発表しており、単発的な観測ではないことが確認できる <sup><a href="#ref1">[1]</a></sup> 。<br>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">2. 米国： 2026 年中間選挙における争点化の実態</button><div class="ch-body">
+<p class="pp">当初の仮説である「米国で 2026 年中間選挙の争点として急速に可視化された」という命題を、まず検証する必要がある。この点については、 NBC ニュース、ブルッキングス研究所、 Axios 、 NPR といった独立した複数の報道機関・研究機関が、ほぼ同時期に同種の分析を発表しており、単発的な観測ではないことが確認できる <sup><a href="#ref1">[1]</a></sup> 。<br/>
 ただし、これを「連邦議会選挙における最重要争点」とまで一般化できる根拠は確認できなかった。実際に確認できるのは、複数州の知事選・上院選候補者がデータセンター問題を選挙運動の争点として明示的に取り上げているという事実であり、本稿ではこれを「インフレや移民といった伝統的争点を凌駕する全国的争点」ではなく、「党派を横断して急速に浮上しつつある新興争点」として位置づける。</p>
-
-<div class="acc-nested">
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2.1</span>
-    <span class="title">反対運動の規模と州レベルの規制</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>反対運動の規模については、データセンターの立地・稼働状況を 28 州にわたって追跡する民間調査団体 Data Center Watch の集計が参考になる。<br>
-同団体の 2026 年第 1 四半期報告によれば、住民の反対運動により少なくとも 75 件、総額約 1300 億ドル相当のデータセンター案件が阻止または延期された。これは 2025 年通年の規模にほぼ匹敵する <sup><a href="#ref1">[1]</a></sup><sup><a href="#ref2">[2]</a></sup> 。<br>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">2.1 反対運動の規模と州レベルの規制</button><div class="sec-body">
+<p class="pp">反対運動の規模については、データセンターの立地・稼働状況を 28 州にわたって追跡する民間調査団体 Data Center Watch の集計が参考になる。<br/>
+同団体の 2026 年第 1 四半期報告によれば、住民の反対運動により少なくとも 75 件、総額約 1300 億ドル相当のデータセンター案件が阻止または延期された。これは 2025 年通年の規模にほぼ匹敵する <sup><a href="#ref1">[1]</a></sup><sup><a href="#ref2">[2]</a></sup> 。<br/>
 反対運動を担う地域団体の数も、 2025 年末の 396 団体から 2026 年 3 月時点で 833 団体へと倍増しており、運動の担い手自体が急速に拡大していることがうかがえる <sup><a href="#ref1">[1]</a></sup> 。</p>
-<p>こうした反対運動を受け、州レベルでは具体的な規制の動きが相次いでいる。<br>
-ニューヨーク州のキャシー・ホークル知事は 2026 年 7 月 14 日、 50 メガワット超のデータセンターに対する新規環境許可を一時停止する行政命令（Executive Order No. 62）に署名した。ホークル知事は声明で「データセンターの開発が公共料金の高騰を招き、天然資源を枯渇させ、ニューヨーク州民に不確実性をもたらす恐れがある以上、行動を起こし主導することが私の責務である」と述べている（筆者訳）<sup><a href="#ref3">[3]</a></sup> 。これとは別に、ニューヨーク州議会は同年 6 月 4 日、「責任あるデータセンター開発法」案を上院 44 対 16 、下院 102 対 39 で可決しており、知事の署名を待つ状態にあった <sup><a href="#ref4">[4]</a></sup><sup><a href="#ref5">[5]</a></sup> 。<br>
+<p class="pp">こうした反対運動を受け、州レベルでは具体的な規制の動きが相次いでいる。<br/>
+ニューヨーク州のキャシー・ホークル知事は 2026 年 7 月 14 日、 50 メガワット超のデータセンターに対する新規環境許可を一時停止する行政命令（Executive Order No. 62）に署名した。ホークル知事は声明で「データセンターの開発が公共料金の高騰を招き、天然資源を枯渇させ、ニューヨーク州民に不確実性をもたらす恐れがある以上、行動を起こし主導することが私の責務である」と述べている（筆者訳）<sup><a href="#ref3">[3]</a></sup> 。これとは別に、ニューヨーク州議会は同年 6 月 4 日、「責任あるデータセンター開発法」案を上院 44 対 16 、下院 102 対 39 で可決しており、知事の署名を待つ状態にあった <sup><a href="#ref4">[4]</a></sup><sup><a href="#ref5">[5]</a></sup> 。<br/>
 行政命令と議会法案という二つの法的トラックが並行して進んでいる状況であり、両者の関係 - 行政命令が議会法案を代替するものか、両者が独立に効力を持つのか - は本稿執筆時点では確認できていない。</p>
-<p>一方、規制強化の動きが必ずしも一枚岩ではないことを示す事例もある。<br>
-メイン州では、 20 メガワット以上のデータセンターに 18 か月のモラトリアムを課す法案（LD 307）が、民主党が多数を占める州議会で可決されたにもかかわらず、同党のジャネット・ミルズ知事が 2026 年 4 月 24 日に拒否権を行使した。知事は、自身が求めていた同州ジェイ町の 5 億 5000 万ドル規模のデータセンター計画への適用除外が法案に盛り込まれなかったことを理由に挙げている。州下院は拒否権の再議決を試みたが 72 対 65 で三分の二の要件に届かず、否決は確定した <sup><a href="#ref6">[6]</a></sup><sup><a href="#ref7">[7]</a></sup> 。<br>
+<p class="pp">一方、規制強化の動きが必ずしも一枚岩ではないことを示す事例もある。<br/>
+メイン州では、 20 メガワット以上のデータセンターに 18 か月のモラトリアムを課す法案（LD 307）が、民主党が多数を占める州議会で可決されたにもかかわらず、同党のジャネット・ミルズ知事が 2026 年 4 月 24 日に拒否権を行使した。知事は、自身が求めていた同州ジェイ町の 5 億 5000 万ドル規模のデータセンター計画への適用除外が法案に盛り込まれなかったことを理由に挙げている。州下院は拒否権の再議決を試みたが 72 対 65 で三分の二の要件に届かず、否決は確定した <sup><a href="#ref6">[6]</a></sup><sup><a href="#ref7">[7]</a></sup> 。<br/>
 これは、データセンター誘致・容認の論拠（雇用創出、地域経済への投資）が、反対派と同じ民主党内でも軽視されているわけではないことを示す反証事例として重要である。</p>
-<p>非営利団体 Good Jobs First の分析によれば、 2026 年の立法会期において少なくとも 11 州（ジョージア、メリーランド、ミシガン、ニューハンプシャー、ニューヨーク、オクラホマ、サウスカロライナ、サウスダコタ、バーモント、バージニア、ウィスコンシンの各州）でデータセンターの一時禁止を内容とする法案が提出された。民間の追跡データによれば、 2026 年 4 月中旬時点で全米 31 州にまたがり、地方自治体レベルのモラトリアムが 58 件、州レベルの法案が 18 件確認されている <sup><a href="#ref8">[8]</a></sup> 。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2.2</span>
-    <span class="title">世論調査</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>世論調査データも、反対運動の広がりを裏付けている。ギャラップ社が 2026 年 3 月 2 日から 18 日にかけて全 50 州とワシントン DC の成人 1000 人を対象に実施した電話調査では、自らの居住地域での AI データセンター建設に「反対」と回答した割合が 71% （うち「強く反対」が 48%）に達した一方、「賛成」は 25% （「強く賛成」は 7%）にとどまった。<br>
+<p class="pp">非営利団体 Good Jobs First の分析によれば、 2026 年の立法会期において少なくとも 11 州（ジョージア、メリーランド、ミシガン、ニューハンプシャー、ニューヨーク、オクラホマ、サウスカロライナ、サウスダコタ、バーモント、バージニア、ウィスコンシンの各州）でデータセンターの一時禁止を内容とする法案が提出された。民間の追跡データによれば、 2026 年 4 月中旬時点で全米 31 州にまたがり、地方自治体レベルのモラトリアムが 58 件、州レベルの法案が 18 件確認されている <sup><a href="#ref8">[8]</a></sup> 。</p>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">2.2 世論調査</button><div class="sec-body">
+<p class="pp">世論調査データも、反対運動の広がりを裏付けている。ギャラップ社が 2026 年 3 月 2 日から 18 日にかけて全 50 州とワシントン DC の成人 1000 人を対象に実施した電話調査では、自らの居住地域での AI データセンター建設に「反対」と回答した割合が 71% （うち「強く反対」が 48%）に達した一方、「賛成」は 25% （「強く賛成」は 7%）にとどまった。<br/>
 比較のため同調査が併せて尋ねた地元原発の建設については反対が 53% であり、データセンターへの反対がこれを上回っている点は注目に値する <sup><a href="#ref9">[9]</a></sup> 。</p>
-<p>イェール大学気候変動コミュニケーション・プログラムが 2026 年春に実施した登録有権者対象の調査でも、 58% が地元でのデータセンター建設に反対し、賛成はわずか 15% であった。同調査の特徴は、この反対が党派を大きく超えて存在することを定量的に示した点にある。<br>
+<p class="pp">イェール大学気候変動コミュニケーション・プログラムが 2026 年春に実施した登録有権者対象の調査でも、 58% が地元でのデータセンター建設に反対し、賛成はわずか 15% であった。同調査の特徴は、この反対が党派を大きく超えて存在することを定量的に示した点にある。<br/>
 リベラル民主党支持層の 74% 、穏健・保守民主党支持層の 57% が反対を示す一方、保守共和党支持層でも 53% 、リベラル・穏健共和党支持層でも 44% が反対と回答している。さらに、新設データセンターに対し太陽光発電設置や住宅の断熱改修による電力使用の相殺を義務付ける提案には、保守共和党支持層でも 63% が賛成しており、規制強化そのものへの支持が党派を問わず広がっていることがうかがえる <sup><a href="#ref10">[10]</a></sup> 。</p>
-<p>なお、ギャラップ（反対 71%）とイェールの調査（反対 58%）の間には数値の開きがあるが、これは調査時期（3 月と春全般）、母集団（成人一般と登録有権者）、質問文の違いによるものと考えられ、単純にどちらか一方の数値のみを「世論」として扱うことは避けるべきである。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2.3</span>
-    <span class="title">候補者による争点化</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>候補者レベルでの争点化は、民主党・共和党の双方に確認できる。<br>
-民主党側では、ウィスコンシン州知事選のフランチェスカ・ホン候補、オハイオ州知事選のエイミー・アクトン候補（「条件付きモラトリアム」を提案）、ミシガン州上院選のアブドゥル・エルサイード候補（オープン AI とオラクルのデータセンター団地前で集会を開き「連邦レベルの防護策なしにこれ以上の建設を認めることはできない」と発言）、テキサス州上院選のジェームズ・タラリコ候補（データセンター事業者による公共料金の押し上げと過剰な水使用の抑制を主張）が、それぞれこの問題を取り上げている。共和党側でも、オハイオ州知事選のビベック・ラマスワミ候補がモラトリアムを主張し、フロリダ州知事選のバイロン・ドナルズ下院議員は「水使用は管理可能であり、立地選定において住宅地から離すべきだ」と述べるなど、規制強化に前向きな発言をしている <sup><a href="#ref11">[11]</a></sup> 。<br>
+<p class="pp">なお、ギャラップ（反対 71%）とイェールの調査（反対 58%）の間には数値の開きがあるが、これは調査時期（3 月と春全般）、母集団（成人一般と登録有権者）、質問文の違いによるものと考えられ、単純にどちらか一方の数値のみを「世論」として扱うことは避けるべきである。</p>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">2.3 候補者による争点化</button><div class="sec-body">
+<p class="pp">候補者レベルでの争点化は、民主党・共和党の双方に確認できる。<br/>
+民主党側では、ウィスコンシン州知事選のフランチェスカ・ホン候補、オハイオ州知事選のエイミー・アクトン候補（「条件付きモラトリアム」を提案）、ミシガン州上院選のアブドゥル・エルサイード候補（オープン AI とオラクルのデータセンター団地前で集会を開き「連邦レベルの防護策なしにこれ以上の建設を認めることはできない」と発言）、テキサス州上院選のジェームズ・タラリコ候補（データセンター事業者による公共料金の押し上げと過剰な水使用の抑制を主張）が、それぞれこの問題を取り上げている。共和党側でも、オハイオ州知事選のビベック・ラマスワミ候補がモラトリアムを主張し、フロリダ州知事選のバイロン・ドナルズ下院議員は「水使用は管理可能であり、立地選定において住宅地から離すべきだ」と述べるなど、規制強化に前向きな発言をしている <sup><a href="#ref11">[11]</a></sup> 。<br/>
 ここからは、データセンター問題が特定政党の専売特許ではなく、地域の生活環境への影響という争点の性質上、党派横断的に浮上していることが読み取れる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2.4</span>
-    <span class="title">連邦と州の権限対立、選挙運動そのものへの規制</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>トランプ大統領は 2025 年 12 月 11 日、「 AI のための国家政策枠組みの確保」と題する大統領令（第 14365 号）に署名し、同月 16 日付で連邦官報に掲載された。同大統領令は、 AI 規制について「最小限の負担で米国の AI における世界的優位を維持・強化する」ことを国家の方針とし、これと矛盾する州法に対抗するための「 AI 訴訟タスクフォース」の設置を指示した <sup><a href="#ref12">[12]</a></sup> 。パム・ボンディ司法長官は 2026 年 1 月、同タスクフォースを発足させ、州の AI 関連法を違憲として争う活動を開始した <sup><a href="#ref13">[13]</a></sup> 。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">2.4 連邦と州の権限対立、選挙運動そのものへの規制</button><div class="sec-body">
+<p class="pp">トランプ大統領は 2025 年 12 月 11 日、「 AI のための国家政策枠組みの確保」と題する大統領令（第 14365 号）に署名し、同月 16 日付で連邦官報に掲載された。同大統領令は、 AI 規制について「最小限の負担で米国の AI における世界的優位を維持・強化する」ことを国家の方針とし、これと矛盾する州法に対抗するための「 AI 訴訟タスクフォース」の設置を指示した <sup><a href="#ref12">[12]</a></sup> 。パム・ボンディ司法長官は 2026 年 1 月、同タスクフォースを発足させ、州の AI 関連法を違憲として争う活動を開始した <sup><a href="#ref13">[13]</a></sup> 。<br/>
  2026 年 3 月時点で少なくとも 38 州が何らかの AI 関連法を制定済みとされ、連邦の抑制努力にもかかわらず、州レベルの立法は縮小していない。州法の立法動向を追跡する専門メディアの集計では、 2026 年 7 月 1 日時点で州レベルの AI 関連法が 109 件、データセンター関連法が 28 件制定されている（前年同時期の 121 件・ 27 件からほぼ横ばい）<sup><a href="#ref14">[14]</a></sup> 。</p>
-<p>なお、この大統領令が具体的にデータセンターの立地規制そのものを連邦優越（プリエンプション）の対象としているか否かは、複数の法律事務所による解説記事の間でも整合的な説明が得られておらず、本稿では大統領令の主眼が「 AI 規制」全般の連邦一元化にあり、データセンターの環境・土地利用規制それ自体を明示的に禁じたものではない、という限定的な理解にとどめる。</p>
-<p>選挙運動そのものにおける AI 利用への規制も進んでいる。 2026 年 8 月 5 日時点で 33 州が、政治広告における AI 生成・改変コンテンツ、いわゆるディープフェイクを規制する法律を制定しており、これは同年年初の 28 州から増加している。<br>
+<p class="pp">なお、この大統領令が具体的にデータセンターの立地規制そのものを連邦優越（プリエンプション）の対象としているか否かは、複数の法律事務所による解説記事の間でも整合的な説明が得られておらず、本稿では大統領令の主眼が「 AI 規制」全般の連邦一元化にあり、データセンターの環境・土地利用規制それ自体を明示的に禁じたものではない、という限定的な理解にとどめる。</p>
+<p class="pp">選挙運動そのものにおける AI 利用への規制も進んでいる。 2026 年 8 月 5 日時点で 33 州が、政治広告における AI 生成・改変コンテンツ、いわゆるディープフェイクを規制する法律を制定しており、これは同年年初の 28 州から増加している。<br/>
 その大半は「 AI 生成であることの開示義務」を課す形式であり、頒布自体を禁止する州は少数にとどまる <sup><a href="#ref15">[15]</a></sup> 。</p>
-    </div>
-  </div>
-</section>
-
-</div>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">日本：印西市の事例</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<div class="acc-nested">
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3.1</span>
-    <span class="title">「データセンター銀座」の形成</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>千葉県印西市は、北総線沿線の千葉ニュータウン地区を中心に、 2020 年代に入って急速にデータセンターの集積が進み、業界内では「データセンター銀座」と称されるようになった。 2025 年時点で市内には約 20 棟から 30 棟規模の施設が稼働し、さらに 10 棟以上が建設中ないし計画段階にある。<br>
-集積の背景としては、地盤が強固で地震等の災害リスクが低いこと、及び大容量の電力供給網へのアクセスが確保しやすかったことの 2 点が繰り返し指摘されている <sup><a href="#ref16">[16]</a></sup><sup><a href="#ref17">[17]</a></sup> 。政府が 2021 年に策定した半導体・デジタル産業戦略でもモデルケースとして言及され、「 INZAI 」の名は国際的な業界内でも一定の認知を得るに至った <sup><a href="#ref18">[18]</a></sup> 。<br>
+</div></div>
+</div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">3. 日本：印西市の事例</button><div class="ch-body">
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">3.1 「データセンター銀座」の形成</button><div class="sec-body">
+<p class="pp">千葉県印西市は、北総線沿線の千葉ニュータウン地区を中心に、 2020 年代に入って急速にデータセンターの集積が進み、業界内では「データセンター銀座」と称されるようになった。 2025 年時点で市内には約 20 棟から 30 棟規模の施設が稼働し、さらに 10 棟以上が建設中ないし計画段階にある。<br/>
+集積の背景としては、地盤が強固で地震等の災害リスクが低いこと、及び大容量の電力供給網へのアクセスが確保しやすかったことの 2 点が繰り返し指摘されている <sup><a href="#ref16">[16]</a></sup><sup><a href="#ref17">[17]</a></sup> 。政府が 2021 年に策定した半導体・デジタル産業戦略でもモデルケースとして言及され、「 INZAI 」の名は国際的な業界内でも一定の認知を得るに至った <sup><a href="#ref18">[18]</a></sup> 。<br/>
 印西市は、千葉ニュータウン計画に由来する計画都市であり、人口増加が続く東京圏郊外自治体としての性格をあわせ持つ。 JBpress の分析記事は同市を「住みやすい街ランキングの常連」と紹介したうえで、データセンター集積がもたらす税収を「もう一つの意外な顔」と位置づけている <sup><a href="#ref22">[22]</a></sup> 。学校・保育施設等の子育てインフラや道路整備といった、人口増加に伴う財政需要を固定資産税収の伸びが下支えしてきたという構図は、後述する財政構造の分析を考えるうえでも示唆的である。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3.2</span>
-    <span class="title">摩擦の展開：駅前計画をめぐる時系列</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>印西市における摩擦が最も先鋭化した事例が、北総線・千葉ニュータウン中央駅前（駅から徒歩約 5 分）で計画された、商業施設跡地でのデータセンター建設計画である。以下、一次報道で確認できた事実を時系列で整理する。</p>
-<p>2025 年 4 月、三井物産等が出資する<br>特別目的会社「印西ファイブ」（運営はコルトデータセンターサービス・ジャパン・オペレーティング合同会社）が、高さ 52.7 メートル、延べ床面積約 3 万平方メートル、地上 6 階建てのデータセンター建設計画を公表した。周辺は商業施設や分譲マンションに囲まれた市街地であった <sup><a href="#ref19">[19]</a></sup><sup><a href="#ref20">[20]</a></sup> 。<br>
-同月、当時の藤代健吾市長は<br>自身の X （旧ツイッター）アカウントで「市全体のまちづくりにとって極めて重要な場所……それはデータセンターではないと考えています」と投稿し、計画への反対姿勢を明確にした <sup><a href="#ref19">[19]</a></sup> 。隣接マンションの住民からは日照権への懸念が示され、同月 21 日までに市には景観・騒音等を懸念する意見が約 50 件寄せられた <sup><a href="#ref20">[20]</a></sup> 。</p>
-<p>しかし 2025 年 12 月、市が事業者側とすでに建設準備に関する協議書を締結していたことが明らかになった。この協議は住民には事前に公表されていなかったとみられる <sup><a href="#ref19">[19]</a></sup> 。<br>
-同月 21 日の住民集会で市長は「行政には中立性が求められる……これ以上遅らせることには理由がない。白紙撤回させることはやはり難しい」と述べ、事実上、計画を容認する立場へと転じた。住民団体「タウンセンター地区の活用について考える会」はこれに反発した <sup><a href="#ref19">[19]</a></sup> 。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">3.2 摩擦の展開：駅前計画をめぐる時系列</button><div class="sec-body">
+<p class="pp">印西市における摩擦が最も先鋭化した事例が、北総線・千葉ニュータウン中央駅前（駅から徒歩約 5 分）で計画された、商業施設跡地でのデータセンター建設計画である。以下、一次報道で確認できた事実を時系列で整理する。</p>
+<p class="pp">2025 年 4 月、三井物産等が出資する<br/>特別目的会社「印西ファイブ」（運営はコルトデータセンターサービス・ジャパン・オペレーティング合同会社）が、高さ 52.7 メートル、延べ床面積約 3 万平方メートル、地上 6 階建てのデータセンター建設計画を公表した。周辺は商業施設や分譲マンションに囲まれた市街地であった <sup><a href="#ref19">[19]</a></sup><sup><a href="#ref20">[20]</a></sup> 。<br/>
+同月、当時の藤代健吾市長は<br/>自身の X （旧ツイッター）アカウントで「市全体のまちづくりにとって極めて重要な場所……それはデータセンターではないと考えています」と投稿し、計画への反対姿勢を明確にした <sup><a href="#ref19">[19]</a></sup> 。隣接マンションの住民からは日照権への懸念が示され、同月 21 日までに市には景観・騒音等を懸念する意見が約 50 件寄せられた <sup><a href="#ref20">[20]</a></sup> 。</p>
+<p class="pp">しかし 2025 年 12 月、市が事業者側とすでに建設準備に関する協議書を締結していたことが明らかになった。この協議は住民には事前に公表されていなかったとみられる <sup><a href="#ref19">[19]</a></sup> 。<br/>
+同月 21 日の住民集会で市長は「行政には中立性が求められる……これ以上遅らせることには理由がない。白紙撤回させることはやはり難しい」と述べ、事実上、計画を容認する立場へと転じた。住民団体「タウンセンター地区の活用について考える会」はこれに反発した <sup><a href="#ref19">[19]</a></sup> 。<br/>
  2026 年 1 月 27 日、指定確認検査機関の日本 ERI が建築確認を認可し、同年 3 月 5 日、住民 10 名が谷川宗和氏・服部吉宏氏を原告代表として千葉地方裁判所に提訴した。原告代理人の及川智志弁護士は、当該施設が建築基準法上の「工場」ないし「倉庫」に該当し、地区計画で禁止された用途にあたるとして、建築確認の取り消しを求めている <sup><a href="#ref21">[21]</a></sup> 。なお、計画では 2026 年 1 月から 2028 年 2 月末までの工期が想定されており、住民側の訴訟は施設の稼働開始前の段階で係属している。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3.3</span>
-    <span class="title">財政構造</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>印西市の財政構造は、この摩擦の背景を理解するうえで重要である。<br>
- JBpress 掲載の分析記事によれば、印西市の令和 3 年度（2021 年度）決算における固定資産税額は 116 億 4600 万円で、地方税収（約 220 億円）の 5 割以上を占める。平成 22 年度（2010 年度）との比較では、一般会計歳入が 1.32 倍、地方税が 1.47 倍、固定資産税が 1.62 倍（増加額約 44 億円）に達しており、財政力指数は 1.04 と全国平均（0.50）の倍以上、実質公債費比率は 0.2% 、将来負担比率は 2.2% と、いずれも健全財政を示す水準にある <sup><a href="#ref22">[22]</a></sup> 。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">3.3 財政構造</button><div class="sec-body">
+<p class="pp">印西市の財政構造は、この摩擦の背景を理解するうえで重要である。<br/>
+ JBpress 掲載の分析記事によれば、印西市の令和 3 年度（2021 年度）決算における固定資産税額は 116 億 4600 万円で、地方税収（約 220 億円）の 5 割以上を占める。平成 22 年度（2010 年度）との比較では、一般会計歳入が 1.32 倍、地方税が 1.47 倍、固定資産税が 1.62 倍（増加額約 44 億円）に達しており、財政力指数は 1.04 と全国平均（0.50）の倍以上、実質公債費比率は 0.2% 、将来負担比率は 2.2% と、いずれも健全財政を示す水準にある <sup><a href="#ref22">[22]</a></sup> 。<br/>
 同記事は固定資産税増加の主因としてデータセンターの集積を挙げているが、税収全体に占めるデータセンター関連分の厳密な内訳を示す市の公式資料までは、本稿の調査では確認できなかった。より新しい年度の数値についても、個人ブログ以外の裏付けが取れなかったため、本稿では 2021 年度の確認済みの数値のみを用いている。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3.4</span>
-    <span class="title">他地域への波及</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>データセンターの集積とそれに伴う摩擦は印西市に限られない。日経ビジネスの報道によれば、印西市内の電力供給が新規申込みから接続まで約 10 年待ちという逼迫状況に至ったことを受け、神奈川県相模原市が麻溝台・新磯野地区の土地区画整理事業地へのデータセンター誘致を進めており、「次のデータセンター銀座」の候補地として名指しされている <sup><a href="#ref23">[23]</a></sup> 。<br>
-相模原市の事例では、事業用地がもともと区画整理事業地であったこともあり、市が誘致の主体として当初から関与している点が印西市とは異なる。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">3.4 他地域への波及</button><div class="sec-body">
+<p class="pp">データセンターの集積とそれに伴う摩擦は印西市に限られない。日経ビジネスの報道によれば、印西市内の電力供給が新規申込みから接続まで約 10 年待ちという逼迫状況に至ったことを受け、神奈川県相模原市が麻溝台・新磯野地区の土地区画整理事業地へのデータセンター誘致を進めており、「次のデータセンター銀座」の候補地として名指しされている <sup><a href="#ref23">[23]</a></sup> 。<br/>
+相模原市の事例では、事業用地がもともと区画整理事業地であったこともあり、市が誘致の主体として当初から関与している点が印西市とは異なる。<br/>
 また東京都内でも、しんぶん赤旗の報道によれば、昭島市（GLP による旧ゴルフ場跡地での高さ 55 メートル・ 11 棟計画）及び日野市（三井不動産による高さ 80 メートル・ 3 棟計画）で具体的な建設計画が進んでおり、昭島市議会では、建設予定地周辺の住民から寄せられた陳情を受け、データセンターの排熱が周辺環境に与える影響を規制する条例整備を市に求める動きがあり、会派を超えた懸念が共有されているとされる <sup><a href="#ref24">[24]</a></sup> 。千葉県白井市富ケ谷地区でも、市街化調整区域内でのデータセンター建設をめぐり、近隣住民が 2026 年 1 月 8 日、建築許可の取り消しを求めて千葉地方裁判所に提訴し、同年 2 月 27 日に第 1 回口頭弁論が開かれており、印西市の事例と法的構図が類似している <sup><a href="#ref25">[25]</a></sup><sup><a href="#ref26">[26]</a></sup> 。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3.5</span>
-    <span class="title">国政レベルでの言及の検証</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>当初の仮説である「日本では国政の争点にまで至っていない」という命題についても検証を行った。完全な不在とは言えない。<br>
-日本共産党の山添拓参議院議員は、 2025 年 1 月 17 日に経済産業省・資源エネルギー庁への聞き取りで昭島市・日野市のデータセンター計画を取り上げ、事業者による住民説明の不足や再生可能エネルギー利用の義務化を求めた。資源エネルギー庁は排熱規制について「検討の範囲を超える」と回答している <sup><a href="#ref24">[24]</a></sup> 。<br>
-さらに 2026 年 6 月 15 日の参議院決算委員会では、同議員が昭島市の計画（高さ約 35 〜 55 メートルのデータセンター 8 棟と物流施設 3 棟）の年間電力消費量（市内消費電力の約 6 倍、高知県全体の年間消費電力を上回る規模）と CO2 排出量（市内総排出量の約 4 倍）を取り上げ、石原宏高環境大臣及び赤沢亮正経済産業大臣が答弁に立った。環境省側は環境影響評価の対象化には消極的な姿勢を示している <sup><a href="#ref27">[27]</a></sup> 。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">3.5 国政レベルでの言及の検証</button><div class="sec-body">
+<p class="pp">当初の仮説である「日本では国政の争点にまで至っていない」という命題についても検証を行った。完全な不在とは言えない。<br/>
+日本共産党の山添拓参議院議員は、 2025 年 1 月 17 日に経済産業省・資源エネルギー庁への聞き取りで昭島市・日野市のデータセンター計画を取り上げ、事業者による住民説明の不足や再生可能エネルギー利用の義務化を求めた。資源エネルギー庁は排熱規制について「検討の範囲を超える」と回答している <sup><a href="#ref24">[24]</a></sup> 。<br/>
+さらに 2026 年 6 月 15 日の参議院決算委員会では、同議員が昭島市の計画（高さ約 35 〜 55 メートルのデータセンター 8 棟と物流施設 3 棟）の年間電力消費量（市内消費電力の約 6 倍、高知県全体の年間消費電力を上回る規模）と CO2 排出量（市内総排出量の約 4 倍）を取り上げ、石原宏高環境大臣及び赤沢亮正経済産業大臣が答弁に立った。環境省側は環境影響評価の対象化には消極的な姿勢を示している <sup><a href="#ref27">[27]</a></sup> 。<br/>
  2025 年と 2026 年の両質疑を通じて、経済産業省・環境省側の答弁はいずれも法規制の新設に慎重な姿勢を崩しておらず、行政側から争点化を後押しする動きは確認できなかった。</p>
-<p>もっとも、この国会質疑は野党第 4 党相当の日本共産党単独によるものであり、超党派の関与は確認できず、論点も環境負荷・ CO2 排出に限定されている。対象も印西市ではなく昭島市・日野市である。<br>
+<p class="pp">もっとも、この国会質疑は野党第 4 党相当の日本共産党単独によるものであり、超党派の関与は確認できず、論点も環境負荷・ CO2 排出に限定されている。対象も印西市ではなく昭島市・日野市である。<br/>
 全国世論調査でデータセンター建設の賛否を問うたものは、本稿の調査範囲では確認できなかった。この不在自体が、争点が国政・全国世論のレベルでは可視化されていないことの一つの傍証となる。</p>
-<p>なお、総務省「令和 6 年版情報通信白書」によれば、 2024 年 3 月時点で国内データセンター数は 219 件（世界全体 5381 件の約 5%）、市場規模は 2022 年の約 2 兆 938 億円から 2027 年には約 4 兆 1862 億円へ拡大すると予測されている <sup><a href="#ref28">[28]</a></sup> 。</p>
-    </div>
-  </div>
-</section>
-
-</div>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">比較分析：なぜ日本では国政の争点にまで至らないのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+<p class="pp">なお、総務省「令和 6 年版情報通信白書」によれば、 2024 年 3 月時点で国内データセンター数は 219 件（世界全体 5381 件の約 5%）、市場規模は 2022 年の約 2 兆 938 億円から 2027 年には約 4 兆 1862 億円へ拡大すると予測されている <sup><a href="#ref28">[28]</a></sup> 。</p>
+</div></div>
+</div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">4. 比較分析：なぜ日本では国政の争点にまで至らないのか</button><div class="ch-body">
 <p class="lead">本節は本稿の中核であり、以下はいずれも確立した事実そのものではなく、収集した事実から導かれる分析・解釈である。断定を避け「〜と考えられる」「〜という構造が指摘できる」といった留保を伴う表現を用いる。</p>
-
-<div class="acc-nested">
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.1</span>
-    <span class="title">争点の「通貨」の可視化度</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>米国における争点化の推進力は、電気料金の上昇や水資源の逼迫という、有権者が日常生活で直接体感できる形の実害が可視化されている点にあると考えられる。ギャラップやイェールの調査で反対理由の中心に挙げられているのも、こうした生活実感に近い負担である。<br>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.1 争点の「通貨」の可視化度</button><div class="sec-body">
+<p class="pp">米国における争点化の推進力は、電気料金の上昇や水資源の逼迫という、有権者が日常生活で直接体感できる形の実害が可視化されている点にあると考えられる。ギャラップやイェールの調査で反対理由の中心に挙げられているのも、こうした生活実感に近い負担である。<br/>
 これに対し、印西市の事例で表面化しているのは日照権や景観、手続きの不透明性といった、特定の近隣住民に集中する局所的な不満であり、電気料金や水資源逼迫といった、より広範な有権者層に共有されやすい「通貨」への転化は、少なくとも本稿の調査範囲では確認できなかった。日本において電力需給が全国的に逼迫し、料金上昇という形で可視化されない限り、この問題が局所的な近隣紛争を超えて全国的な有権者の関心事に転化する可能性は低いと考えられる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.2</span>
-    <span class="title">地方財政構造による制約</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>印西市の事例で示したとおり、固定資産税収の過半をデータセンター関連が占めるとみられる財政構造は、市当局にとって同施設が単なる迷惑施設ではなく、健全財政を支える基盤となっていることを意味する。市長が住民集会で「白紙撤回させることはやはり難しい」と述べた背景に、こうした財政的依存が影響した可能性は否定できないが、本稿が参照した報道・分析記事はこの点を明示的な因果として論じてはおらず、あくまで推測の域を出ない。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.2 地方財政構造による制約</button><div class="sec-body">
+<p class="pp">印西市の事例で示したとおり、固定資産税収の過半をデータセンター関連が占めるとみられる財政構造は、市当局にとって同施設が単なる迷惑施設ではなく、健全財政を支える基盤となっていることを意味する。市長が住民集会で「白紙撤回させることはやはり難しい」と述べた背景に、こうした財政的依存が影響した可能性は否定できないが、本稿が参照した報道・分析記事はこの点を明示的な因果として論じてはおらず、あくまで推測の域を出ない。<br/>
 米国側でも、メイン州のミルズ知事が同党の議会多数派に反してモラトリアム法案を拒否した事例は、雇用・投資・税収という誘致側の論拠が、反対運動と同じ党派内でも軽視されていないことを示しており、財政的利害が反対運動の勢いを制約する構造は、程度の差はあれ両国に共通する可能性がある。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.3</span>
-    <span class="title">争点化を担う政治的アクターの有無</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>両国の最も明確な相違は、この問題を選挙運動の言語に翻訳する政治的アクターの厚みにある。米国では、州知事、州議会議員、連邦上院候補、州知事候補という、有権者が直接投票で選択できる立場の政治家が、民主・共和両党にわたって明示的にこの問題を取り上げている。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.3 争点化を担う政治的アクターの有無</button><div class="sec-body">
+<p class="pp">両国の最も明確な相違は、この問題を選挙運動の言語に翻訳する政治的アクターの厚みにある。米国では、州知事、州議会議員、連邦上院候補、州知事候補という、有権者が直接投票で選択できる立場の政治家が、民主・共和両党にわたって明示的にこの問題を取り上げている。<br/>
 これに対し日本で確認できた国政レベルの言及は、日本共産党の一議員による国会質疑にとどまり、超党派的な広がりや、国政選挙の候補者による争点化は確認できなかった。争点が有権者の投票選択に結びつくためには、それを代弁し可視化する政治的主体の存在が不可欠であり、この媒介者の厚みの差が、両国の争点化の程度の差に直結していると考えられる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.4</span>
-    <span class="title">選挙制度・政党システムの違い</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>米国の中間選挙は、州知事選、上院議席の一部、下院議席全体が同時に改選される小選挙区中心の制度であり、候補者個人が地域の争点を明確に打ち出すことで差別化を図りやすい。これに対し日本の国政選挙、特に参議院選挙は比例代表と選挙区が併存し、争点は経済・安全保障・社会保障等、より広範な論点群の中に埋没しやすい。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.4 選挙制度・政党システムの違い</button><div class="sec-body">
+<p class="pp">米国の中間選挙は、州知事選、上院議席の一部、下院議席全体が同時に改選される小選挙区中心の制度であり、候補者個人が地域の争点を明確に打ち出すことで差別化を図りやすい。これに対し日本の国政選挙、特に参議院選挙は比例代表と選挙区が併存し、争点は経済・安全保障・社会保障等、より広範な論点群の中に埋没しやすい。<br/>
 データセンター問題のように特定地域に集中して発生する争点は、小選挙区的な制度のもとでは候補者の差別化戦略として機能しやすい一方、より大きな選挙区・比例代表制のもとでは希薄化しやすいという制度的な違いが、争点の可視化度に影響していると考えられる。ただし、この点は米国の州（及びそれより小さい選挙区）と日本の国政選挙という異なる分析単位の比較であることに留意する必要があり、米国の州レベルの争点化を日本の国政選挙と直接対比させることには限界がある。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.5</span>
-    <span class="title">「巨大テック企業への不信」という物語の有無</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>米国側の事例では、ミシガン州上院選候補エルサイードがオープン AI とオラクルのデータセンター団地前で集会を開いたように、データセンター問題は既存の反ビッグテック的な言説と接続しやすい構造にある。<br>
-これに対し、印西市の主要事業者である印西ファイブは三井物産が出資するコルト社が運営主体であり、日本国内のデータセンター事業には商社・通信キャリア系の主体が一定の存在感を持つ。海外の巨大テック企業への不信という物語が、日本の事例では米国ほど強く動員されにくい可能性がある。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.5 「巨大テック企業への不信」という物語の有無</button><div class="sec-body">
+<p class="pp">米国側の事例では、ミシガン州上院選候補エルサイードがオープン AI とオラクルのデータセンター団地前で集会を開いたように、データセンター問題は既存の反ビッグテック的な言説と接続しやすい構造にある。<br/>
+これに対し、印西市の主要事業者である印西ファイブは三井物産が出資するコルト社が運営主体であり、日本国内のデータセンター事業には商社・通信キャリア系の主体が一定の存在感を持つ。海外の巨大テック企業への不信という物語が、日本の事例では米国ほど強く動員されにくい可能性がある。<br/>
 もっとも、印西市には米グーグル等海外事業者の施設も存在しており、事業者構成の違いがどの程度争点化の差に寄与しているかは、本稿の調査だけでは十分に検証できていない。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.6</span>
-    <span class="title">メディア環境・世論調査の有無</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>米国ではギャラップ、イェール大学といった全国規模の世論調査機関がデータセンター問題を調査項目として繰り返し取り上げており、これが「全国的な争点」としての認知を強化する回路として機能していると考えられる。日本ではこれに相当する全国世論調査を本稿の調査範囲では確認できず、この不在自体が、問題が全国的な争点として認知される契機を欠いていることの一因と考えられる。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.6 メディア環境・世論調査の有無</button><div class="sec-body">
+<p class="pp">米国ではギャラップ、イェール大学といった全国規模の世論調査機関がデータセンター問題を調査項目として繰り返し取り上げており、これが「全国的な争点」としての認知を強化する回路として機能していると考えられる。日本ではこれに相当する全国世論調査を本稿の調査範囲では確認できず、この不在自体が、問題が全国的な争点として認知される契機を欠いていることの一因と考えられる。<br/>
 加えて、印西市の摩擦を最も詳しく報じているのは東京新聞・日本経済新聞の地域面・経済面であり、政治部・全国面での扱いは限定的である。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.7</span>
-    <span class="title">政策権限の所在と「誰に抗議すべきか」</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>米国では連邦、州、郡、市それぞれが異なる規制権限を持ち、特に電力・環境・土地利用に関する権限の多くが州政府に集中している。そのため有権者は、州知事選や州議会選挙を通じてこの問題に直接働きかける経路を認識しやすい。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.7 政策権限の所在と「誰に抗議すべきか」</button><div class="sec-body">
+<p class="pp">米国では連邦、州、郡、市それぞれが異なる規制権限を持ち、特に電力・環境・土地利用に関する権限の多くが州政府に集中している。そのため有権者は、州知事選や州議会選挙を通じてこの問題に直接働きかける経路を認識しやすい。<br/>
 日本では、建築確認や地区計画といった規制権限は基礎自治体（市町村）に、電力政策の大枠は国（経済産業省）に分かれており、印西市の事例のように、住民の不満の直接の対象は市長・市当局に向かいやすい一方、それを国政レベルの争点に接続する制度的回路は明確ではない。住民訴訟という司法的手段に訴えているのも、この政治的回路の乏しさの表れと解釈できる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.8</span>
-    <span class="title">便益と負担の地理的分布</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>便益（雇用、税収、投資）と負担（電力、水、騒音、景観、土地利用の制約）の帰属主体が一致しているかどうかも、争点化の強度に影響すると考えられる。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.8 便益と負担の地理的分布</button><div class="sec-body">
+<p class="pp">便益（雇用、税収、投資）と負担（電力、水、騒音、景観、土地利用の制約）の帰属主体が一致しているかどうかも、争点化の強度に影響すると考えられる。<br/>
 印西市の事例では、固定資産税収という便益と、日照権・景観という負担が、同一の市域内という近い範囲に分布しており、市全体としては便益が負担を上回ると認識されやすい構造にある。これに対し米国の一部の州では、データセンターの便益（税収・雇用）が特定の郡・自治体に集中する一方、電力コスト上昇という負担は州全体、あるいは電力網を共有するより広い地域の消費者に転嫁される構造が指摘されており、便益と負担の非対称性がより広範な有権者の不満を招きやすい可能性がある。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4.9</span>
-    <span class="title">争点化の媒介者</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>最後に、問題を可視化し政治的争点へと押し上げる媒介者の違いを指摘したい。米国では、環境団体、州議会議員、全国メディア、世論調査機関が重層的に関与し、地域の紛争を州・国レベルの争点へと押し上げる回路が機能している。日本では、住民団体・地方紙・弁護士による訴訟という、より限定的な担い手にとどまっており、これを国政レベルの争点に接続する業界団体・全国メディア・国政政党の関与は、本稿の調査範囲では限定的にしか確認できなかった。<br>
+</div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">4.9 争点化の媒介者</button><div class="sec-body">
+<p class="pp">最後に、問題を可視化し政治的争点へと押し上げる媒介者の違いを指摘したい。米国では、環境団体、州議会議員、全国メディア、世論調査機関が重層的に関与し、地域の紛争を州・国レベルの争点へと押し上げる回路が機能している。日本では、住民団体・地方紙・弁護士による訴訟という、より限定的な担い手にとどまっており、これを国政レベルの争点に接続する業界団体・全国メディア・国政政党の関与は、本稿の調査範囲では限定的にしか確認できなかった。<br/>
 なお、印西市の訴訟では及川智志弁護士が原告代理人を務め、白井市の訴訟でも同弁護士が現地住民の一人として原告側に名を連ねており、同一人物が印西市周辺の複数の紛争に法律専門家として関わっている点は示唆的である <sup><a href="#ref21">[21]</a></sup><sup><a href="#ref26">[26]</a></sup> 。これは、住民運動を法的争点へと翻訳する専門的な媒介者が局地的には機能している一方、より広い政治的・世論的な媒介の回路が今のところ形成されていないことの裏返しとも解釈できる。</p>
-    </div>
-  </div>
-</section>
-
-</div>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">結論・展望</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>以上の分析から、米国と日本における争点化の非対称性は、単一の要因ではなく、地方財政構造、政治的アクターの有無、選挙制度、事業者構成、メディア環境、政策権限の所在、便益と負担の地理的分布という複数の構造的要因が重なり合った結果であると考えられる。</p>
-<p>今後の見通しについては、条件付きの形でのみ述べうる。<br>
-仮に日本国内でも電力需給の逼迫が可視化され、家庭向け電気料金の上昇という形で有権者が直接の負担を認識するようになれば、印西市に限定されていた摩擦が、より広範な有権者の関心事へと転化し、国政レベルでの争点化が進む可能性は排除できない。相模原市など新たな集積候補地における今後の動向、及び日本共産党以外の政党がこの問題をどう扱うかは、この観点から注視に値する。<br>
+</div></div>
+</div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">5. 結論・展望</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">以上の分析から、米国と日本における争点化の非対称性は、単一の要因ではなく、地方財政構造、政治的アクターの有無、選挙制度、事業者構成、メディア環境、政策権限の所在、便益と負担の地理的分布という複数の構造的要因が重なり合った結果であると考えられる。</p>
+<p class="pp">今後の見通しについては、条件付きの形でのみ述べうる。<br/>
+仮に日本国内でも電力需給の逼迫が可視化され、家庭向け電気料金の上昇という形で有権者が直接の負担を認識するようになれば、印西市に限定されていた摩擦が、より広範な有権者の関心事へと転化し、国政レベルでの争点化が進む可能性は排除できない。相模原市など新たな集積候補地における今後の動向、及び日本共産党以外の政党がこの問題をどう扱うかは、この観点から注視に値する。<br/>
 逆に、現在のような財政的便益が地元自治体に集中し、負担が局所化された状態が続く限り、日本におけるデータセンター問題は、当面は地域紛争・司法的手段の水準にとどまり続ける可能性が高いと考えられる。</p>
-<p>あわせて、本稿で示した比較の限界にも触れておく必要がある。本稿が依拠したのは、米国では 2026 年中間選挙に向けた特定候補者の言動と全国規模の世論調査、日本では印西市を中心とする個別の摩擦事例という、性質の異なる資料群である。米国内でも州によって規制の強弱には大きな幅があり、日本国内でも印西市以外の集積地における住民の反応が印西市と同様であるとは限らない。<br>
+<p class="pp">あわせて、本稿で示した比較の限界にも触れておく必要がある。本稿が依拠したのは、米国では 2026 年中間選挙に向けた特定候補者の言動と全国規模の世論調査、日本では印西市を中心とする個別の摩擦事例という、性質の異なる資料群である。米国内でも州によって規制の強弱には大きな幅があり、日本国内でも印西市以外の集積地における住民の反応が印西市と同様であるとは限らない。<br/>
 したがって本稿の分析は、両国の平均的な姿を示すものではなく、現時点で確認できた最も可視化された事例群の比較にとどまる。今後、他の集積地における摩擦が全国的な報道の対象となるか、また米国における争点化が実際の投票結果にどこまで反映されるかは、本稿の範囲を超えて追跡が必要な論点である。</p>
 <div class="note-box">
 本稿の分析は 2026 年 8 月 15 日時点で確認できた公開情報に基づく。一次資料への到達が叶わず二次情報にとどまった箇所、及び裏付けが取れず本文から削除した事実については、納品時の報告事項に記載する。
 </div>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">出典</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">6. 出典</button><div class="ch-body"><div class="ch-intro">
 <ol class="refs">
 <li id="ref1">NBC News, "Data center opponents have blocked or delayed projects worth nearly $130 billion in 2026, study finds," NBC News, 2026 年 6 月頃 , <a href="https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728" target="_blank">https://www.nbcnews.com/tech/tech-news/data-center-opposition-sharply-rising-2026-study-finds-rcna349728</a>（参照日： 2026-08-15）</li>
 <li id="ref2">Data Center Watch, "Q1 2026 Report," <a href="https://www.datacenterwatch.org/q1-2026" target="_blank">https://www.datacenterwatch.org/q1-2026</a>（参照日： 2026-08-15）</li>
@@ -761,100 +369,227 @@
 <li id="ref27">日本共産党東京都委員会「巨大 DC 建設で環境悪化」 2026 年 6 月 16 日 , <a href="https://www.jcp-tokyo.net/2026/0616/121287" target="_blank">https://www.jcp-tokyo.net/2026/0616/121287</a>（参照日： 2026-08-15）</li>
 <li id="ref28">総務省「令和 6 年版情報通信白書」 <a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html" target="_blank">https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd218100.html</a>（参照日： 2026-08-15）</li>
 </ol>
-    </div>
-  </div>
-</section>
-
-  </div>
+</div></div></div></div>
 </div>
-
-<footer>
-記載の事実関係はすべて Web 検索及び一次資料の確認に基づく。作成日： 2026 年 8 月 15 日。
-</footer>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
-
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(e){
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
-      });
-    });
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
-  document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute("href").slice(1);
-    var target = document.getElementById(id);
-    if(!target) return;
-    e.preventDefault();
-
-    var ancestors = [];
-    var cur = target.closest(".acc-item");
-    while(cur){
-      ancestors.unshift(cur);
-      cur = cur.parentElement ? cur.parentElement.closest(".acc-item") : null;
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
     }
-
-    var anyOpened = false;
-    ancestors.forEach(function(accItem){
-      if(!accItem.classList.contains("open")){
-        Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
-          if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
-            sibling.classList.remove("open");
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
           }
         });
-        accItem.classList.add("open");
-        anyOpened = true;
       }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
     });
-
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, anyOpened ? OPEN_SCROLL_DELAY : 0);
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
   });
 
-  window.addEventListener("scroll", function(){
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
   });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+      breadcrumbNav.appendChild(btn);
+    });
+  }
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
+  });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
 

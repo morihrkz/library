@@ -4,802 +4,645 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Code 環境移植ガイド（Windows 11 ⇔ Mac）</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
-  :root {
-    --bg:#F5F3EC;
-    --paper:#fff;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --accent:#25364A;
-    --accent-soft:#EEF2E4;
-    --line:#C8CEC0;
-    --mono-bg: #2d2424;
-    --mono-ink: #f0dcdb;
-    --mac: #4e73a1;
-    --mac-soft: #ecf1f6;
-    --win: #405c2c;
-    --win-soft: #ecf4e7;
-    --warn: #92433f;
-    --warn-soft: #f8efef;
-    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
+  :root{
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
   }
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: 76px; }
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 1.08rem;
-    line-height: 1.75;
-    padding: 0 0 60px 0;
-    color: var(--ink);
-    background: var(--bg);
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
   }
-  .wrap { margin: 0; padding: 0 clamp(1.5rem, 3vw, 3rem); }
-  header.hero {
-    background:var(--hero-1);
-    color: var(--hero-ink);
-    padding: 48px 24px 40px;
-    margin-bottom: 36px;
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
   }
-  header.hero .wrap {
-    max-width: 960px;
-    margin: 0 auto;
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
   }
-  header.hero .eyebrow {
-    display: block;
-    font-size: 0.78rem;
-    letter-spacing: 0.24em;
-    color: var(--hero-dim);
-    margin-bottom: 0.9rem;
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
   }
-  header.hero h1 {
-    font-size: 1.7rem;
-    margin: 0 0 10px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
   }
-  header.hero p.sub {
-    margin: 0;
-    color: var(--hero-dim);
-    text-indent: 0;
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
   }
-  header.hero .meta { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 0.82rem;
-    font-weight: 600;
-  }
-  .badge.win { background: var(--win-soft); color: var(--win); }
-  .badge.mac { background: var(--mac-soft); color: var(--mac); }
-  .badge.date { background: rgba(255,255,255,0.12); color: var(--hero-dim); border: 1px solid rgba(255,255,255,0.18); }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-  .hero-figure { max-width: 960px; margin: 26px 0 0; overflow-x: auto; }
-  .hero-figure svg { display: block; width: 100%; height: auto; }
-  .hero-figure figcaption {
-    margin-top: 10px;
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: #c9a6a4;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
+  }
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
+  }
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
+  }
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  section { margin-bottom: 40px; }
-  h2 {
-    font-size: 1.25rem;
-    border-left: 5px solid var(--accent);
-    padding-left: 12px;
-    margin: 0 0 18px;
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-  p { margin: 8px 0; color: var(--sub); text-indent: 1em; }
-  .note-intro {
-    background: var(--accent-soft);
-    border: 1px solid #e4c2c1;
-    border-radius: 10px;
-    padding: 14px 18px;
-    color: var(--accent);
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 14px 0 22px;
-    background: var(--paper);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-  thead th {
-    background: #efdddc;
-    color: #4a3736;
-    text-align: left;
-    padding: 10px 14px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  tbody td {
-    padding: 10px 14px;
-    border-top: 1px solid var(--line);
-    vertical-align: top;
-  }
-  tbody tr:nth-child(even) { background: var(--bg); }
-  td.path, td code { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-  td.path { color: var(--accent); white-space: nowrap; }
-
-  code {
-    background: var(--mono-bg);
-    color: var(--mono-ink);
-    padding: 1px 6px;
-    border-radius: 4px;
-    font-size: 1em;
-  }
-  pre {
-    background: var(--mono-bg);
-    color: var(--mono-ink);
-    padding: 16px 18px;
-    border-radius: 10px;
-    overflow-x: auto;
-    font-size: 1em;
-    line-height: 1.6;
-    margin: 10px 0 18px;
-  }
-  pre code { background: none; padding: 0; color: inherit; }
-
-  .card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 22px;
-    margin-bottom: 16px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .card h4 {
-    margin: 0 0 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px; height: 24px;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 50%;
-    font-size: 0.78rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .platform-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 12px 0;
-  }
-  @media (max-width: 640px) {
-    .platform-cols { grid-template-columns: 1fr; }
-    .hero-figure svg { min-width: 580px; }
-    table { font-size: 0.82rem; }
-    thead th, tbody td { padding: 8px 10px; }
-    td.path { white-space: normal; word-break: break-all; }
-  }
-  .platform-box {
-    border-radius: 10px;
-    padding: 12px 14px;
-  }
-  .platform-box.win { background: var(--win-soft); border: 1px solid #cee1c1; }
-  .platform-box.mac { background: var(--mac-soft); border: 1px solid #cbd7e6; }
-  .platform-box .plabel {
-    font-weight: 700;
-    margin-bottom: 6px;
-    display: block;
-  }
-  .platform-box.win .plabel { color: var(--win); }
-  .platform-box.mac .plabel { color: var(--mac); }
-  .platform-box code { background: color-mix(in srgb, var(--paper) 70%, transparent); color: var(--ink); word-break: break-all; }
-
-  .callout {
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin: 14px 0;
-  }
-  .callout.warn { background: var(--warn-soft); border: 1px solid #e9cdcb; color: var(--warn); }
-  .callout.tip { background: #eef3ea; border: 1px solid #ceddc3; color: #425e2e; }
-  .callout strong { display: block; margin-bottom: 4px; }
-
-  .checklist {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-  }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px dashed var(--line);
-    color: var(--sub);
-  }
-  .checklist li:last-child { border-bottom: none; }
-  .checklist input[type="checkbox"] {
-    margin-top: 4px;
-    width: 16px; height: 16px;
-    accent-color: var(--accent);
-    flex-shrink: 0;
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
 
-  ul.bullets {
-    margin: 10px 0;
-    padding-left: 22px;
-    color: var(--sub);
-  }
-  ul.bullets li { padding: 4px 0; }
+  /* ---- 記事固有スタイル ---- */
+:root{
+  --mono-bg:#2d2424; --mono-ink:#f0dcdb;
+  --mac:#4e73a1; --mac-soft:#ecf1f6;
+  --win:#3E5226; --win-soft:var(--accent-light);
+  --warn:#8a2f2f; --warn-soft:#f5ebea;
+}
+code{ background:var(--mono-bg); color:var(--mono-ink); padding:1px 6px; border-radius:4px; font-size:.94em; }
+pre{ background:var(--mono-bg); color:var(--mono-ink); padding:14px 16px; border-radius:8px; overflow-x:auto; font-size:.9em; line-height:1.6; margin:10px 0 16px; }
+pre code{ background:none; padding:0; color:inherit; }
+td.path, td code{ font-family:inherit; }
+td.path{ color:var(--accent); white-space:nowrap; }
+@media (max-width:600px){ td.path{ white-space:normal; word-break:break-all; } }
+.card{ background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:14px; }
+.card h4{ margin:0 0 8px; display:flex; align-items:center; gap:8px; }
+.num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:22px; height:22px; background:var(--accent); color:#fff; border-radius:50%;
+  font-size:.76em; font-weight:700; flex-shrink:0;
+}
+.platform-cols{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:10px 0; }
+@media (max-width:640px){ .platform-cols{ grid-template-columns:1fr; } }
+.platform-box{ border-radius:8px; padding:10px 12px; }
+.platform-box.win{ background:var(--win-soft); border:1px solid var(--border); }
+.platform-box.mac{ background:var(--mac-soft); border:1px solid #cbd7e6; }
+.platform-box .plabel{ font-weight:700; margin-bottom:5px; display:block; }
+.platform-box.win .plabel{ color:var(--win); }
+.platform-box.mac .plabel{ color:var(--mac); }
+.callout{ border-radius:8px; padding:10px 14px; margin:12px 0; font-size:.94em; }
+.callout.warn{ background:var(--warn-soft); border:1px solid #e3c9c7; color:var(--warn); }
+.callout.tip{ background:var(--accent-light); border:1px solid var(--border); color:var(--label); }
+.callout strong{ display:block; margin-bottom:4px; }
+.checklist{ list-style:none; padding:0; margin:8px 0; }
+.checklist li{ display:flex; align-items:flex-start; gap:8px; padding:7px 0; border-bottom:1px dashed var(--border); color:var(--label); }
+.checklist li:last-child{ border-bottom:none; }
+.checklist input[type="checkbox"]{ margin-top:4px; width:15px; height:15px; accent-color:var(--accent); flex-shrink:0; }
+ul.bullets{ margin:8px 0; padding-left:20px; color:var(--label); }
+ul.bullets li{ padding:3px 0; }
 
-  footer {
-    text-align: center;
-    color: #a38d8c;
-    font-size: 0.8rem;
-    margin-top: 50px;
-  }
-
-  .toolbar-container {
-    position: sticky; top: 8px; z-index: 100;
-    background: var(--bg);
-    background: color-mix(in srgb, var(--bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 9px 0;
-    border-radius: 999px;
-    margin: 0 0 24px;
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
-  }
-  .toolbar-container .toolbar { margin: 0; }
-  .toolbar {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 0 0 24px;
-  }
-  .toolbar button {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--accent);
-    background: var(--paper);
-    border: 1.5px solid var(--accent);
-    border-radius: 999px;
-    padding: 8px 20px;
-    cursor: pointer;
-    transition: all .2s ease;
-  }
-  .toolbar button:hover { background: var(--accent); color: #fff; }
-  #accordion { margin-bottom: 40px; }
-  .acc-item {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    overflow-anchor: none;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .acc-item:last-child { margin-bottom: 0; }
-  .acc-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: none;
-    border: none;
-    padding: 18px 22px;
-    cursor: pointer;
-    text-align: left;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color: var(--ink);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .acc-header .title {
-    flex: 1 1 auto;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .acc-header .chev {
-    flex: 0 0 auto;
-    width: 20px;
-    height: 20px;
-    color: var(--accent);
-    transition: transform .3s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
-  .acc-item.open > .acc-header {
-    background: var(--accent-soft);
-    border-bottom: 1px solid var(--line);
-  }
-  .acc-panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
-    overflow-anchor: none;
-  }
-  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
-  .acc-panel-inner {
-    overflow: hidden;
-    min-height: 0;
-    padding: 0 22px;
-    opacity: 0;
-    transition: opacity .3s ease .08s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner {
-    padding: 6px 22px 24px;
-    opacity: 1;
-  }
-  .acc-panel-inner section { margin-bottom: 0; }
-  @media (max-width: 600px) {
-    .acc-header { padding: 15px 16px; gap: 10px; }
-    .acc-header .title { font-size: 1rem; }
-    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 20px; }
-  }
-</style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 250" role="img" aria-labelledby="mgTitle mgDesc">
-        <title id="mgTitle">Claude Code の設定を別 PC へ移す五つの系統と、移らないもの</title>
-        <desc id="mgDesc">左の Windows 機から右の Mac 機へ、ユーザー設定・認証・プロジェクト設定・ MCP サーバー・前提環境の五系統が矢印の帯に乗って移動する図。帯の下には、マシンローカルのため自動では移らない Auto Memory を破線で示している。</desc>
-        <defs>
-          <linearGradient id="belt" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#c67d79" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#c67d79" stop-opacity="0.28"/>
-          </linearGradient>
-        </defs>
-
-        <!-- 移送ベルト -->
-        <path d="M188 24 H534 L560 107 L534 190 H188 Z" fill="url(#belt)"/>
-
-        <!-- 旧PC -->
-        <rect x="14" y="30" width="160" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#a2c689" stroke-opacity="0.5"/>
-        <text x="94" y="82" class="dev win">Windows 11</text>
-        <text x="94" y="104" class="devsub">育てた側の PC</text>
-        <text x="94" y="132" class="mono">%USERPROFILE%\.claude\</text>
-        <path d="M174 100 l14 7 -14 7 z" fill="#c67d79"/>
-
-        <!-- 新PC -->
-        <rect x="568" y="30" width="138" height="154" rx="8" fill="#ffffff" fill-opacity="0.07" stroke="#abbed6" stroke-opacity="0.5"/>
-        <text x="637" y="82" class="dev mac">macOS</text>
-        <text x="637" y="104" class="devsub">移す先の PC</text>
-        <text x="637" y="132" class="mono">~/.claude/</text>
-
-        <!-- 五系統 -->
-        <g>
-          <rect x="200" y="28" width="326" height="26" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-          <text x="212" y="46" class="row"><tspan class="idx">①</tspan> ユーザーレベル設定 ─ フォルダごとコピー</text>
-
-          <rect x="200" y="60" width="326" height="26" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-          <text x="212" y="78" class="row"><tspan class="idx">②</tspan> 認証 ─ 新 PC で再ログイン</text>
-
-          <rect x="200" y="92" width="326" height="26" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-          <text x="212" y="110" class="row"><tspan class="idx">③</tspan> プロジェクト設定 ─ clone ＋ 個人ファイル</text>
-
-          <rect x="200" y="124" width="326" height="26" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-          <text x="212" y="142" class="row"><tspan class="idx">④</tspan> MCP サーバー ─ 再登録が確実</text>
-
-          <rect x="200" y="156" width="326" height="26" rx="4" fill="#ffffff" fill-opacity="0.10"/>
-          <text x="212" y="174" class="row"><tspan class="idx">⑥</tspan> 前提環境 ─ Node.js と本体を入れ直す</text>
-        </g>
-
-        <!-- 移らないもの -->
-        <rect x="200" y="204" width="326" height="28" rx="4" fill="none" stroke="#cf9390" stroke-opacity="0.75" stroke-dasharray="5 4"/>
-        <text x="212" y="223" class="row out"><tspan class="idx out">⑤</tspan> Auto Memory ─ マシンローカル。自動では移らない</text>
-        <path d="M546 218 l-12 -7 v14 z" fill="#cf9390" fill-opacity="0.8"/>
-        <text x="556" y="223" class="note">手で書き写す</text>
-
-        <style>
-          .dev { font-size: 15px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .dev.win { fill: #a2c689; }
-          .dev.mac { fill: #abbed6; }
-          .devsub { fill: #c7a3a1; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .mono { fill: #e6c7c6; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .row { fill: #f0dcdb; font-size: 12.5px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-          .row.out { fill: #e8cbca; font-size: 11.5px; }
-          .idx { fill: #c67d79; font-weight: 700; }
-          .idx.out { fill: #cf9390; }
-          .note { fill: #cf9390; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>Claude Code 環境移植ガイド（Windows 11 ⇔ Mac）</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">実践ガイド / CLAUDE CODE</span>
-  <h1>Claude Code 環境移植ガイド</h1>
-  <p class="sub">1 台の PC で育てた Claude Code の設定・記憶・ワークフローを、別の PC へ持ち運ぶための実践チェックリスト</p>
-  <div class="meta">
-    <span class="badge">全 7 章</span>
-    <span class="badge">約 7 分</span>
-    <span class="badge win">🪟 Windows 11</span>
-    <span class="badge mac">🍎 macOS</span>
-    <span class="badge date">2026 年 8 月時点の公式ドキュメントに基づく</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<div class="wrap">
+ <p class="doc-meta">元記事:個人サイト『書庫』所収の実践ガイド。 Claude Code の設定・記憶を別 PC へ移すためのチェックリスト。全 7 章・約 7 分。 2026 年 8 月時点の公式ドキュメントに基づく。</p>
 
-  <div class="note-intro">
-    Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（Node.js 等）」の 5 系統に分かれている。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎない。以下、優先度の高い順に並べている。
-  </div>
+ <div class="fig-note">Claude Code の設定は「ユーザー設定」「プロジェクト設定」「認証」「 MCP サーバー」「補助ツール（Node.js 等）」の 5 系統に分かれている。 <code>CLAUDE.md</code> の上書きコピーはそのうちの一部（ユーザー記憶）に過ぎない。以下、優先度の高い順に並べている。</div>
 
-  <div class="toolbar-container">
-    <div class="toolbar">
-      <button id="expandAll" type="button">すべて開く</button>
-      <button id="collapseAll" type="button">すべて閉じる</button>
-    </div>
-  </div>
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。</p>
 
-  <div id="accordion">
-
-  <section class="acc-item" id="sec1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">ユーザーレベル設定（<code>~/.claude/</code> 配下）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <p>全プロジェクト共通で効く、あなた個人の設定である。ホームディレクトリ配下にあるため、これが「移植の本丸」になる。</p>
-
-    <table>
-      <thead>
-        <tr><th>ファイル / ディレクトリ</th><th>内容</th><th>移植方法</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="path">~/.claude/CLAUDE.md</td>
-          <td>グローバルなメモリ。プロジェクト横断で常に読み込まれる指示・好み</td>
-          <td>同じ相対パスにファイルをコピー</td>
-        </tr>
-        <tr>
-          <td class="path">~/.claude/settings.json</td>
-          <td>権限（許可 / 拒否コマンド）、環境変数、モデル既定値などユーザー設定</td>
-          <td>同じ相対パスにコピー。中身は JSON なのでそのまま持っていける</td>
-        </tr>
-        <tr>
-          <td class="path">~/.claude/commands/</td>
-          <td>カスタムスラッシュコマンド（<code>.md</code> ファイル群）</td>
-          <td>ディレクトリごとコピー</td>
-        </tr>
-        <tr>
-          <td class="path">~/.claude/agents/</td>
-          <td>カスタムサブエージェント定義（YAML frontmatter 付き Markdown）</td>
-          <td>ディレクトリごとコピー</td>
-        </tr>
-        <tr>
-          <td class="path">~/.claude/output-styles/</td>
-          <td>出力スタイル設定</td>
-          <td>ディレクトリごとコピー</td>
-        </tr>
-        <tr>
-          <td class="path">~/.claude/keybindings.json</td>
-          <td>キーバインドの上書き設定（存在する場合のみ）</td>
-          <td>コピー</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="platform-cols">
-      <div class="platform-box win">
-        <span class="plabel">🪟 Windows 11 の実パス</span>
-        <code>%USERPROFILE%\.claude\</code><br>
+ <div class="accordion">
+<div class="accordion"><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. ユーザーレベル設定（<code>~/.claude/</code> 配下）</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">全プロジェクト共通で効く、あなた個人の設定である。ホームディレクトリ配下にあるため、これが「移植の本丸」になる。</p>
+<table>
+<thead>
+<tr><th>ファイル / ディレクトリ</th><th>内容</th><th>移植方法</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="path">~/.claude/CLAUDE.md</td>
+<td>グローバルなメモリ。プロジェクト横断で常に読み込まれる指示・好み</td>
+<td>同じ相対パスにファイルをコピー</td>
+</tr>
+<tr>
+<td class="path">~/.claude/settings.json</td>
+<td>権限（許可 / 拒否コマンド）、環境変数、モデル既定値などユーザー設定</td>
+<td>同じ相対パスにコピー。中身は JSON なのでそのまま持っていける</td>
+</tr>
+<tr>
+<td class="path">~/.claude/commands/</td>
+<td>カスタムスラッシュコマンド（<code>.md</code> ファイル群）</td>
+<td>ディレクトリごとコピー</td>
+</tr>
+<tr>
+<td class="path">~/.claude/agents/</td>
+<td>カスタムサブエージェント定義（YAML frontmatter 付き Markdown）</td>
+<td>ディレクトリごとコピー</td>
+</tr>
+<tr>
+<td class="path">~/.claude/output-styles/</td>
+<td>出力スタイル設定</td>
+<td>ディレクトリごとコピー</td>
+</tr>
+<tr>
+<td class="path">~/.claude/keybindings.json</td>
+<td>キーバインドの上書き設定（存在する場合のみ）</td>
+<td>コピー</td>
+</tr>
+</tbody>
+</table>
+<div class="platform-cols">
+<div class="platform-box win">
+<span class="plabel">🪟 Windows 11 の実パス</span>
+<code>%USERPROFILE%\.claude\</code><br/>
         例： <code>C:\Users\あなたの名前\.claude\</code>
-      </div>
-      <div class="platform-box mac">
-        <span class="plabel">🍎 macOS の実パス</span>
-        <code>~/.claude/</code><br>
+</div>
+<div class="platform-box mac">
+<span class="plabel">🍎 macOS の実パス</span>
+<code>~/.claude/</code><br/>
         例： <code>/Users/あなたの名前/.claude/</code>
-      </div>
-    </div>
-
-    <div class="callout tip">
-      <strong>コピー方法の一例（<code>.claude</code> フォルダごと）</strong>
+</div>
+</div>
+<div class="callout tip">
+<strong>コピー方法の一例（<code>.claude</code> フォルダごと）</strong>
       Windows 側の <code>%USERPROFILE%\.claude</code> フォルダを ZIP 化 → Mac 側で解凍し <code>~/.claude</code> に配置、で個別ファイルを気にせず一括移植できる。 <code>settings.json</code> 内のパスが OS 依存の値（後述の環境変数など）を含む場合は、コピー後に中身を確認する必要がある。
     </div>
-  
-    </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">認証・ API キー</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <div class="card">
-      <h4><span class="num">1</span> ログインセッション（OAuth）</h4>
-      <p>ログイン状態は <code>~/.claude.json</code> に保存されているが、トークンを直接コピーするのは推奨されない（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code>（またはコンソール上の OAuth フロー）で再ログインするのが確実である。</p>
-    </div>
-    <div class="card">
-      <h4><span class="num">2</span>API 課金運用の場合</h4>
-      <p>API 直接課金で使っている場合は <code>ANTHROPIC_API_KEY</code> 環境変数、または <code>settings.json</code> の <code>env</code> ブロックや <code>apiKeyHelper</code>（外部スクリプトでキーを都度取得する仕組み）を移植する。</p>
-      <pre><code>// settings.json の env ブロック例
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">2. 認証・ API キー</button><div class="ch-body"><div class="ch-intro">
+<div class="card">
+<h4><span class="num">1</span> ログインセッション（OAuth）</h4>
+<p class="pp">ログイン状態は <code>~/.claude.json</code> に保存されているが、トークンを直接コピーするのは推奨されない（環境・デバイス依存のため失効やセキュリティリスクがある）。新 PC では <code>claude login</code>（またはコンソール上の OAuth フロー）で再ログインするのが確実である。</p>
+</div>
+<div class="card">
+<h4><span class="num">2</span>API 課金運用の場合</h4>
+<p class="pp">API 直接課金で使っている場合は <code>ANTHROPIC_API_KEY</code> 環境変数、または <code>settings.json</code> の <code>env</code> ブロックや <code>apiKeyHelper</code>（外部スクリプトでキーを都度取得する仕組み）を移植する。</p>
+<pre><code>// settings.json の env ブロック例
 {
   "env": {
     "ANTHROPIC_API_KEY": " （新PCでは環境変数側で管理し、ここには書かないのが安全） "
   }
 }</code></pre>
-      <div class="callout warn">
-        <strong>⚠️ API キーそのものをファイルに書いて渡すのは避ける</strong>
+<div class="callout warn">
+<strong>⚠️ API キーそのものをファイルに書いて渡すのは避ける</strong>
         API キーは OS の環境変数やシークレット管理（Windows なら「システム環境変数」、 Mac ならシェルの <code>~/.zshrc</code> 等）に個別設定し、設定ファイルには直接書き込まない運用が安全である。
       </div>
-    </div>
-  
-    </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">プロジェクトレベル設定</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <p>各リポジトリ（プロジェクトフォルダ）内にある設定である。 Git リポジトリならクローンするだけで自動的に付いてくる。</p>
-
-    <table>
-      <thead>
-        <tr><th>ファイル</th><th>スコープ</th><th>Git 管理</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="path">CLAUDE.md<br><span style="color:var(--sub);font-weight:400;">（または .claude/CLAUDE.md）</span></td>
-          <td>プロジェクト固有の指示。チーム共有</td>
-          <td>する（コミット対象）</td>
-        </tr>
-        <tr>
-          <td class="path">.claude/settings.json</td>
-          <td>チームで共有する権限設定・ MCP 設定など</td>
-          <td>する</td>
-        </tr>
-        <tr>
-          <td class="path">.claude/settings.local.json</td>
-          <td>個人限定の上書き設定（実験用など）</td>
-          <td>しない（gitignore 対象） - <strong>手動で移植が必要</strong></td>
-        </tr>
-        <tr>
-          <td class="path">.claude/agents/</td>
-          <td>プロジェクト専用サブエージェント</td>
-          <td>する</td>
-        </tr>
-        <tr>
-          <td class="path">CLAUDE.local.md</td>
-          <td>個人用のプロジェクトメモ</td>
-          <td>しない - <strong>手動で移植が必要</strong></td>
-        </tr>
-        <tr>
-          <td class="path">.mcp.json</td>
-          <td>プロジェクトスコープの MCP サーバー定義</td>
-          <td>する（次項参照）</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="callout tip">
-      <strong>実質的にやること</strong>
+</div>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">3. プロジェクトレベル設定</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">各リポジトリ（プロジェクトフォルダ）内にある設定である。 Git リポジトリならクローンするだけで自動的に付いてくる。</p>
+<table>
+<thead>
+<tr><th>ファイル</th><th>スコープ</th><th>Git 管理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="path">CLAUDE.md<br/><span style="color:var(--label);font-weight:400;">（または .claude/CLAUDE.md）</span></td>
+<td>プロジェクト固有の指示。チーム共有</td>
+<td>する（コミット対象）</td>
+</tr>
+<tr>
+<td class="path">.claude/settings.json</td>
+<td>チームで共有する権限設定・ MCP 設定など</td>
+<td>する</td>
+</tr>
+<tr>
+<td class="path">.claude/settings.local.json</td>
+<td>個人限定の上書き設定（実験用など）</td>
+<td>しない（gitignore 対象） - <strong>手動で移植が必要</strong></td>
+</tr>
+<tr>
+<td class="path">.claude/agents/</td>
+<td>プロジェクト専用サブエージェント</td>
+<td>する</td>
+</tr>
+<tr>
+<td class="path">CLAUDE.local.md</td>
+<td>個人用のプロジェクトメモ</td>
+<td>しない - <strong>手動で移植が必要</strong></td>
+</tr>
+<tr>
+<td class="path">.mcp.json</td>
+<td>プロジェクトスコープの MCP サーバー定義</td>
+<td>する（次項参照）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout tip">
+<strong>実質的にやること</strong>
       Git で管理されているリポジトリなら「新 PC で <code>git clone</code> 」するだけで大部分は再現される。注意すべきは <strong>gitignore 対象になっている個人ファイル</strong>（<code>settings.local.json</code> 、 <code>CLAUDE.local.md</code>）で、これらは手動でコピーしない限り引き継がれない。
     </div>
-  
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">4. MCP サーバー設定</button><div class="ch-body"><div class="ch-intro">
+<p class="pp">MCP （Model Context Protocol）サーバーの登録先はスコープによってファイルが異なる。</p>
+<table>
+<thead>
+<tr><th>スコープ</th><th>保存場所</th><th>備考</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>ユーザー</td>
+<td class="path">~/.claude.json</td>
+<td>OAuth セッション、プロジェクトごとの許可状態、キャッシュも同居</td>
+</tr>
+<tr>
+<td>プロジェクト</td>
+<td class="path">.mcp.json</td>
+<td>リポジトリ直下。 Git でチーム共有可能</td>
+</tr>
+<tr>
+<td>ローカル（個人×プロジェクト）</td>
+<td class="path">~/.claude.json 内</td>
+<td>プロジェクトごとの個人設定として格納</td>
+</tr>
+</tbody>
+</table>
+<div class="callout tip">
+<strong>再登録という選択肢</strong>
+<code>claude mcp list</code> で現在登録されている MCP サーバー一覧を確認し、新 PC 側で <code>claude mcp add</code> を使って再登録するほうが、認証まわりのトラブルが少なく確実である。設定ファイルを直接コピーする場合は、サーバーによっては個別の認証（トークンなど）が別途必要になることがある。
     </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">MCP サーバー設定</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <p>MCP （Model Context Protocol）サーバーの登録先はスコープによってファイルが異なる。</p>
-    <table>
-      <thead>
-        <tr><th>スコープ</th><th>保存場所</th><th>備考</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>ユーザー</td>
-          <td class="path">~/.claude.json</td>
-          <td>OAuth セッション、プロジェクトごとの許可状態、キャッシュも同居</td>
-        </tr>
-        <tr>
-          <td>プロジェクト</td>
-          <td class="path">.mcp.json</td>
-          <td>リポジトリ直下。 Git でチーム共有可能</td>
-        </tr>
-        <tr>
-          <td>ローカル（個人×プロジェクト）</td>
-          <td class="path">~/.claude.json 内</td>
-          <td>プロジェクトごとの個人設定として格納</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="callout tip">
-      <strong>再登録という選択肢</strong>
-      <code>claude mcp list</code> で現在登録されている MCP サーバー一覧を確認し、新 PC 側で <code>claude mcp add</code> を使って再登録するほうが、認証まわりのトラブルが少なく確実である。設定ファイルを直接コピーする場合は、サーバーによっては個別の認証（トークンなど）が別途必要になることがある。
-    </div>
-  
-    </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec5" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">Auto Memory （自動記憶） - 見落としやすいポイント</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <div class="callout warn">
-      <strong>⚠️ Auto Memory はマシンローカルで、原則「移植されない」</strong>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">5. Auto Memory （自動記憶） - 見落としやすいポイント</button><div class="ch-body"><div class="ch-intro">
+<div class="callout warn">
+<strong>⚠️ Auto Memory はマシンローカルで、原則「移植されない」</strong>
       Claude Code にはユーザーが書く <code>CLAUDE.md</code> とは別に、 Claude が会話中に自動で学習内容を書き留める「 Auto Memory 」機能がある（デフォルト ON）。保存先は <strong>リポジトリごと・マシンごと</strong> に分かれており、 <code>~/.claude/projects/&lt;プロジェクト名&gt;/memory/</code> に置かれる。この機能はプロジェクトに紐づいたローカルの学習内容であり、他の PC へは自動的に引き継がれない。重要な決定事項が書かれていた場合は、内容を確認してプロジェクトの <code>CLAUDE.md</code> など永続的なファイルへ手動で書き写すことが推奨される。
     </div>
-    <p>セッション中に <code>/memory</code> コマンドを実行すると、現在読み込まれている <code>CLAUDE.md</code> ・ <code>CLAUDE.local.md</code> ・ Auto Memory の場所を一覧表示できるので、移植前に新旧環境で見比べると確実である。</p>
-  
-    </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec6" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">前提環境（Node.js / Claude Code 本体）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <ul class="bullets">
-      <li>Claude Code 自体は npm 経由でグローバルインストールするツールのため、新 PC では <code>npm install -g @anthropic-ai/claude-code</code> を実行し直す</li>
-      <li>Node.js のバージョンが前提要件を満たしているか確認（新 PC で未インストールなら Node.js 自体のセットアップも必要）</li>
-      <li>シェル補完（bash/zsh/PowerShell）を設定していた場合は、それぞれの環境向けに再設定</li>
-    </ul>
-  
-    </div>
-  </div>
-</section>
-
-  <section class="acc-item" id="sec7" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">7</span>
-    <span class="title">移植チェックリスト（実行順）</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-    <ul class="checklist">
-      <li><input type="checkbox"> Windows/Mac 双方に Node.js と <code>npm install -g @anthropic-ai/claude-code</code> で Claude Code 本体を用意する</li>
-      <li><input type="checkbox"> <code>~/.claude/CLAUDE.md</code> をコピー（<span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>）</li>
-      <li><input type="checkbox"> <code>~/.claude/settings.json</code> をコピーし、中身のパス・環境変数が OS 依存でないか確認</li>
-      <li><input type="checkbox"> <code>~/.claude/commands/</code> 、 <code>~/.claude/agents/</code> 、 <code>~/.claude/output-styles/</code> をまとめてコピー</li>
-      <li><input type="checkbox"> 新 PC で <code>claude login</code> を実行し再ログイン（トークンの直接コピーはしない）</li>
-      <li><input type="checkbox"> API 課金運用なら <code>ANTHROPIC_API_KEY</code> を新 PC の環境変数として設定</li>
-      <li><input type="checkbox"> プロジェクトは Git で <code>clone</code> し、 <code>.claude/settings.local.json</code> ・ <code>CLAUDE.local.md</code> があれば個別にコピー</li>
-      <li><input type="checkbox"> <code>claude mcp list</code> で登録済み MCP サーバーを確認し、新 PC 側で <code>claude mcp add</code> により再登録（または <code>.mcp.json</code> ／ <code>~/.claude.json</code> をコピー）</li>
-      <li><input type="checkbox"> 旧 PC で <code>/memory</code> を実行し、 Auto Memory の中に永続化すべき内容がないか確認・手動転記</li>
-      <li><input type="checkbox"> 新 PC で <code>/status</code> または <code>/doctor</code> を実行し、設定が正しく読み込まれているか検証</li>
-    </ul>
-  
-    </div>
-  </div>
-</section>
-
-  </div>
-
-  <div class="callout tip">
-    <strong>検証コマンド</strong>
+<p class="pp">セッション中に <code>/memory</code> コマンドを実行すると、現在読み込まれている <code>CLAUDE.md</code> ・ <code>CLAUDE.local.md</code> ・ Auto Memory の場所を一覧表示できるので、移植前に新旧環境で見比べると確実である。</p>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">6. 前提環境（Node.js / Claude Code 本体）</button><div class="ch-body"><div class="ch-intro">
+<ul class="bullets">
+<li>Claude Code 自体は npm 経由でグローバルインストールするツールのため、新 PC では <code>npm install -g @anthropic-ai/claude-code</code> を実行し直す</li>
+<li>Node.js のバージョンが前提要件を満たしているか確認（新 PC で未インストールなら Node.js 自体のセットアップも必要）</li>
+<li>シェル補完（bash/zsh/PowerShell）を設定していた場合は、それぞれの環境向けに再設定</li>
+</ul>
+</div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">7. 移植チェックリスト（実行順）</button><div class="ch-body"><div class="ch-intro">
+<ul class="checklist">
+<li><input type="checkbox"/> Windows/Mac 双方に Node.js と <code>npm install -g @anthropic-ai/claude-code</code> で Claude Code 本体を用意する</li>
+<li><input type="checkbox"/> <code>~/.claude/CLAUDE.md</code> をコピー（<span style="color:var(--win)">%USERPROFILE%\.claude\CLAUDE.md</span> ⇔ <span style="color:var(--mac)">~/.claude/CLAUDE.md</span>）</li>
+<li><input type="checkbox"/> <code>~/.claude/settings.json</code> をコピーし、中身のパス・環境変数が OS 依存でないか確認</li>
+<li><input type="checkbox"/> <code>~/.claude/commands/</code> 、 <code>~/.claude/agents/</code> 、 <code>~/.claude/output-styles/</code> をまとめてコピー</li>
+<li><input type="checkbox"/> 新 PC で <code>claude login</code> を実行し再ログイン（トークンの直接コピーはしない）</li>
+<li><input type="checkbox"/> API 課金運用なら <code>ANTHROPIC_API_KEY</code> を新 PC の環境変数として設定</li>
+<li><input type="checkbox"/> プロジェクトは Git で <code>clone</code> し、 <code>.claude/settings.local.json</code> ・ <code>CLAUDE.local.md</code> があれば個別にコピー</li>
+<li><input type="checkbox"/> <code>claude mcp list</code> で登録済み MCP サーバーを確認し、新 PC 側で <code>claude mcp add</code> により再登録（または <code>.mcp.json</code> ／ <code>~/.claude.json</code> をコピー）</li>
+<li><input type="checkbox"/> 旧 PC で <code>/memory</code> を実行し、 Auto Memory の中に永続化すべき内容がないか確認・手動転記</li>
+<li><input type="checkbox"/> 新 PC で <code>/status</code> または <code>/doctor</code> を実行し、設定が正しく読み込まれているか検証</li>
+</ul>
+</div></div></div></div>
+<div class="callout tip">
+<strong>検証コマンド</strong>
     移植後は <code>/status</code>（読み込まれた設定ソースの一覧）や <code>claude doctor</code>（設定の妥当性チェック）を実行すると、意図した設定ファイルが実際に読み込まれているか確認できる。
   </div>
-
 </div>
-
-<footer>
-  出典： Claude Code 公式ドキュメント（code.claude.com/docs）を基に作成 ｜ 作成日： 2026 年 8 月 11 日
-</footer>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
-
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(e){
-        var selection = window.getSelection();
-        if(selection.toString().length > 0) return;
-
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
-      });
-    });
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
-  if(location.hash){
-    var target = document.querySelector(location.hash);
-    if(target && target.matches("[data-acc]")){
-      target.classList.add("open");
-      setTimeout(function(){ target.scrollIntoView({behavior:"instant", block:"start"}); }, 0);
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
     }
   }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
+
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+      breadcrumbNav.appendChild(btn);
+    });
+  }
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
+  });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+
 </body>
 </html>

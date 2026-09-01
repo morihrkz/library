@@ -1,308 +1,283 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>民意という難問 - 政治学・論理学・心理学・哲学からの案内</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#F5F3EC; --paper:#fff; --card:#F5F3EC;
-  --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
-  --line:#C8CEC0; --line-2:#e9dcdb;
-  --accent:#25364A; --accent-soft:#EEF2E4;
-  --series-1:#547cac; --series-2:#bc6763;
-  --note-bg:#EEF2E4; --note-border:#C8CEC0;
-  --quote:#1f1e1b;
-  --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
-}
-:root[data-theme="dark"]{
-  --bg:#F5F3EC; --paper:#fff; --card:#F5F3EC;
-  --ink:#2D3325; --sub:#3A4032; --muted:#72786B;
-  --line:#C8CEC0; --line-2:#2c2b29;
-  --accent:#25364A; --accent-soft:#EEF2E4;
-  --series-1:#688bb6; --series-2:#b2524d;
-  --note-bg:#EEF2E4; --note-border:#C8CEC0;
-  --quote:#f2f1ea;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%; scroll-padding-top:12px}
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font-family:"Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-  line-height:1.95; letter-spacing:.02em;
-}
-.wrap{margin:0 auto; padding:0 clamp(1.5rem,3vw,3rem) 6rem}
-.sans{font-family:inherit}
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
+  :root{
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
+  }
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
+  }
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
+  }
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
+  }
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
+  }
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
+  }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-header.hero{
-  background:var(--hero-1);
-  color:var(--hero-ink); padding:3.6rem 0 2.8rem; margin-bottom:2.8rem;
-}
-header.hero .wrap{max-width:960px; margin:0 auto; padding:0 clamp(1.5rem,3vw,3rem)}
-.eyebrow{display:block; letter-spacing:.16em; font-size:.78rem; color:var(--hero-dim); margin-bottom:1.1rem}
-h1{font-size:clamp(1.7rem,4.4vw,2.4rem); line-height:1.5; margin:0 0 1rem; font-weight:700}
-p.sub{margin:0 0 1.1rem; font-size:1.02rem; color:var(--hero-dim); line-height:1.85; text-indent:0}
-  header.hero .meta{margin:1.1rem 0 0; font-size:0.82rem; color:var(--hero-dim);
-    display:flex; flex-wrap:wrap; gap:0.4rem 1.1rem;}
-p.byline{margin:0; font-size:.85rem; color:var(--hero-dim); line-height:1.85; text-indent:0}
-.hero-figure{max-width:960px; margin:0; overflow-x:auto}
-.hero-figure svg{display:block; width:100%; height:auto}
-.hero-figure figcaption{margin-top:.9rem; font-size:.85rem; color:var(--hero-dim); line-height:1.75}
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
+  }
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
+  }
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
+  }
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
+  }
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
+  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-main.wrap{padding-top:0}
-
-h2{font-size:1.3rem; line-height:1.7; margin:0; font-weight:600}
-h3{font-size:1.03rem; margin:2.2rem 0 .9rem; font-weight:600; color:var(--accent)}
-
-.part-divider{
-  margin:3.4rem 0 1.8rem; padding:1.6rem 0 1.3rem;
-  border-top:3px double var(--line); text-align:center;
-}
-.part-divider .pnum{font-size:.72rem; letter-spacing:.24em; color:var(--accent); display:block; margin-bottom:.6rem}
-.part-divider .ptitle{font-size:1.3rem; font-weight:700; line-height:1.6; margin:0 0 .6rem}
-.part-divider .plede{font-size:.9rem; color:var(--sub); line-height:1.85; margin:0 auto; max-width:32rem; text-indent:0}
-
-p{margin:0 0 1.35rem; text-indent:1em}
-a{color:var(--accent)}
-strong{font-weight:600; background:linear-gradient(transparent 62%, var(--accent-soft) 62%)}
-em{font-style:normal; border-bottom:1px dotted var(--muted)}
-
-blockquote.pull{
-  margin:2rem 0; padding:.4rem 0 .4rem 1.4rem; border-left:3px solid var(--accent);
-  font-weight:600; color:var(--quote); text-indent:0;
-}
-blockquote.pull p{margin:0; text-indent:0}
-
-.box{
-  background:var(--note-bg); border:1px solid var(--note-border); border-radius:2px;
-  padding:1.4rem 1.4rem .3rem; margin:2.2rem 0; line-height:1.92;
-}
-.box .boxhead{letter-spacing:.14em; color:var(--accent); margin:0 0 .8rem; font-weight:700; text-indent:0}
-.box p{margin:0 0 1.1rem; text-indent:0}
-.box .term{font-weight:600}
-
-figure{margin:2.2rem 0; padding:0}
-figcaption{color:var(--muted); line-height:1.85; margin-top:1rem; text-indent:0}
-
-.chart{background:var(--paper); border:1px solid var(--line); border-radius:2px; padding:1.5rem 1.3rem 1.2rem}
-.chart .ctitle{font-weight:700; margin:0 0 .3rem; line-height:1.6; text-indent:0}
-.chart .csub{color:var(--muted); margin:0 0 1.3rem; line-height:1.7; text-indent:0}
-.legend{display:flex; gap:1.2rem; flex-wrap:wrap; margin:0 0 1.4rem; color:var(--sub)}
-.legend span{display:inline-flex; align-items:center; gap:.4rem}
-.swatch{width:11px; height:11px; border-radius:2px; display:inline-block}
-.grp{margin:0 0 1.35rem}
-.grp .glab{color:var(--sub); margin:0 0 .45rem; text-indent:0}
-.bar{display:flex; align-items:center; gap:.6rem; margin:0 0 3px}
-.track{flex:1; height:13px; background:var(--card); border-radius:2px; overflow:hidden}
-.fill{height:100%; border-radius:0 4px 4px 0}
-.val{color:var(--sub); min-width:3.6rem; text-align:right; font-variant-numeric:tabular-nums}
-
-table{border-collapse:collapse; width:100%; line-height:1.8; margin:1.6rem 0}
-th,td{border-bottom:1px solid var(--line-2); padding:.55rem .5rem; text-align:right}
-th:first-child,td:first-child{text-align:left}
-thead th{border-bottom:1px solid var(--line); color:var(--sub); font-weight:600}
-td.num{font-variant-numeric:tabular-nums}
-.tablewrap{overflow-x:auto}
-caption{text-indent:0}
-
-ul,ol{margin:0 0 1.35rem; padding-left:1.5rem}
-li{margin:0 0 .5rem}
-
-.refs{line-height:1.9}
-.refs h3{letter-spacing:.1em; color:var(--accent); margin:2rem 0 .8rem}
-.refs ol{padding-left:1.8rem}
-.refs li{margin:0 0 .55rem; color:var(--sub)}
-.refs cite{font-style:italic}
-.refs a{word-break:break-all}
-.refs p{text-indent:0}
-
-.note{color:var(--sub); line-height:1.95; border-top:1px solid var(--line); padding-top:1.6rem; margin-top:1rem; text-indent:0}
-
-.toolbar-container{
-  position:sticky; top:8px; z-index:100;
-  background:var(--bg); background:color-mix(in srgb, var(--bg) 94%, transparent);
-  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-  padding:9px 0; border-radius:999px; margin:0 0 2.4rem;
-  border:1px solid var(--line); box-shadow:0 4px 14px rgba(0,0,0,.10);
-}
-.toolbar-container .toolbar{margin:0}
-.toolbar{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:0}
-.toolbar button{
-  font-weight:700; color:var(--accent); background:var(--paper);
-  border:1.5px solid var(--accent); border-radius:999px; padding:8px 20px;
-  cursor:pointer; transition:all .2s ease;
-}
-.toolbar button:hover{background:var(--accent); color:#fff}
-
-#accordion{margin-bottom:2.6rem}
-.acc-item{
-  background:var(--paper); border:1px solid var(--line); border-radius:10px;
-  margin-bottom:16px; overflow:hidden; overflow-anchor:none;
-}
-.acc-item:last-child{margin-bottom:0}
-.acc-header{
-  width:100%; display:flex; align-items:center; gap:14px; background:none; border:none;
-  padding:18px 22px; cursor:pointer; text-align:left; color:var(--ink); -webkit-tap-highlight-color:transparent;
-}
-.acc-header .num{
-  flex:0 0 auto; color:var(--accent); font-weight:700;
-  background:var(--note-bg); padding:4px 11px; border-radius:999px; white-space:nowrap;
-}
-.acc-header .title{flex:1 1 auto; font-weight:700; line-height:1.5}
-.acc-header .chev{flex:0 0 auto; width:20px; height:20px; color:var(--accent); transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.acc-item.open > .acc-header .chev{transform:rotate(180deg)}
-.acc-item.open > .acc-header{background:var(--note-bg); border-bottom:1px solid var(--line)}
-.acc-panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s cubic-bezier(.4,0,.2,1); overflow-anchor:none}
-.acc-item.open > .acc-panel{grid-template-rows:1fr}
-.acc-panel-inner{overflow:hidden; min-height:0; padding:0 22px; opacity:0; transition:opacity .3s ease .08s}
-.acc-item.open > .acc-panel > .acc-panel-inner{padding:1.2rem 22px 26px; opacity:1}
-
-@media (max-width:600px){
-  .acc-header{padding:15px 16px; gap:10px}
-  .acc-item.open > .acc-panel > .acc-panel-inner{padding:1rem 16px 22px}
-  .hero-figure svg{min-width:560px}
-}
-</style>
-<style>
-  /* 2026-08-28: 本文フォントサイズを本文以外にも統一 */
-  html { font-size: 16px !important; }
-  body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-</style>
-<style>
-  /* フォント統一設定 */
-  html { font-size: 16px; }
-  body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-</style>
-<style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
+  }
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
+  }
+  :root{--series-1:#4d6a86; --series-2:#a8615c; --quote:var(--label);}
+  .sans{font-family:inherit;}
+  /* 記事固有: 部区切り */
+  .part-divider{margin:2.2rem 0 1.2rem;padding:1.1rem 0 .9rem;border-top:3px double var(--border);text-align:center;}
+  .part-divider .pnum{font-size:.72em;letter-spacing:.2em;color:var(--accent);display:block;margin-bottom:.5rem;}
+  .part-divider .ptitle{font-size:1.1em;font-weight:700;line-height:1.6;margin:0 0 .5rem;}
+  .part-divider .plede{font-size:.9em;color:var(--muted);line-height:1.85;margin:0 auto;max-width:32rem;text-indent:0;}
+  /* 記事固有: 引用強調 */
+  blockquote.pull{margin:1.2rem 0;padding:.3rem 0 .3rem 1.2rem;border-left:3px solid var(--accent);font-weight:600;color:var(--quote);text-indent:0;}
+  blockquote.pull p{margin:0;text-indent:0;}
+  /* 記事固有: 概念ボックス */
+  .box{background:var(--accent-light);border:1px solid var(--border);border-radius:4px;padding:1.1rem 1.1rem .2rem;margin:1.2rem 0;line-height:1.9;}
+  .box .boxhead{letter-spacing:.1em;color:var(--accent);margin:0 0 .6rem;font-weight:700;text-indent:0;}
+  .box p{margin:0 0 .9rem;text-indent:0;}
+  .box .term{font-weight:600;}
+  /* 記事固有: 簡易棒グラフ */
+  .chart{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.2rem 1.1rem 1rem;margin:1.2rem 0;}
+  .chart .ctitle{font-weight:700;margin:0 0 .3rem;line-height:1.6;text-indent:0;}
+  .chart .csub{color:var(--muted);margin:0 0 1.1rem;line-height:1.7;text-indent:0;}
+  .legend{display:flex;gap:1rem;flex-wrap:wrap;margin:0 0 1.1rem;color:var(--label);}
+  .legend span{display:inline-flex;align-items:center;gap:.4rem;}
+  .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
+  .grp{margin:0 0 1.1rem;}
+  .grp .glab{color:var(--label);margin:0 0 .4rem;text-indent:0;}
+  .bar{display:flex;align-items:center;gap:.6rem;margin:0 0 3px;}
+  .track{flex:1;height:12px;background:var(--bg);border-radius:2px;overflow:hidden;}
+  .fill{height:100%;border-radius:0 4px 4px 0;}
+  .val{color:var(--label);min-width:3.6rem;text-align:right;font-variant-numeric:tabular-nums;}
+  /* 記事固有: 表 */
+  td.num{font-variant-numeric:tabular-nums;}
+  caption{text-indent:0;}
+  /* 記事固有: 参考文献 */
+  .refs{line-height:1.9;}
+  .refs h3{letter-spacing:.08em;color:var(--accent);margin:1.6rem 0 .7rem;font-size:1em;}
+  .refs ol{padding-left:1.6rem;}
+  .refs li{margin:0 0 .5rem;color:var(--muted);}
+  .refs cite{font-style:italic;}
+  .refs a{word-break:break-all;color:var(--accent);}
+  .refs p{text-indent:0;}
+  .note{color:var(--muted);line-height:1.95;border-top:1px solid var(--border);padding-top:1.2rem;margin-top:.8rem;text-indent:0;}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-      <svg viewBox="0 0 720 260" role="img" aria-labelledby="ipoTitle ipoDesc">
-        <title id="ipoTitle">同じ有権者の意思が、四つの学問を通じて別々の姿を見せる</title>
-        <desc id="ipoDesc">左端の「有権者の選好」が、選挙制度という変換装置を通って右端の「政治的決定」になるまでの流れを示す概念図。装置の内部には、政治学・論理学と社会選択論・政治心理学・政治哲学という四つの視点が並び、それぞれが変換のどこに関わるかを示す。実際の集計過程や因果関係を精密に図示したものではなく、本稿全体の見取り図として簡略化した模式図である。</desc>
 
-        <rect x="30" y="110" width="130" height="46" rx="6" class="node"/>
-        <text x="95" y="138" class="lbl" text-anchor="middle">有権者の選好</text>
-
-        <rect x="560" y="110" width="130" height="46" rx="6" class="node"/>
-        <text x="625" y="138" class="lbl" text-anchor="middle">政治的決定</text>
-
-        <rect x="205" y="60" width="310" height="150" rx="10" class="device"/>
-        <text x="360" y="42" class="axisTitle" text-anchor="middle">選挙制度という変換装置</text>
-
-        <g>
-          <rect x="222" y="80" width="130" height="42" rx="6" class="sub-node"/>
-          <text x="287" y="106" class="sub-lbl" text-anchor="middle">政治学 - 制度設計</text>
-
-          <rect x="368" y="80" width="130" height="42" rx="6" class="sub-node"/>
-          <text x="433" y="106" class="sub-lbl" text-anchor="middle">論理学 - 集計の限界</text>
-
-          <rect x="222" y="150" width="130" height="42" rx="6" class="sub-node"/>
-          <text x="287" y="176" class="sub-lbl" text-anchor="middle">心理学 - 判断の形成</text>
-
-          <rect x="368" y="150" width="130" height="42" rx="6" class="sub-node"/>
-          <text x="433" y="176" class="sub-lbl" text-anchor="middle">哲学 - 従う理由</text>
-        </g>
-
-        <path d="M160 133 L205 133" class="arrow"/>
-        <path d="M515 133 L560 133" class="arrow"/>
-        <path d="M690 130 l10 6 l-10 6" fill="none" class="arrow-head"/>
-
-        <style>
-          .node{ fill:#3a2322; stroke:#cbaaa8; stroke-width:1.2; }
-          .device{ fill:none; stroke:#cbaaa8; stroke-width:1.2; stroke-dasharray:4 4; }
-          .sub-node{ fill:#48211f; stroke:#c0706c; stroke-width:1; }
-          .axisTitle{ fill:#f3e3e2; font-size:14px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .lbl{ fill:#f3e3e2; font-size:13px; font-weight:700; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .sub-lbl{ fill:#e7cbc9; font-size:11px; font-family:"Zen Kaku Gothic New",sans-serif; }
-          .arrow{ stroke:#cbaaa8; stroke-width:2; fill:none; }
-          .arrow-head{ stroke:#cbaaa8; stroke-width:2; }
-        </style>
-      </svg>
-    </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>民意という難問 - 政治学・論理学・心理学・哲学からの案内</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow sans">政治学 / 社会選択論 / 政治心理学 / 政治哲学</span>
-  <h1>民意という難問</h1>
-  <p class="sub">一票が政治的決定へ変換されるまでに、何が起きているのか - 四つの学問からの案内</p>
-  <div class="meta">
-    <span>全 31 章</span>
-    <span>約 70 分</span>
-  </div>
-  <p class="byline">本稿は、 2026 年 2 月 8 日に執行された第 51 回衆議院議員総選挙の確定結果を出発点に、「私の一票は届くのか」という素朴な問いを、人文・社会科学がどのように扱ってきたかを紹介するものである。特定の政党・政治家を支持あるいは批判することを目的としない。</p>
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<main class="wrap">
+ <p class="doc-meta">一票が政治的決定へ変換されるまでに、何が起きているのかを、政治学・論理学・心理学・哲学の四つの学問から案内する。全 31 章、約 70 分。</p>
 
-<div class="toolbar-container">
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
-  </div>
-</div>
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます（「すべて展開」時を除く）。</p>
 
-<div id="accordion">
-<section class="acc-item" id="s0" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">序</span>
-    <span class="title">二枚の投票用紙</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>2026 年 2 月 8 日、日本の有権者は投票所で二枚の用紙を受け取った。</p>
+ <div class="accordion">
+<div class="chapter" id="s0">
+  <button aria-expanded="false" class="ch-head" type="button">序. 二枚の投票用紙</button>
+  <div class="ch-body">
+<p class="pp">2026 年 2 月 8 日、日本の有権者は投票所で二枚の用紙を受け取った。</p>
 
-<p>一枚目には、自分の選挙区の候補者の名前を書く。全国 289 の小選挙区で、それぞれ一人だけが当選する。二枚目には、政党の名前を書く。全国 11 ブロックで 176 議席が、各党の得票に応じて配分される。</p>
+<p class="pp">一枚目には、自分の選挙区の候補者の名前を書く。全国 289 の小選挙区で、それぞれ一人だけが当選する。二枚目には、政党の名前を書く。全国 11 ブロックで 176 議席が、各党の得票に応じて配分される。</p>
 
-<p>同じ日、同じ投票所、同じ人間が、ほとんど同じ政治的意思を二回表明した。</p>
+<p class="pp">同じ日、同じ投票所、同じ人間が、ほとんど同じ政治的意思を二回表明した。</p>
 
-<p>結果は、こうなった。</p>
+<p class="pp">結果は、こうなった。</p>
 
-<p>自由民主党は、小選挙区で 49.23% の票を得て、 289 議席のうち 249 議席を獲得した。議席占有率は 86.2% 。得票率の 1.75 倍である。同じ有権者が同じ日に書いた二枚目の用紙では、自民党は 36.72% の票を得て、 176 議席のうち 67 議席を得た。議席占有率 38.1% 。得票率のほぼ 1.04 倍にすぎない。</p>
+<p class="pp">自由民主党は、小選挙区で 49.23% の票を得て、 289 議席のうち 249 議席を獲得した。議席占有率は 86.2% 。得票率の 1.75 倍である。同じ有権者が同じ日に書いた二枚目の用紙では、自民党は 36.72% の票を得て、 176 議席のうち 67 議席を得た。議席占有率 38.1% 。得票率のほぼ 1.04 倍にすぎない。</p>
 
-<p>もう一つの数字を並べると、対比はさらに鮮明になる。中道改革連合は、小選挙区で 21.63% の票を集めた。五人に一人以上である。獲得した議席は、 289 のうち 7 。議席占有率は 2.4% だった。同じ党が、二枚目の用紙では 18.23% の票で 42 議席、つまり 23.9% を得ている。</p>
+<p class="pp">もう一つの数字を並べると、対比はさらに鮮明になる。中道改革連合は、小選挙区で 21.63% の票を集めた。五人に一人以上である。獲得した議席は、 289 のうち 7 。議席占有率は 2.4% だった。同じ党が、二枚目の用紙では 18.23% の票で 42 議席、つまり 23.9% を得ている。</p>
 
-<blockquote class="pull"><p>票を議席へ変換する規則が違うだけで、同一の民意が、まったく違う政治的現実を生んだ。</p></blockquote>
+<blockquote class="pull"><p class="pp">票を議席へ変換する規則が違うだけで、同一の民意が、まったく違う政治的現実を生んだ。</p></blockquote>
 
-<p>この一日に、この記事で扱うほとんどすべての論点が含まれている。</p>
+<p class="pp">この一日に、この記事で扱うほとんどすべての論点が含まれている。</p>
 
-<p>選挙とは、有権者の頭のなかにある何かを読み取って写し出す装置ではない。それは<strong>変換装置</strong>である。入力は数千万人分の、多次元的で、しばしば互いに矛盾する選好の束。出力は 465 という有限個の議席、そして一人の首相。入力と出力のあいだには、必ず数学的な変換規則が挟まっている。そして規則が変われば、出力も変わる。</p>
+<p class="pp">選挙とは、有権者の頭のなかにある何かを読み取って写し出す装置ではない。それは<strong>変換装置</strong>である。入力は数千万人分の、多次元的で、しばしば互いに矛盾する選好の束。出力は 465 という有限個の議席、そして一人の首相。入力と出力のあいだには、必ず数学的な変換規則が挟まっている。そして規則が変われば、出力も変わる。</p>
 
-<p>「私の一票は届くのか」という問いは、だから、思っているよりずっと深い場所につながっている。この問いを最後まで追いかけると、少なくとも四つの学問の入口に行き当たる。</p>
+<p class="pp">「私の一票は届くのか」という問いは、だから、思っているよりずっと深い場所につながっている。この問いを最後まで追いかけると、少なくとも四つの学問の入口に行き当たる。</p>
 
-<p><strong>政治学</strong>は問う - 制度は、選好をどのような規則で議席に変換しているのか。</p>
-<p><strong>論理学と社会選択論</strong>は問う - そもそも「社会全体の意思」という対象は、論理的に一意に定まるのか。</p>
-<p><strong>心理学</strong>は問う - 投票する主体は、どのように政治的判断を形成しているのか。</p>
-<p><strong>哲学</strong>は問う - なぜ私たちは、自分が反対した決定に従わなければならないのか。</p>
+<p class="pp"><strong>政治学</strong>は問う - 制度は、選好をどのような規則で議席に変換しているのか。</p>
+<p class="pp"><strong>論理学と社会選択論</strong>は問う - そもそも「社会全体の意思」という対象は、論理的に一意に定まるのか。</p>
+<p class="pp"><strong>心理学</strong>は問う - 投票する主体は、どのように政治的判断を形成しているのか。</p>
+<p class="pp"><strong>哲学</strong>は問う - なぜ私たちは、自分が反対した決定に従わなければならないのか。</p>
 
-<p>この四つは、順番に並んでいるのではない。互いに前提を突き崩し合っている。<br>
+<p class="pp">この四つは、順番に並んでいるのではない。互いに前提を突き崩し合っている。<br/>
 政治学が「制度を設計すればよい」と言えば、社会選択論が「完璧な制度は論理的に存在しない」と応じる。社会選択論が「有権者の選好順序」を仮定すれば、心理学が「そんな安定した選好は多くの場合そもそも存在しない」と反論する。心理学が「人間は偏った情報処理をする」と言えば、哲学が「では偏りのない専門家が統治すればよいのか。なぜそれではいけないのか」と問い返す。</p>
 
-<p>本稿は、その相互批判の現場を歩く。順番に、しかし後戻りしながら。</p>
+<p class="pp">本稿は、その相互批判の現場を歩く。順番に、しかし後戻りしながら。</p>
     </div>
-  </div>
-</section>
+</div>
 
 <div class="part-divider">
   <span class="pnum sans">第 I 部</span>
@@ -310,15 +285,10 @@ li{margin:0 0 .5rem}
   <p class="plede">制度は、選好をどう議席へ変えるか</p>
 </div>
 
-<section class="acc-item" id="s1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">同じ日、同じ有権者、二つの答え</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>まず、序で挙げた数字を正面から見よう。</p>
+<div class="chapter" id="s1">
+  <button aria-expanded="false" class="ch-head" type="button">1. 同じ日、同じ有権者、二つの答え</button>
+  <div class="ch-body">
+<p class="pp">まず、序で挙げた数字を正面から見よう。</p>
 
 <figure>
 <div class="chart">
@@ -356,19 +326,19 @@ li{margin:0 0 .5rem}
 <figcaption>出典 : 総務省確定結果にもとづく各種集計（小選挙区 289 議席、比例代表 176 議席）。小選挙区の投票率は 56.26% 。</figcaption>
 </figure>
 
-<p>比例代表のブロックでは、得票率と議席占有率がほぼ重なっている。これは当然で、比例代表とはまさに「得票率を議席率へ写す」ことを目的に設計された規則だからである。</p>
+<p class="pp">比例代表のブロックでは、得票率と議席占有率がほぼ重なっている。これは当然で、比例代表とはまさに「得票率を議席率へ写す」ことを目的に設計された規則だからである。</p>
 
-<p>問題は小選挙区のブロックである。ここでは、 49.2 が 86.2 に化け、 21.6 が 2.4 に消えている。有権者の意思が変わったわけではない。同じ人が、同じ日に、同じ気持ちで書いた紙である。変わったのは、紙を議席に換算する数式だけだ。</p>
+<p class="pp">問題は小選挙区のブロックである。ここでは、 49.2 が 86.2 に化け、 21.6 が 2.4 に消えている。有権者の意思が変わったわけではない。同じ人が、同じ日に、同じ気持ちで書いた紙である。変わったのは、紙を議席に換算する数式だけだ。</p>
 
-<p>もう一つ、見落とされがちな数字がある。自民党の小選挙区における<em>絶対得票率</em> - つまり、棄権した人も含めた全有権者に占める得票の割合 - は 26.9% だった。投票率が 56.26% にとどまったからである。有権者のおよそ四人に一人の支持で、小選挙区議席の 86.2% が配分された計算になる。</p>
+<p class="pp">もう一つ、見落とされがちな数字がある。自民党の小選挙区における<em>絶対得票率</em> - つまり、棄権した人も含めた全有権者に占める得票の割合 - は 26.9% だった。投票率が 56.26% にとどまったからである。有権者のおよそ四人に一人の支持で、小選挙区議席の 86.2% が配分された計算になる。</p>
 
 <div class="box">
   <p class="boxhead sans">用語 - 相対得票率と絶対得票率</p>
-  <p><span class="term">相対得票率</span>は、実際に投じられた有効票に占める割合。<span class="term">絶対得票率</span>は、有権者全体（棄権者を含む）に占める割合。投票率が 50% なら、両者はおよそ二倍離れる。政治報道が「得票率」と言うとき、通常は前者を指す。<br>
+  <p class="pp"><span class="term">相対得票率</span>は、実際に投じられた有効票に占める割合。<span class="term">絶対得票率</span>は、有権者全体（棄権者を含む）に占める割合。投票率が 50% なら、両者はおよそ二倍離れる。政治報道が「得票率」と言うとき、通常は前者を指す。<br/>
 どちらが正しいという話ではなく、<em>問いが違えば使うべき指標も違う</em>という話である。「投票した人のなかでどれだけ支持されたか」を知りたいなら相対、「社会全体のなかでどれだけの人が積極的に支持したか」を知りたいなら絶対を見る。</p>
 </div>
 
-<p>この落差を、二年前の同じ選挙と比べてみる。</p>
+<p class="pp">この落差を、二年前の同じ選挙と比べてみる。</p>
 
 <div class="tablewrap">
 <table>
@@ -384,65 +354,53 @@ li{margin:0 0 .5rem}
 </table>
 </div>
 
-<p>得票率が 10.8 ポイント動いたら、議席占有率が 40.5 ポイント動いた。約 3.8 倍の増幅である。</p>
+<p class="pp">得票率が 10.8 ポイント動いたら、議席占有率が 40.5 ポイント動いた。約 3.8 倍の増幅である。</p>
 
-<p>これを「不正」と呼ぶのは正しくない。誰も規則を破っていない。むしろ<strong>規則どおりに作動した結果</strong>である。小選挙区制とは、そもそもこういう装置なのだ。そして、この増幅は偶然ではなく、選挙研究の中心的な発見の一つとして、七十年以上前から名前を与えられている。</p>
+<p class="pp">これを「不正」と呼ぶのは正しくない。誰も規則を破っていない。むしろ<strong>規則どおりに作動した結果</strong>である。小選挙区制とは、そもそもこういう装置なのだ。そして、この増幅は偶然ではなく、選挙研究の中心的な発見の一つとして、七十年以上前から名前を与えられている。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">デュヴェルジェの法則と、その二つのエンジン</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>フランスの政治学者モーリス・デュヴェルジェは 1950 年代に、一つの経験則を定式化した。<strong>単純小選挙区制は二大政党制を生む傾向がある</strong>。 [1]</p>
+<div class="chapter" id="s2">
+  <button aria-expanded="false" class="ch-head" type="button">2. デュヴェルジェの法則と、その二つのエンジン</button>
+  <div class="ch-body">
+<p class="pp">フランスの政治学者モーリス・デュヴェルジェは 1950 年代に、一つの経験則を定式化した。<strong>単純小選挙区制は二大政党制を生む傾向がある</strong>。 [1]</p>
 
-<p>重要なのは、デュヴェルジェがこの傾向を二つの異なるメカニズムに分解したことである。</p>
+<p class="pp">重要なのは、デュヴェルジェがこの傾向を二つの異なるメカニズムに分解したことである。</p>
 
-<p>第一は<strong>機械的効果</strong>。これは集計規則そのものの働きで、有権者が何を考えていようと自動的に生じる。一選挙区一議席なら、二位以下の候補が集めた票は議席に変換されない。この切り捨てが 289 回積み重なると、上位政党への集中が生まれる。序で見た 49.2 から 86.2 への跳ね上がりは、まさにこの効果である。</p>
+<p class="pp">第一は<strong>機械的効果</strong>。これは集計規則そのものの働きで、有権者が何を考えていようと自動的に生じる。一選挙区一議席なら、二位以下の候補が集めた票は議席に変換されない。この切り捨てが 289 回積み重なると、上位政党への集中が生まれる。序で見た 49.2 から 86.2 への跳ね上がりは、まさにこの効果である。</p>
 
-<p>第二は<strong>心理的効果</strong>。機械的効果を予期した有権者と政治家が、あらかじめ行動を変える。当選しそうもない候補に投票するのは票の無駄だと考えれば、有権者は二番目に好きな候補へ移る。同じ計算をした政治家や政党は、そもそも候補を立てない、あるいは他党と手を組む。</p>
+<p class="pp">第二は<strong>心理的効果</strong>。機械的効果を予期した有権者と政治家が、あらかじめ行動を変える。当選しそうもない候補に投票するのは票の無駄だと考えれば、有権者は二番目に好きな候補へ移る。同じ計算をした政治家や政党は、そもそも候補を立てない、あるいは他党と手を組む。</p>
 
-<p>第 51 回衆院選の細部には、この二つが同時に見える。中道改革連合は 202 の小選挙区に候補を立て、 7 人が当選し、 195 人が敗れた（うち 13 人が比例代表で復活した）。参政党は 182 の小選挙区に候補を立てて全敗し、比例代表で 7.44% の票を得て 15 議席を確保した。共産党は 158 の小選挙区で全敗し、比例で 4 議席を得た。<br>
+<p class="pp">第 51 回衆院選の細部には、この二つが同時に見える。中道改革連合は 202 の小選挙区に候補を立て、 7 人が当選し、 195 人が敗れた（うち 13 人が比例代表で復活した）。参政党は 182 の小選挙区に候補を立てて全敗し、比例代表で 7.44% の票を得て 15 議席を確保した。共産党は 158 の小選挙区で全敗し、比例で 4 議席を得た。<br/>
 <em>小選挙区では消え、比例では残る</em>という非対称は、二つの効果が同じ日に別々の紙の上で働いた痕跡である。</p>
 
 <div class="box">
   <p class="boxhead sans">補論 - M+1 の法則と、日本という実験場</p>
-  <p>デュヴェルジェの法則は、より一般的な形に拡張されている。ゲアリー・コックスは、定数 M の選挙区では、有力候補の数は <span class="term">M+1</span> に収束する傾向があると定式化した。 [2] 小選挙区（M=1）で二人に絞られるのは、その特殊ケースにすぎない。</p>
-  <p>この一般化を経験的に確かめる格好の舞台が、 1994 年以前の日本だった。当時の衆議院は、一つの選挙区から 3 〜 5 人を選ぶ中選挙区制（単記非移譲式投票）を採っていた。スティーヴン・リードは、日本の選挙区データを分析し、有力候補が実際に M+1 へ収束していくことを示した。 [3]</p>
-  <p>ただしリードの発見には、しばしば見落とされる但し書きがある。収束の主たる原因は、有権者の合理的な戦略投票<em>ではなく</em>、政治エリート側の候補者調整であり、しかもそれは一発で最適化されるのではなく、<span class="term">試行錯誤による学習</span>を通じて何回もの選挙をかけてゆっくり進む、というものだった。制度は、瞬時に人を合理的にするのではない。長い時間をかけて、人に学習させる。</p>
+  <p class="pp">デュヴェルジェの法則は、より一般的な形に拡張されている。ゲアリー・コックスは、定数 M の選挙区では、有力候補の数は <span class="term">M+1</span> に収束する傾向があると定式化した。 [2] 小選挙区（M=1）で二人に絞られるのは、その特殊ケースにすぎない。</p>
+  <p class="pp">この一般化を経験的に確かめる格好の舞台が、 1994 年以前の日本だった。当時の衆議院は、一つの選挙区から 3 〜 5 人を選ぶ中選挙区制（単記非移譲式投票）を採っていた。スティーヴン・リードは、日本の選挙区データを分析し、有力候補が実際に M+1 へ収束していくことを示した。 [3]</p>
+  <p class="pp">ただしリードの発見には、しばしば見落とされる但し書きがある。収束の主たる原因は、有権者の合理的な戦略投票<em>ではなく</em>、政治エリート側の候補者調整であり、しかもそれは一発で最適化されるのではなく、<span class="term">試行錯誤による学習</span>を通じて何回もの選挙をかけてゆっくり進む、というものだった。制度は、瞬時に人を合理的にするのではない。長い時間をかけて、人に学習させる。</p>
 </div>
 
-<p>ここから、制度についての一般的な教訓が引き出せる。</p>
+<p class="pp">ここから、制度についての一般的な教訓が引き出せる。</p>
 
-<blockquote class="pull"><p>制度は結果を決定しない。制度は、行為者に特定の行動へのインセンティブを与える。結果は、そのインセンティブに人々がどう適応するかの帰結である。</p></blockquote>
+<blockquote class="pull"><p class="pp">制度は結果を決定しない。制度は、行為者に特定の行動へのインセンティブを与える。結果は、そのインセンティブに人々がどう適応するかの帰結である。</p></blockquote>
 
-<p>だから、「小選挙区制を導入した → 二大政党になるはずだった → なっていない → 制度が失敗した」という推論は成り立たない。制度は仮説を検証する実験装置ではなく、行為者と相互作用しながら結果を共同生産する場だからである。そして人々の適応には、リードが示したように、しばしば数十年かかる。</p>
+<p class="pp">だから、「小選挙区制を導入した → 二大政党になるはずだった → なっていない → 制度が失敗した」という推論は成り立たない。制度は仮説を検証する実験装置ではなく、行為者と相互作用しながら結果を共同生産する場だからである。そして人々の適応には、リードが示したように、しばしば数十年かかる。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">「死票」という言葉を解剖する</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>2026 年の小選挙区で、当選者以外に投じられた票は膨大な数にのぼる。これらは日本語で「死票」と呼ばれる。英語では wasted votes （浪費された票）である。</p>
+<div class="chapter" id="s3">
+  <button aria-expanded="false" class="ch-head" type="button">3. 「死票」という言葉を解剖する</button>
+  <div class="ch-body">
+<p class="pp">2026 年の小選挙区で、当選者以外に投じられた票は膨大な数にのぼる。これらは日本語で「死票」と呼ばれる。英語では wasted votes （浪費された票）である。</p>
 
-<p>この言葉は便利だが、二つの意味を混同させる危険がある。</p>
+<p class="pp">この言葉は便利だが、二つの意味を混同させる危険がある。</p>
 
-<p>一つは、<strong>票が議席に変換されなかった</strong>という記述的事実。これは検証可能で、指標化もできる。政治学では、得票率と議席率の乖離を数値化するためにギャラガー指数（最小二乗不均衡指数）などが用いられる。 [4]</p>
+<p class="pp">一つは、<strong>票が議席に変換されなかった</strong>という記述的事実。これは検証可能で、指標化もできる。政治学では、得票率と議席率の乖離を数値化するためにギャラガー指数（最小二乗不均衡指数）などが用いられる。 [4]</p>
 
-<p>もう一つは、<strong>票が政治的に無意味だった</strong>という評価的主張。こちらは、前者からは導かれない。</p>
+<p class="pp">もう一つは、<strong>票が政治的に無意味だった</strong>という評価的主張。こちらは、前者からは導かれない。</p>
 
-<p>票には、議席への変換以外にも機能がある。整理すると、少なくとも三つある。</p>
+<p class="pp">票には、議席への変換以外にも機能がある。整理すると、少なくとも三つある。</p>
 
 <ol>
 <li><strong>表出機能</strong> - 自分の選好を公的に表明する。これは結果と独立に成立する行為である。</li>
@@ -450,127 +408,103 @@ li{margin:0 0 .5rem}
 <li><strong>累積機能</strong> - 一回の選挙は、時系列のなかの一点にすぎない。ある政党の得票率が三回の選挙で 5% 、 9% 、 14% と動けば、議席がゼロのままでも、その軌跡は他のすべての政治主体の行動を変える。</li>
 </ol>
 
-<p>2026 年の参政党とチームみらいは、小選挙区では一議席も得ていない。しかし比例で 7.44% 、 6.66% を得た事実は、他党の政策形成に無視できない圧力を与える。「議席に変換されなかった票」と「政治的効果を持たなかった票」は、まったく別のものである。</p>
+<p class="pp">2026 年の参政党とチームみらいは、小選挙区では一議席も得ていない。しかし比例で 7.44% 、 6.66% を得た事実は、他党の政策形成に無視できない圧力を与える。「議席に変換されなかった票」と「政治的効果を持たなかった票」は、まったく別のものである。</p>
 
-<p>とはいえ、逆方向の誇張も避けなければならない。信号機能や累積機能は、議席という直接的な変換に比べれば、はるかに弱く、はるかに遅い。「死票にも意味がある」という言明は、しばしば現状を追認するための気休めとして使われる。ここで言えるのはもっと限定的なことだ - <em>死票という言葉は記述として正確だが、それを「無意味」と読み替える推論には飛躍がある</em>。それ以上でも以下でもない。</p>
+<p class="pp">とはいえ、逆方向の誇張も避けなければならない。信号機能や累積機能は、議席という直接的な変換に比べれば、はるかに弱く、はるかに遅い。「死票にも意味がある」という言明は、しばしば現状を追認するための気休めとして使われる。ここで言えるのはもっと限定的なことだ - <em>死票という言葉は記述として正確だが、それを「無意味」と読み替える推論には飛躍がある</em>。それ以上でも以下でもない。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">政党とは何か - 亀裂・包摂・凝集</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここで一段、視点を上げる。</p>
+<div class="chapter" id="s4">
+  <button aria-expanded="false" class="ch-head" type="button">4. 政党とは何か - 亀裂・包摂・凝集</button>
+  <div class="ch-body">
+<p class="pp">ここで一段、視点を上げる。</p>
 
-<p>そもそも、なぜ私たちは個々の政策ではなく「政党」に投票しているのだろうか。</p>
+<p class="pp">そもそも、なぜ私たちは個々の政策ではなく「政党」に投票しているのだろうか。</p>
 
-<p>ある有権者が、憲法改正を重視し、安全保障で強い姿勢を望み、同時に再分配の強化と選択的夫婦別姓の実現を望んでいるとする。別の有権者は、外交で協調を重んじ、財政再建を優先し、原子力発電の維持に賛成しているとする。この二人が同じ政党に投票することは、十分にありうる。だが二人が「同じ政治」を望んでいるとは、まったく言えない。</p>
+<p class="pp">ある有権者が、憲法改正を重視し、安全保障で強い姿勢を望み、同時に再分配の強化と選択的夫婦別姓の実現を望んでいるとする。別の有権者は、外交で協調を重んじ、財政再建を優先し、原子力発電の維持に賛成しているとする。この二人が同じ政党に投票することは、十分にありうる。だが二人が「同じ政治」を望んでいるとは、まったく言えない。</p>
 
-<p>これは制度の欠陥だろうか。それとも、政治が成立するための条件だろうか。</p>
+<p class="pp">これは制度の欠陥だろうか。それとも、政治が成立するための条件だろうか。</p>
 
-<p>政党研究の古典的な出発点は、シーモア・リプセットとステイン・ロッカンが 1967 年に提示した<strong>社会的亀裂</strong>の理論である。 [5] 彼らによれば、西欧の政党システムは、近代化の過程で生じたいくつかの根本的な対立軸 - 中央対周辺、教会対国家、都市対農村、資本対労働 - に沿って結晶化した。政党とは、社会に存在する無数の対立のうち、<em>どれを政治的に有意味な対立として制度化するか</em>という選択の産物なのである。</p>
+<p class="pp">政党研究の古典的な出発点は、シーモア・リプセットとステイン・ロッカンが 1967 年に提示した<strong>社会的亀裂</strong>の理論である。 [5] 彼らによれば、西欧の政党システムは、近代化の過程で生じたいくつかの根本的な対立軸 - 中央対周辺、教会対国家、都市対農村、資本対労働 - に沿って結晶化した。政党とは、社会に存在する無数の対立のうち、<em>どれを政治的に有意味な対立として制度化するか</em>という選択の産物なのである。</p>
 
-<p>ここに、しばしば見過ごされる論点がある。社会には無限に多くの対立軸がありうる。しかし政治システムが同時に処理できる軸の数は、ごく少ない。だから政党システムは、<strong>争点の選別装置</strong>としても働いている。何が政治の対象になり、何が「政治の問題ではない」ことにされるかは、政党システムの構造に大きく依存する。</p>
+<p class="pp">ここに、しばしば見過ごされる論点がある。社会には無限に多くの対立軸がありうる。しかし政治システムが同時に処理できる軸の数は、ごく少ない。だから政党システムは、<strong>争点の選別装置</strong>としても働いている。何が政治の対象になり、何が「政治の問題ではない」ことにされるかは、政党システムの構造に大きく依存する。</p>
 
-<blockquote class="pull"><p>政党は民意を単純化することで、民意を政治に参加させている。</p></blockquote>
+<blockquote class="pull"><p class="pp">政党は民意を単純化することで、民意を政治に参加させている。</p></blockquote>
 
-<p>この逆説は、政党が抱える構造的な緊張に由来する。政党は、選挙に勝つために、できるだけ多様な有権者を<strong>包摂</strong>しなければならない。しかし、政権を取ったあとに政策を実行するためには、内部で<strong>凝集</strong>していなければならない。包摂を高めれば凝集が下がり、凝集を高めれば包摂が下がる。すべての政党は、この二つのあいだのどこかに位置を取るしかない。</p>
+<p class="pp">この逆説は、政党が抱える構造的な緊張に由来する。政党は、選挙に勝つために、できるだけ多様な有権者を<strong>包摂</strong>しなければならない。しかし、政権を取ったあとに政策を実行するためには、内部で<strong>凝集</strong>していなければならない。包摂を高めれば凝集が下がり、凝集を高めれば包摂が下がる。すべての政党は、この二つのあいだのどこかに位置を取るしかない。</p>
 
-<p>だから、一つの政党の内部に大きな政策的濃淡があること自体は、民主主義の欠陥ではない。むしろ、多様な社会で政党が機能するための、ほとんど必然的な帰結である。問題があるとすれば、それは「政党内に多様性がある」ことではなく、<em>その内部の多様性が有権者から見えないこと</em>、そして<em>党内でどの意見が採用されるかを決める過程に有権者が関与できないこと</em>のほうにある。</p>
+<p class="pp">だから、一つの政党の内部に大きな政策的濃淡があること自体は、民主主義の欠陥ではない。むしろ、多様な社会で政党が機能するための、ほとんど必然的な帰結である。問題があるとすれば、それは「政党内に多様性がある」ことではなく、<em>その内部の多様性が有権者から見えないこと</em>、そして<em>党内でどの意見が採用されるかを決める過程に有権者が関与できないこと</em>のほうにある。</p>
 
-<p>この問題は、日本において特殊な形をとってきた。</p>
+<p class="pp">この問題は、日本において特殊な形をとってきた。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s5" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">5</span>
-    <span class="title">日本の実験 - 中選挙区制から 1994 年改革へ</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>1955 年から 1993 年まで、日本の衆議院は中選挙区制のもとにあり、自由民主党がほぼ一貫して政権を担った。この期間、自民党は総選挙のたびに、<em>一つの選挙区に複数の自党候補を立てる</em>必要があった。過半数を取るには、それしか方法がなかったからである。</p>
+<div class="chapter" id="s5">
+  <button aria-expanded="false" class="ch-head" type="button">5. 日本の実験 - 中選挙区制から 1994 年改革へ</button>
+  <div class="ch-body">
+<p class="pp">1955 年から 1993 年まで、日本の衆議院は中選挙区制のもとにあり、自由民主党がほぼ一貫して政権を担った。この期間、自民党は総選挙のたびに、<em>一つの選挙区に複数の自党候補を立てる</em>必要があった。過半数を取るには、それしか方法がなかったからである。</p>
 
-<p>ここに、日本政治を長く規定する制度的帰結が生まれた。同じ党の候補者同士が、同じ選挙区で直接競争する。彼らは同じ党の公約を掲げているのだから、<em>政策では差別化できない</em>。差別化できるのは、個人的な便宜、地元への利益誘導、そして後援会という個人組織の動員力である。そして候補者は、選挙資金とポストを供給してくれる派閥を必要とした。</p>
+<p class="pp">ここに、日本政治を長く規定する制度的帰結が生まれた。同じ党の候補者同士が、同じ選挙区で直接競争する。彼らは同じ党の公約を掲げているのだから、<em>政策では差別化できない</em>。差別化できるのは、個人的な便宜、地元への利益誘導、そして後援会という個人組織の動員力である。そして候補者は、選挙資金とポストを供給してくれる派閥を必要とした。</p>
 
-<p>ゲアリー・コックス、フランシス・ローゼンブルース、マイケル・ティースは、この因果連関を定式化した研究を残している。 [6] 派閥は、政治家の思想的な集まりである以前に、<strong>中選挙区制が構造的に要請した候補者支援機構</strong>だった、というのが彼らの議論の骨格である。</p>
+<p class="pp">ゲアリー・コックス、フランシス・ローゼンブルース、マイケル・ティースは、この因果連関を定式化した研究を残している。 [6] 派閥は、政治家の思想的な集まりである以前に、<strong>中選挙区制が構造的に要請した候補者支援機構</strong>だった、というのが彼らの議論の骨格である。</p>
 
-<p>1994 年の政治改革は、この構造を解体しようとする試みだった。リクルート事件をはじめとする政治資金スキャンダルへの批判、派閥政治への批判、そして「政権交代のある政党政治」への希求が、改革の背景にあった。衆議院に小選挙区比例代表並立制が導入され、 1996 年の総選挙から適用された。</p>
+<p class="pp">1994 年の政治改革は、この構造を解体しようとする試みだった。リクルート事件をはじめとする政治資金スキャンダルへの批判、派閥政治への批判、そして「政権交代のある政党政治」への希求が、改革の背景にあった。衆議院に小選挙区比例代表並立制が導入され、 1996 年の総選挙から適用された。</p>
 
-<p>期待された因果連鎖はこうだった - 小選挙区制が導入される。同一選挙区での同士討ちが消える。派閥の存在理由が薄れる。候補者は個人的便宜ではなく政党の政策で戦うようになる。政党は中位投票者を求めて中道へ収斂する。二大政党が政権を争う。</p>
+<p class="pp">期待された因果連鎖はこうだった - 小選挙区制が導入される。同一選挙区での同士討ちが消える。派閥の存在理由が薄れる。候補者は個人的便宜ではなく政党の政策で戦うようになる。政党は中位投票者を求めて中道へ収斂する。二大政党が政権を争う。</p>
 
-<p>この予測は、部分的にしか実現しなかった。</p>
+<p class="pp">この予測は、部分的にしか実現しなかった。</p>
 
-<p>興味深いのは、<em>なぜ部分的にしか実現しなかったか</em>である。ヨッヘン・レーメルトの研究は、改革の直後、自民党が抱えていた現職議員の数が新制度の小選挙区の数を大きく上回るという「現職過剰」の問題に直面したことを分析している。 [7] 党は、あぶれた現職を比例代表名簿の有望な順位に配分することで、地方レベルでの決裂を系統的に回避した。<br>
+<p class="pp">興味深いのは、<em>なぜ部分的にしか実現しなかったか</em>である。ヨッヘン・レーメルトの研究は、改革の直後、自民党が抱えていた現職議員の数が新制度の小選挙区の数を大きく上回るという「現職過剰」の問題に直面したことを分析している。 [7] 党は、あぶれた現職を比例代表名簿の有望な順位に配分することで、地方レベルでの決裂を系統的に回避した。<br/>
 <em>比例代表という新しい制度部品が、旧制度が生んだ人的資産を温存する緩衝材として使われた</em>のである。</p>
 
-<p>これは制度設計についての深い教訓を含んでいる。</p>
+<p class="pp">これは制度設計についての深い教訓を含んでいる。</p>
 
-<blockquote class="pull"><p>制度は白紙の上に導入されるのではない。旧制度が育てた組織・人材・慣行の上に導入される。そして行為者は、新しい部品を、設計者が想定しなかった用途に転用する。</p></blockquote>
+<blockquote class="pull"><p class="pp">制度は白紙の上に導入されるのではない。旧制度が育てた組織・人材・慣行の上に導入される。そして行為者は、新しい部品を、設計者が想定しなかった用途に転用する。</p></blockquote>
 
-<p>エリス・クラウスとロバート・ペッカネンは、改革後の自民党について、派閥・後援会・党組織のそれぞれが「消滅した」のでも「不変だった」のでもなく、機能を組み替えながら存続したことを詳細に記述している。 [8] 制度改革の帰結を評価するには、「意図した結果が出たか」ではなく、「行為者はどう適応したか」を見なければならない。</p>
+<p class="pp">エリス・クラウスとロバート・ペッカネンは、改革後の自民党について、派閥・後援会・党組織のそれぞれが「消滅した」のでも「不変だった」のでもなく、機能を組み替えながら存続したことを詳細に記述している。 [8] 制度改革の帰結を評価するには、「意図した結果が出たか」ではなく、「行為者はどう適応したか」を見なければならない。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s6" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">6</span>
-    <span class="title">党議拘束は民意を潰すのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここで、代表制の核心にある問題に触れる。</p>
+<div class="chapter" id="s6">
+  <button aria-expanded="false" class="ch-head" type="button">6. 党議拘束は民意を潰すのか</button>
+  <div class="ch-body">
+<p class="pp">ここで、代表制の核心にある問題に触れる。</p>
 
-<p>選挙で当選した議員は、誰の意思を代表しているのか。選挙区の有権者か。自分を公認した政党か。それとも国民全体か。そして、この三者が対立したとき、議員は何に従うべきか。</p>
+<p class="pp">選挙で当選した議員は、誰の意思を代表しているのか。選挙区の有権者か。自分を公認した政党か。それとも国民全体か。そして、この三者が対立したとき、議員は何に従うべきか。</p>
 
-<p>この問いには、二世紀半前に有名な答えが与えられている。 1774 年、エドマンド・バークはブリストルの選挙民に向かって語った。「あなたがたの代表は、あなたがたに勤勉と判断を負っている。もし彼が自らの判断をあなたがたの意見に犠牲にするなら、彼はあなたがたに奉仕するのではなく、あなたがたを裏切っているのです」。 [9]</p>
+<p class="pp">この問いには、二世紀半前に有名な答えが与えられている。 1774 年、エドマンド・バークはブリストルの選挙民に向かって語った。「あなたがたの代表は、あなたがたに勤勉と判断を負っている。もし彼が自らの判断をあなたがたの意見に犠牲にするなら、彼はあなたがたに奉仕するのではなく、あなたがたを裏切っているのです」。 [9]</p>
 
-<p>ここには、代表という概念の二つのモデルが対比されている。</p>
+<p class="pp">ここには、代表という概念の二つのモデルが対比されている。</p>
 
 <div class="box">
   <p class="boxhead sans">用語 - 委任と信託</p>
-  <p><span class="term">委任モデル（delegate）</span> : 代表者は選挙民の意思を伝達する管である。自分の判断を差し挟むことは、越権である。</p>
-  <p><span class="term">信託モデル（trustee）</span> : 代表者は選挙民から判断を託されている。審議を通じて考えを変えることこそが職務であり、常に選挙民の現在の意見をなぞることは職務放棄である。</p>
-  <p>どちらか一方が正しいのではない。近代の代表制は、この二つの緊張のうえに立っている。そして政党の登場は、この二項対立に第三の極を持ち込んだ - <span class="term">政党の集合的判断</span>である。</p>
+  <p class="pp"><span class="term">委任モデル（delegate）</span> : 代表者は選挙民の意思を伝達する管である。自分の判断を差し挟むことは、越権である。</p>
+  <p class="pp"><span class="term">信託モデル（trustee）</span> : 代表者は選挙民から判断を託されている。審議を通じて考えを変えることこそが職務であり、常に選挙民の現在の意見をなぞることは職務放棄である。</p>
+  <p class="pp">どちらか一方が正しいのではない。近代の代表制は、この二つの緊張のうえに立っている。そして政党の登場は、この二項対立に第三の極を持ち込んだ - <span class="term">政党の集合的判断</span>である。</p>
 </div>
 
-<p>党議拘束をめぐる議論は、この三極の緊張として理解したほうが正確である。</p>
+<p class="pp">党議拘束をめぐる議論は、この三極の緊張として理解したほうが正確である。</p>
 
-<p>党議拘束が弱ければ、政党は政権公約を実行する能力を失う。有権者は「この党に投票すればこの政策が実現する」と期待できなくなり、投票と結果の対応関係そのものが切れる。これは、政党の一体性を民主的責任の条件と見る<strong>責任政党政府</strong>モデルの中心的な主張である。 [10] 逆に党議拘束が強すぎれば、議員が選挙区で受けた負託と党の決定のあいだの緊張が、制度的に処理されないまま抑圧される。</p>
+<p class="pp">党議拘束が弱ければ、政党は政権公約を実行する能力を失う。有権者は「この党に投票すればこの政策が実現する」と期待できなくなり、投票と結果の対応関係そのものが切れる。これは、政党の一体性を民主的責任の条件と見る<strong>責任政党政府</strong>モデルの中心的な主張である。 [10] 逆に党議拘束が強すぎれば、議員が選挙区で受けた負託と党の決定のあいだの緊張が、制度的に処理されないまま抑圧される。</p>
 
-<p>日本では、この緊張が特殊な形で制度化されてきた。自民党には、政府提出法案を国会に出す前に党内で審査する<strong>事前審査制</strong>が長く定着している。政務調査会の部会、政調審議会、そして総務会（慣行として全会一致を原則としてきた）を通過して初めて、法案は国会へ向かう。この仕組みには二つの帰結がある。第一に、党内の異論は<em>国会に出る前に</em>処理される。第二に、その結果、国会の議決の場では党内対立がほとんど可視化されない。</p>
+<p class="pp">日本では、この緊張が特殊な形で制度化されてきた。自民党には、政府提出法案を国会に出す前に党内で審査する<strong>事前審査制</strong>が長く定着している。政務調査会の部会、政調審議会、そして総務会（慣行として全会一致を原則としてきた）を通過して初めて、法案は国会へ向かう。この仕組みには二つの帰結がある。第一に、党内の異論は<em>国会に出る前に</em>処理される。第二に、その結果、国会の議決の場では党内対立がほとんど可視化されない。</p>
 
-<p>だからこそ、稀な例外が研究上きわめて貴重になる。 2005 年 7 月、郵政民営化法案の衆議院採決で、自民党から多数の造反者が出た。クラウス、根元邦朗、ペッカネンはこの事例を分析し、造反の有無が何によって説明されるかを検証している。 [11] 一つの投票が学術論文の対象になりうるのは、それが日本ではほとんど唯一の観測機会だったからである。</p>
+<p class="pp">だからこそ、稀な例外が研究上きわめて貴重になる。 2005 年 7 月、郵政民営化法案の衆議院採決で、自民党から多数の造反者が出た。クラウス、根元邦朗、ペッカネンはこの事例を分析し、造反の有無が何によって説明されるかを検証している。 [11] 一つの投票が学術論文の対象になりうるのは、それが日本ではほとんど唯一の観測機会だったからである。</p>
 
-<p>したがって、「党議拘束があるから有権者の意思は消される」という説明は、単純すぎる。<br>
+<p class="pp">したがって、「党議拘束があるから有権者の意思は消される」という説明は、単純すぎる。<br/>
 より正確に言えばこうなる - <strong>有権者は候補者個人を選ぶと同時に、政党という集合的行為者を選んでいる。そのため、議員個人の判断、政党の集合的判断、選挙で示された有権者の意思のあいだには、原理的に解消できない緊張が生じる。</strong> 制度設計の問題は、この緊張を「なくす」ことではなく、どこで、どのように、どれだけ可視化された形で処理するかにある。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s7" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">7</span>
-    <span class="title">一党優位という現象、そして振幅</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ジョヴァンニ・サルトーリは政党システムの類型論のなかで、<strong>一党優位制</strong>という概念を立てた。 [12] 複数政党が自由に競争し、政権交代が法的にも実際にも可能でありながら、事実として一つの政党が長期にわたって政権を維持する状態を指す。競争が禁じられている一党制とは、質的に異なる。</p>
+<div class="chapter" id="s7">
+  <button aria-expanded="false" class="ch-head" type="button">7. 一党優位という現象、そして振幅</button>
+  <div class="ch-body">
+<p class="pp">ジョヴァンニ・サルトーリは政党システムの類型論のなかで、<strong>一党優位制</strong>という概念を立てた。 [12] 複数政党が自由に競争し、政権交代が法的にも実際にも可能でありながら、事実として一つの政党が長期にわたって政権を維持する状態を指す。競争が禁じられている一党制とは、質的に異なる。</p>
 
-<p>戦後日本は、この類型のもっとも重要な事例研究の対象であり続けてきた。イーサン・シャイナーは、日本の一党優位を<em>与党の強さ</em>ではなく<em>野党の失敗</em>から説明する研究を提示している。 [13]<br>
+<p class="pp">戦後日本は、この類型のもっとも重要な事例研究の対象であり続けてきた。イーサン・シャイナーは、日本の一党優位を<em>与党の強さ</em>ではなく<em>野党の失敗</em>から説明する研究を提示している。 [13]<br/>
 中央から地方への財政移転の構造、地方政治における自民党の圧倒的な基盤、そしてそれが野党にとって有能な候補者を確保することを構造的に困難にしていること - こうした条件が、有権者の不満が高まっても信頼できる代替勢力が現れない状況を作り出す、という議論である。</p>
 
-<p>ここで、ここ数年の日本政治を並べてみると、興味深いことが起きている。</p>
+<p class="pp">ここで、ここ数年の日本政治を並べてみると、興味深いことが起きている。</p>
 
 <div class="tablewrap">
 <table>
@@ -586,23 +520,22 @@ li{margin:0 0 .5rem}
 </table>
 </div>
 
-<p>16 か月のあいだに、同じ政党が少数与党から戦後最多議席へ移動した。連立の相手が入れ替わり、長年の連立パートナーは野党側の新しい枠組みに合流した。</p>
+<p class="pp">16 か月のあいだに、同じ政党が少数与党から戦後最多議席へ移動した。連立の相手が入れ替わり、長年の連立パートナーは野党側の新しい枠組みに合流した。</p>
 
-<p>この振幅は、一党優位という概念にとって何を意味するだろうか。</p>
+<p class="pp">この振幅は、一党優位という概念にとって何を意味するだろうか。</p>
 
-<p>二つの読み方がある。一つは、<em>優位は続いている</em>という読み方。政権交代が起きたわけではなく、自民党は一時的な後退から復帰したにすぎない。<br>
+<p class="pp">二つの読み方がある。一つは、<em>優位は続いている</em>という読み方。政権交代が起きたわけではなく、自民党は一時的な後退から復帰したにすぎない。<br/>
 もう一つは、<em>優位の性質が変わった</em>という読み方。かつての自民党優位は安定した基盤に支えられていたが、いまの議席数は、有権者の強固な支持というより、小選挙区制の増幅効果と野党側の分裂・再編の混乱が重なった結果として説明できる部分が大きい。有権者の四人に一人の積極的支持で三分の二の議席が生まれる構造は、逆向きにも同じだけ振れうる。</p>
 
-<p>どちらが正しいかを、いま断定することはできない。政治学は予測の学問としては弱く、これは学問の未熟さというより、対象の性質による。ただし、確実に言えることが一つある。</p>
+<p class="pp">どちらが正しいかを、いま断定することはできない。政治学は予測の学問としては弱く、これは学問の未熟さというより、対象の性質による。ただし、確実に言えることが一つある。</p>
 
-<blockquote class="pull"><p>議席数の劇的な変化は、有権者の意思の劇的な変化を意味しない。変換規則が非線形であれば、小さな入力の変化が大きな出力の変化を生む。</p></blockquote>
+<blockquote class="pull"><p class="pp">議席数の劇的な変化は、有権者の意思の劇的な変化を意味しない。変換規則が非線形であれば、小さな入力の変化が大きな出力の変化を生む。</p></blockquote>
 
-<p>そしてこの非線形性は、政治的な感覚に直接影響する。圧勝した側は「国民の圧倒的な支持を得た」と語り、敗れた側は「民意は届いていない」と語る。どちらの語りも、同じ 49.23% という数字の上に立っている。</p>
+<p class="pp">そしてこの非線形性は、政治的な感覚に直接影響する。圧勝した側は「国民の圧倒的な支持を得た」と語り、敗れた側は「民意は届いていない」と語る。どちらの語りも、同じ 49.23% という数字の上に立っている。</p>
 
-<p>ここで、政治学の手前にある、より根本的な問いが立ち上がる - <em>そもそも「民意」とは、何かを指す言葉なのだろうか</em>。</p>
+<p class="pp">ここで、政治学の手前にある、より根本的な問いが立ち上がる - <em>そもそも「民意」とは、何かを指す言葉なのだろうか</em>。</p>
     </div>
-  </div>
-</section>
+</div>
 
 <div class="part-divider">
   <span class="pnum sans">第 II 部</span>
@@ -610,17 +543,12 @@ li{margin:0 0 .5rem}
   <p class="plede">「民意」の論理的身分</p>
 </div>
 
-<section class="acc-item" id="s8" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">8</span>
-    <span class="title">コンドルセの発見</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>1785 年、フランスの数学者にして革命期の政治家であったコンドルセ侯爵は、多数決について奇妙なことに気づいた。 [14]</p>
+<div class="chapter" id="s8">
+  <button aria-expanded="false" class="ch-head" type="button">8. コンドルセの発見</button>
+  <div class="ch-body">
+<p class="pp">1785 年、フランスの数学者にして革命期の政治家であったコンドルセ侯爵は、多数決について奇妙なことに気づいた。 [14]</p>
 
-<p>三人の有権者がいる。選択肢は A 、 B 、 C の三つ。それぞれの選好順序はこうだとする。</p>
+<p class="pp">三人の有権者がいる。選択肢は A 、 B 、 C の三つ。それぞれの選好順序はこうだとする。</p>
 
 <div class="tablewrap">
 <table>
@@ -633,77 +561,65 @@ li{margin:0 0 .5rem}
 </table>
 </div>
 
-<p>三人とも、まったく正常で、まったく一貫した選好を持っている。矛盾も混乱もない。</p>
+<p class="pp">三人とも、まったく正常で、まったく一貫した選好を持っている。矛盾も混乱もない。</p>
 
-<p>では、社会全体としてはどうか。 A と B を一対一で比べると、 A を B より上に置くのは甲と丙で、多数決は A の勝ち。 B と C を比べると、 B を上に置くのは甲と乙で、 B の勝ち。ここまでは A が B に勝ち、 B が C に勝つのだから、 A が C に勝つはずである。ところが C と A を比べると、 C を上に置くのは乙と丙で、 <strong>C の勝ち</strong>。</p>
+<p class="pp">では、社会全体としてはどうか。 A と B を一対一で比べると、 A を B より上に置くのは甲と丙で、多数決は A の勝ち。 B と C を比べると、 B を上に置くのは甲と乙で、 B の勝ち。ここまでは A が B に勝ち、 B が C に勝つのだから、 A が C に勝つはずである。ところが C と A を比べると、 C を上に置くのは乙と丙で、 <strong>C の勝ち</strong>。</p>
 
-<p>A は B に勝ち、 B は C に勝ち、 C は A に勝つ。じゃんけんである。</p>
+<p class="pp">A は B に勝ち、 B は C に勝ち、 C は A に勝つ。じゃんけんである。</p>
 
-<p>これが<strong>投票のパラドックス</strong>（コンドルセの逆理）である。個人の選好はすべて推移的（A より B 、 B より C を好むなら、 A より C を好む）なのに、多数決で集計した社会的選好は推移性を失う。</p>
+<p class="pp">これが<strong>投票のパラドックス</strong>（コンドルセの逆理）である。個人の選好はすべて推移的（A より B 、 B より C を好むなら、 A より C を好む）なのに、多数決で集計した社会的選好は推移性を失う。</p>
 
-<p>ここで起きていることを、正確に述べておく価値がある。壊れているのは有権者ではない。壊れているのは<em>集計操作そのもの</em>である。個々の部分が持つ性質（推移性）が、全体には引き継がれない。論理学や数学では、こうした現象自体は珍しくない。だが政治の文脈でこれが意味することは重い。</p>
+<p class="pp">ここで起きていることを、正確に述べておく価値がある。壊れているのは有権者ではない。壊れているのは<em>集計操作そのもの</em>である。個々の部分が持つ性質（推移性）が、全体には引き継がれない。論理学や数学では、こうした現象自体は珍しくない。だが政治の文脈でこれが意味することは重い。</p>
 
-<p>この状況では、<strong>議題の順序が結果を決める</strong>。 A と B をまず対決させ、勝者を C と対決させれば、 C が勝つ。 B と C を先に対決させれば、 A が勝つ。 A と C を先にすれば、 B が勝つ。三つのどれでも勝たせられる。議事日程を握る者が、実質的に結果を握る。</p>
+<p class="pp">この状況では、<strong>議題の順序が結果を決める</strong>。 A と B をまず対決させ、勝者を C と対決させれば、 C が勝つ。 B と C を先に対決させれば、 A が勝つ。 A と C を先にすれば、 B が勝つ。三つのどれでも勝たせられる。議事日程を握る者が、実質的に結果を握る。</p>
 
-<p>議会運営や委員会の議題設定が政治的に激しく争われる理由の一つが、ここにある。手続きは中立な器ではない。</p>
+<p class="pp">議会運営や委員会の議題設定が政治的に激しく争われる理由の一つが、ここにある。手続きは中立な器ではない。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s9" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">9</span>
-    <span class="title">アローの不可能性定理を正確に読む</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>コンドルセの発見は、多数決という<em>特定の</em>ルールの問題に見える。ならば、もっと良いルールを設計すればよいのではないか。</p>
+<div class="chapter" id="s9">
+  <button aria-expanded="false" class="ch-head" type="button">9. アローの不可能性定理を正確に読む</button>
+  <div class="ch-body">
+<p class="pp">コンドルセの発見は、多数決という<em>特定の</em>ルールの問題に見える。ならば、もっと良いルールを設計すればよいのではないか。</p>
 
-<p>この望みを、 1951 年にケネス・アローが断ち切った。 [15]</p>
+<p class="pp">この望みを、 1951 年にケネス・アローが断ち切った。 [15]</p>
 
-<p>アローが証明したのは、次のことである。三つ以上の選択肢があるとき、個々人の選好順序の組から社会全体の選好順序を導き出す規則で、以下の条件を<em>すべて同時に</em>満たすものは存在しない。</p>
+<p class="pp">アローが証明したのは、次のことである。三つ以上の選択肢があるとき、個々人の選好順序の組から社会全体の選好順序を導き出す規則で、以下の条件を<em>すべて同時に</em>満たすものは存在しない。</p>
 
 <div class="box">
   <p class="boxhead sans">アローの四条件</p>
-  <p><span class="term">定義域の非限定性</span> - どんな選好の組み合わせが入力されても、規則は必ず何らかの社会的順序を出力しなければならない。「そんな変な選好を持つ人がいる場合は計算しません」は認められない。</p>
-  <p><span class="term">パレート条件</span> - 全員が X を Y より好むなら、社会も X を Y より上に置く。全員一致を無視するルールは論外である。</p>
-  <p><span class="term">無関係な選択肢からの独立性（IIA）</span> - 社会が X と Y のどちらを上に置くかは、 X と Y に対する各人の相対的な評価だけで決まり、第三の選択肢 Z の位置には影響されない。</p>
-  <p><span class="term">非独裁性</span> - ある一人の選好が、他の全員の選好にかかわらず常に社会的順序になる、そのような人物が存在しない。</p>
+  <p class="pp"><span class="term">定義域の非限定性</span> - どんな選好の組み合わせが入力されても、規則は必ず何らかの社会的順序を出力しなければならない。「そんな変な選好を持つ人がいる場合は計算しません」は認められない。</p>
+  <p class="pp"><span class="term">パレート条件</span> - 全員が X を Y より好むなら、社会も X を Y より上に置く。全員一致を無視するルールは論外である。</p>
+  <p class="pp"><span class="term">無関係な選択肢からの独立性（IIA）</span> - 社会が X と Y のどちらを上に置くかは、 X と Y に対する各人の相対的な評価だけで決まり、第三の選択肢 Z の位置には影響されない。</p>
+  <p class="pp"><span class="term">非独裁性</span> - ある一人の選好が、他の全員の選好にかかわらず常に社会的順序になる、そのような人物が存在しない。</p>
 </div>
 
-<p>この四つは、どれも「民主的な集計ルールなら当然備えているべきだ」と思える性質である。にもかかわらず、四つを同時に満たす規則は<em>論理的に存在しない</em>。これは経験的な発見ではなく、定理である。反例を探しても見つからない。</p>
+<p class="pp">この四つは、どれも「民主的な集計ルールなら当然備えているべきだ」と思える性質である。にもかかわらず、四つを同時に満たす規則は<em>論理的に存在しない</em>。これは経験的な発見ではなく、定理である。反例を探しても見つからない。</p>
 
-<p>この定理の読み方には、注意が必要である。以下は、しばしば見られる誤読である。</p>
+<p class="pp">この定理の読み方には、注意が必要である。以下は、しばしば見られる誤読である。</p>
 
-<p><strong>誤読 1: 「民主主義は不可能である」</strong> - 定理が言っているのは、四つの条件を同時に満たす<em>順序集計規則</em>が存在しないということだけである。民主主義には、順序集計以外にも多くの構成要素がある。</p>
+<p class="pp"><strong>誤読 1: 「民主主義は不可能である」</strong> - 定理が言っているのは、四つの条件を同時に満たす<em>順序集計規則</em>が存在しないということだけである。民主主義には、順序集計以外にも多くの構成要素がある。</p>
 
-<p><strong>誤読 2: 「だからどんな選挙制度も同じくらいダメだ」</strong> - 不可能性は、どの条件をどれだけ緩めるかという選択肢を無数に残す。制度間の優劣は依然として論じられる。定理は議論を終わらせるのではなく、議論の性質を変える。</p>
+<p class="pp"><strong>誤読 2: 「だからどんな選挙制度も同じくらいダメだ」</strong> - 不可能性は、どの条件をどれだけ緩めるかという選択肢を無数に残す。制度間の優劣は依然として論じられる。定理は議論を終わらせるのではなく、議論の性質を変える。</p>
 
-<p><strong>誤読 3: 「投票結果に意味はない」</strong> - 定理は、選好が循環する状況が<em>ありうる</em>ことを示す。常にそうなるとは言っていない。</p>
+<p class="pp"><strong>誤読 3: 「投票結果に意味はない」</strong> - 定理は、選好が循環する状況が<em>ありうる</em>ことを示す。常にそうなるとは言っていない。</p>
 
-<p>では、定理から何が正しく言えるのか。おそらく、次のことである。</p>
+<p class="pp">では、定理から何が正しく言えるのか。おそらく、次のことである。</p>
 
-<blockquote class="pull"><p>「集計以前に存在する、唯一の民意」という対象を想定することは、論理的に支持されない。集計規則は、あらかじめ存在する民意を発見するのではなく、民意を構成する。</p></blockquote>
+<blockquote class="pull"><p class="pp">「集計以前に存在する、唯一の民意」という対象を想定することは、論理的に支持されない。集計規則は、あらかじめ存在する民意を発見するのではなく、民意を構成する。</p></blockquote>
 
-<p>この移行は、哲学的に言えば<strong>存在論的主張から手続き的主張への移行</strong>である。「民意はこうだった」という言明は、「この選好の組を、この規則で集計すると、この結果になった」という言明へ置き換えられなければならない。そして規則が変われば、同じ選好の組から違う結果が出る。</p>
+<p class="pp">この移行は、哲学的に言えば<strong>存在論的主張から手続き的主張への移行</strong>である。「民意はこうだった」という言明は、「この選好の組を、この規則で集計すると、この結果になった」という言明へ置き換えられなければならない。そして規則が変われば、同じ選好の組から違う結果が出る。</p>
 
-<p>序で見た二枚の投票用紙は、この抽象的な議論の、極めて具体的な実例である。同じ有権者の同じ意思が、二つの規則によって、二つの異なる「民意」に変換された。どちらかが本物でどちらかが偽物なのではない。両方とも、規則の出力なのである。</p>
+<p class="pp">序で見た二枚の投票用紙は、この抽象的な議論の、極めて具体的な実例である。同じ有権者の同じ意思が、二つの規則によって、二つの異なる「民意」に変換された。どちらかが本物でどちらかが偽物なのではない。両方とも、規則の出力なのである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s10" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">10</span>
-    <span class="title">メイの定理 - 二択なら答えは一つ</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>アローの定理は強力だが、ここで<em>逆方向の定理</em>を置くと、風景が一変する。</p>
+<div class="chapter" id="s10">
+  <button aria-expanded="false" class="ch-head" type="button">10. メイの定理 - 二択なら答えは一つ</button>
+  <div class="ch-body">
+<p class="pp">アローの定理は強力だが、ここで<em>逆方向の定理</em>を置くと、風景が一変する。</p>
 
-<p>1952 年、ケネス・メイは次のことを証明した。 [16] 選択肢が<strong>二つ</strong>のとき、以下の条件を満たす決定ルールは、単純多数決<em>ただ一つ</em>である。</p>
+<p class="pp">1952 年、ケネス・メイは次のことを証明した。 [16] 選択肢が<strong>二つ</strong>のとき、以下の条件を満たす決定ルールは、単純多数決<em>ただ一つ</em>である。</p>
 
 <ul>
 <li><strong>匿名性</strong> - 誰が投票したかではなく、何票入ったかだけが問題になる。全員の票の重みが等しい。</li>
@@ -712,129 +628,104 @@ li{margin:0 0 .5rem}
 <li><strong>決定性</strong> - どんな入力に対しても結果が定まる。</li>
 </ul>
 
-<p>この二つの定理を並べると、社会選択論の風景がはっきりする。</p>
+<p class="pp">この二つの定理を並べると、社会選択論の風景がはっきりする。</p>
 
-<blockquote class="pull"><p>問題は多数決にあるのではない。選択肢が三つ以上あることにある。</p></blockquote>
+<blockquote class="pull"><p class="pp">問題は多数決にあるのではない。選択肢が三つ以上あることにある。</p></blockquote>
 
-<p>二択なら、多数決は「たまたま慣習で使われているルール」ではなく、平等・中立・応答性という民主的な要請から<em>一意に導かれる</em>ルールである。国民投票や二者択一の議決において多数決を使うことには、きわめて強い理論的根拠がある。</p>
+<p class="pp">二択なら、多数決は「たまたま慣習で使われているルール」ではなく、平等・中立・応答性という民主的な要請から<em>一意に導かれる</em>ルールである。国民投票や二者択一の議決において多数決を使うことには、きわめて強い理論的根拠がある。</p>
 
-<p>ところが、現実の政治的選択が二択であることは、ほとんどない。候補者は三人以上いる。政策の選択肢は連続的である。争点は複数あり、それぞれに独立の軸がある。そして選択肢が三つ以上になった瞬間、アローの領域に入る。</p>
+<p class="pp">ところが、現実の政治的選択が二択であることは、ほとんどない。候補者は三人以上いる。政策の選択肢は連続的である。争点は複数あり、それぞれに独立の軸がある。そして選択肢が三つ以上になった瞬間、アローの領域に入る。</p>
 
-<p>この対比は、実践的な含意を持っている。政治的な議論において、選択肢を二つに絞る操作 - 「賛成か反対か」「改革か現状維持か」「与党か野党か」 - は、しばしば<em>決定を可能にするために不可欠</em>である。同時にそれは、<em>三つ目以降の選択肢を議論から排除する</em>操作でもある。二項対立への還元は、思考停止の症状であると同時に、集合的決定の前提条件でもある。この両義性からは逃れられない。</p>
+<p class="pp">この対比は、実践的な含意を持っている。政治的な議論において、選択肢を二つに絞る操作 - 「賛成か反対か」「改革か現状維持か」「与党か野党か」 - は、しばしば<em>決定を可能にするために不可欠</em>である。同時にそれは、<em>三つ目以降の選択肢を議論から排除する</em>操作でもある。二項対立への還元は、思考停止の症状であると同時に、集合的決定の前提条件でもある。この両義性からは逃れられない。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s11" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">11</span>
-    <span class="title">戦略投票は制度の欠陥ではない</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>小選挙区で、こういう有権者を考える。 A 候補がいちばん好きだ。 B 候補は二番目。 C 候補にはどうしても勝ってほしくない。ところが世論調査では、 A の当選可能性はほぼなく、 B と C が接戦だという。</p>
+<div class="chapter" id="s11">
+  <button aria-expanded="false" class="ch-head" type="button">11. 戦略投票は制度の欠陥ではない</button>
+  <div class="ch-body">
+<p class="pp">小選挙区で、こういう有権者を考える。 A 候補がいちばん好きだ。 B 候補は二番目。 C 候補にはどうしても勝ってほしくない。ところが世論調査では、 A の当選可能性はほぼなく、 B と C が接戦だという。</p>
 
-<p>この人が B に投票したとする。彼は「本心を裏切った」のだろうか。</p>
+<p class="pp">この人が B に投票したとする。彼は「本心を裏切った」のだろうか。</p>
 
-<p>そうではない。彼は自分の選好を<em>より良く実現するために</em>投票している。ただし、正直に一位を書くという方法ではなく、結果を計算に入れるという方法で。政治学ではこれを<strong>戦略投票</strong>と呼ぶ。デュヴェルジェの言う心理的効果の、ミクロな中身がこれである。</p>
+<p class="pp">そうではない。彼は自分の選好を<em>より良く実現するために</em>投票している。ただし、正直に一位を書くという方法ではなく、結果を計算に入れるという方法で。政治学ではこれを<strong>戦略投票</strong>と呼ぶ。デュヴェルジェの言う心理的効果の、ミクロな中身がこれである。</p>
 
-<p>ここで、多くの人が抱く直感がある - 「正直に投票することが最善になるような、うまい制度を作ればよいのではないか」。</p>
+<p class="pp">ここで、多くの人が抱く直感がある - 「正直に投票することが最善になるような、うまい制度を作ればよいのではないか」。</p>
 
-<p>1973 年から 75 年にかけて、アラン・ギバードとマーク・サタースウェイトが独立に証明した定理が、この直感を打ち砕く。 [17] 三つ以上の選択肢があり、どの選択肢も勝ちうる（全射である）非独裁的な投票ルールは、<strong>必ず操作可能である</strong>。すなわち、正直に投票するより虚偽の順序を申告したほうが自分にとって良い結果になる状況が、必ず存在する。</p>
+<p class="pp">1973 年から 75 年にかけて、アラン・ギバードとマーク・サタースウェイトが独立に証明した定理が、この直感を打ち砕く。 [17] 三つ以上の選択肢があり、どの選択肢も勝ちうる（全射である）非独裁的な投票ルールは、<strong>必ず操作可能である</strong>。すなわち、正直に投票するより虚偽の順序を申告したほうが自分にとって良い結果になる状況が、必ず存在する。</p>
 
-<p>順位付け投票でも、決選投票でも、ボルダ式でも同じである。戦略的操作の余地がない民主的な投票ルールは、論理的に存在しない。</p>
+<p class="pp">順位付け投票でも、決選投票でも、ボルダ式でも同じである。戦略的操作の余地がない民主的な投票ルールは、論理的に存在しない。</p>
 
-<p>この定理の意義は、評価を反転させる点にある。</p>
+<p class="pp">この定理の意義は、評価を反転させる点にある。</p>
 
-<blockquote class="pull"><p>戦略投票は、有権者の不誠実さでも、制度の設計ミスでもない。三つ以上の選択肢を集約するという操作に、論理的に内在する性質である。</p></blockquote>
+<blockquote class="pull"><p class="pp">戦略投票は、有権者の不誠実さでも、制度の設計ミスでもない。三つ以上の選択肢を集約するという操作に、論理的に内在する性質である。</p></blockquote>
 
-<p>したがって、制度設計者にできるのは「戦略投票をなくす」ことではない。<em>どのような戦略的行動を誘発するか</em>を選ぶことだけである。小選挙区制は、有権者に「勝てそうな二人のどちらか」を選ばせる戦略を誘発する。比例代表制は、その圧力を弱める代わりに、選挙後の連立交渉という別の場面に戦略的操作を移す。どこにも消えない。場所が変わるだけである。</p>
+<p class="pp">したがって、制度設計者にできるのは「戦略投票をなくす」ことではない。<em>どのような戦略的行動を誘発するか</em>を選ぶことだけである。小選挙区制は、有権者に「勝てそうな二人のどちらか」を選ばせる戦略を誘発する。比例代表制は、その圧力を弱める代わりに、選挙後の連立交渉という別の場面に戦略的操作を移す。どこにも消えない。場所が変わるだけである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s12" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">12</span>
-    <span class="title">リカー対マッキー - 定理から何が言えるか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでの定理群を、政治理論にどう接続するか。この点で、二十世紀後半に大きな論争があった。</p>
+<div class="chapter" id="s12">
+  <button aria-expanded="false" class="ch-head" type="button">12. リカー対マッキー - 定理から何が言えるか</button>
+  <div class="ch-body">
+<p class="pp">ここまでの定理群を、政治理論にどう接続するか。この点で、二十世紀後半に大きな論争があった。</p>
 
-<p>ウィリアム・リカーは 1982 年の著作で、強い主張を展開した。 [18] 社会選択論の諸定理は、民主主義についての一つの見方 - 彼が<strong>ポピュリズム的民主主義観</strong>と呼ぶもの - を論駁している、というのである。<br>
+<p class="pp">ウィリアム・リカーは 1982 年の著作で、強い主張を展開した。 [18] 社会選択論の諸定理は、民主主義についての一つの見方 - 彼が<strong>ポピュリズム的民主主義観</strong>と呼ぶもの - を論駁している、というのである。<br/>
 ポピュリズム的民主主義観とは、選挙結果は「人民の意思」を表現しており、だからこそ政府の行為は正当化される、という考え方である。リカーによれば、集計結果が規則と議題の順序に依存する以上、そこに「人民の意思」を読み取ることはできない。</p>
 
-<p>ではリカーは民主主義を否定したのか。していない。彼は代わりに<strong>リベラルな民主主義観</strong>を擁護した。選挙の機能は人民の意思を表現することではなく、<em>悪い統治者を追い出すこと</em>にある。選挙は肯定的な指令ではなく、否定的な拒否権である。この見方なら、集計の不確定性に依存しない。</p>
+<p class="pp">ではリカーは民主主義を否定したのか。していない。彼は代わりに<strong>リベラルな民主主義観</strong>を擁護した。選挙の機能は人民の意思を表現することではなく、<em>悪い統治者を追い出すこと</em>にある。選挙は肯定的な指令ではなく、否定的な拒否権である。この見方なら、集計の不確定性に依存しない。</p>
 
-<p>これに対し、ジェラルド・マッキーは 2003 年に大部の反論を書いた。 [19] マッキーの論点は経験的である。リカーは選好循環や議題操作の実例を数多く挙げたが、それらの事例を再検証すると、多くは主張されたほど明確ではない。理論的に可能であることと、実際に頻繁に起きることは違う。</p>
+<p class="pp">これに対し、ジェラルド・マッキーは 2003 年に大部の反論を書いた。 [19] マッキーの論点は経験的である。リカーは選好循環や議題操作の実例を数多く挙げたが、それらの事例を再検証すると、多くは主張されたほど明確ではない。理論的に可能であることと、実際に頻繁に起きることは違う。</p>
 
-<p>この論争に決着はついていない。だが、論争そのものから学べることがある。</p>
+<p class="pp">この論争に決着はついていない。だが、論争そのものから学べることがある。</p>
 
-<p><strong>定理は、それ自体では何の政治的結論も含意しない。</strong> 定理から政治的な主張へ移るには、必ず追加の前提が要る - どの条件を放棄可能と見なすか、理論的可能性を実際上どれだけ重く見るか、民主主義に何を期待するか。そして、それらの追加前提は数学の外にある。</p>
+<p class="pp"><strong>定理は、それ自体では何の政治的結論も含意しない。</strong> 定理から政治的な主張へ移るには、必ず追加の前提が要る - どの条件を放棄可能と見なすか、理論的可能性を実際上どれだけ重く見るか、民主主義に何を期待するか。そして、それらの追加前提は数学の外にある。</p>
 
-<p>これは、数理的な議論を政治に持ち込むときに、繰り返し確認すべき点である。数式は結論を出さない。数式と、明示されない価値判断の組み合わせが、結論を出す。</p>
+<p class="pp">これは、数理的な議論を政治に持ち込むときに、繰り返し確認すべき点である。数式は結論を出さない。数式と、明示されない価値判断の組み合わせが、結論を出す。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s13" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">13</span>
-    <span class="title">センの抜け道 - 情報的基礎を広げる</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>アローの定理には、もう一つの読み方がある。アマルティア・センが強調したのは、定理の前提に潜む<strong>情報的貧困</strong>である。 [20]</p>
+<div class="chapter" id="s13">
+  <button aria-expanded="false" class="ch-head" type="button">13. センの抜け道 - 情報的基礎を広げる</button>
+  <div class="ch-body">
+<p class="pp">アローの定理には、もう一つの読み方がある。アマルティア・センが強調したのは、定理の前提に潜む<strong>情報的貧困</strong>である。 [20]</p>
 
-<p>アローの枠組みで、集計に使える情報は「各人の選好順序」だけである。 A より B が好き、というランキングだけ。そこには次の情報が一切含まれていない - どれくらい強く好きなのか。その人はいまどれだけ困窮しているのか。その選択肢は誰の基本的な必要に関わるのか。異なる人の状況を比較することは、この枠組みでは端から禁じられている。</p>
+<p class="pp">アローの枠組みで、集計に使える情報は「各人の選好順序」だけである。 A より B が好き、というランキングだけ。そこには次の情報が一切含まれていない - どれくらい強く好きなのか。その人はいまどれだけ困窮しているのか。その選択肢は誰の基本的な必要に関わるのか。異なる人の状況を比較することは、この枠組みでは端から禁じられている。</p>
 
-<p>センの指摘はこうだ。<em>不可能性が生じるのは、集計に使える情報が痩せているからである。</em> 情報の基礎を豊かにすれば、少なくとも一部の不可能性は解消する。</p>
+<p class="pp">センの指摘はこうだ。<em>不可能性が生じるのは、集計に使える情報が痩せているからである。</em> 情報の基礎を豊かにすれば、少なくとも一部の不可能性は解消する。</p>
 
-<p>この視点は、政治制度についての見方を変える。</p>
+<p class="pp">この視点は、政治制度についての見方を変える。</p>
 
-<p>投票は、情報を極端に圧縮する装置である。一人一票、丸を一つ。強度も、理由も、文脈も、切り落とされる。だが現実の政治過程は、投票だけで構成されているわけではない。公聴会、審議会、パブリックコメント、専門家の証言、当事者団体の陳情、報道、デモ、そして議会での討論 - これらはすべて、投票では伝わらない情報を政治過程に流し込む回路である。</p>
+<p class="pp">投票は、情報を極端に圧縮する装置である。一人一票、丸を一つ。強度も、理由も、文脈も、切り落とされる。だが現実の政治過程は、投票だけで構成されているわけではない。公聴会、審議会、パブリックコメント、専門家の証言、当事者団体の陳情、報道、デモ、そして議会での討論 - これらはすべて、投票では伝わらない情報を政治過程に流し込む回路である。</p>
 
-<p>センの議論は、こうした「投票以外の回路」に理論的な位置づけを与える。それらは投票の補助でも装飾でもない。<strong>投票という情報チャンネルの帯域が構造的に狭いことへの、制度的な対処</strong>なのである。</p>
+<p class="pp">センの議論は、こうした「投票以外の回路」に理論的な位置づけを与える。それらは投票の補助でも装飾でもない。<strong>投票という情報チャンネルの帯域が構造的に狭いことへの、制度的な対処</strong>なのである。</p>
 
-<p>この論点は、後で第 IV 部のハーバーマスの議論に接続する。</p>
+<p class="pp">この論点は、後で第 IV 部のハーバーマスの議論に接続する。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s14" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">14</span>
-    <span class="title">陪審定理 - 多数決の認識論</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>コンドルセは、逆理だけを残したのではない。もう一つ、正反対の方向を向いた定理も残している。</p>
+<div class="chapter" id="s14">
+  <button aria-expanded="false" class="ch-head" type="button">14. 陪審定理 - 多数決の認識論</button>
+  <div class="ch-body">
+<p class="pp">コンドルセは、逆理だけを残したのではない。もう一つ、正反対の方向を向いた定理も残している。</p>
 
-<p><strong>陪審定理</strong>はこう述べる。 [21] 二つの選択肢のうち一方が「正しい」とする。各人が独立に判断し、正解する確率が 0.5 より大きい（つまり、でたらめよりはましである）とする。このとき、多数決が正解を出す確率は、人数が増えるにつれて 1 に近づく。</p>
+<p class="pp"><strong>陪審定理</strong>はこう述べる。 [21] 二つの選択肢のうち一方が「正しい」とする。各人が独立に判断し、正解する確率が 0.5 より大きい（つまり、でたらめよりはましである）とする。このとき、多数決が正解を出す確率は、人数が増えるにつれて 1 に近づく。</p>
 
-<p>数字にすると印象的である。一人ひとりの正答率がわずか 0.51 でも、 1000 人の多数決なら正答率は 0.73 を超える。 10000 人なら 0.98 を超える。個々には頼りない判断が、集めると驚くほど信頼できるものになる。</p>
+<p class="pp">数字にすると印象的である。一人ひとりの正答率がわずか 0.51 でも、 1000 人の多数決なら正答率は 0.73 を超える。 10000 人なら 0.98 を超える。個々には頼りない判断が、集めると驚くほど信頼できるものになる。</p>
 
-<p>これは、多数決に<em>認識的</em>な正当化を与える議論である。多数決は、たんに公平だから採用されるのではない。真理に到達する手続きとしても優れている、という主張になる。</p>
+<p class="pp">これは、多数決に<em>認識的</em>な正当化を与える議論である。多数決は、たんに公平だから採用されるのではない。真理に到達する手続きとしても優れている、という主張になる。</p>
 
-<p>ただし、前提は三つとも脆い。</p>
+<p class="pp">ただし、前提は三つとも脆い。</p>
 
-<p><strong>「正解がある」</strong> - 政治的争点の多くは、事実問題と価値問題が絡み合っている。消費税率に「正解」はあるか。あるとしても、それは誰にとっての正解か。</p>
+<p class="pp"><strong>「正解がある」</strong> - 政治的争点の多くは、事実問題と価値問題が絡み合っている。消費税率に「正解」はあるか。あるとしても、それは誰にとっての正解か。</p>
 
-<p><strong>「独立に判断する」</strong> - これが最も深刻である。現実の有権者は、同じ報道を見て、同じ SNS を使い、同じ知人と話している。判断が相関していれば、人数を増やしても情報量は増えない。極端な場合、 1000 人の判断が実質的に一人分の情報しか含まない。定理の効力は、独立性の度合いに決定的に依存する。</p>
+<p class="pp"><strong>「独立に判断する」</strong> - これが最も深刻である。現実の有権者は、同じ報道を見て、同じ SNS を使い、同じ知人と話している。判断が相関していれば、人数を増やしても情報量は増えない。極端な場合、 1000 人の判断が実質的に一人分の情報しか含まない。定理の効力は、独立性の度合いに決定的に依存する。</p>
 
-<p><strong>「正答率が 0.5 を超える」</strong> - 体系的な誤りがあれば、正答率は 0.5 を下回りうる。そしてそのとき定理は反転する。人数が増えるほど、多数決は<em>確実に間違える</em>。</p>
+<p class="pp"><strong>「正答率が 0.5 を超える」</strong> - 体系的な誤りがあれば、正答率は 0.5 を下回りうる。そしてそのとき定理は反転する。人数が増えるほど、多数決は<em>確実に間違える</em>。</p>
 
-<p>クリスチャン・リストとロバート・グーディンは、この定理を二択以外に一般化する研究を行っている。 [22] だが、独立性という前提の脆さは残る。</p>
+<p class="pp">クリスチャン・リストとロバート・グーディンは、この定理を二択以外に一般化する研究を行っている。 [22] だが、独立性という前提の脆さは残る。</p>
 
-<p>ここで、第 II 部と第 III 部が接続する。陪審定理の効力は、有権者の判断がどれだけ独立で、どれだけ体系的な偏りから自由かにかかっている。つまり<em>心理学の問題</em>である。</p>
+<p class="pp">ここで、第 II 部と第 III 部が接続する。陪審定理の効力は、有権者の判断がどれだけ独立で、どれだけ体系的な偏りから自由かにかかっている。つまり<em>心理学の問題</em>である。</p>
     </div>
-  </div>
-</section>
+</div>
 
 <div class="part-divider">
   <span class="pnum sans">第 III 部</span>
@@ -842,225 +733,183 @@ li{margin:0 0 .5rem}
   <p class="plede">投票する主体の実像</p>
 </div>
 
-<section class="acc-item" id="s15" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">15</span>
-    <span class="title">コンヴァースの不都合な発見</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>社会選択論は、有権者が「選好順序」を持っていることを前提にする。安定していて、一貫していて、集計可能な順序を。</p>
+<div class="chapter" id="s15">
+  <button aria-expanded="false" class="ch-head" type="button">15. コンヴァースの不都合な発見</button>
+  <div class="ch-body">
+<p class="pp">社会選択論は、有権者が「選好順序」を持っていることを前提にする。安定していて、一貫していて、集計可能な順序を。</p>
 
-<p>1964 年、フィリップ・コンヴァースは、この前提を経験的に検証した。そして、その結果は当時の政治学に衝撃を与えた。 [23]</p>
+<p class="pp">1964 年、フィリップ・コンヴァースは、この前提を経験的に検証した。そして、その結果は当時の政治学に衝撃を与えた。 [23]</p>
 
-<p>コンヴァースが分析したのは、同一の有権者に時間を空けて同じ政策質問を繰り返したパネル調査である。もし人が安定した意見を持っているなら、回答は一貫するはずだ。実際には、多くの争点で、回答はほとんどランダムに見えるほど変動した。</p>
+<p class="pp">コンヴァースが分析したのは、同一の有権者に時間を空けて同じ政策質問を繰り返したパネル調査である。もし人が安定した意見を持っているなら、回答は一貫するはずだ。実際には、多くの争点で、回答はほとんどランダムに見えるほど変動した。</p>
 
-<p>さらに彼は、<strong>イデオロギー的制約</strong>の弱さを指摘した。政治エリートにとって、ある争点での立場は他の争点での立場を強く予測する。だが一般有権者では、争点間の相関ははるかに弱い。「保守なら経済でも安全保障でも家族政策でも保守的」という束ね方は、エリートの世界の構造であって、多くの有権者の頭のなかの構造ではない。</p>
+<p class="pp">さらに彼は、<strong>イデオロギー的制約</strong>の弱さを指摘した。政治エリートにとって、ある争点での立場は他の争点での立場を強く予測する。だが一般有権者では、争点間の相関ははるかに弱い。「保守なら経済でも安全保障でも家族政策でも保守的」という束ね方は、エリートの世界の構造であって、多くの有権者の頭のなかの構造ではない。</p>
 
-<p>コンヴァースはここから、一部の回答は<strong>非態度</strong>である可能性を論じた。調査員に質問されたから何か答えたが、その背後に安定した意見が存在しない、という状態である。</p>
+<p class="pp">コンヴァースはここから、一部の回答は<strong>非態度</strong>である可能性を論じた。調査員に質問されたから何か答えたが、その背後に安定した意見が存在しない、という状態である。</p>
 
-<p>この発見の解釈をめぐっては、六十年にわたって論争が続いている。測定誤差の問題だという反論、質問の曖昧さの問題だという反論、そして後述するように、有権者は別の形で合理的なのだという反論。決着はしていない。</p>
+<p class="pp">この発見の解釈をめぐっては、六十年にわたって論争が続いている。測定誤差の問題だという反論、質問の曖昧さの問題だという反論、そして後述するように、有権者は別の形で合理的なのだという反論。決着はしていない。</p>
 
-<p>ジョン・ザラーは 1992 年に、この現象を説明する影響力の大きいモデルを提示した。 [24] 彼の枠組みでは、人は争点について完成した意見を保管しているのではない。頭のなかには、賛否両方向の断片的な<em>考慮事項</em>が雑然と蓄えられている。質問されると、その時点でたまたま想起しやすかったものの平均が「意見」として口に出る。だから、直前に見たニュース、質問の言い回し、質問の順序で答えが変わる。</p>
+<p class="pp">ジョン・ザラーは 1992 年に、この現象を説明する影響力の大きいモデルを提示した。 [24] 彼の枠組みでは、人は争点について完成した意見を保管しているのではない。頭のなかには、賛否両方向の断片的な<em>考慮事項</em>が雑然と蓄えられている。質問されると、その時点でたまたま想起しやすかったものの平均が「意見」として口に出る。だから、直前に見たニュース、質問の言い回し、質問の順序で答えが変わる。</p>
 
-<p>これが正しいとすると、第 II 部の議論に返ってくる問題が生じる。</p>
+<p class="pp">これが正しいとすると、第 II 部の議論に返ってくる問題が生じる。</p>
 
-<blockquote class="pull"><p>選好の集計以前に、そもそも集計されるべき安定した選好が、どこまで存在しているのか。</p></blockquote>
+<blockquote class="pull"><p class="pp">選好の集計以前に、そもそも集計されるべき安定した選好が、どこまで存在しているのか。</p></blockquote>
 
-<p>アローの定理は「安定した個人の選好順序から社会的順序を作れるか」を問うた。心理学は「その個人の選好順序自体が、しばしば測定の場で構成されている」と応じる。問題は一段深くなる。</p>
+<p class="pp">アローの定理は「安定した個人の選好順序から社会的順序を作れるか」を問うた。心理学は「その個人の選好順序自体が、しばしば測定の場で構成されている」と応じる。問題は一段深くなる。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s16" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">16</span>
-    <span class="title">党派性というレンズ</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>もし人が安定した政策選好を持っていないなら、何が投票を導いているのか。</p>
+<div class="chapter" id="s16">
+  <button aria-expanded="false" class="ch-head" type="button">16. 党派性というレンズ</button>
+  <div class="ch-body">
+<p class="pp">もし人が安定した政策選好を持っていないなら、何が投票を導いているのか。</p>
 
-<p>政治心理学の答えの中心にあるのが、<strong>党派性</strong>である。ただし、それは「政策的に近い党を選んだ結果」ではなく、しばしばそれ自体が独立の変数として、政策的判断のほうを導く。</p>
+<p class="pp">政治心理学の答えの中心にあるのが、<strong>党派性</strong>である。ただし、それは「政策的に近い党を選んだ結果」ではなく、しばしばそれ自体が独立の変数として、政策的判断のほうを導く。</p>
 
-<p>2025 年、ピーター・ディットーらは『 Annual Review of Psychology 』誌に、この領域の三十年の研究を整理する総説を発表した。 [25] そこで確認されているのは、党派的な内集団への系統的な偏好であり、人々が自分の政治的信念や帰属を支持する情報を<em>探し、信じ、記憶しやすい</em>という頑健な傾向である。</p>
+<p class="pp">2025 年、ピーター・ディットーらは『 Annual Review of Psychology 』誌に、この領域の三十年の研究を整理する総説を発表した。 [25] そこで確認されているのは、党派的な内集団への系統的な偏好であり、人々が自分の政治的信念や帰属を支持する情報を<em>探し、信じ、記憶しやすい</em>という頑健な傾向である。</p>
 
-<p>この総説が慎重に扱っているのは、その先である。<em>なぜ</em>そうなるのか。そして、それは<em>非合理</em>なのか。この二点をめぐっては、研究者のあいだで長い論争が続いている。</p>
+<p class="pp">この総説が慎重に扱っているのは、その先である。<em>なぜ</em>そうなるのか。そして、それは<em>非合理</em>なのか。この二点をめぐっては、研究者のあいだで長い論争が続いている。</p>
 
-<p>対立する二つの説明を並べると、争点がはっきりする。</p>
+<p class="pp">対立する二つの説明を並べると、争点がはっきりする。</p>
 
-<p><strong>動機づけられた推論</strong>という説明では、人は結論を先に持っており、推論はその結論を守るために動員される。チャールズ・テイバーとミルトン・ロッジの実験は、政治的に強い意見を持つ人ほど、自分に反する論拠を厳しく吟味し、自分に沿う論拠を甘く受け入れることを示した。 [26]<br>
+<p class="pp"><strong>動機づけられた推論</strong>という説明では、人は結論を先に持っており、推論はその結論を守るために動員される。チャールズ・テイバーとミルトン・ロッジの実験は、政治的に強い意見を持つ人ほど、自分に反する論拠を厳しく吟味し、自分に沿う論拠を甘く受け入れることを示した。 [26]<br/>
 ダン・カハンらの研究はさらに踏み込み、数量的推論能力が<em>高い</em>人ほど、政治的に敏感な争点では偏った結論を導く傾向が強まることを報告している。 [27] 能力は、偏りの解毒剤ではなく、増幅器として働きうる。</p>
 
-<p><strong>ベイズ的更新</strong>という説明では、同じ現象が合理性の枠内で説明される。人は新しい情報を、それまでの信念（事前確率）と情報源への信頼度に照らして評価する。長年信頼してきた情報源からの情報を重く、繰り返し裏切られた情報源からの情報を軽く扱うことは、統計的推論として正しい。同じ証拠を見た二人が異なる結論に至ることは、事前確率が違えば当然起きる。</p>
+<p class="pp"><strong>ベイズ的更新</strong>という説明では、同じ現象が合理性の枠内で説明される。人は新しい情報を、それまでの信念（事前確率）と情報源への信頼度に照らして評価する。長年信頼してきた情報源からの情報を重く、繰り返し裏切られた情報源からの情報を軽く扱うことは、統計的推論として正しい。同じ証拠を見た二人が異なる結論に至ることは、事前確率が違えば当然起きる。</p>
 
-<p>どちらの説明も、観察されるデータの多くを説明できる。両者を経験的に区別することは、思われているより難しい。ディットーらの総説が「合理性の規範との整合性は活発に論争されている」と述べているのは、この状況を指している。</p>
+<p class="pp">どちらの説明も、観察されるデータの多くを説明できる。両者を経験的に区別することは、思われているより難しい。ディットーらの総説が「合理性の規範との整合性は活発に論争されている」と述べているのは、この状況を指している。</p>
 
-<p>ここで、社会心理学の古典的な枠組みが背景に入ってくる。ヘンリ・タジフェルとジョン・ターナーの<strong>社会的アイデンティティ理論</strong>である。 [28] 人は集団への帰属を自己概念の一部として取り込み、内集団を外集団より好意的に評価する。そしてタジフェルの有名な最小条件集団実験が示したのは、集団の境界が<em>まったく恣意的</em>であっても - くじ引きで振り分けただけでも - 内集団びいきが生じることだった。</p>
+<p class="pp">ここで、社会心理学の古典的な枠組みが背景に入ってくる。ヘンリ・タジフェルとジョン・ターナーの<strong>社会的アイデンティティ理論</strong>である。 [28] 人は集団への帰属を自己概念の一部として取り込み、内集団を外集団より好意的に評価する。そしてタジフェルの有名な最小条件集団実験が示したのは、集団の境界が<em>まったく恣意的</em>であっても - くじ引きで振り分けただけでも - 内集団びいきが生じることだった。</p>
 
-<p>党派性がアイデンティティとして働くとき、政治的意見の不一致は、意見の不一致ではなくなる。それは<em>自己への攻撃</em>になる。ここから、<strong>感情的分極</strong>と呼ばれる現象が生まれる。 [29] 対立政党の政策に反対するだけでなく、その支持者を人間として嫌い、避け、信用しなくなる。</p>
+<p class="pp">党派性がアイデンティティとして働くとき、政治的意見の不一致は、意見の不一致ではなくなる。それは<em>自己への攻撃</em>になる。ここから、<strong>感情的分極</strong>と呼ばれる現象が生まれる。 [29] 対立政党の政策に反対するだけでなく、その支持者を人間として嫌い、避け、信用しなくなる。</p>
 
 <div class="box">
   <p class="boxhead sans">留保 - 日本にそのまま当てはまるか</p>
-  <p>ここで紹介した研究の多くは、二大政党が明確に対立するアメリカの文脈で蓄積された。日本の政治文化に、どこまでそのまま適用できるかは慎重に考える必要がある。</p>
-  <p>日本では、支持政党を持たない層（無党派層）が長く大きな比重を占めており、政党帰属が自己概念の中核を占める人の割合は、アメリカに比べて小さいと考えられる。他方、投票率の低さ、争点態度の流動性、選挙ごとの大きな議席変動は、党派的アイデンティティの<em>弱さ</em>から説明できる部分がある。</p>
-  <p>つまり、同じ理論的枠組みから、日本については<span class="term">異なる予測</span>が導かれる。「アメリカの知見をそのまま日本に当てはめる」ことも、「日本は特殊だから何も当てはまらない」と考えることも、どちらも粗雑である。理論を輸入するときには、その理論が前提とする条件が現地で成立しているかを毎回問い直す必要がある。</p>
+  <p class="pp">ここで紹介した研究の多くは、二大政党が明確に対立するアメリカの文脈で蓄積された。日本の政治文化に、どこまでそのまま適用できるかは慎重に考える必要がある。</p>
+  <p class="pp">日本では、支持政党を持たない層（無党派層）が長く大きな比重を占めており、政党帰属が自己概念の中核を占める人の割合は、アメリカに比べて小さいと考えられる。他方、投票率の低さ、争点態度の流動性、選挙ごとの大きな議席変動は、党派的アイデンティティの<em>弱さ</em>から説明できる部分がある。</p>
+  <p class="pp">つまり、同じ理論的枠組みから、日本については<span class="term">異なる予測</span>が導かれる。「アメリカの知見をそのまま日本に当てはめる」ことも、「日本は特殊だから何も当てはまらない」と考えることも、どちらも粗雑である。理論を輸入するときには、その理論が前提とする条件が現地で成立しているかを毎回問い直す必要がある。</p>
 </div>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s17" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">17</span>
-    <span class="title">誠実な訂正 - 逆噴射効果は再現しなかった</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここで、この記事の主題そのものにとって重要な話をする。人文・社会科学が、自分自身をどう訂正するかという話である。</p>
+<div class="chapter" id="s17">
+  <button aria-expanded="false" class="ch-head" type="button">17. 誠実な訂正 - 逆噴射効果は再現しなかった</button>
+  <div class="ch-body">
+<p class="pp">ここで、この記事の主題そのものにとって重要な話をする。人文・社会科学が、自分自身をどう訂正するかという話である。</p>
 
-<p>2010 年、ブレンダン・ナイハンとジェイソン・ライフラーが報告した実験結果は、その後十年にわたって広く引用された。 [30] 誤った信念を持つ人に正確な情報を提示すると、信念が修正されるどころか<em>かえって強化される</em>場合がある - <strong>逆噴射効果</strong>（バックファイア効果）である。</p>
+<p class="pp">2010 年、ブレンダン・ナイハンとジェイソン・ライフラーが報告した実験結果は、その後十年にわたって広く引用された。 [30] 誤った信念を持つ人に正確な情報を提示すると、信念が修正されるどころか<em>かえって強化される</em>場合がある - <strong>逆噴射効果</strong>（バックファイア効果）である。</p>
 
-<p>この発見は、大きな影響を持った。「ファクトチェックは逆効果だ」「事実を示しても無駄だ」という言説が、この研究を根拠に流通した。</p>
+<p class="pp">この発見は、大きな影響を持った。「ファクトチェックは逆効果だ」「事実を示しても無駄だ」という言説が、この研究を根拠に流通した。</p>
 
-<p>ところが、その後の大規模な追試は、この効果を再現できなかった。トマス・ウッドとイーサン・ポーターは、 10000 人以上の被験者と 52 の争点を用いた一連の実験を行い、逆噴射効果を<em>ほとんど見出せなかった</em>と報告している。 [31] 論文の副題は「事実への揺るぎない忠実さ」である。人々は、政治的に不都合な訂正であっても、平均的には正しい方向に信念を動かした。</p>
+<p class="pp">ところが、その後の大規模な追試は、この効果を再現できなかった。トマス・ウッドとイーサン・ポーターは、 10000 人以上の被験者と 52 の争点を用いた一連の実験を行い、逆噴射効果を<em>ほとんど見出せなかった</em>と報告している。 [31] 論文の副題は「事実への揺るぎない忠実さ」である。人々は、政治的に不都合な訂正であっても、平均的には正しい方向に信念を動かした。</p>
 
-<p>ナイハン自身も後に、この効果は当初考えられたほど一般的ではなく、政治的な誤信念が持続する理由の説明としては不十分である、と論じている。 [32]</p>
+<p class="pp">ナイハン自身も後に、この効果は当初考えられたほど一般的ではなく、政治的な誤信念が持続する理由の説明としては不十分である、と論じている。 [32]</p>
 
-<p>この経緯から、二つのことを学べる。</p>
+<p class="pp">この経緯から、二つのことを学べる。</p>
 
-<p>第一に、実質的な結論として - <strong>事実は無力ではない</strong>。訂正は、期待するほど劇的ではないにせよ、平均的には効く。「どうせ人は事実では動かない」という諦めは、現在の証拠に支持されていない。</p>
+<p class="pp">第一に、実質的な結論として - <strong>事実は無力ではない</strong>。訂正は、期待するほど劇的ではないにせよ、平均的には効く。「どうせ人は事実では動かない」という諦めは、現在の証拠に支持されていない。</p>
 
-<p>第二に、より重要なこととして - <em>この記事で紹介している知見のすべてが、同じ運命をたどりうる</em>。心理学は 2010 年代に大規模な再現性の危機を経験し、多くの有名な効果が縮小または消滅した。第 III 部で紹介した研究のうち、十年後にも同じ形で立っているものがいくつあるかを、私は知らない。</p>
+<p class="pp">第二に、より重要なこととして - <em>この記事で紹介している知見のすべてが、同じ運命をたどりうる</em>。心理学は 2010 年代に大規模な再現性の危機を経験し、多くの有名な効果が縮小または消滅した。第 III 部で紹介した研究のうち、十年後にも同じ形で立っているものがいくつあるかを、私は知らない。</p>
 
-<blockquote class="pull"><p>「科学によればこうだ」という言明は、常に「現時点での最良の証拠によれば」という但し書きを伴っている。その但し書きを落とすことが、科学の政治的な誤用のもっとも一般的な形である。</p></blockquote>
+<blockquote class="pull"><p class="pp">「科学によればこうだ」という言明は、常に「現時点での最良の証拠によれば」という但し書きを伴っている。その但し書きを落とすことが、科学の政治的な誤用のもっとも一般的な形である。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s18" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">18</span>
-    <span class="title">ヒューリスティクスは愚かさではない</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでの議論は、有権者を否定的に描いているように見えるかもしれない。安定した選好を持たず、党派に導かれ、偏った情報処理をする。</p>
+<div class="chapter" id="s18">
+  <button aria-expanded="false" class="ch-head" type="button">18. ヒューリスティクスは愚かさではない</button>
+  <div class="ch-body">
+<p class="pp">ここまでの議論は、有権者を否定的に描いているように見えるかもしれない。安定した選好を持たず、党派に導かれ、偏った情報処理をする。</p>
 
-<p>だが、この結論には強力な反論がある。</p>
+<p class="pp">だが、この結論には強力な反論がある。</p>
 
-<p>アーサー・ルピアは 1994 年、カリフォルニア州の保険制度をめぐる住民投票を分析した。 [33] この投票では、五つの複雑な法案が同時に提示され、内容を正確に理解することは専門家にも困難だった。ルピアが見出したのは、法案の中身をほとんど知らない有権者であっても、<em>保険業界がどの案を支持しているか</em>を知っているだけで、法案内容に精通した有権者とほぼ同じ投票行動を取った、ということである。</p>
+<p class="pp">アーサー・ルピアは 1994 年、カリフォルニア州の保険制度をめぐる住民投票を分析した。 [33] この投票では、五つの複雑な法案が同時に提示され、内容を正確に理解することは専門家にも困難だった。ルピアが見出したのは、法案の中身をほとんど知らない有権者であっても、<em>保険業界がどの案を支持しているか</em>を知っているだけで、法案内容に精通した有権者とほぼ同じ投票行動を取った、ということである。</p>
 
-<p>これは合理的である。「誰がそれを推しているか」は、しばしば「それが何であるか」についての、安価で信頼できる代理指標になる。サミュエル・ポプキンはこうした情報処理を<strong>低情報合理性</strong>と呼んだ。 [34] 限られた認知資源と限られた時間のなかで、人は驚くほど効率的な近道を使っている。</p>
+<p class="pp">これは合理的である。「誰がそれを推しているか」は、しばしば「それが何であるか」についての、安価で信頼できる代理指標になる。サミュエル・ポプキンはこうした情報処理を<strong>低情報合理性</strong>と呼んだ。 [34] 限られた認知資源と限られた時間のなかで、人は驚くほど効率的な近道を使っている。</p>
 
-<p>つまり、政治家個人への信頼や、政党への帰属や、「この人が推しているなら」という判断は、必ずしも合理性の敵ではない。むしろ、<em>すべてを自分で調べることが不可能な世界における、合理的な情報戦略</em>である。</p>
+<p class="pp">つまり、政治家個人への信頼や、政党への帰属や、「この人が推しているなら」という判断は、必ずしも合理性の敵ではない。むしろ、<em>すべてを自分で調べることが不可能な世界における、合理的な情報戦略</em>である。</p>
 
-<p>問題は、近道を使うこと自体ではない。問題は、<strong>近道の質が、情報環境の質に完全に依存している</strong>ことである。</p>
+<p class="pp">問題は、近道を使うこと自体ではない。問題は、<strong>近道の質が、情報環境の質に完全に依存している</strong>ことである。</p>
 
-<p>ルピアの有権者が正しい結論に達したのは、「保険業界の立場」という手がかりが実際に有益な情報を含んでいたからである。手がかりが誤解を招くものであれば、同じ推論は同じ効率で誤った結論に到達する。そして、どのような手がかりが利用可能で、どれだけ信頼できるかを決めるのは、報道の構造、政党の一貫性、政治的言説の透明性、情報流通の設計 - つまり<em>制度</em>である。</p>
+<p class="pp">ルピアの有権者が正しい結論に達したのは、「保険業界の立場」という手がかりが実際に有益な情報を含んでいたからである。手がかりが誤解を招くものであれば、同じ推論は同じ効率で誤った結論に到達する。そして、どのような手がかりが利用可能で、どれだけ信頼できるかを決めるのは、報道の構造、政党の一貫性、政治的言説の透明性、情報流通の設計 - つまり<em>制度</em>である。</p>
 
-<p>ここに、心理学から制度論への橋がかかる。有権者の認知能力を嘆いても仕方がない。制度が変えられるのは、有権者の頭のなかではなく、有権者が使える手がかりの質のほうである。</p>
+<p class="pp">ここに、心理学から制度論への橋がかかる。有権者の認知能力を嘆いても仕方がない。制度が変えられるのは、有権者の頭のなかではなく、有権者が使える手がかりの質のほうである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s19" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">19</span>
-    <span class="title">「学習性無力感」の誤用 - 50 年後の逆転</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>「どうせ野党に入れても死票になる」「誰がやっても同じだ」 - こうした感覚を、しばしば<strong>学習性無力感</strong>という言葉で説明する文章がある。わかりやすい比喩である。だが、この用語法には二重の問題がある。</p>
+<div class="chapter" id="s19">
+  <button aria-expanded="false" class="ch-head" type="button">19. 「学習性無力感」の誤用 - 50 年後の逆転</button>
+  <div class="ch-body">
+<p class="pp">「どうせ野党に入れても死票になる」「誰がやっても同じだ」 - こうした感覚を、しばしば<strong>学習性無力感</strong>という言葉で説明する文章がある。わかりやすい比喩である。だが、この用語法には二重の問題がある。</p>
 
-<p>第一に、概念の適用範囲の問題。学習性無力感は、統制不能な嫌悪事象への反復曝露が、その後の回避行動や動機づけに変化をもたらす現象を扱う、実験心理学および臨床心理学の概念である。選挙結果への失望を、この概念で説明することは、比喩としては通じても、機序の説明にはならない。</p>
+<p class="pp">第一に、概念の適用範囲の問題。学習性無力感は、統制不能な嫌悪事象への反復曝露が、その後の回避行動や動機づけに変化をもたらす現象を扱う、実験心理学および臨床心理学の概念である。選挙結果への失望を、この概念で説明することは、比喩としては通じても、機序の説明にはならない。</p>
 
-<p>第二に、そしてより重要なのは - <strong>元の理論そのものが、提唱から半世紀を経て逆転している</strong>ことである。</p>
+<p class="pp">第二に、そしてより重要なのは - <strong>元の理論そのものが、提唱から半世紀を経て逆転している</strong>ことである。</p>
 
-<p>2016 年、スティーヴン・マイヤーとマーティン・セリグマン - セリグマンは 1967 年の原論文の著者である - は、神経科学の知見にもとづく総説を発表し、次のように述べた。 [35]</p>
+<p class="pp">2016 年、スティーヴン・マイヤーとマーティン・セリグマン - セリグマンは 1967 年の原論文の著者である - は、神経科学の知見にもとづく総説を発表し、次のように述べた。 [35]</p>
 
-<blockquote class="pull"><p>「学習性無力感のメカニズムは、いまや生物学的に十分解明されており、元の理論はそれを逆に捉えていた。ショックに対する受動性は学習されるのではない。それは、長期にわたる嫌悪事象に対する既定の、学習されていない反応である。」</p></blockquote>
+<blockquote class="pull"><p class="pp">「学習性無力感のメカニズムは、いまや生物学的に十分解明されており、元の理論はそれを逆に捉えていた。ショックに対する受動性は学習されるのではない。それは、長期にわたる嫌悪事象に対する既定の、学習されていない反応である。」</p></blockquote>
 
-<p>マイヤーとセリグマンによれば、受動性は背側縫線核のセロトニン活動によって媒介される既定の反応であり、学習されるのは無力感ではなく<strong>統制の存在</strong>のほうである。腹内側前頭前野が、ストレス要因に対する行動的統制が存在することを検出したとき、既定の受動性反応を抑制する。しかも、いったんこの回路が働くと、その効果は将来にわたって持続する。</p>
+<p class="pp">マイヤーとセリグマンによれば、受動性は背側縫線核のセロトニン活動によって媒介される既定の反応であり、学習されるのは無力感ではなく<strong>統制の存在</strong>のほうである。腹内側前頭前野が、ストレス要因に対する行動的統制が存在することを検出したとき、既定の受動性反応を抑制する。しかも、いったんこの回路が働くと、その効果は将来にわたって持続する。</p>
 
-<p>この逆転は、政治的な文脈に翻訳すると、含意がまったく変わる。</p>
+<p class="pp">この逆転は、政治的な文脈に翻訳すると、含意がまったく変わる。</p>
 
-<p>元の理論に従えば、政治的無関心は「失敗を繰り返して無力感を学習した」結果であり、対処法は失敗経験を減らすことになる。新しい理解に従えば、無関心は<em>既定状態</em>であり、学習されなければならないのは「自分の行動が結果に影響しうる」という統制の経験のほうである。</p>
+<p class="pp">元の理論に従えば、政治的無関心は「失敗を繰り返して無力感を学習した」結果であり、対処法は失敗経験を減らすことになる。新しい理解に従えば、無関心は<em>既定状態</em>であり、学習されなければならないのは「自分の行動が結果に影響しうる」という統制の経験のほうである。</p>
 
-<p>問われるべきは「なぜ人々は諦めたのか」ではなく、<strong>「人々はどこで、自分の参加が結果につながる経験をしうるのか」</strong>になる。前者は喪失の物語だが、後者は設計の課題である。</p>
+<p class="pp">問われるべきは「なぜ人々は諦めたのか」ではなく、<strong>「人々はどこで、自分の参加が結果につながる経験をしうるのか」</strong>になる。前者は喪失の物語だが、後者は設計の課題である。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s20" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">20</span>
-    <span class="title">政治的有効性感覚という概念</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>では、政治学と政治心理学は、この領域をどのような概念で扱ってきたのか。</p>
+<div class="chapter" id="s20">
+  <button aria-expanded="false" class="ch-head" type="button">20. 政治的有効性感覚という概念</button>
+  <div class="ch-body">
+<p class="pp">では、政治学と政治心理学は、この領域をどのような概念で扱ってきたのか。</p>
 
-<p>答えは<strong>政治的有効性感覚</strong>である。 1954 年、アンガス・キャンベルらがミシガン大学の投票行動研究のなかで導入した概念で、「個人の政治的行為が政治過程に影響を及ぼしうる、あるいは及ぼしているという感覚」を指す。 [36]</p>
+<p class="pp">答えは<strong>政治的有効性感覚</strong>である。 1954 年、アンガス・キャンベルらがミシガン大学の投票行動研究のなかで導入した概念で、「個人の政治的行為が政治過程に影響を及ぼしうる、あるいは及ぼしているという感覚」を指す。 [36]</p>
 
-<p>この概念は、その後二つの次元に分解された。この区別が決定的に重要である。</p>
+<p class="pp">この概念は、その後二つの次元に分解された。この区別が決定的に重要である。</p>
 
 <div class="box">
   <p class="boxhead sans">用語 - 内的有効性感覚と外的有効性感覚</p>
-  <p><span class="term">内的有効性感覚</span> - 自分は政治を理解し、有効に関与する能力があるという感覚。「政治は複雑すぎて自分には分からない」と感じるとき、下がっているのはこちらである。</p>
-  <p><span class="term">外的有効性感覚</span> - 政治システムの側が、市民の要求に応答するという感覚。「誰が政権を取っても同じだ」「政治家は国民の声など聞いていない」と感じるとき、下がっているのはこちらである。</p>
-  <p>この二つは経験的に区別され、まったく異なる帰結を持つ。内的有効性感覚が低いことへの処方箋は教育や情報提供だが、外的有効性感覚が低いことへの処方箋は<span class="term">制度と政治行動そのものの変更</span>である。後者に対して教育や啓発で応じるのは、原因の誤診である。</p>
+  <p class="pp"><span class="term">内的有効性感覚</span> - 自分は政治を理解し、有効に関与する能力があるという感覚。「政治は複雑すぎて自分には分からない」と感じるとき、下がっているのはこちらである。</p>
+  <p class="pp"><span class="term">外的有効性感覚</span> - 政治システムの側が、市民の要求に応答するという感覚。「誰が政権を取っても同じだ」「政治家は国民の声など聞いていない」と感じるとき、下がっているのはこちらである。</p>
+  <p class="pp">この二つは経験的に区別され、まったく異なる帰結を持つ。内的有効性感覚が低いことへの処方箋は教育や情報提供だが、外的有効性感覚が低いことへの処方箋は<span class="term">制度と政治行動そのものの変更</span>である。後者に対して教育や啓発で応じるのは、原因の誤診である。</p>
 </div>
 
-<p>この区別を持つと、「投票に行こう」という呼びかけの限界が見えてくる。</p>
+<p class="pp">この区別を持つと、「投票に行こう」という呼びかけの限界が見えてくる。</p>
 
-<p>外的有効性感覚が低い - つまり「システムは自分の声に応答しない」と感じている - 人にとって、投票の呼びかけは的外れである。彼らが疑っているのは自分の能力ではなく、<em>変換装置の存在そのもの</em>だからである。そして、序で見た数字 - 有権者の 26.9% の支持が議席の 86.2% に変換される構造 - は、その疑いを裏づける材料としても読める。</p>
+<p class="pp">外的有効性感覚が低い - つまり「システムは自分の声に応答しない」と感じている - 人にとって、投票の呼びかけは的外れである。彼らが疑っているのは自分の能力ではなく、<em>変換装置の存在そのもの</em>だからである。そして、序で見た数字 - 有権者の 26.9% の支持が議席の 86.2% に変換される構造 - は、その疑いを裏づける材料としても読める。</p>
 
-<p>ここで、第 I 部の制度論と第 III 部の心理学が交差する。</p>
+<p class="pp">ここで、第 I 部の制度論と第 III 部の心理学が交差する。</p>
 
-<blockquote class="pull"><p>参加を促したいなら、参加を呼びかけるだけでは足りない。参加が結果に接続していることが、市民から見えるような制度と情報環境を作らなければならない。</p></blockquote>
+<blockquote class="pull"><p class="pp">参加を促したいなら、参加を呼びかけるだけでは足りない。参加が結果に接続していることが、市民から見えるような制度と情報環境を作らなければならない。</p></blockquote>
 
-<p>これは道徳的な要請ではなく、経験的な含意である。マイヤーとセリグマンの逆転が示唆するのは、統制の経験は<em>実際に統制があったときにのみ</em>学習されるということだからである。</p>
+<p class="pp">これは道徳的な要請ではなく、経験的な含意である。マイヤーとセリグマンの逆転が示唆するのは、統制の経験は<em>実際に統制があったときにのみ</em>学習されるということだからである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s21" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">21</span>
-    <span class="title">民主主義のリアリズムと、その反論</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>第 III 部の締めくくりとして、この領域でもっとも論争的な著作に触れる。</p>
+<div class="chapter" id="s21">
+  <button aria-expanded="false" class="ch-head" type="button">21. 民主主義のリアリズムと、その反論</button>
+  <div class="ch-body">
+<p class="pp">第 III 部の締めくくりとして、この領域でもっとも論争的な著作に触れる。</p>
 
-<p>2016 年、クリストファー・エイケンとラリー・バーテルズは『リアリストのための民主主義』を刊行した。 [37] 彼らが標的にしたのは、彼らが<strong>民主主義の民間理論</strong>と呼ぶ通俗的な理解である - 有権者は政策的選好を持ち、それに基づいて政党を選び、選挙結果は集合的な政策的意思を表現している、という理解。</p>
+<p class="pp">2016 年、クリストファー・エイケンとラリー・バーテルズは『リアリストのための民主主義』を刊行した。 [37] 彼らが標的にしたのは、彼らが<strong>民主主義の民間理論</strong>と呼ぶ通俗的な理解である - 有権者は政策的選好を持ち、それに基づいて政党を選び、選挙結果は集合的な政策的意思を表現している、という理解。</p>
 
-<p>彼らの主張は徹底している。有権者の投票は、政策的判断ではなく、集団的アイデンティティと社会的帰属によって主に説明される。回顧的投票 - 政権の業績を評価して罰する - さえ、うまく機能していない。有権者は、政権の統制が及ばない出来事についてまで現職を罰する。彼らが挙げた印象的な例が、旱魃や洪水、そして<em>鮫による襲撃</em>が現職の得票を減らしたという分析だった。</p>
+<p class="pp">彼らの主張は徹底している。有権者の投票は、政策的判断ではなく、集団的アイデンティティと社会的帰属によって主に説明される。回顧的投票 - 政権の業績を評価して罰する - さえ、うまく機能していない。有権者は、政権の統制が及ばない出来事についてまで現職を罰する。彼らが挙げた印象的な例が、旱魃や洪水、そして<em>鮫による襲撃</em>が現職の得票を減らしたという分析だった。</p>
 
-<p>この本は大きな反響を呼んだ。そして、その中心的な経験的証拠の一つは、その後、強く反駁されている。</p>
+<p class="pp">この本は大きな反響を呼んだ。そして、その中心的な経験的証拠の一つは、その後、強く反駁されている。</p>
 
-<p>アンソニー・ファウラーとアンドリュー・ホールは 2018 年、鮫襲撃の分析を再検証した。 [38] 彼らの結論は、当初の結果が分析上の選択に強く依存しており、より頑健な仕様のもとでは支持されない、というものだった。論文の副題は「有権者の能力に関する著名な発見の再評価」である。</p>
+<p class="pp">アンソニー・ファウラーとアンドリュー・ホールは 2018 年、鮫襲撃の分析を再検証した。 [38] 彼らの結論は、当初の結果が分析上の選択に強く依存しており、より頑健な仕様のもとでは支持されない、というものだった。論文の副題は「有権者の能力に関する著名な発見の再評価」である。</p>
 
-<p>ここでも、第 17 節と同じ構図が繰り返されている。強い主張、大きな影響、そして再検証による縮小。</p>
+<p class="pp">ここでも、第 17 節と同じ構図が繰り返されている。強い主張、大きな影響、そして再検証による縮小。</p>
 
-<p>ではエイケンとバーテルズの議論は無効になったのか。そうではない。彼らの中心的な論点 - 政策的選好よりも社会的帰属のほうが投票をよく説明する - には、独立した膨大な証拠がある。無効になったのは、その論点を支えるために使われた特定の劇的な事例であって、論点そのものではない。</p>
+<p class="pp">ではエイケンとバーテルズの議論は無効になったのか。そうではない。彼らの中心的な論点 - 政策的選好よりも社会的帰属のほうが投票をよく説明する - には、独立した膨大な証拠がある。無効になったのは、その論点を支えるために使われた特定の劇的な事例であって、論点そのものではない。</p>
 
-<p>そして、ここに読者にとっての実践的な教訓がある。<strong>ある主張の中心的論点と、それを飾る印象的な事例は、独立に評価しなければならない</strong>。印象的な事例が崩れても中心的論点は生き残ることがあり、逆に、事例だけが記憶されて論点が忘れられることもある。ある学説を「聞いたことがある」レベルで扱うと、たいてい後者になる。</p>
+<p class="pp">そして、ここに読者にとっての実践的な教訓がある。<strong>ある主張の中心的論点と、それを飾る印象的な事例は、独立に評価しなければならない</strong>。印象的な事例が崩れても中心的論点は生き残ることがあり、逆に、事例だけが記憶されて論点が忘れられることもある。ある学説を「聞いたことがある」レベルで扱うと、たいてい後者になる。</p>
 
-<p>それでも、第 III 部全体を通して、一つの結論は動かない。</p>
+<p class="pp">それでも、第 III 部全体を通して、一つの結論は動かない。</p>
 
-<blockquote class="pull"><p>民主主義の理論が前提としてきた「熟慮する市民」は、経験的な記述ではなく、規範的な理想である。そして理想が経験と食い違うとき、放棄すべきは理想なのか、それとも理想が実現しない条件のほうなのか - これは、もはや心理学の問いではない。</p></blockquote>
+<blockquote class="pull"><p class="pp">民主主義の理論が前提としてきた「熟慮する市民」は、経験的な記述ではなく、規範的な理想である。そして理想が経験と食い違うとき、放棄すべきは理想なのか、それとも理想が実現しない条件のほうなのか - これは、もはや心理学の問いではない。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
 <div class="part-divider">
   <span class="pnum sans">第 IV 部</span>
@@ -1068,199 +917,163 @@ li{margin:0 0 .5rem}
   <p class="plede">なぜ従うべきなのか</p>
 </div>
 
-<section class="acc-item" id="s22" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">22</span>
-    <span class="title">正しさと正当性は別の問題である</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでの三部は、すべて<em>記述的</em>な問いを扱ってきた。制度はどう働くか。集計はどうなるか。人はどう判断するか。</p>
+<div class="chapter" id="s22">
+  <button aria-expanded="false" class="ch-head" type="button">22. 正しさと正当性は別の問題である</button>
+  <div class="ch-body">
+<p class="pp">ここまでの三部は、すべて<em>記述的</em>な問いを扱ってきた。制度はどう働くか。集計はどうなるか。人はどう判断するか。</p>
 
-<p>だが、この記事の出発点にあった問い - 「私の一票は届くのか」 - には、記述では答えきれない成分が含まれている。それは<em>規範的</em>な問いである。私はこの決定に従うべきなのか。従うべきだとすれば、なぜか。</p>
+<p class="pp">だが、この記事の出発点にあった問い - 「私の一票は届くのか」 - には、記述では答えきれない成分が含まれている。それは<em>規範的</em>な問いである。私はこの決定に従うべきなのか。従うべきだとすれば、なぜか。</p>
 
-<p>政治哲学が最初に導入する道具は、二つの概念の区別である。</p>
+<p class="pp">政治哲学が最初に導入する道具は、二つの概念の区別である。</p>
 
 <div class="box">
   <p class="boxhead sans">用語 - 正しさと正当性</p>
-  <p><span class="term">正しさ（correctness）</span> - その決定は、良い決定だったか。政策として賢明だったか。結果として人々を利したか。決定の<em>内容</em>を評価する。</p>
-  <p><span class="term">正当性（legitimacy）</span> - その決定は、拘束力を持つ資格があるか。人々がそれに従う理由があるか。権力の行使が正当化されるか。決定の<em>資格</em>を評価する。</p>
-  <p>二つは独立に変動する。正しいが正当でない決定（適法な手続きを経ずに実施された賢明な政策）があり、正当だが正しくない決定（適法な手続きを経て採択された愚かな政策）がある。</p>
+  <p class="pp"><span class="term">正しさ（correctness）</span> - その決定は、良い決定だったか。政策として賢明だったか。結果として人々を利したか。決定の<em>内容</em>を評価する。</p>
+  <p class="pp"><span class="term">正当性（legitimacy）</span> - その決定は、拘束力を持つ資格があるか。人々がそれに従う理由があるか。権力の行使が正当化されるか。決定の<em>資格</em>を評価する。</p>
+  <p class="pp">二つは独立に変動する。正しいが正当でない決定（適法な手続きを経ずに実施された賢明な政策）があり、正当だが正しくない決定（適法な手続きを経て採択された愚かな政策）がある。</p>
 </div>
 
-<p>この区別を持たないと、政治的な議論は必ず混乱する。「あの選挙結果は間違っている」という発言は、二通りに読めるからである。「多数派が選んだ政策は失敗するだろう」という予測なのか、「あの結果には従う理由がない」という正当性の否認なのか。前者は民主政治において完全に正常な主張であり、後者はまったく別の重さを持つ主張である。</p>
+<p class="pp">この区別を持たないと、政治的な議論は必ず混乱する。「あの選挙結果は間違っている」という発言は、二通りに読めるからである。「多数派が選んだ政策は失敗するだろう」という予測なのか、「あの結果には従う理由がない」という正当性の否認なのか。前者は民主政治において完全に正常な主張であり、後者はまったく別の重さを持つ主張である。</p>
 
-<p>この区別を最も鋭く示すのは、次の思考実験である。</p>
+<p class="pp">この区別を最も鋭く示すのは、次の思考実験である。</p>
 
-<p>仮に、ある政策について、どの選択肢が最善かを確実に知っている専門家集団が存在するとしよう。彼らに決定を委ねれば、決定の<em>正しさ</em>は最大化される。ではなぜ、私たちはそうしないのか。</p>
+<p class="pp">仮に、ある政策について、どの選択肢が最善かを確実に知っている専門家集団が存在するとしよう。彼らに決定を委ねれば、決定の<em>正しさ</em>は最大化される。ではなぜ、私たちはそうしないのか。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s23" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">23</span>
-    <span class="title">賢い人が支配してはいけない理由</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>この問いは古い。プラトンは『国家』で、船の操縦を航海術の心得のない多数決に委ねる愚を説き、統治は知識を持つ者に委ねるべきだと論じた。現代の政治哲学では、この立場は<strong>エピストクラシー</strong>（知者による統治）と呼ばれる。</p>
+<div class="chapter" id="s23">
+  <button aria-expanded="false" class="ch-head" type="button">23. 賢い人が支配してはいけない理由</button>
+  <div class="ch-body">
+<p class="pp">この問いは古い。プラトンは『国家』で、船の操縦を航海術の心得のない多数決に委ねる愚を説き、統治は知識を持つ者に委ねるべきだと論じた。現代の政治哲学では、この立場は<strong>エピストクラシー</strong>（知者による統治）と呼ばれる。</p>
 
-<p>デイヴィッド・エストランドは、この立場に対する洗練された反論を組み立てている。 [39]</p>
+<p class="pp">デイヴィッド・エストランドは、この立場に対する洗練された反論を組み立てている。 [39]</p>
 
-<p>エストランドの議論の核心は、次の点にある。仮に、ある集団が実際に他の人々より政治的判断において優れているとしよう。それでも、そこから<em>彼らが統治する権威を持つ</em>という結論は出てこない。なぜなら、その結論に至るには「彼らが優れている」という命題が、統治される側にも<strong>受け入れ可能な理由</strong>として示されなければならないからである。</p>
+<p class="pp">エストランドの議論の核心は、次の点にある。仮に、ある集団が実際に他の人々より政治的判断において優れているとしよう。それでも、そこから<em>彼らが統治する権威を持つ</em>という結論は出てこない。なぜなら、その結論に至るには「彼らが優れている」という命題が、統治される側にも<strong>受け入れ可能な理由</strong>として示されなければならないからである。</p>
 
-<p>そして、誰が政治的に賢明かという判断は、まさに<em>もっとも深く争われている</em>類の判断である。ある集団が優れているという主張自体が、合理的な人々のあいだで一致しない。したがって、その主張を根拠に権力を行使することは、争われている前提を一方的に押しつけることになる。</p>
+<p class="pp">そして、誰が政治的に賢明かという判断は、まさに<em>もっとも深く争われている</em>類の判断である。ある集団が優れているという主張自体が、合理的な人々のあいだで一致しない。したがって、その主張を根拠に権力を行使することは、争われている前提を一方的に押しつけることになる。</p>
 
-<p>この論法は、しばしば次のように要約される - <em>あなたが私より正しいとしても、それはあなたが私のボスであることを意味しない</em>。</p>
+<p class="pp">この論法は、しばしば次のように要約される - <em>あなたが私より正しいとしても、それはあなたが私のボスであることを意味しない</em>。</p>
 
-<p>エストランドの積極的な立場は<strong>認識的手続き主義</strong>と呼ばれる。民主的手続きは、（1）すべての人に受け入れ可能な理由によって正当化され、かつ（2）ランダムな決定よりは真理に到達しやすい、という二つの条件を満たすがゆえに正当である。真理に確実に到達するからではない。真理に到達する<em>傾向</em>を持ちながら、同時に、その手続きを誰も合理的に拒否できないからである。</p>
+<p class="pp">エストランドの積極的な立場は<strong>認識的手続き主義</strong>と呼ばれる。民主的手続きは、（1）すべての人に受け入れ可能な理由によって正当化され、かつ（2）ランダムな決定よりは真理に到達しやすい、という二つの条件を満たすがゆえに正当である。真理に確実に到達するからではない。真理に到達する<em>傾向</em>を持ちながら、同時に、その手続きを誰も合理的に拒否できないからである。</p>
 
-<p>ここに、ジョン・ロールズの<strong>公共的理性</strong>の議論が接続する。 [40] 多元的な社会では、人々は宗教的・哲学的に異なる包括的教説を抱いている。にもかかわらず、基本的な政治的問題については、そうした教説に依拠しない、すべての市民が理にかなって受け入れうる理由によって議論しなければならない - というのがロールズの要請である。</p>
+<p class="pp">ここに、ジョン・ロールズの<strong>公共的理性</strong>の議論が接続する。 [40] 多元的な社会では、人々は宗教的・哲学的に異なる包括的教説を抱いている。にもかかわらず、基本的な政治的問題については、そうした教説に依拠しない、すべての市民が理にかなって受け入れうる理由によって議論しなければならない - というのがロールズの要請である。</p>
 
-<p>この観点から見ると、政治的議論において「なぜそう考えるのか」を説明する義務は、礼儀ではない。<em>正当性の条件</em>である。理由を示さない権力行使は、たとえ正しい結果を生んでも、正当性の要件を満たさない。</p>
+<p class="pp">この観点から見ると、政治的議論において「なぜそう考えるのか」を説明する義務は、礼儀ではない。<em>正当性の条件</em>である。理由を示さない権力行使は、たとえ正しい結果を生んでも、正当性の要件を満たさない。</p>
 
-<blockquote class="pull"><p>民主主義において重要なのは、決定に理由が伴うことであり、しかもその理由が、反対する人にも理由として認識可能な形をしていることである。</p></blockquote>
+<blockquote class="pull"><p class="pp">民主主義において重要なのは、決定に理由が伴うことであり、しかもその理由が、反対する人にも理由として認識可能な形をしていることである。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s24" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">24</span>
-    <span class="title">ハーバーマスの水門モデル</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ユルゲン・ハーバーマスは 1992 年の『事実性と妥当性』で、この論点を制度の記述にまで展開した。 [41]</p>
+<div class="chapter" id="s24">
+  <button aria-expanded="false" class="ch-head" type="button">24. ハーバーマスの水門モデル</button>
+  <div class="ch-body">
+<p class="pp">ユルゲン・ハーバーマスは 1992 年の『事実性と妥当性』で、この論点を制度の記述にまで展開した。 [41]</p>
 
-<p>ハーバーマスの出発点は、近代法が抱える緊張である。法は、事実として強制力を持つ（事実性）と同時に、正当なものとして承認されなければならない（妥当性）。この二つが乖離すると、法は単なる暴力になるか、単なる理想になる。</p>
+<p class="pp">ハーバーマスの出発点は、近代法が抱える緊張である。法は、事実として強制力を持つ（事実性）と同時に、正当なものとして承認されなければならない（妥当性）。この二つが乖離すると、法は単なる暴力になるか、単なる理想になる。</p>
 
-<p>彼の答えは、正当性を<strong>討議</strong>に基礎づけることだった。ある規範が正当であるのは、それによって影響を受けるすべての人が、合理的な討議の参加者として同意しうる場合である。討議のなかで働くべき唯一の力を、ハーバーマスは印象的な表現で呼んだ - <em>より良き論拠の、強制なき強制</em>。</p>
+<p class="pp">彼の答えは、正当性を<strong>討議</strong>に基礎づけることだった。ある規範が正当であるのは、それによって影響を受けるすべての人が、合理的な討議の参加者として同意しうる場合である。討議のなかで働くべき唯一の力を、ハーバーマスは印象的な表現で呼んだ - <em>より良き論拠の、強制なき強制</em>。</p>
 
-<p>だが、数千万人が参加する国家で、全員が討議に参加することは不可能である。ハーバーマスはここで、<strong>二回路モデル</strong>を提示する。</p>
+<p class="pp">だが、数千万人が参加する国家で、全員が討議に参加することは不可能である。ハーバーマスはここで、<strong>二回路モデル</strong>を提示する。</p>
 
-<p>政治システムの<em>中心</em>には、議会、行政、司法がある。ここでは決定が下され、拘束力ある法が作られる。この回路は、手続きに縛られ、時間的制約を受け、効率的に作動する。</p>
+<p class="pp">政治システムの<em>中心</em>には、議会、行政、司法がある。ここでは決定が下され、拘束力ある法が作られる。この回路は、手続きに縛られ、時間的制約を受け、効率的に作動する。</p>
 
-<p>政治システムの<em>周辺</em>には、市民社会、社会運動、報道、専門家集団、日常的な会話がある - すなわち<strong>公共圏</strong>である。ここでは何も決定されない。だが、問題が発見され、名づけられ、争点として定式化される。周辺は、決定する力を持たないが、<em>何が議題になるかを規定する力</em>を持つ。</p>
+<p class="pp">政治システムの<em>周辺</em>には、市民社会、社会運動、報道、専門家集団、日常的な会話がある - すなわち<strong>公共圏</strong>である。ここでは何も決定されない。だが、問題が発見され、名づけられ、争点として定式化される。周辺は、決定する力を持たないが、<em>何が議題になるかを規定する力</em>を持つ。</p>
 
-<p>この二つを結ぶものを、ハーバーマスはベルンハルト・ペータースから借りた比喩で<strong>水門</strong>と呼ぶ。公共圏で形成された意見は、選挙、請願、報道、政党の綱領、審議会、パブリックコメントといった水門を通って、中心へ流れ込む。水門が開いていれば、周辺の議論は法へ変換される。閉じていれば、公共圏でどれだけ活発な議論が行われても、決定には何の影響も与えない。</p>
+<p class="pp">この二つを結ぶものを、ハーバーマスはベルンハルト・ペータースから借りた比喩で<strong>水門</strong>と呼ぶ。公共圏で形成された意見は、選挙、請願、報道、政党の綱領、審議会、パブリックコメントといった水門を通って、中心へ流れ込む。水門が開いていれば、周辺の議論は法へ変換される。閉じていれば、公共圏でどれだけ活発な議論が行われても、決定には何の影響も与えない。</p>
 
-<p>このモデルは、「私の一票は届くのか」という問いを、はっきりと再定式化する。</p>
+<p class="pp">このモデルは、「私の一票は届くのか」という問いを、はっきりと再定式化する。</p>
 
-<blockquote class="pull"><p>問うべきは、一票が議席に変換されたかどうかだけではない。周辺で形成された意見が中心へ流れ込む水門が、どれだけ開いているかである。</p></blockquote>
+<blockquote class="pull"><p class="pp">問うべきは、一票が議席に変換されたかどうかだけではない。周辺で形成された意見が中心へ流れ込む水門が、どれだけ開いているかである。</p></blockquote>
 
-<p>そしてこの視点は、投票日以外の政治を可視化する。何が争点として立てられ、何が「政治の問題ではない」とされたか。誰の発言が公共空間に到達し、誰の発言が到達しなかったか。どのような理由が、政治的に正当な理由として通用したか。これらはすべて、投票用紙に記入する前に決着がついている。</p>
+<p class="pp">そしてこの視点は、投票日以外の政治を可視化する。何が争点として立てられ、何が「政治の問題ではない」とされたか。誰の発言が公共空間に到達し、誰の発言が到達しなかったか。どのような理由が、政治的に正当な理由として通用したか。これらはすべて、投票用紙に記入する前に決着がついている。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s25" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">25</span>
-    <span class="title">熟議の実験と、その影</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>では、話し合えば話し合うほど、政治は賢くなるのか。</p>
+<div class="chapter" id="s25">
+  <button aria-expanded="false" class="ch-head" type="button">25. 熟議の実験と、その影</button>
+  <div class="ch-body">
+<p class="pp">では、話し合えば話し合うほど、政治は賢くなるのか。</p>
 
-<p>哲学的な理想はそう言う。だが、経験的な証拠は、はるかに両義的である。</p>
+<p class="pp">哲学的な理想はそう言う。だが、経験的な証拠は、はるかに両義的である。</p>
 
-<p>キャス・サンスティンが定式化した<strong>集団極性化</strong>は、熟議民主主義にとって最大の経験的な難点である。 [42] 同じ傾向を持つ人々が議論すると、集団の意見は平均へ収束するのではなく、もともと傾いていた方向へ<em>さらに極端に</em>移動する。理由は二つあると考えられている。第一に、議論のなかで提示される論拠が、その集団の傾向に偏る。第二に、人は集団内での自分の位置を意識し、集団の規範をやや上回る位置を取ろうとする。</p>
+<p class="pp">キャス・サンスティンが定式化した<strong>集団極性化</strong>は、熟議民主主義にとって最大の経験的な難点である。 [42] 同じ傾向を持つ人々が議論すると、集団の意見は平均へ収束するのではなく、もともと傾いていた方向へ<em>さらに極端に</em>移動する。理由は二つあると考えられている。第一に、議論のなかで提示される論拠が、その集団の傾向に偏る。第二に、人は集団内での自分の位置を意識し、集団の規範をやや上回る位置を取ろうとする。</p>
 
-<p>これは、熟議についての素朴な楽観を直接に否定する。話し合いは、条件によっては<em>分極化の装置</em>として働く。</p>
+<p class="pp">これは、熟議についての素朴な楽観を直接に否定する。話し合いは、条件によっては<em>分極化の装置</em>として働く。</p>
 
-<p>他方で、逆方向を指す研究もある。ユーゴ・メルシエとダン・スペルベルは、推論の機能そのものについて挑発的な仮説を提示した。 [43] 彼らによれば、人間の推論能力は、個人が真理に到達するために進化したのではなく、<em>他者を説得し、他者の論拠を評価するために</em>進化した。だからこそ、単独で推論すると確証バイアスに支配されるが、<strong>意見の異なる相手と議論する場面では、推論はうまく機能する</strong>。</p>
+<p class="pp">他方で、逆方向を指す研究もある。ユーゴ・メルシエとダン・スペルベルは、推論の機能そのものについて挑発的な仮説を提示した。 [43] 彼らによれば、人間の推論能力は、個人が真理に到達するために進化したのではなく、<em>他者を説得し、他者の論拠を評価するために</em>進化した。だからこそ、単独で推論すると確証バイアスに支配されるが、<strong>意見の異なる相手と議論する場面では、推論はうまく機能する</strong>。</p>
 
-<p>二つの知見を並べると、条件が見えてくる。</p>
+<p class="pp">二つの知見を並べると、条件が見えてくる。</p>
 
-<p><strong>同質的な集団の熟議は分極化を招き、異質な集団の熟議は判断を改善しうる。</strong> 決定的な変数は、熟議の量ではなく、熟議に参加する視点の<em>多様性</em>である。</p>
+<p class="pp"><strong>同質的な集団の熟議は分極化を招き、異質な集団の熟議は判断を改善しうる。</strong> 決定的な変数は、熟議の量ではなく、熟議に参加する視点の<em>多様性</em>である。</p>
 
-<p>この含意は、実践的にも重要である。参加人数を増やすことと、視点の多様性を増やすことは、まったく別のことである。 100 人が同じ情報源だけを共有していれば、そこにあるのは 100 人分の多様性ではなく、実質的に一人分の情報でしかない - 第 14 節で見た陪審定理の独立性条件が、ここで再び現れる。</p>
+<p class="pp">この含意は、実践的にも重要である。参加人数を増やすことと、視点の多様性を増やすことは、まったく別のことである。 100 人が同じ情報源だけを共有していれば、そこにあるのは 100 人分の多様性ではなく、実質的に一人分の情報でしかない - 第 14 節で見た陪審定理の独立性条件が、ここで再び現れる。</p>
 
-<p>制度設計の側では、この条件を満たす仕組みが実際に試みられている。ジェイムズ・フィシュキンの<strong>討論型世論調査</strong>は、無作為抽出で選ばれた市民に、均衡のとれた資料と多様な専門家への質問機会を与えたうえで議論させ、その前後で意見がどう変化するかを測定する。 [44] 「十分な情報と議論が与えられたら、人々は何を望むか」を測る装置である。</p>
+<p class="pp">制度設計の側では、この条件を満たす仕組みが実際に試みられている。ジェイムズ・フィシュキンの<strong>討論型世論調査</strong>は、無作為抽出で選ばれた市民に、均衡のとれた資料と多様な専門家への質問機会を与えたうえで議論させ、その前後で意見がどう変化するかを測定する。 [44] 「十分な情報と議論が与えられたら、人々は何を望むか」を測る装置である。</p>
 
-<p>より大きな規模での実例が、アイルランドの市民議会である。 [45] 無作為抽出された市民が、長期間にわたって専門家の説明を聞き、討議し、勧告を出す。その勧告が国民投票を経て憲法改正に至った事例は、熟議機関と代表制と直接民主制を接続した具体的な設計例として、国際的に検討されている。</p>
+<p class="pp">より大きな規模での実例が、アイルランドの市民議会である。 [45] 無作為抽出された市民が、長期間にわたって専門家の説明を聞き、討議し、勧告を出す。その勧告が国民投票を経て憲法改正に至った事例は、熟議機関と代表制と直接民主制を接続した具体的な設計例として、国際的に検討されている。</p>
 
-<p>ただし、これらを万能薬と見なすのは早い。無作為抽出された数十人ないし数百人の勧告に、どのような民主的権威があるのか。選挙で選ばれていない彼らの結論が、選挙で選ばれた議会の判断を覆せるのか。ここには、正当性についての未解決の問題が残っている - まさに第 22 節で見た、正しさと正当性の緊張である。</p>
+<p class="pp">ただし、これらを万能薬と見なすのは早い。無作為抽出された数十人ないし数百人の勧告に、どのような民主的権威があるのか。選挙で選ばれていない彼らの結論が、選挙で選ばれた議会の判断を覆せるのか。ここには、正当性についての未解決の問題が残っている - まさに第 22 節で見た、正しさと正当性の緊張である。</p>
 
 <div class="box">
   <p class="boxhead sans">補論 - 多様性は能力に勝るか</p>
-  <p>集合知の議論でしばしば引かれるのが、ル・ホンとスコット・ペイジによる、いわゆる「多様性は能力に勝る」定理である。 [46] 一定の条件下で、無作為に選ばれた多様な問題解決者の集団が、個々には優秀だが同質的な集団を上回る、という主張である。</p>
-  <p>この定理は、民主主義の認識的擁護論に広く用いられてきた。エレーヌ・ランデモアの『民主的理性』は、その代表的な展開である。 [47]</p>
-  <p>だが、定理自体には数学的な批判がある。アバゲイル・トンプソンは、定理の条件が実質的な内容をほとんど持たない形で設定されており、経験的な主張を支えるものではないと論じた。 [48] 「多様性は能力に勝る」という標語は、定理が実際に述べていることよりも、はるかに強い主張として流通している。</p>
-  <p>ここでも第 17 節・第 21 節と同じ構図が現れている。<span class="term">魅力的な標語として要約された学術的成果は、要約の段階で元の主張より強くなる。</span> そして政治的な文脈では、強くなった要約のほうが流通する。</p>
+  <p class="pp">集合知の議論でしばしば引かれるのが、ル・ホンとスコット・ペイジによる、いわゆる「多様性は能力に勝る」定理である。 [46] 一定の条件下で、無作為に選ばれた多様な問題解決者の集団が、個々には優秀だが同質的な集団を上回る、という主張である。</p>
+  <p class="pp">この定理は、民主主義の認識的擁護論に広く用いられてきた。エレーヌ・ランデモアの『民主的理性』は、その代表的な展開である。 [47]</p>
+  <p class="pp">だが、定理自体には数学的な批判がある。アバゲイル・トンプソンは、定理の条件が実質的な内容をほとんど持たない形で設定されており、経験的な主張を支えるものではないと論じた。 [48] 「多様性は能力に勝る」という標語は、定理が実際に述べていることよりも、はるかに強い主張として流通している。</p>
+  <p class="pp">ここでも第 17 節・第 21 節と同じ構図が現れている。<span class="term">魅力的な標語として要約された学術的成果は、要約の段階で元の主張より強くなる。</span> そして政治的な文脈では、強くなった要約のほうが流通する。</p>
 </div>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s26" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">26</span>
-    <span class="title">デューイ対リップマン</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>この記事が扱ってきた論点のほとんどは、 1920 年代のアメリカで、二人の思想家のあいだで一度戦われている。</p>
+<div class="chapter" id="s26">
+  <button aria-expanded="false" class="ch-head" type="button">26. デューイ対リップマン</button>
+  <div class="ch-body">
+<p class="pp">この記事が扱ってきた論点のほとんどは、 1920 年代のアメリカで、二人の思想家のあいだで一度戦われている。</p>
 
-<p>ウォルター・リップマンは 1922 年の『世論』で、根本的な懐疑を提示した。 [49] 現代社会はあまりに複雑で、あまりに広大で、市民が直接経験できる範囲をはるかに超えている。市民が政治について持っているのは、実際の環境ではなく、頭のなかの<em>疑似環境</em>であり、それはステレオタイプによって構成されている。<br>
+<p class="pp">ウォルター・リップマンは 1922 年の『世論』で、根本的な懐疑を提示した。 [49] 現代社会はあまりに複雑で、あまりに広大で、市民が直接経験できる範囲をはるかに超えている。市民が政治について持っているのは、実際の環境ではなく、頭のなかの<em>疑似環境</em>であり、それはステレオタイプによって構成されている。<br/>
 続く『幻の公衆』でリップマンはさらに踏み込み、あらゆる問題に通じた「全能の市民」という理想は幻想であり、統治は情報を持つ専門家が担い、公衆の役割は限定されるべきだと論じた。</p>
 
-<p>リップマンの診断は、第 III 部で見た経験的知見を、驚くほど先取りしている。有権者は情報を持たない。判断は近道に依存する。認知は構造的に偏っている。</p>
+<p class="pp">リップマンの診断は、第 III 部で見た経験的知見を、驚くほど先取りしている。有権者は情報を持たない。判断は近道に依存する。認知は構造的に偏っている。</p>
 
-<p>ジョン・デューイは 1927 年の『公衆とその諸問題』で、リップマンの<em>診断をほぼ認めたうえで</em>、処方箋を拒否した。 [50]</p>
+<p class="pp">ジョン・デューイは 1927 年の『公衆とその諸問題』で、リップマンの<em>診断をほぼ認めたうえで</em>、処方箋を拒否した。 [50]</p>
 
-<p>デューイの反論は二段構えである。第一に、専門家が政策を決めるとしても、<em>何が問題であるか</em>を定義できるのは、その帰結を被る人々だけである。デューイの比喩を借りれば、靴がどこで足を締めつけるかを知っているのは、靴職人ではなく靴を履いている人である。専門知は解決の手段については優越するが、問題の設定については優越しない。</p>
+<p class="pp">デューイの反論は二段構えである。第一に、専門家が政策を決めるとしても、<em>何が問題であるか</em>を定義できるのは、その帰結を被る人々だけである。デューイの比喩を借りれば、靴がどこで足を締めつけるかを知っているのは、靴職人ではなく靴を履いている人である。専門知は解決の手段については優越するが、問題の設定については優越しない。</p>
 
-<p>第二に、デューイは民主主義を統治形式としてではなく、より広く捉えた。 1916 年の『民主主義と教育』で、彼は民主主義を「共同生活の一様式であり、経験を相互に伝達し合う様式」と定義している。 [51] 投票制度は、その一部にすぎない。</p>
+<p class="pp">第二に、デューイは民主主義を統治形式としてではなく、より広く捉えた。 1916 年の『民主主義と教育』で、彼は民主主義を「共同生活の一様式であり、経験を相互に伝達し合う様式」と定義している。 [51] 投票制度は、その一部にすぎない。</p>
 
-<p>そしてデューイにとって、公衆が無力に見えるのは公衆の本性ゆえではなく、<em>公衆が自分自身を認識する手段を欠いている</em>ためだった。だから彼の処方箋は、公衆の役割を縮小することではなく、コミュニケーションと探究の条件を改善すること - 教育、報道、社会科学の公共的な役割 - に向かった。</p>
+<p class="pp">そしてデューイにとって、公衆が無力に見えるのは公衆の本性ゆえではなく、<em>公衆が自分自身を認識する手段を欠いている</em>ためだった。だから彼の処方箋は、公衆の役割を縮小することではなく、コミュニケーションと探究の条件を改善すること - 教育、報道、社会科学の公共的な役割 - に向かった。</p>
 
-<p>この対立は、決着していない。だが、対立の構造を理解しておくことには意味がある。<strong>「有権者は判断能力を欠く」という経験的な観察から、「だから権限を縮小すべきだ」という規範的な結論は、自動的には導かれない</strong>。そこには「では誰が問題を定義するのか」という、独立の問いが挟まっているからである。</p>
+<p class="pp">この対立は、決着していない。だが、対立の構造を理解しておくことには意味がある。<strong>「有権者は判断能力を欠く」という経験的な観察から、「だから権限を縮小すべきだ」という規範的な結論は、自動的には導かれない</strong>。そこには「では誰が問題を定義するのか」という、独立の問いが挟まっているからである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s27" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">27</span>
-    <span class="title">立憲主義 - 時間のなかの少数派</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここで、民主主義を多数決と同一視することの帰結を、正面から見ておく。</p>
+<div class="chapter" id="s27">
+  <button aria-expanded="false" class="ch-head" type="button">27. 立憲主義 - 時間のなかの少数派</button>
+  <div class="ch-body">
+<p class="pp">ここで、民主主義を多数決と同一視することの帰結を、正面から見ておく。</p>
 
-<p>もし民主主義が多数決にすぎないなら、 51% の人々は 49% の人々の権利を自由に処分できる。次の選挙を廃止することも、多数決で決められる。この帰結が受け入れがたいのは、私たちが民主主義に、多数決以外の何かを含めているからである。</p>
+<p class="pp">もし民主主義が多数決にすぎないなら、 51% の人々は 49% の人々の権利を自由に処分できる。次の選挙を廃止することも、多数決で決められる。この帰結が受け入れがたいのは、私たちが民主主義に、多数決以外の何かを含めているからである。</p>
 
-<p>立憲民主主義は、多数決に対して制約を課す。基本的人権、法の支配、権力分立、適正手続き、司法審査。これらはすべて、<em>多数派が変更できない領域</em>を作るための装置である。</p>
+<p class="pp">立憲民主主義は、多数決に対して制約を課す。基本的人権、法の支配、権力分立、適正手続き、司法審査。これらはすべて、<em>多数派が変更できない領域</em>を作るための装置である。</p>
 
-<p>ここには、有名な緊張がある。多数派の意思を制約する仕組みは、それ自体は多数決で選ばれていない裁判官によって運用される。これは<strong>反多数決主義的難点</strong>と呼ばれ、憲法理論の中心的な論争点であり続けている。ジェレミー・ウォルドロンは、権利について人々の意見が一致しない以上、権利の内容を最終的に決める権限を非選出の裁判官に与えることは、それ自体が民主的な難点を抱えると論じている。 [52]</p>
+<p class="pp">ここには、有名な緊張がある。多数派の意思を制約する仕組みは、それ自体は多数決で選ばれていない裁判官によって運用される。これは<strong>反多数決主義的難点</strong>と呼ばれ、憲法理論の中心的な論争点であり続けている。ジェレミー・ウォルドロンは、権利について人々の意見が一致しない以上、権利の内容を最終的に決める権限を非選出の裁判官に与えることは、それ自体が民主的な難点を抱えると論じている。 [52]</p>
 
-<p>この難問に、一つの角度から光を当てるのが<em>時間</em>の視点である。</p>
+<p class="pp">この難問に、一つの角度から光を当てるのが<em>時間</em>の視点である。</p>
 
-<p>ある選挙で少数派だった集団は、次の選挙で多数派になりうる。今日の与党は、明日の野党になりうる。この可能性が制度として保証されているかどうかが、決定的に重要である。</p>
+<p class="pp">ある選挙で少数派だった集団は、次の選挙で多数派になりうる。今日の与党は、明日の野党になりうる。この可能性が制度として保証されているかどうかが、決定的に重要である。</p>
 
-<p>なぜなら、この可能性こそが、<strong>敗者が結果を受け入れる理由</strong>だからである。今回負けたことを受け入れられるのは、次があるからだ。次がないなら、負けを受け入れる合理的な理由は薄くなる。そして少数派の権利保護とは、この「次」を実質的なものにするための条件 - 発言し、組織し、批判し、対抗する能力を、負けた側にも残しておくための条件 - にほかならない。</p>
+<p class="pp">なぜなら、この可能性こそが、<strong>敗者が結果を受け入れる理由</strong>だからである。今回負けたことを受け入れられるのは、次があるからだ。次がないなら、負けを受け入れる合理的な理由は薄くなる。そして少数派の権利保護とは、この「次」を実質的なものにするための条件 - 発言し、組織し、批判し、対抗する能力を、負けた側にも残しておくための条件 - にほかならない。</p>
 
-<blockquote class="pull"><p>民主主義の本質は、誰が勝つかにあるのではない。負けた側が次に勝つ可能性を、制度として保持しているかにある。</p></blockquote>
+<blockquote class="pull"><p class="pp">民主主義の本質は、誰が勝つかにあるのではない。負けた側が次に勝つ可能性を、制度として保持しているかにある。</p></blockquote>
 
-<p>この視点から見ると、序で見た議席の振幅は、両義的な意味を持つ。 16 か月で少数与党から三分の二へ振れる構造は、代表の歪みを示すと同時に、<em>逆向きにも同じだけ振れうる</em>ことを示している。振幅の大きさは、代表性の観点からは問題だが、政権交代可能性の観点からは、必ずしもそうではない。</p>
+<p class="pp">この視点から見ると、序で見た議席の振幅は、両義的な意味を持つ。 16 か月で少数与党から三分の二へ振れる構造は、代表の歪みを示すと同時に、<em>逆向きにも同じだけ振れうる</em>ことを示している。振幅の大きさは、代表性の観点からは問題だが、政権交代可能性の観点からは、必ずしもそうではない。</p>
 
-<p>ウォルドロンはこうした状況を<strong>政治の情況</strong>と呼んだ。人々は、何が正しいかについて根本的に意見を異にしている。にもかかわらず、共同の決定を下さなければならない。この二つが同時に成り立つ状況が、政治が存在する理由である。合意があるなら政治は要らない。決定が要らないなら政治は要らない。</p>
+<p class="pp">ウォルドロンはこうした状況を<strong>政治の情況</strong>と呼んだ。人々は、何が正しいかについて根本的に意見を異にしている。にもかかわらず、共同の決定を下さなければならない。この二つが同時に成り立つ状況が、政治が存在する理由である。合意があるなら政治は要らない。決定が要らないなら政治は要らない。</p>
 
-<p>だからこそ、民主主義の定義は、次のように述べたほうが正確になる。</p>
+<p class="pp">だからこそ、民主主義の定義は、次のように述べたほうが正確になる。</p>
 
-<blockquote class="pull"><p>民主主義とは、多数派が望むことを行う制度ではない。意見が一致しない人々が、それでも同じ政治共同体のなかで共存し、共同の決定を下し、そして負けた側が次に挑戦できるようにするための制度である。</p></blockquote>
+<blockquote class="pull"><p class="pp">民主主義とは、多数派が望むことを行う制度ではない。意見が一致しない人々が、それでも同じ政治共同体のなかで共存し、共同の決定を下し、そして負けた側が次に挑戦できるようにするための制度である。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
 <div class="part-divider">
   <span class="pnum sans">第 V 部</span>
@@ -1268,50 +1081,39 @@ li{margin:0 0 .5rem}
   <p class="plede">測ること、変えること</p>
 </div>
 
-<section class="acc-item" id="s28" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">28</span>
-    <span class="title">政治家を数値化する - そして日本の壁</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>ここまでの議論を踏まえて、しばしば提案される実践的なアイデアを検討する。</p>
+<div class="chapter" id="s28">
+  <button aria-expanded="false" class="ch-head" type="button">28. 政治家を数値化する - そして日本の壁</button>
+  <div class="ch-body">
+<p class="pp">ここまでの議論を踏まえて、しばしば提案される実践的なアイデアを検討する。</p>
 
-<p>有権者が政党という粗いパッケージしか選べないのが問題なら、政治家一人ひとりの政策的位置を可視化すればよいのではないか。過去の投票行動、国会での発言、公約、政策実績を集計し、「この議員はどこに立っているか」を示す。近年の生成 AI の発展は、この作業を現実的なものにしつつある。</p>
+<p class="pp">有権者が政党という粗いパッケージしか選べないのが問題なら、政治家一人ひとりの政策的位置を可視化すればよいのではないか。過去の投票行動、国会での発言、公約、政策実績を集計し、「この議員はどこに立っているか」を示す。近年の生成 AI の発展は、この作業を現実的なものにしつつある。</p>
 
-<p>この発想には、確立した学術的な先例がある。</p>
+<p class="pp">この発想には、確立した学術的な先例がある。</p>
 
-<p>キース・プールとハワード・ローゼンタールが開発した <strong>DW-NOMINATE</strong> は、議会の記名投票記録から、各議員の政策的位置を空間上の点として推定する手法である。 [53] アメリカ連邦議会の全歴史の記名投票を分析し、議員の位置がおおむね一次元ないし二次元の空間に収まること、そして近年その分布が両極に離れていることを示した研究群は、アメリカ政治研究の基盤の一つになっている。</p>
+<p class="pp">キース・プールとハワード・ローゼンタールが開発した <strong>DW-NOMINATE</strong> は、議会の記名投票記録から、各議員の政策的位置を空間上の点として推定する手法である。 [53] アメリカ連邦議会の全歴史の記名投票を分析し、議員の位置がおおむね一次元ないし二次元の空間に収まること、そして近年その分布が両極に離れていることを示した研究群は、アメリカ政治研究の基盤の一つになっている。</p>
 
-<p>ここで、日本に適用しようとすると、大きな壁にぶつかる。</p>
+<p class="pp">ここで、日本に適用しようとすると、大きな壁にぶつかる。</p>
 
-<p><strong>日本の国会には、この手法が必要とするデータが、ほとんど存在しない。</strong></p>
+<p class="pp"><strong>日本の国会には、この手法が必要とするデータが、ほとんど存在しない。</strong></p>
 
-<p>理由は二つある。第一に、衆議院の採決の多くは起立採決であり、個々の議員がどう投票したかの記録が残らない。記名投票が行われるのは限られた場合である。第二に、そして本質的なことに、第 6 節で見た党議拘束と事前審査制のもとでは、議員の投票はほぼ完全に党の方針と一致する。<em>記録があったとしても、そこには議員個人についての情報がほとんど含まれていない</em>。</p>
+<p class="pp">理由は二つある。第一に、衆議院の採決の多くは起立採決であり、個々の議員がどう投票したかの記録が残らない。記名投票が行われるのは限られた場合である。第二に、そして本質的なことに、第 6 節で見た党議拘束と事前審査制のもとでは、議員の投票はほぼ完全に党の方針と一致する。<em>記録があったとしても、そこには議員個人についての情報がほとんど含まれていない</em>。</p>
 
-<p>ここには、深い教訓がある。</p>
+<p class="pp">ここには、深い教訓がある。</p>
 
-<blockquote class="pull"><p>測定できるものは、制度によって決まる。制度が違えば、同じ現象について、同じ方法で測ることはできない。</p></blockquote>
+<blockquote class="pull"><p class="pp">測定できるものは、制度によって決まる。制度が違えば、同じ現象について、同じ方法で測ることはできない。</p></blockquote>
 
-<p>日本の政治学者は、このため別の方法を発展させてきた。代表的なのが、東京大学谷口研究室と朝日新聞社が国政選挙のたびに実施している、候補者と当選者への大規模な政策態度調査である。 [54] 投票記録が使えないなら、直接尋ねる。また、国会会議録や公約文書を計量テキスト分析によって尺度化する手法も用いられている。 [55]</p>
+<p class="pp">日本の政治学者は、このため別の方法を発展させてきた。代表的なのが、東京大学谷口研究室と朝日新聞社が国政選挙のたびに実施している、候補者と当選者への大規模な政策態度調査である。 [54] 投票記録が使えないなら、直接尋ねる。また、国会会議録や公約文書を計量テキスト分析によって尺度化する手法も用いられている。 [55]</p>
 
-<p>だが、これらの代替手段には、それぞれ固有の限界がある。調査への回答は、実際の行動ではなく<em>表明された態度</em>である。テキスト分析が拾うのは、政策的立場ではなく<em>語彙の使用パターン</em>であり、両者の対応は自明ではない。</p>
+<p class="pp">だが、これらの代替手段には、それぞれ固有の限界がある。調査への回答は、実際の行動ではなく<em>表明された態度</em>である。テキスト分析が拾うのは、政策的立場ではなく<em>語彙の使用パターン</em>であり、両者の対応は自明ではない。</p>
 
-<p>「政治家の思想を可視化する」というアイデアは、こうして、技術の問題ではなく<strong>測定の妥当性</strong>の問題に行き着く。</p>
+<p class="pp">「政治家の思想を可視化する」というアイデアは、こうして、技術の問題ではなく<strong>測定の妥当性</strong>の問題に行き着く。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s29" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">29</span>
-    <span class="title">データから評価までの四段階</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>可視化されたものを読むとき、四つの段階を区別する習慣を持つことが、決定的に重要である。</p>
+<div class="chapter" id="s29">
+  <button aria-expanded="false" class="ch-head" type="button">29. データから評価までの四段階</button>
+  <div class="ch-body">
+<p class="pp">可視化されたものを読むとき、四つの段階を区別する習慣を持つことが、決定的に重要である。</p>
 
 <div class="tablewrap">
 <table>
@@ -1325,11 +1127,11 @@ li{margin:0 0 .5rem}
 </table>
 </div>
 
-<p>数値が提示されるとき、それが四段階のどこにあるのかは、しばしば示されない。そして、下の段階に見せかけた上の段階の主張が、もっとも強い説得力を持つ。「タカ派度 90% 」という表示は、データの外観をまとった解釈である。</p>
+<p class="pp">数値が提示されるとき、それが四段階のどこにあるのかは、しばしば示されない。そして、下の段階に見せかけた上の段階の主張が、もっとも強い説得力を持つ。「タカ派度 90% 」という表示は、データの外観をまとった解釈である。</p>
 
-<p>科学哲学は、この問題を<strong>構成概念妥当性</strong>という言葉で扱ってきた。ある操作的な測定手続きが、意図した理論的概念を実際に測っているという保証は、測定手続きそのものからは決して得られない。それは常に、追加の理論的な論証を必要とする。</p>
+<p class="pp">科学哲学は、この問題を<strong>構成概念妥当性</strong>という言葉で扱ってきた。ある操作的な測定手続きが、意図した理論的概念を実際に測っているという保証は、測定手続きそのものからは決して得られない。それは常に、追加の理論的な論証を必要とする。</p>
 
-<p>AI を用いた政治情報の可視化について、この観点から言えることは明確である。</p>
+<p class="pp">AI を用いた政治情報の可視化について、この観点から言えることは明確である。</p>
 
 <ul>
 <li>この数値は<strong>何を</strong>測っているのか（構成概念の明示）</li>
@@ -1339,112 +1141,94 @@ li{margin:0 0 .5rem}
 <li>推定の<strong>不確実性</strong>はどれだけか</li>
 </ul>
 
-<p>これは技術の透明性の要求ではない。第 23 節で見たとおり、理由を示さない権力行使が正当性を欠くのと同じ論理で、<em>根拠を開示しない指標は、政治的判断の材料としての資格を持たない</em>。可視化の透明性は、正当性の問題である。</p>
+<p class="pp">これは技術の透明性の要求ではない。第 23 節で見たとおり、理由を示さない権力行使が正当性を欠くのと同じ論理で、<em>根拠を開示しない指標は、政治的判断の材料としての資格を持たない</em>。可視化の透明性は、正当性の問題である。</p>
 
-<p>そして、より根本的な留保が一つある。<strong>測定できるものと、政治的に重要なものは、同じではない。</strong> 可視化された指標が意思決定に使われるようになると、行為者は指標を最適化するように行動を変える。指標が良い代理変数であったのは、それが最適化の対象になる<em>前</em>のことである。</p>
+<p class="pp">そして、より根本的な留保が一つある。<strong>測定できるものと、政治的に重要なものは、同じではない。</strong> 可視化された指標が意思決定に使われるようになると、行為者は指標を最適化するように行動を変える。指標が良い代理変数であったのは、それが最適化の対象になる<em>前</em>のことである。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s30" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">30</span>
-    <span class="title">制度改革の評価基準と、避けられないトレードオフ</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>では、制度をどう変えるべきか。</p>
+<div class="chapter" id="s30">
+  <button aria-expanded="false" class="ch-head" type="button">30. 制度改革の評価基準と、避けられないトレードオフ</button>
+  <div class="ch-body">
+<p class="pp">では、制度をどう変えるべきか。</p>
 
-<p>ここで「小選挙区制をやめるべきだ」「比例代表を増やすべきだ」と結論を急ぐことはできない。制度を評価するには、まず<em>何を良しとするか</em>の基準が要る。そして、その基準は複数あり、互いに対立する。</p>
+<p class="pp">ここで「小選挙区制をやめるべきだ」「比例代表を増やすべきだ」と結論を急ぐことはできない。制度を評価するには、まず<em>何を良しとするか</em>の基準が要る。そして、その基準は複数あり、互いに対立する。</p>
 
 <div class="box">
   <p class="boxhead sans">選挙制度の七つの評価軸</p>
-  <p><span class="term">① 代表性</span> - 議席構成は、有権者の政治的選好の分布をどれだけ反映しているか。</p>
-  <p><span class="term">② 政権選択可能性</span> - 有権者は、投票の時点で、誰に政権を委ねるかを明確に選べるか。</p>
-  <p><span class="term">③ 責任の明確性</span> - 政権が失敗したとき、有権者は誰を責任者として特定し、罰することができるか。</p>
-  <p><span class="term">④ 少数意見の包摂</span> - 多数派に属さない意見が、政治過程から完全に排除されずに残るか。</p>
-  <p><span class="term">⑤ 政治的安定性</span> - 頻繁な政権崩壊を避けつつ、政権交代の可能性を維持できるか。</p>
-  <p><span class="term">⑥ 熟議の質</span> - 政策決定に、十分な情報と多様な視点が流入するか。</p>
-  <p><span class="term">⑦ 有効性感覚</span> - 市民が、自分の参加は結果に接続していると感じられるか。</p>
+  <p class="pp"><span class="term">① 代表性</span> - 議席構成は、有権者の政治的選好の分布をどれだけ反映しているか。</p>
+  <p class="pp"><span class="term">② 政権選択可能性</span> - 有権者は、投票の時点で、誰に政権を委ねるかを明確に選べるか。</p>
+  <p class="pp"><span class="term">③ 責任の明確性</span> - 政権が失敗したとき、有権者は誰を責任者として特定し、罰することができるか。</p>
+  <p class="pp"><span class="term">④ 少数意見の包摂</span> - 多数派に属さない意見が、政治過程から完全に排除されずに残るか。</p>
+  <p class="pp"><span class="term">⑤ 政治的安定性</span> - 頻繁な政権崩壊を避けつつ、政権交代の可能性を維持できるか。</p>
+  <p class="pp"><span class="term">⑥ 熟議の質</span> - 政策決定に、十分な情報と多様な視点が流入するか。</p>
+  <p class="pp"><span class="term">⑦ 有効性感覚</span> - 市民が、自分の参加は結果に接続していると感じられるか。</p>
 </div>
 
-<p>これらを並べると、一つのことがはっきりする。</p>
+<p class="pp">これらを並べると、一つのことがはっきりする。</p>
 
-<blockquote class="pull"><p>七つすべてを同時に最大化する選挙制度は、存在しない。</p></blockquote>
+<blockquote class="pull"><p class="pp">七つすべてを同時に最大化する選挙制度は、存在しない。</p></blockquote>
 
-<p>代表性を高めれば、政党が細分化し、連立交渉が長期化して、②と③が犠牲になる。政権選択の明確さを追求すれば、小規模政党が排除され、①と④が犠牲になる。安定性を高めれば、政権交代が困難になる。少数意見を幅広く議会に入れれば、決定に時間がかかる。</p>
+<p class="pp">代表性を高めれば、政党が細分化し、連立交渉が長期化して、②と③が犠牲になる。政権選択の明確さを追求すれば、小規模政党が排除され、①と④が犠牲になる。安定性を高めれば、政権交代が困難になる。少数意見を幅広く議会に入れれば、決定に時間がかかる。</p>
 
-<p>これは、制度設計者の力量不足ではない。第 II 部で見たアローの定理が、まさにこの種の構造を一般的な形で示していた。複数の望ましい条件を同時に満たす集約規則は、しばしば論理的に存在しない。</p>
+<p class="pp">これは、制度設計者の力量不足ではない。第 II 部で見たアローの定理が、まさにこの種の構造を一般的な形で示していた。複数の望ましい条件を同時に満たす集約規則は、しばしば論理的に存在しない。</p>
 
-<p>したがって、選挙制度の議論は、次のように問い直したほうがよい。</p>
+<p class="pp">したがって、選挙制度の議論は、次のように問い直したほうがよい。</p>
 
-<p>誤った問い - 「どの制度なら民意を正確に反映できるか」</p>
+<p class="pp">誤った問い - 「どの制度なら民意を正確に反映できるか」</p>
 
-<p>正しい問い - <strong>「この制度は、どの価値を優先し、どの価値を、どれだけ引き換えにしているのか。そして私たちは、その交換条件を受け入れるのか」</strong></p>
+<p class="pp">正しい問い - <strong>「この制度は、どの価値を優先し、どの価値を、どれだけ引き換えにしているのか。そして私たちは、その交換条件を受け入れるのか」</strong></p>
 
-<p>問いをこう変えるだけで、制度論はかなり成熟する。前者の問いは、制度改革を技術的な最適化問題に見せかける。後者の問いは、それが<em>価値の優先順位をめぐる政治的決定</em>であることを明示する。そして、価値の優先順位を決めることは、専門家の仕事ではない。</p>
+<p class="pp">問いをこう変えるだけで、制度論はかなり成熟する。前者の問いは、制度改革を技術的な最適化問題に見せかける。後者の問いは、それが<em>価値の優先順位をめぐる政治的決定</em>であることを明示する。そして、価値の優先順位を決めることは、専門家の仕事ではない。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="s31" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">31</span>
-    <span class="title">候補者一本化の逆説</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>最後に、この記事の全部の論点が交差する、具体的な提案を検討する。</p>
+<div class="chapter" id="s31">
+  <button aria-expanded="false" class="ch-head" type="button">31. 候補者一本化の逆説</button>
+  <div class="ch-body">
+<p class="pp">最後に、この記事の全部の論点が交差する、具体的な提案を検討する。</p>
 
-<p>小選挙区制では、与党に反対する票が複数の候補に分散すれば、与党候補が相対多数で勝つ。ならば、野党側は事前に候補者を一本化すればよい。予備選を行って、一人に絞る。</p>
+<p class="pp">小選挙区制では、与党に反対する票が複数の候補に分散すれば、与党候補が相対多数で勝つ。ならば、野党側は事前に候補者を一本化すればよい。予備選を行って、一人に絞る。</p>
 
-<p>戦略としては、完全に合理的である。デュヴェルジェの心理的効果が示唆するとおり、これは小選挙区制が<em>誘発している</em>行動でもある。 2026 年の選挙結果 - 中道改革連合が 21.63% の得票で 7 議席、参政党が 182 選挙区で全敗 - は、調整が行われなかった場合に何が起きるかを、鮮明に示している。</p>
+<p class="pp">戦略としては、完全に合理的である。デュヴェルジェの心理的効果が示唆するとおり、これは小選挙区制が<em>誘発している</em>行動でもある。 2026 年の選挙結果 - 中道改革連合が 21.63% の得票で 7 議席、参政党が 182 選挙区で全敗 - は、調整が行われなかった場合に何が起きるかを、鮮明に示している。</p>
 
-<p>だが、ここには三つの問題がある。</p>
+<p class="pp">だが、ここには三つの問題がある。</p>
 
-<p><strong>第一に、選択肢の圧縮は消えない。移動するだけである。</strong> 政策的に大きく異なる複数の政党の支持者が、一人の候補に集約されたとする。その候補が当選したとき、その勝利は何を意味するのか。「与党ではない候補を選んだ」ことか、「その候補の政策を支持した」ことか。この二つはまったく別である。<br>
+<p class="pp"><strong>第一に、選択肢の圧縮は消えない。移動するだけである。</strong> 政策的に大きく異なる複数の政党の支持者が、一人の候補に集約されたとする。その候補が当選したとき、その勝利は何を意味するのか。「与党ではない候補を選んだ」ことか、「その候補の政策を支持した」ことか。この二つはまったく別である。<br/>
 自民党という大きな包摂政党を問題視して分割を求めながら、対抗側に「反与党」というより大きな包摂連合を作るなら、圧縮の問題は解決していない。場所を変えただけである。第 I 部で見た包摂と凝集のトレードオフは、どの政治勢力にも同じように働く。</p>
 
-<p><strong>第二に、予備選そのものが集約規則の問題を抱える。</strong> 複数政党の支持者が一つの予備選で候補を選ぶとき、その予備選もまた投票である。どの集約規則を使うのか。単純多数決なら、第 II 部で見たすべての問題 - 選好の循環、議題設定の効果、戦略的操作 - がそのまま現れる。予備選は、集約の問題を解決するのではなく、集約を一段階増やす。</p>
+<p class="pp"><strong>第二に、予備選そのものが集約規則の問題を抱える。</strong> 複数政党の支持者が一つの予備選で候補を選ぶとき、その予備選もまた投票である。どの集約規則を使うのか。単純多数決なら、第 II 部で見たすべての問題 - 選好の循環、議題設定の効果、戦略的操作 - がそのまま現れる。予備選は、集約の問題を解決するのではなく、集約を一段階増やす。</p>
 
-<p><strong>第三に、責任の所在が曖昧になる。</strong> 複数政党の連合が政権を取ったとき、政策の失敗の責任は誰にあるのか。有権者は次の選挙で誰を罰すればよいのか。評価軸③「責任の明確性」は、連合が広いほど低下する。これは、日本だけでなく、連立政権を常態とするすべての国が抱える問題である。</p>
+<p class="pp"><strong>第三に、責任の所在が曖昧になる。</strong> 複数政党の連合が政権を取ったとき、政策の失敗の責任は誰にあるのか。有権者は次の選挙で誰を罰すればよいのか。評価軸③「責任の明確性」は、連合が広いほど低下する。これは、日本だけでなく、連立政権を常態とするすべての国が抱える問題である。</p>
 
-<p>誤解を避けるために書いておくと、これは候補者一本化に反対する議論ではない。上の三点は、一本化を採らない場合に生じる問題 - 21.63% の票が 2.4% の議席にしかならないこと - と<em>比較して</em>評価されなければならない。</p>
+<p class="pp">誤解を避けるために書いておくと、これは候補者一本化に反対する議論ではない。上の三点は、一本化を採らない場合に生じる問題 - 21.63% の票が 2.4% の議席にしかならないこと - と<em>比較して</em>評価されなければならない。</p>
 
-<p>ここに、制度改革についての一般的な形式が現れている。</p>
+<p class="pp">ここに、制度改革についての一般的な形式が現れている。</p>
 
-<blockquote class="pull"><p>制度改革とは、問題を解決する作業ではない。ある問題を、別の問題と交換する作業である。だから、改革案の評価は「この案で問題は解決するか」ではなく、「この案が生む新しい問題は、いまの問題より受け入れやすいか」という形をとる。</p></blockquote>
+<blockquote class="pull"><p class="pp">制度改革とは、問題を解決する作業ではない。ある問題を、別の問題と交換する作業である。だから、改革案の評価は「この案で問題は解決するか」ではなく、「この案が生む新しい問題は、いまの問題より受け入れやすいか」という形をとる。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="conc" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">結</span>
-    <span class="title">変換装置としての民主主義</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>2026 年 2 月 8 日に戻ろう。</p>
+<div class="chapter" id="conc">
+  <button aria-expanded="false" class="ch-head" type="button">結. 変換装置としての民主主義</button>
+  <div class="ch-body">
+<p class="pp">2026 年 2 月 8 日に戻ろう。</p>
 
-<p>あの日、有権者は二枚の紙に、ほぼ同じ意思を書いた。一枚は 49.23 を 86.2 に変え、もう一枚は 36.72 を 38.1 に変えた。どちらも規則どおりに作動した。どちらも「民意」だった。</p>
+<p class="pp">あの日、有権者は二枚の紙に、ほぼ同じ意思を書いた。一枚は 49.23 を 86.2 に変え、もう一枚は 36.72 を 38.1 に変えた。どちらも規則どおりに作動した。どちらも「民意」だった。</p>
 
-<p>この記事は、そこから四つの学問を経由してきた。最後に、通ってきた道を一つの線に結んでおきたい。</p>
+<p class="pp">この記事は、そこから四つの学問を経由してきた。最後に、通ってきた道を一つの線に結んでおきたい。</p>
 
-<p><strong>政治学</strong>が示したのは、票を議席へ変換する規則が非中立であり、その非中立性は制度設計の選択の結果だということだった。デュヴェルジェの二つの効果、包摂と凝集のトレードオフ、制度が旧制度の遺産の上に導入されること、そして党議拘束をめぐる代表の三極構造。</p>
+<p class="pp"><strong>政治学</strong>が示したのは、票を議席へ変換する規則が非中立であり、その非中立性は制度設計の選択の結果だということだった。デュヴェルジェの二つの効果、包摂と凝集のトレードオフ、制度が旧制度の遺産の上に導入されること、そして党議拘束をめぐる代表の三極構造。</p>
 
-<p><strong>論理学と社会選択論</strong>が示したのは、より根本的なことだった。集計以前に存在する「唯一の民意」という対象は、論理的に支持されない。コンドルセの循環、アローの不可能性、ギバード = サタースウェイトの操作可能性。そしてメイの定理は、その困難が<em>選択肢が三つ以上あること</em>から生じていることを、対照によって明らかにした。</p>
+<p class="pp"><strong>論理学と社会選択論</strong>が示したのは、より根本的なことだった。集計以前に存在する「唯一の民意」という対象は、論理的に支持されない。コンドルセの循環、アローの不可能性、ギバード = サタースウェイトの操作可能性。そしてメイの定理は、その困難が<em>選択肢が三つ以上あること</em>から生じていることを、対照によって明らかにした。</p>
 
-<p><strong>心理学</strong>が示したのは、集計される選好それ自体の不安定さだった。コンヴァースの非態度、ザラーの想起モデル、党派性というレンズ。同時に心理学は、ヒューリスティクスが合理的な情報戦略でありうること、そして「学習性無力感」が半世紀を経て逆転し、学習されるべきは<em>統制の経験</em>のほうだと判明したことも教えた。</p>
+<p class="pp"><strong>心理学</strong>が示したのは、集計される選好それ自体の不安定さだった。コンヴァースの非態度、ザラーの想起モデル、党派性というレンズ。同時に心理学は、ヒューリスティクスが合理的な情報戦略でありうること、そして「学習性無力感」が半世紀を経て逆転し、学習されるべきは<em>統制の経験</em>のほうだと判明したことも教えた。</p>
 
-<p><strong>哲学</strong>が示したのは、これらすべての記述的な知見から、規範的な結論は自動的には出てこないということだった。正しさと正当性は別である。賢い人が支配してよいわけではない。公共圏から決定へ至る水門が開いているかが問われる。そして、民主主義の核心は勝つことではなく、負けた側に次があることにある。</p>
+<p class="pp"><strong>哲学</strong>が示したのは、これらすべての記述的な知見から、規範的な結論は自動的には出てこないということだった。正しさと正当性は別である。賢い人が支配してよいわけではない。公共圏から決定へ至る水門が開いているかが問われる。そして、民主主義の核心は勝つことではなく、負けた側に次があることにある。</p>
 
-<p>ここまで来ると、最初の問いの意味が変わっている。</p>
+<p class="pp">ここまで来ると、最初の問いの意味が変わっている。</p>
 
-<p>「私の一票は届くのか」 - この問いは、一票が議席に変換されたかどうかを尋ねているように見える。だが、ここまで見てきたことに照らすと、「届く」という言葉には、少なくとも五つの異なる意味が含まれている。</p>
+<p class="pp">「私の一票は届くのか」 - この問いは、一票が議席に変換されたかどうかを尋ねているように見える。だが、ここまで見てきたことに照らすと、「届く」という言葉には、少なくとも五つの異なる意味が含まれている。</p>
 
 <ul>
 <li>自分の選好を公的に表明できること（表出）</li>
@@ -1454,39 +1238,33 @@ li{margin:0 0 .5rem}
 <li>そして、自分と正反対の意見を持つ人もまた、同じ政治共同体の対等な構成員として扱われること（平等）</li>
 </ul>
 
-<p>一票は、政治制度への一回限りの命令ではない。バグ報告でもない。</p>
+<p class="pp">一票は、政治制度への一回限りの命令ではない。バグ報告でもない。</p>
 
-<p>それは、<strong>意見の一致しない人々が、それでも共同の決定を下し続けるための、巨大で不完全な変換装置への参加</strong>である。</p>
+<p class="pp">それは、<strong>意見の一致しない人々が、それでも共同の決定を下し続けるための、巨大で不完全な変換装置への参加</strong>である。</p>
 
-<p>そして、この装置には必ず歪みがある。選挙制度は歪む。政党は歪む。報道は歪む。人間の認知も歪む。多数決そのものにも論理的な限界がある。</p>
+<p class="pp">そして、この装置には必ず歪みがある。選挙制度は歪む。政党は歪む。報道は歪む。人間の認知も歪む。多数決そのものにも論理的な限界がある。</p>
 
-<p>だがそれは、民主主義が失敗作だからではない。人間が互いに異なる以上、歪みのない変換装置は<em>論理的に存在しえない</em> - それが、第 II 部の定理群がもっとも正確に述べていることだった。</p>
+<p class="pp">だがそれは、民主主義が失敗作だからではない。人間が互いに異なる以上、歪みのない変換装置は<em>論理的に存在しえない</em> - それが、第 II 部の定理群がもっとも正確に述べていることだった。</p>
 
-<p>民主主義の価値は、完全な答えを出すことにはない。間違いを後から発見できること。異論を述べられること。権力を交代させられること。そして何より、<em>装置そのものを問い直せること</em>にある。</p>
+<p class="pp">民主主義の価値は、完全な答えを出すことにはない。間違いを後から発見できること。異論を述べられること。権力を交代させられること。そして何より、<em>装置そのものを問い直せること</em>にある。</p>
 
-<p>その意味で、もっとも重要な民主的行為は、投票用紙に記入することではないのかもしれない。それは、選挙のあとに市民が発する、この一言なのかもしれない。</p>
+<p class="pp">その意味で、もっとも重要な民主的行為は、投票用紙に記入することではないのかもしれない。それは、選挙のあとに市民が発する、この一言なのかもしれない。</p>
 
-<blockquote class="pull"><p>「なぜ、この結果になったのか？」</p></blockquote>
+<blockquote class="pull"><p class="pp">「なぜ、この結果になったのか？」</p></blockquote>
 
-<p>この記事は、その問いに答えようとすると、少なくとも四つの学問の扉が開くことを示そうとした。扉の向こうには、まだ誰も答えを出していない問いが、いくつも並んでいる。</p>
+<p class="pp">この記事は、その問いに答えようとすると、少なくとも四つの学問の扉が開くことを示そうとした。扉の向こうには、まだ誰も答えを出していない問いが、いくつも並んでいる。</p>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="method" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">付</span>
-    <span class="title">本稿の事実確認について</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-<p>本稿の記述の性格を明示しておく。</p>
+<div class="chapter" id="method">
+  <button aria-expanded="false" class="ch-head" type="button">付. 本稿の事実確認について</button>
+  <div class="ch-body">
+<p class="pp">本稿の記述の性格を明示しておく。</p>
 
-<p><strong>選挙結果の数値</strong>は、第 51 回衆議院議員総選挙（2026 年 2 月 8 日執行）および第 50 回衆議院議員総選挙（2024 年 10 月 27 日執行）の確定結果にもとづく。得票数・得票率・議席数は複数の集計を突き合わせて確認した。<br>
+<p class="pp"><strong>選挙結果の数値</strong>は、第 51 回衆議院議員総選挙（2026 年 2 月 8 日執行）および第 50 回衆議院議員総選挙（2024 年 10 月 27 日執行）の確定結果にもとづく。得票数・得票率・議席数は複数の集計を突き合わせて確認した。<br/>
 小選挙区の定数は 289 、比例代表の定数は 176 、総定数 465 。第 51 回の小選挙区投票率は 56.26% 、第 50 回は 53.85% 。自民党の小選挙区における議席占有率 86.2% 、絶対得票率 26.9% は、公表されている選挙結果分析の数値である。</p>
 
-<p><strong>学術的な主張</strong>については、原典の書誌情報を確認したうえで参照している。ただし、本稿は概説であり、参照した研究のすべてを原典で通読したわけではない。とくに以下の三点については、通説として流通している理解と、現在の研究状況が食い違っているため、本文中で明示的に扱った。</p>
+<p class="pp"><strong>学術的な主張</strong>については、原典の書誌情報を確認したうえで参照している。ただし、本稿は概説であり、参照した研究のすべてを原典で通読したわけではない。とくに以下の三点については、通説として流通している理解と、現在の研究状況が食い違っているため、本文中で明示的に扱った。</p>
 
 <ol>
 <li>「学習性無力感」の機序は、 2016 年の総説によって、当初の理論とは逆に理解し直されている（第 19 節）。</li>
@@ -1494,23 +1272,17 @@ li{margin:0 0 .5rem}
 <li>「多様性は能力に勝る」定理は、その数学的内容について批判がある（第 25 節の補論）。</li>
 </ol>
 
-<p><strong>本稿が扱わなかったこと</strong>も明記しておく。個別政党の政策的評価、特定の政治家の適格性、そして「どの選挙制度が望ましいか」という問いへの回答である。最後の点については、第 30 節で述べたとおり、それが技術的な問いではなく価値の優先順位の問題であるという理由による。</p>
+<p class="pp"><strong>本稿が扱わなかったこと</strong>も明記しておく。個別政党の政策的評価、特定の政治家の適格性、そして「どの選挙制度が望ましいか」という問いへの回答である。最後の点については、第 30 節で述べたとおり、それが技術的な問いではなく価値の優先順位の問題であるという理由による。</p>
 
-<p>本稿は、自由民主党を含むいかなる政党・政治家についても、支持または批判を目的としていない。また、一つの政党が長期にわたって政権を担ってきたという事実から、選挙制度が不正である、有権者が欺かれている、といった結論を導くものでもない。本稿が中心に置いたのは、次の一般的な問いである。</p>
+<p class="pp">本稿は、自由民主党を含むいかなる政党・政治家についても、支持または批判を目的としていない。また、一つの政党が長期にわたって政権を担ってきたという事実から、選挙制度が不正である、有権者が欺かれている、といった結論を導くものでもない。本稿が中心に置いたのは、次の一般的な問いである。</p>
 
-<blockquote class="pull"><p>社会に存在する多様な個人の意思を、政党と選挙制度を介して一つの政治的決定へ変換するとき、何が失われ、何が得られるのか。</p></blockquote>
+<blockquote class="pull"><p class="pp">社会に存在する多様な個人の意思を、政党と選挙制度を介して一つの政治的決定へ変換するとき、何が失われ、何が得られるのか。</p></blockquote>
     </div>
-  </div>
-</section>
+</div>
 
-<section class="acc-item" id="refs" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">付録</span>
-    <span class="title">参考文献・出典</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
+<div class="chapter" id="refs">
+  <button aria-expanded="false" class="ch-head" type="button">付録. 参考文献・出典</button>
+  <div class="ch-body">
 <div class="refs">
 
 <h3 class="sans">選挙制度と政党（第 I 部）</h3>
@@ -1589,7 +1361,7 @@ li{margin:0 0 .5rem}
 </ol>
 
 <h3 class="sans">概説・事典</h3>
-<p style="margin-top:.4rem">各分野への入口としては、 Stanford Encyclopedia of Philosophy の以下の項目が有用である。いずれも研究者による査読つきの概説で、無料で参照できる。</p>
+<p class="pp" style="margin-top:.4rem">各分野への入口としては、 Stanford Encyclopedia of Philosophy の以下の項目が有用である。いずれも研究者による査読つきの概説で、無料で参照できる。</p>
 <ul>
 <li>"Democracy" - 民主主義論全体の見取り図</li>
 <li>"Political Legitimacy" - 第 22 節・第 23 節の背景</li>
@@ -1598,83 +1370,240 @@ li{margin:0 0 .5rem}
 <li>"Dewey's Political Philosophy" - 第 26 節の背景</li>
 </ul>
 
-<p style="margin-top:1.2rem">選挙結果の一次データは、総務省の選挙関連統計および衆議院の公表資料による。</p>
+<p class="pp" style="margin-top:1.2rem">選挙結果の一次データは、総務省の選挙関連統計および衆議院の公表資料による。</p>
 
 </div>
 
-<p class="note">本稿は、既存の原稿を全面的に書き改めたものである。<br>
+<p class="note">本稿は、既存の原稿を全面的に書き改めたものである。<br/>
 原稿にあった議論の骨格 - 選挙は民意の変換装置であること、政党内の多様性は欠陥ではないこと、「死票」概念には注意が必要であること、「学習性無力感」の用語法は不正確であること、制度改革はトレードオフの選択であること - は継承したうえで、（1）具体的な選挙データによる裏づけ、（2）各主張の出典の特定と書誌情報の訂正、（3）通説と現在の研究状況が食い違う三つの論点の明示、（4）論理学・心理学・哲学の各分野からの概念の追加を行った。</p>
     </div>
-  </div>
-</section>
+</div>
 
 </div>
-</main>
+
+</div>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
+          }
+        });
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
+    }
+  }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
 
-  function bindAccordion(itemSelector, toggleSelector){
-    document.querySelectorAll(itemSelector).forEach(function(item){
-      var toggle = item.querySelector(toggleSelector);
-      toggle.addEventListener("click", function(){
-        var willOpen = !item.classList.contains("open");
-        if(willOpen){
-          Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-            if(sibling !== item && sibling.matches && sibling.matches(itemSelector)){
-              sibling.classList.remove("open");
-            }
-          });
-        }
-        item.classList.toggle("open", willOpen);
-        if(willOpen){
-          setTimeout(function(){
-            item.scrollIntoView({behavior:"smooth", block:"start"});
-          }, OPEN_SCROLL_DELAY);
-        }
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
       });
+      breadcrumbNav.appendChild(btn);
     });
   }
-
-  bindAccordion("[data-acc]", "[data-acc-toggle]");
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
   document.addEventListener("click", function(e){
-    var a = e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute("href").slice(1);
-    var target = document.getElementById(id);
-    if(!target) return;
-    var accItem = target.closest("[data-acc]");
-    if(!accItem) return;
-    e.preventDefault();
-
-    var wasOpen = accItem.classList.contains("open");
-    if(!wasOpen){
-      Array.prototype.forEach.call(accItem.parentElement.children, function(sibling){
-        if(sibling !== accItem && sibling.matches && sibling.matches("[data-acc]")){
-          sibling.classList.remove("open");
-        }
-      });
-      accItem.classList.add("open");
-    }
-    setTimeout(function(){
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-    }, wasOpen ? 0 : OPEN_SCROLL_DELAY);
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
   });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+</script>
+
 </body>
 </html>

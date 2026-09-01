@@ -4,564 +4,258 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ウェブサーバーを GitHub Pages へ移行した記録</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  html { font-size: 93.75%; }  /* 全体を一段階小さく（ 既定 16px 相当 → 15px 相当 ）*/
-  :root {
-    --bg:#F5F3EC;
-    --ink:#2D3325;
-    --sub:#3A4032;
-    --accent:#25364A;
-    --note-bg:#EEF2E4;
-    --line:#C8CEC0;
-    --paper:#fff;
-    --code-bg: #f4ebea;
-    --warn-bg: #f7eded;
-    --warn-border: #c0706b;
-    --hero-1:#25364A; --hero-2:#25364A; --hero-ink:#F5F3EC; --hero-dim:#C8CEC0;
+  /* アコーディオン階層とクラス名の対応(見出し番号の書式にあわせた命名):
+     ch    = 章    (例: 1. )
+     sec   = 節    (例: 1.1 )
+     item  = 項目  (例: 1.1.1 )
+     paren = (1)
+     num   = 1)
+     alp   = a)
+     各階層は「*-head」(見出しボタン)と「*-body」(開閉する中身)の対で構成される。 */
+  :root{
+    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
+    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
   }
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: 76px; }
-  body{font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    line-height: 1.9;
-    font-size: 16px;
-    color: var(--ink);
-    background: var(--bg);
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    background:var(--bg);color:var(--text);font-size:15px;line-height:1.8;min-height:100vh;
+    -webkit-text-size-adjust:100%;
   }
-  .wrap {
-    max-width: none;
-    margin: 0 auto;
-    padding: 48px clamp(24px, 4vw, 64px) 120px;
+  .sticky-zone{position:sticky;top:0;z-index:100;}
+  .site-header{background:var(--accent);color:#fff;padding:5px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .site-header h1{font-size:14px;font-weight:700;letter-spacing:.03em;}
+  .site-header a.home{color:rgba(255,255,255,.85);text-decoration:none;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);white-space:nowrap;}
+  .site-header a.home:hover{color:#fff;background:rgba(255,255,255,.22);}
+  .breadcrumb{
+    display:flex;align-items:center;gap:6px;background:var(--white);border-bottom:1px solid var(--border);
+    padding:5px 20px;min-height:28px;font-size:12px;overflow:hidden;
   }
-  header.hero {
-    background:var(--hero-1);
-    color: var(--hero-ink);
-    border-bottom: 3px solid var(--accent);
-    padding: 56px 0 44px;
+  .crumb{
+    font:inherit;background:none;border:none;cursor:pointer;color:var(--accent);padding:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 1000 auto;min-width:2.2em;text-align:left;
   }
-  header.hero .wrap {
-    max-width: none;
-    margin: 0 auto;
-    padding: 0 clamp(24px, 4vw, 64px);
+  .crumb:hover{text-decoration:underline;}
+  .crumb:last-child{flex:0 1 auto;min-width:0;color:var(--label);font-weight:700;}
+  .crumb-sep{flex-shrink:0;color:var(--muted);}
+  .container{max-width:900px;margin:0 auto;padding:24px 16px 80px;}
+  .doc-meta{font-size:13px;color:var(--muted);margin:0 0 14px;}
+  .hint{font-size:12px;color:var(--muted);margin:0 2px 10px;}
+  .controls{display:flex;gap:10px;margin-left:auto;}
+  .controls button{
+    font:inherit;font-size:11px;font-weight:700;color:var(--accent);background:var(--white);
+    border:1px solid var(--border);border-radius:999px;padding:2px 14px;cursor:pointer;
   }
-  header.hero h1 { color: var(--hero-ink); }
-  header.hero p.sub { color: var(--hero-dim); }
-  header.hero .meta span {
-    background: rgba(255,255,255,.06);
-    border-color: rgba(166,199,143,.35);
-    color: #d6e0cf;
+  .controls button:hover{background:var(--accent-light);}
+  .ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head{scroll-margin-top:calc(var(--sticky-h,64px) + 6px);}
+  .accordion{display:flex;flex-direction:column;gap:10px;}
+  .chapter{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .ch-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:16px;letter-spacing:.02em;padding:15px 18px;
+    display:flex;align-items:center;gap:10px;min-height:52px;
   }
-  .hero-figure {
-    margin: 30px 0 0;
-    overflow-x: auto;
+  .ch-head:hover{color:#3a5168;}
+  .ch-head::before{content:"\25B6";font-size:.72em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .ch-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .ch-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .ch-body{display:none;padding:6px 16px 16px;}
+  .ch-head[aria-expanded="true"]+.ch-body{display:block;}
+  .ch-intro{padding:6px 4px 4px;}
+  .section{border-top:1px solid var(--border);}
+  .section:first-child{border-top:none;}
+  .sec-head{
+    width:100%;text-align:left;background:transparent;color:var(--accent);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:13px 4px;display:flex;align-items:center;gap:9px;min-height:46px;
   }
-  .hero-figure svg { display: block; width: 100%; height: auto; }
-  .hero-figure figcaption {
-    margin-top: 12px;
-    font-size: 13px;
-    line-height: 1.8;
-    color: #b4c4a9;
-    text-indent: 0;
-  }
-  header.hero .eyebrow {
-    display: block;
-    color: var(--hero-dim);
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    font-size: 13px;
-    margin-bottom: 12px;
-  }
-  h1 {
-    font-size: 30px;
-    line-height: 1.5;
-    margin: 0 0 16px;
-  }
-  header.hero p.sub {
-    color: var(--hero-dim);
-    font-size: 15px;
-    text-indent: 0;
-  }
-  h2 {
-    font-size: 23px;
-    margin-top: 64px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--line);
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  h2 .num {
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 700;
-    background: var(--note-bg);
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
-  h3 {
-    font-size: 18px;
-    margin-top: 36px;
-    color: var(--ink);
-  }
-  h4 {
-    font-size: 15px;
-    margin-top: 28px;
-    color: var(--accent);
-  }
-  p { margin: 16px 0; text-indent: 1em; }
-  header.hero p.sub, .callout p, .caption, .source-note { text-indent: 0; }
-  ul, ol { margin: 16px 0; padding-left: 1.4em; }
-  li { margin: 8px 0; }
-  a { color: var(--accent); }
-  .diagram-box {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px;
-    margin: 28px 0;
-    overflow-x: auto;
-  }
-  .diagram-box svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
-  .caption {
-    text-align: center;
-    color: var(--sub);
-    font-size: 12px;
-    margin-top: 8px;
-  }
-  .callout {
-    background: var(--note-bg);
-    border-left: 4px solid var(--accent);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-  }
-  .callout strong { color: var(--accent); }
-  code, pre {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 13px;
-  }
-  code {
-    background: var(--code-bg);
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-  pre {
-    background: var(--code-bg);
-    padding: 16px 18px;
-    border-radius: 10px;
-    overflow-x: auto;
-    line-height: 1.6;
-  }
-  pre code { background: none; padding: 0; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 14px;
-  }
-  th, td {
-    border: 1px solid var(--line);
-    padding: 10px 12px;
-    text-align: left;
-    vertical-align: top;
-  }
-  th { background: var(--code-bg); }
-  footer {
-    margin-top: 64px;
-    padding-top: 24px;
-    border-top: 2px solid var(--line);
-    color: var(--sub);
-    font-size: 13px;
-  }
-  .check {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin: 24px 0;
-  }
-  .check ul { list-style: none; padding-left: 0; }
-  .check li { padding-left: 1.8em; text-indent: -1.8em; }
-  .verdict {
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--accent);
-    background: var(--note-bg);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin: 24px 0;
-    text-indent: 0;
-  }
-  .pill {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-  .pill.done { background: var(--note-bg); color: var(--accent); }
-  .pill.pending { background: var(--warn-bg); color: #823b38; }
+  .sec-head:hover{color:#3a5168;}
+  .sec-head::before{content:"\25B6";font-size:.7em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .sec-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .sec-body{display:none;padding:2px 4px 16px;}
+  .sec-head[aria-expanded="true"]+.sec-body{display:block;}
 
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 20px 0 0;
+  .item{margin:10px 0 0;}
+  .item:first-child{margin-top:4px;}
+  .item-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:8px 4px 8px 12px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--border);min-height:40px;
   }
-  .meta span {
-    display: inline-block;
-    padding: 5px 11px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--paper);
-    color: var(--sub);
-    font-size: 12px;
-    text-indent: 0;
+  .item-head:hover{color:#3a5168;}
+  .item-head::before{content:"\25B6";font-size:.62em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .item-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .item-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .item-body{display:none;padding:6px 4px 14px 20px;}
+  .item-head[aria-expanded="true"]+.item-body{display:block;}
+  .paren{margin:8px 0 0;}
+  .paren:first-child{margin-top:4px;}
+  .paren-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:7px 4px 7px 14px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:36px;
   }
-  .fact-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin: 28px 0;
+  .paren-head:hover{color:#3a5168;}
+  .paren-head::before{content:"\25B6";font-size:.58em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .paren-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .paren-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .paren-body{display:none;padding:6px 4px 12px 24px;}
+  .paren-head[aria-expanded="true"]+.paren-body{display:block;}
+  .num{margin:6px 0 0;}
+  .num:first-child{margin-top:4px;}
+  .num-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:6px 4px 6px 18px;display:flex;align-items:center;gap:7px;
+    border-bottom:1px dotted var(--border);min-height:34px;
   }
-  .fact-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px;
+  .num-head:hover{color:#3a5168;}
+  .num-head::before{content:"\25B6";font-size:.54em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .num-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .num-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .num-body{display:none;padding:6px 4px 10px 28px;}
+  .num-head[aria-expanded="true"]+.num-body{display:block;}
+  .alp{margin:6px 0 0;}
+  .alp:first-child{margin-top:4px;}
+  .alp-head{
+    width:100%;text-align:left;background:transparent;color:var(--label);border:none;cursor:pointer;
+    font:inherit;font-weight:700;font-size:15px;padding:5px 4px 5px 22px;display:flex;align-items:center;gap:6px;
+    border-bottom:1px dotted var(--border);min-height:32px;
   }
-  .fact-card .label {
-    color: var(--sub);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .04em;
-    margin-bottom: 6px;
-    text-indent: 0;
+  .alp-head:hover{color:#3a5168;}
+  .alp-head::before{content:"\25B6";font-size:.5em;line-height:1;color:var(--muted);flex-shrink:0;}
+  .alp-head[aria-expanded="true"]::before{content:"\25BC";color:var(--accent);}
+  .alp-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+  .alp-body{display:none;padding:6px 4px 8px 32px;}
+  .alp-head[aria-expanded="true"]+.alp-body{display:block;}
+  h5{color:var(--label);font-size:15px;margin:16px 0 6px;}
+  .pp{margin:8px 0;text-indent: 1em;}
+  .li-a{margin:6px 0 6px 8px;padding-left:1.2em;text-indent:-1.2em;}
+  .li-b{margin:6px 0 6px 14px;padding-left:1.4em;text-indent:-1.4em;}
+  .li-c{margin:4px 0 4px 26px;padding-left:1em;text-indent:-1em;}
+  .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
+  .cover-line{margin:6px 0;}
+  .fig-note{
+    background:var(--accent-light);border-left:4px solid #9DB87C;border-radius:4px;
+    padding:8px 14px;margin:12px 0;font-size:14px;color:var(--label);
   }
-  .fact-card .value {
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--accent);
-    text-indent: 0;
-  }
-  .fact-card .small {
-    color: var(--sub);
-    font-size: 12px;
-    margin-top: 5px;
-    text-indent: 0;
-  }
-  .source-note {
-    color: var(--sub);
-    font-size: 12px;
-    border-top: 1px dashed var(--line);
-    padding-top: 10px;
-    margin-top: 18px;
-  }
-  @media (max-width: 760px) {
-    .fact-grid { grid-template-columns: 1fr; }
-    .meta { gap: 6px; }
-    header.hero .wrap { padding: 0 20px; }
-    .hero-figure svg { min-width: 620px; }
-  }
+  .formula{text-align:center;margin:14px 0;font-size:15.5px;}
+  .formula i, .pp i, h5 i{font-family:Georgia,"Times New Roman",serif;}
+  .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;}
+  .fr-n{border-bottom:1.2px solid currentColor;padding:0 5px;}
+  .fr-d{padding:0 5px;}
+  .sqrt{white-space:nowrap;}
+  .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .table-wrap{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
+  th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-light);color:var(--label);font-weight:700;}
+  .ta-r{text-align:right;}
+  .ta-c{text-align:center;}
 
-  /* ---------- Accordion ---------- */
-  .toolbar-container {
-    position: sticky; top: 8px; z-index: 100;
-    background: var(--bg);
-    background: color-mix(in srgb, var(--bg) 94%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 9px 0;
-    border-radius: 999px;
-    margin: 32px 0 24px;
-    border: 1px solid var(--line);
-    box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  @media (max-width:560px){
+    body{font-size:14px;}
+    .site-header{padding:4px 14px;gap:8px;}
+    .site-header h1{font-size:12.5px;}
+    .controls{gap:8px;}
+    .controls button{font-size:10px;padding:2px 10px;}
+    .breadcrumb{padding:4px 14px;min-height:24px;font-size:11px;}
+    .ch-head{font-size:15px;padding:14px 14px;}
+    .sec-head{font-size:14px;}
+    .item-head{font-size:14px;padding:7px 4px 7px 10px;}
+    .paren-head{font-size:14px;padding:6px 4px 6px 12px;}
+    .num-head{font-size:14px;padding:5px 4px 5px 16px;}
+    .container{padding:18px 12px 70px;}
+    table{font-size:12.5px;}
   }
-  .toolbar-container .toolbar { margin: 0; }
-  .toolbar {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 32px 0 24px;
-  }
-  .toolbar button {
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
-    background: var(--paper);
-    border: 1.5px solid var(--accent);
-    border-radius: 999px;
-    padding: 8px 20px;
-    cursor: pointer;
-    transition: background .2s ease, color .2s ease;
-  }
-  .toolbar button:hover { background: var(--accent); color: #fff; }
-  #accordion { margin-bottom: 40px; }
-  .acc-item {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    overflow-anchor: none;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .acc-item:last-child { margin-bottom: 0; }
-  .acc-header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: none;
-    border: none;
-    padding: 18px 22px;
-    cursor: pointer;
-    text-align: left;
-    font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
-    color: var(--ink);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .acc-header .num {
-    flex: 0 0 auto;
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 700;
-    background: var(--note-bg);
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
-  .acc-header .title {
-    flex: 1 1 auto;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.5;
-  }
-  .acc-header .chev {
-    flex: 0 0 auto;
-    width: 20px;
-    height: 20px;
-    color: var(--accent);
-    transition: transform .3s cubic-bezier(.4,0,.2,1);
-  }
-  .acc-item.open > .acc-header .chev { transform: rotate(180deg); }
-  .acc-item.open > .acc-header {
-    background: var(--note-bg);
-    border-bottom: 1px solid var(--line);
-  }
-  .acc-panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1);
-    overflow-anchor: none;
-  }
-  .acc-item.open > .acc-panel { grid-template-rows: 1fr; }
-  .acc-panel-inner {
-    overflow: hidden;
-    min-height: 0;
-    padding: 0 22px;
-    opacity: 0;
-    transition: opacity .3s ease .08s;
-  }
-  .acc-item.open > .acc-panel > .acc-panel-inner {
-    padding: 6px 22px 24px;
-    opacity: 1;
-  }
-  .acc-panel-inner > h3:first-child { margin-top: 20px; }
-  @media (max-width: 760px) {
-    .acc-header { padding: 15px 16px; gap: 10px; }
-    .acc-header .title { font-size: 16px; }
-    .acc-item.open > .acc-panel > .acc-panel-inner { padding: 4px 16px 20px; }
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .sticky-zone{position:static;}
+    .site-header{background:#fff;color:#000;border-bottom:2px solid #000;}
+    .breadcrumb{display:none;}
+    .site-header h1{color:#000;}
+    .controls,.hint{display:none;}
+    .chapter{border:none;border-top:1.5px solid #000;border-radius:0;}
+    .ch-body,.sec-body,.item-body,.paren-body,.num-body{display:block !important;}
+    .ch-head,.sec-head,.item-head,.paren-head,.num-head{color:#000;cursor:default;}
+    .ch-head::before,.sec-head::before,.item-head::before,.paren-head::before,.num-head::before{content:"";}
+    .table-wrap{overflow:visible;}
   }
 </style>
-  <style>
-    /* 2026-08-26: 本文フォントを一段階拡大し、本文以外の文字サイズも本文と統一 */
-    html { font-size: 16px !important; }
-    body, body :not(svg):not(svg *) { font-size: 1rem !important; }
-  </style>
-  <style>
-    /* フォント統一設定 */
-    html { font-size: 16px; }
-    body, body :not(svg):not(svg *) { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 1rem; }
-  </style>
+
 <style>
-  /* 記事題名(h1)を本文の3倍程度に拡大し、セリフ体にする */
-  .page-head h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem) !important; line-height: 1.4 !important; font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif !important; }
-  /* 題名内のインライン要素( .grad 等)にも題名のサイズ・書体を継承させる */
-  .page-head h1 * { font-size: inherit !important; font-family: inherit !important; }
-</style>
-<style>
-  /* ヒーローから移設したタイトルブロック */
-  .page-head{max-width:960px;margin:0 auto 2.4rem;padding:0 clamp(1.5rem,3vw,3rem)}
-  .page-head .eyebrow{display:block;font-size:0.78rem;letter-spacing:0.24em;color:var(--muted);margin-bottom:0.6rem}
-  .page-head h1{margin:0;color:var(--accent)}
-  .page-head p.sub{margin:0.6rem 0 0;color:var(--sub,var(--muted));line-height:1.85;text-indent:0}
-  .page-head .meta{margin:0.9rem 0 0;font-size:0.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.4rem 1.1rem;padding:0;list-style:none}
+
+  /* 記事固有: 事実カード・図解ボックス・注記・チェックリスト・ステータス小片の保持(配色はシェルの変数に統一) */
+  .fact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0;}
+  .fact-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .fact-card .label{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.03em;margin-bottom:4px;}
+  .fact-card .value{font-size:15px;font-weight:700;color:var(--accent);}
+  .fact-card .small{color:var(--muted);font-size:12px;margin-top:4px;}
+  @media (max-width:560px){.fact-grid{grid-template-columns:1fr;}}
+
+  .diagram-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;margin:14px 0;overflow-x:auto;}
+  .diagram-box svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  p.caption{text-align:center;color:var(--muted);font-size:12px;margin-top:6px;text-indent:0 !important;}
+
+  .check{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin:12px 0;}
+  .check ul{list-style:none;padding-left:0;margin:0;}
+  .check li{padding-left:0;margin:6px 0;}
+
+  code{background:var(--accent-light);padding:1px 5px;border-radius:4px;font-size:.92em;}
+  pre{background:var(--accent-light);padding:12px 14px;border-radius:8px;overflow-x:auto;line-height:1.6;margin:10px 0;}
+  pre code{background:none;padding:0;}
+
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px;white-space:nowrap;}
+  .pill.done{background:#F2F7EA;color:#3E5226;}
+  .pill.pending{background:#f7eced;color:#8a2f2f;}
+  h5{color:var(--accent);}
+
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="wrap">
-    <figure class="hero-figure">
-    <svg viewBox="0 0 720 268" role="img" aria-labelledby="mgTitle mgDesc">
-      <title id="mgTitle">移行を六つの工程に分けた並びと、入れ替えられない順序</title>
-      <desc id="mgDesc">左から右へ、 DNS レコードのバックアップ、ネームサーバーの切り替え、サイト構築と完成確認、旧 WordPress 環境の削除、 DNS を GitHub Pages へ向ける、切替後の検証という六工程が一本の線でつながる図。工程 2 にはサーバー契約の凍結前に済ませる必要があるという注記が付き、下部の破線の枠には入れ替えてはいけない四つの順序が並ぶ。</desc>
-
-      <text x="360" y="24" class="figTitle">六つの工程と、入れ替えられない順序</text>
-
-      <text x="192" y="52" class="warnnote">サーバー契約の凍結前に済ませる必要があった</text>
-      <path d="M192 58 V88" stroke="#c0706b" stroke-opacity="0.7" stroke-width="1.4" stroke-dasharray="4 3"/>
-      <path d="M192 94 l-5 -8 h10 z" fill="#c0706b" fill-opacity="0.85"/>
-
-      <line x1="80" y1="112" x2="640" y2="112" stroke="#a6c78f" stroke-opacity="0.35" stroke-width="1.6"/>
-
-      <g>
-        <circle cx="80" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
-        <text x="80" y="117" class="num">1</text>
-        <text x="80" y="145" class="step">DNS レコード</text>
-        <text x="80" y="159" class="step">のバックアップ</text>
-
-        <circle cx="192" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
-        <text x="192" y="117" class="num">2</text>
-        <text x="192" y="145" class="step">ネームサーバー</text>
-        <text x="192" y="159" class="step">を切り替える</text>
-
-        <circle cx="304" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#d6e0cf" stroke-opacity="0.5"/>
-        <text x="304" y="117" class="num light">3</text>
-        <text x="304" y="145" class="step">サイト構築と</text>
-        <text x="304" y="159" class="step">完成確認</text>
-
-        <circle cx="416" cy="112" r="15" fill="#c0706b" fill-opacity="0.85"/>
-        <text x="416" y="117" class="num">4</text>
-        <text x="416" y="145" class="step">旧 WordPress</text>
-        <text x="416" y="159" class="step">環境の削除</text>
-
-        <circle cx="528" cy="112" r="15" fill="#a6c78f" fill-opacity="0.85"/>
-        <text x="528" y="117" class="num">5</text>
-        <text x="528" y="145" class="step">DNS を GitHub</text>
-        <text x="528" y="159" class="step">Pages へ向ける</text>
-
-        <circle cx="640" cy="112" r="15" fill="#ffffff" fill-opacity="0.14" stroke="#d6e0cf" stroke-opacity="0.5"/>
-        <text x="640" y="117" class="num light">6</text>
-        <text x="640" y="145" class="step">切替後の</text>
-        <text x="640" y="159" class="step">検証</text>
-      </g>
-
-      <path d="M192 88 q56 -22 112 0" fill="none" stroke="#d6e0cf" stroke-opacity="0.45" stroke-width="1.3" stroke-dasharray="4 3"/>
-      <text x="248" y="74" class="para">2 と 3 は並行できた</text>
-
-      <rect x="46" y="180" width="628" height="74" rx="8" fill="none" stroke="#a6c78f" stroke-opacity="0.45" stroke-dasharray="5 4"/>
-      <text x="66" y="200" class="boxttl">入れ替えてはいけない四つの順序</text>
-      <text x="66" y="222" class="rule">DNS を控える → ネームサーバー切替</text>
-      <text x="66" y="242" class="rule">標準 URL で確認 → Custom domain 設定</text>
-      <text x="388" y="222" class="rule">Custom domain 設定 → DNS レコード設定</text>
-      <text x="388" y="242" class="rule">完成を確認 → 旧環境を削除</text>
-
-      <style>
-        .figTitle { fill: #f4f7f2; font-size: 14px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .num { fill: #1c2416; font-size: 13px; font-weight: 700; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .num.light { fill: #edf2ea; }
-        .step { fill: #e2ebdc; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .warnnote { fill: #d9a29e; font-size: 11px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .para { fill: #b4c4a9; font-size: 10.5px; text-anchor: middle; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .boxttl { fill: #a6c78f; font-size: 11.5px; font-weight: 700; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-        .rule { fill: #d6e0cf; font-size: 11px; font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; }
-      </style>
-    </svg>
-  </figure>
-  </div>
+<div class="sticky-zone">
+<header class="site-header">
+ <a class="home" href="index.html">← ホーム</a>
+ <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
+ <div class="controls">
+  <button type="button" id="expand-all">すべて展開</button>
+  <button type="button" id="collapse-all">すべて折りたたむ</button>
+ </div>
 </header>
-<div class="page-head">
-  <span class="eyebrow">実録・作業記録</span>
-  <h1>ウェブサーバーを GitHub Pages へ移行した記録</h1>
-  <p class="sub">二年間にわたり更新していなかった自社ウェブサイトを、 WordPress が動くレンタルサーバーから GitHub Pages へ移した。その顛末を記す。</p>
-  <div class="meta">
-  <span>全 5 章</span>
-  <span>約 25 分</span>
-  <span>旧環境 : WordPress / XServer</span>
-  <span>新環境 : GitHub Pages</span>
-  <span>DNS : Xserver Domain</span>
-  <span>独自ドメイン : pyx.co.jp</span>
-  <span>サーバー契約期限 : 2026 年 8 月 31 日</span>
-  </div>
-
-  
+<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
 </div>
 
+<div class="container">
 
-<div class="wrap">
 
-<div class="toolbar-container">
-  <div class="toolbar">
-    <button id="expandAll" type="button">すべて開く</button>
-    <button id="collapseAll" type="button">すべて閉じる</button>
-  </div>
+ <p class="doc-meta">旧環境: WordPress / XServer、新環境: GitHub Pages、DNS: Xserver Domain、独自ドメイン: pyx.co.jp。二年間更新していなかった自社ウェブサイトを、レンタルサーバーから GitHub Pages へ移した記録。全 5 章、約 25 分。</p>
+
+ <p class="hint">▶ をタップすると展開します。同じ階層では一つ開くと他は閉じます(「すべて展開」時を除く)。</p>
+
+ <div class="accordion">
+
+<div class="chapter"><button aria-expanded="false" class="ch-head" type="button">0. はじめに</button><div class="ch-body"><div class="ch-intro"><p class="pp">「もとのサーバーから HTML ファイルを GitHub Pages に移し、ドメインの向き先を変える。」<br/>こう言うと、単純な作業に聞こえる。ところが実際に手を動かすと話は変わった。<br/>
+<strong> DNS はどの契約に属しているのか。設定は本当に引き継がれるのか。何を確認してから削除すべきなのか。</strong><br/>
+ひとつ判断を間違えれば、サイトだけでなくドメインへの到達性まで失う。そこで今回は、作業そのものだけでなく、次へ進んでよいと判断した根拠まで記録することにした。</p><div class="fact-grid">
+<div class="fact-card">
+<div class="label">旧ネームサーバー</div>
+<div class="value"><code>ns1.xserver.jp 〜 ns5.xserver.jp</code></div>
+<div class="small">サーバー契約に紐づく DNS</div>
 </div>
-
-<div id="accordion">
-
-<section class="acc-item" id="sec0" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">0</span>
-    <span class="title">はじめに</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-
-<p>「もとのサーバーから HTML ファイルを GitHub Pages に移し、ドメインの向き先を変える。」<br>こう言うと、単純な作業に聞こえる。ところが実際に手を動かすと話は変わった。<br>
-<strong> DNS はどの契約に属しているのか。設定は本当に引き継がれるのか。何を確認してから削除すべきなのか。</strong><br>
-ひとつ判断を間違えれば、サイトだけでなくドメインへの到達性まで失う。そこで今回は、作業そのものだけでなく、次へ進んでよいと判断した根拠まで記録することにした。</p>
-
-<div class="fact-grid">
-  <div class="fact-card">
-    <div class="label">旧ネームサーバー</div>
-    <div class="value"><code>ns1.xserver.jp 〜 ns5.xserver.jp</code></div>
-    <div class="small">サーバー契約に紐づく DNS</div>
-  </div>
-  <div class="fact-card">
-    <div class="label">新ネームサーバー</div>
-    <div class="value"><code>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp</code></div>
-    <div class="small">Xserver Domain 側の DNS</div>
-  </div>
+<div class="fact-card">
+<div class="label">新ネームサーバー</div>
+<div class="value"><code>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp</code></div>
+<div class="small">Xserver Domain 側の DNS</div>
 </div>
-
-<p>以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものである。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記す。</p>
-
-<div class="source-note">注 : 旧サーバーの各種識別情報は、記事の趣旨に必要ないため伏せてある。</div>
-
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec1" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">1</span>
-    <span class="title">なぜサーバーを移すことにしたのか</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-
-<h3>1-1. 二年間、放置されていたサイト</h3>
-<p><code>pyx.co.jp</code> は筆者の会社のサイトで、 WordPress を動かし、その環境で作ったものだった。<br>ところが二年間、記事の更新も、プラグインの更新なども、手を付けていない状態が続いていた。動いてはいるが、誰も世話をしていないサイトである。<br>そこに、レンタルサーバーの契約期限という具体的な締切がやってきた。残り三週間しかない。契約は自動更新が設定されておらず、支払いを行わなければ、期限日にアカウントが自然に凍結される見込みだった。<br>この期限をきっかけに、「同じ構成のまま契約を更新するか」を考えることになった。</p>
-
-<h3>1-2. 動的サイトと静的サイト</h3>
-<p>WordPress の様な CMS （コンテンツ管理システム）で作られたサイトは、アクセスが来るたびにサーバー内のプログラム（PHP など）が動き、データベースから記事の内容を取り出して、その場で HTML を組み立てて返す。これを<strong>動的サイト</strong>と呼ぶ。<br>一方の<strong>静的サイト</strong>は、あらかじめ完成させておいた HTML / CSS / 画像などのファイルを置いておくだけの仕組みである。アクセスが来ても、サーバーは「今から組み立てる」のではなく「もう完成しているファイルをそのまま渡す」だけである。</p>
-
-<div class="diagram-box">
-<svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arrow-d2d3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"/>
-    </marker>
-  </defs>
-  <style>
+</div><p class="pp">以下は、移行前に作った実行計画書と、実際の作業記録を突き合わせながらまとめ直したものである。計画どおりだった部分だけでなく、計画から外れた出来事、途中で判断を変えた理由、そして最後まで残った確認事項まで含めて記す。</p><p class="note-p">注 : 旧サーバーの各種識別情報は、記事の趣旨に必要ないため伏せてある。</p></div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">1. なぜサーバーを移すことにしたのか</button><div class="ch-body"><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-1. 二年間、放置されていたサイト</button><div class="sec-body"><p class="pp"><code>pyx.co.jp</code> は筆者の会社のサイトで、 WordPress を動かし、その環境で作ったものだった。<br/>ところが二年間、記事の更新も、プラグインの更新なども、手を付けていない状態が続いていた。動いてはいるが、誰も世話をしていないサイトである。<br/>そこに、レンタルサーバーの契約期限という具体的な締切がやってきた。残り三週間しかない。契約は自動更新が設定されておらず、支払いを行わなければ、期限日にアカウントが自然に凍結される見込みだった。<br/>この期限をきっかけに、「同じ構成のまま契約を更新するか」を考えることになった。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-2. 動的サイトと静的サイト</button><div class="sec-body"><p class="pp">WordPress の様な CMS （コンテンツ管理システム）で作られたサイトは、アクセスが来るたびにサーバー内のプログラム（PHP など）が動き、データベースから記事の内容を取り出して、その場で HTML を組み立てて返す。これを<strong>動的サイト</strong>と呼ぶ。<br/>一方の<strong>静的サイト</strong>は、あらかじめ完成させておいた HTML / CSS / 画像などのファイルを置いておくだけの仕組みである。アクセスが来ても、サーバーは「今から組み立てる」のではなく「もう完成しているファイルをそのまま渡す」だけである。</p><div class="diagram-box">
+<svg viewbox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow-d2d3" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3">
+<path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"></path>
+</marker>
+</defs>
+<style>
     .node { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
     .node-alt { fill: #ecf2e7; stroke: #4a6b33; stroke-width: 2; }
     .label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 14px; fill: #2b2a28; text-anchor: middle; }
@@ -569,148 +263,85 @@
     .flow { stroke: #4a6b33; stroke-width: 2; fill: none; marker-end: url(#arrow-d2d3); }
     .title { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 13px; font-weight: bold; fill: #4a6b33; }
   </style>
-
-  <text x="20" y="30" class="title">動的サイト = アクセスされた都度、組み立てる</text>
-  <rect x="20" y="60" width="130" height="60" rx="10" class="node"/>
-  <text x="85" y="95" class="label">ブラウザ</text>
-  <path d="M150,90 L228,90" class="flow"/>
-  <rect x="230" y="60" width="130" height="60" rx="10" class="node-alt"/>
-  <text x="295" y="88" class="label">サーバーの</text>
-  <text x="295" y="103" class="label">PHP プログラム</text>
-  <path d="M360,90 L438,90" class="flow"/>
-  <rect x="440" y="60" width="130" height="60" rx="10" class="node-alt"/>
-  <text x="505" y="88" class="label">データベース</text>
-  <text x="505" y="103" class="sub">（記事本文など）</text>
-  <path d="M440,110 Q295,170 150,110" class="flow"/>
-  <text x="295" y="180" class="sub">その場で HTML を生成して返す（毎回・ PHP とデータベースが常時必要）</text>
-
-  <line x1="0" y1="220" x2="680" y2="220" stroke="#e4d9d8" stroke-dasharray="4 4"/>
-
-  <text x="20" y="255" class="title">静的サイト = 用意しているファイルをそのまま渡す</text>
-  <rect x="20" y="280" width="150" height="60" rx="10" class="node"/>
-  <text x="95" y="315" class="label">ブラウザ</text>
-  <path d="M170,310 L268,310" class="flow"/>
-  <rect x="270" y="280" width="180" height="60" rx="10" class="node-alt"/>
-  <text x="360" y="305" class="label">保存済みの HTML/CSS</text>
-  <text x="360" y="322" class="sub">（あらかじめ完成しているファイル）</text>
-  <path d="M270,340 L172,340" class="flow"/>
-  <text x="220" y="362" class="sub">ファイルを渡すだけ（サーバー側でアプリケーションを実行しない）</text>
+<text class="title" x="20" y="30">動的サイト = アクセスされた都度、組み立てる</text>
+<rect class="node" height="60" rx="10" width="130" x="20" y="60"></rect>
+<text class="label" x="85" y="95">ブラウザ</text>
+<path class="flow" d="M150,90 L228,90"></path>
+<rect class="node-alt" height="60" rx="10" width="130" x="230" y="60"></rect>
+<text class="label" x="295" y="88">サーバーの</text>
+<text class="label" x="295" y="103">PHP プログラム</text>
+<path class="flow" d="M360,90 L438,90"></path>
+<rect class="node-alt" height="60" rx="10" width="130" x="440" y="60"></rect>
+<text class="label" x="505" y="88">データベース</text>
+<text class="sub" x="505" y="103">（記事本文など）</text>
+<path class="flow" d="M440,110 Q295,170 150,110"></path>
+<text class="sub" x="295" y="180">その場で HTML を生成して返す（毎回・ PHP とデータベースが常時必要）</text>
+<line stroke="#e4d9d8" stroke-dasharray="4 4" x1="0" x2="680" y1="220" y2="220"></line>
+<text class="title" x="20" y="255">静的サイト = 用意しているファイルをそのまま渡す</text>
+<rect class="node" height="60" rx="10" width="150" x="20" y="280"></rect>
+<text class="label" x="95" y="315">ブラウザ</text>
+<path class="flow" d="M170,310 L268,310"></path>
+<rect class="node-alt" height="60" rx="10" width="180" x="270" y="280"></rect>
+<text class="label" x="360" y="305">保存済みの HTML/CSS</text>
+<text class="sub" x="360" y="322">（あらかじめ完成しているファイル）</text>
+<path class="flow" d="M270,340 L172,340"></path>
+<text class="sub" x="220" y="362">ファイルを渡すだけ（サーバー側でアプリケーションを実行しない）</text>
 </svg>
-</div>
-<p class="caption">図 1 : 動的サイトと静的サイトの、リクエストごとの処理の違い</p>
-
-<p><strong>「このサイトは、必ずしも WordPress の上に構築されている必要は無いのではないか。」</strong><br>これが、作り直しを検討した最初の動機だった。<br>（なお、動的サイトを実現する手段は WordPress 以外にもあるが、便宜上、「動的サイト = WordPress 」としている。）</p>
-
-<table>
-  <tr><th>観点</th><th>WordPress （動的サイト）</th><th>静的サイト</th></tr>
-  <tr><td>サーバー側の構成</td><td>データベース・ PHP ・常時稼働のプロセス</td><td>HTML/CSS/JS のファイルのみ</td></tr>
-  <tr><td>セキュリティ面の脅威</td><td>プラグイン・ログイン画面・データベースへの問い合わせなどが攻撃対象となり得る</td><td>実質的にほぼ無い（配信するだけ）</td></tr>
-  <tr><td>保守の手間</td><td>継続的な更新・パッチ適用・バックアップ・監視</td><td>サーバー側の保守は、ほぼ不要</td></tr>
-  <tr><td>コンテンツ更新方法</td><td>管理画面上での編集</td><td>個別ファイルの編集と Git 操作</td></tr>
-</table>
-
-<p>WordPress は世界中の膨大な数のサイトを支える優れたソフトウェアである。編集者が複数いて、日常的に記事を書き、コメント機能や複雑なワークフローを必要とするサイトにとっては依然として強力な選択肢である。<br>しかし <code>pyx.co.jp</code> はそれに該当するサイトではなかった。</p>
-
-<h3>1-3. 旧記事は移さず、新たなコンテンツを作った</h3>
-<p>もう一つ、早い段階で決めたことがある。<strong>旧サイトの内容は一つも移行しない</strong>という判断である。<br>二年近く更新が止まっていた内容を、手間をかけて移し替える価値があるかを考えた結果だった。新サイトで当初公開する内容は仮の一枚のページのみとし、本格的な内容は落ち着いてから作り込むという方針にした。</p>
-<p>移行というと、今あるものをそのまま新しい場所に持っていく、と考えがちだが、価値が薄れた内容まで運び込む必要はない。移すものが少なければ移行作業は軽くなる。</p>
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec2" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">2</span>
-    <span class="title">先に調べる、特に DNS を</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-
-<p>ここで一度、作業の手を止めた。期限が決まっている以上、行き当たりばったりで進めるのは危険である。作成日から数えて実質二週間ほどしかない期限だった。<br>AI に相談しながら、現状の整理・技術選定・作業順序・想定される落とし穴を、一つの文書にまとめていった。以下は、その計画段階で分かったことの記録である。</p>
-
-<h3>2-1. ドメインとサーバーは別契約、という基本</h3>
-<p>まず前提として、「ドメイン」と「サーバー（ホスティング先）」は、別の契約である。<br>インターネット上のサーバーは <code>203.0.113.25</code> の様な「 IP アドレス」で区別されているが、人間が毎回この数字を覚えるのは大変なので、 <code>pyx.co.jp</code> の様な「ドメイン名」を使う。<br>
-この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> である。</p>
-
-<div class="diagram-box">
-<svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <marker id="arrow-d3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"/>
-    </marker>
-  </defs>
-  <style>
+</div><p class="caption">図 1 : 動的サイトと静的サイトの、リクエストごとの処理の違い</p><p class="pp"><strong>「このサイトは、必ずしも WordPress の上に構築されている必要は無いのではないか。」</strong><br/>これが、作り直しを検討した最初の動機だった。<br/>（なお、動的サイトを実現する手段は WordPress 以外にもあるが、便宜上、「動的サイト = WordPress 」としている。）</p><div class="table-wrap"><table>
+<tr><th>観点</th><th>WordPress （動的サイト）</th><th>静的サイト</th></tr>
+<tr><td>サーバー側の構成</td><td>データベース・ PHP ・常時稼働のプロセス</td><td>HTML/CSS/JS のファイルのみ</td></tr>
+<tr><td>セキュリティ面の脅威</td><td>プラグイン・ログイン画面・データベースへの問い合わせなどが攻撃対象となり得る</td><td>実質的にほぼ無い（配信するだけ）</td></tr>
+<tr><td>保守の手間</td><td>継続的な更新・パッチ適用・バックアップ・監視</td><td>サーバー側の保守は、ほぼ不要</td></tr>
+<tr><td>コンテンツ更新方法</td><td>管理画面上での編集</td><td>個別ファイルの編集と Git 操作</td></tr>
+</table></div><p class="pp">WordPress は世界中の膨大な数のサイトを支える優れたソフトウェアである。編集者が複数いて、日常的に記事を書き、コメント機能や複雑なワークフローを必要とするサイトにとっては依然として強力な選択肢である。<br/>しかし <code>pyx.co.jp</code> はそれに該当するサイトではなかった。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">1-3. 旧記事は移さず、新たなコンテンツを作った</button><div class="sec-body"><p class="pp">もう一つ、早い段階で決めたことがある。<strong>旧サイトの内容は一つも移行しない</strong>という判断である。<br/>二年近く更新が止まっていた内容を、手間をかけて移し替える価値があるかを考えた結果だった。新サイトで当初公開する内容は仮の一枚のページのみとし、本格的な内容は落ち着いてから作り込むという方針にした。</p><p class="pp">移行というと、今あるものをそのまま新しい場所に持っていく、と考えがちだが、価値が薄れた内容まで運び込む必要はない。移すものが少なければ移行作業は軽くなる。</p></div></div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">2. 先に調べる、特に DNS を</button><div class="ch-body"><div class="ch-intro"><p class="pp">ここで一度、作業の手を止めた。期限が決まっている以上、行き当たりばったりで進めるのは危険である。作成日から数えて実質二週間ほどしかない期限だった。<br/>AI に相談しながら、現状の整理・技術選定・作業順序・想定される落とし穴を、一つの文書にまとめていった。以下は、その計画段階で分かったことの記録である。</p></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">2-1. ドメインとサーバーは別契約、という基本</button><div class="sec-body"><p class="pp">まず前提として、「ドメイン」と「サーバー（ホスティング先）」は、別の契約である。<br/>インターネット上のサーバーは <code>203.0.113.25</code> の様な「 IP アドレス」で区別されているが、人間が毎回この数字を覚えるのは大変なので、 <code>pyx.co.jp</code> の様な「ドメイン名」を使う。<br/>
+この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> である。</p><div class="diagram-box">
+<svg viewbox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow-d3" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3">
+<path d="M0,0 L8,3 L0,6 Z" fill="#4a6b33"></path>
+</marker>
+</defs>
+<style>
     .d3node { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
     .d3label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 15px; fill: #2b2a28; text-anchor: middle; }
     .d3sub { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #6b6863; text-anchor: middle; }
     .d3arrow-label { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #4a6b33; text-anchor: middle; }
     .d3flow { stroke: #4a6b33; stroke-width: 2; fill: none; marker-end: url(#arrow-d3); }
   </style>
-
-  <rect x="20" y="15" width="190" height="175" rx="24" class="d3node"/>
-  <text x="115" y="98" class="d3label">ブラウザ</text>
-  <text x="115" y="118" class="d3sub">（PC やスマホ）</text>
-
-  <rect x="470" y="15" width="210" height="75" rx="12" class="d3node"/>
-  <text x="575" y="48" class="d3label">DNS サーバー</text>
-  <text x="575" y="68" class="d3sub">（ドメインの電話帳）</text>
-
-  <rect x="470" y="115" width="210" height="75" rx="12" class="d3node"/>
-  <text x="575" y="148" class="d3label">ウェブサーバー</text>
-  <text x="575" y="168" class="d3sub">（データの置き場）</text>
-
-  <path d="M212,45 L468,45" class="d3flow"/>
-  <text x="340" y="30" class="d3arrow-label">①「この住所の IP は何ですか？」</text>
-
-  <path d="M470,75 L214,75" class="d3flow"/>
-  <text x="340" y="100" class="d3arrow-label">②「この IP です」</text>
-
-  <path d="M212,145 L468,145" class="d3flow"/>
-  <text x="340" y="130" class="d3arrow-label">③「データをください」（HTTP リクエスト）</text>
-
-  <path d="M470,175 L214,175" class="d3flow"/>
-  <text x="340" y="200" class="d3arrow-label">④（データ）</text>
+<rect class="d3node" height="175" rx="24" width="190" x="20" y="15"></rect>
+<text class="d3label" x="115" y="98">ブラウザ</text>
+<text class="d3sub" x="115" y="118">（PC やスマホ）</text>
+<rect class="d3node" height="75" rx="12" width="210" x="470" y="15"></rect>
+<text class="d3label" x="575" y="48">DNS サーバー</text>
+<text class="d3sub" x="575" y="68">（ドメインの電話帳）</text>
+<rect class="d3node" height="75" rx="12" width="210" x="470" y="115"></rect>
+<text class="d3label" x="575" y="148">ウェブサーバー</text>
+<text class="d3sub" x="575" y="168">（データの置き場）</text>
+<path class="d3flow" d="M212,45 L468,45"></path>
+<text class="d3arrow-label" x="340" y="30">①「この住所の IP は何ですか？」</text>
+<path class="d3flow" d="M470,75 L214,75"></path>
+<text class="d3arrow-label" x="340" y="100">②「この IP です」</text>
+<path class="d3flow" d="M212,145 L468,145"></path>
+<text class="d3arrow-label" x="340" y="130">③「データをください」（HTTP リクエスト）</text>
+<path class="d3flow" d="M470,175 L214,175"></path>
+<text class="d3arrow-label" x="340" y="200">④（データ）</text>
 </svg>
-</div>
-<p class="caption">図 2 : URL を入力してからページが表示されるまでの流れ</p>
-
-<p><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者（XServer）だった。同じ会社でも「ドメイン契約」と「レンタルサーバー契約」という別々の契約として管理されている。<br>
-ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態だった。</p>
-
-<h3>2-2. 最大の論点：　サーバー契約をやめても DNS は生き残るか</h3>
-<p>計画段階でいちばん時間を使ったのが、この一点だった。<strong>レンタルサーバーの契約をやめたとき、ドメインの DNS 設定を編集する手段と、ドメイン名から IP アドレスを引く「名前解決」の仕組みは、どうなるのか。</strong></p>
-<p>これは類推だけでは確定できない問題だった。 XServer の公式案内には、期限を超過したサーバーアカウントについて「凍結が行われるとホームページへのアクセスやメールの送受信が行えなくなります」とだけ書かれており、「 DNS レコードの管理ができなくなる」とは明記されていなかった。<br>一方で、 XServer には管理画面が二種類あり、役割が分かれていることも分かった。</p>
-
-<table>
-  <tr><th>管理画面</th><th>役割</th></tr>
-  <tr><td>XSever レンタルサーバー契約管理ページ<br>https://secure.xserver.ne.jp/xapanel/xserver/index</td><td>サーバーの各種設定（メールアカウント発行など含め）</td></tr>
-  <tr><td>XSever Domain 契約管理ページ<br>https://secure.xserver.ne.jp/xapanel/xdomain/index</td><td>ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td></tr>
-</table>
-
-<p>DNS レコードの管理は「 XSever レンタルサーバー契約管理ページ」ではなく、ドメイン契約に紐づく「 XSever Domain 管理ページ」の機能だった。<br>さらに、 XServer にはドメインだけを単独契約する利用者も存在し、そうした利用者も同じネームサーバー群を使っていることが公式マニュアルから読み取れた。<br>
-サーバー契約を一度も持たない利用者がこの仕組みを使えている以上、サーバー契約の有無が DNS 配信の前提条件になっているとは考えにくいと判断できた。</p>
-
-<p>ただし、これは状況証拠の積み重ねにすぎない。実際に <code>dig</code> コマンドで <code>pyx.co.jp</code> の現在のネームサーバーを調べたところ、次のように、サーバー契約者専用のネームサーバーが設定されていることが分かった。</p>
-
-<pre><code>$ dig +short NS pyx.co.jp
+</div><p class="caption">図 2 : URL を入力してからページが表示されるまでの流れ</p><p class="pp"><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者（XServer）だった。同じ会社でも「ドメイン契約」と「レンタルサーバー契約」という別々の契約として管理されている。<br/>
+ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態だった。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">2-2. 最大の論点：　サーバー契約をやめても DNS は生き残るか</button><div class="sec-body"><p class="pp">計画段階でいちばん時間を使ったのが、この一点だった。<strong>レンタルサーバーの契約をやめたとき、ドメインの DNS 設定を編集する手段と、ドメイン名から IP アドレスを引く「名前解決」の仕組みは、どうなるのか。</strong></p><p class="pp">これは類推だけでは確定できない問題だった。 XServer の公式案内には、期限を超過したサーバーアカウントについて「凍結が行われるとホームページへのアクセスやメールの送受信が行えなくなります」とだけ書かれており、「 DNS レコードの管理ができなくなる」とは明記されていなかった。<br/>一方で、 XServer には管理画面が二種類あり、役割が分かれていることも分かった。</p><div class="table-wrap"><table>
+<tr><th>管理画面</th><th>役割</th></tr>
+<tr><td>XSever レンタルサーバー契約管理ページ<br/>https://secure.xserver.ne.jp/xapanel/xserver/index</td><td>サーバーの各種設定（メールアカウント発行など含め）</td></tr>
+<tr><td>XSever Domain 契約管理ページ<br/>https://secure.xserver.ne.jp/xapanel/xdomain/index</td><td>ネームサーバーの管理、 DNS レコードの管理、 Whois 情報の管理</td></tr>
+</table></div><p class="pp">DNS レコードの管理は「 XSever レンタルサーバー契約管理ページ」ではなく、ドメイン契約に紐づく「 XSever Domain 管理ページ」の機能だった。<br/>さらに、 XServer にはドメインだけを単独契約する利用者も存在し、そうした利用者も同じネームサーバー群を使っていることが公式マニュアルから読み取れた。<br/>
+サーバー契約を一度も持たない利用者がこの仕組みを使えている以上、サーバー契約の有無が DNS 配信の前提条件になっているとは考えにくいと判断できた。</p><p class="pp">ただし、これは状況証拠の積み重ねにすぎない。実際に <code>dig</code> コマンドで <code>pyx.co.jp</code> の現在のネームサーバーを調べたところ、次のように、サーバー契約者専用のネームサーバーが設定されていることが分かった。</p><pre><code>$ dig +short NS pyx.co.jp
 ns1.xserver.jp.  ns2.xserver.jp.  ns3.xserver.jp.
-ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
-
-<p>この 5 台は、レンタルサーバー契約者専用のネームサーバーである。<strong>このままではサーバー契約が凍結されると同時に、 DNS の管理も名前解決も同時に失う可能性がある</strong>と分かった。<br>
-憶測で進めるにはリスクが大きすぎたため、最終的には XServer のサポートへ直接問い合わせ、書面で回答を得た。回答の要点は次の二点だった。</p>
-
-<div class="callout">
-  <strong>サポート回答の要点（8 月 16 日）</strong><br>
-  1. ドメインのみ契約している状態でも、ネームサーバーを Xserver Domain （サーバー契約に紐づかない、ドメイン契約側の DNS 管理機能）に設定すれば、引き続き DNS レコードの編集・管理が可能。<br>
+ns4.xserver.jp.  ns5.xserver.jp.</code></pre><p class="pp">この 5 台は、レンタルサーバー契約者専用のネームサーバーである。<strong>このままではサーバー契約が凍結されると同時に、 DNS の管理も名前解決も同時に失う可能性がある</strong>と分かった。<br/>
+憶測で進めるにはリスクが大きすぎたため、最終的には XServer のサポートへ直接問い合わせ、書面で回答を得た。回答の要点は次の二点だった。</p><div class="fig-note"><p class="pp">
+<strong>サポート回答の要点（8 月 16 日）</strong><br/>
+  1. ドメインのみ契約している状態でも、ネームサーバーを Xserver Domain （サーバー契約に紐づかない、ドメイン契約側の DNS 管理機能）に設定すれば、引き続き DNS レコードの編集・管理が可能。<br/>
   2. ns1.xserver.jp 〜 ns5.xserver.jp による名前解決は、レンタルサーバー契約者専用であり、サーバー契約が凍結されると使えなくなる。したがって、凍結前にネームサーバーを Xserver Domain へ切り替えておく必要がある。
-</div>
-
-<p>この回答により、作業の前提が一点変わった。<strong>サーバー契約が凍結される前に、ネームサーバーを Xserver Domain へ切り替える作業が、独立した必須工程として加わった</strong>のである（詳しくは第３部）。</p>
-
-<div class="diagram-box">
-<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg">
-  <style>
+</p></div><p class="pp">この回答により、作業の前提が一点変わった。<strong>サーバー契約が凍結される前に、ネームサーバーを Xserver Domain へ切り替える作業が、独立した必須工程として加わった</strong>のである（詳しくは第３部）。</p><div class="diagram-box">
+<svg viewbox="0 0 680 230" xmlns="http://www.w3.org/2000/svg">
+<style>
     .d5box { fill: #ffffff; stroke: #4a6b33; stroke-width: 2; }
     .d5box-alt { fill: #ecf2e7; stroke: #4a6b33; stroke-width: 2; }
     .d5box-warn { fill: #f7eded; stroke: #c0706b; stroke-width: 2; }
@@ -720,255 +351,135 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre>
     .d5bad { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #823b38; text-anchor: middle; }
     .d5ok { font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif; font-size: 12px; fill: #4a6b33; text-anchor: middle; }
   </style>
-
-  <rect x="0" y="0" width="680" height="230" rx="8" fill="#ffffff"/>
-
-  <text x="20" y="24" class="d5ttl">切り替え前：二つともサーバー契約に紐づいている</text>
-  <rect x="20" y="40" width="145" height="42" rx="8" class="d5box"/>
-  <text x="92" y="60" class="d5lab">ドメイン契約</text>
-  <text x="92" y="75" class="d5sub">（支払い済み・継続）</text>
-  <rect x="180" y="40" width="145" height="42" rx="8" class="d5box-warn"/>
-  <text x="252" y="60" class="d5lab">サーバー契約</text>
-  <text x="252" y="75" class="d5sub">（これをやめたい）</text>
-  <path d="M252,82 L252,97 M92,97 L252,97 M92,97 L92,112 M252,97 L252,112" fill="none" stroke="#c0706b" stroke-width="2"/>
-  <rect x="20" y="112" width="145" height="50" rx="8" class="d5box-warn"/>
-  <text x="92" y="133" class="d5lab">レコードの編集</text>
-  <text x="92" y="149" class="d5sub">（設定を書き換える）</text>
-  <rect x="180" y="112" width="145" height="50" rx="8" class="d5box-warn"/>
-  <text x="252" y="133" class="d5lab">名前解決</text>
-  <text x="252" y="149" class="d5sub">（名前から IP を引く）</text>
-  <text x="172" y="188" class="d5bad">✕　サーバー契約を終了すると、</text>
-  <text x="172" y="206" class="d5bad">編集する手段も名前解決も同時に失う</text>
-
-  <line x1="340" y1="10" x2="340" y2="220" stroke="#e4d9d8" stroke-dasharray="4 4"/>
-
-  <text x="355" y="24" class="d5ttl">切り替え後：二つともドメイン契約に紐づいている</text>
-  <rect x="355" y="40" width="145" height="42" rx="8" class="d5box-alt"/>
-  <text x="427" y="60" class="d5lab">ドメイン契約</text>
-  <text x="427" y="75" class="d5sub">（支払い済み・継続）</text>
-  <rect x="515" y="40" width="145" height="42" rx="8" class="d5box-warn"/>
-  <text x="587" y="60" class="d5lab">サーバー契約</text>
-  <text x="587" y="75" class="d5sub">（やめてよい）</text>
-  <path d="M427,82 L427,97 M427,97 L587,97 M587,97 L587,112 M427,97 L427,112" fill="none" stroke="#4a6b33" stroke-width="2"/>
-  <rect x="355" y="112" width="145" height="50" rx="8" class="d5box-alt"/>
-  <text x="427" y="133" class="d5lab">レコードの編集</text>
-  <text x="427" y="149" class="d5sub">（設定を書き換える）</text>
-  <rect x="515" y="112" width="145" height="50" rx="8" class="d5box-alt"/>
-  <text x="587" y="133" class="d5lab">名前解決</text>
-  <text x="587" y="149" class="d5sub">（名前から IP を引く）</text>
-  <text x="507" y="188" class="d5ok">○　サーバー契約を終了しても、</text>
-  <text x="507" y="206" class="d5ok">編集する手段も名前解決も残る</text>
+<rect fill="#ffffff" height="230" rx="8" width="680" x="0" y="0"></rect>
+<text class="d5ttl" x="20" y="24">切り替え前：二つともサーバー契約に紐づいている</text>
+<rect class="d5box" height="42" rx="8" width="145" x="20" y="40"></rect>
+<text class="d5lab" x="92" y="60">ドメイン契約</text>
+<text class="d5sub" x="92" y="75">（支払い済み・継続）</text>
+<rect class="d5box-warn" height="42" rx="8" width="145" x="180" y="40"></rect>
+<text class="d5lab" x="252" y="60">サーバー契約</text>
+<text class="d5sub" x="252" y="75">（これをやめたい）</text>
+<path d="M252,82 L252,97 M92,97 L252,97 M92,97 L92,112 M252,97 L252,112" fill="none" stroke="#c0706b" stroke-width="2"></path>
+<rect class="d5box-warn" height="50" rx="8" width="145" x="20" y="112"></rect>
+<text class="d5lab" x="92" y="133">レコードの編集</text>
+<text class="d5sub" x="92" y="149">（設定を書き換える）</text>
+<rect class="d5box-warn" height="50" rx="8" width="145" x="180" y="112"></rect>
+<text class="d5lab" x="252" y="133">名前解決</text>
+<text class="d5sub" x="252" y="149">（名前から IP を引く）</text>
+<text class="d5bad" x="172" y="188">✕　サーバー契約を終了すると、</text>
+<text class="d5bad" x="172" y="206">編集する手段も名前解決も同時に失う</text>
+<line stroke="#e4d9d8" stroke-dasharray="4 4" x1="340" x2="340" y1="10" y2="220"></line>
+<text class="d5ttl" x="355" y="24">切り替え後：二つともドメイン契約に紐づいている</text>
+<rect class="d5box-alt" height="42" rx="8" width="145" x="355" y="40"></rect>
+<text class="d5lab" x="427" y="60">ドメイン契約</text>
+<text class="d5sub" x="427" y="75">（支払い済み・継続）</text>
+<rect class="d5box-warn" height="42" rx="8" width="145" x="515" y="40"></rect>
+<text class="d5lab" x="587" y="60">サーバー契約</text>
+<text class="d5sub" x="587" y="75">（やめてよい）</text>
+<path d="M427,82 L427,97 M427,97 L587,97 M587,97 L587,112 M427,97 L427,112" fill="none" stroke="#4a6b33" stroke-width="2"></path>
+<rect class="d5box-alt" height="50" rx="8" width="145" x="355" y="112"></rect>
+<text class="d5lab" x="427" y="133">レコードの編集</text>
+<text class="d5sub" x="427" y="149">（設定を書き換える）</text>
+<rect class="d5box-alt" height="50" rx="8" width="145" x="515" y="112"></rect>
+<text class="d5lab" x="587" y="133">名前解決</text>
+<text class="d5sub" x="587" y="149">（名前から IP を引く）</text>
+<text class="d5ok" x="507" y="188">○　サーバー契約を終了しても、</text>
+<text class="d5ok" x="507" y="206">編集する手段も名前解決も残る</text>
 </svg>
-</div>
-<p class="caption">図 3 : DNS にまつわる二つの機能が、どちらの契約に紐づいているか</p>
-
-<h3>2-3. ホスティング先の選定： GitHub Pages を採用</h3>
-
-<p>静的サイトの置き場所として GitHub Pages と Cloudflare Pages を比較した。決め手は費用ではなく、<strong>変更点を少なく済ませられるかどうか</strong>だった。</p>
-
-<table>
-  <tr><th>比較項目</th><th>GitHub Pages</th><th>Cloudflare Pages</th></tr>
-  <tr><td>Apex ドメイン（<code>pyx.co.jp</code> 自体）への設定</td><td>A レコード 4 件を追加するだけ。 DNS の管理主体を変更する必要がない</td><td>真価を発揮するには、通常ドメインのネームサーバーを Cloudflare 自体に切り替える構成が推奨される</td></tr>
-  <tr><td>費用</td><td>無料</td><td>無料プランでもほぼ賄えるが、カスタムドメイン数などに制限がある</td></tr>
-  <tr><td>HTTPS</td><td>リポジトリ設定で Enforce HTTPS を有効化。反映まで最大 24 時間程度</td><td>自動発行・自動更新</td></tr>
-</table>
-
-<p>すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていた。ここにさらに、ネームサーバーを Cloudflare へ切り替えるという、もう一段構成の異なる変更を重ねる必然性はないと判断した。<br>
- <strong> 8 月 31 日という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方である。<br>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結する。</p>
-<p>あわせて、いわゆる静的サイトジェネレーターなども特に導入しないことにした。公開する内容が準備中を示す一枚もののページである以上、ビルド工程を挟む理由がなかったためである。依存パッケージのない、単一の <code>index.html</code> として作成する方針にした。<br>リポジトリは新規に <code>pyx-site</code> という名前で作成し、公開範囲は Public （公開）とした。無料プランでは、 Private （非公開）のリポジトリで GitHub Pages を有効化できないと、この段階で判明したためである。</p>
-
-<h3>2-4. 全体の実施順序</h3>
-<p>サーバー契約の期限日から逆算し、作業を六つの工程に分けた。上から順に実行すれば、前提を満たさないまま先に進んでしまうことがない並びである。</p>
-
-<table>
-  <tr><th>工程</th><th>内容</th></tr>
-  <tr><td>工程 1</td><td>移行前の保全： DNS レコードのバックアップ</td></tr>
-  <tr><td>工程 2</td><td>ネームサーバーを Xserver Domain へ切り替える</td></tr>
-  <tr><td>工程 3</td><td>サイト構築と、切替前の完成確認</td></tr>
-  <tr><td>工程 4</td><td>旧 WordPress 環境の削除</td></tr>
-  <tr><td>工程 5</td><td>DNS 切替（GitHub Pages への向け先変更）</td></tr>
-  <tr><td>工程 6</td><td>切替後の検証</td></tr>
-</table>
-
-<p>工程 1 と工程 2 は、 DNS に一切手を触れる前後の関係にあるため、必ずこの順で行う必要がある。一方、工程 2 （ネームサーバー切替）と工程 3 （サイト構築）は互いに独立しているため、並行して進めることができた。</p>
-
-<h3>2-5. 順序を入れ替えてはいけない四箇所</h3>
-<p>作業の多くは前後させても支障ないが、次の四つは技術上・安全上の理由から順序が固定される。計画段階でここを洗い出しておいたことが、後の工程で実際に役立った。</p>
-
-<table>
-  <tr><th>この順序</th><th>なぜ入れ替えてはいけないか</th></tr>
-  <tr><td>現在の DNS 設定を控える<br>→ ネームサーバーを切り替える</td><td>切り替えでレコードが引き継がれなかった場合、控えが無ければ何も復元できない</td></tr>
-  <tr><td>標準 URL で動作を確認する<br>→ Custom domain を設定する</td><td>Custom domain を設定すると、標準 URL は独自ドメインへ転送されるようになり、確認手段として使えなくなる</td></tr>
-  <tr><td>GitHub 側で Custom domain を設定する<br>→ DNS レコードを設定する</td><td>先に DNS だけを向けると、そのドメインで第三者にサイトをホストされる状態が生じうる（GitHub 公式が明記している）</td></tr>
-  <tr><td>新しいサイトの完成を確認する<br>→ 旧環境を削除する</td><td>削除後は元に戻せない</td></tr>
-</table>
-
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec3" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">3</span>
-    <span class="title">ここからが本番、実際の移行作業</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-
-<p>そして、実際の切り替えに入った。ここから先は、計画書の中では数行だった作業が、ひとつずつ現実の判断になる。<br>
-計画どおりに進んだところもあれば、<strong>実際に設定を切り替えた瞬間に、計画とは違う答えが返ってきたところもあった。</strong></p>
-
-<h3>3-1. 工程 1 ：移行前の保全、 DNS レコードのバックアップ</h3>
-
-<p>DNS に最初の変更を加える前に、現在の設定値を全件控えた。旧 WordPress のコンテンツ自体は移行しないため保全対象外だが、 DNS 設定は失うと取り返しがつかないため、最優先で控える工程である。</p>
-
-<pre><code>dig +short NS pyx.co.jp
+</div><p class="caption">図 3 : DNS にまつわる二つの機能が、どちらの契約に紐づいているか</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">2-3. ホスティング先の選定： GitHub Pages を採用</button><div class="sec-body"><p class="pp">静的サイトの置き場所として GitHub Pages と Cloudflare Pages を比較した。決め手は費用ではなく、<strong>変更点を少なく済ませられるかどうか</strong>だった。</p><div class="table-wrap"><table>
+<tr><th>比較項目</th><th>GitHub Pages</th><th>Cloudflare Pages</th></tr>
+<tr><td>Apex ドメイン（<code>pyx.co.jp</code> 自体）への設定</td><td>A レコード 4 件を追加するだけ。 DNS の管理主体を変更する必要がない</td><td>真価を発揮するには、通常ドメインのネームサーバーを Cloudflare 自体に切り替える構成が推奨される</td></tr>
+<tr><td>費用</td><td>無料</td><td>無料プランでもほぼ賄えるが、カスタムドメイン数などに制限がある</td></tr>
+<tr><td>HTTPS</td><td>リポジトリ設定で Enforce HTTPS を有効化。反映まで最大 24 時間程度</td><td>自動発行・自動更新</td></tr>
+</table></div><p class="pp">すでに 2-2 で、ネームサーバーを Xserver Domain へ切り替えるという変更を一つ抱えていた。ここにさらに、ネームサーバーを Cloudflare へ切り替えるという、もう一段構成の異なる変更を重ねる必然性はないと判断した。<br/>
+<strong> 8 月 31 日という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方である。<br/>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結する。</p><p class="pp">あわせて、いわゆる静的サイトジェネレーターなども特に導入しないことにした。公開する内容が準備中を示す一枚もののページである以上、ビルド工程を挟む理由がなかったためである。依存パッケージのない、単一の <code>index.html</code> として作成する方針にした。<br/>リポジトリは新規に <code>pyx-site</code> という名前で作成し、公開範囲は Public （公開）とした。無料プランでは、 Private （非公開）のリポジトリで GitHub Pages を有効化できないと、この段階で判明したためである。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">2-4. 全体の実施順序</button><div class="sec-body"><p class="pp">サーバー契約の期限日から逆算し、作業を六つの工程に分けた。上から順に実行すれば、前提を満たさないまま先に進んでしまうことがない並びである。</p><div class="table-wrap"><table>
+<tr><th>工程</th><th>内容</th></tr>
+<tr><td>工程 1</td><td>移行前の保全： DNS レコードのバックアップ</td></tr>
+<tr><td>工程 2</td><td>ネームサーバーを Xserver Domain へ切り替える</td></tr>
+<tr><td>工程 3</td><td>サイト構築と、切替前の完成確認</td></tr>
+<tr><td>工程 4</td><td>旧 WordPress 環境の削除</td></tr>
+<tr><td>工程 5</td><td>DNS 切替（GitHub Pages への向け先変更）</td></tr>
+<tr><td>工程 6</td><td>切替後の検証</td></tr>
+</table></div><p class="pp">工程 1 と工程 2 は、 DNS に一切手を触れる前後の関係にあるため、必ずこの順で行う必要がある。一方、工程 2 （ネームサーバー切替）と工程 3 （サイト構築）は互いに独立しているため、並行して進めることができた。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">2-5. 順序を入れ替えてはいけない四箇所</button><div class="sec-body"><p class="pp">作業の多くは前後させても支障ないが、次の四つは技術上・安全上の理由から順序が固定される。計画段階でここを洗い出しておいたことが、後の工程で実際に役立った。</p><div class="table-wrap"><table>
+<tr><th>この順序</th><th>なぜ入れ替えてはいけないか</th></tr>
+<tr><td>現在の DNS 設定を控える<br/>→ ネームサーバーを切り替える</td><td>切り替えでレコードが引き継がれなかった場合、控えが無ければ何も復元できない</td></tr>
+<tr><td>標準 URL で動作を確認する<br/>→ Custom domain を設定する</td><td>Custom domain を設定すると、標準 URL は独自ドメインへ転送されるようになり、確認手段として使えなくなる</td></tr>
+<tr><td>GitHub 側で Custom domain を設定する<br/>→ DNS レコードを設定する</td><td>先に DNS だけを向けると、そのドメインで第三者にサイトをホストされる状態が生じうる（GitHub 公式が明記している）</td></tr>
+<tr><td>新しいサイトの完成を確認する<br/>→ 旧環境を削除する</td><td>削除後は元に戻せない</td></tr>
+</table></div></div></div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">3. ここからが本番、実際の移行作業</button><div class="ch-body"><div class="ch-intro"><p class="pp">そして、実際の切り替えに入った。ここから先は、計画書の中では数行だった作業が、ひとつずつ現実の判断になる。<br/>
+計画どおりに進んだところもあれば、<strong>実際に設定を切り替えた瞬間に、計画とは違う答えが返ってきたところもあった。</strong></p></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-1. 工程 1 ：移行前の保全、 DNS レコードのバックアップ</button><div class="sec-body"><p class="pp">DNS に最初の変更を加える前に、現在の設定値を全件控えた。旧 WordPress のコンテンツ自体は移行しないため保全対象外だが、 DNS 設定は失うと取り返しがつかないため、最優先で控える工程である。</p><pre><code>dig +short NS pyx.co.jp
 dig +short A pyx.co.jp
 dig +short A www.pyx.co.jp
 dig +short MX pyx.co.jp
-dig +short TXT pyx.co.jp</code></pre>
-
-<table>
-  <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
-  <tr><td>NS</td><td>pyx.co.jp</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td></tr>
-  <tr><td>A</td><td>pyx.co.jp</td><td>（旧サーバーの IP アドレス）</td></tr>
-  <tr><td>A</td><td>www.pyx.co.jp</td><td>（apex と同一）</td></tr>
-  <tr><td>MX</td><td>pyx.co.jp</td><td>0 pyx.co.jp</td></tr>
-  <tr><td>TXT</td><td>pyx.co.jp</td><td>SPF レコード（メール送信元の指定）</td></tr>
-</table>
-
-<p>この控えは、単なる念のためのメモではなかった。後で DNS レコードが引き継がれなかったときに、何が失われたのかを特定するための照合資料になった。</p>
-
-<p>MX と TXT （SPF）の 2 件は、「全レコードを漏れなく控える」という保全要件を満たすために機械的に記録したものである。 <code>pyx.co.jp</code> のメールアドレスは使用したことがなく、今後も使う予定がなかったため、メール関連の移行・保全そのものは検討対象から外した。</p>
-<p>あわせて、 XServer アカウント（ドメイン契約管理ページ）にログインし、 DNS レコード設定画面をスクリーンショットで保存した。 <code>dig</code> の結果は管理画面上の表示と完全には一致しない場合があるため、両方を控えておくのが安全である。控えは Git リポジトリとは別の、ローカルの控え用フォルダに保存した。<br>この控えは、後の工程で実際に役に立った。ただし戻すためではなく、戻さなくてよいと判断するために使った。詳しくは次項に記す。</p>
-
-<h3>3-2. 工程 2 ：ネームサーバーを Xserver Domain へ切り替える</h3>
-<p>XServer アカウントの管理画面で「ネームサーバーの設定」を開き、ネームサーバーを Xserver Domain （サーバー契約に依存しない、ドメイン契約側の標準 DNS 管理機能）に切り替えた。切り替え自体は、管理画面上の一操作で完了する。</p>
-<p>切り替えの反映確認は、必ず権威サーバーへ直接おこなった。</p>
-<pre><code># 委任情報（レジストリ側）
+dig +short TXT pyx.co.jp</code></pre><div class="table-wrap"><table>
+<tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
+<tr><td>NS</td><td>pyx.co.jp</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td></tr>
+<tr><td>A</td><td>pyx.co.jp</td><td>（旧サーバーの IP アドレス）</td></tr>
+<tr><td>A</td><td>www.pyx.co.jp</td><td>（apex と同一）</td></tr>
+<tr><td>MX</td><td>pyx.co.jp</td><td>0 pyx.co.jp</td></tr>
+<tr><td>TXT</td><td>pyx.co.jp</td><td>SPF レコード（メール送信元の指定）</td></tr>
+</table></div><p class="pp">この控えは、単なる念のためのメモではなかった。後で DNS レコードが引き継がれなかったときに、何が失われたのかを特定するための照合資料になった。</p><p class="pp">MX と TXT （SPF）の 2 件は、「全レコードを漏れなく控える」という保全要件を満たすために機械的に記録したものである。 <code>pyx.co.jp</code> のメールアドレスは使用したことがなく、今後も使う予定がなかったため、メール関連の移行・保全そのものは検討対象から外した。</p><p class="pp">あわせて、 XServer アカウント（ドメイン契約管理ページ）にログインし、 DNS レコード設定画面をスクリーンショットで保存した。 <code>dig</code> の結果は管理画面上の表示と完全には一致しない場合があるため、両方を控えておくのが安全である。控えは Git リポジトリとは別の、ローカルの控え用フォルダに保存した。<br/>この控えは、後の工程で実際に役に立った。ただし戻すためではなく、戻さなくてよいと判断するために使った。詳しくは次項に記す。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-2. 工程 2 ：ネームサーバーを Xserver Domain へ切り替える</button><div class="sec-body"><p class="pp">XServer アカウントの管理画面で「ネームサーバーの設定」を開き、ネームサーバーを Xserver Domain （サーバー契約に依存しない、ドメイン契約側の標準 DNS 管理機能）に切り替えた。切り替え自体は、管理画面上の一操作で完了する。</p><p class="pp">切り替えの反映確認は、必ず権威サーバーへ直接おこなった。</p><pre><code># 委任情報（レジストリ側）
 dig @a.dns.jp pyx.co.jp NS +norecurse
 # 切替後の権威サーバーが実際に何を持っているか
-dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre>
-<p>ここで、計画書にはなかった事実が一つ現れた。<strong>切り替えは成功したが、それまで設定されていた DNS レコードは、一件も引き継がれなかった。<br>
-</strong><br>「切り替えたのだから、古い A レコードもそのまま新しい DNS に移るだろう」と考えていたら、ここで作業は止まっていたはずである。実際には、ゾーンを成立させるための NS と SOA は用意されたものの、設定したはずの A/MX/TXT は空だった。</p>
-<table>
-  <tr><th>レコード</th><th>切替前</th><th>切替後の Xserver Domain 側</th></tr>
-  <tr><td>NS</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td><td>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp （自動生成）</td></tr>
-  <tr><td>SOA</td><td>—</td><td>自動生成</td></tr>
-  <tr><td>A (pyx.co.jp)</td><td>設定あり</td><td>無し</td></tr>
-  <tr><td>A (www.pyx.co.jp)</td><td>設定あり</td><td>無し</td></tr>
-  <tr><td>MX</td><td>設定あり</td><td>無し</td></tr>
-  <tr><td>TXT (SPF)</td><td>設定あり</td><td>無し</td></tr>
-</table>
-
-<p>紛らわしいことに、切り替え後の管理画面にも NS が 3 件と SOA が 1 件の 4 行が並んで見えた。しかしこれらはゾーン（レコードを収める器）を成立させるための構造的なレコードにすぎず、実際に使われる値（A/CNAME/MX/TXT）は 0 件だった。<br>
-<strong>画面に行が見えていることと、設定が引き継がれていることは、同じではない。</strong></p>
-
-<h4>採った対応：ゾーンを空のまま進める</h4>
-<p>失われたレコードは復元せず、空のまま次の工程へ進む判断を採った。理由は次の三点である。</p>
-<ol>
-  <li>控えていた値は、いずれ捨てるものだった。 A レコードの向き先は凍結予定の旧サーバーを指し、 MX はメール対象外だった</li>
-  <li>復元してから後の工程で消す、という往復を作らずに済む。変更する箇所が少ないほど、間違える箇所も少ない</li>
-  <li>結果として、後の DNS 切替（工程 5）が既存レコードの整理を伴う書き換えから純粋な追加に変わり、消し忘れによる証明書発行の失敗というリスクが構造的に消えた</li>
-</ol>
-
-<p>ここで役に立ったのが、 3-1 で控えた値だった。<br>
-<strong>何が失われたのかが分からなければ、失って構わないかどうかも判断できない。</strong>控えを取っていたからこそ、これは捨ててよい値だと、根拠を持って判断できた。</p>
-
-<p>この判断に伴う副作用として、 A レコードが存在しないため、キャッシュが切れ次第 <code>pyx.co.jp</code> は名前解決できなくなった。二年間放置されたサイトだったため実害はないと判断したが、この影響は 3-4 で改めて触れる。</p>
-
-<h4>反映が安定するまでの経過</h4>
-<p>切り替え直後は、通常の調べ方（リゾルバ経由）で確認するたびに、結果が異なった。</p>
-
-<table>
-  <tr><th>時刻</th><th>照会先</th><th>結果</th></tr>
-  <tr><td>12:13</td><td>リゾルバ</td><td>www と TXT が消失して見える</td></tr>
-  <tr><td>12:19</td><td>リゾルバ</td><td>TXT が復活して見える</td></tr>
-  <tr><td>12:25</td><td>リゾルバ</td><td>www も復活して見える（＝旧ネームサーバーのキャッシュ）</td></tr>
-  <tr><td>12:35</td><td>権威サーバー直撃</td><td>ゾーンは空。以後この判定は一度も揺れなかった</td></tr>
-  <tr><td>翌日</td><td>権威 3 台＋リゾルバ全て</td><td>一致。 apex は応答 0 件、 www は該当ドメイン無し</td></tr>
-</table>
-
-<p><strong>もう一つ分かったこと。</strong><br>ネームサーバーを切り替えた後も、旧ネームサーバー <code>ns1.xserver.jp</code> / <code>ns2.xserver.jp</code> などには、しばらく旧ゾーンが残っていた。そこへ直接問い合わせると、旧サーバーの IP アドレスを返す。<br>
-しかし、レジストリの委任先からはすでに外れているため、通常の名前解決でそこへ到達することはない。<strong>「古い情報が残っている」ことと「古い情報が使われている」ことは別である。</strong></p>
-
-<p>原因は技術的な障害ではなく、<strong>誰に問い合わせているか</strong>だった。<br>
-通常の調べ方は途中のキャッシュを経由するため、変更直後は古い情報と新しい情報が混ざる。一方、そのドメインの設定を実際に保持している権威サーバーへ直接尋ねると、答えは最初から一貫していた。</p>
-
-<table>
-  <tr><th>調べ方</th><th>分かること</th><th>キャッシュの影響</th></tr>
-  <tr><td>権威サーバーへ直接<br><code>dig @ns1.xdomain.ne.jp …</code></td><td>設定の実態。ゾーンに何が書かれているか</td><td>受けない。変更した直後から確認できる</td></tr>
-  <tr><td>通常の調べ方<br><code>dig …</code>（@ なし）</td><td>世間から見えている状態。浸透が完了したか</td><td>受ける。変更直後は旧情報と新情報が混在する</td></tr>
-</table>
-
-<div class="verdict">設定を確かめたいときは、待つのではなく、聞く相手を変える。</div>
-<p>これが、この移行を通じて得たいちばん実用的な教訓だった。設定が正しいかどうかは、変更した直後から権威サーバーに聞けば分かる。時間を置く必要はない。<br>さらに紛らわしいのは、「レコードが存在しない」という否定の答えもキャッシュされることである（ネガティブキャッシュ）。設定した直後に通常の方法で調べると「まだ無い」と表示されるのが普通で、これが一時間ほど続くこともある。ここで設定を疑って触り直すと、正しかったはずの設定を壊しかねない。</p>
-
-<h3>3-3. 工程 3 ：サイトを構築する</h3>
-
-<p>作業は AI に指示を出しながら進めた。新規リポジトリ <code>pyx-site</code> を作成し、準備中であることを示す一枚物のページを、プレビュー URL で確認できる状態にするまでが、この工程の範囲である。</p>
-<table>
-  <tr><th>項目</th><th>内容</th></tr>
-  <tr><td>構成</td><td>依存パッケージなしの単一 <code>index.html</code>（CSS/JavaScript を内包）。ビルド工程は無し</td></tr>
-  <tr><td>表示内容</td><td><code>PYX.CO.JP</code> と Something new is taking flight. の一言。都会の空を表現したビジュアルの中を、矢印キーまたはマウスポインタで操作できるドローンが飛ぶ、インタラクティブな演出</td></tr>
-  <tr><td>対応端末</td><td>PC でのキーボード・マウス操作を前提とし、スマートフォン幅での表示も別途確認</td></tr>
-</table>
-
-<p>ページ全体を一枚の HTML ファイルに収めたのは、更新の対象を増やさないためである。凝った内容にするほど、後で「移す」／「保守する」対象が増える。<br>
-まずは表示させることを優先し、内容は後からいくらでも作り込める形にした。</p>
-<p>GitHub Pages の設定は、リポジトリの Settings → Pages で、公開するブランチ（<code>main</code>）とフォルダ（ルート）を選ぶだけである。数分待つと、標準の <code>github.io</code> URL でサイトが公開される。<br>
-<strong>この時点ではまだ独自ドメイン（Custom domain）を設定しない。</strong>設定すると標準 URL が独自ドメインへ転送されるようになり、動作確認に使えなくなるためである（2-5）。</p>
-<p>確認は、ローカル（手元のパソコン）と、 GitHub Pages のプレビュー URL の、二段階でおこなった。順番に確認することで、問題が起きたときに「ファイル自体の不具合」か「配信設定の不具合」かを切り分けやすくなる。</p>
-
-<div class="check">
-  <strong>次の工程（旧環境の削除）に進んでよい条件</strong>
-  <ul>
-    <li>☐ ローカルと GitHub Pages のプレビュー URL の両方で、ページが正しく表示される</li>
-    <li>☐ 矢印キーでドローンが操作でき、加速・減速・画面端での挙動が意図どおり</li>
-    <li>☐ マウスポインタでもドローンが操作でき、キー操作からの切り替えが自然</li>
-    <li>☐ スマートフォン幅での表示を確認済み（レイアウトが崩れない、または操作不可である旨が破綻なく表示される）</li>
-    <li>☐ 主要ブラウザ（Chrome/Safari 等）で表示・動作を確認済み</li>
-    <li>☐ タイトルなど、基本的なメタ情報が意図どおりになっている</li>
-  </ul>
-</div>
-
-<p>次の工程で旧環境を削除すると、後戻りができなくなる（3-4）。この確認だけが、削除に進む前の唯一の安全策になるため、満たしていない項目があれば、先を急がずここで直した。</p>
-
-<h3>3-4. 工程 4 : 旧 WordPress 環境を削除する</h3>
-
-<p>3-3 の完成条件をすべて満たしたことを確認したうえで、サーバー内の WordPress のデータベースとファイル一式を削除した。<br>
-<strong>削除するのは WordPress のデータのみで、サーバー契約自体の解約は行わない。</strong>契約は期限日まで通常どおり継続し、自動更新が設定されていないため、期限日に自然に凍結される見込みである。</p>
-<p>この工程には、二つの影響があった。</p>
-<table>
-  <tr><th>影響</th><th>内容</th></tr>
-  <tr><td>ロールバック手段が失われる</td><td>削除後は、 A レコードを旧サーバーへ戻しても、表示すべき中身がもう存在しない。空のページかエラーが表示されるだけになる</td></tr>
-  <tr><td><code>pyx.co.jp</code> は既に無反応になっていた</td><td>工程 2 でゾーンを空のまま進める判断を採ったため（3-2）、 A レコードが存在せず、この工程を待たずに <code>pyx.co.jp</code> は既に名前解決できない状態にあった</td></tr>
-</table>
-
-<p>当初は「削除から DNS 切替までの間だけ、表示が乱れる」と想定していたが、実際にはその期間が前倒しで始まっていた形である。二年近く利用されていないサイトだったため実害はないと判断したが、削除の成否をブラウザで確認できなくなったため、確認手順はサーバーパネル経由に切り替えた。<br><strong>後戻りが存在しない作業では、安全策は「事前の確認」に一本化される。</strong>本計画では、削除より後でロールバックする方法を用意するのではなく、削除に進む前の完成確認（3-3）に安全性のすべてを預ける設計にした。</p>
-
-<h3>3-5. 工程 5 ： DNS を GitHub Pages へ向ける</h3>
-<p>まず GitHub 側で Custom domain を設定し、そのあとで DNS レコードを設定する。この順序を守った（2-5）。<br>
- GitHub 公式ドキュメントでは DNS プロバイダ側でドメインを向ける前に GitHub Pages 側へカスタムドメインを追加するよう明記している。先に DNS だけを向けてしまうと、そのドメインで第三者が自分のサイトをホストできてしまう状態が生じうるためである。</p>
-
-<p>リポジトリの Settings → Pages にある Custom domain 欄に <code>pyx.co.jp</code> を入力して保存すると、直下に DNS Check in progress と表示される。この時点ではまだ DNS 側を設定していないため、確認は失敗表示のままだが、想定どおりで異常ではない。<br>保存と同時に、リポジトリ直下に <code>CNAME</code> ファイル（中身は <code>pyx.co.jp</code> の一行のみ）が GitHub 側で自動生成・コミットされた。</p>
-
-<p>続いて Xserver Domain 側の DNS レコード設定画面で、次の 5 件を追加した。工程 2 でゾーンを空のまま進めていたため（3-2）、これは削除・書き換えを伴わない、純粋な追加作業だった。</p>
-
-<table>
-  <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
-  <tr><td>A</td><td>@（pyx.co.jp 自体）</td><td>185.199.108.153</td></tr>
-  <tr><td>A</td><td>@</td><td>185.199.109.153</td></tr>
-  <tr><td>A</td><td>@</td><td>185.199.110.153</td></tr>
-  <tr><td>A</td><td>@</td><td>185.199.111.153</td></tr>
-  <tr><td>CNAME</td><td>www</td><td>（GitHub のユーザー名） .github.io</td></tr>
-</table>
-
-<p>GitHub Pages 向けの A レコード 4 件は、 GitHub の公式ドキュメントに記載されている固定値である。 <code>www.pyx.co.jp</code> でアクセスした場合も <code>pyx.co.jp</code> へ転送されるよう、あわせて CNAME レコードも設定した（この CNAME の値にはリポジトリ名を含めない）。</p>
-<p>反映確認は、ここでも二段階でおこなった。設定した直後に権威サーバーへ直接確認し、三台とも同じ答えを返すことを確認したうえで、時間を置いてから通常の調べ方で世間から見えるようになったかを確認した。</p>
-
-<pre><code># 設定が正しいか（権威サーバーへ直接、待つ必要なし）
+dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre><p class="pp">ここで、計画書にはなかった事実が一つ現れた。<strong>切り替えは成功したが、それまで設定されていた DNS レコードは、一件も引き継がれなかった。<br/>
+</strong><br/>「切り替えたのだから、古い A レコードもそのまま新しい DNS に移るだろう」と考えていたら、ここで作業は止まっていたはずである。実際には、ゾーンを成立させるための NS と SOA は用意されたものの、設定したはずの A/MX/TXT は空だった。</p><div class="table-wrap"><table>
+<tr><th>レコード</th><th>切替前</th><th>切替後の Xserver Domain 側</th></tr>
+<tr><td>NS</td><td>ns1.xserver.jp 〜 ns5.xserver.jp</td><td>ns1.xdomain.ne.jp 〜 ns3.xdomain.ne.jp （自動生成）</td></tr>
+<tr><td>SOA</td><td>—</td><td>自動生成</td></tr>
+<tr><td>A (pyx.co.jp)</td><td>設定あり</td><td>無し</td></tr>
+<tr><td>A (www.pyx.co.jp)</td><td>設定あり</td><td>無し</td></tr>
+<tr><td>MX</td><td>設定あり</td><td>無し</td></tr>
+<tr><td>TXT (SPF)</td><td>設定あり</td><td>無し</td></tr>
+</table></div><p class="pp">紛らわしいことに、切り替え後の管理画面にも NS が 3 件と SOA が 1 件の 4 行が並んで見えた。しかしこれらはゾーン（レコードを収める器）を成立させるための構造的なレコードにすぎず、実際に使われる値（A/CNAME/MX/TXT）は 0 件だった。<br/>
+<strong>画面に行が見えていることと、設定が引き継がれていることは、同じではない。</strong></p><h5>採った対応：ゾーンを空のまま進める</h5><p class="pp">失われたレコードは復元せず、空のまま次の工程へ進む判断を採った。理由は次の三点である。</p><ol>
+<li>控えていた値は、いずれ捨てるものだった。 A レコードの向き先は凍結予定の旧サーバーを指し、 MX はメール対象外だった</li>
+<li>復元してから後の工程で消す、という往復を作らずに済む。変更する箇所が少ないほど、間違える箇所も少ない</li>
+<li>結果として、後の DNS 切替（工程 5）が既存レコードの整理を伴う書き換えから純粋な追加に変わり、消し忘れによる証明書発行の失敗というリスクが構造的に消えた</li>
+</ol><p class="pp">ここで役に立ったのが、 3-1 で控えた値だった。<br/>
+<strong>何が失われたのかが分からなければ、失って構わないかどうかも判断できない。</strong>控えを取っていたからこそ、これは捨ててよい値だと、根拠を持って判断できた。</p><p class="pp">この判断に伴う副作用として、 A レコードが存在しないため、キャッシュが切れ次第 <code>pyx.co.jp</code> は名前解決できなくなった。二年間放置されたサイトだったため実害はないと判断したが、この影響は 3-4 で改めて触れる。</p><h5>反映が安定するまでの経過</h5><p class="pp">切り替え直後は、通常の調べ方（リゾルバ経由）で確認するたびに、結果が異なった。</p><div class="table-wrap"><table>
+<tr><th>時刻</th><th>照会先</th><th>結果</th></tr>
+<tr><td>12:13</td><td>リゾルバ</td><td>www と TXT が消失して見える</td></tr>
+<tr><td>12:19</td><td>リゾルバ</td><td>TXT が復活して見える</td></tr>
+<tr><td>12:25</td><td>リゾルバ</td><td>www も復活して見える（＝旧ネームサーバーのキャッシュ）</td></tr>
+<tr><td>12:35</td><td>権威サーバー直撃</td><td>ゾーンは空。以後この判定は一度も揺れなかった</td></tr>
+<tr><td>翌日</td><td>権威 3 台＋リゾルバ全て</td><td>一致。 apex は応答 0 件、 www は該当ドメイン無し</td></tr>
+</table></div><p class="pp"><strong>もう一つ分かったこと。</strong><br/>ネームサーバーを切り替えた後も、旧ネームサーバー <code>ns1.xserver.jp</code> / <code>ns2.xserver.jp</code> などには、しばらく旧ゾーンが残っていた。そこへ直接問い合わせると、旧サーバーの IP アドレスを返す。<br/>
+しかし、レジストリの委任先からはすでに外れているため、通常の名前解決でそこへ到達することはない。<strong>「古い情報が残っている」ことと「古い情報が使われている」ことは別である。</strong></p><p class="pp">原因は技術的な障害ではなく、<strong>誰に問い合わせているか</strong>だった。<br/>
+通常の調べ方は途中のキャッシュを経由するため、変更直後は古い情報と新しい情報が混ざる。一方、そのドメインの設定を実際に保持している権威サーバーへ直接尋ねると、答えは最初から一貫していた。</p><div class="table-wrap"><table>
+<tr><th>調べ方</th><th>分かること</th><th>キャッシュの影響</th></tr>
+<tr><td>権威サーバーへ直接<br/><code>dig @ns1.xdomain.ne.jp …</code></td><td>設定の実態。ゾーンに何が書かれているか</td><td>受けない。変更した直後から確認できる</td></tr>
+<tr><td>通常の調べ方<br/><code>dig …</code>（@ なし）</td><td>世間から見えている状態。浸透が完了したか</td><td>受ける。変更直後は旧情報と新情報が混在する</td></tr>
+</table></div><div class="verdict">設定を確かめたいときは、待つのではなく、聞く相手を変える。</div><p class="pp">これが、この移行を通じて得たいちばん実用的な教訓だった。設定が正しいかどうかは、変更した直後から権威サーバーに聞けば分かる。時間を置く必要はない。<br/>さらに紛らわしいのは、「レコードが存在しない」という否定の答えもキャッシュされることである（ネガティブキャッシュ）。設定した直後に通常の方法で調べると「まだ無い」と表示されるのが普通で、これが一時間ほど続くこともある。ここで設定を疑って触り直すと、正しかったはずの設定を壊しかねない。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-3. 工程 3 ：サイトを構築する</button><div class="sec-body"><p class="pp">作業は AI に指示を出しながら進めた。新規リポジトリ <code>pyx-site</code> を作成し、準備中であることを示す一枚物のページを、プレビュー URL で確認できる状態にするまでが、この工程の範囲である。</p><div class="table-wrap"><table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>構成</td><td>依存パッケージなしの単一 <code>index.html</code>（CSS/JavaScript を内包）。ビルド工程は無し</td></tr>
+<tr><td>表示内容</td><td><code>PYX.CO.JP</code> と Something new is taking flight. の一言。都会の空を表現したビジュアルの中を、矢印キーまたはマウスポインタで操作できるドローンが飛ぶ、インタラクティブな演出</td></tr>
+<tr><td>対応端末</td><td>PC でのキーボード・マウス操作を前提とし、スマートフォン幅での表示も別途確認</td></tr>
+</table></div><p class="pp">ページ全体を一枚の HTML ファイルに収めたのは、更新の対象を増やさないためである。凝った内容にするほど、後で「移す」／「保守する」対象が増える。<br/>
+まずは表示させることを優先し、内容は後からいくらでも作り込める形にした。</p><p class="pp">GitHub Pages の設定は、リポジトリの Settings → Pages で、公開するブランチ（<code>main</code>）とフォルダ（ルート）を選ぶだけである。数分待つと、標準の <code>github.io</code> URL でサイトが公開される。<br/>
+<strong>この時点ではまだ独自ドメイン（Custom domain）を設定しない。</strong>設定すると標準 URL が独自ドメインへ転送されるようになり、動作確認に使えなくなるためである（2-5）。</p><p class="pp">確認は、ローカル（手元のパソコン）と、 GitHub Pages のプレビュー URL の、二段階でおこなった。順番に確認することで、問題が起きたときに「ファイル自体の不具合」か「配信設定の不具合」かを切り分けやすくなる。</p><div class="check">
+<strong>次の工程（旧環境の削除）に進んでよい条件</strong>
+<ul>
+<li>☐ ローカルと GitHub Pages のプレビュー URL の両方で、ページが正しく表示される</li>
+<li>☐ 矢印キーでドローンが操作でき、加速・減速・画面端での挙動が意図どおり</li>
+<li>☐ マウスポインタでもドローンが操作でき、キー操作からの切り替えが自然</li>
+<li>☐ スマートフォン幅での表示を確認済み（レイアウトが崩れない、または操作不可である旨が破綻なく表示される）</li>
+<li>☐ 主要ブラウザ（Chrome/Safari 等）で表示・動作を確認済み</li>
+<li>☐ タイトルなど、基本的なメタ情報が意図どおりになっている</li>
+</ul>
+</div><p class="pp">次の工程で旧環境を削除すると、後戻りができなくなる（3-4）。この確認だけが、削除に進む前の唯一の安全策になるため、満たしていない項目があれば、先を急がずここで直した。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-4. 工程 4 : 旧 WordPress 環境を削除する</button><div class="sec-body"><p class="pp">3-3 の完成条件をすべて満たしたことを確認したうえで、サーバー内の WordPress のデータベースとファイル一式を削除した。<br/>
+<strong>削除するのは WordPress のデータのみで、サーバー契約自体の解約は行わない。</strong>契約は期限日まで通常どおり継続し、自動更新が設定されていないため、期限日に自然に凍結される見込みである。</p><p class="pp">この工程には、二つの影響があった。</p><div class="table-wrap"><table>
+<tr><th>影響</th><th>内容</th></tr>
+<tr><td>ロールバック手段が失われる</td><td>削除後は、 A レコードを旧サーバーへ戻しても、表示すべき中身がもう存在しない。空のページかエラーが表示されるだけになる</td></tr>
+<tr><td><code>pyx.co.jp</code> は既に無反応になっていた</td><td>工程 2 でゾーンを空のまま進める判断を採ったため（3-2）、 A レコードが存在せず、この工程を待たずに <code>pyx.co.jp</code> は既に名前解決できない状態にあった</td></tr>
+</table></div><p class="pp">当初は「削除から DNS 切替までの間だけ、表示が乱れる」と想定していたが、実際にはその期間が前倒しで始まっていた形である。二年近く利用されていないサイトだったため実害はないと判断したが、削除の成否をブラウザで確認できなくなったため、確認手順はサーバーパネル経由に切り替えた。<br/><strong>後戻りが存在しない作業では、安全策は「事前の確認」に一本化される。</strong>本計画では、削除より後でロールバックする方法を用意するのではなく、削除に進む前の完成確認（3-3）に安全性のすべてを預ける設計にした。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-5. 工程 5 ： DNS を GitHub Pages へ向ける</button><div class="sec-body"><p class="pp">まず GitHub 側で Custom domain を設定し、そのあとで DNS レコードを設定する。この順序を守った（2-5）。<br/>
+ GitHub 公式ドキュメントでは DNS プロバイダ側でドメインを向ける前に GitHub Pages 側へカスタムドメインを追加するよう明記している。先に DNS だけを向けてしまうと、そのドメインで第三者が自分のサイトをホストできてしまう状態が生じうるためである。</p><p class="pp">リポジトリの Settings → Pages にある Custom domain 欄に <code>pyx.co.jp</code> を入力して保存すると、直下に DNS Check in progress と表示される。この時点ではまだ DNS 側を設定していないため、確認は失敗表示のままだが、想定どおりで異常ではない。<br/>保存と同時に、リポジトリ直下に <code>CNAME</code> ファイル（中身は <code>pyx.co.jp</code> の一行のみ）が GitHub 側で自動生成・コミットされた。</p><p class="pp">続いて Xserver Domain 側の DNS レコード設定画面で、次の 5 件を追加した。工程 2 でゾーンを空のまま進めていたため（3-2）、これは削除・書き換えを伴わない、純粋な追加作業だった。</p><div class="table-wrap"><table>
+<tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
+<tr><td>A</td><td>@（pyx.co.jp 自体）</td><td>185.199.108.153</td></tr>
+<tr><td>A</td><td>@</td><td>185.199.109.153</td></tr>
+<tr><td>A</td><td>@</td><td>185.199.110.153</td></tr>
+<tr><td>A</td><td>@</td><td>185.199.111.153</td></tr>
+<tr><td>CNAME</td><td>www</td><td>（GitHub のユーザー名） .github.io</td></tr>
+</table></div><p class="pp">GitHub Pages 向けの A レコード 4 件は、 GitHub の公式ドキュメントに記載されている固定値である。 <code>www.pyx.co.jp</code> でアクセスした場合も <code>pyx.co.jp</code> へ転送されるよう、あわせて CNAME レコードも設定した（この CNAME の値にはリポジトリ名を含めない）。</p><p class="pp">反映確認は、ここでも二段階でおこなった。設定した直後に権威サーバーへ直接確認し、三台とも同じ答えを返すことを確認したうえで、時間を置いてから通常の調べ方で世間から見えるようになったかを確認した。</p><pre><code># 設定が正しいか（権威サーバーへ直接、待つ必要なし）
 dig @ns1.xdomain.ne.jp pyx.co.jp A
 dig @ns2.xdomain.ne.jp pyx.co.jp A
 dig @ns3.xdomain.ne.jp pyx.co.jp A
@@ -976,147 +487,265 @@ dig @ns1.xdomain.ne.jp www.pyx.co.jp CNAME
 
 # 世間から見えるようになったか（時間を置いてから）
 dig pyx.co.jp A
-curl -I https://pyx.co.jp</code></pre>
-
-<p>権威サーバー側の答えが揃っていることを確認できたため、あとは時間の問題だった。 GitHub の Pages 設定画面が DNS Check successful （緑のチェックマーク）に変わったのを確認したあと、 Enforce HTTPS を有効化した。<br>
- SSL 証明書の自動発行には最大 1 時間程度、反映には最大 24 時間程度かかることがあるとされているが、今回は大きな遅れなく反映された。</p>
-
-<h3>3-6. 工程 6 ：切替後の検証</h3>
-
-<p>最後に、独自ドメイン経由での表示を確認した。</p>
-
-<div class="check">
-  <ul>
-    <li>☐ <code>https://pyx.co.jp</code> で新しいページが表示される</li>
-    <li>☐ <code>http://pyx.co.jp</code> が <code>https://pyx.co.jp</code> へ自動転送される</li>
-    <li>☐ <code>https://www.pyx.co.jp</code> が正しく転送・表示される</li>
-    <li>☐ ブラウザで証明書エラーが出ない（HTTPS が有効）</li>
-    <li>☐ 独自ドメイン経由でも、キー操作・マウス操作が問題なく動作する</li>
-    <li>☐ スマートフォンからのアクセスでも表示が破綻しない</li>
-  </ul>
-</div>
-
-<p>ここまでで、当初の目的だった「サーバー契約期限までに、旧サイトの表示に依存しない形へ移行する」ことは達成できた。</p>
-
-<table>
-  <tr><th>確認事項</th><th>状態</th></tr>
-  <tr><td>ネームサーバーの Xserver Domain への切替</td><td><span class="pill done">済み</span></td></tr>
-  <tr><td>旧 WordPress 環境の削除</td><td><span class="pill done">済み</span></td></tr>
-  <tr><td>GitHub Pages への DNS 切替・ HTTPS 化</td><td><span class="pill done">済み</span></td></tr>
-  <tr><td>ドメイン更新料の反映確認（whois）</td><td><span class="pill pending">要確認</span></td></tr>
-</table>
-
-<p>最後の一点だけ、この記事の執筆時点ではまだ確認できていない。<br>ドメインの登録有効期限は、支払いが済んでいても、レジストリへ実際に反映されるまでは古い期限のまま表示されることがある。更新料は既に支払い済みだが、<strong>更新の反映が正しく行われたかどうかは、期限が明けたあとに、あらためて自分で確認するつもりである。<br>
-</strong>ここが失敗していると、ドメインそのものを失いかねない。移行作業の達成感とは別に、最後まで気を抜けない一点として記録しておく。</p>
-<p>ロールバックという選択肢はもうない。工程 4 で WordPress のデータベースとファイルを削除したため、「 DNS を旧サーバーへ戻せば旧サイトが復活する」という形のロールバックはこの時点で、もはやできない。<br>
-今後もし独自ドメインの表示に問題が見つかった場合の対応は、旧サイトへの復元ではなく、以下のいずれかになる。</p>
-
-<ol>
-  <li>ページの内容・動作を <code>index.html</code> ごと直接修正して push する</li>
-  <li>権威サーバーへの確認で「設定は正しいが未反映なだけ」かを切り分ける</li>
-</ol>
-
-    </div>
-  </div>
-</section>
-
-<section class="acc-item" id="sec4" data-acc>
-  <button class="acc-header" data-acc-toggle>
-    <span class="num">4</span>
-    <span class="title">終わってから、わかったこと</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-  <div class="acc-panel">
-    <div class="acc-panel-inner">
-
-<p>終わってみると、この移行でいちばん難しかったのは、 DNS のコマンドを覚えることでも、 GitHub Pages を設定することでもなかった。<br>
-<strong>「いま何が、どの契約に紐づいているのか」を見誤らないこと。そして「ここから先は戻れない」という地点を、先に見つけておくこと。<br>
-</strong>緊張が集まっていたのは、この二点だった。</p>
-<h3>4-1. 「待つ」より先に、「誰に聞くか」を考える</h3>
-
+curl -I https://pyx.co.jp</code></pre><p class="pp">権威サーバー側の答えが揃っていることを確認できたため、あとは時間の問題だった。 GitHub の Pages 設定画面が DNS Check successful （緑のチェックマーク）に変わったのを確認したあと、 Enforce HTTPS を有効化した。<br/>
+ SSL 証明書の自動発行には最大 1 時間程度、反映には最大 24 時間程度かかることがあるとされているが、今回は大きな遅れなく反映された。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">3-6. 工程 6 ：切替後の検証</button><div class="sec-body"><p class="pp">最後に、独自ドメイン経由での表示を確認した。</p><div class="check">
 <ul>
-  <li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる（2-2）</li>
-  <li>DNS に触る前に、現在の設定を全件控える。使わないと分かっていても、「何を失うかを知る」ためだけに価値がある（3-1）</li>
-  <li>ネームサーバーを切り替えても、既存のレコードが引き継がれるとは限らない。画面に行が見えることと、設定が引き継がれていることは別（3-2）</li>
-  <li>設定を確かめたいときは、待つのではなく、聞く相手を変える。権威サーバーに直接聞けば、変更した直後から答えが分かる（3-2）</li>
-  <li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3 / 3-4）</li>
-  <li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5）</li>
+<li>☐ <code>https://pyx.co.jp</code> で新しいページが表示される</li>
+<li>☐ <code>http://pyx.co.jp</code> が <code>https://pyx.co.jp</code> へ自動転送される</li>
+<li>☐ <code>https://www.pyx.co.jp</code> が正しく転送・表示される</li>
+<li>☐ ブラウザで証明書エラーが出ない（HTTPS が有効）</li>
+<li>☐ 独自ドメイン経由でも、キー操作・マウス操作が問題なく動作する</li>
+<li>☐ スマートフォンからのアクセスでも表示が破綻しない</li>
 </ul>
-
-<h3>4-2. 移行で得たものは、費用よりも単純さだった</h3>
-<p>費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになった。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果である。</p>
-<p>ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要である。静的サイトはページを配信する部分の攻撃対象を大幅に減らすが、「公開する権限を持つアカウントを守る」という仕事は残る。<br>
-ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事である。</p>
-
-
-
-<h3>4-3. 移行後に残ったもの、消えたもの</h3>
-<p>移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさである。 WordPress の管理画面・ PHP ・データベース・プラグイン更新・サーバー側の保守という一式を抱える必要がなくなり、サイトを更新するときは、基本的に HTML ファイルを更新したら Git 操作で commit ～ push するだけで済む様になった。<br>
-もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残る。それでも、格段にシンプルな流れになったことは確かである。</p>
-
-<p><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けた。今回の移行は、その状態に区切りをつける作業でもあった。</p>
-<p>結局、移したのはサイトというより、サイトを支える仕組みだった。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用である。</p>
-
-    </div>
-  </div>
-</section>
-
-
-
-<footer>本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録である。<br>移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> などは実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてある。<br>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合がある。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してほしい。</footer>
-
-</div>
+</div><p class="pp">ここまでで、当初の目的だった「サーバー契約期限までに、旧サイトの表示に依存しない形へ移行する」ことは達成できた。</p><div class="table-wrap"><table>
+<tr><th>確認事項</th><th>状態</th></tr>
+<tr><td>ネームサーバーの Xserver Domain への切替</td><td><span class="pill done">済み</span></td></tr>
+<tr><td>旧 WordPress 環境の削除</td><td><span class="pill done">済み</span></td></tr>
+<tr><td>GitHub Pages への DNS 切替・ HTTPS 化</td><td><span class="pill done">済み</span></td></tr>
+<tr><td>ドメイン更新料の反映確認（whois）</td><td><span class="pill pending">要確認</span></td></tr>
+</table></div><p class="pp">最後の一点だけ、この記事の執筆時点ではまだ確認できていない。<br/>ドメインの登録有効期限は、支払いが済んでいても、レジストリへ実際に反映されるまでは古い期限のまま表示されることがある。更新料は既に支払い済みだが、<strong>更新の反映が正しく行われたかどうかは、期限が明けたあとに、あらためて自分で確認するつもりである。<br/>
+</strong>ここが失敗していると、ドメインそのものを失いかねない。移行作業の達成感とは別に、最後まで気を抜けない一点として記録しておく。</p><p class="pp">ロールバックという選択肢はもうない。工程 4 で WordPress のデータベースとファイルを削除したため、「 DNS を旧サーバーへ戻せば旧サイトが復活する」という形のロールバックはこの時点で、もはやできない。<br/>
+今後もし独自ドメインの表示に問題が見つかった場合の対応は、旧サイトへの復元ではなく、以下のいずれかになる。</p><ol>
+<li>ページの内容・動作を <code>index.html</code> ごと直接修正して push する</li>
+<li>権威サーバーへの確認で「設定は正しいが未反映なだけ」かを切り分ける</li>
+</ol></div></div></div></div><div class="chapter"><button aria-expanded="false" class="ch-head" type="button">4. 終わってから、わかったこと</button><div class="ch-body"><div class="ch-intro"><p class="pp">終わってみると、この移行でいちばん難しかったのは、 DNS のコマンドを覚えることでも、 GitHub Pages を設定することでもなかった。<br/>
+<strong>「いま何が、どの契約に紐づいているのか」を見誤らないこと。そして「ここから先は戻れない」という地点を、先に見つけておくこと。<br/>
+</strong>緊張が集まっていたのは、この二点だった。</p></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">4-1. 「待つ」より先に、「誰に聞くか」を考える</button><div class="sec-body"><ul>
+<li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる（2-2）</li>
+<li>DNS に触る前に、現在の設定を全件控える。使わないと分かっていても、「何を失うかを知る」ためだけに価値がある（3-1）</li>
+<li>ネームサーバーを切り替えても、既存のレコードが引き継がれるとは限らない。画面に行が見えることと、設定が引き継がれていることは別（3-2）</li>
+<li>設定を確かめたいときは、待つのではなく、聞く相手を変える。権威サーバーに直接聞けば、変更した直後から答えが分かる（3-2）</li>
+<li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3 / 3-4）</li>
+<li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5）</li>
+</ul></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">4-2. 移行で得たものは、費用よりも単純さだった</button><div class="sec-body"><p class="pp">費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになった。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果である。</p><p class="pp">ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要である。静的サイトはページを配信する部分の攻撃対象を大幅に減らすが、「公開する権限を持つアカウントを守る」という仕事は残る。<br/>
+ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事である。</p></div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">4-3. 移行後に残ったもの、消えたもの</button><div class="sec-body"><p class="pp">移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさである。 WordPress の管理画面・ PHP ・データベース・プラグイン更新・サーバー側の保守という一式を抱える必要がなくなり、サイトを更新するときは、基本的に HTML ファイルを更新したら Git 操作で commit ～ push するだけで済む様になった。<br/>
+もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残る。それでも、格段にシンプルな流れになったことは確かである。</p><p class="pp"><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けた。今回の移行は、その状態に区切りをつける作業でもあった。</p><p class="pp">結局、移したのはサイトというより、サイトを支える仕組みだった。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用である。</p></div></div><p class="note-p">本記事は、筆者が 2026 年 8 月に実際におこなった移行作業をもとにした記録である。<br/>移行対象のドメイン名 <code>pyx.co.jp</code> 、および利用したレンタルサーバー・ドメイン事業者の名称 <code>XServer</code> などは実名で記載した一方、サーバーの契約 ID 、旧サーバーの IP アドレス、ドメインの登録者情報などの識別情報は伏せてある。<br/>金額・手順・画面の文言は、利用するサービスや時期によって異なる場合がある。実際の作業前には、各サービスの公式ドキュメントもあわせて確認してほしい。</p></div></div>
+ </div>
 
 </div>
 
 <script>
 (function(){
-  var OPEN_SCROLL_DELAY = 400;
-
-  document.querySelectorAll("[data-acc]").forEach(function(item){
-    var toggle = item.querySelector("[data-acc-toggle]");
-    toggle.addEventListener("click", function(){
-      var selection = window.getSelection();
-      if(selection.toString().length > 0) return;
-
-      var willOpen = !item.classList.contains("open");
-      if(willOpen){
-        Array.prototype.forEach.call(item.parentElement.children, function(sibling){
-          if(sibling !== item && sibling.matches && sibling.matches("[data-acc]")){
-            sibling.classList.remove("open");
+  "use strict";
+  var stickyZone = document.querySelector(".sticky-zone");
+  function updateStickyOffset(){
+    document.documentElement.style.setProperty("--sticky-h", stickyZone.offsetHeight + "px");
+  }
+  updateStickyOffset();
+  function closeAlp(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeNum(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".alp-head").forEach(closeAlp);
+    }
+  }
+  function closeParen(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".num-head").forEach(closeNum);
+    }
+  }
+  function closeItem(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".paren-head").forEach(closeParen);
+    }
+  }
+  function closeSection(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".item-head").forEach(closeItem);
+    }
+  }
+  function closeChapter(head){
+    head.setAttribute("aria-expanded","false");
+    var body = head.nextElementSibling;
+    if(body){
+      body.querySelectorAll(".sec-head").forEach(closeSection);
+    }
+  }
+  function toggleChapter(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      document.querySelectorAll(".ch-head").forEach(closeChapter);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeChapter(head);
+    }
+  }
+  function toggleSection(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var chBody = head.closest(".ch-body");
+      if(chBody){
+        chBody.querySelectorAll(".sec-head").forEach(closeSection);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeSection(head);
+    }
+  }
+  function toggleItem(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var secBody = head.closest(".sec-body");
+      if(secBody){
+        secBody.querySelectorAll(".item-head").forEach(closeItem);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeItem(head);
+    }
+  }
+  function toggleParen(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var itemBody = head.closest(".item-body");
+      if(itemBody){
+        itemBody.querySelectorAll(".paren-head").forEach(closeParen);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeParen(head);
+    }
+  }
+  function toggleNum(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      // num は paren の直下だけでなく、alp の内側に入れ子になる場合もあるため、
+      // 直近の paren-body または alp-body を「同階層の範囲」として扱う
+      var scope = head.closest(".paren-body, .alp-body");
+      if(scope){
+        scope.querySelectorAll(".num-head").forEach(function(h){
+          if(h !== head && h.closest(".paren-body, .alp-body") === scope){
+            closeNum(h);
           }
         });
       }
-      item.classList.toggle("open", willOpen);
-
-      if(willOpen){
-        setTimeout(function(){
-          item.scrollIntoView({behavior:"smooth", block:"start"});
-        }, OPEN_SCROLL_DELAY);
-      }
-    });
-  });
-
-  document.getElementById("expandAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.add("open");
-    });
-  });
-
-  document.getElementById("collapseAll").addEventListener("click", function(){
-    document.querySelectorAll("[data-acc]").forEach(function(item){
-      item.classList.remove("open");
-    });
-  });
-
-  if(location.hash){
-    var target = document.querySelector(location.hash);
-    if(target && target.matches("[data-acc]")){
-      target.classList.add("open");
-      setTimeout(function(){ target.scrollIntoView({behavior:"instant", block:"start"}); }, 0);
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeNum(head);
     }
   }
+  function toggleAlp(head){
+    var willOpen = head.getAttribute("aria-expanded") !== "true";
+    if(willOpen){
+      var numBody = head.closest(".num-body");
+      if(numBody){
+        numBody.querySelectorAll(".alp-head").forEach(closeAlp);
+      }
+      head.setAttribute("aria-expanded","true");
+    }else{
+      closeAlp(head);
+    }
+  }
+  document.querySelectorAll(".ch-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleChapter(btn); });
+  });
+  document.querySelectorAll(".sec-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleSection(btn); });
+  });
+  document.querySelectorAll(".item-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleItem(btn); });
+  });
+  document.querySelectorAll(".paren-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleParen(btn); });
+  });
+  document.querySelectorAll(".num-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleNum(btn); });
+  });
+  document.querySelectorAll(".alp-head").forEach(function(btn){
+    btn.addEventListener("click", function(){ toggleAlp(btn); });
+  });
+  document.getElementById("expand-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head").forEach(function(b){
+      b.setAttribute("aria-expanded","true");
+    });
+  });
+  document.getElementById("collapse-all").addEventListener("click", function(){
+    document.querySelectorAll(".ch-head").forEach(closeChapter);
+  });
+
+  /* ---- パンくずリスト（開いている階層のフルパスを表示） ---- */
+  var breadcrumbNav = document.getElementById("breadcrumb");
+  var bodySelector = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  var allHeads = Array.prototype.slice.call(
+    document.querySelectorAll(".ch-head,.sec-head,.item-head,.paren-head,.num-head,.alp-head")
+  );
+  // 親子関係を初期化時に確定(head の祖先の *-body の直前要素が親 head)
+  var parentOf = new Map();
+  var childrenOf = new Map();
+  var rootHeads = [];
+  allHeads.forEach(function(head){
+    var body = head.parentElement.closest(bodySelector);
+    var parent = body ? body.previousElementSibling : null;
+    parentOf.set(head, parent);
+    if(parent){
+      if(!childrenOf.has(parent)){ childrenOf.set(parent, []); }
+      childrenOf.get(parent).push(head);
+    }else{
+      rootHeads.push(head);
+    }
+  });
+  function isOpen(head){ return head.getAttribute("aria-expanded") === "true"; }
+  // 開いている見出しの連鎖を上から一意にたどる。
+  // 同一階層で複数開いている場合（「すべて展開」直後等）は一意に定まらないため、そこで打ち切る
+  function openChain(){
+    var chain = [];
+    var candidates = rootHeads;
+    while(true){
+      var open = candidates.filter(isOpen);
+      if(open.length !== 1){ break; }
+      chain.push(open[0]);
+      candidates = childrenOf.get(open[0]) || [];
+    }
+    return chain;
+  }
+  function updateBreadcrumb(){
+    var chain = openChain();
+    breadcrumbNav.textContent = "";
+    chain.forEach(function(target, idx){
+      if(idx > 0){
+        var sep = document.createElement("span");
+        sep.className = "crumb-sep";
+        sep.textContent = "›";
+        breadcrumbNav.appendChild(sep);
+      }
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "crumb";
+      btn.textContent = target.textContent;
+      btn.addEventListener("click", function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+      breadcrumbNav.appendChild(btn);
+    });
+  }
+  // 開閉操作（各見出し・すべて展開/折りたたむ）の後に更新。
+  // 個別 button のリスナーが先に実行され、document へのバブリングで本処理が走る
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest ? e.target.closest("button") : null;
+    if(!btn || btn.classList.contains("crumb")){ return; }
+    updateStickyOffset();
+    updateBreadcrumb();
+  });
+  window.addEventListener("resize", updateStickyOffset);
+  window.addEventListener("load", updateStickyOffset);
+  updateBreadcrumb();
 })();
 </script>
+
+</body>
+
 </body>
 </html>
