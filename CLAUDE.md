@@ -10,6 +10,16 @@
 > `.ch-body` の章アコーディオン)に統一した。以下の「配色」「長文記事のアコーディオン
 > 機構」「注記・補足のボックス」「本文フォント」の各節はこの移行後の内容。
 
+> **2026-09-01: アコーディオン機構の CSS/JS を `assets/shell.css` / `assets/shell.js`
+> へ外部化。** 記事数が三十件規模に達し、章アコーディオンの CSS/JS を記事ごとに
+> `<style>`/`<script>` へ書き写す方式は、修正のたびに全記事へ手作業で反映する負担が
+> 大きくなったため、「各ページ自己完結」の方針を改め、挙動が全記事で同一の構造部分
+> (章・節アコーディオンの CSS 一式、開閉・パンくず・すべて展開/折りたたむの JS 一式)
+> だけを共通ファイルへ切り出した。**配色変数(`:root`)と記事固有の CSS/JS は
+> 従来どおり各記事の `<style>`/`<script>` にインラインで残し、自己完結の性質を保つ**
+> (色や記事固有の装飾だけを差し替えれば記事ごとの見た目を作れる、という前提は維持)。
+> 以下の「配色」「長文記事のアコーディオン機構」の各節はこの外部化後の内容。
+
 ## 日付の数字表記
 
 - 年月日など暦上の日付は、漢数字ではなく半角の Arabic 数字で書く。
@@ -57,9 +67,9 @@
       font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
 
   - `<head>` に `<link rel="preconnect" href="https://fonts.googleapis.com">` 等の Google Fonts 読み込みタグは置かない。既存記事に残っていれば削除する(2026-09-01 の移行で全記事から削除済み)。かつての第一候補だった `"Zen Kaku Gothic New"` は使わない。
-  - セリフ体は使わない。記事題名を含め、`.page-head h1` のようなセリフ体への部分的な上書きも廃止した(ヒーロー・`.page-head` 自体が廃止のため)。
+  - セリフ体は使わない。ただし「記事表題ブロック」節の `.doc-title` 1 箇所のみ例外としてセリフ体を使う(2026-09-08 に追加)。それ以外の見出し・注記・アコーディオン等にセリフ体を上書きすることはしない。
   - `body` に一度設定すれば継承されるので、見出し・注記・アコーディオン見出し等の個別セレクタで `font-family` を重ねて指定する必要はない。ただし SVG 内の `<text>` はフォントを継承しないため、SVG 内の `<style>` でも同じスタックを明示する。
-- 文字サイズは `body{font-size:15px;line-height:1.8}` を基準とし(`shell_style.css.txt` の標準値)、`html` を `16px` に固定して `1rem` で揃えるという旧方式は使わない。見出し・注記・表など各要素は 002010809.html の `.ch-head`/`.sec-head`/`.note-p`/`table` 等に定義済みの個別 `font-size` にそのまま従う。記事ごとに文字サイズを作り込まない。
+- 文字サイズは `body{font-size:15px;line-height:1.8}` を基準とし(`assets/shell.css` の標準値)、`html` を `16px` に固定して `1rem` で揃えるという旧方式は使わない。見出し・注記・表など各要素は 002010809.html の `.ch-head`/`.sec-head`/`.note-p`/`table` 等に定義済みの個別 `font-size` にそのまま従う。記事ごとに文字サイズを作り込まない。
 
 ## 段落の字下げ(読みやすさのための整形)
 
@@ -78,7 +88,7 @@
 
 ## 配色(色の変数名と標準値)
 
-- 配色の正(基準)は `~/Documents/GitHub/mlitdocs/002010809.html` が定義する色遣いとする(2026-09-01 に、それまでの `~/Documents/GitHub/drone-flight-plan/theme.css` 基準から全面移行)。`002010809.html` の `<style>` を `<link>` で読み込むのではなく、各記事の `<style>` 内 `:root` に値を書き写して使う(このディレクトリは各ページ自己完結の方針)。
+- 配色の正(基準)は `~/Documents/GitHub/mlitdocs/002010809.html` が定義する色遣いとする(2026-09-01 に、それまでの `~/Documents/GitHub/drone-flight-plan/theme.css` 基準から全面移行)。`002010809.html` の `<style>` を `<link>` で読み込むのではなく、各記事の `<style>` 内 `:root` に値を書き写して使う。構造 CSS(アコーディオン等)は `assets/shell.css` を共有するが、色変数だけは記事ごとにインラインの `:root` へ書き写す方式を維持する(記事固有のタグバッジ配色など、色だけを記事ごとに変えられるようにするため)。
 - 色は必ず `:root` の CSS カスタムプロパティにまとめ、個々のセレクタに生の色値を書かない。
 - 変数名は `002010809.html` に合わせた次の語彙を使う。同じ役割に別名を与えない(`--text` の代わりに `--ink` を新設する、といったことをしない)。
 
@@ -115,7 +125,8 @@
 
 ## 長文記事のアコーディオン機構
 
-- ヒーロー・`page-head` という概念自体を 2026-09-01 に廃止した。記事冒頭には図案帯もタイトルブロックも置かない。`<title>` の文言はサイトヘッダー( `header.site-header` )の `h1` にそのまま使う。
+- ヒーロー・`page-head` という概念自体を 2026-09-01 に廃止した。図案帯(SVG ヒーロー等)は置かない。`<title>` の文言はサイトヘッダー( `header.site-header` )の `h1` にそのまま使う。
+  - ただし 2026-09-08 に、`.container` 冒頭にテキストのみの表題ブロック( `.doc-title` )を追加する仕様を導入した。図案帯ではなく `h1` テキストを大きく見せるだけの 1 行なので、上記の廃止対象(図案帯・タイトルブロックの意匠一式)には含めない。詳細は次項「記事表題ブロック」を参照。
 - 複数の章を持つ長文記事は、`002010809.html` 方式のアコーディオンにする。これはディレクトリ内の大半の記事がすでに採用している標準仕様であり、新規作成時は最初から適用する。単一の短い記事(章立てのないエッセイ等)には適用しなくてよい。
 - ページ全体の構成(`shell_body_open.html.txt` に定義済み):
 
@@ -158,13 +169,38 @@
 
   - ボタン文言は「`{num}. {title}`」の書式に揃える(`002010809.html` の「1. はじめに」相当)。元の章番号が「序」「終」等ならそのまま活かしてよい。
   - 開閉は `aria-expanded="true"/"false"` 属性で管理し、CSS の隣接セレクタ(`.ch-head[aria-expanded="true"]+.ch-body{display:block}` 等)で表示を切り替える。`.acc-item` の `open` クラス方式( `<details>` 相当の旧実装)は使わない。
-- CSS は `shell_style.css.txt` の内容をそのまま使う(`.sticky-zone`/`.site-header`/`.breadcrumb`/`.container`/`.doc-meta`/`.hint`/`.controls`/`.accordion`/`.chapter`/`.ch-head`/`.ch-body`/`.section`/`.sec-head`/`.sec-body`/`.pp`/`.li-a`/`.li-b`/`.li-c`/`.note-p`/`.fig-note`/`.table-wrap`/`table` 等、印刷用の `@media print` まで含む)。記事ごとに独自の値を作り込まない。
-- JS は `shell_script.js.txt` の内容をそのまま使う。挙動は次の四つ:
+- CSS は共通ファイル `assets/shell.css` を `<link rel="stylesheet" href="assets/shell.css">` で読み込む(`.sticky-zone`/`.site-header`/`.breadcrumb`/`.container`/`.doc-meta`/`.hint`/`.controls`/`.accordion`/`.chapter`/`.ch-head`/`.ch-body`/`.section`/`.sec-head`/`.sec-body`/`.pp`/`.li-a`/`.li-b`/`.li-c`/`.note-p`/`.fig-note`/`.table-wrap`/`table` 等、印刷用の `@media print` まで含む)。記事側の `<style>` には `:root` の色変数と記事固有スタイルだけを書く。`assets/shell.css` 自体は記事ごとに書き換えない(直すときはこのファイル 1 つを直せば全記事に反映される)。
+- JS は共通ファイル `assets/shell.js` を `<script src="assets/shell.js"></script>` で読み込む。挙動は次の四つ:
   - 同じ階層では一つ開くと他は自動で閉じる(「すべて展開」時を除く)。
   - `#expand-all`/`#collapse-all` で全階層の一括開閉ができる。
   - パンくず( `#breadcrumb` )が、現在開いている階層のフルパス(章 › 節 › …)をボタン列として表示し、クリックでその見出しへスクロールする。
   - `--sticky-h` カスタムプロパティで `.sticky-zone` の実測高さを追跡し、見出しへのスクロール位置がヘッダーの下に隠れないようにする(`scroll-margin-top` と併用)。
-- 記事固有の JS(ページ内リンクのスムーズスクロール、独自アコーディオン制御等)は不要になるため削除する。`shell_script.js.txt` は id( `expand-all`/`collapse-all`/`breadcrumb` )とクラス名( `ch-head` 等)が一致していれば無改造で動く。
+- 記事固有の JS(ページ内リンクのスムーズスクロール、独自アコーディオン制御等)は不要になるため削除する。`assets/shell.js` は id( `expand-all`/`collapse-all`/`breadcrumb` )とクラス名( `ch-head` 等)が一致していれば無改造で動く。
+
+## 記事表題ブロック
+
+- `index.html` を除く全記事で、`header.site-header` のすぐ下(`.container` の先頭、`.doc-meta` の直前)に、記事題名をセリフ体・本文比 約 3 倍のサイズで 1 行表示する(2026-09-08 導入)。
+- 目的は `header.site-header h1`(小さく圧縮された題名)とは別に、記事本文の直前でもう一度題名を大きく見せること。図案帯やヒーロー画像は伴わない、テキストのみのブロック。
+- マークアップ: `<div class="container">` を開いた直後、`.doc-meta` より前に置く。
+
+      <div class="container">
+       <p class="doc-title">記事タイトル - 副題</p>
+       <p class="doc-meta">出典・変換方法などの短い注記</p>
+       ...
+      </div>
+
+  - テキストはサイトヘッダーの `h1` と同じ文字列(`<title>` の文言)をそのまま使う。
+- CSS。フォントサイズは `1.5em`(本文の `font-size` を基準とした相対値、2026-09-01 導入時の `3em` から二分の一に縮小)で指定し、記事ごとの `body{font-size}` の実値に追随させる。固定 px は使わない。
+
+      .doc-title{
+        font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+        font-size:1.5em;line-height:1.35;font-weight:700;color:var(--text);
+        margin:6px 0 20px;text-indent:0;
+      }
+
+  - `font-family` はこのブロック専用。「本文フォント」節のサンセリフ規定はこの 1 箇所だけ例外とする(他のセレクタに波及させない)。
+  - `text-indent:0` を明示する(段落字下げの対象外)。
+- 新規作成する記事は最初からこの形式で書く。既存記事を編集する際に気づいたら合わせて直す。
 
 ## 注記・補足のボックス
 
@@ -172,7 +208,7 @@
 
 | クラス | 役割 | 置く場所 | 見た目 |
 | --- | --- | --- | --- |
-| `.fig-note` | 章の途中の脇道の補足・ひと休み的な問いかけ、記事全体の前提・方法・限界の断り書きなど、本文の流れから軽く外れる短い囲み全般 | 章の本文中( `.ch-body`/`.sec-body` の中)の段落の合間。記事全体の前提を断る場合は `p.doc-meta` の次・`p.hint` の前 | オリーブ系の淡い背景 + 左端の太罫(`shell_style.css.txt` に定義済み) |
+| `.fig-note` | 章の途中の脇道の補足・ひと休み的な問いかけ、記事全体の前提・方法・限界の断り書きなど、本文の流れから軽く外れる短い囲み全般 | 章の本文中( `.ch-body`/`.sec-body` の中)の段落の合間。記事全体の前提を断る場合は `p.doc-meta` の次・`p.hint` の前 | オリーブ系の淡い背景 + 左端の太罫(`assets/shell.css` に定義済み) |
 | `.note-p` | 一行程度の小さな注記(読み方の一行案内、対象範囲の注記など) | どこでも(章の中、`.hint` の直後など) | 枠なし・`--muted` の弱い小さな文字 |
 
 - 旧 `.pause`(章の途中の問いかけ)は `.fig-note` に統合し、ラベル(「ひと休み」等)は `::before` の疑似要素ではなく `<strong>ひと休み: </strong>` として本文冒頭に埋め込む。
@@ -195,7 +231,7 @@
 
 ### CSS
 
-`shell_style.css.txt` に定義済みの次のルールをそのまま使う。記事側で再定義しない。
+`assets/shell.css` に定義済みの次のルールをそのまま使う。記事側で再定義しない。
 
       .note-p{margin:8px 0;font-size:13.5px;color:var(--muted);}
       .fig-note{

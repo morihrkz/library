@@ -23,9 +23,6 @@
     --soc: #8a3a3a;
     --soc-soft: #f5eceb;
     --soc-ink: #5c2827;
-    --logic: #5b7a96;
-    --logic-soft: #eef2f5;
-    --logic-ink: #3e5568;
     --tech: #33506b;
     --tech-soft: #e8edf1;
     --tech-ink: #233649;
@@ -113,7 +110,6 @@
   .counters a.tech{ --accent:var(--tech); }
   .counters a.soc{ --accent:var(--soc); }
   .counters a.mind{ --accent:var(--mind); }
-  .counters a.logic{ --accent:var(--logic); }
   .counters .dot{
     width:8px; height:8px; border-radius:50%; flex-shrink:0;
     background:var(--accent); box-shadow:0 0 10px var(--accent);
@@ -308,11 +304,10 @@
     white-space:nowrap;
   }
 
-  #world{      --accent:var(--world); --accent-soft:var(--world-soft); --accent-ink:var(--world-ink); }
-  #tech{       --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
+  #thought{    --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
   #social{     --accent:var(--soc);  --accent-soft:var(--soc-soft);  --accent-ink:var(--soc-ink); }
-  #mind{       --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
-  #logic{      --accent:var(--logic); --accent-soft:var(--logic-soft); --accent-ink:var(--logic-ink); }
+  #science{    --accent:var(--world); --accent-soft:var(--world-soft); --accent-ink:var(--world-ink); }
+  #work{       --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
 
   .grid{
     display:grid;
@@ -432,11 +427,10 @@
   <p class="sub">分野ごとに畳まれた棚から選ぶか、本文を横断検索するか。読みたい入口から入ってください。</p>
 
   <nav class="counters" aria-label="分野">
-    <a class="tech" href="#tech"><span class="dot"></span>テクノロジーと産業 <span class="n">7</span></a>
+    <a class="mind" href="#thought"><span class="dot"></span>精神史の領域 <span class="n">15</span></a>
     <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">6</span></a>
-    <a class="logic" href="#logic"><span class="dot"></span>論理と言葉 <span class="n">5</span></a>
-    <a class="mind" href="#mind"><span class="dot"></span>心・教育・生き方 <span class="n">7</span></a>
-    <a class="world" href="#world"><span class="dot"></span>世界のなりたち <span class="n">5</span></a>
+    <a class="world" href="#science"><span class="dot"></span>物質と宇宙の理 <span class="n">2</span></a>
+    <a class="tech" href="#work"><span class="dot"></span>制作と分析の記録 <span class="n">5</span></a>
   </nav>
 </div>
 
@@ -463,61 +457,141 @@
 
 <main>
 
-  <section class="group" id="tech">
+  <section class="group" id="thought">
     <details class="group-details">
     <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="16" rx="2"/>
-          <path d="m7 9 3 3-3 3"/>
-          <path d="M13 15h4"/>
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5A5.6 5.6 0 0 0 18 8a6 6 0 0 0-12 0c0 1.4.5 2.7 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+          <path d="M9 18h6"/>
+          <path d="M10 21.5h4"/>
         </svg>
       </span>
       <div>
-        <h2>テクノロジーと産業 <span class="group-en">TECHNOLOGY &amp; INDUSTRY</span></h2>
+        <h2>精神史の領域 <span class="group-en">HISTORY OF IDEAS</span></h2>
       </div>
-      <span class="count">7 articles</span>
+      <span class="count">15 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
 
-      <a class="card" href="static-site-migration.html">
-        <span class="kicker">WEB OPS / CASE STUDY</span>
-        <h3>静的サイト移行の実務記録</h3>
-        <h4>WordPress が要らないならば選択肢は増える</h4>
-        <p class="desc">二年間更新の止まっていた会社サイトを、レンタルサーバーの契約期限をきっかけに WordPress から GitHub Pages へ移した実録。計画の立て方、 DNS の契約依存関係の見極め、後戻りできない工程の順序まで、計画から外れた出来事も含めて工程順に記す。</p>
+      <a class="card" href="types-of-reasoning.html">
+        <span class="kicker">LOGIC / EPISTEMOLOGY</span>
+        <h3>推論の類型学</h3>
+        <h4>演繹・帰納・アブダクション・類推</h4>
+        <p class="desc">ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。パースの三分法に類推を安易に足さない留保も含めて整理する。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="ai-industry-comparison.html">
-        <span class="kicker">AI / COMPARISON</span>
-        <h3>生成 AI 企業比較の基礎資料</h3>
-        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
-        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
+      <a class="card" href="logic-argumentation.html">
+        <span class="kicker">LOGIC / ARGUMENT ANALYSIS</span>
+        <h3>論理学入門</h3>
+        <h4>選択的夫婦別姓で学ぶ論理学のてほどき</h4>
+        <p class="desc">選択的夫婦別姓をめぐる反対論を教材に、論証を点検する道具を八つ学ぶ。反対論を「論証が立っていない型」「制度設計型」「事実命題型」の三群に仕分け、隠れた前提や妥当性・健全性の違いを具体例で確かめる。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="saas-layered-analysis.html">
-        <span class="kicker">BUSINESS MODEL</span>
-        <h3>「 SaaS 消滅」言説の実証的検討</h3>
-        <h4>UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</h4>
-        <p class="desc">SaaS は本当に終わるのか。 UI ・ロジック・データという三層構造に分解し、 AI エージェントが代替しうる部分と、なお残る部分を見極める。</p>
+      <a class="card" href="strawman-fallacy.html">
+        <span class="kicker">LOGIC / RHETORIC</span>
+        <h3>藁人形論法の研究</h3>
+        <h4>存在しない主張と戦う詭弁</h4>
+        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="cloud-market-ai-analysis.html">
-        <span class="kicker">MARKET ANALYSIS</span>
-        <h3>クラウドコンピューティング市場の構造分析</h3>
-        <h4>シェア・成長動向・今後の見通し</h4>
-        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+      <a class="card" href="writing-techniques.html">
+        <span class="kicker">RHETORIC / WRITING</span>
+        <h3>文章表現技法の体系</h3>
+        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
+        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="internet-peering-cdn.html">
-        <span class="kicker">INFRASTRUCTURE / BUSINESS</span>
-        <h3>インターネット相互接続論</h3>
-        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
-        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
+      <a class="card" href="philosophy-psycholinguistics.html">
+        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
+        <h3>言語哲学と心理言語学</h3>
+        <h4>概説</h4>
+        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="jungian-individuation.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY</span>
+        <h3>ユング心理学における自己実現論</h3>
+        <h4>ユング心理学とともに歩む、こころの旅</h4>
+        <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="jungian-critique.html">
+        <span class="kicker">JUNGIAN PSYCHOLOGY / CRITIQUE</span>
+        <h3>ユング心理学批判序説</h3>
+        <h4>よく指摘される弱点を集めてみた</h4>
+        <p class="desc">「本当の自分に出会う」の続編。反証可能性、 MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="envy-comparison-theory.html">
+        <span class="kicker">PSYCHOLOGY / PHILOSOPHY</span>
+        <h3>羨望と社会的比較の心理学</h3>
+        <h4>羨望と社会的比較を、心理学・神経科学・進化・哲学から読み解く</h4>
+        <p class="desc">フェスティンガーの社会的比較理論から、羨望とシャーデンフロイデをめぐる fMRI 研究、アリストテレス・スピノザ・ニーチェの議論、そして SNS が比較の量と速度を変えた現代まで。胸をざわつかせる感情の正体をたどる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="reciprocity-critique.html">
+        <span class="kicker">BUSINESS / PSYCHOLOGY</span>
+        <h3>互酬性戦略の再検討</h3>
+        <h4>GIVE &amp; TAKE の楽観論を検証する</h4>
+        <p class="desc">「与える人が成功する」というアダム・グラントのテーゼを、経営学・大衆的権力論の伝統・進化生物学とゲーム理論・犯罪心理学という四つの独立した対抗言説から読み直す書評エッセイ。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="antinatalism-asymmetry.html">
+        <span class="kicker">PHILOSOPHY</span>
+        <h3>反出生主義の非対称性論証</h3>
+        <h4>反出生主義をめぐる思考の旅</h4>
+        <p class="desc">「生まれてこない方がよかった」という反出生主義（antinatalism）の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="liberal-arts-history.html">
+        <span class="kicker">EDUCATION / PHILOSOPHY</span>
+        <h3>教養教育の理念史</h3>
+        <h4>教養教育の理念と米国モデル</h4>
+        <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・ STEM 重視との緊張関係をめぐる論争までを整理する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="moral-education-policy.html">
+        <span class="kicker">EDUCATION</span>
+        <h3>道徳教育政策の比較研究</h3>
+        <h4>文部科学省の方針と諸外国の道徳教育を辿る</h4>
+        <p class="desc">「特別の教科 道徳」への転換の経緯から、宗教教育との距離が国ごとに異なる諸外国の事例まで。徳育・知育・体育という三分法の来歴に立ち返りながら、日本と世界の道徳教育・人格教育の制度設計を比較する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="modern-contemporary-periods.html">
+        <span class="kicker">HISTORY</span>
+        <h3>「近代」と「現代」の時代区分論</h3>
+        <h4>近代と現代を分ける、もうひとつの年表</h4>
+        <p class="desc">世界史と日本史を一本の年表に重ね合わせながら、近代と現代を分ける境界線がどこにあるのかを考える。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="japanese-buddhist-sects.html">
+        <span class="kicker">JAPANESE BUDDHISM</span>
+        <h3>日本仏教宗派史</h3>
+        <h4>日本仏教の宗派地図</h4>
+        <p class="desc">奈良仏教から鎌倉新仏教まで、十三の宗と五十六の派がどのように枝分かれしてきたかを、時代を追ってたどる。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="nanto-rokushu-buddhism.html">
+        <span class="kicker">JAPANESE BUDDHISM / HISTORY</span>
+        <h3>南都六宗研究</h3>
+        <h4>古い仏教は、なぜ今も生きているのか</h4>
+        <p class="desc">南都六宗という言葉の中身を解きほぐし、東大寺・薬師寺などの大寺院が、新仏教の台頭・戦乱による焼失・近代化・世界遺産登録を経てもなお生き続けてきた理由をたどる。</p>
         <span class="go">読む</span>
       </a>
 
@@ -598,151 +672,7 @@
     </details>
   </section>
 
-  <section class="group" id="logic">
-    <details class="group-details">
-    <summary class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="5.5" r="2.5"/>
-          <circle cx="18" cy="5.5" r="2.5"/>
-          <circle cx="12" cy="18.5" r="2.5"/>
-          <path d="m7.6 7.7 2.8 8.6"/>
-          <path d="m16.4 7.7-2.8 8.6"/>
-        </svg>
-      </span>
-      <div>
-        <h2>論理と言葉 <span class="group-en">LOGIC &amp; LANGUAGE</span></h2>
-      </div>
-      <span class="count">5 articles</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="grid">
-
-      <a class="card" href="types-of-reasoning.html">
-        <span class="kicker">LOGIC / EPISTEMOLOGY</span>
-        <h3>推論の類型学</h3>
-        <h4>演繹・帰納・アブダクション・類推</h4>
-        <p class="desc">ウィーンの産科病棟、ロンドンのポンプ、火星の軌道、金箔を貫いたアルファ粒子。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。パースの三分法に類推を安易に足さない留保も含めて整理する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="logic-argumentation.html">
-        <span class="kicker">LOGIC / ARGUMENT ANALYSIS</span>
-        <h3>論理学入門</h3>
-        <h4>選択的夫婦別姓で学ぶ論理学のてほどき</h4>
-        <p class="desc">選択的夫婦別姓をめぐる反対論を教材に、論証を点検する道具を八つ学ぶ。反対論を「論証が立っていない型」「制度設計型」「事実命題型」の三群に仕分け、隠れた前提や妥当性・健全性の違いを具体例で確かめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="strawman-fallacy.html">
-        <span class="kicker">LOGIC / RHETORIC</span>
-        <h3>藁人形論法の研究</h3>
-        <h4>存在しない主張と戦う詭弁</h4>
-        <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="writing-techniques.html">
-        <span class="kicker">RHETORIC / WRITING</span>
-        <h3>文章表現技法の体系</h3>
-        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
-        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="philosophy-psycholinguistics.html">
-        <span class="kicker">PHILOSOPHY OF LANGUAGE</span>
-        <h3>言語哲学と心理言語学</h3>
-        <h4>概説</h4>
-        <p class="desc">概念分析によって意味・指示・真理を問う言語哲学と、実験によって言語処理の心と脳を調べる心理言語学。二つの学問的伝統の歴史・論点・国内外の研究状況を見取り図としてまとめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-
-    </div>
-    </details>
-  </section>
-
-  <section class="group" id="mind">
-    <details class="group-details">
-    <summary class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 14c.2-1 .7-1.7 1.5-2.5A5.6 5.6 0 0 0 18 8a6 6 0 0 0-12 0c0 1.4.5 2.7 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
-          <path d="M9 18h6"/>
-          <path d="M10 21.5h4"/>
-        </svg>
-      </span>
-      <div>
-        <h2>心・教育・生き方 <span class="group-en">MIND &amp; LEARNING</span></h2>
-      </div>
-      <span class="count">7 articles</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="grid">
-
-      <a class="card" href="jungian-individuation.html">
-        <span class="kicker">JUNGIAN PSYCHOLOGY</span>
-        <h3>ユング心理学における自己実現論</h3>
-        <h4>ユング心理学とともに歩む、こころの旅</h4>
-        <p class="desc">カール・グスタフ・ユングの思想を手がかりに自分自身の内面を見つめ直す。河合隼雄をはじめとする日本の臨床家たちの知見にも触れる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="jungian-critique.html">
-        <span class="kicker">JUNGIAN PSYCHOLOGY / CRITIQUE</span>
-        <h3>ユング心理学批判序説</h3>
-        <h4>よく指摘される弱点を集めてみた</h4>
-        <p class="desc">「本当の自分に出会う」の続編。反証可能性、 MBTI の信頼性、河合隼雄への批判などを、深刻にならない程度に整理する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="envy-comparison-theory.html">
-        <span class="kicker">PSYCHOLOGY / PHILOSOPHY</span>
-        <h3>羨望と社会的比較の心理学</h3>
-        <h4>羨望と社会的比較を、心理学・神経科学・進化・哲学から読み解く</h4>
-        <p class="desc">フェスティンガーの社会的比較理論から、羨望とシャーデンフロイデをめぐる fMRI 研究、アリストテレス・スピノザ・ニーチェの議論、そして SNS が比較の量と速度を変えた現代まで。胸をざわつかせる感情の正体をたどる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="reciprocity-critique.html">
-        <span class="kicker">BUSINESS / PSYCHOLOGY</span>
-        <h3>互酬性戦略の再検討</h3>
-        <h4>GIVE &amp; TAKE の楽観論を検証する</h4>
-        <p class="desc">「与える人が成功する」というアダム・グラントのテーゼを、経営学・大衆的権力論の伝統・進化生物学とゲーム理論・犯罪心理学という四つの独立した対抗言説から読み直す書評エッセイ。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="antinatalism-asymmetry.html">
-        <span class="kicker">PHILOSOPHY</span>
-        <h3>反出生主義の非対称性論証</h3>
-        <h4>反出生主義をめぐる思考の旅</h4>
-        <p class="desc">「生まれてこない方がよかった」という反出生主義（antinatalism）の主張を、デイヴィッド・ベネターの「非対称性」論を軸にたどる。存在することの快苦を非対称に評価する議論の核心と、そこから導かれる帰結を検討する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="liberal-arts-history.html">
-        <span class="kicker">EDUCATION / PHILOSOPHY</span>
-        <h3>教養教育の理念史</h3>
-        <h4>教養教育の理念と米国モデル</h4>
-        <p class="desc">「リベラルアーツ」の語源と定義を出発点に、古代からの歴史的展開、米国リベラル・アーツ・カレッジと研究型大学の違い、そして実利主義・ STEM 重視との緊張関係をめぐる論争までを整理する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="moral-education-policy.html">
-        <span class="kicker">EDUCATION</span>
-        <h3>道徳教育政策の比較研究</h3>
-        <h4>文部科学省の方針と諸外国の道徳教育を辿る</h4>
-        <p class="desc">「特別の教科 道徳」への転換の経緯から、宗教教育との距離が国ごとに異なる諸外国の事例まで。徳育・知育・体育という三分法の来歴に立ち返りながら、日本と世界の道徳教育・人格教育の制度設計を比較する。</p>
-        <span class="go">読む</span>
-      </a>
-
-
-    </div>
-    </details>
-  </section>
-
-  <section class="group" id="world">
+  <section class="group" id="science">
     <details class="group-details">
     <summary class="group-head">
       <span class="icon">
@@ -753,36 +683,12 @@
         </svg>
       </span>
       <div>
-        <h2>世界のなりたち <span class="group-en">ORIGINS &amp; STRUCTURE</span></h2>
+        <h2>物質と宇宙の理 <span class="group-en">MATTER &amp; COSMOS</span></h2>
       </div>
-      <span class="count">5 articles</span>
+      <span class="count">2 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
-
-      <a class="card" href="modern-contemporary-periods.html">
-        <span class="kicker">HISTORY</span>
-        <h3>「近代」と「現代」の時代区分論</h3>
-        <h4>近代と現代を分ける、もうひとつの年表</h4>
-        <p class="desc">世界史と日本史を一本の年表に重ね合わせながら、近代と現代を分ける境界線がどこにあるのかを考える。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="japanese-buddhist-sects.html">
-        <span class="kicker">JAPANESE BUDDHISM</span>
-        <h3>日本仏教宗派史</h3>
-        <h4>日本仏教の宗派地図</h4>
-        <p class="desc">奈良仏教から鎌倉新仏教まで、十三の宗と五十六の派がどのように枝分かれしてきたかを、時代を追ってたどる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="nanto-rokushu-buddhism.html">
-        <span class="kicker">JAPANESE BUDDHISM / HISTORY</span>
-        <h3>南都六宗研究</h3>
-        <h4>古い仏教は、なぜ今も生きているのか</h4>
-        <p class="desc">南都六宗という言葉の中身を解きほぐし、東大寺・薬師寺などの大寺院が、新仏教の台頭・戦乱による焼失・近代化・世界遺産登録を経てもなお生き続けてきた理由をたどる。</p>
-        <span class="go">読む</span>
-      </a>
 
       <a class="card" href="particle-physics-intro.html">
         <span class="kicker">PHYSICS</span>
@@ -797,6 +703,69 @@
         <h3>多元宇宙論とビッグバン以前</h3>
         <h4>私たちは、どこまで宇宙の始まりを語れるのか</h4>
         <p class="desc">マルチバースとビッグバン以前をめぐる議論を、観測された事実・理論的帰結・未検証の仮説・哲学的解釈に切り分けながらたどる。</p>
+        <span class="go">読む</span>
+      </a>
+
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="work">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="m7 9 3 3-3 3"/>
+          <path d="M13 15h4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>制作と分析の記録 <span class="group-en">WORK &amp; ANALYSIS LOG</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
+      <a class="card" href="static-site-migration.html">
+        <span class="kicker">WEB OPS / CASE STUDY</span>
+        <h3>静的サイト移行の実務記録</h3>
+        <h4>WordPress が要らないならば選択肢は増える</h4>
+        <p class="desc">二年間更新の止まっていた会社サイトを、レンタルサーバーの契約期限をきっかけに WordPress から GitHub Pages へ移した実録。計画の立て方、 DNS の契約依存関係の見極め、後戻りできない工程の順序まで、計画から外れた出来事も含めて工程順に記す。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="ai-industry-comparison.html">
+        <span class="kicker">AI / COMPARISON</span>
+        <h3>生成 AI 企業比較の基礎資料</h3>
+        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
+        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="saas-layered-analysis.html">
+        <span class="kicker">BUSINESS MODEL</span>
+        <h3>「 SaaS 消滅」言説の実証的検討</h3>
+        <h4>UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</h4>
+        <p class="desc">SaaS は本当に終わるのか。 UI ・ロジック・データという三層構造に分解し、 AI エージェントが代替しうる部分と、なお残る部分を見極める。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="cloud-market-ai-analysis.html">
+        <span class="kicker">MARKET ANALYSIS</span>
+        <h3>クラウドコンピューティング市場の構造分析</h3>
+        <h4>シェア・成長動向・今後の見通し</h4>
+        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="internet-peering-cdn.html">
+        <span class="kicker">INFRASTRUCTURE / BUSINESS</span>
+        <h3>インターネット相互接続論</h3>
+        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
+        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
         <span class="go">読む</span>
       </a>
 
