@@ -74,7 +74,7 @@
 <p class="part-summary">ISP 同士がどのように繋がり合っているかを、ピアリングとトランジットという二つの接続形態、 IX （Internet Exchange）という物理的な結節点、 Tier1 〜 3 という慣習的な階層構造から整理する。 CDN 事業者がなぜ ISP と無償で接続できるのかを理解するための土台となる部である。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. ピアリングとは</button>
+  <button aria-expanded="false" class="sec-head" type="button">ピアリングとは</button>
   <div class="sec-body">
 <p class="pp"><strong>ピアリング（Peering）</strong> とは、二つの自律システム（AS: Autonomous System 。インターネット上で独立した経路制御ポリシーを持つネットワークの単位。 ISP や大規模企業のネットワークなどが該当する）が、互いに自ネットワークおよびその先の顧客向けの経路情報のみを直接交換する接続形態である <sup class="fn"><a data-fn-link="" href="#fn-1" id="fnref-1">1</a></sup> 。</p>
 <p class="pp">ピアリングには大きく 2 種類がある。</p>
@@ -91,7 +91,7 @@
 <p class="pp">ある事業者がどのポリシーを採用しているかは、 PeeringDB のような業界データベースで自己申告される形で公開されていることが多く、 CDN 事業者や ISP がピアリング交渉を行う際の事前情報として広く参照されている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. トランジットとの違い</button>
+  <button aria-expanded="false" class="sec-head" type="button">トランジットとの違い</button>
   <div class="sec-body">
 <p class="pp"><strong>トランジット（Transit）</strong> は、あるネットワーク（多くの場合、大規模プロバイダ）が、別のネットワーク（多くの場合、小規模プロバイダやエンドユーザーに近い事業者）に対して、インターネット全体への到達性を有償で提供するサービスである <sup class="fn"><a data-fn-link="" href="#fn-1">1</a></sup> 。</p>
 <p class="pp">ピアリングとトランジットの違いを整理すると、以下のようになる。</p>
@@ -107,7 +107,7 @@
 <p class="pp">このような判断が積み重なった結果として、大規模 CDN 事業者は、数千から数万に及ぶ個別のピアリング関係と、限られた数のトランジット契約を組み合わせた、複雑な接続ポートフォリオを構築している。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. IX （Internet Exchange）の役割</button>
+  <button aria-expanded="false" class="sec-head" type="button">IX （Internet Exchange）の役割</button>
   <div class="sec-body">
 <p class="pp"><strong>IX （Internet Exchange 、インターネットエクスチェンジ）</strong>とは、複数の ISP やコンテンツ事業者などが物理的に集まり、相互に通信トラフィックを交換するための接続拠点である。 IX に接続している各ネットワークが、 IX の共有スイッチ設備上でそれぞれのルーターの設定を行うことで、 IX 経由でパブリックピアリングを実現できる <sup class="fn"><a data-fn-link="" href="#fn-6" id="fnref-6">6</a></sup> 。</p>
 <p class="pp">IX の意義は、「多数の相手と個別に専用回線を引く必要がなくなる」効率化にある。 1 本の回線で IX に接続すれば、その IX に参加している他の多数のネットワークと経路交換の可能性が開ける。</p>
@@ -132,7 +132,7 @@
 これは、自社の膨大な国際トラフィック（動画配信、クラウドサービス間のデータレプリケーションなど）を、既存の通信キャリアに依存せず、自社にとって有利な条件で確保しようとする動きであり、第四章で扱う「コンテンツ企業自前型」のインフラ投資が、 CDN の PoP レベルだけでなく、国際回線という、より基盤に近いレイヤーにまで及んでいることを示す一例である。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. Tier1/Tier2/Tier3 の階層構造</button>
+  <button aria-expanded="false" class="sec-head" type="button">Tier1/Tier2/Tier3 の階層構造</button>
   <div class="sec-body">
 <p class="pp">インターネットの ISP は、慣習的に以下のような階層（Tier）で語られることが多い。これは公式な認定制度ではなく、接続形態の実態に基づく分類である。</p>
 <ul><li><strong>Tier1</strong> ：インターネット上のすべての他ネットワークに、トランジット料金を一切支払うことなく、 Settlement-free peering のみで到達できるネットワーク <sup class="fn"><a data-fn-link="" href="#fn-11" id="fnref-11">11</a></sup> 。世界に十数社程度存在するとされる、最上位階層のバックボーン事業者。</li><li><strong>Tier2</strong> ：一部のネットワークとはピアリングを行うが、インターネット全体への到達性を確保するためには、 Tier1 などから有償のトランジットを購入する必要があるネットワーク。多くの国内大手 ISP や地域 ISP がこれに該当する。</li><li><strong>Tier3</strong> ：主に他社からトランジットを購入することでインターネットに接続する、末端に近いネットワーク。地域のアクセスプロバイダなどが該当することが多い。</li></ul>
@@ -147,7 +147,7 @@
 かつては Tier1 同士の基幹網を経由することが前提だった大陸間・地域間のトラフィックの多くが、現在では CDN ・クラウド事業者が独自に構築した広域ネットワークとローカルなピアリングの組み合わせによって運ばれるようになっており、伝統的な Tier 階層モデルだけでは、現在のインターネットの実態を十分に説明できなくなりつつある。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">5. なぜ Tier1 同士は無償で接続するのか</button>
+  <button aria-expanded="false" class="sec-head" type="button">なぜ Tier1 同士は無償で接続するのか</button>
   <div class="sec-body">
 <p class="pp">Tier1 ネットワーク同士が Settlement-free peering で接続することが多いのは、双方が「交換する価値がおおむね対等である」と認識しているためである <sup class="fn"><a data-fn-link="" href="#fn-3">3</a></sup> 。具体的には、以下のような条件が満たされる場合に、無償ピアリングが成立しやすいとされる。</p>
 <ul><li>双方のネットワーク規模（到達できる顧客網の大きさ）が同程度である</li><li>送受信するトラフィック量の比率が、一定の範囲内でバランスしている</li><li>複数の地点で相互接続することに双方が合意している（特定地域に依存しない冗長性の確保）</li></ul>
@@ -161,7 +161,7 @@
 これは一時的にせよエンドユーザーの通信品質に影響を及ぼすため、業界内では「ピアリング紛争（peering dispute）」として注目されることがある。こうした対立の存在自体が、「ピアリングは対等な価値交換の上に成り立つ、常に安定した関係とは限らない商業的合意である」という、本節の結論を裏付けている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">6. 実際にピアリングを始めるには</button>
+  <button aria-expanded="false" class="sec-head" type="button">実際にピアリングを始めるには</button>
   <div class="sec-body">
 <p class="pp">ここまでの説明は概念的なものだったが、実際に「自社のネットワークとして他社とピアリングする」ためには、具体的にどのような手続きが必要になるのだろうか。抽象的な理解を、実務のイメージに落とし込んでおく。</p>
 <p class="pp"><strong>第一段階： AS 番号と IP アドレスの取得。<br/>
@@ -186,7 +186,7 @@
 <p class="part-summary">CDN のビジネスモデルを理解する前提として、 CDN がどのような技術でコンテンツを配信しているかを押さえておく。技術的な仕組みが、そのままコスト構造（＝どこにお金がかかるか）に直結するためである。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. Anycast ルーティング</button>
+  <button aria-expanded="false" class="sec-head" type="button">Anycast ルーティング</button>
   <div class="sec-body">
 <p class="pp"><strong>Anycast （エニーキャスト）</strong>とは、同一の IP アドレスを、地理的に離れた複数の拠点から同時に広告（アナウンス）するネットワーク技術である。<br/>
 エンドユーザーからその IP アドレス宛てに送られたリクエストは、 BGP （Border Gateway Protocol 。インターネットの経路制御に使われる基本プロトコル）の経路選択の結果、「最も近い」拠点に自動的に振り分けられる <sup class="fn"><a data-fn-link="" href="#fn-14" id="fnref-14">14</a></sup> 。</p>
@@ -210,7 +210,7 @@
 多くの CDN では、エンドユーザーとの暗号化通信をエッジサーバー（PoP）側で終端し、そこから先（エッジサーバーからオリジンサーバーまで）は別の接続として扱う。これにより、暗号化・復号という計算コストの高い処理をエンドユーザーに最も近い場所で完了させ、応答速度を向上させることができる。 CDN 利用企業は、独自ドメインの SSL/TLS 証明書を CDN 事業者に管理・自動更新してもらう形でこの仕組みを利用することが多く、証明書管理の手間を削減できる点も、 CDN を利用する実務上のメリットの一つになっている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. エッジサーバーと PoP</button>
+  <button aria-expanded="false" class="sec-head" type="button">エッジサーバーと PoP</button>
   <div class="sec-body">
 <p class="pp"><strong>PoP (Point of Presence)</strong> とは、 CDN 事業者がネットワーク機器を設置している拠点のことである。各 PoP には、エンドユーザーにコンテンツを配信する<strong>エッジサーバー（キャッシュサーバー）</strong>が配置されている <sup class="fn"><a data-fn-link="" href="#fn-18" id="fnref-18">18</a></sup> 。</p>
 <p class="pp">エッジサーバーは、エンドユーザーの地理的・ネットワーク的に近い場所に分散配置される。ユーザーからのリクエストが到達すると、エッジサーバーが自身の保持するキャッシュからコンテンツを直接返却する（後述するキャッシュヒットの場合）。<br/>
@@ -227,7 +227,7 @@
 一方、アフリカ、南米の一部、太平洋の島嶼国など、国際回線（第一章 3 で触れた海底ケーブル）の本数自体が少ない地域では、バックホール（PoP から上位のバックボーンまでの回線）のコストが高くつくため、 CDN 事業者の料金表においても、地域ごとに異なる従量課金単価が設定されるのが一般的である。前述の Google Cloud CDN の料金体系（3-1 参照）も、実際には配信元・配信先の地域（プレミアムティアかどうか、どの大陸かなど）によって単価が細かく分かれており、 CDN の配信コストが、世界中どこでも一律ではなく、その地域の国際接続インフラの発達度合いを色濃く反映していることが分かる。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. オリジンサーバーとキャッシュヒット率</button>
+  <button aria-expanded="false" class="sec-head" type="button">オリジンサーバーとキャッシュヒット率</button>
   <div class="sec-body">
 <p class="pp"><strong>オリジンサーバー</strong>とは、コンテンツの原本（マスターデータ）を保持する、 CDN 利用企業自身のサーバーである。エッジサーバーがキャッシュを保持していないコンテンツへのリクエストを受けた場合、エッジサーバーはオリジンサーバーに問い合わせを行い、応答を取得したうえでエンドユーザーに返却する（同時に、以後のリクエストに備えてキャッシュとして保持する）<sup class="fn"><a data-fn-link="" href="#fn-20" id="fnref-20">20</a></sup> 。</p>
 <p class="pp"><strong>キャッシュヒット率</strong>とは、全リクエストのうち、オリジンサーバーへの問い合わせなしにエッジサーバーのキャッシュから直接応答できた割合を示す指標である。一般的な目安として 80% 以上であれば良好とされることが多いが、この基準はコンテンツの性質（静的コンテンツが多いか、動的コンテンツ・パーソナライズされたコンテンツが多いか）によって大きく変動するため、絶対的な基準として捉えるべきではない <sup class="fn"><a data-fn-link="" href="#fn-20">20</a></sup> 。</p>
@@ -242,7 +242,7 @@
 この対策として、多くの CDN は<strong>オリジンシールド（origin shield）</strong> と呼ばれる中間キャッシュ層を設け、多数のエッジ PoP からのキャッシュミスを一箇所（または少数の拠点）に集約したうえで、オリジンへの問い合わせ自体をリクエスト単位にまとめる「リクエストコアレッシング（request collapsing 、複数の同時リクエストを 1 本にまとめてオリジンに送る手法）」を実装している。これにより、エッジ PoP の数がどれだけ多くても、オリジンサーバーへの実際の負荷は限定的に保たれる。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. TTL とキャッシュ無効化</button>
+  <button aria-expanded="false" class="sec-head" type="button">TTL とキャッシュ無効化</button>
   <div class="sec-body">
 <p class="pp"><strong>TTL (Time To Live)</strong> とは、キャッシュされたコンテンツが「新鮮」とみなされる有効期限のことである。 TTL が経過すると、そのコンテンツは「古い（stale）」とみなされ、次のリクエスト時にオリジンサーバーへの再検証（revalidation）または再取得が行われる。</p>
 <p class="pp">TTL の設定は、 CDN 利用企業と CDN 事業者の双方にとって重要な調整項目である。<br/>
@@ -259,7 +259,7 @@
 これは、一つの Web ページの中に「共通してキャッシュ可能な部分（ヘッダーやフッターなど）」と「ユーザーごとに異なる動的な部分（ログイン状態の表示など）」が混在している場合に、ページ全体を一つの単位としてキャッシュするのではなく、部分ごとに異なるキャッシュ戦略を適用できるようにするマークアップ言語である。エッジサーバー側でページの断片（フラグメント）を組み立てることで、静的な部分は高いキャッシュヒット率を保ちながら、動的な部分だけをオリジンから都度取得するという、部分キャッシュが可能になる。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">5. エッジコンピューティングとセキュリティ機能への拡張</button>
+  <button aria-expanded="false" class="sec-head" type="button">エッジコンピューティングとセキュリティ機能への拡張</button>
   <div class="sec-body">
 <p class="pp">ここまで見てきた CDN の技術は、基本的に「静的コンテンツをどうキャッシュし、どう配信するか」という発想に基づいていた。<br/>
 しかし近年の CDN 事業者は、単なるキャッシュ配信を超えて、<strong>エッジコンピューティング（edge computing）</strong> と呼ばれる領域に技術・製品を拡張している。これは、エッジサーバー上で、 CDN 利用企業が書いた任意のプログラムコードを実行できるようにする仕組みであり、静的ファイルの配信だけでなく、リクエストごとの動的な処理（認証チェック、 A/B テストの振り分け、レスポンスの動的な書き換えなど）を、オリジンサーバーまで通信することなく、エンドユーザーに最も近いエッジで完結させられる。</p>
@@ -285,7 +285,7 @@
 <p class="part-summary">第一章・第二章で見た物理構造・技術構造を踏まえ、本題である「お金の流れ」を整理する。結論を先に述べると、 CDN をめぐるお金の流れは主に以下の 3 種類に大別でき、<strong>「 ISP が CDN 事業者に利用料を払う」という一般的な商習慣は存在しない</strong>。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. CDN 利用企業→CDN 事業者の直接課金モデル</button>
+  <button aria-expanded="false" class="sec-head" type="button">CDN 利用企業→CDN 事業者の直接課金モデル</button>
   <div class="sec-body">
 <p class="pp">最も基本的で分かりやすいお金の流れは、 <strong>CDN を利用してコンテンツを配信する Web サイト運営企業（コンテンツプロバイダ）が、 CDN 事業者に対して直接料金を支払う</strong>というものである。これは通常の B2B SaaS/ インフラサービスの課金モデルと同様に理解できる。</p>
 <p class="pp">代表的な課金体系には以下がある。</p>
@@ -294,7 +294,7 @@
 それを理解するには、次のコスト構造と Netflix のようなケースを見る必要がある。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. コロケーション費用の実態</button>
+  <button aria-expanded="false" class="sec-head" type="button">コロケーション費用の実態</button>
   <div class="sec-body">
 <p class="pp">CDN 事業者が PoP を展開する際、自前でデータセンターを一から建設するのではなく、既存のデータセンター事業者や ISP の施設内にラックスペースを借りる<strong>コロケーション（colocation）</strong> という手法がよく用いられる。</p>
 <p class="pp">ここで、指示書の執筆背景でも触れた誤解が生じやすい。<strong>「 CDN 企業が ISP の施設内に機器を置く」＝「 CDN 企業が ISP に場所代を払っている」と早合点しないことが重要である。<br/>
@@ -309,7 +309,7 @@
 <p class="pp">この二つのパターンは目的も契約関係もまったく異なるため、「 CDN 企業が ISP 施設内に機器を置いている」という事実だけを見て、どちらか一方に決めつけないことが重要である。<strong>誰が・どちらに・何を払っているか（あるいは払っていないか）は、個別の契約ごとに確認する必要がある。</strong></p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. Netflix Open Connect という機器無償提供型モデル</button>
+  <button aria-expanded="false" class="sec-head" type="button">Netflix Open Connect という機器無償提供型モデル</button>
   <div class="sec-body">
 <p class="pp"><strong>Netflix Open Connect</strong> は、 Netflix が構築・運用する自社専用のコンテンツ配信網である。その中核となるのが、 <strong>OCA (Open Connect Appliance)</strong> と呼ばれるキャッシュサーバー機器である <sup class="fn"><a data-fn-link="" href="#fn-29" id="fnref-29">29</a></sup> 。</p>
 <p class="pp">Open Connect の仕組みは大きく二つの要素からなる <sup class="fn"><a data-fn-link="" href="#fn-30" id="fnref-30">30</a></sup> 。</p>
@@ -323,7 +323,7 @@
 <p class="pp">なお、 Netflix 自身の財務諸表では、 Open Connect に関連する費用（機器の減価償却、人件費、クラウドコンピューティング費用などを含む）は「ストリーミング配信コスト」として売上原価に計上されており、コンテンツライセンス・制作費とあわせて開示される <sup class="fn"><a data-fn-link="" href="#fn-32" id="fnref-32">32</a></sup> 。 Netflix は 2025 年に 180 億米ドル前後の現金を主にコンテンツへ投じる計画を示しており <sup class="fn"><a data-fn-link="" href="#fn-33" id="fnref-33">33</a></sup> 、配信インフラはその巨大なコンテンツ事業を支える基盤投資という位置づけにある。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. なぜ「 ISP が CDN 事業者に払う」という仕組みは存在しないのか</button>
+  <button aria-expanded="false" class="sec-head" type="button">なぜ「 ISP が CDN 事業者に払う」という仕組みは存在しないのか</button>
   <div class="sec-body">
 <p class="pp">ここまでの整理を踏まえ、指示書の背景にあった核心的な疑問 - 「 CDN 企業には運営費用がかかっているのに、直接の収益源が見えにくいのはなぜか」「 ISP が CDN 企業に利用料を払っているのではないか」 - に明確に答える。</p>
 <p class="pp"><strong>結論として、「 ISP が CDN 事業者に対して、 CDN サービスの利用料として料金を支払う」という一般的な商習慣は存在しない。<br/>
@@ -333,7 +333,7 @@
 <p class="pp">つまり、 CDN 事業者から見た収益構造は、<strong>「利用企業から受け取り、必要に応じてデータセンター事業者や IX にコロケーション・接続費用を払い、 ISP とは基本的に無償のピアリング関係を築く」</strong>という形が基本形である。 ISP への支払いが発生する主体は、多くの場合 CDN 事業者やコンテンツ企業ではなく、末端の一般利用者（ISP の回線契約者）である、という点を押さえておくと、全体の資金循環が見通しやすくなる。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">5. よくある誤解 Q&amp;A</button>
+  <button aria-expanded="false" class="sec-head" type="button">よくある誤解 Q&amp;A</button>
   <div class="sec-body">
 <p class="pp">指示書の執筆背景で特に強調された誤解ポイントを、 Q&amp;A 形式で整理する。</p>
 <div class="qa-block"><p class="qa-q"><strong>Q1. CDN 企業が ISP の施設に機器を置いているなら、場所代を払っているはずでは？</strong></p><p class="qa-a">A. 必ずしもそうではない。<br/>
@@ -354,7 +354,7 @@
 <p class="part-summary">CDN 事業者と一括りに言っても、そのビジネスモデルは企業によって大きく異なる。本章では、指示書で挙げられた四つのタイプに沿って、実在企業を例に整理する。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. CDN 専業型： Akamai 、 Fastly</button>
+  <button aria-expanded="false" class="sec-head" type="button">CDN 専業型： Akamai 、 Fastly</button>
   <div class="sec-body">
 <p class="pp"><strong>CDN 専業型</strong>は、 CDN （および関連するセキュリティ・エッジコンピューティング機能）そのものを主力商材とし、その利用料を主たる収益源とする企業群である。</p>
 <p class="pp"><strong>Akamai</strong> は 1998 年創業、世界最初期の CDN 専業企業である。その起源は学術研究に遡る。 1990 年代後半、 MIT （マサチューセッツ工科大学）の数学教授トム・レイトン（Tom Leighton）と大学院生ダニー・ルーウィン（Danny Lewin）は、 Web 混雑（当時「 World Wide Wait 」と揶揄された現象）を数学的アルゴリズム（一貫性ハッシュ法を応用した、コンテンツを分散サーバー群に効率よく複製・配信するアルゴリズム）で解決できると考え、 1997 年の MIT 主催起業コンテスト「 MIT $50K エントレプレナーシップ・コンペティション」でファイナリストに残った事業計画をもとに、 1998 年 8 月 20 日に Akamai を設立した <sup class="fn"><a data-fn-link="" href="#fn-35" id="fnref-35">35</a></sup> 。共同創業者のルーウィンは、 2001 年 9 月 11 日のアメリカ同時多発テロ事件で搭乗していた旅客機（アメリカン航空 11 便）に居合わせ、 31 歳で命を落としている。<br/>
@@ -368,7 +368,7 @@
 この経緯は、 CDN 専業型ビジネスが、規模の経済とコモディティ化の圧力の中で淘汰されうる、競争の厳しい市場であることを象徴している。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. プラットフォーム付随型（フリーミアム）： Cloudflare</button>
+  <button aria-expanded="false" class="sec-head" type="button">プラットフォーム付随型（フリーミアム）： Cloudflare</button>
   <div class="sec-body">
 <p class="pp"><strong>Cloudflare</strong> は 2009 年創業で、 CDN ・ DDoS 対策・ DNS などを組み合わせたエッジネットワークサービスを提供する企業である。同社の特徴は、<strong>無料プランを事実上無制限に近い形で提供する「フリーミアム」戦略</strong>にある。</p>
 <p class="pp">Cloudflare の起源も興味深い。<br/>
@@ -386,7 +386,7 @@
 <p class="pp">この事例は、 CDN ・クラウドサービスにおける「お金の流れ」が、エンドユーザーとの間だけでなく、<strong>インフラ事業者間の力学（顧客の囲い込みを狙う高い egress 料金と、それに対抗する低価格戦略）</strong>によっても左右されることを示す好例である。 CDN 事業者自身が、自社インフラの外へのデータ移動にどう課金するかという設計判断が、事業者間の競争戦略そのものになっている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. プラットフォーム付随型（本体事業強化）： Google 、 Amazon</button>
+  <button aria-expanded="false" class="sec-head" type="button">プラットフォーム付随型（本体事業強化）： Google 、 Amazon</button>
   <div class="sec-body">
 <p class="pp"><strong>Google</strong> と <strong>Amazon</strong> は、 CDN を単独の収益源としてではなく、より大きなクラウドプラットフォーム・広告事業の一部として位置づけている点で、 Cloudflare とは異なるタイプの「プラットフォーム付随型」である。</p>
 <p class="pp"><strong>Google</strong> は、 Google Cloud Platform 上で「 Cloud CDN 」を提供する一方、 YouTube の動画配信という巨大な自社コンテンツ配信インフラを保有している。 Google Cloud は「 Media CDN 」として、 YouTube 向けに構築してきた配信インフラを外部の企業向けにも提供しており、自社サービスで磨いた技術をクラウド事業に転用する構図になっている <sup class="fn"><a data-fn-link="" href="#fn-44" id="fnref-44">44</a></sup> 。</p>
@@ -401,7 +401,7 @@
 この「単体では完結せず、複数サービスの組み合わせによって価値を発揮する」という設計思想は、 AWS に限らずクラウド事業者全般に共通する製品戦略であり、 CDN という一見シンプルな機能が、実際にはより大きなプラットフォーム戦略の中に組み込まれていることを、開発者の実務目線からも裏付けている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. コンテンツ企業自前型： Netflix Open Connect 、 Meta</button>
+  <button aria-expanded="false" class="sec-head" type="button">コンテンツ企業自前型： Netflix Open Connect 、 Meta</button>
   <div class="sec-body">
 <p class="pp"><strong>コンテンツ企業自前型</strong>は、自社のコンテンツ配信のためだけに、 CDN 機能を自社構築・運用するタイプである。外部への販売は行わない（あるいは限定的）という点で、他の 3 タイプと大きく異なる。</p>
 <p class="pp"><strong>Netflix Open Connect</strong> については 3-3 で詳述した通りである。<br/>
@@ -420,7 +420,7 @@
 <p class="pp">Netflix ・ Meta いずれの事例にも共通するのは、 <strong>CDN が単独の収益部門ではなく、本体事業（動画サブスクリプション収益、広告収益）を支える「配信品質への投資」として設計されている</strong>という点である。この構図は、指示書が一貫して重視する「 CDN は慈善事業ではなく、より大きなビジネスの中の戦略的投資である」という視点と直接つながっている。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">5. 4 パターンの比較</button>
+  <button aria-expanded="false" class="sec-head" type="button">4 パターンの比較</button>
   <div class="sec-body">
 <p class="pp">以上の 4 パターンを、収益源・ CDN のコスト位置づけ・戦略的役割という軸で整理すると、以下のようになる。</p>
 <div class="table-wrap"><table class="data-table"><thead><tr><th>タイプ</th><th>代表企業</th><th>CDN の直接収益源</th><th>CDN のコスト上の位置づけ</th><th>戦略的役割</th></tr></thead><tbody><tr><td>CDN 専業型</td><td>Akamai 、 Fastly</td><td>CDN ・セキュリティ利用料の直接課金</td><td>CDN 自体が主たる売上原価・売上そのもの</td><td>CDN 機能そのものが商品。セキュリティ等への事業多角化で収益性を補強</td></tr><tr><td>プラットフォーム付随型（フリーミアム）</td><td>Cloudflare</td><td>有料プラン課金（無料プランは非課金）</td><td>無料プラン分はコスト（原価率を押し上げる要因）</td><td>無料プランでネットワーク規模とブランドを獲得し、周辺製品（Workers/R2/Zero Trust 等）へのアップセル導線とする</td></tr><tr><td>プラットフォーム付随型（本体事業強化）</td><td>Google 、 Amazon</td><td>クラウドプラットフォーム利用料の一部として課金（CDN 単体収益は非開示）</td><td>クラウド事業のコストの一部。自社サービス（YouTube 等）は広告収益等で吸収</td><td>クラウドエコシステム全体の顧客誘引・自社大規模サービスの配信基盤</td></tr><tr><td>コンテンツ企業自前型</td><td>Netflix 、 Meta</td><td>外部への直接販売なし（自社利用のみ）</td><td>本体事業（サブスク・広告）の売上原価・インフラコスト</td><td>自社コンテンツの配信品質向上によるユーザー体験・顧客維持への投資</td></tr></tbody></table></div>
@@ -430,7 +430,7 @@
 このように、四つのパターンは相互に独立した固定的な箱ではなく、各社が置かれた競争環境の変化に応じて移動しうる、連続的なスペクトラムとして理解するのがより正確だろう。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">6. CDN 市場全体像：規模・主要プレイヤー・新たな需要</button>
+  <button aria-expanded="false" class="sec-head" type="button">CDN 市場全体像：規模・主要プレイヤー・新たな需要</button>
   <div class="sec-body">
 <p class="pp">ここまで取り上げた企業は、いずれも欧米圏を拠点とする大手事業者である。しかし、 CDN 市場の全体像を把握するには、市場規模の推計と、他地域のプレイヤーにも触れておく必要がある。</p>
 <p class="pp"><strong>市場規模の推計。<br/>
@@ -458,27 +458,27 @@
 <p class="part-summary">第四章で個別に触れた数字を、出典・時点とともに一覧化する。数字は各社の公表資料に基づくが、為替影響、会計基準（GAAP ／非 GAAP）の違い、開示区分の変更等により、単純な社間比較には注意が必要である。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. Akamai （2025 年 12 月期通期）</button>
+  <button aria-expanded="false" class="sec-head" type="button">Akamai （2025 年 12 月期通期）</button>
   <div class="sec-body">
 <div class="table-wrap"><table class="data-table"><thead><tr><th>指標</th><th>金額・値</th><th>前年比</th></tr></thead><tbody><tr><td>総売上高</td><td>42.08 億米ドル</td><td>+5%</td></tr><tr><td>Security 収益</td><td>22.43 億米ドル（構成比 53.3%）</td><td>+10% （為替調整後 +9%）</td></tr><tr><td>Delivery 収益</td><td>12.57 億米ドル（構成比 29.9%）</td><td>―</td></tr><tr><td>Compute 収益</td><td>7.08 億米ドル（構成比 16.8%）</td><td>―</td></tr><tr><td>営業利益</td><td>5.669 億米ドル（売上高比 13%）</td><td>ほぼ横ばい</td></tr><tr><td>純利益</td><td>4.520 億米ドル</td><td>前年 5.049 億米ドルから減少（リストラ費用・株式報酬増加の影響）</td></tr><tr><td>粗利率（GAAP）</td><td>58.9%</td><td>2021 年の 63.3% から緩やかに低下傾向</td></tr><tr><td>非 GAAP 営業利益率</td><td>30%</td><td>+1 ポイント</td></tr></tbody></table></div>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. Fastly （2025 年 12 月期通期）</button>
+  <button aria-expanded="false" class="sec-head" type="button">Fastly （2025 年 12 月期通期）</button>
   <div class="sec-body">
 <div class="table-wrap"><table class="data-table"><thead><tr><th>指標</th><th>金額・値</th><th>前年比</th></tr></thead><tbody><tr><td>総売上高</td><td>6.240 億米ドル</td><td>+15%</td></tr><tr><td>Network services 収益</td><td>4.778 億米ドル</td><td>+12%</td></tr><tr><td>Security 収益</td><td>1.251 億米ドル</td><td>+21%</td></tr><tr><td>Q4 粗利率</td><td>64% （過去最高）</td><td>Q4 2024 の 57.5% から改善</td></tr><tr><td>通期純利益</td><td>1,970 万米ドル</td><td>通期初黒字化</td></tr><tr><td>純収益維持率（NRR）</td><td>110%</td><td>前四半期 106% から上昇</td></tr></tbody></table></div>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. Cloudflare （2025 年 12 月期通期）</button>
+  <button aria-expanded="false" class="sec-head" type="button">Cloudflare （2025 年 12 月期通期）</button>
   <div class="sec-body">
 <div class="table-wrap"><table class="data-table"><thead><tr><th>指標</th><th>金額・値</th><th>前年比</th></tr></thead><tbody><tr><td>総売上高</td><td>21.679 億米ドル</td><td>+29.8%</td></tr><tr><td>粗利率（GAAP）</td><td>74.5%</td><td>2024 年の 77.3% から低下</td></tr><tr><td>粗利率（非 GAAP）</td><td>75.8%</td><td>2024 年の 78.7% から低下</td></tr><tr><td>有料顧客数</td><td>332,466 社</td><td>―</td></tr><tr><td>大口顧客数（年間支出 10 万米ドル超）</td><td>4,298 社</td><td>―</td></tr><tr><td>Q4 最大契約</td><td>平均年間契約額 4,250 万米ドル</td><td>同社史上最大</td></tr></tbody></table></div>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. Google （Alphabet 、 2025 年 12 月期）</button>
+  <button aria-expanded="false" class="sec-head" type="button">Google （Alphabet 、 2025 年 12 月期）</button>
   <div class="sec-body">
 <div class="table-wrap"><table class="data-table"><thead><tr><th>指標</th><th>金額・値</th><th>前年比</th></tr></thead><tbody><tr><td>YouTube 収益（通期、広告 + サブスク）</td><td>600 億米ドル超</td><td>―</td></tr><tr><td>YouTube 広告収益（Q4）</td><td>114 億米ドル</td><td>+9%</td></tr><tr><td>Google Cloud 収益（通期）</td><td>587.1 億米ドル</td><td>+35.8% （前年 432.3 億米ドル）</td></tr><tr><td>Google Cloud 収益（Q4）</td><td>177 億米ドル</td><td>+48%</td></tr></tbody></table></div>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">5. Netflix （2025 年 12 月期）</button>
+  <button aria-expanded="false" class="sec-head" type="button">Netflix （2025 年 12 月期）</button>
   <div class="sec-body">
 <div class="table-wrap"><table class="data-table"><thead><tr><th>指標</th><th>金額・値</th><th>備考</th></tr></thead><tbody><tr><td>通期売上高</td><td>452 億米ドル前後</td><td>各種報道に基づく概算</td></tr><tr><td>コンテンツ償却費</td><td>164 億米ドル</td><td>売上高の 40% 未満</td></tr><tr><td>2025 年コンテンツ現金支出計画</td><td>180 億米ドル前後</td><td>Open Connect 関連費用を含む「ストリーミング配信コスト」はコンテンツ費用等と合算開示のため、 CDN 単体の金額は非開示</td></tr></tbody></table></div>
     </div>
@@ -495,22 +495,22 @@
 <p class="part-summary">本文書冒頭で提示した疑問 - 「 CDN 運営には費用がかかるのに、直接の収益が見えにくいのではないか」 - に対する答えを、ここで改めて整理する。</p>
 
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">1. 物理構造の理解が不可欠である</button>
+  <button aria-expanded="false" class="sec-head" type="button">物理構造の理解が不可欠である</button>
   <div class="sec-body">
 <p class="pp"><strong>第一に、物理構造の理解が不可欠である。</strong> インターネットはピアリング・トランジット・ IX ・ Tier 階層という相互接続構造の上に成り立っており、 CDN 事業者はこの構造の中で、 ISP と基本的に無償のピアリング関係（あるいは一部有償ピアリング）を築きながら、コンテンツをエンドユーザーの近くまで運んでいる。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">2. お金の流れの基本形と ISP への支払いの不在</button>
+  <button aria-expanded="false" class="sec-head" type="button">お金の流れの基本形と ISP への支払いの不在</button>
   <div class="sec-body">
 <p class="pp"><strong>第二に、お金の流れは「 CDN 利用企業→CDN 事業者」が基本形であり、「 ISP→CDN 事業者」という支払いは一般的な商習慣として存在しない。</strong> ISP の施設内に CDN 機器や Netflix Open Connect の OCA が設置されているとしても、それは賃貸借契約ではなく、多くの場合、 ISP 側のトランジットコスト削減とコンテンツ企業側の配信品質向上という、双方向のメリット交換によって成立している。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">3. 企業タイプによって経営上の位置づけが異なる</button>
+  <button aria-expanded="false" class="sec-head" type="button">企業タイプによって経営上の位置づけが異なる</button>
   <div class="sec-body">
 <p class="pp"><strong>第三に、 CDN 企業のタイプによって、 CDN の経営上の位置づけはまったく異なる。</strong> Akamai ・ Fastly のような専業型企業にとっては CDN （とその発展形であるセキュリティ・クラウド事業）こそが収益の核心である一方、 Cloudflare のようなフリーミアム戦略を取る企業にとっては、無料プランを含む CDN 機能はネットワーク規模とブランドを築くための投資であり、 Google ・ Amazon のようなクラウド大手にとってはエコシステム全体の一機能、 Netflix ・ Meta のようなコンテンツ企業にとっては本体事業（サブスクリプション、広告）を支えるインフラコストである。</p>
     </div>
 </div><div class="section">
-  <button aria-expanded="false" class="sec-head" type="button">4. CDN 単体の P/L だけでは評価できない</button>
+  <button aria-expanded="false" class="sec-head" type="button">CDN 単体の P/L だけでは評価できない</button>
   <div class="sec-body">
 <p class="pp"><strong>第四に、これら 4 タイプいずれにおいても、「 CDN 単体の P/L 」だけで事業の合理性を評価することは適切ではない。<br/>
 </strong> CDN は慈善事業ではなく、単体で見れば「費用ばかりかかって儲からない」ように見えたとしても、それは企業全体の収益構造 - 直接課金、周辺製品へのアップセル、広告収益、サブスクリプション収益、あるいはコスト削減効果 - の中に組み込まれた、合理的に設計された戦略的投資として理解する必要がある。第五章で見た通り、多くの企業で CDN 単体の財務数値が開示されていないこと自体が、この「 CDN は単体で評価するものではない」という位置づけを裏付けていると言える。</p>
