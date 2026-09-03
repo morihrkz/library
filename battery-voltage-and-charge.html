@@ -38,9 +38,9 @@
   .refs{ list-style:none; margin:0; padding:0; }
   .refs li{ padding:11px 0 11px 2.4em; text-indent:-2.4em; border-bottom:1px solid var(--border); font-size:13.5px; color:var(--label); }
   .refs li:last-child{ border-bottom:none; }
-  .refs .n{ font-weight:700; color:var(--accent); }
-  .refs a{ color:var(--accent); word-break:break-all; }
+  .refs a:not(.fn-num){ color:var(--accent); word-break:break-all; }
   sup.ref{ font-size:.72em; color:var(--olive); font-weight:700; padding:0 1px; }
+  sup.ref a{ color:inherit; text-decoration:none; }
 </style>
 
 </head>
@@ -133,8 +133,8 @@
   <div class="chapter">
    <button type="button" class="ch-head" aria-expanded="false">電圧の正体 - 水位ではなく、化学ポテンシャル差</button>
    <div class="ch-body"><div class="ch-intro">
-    <p class="pp">電池における電圧、より正確には回路を切り離した状態（無負荷時）で測られる開回路電圧は、電池の起電力にほぼ等しいとされる <sup class="ref">[1]</sup> 。起電力とは、正極と負極という異なる化学的環境に置かれた電極のあいだに生じる電位差であり、電極を構成する物質の種類、電解質中のイオン濃度、そして温度によって定まる <sup class="ref">[2]</sup> 。<br>この電位差の大きさを与える理論的な枠組みがネルンストの式であり、電極表面での化学種の活量（実効的な濃度）と電位の関係を結びつけるものである <sup class="ref">[1][3]</sup> 。本稿では数式には立ち入らないが、要点は「電極の化学的な状態が変わると、電位差そのものが変わる」という一点に尽きる。</p>
-    <p class="pp">ここで水流アナロジーに立ち返ると、水位に相当するのは起電力である。しかし両者の本質的な違いは、それを生み出している物理的な実体にある。<br>水位差は、地球の重力場のもとで水という質量が持つ位置エネルギーの差である。これに対して起電力は、正極と負極という異なる化学環境のあいだの化学ポテンシャル差であり、電池内部で進行する酸化還元反応（電極反応）そのものに由来する <sup class="ref">[4]</sup> 。重力とは何の関係もない。<br>「電池の中の何かが電気を押し出しているのではないか」という比喩的な直感は、この化学ポテンシャル差の存在を言い当てている点で的外れではないが、それを重力のような力学的な圧力と同一視するべきではない、というのがここでの結論である。</p>
+    <p class="pp">電池における電圧、より正確には回路を切り離した状態（無負荷時）で測られる開回路電圧は、電池の起電力にほぼ等しいとされる <sup class="ref"><a href="#fn1" id="fnref1">[1]</a></sup> 。起電力とは、正極と負極という異なる化学的環境に置かれた電極のあいだに生じる電位差であり、電極を構成する物質の種類、電解質中のイオン濃度、そして温度によって定まる <sup class="ref"><a href="#fn2" id="fnref2">[2]</a></sup> 。<br>この電位差の大きさを与える理論的な枠組みがネルンストの式であり、電極表面での化学種の活量（実効的な濃度）と電位の関係を結びつけるものである <sup class="ref"><a href="#fn1">[1]</a></sup><sup class="ref"><a href="#fn3" id="fnref3">[3]</a></sup> 。本稿では数式には立ち入らないが、要点は「電極の化学的な状態が変わると、電位差そのものが変わる」という一点に尽きる。</p>
+    <p class="pp">ここで水流アナロジーに立ち返ると、水位に相当するのは起電力である。しかし両者の本質的な違いは、それを生み出している物理的な実体にある。<br>水位差は、地球の重力場のもとで水という質量が持つ位置エネルギーの差である。これに対して起電力は、正極と負極という異なる化学環境のあいだの化学ポテンシャル差であり、電池内部で進行する酸化還元反応（電極反応）そのものに由来する <sup class="ref"><a href="#fn4" id="fnref4">[4]</a></sup> 。重力とは何の関係もない。<br>「電池の中の何かが電気を押し出しているのではないか」という比喩的な直感は、この化学ポテンシャル差の存在を言い当てている点で的外れではないが、それを重力のような力学的な圧力と同一視するべきではない、というのがここでの結論である。</p>
    </div></div>
   </div>
 
@@ -148,7 +148,7 @@
     <div class="section">
      <button type="button" class="sec-head" aria-expanded="false">起電力の低下 - 電極活物質の組成変化</button>
      <div class="sec-body">
-      <p class="pp">リチウムイオン電池を例に取ると、放電とは、負極（一般に黒鉛）に蓄えられていたリチウムイオンが結晶構造の層のあいだから抜け出し（脱インターカレーション）、電解質を介して正極の結晶構造の中に入り込む（インターカレーション）過程である <sup class="ref">[5][6]</sup> 。このとき、負極から放出された電子は外部回路を通って正極へ流れ、これが負荷に供給される電流となる。<br>電極間の電位差は、正極・負極それぞれの活物質中に含まれるリチウムの量（組成）に依存して決まるため、放電が進んでリチウムの組成が変化するにつれて、電極間の電位差そのもの、すなわち起電力が徐々に低下していく <sup class="ref">[5][6]</sup> 。<br>これは水位が下がるように水圧が下がる現象と、現象としてはよく似ているが、その実体は電極を構成する物質の化学的な組成変化であり、重力とは無関係である。</p>
+      <p class="pp">リチウムイオン電池を例に取ると、放電とは、負極（一般に黒鉛）に蓄えられていたリチウムイオンが結晶構造の層のあいだから抜け出し（脱インターカレーション）、電解質を介して正極の結晶構造の中に入り込む（インターカレーション）過程である <sup class="ref"><a href="#fn5" id="fnref5">[5]</a></sup><sup class="ref"><a href="#fn6" id="fnref6">[6]</a></sup> 。このとき、負極から放出された電子は外部回路を通って正極へ流れ、これが負荷に供給される電流となる。<br>電極間の電位差は、正極・負極それぞれの活物質中に含まれるリチウムの量（組成）に依存して決まるため、放電が進んでリチウムの組成が変化するにつれて、電極間の電位差そのもの、すなわち起電力が徐々に低下していく <sup class="ref"><a href="#fn5">[5]</a></sup><sup class="ref"><a href="#fn6">[6]</a></sup> 。<br>これは水位が下がるように水圧が下がる現象と、現象としてはよく似ているが、その実体は電極を構成する物質の化学的な組成変化であり、重力とは無関係である。</p>
       <p class="pullquote">電池の電圧が下がるのは、電極の中の化学的な「地形」そのものが、放電が進むにつれて刻一刻と作り替えられているからである。</p>
      </div>
     </div>
@@ -156,7 +156,7 @@
     <div class="section">
      <button type="button" class="sec-head" aria-expanded="false">内部抵抗による電圧降下（IR ドロップ）</button>
      <div class="sec-body">
-      <p class="pp">もう一つの要因は、電池内部の電解質・電極・集電体などが持つ電気抵抗（内部抵抗）によって生じる電圧降下である。電流が流れているときの端子電圧は、起電力から、この内部抵抗による電圧降下分を差し引いたものになる。<br>電流を取り出すほど、また内部抵抗が大きいほど、この電圧降下は大きくなる <sup class="ref">[7][8]</sup> 。内部抵抗は温度や充電状態、劣化の進行度によっても変化することが報告されている <sup class="ref">[8]</sup> 。<br>負荷を急にかけたときに電圧が一時的にがくんと下がる現象（電圧サグ）は、主にこの IR ドロップによるものであり、電池内部の化学的な状態（真の残量）が瞬時に変化したわけではない <sup class="ref">[7]</sup> 。この区別を怠ると、「重い負荷をかけたら電圧が下がったので残量が急に減った」という誤解が生じやすい。</p>
+      <p class="pp">もう一つの要因は、電池内部の電解質・電極・集電体などが持つ電気抵抗（内部抵抗）によって生じる電圧降下である。電流が流れているときの端子電圧は、起電力から、この内部抵抗による電圧降下分を差し引いたものになる。<br>電流を取り出すほど、また内部抵抗が大きいほど、この電圧降下は大きくなる <sup class="ref"><a href="#fn7" id="fnref7">[7]</a></sup><sup class="ref"><a href="#fn8" id="fnref8">[8]</a></sup> 。内部抵抗は温度や充電状態、劣化の進行度によっても変化することが報告されている <sup class="ref"><a href="#fn8">[8]</a></sup> 。<br>負荷を急にかけたときに電圧が一時的にがくんと下がる現象（電圧サグ）は、主にこの IR ドロップによるものであり、電池内部の化学的な状態（真の残量）が瞬時に変化したわけではない <sup class="ref"><a href="#fn7">[7]</a></sup> 。この区別を怠ると、「重い負荷をかけたら電圧が下がったので残量が急に減った」という誤解が生じやすい。</p>
 
       <figure>
        <div class="figbox">
@@ -193,10 +193,10 @@
   <div class="chapter">
    <button type="button" class="ch-head" aria-expanded="false">電圧だけで残量を測ることの妥当性と限界</button>
    <div class="ch-body"><div class="ch-intro">
-    <p class="pp">電圧を測ることで残量（充電状態、 SOC）を推定する手法は「電圧法」と呼ばれ、電池の開回路電圧と充電状態のあいだにあらかじめ対応関係（OCV-SOC 曲線）を作っておき、測定した電圧からその曲線を逆引きする方式である。<br>リチウムイオン電池の放電曲線は、多くの化学系でおおむね 4.1 ボルト前後から 2.5 ボルト前後まで単調に低下し、残量が少なくなる領域でとりわけ急激に電圧が落ち込むことが報告されている <sup class="ref">[5]</sup> 。この単調な低下傾向がはっきりしている領域では、電圧法は比較的信頼できる指標になり得る。</p>
-    <p class="pp">ところが、電極材料の組み合わせによっては、この対応関係が大きく崩れる。代表例がリン酸鉄リチウム（LiFePO4）を正極に用いた電池で、その開回路電圧曲線は充電状態がおよそ 20 パーセントから 80 パーセントの範囲でほぼ平坦になることが知られている <sup class="ref">[9][10]</sup> 。<br>この領域では、充電状態が 30 パーセントのときと 70 パーセントのときとで電圧がほとんど変わらないため、電圧だけから残量を精度よく見積もることが原理的に難しい。電圧法が実用的な精度を持つのは、曲線の傾きが急になる充電状態の上限付近と下限付近に限られる <sup class="ref">[9]</sup> 。</p>
-    <p class="pp">さらに、開回路電圧は電池が完全に休止した状態（電流が流れていない状態）で測る必要がある。実際の使用中は常に何らかの電流が流れているため、測定される端子電圧には前章で述べた IR ドロップが重なっており、これを起電力の低下と混同すると、実際の残量以上に、あるいは以下に見積もってしまう恐れがある。<br>加えて、内部抵抗そのものが温度や劣化度によって変動するため、同じ充電状態でも測定条件によって電圧が変わり得ることも報告されている <sup class="ref">[8]</sup> 。</p>
-    <p class="pp">こうした限界を補う手法として広く使われているのが、電池に出入りする電流を継続的に積算して残量を追跡する「クーロンカウント法」である <sup class="ref">[11][10]</sup> 。この方式は電池管理システム（BMS）への実装が比較的容易である一方、電流センサーの誤差が時間とともに蓄積し、定期的な較正（多くは満充電・完全放電時の電圧を基準点として使う）を行わないと精度が落ちていくという弱点も指摘されている <sup class="ref">[11]</sup> 。<br>実務上は、電圧法とクーロンカウント法、さらにはカルマンフィルタなどを用いた統計的な補正を組み合わせることで、それぞれの弱点を補い合う設計が一般的とされる <sup class="ref">[10]</sup> 。</p>
+    <p class="pp">電圧を測ることで残量（充電状態、 SOC）を推定する手法は「電圧法」と呼ばれ、電池の開回路電圧と充電状態のあいだにあらかじめ対応関係（OCV-SOC 曲線）を作っておき、測定した電圧からその曲線を逆引きする方式である。<br>リチウムイオン電池の放電曲線は、多くの化学系でおおむね 4.1 ボルト前後から 2.5 ボルト前後まで単調に低下し、残量が少なくなる領域でとりわけ急激に電圧が落ち込むことが報告されている <sup class="ref"><a href="#fn5">[5]</a></sup> 。この単調な低下傾向がはっきりしている領域では、電圧法は比較的信頼できる指標になり得る。</p>
+    <p class="pp">ところが、電極材料の組み合わせによっては、この対応関係が大きく崩れる。代表例がリン酸鉄リチウム（LiFePO4）を正極に用いた電池で、その開回路電圧曲線は充電状態がおよそ 20 パーセントから 80 パーセントの範囲でほぼ平坦になることが知られている <sup class="ref"><a href="#fn9" id="fnref9">[9]</a></sup><sup class="ref"><a href="#fn10" id="fnref10">[10]</a></sup> 。<br>この領域では、充電状態が 30 パーセントのときと 70 パーセントのときとで電圧がほとんど変わらないため、電圧だけから残量を精度よく見積もることが原理的に難しい。電圧法が実用的な精度を持つのは、曲線の傾きが急になる充電状態の上限付近と下限付近に限られる <sup class="ref"><a href="#fn9">[9]</a></sup> 。</p>
+    <p class="pp">さらに、開回路電圧は電池が完全に休止した状態（電流が流れていない状態）で測る必要がある。実際の使用中は常に何らかの電流が流れているため、測定される端子電圧には前章で述べた IR ドロップが重なっており、これを起電力の低下と混同すると、実際の残量以上に、あるいは以下に見積もってしまう恐れがある。<br>加えて、内部抵抗そのものが温度や劣化度によって変動するため、同じ充電状態でも測定条件によって電圧が変わり得ることも報告されている <sup class="ref"><a href="#fn8">[8]</a></sup> 。</p>
+    <p class="pp">こうした限界を補う手法として広く使われているのが、電池に出入りする電流を継続的に積算して残量を追跡する「クーロンカウント法」である <sup class="ref"><a href="#fn11" id="fnref11">[11]</a></sup><sup class="ref"><a href="#fn10">[10]</a></sup> 。この方式は電池管理システム（BMS）への実装が比較的容易である一方、電流センサーの誤差が時間とともに蓄積し、定期的な較正（多くは満充電・完全放電時の電圧を基準点として使う）を行わないと精度が落ちていくという弱点も指摘されている <sup class="ref"><a href="#fn11">[11]</a></sup> 。<br>実務上は、電圧法とクーロンカウント法、さらにはカルマンフィルタなどを用いた統計的な補正を組み合わせることで、それぞれの弱点を補い合う設計が一般的とされる <sup class="ref"><a href="#fn10">[10]</a></sup> 。</p>
 
     <div class="table-wrap">
      <table>
@@ -244,9 +244,9 @@
    <button type="button" class="ch-head" aria-expanded="false">結語 - 疑問への回答</button>
    <div class="ch-body"><div class="ch-intro">
     <div class="concl">
-     <p class="pp">電圧が下がることが残量減少の根拠になり得るのは、電池の電圧（より正確には開回路電圧）が、電極の化学的な状態、すなわち電極活物質中に残されたリチウムなどの活物質量とその組成を反映する量だからである <sup class="ref">[5][6]</sup> 。<br>放電が進むにつれて電極の組成が変化し、それにともなって電極間の化学ポテンシャル差（起電力）そのものが低下していく。この点で、バケツの水位が下がるにつれて水圧が下がるという現象と、パターンとしてはよく似ている。ポテンシャル差が流れを駆動するという数理構造は、水流にも電流にも共通しているからである。</p>
+     <p class="pp">電圧が下がることが残量減少の根拠になり得るのは、電池の電圧（より正確には開回路電圧）が、電極の化学的な状態、すなわち電極活物質中に残されたリチウムなどの活物質量とその組成を反映する量だからである <sup class="ref"><a href="#fn5">[5]</a></sup><sup class="ref"><a href="#fn6">[6]</a></sup> 。<br>放電が進むにつれて電極の組成が変化し、それにともなって電極間の化学ポテンシャル差（起電力）そのものが低下していく。この点で、バケツの水位が下がるにつれて水圧が下がるという現象と、パターンとしてはよく似ている。ポテンシャル差が流れを駆動するという数理構造は、水流にも電流にも共通しているからである。</p>
      <p class="pp">しかし、このポテンシャル差を生み出している実体はまったく異なる。水位差の正体は重力による位置エネルギーであり、起電力の正体は電極反応による化学ポテンシャル差である。<br>「電池の中の何かが電気を押し出しているのではないか」という直感は、この化学ポテンシャル差の存在を的確に感じ取ったものであり、非科学的な思い込みとして退けるべきものではない。ただし、その「何か」を重力のような力学的な圧力と同一視することはできず、電極反応という電気化学的な過程に置き換えて理解する必要がある。</p>
-     <p class="pp">最後に、電圧降下と残量減少の対応関係には限界があることも付け加えておきたい。電極材料によっては放電曲線が平坦になり、電圧だけからは残量を精度よく読み取れない場合があること、また負荷をかけた瞬間の電圧低下（IR ドロップ）は真の残量減少とは別の要因であることには注意が必要である <sup class="ref">[7][9]</sup> 。<br>こうした限界を補うために、電流の積算によるクーロンカウント法など複数の手法を組み合わせる設計が実務では一般的とされている <sup class="ref">[10][11]</sup> 。電圧は残量を知るための有力な手がかりではあるが、唯一絶対の指標ではない、という留保を添えて本稿を締めくくる。</p>
+     <p class="pp">最後に、電圧降下と残量減少の対応関係には限界があることも付け加えておきたい。電極材料によっては放電曲線が平坦になり、電圧だけからは残量を精度よく読み取れない場合があること、また負荷をかけた瞬間の電圧低下（IR ドロップ）は真の残量減少とは別の要因であることには注意が必要である <sup class="ref"><a href="#fn7">[7]</a></sup><sup class="ref"><a href="#fn9">[9]</a></sup> 。<br>こうした限界を補うために、電流の積算によるクーロンカウント法など複数の手法を組み合わせる設計が実務では一般的とされている <sup class="ref"><a href="#fn10">[10]</a></sup><sup class="ref"><a href="#fn11">[11]</a></sup> 。電圧は残量を知るための有力な手がかりではあるが、唯一絶対の指標ではない、という留保を添えて本稿を締めくくる。</p>
     </div>
    </div></div>
   </div>
@@ -255,17 +255,17 @@
    <button type="button" class="ch-head" aria-expanded="false">参考文献・出典</button>
    <div class="ch-body"><div class="ch-intro">
     <ol class="refs">
-     <li><span class="n">[1]</span> "Essays on Conceptual Electrochemistry: I. Bridging Open-Circuit Voltage of Electrochemical Cells and Charge Distribution at Electrode-Electrolyte Interfaces", PMC (National Library of Medicine), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9358007/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC9358007/</a></li>
-     <li><span class="n">[2]</span> "Open Circuit Potential", ScienceDirect Topics, <a href="https://www.sciencedirect.com/topics/engineering/open-circuit-potential" target="_blank" rel="noopener">https://www.sciencedirect.com/topics/engineering/open-circuit-potential</a></li>
-     <li><span class="n">[3]</span> "Open circuit voltage", DoITPoMS Teaching and Learning Package, University of Cambridge, <a href="https://www.doitpoms.ac.uk/tlplib/fuel-cells/pem_open_circuit.php" target="_blank" rel="noopener">https://www.doitpoms.ac.uk/tlplib/fuel-cells/pem_open_circuit.php</a></li>
-     <li><span class="n">[4]</span> "Intercalation", Battery Technology Glossary, NOVONIX, <a href="https://www.novonixgroup.com/glossary-term/intercalation/" target="_blank" rel="noopener">https://www.novonixgroup.com/glossary-term/intercalation/</a></li>
-     <li><span class="n">[5]</span> "Understanding Charge-Discharge Curves of Li-ion Cells", EVreporter, <a href="https://evreporter.com/understanding-charge-discharge-curves-of-li-ion-cells/" target="_blank" rel="noopener">https://evreporter.com/understanding-charge-discharge-curves-of-li-ion-cells/</a></li>
-     <li><span class="n">[6]</span> "Mechanistic Understanding of Lithium-Ion Adsorption, Intercalation, and Plating during Charging of Graphite Electrodes", ACS Electrochemistry / PMC, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12051203/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC12051203/</a></li>
-     <li><span class="n">[7]</span> "Reducing Voltage Sag in Battery Motor Control", Industrial Monitor Direct 技術解説 , <a href="https://industrialmonitordirect.com/blogs/knowledgebase/combating-voltage-sag-in-battery-powered-motor-control-systems" target="_blank" rel="noopener">https://industrialmonitordirect.com/blogs/knowledgebase/combating-voltage-sag-in-battery-powered-motor-control-systems</a></li>
-     <li><span class="n">[8]</span> "Battery Internal Resistance: Impact on Voltage Stability and Surge", EDECOA 技術資料 , <a href="https://www.edecoa.com/blogs/technical-resources/battery-internal-resistance" target="_blank" rel="noopener">https://www.edecoa.com/blogs/technical-resources/battery-internal-resistance</a></li>
-     <li><span class="n">[9]</span> "LiFePO4 SOC Chart - State of Charge vs Voltage", Battery Calculators, <a href="https://batterycalculators.com/learn/lifepo4-soc-chart/" target="_blank" rel="noopener">https://batterycalculators.com/learn/lifepo4-soc-chart/</a> ; "LiFePO4 Voltage Chart", GridWright, <a href="https://gridwright.com/blog/lifepo4-voltage-chart" target="_blank" rel="noopener">https://gridwright.com/blog/lifepo4-voltage-chart</a></li>
-     <li><span class="n">[10]</span> Haq, I. N. ほか , "State of charge (SoC) estimation on LiFePO4 battery module using Coulomb counting methods with modified Peukert", IEEE Conference Publication, <a href="https://ieeexplore.ieee.org/document/6741545/" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/6741545/</a></li>
-     <li><span class="n">[11]</span> "Lithium-Ion State of Charge (SoC) measurement - Coulomb Counter method", Powertech Systems 技術資料 , <a href="https://www.powertechsystems.eu/tech-corner/lithium-ion-state-of-charge-soc-measurement/" target="_blank" rel="noopener">https://www.powertechsystems.eu/tech-corner/lithium-ion-state-of-charge-soc-measurement/</a></li>
+     <li id="fn1"><a class="fn-num" href="#fnref1">[1]</a> "Essays on Conceptual Electrochemistry: I. Bridging Open-Circuit Voltage of Electrochemical Cells and Charge Distribution at Electrode-Electrolyte Interfaces", PMC (National Library of Medicine), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9358007/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC9358007/</a></li>
+     <li id="fn2"><a class="fn-num" href="#fnref2">[2]</a> "Open Circuit Potential", ScienceDirect Topics, <a href="https://www.sciencedirect.com/topics/engineering/open-circuit-potential" target="_blank" rel="noopener">https://www.sciencedirect.com/topics/engineering/open-circuit-potential</a></li>
+     <li id="fn3"><a class="fn-num" href="#fnref3">[3]</a> "Open circuit voltage", DoITPoMS Teaching and Learning Package, University of Cambridge, <a href="https://www.doitpoms.ac.uk/tlplib/fuel-cells/pem_open_circuit.php" target="_blank" rel="noopener">https://www.doitpoms.ac.uk/tlplib/fuel-cells/pem_open_circuit.php</a></li>
+     <li id="fn4"><a class="fn-num" href="#fnref4">[4]</a> "Intercalation", Battery Technology Glossary, NOVONIX, <a href="https://www.novonixgroup.com/glossary-term/intercalation/" target="_blank" rel="noopener">https://www.novonixgroup.com/glossary-term/intercalation/</a></li>
+     <li id="fn5"><a class="fn-num" href="#fnref5">[5]</a> "Understanding Charge-Discharge Curves of Li-ion Cells", EVreporter, <a href="https://evreporter.com/understanding-charge-discharge-curves-of-li-ion-cells/" target="_blank" rel="noopener">https://evreporter.com/understanding-charge-discharge-curves-of-li-ion-cells/</a></li>
+     <li id="fn6"><a class="fn-num" href="#fnref6">[6]</a> "Mechanistic Understanding of Lithium-Ion Adsorption, Intercalation, and Plating during Charging of Graphite Electrodes", ACS Electrochemistry / PMC, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12051203/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC12051203/</a></li>
+     <li id="fn7"><a class="fn-num" href="#fnref7">[7]</a> "Reducing Voltage Sag in Battery Motor Control", Industrial Monitor Direct 技術解説 , <a href="https://industrialmonitordirect.com/blogs/knowledgebase/combating-voltage-sag-in-battery-powered-motor-control-systems" target="_blank" rel="noopener">https://industrialmonitordirect.com/blogs/knowledgebase/combating-voltage-sag-in-battery-powered-motor-control-systems</a></li>
+     <li id="fn8"><a class="fn-num" href="#fnref8">[8]</a> "Battery Internal Resistance: Impact on Voltage Stability and Surge", EDECOA 技術資料 , <a href="https://www.edecoa.com/blogs/technical-resources/battery-internal-resistance" target="_blank" rel="noopener">https://www.edecoa.com/blogs/technical-resources/battery-internal-resistance</a></li>
+     <li id="fn9"><a class="fn-num" href="#fnref9">[9]</a> "LiFePO4 SOC Chart - State of Charge vs Voltage", Battery Calculators, <a href="https://batterycalculators.com/learn/lifepo4-soc-chart/" target="_blank" rel="noopener">https://batterycalculators.com/learn/lifepo4-soc-chart/</a> ; "LiFePO4 Voltage Chart", GridWright, <a href="https://gridwright.com/blog/lifepo4-voltage-chart" target="_blank" rel="noopener">https://gridwright.com/blog/lifepo4-voltage-chart</a></li>
+     <li id="fn10"><a class="fn-num" href="#fnref10">[10]</a> Haq, I. N. ほか , "State of charge (SoC) estimation on LiFePO4 battery module using Coulomb counting methods with modified Peukert", IEEE Conference Publication, <a href="https://ieeexplore.ieee.org/document/6741545/" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/6741545/</a></li>
+     <li id="fn11"><a class="fn-num" href="#fnref11">[11]</a> "Lithium-Ion State of Charge (SoC) measurement - Coulomb Counter method", Powertech Systems 技術資料 , <a href="https://www.powertechsystems.eu/tech-corner/lithium-ion-state-of-charge-soc-measurement/" target="_blank" rel="noopener">https://www.powertechsystems.eu/tech-corner/lithium-ion-state-of-charge-soc-measurement/</a></li>
     </ol>
    </div></div>
   </div>
