@@ -140,6 +140,8 @@
   .fr-d{padding:0 5px;}
   .sqrt{white-space:nowrap;}
   .sqrt .rt{border-top:1.2px solid currentColor;padding:1px 3px 0 1px;}
+  .refs{list-style:none;padding-left:0;}
+  .refs li{margin:4px 0;text-indent:0;}
   .table-wrap{overflow-x:auto;margin:12px 0;}
   table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:320px;}
   th,td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top;}
