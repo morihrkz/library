@@ -1,7 +1,4 @@
 .claude/
-old/
-public_URL.txt
 .DS_Store
 INSTRUCTIONS-*.html
-javascript-beginner.html
-claude-code-migration.html
+public_URL.txt
