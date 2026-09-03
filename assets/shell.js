@@ -215,4 +215,27 @@
   window.addEventListener("resize", updateStickyOffset);
   window.addEventListener("load", updateStickyOffset);
   updateBreadcrumb();
+
+  /* ---- ハッシュ内リンク(脚注等)のジャンプ先を含む階層を自動展開 ---- */
+  var bodySelectorForHash = ".ch-body,.sec-body,.item-body,.paren-body,.num-body,.alp-body";
+  function expandAncestors(el){
+    var body = el.closest(bodySelectorForHash);
+    while(body){
+      var head = body.previousElementSibling;
+      if(head){ head.setAttribute("aria-expanded","true"); }
+      body = body.parentElement.closest(bodySelectorForHash);
+    }
+  }
+  function handleHashJump(){
+    var id = decodeURIComponent(location.hash.slice(1));
+    if(!id){ return; }
+    var target = document.getElementById(id);
+    if(!target){ return; }
+    expandAncestors(target);
+    updateStickyOffset();
+    updateBreadcrumb();
+    target.scrollIntoView({block:"start"});
+  }
+  window.addEventListener("hashchange", handleHashJump);
+  handleHashJump();
 })();
