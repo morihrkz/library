@@ -232,7 +232,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre><p class="pp">この 5 台は、レ
 <strong> 8 月 31 日という動かせない期限の下では、変更点を最小化するほうが安全</strong>という考え方である。<br/>GitHub Pages なら、 Xserver Domain 側の DNS レコード設定画面で A レコードを追加するだけで完結する。</p><p class="pp">あわせて、いわゆる静的サイトジェネレーターなども特に導入しないことにした。公開する内容が準備中を示す一枚もののページである以上、ビルド工程を挟む理由がなかったためである。依存パッケージのない、単一の <code>index.html</code> として作成する方針にした。<br/>リポジトリは新規に <code>pyx-site</code> という名前で作成し、公開範囲は Public （公開）とした。無料プランでは、 Private （非公開）のリポジトリで GitHub Pages を有効化できないと、この段階で判明したためである。</p></div></div>
 <div class="section"><button aria-expanded="false" class="sec-head" type="button">全体の実施順序</button><div class="sec-body"><p class="pp">サーバー契約の期限日から逆算し、作業を六つの工程に分けた。上から順に実行すれば、前提を満たさないまま先に進んでしまうことがない並びである。</p><div class="table-wrap"><table>
 <tr><th>工程</th><th>内容</th></tr>
-<tr><td>工程 1</td><td>移行前の保全： DNS レコードのバックアップ</td></tr>
+<tr><td>工程 1</td><td>移行前の保全、 DNS レコードのバックアップ</td></tr>
 <tr><td>工程 2</td><td>ネームサーバーを Xserver Domain へ切り替える</td></tr>
 <tr><td>工程 3</td><td>サイト構築と、切替前の完成確認</td></tr>
 <tr><td>工程 4</td><td>旧 WordPress 環境の削除</td></tr>
@@ -248,7 +248,7 @@ ns4.xserver.jp.  ns5.xserver.jp.</code></pre><p class="pp">この 5 台は、レ
 </table></div></div></div></div></div>
 <div class="chapter"><button aria-expanded="false" class="ch-head" type="button">ここからが本番、実際の移行作業</button><div class="ch-body"><div class="ch-intro"><p class="pp">そして、実際の切り替えに入った。ここから先は、計画書の中では数行だった作業が、ひとつずつ現実の判断になる。<br/>
 計画どおりに進んだところもあれば、<strong>実際に設定を切り替えた瞬間に、計画とは違う答えが返ってきたところもあった。</strong></p></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 1 ：移行前の保全、 DNS レコードのバックアップ</button><div class="sec-body"><p class="pp">DNS に最初の変更を加える前に、現在の設定値を全件控えた。旧 WordPress のコンテンツ自体は移行しないため保全対象外だが、 DNS 設定は失うと取り返しがつかないため、最優先で控える工程である。</p><pre><code>dig +short NS pyx.co.jp
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 1 : 移行前の保全、 DNS レコードのバックアップ</button><div class="sec-body"><p class="pp">DNS に最初の変更を加える前に、現在の設定値を全件控えた。旧 WordPress のコンテンツ自体は移行しないため保全対象外だが、 DNS 設定は失うと取り返しがつかないため、最優先で控える工程である。</p><pre><code>dig +short NS pyx.co.jp
 dig +short A pyx.co.jp
 dig +short A www.pyx.co.jp
 dig +short MX pyx.co.jp
@@ -260,7 +260,7 @@ dig +short TXT pyx.co.jp</code></pre><div class="table-wrap"><table>
 <tr><td>MX</td><td>pyx.co.jp</td><td>0 pyx.co.jp</td></tr>
 <tr><td>TXT</td><td>pyx.co.jp</td><td>SPF レコード（メール送信元の指定）</td></tr>
 </table></div><p class="pp">この控えは、単なる念のためのメモではなかった。後で DNS レコードが引き継がれなかったときに、何が失われたのかを特定するための照合資料になった。</p><p class="pp">MX と TXT （SPF）の 2 件は、「全レコードを漏れなく控える」という保全要件を満たすために機械的に記録したものである。 <code>pyx.co.jp</code> のメールアドレスは使用したことがなく、今後も使う予定がなかったため、メール関連の移行・保全そのものは検討対象から外した。</p><p class="pp">あわせて、 XServer アカウント（ドメイン契約管理ページ）にログインし、 DNS レコード設定画面をスクリーンショットで保存した。 <code>dig</code> の結果は管理画面上の表示と完全には一致しない場合があるため、両方を控えておくのが安全である。控えは Git リポジトリとは別の、ローカルの控え用フォルダに保存した。<br/>この控えは、後の工程で実際に役に立った。ただし戻すためではなく、戻さなくてよいと判断するために使った。詳しくは次項に記す。</p></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 2 ：ネームサーバーを Xserver Domain へ切り替える</button><div class="sec-body"><p class="pp">XServer アカウントの管理画面で「ネームサーバーの設定」を開き、ネームサーバーを Xserver Domain （サーバー契約に依存しない、ドメイン契約側の標準 DNS 管理機能）に切り替えた。切り替え自体は、管理画面上の一操作で完了する。</p><p class="pp">切り替えの反映確認は、必ず権威サーバーへ直接おこなった。</p><pre><code># 委任情報（レジストリ側）
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 2 : ネームサーバーを Xserver Domain へ切り替える</button><div class="sec-body"><p class="pp">XServer アカウントの管理画面で「ネームサーバーの設定」を開き、ネームサーバーを Xserver Domain （サーバー契約に依存しない、ドメイン契約側の標準 DNS 管理機能）に切り替えた。切り替え自体は、管理画面上の一操作で完了する。</p><p class="pp">切り替えの反映確認は、必ず権威サーバーへ直接おこなった。</p><pre><code># 委任情報（レジストリ側）
 dig @a.dns.jp pyx.co.jp NS +norecurse
 # 切替後の権威サーバーが実際に何を持っているか
 dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre><p class="pp">ここで、計画書にはなかった事実が一つ現れた。<strong>切り替えは成功したが、それまで設定されていた DNS レコードは、一件も引き継がれなかった。<br/>
@@ -292,7 +292,7 @@ dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre><p class="pp">ここで、計画�
 <tr><td>権威サーバーへ直接<br/><code>dig @ns1.xdomain.ne.jp …</code></td><td>設定の実態。ゾーンに何が書かれているか</td><td>受けない。変更した直後から確認できる</td></tr>
 <tr><td>通常の調べ方<br/><code>dig …</code>（@ なし）</td><td>世間から見えている状態。浸透が完了したか</td><td>受ける。変更直後は旧情報と新情報が混在する</td></tr>
 </table></div><div class="verdict">設定を確かめたいときは、待つのではなく、聞く相手を変える。</div><p class="pp">これが、この移行を通じて得たいちばん実用的な教訓だった。設定が正しいかどうかは、変更した直後から権威サーバーに聞けば分かる。時間を置く必要はない。<br/>さらに紛らわしいのは、「レコードが存在しない」という否定の答えもキャッシュされることである（ネガティブキャッシュ）。設定した直後に通常の方法で調べると「まだ無い」と表示されるのが普通で、これが一時間ほど続くこともある。ここで設定を疑って触り直すと、正しかったはずの設定を壊しかねない。</p></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 3 ：サイトを構築する</button><div class="sec-body"><p class="pp">作業は AI に指示を出しながら進めた。新規リポジトリ <code>pyx-site</code> を作成し、準備中であることを示す一枚物のページを、プレビュー URL で確認できる状態にするまでが、この工程の範囲である。</p><div class="table-wrap"><table>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 3 : サイトを構築する</button><div class="sec-body"><p class="pp">作業は AI に指示を出しながら進めた。新規リポジトリ <code>pyx-site</code> を作成し、準備中であることを示す一枚物のページを、プレビュー URL で確認できる状態にするまでが、この工程の範囲である。</p><div class="table-wrap"><table>
 <tr><th>項目</th><th>内容</th></tr>
 <tr><td>構成</td><td>依存パッケージなしの単一 <code>index.html</code>（CSS/JavaScript を内包）。ビルド工程は無し</td></tr>
 <tr><td>表示内容</td><td><code>PYX.CO.JP</code> と Something new is taking flight. の一言。都会の空を表現したビジュアルの中を、矢印キーまたはマウスポインタで操作できるドローンが飛ぶ、インタラクティブな演出</td></tr>
@@ -316,7 +316,7 @@ dig @ns1.xdomain.ne.jp pyx.co.jp A</code></pre><p class="pp">ここで、計画�
 <tr><td>ロールバック手段が失われる</td><td>削除後は、 A レコードを旧サーバーへ戻しても、表示すべき中身がもう存在しない。空のページかエラーが表示されるだけになる</td></tr>
 <tr><td><code>pyx.co.jp</code> は既に無反応になっていた</td><td>工程 2 でゾーンを空のまま進める判断を採ったため（3-2）、 A レコードが存在せず、この工程を待たずに <code>pyx.co.jp</code> は既に名前解決できない状態にあった</td></tr>
 </table></div><p class="pp">当初は「削除から DNS 切替までの間だけ、表示が乱れる」と想定していたが、実際にはその期間が前倒しで始まっていた形である。二年近く利用されていないサイトだったため実害はないと判断したが、削除の成否をブラウザで確認できなくなったため、確認手順はサーバーパネル経由に切り替えた。<br/><strong>後戻りが存在しない作業では、安全策は「事前の確認」に一本化される。</strong>本計画では、削除より後でロールバックする方法を用意するのではなく、削除に進む前の完成確認（3-3）に安全性のすべてを預ける設計にした。</p></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 5 ： DNS を GitHub Pages へ向ける</button><div class="sec-body"><p class="pp">まず GitHub 側で Custom domain を設定し、そのあとで DNS レコードを設定する。この順序を守った（2-5）。<br/>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 5 : DNS を GitHub Pages へ向ける</button><div class="sec-body"><p class="pp">まず GitHub 側で Custom domain を設定し、そのあとで DNS レコードを設定する。この順序を守った（2-5）。<br/>
  GitHub 公式ドキュメントでは DNS プロバイダ側でドメインを向ける前に GitHub Pages 側へカスタムドメインを追加するよう明記している。先に DNS だけを向けてしまうと、そのドメインで第三者が自分のサイトをホストできてしまう状態が生じうるためである。</p><p class="pp">リポジトリの Settings → Pages にある Custom domain 欄に <code>pyx.co.jp</code> を入力して保存すると、直下に DNS Check in progress と表示される。この時点ではまだ DNS 側を設定していないため、確認は失敗表示のままだが、想定どおりで異常ではない。<br/>保存と同時に、リポジトリ直下に <code>CNAME</code> ファイル（中身は <code>pyx.co.jp</code> の一行のみ）が GitHub 側で自動生成・コミットされた。</p><p class="pp">続いて Xserver Domain 側の DNS レコード設定画面で、次の 5 件を追加した。工程 2 でゾーンを空のまま進めていたため（3-2）、これは削除・書き換えを伴わない、純粋な追加作業だった。</p><div class="table-wrap"><table>
 <tr><th>タイプ</th><th>ホスト名</th><th>値</th></tr>
 <tr><td>A</td><td>@（pyx.co.jp 自体）</td><td>185.199.108.153</td></tr>
@@ -334,7 +334,7 @@ dig @ns1.xdomain.ne.jp www.pyx.co.jp CNAME
 dig pyx.co.jp A
 curl -I https://pyx.co.jp</code></pre><p class="pp">権威サーバー側の答えが揃っていることを確認できたため、あとは時間の問題だった。 GitHub の Pages 設定画面が DNS Check successful （緑のチェックマーク）に変わったのを確認したあと、 Enforce HTTPS を有効化した。<br/>
  SSL 証明書の自動発行には最大 1 時間程度、反映には最大 24 時間程度かかることがあるとされているが、今回は大きな遅れなく反映された。</p></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 6 ：切替後の検証</button><div class="sec-body"><p class="pp">最後に、独自ドメイン経由での表示を確認した。</p><div class="check">
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">工程 6 : 切替後の検証</button><div class="sec-body"><p class="pp">最後に、独自ドメイン経由での表示を確認した。</p><div class="check">
 <ul>
 <li>☐ <code>https://pyx.co.jp</code> で新しいページが表示される</li>
 <li>☐ <code>http://pyx.co.jp</code> が <code>https://pyx.co.jp</code> へ自動転送される</li>
@@ -350,24 +350,22 @@ curl -I https://pyx.co.jp</code></pre><p class="pp">権威サーバー側の答�
 <tr><td>GitHub Pages への DNS 切替・ HTTPS 化</td><td><span class="pill done">済み</span></td></tr>
 <tr><td>ドメイン更新料の反映確認（whois）</td><td><span class="pill done">済み</span></td></tr>
 </table></div><p class="pp">最後の一点は、記事公開後の 2026 年 9 月 1 日に確認できた。<br/>JPRS の WHOIS で <code>pyx.co.jp</code> を検索したところ、 [ 状態 ] が <code>Connected (2027/08/31)</code> 、 [ 最終更新 ] が <code>2026/09/01 01:08:56 (JST)</code> と表示されており、更新料の支払いがレジストリへ正しく反映されていることを確認できた。</p></div></div></div></div>
-<div class="chapter"><button aria-expanded="false" class="ch-head" type="button">終わってから、わかったこと</button><div class="ch-body"><div class="ch-intro"><p class="pp">終わってみると、この移行でいちばん難しかったのは、 DNS のコマンドを覚えることでも、 GitHub Pages を設定することでもなかった。<br/>
-<strong>「いま何が、どの契約に紐づいているのか」を見誤らないこと。そして「ここから先は戻れない」という地点を、先に見つけておくこと。<br/>
-</strong>緊張が集まっていたのは、この二点だった。</p></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">「待つ」より先に、「誰に聞くか」を考える</button><div class="sec-body"><ul>
+<div class="chapter"><button aria-expanded="false" class="ch-head" type="button">終わってから、わかったこと</button><div class="ch-body"><div class="ch-intro"><p class="pp">終わってみると、この移行でいちばん重要だったのは、<strong>「いま何がどの契約に紐づいているのか」を見誤らないことと、「ここから先は戻れない」という地点を先に見つけておくこと</strong>だった。緊張が集まっていたのは、この二点だった。</p></div>
+<div class="section">
+<button aria-expanded="false" class="sec-head" type="button">待つより先にどこにたずねるかを考える</button>
+<div class="sec-body">
+<ul>
 <li>サーバー契約をやめる前に、 DNS の管理と名前解決がどの契約に紐づいているかを確認する。憶測で進めず、事業者に直接問い合わせる（2-2）</li>
 <li>DNS に触る前に、現在の設定を全件控える。使わないと分かっていても、「何を失うかを知る」ためだけに価値がある（3-1）</li>
 <li>ネームサーバーを切り替えても、既存のレコードが引き継がれるとは限らない。画面に行が見えることと、設定が引き継がれていることは別（3-2）</li>
-<li>設定を確かめたいときは、待つのではなく、聞く相手を変える。権威サーバーに直接聞けば、変更した直後から答えが分かる（3-2）</li>
-<li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3 / 3-4）</li>
-<li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5 / 3-5）</li>
+<li>設定を確かめたいときは、待つのではなく、たずねる相手を変える。権威サーバーを直接確認すれば、変更した直後から答えが分かる（3-2）</li>
+<li>後戻りが存在しない工程（今回で言えば旧環境の削除）の前には、安全策を「事前の完成確認」に一本化する（3-3, 3-4）</li>
+<li>Custom domain の設定は DNS レコードの設定より先に行う。順序には、思いつきではなく理由がある（2-5, 3-5）</li>
 </ul></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">移行で得たものは、費用よりも単純さだった</button><div class="sec-body"><p class="pp">費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになった。これは移行の目的そのものではなく、動いていないサイトから動的な仕組みを取り除いた結果として、後からついてきた副次的な効果である。</p><p class="pp">ドメインの管理アカウント、 GitHub のアカウント、それらのパスワードの管理は引き続き必要である。静的サイトはページを配信する部分の攻撃対象を大幅に減らすが、「公開する権限を持つアカウントを守る」という仕事は残る。<br/>
-ただしこれは、プラグインを毎月更新し続けるより、ずっと単純な仕事である。</p></div></div>
-<div class="section"><button aria-expanded="false" class="sec-head" type="button">移行後に残ったもの、消えたもの</button><div class="sec-body"><p class="pp">移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさである。 WordPress の管理画面・ PHP ・データベース・プラグイン更新・サーバー側の保守という一式を抱える必要がなくなり、サイトを更新するときは、基本的に HTML ファイルを更新したら Git 操作で commit ～ push するだけで済む様になった。<br/>
-もちろん GitHub や、ドメイン管理のアカウントを守るタスクは残る。それでも、格段にシンプルな流れになったことは確かである。</p><p class="pp"><code>pyx.co.jp</code> は、二年間、必要もなく動的サイトであり続けた。今回の移行は、その状態に区切りをつける作業でもあった。</p><p class="pp">結局、移したのはサイトというより、サイトを支える仕組みだった。動的な仕組みを外し、 DNS の役割を整理し、最後に残ったのは、必要なときに HTML を更新して GitHub へ push するという、ずっと小さな運用である。</p></div></div></div></div>
- </div>
-
-</div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">移行で得たものは、費用よりも単純さだった</button>
+<div class="sec-body"><p class="pp">費用の面では、月々のレンタルサーバー代が無くなり、かかるのはドメインの維持費用だけになった。これは移行の目的そのものではなく、動的サイトが必須でない場合の選択肢の多さにより、結果として生じた副次的な効果である。</p></div></div>
+<div class="section"><button aria-expanded="false" class="sec-head" type="button">移行後に残ったもの、消えたもの</button>
+<div class="sec-body"><p class="pp">移行を終えて実感するのは、サイト維持のためにおこなう作業の少なさである。 WordPress の管理画面で入力する必要がなくなり、サイトを更新するときは HTML ファイルを更新して GitHub へ push するという、ずっと小さな運用である。</p></div></div></div></div></div></div>
 
 <script src="assets/shell.js"></script>
 </body>
