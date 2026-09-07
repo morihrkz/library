@@ -16,7 +16,7 @@
     --line:var(--border);
     --shadow: 0 16px 34px rgba(21,31,44,.10);
 
-    /* 分野タグ配色。濃紺(--accent)族・オリーブ緑族・弱い赤族に収める(彩度の高い青・紫・橙・金は使わない) */
+    /* 分野タグ配色。濃紺(--accent)族・オリーブ緑族・弱い赤族・カーキ族に収める(彩度の高い青・紫・橙・金は使わない) */
     --world: #3E5226;
     --world-soft: #EEF2E4;
     --world-ink: #2C3A1A;
@@ -29,6 +29,14 @@
     --mind: #6b332f;
     --mind-soft: #f3eae9;
     --mind-ink: #4a201f;
+    --news: #8a6d3a;
+    --news-soft: #f5f0e6;
+    --news-ink: #5c4a26;
+    --triv: #5c728a;
+    --triv-soft: #eef1f4;
+    --triv-ink: #3a4a5c;
+    --practice-soft: var(--accent-light);
+    --practice-ink: #1a2636;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -110,6 +118,8 @@
   .counters a.tech{ --accent:var(--tech); }
   .counters a.soc{ --accent:var(--soc); }
   .counters a.mind{ --accent:var(--mind); }
+  .counters a.news{ --accent:var(--news); }
+  .counters a.triv{ --accent:var(--triv); }
   .counters .dot{
     width:8px; height:8px; border-radius:50%; flex-shrink:0;
     background:var(--accent); box-shadow:0 0 10px var(--accent);
@@ -304,10 +314,13 @@
     white-space:nowrap;
   }
 
-  #thought{    --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
-  #social{     --accent:var(--soc);  --accent-soft:var(--soc-soft);  --accent-ink:var(--soc-ink); }
+  #politics{   --accent:var(--soc);  --accent-soft:var(--soc-soft);  --accent-ink:var(--soc-ink); }
+  #news{       --accent:var(--news); --accent-soft:var(--news-soft); --accent-ink:var(--news-ink); }
+  #industry{   --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
   #science{    --accent:var(--world); --accent-soft:var(--world-soft); --accent-ink:var(--world-ink); }
-  #work{       --accent:var(--tech); --accent-soft:var(--tech-soft); --accent-ink:var(--tech-ink); }
+  #humanities{ --accent:var(--mind); --accent-soft:var(--mind-soft); --accent-ink:var(--mind-ink); }
+  #trivia{     --accent:var(--triv); --accent-soft:var(--triv-soft); --accent-ink:var(--triv-ink); }
+  #practice{   --accent:var(--accent); --accent-soft:var(--practice-soft); --accent-ink:var(--practice-ink); }
 
   .grid{
     display:grid;
@@ -423,14 +436,17 @@
 
 <div class="page-head">
   <span class="eyebrow">PERSONAL ARCHIVE</span>
-  <h1><span class="big" id="total-count">30</span> 本の読み物。</h1>
+  <h1><span class="big" id="total-count">35</span> 本の読み物。</h1>
   <p class="sub">分野ごとに畳まれた棚から選ぶもよし。本文を横断検索するもよし。<br>読みたい入口からどうぞ。</p>
 
   <nav class="counters" aria-label="分野">
-    <a class="mind" href="#thought"><span class="dot"></span>精神史の領域 <span class="n">15</span></a>
-    <a class="soc" href="#social"><span class="dot"></span>政治と社会 <span class="n">6</span></a>
-    <a class="world" href="#science"><span class="dot"></span>物質と宇宙の理 <span class="n">2</span></a>
-    <a class="tech" href="#work"><span class="dot"></span>制作と分析の記録 <span class="n">5</span></a>
+    <a class="soc" href="#politics"><span class="dot"></span>社会はどう動くか <span class="n">5</span></a>
+    <a class="news" href="#news"><span class="dot"></span>いまを読む <span class="n">2</span></a>
+    <a class="tech" href="#industry"><span class="dot"></span>テクノロジーはどこへ向かうか <span class="n">4</span></a>
+    <a class="mind" href="#humanities"><span class="dot"></span>よく考えるための道具 <span class="n">15</span></a>
+    <a class="triv" href="#trivia"><span class="dot"></span>知らなかった歴史 <span class="n">4</span></a>
+    <a class="world" href="#science"><span class="dot"></span>宇宙と物質のはなし <span class="n">4</span></a>
+    <a href="#practice"><span class="dot"></span>手を動かした記録 <span class="n">1</span></a>
   </nav>
 </div>
 
@@ -457,7 +473,165 @@
 
 <main>
 
-  <section class="group" id="thought">
+  <section class="group" id="politics">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 20v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </span>
+      <div>
+        <h2>社会はどう動くか <span class="group-en">HOW SOCIETIES MOVE</span></h2>
+      </div>
+      <span class="count">5 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
+      <a class="card" href="theory-of-popular-will.html">
+        <span class="kicker">POLITICAL SCIENCE / PHILOSOPHY</span>
+        <h3>民意の変換理論</h3>
+        <h4>政治学・論理学・心理学・哲学からみた「一票」の行方</h4>
+        <p class="desc">2026 年衆院選の得票率と議席占有率のねじれを出発点に、デュヴェルジェの法則、アローの不可能性定理、党派性の心理学、正当性の哲学を横断し、「私の一票は届くのか」という問いを四つの学問で解きほぐす。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="party-label-theory.html">
+        <span class="kicker">POLITICAL SCIENCE / ELECTORAL SYSTEM</span>
+        <h3>政党ラベルの情報経済学</h3>
+        <h4>一票は看板の内側まで選べているのか</h4>
+        <p class="desc">国旗損壊罪の採決を前に、自民党のベテラン議員が議場を出た。同じ公認を掲げて当選した二人の議員がいるとき、二つの選挙区の一票は同じものを選んだことになるのか。法制度・選挙制度・党内組織の三層から政党ラベルの解像度が下がる仕組みを追い、 2021 年と 2026 年の野党一本化を比較して検証する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="hostility-mobilization-legitimacy.html">
+        <span class="kicker">POLITICAL SCIENCE</span>
+        <h3>為政者が自国民の敵意を動員する国とそうでない国</h3>
+        <h4>正統性からみた比較政治学的研究</h4>
+        <p class="desc">歴史を武器化するロシア・中国・北朝鮮と、そこから逸脱するベトナム・シンガポール、そして歴史動員のされ方が対照的な韓国・台湾を、政権が正統性をどこに求めるかという視点から比較する。最後に、この視点を選挙という装置の陰に隠れた民主主義国の現在へと投げ返す。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="regime-type-politics.html">
+        <span class="kicker">POLITICAL ESSAY</span>
+        <h3>体制類型と国際秩序の比較政治学的考察</h3>
+        <h4>民主主義国家は善で権威主義国家は悪なのか / 権威主義国家の民主化は世界に平和をもたらすのか</h4>
+        <p class="desc">歴史と比較政治学の議論を積み重ねながら、二つの問いを検討する論考。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="emotion-politicization.html">
+        <span class="kicker">U.S. POLITICS</span>
+        <h3>感情の政治資源化論</h3>
+        <h4>米国社会の分断と不満のポピュリズム構造</h4>
+        <p class="desc">トランプ支持層の「奪われ感」がどこから生まれ、誰によってどう動員されるのかを分析し、熟議民主主義や知性の役割から民主主義の応答可能性を検討する。</p>
+        <span class="go">読む</span>
+      </a>
+
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="news">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h12v14H4z"/>
+          <path d="M16 8h4v10a2 2 0 0 1-2 2H6"/>
+          <path d="M7 9h6"/><path d="M7 12h6"/><path d="M7 15h4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>いまを読む <span class="group-en">READING THE PRESENT</span></h2>
+      </div>
+      <span class="count">2 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
+      <a class="card" href="ai-datacenter-politics.html">
+        <span class="kicker">POLITICS / TECH POLICY</span>
+        <h3>AI データセンター問題の争点化過程</h3>
+        <h4>米国 2026 年中間選挙と日本・印西市の比較分析</h4>
+        <p class="desc">米国では選挙運動の争点となりつつある AI データセンター問題が、なぜ日本では地域紙の紙面や個別の訴訟に留まっているのか。政治制度・地方財政構造・言説環境の観点から、その非対称性を分析する。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="arab-season-knightsbridge.html">
+        <span class="kicker">URBAN POLITICAL ECONOMY</span>
+        <h3>「アラブ・シーズン」論</h3>
+        <h4>ナイツブリッジの路上に映る階級の地理学</h4>
+        <p class="desc">夏ごとにロンドン中心部へ現れる湾岸ナンバーの車列。外国人嫌悪という枠組みを意図的に脇へ置き、都市空間の商品化、スペクタクルとしての富の可視化、公共秩序維持における執行の非対称性という三つの軸から、地元住民の違和感の正体を読み直す。</p>
+        <span class="go">読む</span>
+      </a>
+
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="industry">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="m7 9 3 3-3 3"/>
+          <path d="M13 15h4"/>
+        </svg>
+      </span>
+      <div>
+        <h2>テクノロジーはどこへ向かうか <span class="group-en">WHERE TECHNOLOGY IS HEADED</span></h2>
+      </div>
+      <span class="count">4 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
+      <a class="card" href="ai-industry-comparison.html">
+        <span class="kicker">AI / COMPARISON</span>
+        <h3>生成 AI 企業比較の基礎資料</h3>
+        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
+        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="saas-layered-analysis.html">
+        <span class="kicker">BUSINESS MODEL</span>
+        <h3>「 SaaS 消滅」言説の実証的検討</h3>
+        <h4>UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</h4>
+        <p class="desc">SaaS は本当に終わるのか。 UI ・ロジック・データという三層構造に分解し、 AI エージェントが代替しうる部分と、なお残る部分を見極める。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="cloud-market-ai-analysis.html">
+        <span class="kicker">MARKET ANALYSIS</span>
+        <h3>クラウドコンピューティング市場の構造分析</h3>
+        <h4>シェア・成長動向・今後の見通し</h4>
+        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
+
+      <a class="card" href="internet-peering-cdn.html">
+        <span class="kicker">INFRASTRUCTURE / BUSINESS</span>
+        <h3>インターネット相互接続論</h3>
+        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
+        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
+        <span class="go">読む</span>
+      </a>
+
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="humanities">
     <details class="group-details">
     <summary class="group-head">
       <span class="icon">
@@ -468,9 +642,9 @@
         </svg>
       </span>
       <div>
-        <h2>精神史の領域 <span class="group-en">HISTORY OF IDEAS</span></h2>
+        <h2>よく考えるための道具 <span class="group-en">TOOLS FOR THINKING</span></h2>
       </div>
-      <span class="count">16 articles</span>
+      <span class="count">15 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
@@ -496,14 +670,6 @@
         <h3>藁人形論法の研究</h3>
         <h4>存在しない主張と戦う詭弁</h4>
         <p class="desc">相手の主張を歪めて叩く詭弁「藁人形論法」を、日本と欧米の実在の事例をもとに解説する。政治家の会見動画から SNS の切り抜き、大統領選の討論会まで、五つの実例で見分け方を確かめる。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="writing-techniques.html">
-        <span class="kicker">RHETORIC / WRITING</span>
-        <h3>文章表現技法の体系</h3>
-        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
-        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
         <span class="go">読む</span>
       </a>
 
@@ -595,6 +761,37 @@
         <span class="go">読む</span>
       </a>
 
+      <a class="card" href="vocational-choice-structure.html">
+        <span class="kicker">CAREER THEORY / MOTIVATION</span>
+        <h3>職業選択における動機の二元論を超えて</h3>
+        <h4>労働を「交換」として捉える理論的試論</h4>
+        <p class="desc">「好きな仕事か、稼げる仕事か」という二択そのものを解体する。自己決定理論、やりがい搾取論、双曲割引の議論を横断し、収入・興味・自律性・持続可能性・将来価値という五軸のモデルへ組み直したうえで、職業選択の本質を交換条件の設計として定式化する。</p>
+        <span class="go">読む</span>
+      </a>
+
+
+    </div>
+    </details>
+  </section>
+
+  <section class="group" id="trivia">
+    <details class="group-details">
+    <summary class="group-head">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 6.5c-1.6-1-3.6-1.5-5.5-1.5A2.5 2.5 0 0 0 4 7.5V19c1.9 0 3.9.5 5.5 1.5"/>
+          <path d="M12 6.5c1.6-1 3.6-1.5 5.5-1.5A2.5 2.5 0 0 1 20 7.5V19c-1.9 0-3.9.5-5.5 1.5"/>
+          <path d="M12 6.5V21"/>
+        </svg>
+      </span>
+      <div>
+        <h2>知らなかった歴史 <span class="group-en">HISTORY YOU DIDN'T KNOW</span></h2>
+      </div>
+      <span class="count">4 articles</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="grid">
+
       <a class="card" href="modern-contemporary-periods.html">
         <span class="kicker">HISTORY</span>
         <h3>「近代」と「現代」の時代区分論</h3>
@@ -619,91 +816,11 @@
         <span class="go">読む</span>
       </a>
 
-      <a class="card" href="vocational-choice-structure.html">
-        <span class="kicker">CAREER THEORY / MOTIVATION</span>
-        <h3>職業選択における動機の二元論を超えて</h3>
-        <h4>労働を「交換」として捉える理論的試論</h4>
-        <p class="desc">「好きな仕事か、稼げる仕事か」という二択そのものを解体する。自己決定理論、やりがい搾取論、双曲割引の議論を横断し、収入・興味・自律性・持続可能性・将来価値という五軸のモデルへ組み直したうえで、職業選択の本質を交換条件の設計として定式化する。</p>
-        <span class="go">読む</span>
-      </a>
-
-
-    </div>
-    </details>
-  </section>
-
-  <section class="group" id="social">
-    <details class="group-details">
-    <summary class="group-head">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M22 20v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </span>
-      <div>
-        <h2>政治と社会 <span class="group-en">POLITICS &amp; SOCIETY</span></h2>
-      </div>
-      <span class="count">6 articles</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="grid">
-
-      <a class="card" href="theory-of-popular-will.html">
-        <span class="kicker">POLITICAL SCIENCE / PHILOSOPHY</span>
-        <h3>民意の変換理論</h3>
-        <h4>政治学・論理学・心理学・哲学からみた「一票」の行方</h4>
-        <p class="desc">2026 年衆院選の得票率と議席占有率のねじれを出発点に、デュヴェルジェの法則、アローの不可能性定理、党派性の心理学、正当性の哲学を横断し、「私の一票は届くのか」という問いを四つの学問で解きほぐす。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="party-label-theory.html">
-        <span class="kicker">POLITICAL SCIENCE / ELECTORAL SYSTEM</span>
-        <h3>政党ラベルの情報経済学</h3>
-        <h4>一票は看板の内側まで選べているのか</h4>
-        <p class="desc">国旗損壊罪の採決を前に、自民党のベテラン議員が議場を出た。同じ公認を掲げて当選した二人の議員がいるとき、二つの選挙区の一票は同じものを選んだことになるのか。法制度・選挙制度・党内組織の三層から政党ラベルの解像度が下がる仕組みを追い、 2021 年と 2026 年の野党一本化を比較して検証する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="hostility-mobilization-legitimacy.html">
-        <span class="kicker">POLITICAL SCIENCE</span>
-        <h3>為政者が自国民の敵意を動員する国とそうでない国</h3>
-        <h4>正統性からみた比較政治学的研究</h4>
-        <p class="desc">歴史を武器化するロシア・中国・北朝鮮と、そこから逸脱するベトナム・シンガポール、そして歴史動員のされ方が対照的な韓国・台湾を、政権が正統性をどこに求めるかという視点から比較する。最後に、この視点を選挙という装置の陰に隠れた民主主義国の現在へと投げ返す。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="regime-type-politics.html">
-        <span class="kicker">POLITICAL ESSAY</span>
-        <h3>体制類型と国際秩序の比較政治学的考察</h3>
-        <h4>民主主義国家は善で権威主義国家は悪なのか / 権威主義国家の民主化は世界に平和をもたらすのか</h4>
-        <p class="desc">歴史と比較政治学の議論を積み重ねながら、二つの問いを検討する論考。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="emotion-politicization.html">
-        <span class="kicker">U.S. POLITICS</span>
-        <h3>感情の政治資源化論</h3>
-        <h4>米国社会の分断と不満のポピュリズム構造</h4>
-        <p class="desc">トランプ支持層の「奪われ感」がどこから生まれ、誰によってどう動員されるのかを分析し、熟議民主主義や知性の役割から民主主義の応答可能性を検討する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="ai-datacenter-politics.html">
-        <span class="kicker">POLITICS / TECH POLICY</span>
-        <h3>AI データセンター問題の争点化過程</h3>
-        <h4>米国 2026 年中間選挙と日本・印西市の比較分析</h4>
-        <p class="desc">米国では選挙運動の争点となりつつある AI データセンター問題が、なぜ日本では地域紙の紙面や個別の訴訟に留まっているのか。政治制度・地方財政構造・言説環境の観点から、その非対称性を分析する。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="arab-season-knightsbridge.html">
-        <span class="kicker">URBAN POLITICAL ECONOMY</span>
-        <h3>「アラブ・シーズン」論</h3>
-        <h4>ナイツブリッジの路上に映る階級の地理学</h4>
-        <p class="desc">夏ごとにロンドン中心部へ現れる湾岸ナンバーの車列。外国人嫌悪という枠組みを意図的に脇へ置き、都市空間の商品化、スペクタクルとしての富の可視化、公共秩序維持における執行の非対称性という三つの軸から、地元住民の違和感の正体を読み直す。</p>
+      <a class="card" href="writing-techniques.html">
+        <span class="kicker">RHETORIC / WRITING</span>
+        <h3>文章表現技法の体系</h3>
+        <h4>修辞学・心理学・ジャーナリズム・誌面設計から集めた 18 の技法</h4>
+        <p class="desc">読者を離さない文章はどう組み立てられているのか。修辞学、心理学・物語論、ジャーナリズム、コピーライティング、文章作法、エディトリアルデザインという別々の分野で発見されてきた技法を一望できるカタログとして整理する。</p>
         <span class="go">読む</span>
       </a>
 
@@ -723,7 +840,7 @@
         </svg>
       </span>
       <div>
-        <h2>物質と宇宙の理 <span class="group-en">MATTER &amp; COSMOS</span></h2>
+        <h2>宇宙と物質のはなし <span class="group-en">MATTER &amp; COSMOS</span></h2>
       </div>
       <span class="count">2 articles</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
@@ -767,20 +884,19 @@
     </details>
   </section>
 
-  <section class="group" id="work">
+  <section class="group" id="practice">
     <details class="group-details">
     <summary class="group-head">
       <span class="icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="16" rx="2"/>
-          <path d="m7 9 3 3-3 3"/>
-          <path d="M13 15h4"/>
+          <path d="m9 11 2 2 4-4"/>
         </svg>
       </span>
       <div>
-        <h2>制作と分析の記録 <span class="group-en">WORK &amp; ANALYSIS LOG</span></h2>
+        <h2>手を動かした記録 <span class="group-en">WORK LOG</span></h2>
       </div>
-      <span class="count">5 articles</span>
+      <span class="count">1 article</span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <div class="grid">
@@ -790,38 +906,6 @@
         <h3>静的サイト移行の実務記録</h3>
         <h4>WordPress が要らないならば選択肢は増える</h4>
         <p class="desc">二年間更新の止まっていた会社サイトを、レンタルサーバーの契約期限をきっかけに WordPress から GitHub Pages へ移した実録。計画の立て方、 DNS の契約依存関係の見極め、後戻りできない工程の順序まで、計画から外れた出来事も含めて工程順に記す。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="ai-industry-comparison.html">
-        <span class="kicker">AI / COMPARISON</span>
-        <h3>生成 AI 企業比較の基礎資料</h3>
-        <h4>企業・基盤モデル・コーディングツールを分けて整理する</h4>
-        <p class="desc">Google ・ OpenAI ・ Anthropic ・ xAI/SpaceX ・ Anysphere ・ Meta の 6 社を「企業」「基盤モデル」「 CLI / AI エージェント」「コーディング環境」などの項目で並べ、混同しやすい概念を整理する一覧表。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="saas-layered-analysis.html">
-        <span class="kicker">BUSINESS MODEL</span>
-        <h3>「 SaaS 消滅」言説の実証的検討</h3>
-        <h4>UI ・ロジック・データの三層で見る AI エージェント時代の SaaS</h4>
-        <p class="desc">SaaS は本当に終わるのか。 UI ・ロジック・データという三層構造に分解し、 AI エージェントが代替しうる部分と、なお残る部分を見極める。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="cloud-market-ai-analysis.html">
-        <span class="kicker">MARKET ANALYSIS</span>
-        <h3>クラウドコンピューティング市場の構造分析</h3>
-        <h4>シェア・成長動向・今後の見通し</h4>
-        <p class="desc">AWS ・ Azure ・ Google Cloud を中心に、 Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM まで対象を広げ、市場シェアと決算データで現状を整理する。各社の AI 提携・投資と今後 1 〜 3 年のシナリオまでを、一次資料と出典で積み上げて読み解く。</p>
-        <span class="go">読む</span>
-      </a>
-
-      <a class="card" href="internet-peering-cdn.html">
-        <span class="kicker">INFRASTRUCTURE / BUSINESS</span>
-        <h3>インターネット相互接続論</h3>
-        <h4>ピアリング・トランジット・ IX から、企業モデルの分類まで</h4>
-        <p class="desc">相互接続の物理構造から、 CDN 事業者の実際のお金の流れ、そして四つの企業モデルまで。実例と財務データで積み上げて読み解く。</p>
         <span class="go">読む</span>
       </a>
 
