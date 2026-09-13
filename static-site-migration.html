@@ -54,6 +54,18 @@ sup.fnref a:hover{text-decoration:underline;}
 .refs li{margin-bottom:11px;}
 .refs em{font-style:italic;}
 .note{font-size:13px; color:var(--muted); margin-top:20px;}
+figure.diagram{margin:0 0 28px; padding:0;}
+figure.diagram svg{max-width:100%; height:auto; display:block; margin:0 auto; color:var(--text);}
+figure.diagram figcaption{font-size:13.5px; color:var(--muted); text-align:center; margin-top:12px;}
+.dg-accent{color:var(--accent);}
+.dg-box{fill:var(--box); stroke:var(--line);}
+.dg-line{stroke:currentColor; opacity:.75;}
+figure.diagram svg.dg-wide{display:block;}
+figure.diagram svg.dg-narrow{display:none;}
+@media (max-width:480px){
+  figure.diagram svg.dg-wide{display:none;}
+  figure.diagram svg.dg-narrow{display:block;}
+}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
 blockquote p{margin-bottom:10px;}
@@ -103,19 +115,80 @@ pre code{background:none; padding:0;}
 <h3>動的サイトと静的サイト</h3>
 <p>WordPress の様な CMS （コンテンツ管理システム）で作られたサイトは、アクセスが来るたびにサーバー内のプログラム（PHP など）が動き、データベースから記事の内容を取り出して、その場で HTML を組み立てて返す。これを<strong>動的サイト</strong>と呼ぶ。
 一方の<strong>静的サイト</strong>は、あらかじめ完成させておいた HTML / CSS / 画像などのファイルを置いておくだけの仕組みである。アクセスが来ても、サーバーは「今から組み立てる」のではなく「もう完成しているファイルをそのまま渡す」だけである。</p>
-<p>動的サイト = アクセスされた都度、組み立てる</p>
-<p>ブラウザ</p>
-<p>サーバーの
-PHP プログラム</p>
-<p>データベース
-（記事本文など）</p>
-<p>その場で HTML を生成して返す（毎回・ PHP とデータベースが常時必要）</p>
-<p>静的サイト = 用意しているファイルをそのまま渡す</p>
-<p>ブラウザ</p>
-<p>保存済みの HTML/CSS
-（あらかじめ完成しているファイル）</p>
-<p>ファイルを渡すだけ（サーバー側でアプリケーションを実行しない）</p>
-<p>図 1 : 動的サイトと静的サイトの、リクエストごとの処理の違い</p>
+<figure class="diagram">
+<svg class="dg-wide" viewBox="0 0 720 260" role="img" aria-label="動的サイトはリクエストのたびにPHPプログラムとデータベースを使ってHTMLを組み立てて返すのに対し、静的サイトは保存済みのHTML/CSSファイルをそのまま渡すだけである">
+<defs>
+<marker id="fig1-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<text x="10" y="24" font-size="14" font-weight="bold" fill="currentColor">動的サイト = アクセスされた都度、組み立てる</text>
+<rect x="10" y="46" width="120" height="52" class="dg-box"/>
+<text x="70" y="77" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<rect x="300" y="46" width="150" height="52" class="dg-box"/>
+<text x="375" y="70" font-size="13" text-anchor="middle" fill="currentColor">サーバーの</text>
+<text x="375" y="87" font-size="13" text-anchor="middle" fill="currentColor">PHP プログラム</text>
+<rect x="590" y="46" width="120" height="52" class="dg-box"/>
+<text x="650" y="70" font-size="13" text-anchor="middle" fill="currentColor">データベース</text>
+<text x="650" y="87" font-size="12" text-anchor="middle" fill="currentColor">（記事本文など）</text>
+<line x1="130" y1="72" x2="296" y2="72" class="dg-line" stroke-width="1.5" marker-end="url(#fig1-arrow)"/>
+<line x1="450" y1="60" x2="586" y2="60" class="dg-line" stroke-width="1.5" marker-end="url(#fig1-arrow)"/>
+<line x1="586" y1="84" x2="450" y2="84" class="dg-line" stroke-width="1.5" marker-end="url(#fig1-arrow)"/>
+<line x1="296" y1="88" x2="130" y2="88" class="dg-line" stroke-width="1.5" marker-end="url(#fig1-arrow)"/>
+<text x="213" y="65" font-size="11" text-anchor="middle" fill="currentColor">①リクエスト</text>
+<text x="213" y="105" font-size="11" text-anchor="middle" fill="currentColor">④HTML を返す</text>
+<text x="518" y="53" font-size="11" text-anchor="middle" fill="currentColor">②問い合わせ</text>
+<text x="518" y="100" font-size="11" text-anchor="middle" fill="currentColor">③記事データ</text>
+<text x="360" y="126" font-size="12.5" text-anchor="middle" fill="currentColor" class="dg-accent">その場で HTML を生成して返す（毎回・ PHP とデータベースが常時必要）</text>
+<line x1="10" y1="150" x2="710" y2="150" class="dg-line" stroke-width="1"/>
+<text x="10" y="176" font-size="14" font-weight="bold" fill="currentColor">静的サイト = 用意しているファイルをそのまま渡す</text>
+<rect x="10" y="198" width="120" height="52" class="dg-box"/>
+<text x="70" y="229" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<rect x="300" y="198" width="220" height="52" class="dg-box"/>
+<text x="410" y="222" font-size="13" text-anchor="middle" fill="currentColor">保存済みの HTML/CSS</text>
+<text x="410" y="239" font-size="12" text-anchor="middle" fill="currentColor">（あらかじめ完成しているファイル）</text>
+<line x1="300" y1="230" x2="134" y2="216" class="dg-line" stroke-width="1.5" marker-end="url(#fig1-arrow)"/>
+<text x="213" y="203" font-size="11" text-anchor="middle" fill="currentColor">渡すだけ</text>
+</svg>
+<svg class="dg-narrow" viewBox="0 0 260 515" role="img" aria-label="動的サイトはリクエストのたびにPHPプログラムとデータベースを使ってHTMLを組み立てて返すのに対し、静的サイトは保存済みのHTML/CSSファイルをそのまま渡すだけである">
+<defs>
+<marker id="fig1n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<text x="10" y="20" font-size="14" font-weight="bold" fill="currentColor">動的サイト</text>
+<text x="10" y="37" font-size="11.5" fill="currentColor">アクセスの都度、組み立てる</text>
+<rect x="10" y="50" width="240" height="40" class="dg-box"/>
+<text x="130" y="75" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<line x1="130" y1="90" x2="130" y2="120" class="dg-line" stroke-width="1.5" marker-end="url(#fig1n-arrow)"/>
+<text x="145" y="108" font-size="11" fill="currentColor">①リクエスト</text>
+<rect x="10" y="124" width="240" height="46" class="dg-box"/>
+<text x="130" y="144" font-size="13" text-anchor="middle" fill="currentColor">サーバーの PHP</text>
+<text x="130" y="160" font-size="12" text-anchor="middle" fill="currentColor">プログラム</text>
+<line x1="150" y1="170" x2="150" y2="198" class="dg-line" stroke-width="1.5" marker-end="url(#fig1n-arrow)"/>
+<text x="165" y="188" font-size="11" fill="currentColor">②問い合わせ</text>
+<line x1="110" y1="198" x2="110" y2="170" class="dg-line" stroke-width="1.5" marker-end="url(#fig1n-arrow)"/>
+<rect x="10" y="202" width="240" height="46" class="dg-box"/>
+<text x="130" y="222" font-size="13" text-anchor="middle" fill="currentColor">データベース</text>
+<text x="130" y="238" font-size="11.5" text-anchor="middle" fill="currentColor">（記事本文など）</text>
+<text x="95" y="192" font-size="11" text-anchor="end" fill="currentColor">③記事データ</text>
+<line x1="110" y1="248" x2="110" y2="276" class="dg-line" stroke-width="1.5" marker-end="url(#fig1n-arrow)"/>
+<text x="10" y="266" font-size="11" fill="currentColor">④HTML を返す</text>
+<text x="130" y="298" font-size="12" text-anchor="middle" fill="currentColor" class="dg-accent">その場で HTML を生成</text>
+<text x="130" y="314" font-size="12" text-anchor="middle" fill="currentColor" class="dg-accent">（PHP とDBが常時必要）</text>
+<line x1="10" y1="332" x2="250" y2="332" class="dg-line" stroke-width="1"/>
+<text x="10" y="354" font-size="14" font-weight="bold" fill="currentColor">静的サイト</text>
+<text x="10" y="371" font-size="11.5" fill="currentColor">用意したファイルをそのまま渡す</text>
+<rect x="10" y="384" width="240" height="46" class="dg-box"/>
+<text x="130" y="404" font-size="12.5" text-anchor="middle" fill="currentColor">保存済みの HTML/CSS</text>
+<text x="130" y="420" font-size="11" text-anchor="middle" fill="currentColor">（あらかじめ完成しているファイル）</text>
+<line x1="130" y1="430" x2="130" y2="460" class="dg-line" stroke-width="1.5" marker-end="url(#fig1n-arrow)"/>
+<text x="145" y="449" font-size="11" fill="currentColor">渡すだけ</text>
+<rect x="10" y="464" width="240" height="40" class="dg-box"/>
+<text x="130" y="489" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+</svg>
+<figcaption>図 1 : 動的サイトと静的サイトの、リクエストごとの処理の違い（静的サイトはサーバー側でアプリケーションを実行しない）</figcaption>
+</figure>
 <p><strong>「このサイトは、必ずしも WordPress の上に構築されている必要は無いのではないか。」</strong>
 これが、作り直しを検討した最初の動機だった。
 （なお、動的サイトを実現する手段は WordPress 以外にもあるが、便宜上、「動的サイト = WordPress 」としている。）</p>
@@ -163,17 +236,64 @@ AI に相談しながら、現状の整理・技術選定・作業順序・想�
 <p>まず前提として、「ドメイン」と「サーバー（ホスティング先）」は、別の契約である。
 インターネット上のサーバーは <code>203.0.113.25</code> の様な「 IP アドレス」で区別されているが、人間が毎回この数字を覚えるのは大変なので、 <code>pyx.co.jp</code> の様な「ドメイン名」を使う。
 この二つを結びつける、インターネット全体の電話帳にあたる仕組みが <strong>DNS (Domain Name System)</strong> である。</p>
-<p>ブラウザ
-（PC やスマホ）</p>
-<p>DNS サーバー
-（ドメインの電話帳）</p>
-<p>ウェブサーバー
-（データの置き場）</p>
-<p>①「この住所の IP は何ですか？」</p>
-<p>②「この IP です」</p>
-<p>③「データをください」（HTTP リクエスト）</p>
-<p>④（データ）</p>
-<p>図 2 : URL を入力してからページが表示されるまでの流れ</p>
+<figure class="diagram">
+<svg class="dg-wide" viewBox="0 0 720 260" role="img" aria-label="ブラウザはまずDNSサーバーにドメイン名の問い合わせを行いIPアドレスを受け取り、次にそのIPのウェブサーバーへHTTPリクエストを送ってデータを受け取る">
+<defs>
+<marker id="fig2-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect x="290" y="10" width="150" height="58" class="dg-box"/>
+<text x="365" y="35" font-size="13" text-anchor="middle" fill="currentColor">DNS サーバー</text>
+<text x="365" y="52" font-size="11.5" text-anchor="middle" fill="currentColor">（ドメインの電話帳）</text>
+<rect x="10" y="150" width="150" height="58" class="dg-box"/>
+<text x="85" y="175" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<text x="85" y="192" font-size="11.5" text-anchor="middle" fill="currentColor">（PC やスマホ）</text>
+<rect x="560" y="150" width="150" height="58" class="dg-box"/>
+<text x="635" y="175" font-size="13" text-anchor="middle" fill="currentColor">ウェブサーバー</text>
+<text x="635" y="192" font-size="11.5" text-anchor="middle" fill="currentColor">（データの置き場）</text>
+<line x1="140" y1="150" x2="300" y2="72" class="dg-line" stroke-width="1.5" marker-end="url(#fig2-arrow)"/>
+<text x="130" y="115" font-size="11" fill="currentColor">①「この住所の</text>
+<text x="130" y="130" font-size="11" fill="currentColor">IP は？」</text>
+<line x1="320" y1="72" x2="160" y2="160" class="dg-line" stroke-width="1.5" marker-end="url(#fig2-arrow)"/>
+<text x="240" y="100" font-size="11" fill="currentColor">②「この IP です」</text>
+<line x1="160" y1="180" x2="556" y2="169" class="dg-line" stroke-width="1.5" marker-end="url(#fig2-arrow)"/>
+<text x="360" y="163" font-size="11" text-anchor="middle" fill="currentColor">③「データをください」（HTTP リクエスト）</text>
+<line x1="556" y1="196" x2="160" y2="207" class="dg-line" stroke-width="1.5" marker-end="url(#fig2-arrow)"/>
+<text x="360" y="230" font-size="11" text-anchor="middle" fill="currentColor">④（データ）</text>
+</svg>
+<svg class="dg-narrow" viewBox="0 0 260 420" role="img" aria-label="ブラウザはまずDNSサーバーにドメイン名の問い合わせを行いIPアドレスを受け取り、次にそのIPのウェブサーバーへHTTPリクエストを送ってデータを受け取る">
+<defs>
+<marker id="fig2n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect x="10" y="10" width="240" height="46" class="dg-box"/>
+<text x="130" y="30" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<text x="130" y="46" font-size="11.5" text-anchor="middle" fill="currentColor">（PC やスマホ）</text>
+<line x1="150" y1="56" x2="150" y2="122" class="dg-line" stroke-width="1.5" marker-end="url(#fig2n-arrow)"/>
+<text x="163" y="82" font-size="11" fill="currentColor">①「この住所の</text>
+<text x="163" y="96" font-size="11" fill="currentColor">IP は？」</text>
+<line x1="110" y1="122" x2="110" y2="56" class="dg-line" stroke-width="1.5" marker-end="url(#fig2n-arrow)"/>
+<text x="97" y="82" font-size="11" text-anchor="end" fill="currentColor">②「この IP</text>
+<text x="97" y="96" font-size="11" text-anchor="end" fill="currentColor">です」</text>
+<rect x="10" y="126" width="240" height="46" class="dg-box"/>
+<text x="130" y="146" font-size="13" text-anchor="middle" fill="currentColor">DNS サーバー</text>
+<text x="130" y="162" font-size="11.5" text-anchor="middle" fill="currentColor">（ドメインの電話帳）</text>
+<line x1="150" y1="172" x2="150" y2="238" class="dg-line" stroke-width="1.5" marker-end="url(#fig2n-arrow)"/>
+<text x="163" y="197" font-size="10.5" fill="currentColor">③「データをください」</text>
+<text x="163" y="211" font-size="10.5" fill="currentColor">（HTTP リクエスト）</text>
+<rect x="10" y="242" width="240" height="46" class="dg-box"/>
+<text x="130" y="262" font-size="13" text-anchor="middle" fill="currentColor">ウェブサーバー</text>
+<text x="130" y="278" font-size="11.5" text-anchor="middle" fill="currentColor">（データの置き場）</text>
+<line x1="110" y1="358" x2="110" y2="292" class="dg-line" stroke-width="1.5" marker-end="url(#fig2n-arrow)"/>
+<text x="97" y="330" font-size="11" text-anchor="end" fill="currentColor">④（データ）</text>
+<rect x="10" y="358" width="240" height="46" class="dg-box"/>
+<text x="130" y="378" font-size="13" text-anchor="middle" fill="currentColor">ブラウザ</text>
+<text x="130" y="394" font-size="11.5" text-anchor="middle" fill="currentColor">ページを表示</text>
+</svg>
+<figcaption>図 2 : URL を入力してからページが表示されるまでの流れ</figcaption>
+</figure>
 <p><code>pyx.co.jp</code> の場合、ドメインの登録先とレンタルサーバーの契約先はどちらも同じ事業者（XServer）だった。同じ会社でも「ドメイン契約」と「レンタルサーバー契約」という別々の契約として管理されている。
 ドメイン契約は前月のうちにすでに 2027 年まで支払い済みで確保されており、サーバー契約とは無関係に存続する状態だった。</p>
 <h3>最大の論点：　サーバー契約をやめても DNS は生き残るか</h3>
@@ -212,29 +332,86 @@ ns4.xserver.jp.  ns5.xserver.jp.
 1. ドメインのみ契約している状態でも、ネームサーバーを Xserver Domain （サーバー契約に紐づかない、ドメイン契約側の DNS 管理機能）に設定すれば、引き続き DNS レコードの編集・管理が可能。
 2. ns1.xserver.jp 〜 ns5.xserver.jp による名前解決は、レンタルサーバー契約者専用であり、サーバー契約が凍結されると使えなくなる。したがって、凍結前にネームサーバーを Xserver Domain へ切り替えておく必要がある。</p>
 <p>この回答により、作業の前提が一点変わった。<strong>サーバー契約が凍結される前に、ネームサーバーを Xserver Domain へ切り替える作業が、独立した必須工程として加わった</strong>のである（詳しくは第３部）。</p>
-<p>切り替え前：二つともサーバー契約に紐づいている</p>
-<p>ドメイン契約
-（支払い済み・継続）</p>
-<p>サーバー契約
-（これをやめたい）</p>
-<p>レコードの編集
-（設定を書き換える）</p>
-<p>名前解決
-（名前から IP を引く）
-✕　サーバー契約を終了すると、
-編集する手段も名前解決も同時に失う</p>
-<p>切り替え後：二つともドメイン契約に紐づいている</p>
-<p>ドメイン契約
-（支払い済み・継続）</p>
-<p>サーバー契約
-（やめてよい）</p>
-<p>レコードの編集
-（設定を書き換える）</p>
-<p>名前解決
-（名前から IP を引く）
-○　サーバー契約を終了しても、
-編集する手段も名前解決も残る</p>
-<p>図 3 : DNS にまつわる二つの機能が、どちらの契約に紐づいているか</p>
+<figure class="diagram">
+<svg class="dg-wide" viewBox="0 0 720 380" role="img" aria-label="切り替え前はDNSレコードの編集機能と名前解決機能がどちらもサーバー契約に紐づいているため、サーバー契約を終了すると両方失う。切り替え後はどちらもドメイン契約に紐づくため、サーバー契約を終了しても両方残る">
+<defs>
+<marker id="fig3-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<text x="10" y="22" font-size="14" font-weight="bold" fill="currentColor">切り替え前：二つともサーバー契約に紐づいている</text>
+<rect x="10" y="38" width="180" height="50" class="dg-box"/>
+<text x="100" y="59" font-size="12.5" text-anchor="middle" fill="currentColor">ドメイン契約</text>
+<text x="100" y="76" font-size="11" text-anchor="middle" fill="currentColor">（支払い済み・継続）</text>
+<rect x="260" y="38" width="170" height="50" class="dg-box" stroke="currentColor" stroke-width="1.5"/>
+<text x="345" y="59" font-size="12.5" text-anchor="middle" fill="currentColor">サーバー契約</text>
+<text x="345" y="76" font-size="11" text-anchor="middle" fill="currentColor">（これをやめたい）</text>
+<rect x="500" y="10" width="210" height="42" class="dg-box"/>
+<text x="605" y="36" font-size="12" text-anchor="middle" fill="currentColor">レコードの編集（書き換え）</text>
+<rect x="500" y="70" width="210" height="42" class="dg-box"/>
+<text x="605" y="96" font-size="12" text-anchor="middle" fill="currentColor">名前解決（IP を引く）</text>
+<line x1="430" y1="52" x2="496" y2="31" class="dg-line" stroke-width="1.5" marker-end="url(#fig3-arrow)"/>
+<line x1="430" y1="68" x2="496" y2="91" class="dg-line" stroke-width="1.5" marker-end="url(#fig3-arrow)"/>
+<text x="360" y="135" font-size="13" text-anchor="middle" fill="currentColor">✕　サーバー契約を終了すると、編集する手段も名前解決も同時に失う</text>
+<line x1="10" y1="158" x2="710" y2="158" class="dg-line" stroke-width="1"/>
+<text x="10" y="184" font-size="14" font-weight="bold" fill="currentColor">切り替え後：二つともドメイン契約に紐づいている</text>
+<rect x="10" y="200" width="180" height="50" class="dg-box" stroke="currentColor" stroke-width="1.5"/>
+<text x="100" y="221" font-size="12.5" text-anchor="middle" fill="currentColor">ドメイン契約</text>
+<text x="100" y="238" font-size="11" text-anchor="middle" fill="currentColor">（支払い済み・継続）</text>
+<rect x="260" y="200" width="170" height="50" class="dg-box"/>
+<text x="345" y="221" font-size="12.5" text-anchor="middle" fill="currentColor">サーバー契約</text>
+<text x="345" y="238" font-size="11" text-anchor="middle" fill="currentColor">（やめてよい）</text>
+<rect x="500" y="172" width="210" height="42" class="dg-box"/>
+<text x="605" y="198" font-size="12" text-anchor="middle" fill="currentColor">レコードの編集（書き換え）</text>
+<rect x="500" y="232" width="210" height="42" class="dg-box"/>
+<text x="605" y="258" font-size="12" text-anchor="middle" fill="currentColor">名前解決（IP を引く）</text>
+<line x1="190" y1="214" x2="496" y2="193" class="dg-line" stroke-width="1.5" marker-end="url(#fig3-arrow)"/>
+<line x1="190" y1="228" x2="496" y2="253" class="dg-line" stroke-width="1.5" marker-end="url(#fig3-arrow)"/>
+<text x="360" y="297" font-size="13" text-anchor="middle" fill="currentColor" class="dg-accent">○　サーバー契約を終了しても、編集する手段も名前解決も残る</text>
+</svg>
+<svg class="dg-narrow" viewBox="0 0 260 555" role="img" aria-label="切り替え前はDNSレコードの編集機能と名前解決機能がどちらもサーバー契約に紐づいているため、サーバー契約を終了すると両方失う。切り替え後はどちらもドメイン契約に紐づくため、サーバー契約を終了しても両方残る">
+<defs>
+<marker id="fig3n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<text x="10" y="18" font-size="13" font-weight="bold" fill="currentColor">切り替え前</text>
+<text x="10" y="34" font-size="11" fill="currentColor">二つともサーバー契約に紐づく</text>
+<rect x="10" y="44" width="115" height="40" class="dg-box"/>
+<text x="67" y="63" font-size="11.5" text-anchor="middle" fill="currentColor">ドメイン契約</text>
+<text x="67" y="78" font-size="10.5" text-anchor="middle" fill="currentColor">（支払済）</text>
+<rect x="135" y="44" width="115" height="40" class="dg-box" stroke="currentColor" stroke-width="1.5"/>
+<text x="192" y="63" font-size="11.5" text-anchor="middle" fill="currentColor">サーバー契約</text>
+<text x="192" y="78" font-size="10.5" text-anchor="middle" fill="currentColor">（やめたい）</text>
+<line x1="192" y1="84" x2="150" y2="114" class="dg-line" stroke-width="1.5" marker-end="url(#fig3n-arrow)"/>
+<line x1="192" y1="84" x2="192" y2="164" class="dg-line" stroke-width="1.5" marker-end="url(#fig3n-arrow)"/>
+<rect x="10" y="118" width="240" height="40" class="dg-box"/>
+<text x="130" y="143" font-size="12.5" text-anchor="middle" fill="currentColor">レコードの編集</text>
+<rect x="10" y="168" width="240" height="40" class="dg-box"/>
+<text x="130" y="193" font-size="12.5" text-anchor="middle" fill="currentColor">名前解決（IP を引く）</text>
+<text x="10" y="230" font-size="12.5" fill="currentColor">✕　サーバー契約を終了すると、</text>
+<text x="10" y="247" font-size="12.5" fill="currentColor">編集する手段も名前解決も</text>
+<text x="10" y="264" font-size="12.5" fill="currentColor">同時に失う</text>
+<line x1="10" y1="284" x2="250" y2="284" class="dg-line" stroke-width="1"/>
+<text x="10" y="308" font-size="13" font-weight="bold" fill="currentColor">切り替え後</text>
+<text x="10" y="324" font-size="11" fill="currentColor">二つともドメイン契約に紐づく</text>
+<rect x="10" y="334" width="115" height="40" class="dg-box" stroke="currentColor" stroke-width="1.5"/>
+<text x="67" y="353" font-size="11.5" text-anchor="middle" fill="currentColor">ドメイン契約</text>
+<text x="67" y="368" font-size="10.5" text-anchor="middle" fill="currentColor">（支払済）</text>
+<rect x="135" y="334" width="115" height="40" class="dg-box"/>
+<text x="192" y="353" font-size="11.5" text-anchor="middle" fill="currentColor">サーバー契約</text>
+<text x="192" y="368" font-size="10.5" text-anchor="middle" fill="currentColor">（やめてよい）</text>
+<line x1="67" y1="374" x2="67" y2="404" class="dg-line" stroke-width="1.5" marker-end="url(#fig3n-arrow)"/>
+<line x1="67" y1="374" x2="130" y2="454" class="dg-line" stroke-width="1.5" marker-end="url(#fig3n-arrow)"/>
+<rect x="10" y="408" width="240" height="40" class="dg-box"/>
+<text x="130" y="433" font-size="12.5" text-anchor="middle" fill="currentColor">レコードの編集</text>
+<rect x="10" y="458" width="240" height="40" class="dg-box"/>
+<text x="130" y="483" font-size="12.5" text-anchor="middle" fill="currentColor">名前解決（IP を引く）</text>
+<text x="10" y="520" font-size="12.5" fill="currentColor" class="dg-accent">○　サーバー契約を終了しても、</text>
+<text x="10" y="537" font-size="12.5" fill="currentColor" class="dg-accent">編集する手段も名前解決も残る</text>
+</svg>
+<figcaption>図 3 : DNS にまつわる二つの機能が、どちらの契約に紐づいているか</figcaption>
+</figure>
 <h3>ホスティング先の選定： GitHub Pages を採用</h3>
 <p>静的サイトの置き場所として GitHub Pages と Cloudflare Pages を比較した。決め手は費用ではなく、<strong>変更点を少なく済ませられるかどうか</strong>だった。</p>
 <table>
