@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>性暴力被害者への非難はなぜ生じるのか――被害者非難をめぐる社会心理学的考察</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","游明朝",serif;
+  line-height:1.95;
+}
+.wrap{max-width:820px;margin:auto;padding:56px 26px 120px}
+.kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
+h1{font-size:29px;line-height:1.55;margin:0 0 18px}
+.subtitle{font-size:18px;color:var(--muted);margin:0 0 34px}
+.meta{font-size:13px;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:42px}
+h2{font-size:23px;line-height:1.5;margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:32px 0 12px}
+p{font-size:16px;margin:0 0 20px}
+.lede{font-size:18px;color:var(--muted);border-left:3px solid var(--accent);padding-left:18px}
+.pull{font-size:20px;line-height:1.75;color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding:3px 0 3px 20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:28px 0}
+.box strong{color:var(--accent)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:24px 0 32px}
+th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
+th{background:var(--box);text-align:left}
+ul,ol{padding-left:1.4em}
+li{margin-bottom:9px}
+sup{font-size:.72em}
+a{color:var(--link)}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs li{font-size:13.5px;line-height:1.65;margin-bottom:11px}
+.note{font-size:13px;color:var(--muted)}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs li a.backref{color:var(--link);text-decoration:none;margin-left:6px;font-size:12px}
+.refs li a.backref:hover{text-decoration:underline}
+@media (max-width:480px){
+  .wrap{padding:40px 18px 90px}
+  h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">社会心理学・ジェンダー論的検討</div>
+<h1>性暴力被害者への非難はなぜ生じるのか<br>――被害者非難をめぐる社会心理学的考察</h1>
+<p class="subtitle">公正世界信念・責任帰属・システム正当化・両面価値的性差別・レイプ神話を中心に</p>
+<div class="meta">
+本稿の目的：特定の性別や個人の心理を診断することではなく、被害者非難という現象がなぜ、どのような条件のもとで生じるのかを、複数の社会心理学的要因から検討する。
+</div>
+
+<p class="lede">
+性暴力の被害を訴えた女性に対して、別の女性が「なぜそんな行動をしたのか」「本当に被害者なのか」といった非難や疑念を向けることがある。この現象は、「女性なのに女性の味方をしない」という性別上の矛盾だけで説明すると見えにくくなる。被害者非難は、性別、性差別的態度、公正世界への信念、被害者と観察者との類似性、事件の状況、政治的・集団的アイデンティティなど、複数の要因が交差する現象だからである。
+</p>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">最初に確認すべきこと――「女性が女性を批判する」という問いの限界</a></li>
+<li><a href="#sec2">公正世界信念――「こんなことは、自分には起こらない」と思いたい</a></li>
+<li><a href="#sec3">防衛的帰属――「自分にも起こりうる」をどう処理するか</a></li>
+<li><a href="#sec4">システム正当化――不平等な秩序を、人はなぜ受け入れるのか</a></li>
+<li><a href="#sec5">両面価値的性差別――「守るべき女性」という理想像</a></li>
+<li><a href="#sec6">レイプ神話――被害者を測る「典型像」</a></li>
+<li><a href="#sec7">事件の文脈は大きい――「見知らぬ加害者」と「知人による被害」</a></li>
+<li><a href="#sec8">政治的・集団的アイデンティティ――事件が「陣営」の問題になるとき</a></li>
+<li><a href="#sec9">DARVO はどこまで使えるか</a></li>
+<li><a href="#sec10">日本の具体的事例をどう扱うべきか</a></li>
+<li><a href="#sec11">総合モデル――被害者非難は「一つの原因」ではない</a></li>
+<li><a href="#sec12">結論――「女性の心理」ではなく、「被害者非難を生む条件」を見る</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1 ．最初に確認すべきこと――「女性が女性を批判する」という問いの限界</h2>
+<p>
+本稿でまず確認すべきなのは、タイトルの問いそのものが持つ限界である。「女性が女性の性暴力被害者を叩くのはなぜか」と問うと、あたかも女性という性別そのものに特殊な心理傾向が存在するかのように読めてしまう。しかし、既存研究はそのような単純な結論を支持していない。
+</p>
+<p>
+たとえば、 37 研究を統合した Suarez と Gadalla （2010）のメタ分析では、レイプ神話受容（rape myth acceptance）は平均的に男性のほうが女性より高かった <sup><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 。近年の研究でも、被害者非難について男性のほうが高いという結果が報告されている <sup><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。したがって、「女性は性暴力被害者に厳しい」という一般化は、少なくとも研究上の標準的な結論ではない。
+</p>
+<p>
+一方で、女性が被害者非難を行わないという意味でもない。女性の側にもレイプ神話、性差別的信念、伝統的ジェンダー規範などが存在し、それらが被害者への評価に影響しうる。重要なのは<strong>性別そのものを原因とみなすのではなく、どのような信念や状況が非難を生みやすくするのかを問うこと</strong>である。
+</p>
+<div class="pull">「女性だから女性を非難する」のではない。女性も男性も、被害者非難を生み出す社会的・心理的メカニズムの影響を受けうる。</div>
+
+<h2 id="sec2">2 ．公正世界信念――「こんなことは、自分には起こらない」と思いたい</h2>
+<p>
+被害者非難を理解するうえで古典的かつ重要なのが、 Melvin Lerner によって発展させられた「公正世界」への信念である <sup><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。人は、自分が生きる世界をある程度予測可能で意味のあるものとして理解したい。努力や善行と結果がまったく無関係で、誰にでも突然深刻な被害が起こりうると考えることは、心理的な不安を高める。
+</p>
+<p>
+そのため、不幸に遭った人物について「何か原因があったはずだ」と考え、その原因を本人の行動や性格に帰属させることがある。これが被害者非難につながる場合がある。後続研究でも、公正世界信念とレイプ神話受容・被害者非難との関連が報告されている <sup><a href="#ref-3" id="fnref-3-2">[3]</a></sup> 。
+</p>
+<p>
+ただし、「公正世界を信じる人は必ず被害者を非難する」と理解してはいけない。公正世界信念は一つの関連要因であり、事件の情報、性差別的態度、被害者と加害者との関係などによって反応は変化する。
+</p>
+
+<h2 id="sec3">3 ．防衛的帰属――「自分にも起こりうる」をどう処理するか</h2>
+<p>
+被害者と自分との心理的距離も重要である。 Walster （1966）や Shaver （1970）の研究に端を発する防衛的帰属研究は、観察者が事故や被害の責任を誰に帰属させるかが、出来事の重大さや観察者との関連性などによって変化することを示した <sup><a href="#ref-4" id="fnref-4-1">[4]</a></sup> <sup><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 。
+</p>
+<p>
+この枠組みは、被害者との類似性が「自分にも起こりうる」という脅威を生む場合を考えるうえで有用である。ただし、「女性は男性より被害者との属性的近さを感じるので、より強く自分との違いを作ろうとする」と一直線に説明するのは慎重さを欠く。この点は、提示した古典的研究だけから直接導ける結論ではない。
+</p>
+<p>
+より妥当なのは、次のように考えることである。被害者との類似性が脅威を高める場合、観察者は「共感する」「被害者の責任を低く評価する」方向にも、「自分と被害者を区別するために責任を高く評価する」方向にも反応しうる。したがって、防衛的帰属は被害者非難の単独原因ではなく、責任帰属が変化する可能性を理解するための枠組みである。
+</p>
+
+<h2 id="sec4">4 ．システム正当化――不平等な秩序を、人はなぜ受け入れるのか</h2>
+<p>
+Jost と Banaji （1994）が提唱したシステム正当化理論は、人が既存の社会制度や社会的配置を、必ずしも自分の利益になるわけではない場合にも正当化しうることを説明する理論である <sup><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。
+</p>
+<p>
+この理論は、性別による不平等を考える場合にも応用されてきた。しかし、「女性は不利な立場にあるから、その不利なシステムを正当化する」というだけでは、研究結果を過度に単純化してしまう。
+</p>
+<p>
+実際、女性の被害者非難についてシステム正当化を直接検討した研究では、性別によって効果が異なる結果も得られている。 Ståhl 、 Eek 、 Kazemi （2010）の研究では、ジェンダー関連のシステム正当化傾向が女性被害者への非難を予測したのは男性参加者であり、女性参加者では同じ結果が得られなかった <sup><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。これは、システム正当化理論を「女性自身が自分の抑圧を守る」という一方向の説明に使うことへの重要な注意である。
+</p>
+<div class="box">
+<strong>批判的ポイント：</strong>システム正当化理論は「被害を受ける側が、自分の不利益を喜んで支持する」という単純な理論ではない。現実には、システム正当化、集団アイデンティティ、個人的利益、政治的態度などが異なる方向に作用しうる。
+</div>
+
+<h2 id="sec5">5 ．両面価値的性差別――「守るべき女性」という理想像</h2>
+<p>
+Glick と Fiske （1996）の両面価値的性差別理論は、性差別を露骨な敵意だけで捉えない点に大きな特徴がある <sup><a href="#ref-8" id="fnref-8-1">[8]</a></sup> 。敵意的性差別（hostile sexism）は女性を競争相手・脅威として扱う。一方、慈悲的性差別（benevolent sexism）は、女性を純粋で弱く、男性から保護されるべき存在として理想化する。
+</p>
+<p>
+一見すると後者は女性に好意的である。しかし、「望ましい女性像」を設定すれば、そこから外れる女性を低く評価することにつながりうる。この点は性暴力被害者への評価にも関係する。
+</p>
+<p>
+実証研究では、慈悲的性差別や伝統的ジェンダー役割が、特にデートレイプのような状況で被害者非難と関連することが報告されている <sup><a href="#ref-9" id="fnref-9-1">[9]</a></sup> 。さらに 2023 年のメタ分析では、両面価値的性差別が女性に対する暴力を支持する態度・行動と関連することが、広範な研究を統合した分析から検討されている <sup><a href="#ref-11" id="fnref-11-1">[11]</a></sup> 。
+</p>
+<p>
+したがって、「女性は守られるべきだ」という態度が、必ずしも被害者に無条件の共感を与えるとは限らない。むしろ、「守るに値する女性とはどのような女性か」という暗黙の基準が存在するとき、被害者の服装、飲酒、性的行動、職業、交友関係などが評価対象になりうる。
+</p>
+
+<h2 id="sec6">6 ．レイプ神話――被害者を測る「典型像」</h2>
+<p>
+Burt （1980）は、性暴力について社会に流通する誤った通念を「 rape myths 」として測定する研究を大きく発展させた <sup><a href="#ref-12" id="fnref-12-1">[12]</a></sup> 。典型的なレイプ神話には、「本当の被害なら激しく抵抗したはずだ」「知人間では性暴力は起こりにくい」「被害者の行動が原因だった」といった認識が含まれる。
+</p>
+<p>
+ここで重要なのは、レイプ神話が単なる「無知」ではなく、被害者非難と結びつく社会的認知のパターンとして研究されてきたことである。 Suarez と Gadalla （2010）のメタ分析では、レイプ神話受容は男性で平均的に高かった一方、女性にも当然存在していた <sup><a href="#ref-2" id="fnref-2-2">[2]</a></sup> 。
+</p>
+<p>
+したがって、「女性による女性への批判」という現象を理解する場合、性別よりも、<strong>どのようなレイプ神話を受け入れているか</strong>を問うほうが説明力を持つ。
+</p>
+
+<h2 id="sec7">7 ．事件の文脈は大きい――「見知らぬ加害者」と「知人による被害」</h2>
+<p>
+被害者非難は、被害者の属性だけでなく、事件の文脈によっても変化する。研究レビューでは、見知らぬ人物によるレイプより、知人・交際相手などによるレイプの場面で被害者への責任帰属が高くなりやすいことが報告されている <sup><a href="#ref-3" id="fnref-3-3">[3]</a></sup> 。
+</p>
+<p>
+これは、典型的な「暴力的な見知らぬ加害者」というイメージから外れるほど、「なぜ逃げなかったのか」「なぜ会ったのか」「なぜ飲酒したのか」といった因果推論が入り込みやすくなることと関係する。
+</p>
+<p>
+ただし、ここにも単純化は禁物である。近年の研究では、知人間の性暴力場面について、敵意的性差別や被害者の同意があったと認識する程度などが被害者非難を予測した一方、慈悲的性差別は他の変数を統制すると有意な予測因子ではなかった <sup><a href="#ref-13" id="fnref-13-1">[13]</a></sup> 。つまり、「慈悲的性差別があれば必ず被害者を非難する」という単純な図式ではない。
+</p>
+
+<h2 id="sec8">8 ．政治的・集団的アイデンティティ――事件が「陣営」の問題になるとき</h2>
+<p>
+被害者非難が、純粋に性暴力についての判断だけではなく、政治的・社会的対立と結びつく場合もある。 Kunda （1990）が整理した動機づけられた推論（motivated reasoning）は、人が望ましい結論に向かうよう情報処理を行いうることを示す重要な概念である <sup><a href="#ref-14" id="fnref-14-1">[14]</a></sup> 。
+</p>
+<p>
+さらに、文化的・政治的アイデンティティを守る方向に情報を処理する現象については、 Kahan らの研究を含む「 identity-protective cognition 」の議論がある <sup><a href="#ref-15" id="fnref-15-1">[15]</a></sup> 。この観点からは、ある告発が「自分の支持する人物」「自分が属する政治陣営」「自分が信頼する制度」への攻撃として認識された場合、告発内容の吟味よりも集団防衛が優先される可能性を考えることができる。
+</p>
+<p>
+ただし、これは個々の人物の心理を外部から診断できるという意味ではない。特定の人物がある発言をしたからといって、「その人はシステム正当化のために発言した」「アイデンティティ防衛的認知によって判断した」と断定することはできない。心理学的理論は、観察された行動を説明する<strong>仮説</strong>として扱うべきである。
+</p>
+
+<h2 id="sec9">9 ． DARVO はどこまで使えるか</h2>
+<p>
+被害者を嘲笑する行為一般の説明として「 DARVO（Deny, Attack, Reverse Victim and Offender）」を持ち出すことがあるが、これは適用範囲を広げすぎている可能性がある。
+</p>
+<p>
+DARVO は Jennifer Freyd によって提示され、その後の研究では、加害行為を指摘された側が「否認・攻撃・被害者と加害者の立場の逆転」を行うパターンとして検討されてきた。 Harsey 、 Zurbriggen 、 Freyd （2017）は、加害者による被害者への対抗反応として DARVO を検討している <sup><a href="#ref-16" id="fnref-16-1">[16]</a></sup> 。
+</p>
+<p>
+したがって、告発された当事者自身が告発者を攻撃し、自分を被害者として位置づけるような場面には有用である。しかし、第三者である女性が被害者を嘲笑した場合、その行為を直ちに DARVO と呼ぶのは適切ではない。第三者については、レイプ神話、性差別、システム正当化、集団アイデンティティなどの概念を用いるほうが慎重である。
+</p>
+
+<h2 id="sec10">10 ．日本の具体的事例をどう扱うべきか</h2>
+<p>
+伊藤詩織氏をめぐる一連の SNS 上の言動は、「女性による女性への被害者非難」を考える具体例として取り上げることができる。はすみとしこ氏については、伊藤氏が自身を題材としたと主張するイラスト等をめぐって提訴し、東京地裁・東京高裁で損害賠償を命じる判断が示され、 2023 年には上告が退けられて高裁判決が確定したと報告されている <sup><a href="#ref-17" id="fnref-17-1">[17]</a></sup> 。
+</p>
+<p>
+しかし、ここで注意しなければならないのは、<strong>裁判上認定された投稿内容と、その投稿者の内心の心理的原因は別問題</strong>だということである。投稿が侮辱的であったことを法的に評価することと、「投稿者は公正世界信念によって不安を低減しようとした」と心理学的に説明することは同じではない。
+</p>
+<p>
+特定人物の行動を研究上の一般的メカニズムと関連づける場合には、「この理論で説明できる可能性がある」と書くのが適切であり、「この人物はこの心理メカニズムによって行動した」と断定してはならない。
+</p>
+
+<h2 id="sec11">11 ．総合モデル――被害者非難は「一つの原因」ではない</h2>
+<p>
+ここまでの研究を総合すると、性暴力被害者への非難は、次のような複数層のモデルとして捉えるのが最も妥当である。
+</p>
+<table>
+<thead><tr><th>層</th><th>主な概念</th><th>働き方</th></tr></thead>
+<tbody>
+<tr><td>認知</td><td>公正世界信念</td><td>「理不尽な被害が誰にでも起こる」という不安を処理し、出来事に原因を見つけようとする。</td></tr>
+<tr><td>責任帰属</td><td>防衛的帰属</td><td>被害者と自分との類似性や事件の重大さなどに応じ、責任の帰属先が変化しうる。</td></tr>
+<tr><td>ジェンダー規範</td><td>両面価値的性差別</td><td>「望ましい女性像」を基準に、被害者の行動や性的主体性を評価する。</td></tr>
+<tr><td>社会秩序</td><td>システム正当化</td><td>既存の社会的配置を正当化する方向に認知が働く場合がある。</td></tr>
+<tr><td>文化的信念</td><td>レイプ神話</td><td>「典型的な被害者」「典型的な加害者」という誤ったイメージが判断を歪める。</td></tr>
+<tr><td>集団・政治</td><td>動機づけられた推論</td><td>告発を集団アイデンティティへの脅威として認識すると、評価が党派的になる可能性がある。</td></tr>
+<tr><td>相互作用</td><td>事件の文脈</td><td>被害者と加害者の関係、飲酒、既知・未知の関係などが、既存の信念と組み合わさる。</td></tr>
+</tbody>
+</table>
+<p>
+このモデルの利点は、「なぜ女性が女性を攻撃するのか」という一見単純な問いを、「どのような心理的・社会的条件が、どのような種類の被害者非難を生み出すのか」という、検証可能な問いへ変換できることである。
+</p>
+<div class="pull">説明することと、正当化することは別である。</div>
+<p>
+被害者非難の心理的機能を理解することは、被害者非難を許すことではない。むしろ逆である。人がなぜそうした判断をするのかを理解できれば、どのような信念や状況を変えれば、その反応を減らせるのかを検討できる。
+</p>
+
+<h2 id="sec12">12 ．結論――「女性の心理」ではなく、「被害者非難を生む条件」を見る</h2>
+<p>
+「女性が女性を批判する」という問題意識には重要な出発点としての意味がある。しかし、心理学的により正確な説明にするには、そこから一歩引く必要がある。
+</p>
+<p>
+第一に、女性は被害者非難をすることがあるが、研究上、女性だけが、あるいは女性のほうが一般的に強く被害者非難を行うとはいえない。第二に、被害者非難は性別という単一の変数よりも、レイプ神話、性差別的態度、公正世界信念、事件の文脈などとの関連で理解したほうがよい。第三に、システム正当化や防衛的帰属は有力な理論的道具だが、個々の人物の内心を説明する診断装置ではない。第四に、 DARVO は適用範囲が限定され、第三者による被害者非難一般の説明に用いるべきではない。
+</p>
+<p>
+したがって、最も慎重で、しかも説明力の高い結論はこうなる。
+</p>
+<p>
+<strong>性暴力被害者への非難は、「冷酷な人間だから」という人格論だけでも、「女性だから」という性別論だけでも説明できない。それは、公正世界への信念、責任帰属、ジェンダー規範、性差別、レイプ神話、社会秩序への態度、集団アイデンティティ、そして事件の具体的文脈が重なり合って生じる社会心理学的現象である。</strong>
+</p>
+<p>
+そして、その重なりを理解することこそが、「なぜ被害者が悪いことにされてしまうのか」という、より本質的な問いに近づく方法なのである。
+</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<ol>
+<li id="ref-1">Lerner, M. J. (1980). <em>The Belief in a Just World: A Fundamental Delusion</em>. Springer. <a href="#fnref-1-1" class="backref">↩</a></li>
+<li id="ref-2">Suarez, E., &amp; Gadalla, T. M. (2010). Stop blaming the victim: A meta-analysis on rape myths. <em>Journal of Interpersonal Violence, 25</em>(11), 2010–2035. DOI: <a href="https://doi.org/10.1177/0886260509354503">10.1177/0886260509354503</a>. <a href="#fnref-2-1" class="backref">↩a</a> <a href="#fnref-2-2" class="backref">↩b</a></li>
+<li id="ref-3">Russell, K. J., &amp; Hand, C. J. (2017). Rape myth acceptance, victim blame attribution and Just World Beliefs: A rapid evidence assessment. <em>Aggression and Violent Behavior, 37</em>, 153–160. DOI: <a href="https://doi.org/10.1016/j.avb.2017.10.008">10.1016/j.avb.2017.10.008</a>. <a href="#fnref-3-1" class="backref">↩a</a> <a href="#fnref-3-2" class="backref">↩b</a> <a href="#fnref-3-3" class="backref">↩c</a></li>
+<li id="ref-4">Walster, E. (1966). Assignment of responsibility for an accident. <em>Journal of Personality and Social Psychology, 3</em>(1), 73–79. <a href="#fnref-4-1" class="backref">↩</a></li>
+<li id="ref-5">Shaver, K. G. (1970). Defensive attribution: Effects of severity and relevance on the responsibility assigned for an accident. <em>Journal of Personality and Social Psychology, 14</em>(2), 101–113. <a href="#fnref-5-1" class="backref">↩</a></li>
+<li id="ref-6">Jost, J. T., &amp; Banaji, M. R. (1994). The role of stereotyping in system-justification and the production of false consciousness. <em>British Journal of Social Psychology, 33</em>(1), 1–27. <a href="#fnref-6-1" class="backref">↩</a></li>
+<li id="ref-7">Ståhl, T., Eek, D., &amp; Kazemi, A. (2010). Rape victim blaming as system justification: The role of gender and activation of complementary stereotypes. <em>Social Justice Research, 23</em>, 239–258. DOI: <a href="https://doi.org/10.1007/s11211-010-0117-0">10.1007/s11211-010-0117-0</a>. <a href="#fnref-7-1" class="backref">↩</a></li>
+<li id="ref-8">Glick, P., &amp; Fiske, S. T. (1996). The Ambivalent Sexism Inventory: Differentiating hostile and benevolent sexism. <em>Journal of Personality and Social Psychology, 70</em>(3), 491–512. <a href="#fnref-8-1" class="backref">↩</a></li>
+<li id="ref-9">Yamawaki, N. (2007). Rape perception and the function of ambivalent sexism and gender-role traditionality. <em>Journal of Interpersonal Violence, 22</em>(4). <a href="#fnref-9-1" class="backref">↩</a></li>
+<li id="ref-10">Pedersen, S. H., &amp; Strömwall, L. A. (2013). Victim blame, sexism and just-world beliefs: A cross-cultural comparison. <em>Psychiatry, Psychology and Law, 20</em>(6), 932–941.</li>
+<li id="ref-11">Hollander, J. A., et al. (2023/2024). Linking ambivalent sexism to violence-against-women attitudes and behaviors: A three-level meta-analytic review. <em>Sexuality &amp; Culture, 28</em>, 851–882. <a href="#fnref-11-1" class="backref">↩</a></li>
+<li id="ref-12">Burt, M. R. (1980). Cultural myths and supports for rape. <em>Journal of Personality and Social Psychology, 38</em>(2), 217–230. <a href="#fnref-12-1" class="backref">↩</a></li>
+<li id="ref-13">Lindgren, L., &amp; Landström, S. (2026). Blame attributions in acquaintance rape: Effects of ambivalent sexism and sexual consent. <em>SAGE Open</em>. DOI: <a href="https://doi.org/10.1177/21582440261416135">10.1177/21582440261416135</a>. <a href="#fnref-13-1" class="backref">↩</a></li>
+<li id="ref-14">Kunda, Z. (1990). The case for motivated reasoning. <em>Psychological Bulletin, 108</em>(3), 480–498. <a href="#fnref-14-1" class="backref">↩</a></li>
+<li id="ref-15">Kahan, D. M. (2013). Ideology, motivated reasoning, and cognitive reflection. <em>Judgment and Decision Making, 8</em>(4), 407–424. <a href="#fnref-15-1" class="backref">↩</a></li>
+<li id="ref-16">Harsey, S. J., Zurbriggen, E. L., &amp; Freyd, J. J. (2017). Perpetrator responses to victim confrontation: DARVO and victim self-blame. <em>Journal of Aggression, Maltreatment &amp; Trauma, 26</em>(6), 644–663. DOI: <a href="https://doi.org/10.1080/10926771.2017.1320777">10.1080/10926771.2017.1320777</a>. <a href="#fnref-16-1" class="backref">↩</a></li>
+<li id="ref-17">伊藤詩織氏・はすみとしこ氏らをめぐる訴訟については、東京地裁・東京高裁の判断および関連報道を参照した。個々の投稿者の心理的動機については、裁判上の事実認定から直接導出していない。 <a href="#fnref-17-1" class="backref">↩</a></li>
+</ol>
+
+<p class="note">
+注：本稿は学術論文ではなく、公開された研究知見をもとにした一般向けの学術的読み物である。研究結果は集団レベルの傾向を示すものであり、特定個人の心理状態や動機を診断するものではない。また、社会心理学の理論には相互に重なる部分や研究上の限界があり、単一理論から現実の複雑な行動を決定論的に説明することはできない。
+</p>
+</div>
+
+</div>
+</body>
+</html>

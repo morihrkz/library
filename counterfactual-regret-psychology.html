@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人はなぜ、選ばなかった道を悔やみ続けるのか――反実仮想思考と後悔の心理学</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","游明朝",serif;
+  line-height:1.95;
+}
+.wrap{max-width:820px;margin:auto;padding:56px 26px 120px}
+.kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
+h1{font-size:29px;line-height:1.55;margin:0 0 18px}
+.subtitle{font-size:18px;color:var(--muted);margin:0 0 34px}
+.meta{font-size:13px;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:42px}
+h2{font-size:23px;line-height:1.5;margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:32px 0 12px}
+p{font-size:16px;margin:0 0 20px}
+.lede{font-size:18px;color:var(--muted);border-left:3px solid var(--accent);padding-left:18px}
+.pull{font-size:20px;line-height:1.75;color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding:3px 0 3px 20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:28px 0}
+.box strong{color:var(--accent)}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:24px 0 32px}
+th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
+th{background:var(--box);text-align:left}
+ul,ol{padding-left:1.4em}
+li{margin-bottom:9px}
+sup{font-size:.72em}
+a{color:var(--link)}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs li{font-size:13.5px;line-height:1.65;margin-bottom:11px}
+.note{font-size:13px;color:var(--muted)}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs li a.backref{color:var(--link);text-decoration:none;margin-left:6px;font-size:12px}
+.refs li a.backref:hover{text-decoration:underline}
+@media (max-width:480px){
+  .wrap{padding:40px 18px 90px}
+  h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">認知心理学・哲学的検討</div>
+<h1>人はなぜ、選ばなかった道を悔やみ続けるのか<br>――反実仮想思考と後悔の心理学</h1>
+<p class="subtitle">反実仮想思考・規範理論・可能自己・物語的誤謬を中心に</p>
+<div class="meta">
+本稿の目的：特定の後悔の内容や、特定の年代・境遇を診断することではなく、後悔という現象がなぜ生じ、なぜ長期にわたって持続するのかを、複数の心理学的メカニズムおよび哲学的観点から検討する。
+</div>
+
+<p class="lede">
+人は誰しも、選ばなかった進路や、口にしなかった言葉を思い返し、「あの時、違う選択をしていれば」と考えることがある。この現象は、当人の性格の弱さや意志の欠如として片付けられがちである。しかし、後悔を科学的に検討してきた心理学の蓄積は、そうした単純な理解を支持していない。後悔は、反実仮想的な思考、記憶の再構成、比較対象の選び方、他者への感情の派生など、複数の認知的メカニズムが積み重なって生じる、きわめて一般的な現象である。
+</p>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">最初に確認すべきこと――後悔は誰にでも起こる</a></li>
+<li><a href="#sec2">反実仮想思考の基礎――現実は、幻の比較対象と測られる</a></li>
+<li><a href="#sec3">後悔はなぜ持続するのか――反芻と、忘れようとする努力の逆説</a></li>
+<li><a href="#sec4">自己物語の編集――記憶は録画ではない</a></li>
+<li><a href="#sec5">可能自己と比較のサンプリング偏り</a></li>
+<li><a href="#sec6">哲学的観点からの再検討――なぜその問いを手放せないのか</a></li>
+<li><a href="#sec7">他者への怒りという後悔の派生形</a></li>
+<li><a href="#sec8">赦しという行為――過去は変わらない、しかし関係は変わりうる</a></li>
+<li><a href="#sec9">後悔を引き受ける哲学――不条理を生きること、運命を愛すること</a></li>
+<li><a href="#sec10">総合モデル――後悔は一つの原因では説明できない</a></li>
+<li><a href="#sec11">結論――後悔は、複数のメカニズムが重なり合う現象である</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1 ．最初に確認すべきこと――後悔は誰にでも起こる</h2>
+<p>
+後悔について考えるとき、まず注意すべきなのは、この現象を特定の人物の性格や、特定の年代・境遇に還元して説明することの危うさである。「後悔ばかりしているのは、心が弱いからだ」という理解は直感的には分かりやすいが、実証研究が示す像とは異なる。
+</p>
+<p>
+後悔研究のレビューによれば、後悔は年齢や性別を問わず広く報告される感情であり、とりわけ教育・キャリア・恋愛・子育てといった、人生の選択肢が大きく開かれていた領域ほど強い後悔を生みやすいことが知られている <sup><a href="#ref-11" id="fnref-11-1">[11]</a></sup> 。つまり、後悔の強さを左右するのは個人の弱さではなく、当人がどれだけ多くの選択肢を認識していたか、という構造的な条件である。
+</p>
+<p>
+本稿の以下の議論は、特定の個人の内心を診断する道具ではなく、後悔という現象一般を理解するための枠組みとして読まれるべきである。
+</p>
+
+<h2 id="sec2">2 ．反実仮想思考の基礎――現実は、幻の比較対象と測られる</h2>
+<p>
+後悔の心理学における基礎理論が、ダニエル・カーネマンとデール・ミラーが 1986 年に提示した規範理論である <sup><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 。この実証的な理論によれば、人は出来事そのものを絶対的な基準で評価しているのではない。むしろ、脳内で自動的に生成される「もう一つの起こりえた現実」との比較を通じて、初めてその出来事の良し悪しを判断する。
+</p>
+<p>
+この理論を印象的に裏付けたのが、ヴィクトリア・メドヴェック、スコット・メイディ、トマス・ギロヴィッチによる 1992 年バルセロナ五輪の表彰台映像を用いた実験である <sup><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。第三者に選手の表情の幸福度を採点させたところ、銅メダリストの方が銀メダリストより有意に幸福そうに見えるという結果が得られた。銀メダリストの比較対象は「あと一歩で金メダルだった」という、より良い仮想現実である一方、銅メダリストの比較対象は「一歩間違えば表彰台にすら上がれなかった」という、より悪い仮想現実だからだと説明される。
+</p>
+<div class="pull">現実は、それ自体としてではなく、頭の中に生成された「もう一つの現実」との差分として体験される。</div>
+<p>
+このように、実際より良い結果を想定する比較を上向きの反実仮想、実際より悪い結果を想定する比較を下向きの反実仮想と呼ぶ。上向きの反実仮想には、「次はどうすればより良い結果を得られるか」を考える学習的な機能があるとされる。ただし、この機能が過剰に働き続けると、学習ではなく自己への攻撃の道具に転じうる。
+</p>
+
+<h2 id="sec3">3 ．後悔はなぜ持続するのか――反芻と、忘れようとする努力の逆説</h2>
+<p>
+後悔がなぜ一時的な感情で終わらず、何年、何十年にもわたって持続するのかを説明する実証研究として重要なのが、スーザン・ノーレン = ホエクセマが 1991 年に提示した反応スタイル理論である <sup><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。この理論によれば、人は落ち込んだ状態にあるとき、その原因や意味について繰り返し考え続ける「反芻」という反応をとりやすい。臨床心理学の研究では、この反芻的な反応スタイルが、抑うつ状態を重症化・長期化させる重要な危険因子であることが報告されている。
+</p>
+<p>
+さらに厄介なのは、こうした記憶を意図的に忘れようとする努力自体が、逆効果を生みうる点である。ダニエル・ウェグナーらが 1987 年に報告した思考抑制の実験では、特定の対象（白熊）を考えないよう指示された被験者が、かえってその対象について頻繁に考えてしまうという結果が示された <sup><a href="#ref-4" id="fnref-4-1">[4]</a></sup> 。この現象は皮肉過程理論と呼ばれ、忘れようとする意図そのものが、その記憶を監視し続ける認知的なプロセスを作動させてしまうと説明される。
+</p>
+
+<h2 id="sec4">4 ．自己物語の編集――記憶は録画ではない</h2>
+<p>
+後悔が持続するもう一つの理由は、人が自分の過去を、一貫した物語として再構成しようとする傾向にある。ダン・マクアダムスが 2001 年に整理したナラティブ・アイデンティティ理論は、人が自分の人生に統一性と意味を与えるために、内面化された物語を構築し続けていることを説明する実証的な枠組みである <sup><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 。この物語の編集権を自分自身が握っているがゆえに、過去は美化されたり、逆に一つの失敗に因果関係が集中させられたりする。
+</p>
+<p>
+この編集には、後知恵バイアスと呼ばれる認知的な歪みも関与する。バルーク・フィッシュホフが 1975 年に報告した一連の実験では、結果を知った後の人間は、その結果があらかじめ予測可能だったはずだと過大に信じてしまうことが示された <sup><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。「あの時こうすればよかったと分かっていたはずだ」という感覚の多くは、実際には後から作られた確信である。
+</p>
+<p>
+ナシーム・ニコラス・タレブは、こうした事後的な因果の捏造を物語的誤謬と呼んだ <sup><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。これは実証研究というより、金融市場における不確実性の観察に基づく批評的な主張であるが、人間が混沌とした現実に、事後的に整った因果の物語を与えてしまう傾向を的確に言い当てている。人生は一本道の分岐ではなく、無数の可能性が枝分かれする網の目に近い。
+</p>
+
+<h2 id="sec5">5 ．可能自己と比較のサンプリング偏り</h2>
+<p>
+ヘイゼル・マーカスとポーラ・ヌリウスが 1986 年に提示した可能自己という概念は、人が「なりたかった自分」「なるはずだった自分」「なることを恐れる自分」など、複数の想像上の自己を同時に抱えていることを説明する <sup><a href="#ref-8" id="fnref-8-1">[8]</a></sup> 。後悔が過酷になりやすいのは、この複数の可能自己のうち、理想化された一つだけを現実と比較し、失敗や困難を伴う無数の可能自己を無視してしまう場合である。
+</p>
+<p>
+この比較には、感情予測そのものの誤りも重なる。ティモシー・ウィルソンとダニエル・ギルバートが整理した感情予測研究によれば、人は将来の幸福や不幸の程度を、実際よりも極端に見積もる傾向がある <sup><a href="#ref-9" id="fnref-9-1">[9]</a></sup> 。加えて、フィリップ・ブリックマンらが 1978 年に行った古典的な研究では、宝くじの高額当選者と事故で四肢麻痺を負った人々の幸福度が比較され、当選者の幸福度は近隣住民と大きくは変わらず、麻痺を負った人々の幸福度も、想像されるほど低くはなかったことが報告された <sup><a href="#ref-10" id="fnref-10-1">[10]</a></sup> 。ただし、この研究は横断的な調査であり、両群の差が完全に消えたわけではない点には注意が必要である。それでもなお、人間の主観的幸福感が、達成や喪失の内容そのものに単純比例しないことを示す結果として、後年「適応の力」として広く言及されるようになった。
+</p>
+
+<h2 id="sec6">6 ．哲学的観点からの再検討――なぜその問いを手放せないのか</h2>
+<p>
+ここまでの議論が、後悔がなぜ生じ、なぜ持続するのかという認知的なメカニズムを扱ってきたのに対し、哲学は、なぜ人間がその問いそのものを手放せないのかという、より根本的な問いを立ててきた。以下で紹介する主張は、実証研究ではなく、哲学者による思考実験・概念的主張であることに注意が必要である。
+</p>
+<p>
+19 世紀デンマークの哲学者セーレン・キェルケゴールは、日記の中で「人生は後ろ向きにしか理解できないが、前向きにしか生きられない」という趣旨を記した <sup><a href="#ref-12" id="fnref-12-1">[12]</a></sup> 。人間は振り返ることで初めて自分の人生の意味を把握しようとするが、生きるという行為自体は常に未来に向かってしか行えない。この時間的なねじれが、後悔という現象の土壌になっているという哲学的な指摘である。
+</p>
+<p>
+ジャン = ポール・サルトルは「実存は本質に先立つ」と述べた <sup><a href="#ref-13" id="fnref-13-1">[13]</a></sup> 。人間にはあらかじめ定められた本質、たとえば「本来こうなるべきだった自分」という設計図は存在せず、行動の集積によって事後的に自らを定義していくというのがサルトルの実存主義的主張である。この観点からは、「本当の自分は別の道にいたはずだ」と考えることは、現実の自己から目を逸らす自己欺瞞として捉えられる。
+</p>
+<p>
+マルティン・ハイデガーは、人間が自分の意志とは無関係に、特定の時代・家庭・才能の分布の中にすでに投げ込まれている事実を被投性と呼んだ <sup><a href="#ref-14" id="fnref-14-1">[14]</a></sup> 。これも実証可能な仮説ではなく、人間の存在のあり方についての哲学的記述である。この観点は、後悔の対象となった過去の自分の傾向や状況を、裁く対象としてではなく、まず記述すべき初期条件として捉え直す視点を与える。
+</p>
+<p>
+一方、心理療法の領域には、実証研究に基づく技法として認知的脱フュージョンがある。スティーブン・ヘイズらが体系化したアクセプタンス・アンド・コミットメント・セラピー（ACT）では、「自分は失敗した人間だ」という思考と、思考する主体としての自己とを同一視しないことを目指す <sup><a href="#ref-15" id="fnref-15-1">[15]</a></sup> 。思考を、判断すべき事実としてではなく、通り過ぎていく現象として観察する態度は、上記の哲学的な立場とも接続しうる。
+</p>
+
+<h2 id="sec7">7 ．他者への怒りという後悔の派生形</h2>
+<p>
+後悔は、自分自身への感情だけでなく、他者への怒りという形でも現れる。この非対称性を説明する実証的な概念が、リー・ロスが 1977 年に報告した根本的帰属の誤りである <sup><a href="#ref-16" id="fnref-16-1">[16]</a></sup> 。人は他者の行動を説明する際、その人が置かれていた状況よりも、性格や人格に原因を求めすぎる一方、自分自身の行動については状況要因を重視しがちである。記憶の中の他者が、実物以上に純粋な悪人として固定化されやすいのは、この認知的な非対称性による面がある。
+</p>
+<p>
+他者への複雑な感情は、脳科学的にも検討されている。高橋英彦らが 2009 年に発表した脳画像研究では、自分より恵まれた他者に強い羨望を感じている際には、身体的な痛みに関連する脳部位（前部帯状皮質）の活動が高まり、その相手が不幸に見舞われた場面では、報酬に関わる部位（線条体）の活動が高まることが示された <sup><a href="#ref-17" id="fnref-17-1">[17]</a></sup> 。羨望が強い被験者ほど、他者の不幸を知った際の反応も強かったという。これは、羨望と、他者の不幸を喜ぶ感情（シャーデンフロイデ）が神経基盤において関連しうることを示す実証研究である。
+</p>
+<p>
+フリードリヒ・ニーチェは、『道徳の系譜』の中で、力によって直接に報復できない者が、その怒りを内側に溜め込み、やがて「自分は正しい被害者であり、相手は悪人である」という道徳的な物語にすり替えていく心理をルサンチマンと呼んだ <sup><a href="#ref-18" id="fnref-18-1">[18]</a></sup> 。これは実証データに基づく理論ではなく、ニーチェ自身の哲学的な系譜学的主張であるが、根本的帰属の誤りが生み出す「純化された悪役」の物語と、機能的に重なる部分がある。
+</p>
+
+<h2 id="sec8">8 ．赦しという行為――過去は変わらない、しかし関係は変わりうる</h2>
+<p>
+ハンナ・アーレントは 1958 年の『人間の条件』第五章「活動」の中で、人間の行為が持つ不可逆性について論じた <sup><a href="#ref-19" id="fnref-19-1">[19]</a></sup> 。一度行われた行為は取り消すことができない。アーレントは、この不可逆性から人間を解放しうる唯一の能力として「赦し」を位置づけた。ここでの赦しは、相手の行為を正当化することでも、相手が反省しているかどうかに依存する行為でもない。むしろ赦しとは、赦す側が、取り消せない過去への呪縛から自分自身を解放するための行為として理解される。
+</p>
+<p>
+この観点に立てば、他者を赦すことと、その他者の行為が正しかったと認めることは、まったく別の事柄である。赦しは相手のための免罪符ではなく、赦す側が、これ以上その出来事に人生の時間を差し出さないための選択として捉え直すことができる。ただし、これは実証的に検証された心理学理論というより、政治哲学的な概念整理であることに注意が必要である。
+</p>
+
+<h2 id="sec9">9 ．後悔を引き受ける哲学――不条理を生きること、運命を愛すること</h2>
+<p>
+アルベール・カミュは『シーシュポスの神話』の中で、山頂まで岩を押し上げては転がり落とすことを永遠に繰り返す罰を受けたギリシャ神話の人物シーシュポスを論じた <sup><a href="#ref-20" id="fnref-20-1">[20]</a></sup> 。カミュは、目標が達成されないという不条理を全身で引き受けながら、なお目の前の岩を押し続ける過程そのものに、人間の尊厳がありうると主張した。これは実証可能な心理学的知見ではなく、不条理な人生をいかに引き受けるかという、実存主義的な哲学的主張である。
+</p>
+<p>
+ニーチェは『悦ばしき知識』第 341 節で、自分がこれまで生きてきた人生を寸分違わず永遠に繰り返すとしたらどう感じるか、という思考実験（永劫回帰）を提示した <sup><a href="#ref-21" id="fnref-21-1">[21]</a></sup> 。同書第 276 節、および後年の『この人を見よ』では、この問いに対して「然り」と答えうる境地を運命愛（アモール・ファティ）と呼んだ <sup><a href="#ref-22" id="fnref-22-1">[22]</a></sup> 。これは過去の失敗を美化せよという主張ではなく、変更できない事実を含めた人生全体を肯定できるかを問う、過酷な哲学的思考実験として理解する必要がある。
+</p>
+
+<h2 id="sec10">10 ．総合モデル――後悔は一つの原因では説明できない</h2>
+<p>
+ここまでの議論を総合すると、後悔という現象は、次のような複数層のモデルとして捉えるのが最も妥当である。
+</p>
+<table>
+<thead><tr><th>層</th><th>主な概念</th><th>性質</th></tr></thead>
+<tbody>
+<tr><td>比較の生成</td><td>反実仮想思考・規範理論</td><td>実証研究</td></tr>
+<tr><td>持続の機序</td><td>反応スタイル理論・皮肉過程理論</td><td>実証研究</td></tr>
+<tr><td>記憶の編集</td><td>ナラティブ・アイデンティティ・後知恵バイアス・物語的誤謬</td><td>実証研究・批評的主張</td></tr>
+<tr><td>比較対象の偏り</td><td>可能自己・感情予測の誤り・適応の力</td><td>実証研究</td></tr>
+<tr><td>存在論的基盤</td><td>被投性・自己欺瞞</td><td>哲学的主張</td></tr>
+<tr><td>他者への派生</td><td>根本的帰属の誤り・シャーデンフロイデの神経相関・ルサンチマン</td><td>実証研究・哲学的主張</td></tr>
+<tr><td>関係の解放</td><td>行為の不可逆性・赦し</td><td>哲学的主張</td></tr>
+<tr><td>引き受けの姿勢</td><td>不条理の受容・運命愛</td><td>哲学的主張</td></tr>
+</tbody>
+</table>
+<div class="pull">後悔を理解することは、後悔を正当化することではない。</div>
+<p>
+このモデルの利点は、「なぜ自分だけが、こんなに後悔するのか」という個人化された問いを、「どのような認知的・存在論的条件が、後悔という現象を生み、持続させるのか」という、より一般的で検証可能な問いへ変換できることである。
+</p>
+
+<h2 id="sec11">11 ．結論――後悔は、複数のメカニズムが重なり合う現象である</h2>
+<p>
+後悔は、個人の弱さや意志の欠如という人格論だけでは説明できない。それは、反実仮想的な比較の生成、反芻と思考抑制による持続、記憶の物語的な編集、比較対象のサンプリング偏り、そして人間の存在論的なあり方や、他者への感情の派生、赦しと不条理の引き受けといった、複数の心理学的メカニズムと哲学的観点が重なり合って生じる現象である。
+</p>
+<p>
+本稿で強調したいのは、これらの実証研究と哲学的主張が、異なる性質の知見であるということである。反実仮想思考、反応スタイル理論、皮肉過程理論、可能自己、根本的帰属の誤り、シャーデンフロイデの神経相関は、いずれも実証データによって検証された心理学的知見である。一方、実存主義、被投性、ルサンチマン、行為の不可逆性、不条理の受容、運命愛は、検証済みの事実というより、人間の生をどう理解し、どう引き受けるかについての哲学的な思考実験・概念的主張である。両者を混同し、哲学的主張を検証済みの科学的事実であるかのように扱うことは避けなければならない。
+</p>
+<p>
+<strong>後悔は、選ばなかった道そのものの価値によって決まるのではなく、その道をどのように想起し、比較し、物語化するかという、人間の認知と存在の構造によって形づくられる現象である。</strong>
+</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<ol>
+<li id="ref-1">Medvec, V. H., Madey, S. F., &amp; Gilovich, T. (1995). When less is more: Counterfactual thinking and satisfaction among Olympic medalists. <em>Journal of Personality and Social Psychology, 69</em>(4), 603–610. DOI: <a href="https://doi.org/10.1037/0022-3514.69.4.603">10.1037/0022-3514.69.4.603</a>. <a href="#fnref-1-1" class="backref">↩</a></li>
+<li id="ref-2">Kahneman, D., &amp; Miller, D. T. (1986). Norm theory: Comparing reality to its alternatives. <em>Psychological Review, 93</em>(2), 136–153. DOI: <a href="https://doi.org/10.1037/0033-295X.93.2.136">10.1037/0033-295X.93.2.136</a>. <a href="#fnref-2-1" class="backref">↩</a></li>
+<li id="ref-3">Nolen-Hoeksema, S. (1991). Responses to depression and their effects on the duration of depressive episodes. <em>Journal of Abnormal Psychology, 100</em>(4), 569–582. <a href="#fnref-3-1" class="backref">↩</a></li>
+<li id="ref-4">Wegner, D. M., Schneider, D. J., Carter, S. R., &amp; White, T. L. (1987). Paradoxical effects of thought suppression. <em>Journal of Personality and Social Psychology, 53</em>(1), 5–13. DOI: <a href="https://doi.org/10.1037/0022-3514.53.1.5">10.1037/0022-3514.53.1.5</a>. <a href="#fnref-4-1" class="backref">↩</a></li>
+<li id="ref-5">McAdams, D. P. (2001). The psychology of life stories. <em>Review of General Psychology, 5</em>(2), 100–122. DOI: <a href="https://doi.org/10.1037/1089-2680.5.2.100">10.1037/1089-2680.5.2.100</a>. <a href="#fnref-5-1" class="backref">↩</a></li>
+<li id="ref-6">Fischhoff, B. (1975). Hindsight ≠ foresight: The effect of outcome knowledge on judgment under uncertainty. <em>Journal of Experimental Psychology: Human Perception and Performance, 1</em>(3), 288–299. DOI: <a href="https://doi.org/10.1037/0096-1523.1.3.288">10.1037/0096-1523.1.3.288</a>. <a href="#fnref-6-1" class="backref">↩</a></li>
+<li id="ref-7">Taleb, N. N. (2007). <em>The Black Swan: The Impact of the Highly Improbable</em>. Random House.(学術論文ではなく批評的著作である点に留意) <a href="#fnref-7-1" class="backref">↩</a></li>
+<li id="ref-8">Markus, H., &amp; Nurius, P. (1986). Possible selves. <em>American Psychologist, 41</em>(9), 954–969. DOI: <a href="https://doi.org/10.1037/0003-066X.41.9.954">10.1037/0003-066X.41.9.954</a>. <a href="#fnref-8-1" class="backref">↩</a></li>
+<li id="ref-9">Wilson, T. D., &amp; Gilbert, D. T. (2003). Affective forecasting. <em>Advances in Experimental Social Psychology, 35</em>, 345–411. <a href="#fnref-9-1" class="backref">↩</a></li>
+<li id="ref-10">Brickman, P., Coates, D., &amp; Janoff-Bulman, R. (1978). Lottery winners and accident victims: Is happiness relative? <em>Journal of Personality and Social Psychology, 36</em>(8), 917–927. DOI: <a href="https://doi.org/10.1037/0022-3514.36.8.917">10.1037/0022-3514.36.8.917</a>.(横断研究であり、両群の幸福度の差が完全に消えたわけではない点に注意) <a href="#fnref-10-1" class="backref">↩</a></li>
+<li id="ref-11">Roese, N. J., &amp; Summerville, A. (2005). What we regret most... and why. <em>Personality and Social Psychology Bulletin, 31</em>(9), 1273–1285. DOI: <a href="https://doi.org/10.1177/0146167205274693">10.1177/0146167205274693</a>.(本稿執筆にあたり新たに加えた文献) <a href="#fnref-11-1" class="backref">↩</a></li>
+<li id="ref-12">Kierkegaard, S. (1843). <em>Journalen JJ:167</em>. (Søren Kierkegaards Skrifter, Vol. 18, Søren Kierkegaard Research Centre, Copenhagen). <a href="#fnref-12-1" class="backref">↩</a></li>
+<li id="ref-13">Sartre, J.-P. (1946). <em>L'existentialisme est un humanisme</em>. Éditions Nagel. <a href="#fnref-13-1" class="backref">↩</a></li>
+<li id="ref-14">Heidegger, M. (1927). <em>Sein und Zeit</em>. Max Niemeyer Verlag. <a href="#fnref-14-1" class="backref">↩</a></li>
+<li id="ref-15">Hayes, S. C., Strosahl, K. D., &amp; Wilson, K. G. (1999). <em>Acceptance and Commitment Therapy: An Experiential Approach to Behavior Change</em>. Guilford Press. <a href="#fnref-15-1" class="backref">↩</a></li>
+<li id="ref-16">Ross, L. (1977). The intuitive psychologist and his shortcomings: Distortions in the attribution process. In L. Berkowitz (Ed.), <em>Advances in Experimental Social Psychology</em> (Vol. 10, pp. 173–220). Academic Press. <a href="#fnref-16-1" class="backref">↩</a></li>
+<li id="ref-17">Takahashi, H., Kato, M., Matsuura, M., Mobbs, D., Suhara, T., &amp; Okubo, Y. (2009). When your gain is my pain and your pain is my gain: Neural correlates of envy and schadenfreude. <em>Science, 323</em>(5916), 937–939. DOI: <a href="https://doi.org/10.1126/science.1165604">10.1126/science.1165604</a>. <a href="#fnref-17-1" class="backref">↩</a></li>
+<li id="ref-18">Nietzsche, F. (1887). <em>Zur Genealogie der Moral</em>.(第一論文でルサンチマンの概念が展開される) <a href="#fnref-18-1" class="backref">↩</a></li>
+<li id="ref-19">Arendt, H. (1958). <em>The Human Condition</em>. University of Chicago Press.(第 5 章「活動」第 33 節「不可逆性と赦す力」) <a href="#fnref-19-1" class="backref">↩</a></li>
+<li id="ref-20">Camus, A. (1942). <em>Le Mythe de Sisyphe</em>. Gallimard. <a href="#fnref-20-1" class="backref">↩</a></li>
+<li id="ref-21">Nietzsche, F. (1882). <em>Die fröhliche Wissenschaft</em>.(第 276 節に「運命愛」の語が初出し、第 341 節で永劫回帰の思考実験が語られる) <a href="#fnref-21-1" class="backref">↩</a></li>
+<li id="ref-22">Nietzsche, F. (1888). <em>Ecce Homo</em>.(「わたしの人間的偉大さのための定式は運命愛である」という一節) <a href="#fnref-22-1" class="backref">↩</a></li>
+</ol>
+
+<p class="note">
+注：本稿は学術論文ではなく、公開された研究知見と、代表的な哲学的主張をもとにした一般向けの学術的読み物である。実証研究は集団レベルの傾向を示すものであり、特定個人の心理状態を診断するものではない。また、哲学的主張は検証済みの科学的事実ではなく、人間の生の理解の仕方についての思考の枠組みであり、両者を同列に断定的に扱うことはできない。
+</p>
+</div>
+
+</div>
+</body>
+</html>

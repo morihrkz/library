@@ -2,674 +2,467 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>論理学入門 - 選択的夫婦別姓論争にみる論証の構造分析</title>
-<link rel="stylesheet" href="assets/shell.css">
 <style>
-  :root{
-    --accent:#25364A; --accent-light:#EEF2E4; --border:#C8CEC0; --text:#2D3325;
-    --muted:#72786B; --label:#3A4032; --bg:#F5F3EC; --white:#fff; --radius:8px;
-  }
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg); color:var(--text); margin:0;
+  font-family:"游明朝","Yu Mincho","YuMincho","Hiragino Mincho ProN","HiraMinProN-W3",serif;
+  line-height:2;
+}
+.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.kicker{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
+h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
+.subtitle{font-size:18px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
+  font-size:13px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
+.lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.toc{background:var(--box); border:1px solid var(--line); padding:22px; margin:0 0 48px;}
+.toc .label{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:12px;}
+.toc ol{margin:0; padding-left:0; list-style:none;}
+.toc li{margin-bottom:7px; font-size:14.5px;}
+.toc a{color:var(--text); text-decoration:none;}
+.toc a:hover{color:var(--accent); text-decoration:underline;}
+h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
+h3{font-size:18px; margin:32px 0 12px;}
+h4,h5{font-size:16px; margin:24px 0 10px;}
+p{font-size:16px; margin:0 0 20px;}
+.pull{font-size:20px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
+  padding-left:20px; margin:34px 0;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box strong{color:var(--accent);}
+table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:14px;}
+th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
+th{background:var(--box);}
+ul,ol{padding-left:1.4em; margin:0 0 20px;}
+li{margin-bottom:9px;}
+a{color:var(--link);}
+sup.fnref{font-size:.72em;}
+sup.fnref a{color:var(--link); text-decoration:none;}
+sup.fnref a:hover{text-decoration:underline;}
+.fnback{font-size:12px; margin-left:4px; text-decoration:none;}
+.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs ol{font-size:13.5px; line-height:1.65;}
+.refs li{margin-bottom:11px;}
+.refs em{font-style:italic;}
+.note{font-size:13px; color:var(--muted); margin-top:20px;}
+strong{font-weight:bold;}
+blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
+blockquote p{margin-bottom:10px;}
+blockquote p:last-child{margin-bottom:0;}
+hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
+code{font-family:"SF Mono","Menlo","Consolas",monospace; font-size:.88em; background:var(--box); padding:.1em .3em;}
+pre{font-family:"SF Mono","Menlo","Consolas",monospace; font-size:14px; background:var(--box); border:1px solid var(--line);
+  padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
+pre code{background:none; padding:0;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:24px;}
+}
 </style>
-
-<style>
-  /* 記事固有: 道具ラベル */
-  .tool{display:block;font-size:.9em;line-height:1.7;background:var(--accent-light);border-left:3px solid var(--accent);padding:.9rem 1.1rem;margin:0 0 1.4rem;text-align:left;text-indent:0;}
-  .tool b{color:var(--accent);font-weight:600;}
-  /* 記事固有: 引用 */
-  blockquote{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--accent-light);border-left:3px solid var(--border);font-size:.94em;line-height:1.85;}
-  blockquote p{margin:0 0 .7em;text-indent:0;}
-  blockquote p:last-of-type{margin-bottom:0;}
-  blockquote cite{display:block;margin-top:.8em;font-size:.85em;font-style:normal;color:var(--muted);line-height:1.7;text-align:left;}
-  /* 記事固有: 論証の骨格 */
-  .arg{margin:1.4rem 0;padding:1.1rem 1.2rem;background:var(--white);border:1px solid var(--border);border-radius:6px;font-size:.94em;line-height:1.85;text-align:left;}
-  .arg .caption{font-size:.78em;letter-spacing:.08em;color:var(--muted);margin:0 0 .7rem;padding-bottom:.5rem;border-bottom:1px dashed var(--border);text-indent:0;}
-  .arg .line{margin:0 0 .5rem;display:flex;gap:.8rem;align-items:baseline;}
-  .arg .line:last-child{margin-bottom:0;}
-  .arg .lab{flex:0 0 4.4rem;font-size:.78em;color:var(--muted);letter-spacing:.04em;padding-top:.15em;}
-  .arg .txt{flex:1 1 auto;}
-  .arg .bar{border-top:1px solid var(--border);margin:.75rem 0 .75rem 5.2rem;}
-  .arg .concl .lab{color:var(--accent);font-weight:600;}
-  .arg .concl .txt{font-weight:600;}
-  .arg .hidden-prem .txt{color:var(--accent);}
-  .arg .hidden-prem .lab{color:var(--accent);}
-  /* 記事固有: 演習 */
-  .exercise{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--accent-light);border:1px solid var(--border);border-radius:6px;font-size:.92em;line-height:1.85;text-align:left;}
-  .exercise .caption{font-size:.78em;letter-spacing:.1em;color:var(--muted);margin:0 0 .6rem;}
-  .exercise p{margin:0 0 .6rem;text-indent:0;}
-  .exercise p:last-child{margin-bottom:0;}
-  /* 記事固有: 注意書き */
-  .caution{margin:1.4rem 0;padding:1rem 1.2rem;background:var(--white);border:1px solid var(--accent);border-radius:6px;font-size:.92em;line-height:1.85;text-align:left;}
-  .caution .caption{font-size:.78em;letter-spacing:.1em;color:var(--accent);margin:0 0 .6rem;font-weight:600;}
-  .caution p{margin:0 0 .6rem;text-indent:0;}
-  .caution p:last-child{margin-bottom:0;}
-  /* 記事固有: 表 */
-  td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
-  /* 記事固有: コード・注番号 */
-  code{font-size:.9em;background:var(--accent-light);color:var(--accent);padding:.12em .4em;border-radius:2px;white-space:nowrap;}
-  sup.ref{font-size:.7em;line-height:0;vertical-align:super;}
-  sup.ref a{color:var(--accent);text-decoration:none;padding:0 .1em;}
-  sup.ref a:hover{text-decoration:underline;}
-  /* 記事固有: まとめ */
-  .summary{margin:1.6rem 0;padding:1.2rem 1.3rem;background:var(--white);border:1px solid var(--border);border-radius:6px;font-size:.94em;line-height:1.9;text-align:left;}
-  .summary .caption{font-size:.8em;letter-spacing:.1em;color:var(--accent);margin:0 0 .8rem;font-weight:600;text-indent:0;}
-  .summary ol{padding-left:1.4rem;margin-bottom:0;}
-  hr.sep{border:0;border-top:1px solid var(--border);margin:2rem auto;width:5rem;}
-  .sources{font-size:.92em;color:var(--label);line-height:1.9;padding-left:0;list-style:none;}
-  .sources li{margin-bottom:.6em;}
-  .sources li:target{background:var(--accent-light);}
-  .fn-num-plain{font-weight:700;}
-</style>
-
 </head>
 <body>
-
-<div class="sticky-zone">
-<header class="site-header">
- <a class="home" href="index.html">← ホーム</a>
- <h1>論理学入門 - 選択的夫婦別姓論争にみる論証の構造分析</h1>
- <div class="controls">
-  <button type="button" id="expand-all">すべて展開</button>
-  <button type="button" id="collapse-all">すべて折りたたむ</button>
- </div>
-</header>
-<nav class="breadcrumb" id="breadcrumb" aria-label="現在位置"></nav>
-</div>
-
-<div class="container">
- <p class="doc-title">論理学入門 - 選択的夫婦別姓論争にみる論証の構造分析</p>
-
- <p class="doc-meta">選択的夫婦別姓をめぐる議論を教材に、論理を点検する道具を八つ学ぶ。</p>
-
- <div class="fig-note"><p>本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。</p></div>
-
- <div class="accordion">
-
-<div class="chapter" id="sec0">
-  <button aria-expanded="false" class="ch-head" type="button">出発点にある、ひとつの素朴な問い</button>
-  <div class="ch-body">
-
-<p class="pp">こういう疑問を持ったことはないだろうか。</p>
-
+<div class="wrap">
+<div class="kicker">論理学</div>
+<h1>論理学入門 - 選択的夫婦別姓論争にみる論証の構造分析</h1>
+<p class="subtitle">選択的夫婦別姓をめぐる議論を教材に、論理を点検する道具を八つ学ぶ。</p>
+<div class="lede"><p>本文中の上付き番号は末尾の出典一覧に対応する。判決・世論調査・提言はすべて公表された一次資料にあたり、原文の表現を引用している。</p></div>
+<div class="toc"><div class="label">目次</div><ol><li><a href="#sec1">1 ．出発点にある、ひとつの素朴な問い</a></li>
+<li><a href="#sec2">2 ．まず、命題を正確に書き取る</a></li>
+<li><a href="#sec3">3 ．「利点がある」から「禁止せよ」は出てこない</a></li>
+<li><a href="#sec4">4 ．前提そのものが正しいかを疑う</a></li>
+<li><a href="#sec5">5 ．反対論を、いちばん強い形にして立てる</a></li>
+<li><a href="#sec6">6 ．その反論は、本当に「差」を指しているか</a></li>
+<li><a href="#sec7">7 ．害の原因は、どこにあるのか</a></li>
+<li><a href="#sec8">8 ．数字は、そのままでは前提にならない</a></li>
+<li><a href="#sec9">9 ．「である」から「べき」は出てこない</a></li>
+<li><a href="#sec10">10 ．では、最初の問いに答える</a></li>
+<li><a href="#sec11">11 ．この道具は、誰に向けて使うものか</a></li></ol></div>
+<h2 id="sec1">1 ．出発点にある、ひとつの素朴な問い</h2>
+<p>こういう疑問を持ったことはないだろうか。</p>
 <blockquote>
-<p class="pp">選択的夫婦別姓というのは、「同じ姓にしたい夫婦は同じ姓にする、別の姓にしたい夫婦は別の姓にする」という制度である。ならば、全員が自分の望む方を選べるのだから、そもそも対立が生じようがないはずだ。それなのに、なぜこれほど大きな議論になり、三十年たっても実現しないのか。</p>
+<p>選択的夫婦別姓というのは、「同じ姓にしたい夫婦は同じ姓にする、別の姓にしたい夫婦は別の姓にする」という制度である。ならば、全員が自分の望む方を選べるのだから、そもそも対立が生じようがないはずだ。それなのに、なぜこれほど大きな議論になり、三十年たっても実現しないのか。</p>
 </blockquote>
-
-<p class="pp">この疑問はまっとうである。そして、この疑問こそが論理学の絶好の練習台になる。なぜなら、ここには「一見すると誰も損をしないはずの提案に、強い反対が出ている」という、論理のねじれが疑われる状況があるからだ。ねじれが本当にあるのか、あるとすればどこにあるのか。それを見つけるのが論理学の仕事である。</p>
-
-<p class="pp">先に、この記事で扱わないことを言っておく。論理学は「選択的夫婦別姓を導入すべきか否か」という問いに直接答えを出す道具ではない。論理学が扱うのは、<strong>主張と主張のあいだに、本当に線が引かれているかどうか</strong>だけである。「 A だから B だ」と言われたとき、 A から B へ本当に線が引けるのか。引けないなら、どこで切れているのか。それだけを見る。</p>
-
-<p class="pp">ただし、これは弱い道具ではない。線が切れていることを示せれば、その主張はその形のままでは通用しなくなる。実際に見ていくと、この題材では驚くほど多くの線が切れている。そして、切れていない線もある。両方を仕分けするところまで進む。</p>
-
-<p class="pp">この記事は八つの道具を順に導入する。導入するたびに、その道具を実際の議論に当てる。そのうえで、最初の問いに答える章で、冒頭の問いに正面から答える。</p>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec1">
-  <button aria-expanded="false" class="ch-head" type="button">まず、命題を正確に書き取る</button>
-  <div class="ch-body">
-
-<p class="tool"><b>道具 1 - 命題と量化。</b>議論を始める前に、争われている主張を、誰が読んでも同じ意味に取れる文の形に書き直す。とくに「すべての」なのか「ある」なのかを区別する。</p>
-
-<p class="pp">論理学の第一歩は、推論することではない。<strong>主張を正確に書き取ること</strong>である。日常の言葉は曖昧で、同じ言い回しがまったく違う主張を指してしまう。書き取りを飛ばして議論を始めると、たいていは何も噛み合わないまま終わる。</p>
-
-<p class="pp">まず、制度の内容を定義から確認する。法務省の説明はこうである。</p>
-
+<p>この疑問はまっとうである。そして、この疑問こそが論理学の絶好の練習台になる。なぜなら、ここには「一見すると誰も損をしないはずの提案に、強い反対が出ている」という、論理のねじれが疑われる状況があるからだ。ねじれが本当にあるのか、あるとすればどこにあるのか。それを見つけるのが論理学の仕事である。</p>
+<p>先に、この記事で扱わないことを言っておく。論理学は「選択的夫婦別姓を導入すべきか否か」という問いに直接答えを出す道具ではない。論理学が扱うのは、<strong>主張と主張のあいだに、本当に線が引かれているかどうか</strong>だけである。「 A だから B だ」と言われたとき、 A から B へ本当に線が引けるのか。引けないなら、どこで切れているのか。それだけを見る。</p>
+<p>ただし、これは弱い道具ではない。線が切れていることを示せれば、その主張はその形のままでは通用しなくなる。実際に見ていくと、この題材では驚くほど多くの線が切れている。そして、切れていない線もある。両方を仕分けするところまで進む。</p>
+<p>この記事は八つの道具を順に導入する。導入するたびに、その道具を実際の議論に当てる。そのうえで、最初の問いに答える章で、冒頭の問いに正面から答える。</p>
+<h2 id="sec2">2 ．まず、命題を正確に書き取る</h2>
+<p><strong>道具 1 - 命題と量化。</strong>議論を始める前に、争われている主張を、誰が読んでも同じ意味に取れる文の形に書き直す。とくに「すべての」なのか「ある」なのかを区別する。</p>
+<p>論理学の第一歩は、推論することではない。<strong>主張を正確に書き取ること</strong>である。日常の言葉は曖昧で、同じ言い回しがまったく違う主張を指してしまう。書き取りを飛ばして議論を始めると、たいていは何も噛み合わないまま終わる。</p>
+<p>まず、制度の内容を定義から確認する。法務省の説明はこうである。</p>
 <blockquote>
-<p class="pp">選択的夫婦別氏制度とは、夫婦が望む場合には、結婚後も夫婦がそれぞれ結婚前の氏を称することを認める制度です。</p>
-<cite>法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」 <sup class="ref"><a href="#s1" id="r1">1</a></sup></cite>
+<p>選択的夫婦別氏制度とは、夫婦が望む場合には、結婚後も夫婦がそれぞれ結婚前の氏を称することを認める制度です。</p>
+<p>法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」 <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup></p>
 </blockquote>
-
-<p class="pp">ここで大事なのは「望む場合には」という一句である。日本語の議論では「夫婦別姓」と「選択的夫婦別姓」がしばしば混ぜて使われるが、この二つはまったく別の命題である。</p>
-
-<div class="arg">
-  <p class="caption">三つの制度を、命題として書き分ける</p>
-  <p class="line"><span class="lab">制度 A</span> <span class="txt">すべての夫婦は、同じ姓を名乗らなければならない。（現行の民法 750 条）</span></p>
-  <p class="line"><span class="lab">制度 B</span> <span class="txt">すべての夫婦は、別の姓を名乗らなければならない。（誰も提案していない）</span></p>
-  <p class="line"><span class="lab">制度 C</span> <span class="txt">それぞれの夫婦は、同じ姓と別の姓のどちらかを選ぶ。（選択的夫婦別姓）</span></p>
-</div>
-
-<div class="caution">
-<p class="caption">この仕分けは網羅的か</p>
-<p class="pp">制度 C への賛否は、「自分はどちらを選びたいか」と「他人にも同じ選択を求めるか」という二つの軸で分けると、四つの立場に分かれる。同姓を望み、かつ全員に同姓を求める立場。別姓を望み、かつ全員に別姓を求める立場。同姓を望むが、他人には求めない立場。別姓を望むが、他人には求めない立場。この四つである。</p>
-<p class="pp">このうち、同姓を望み全員に同姓を求める立場については、法務省が整理した反対論、新聞社説、国会審議といった、検証できる組織的な主張の蓄積がこの記事にある。一方、別姓を望み全員に別姓を求める立場 - 制度 C を「選択制にすぎない」ことを理由に退け、すべての夫婦に別姓を義務づけよと求める立場 - を、組織立った主張として管見の限り見つけることができなかった。制度 B について「誰も提案していない」と書いたのは、この意味においてである。</p>
-<p class="pp">この記事が前者を厚く扱い、後者をほとんど扱わないのは、両者を意図的に非対称に扱ったからではない。検証できる材料の有無という、それ自体が確認できる非対称を反映した結果である。個人の水準で別姓を望みながら、いずれ社会全体が別姓を当たり前とする方向に変わってほしいと願う人がいる可能性まで、この記事は否定しない。しかし、それを法による義務づけとして組織的に主張している論者・団体を示す資料に、本稿はたどり着けなかった。もしそうした資料があるなら、それは本稿の欠落であり、訂正されるべきものである。</p>
-</div>
-
-<p class="pp">記号で書くと違いがはっきりする。夫婦の集まりを考え、ある夫婦 <code>x</code> が同姓であることを <code>S (x)</code> と書く。</p>
-
+<p>ここで大事なのは「望む場合には」という一句である。日本語の議論では「夫婦別姓」と「選択的夫婦別姓」がしばしば混ぜて使われるが、この二つはまったく別の命題である。</p>
+<p>三つの制度を、命題として書き分ける</p>
+<p>制度 A すべての夫婦は、同じ姓を名乗らなければならない。（現行の民法 750 条）</p>
+<p>制度 B すべての夫婦は、別の姓を名乗らなければならない。（誰も提案していない）</p>
+<p>制度 C それぞれの夫婦は、同じ姓と別の姓のどちらかを選ぶ。（選択的夫婦別姓）</p>
+<p>この仕分けは網羅的か</p>
+<p>制度 C への賛否は、「自分はどちらを選びたいか」と「他人にも同じ選択を求めるか」という二つの軸で分けると、四つの立場に分かれる。同姓を望み、かつ全員に同姓を求める立場。別姓を望み、かつ全員に別姓を求める立場。同姓を望むが、他人には求めない立場。別姓を望むが、他人には求めない立場。この四つである。</p>
+<p>このうち、同姓を望み全員に同姓を求める立場については、法務省が整理した反対論、新聞社説、国会審議といった、検証できる組織的な主張の蓄積がこの記事にある。一方、別姓を望み全員に別姓を求める立場 - 制度 C を「選択制にすぎない」ことを理由に退け、すべての夫婦に別姓を義務づけよと求める立場 - を、組織立った主張として管見の限り見つけることができなかった。制度 B について「誰も提案していない」と書いたのは、この意味においてである。</p>
+<p>この記事が前者を厚く扱い、後者をほとんど扱わないのは、両者を意図的に非対称に扱ったからではない。検証できる材料の有無という、それ自体が確認できる非対称を反映した結果である。個人の水準で別姓を望みながら、いずれ社会全体が別姓を当たり前とする方向に変わってほしいと願う人がいる可能性まで、この記事は否定しない。しかし、それを法による義務づけとして組織的に主張している論者・団体を示す資料に、本稿はたどり着けなかった。もしそうした資料があるなら、それは本稿の欠落であり、訂正されるべきものである。</p>
+<p>記号で書くと違いがはっきりする。夫婦の集まりを考え、ある夫婦 <code>x</code> が同姓であることを <code>S (x)</code> と書く。</p>
 <ul>
 <li>制度 A は <code>∀x S (x)</code> - 「すべての <code>x</code> について <code>S (x)</code> 」</li>
 <li>制度 B は <code>∀x ¬S (x)</code> - 「すべての <code>x</code> について <code>S (x)</code> でない」</li>
 <li>制度 C は、どちらも許す。つまり <code>∃x S (x)</code> と <code>∃x ¬S (x)</code> のどちらも成り立ちうる状態を法が認める。</li>
 </ul>
-
-<p class="pp">この <code>∀</code>（すべての）と <code>∃</code>（ある）を<strong>量化子</strong>という。論理学の入門で最初に覚える記号のひとつで、これを区別できるようになるだけで、議論の見え方がかなり変わる。</p>
-
-<p class="pp">さて、ここで冒頭の疑問の正体が姿を現す。<strong>制度 C に反対するとは、論理的にはどういう主張なのか</strong>を書き取ってみよう。</p>
-
-<p class="pp">制度 C の眼目は <code>∃x ¬S (x)</code> を法的に可能にすることである。したがって制度 C への反対とは、<code>∃x ¬S (x)</code> を否定することである。そして論理学の基本的な規則により、「そういうものがある」を否定することは、「どれもそうではない」と言い切ることと同じになる。</p>
-
-<div class="arg">
-  <p class="caption">量化子の否定</p>
-  <p class="line"><span class="lab"></span><span class="txt"><code>¬∃x ¬S (x)</code> は <code>∀x S (x)</code> と同値である</span></p>
-  <p class="line"><span class="lab">読み下し</span><span class="txt">「別姓の夫婦が存在することを認めない」は「すべての夫婦は同姓でなければならない」と同じことを言っている</span></p>
-</div>
-
-<p class="pp">つまり、制度 C に反対する人は、論理の形の上では、自分たち夫婦がどうするかを述べているのではない。<strong>他人の夫婦がどうするかまで含めて、すべての夫婦に例外なく命じている</strong>のである。「わたしたちは同姓にする」は制度 C のもとでも完全に実現できる。制度 C に反対する必要は、その目的からは出てこない。</p>
-
-<p class="pp">冒頭の疑問が引っかかっていたのは、まさにこの点だった。書き取ってみると、反対論はこう言っていることになる - 「わたしたちは同姓にする。だから他の夫婦も同姓にすべきであり、別姓を許さない」。この主張の後半が、前半からは出てこないのではないか。</p>
-
-<div class="caution">
-<p class="caption">ここで立ち止まる</p>
-<p class="pp">いま示したのは、反対論が<strong>どういう形をしているか</strong>だけである。形が「他人にも例外なく従わせる命令」であることは、その主張が間違っていることを意味しない。法律とはそもそも、すべての人に例外なく向けられた命令の集まりである。「すべての人は他人を殺してはならない」もそうした命令のひとつだが、正当である。</p>
-<p class="pp">問題は形ではなく、<strong>すべての夫婦を例外なく縛るだけの理由があるかどうか</strong>である。ここから先は中身の検討になる。</p>
-</div>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec2">
-  <button aria-expanded="false" class="ch-head" type="button">「利点がある」から「禁止せよ」は出てこない</button>
-  <div class="ch-body">
-
-<p class="tool"><b>道具 2 - 隠れた前提。</b>実際の議論では、前提の一部がいつも省略されている。省略された前提を書き足してみると、その論証が本当に立っているかが見える。</p>
-
-<p class="pp">法務省が反対論としてまとめている論拠は、次の三つである。</p>
-
+<p>この <code>∀</code>（すべての）と <code>∃</code>（ある）を<strong>量化子</strong>という。論理学の入門で最初に覚える記号のひとつで、これを区別できるようになるだけで、議論の見え方がかなり変わる。</p>
+<p>さて、ここで冒頭の疑問の正体が姿を現す。<strong>制度 C に反対するとは、論理的にはどういう主張なのか</strong>を書き取ってみよう。</p>
+<p>制度 C の眼目は <code>∃x ¬S (x)</code> を法的に可能にすることである。したがって制度 C への反対とは、<code>∃x ¬S (x)</code> を否定することである。そして論理学の基本的な規則により、「そういうものがある」を否定することは、「どれもそうではない」と言い切ることと同じになる。</p>
+<p>量化子の否定</p>
+<p><code>¬∃x ¬S (x)</code> は <code>∀x S (x)</code> と同値である</p>
+<p>読み下し「別姓の夫婦が存在することを認めない」は「すべての夫婦は同姓でなければならない」と同じことを言っている</p>
+<p>つまり、制度 C に反対する人は、論理の形の上では、自分たち夫婦がどうするかを述べているのではない。<strong>他人の夫婦がどうするかまで含めて、すべての夫婦に例外なく命じている</strong>のである。「わたしたちは同姓にする」は制度 C のもとでも完全に実現できる。制度 C に反対する必要は、その目的からは出てこない。</p>
+<p>冒頭の疑問が引っかかっていたのは、まさにこの点だった。書き取ってみると、反対論はこう言っていることになる - 「わたしたちは同姓にする。だから他の夫婦も同姓にすべきであり、別姓を許さない」。この主張の後半が、前半からは出てこないのではないか。</p>
+<p>ここで立ち止まる</p>
+<p>いま示したのは、反対論が<strong>どういう形をしているか</strong>だけである。形が「他人にも例外なく従わせる命令」であることは、その主張が間違っていることを意味しない。法律とはそもそも、すべての人に例外なく向けられた命令の集まりである。「すべての人は他人を殺してはならない」もそうした命令のひとつだが、正当である。</p>
+<p>問題は形ではなく、<strong>すべての夫婦を例外なく縛るだけの理由があるかどうか</strong>である。ここから先は中身の検討になる。</p>
+<h2 id="sec3">3 ．「利点がある」から「禁止せよ」は出てこない</h2>
+<p><strong>道具 2 - 隠れた前提。</strong>実際の議論では、前提の一部がいつも省略されている。省略された前提を書き足してみると、その論証が本当に立っているかが見える。</p>
+<p>法務省が反対論としてまとめている論拠は、次の三つである。</p>
 <blockquote>
-<p class="pp">（1）夫婦同氏が日本社会に定着した制度であること、（2）氏は個人の自由の問題ではなく、公的制度の問題であること、（3）家族が同氏となることで夫婦・家族の一体感が生まれ、子の利益にも資すること</p>
-<cite>法務省「選択的夫婦別氏制度について」 <sup class="ref"><a href="#s1" id="r1b">1</a></sup></cite>
+<p>（1）夫婦同氏が日本社会に定着した制度であること、（2）氏は個人の自由の問題ではなく、公的制度の問題であること、（3）家族が同氏となることで夫婦・家族の一体感が生まれ、子の利益にも資すること</p>
+<p>法務省「選択的夫婦別氏制度について」 <sup class="fnref"><a id="fnref-1-2" href="#ref-1">[1]</a></sup></p>
 </blockquote>
-
-<p class="pp">（3）を取り上げる。これを論証の形に書き取ると、こうなる。</p>
-
-<div class="arg">
-  <p class="caption">論証 1 - そのまま書き取ったもの</p>
-  <p class="line"><span class="lab">前提</span><span class="txt">夫婦・家族が同じ姓を名乗ることには、一体感が生まれるという利点がある。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">結論</span><span class="txt">夫婦が別の姓を名乗ることを、法は認めてはならない。</span></p>
-</div>
-
-<p class="pp">この論証を見て、何かが足りないと感じられただろうか。前提には「同姓には利点がある」としか書かれていない。結論は「別姓を禁止せよ」である。前提と結論のあいだに、大きな穴がある。</p>
-
-<p class="pp">日常の議論では、前提のいくつかが省略されるのがふつうである。省略された前提を含む論証を<strong>省略三段論法</strong>といい、省略されている前提を<strong>隠れた前提</strong>と呼ぶ。論理を点検する作業の大半は、この隠れた前提を掘り出すことである。掘り出してみると、多くの場合、掘り出した本人も認めたくないような前提が出てくる。</p>
-
-<p class="pp">この論証の穴を埋めるには、少なくとも次の一文が要る。</p>
-
-<div class="arg">
-  <p class="caption">論証 1 - 隠れた前提を書き足したもの</p>
-  <p class="line"><span class="lab">前提 1</span> <span class="txt">夫婦・家族が同じ姓を名乗ることには、一体感が生まれるという利点がある。</span></p>
-  <p class="line hidden-prem"><span class="lab">前提 2</span> <span class="txt">利点のあるやり方は、それを望まない人にも法によって強制してよい。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">結論</span><span class="txt">夫婦が別の姓を名乗ることを、法は認めてはならない。</span></p>
-</div>
-
-<p class="pp">これで論証は<strong>形としては</strong>成立する。しかし前提 2 を、いま口に出して支持できる人がどれだけいるだろうか。この前提を認めるなら、朝食をとることには利点があるから朝食を法で義務づけてよい、運動には利点があるから運動を法で義務づけてよい、ということになる。</p>
-
-<p class="pp">この飛躍は、実は最高裁判所の裁判官によって、まさにこの言葉で指摘されている。 2015 年の大法廷判決で、木内道祥裁判官はこう述べた。</p>
-
+<p>（3）を取り上げる。これを論証の形に書き取ると、こうなる。</p>
+<p>論証 1 - そのまま書き取ったもの</p>
+<p>前提夫婦・家族が同じ姓を名乗ることには、一体感が生まれるという利点がある。</p>
+<p>結論夫婦が別の姓を名乗ることを、法は認めてはならない。</p>
+<p>この論証を見て、何かが足りないと感じられただろうか。前提には「同姓には利点がある」としか書かれていない。結論は「別姓を禁止せよ」である。前提と結論のあいだに、大きな穴がある。</p>
+<p>日常の議論では、前提のいくつかが省略されるのがふつうである。省略された前提を含む論証を<strong>省略三段論法</strong>といい、省略されている前提を<strong>隠れた前提</strong>と呼ぶ。論理を点検する作業の大半は、この隠れた前提を掘り出すことである。掘り出してみると、多くの場合、掘り出した本人も認めたくないような前提が出てくる。</p>
+<p>この論証の穴を埋めるには、少なくとも次の一文が要る。</p>
+<p>論証 1 - 隠れた前提を書き足したもの</p>
+<p>前提 1 夫婦・家族が同じ姓を名乗ることには、一体感が生まれるという利点がある。</p>
+<p>前提 2 利点のあるやり方は、それを望まない人にも法によって強制してよい。</p>
+<p>結論夫婦が別の姓を名乗ることを、法は認めてはならない。</p>
+<p>これで論証は<strong>形としては</strong>成立する。しかし前提 2 を、いま口に出して支持できる人がどれだけいるだろうか。この前提を認めるなら、朝食をとることには利点があるから朝食を法で義務づけてよい、運動には利点があるから運動を法で義務づけてよい、ということになる。</p>
+<p>この飛躍は、実は最高裁判所の裁判官によって、まさにこの言葉で指摘されている。 2015 年の大法廷判決で、木内道祥裁判官はこう述べた。</p>
 <blockquote>
-<p class="pp">ここで重要なのは、問題となる合理性とは、夫婦が同氏であることの合理性ではなく、夫婦同氏に例外を許さないことの合理性であり、立法裁量の合理性という場合、単に、夫婦同氏となることに合理性があるということだけでは足りず、夫婦同氏に例外を許さないことに合理性があるといえなければならないことである。</p>
-<cite>最高裁判所大法廷 平成 27 年 12 月 16 日判決、裁判官木内道祥の意見 <sup class="ref"><a href="#s2" id="r2">2</a></sup></cite>
+<p>ここで重要なのは、問題となる合理性とは、夫婦が同氏であることの合理性ではなく、夫婦同氏に例外を許さないことの合理性であり、立法裁量の合理性という場合、単に、夫婦同氏となることに合理性があるということだけでは足りず、夫婦同氏に例外を許さないことに合理性があるといえなければならないことである。</p>
+<p>最高裁判所大法廷 平成 27 年 12 月 16 日判決、裁判官木内道祥の意見 <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup></p>
 </blockquote>
-
-<p class="pp">ひとつの文に、この記事の核心が入っている。証明すべき命題を取り違えてはならない、ということである。</p>
-
-<div class="arg">
-  <p class="caption">証明すべき命題は二つある</p>
-  <p class="line"><span class="lab">命題 P</span> <span class="txt">夫婦が同じ姓であることには合理性がある。</span></p>
-  <p class="line"><span class="lab">命題 Q</span> <span class="txt">夫婦が同じ姓であることに、例外を一切許さないことには合理性がある。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">要点</span> <span class="txt">P を証明しても、 Q は証明されない。制度を維持する側が証明すべきなのは Q である。</span></p>
-</div>
-
-<p class="pp">木内裁判官は同じ意見のなかで、この区別を実際に使ってみせている。同姓に利益があること自体は認めたうえで、こう続ける。</p>
-
+<p>ひとつの文に、この記事の核心が入っている。証明すべき命題を取り違えてはならない、ということである。</p>
+<p>証明すべき命題は二つある</p>
+<p>命題 P 夫婦が同じ姓であることには合理性がある。</p>
+<p>命題 Q 夫婦が同じ姓であることに、例外を一切許さないことには合理性がある。</p>
+<p>要点 P を証明しても、 Q は証明されない。制度を維持する側が証明すべきなのは Q である。</p>
+<p>木内裁判官は同じ意見のなかで、この区別を実際に使ってみせている。同姓に利益があること自体は認めたうえで、こう続ける。</p>
 <blockquote>
-<p class="pp">夫婦同氏の持つ利益がこのようなものにとどまり、他方、同氏でない婚姻をした夫婦は破綻しやすくなる、あるいは、夫婦間の子の生育がうまくいかなくなるという根拠はないのであるから、夫婦同氏の効用という点からは、同氏に例外を許さないことに合理性があるということはできない。</p>
-<cite>同上 <sup class="ref"><a href="#s2" id="r2b">2</a></sup></cite>
+<p>夫婦同氏の持つ利益がこのようなものにとどまり、他方、同氏でない婚姻をした夫婦は破綻しやすくなる、あるいは、夫婦間の子の生育がうまくいかなくなるという根拠はないのであるから、夫婦同氏の効用という点からは、同氏に例外を許さないことに合理性があるということはできない。</p>
+<p>同上 <sup class="fnref"><a id="fnref-2-2" href="#ref-2">[2]</a></sup></p>
 </blockquote>
-
-<p class="pp">「同姓にはよいところがある」と「別姓を禁じるべきだ」のあいだには、埋めなければならない距離がある。反対論の相当部分は、前者を語ることで後者を語ったつもりになっている - これが、この題材でいちばん頻繁に現れる論理のねじれである。</p>
-
-<div class="exercise">
-<p class="caption">演習 1</p>
-<p class="pp">次の主張の隠れた前提を書き出してほしい。産経新聞の社説に実際に現れた文言である。 <sup class="ref"><a href="#s3" id="r3">3</a></sup></p>
-<p class="pp">「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」</p>
-<p class="pp">ヒント。この文が「だから選択的夫婦別姓を導入すべきでない」という結論を支えるためには、何と何を橋渡しする前提が要るだろうか。</p>
-</div>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec3">
-  <button aria-expanded="false" class="ch-head" type="button">前提そのものが正しいかを疑う</button>
-  <div class="ch-body"><div class="ch-intro">
-
-<p class="tool"><b>道具 3 - 妥当性と健全性。</b>「前提から結論への線が引けている」ことと「その論証が正しい」ことは別である。線が引けているだけでは足りない。前提そのものが真でなければならない。</p>
-
-<p class="pp">論理学の最重要概念のひとつが、この二つの区別である。</p>
-
-<div class="arg">
-  <p class="caption">二つの評価軸</p>
-  <p class="line"><span class="lab">妥当</span><span class="txt">前提がすべて真であるなら、結論も必ず真になる。 - 論証の<strong>形</strong>についての評価。</span></p>
-  <p class="line"><span class="lab">健全</span><span class="txt">妥当であり、かつ前提が実際にすべて真である。 - 論証の<strong>中身</strong>まで含めた評価。</span></p>
-</div>
-
-<p class="pp">妥当だが健全でない論証はいくらでもつくれる。「すべての鳥は空を飛ぶ。ペンギンは鳥である。ゆえにペンギンは空を飛ぶ」。形は完璧に妥当だが、第一の前提が偽なので、結論は支えられていない。</p>
-
-<p class="pp">論理学というと「形さえ合っていればよい」と誤解されがちだが、逆である。形を点検し終えたら、次は前提が事実として真かを調べなければならない。ここからは<strong>事実の確認</strong>の作業になる。反対論の主要な前提を三つ、順に確認する。</p>
-
-</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">前提①「夫婦同姓は日本の伝統である」</button><div class="sec-body">
-
-<p class="pp">これは検証できる歴史上の事実命題である。実際の経緯はこうなっている。</p>
-
-<div class="tablewrap">
+<p>「同姓にはよいところがある」と「別姓を禁じるべきだ」のあいだには、埋めなければならない距離がある。反対論の相当部分は、前者を語ることで後者を語ったつもりになっている - これが、この題材でいちばん頻繁に現れる論理のねじれである。</p>
+<p>演習 1</p>
+<p>次の主張の隠れた前提を書き出してほしい。産経新聞の社説に実際に現れた文言である。 <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup></p>
+<p>「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」</p>
+<p>ヒント。この文が「だから選択的夫婦別姓を導入すべきでない」という結論を支えるためには、何と何を橋渡しする前提が要るだろうか。</p>
+<h2 id="sec4">4 ．前提そのものが正しいかを疑う</h2>
+<p><strong>道具 3 - 妥当性と健全性。</strong>「前提から結論への線が引けている」ことと「その論証が正しい」ことは別である。線が引けているだけでは足りない。前提そのものが真でなければならない。</p>
+<p>論理学の最重要概念のひとつが、この二つの区別である。</p>
+<p>二つの評価軸</p>
+<p>妥当前提がすべて真であるなら、結論も必ず真になる。 - 論証の<strong>形</strong>についての評価。</p>
+<p>健全妥当であり、かつ前提が実際にすべて真である。 - 論証の<strong>中身</strong>まで含めた評価。</p>
+<p>妥当だが健全でない論証はいくらでもつくれる。「すべての鳥は空を飛ぶ。ペンギンは鳥である。ゆえにペンギンは空を飛ぶ」。形は完璧に妥当だが、第一の前提が偽なので、結論は支えられていない。</p>
+<p>論理学というと「形さえ合っていればよい」と誤解されがちだが、逆である。形を点検し終えたら、次は前提が事実として真かを調べなければならない。ここからは<strong>事実の確認</strong>の作業になる。反対論の主要な前提を三つ、順に確認する。</p>
+<h3>前提①「夫婦同姓は日本の伝統である」</h3>
+<p>これは検証できる歴史上の事実命題である。実際の経緯はこうなっている。</p>
 <table>
-<thead><tr><th>年</th><th>できごと</th><th>夫婦の氏</th></tr></thead>
-<tbody>
-<tr><td class="num">1875 年</td><td>平民に苗字を称することが義務化される</td><td>—</td></tr>
-<tr><td class="num">1876 年</td><td>太政官指令。妻は夫の家を相続しない限り「所生ノ氏」（実家の氏）を用いるべきとされる</td><td>法令上は別氏</td></tr>
-<tr><td class="num">1898 年</td><td>明治民法施行。妻は婚姻により夫の家に入り、その家の氏を称するとされる</td><td>同氏</td></tr>
-<tr><td class="num">1947 年</td><td>民法改正。家制度は廃止されるが、 750 条により夫婦同氏は維持される</td><td>同氏</td></tr>
-</tbody>
-</table>
-</div>
-
-<p class="pp">制度としての夫婦同姓が始まったのは 1898 年である。 <sup class="ref"><a href="#s4" id="r4">4</a></sup> 明治初期の法令はむしろ別氏を原則としていた。したがって「古来の伝統」という言い方は、少なくともそのままの形では前提として使えない。</p>
-
-<div class="caution">
-<p class="caption">自分に都合のよい事実にも、同じ厳しさを</p>
-<p class="pp">ここで論理の作法として重要なことがある。いま示した「明治初期は別氏だった」という反論にも、留保が必要である。法制史の研究では、 1876 年の太政官指令があったことと、当時の人々が実際に別氏で暮らしていたかどうかは別問題だと指摘されている。明治民法の起草者たちは、この指令を「実際ノ慣習」に反するとして重視せず、夫婦同氏制を採用した。 <sup class="ref"><a href="#s5" id="r5">5</a></sup></p>
-<p class="pp">つまり、正確に言えるのはこうである。「制度としての夫婦同姓は 1898 年に始まった」は確実に真である。「明治初期の日本社会は別姓社会だった」はより強い主張であり、そこまでは断定できない。</p>
-<p class="pp">論理の道具を、相手の主張にだけ厳しく、自分の主張には甘く使うなら、それはもはや論理学ではない。</p>
-</div>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">前提②「旧姓の通称使用で、不便は解消される」</button><div class="sec-body">
-
-<p class="pp">これは 2015 年の最高裁判決の多数意見が、制度を合憲とした根拠のひとつに挙げたものである。</p>
-
-<blockquote>
-<p class="pp">夫婦同氏制は、婚姻前の氏を通称として使用することまで許さないというものではなく、近時、婚姻前の氏を通称として使用することが社会的に広まっているところ、上記の不利益は、このような氏の通称使用が広まることにより一定程度は緩和され得るものである。</p>
-<cite>最高裁判所大法廷 平成 27 年 12 月 16 日判決、多数意見 <sup class="ref"><a href="#s2" id="r2c">2</a></sup></cite>
-</blockquote>
-
-<p class="pp">この前提が真かどうかは、調べれば分かる。</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>調査</th><th>結果</th></tr></thead>
-<tbody>
-<tr><td>内閣府「家族の法制に関する世論調査」（2021 年 12 月）問 5<br/><span style="color:var(--muted)">改姓に不便・不利益があると答えた 1,503 人が対象</span></td><td>「通称を使うことができても、それだけでは対処しきれない不便・不利益があると思う」 <strong>59.3%</strong><sup class="ref"><a href="#s6" id="r6">6</a></sup></td></tr>
-<tr><td>経団連調査（女性役員対象）</td><td><strong>88%</strong> が、旧姓の通称使用が可能である場合でも「何かしら不便さ・不都合、不利益が生じると思う」と回答 <sup class="ref"><a href="#s7" id="r7">7</a></sup></td></tr>
-</tbody>
-</table>
-</div>
-
-<p class="pp">経団連の提言は、通称使用の限界を制度の性質にさかのぼって説明している。「通称は法律上の姓ではないため、旧姓併記を拡大するだけでは解決できない課題も多数」「通称使用は日本独自の制度であることから、海外では理解されづらく、寧ろダブルネームとして不正を疑われ、説明に時間を要するなどのトラブルが起こることも」。 <sup class="ref"><a href="#s7" id="r7b">7</a></sup></p>
-
-<p class="pp">木内裁判官も、同じことを制度論として述べている。「法制化されない通称は、通称を許容するか否かが相手方の判断によるしかなく、氏を改めた者にとって、いちいち相手方の対応を確認する必要があり、個人の呼称の制度として大きな欠陥がある」。 <sup class="ref"><a href="#s2" id="r2d">2</a></sup></p>
-
-<p class="pp">この前提は、そのままの形では健全な論証を支えない。</p>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">前提③「別姓は家族の一体感を損なう」</button><div class="sec-body">
-
-<p class="pp">これは検証可能な命題として提示されているように見える。産経新聞の社説には「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」という断定があった。 <sup class="ref"><a href="#s3" id="r3b">3</a></sup></p>
-
-<p class="pp">「間違いない」という強い断定が使われているとき、論理の点検としてすべきことは決まっている。<strong>その根拠として何が示されているかを見る</strong>ことである。そして、示されていないなら、それを指摘することである。</p>
-
-<p class="pp">2021 年の最高裁決定で、草野耕一裁判官はこの点をきわめて厳密な言い方で処理した。</p>
-
-<blockquote>
-<p class="pp">もし、夫婦同氏制に、人々の行動や意識の相互依存的関係を通じて、社会の構成員全般の福利を向上させる働きがあるとすれば、福利の比較衡量を行うことに対して上記と同様の方法論上の懸念が生じ得るが、<strong>そのような働きの存在が検証可能なほどの具体性をもって主張されたことはない</strong>。</p>
-<cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="ref"><a href="#s8" id="r8">8</a></sup></cite>
-</blockquote>
-
-<p class="pp">「そのような事実はない」ではなく、「<strong>検証可能なほどの具体性をもって主張されたことはない</strong>」という言い方に注目してほしい。これは論理学と科学方法論の交差点にある考え方である。ある主張が、原理的にどんな観察によっても否定されえない形で述べられているとき、その主張は議論の前提として使えない。何が起きたら「一体感が損なわれた」と言えるのかを述べていない主張は、証拠によって支持することも反駁することもできないからである。</p>
-
-<p class="pp">あわせて、事実として確認できることもある。内閣府の同じ調査で、夫婦・親子の姓が違うことの影響を尋ねた問 8 では、「家族の一体感・きずなが弱まると思う」が 37.8% 、「影響がないと思う」が 61.6% だった。 <sup class="ref"><a href="#s6" id="r6b">6</a></sup> 「間違いない」とされていることについて、社会の多数はそう思っていない。</p>
-
-<div class="exercise">
-<p class="caption">演習 2</p>
-<p class="pp">次の主張を、妥当性と健全性の両面から評価してほしい。</p>
-<p class="pp">「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている。だから選択的夫婦別姓を導入すべきでない」 <sup class="ref"><a href="#s3" id="r3c">3</a></sup></p>
-<p class="pp">ヒント。まず、この論証を妥当にするために必要な隠れた前提を書き出してほしい。次に、その前提が真かどうかを考えてほしい。二つの作業は別々に行うこと。</p>
-</div>
-
-    </div></div></div>
-</div>
-
-<div class="chapter" id="sec4">
-  <button aria-expanded="false" class="ch-head" type="button">反対論を、いちばん強い形にして立てる</button>
-  <div class="ch-body"><div class="ch-intro">
-
-<p class="tool"><b>道具 4 - 藁人形と鋼鉄人形。</b>相手の主張を弱い形に作り変えてから叩くのは論証ではない。相手の主張のもっとも強い形を自分で組み立て、それに答えられて初めて反論になる。</p>
-
-<p class="pp">ここまで、反対論のいくつかの形が論証として立っていないことを見てきた。しかしここで止まると、この記事自体が論理的に不誠実なものになる。<strong>藁人形論法</strong> - 相手の見解を反駁しやすいように歪めてから叩く手口 - を、こちらが犯すことになるからである。 <sup class="ref"><a href="#s9" id="r9">9</a></sup></p>
-
-<p class="pp">誠実な議論の作法は逆である。相手の主張のうち、もっとも手強い形を自分で組み立てる。俗に<strong>鋼鉄人形</strong>と呼ばれる作業である。そして、この題材には、実際に手強い反対論が存在する。</p>
-
-</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">鋼鉄人形① 家族法は、当事者だけの取り決めではない</button><div class="sec-body">
-
-<p class="pp">2015 年の判決で、寺田逸郎裁判官（当時の最高裁長官）が述べた補足意見が、反対論のもっとも強い形である。冒頭の疑問の底にある発想 - 夫婦の姓は、その夫婦が決めればよい事柄ではないか - に、正面から答えている。</p>
-
-<blockquote>
-<p class="pp">およそ人同士がどうつながりを持って暮らし、生きていくかは、その人たちが自由に決められて然るべき事柄である。憲法上も、このことを 13 条によって裏付けることができよう。これに対して、法律制度としてみると、婚姻夫婦のように形の上では 2 人の間の関係であっても、家族制度の一部として構成され、身近な第三者ばかりでなく広く社会に効果を及ぼすことがあるものとして位置付けられることがむしろ一般的である。</p>
-<p class="pp">（中略）このような法律制度としての性格や、現実に夫婦、親子などからなる家族が広く社会の基本的構成要素となっているという事情などから、法律上の仕組みとしての婚姻夫婦も、その他の家族関係と同様、社会の構成員一般からみてもそう複雑でないものとして捉えることができるよう規格化された形で作られていて、個々の当事者の多様な意思に沿って変容させることに対しては抑制的である。</p>
-<cite>最高裁判所大法廷 平成 27 年 12 月 16 日判決、裁判官寺田逸郎の補足意見 <sup class="ref"><a href="#s2" id="r2e">2</a></sup></cite>
-</blockquote>
-
-<p class="pp">この議論は、前章までに検討した反対論とは種類が違う。「同姓には利点があるから別姓を禁じよ」という飛躍を含んでいない。かわりに、こう言っている - 法律婚は当事者二人の私的な契約ではなく、相続、取引、親子関係の推定といった効果を通じて第三者と社会全体に及ぶ制度である。だから、当事者の合意さえあればよいという発想は、この分野には素直には当てはまらない。</p>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">鋼鉄人形② 子どもは、選ぶ側にいない</button><div class="sec-body">
-
-<p class="pp">もうひとつ、正面から向き合うべき論点がある。冒頭の疑問は「全員が自分の望む方を選べる」ことを前提にしていた。この前提は、厳密には偽である。</p>
-
-<p class="pp">選択するのは夫婦であって、子どもではないからである。この点をいちばん率直に認めたのは、皮肉なことに、制度に賛成した草野裁判官だった。</p>
-
-<blockquote>
-<p class="pp">むしろ問題となるのは、夫婦別氏を選択した夫婦の間に生まれる子の福利である。なぜならば、子は、親とは別の人格を有する法主体であるにもかかわらず、親が別氏とすることを選択したことによって生ずる帰結を自らの同意なく受け入れなければならない存在だからである。</p>
-<cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="ref"><a href="#s8" id="r8b">8</a></sup></cite>
-</blockquote>
-
-<p class="pp">そして、この論点は抽象論ではない。実際の立法過程で、いちばんの難所になり続けてきた。 2025 年 5 月、 28 年ぶりに衆議院法務委員会で選択的夫婦別姓の民法改正案が審議入りしたが、そこで提出された案は子の氏の扱いが互いに異なっていた。立憲民主党案は子の氏を婚姻時に定めるとし、国民民主党案は婚姻時に定める戸籍筆頭者と同じ氏とするものだった。 <sup class="ref"><a href="#s10" id="r10">10</a></sup></p>
-
-<p class="pp">寺田裁判官は、 1996 年の法制審議会答申がまとまりにくかった理由も、ここにあったと指摘している。「例えば、嫡出子の氏をどのようにするかなどの点で嫡出子の仕組みとの折り合いをどのようにつけるかをめぐっては意見が分かれるところであり（現に、平成 8 年の婚姻制度に関する法制審議会の答申において、子の氏の在り方をめぐって議論のとりまとめに困難があったようにうかがわれる。）」。 <sup class="ref"><a href="#s2" id="r2f">2</a></sup></p>
-
-<div class="caution">
-<p class="caption">冒頭の前提を訂正する</p>
-<p class="pp">「全員が自分の望む方を選べる」 - この前提は、そのままでは維持できない。正確には「<strong>すべての夫婦が</strong>自分たちの望む方を選べる」制度である。子どもはその「すべて」に入っていない。</p>
-<p class="pp">この訂正は、冒頭の疑問を否定するものではない。しかし、疑問をより正確な形に立て直す。次章で扱うのは、まさにこの立て直された問いである。</p>
-</div>
-
-    </div></div></div>
-</div>
-
-<div class="chapter" id="sec5">
-  <button aria-expanded="false" class="ch-head" type="button">その反論は、本当に「差」を指しているか</button>
-  <div class="ch-body">
-
-<p class="tool"><b>道具 5 - 対照の原則。</b> A と B のどちらかを選ぶ場面で、 A にも B にも等しく当てはまる事情は、どちらを選ぶ理由にもならない。理由になるのは、両者の<strong>差</strong>を指す事情だけである。</p>
-
-<p class="pp">前章で、子どもは選択の当事者ではないという論点を認めた。では、これは選択的夫婦別姓に反対する理由になるだろうか。</p>
-
-<p class="pp">ここで対照の原則を使う。問うべきは「子どもは姓を選べないか」ではない。<strong>「現行制度では選べて、選択制では選べなくなるのか」</strong>である。</p>
-
-<p class="pp">答えは明らかである。現行制度でも、子どもは自分の姓を選べない。生まれたときに父母の氏を称すると民法 790 条が定めており、子どもの同意は問われない。この点で二つの制度に差はない。差がない事情は、片方を選ぶ理由にならない。</p>
-
-<p class="pp">さらに強い指摘がある。 2021 年の決定で、宮崎裕子・宇賀克也両裁判官は、現行民法がすでに「親と子の氏が異なる家族」を当然のものとして許容していることを示した。</p>
-
-<blockquote>
-<p class="pp">子を持つ両親が離婚し、さらにそれぞれが別の相手と再婚し、それを繰り返すことは何ら制限されておらず、その結果として子自身の意思によることなく、親の離婚、再婚により、実の両親と、さらには同居の家族とみられる者とも、子の氏が異なる状況に置かれることが民法の制度上も当然想定され、容認されている。<strong>このことは、民法が、子の氏とその両親の氏は同じでなければならないことを常に要求しているわけではないことを示している。</strong></p>
-<cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官宮崎裕子・同宇賀克也の反対意見 <sup class="ref"><a href="#s8" id="r8c">8</a></sup></cite>
-</blockquote>
-
-<p class="pp">これは論理学でいう<strong>反例による反駁</strong>の典型例である。「すべての <code>x</code> について <code>P (x)</code> 」という形の主張は、 <code>P</code> が成り立たない <code>x</code> がひとつでも見つかれば偽になる。「民法は、子と親が同氏であることを常に要求している」という前提は、離婚・再婚のケースという反例ひとつで崩れる。</p>
-
-<p class="pp">木内裁判官も同じ構造を指摘している。「夫婦同氏によって育成に当たる父母が同氏であることが保障されるのは、初婚が維持されている夫婦間の子だけである」。 <sup class="ref"><a href="#s2" id="r2g">2</a></sup></p>
-
-<div class="arg">
-  <p class="caption">対照の原則を当てはめる</p>
-  <p class="line"><span class="lab">論点</span><span class="txt">子どもは自分の姓を選べない。</span></p>
-  <p class="line"><span class="lab">現行制度</span><span class="txt">選べない。両親が離婚・再婚すれば、親と姓が異なる状態も生じる。</span></p>
-  <p class="line"><span class="lab">選択制</span><span class="txt">選べない。両親の選択の結果を引き受ける。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">帰結</span><span class="txt">「子どもは選べない」は両制度に共通する。したがって、この事実だけでは、どちらの制度を選ぶ理由にもならない。</span></p>
-</div>
-
-<p class="pp">ただし、これで子どもの論点が消えたわけではない。残るのは「選べないこと」ではなく、<strong>「別姓の家庭に育つことが、子どもにとって不利益になるのか」</strong>という別の問いである。それが次章の主題である。</p>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec6">
-  <button aria-expanded="false" class="ch-head" type="button">害の原因は、どこにあるのか</button>
-  <div class="ch-body">
-
-<p class="tool"><b>道具 6 - 因果の向きと循環。</b>「 X によって害が生じている」と言われたとき、その害を本当に生んでいるのが X なのか、 X を取り巻く別の何かなのかを分ける。とくに、害の原因が「反対する人がいること」である場合、その論証は自分自身を根拠にしてしまう。</p>
-
-<p class="pp">内閣府の 2021 年調査には、この記事全体でもっとも示唆に富む一組の数字がある。</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>設問</th><th>回答</th></tr></thead>
-<tbody>
-<tr><td><strong>問 10</strong> 夫婦の名字・姓が違うことによる、夫婦の間の子どもへの影響の有無について、どのように思いますか</td><td>「子どもにとって好ましくない影響があると思う」 <strong>69.0%</strong><br/>「子どもに影響はないと思う」 30.3%</td></tr>
-<tr><td><strong>問 11</strong>（問 10 で影響があると答えた 1,989 人に）どのような影響があると思いますか（複数回答）</td><td>「友人から親と名字・姓が異なることを指摘されて、嫌な思いをするなどして、対人関係で心理的負担が生じる」 <strong>78.6%</strong><br/>「名字・姓の異なる親との関係で違和感や不安感を覚える」 60.1%<br/>「家族の一体感が失われて子の健全な育成が阻害される」 23.1%</td></tr>
-</tbody>
-</table>
-<p class="pp" style="font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」（2021 年 12 月調査）<sup class="ref"><a href="#s6" id="r6c">6</a></sup></p>
-</div>
-
-<p class="pp">問 11 の内訳をよく読んでほしい。もっとも多く選ばれた「害」は、別姓それ自体が生む害ではない。<strong>「友人から指摘されて、嫌な思いをする」</strong> - つまり、周囲の人間が別姓を奇異なものとして扱うことによって生じる害である。</p>
-
-<p class="pp">この論証を骨格にすると、その構造が見えてくる。</p>
-
-<div class="arg">
-  <p class="caption">論証 2 - 循環の構造</p>
-  <p class="line"><span class="lab">前提 1</span> <span class="txt">別姓の親を持つ子どもは、周囲から指摘されて嫌な思いをする。</span></p>
-  <p class="line hidden-prem"><span class="lab">前提 2</span> <span class="txt">（隠れた前提）周囲がそう扱うのは、別姓が珍しく、望ましくないとみなされているからである。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">結論</span><span class="txt">だから、別姓を認めるべきでない。</span></p>
-  <p class="line"><span class="lab">帰結</span><span class="txt">別姓は珍しいままにとどまり、望ましくないとみなされ続ける。ゆえに前提 1 が維持される。</span></p>
-</div>
-
-<p class="pp">結論が、前提を成り立たせている条件を再生産している。これは循環である。この論証を受け入れる限り、前提はけっして偽にならない。</p>
-
-<p class="pp">草野裁判官は、この構造を一文で指摘している。</p>
-
-<blockquote>
-<p class="pp">しかしながら、夫婦別氏とすることが子にもたらす福利の減少の多くは、<strong>夫婦同氏が社会のスタンダード（標準）となっていることを前提とするものである。</strong>したがって、選択的夫婦別氏制が導入され氏を異にする夫婦が世に多数輩出されるようになれば、夫婦別氏とすることが子の福利に及ぼす影響はかなりの程度減少するに違いない。</p>
-<cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="ref"><a href="#s8" id="r8d">8</a></sup></cite>
-</blockquote>
-
-<p class="pp">ここで、論証の形だけを取り出して一般化してみよう。</p>
-
-<div class="arg">
-  <p class="caption">論証形式 - 一般形</p>
-  <p class="line"><span class="lab">前提</span> <span class="txt">X をする人は、周囲から奇異な目で見られ、その子どもが不利益を被る。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">結論</span><span class="txt">ゆえに、 X を法で禁止すべきである。</span></p>
-</div>
-
-<p class="pp">この形式は、 <code>X</code> に何を入れても同じ強さで働く。歴史上、この形式が実際に何を禁じるために使われてきたかを考えれば、これを一般的に妥当な推論形式として認めるわけにいかないことは明らかだろう。</p>
-
-<p class="pp">もっとも、この論点についても公平を期しておく必要がある。「周囲の反応が原因なのだから制度は無罪である」という言い方も、それ自体としては早すぎる。制度を変えれば周囲の反応が変わるという見込み - 草野裁判官の「減少するに違いない」 - は、それ自体が経験的な予測であり、確実な事実ではない。正確に言えるのはこうである。<strong>この害の原因は、少なくとも一部、制度の外側にある。したがって「別姓が子に害を与える」という因果の記述は、そのままでは正しくない。</strong></p>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec7">
-  <button aria-expanded="false" class="ch-head" type="button">数字は、そのままでは前提にならない</button>
-  <div class="ch-body">
-
-<p class="tool"><b>道具 7 - 場合分けの設計。</b>選択肢の切り方が変われば、集計の数字は変わる。数字を前提として使う前に、その数字がどんな場合分けのもとで作られたかを見る。</p>
-
-<p class="pp">この議論では、双方が世論調査の数字を使う。ところがそれが、まったく違う数字になる。</p>
-
-<div class="tablewrap">
-<table>
-<thead><tr><th>調査</th><th>設問の形</th><th>結果</th></tr></thead>
+<thead>
+<tr>
+<th>年</th>
+<th>できごと</th>
+<th>夫婦の氏</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td>内閣府<br/>2017 年 12 月</td>
-<td>2 択（賛否を問う形）<br/><span style="color:var(--muted)">「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</span></td>
-<td>法改正してよい <strong>42.5%</strong><br/>改める必要はない 29.3%<br/>通称使用の法制度でよい 24.4%</td>
+<td>1875 年</td>
+<td>平民に苗字を称することが義務化される</td>
+<td>—</td>
 </tr>
 <tr>
-<td>内閣府<br/>2021 年 12 月</td>
+<td>1876 年</td>
+<td>太政官指令。妻は夫の家を相続しない限り「所生ノ氏」（実家の氏）を用いるべきとされる</td>
+<td>法令上は別氏</td>
+</tr>
+<tr>
+<td>1898 年</td>
+<td>明治民法施行。妻は婚姻により夫の家に入り、その家の氏を称するとされる</td>
+<td>同氏</td>
+</tr>
+<tr>
+<td>1947 年</td>
+<td>民法改正。家制度は廃止されるが、 750 条により夫婦同氏は維持される</td>
+<td>同氏</td>
+</tr>
+</tbody>
+</table>
+<p>制度としての夫婦同姓が始まったのは 1898 年である。 <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 明治初期の法令はむしろ別氏を原則としていた。したがって「古来の伝統」という言い方は、少なくともそのままの形では前提として使えない。</p>
+<p>自分に都合のよい事実にも、同じ厳しさを</p>
+<p>ここで論理の作法として重要なことがある。いま示した「明治初期は別氏だった」という反論にも、留保が必要である。法制史の研究では、 1876 年の太政官指令があったことと、当時の人々が実際に別氏で暮らしていたかどうかは別問題だと指摘されている。明治民法の起草者たちは、この指令を「実際ノ慣習」に反するとして重視せず、夫婦同氏制を採用した。 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup></p>
+<p>つまり、正確に言えるのはこうである。「制度としての夫婦同姓は 1898 年に始まった」は確実に真である。「明治初期の日本社会は別姓社会だった」はより強い主張であり、そこまでは断定できない。</p>
+<p>論理の道具を、相手の主張にだけ厳しく、自分の主張には甘く使うなら、それはもはや論理学ではない。</p>
+<h3>前提②「旧姓の通称使用で、不便は解消される」</h3>
+<p>これは 2015 年の最高裁判決の多数意見が、制度を合憲とした根拠のひとつに挙げたものである。</p>
+<blockquote>
+<p>夫婦同氏制は、婚姻前の氏を通称として使用することまで許さないというものではなく、近時、婚姻前の氏を通称として使用することが社会的に広まっているところ、上記の不利益は、このような氏の通称使用が広まることにより一定程度は緩和され得るものである。</p>
+<p>最高裁判所大法廷 平成 27 年 12 月 16 日判決、多数意見 <sup class="fnref"><a id="fnref-2-3" href="#ref-2">[2]</a></sup></p>
+</blockquote>
+<p>この前提が真かどうかは、調べれば分かる。</p>
+<table>
+<thead>
+<tr>
+<th>調査</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内閣府「家族の法制に関する世論調査」（2021 年 12 月）問 5 改姓に不便・不利益があると答えた 1,503 人が対象</td>
+<td>「通称を使うことができても、それだけでは対処しきれない不便・不利益があると思う」 <strong>59.3%</strong><sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup></td>
+</tr>
+<tr>
+<td>経団連調査（女性役員対象）</td>
+<td><strong>88%</strong> が、旧姓の通称使用が可能である場合でも「何かしら不便さ・不都合、不利益が生じると思う」と回答 <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup></td>
+</tr>
+</tbody>
+</table>
+<p>経団連の提言は、通称使用の限界を制度の性質にさかのぼって説明している。「通称は法律上の姓ではないため、旧姓併記を拡大するだけでは解決できない課題も多数」「通称使用は日本独自の制度であることから、海外では理解されづらく、寧ろダブルネームとして不正を疑われ、説明に時間を要するなどのトラブルが起こることも」。 <sup class="fnref"><a id="fnref-7-2" href="#ref-7">[7]</a></sup></p>
+<p>木内裁判官も、同じことを制度論として述べている。「法制化されない通称は、通称を許容するか否かが相手方の判断によるしかなく、氏を改めた者にとって、いちいち相手方の対応を確認する必要があり、個人の呼称の制度として大きな欠陥がある」。 <sup class="fnref"><a id="fnref-2-4" href="#ref-2">[2]</a></sup></p>
+<p>この前提は、そのままの形では健全な論証を支えない。</p>
+<h3>前提③「別姓は家族の一体感を損なう」</h3>
+<p>これは検証可能な命題として提示されているように見える。産経新聞の社説には「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」という断定があった。 <sup class="fnref"><a id="fnref-3-2" href="#ref-3">[3]</a></sup></p>
+<p>「間違いない」という強い断定が使われているとき、論理の点検としてすべきことは決まっている。<strong>その根拠として何が示されているかを見る</strong>ことである。そして、示されていないなら、それを指摘することである。</p>
+<p>2021 年の最高裁決定で、草野耕一裁判官はこの点をきわめて厳密な言い方で処理した。</p>
+<blockquote>
+<p>もし、夫婦同氏制に、人々の行動や意識の相互依存的関係を通じて、社会の構成員全般の福利を向上させる働きがあるとすれば、福利の比較衡量を行うことに対して上記と同様の方法論上の懸念が生じ得るが、<strong>そのような働きの存在が検証可能なほどの具体性をもって主張されたことはない</strong>。</p>
+<p>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup></p>
+</blockquote>
+<p>「そのような事実はない」ではなく、「<strong>検証可能なほどの具体性をもって主張されたことはない</strong>」という言い方に注目してほしい。これは論理学と科学方法論の交差点にある考え方である。ある主張が、原理的にどんな観察によっても否定されえない形で述べられているとき、その主張は議論の前提として使えない。何が起きたら「一体感が損なわれた」と言えるのかを述べていない主張は、証拠によって支持することも反駁することもできないからである。</p>
+<p>あわせて、事実として確認できることもある。内閣府の同じ調査で、夫婦・親子の姓が違うことの影響を尋ねた問 8 では、「家族の一体感・きずなが弱まると思う」が 37.8% 、「影響がないと思う」が 61.6% だった。 <sup class="fnref"><a id="fnref-6-2" href="#ref-6">[6]</a></sup> 「間違いない」とされていることについて、社会の多数はそう思っていない。</p>
+<p>演習 2</p>
+<p>次の主張を、妥当性と健全性の両面から評価してほしい。</p>
+<p>「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている。だから選択的夫婦別姓を導入すべきでない」 <sup class="fnref"><a id="fnref-3-3" href="#ref-3">[3]</a></sup></p>
+<p>ヒント。まず、この論証を妥当にするために必要な隠れた前提を書き出してほしい。次に、その前提が真かどうかを考えてほしい。二つの作業は別々に行うこと。</p>
+<h2 id="sec5">5 ．反対論を、いちばん強い形にして立てる</h2>
+<p><strong>道具 4 - 藁人形と鋼鉄人形。</strong>相手の主張を弱い形に作り変えてから叩くのは論証ではない。相手の主張のもっとも強い形を自分で組み立て、それに答えられて初めて反論になる。</p>
+<p>ここまで、反対論のいくつかの形が論証として立っていないことを見てきた。しかしここで止まると、この記事自体が論理的に不誠実なものになる。<strong>藁人形論法</strong> - 相手の見解を反駁しやすいように歪めてから叩く手口 - を、こちらが犯すことになるからである。 <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup></p>
+<p>誠実な議論の作法は逆である。相手の主張のうち、もっとも手強い形を自分で組み立てる。俗に<strong>鋼鉄人形</strong>と呼ばれる作業である。そして、この題材には、実際に手強い反対論が存在する。</p>
+<h3>鋼鉄人形① 家族法は、当事者だけの取り決めではない</h3>
+<p>2015 年の判決で、寺田逸郎裁判官（当時の最高裁長官）が述べた補足意見が、反対論のもっとも強い形である。冒頭の疑問の底にある発想 - 夫婦の姓は、その夫婦が決めればよい事柄ではないか - に、正面から答えている。</p>
+<blockquote>
+<p>およそ人同士がどうつながりを持って暮らし、生きていくかは、その人たちが自由に決められて然るべき事柄である。憲法上も、このことを 13 条によって裏付けることができよう。これに対して、法律制度としてみると、婚姻夫婦のように形の上では 2 人の間の関係であっても、家族制度の一部として構成され、身近な第三者ばかりでなく広く社会に効果を及ぼすことがあるものとして位置付けられることがむしろ一般的である。</p>
+<p>（中略）このような法律制度としての性格や、現実に夫婦、親子などからなる家族が広く社会の基本的構成要素となっているという事情などから、法律上の仕組みとしての婚姻夫婦も、その他の家族関係と同様、社会の構成員一般からみてもそう複雑でないものとして捉えることができるよう規格化された形で作られていて、個々の当事者の多様な意思に沿って変容させることに対しては抑制的である。</p>
+<p>最高裁判所大法廷 平成 27 年 12 月 16 日判決、裁判官寺田逸郎の補足意見 <sup class="fnref"><a id="fnref-2-5" href="#ref-2">[2]</a></sup></p>
+</blockquote>
+<p>この議論は、前章までに検討した反対論とは種類が違う。「同姓には利点があるから別姓を禁じよ」という飛躍を含んでいない。かわりに、こう言っている - 法律婚は当事者二人の私的な契約ではなく、相続、取引、親子関係の推定といった効果を通じて第三者と社会全体に及ぶ制度である。だから、当事者の合意さえあればよいという発想は、この分野には素直には当てはまらない。</p>
+<h3>鋼鉄人形② 子どもは、選ぶ側にいない</h3>
+<p>もうひとつ、正面から向き合うべき論点がある。冒頭の疑問は「全員が自分の望む方を選べる」ことを前提にしていた。この前提は、厳密には偽である。</p>
+<p>選択するのは夫婦であって、子どもではないからである。この点をいちばん率直に認めたのは、皮肉なことに、制度に賛成した草野裁判官だった。</p>
+<blockquote>
+<p>むしろ問題となるのは、夫婦別氏を選択した夫婦の間に生まれる子の福利である。なぜならば、子は、親とは別の人格を有する法主体であるにもかかわらず、親が別氏とすることを選択したことによって生ずる帰結を自らの同意なく受け入れなければならない存在だからである。</p>
+<p>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="fnref"><a id="fnref-8-2" href="#ref-8">[8]</a></sup></p>
+</blockquote>
+<p>そして、この論点は抽象論ではない。実際の立法過程で、いちばんの難所になり続けてきた。 2025 年 5 月、 28 年ぶりに衆議院法務委員会で選択的夫婦別姓の民法改正案が審議入りしたが、そこで提出された案は子の氏の扱いが互いに異なっていた。立憲民主党案は子の氏を婚姻時に定めるとし、国民民主党案は婚姻時に定める戸籍筆頭者と同じ氏とするものだった。 <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup></p>
+<p>寺田裁判官は、 1996 年の法制審議会答申がまとまりにくかった理由も、ここにあったと指摘している。「例えば、嫡出子の氏をどのようにするかなどの点で嫡出子の仕組みとの折り合いをどのようにつけるかをめぐっては意見が分かれるところであり（現に、平成 8 年の婚姻制度に関する法制審議会の答申において、子の氏の在り方をめぐって議論のとりまとめに困難があったようにうかがわれる。）」。 <sup class="fnref"><a id="fnref-2-6" href="#ref-2">[2]</a></sup></p>
+<p>冒頭の前提を訂正する</p>
+<p>「全員が自分の望む方を選べる」 - この前提は、そのままでは維持できない。正確には「<strong>すべての夫婦が</strong>自分たちの望む方を選べる」制度である。子どもはその「すべて」に入っていない。</p>
+<p>この訂正は、冒頭の疑問を否定するものではない。しかし、疑問をより正確な形に立て直す。次章で扱うのは、まさにこの立て直された問いである。</p>
+<h2 id="sec6">6 ．その反論は、本当に「差」を指しているか</h2>
+<p><strong>道具 5 - 対照の原則。</strong> A と B のどちらかを選ぶ場面で、 A にも B にも等しく当てはまる事情は、どちらを選ぶ理由にもならない。理由になるのは、両者の<strong>差</strong>を指す事情だけである。</p>
+<p>前章で、子どもは選択の当事者ではないという論点を認めた。では、これは選択的夫婦別姓に反対する理由になるだろうか。</p>
+<p>ここで対照の原則を使う。問うべきは「子どもは姓を選べないか」ではない。<strong>「現行制度では選べて、選択制では選べなくなるのか」</strong>である。</p>
+<p>答えは明らかである。現行制度でも、子どもは自分の姓を選べない。生まれたときに父母の氏を称すると民法 790 条が定めており、子どもの同意は問われない。この点で二つの制度に差はない。差がない事情は、片方を選ぶ理由にならない。</p>
+<p>さらに強い指摘がある。 2021 年の決定で、宮崎裕子・宇賀克也両裁判官は、現行民法がすでに「親と子の氏が異なる家族」を当然のものとして許容していることを示した。</p>
+<blockquote>
+<p>子を持つ両親が離婚し、さらにそれぞれが別の相手と再婚し、それを繰り返すことは何ら制限されておらず、その結果として子自身の意思によることなく、親の離婚、再婚により、実の両親と、さらには同居の家族とみられる者とも、子の氏が異なる状況に置かれることが民法の制度上も当然想定され、容認されている。<strong>このことは、民法が、子の氏とその両親の氏は同じでなければならないことを常に要求しているわけではないことを示している。</strong></p>
+<p>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官宮崎裕子・同宇賀克也の反対意見 <sup class="fnref"><a id="fnref-8-3" href="#ref-8">[8]</a></sup></p>
+</blockquote>
+<p>これは論理学でいう<strong>反例による反駁</strong>の典型例である。「すべての <code>x</code> について <code>P (x)</code> 」という形の主張は、 <code>P</code> が成り立たない <code>x</code> がひとつでも見つかれば偽になる。「民法は、子と親が同氏であることを常に要求している」という前提は、離婚・再婚のケースという反例ひとつで崩れる。</p>
+<p>木内裁判官も同じ構造を指摘している。「夫婦同氏によって育成に当たる父母が同氏であることが保障されるのは、初婚が維持されている夫婦間の子だけである」。 <sup class="fnref"><a id="fnref-2-7" href="#ref-2">[2]</a></sup></p>
+<p>対照の原則を当てはめる</p>
+<p>論点子どもは自分の姓を選べない。</p>
+<p>現行制度選べない。両親が離婚・再婚すれば、親と姓が異なる状態も生じる。</p>
+<p>選択制選べない。両親の選択の結果を引き受ける。</p>
+<p>帰結「子どもは選べない」は両制度に共通する。したがって、この事実だけでは、どちらの制度を選ぶ理由にもならない。</p>
+<p>ただし、これで子どもの論点が消えたわけではない。残るのは「選べないこと」ではなく、<strong>「別姓の家庭に育つことが、子どもにとって不利益になるのか」</strong>という別の問いである。それが次章の主題である。</p>
+<h2 id="sec7">7 ．害の原因は、どこにあるのか</h2>
+<p><strong>道具 6 - 因果の向きと循環。</strong>「 X によって害が生じている」と言われたとき、その害を本当に生んでいるのが X なのか、 X を取り巻く別の何かなのかを分ける。とくに、害の原因が「反対する人がいること」である場合、その論証は自分自身を根拠にしてしまう。</p>
+<p>内閣府の 2021 年調査には、この記事全体でもっとも示唆に富む一組の数字がある。</p>
+<table>
+<thead>
+<tr>
+<th>設問</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>問 10</strong> 夫婦の名字・姓が違うことによる、夫婦の間の子どもへの影響の有無について、どのように思いますか</td>
+<td>「子どもにとって好ましくない影響があると思う」 <strong>69.0%</strong> 「子どもに影響はないと思う」 30.3%</td>
+</tr>
+<tr>
+<td><strong>問 11</strong>（問 10 で影響があると答えた 1,989 人に）どのような影響があると思いますか（複数回答）</td>
+<td>「友人から親と名字・姓が異なることを指摘されて、嫌な思いをするなどして、対人関係で心理的負担が生じる」 <strong>78.6%</strong> 「名字・姓の異なる親との関係で違和感や不安感を覚える」 60.1% 「家族の一体感が失われて子の健全な育成が阻害される」 23.1%</td>
+</tr>
+</tbody>
+</table>
+<p>内閣府「家族の法制に関する世論調査」（2021 年 12 月調査）<sup class="fnref"><a id="fnref-6-3" href="#ref-6">[6]</a></sup></p>
+<p>問 11 の内訳をよく読んでほしい。もっとも多く選ばれた「害」は、別姓それ自体が生む害ではない。<strong>「友人から指摘されて、嫌な思いをする」</strong> - つまり、周囲の人間が別姓を奇異なものとして扱うことによって生じる害である。</p>
+<p>この論証を骨格にすると、その構造が見えてくる。</p>
+<p>論証 2 - 循環の構造</p>
+<p>前提 1 別姓の親を持つ子どもは、周囲から指摘されて嫌な思いをする。</p>
+<p>前提 2 （隠れた前提）周囲がそう扱うのは、別姓が珍しく、望ましくないとみなされているからである。</p>
+<p>結論だから、別姓を認めるべきでない。</p>
+<p>帰結別姓は珍しいままにとどまり、望ましくないとみなされ続ける。ゆえに前提 1 が維持される。</p>
+<p>結論が、前提を成り立たせている条件を再生産している。これは循環である。この論証を受け入れる限り、前提はけっして偽にならない。</p>
+<p>草野裁判官は、この構造を一文で指摘している。</p>
+<blockquote>
+<p>しかしながら、夫婦別氏とすることが子にもたらす福利の減少の多くは、<strong>夫婦同氏が社会のスタンダード（標準）となっていることを前提とするものである。</strong>したがって、選択的夫婦別氏制が導入され氏を異にする夫婦が世に多数輩出されるようになれば、夫婦別氏とすることが子の福利に及ぼす影響はかなりの程度減少するに違いない。</p>
+<p>最高裁判所大法廷 令和 3 年 6 月 23 日決定、裁判官草野耕一の反対意見 <sup class="fnref"><a id="fnref-8-4" href="#ref-8">[8]</a></sup></p>
+</blockquote>
+<p>ここで、論証の形だけを取り出して一般化してみよう。</p>
+<p>論証形式 - 一般形</p>
+<p>前提 X をする人は、周囲から奇異な目で見られ、その子どもが不利益を被る。</p>
+<p>結論ゆえに、 X を法で禁止すべきである。</p>
+<p>この形式は、 <code>X</code> に何を入れても同じ強さで働く。歴史上、この形式が実際に何を禁じるために使われてきたかを考えれば、これを一般的に妥当な推論形式として認めるわけにいかないことは明らかだろう。</p>
+<p>もっとも、この論点についても公平を期しておく必要がある。「周囲の反応が原因なのだから制度は無罪である」という言い方も、それ自体としては早すぎる。制度を変えれば周囲の反応が変わるという見込み - 草野裁判官の「減少するに違いない」 - は、それ自体が経験的な予測であり、確実な事実ではない。正確に言えるのはこうである。<strong>この害の原因は、少なくとも一部、制度の外側にある。したがって「別姓が子に害を与える」という因果の記述は、そのままでは正しくない。</strong></p>
+<h2 id="sec8">8 ．数字は、そのままでは前提にならない</h2>
+<p><strong>道具 7 - 場合分けの設計。</strong>選択肢の切り方が変われば、集計の数字は変わる。数字を前提として使う前に、その数字がどんな場合分けのもとで作られたかを見る。</p>
+<p>この議論では、双方が世論調査の数字を使う。ところがそれが、まったく違う数字になる。</p>
+<table>
+<thead>
+<tr>
+<th>調査</th>
+<th>設問の形</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内閣府 2017 年 12 月</td>
+<td>2 択（賛否を問う形） 「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</td>
+<td>法改正してよい <strong>42.5%</strong> 改める必要はない 29.3% 通称使用の法制度でよい 24.4%</td>
+</tr>
+<tr>
+<td>内閣府 2021 年 12 月</td>
 <td>3 択（制度を三つ並べる形）</td>
-<td>選択的夫婦別姓を導入した方がよい <strong>28.9%</strong><br/>同姓維持のうえ旧姓の通称使用の法制度 42.2%<br/>同姓維持 27.0%</td>
+<td>選択的夫婦別姓を導入した方がよい <strong>28.9%</strong> 同姓維持のうえ旧姓の通称使用の法制度 42.2% 同姓維持 27.0%</td>
 </tr>
 </tbody>
 </table>
-<p class="pp" style="font-family:var(--sans);font-size:0.78rem;color:var(--muted);margin-top:0.6rem;text-indent:0;">内閣府「家族の法制に関する世論調査」 <sup class="ref"><a href="#s6" id="r6d">6</a></sup></p>
-</div>
-
-<p class="pp">賛成が 42.5% から 28.9% に落ちた - このように読むことができる。実際、そう報じられもした。しかし、それは誤りである。内閣府自身が、報告書に次の注記を置いている。</p>
-
+<p>内閣府「家族の法制に関する世論調査」 <sup class="fnref"><a id="fnref-6-4" href="#ref-6">[6]</a></sup></p>
+<p>賛成が 42.5% から 28.9% に落ちた - このように読むことができる。実際、そう報じられもした。しかし、それは誤りである。内閣府自身が、報告書に次の注記を置いている。</p>
 <blockquote>
-<p class="pp">平成 29 年 12 月調査までは調査員による個別面接聴取法で実施しているため、郵送法で実施した令和 3 年 12 月調査との単純比較は行わない。</p>
-<cite>内閣府「家族の法制に関する世論調査」概要 <sup class="ref"><a href="#s6" id="r6e">6</a></sup></cite>
+<p>平成 29 年 12 月調査までは調査員による個別面接聴取法で実施しているため、郵送法で実施した令和 3 年 12 月調査との単純比較は行わない。</p>
+<p>内閣府「家族の法制に関する世論調査」概要 <sup class="fnref"><a id="fnref-6-5" href="#ref-6">[6]</a></sup></p>
 </blockquote>
-
-<p class="pp">変わったのは二つある。調査方法（面接から郵送へ）と、<strong>選択肢の切り方</strong>である。ここで注目すべきは後者である。</p>
-
-<p class="pp">論理学では、ものごとを場合に分けるとき、よい分割には二つの条件が要る。<strong>網羅的</strong>であること（どの場合も、いずれかに当てはまる）と、<strong>排他的</strong>であること（二つ以上に同時に当てはまらない）。この二条件を満たす分割を、その集合の分割という。</p>
-
-<p class="pp">問題は、同じ対象を分割する仕方はひとつではない、ということである。そして、分割の仕方を変えると、各項に入る人数は変わる。</p>
-
-<div class="arg">
-  <p class="caption">同じ人が、分割によって別の項に入る</p>
-  <p class="line"><span class="lab">2 択のとき</span><span class="txt">「今のままでは困る人がいるなら、法を変えることに反対はしない」と考える人は、<strong>賛成</strong>に入る。</span></p>
-  <p class="line"><span class="lab">3 択のとき</span><span class="txt">同じ人が、「別姓まで認めなくても、通称使用を法制化すれば足りるのでは」という選択肢を提示されると、<strong>中間項</strong>に移る。</span></p>
-  <p class="bar"></p>
-  <p class="line concl"><span class="lab">帰結</span><span class="txt">世論が変わらなくても、数字は大きく動く。数字の変化を「世論の変化」と読むのは、前提の取り違えである。</span></p>
-</div>
-
-<p class="pp">ここから、実践的な教訓が二つ出てくる。</p>
-
-<p class="pp">第一に、<strong>数字を前提として使う前に、その数字を生んだ設問を見る</strong>こと。世論調査は「事実」だが、何についての事実かは設問が決める。 <sup class="ref"><a href="#s11" id="r11">11</a></sup></p>
-
-<p class="pp">第二に、<strong>中間項が用意されているかどうかを見る</strong>こと。前提そのものを疑う章で見た問 5 （通称では対処しきれない不便があると思う人 59.3%）や問 8 （一体感に影響はないと思う人 61.6%）と、問 12 の 28.9% を並べると、同じ調査のなかで一貫しない印象が出てくる。これは回答者が矛盾しているのではなく、問われ方が違うからである。</p>
-
-<div class="exercise">
-<p class="caption">演習 3</p>
-<p class="pp">2021 年調査の問 12 の三つの選択肢を見て、次を考えてほしい。</p>
-<p class="pp">この分割は排他的だろうか。「選択的夫婦別姓を導入し、あわせて旧姓の通称使用も法制化すべきだ」と考える人は、どの選択肢を選ぶことになるだろうか。</p>
-</div>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec8">
-  <button aria-expanded="false" class="ch-head" type="button">「である」から「べき」は出てこない</button>
-  <div class="ch-body"><div class="ch-intro">
-
-<p class="tool"><b>道具 8 - 事実と規範の断絶。</b>事実を述べる前提だけからは、「〜すべきだ」という結論は導けない。規範的な結論を出すには、規範的な前提が少なくともひとつ要る。</p>
-
-<p class="pp">これは 18 世紀の哲学者デイヴィッド・ヒュームが指摘した問題で、しばしば「ヒュームの法則」と呼ばれる。ヒュームは、道徳を論じる著者たちが、しばらく「である」「でない」という文で議論を進めたあと、いつのまにか「べきである」「べきでない」という文に移っていることに気づき、その移行がどう正当化されるのか説明されていないと指摘した。 <sup class="ref"><a href="#s12" id="r12">12</a></sup></p>
-
-<p class="pp">この道具は、賛成側にも反対側にも等しく効く。</p>
-
-<div class="arg">
-  <p class="caption">両側に当てはめる</p>
-  <p class="line"><span class="lab">反対側</span><span class="txt">「日本の夫婦の 94.1% が夫の姓を選んでいる（事実）。だから制度を変える必要はない（規範）」 - 導けない。</span></p>
-  <p class="line"><span class="lab">賛成側</span><span class="txt">「改姓した人に不便が生じている（事実）。だから制度を変えるべきだ（規範）」 - これも、そのままでは導けない。</span></p>
-</div>
-
-<p class="pp">後者に驚かれたかもしれない。しかし「不便がある」からただちに「制度を変えるべき」が出るなら、あらゆる不便が法改正の理由になってしまう。この論証を成立させるには、たとえば「本人の意思に反する不利益を、他に十分な理由なく法が課してはならない」といった規範的な前提が必要である。</p>
-
-<p class="pp">この作業は、議論をややこしくするためのものではない。逆である。<strong>隠れている価値前提を言葉にすると、争点がどこにあるかがはっきりする</strong>のである。日本の夫婦の 94.1%（2024 年、 456,453 組）が夫の姓を選んでいるという事実 <sup class="ref"><a href="#s13" id="r13">13</a></sup> は、それ自体では何の結論も支えない。しかし「この偏りは真に自由な選択の結果か」という価値の問いを立てれば、話は先に進む。実際、 2015 年の最高裁多数意見は、その問いを立てている。</p>
-
+<p>変わったのは二つある。調査方法（面接から郵送へ）と、<strong>選択肢の切り方</strong>である。ここで注目すべきは後者である。</p>
+<p>論理学では、ものごとを場合に分けるとき、よい分割には二つの条件が要る。<strong>網羅的</strong>であること（どの場合も、いずれかに当てはまる）と、<strong>排他的</strong>であること（二つ以上に同時に当てはまらない）。この二条件を満たす分割を、その集合の分割という。</p>
+<p>問題は、同じ対象を分割する仕方はひとつではない、ということである。そして、分割の仕方を変えると、各項に入る人数は変わる。</p>
+<p>同じ人が、分割によって別の項に入る</p>
+<p>2 択のとき「今のままでは困る人がいるなら、法を変えることに反対はしない」と考える人は、<strong>賛成</strong>に入る。</p>
+<p>3 択のとき同じ人が、「別姓まで認めなくても、通称使用を法制化すれば足りるのでは」という選択肢を提示されると、<strong>中間項</strong>に移る。</p>
+<p>帰結世論が変わらなくても、数字は大きく動く。数字の変化を「世論の変化」と読むのは、前提の取り違えである。</p>
+<p>ここから、実践的な教訓が二つ出てくる。</p>
+<p>第一に、<strong>数字を前提として使う前に、その数字を生んだ設問を見る</strong>こと。世論調査は「事実」だが、何についての事実かは設問が決める。 <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup></p>
+<p>第二に、<strong>中間項が用意されているかどうかを見る</strong>こと。前提そのものを疑う章で見た問 5 （通称では対処しきれない不便があると思う人 59.3%）や問 8 （一体感に影響はないと思う人 61.6%）と、問 12 の 28.9% を並べると、同じ調査のなかで一貫しない印象が出てくる。これは回答者が矛盾しているのではなく、問われ方が違うからである。</p>
+<p>演習 3</p>
+<p>2021 年調査の問 12 の三つの選択肢を見て、次を考えてほしい。</p>
+<p>この分割は排他的だろうか。「選択的夫婦別姓を導入し、あわせて旧姓の通称使用も法制化すべきだ」と考える人は、どの選択肢を選ぶことになるだろうか。</p>
+<h2 id="sec9">9 ．「である」から「べき」は出てこない</h2>
+<p><strong>道具 8 - 事実と規範の断絶。</strong>事実を述べる前提だけからは、「〜すべきだ」という結論は導けない。規範的な結論を出すには、規範的な前提が少なくともひとつ要る。</p>
+<p>これは 18 世紀の哲学者デイヴィッド・ヒュームが指摘した問題で、しばしば「ヒュームの法則」と呼ばれる。ヒュームは、道徳を論じる著者たちが、しばらく「である」「でない」という文で議論を進めたあと、いつのまにか「べきである」「べきでない」という文に移っていることに気づき、その移行がどう正当化されるのか説明されていないと指摘した。 <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup></p>
+<p>この道具は、賛成側にも反対側にも等しく効く。</p>
+<p>両側に当てはめる</p>
+<p>反対側「日本の夫婦の 94.1% が夫の姓を選んでいる（事実）。だから制度を変える必要はない（規範）」 - 導けない。</p>
+<p>賛成側「改姓した人に不便が生じている（事実）。だから制度を変えるべきだ（規範）」 - これも、そのままでは導けない。</p>
+<p>後者に驚かれたかもしれない。しかし「不便がある」からただちに「制度を変えるべき」が出るなら、あらゆる不便が法改正の理由になってしまう。この論証を成立させるには、たとえば「本人の意思に反する不利益を、他に十分な理由なく法が課してはならない」といった規範的な前提が必要である。</p>
+<p>この作業は、議論をややこしくするためのものではない。逆である。<strong>隠れている価値前提を言葉にすると、争点がどこにあるかがはっきりする</strong>のである。日本の夫婦の 94.1%（2024 年、 456,453 組）が夫の姓を選んでいるという事実 <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> は、それ自体では何の結論も支えない。しかし「この偏りは真に自由な選択の結果か」という価値の問いを立てれば、話は先に進む。実際、 2015 年の最高裁多数意見は、その問いを立てている。</p>
 <blockquote>
-<p class="pp">この現状が、夫婦となろうとする者双方の真に自由な選択の結果によるものかについて留意が求められるところであり、仮に、社会に存する差別的な意識や慣習による影響があるのであれば、その影響を排除して夫婦間に実質的な平等が保たれるように図ることは、憲法 14 条 1 項の趣旨に沿うものであるといえる。</p>
-<cite>最高裁判所大法廷 平成 27 年 12 月 16 日判決、多数意見 <sup class="ref"><a href="#s2" id="r2h">2</a></sup></cite>
+<p>この現状が、夫婦となろうとする者双方の真に自由な選択の結果によるものかについて留意が求められるところであり、仮に、社会に存する差別的な意識や慣習による影響があるのであれば、その影響を排除して夫婦間に実質的な平等が保たれるように図ることは、憲法 14 条 1 項の趣旨に沿うものであるといえる。</p>
+<p>最高裁判所大法廷 平成 27 年 12 月 16 日判決、多数意見 <sup class="fnref"><a id="fnref-2-8" href="#ref-2">[2]</a></sup></p>
 </blockquote>
-
-</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">「合憲である」と「望ましい」は別の述語である</button><div class="sec-body">
-
-<p class="pp">この章で、もうひとつ扱っておくべき混同がある。</p>
-
-<p class="pp">最高裁は 2015 年と 2021 年の二度にわたり、夫婦同氏制は憲法に違反しないと判断した。この事実は、しばしば「だから制度を変える必要はない」という主張の根拠に使われる。しかしそれは、最高裁自身が明示的に否定している推論である。</p>
-
+<h3>「合憲である」と「望ましい」は別の述語である</h3>
+<p>この章で、もうひとつ扱っておくべき混同がある。</p>
+<p>最高裁は 2015 年と 2021 年の二度にわたり、夫婦同氏制は憲法に違反しないと判断した。この事実は、しばしば「だから制度を変える必要はない」という主張の根拠に使われる。しかしそれは、最高裁自身が明示的に否定している推論である。</p>
 <blockquote>
-<p class="pp">夫婦の氏についてどのような制度を採るのが立法政策として相当かという問題と、夫婦同氏制を定める現行法の規定が憲法 24 条に違反して無効であるか否かという憲法適合性の審査の問題とは、<strong>次元を異にするものである</strong>。</p>
-<cite>最高裁判所大法廷 令和 3 年 6 月 23 日決定、多数意見 <sup class="ref"><a href="#s8" id="r8e">8</a></sup></cite>
+<p>夫婦の氏についてどのような制度を採るのが立法政策として相当かという問題と、夫婦同氏制を定める現行法の規定が憲法 24 条に違反して無効であるか否かという憲法適合性の審査の問題とは、<strong>次元を異にするものである</strong>。</p>
+<p>最高裁判所大法廷 令和 3 年 6 月 23 日決定、多数意見 <sup class="fnref"><a id="fnref-8-5" href="#ref-8">[8]</a></sup></p>
 </blockquote>
-
-<p class="pp">2015 年の判決も、選択的夫婦別氏制について「そのような制度に合理性がないと断ずるものではない」と述べ、「この種の制度の在り方は、国会で論ぜられ、判断されるべき事柄にほかならない」と結んでいる。 <sup class="ref"><a href="#s2" id="r2i">2</a></sup></p>
-
-<p class="pp">論理学の言葉でいえば、「合憲である」と「望ましい」は<strong>別の述語</strong>である。ある対象が一方を満たすことは、他方を満たすことを含意しない。裁判所が言ったのは「国会が変えなければならないほどではない」であって、「変えてはいけない」でも「変えるべきでない」でもない。</p>
-
-    </div></div></div>
-</div>
-
-<div class="chapter" id="sec9">
-  <button aria-expanded="false" class="ch-head" type="button">では、最初の問いに答える</button>
-  <div class="ch-body"><div class="ch-intro">
-
-<p class="pp">道具が揃った。冒頭の問いに戻る。</p>
-
+<p>2015 年の判決も、選択的夫婦別氏制について「そのような制度に合理性がないと断ずるものではない」と述べ、「この種の制度の在り方は、国会で論ぜられ、判断されるべき事柄にほかならない」と結んでいる。 <sup class="fnref"><a id="fnref-2-9" href="#ref-2">[2]</a></sup></p>
+<p>論理学の言葉でいえば、「合憲である」と「望ましい」は<strong>別の述語</strong>である。ある対象が一方を満たすことは、他方を満たすことを含意しない。裁判所が言ったのは「国会が変えなければならないほどではない」であって、「変えてはいけない」でも「変えるべきでない」でもない。</p>
+<h2 id="sec10">10 ．では、最初の問いに答える</h2>
+<p>道具が揃った。冒頭の問いに戻る。</p>
 <blockquote>
-<p class="pp">全員が自分の望む方を選べるのだから、そもそも対立が生じようがないはずだ。それなのに、なぜこれほど大きな議論になり、三十年たっても実現しないのか。</p>
+<p>全員が自分の望む方を選べるのだから、そもそも対立が生じようがないはずだ。それなのに、なぜこれほど大きな議論になり、三十年たっても実現しないのか。</p>
 </blockquote>
-
-<p class="pp">冒頭で、この疑問の中身を命題の形に書き取った。制度 C への反対とは、論理の形の上では「すべての夫婦は同姓でなければならない」という、他人の夫婦にも例外なく及ぶ命令である、と。答えるべきは、こう立て直された問いである - <strong>その命令には、すべての夫婦を例外なく縛るだけの理由があるのか</strong>。</p>
-
-<p class="pp">論理学は、この問いに「はい」か「いいえ」の一語で答える道具ではない。答えられるのは、<strong>反対論を種類ごとに仕分けし、それぞれについて論証が立っているかを判定する</strong>ことである。仕分けると、三つの群に分かれる。</p>
-
-</div><div class="section"><button aria-expanded="false" class="sec-head" type="button">群 A - 「利点があるから禁止せよ」型</button><div class="sec-body">
-
-<p class="pp">「同姓には一体感という利点がある」「同姓は日本社会に定着している」といった論拠から、直接「別姓を認めるべきでない」を導くもの。法務省がまとめた反対論の（1）と（3）、新聞社説に現れた多くの文言がここに入る。</p>
-
-<p class="pp"><strong>判定。</strong>この群の論証は、利点から禁止を導けないことを確かめた章で見たとおり、成立していない。「同姓に合理性がある」ことと「同姓に例外を許さないことに合理性がある」ことのあいだには距離があり、その距離は埋められていない。埋めるために必要な隠れた前提 - 「利点のあるやり方は、望まない人にも強制してよい」 - は、明示すればほとんど誰も支持しないものである。</p>
-
-<p class="pp"><strong>したがって。</strong>この群に関する限り、冒頭の疑問が引っかかっていた点は、そのとおりだと言える。この群の主張は、自分の選択の理由を、他人の選択を禁じる理由としてそのまま使っている。そして、その使い回しを正当化する前提は示されていない。<strong>冒頭で書き取った「他人にも例外なく従わせる命令」が、正当化されないまま出されている - それがこの群の状態である。</strong></p>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">群 B - 外部性・制度設計型</button><div class="sec-body">
-
-<p class="pp">寺田補足意見に代表される議論。法律婚は当事者を超えて社会に効果を及ぼす制度であり、規格化されている。子の氏の決め方、戸籍の編製の在り方など、詰めるべき設計問題が実在する。</p>
-
-<p class="pp"><strong>判定。</strong>この群は、群 A のような飛躍を含んでいない。論証として立っている。冒頭の疑問が置いていた「それぞれの夫婦が選べばそれで済む」という見方を、正面から掘り崩す力を持っている。</p>
-
-<p class="pp"><strong>ただし。</strong>この群が支えているのは「導入すべきでない」という結論ではなく、「<strong>設計を詰めなければ導入できない</strong>」という結論である。この二つは別の命題である。そして、この群の議論には、それ自身に向けられるべき問いが残る。 1996 年に法制審議会が答申を出し <sup class="ref"><a href="#s1" id="r1c">1</a></sup> 、法務省は 1996 年と 2010 年に改正法案を準備し <sup class="ref"><a href="#s7" id="r7c">7</a></sup> 、それから三十年が経った。「設計が詰まっていない」ことを理由に据えるなら、その三十年のあいだ詰められなかったことをどう説明するのか。宮崎・宇賀両裁判官はこの点を指摘している。「平成 8 年には法務省において必要な外国の制度調査を行い、法制審議会の検討も終えて、夫婦同氏制の改正の方向を示す法律案の要綱も答申されたことを勘案すると、国会が夫婦別氏を希望する者の婚姻を認める改正を行うに際して、子の氏の決定方法を含めて関連する事項の法改正を速やかに実施することが不可能であるとは考え難い」。 <sup class="ref"><a href="#s8" id="r8f">8</a></sup></p>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">群 C - 事実命題型</button><div class="sec-body">
-
-<p class="pp">「同姓は日本の伝統である」「通称使用で不便は解消する」「別姓は家族の絆を弱める」「別姓は子どもに悪影響を及ぼす」。いずれも、真偽が調べられる形をしている。</p>
-
-<p class="pp"><strong>判定。</strong>前提そのものを疑う章と、害の原因をたどる章で見たとおり、これらの前提は検証に耐えていない。制度としての夫婦同姓は 1898 年に始まったものである。通称使用については、当事者に近い層ほど限界を訴えている（女性役員の 88% 、不便を感じている人の 59.3%）。「一体感を損なう」は、何が起きたらそう言えるのかが述べられておらず、草野裁判官の言う「検証可能なほどの具体性をもって主張されたことはない」状態にとどまっている。「子どもへの悪影響」は、内閣府調査の内訳を見る限り、その主要部分が制度ではなく周囲の反応に由来している。</p>
-
-<div class="summary">
-<p class="caption">まとめ - 三つの群と判定</p>
-<div class="tablewrap" style="margin:0;">
-<table style="min-width:0;">
-<thead><tr><th>群</th><th>論証は立っているか</th><th>支えている結論</th></tr></thead>
+<p>冒頭で、この疑問の中身を命題の形に書き取った。制度 C への反対とは、論理の形の上では「すべての夫婦は同姓でなければならない」という、他人の夫婦にも例外なく及ぶ命令である、と。答えるべきは、こう立て直された問いである - <strong>その命令には、すべての夫婦を例外なく縛るだけの理由があるのか</strong>。</p>
+<p>論理学は、この問いに「はい」か「いいえ」の一語で答える道具ではない。答えられるのは、<strong>反対論を種類ごとに仕分けし、それぞれについて論証が立っているかを判定する</strong>ことである。仕分けると、三つの群に分かれる。</p>
+<h3>群 A - 「利点があるから禁止せよ」型</h3>
+<p>「同姓には一体感という利点がある」「同姓は日本社会に定着している」といった論拠から、直接「別姓を認めるべきでない」を導くもの。法務省がまとめた反対論の（1）と（3）、新聞社説に現れた多くの文言がここに入る。</p>
+<p><strong>判定。</strong>この群の論証は、利点から禁止を導けないことを確かめた章で見たとおり、成立していない。「同姓に合理性がある」ことと「同姓に例外を許さないことに合理性がある」ことのあいだには距離があり、その距離は埋められていない。埋めるために必要な隠れた前提 - 「利点のあるやり方は、望まない人にも強制してよい」 - は、明示すればほとんど誰も支持しないものである。</p>
+<p><strong>したがって。</strong>この群に関する限り、冒頭の疑問が引っかかっていた点は、そのとおりだと言える。この群の主張は、自分の選択の理由を、他人の選択を禁じる理由としてそのまま使っている。そして、その使い回しを正当化する前提は示されていない。<strong>冒頭で書き取った「他人にも例外なく従わせる命令」が、正当化されないまま出されている - それがこの群の状態である。</strong></p>
+<h3>群 B - 外部性・制度設計型</h3>
+<p>寺田補足意見に代表される議論。法律婚は当事者を超えて社会に効果を及ぼす制度であり、規格化されている。子の氏の決め方、戸籍の編製の在り方など、詰めるべき設計問題が実在する。</p>
+<p><strong>判定。</strong>この群は、群 A のような飛躍を含んでいない。論証として立っている。冒頭の疑問が置いていた「それぞれの夫婦が選べばそれで済む」という見方を、正面から掘り崩す力を持っている。</p>
+<p><strong>ただし。</strong>この群が支えているのは「導入すべきでない」という結論ではなく、「<strong>設計を詰めなければ導入できない</strong>」という結論である。この二つは別の命題である。そして、この群の議論には、それ自身に向けられるべき問いが残る。 1996 年に法制審議会が答申を出し <sup class="fnref"><a id="fnref-1-3" href="#ref-1">[1]</a></sup> 、法務省は 1996 年と 2010 年に改正法案を準備し <sup class="fnref"><a id="fnref-7-3" href="#ref-7">[7]</a></sup> 、それから三十年が経った。「設計が詰まっていない」ことを理由に据えるなら、その三十年のあいだ詰められなかったことをどう説明するのか。宮崎・宇賀両裁判官はこの点を指摘している。「平成 8 年には法務省において必要な外国の制度調査を行い、法制審議会の検討も終えて、夫婦同氏制の改正の方向を示す法律案の要綱も答申されたことを勘案すると、国会が夫婦別氏を希望する者の婚姻を認める改正を行うに際して、子の氏の決定方法を含めて関連する事項の法改正を速やかに実施することが不可能であるとは考え難い」。 <sup class="fnref"><a id="fnref-8-6" href="#ref-8">[8]</a></sup></p>
+<h3>群 C - 事実命題型</h3>
+<p>「同姓は日本の伝統である」「通称使用で不便は解消する」「別姓は家族の絆を弱める」「別姓は子どもに悪影響を及ぼす」。いずれも、真偽が調べられる形をしている。</p>
+<p><strong>判定。</strong>前提そのものを疑う章と、害の原因をたどる章で見たとおり、これらの前提は検証に耐えていない。制度としての夫婦同姓は 1898 年に始まったものである。通称使用については、当事者に近い層ほど限界を訴えている（女性役員の 88% 、不便を感じている人の 59.3%）。「一体感を損なう」は、何が起きたらそう言えるのかが述べられておらず、草野裁判官の言う「検証可能なほどの具体性をもって主張されたことはない」状態にとどまっている。「子どもへの悪影響」は、内閣府調査の内訳を見る限り、その主要部分が制度ではなく周囲の反応に由来している。</p>
+<p>まとめ - 三つの群と判定</p>
+<table>
+<thead>
+<tr>
+<th>群</th>
+<th>論証は立っているか</th>
+<th>支えている結論</th>
+</tr>
+</thead>
 <tbody>
-<tr><td><strong>A</strong> 利点があるから禁止せよ型</td><td>立っていない（隠れた前提が支持されない）</td><td>なし</td></tr>
-<tr><td><strong>B</strong> 外部性・制度設計型</td><td>立っている</td><td>「設計を詰める必要がある」まで</td></tr>
-<tr><td><strong>C</strong> 事実命題型</td><td>形は立つが、前提が真でない</td><td>なし（健全でない）</td></tr>
+<tr>
+<td><strong>A</strong> 利点があるから禁止せよ型</td>
+<td>立っていない（隠れた前提が支持されない）</td>
+<td>なし</td>
+</tr>
+<tr>
+<td><strong>B</strong> 外部性・制度設計型</td>
+<td>立っている</td>
+<td>「設計を詰める必要がある」まで</td>
+</tr>
+<tr>
+<td><strong>C</strong> 事実命題型</td>
+<td>形は立つが、前提が真でない</td>
+<td>なし（健全でない）</td>
+</tr>
 </tbody>
 </table>
-</div>
-</div>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">言ってはならないこと</button><div class="sec-body">
-
-<p class="pp">ここで、論理学の作法として、はっきりさせておくべきことがある。以上の分析から、<strong>導けないこと</strong>が二つある。</p>
-
-<p class="pp">第一に、「反対する人は悪意を持っている」「反対論者は非合理な人間だ」とは導けない。論証が立っていないことと、その論証を述べた人の人格や動機は、まったく別の事柄である。論者の属性を持ち出して主張を退けるのは<strong>人身攻撃</strong>と呼ばれる誤謬で、これは論理学がもっとも古くから警戒してきた手口のひとつである。 <sup class="ref"><a href="#s9" id="r9b">9</a></sup></p>
-
-<p class="pp">第二に、「だから選択的夫婦別姓は正しい」とも導けない。反対論が成立していないことは、賛成論が成立していることを意味しない。賛成論には賛成論の前提があり、それも同じ厳しさで点検されなければならない。賛成側の論証にも同じ道具を当てる章を置いたのは、そのためである。</p>
-
-<p class="pp">論理学が答えられるのは、「この主張は、この理由によっては支えられていない」までである。それ以上は、価値についての判断であり、市民ひとりひとりと、それを代表する立法府の仕事である。最高裁が二度にわたって「国会で論ぜられ、判断されるべき事柄」と述べたのは、そういう意味においてだった。</p>
-
-</div></div><div class="section"><button aria-expanded="false" class="sec-head" type="button">いま、議論はどこにあるか</button><div class="sec-body">
-
-<p class="pp">参考までに、制度をめぐる現在の状況を記しておく。 2025 年 5 月、衆議院法務委員会で選択的夫婦別姓を含む民法改正案が 28 年ぶりに審議入りした。 <sup class="ref"><a href="#s10" id="r10b">10</a></sup> 一方、同年 10 月の自民党と日本維新の会の連立政権合意書は、戸籍制度と夫婦同氏の原則を維持したうえで旧姓の通称使用に法的効果を与える制度をつくるとし、旧姓使用法制化法案を 2026 年通常国会に提出すると明記した。 <sup class="ref"><a href="#s14" id="r14">14</a></sup> 2026 年 3 月の時点で、政府はこの方針で法案を準備している。 <sup class="ref"><a href="#s15" id="r15">15</a></sup></p>
-
-<p class="pp">論理学の観点から言えることは、ひとつだけある。旧姓の通称使用の法制化は、群 C の前提② - 「通称使用で不便は解消される」 - が真であることを条件として成立する政策である。その前提が真かどうかは、前提そのものを疑う章で見たとおり、調べられる。</p>
-
-    </div></div></div>
-</div>
-
-<div class="chapter" id="sec10">
-  <button aria-expanded="false" class="ch-head" type="button">この道具は、誰に向けて使うものか</button>
-  <div class="ch-body">
-
-<p class="pp">論理学を学んだ人がまず陥りがちなことがある。覚えた誤謬の名前を、他人の主張に貼って回るようになることである。「それは藁人形論法だ」「それは論点先取だ」。</p>
-
-<p class="pp">しかし、この記事で扱った道具のほとんどは、他人の主張に当てるより、<strong>自分の主張に当てるほうがはるかに難しく、はるかに役に立つ</strong>。自分の論証の隠れた前提を自分で掘り出すのは、他人のそれを指摘するより何倍も骨が折れる。自分に都合のよい事実に、都合の悪い事実と同じ厳しさを向けるのも同様である。</p>
-
-<p class="pp">この記事でも、それをしようと努めた。前提そのものを疑う章で「明治初期は別姓社会だった」という反論に留保を付け、反対論をいちばん強い形にして立てる章で冒頭の前提が厳密には偽であることを認め、「である」から「べき」は出てこないことを扱う章で賛成側の論証にも同じ道具を当てた。そうしなければ、この記事自体が、群 A の反対論と同じ種類の飛躍を犯すことになったからである。</p>
-
-<p class="pp">最後に、八つの道具をチェックリストの形にまとめておく。何かの議論に出会ったときに、順に当ててみてほしい。</p>
-
-<div class="summary">
-<p class="caption">論理の点検リスト</p>
+<h3>言ってはならないこと</h3>
+<p>ここで、論理学の作法として、はっきりさせておくべきことがある。以上の分析から、<strong>導けないこと</strong>が二つある。</p>
+<p>第一に、「反対する人は悪意を持っている」「反対論者は非合理な人間だ」とは導けない。論証が立っていないことと、その論証を述べた人の人格や動機は、まったく別の事柄である。論者の属性を持ち出して主張を退けるのは<strong>人身攻撃</strong>と呼ばれる誤謬で、これは論理学がもっとも古くから警戒してきた手口のひとつである。 <sup class="fnref"><a id="fnref-9-2" href="#ref-9">[9]</a></sup></p>
+<p>第二に、「だから選択的夫婦別姓は正しい」とも導けない。反対論が成立していないことは、賛成論が成立していることを意味しない。賛成論には賛成論の前提があり、それも同じ厳しさで点検されなければならない。賛成側の論証にも同じ道具を当てる章を置いたのは、そのためである。</p>
+<p>論理学が答えられるのは、「この主張は、この理由によっては支えられていない」までである。それ以上は、価値についての判断であり、市民ひとりひとりと、それを代表する立法府の仕事である。最高裁が二度にわたって「国会で論ぜられ、判断されるべき事柄」と述べたのは、そういう意味においてだった。</p>
+<h3>いま、議論はどこにあるか</h3>
+<p>参考までに、制度をめぐる現在の状況を記しておく。 2025 年 5 月、衆議院法務委員会で選択的夫婦別姓を含む民法改正案が 28 年ぶりに審議入りした。 <sup class="fnref"><a id="fnref-10-2" href="#ref-10">[10]</a></sup> 一方、同年 10 月の自民党と日本維新の会の連立政権合意書は、戸籍制度と夫婦同氏の原則を維持したうえで旧姓の通称使用に法的効果を与える制度をつくるとし、旧姓使用法制化法案を 2026 年通常国会に提出すると明記した。 <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 2026 年 3 月の時点で、政府はこの方針で法案を準備している。 <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup></p>
+<p>論理学の観点から言えることは、ひとつだけある。旧姓の通称使用の法制化は、群 C の前提② - 「通称使用で不便は解消される」 - が真であることを条件として成立する政策である。その前提が真かどうかは、前提そのものを疑う章で見たとおり、調べられる。</p>
+<h2 id="sec11">11 ．この道具は、誰に向けて使うものか</h2>
+<p>論理学を学んだ人がまず陥りがちなことがある。覚えた誤謬の名前を、他人の主張に貼って回るようになることである。「それは藁人形論法だ」「それは論点先取だ」。</p>
+<p>しかし、この記事で扱った道具のほとんどは、他人の主張に当てるより、<strong>自分の主張に当てるほうがはるかに難しく、はるかに役に立つ</strong>。自分の論証の隠れた前提を自分で掘り出すのは、他人のそれを指摘するより何倍も骨が折れる。自分に都合のよい事実に、都合の悪い事実と同じ厳しさを向けるのも同様である。</p>
+<p>この記事でも、それをしようと努めた。前提そのものを疑う章で「明治初期は別姓社会だった」という反論に留保を付け、反対論をいちばん強い形にして立てる章で冒頭の前提が厳密には偽であることを認め、「である」から「べき」は出てこないことを扱う章で賛成側の論証にも同じ道具を当てた。そうしなければ、この記事自体が、群 A の反対論と同じ種類の飛躍を犯すことになったからである。</p>
+<p>最後に、八つの道具をチェックリストの形にまとめておく。何かの議論に出会ったときに、順に当ててみてほしい。</p>
+<p>論理の点検リスト</p>
 <ol>
 <li><strong>命題を書き取る。</strong>争われているのは、どの命題か。「すべての」か「ある」か。</li>
 <li><strong>隠れた前提を掘る。</strong>この結論を出すために、何を暗黙に認めているか。それを口に出して言えるか。</li>
@@ -680,64 +473,46 @@
 <li><strong>数字の作られ方を見る。</strong>どんな設問の、どんな場合分けから出た数字か。</li>
 <li><strong>「である」と「べき」を分ける。</strong>規範的な結論に、規範的な前提が用意されているか。</li>
 </ol>
+<hr />
+<p>演習の解答例</p>
+<p><strong>演習 1 。</strong>この主張が結論を支えるには、少なくとも二つの隠れた前提が要る。（a）選択的夫婦別姓を求める人々は、子どもと家庭教育について考えていない。（b）ある政策の提案者が考慮していない事柄があるなら、その政策は採用すべきでない。（a）は事実命題であり、根拠が要る。（b）を認めるなら、あらゆる政策提案が同じ理由で退けられる。なお、この文はそもそも「別姓論者は子どものことを考えていない」という、相手の立場を弱めた形に作り変えたうえで叩いており、藁人形論法の形をしている。</p>
+<p><strong>演習 2 。</strong>妥当性について。この論証を妥当にするには「選択的夫婦別姓を導入すると離婚が増える」「離婚が増えると子どもが不幸になる」という二つの前提が要る。健全性について。前者は、日本より前に別姓を選べる制度を持つ国々で検証できるはずだが、この社説では示されていない。また、欧米の離婚率の変化を別姓制度に帰属させる推論は、他の多くの要因を無視しており、因果の取り違え（害の原因をたどる章で扱った道具）にあたる。</p>
+<p><strong>演習 3 。</strong>排他的ではない。「選択的夫婦別姓を導入したうえで、通称使用も法制化すべきだ」と考える人は、三つのどれを選んでもよいことになり、実際には第二の選択肢（同姓維持のうえで通称使用の法制度）にも第三の選択肢にも流れうる。この重なりが、 2 択のときと 3 択のときで数字が動く一因である。</p>
+<div class="refs">
+<h2>出典</h2>
+<ol><li id="ref-1">法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」
+   <a href="https://www.moj.go.jp/MINJI/minji36.html">https://www.moj.go.jp/MINJI/minji36.html</a>
+   制度の定義、賛成論・反対論の整理、平成 8 年（1996 年） 2 月の法制審議会答申「民法の一部を改正する法律案要綱」、最高裁の判断、世論調査結果を掲載。 <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2">最高裁判所大法廷 平成 27 年 12 月 16 日判決（平成 26 年（オ）第 1023 号 損害賠償請求事件）判決文
+   <a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf</a>
+   本文で引用した多数意見（憲法 13 条・ 14 条 1 項・ 24 条についての判断、通称使用に関する説示、「国会で論ぜられ、判断されるべき事柄」）は本文前半。裁判官寺田逸郎の補足意見、裁判官岡部喜代子・櫻井龍子・鬼丸かおる・木内道祥の各意見、裁判官山浦善樹の反対意見が続く。 <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3">佐藤潤司「「選択的夫婦別姓」論議に関する考察 - 全国紙の社説の分析を通じて」『メディア研究』 101 号（2022 年） 255-272 頁
+   <a href="https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja</a>
+   読売・朝日・毎日・日経・産経の社説 152 件を計量テキスト分析したもの。本文で引用した産経新聞社説の文言（「子供のことを考えず、家族の絆（きずな）を壊す恐れ」「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている」「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」）は 270 頁。 <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4">同上、 258-259 頁（久武綾子ほかの研究を引用しつつ、 1875 年の苗字義務化、 1876 年の太政官指令、 1898 年明治民法による夫婦同氏の成立を整理）。あわせて、国立国会図書館レファレンス協同データベース「明治 9 年に出されたという夫婦別氏に関する制度の本文と解説を読みたい」
+   <a href="https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373&amp;page=ref_view">https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373</a> <a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5">酒井智大「明治前期は夫婦別氏だったのか」有斐閣 Online ロージャーナル、 2025 年 6 月 4 日
+   <a href="https://yuhikaku.com/articles/-/27967">https://yuhikaku.com/articles/-/27967</a>
+   明治 9 年太政官指令の位置づけと、民法起草者が同指令を「実際ノ慣習」に反するとして重視しなかった経緯を、史料に基づいて検証している。 <a class="fnback" href="#fnref-5-1">↩</a></li><li id="ref-6">内閣府政府広報室「家族の法制に関する世論調査」（令和 3 年 12 月調査、令和 4 年 3 月公表）
+   調査結果ページ <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/">https://survey.gov-online.go.jp/r03/r03-kazoku/</a>
+   概要 PDF <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf">https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf</a>
+   調査対象 5,000 人、有効回収数 2,884 人（57.7%）、郵送法。本文引用箇所は、問 5 （通称使用の限界、 59.3%）、問 8 （一体感、 37.8% ／ 61.6%）、問 10 （子どもへの影響、 69.0% ／ 30.3%）、問 11 （影響の内訳、 78.6% ／ 60.1% ／ 23.1%）、問 12 （制度の選択、 27.0% ／ 42.2% ／ 28.9%）、および表 12- 参考（平成 29 年 12 月調査の設問文と 42.5% ／ 29.3% ／ 24.4%）。「単純比較は行わない」旨の注記は概要 2 頁。 <a class="fnback" href="#fnref-6-1">↩</a></li><li id="ref-7">経団連提言「選択肢のある社会の実現を目指して 〜女性活躍に対する制度の壁を乗り越える〜」（概要） 2024 年 6 月 18 日、 2025 年 5 月 7 日改訂
+   <a href="https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf">https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf</a>
+   本文引用箇所は 3 頁（女性役員の 88% 、企業の 91% 、婚姻時に夫婦同姓しか選択できない国は日本のみとされること、 CEDAW の 2003 年・ 2009 年・ 2016 年の是正勧告）、 4 頁（1991 年からの法制審議会の議論、 1996 年答申、法務省による 1996 年・ 2010 年の改正法案準備）、 5 頁（旧姓の通称使用の限界）。 <a class="fnback" href="#fnref-7-1">↩</a></li><li id="ref-8">最高裁判所大法廷 令和 3 年 6 月 23 日決定（令和 2 年（ク）第 102 号 市町村長処分不服申立て却下審判に対する抗告棄却決定に対する特別抗告事件）決定文
+   <a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf</a>
+   多数意見（「次元を異にする」）は 2 頁。裁判官深山卓也・岡村和美・長嶺安政の補足意見、裁判官三浦守の意見、裁判官宮崎裕子・宇賀克也の反対意見（子の氏と離婚・再婚に関する論述）、裁判官草野耕一の反対意見（福利の比較衡量、 43-49 頁）を含む。 <a class="fnback" href="#fnref-8-1">↩</a></li><li id="ref-9">"Fallacies", <em>Stanford Encyclopedia of Philosophy</em>（初出 2015 年 5 月 29 日、最終改訂 2024 年 8 月 30 日）
+   <a href="https://plato.stanford.edu/entries/fallacies/">https://plato.stanford.edu/entries/fallacies/</a>
+   藁人形論法（straw man）は "an opponent's point of view is distorted in order to make it easier to refute" 、人身攻撃（ad hominem）は "bringing negative aspects of an arguer, or their situation, to bear on the view they are advancing" と定義されている。 <a class="fnback" href="#fnref-9-1">↩</a></li><li id="ref-10">「別姓、 3 野党の法案審議入り 衆院法務委、 28 年ぶり」時事ドットコム、 2025 年 5 月 30 日
+    <a href="https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol">https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol</a>
+    あわせて「選択的別姓法案審議入り／衆院法務委で 28 年ぶり」しんぶん赤旗、 2025 年 5 月 31 日
+    <a href="https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html">https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html</a> <a class="fnback" href="#fnref-10-1">↩</a></li><li id="ref-11">論理学の基礎概念（命題、量化子、妥当性と健全性、省略三段論法、場合分け）については、日本語の入門書として次を参照。野矢茂樹『まったくゼロからの論理学』岩波書店
+    <a href="https://www.iwanami.co.jp/book/b496835.html">https://www.iwanami.co.jp/book/b496835.html</a>
+    同『新版 論理トレーニング』産業図書、 2006 年（哲学教科書シリーズ） <a class="fnback" href="#fnref-11-1">↩</a></li><li id="ref-12">David Hume, <em>A Treatise of Human Nature</em>, Book III, Part I, Section I （1739-1740 年）
+    <a href="https://www.gutenberg.org/ebooks/4705">https://www.gutenberg.org/ebooks/4705</a>
+    「 is 」から「 ought 」への移行が説明なしに行われていることを指摘した箇所。いわゆる「ヒュームの法則」の出典。 <a class="fnback" href="#fnref-12-1">↩</a></li><li id="ref-13">内閣府男女共同参画局「夫婦の姓（名字・氏）に関するデータ」
+    <a href="https://www.gender.go.jp/research/fufusei/index.html">https://www.gender.go.jp/research/fufusei/index.html</a>
+    厚生労働省「人口動態統計」に基づく。令和 6 年（2024 年）に婚姻した夫婦のうち、夫の姓を選んだのは 456,453 組（94.1%）。なお 2015 年最高裁判決は当時の状況を「 96% 以上」としている。 <a class="fnback" href="#fnref-13-1">↩</a></li><li id="ref-14">「自民党と日本維新の会、連立政権合意書の全文」日本経済新聞、 2025 年 10 月
+    <a href="https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/">https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/</a>
+    進捗については「自維 連立政権合意書の要旨と進捗」時事ドットコム
+    <a href="https://www.jiji.com/jc/v8?id=20251021jiirenritu">https://www.jiji.com/jc/v8?id=20251021jiirenritu</a> <a class="fnback" href="#fnref-14-1">↩</a></li><li id="ref-15">「遠のく選択的夫婦別姓 高市政権、旧姓法制化目指す - 不便解消狙い、与野党に賛否」時事ドットコム、 2026 年 3 月 5 日
+    <a href="https://www.jiji.com/jc/article?k=2026030400853&amp;g=pol">https://www.jiji.com/jc/article?k=2026030400853&amp;g=pol</a> <a class="fnback" href="#fnref-15-1">↩</a></li></ol>
 </div>
-
-<hr class="sep"/>
-
-<div class="exercise">
-<p class="caption">演習の解答例</p>
-<p class="pp"><strong>演習 1 。</strong>この主張が結論を支えるには、少なくとも二つの隠れた前提が要る。（a）選択的夫婦別姓を求める人々は、子どもと家庭教育について考えていない。（b）ある政策の提案者が考慮していない事柄があるなら、その政策は採用すべきでない。（a）は事実命題であり、根拠が要る。（b）を認めるなら、あらゆる政策提案が同じ理由で退けられる。なお、この文はそもそも「別姓論者は子どものことを考えていない」という、相手の立場を弱めた形に作り変えたうえで叩いており、藁人形論法の形をしている。</p>
-<p class="pp"><strong>演習 2 。</strong>妥当性について。この論証を妥当にするには「選択的夫婦別姓を導入すると離婚が増える」「離婚が増えると子どもが不幸になる」という二つの前提が要る。健全性について。前者は、日本より前に別姓を選べる制度を持つ国々で検証できるはずだが、この社説では示されていない。また、欧米の離婚率の変化を別姓制度に帰属させる推論は、他の多くの要因を無視しており、因果の取り違え（害の原因をたどる章で扱った道具）にあたる。</p>
-<p class="pp"><strong>演習 3 。</strong>排他的ではない。「選択的夫婦別姓を導入したうえで、通称使用も法制化すべきだ」と考える人は、三つのどれを選んでもよいことになり、実際には第二の選択肢（同姓維持のうえで通称使用の法制度）にも第三の選択肢にも流れうる。この重なりが、 2 択のときと 3 択のときで数字が動く一因である。</p>
 </div>
-
-    </div>
-</div>
-
-<div class="chapter" id="sec11">
-  <button aria-expanded="false" class="ch-head" type="button">出典</button>
-  <div class="ch-body">
-
-<ol class="sources">
-<li id="s1"><a class="fn-num" href="#r1">1.</a> 法務省「選択的夫婦別氏制度（いわゆる選択的夫婦別姓制度）について」<br/><a href="https://www.moj.go.jp/MINJI/minji36.html">https://www.moj.go.jp/MINJI/minji36.html</a><br/><span style="color:var(--muted)">制度の定義、賛成論・反対論の整理、平成 8 年（1996 年） 2 月の法制審議会答申「民法の一部を改正する法律案要綱」、最高裁の判断、世論調査結果を掲載。</span></li>
-
-<li id="s2"><a class="fn-num" href="#r2">2.</a> 最高裁判所大法廷 平成 27 年 12 月 16 日判決（平成 26 年（オ）第 1023 号 損害賠償請求事件）判決文<br/><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-85546.pdf</a><br/><span style="color:var(--muted)">本文で引用した多数意見（憲法 13 条・ 14 条 1 項・ 24 条についての判断、通称使用に関する説示、「国会で論ぜられ、判断されるべき事柄」）は本文前半。裁判官寺田逸郎の補足意見、裁判官岡部喜代子・櫻井龍子・鬼丸かおる・木内道祥の各意見、裁判官山浦善樹の反対意見が続く。</span></li>
-
-<li id="s3"><a class="fn-num" href="#r3">3.</a> 佐藤潤司「「選択的夫婦別姓」論議に関する考察 - 全国紙の社説の分析を通じて」『メディア研究』 101 号（2022 年） 255-272 頁<br/><a href="https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja">https://www.jstage.jst.go.jp/article/jamsmedia/101/0/101_255/_pdf/-char/ja</a><br/><span style="color:var(--muted)">読売・朝日・毎日・日経・産経の社説 152 件を計量テキスト分析したもの。本文で引用した産経新聞社説の文言（「子供のことを考えず、家族の絆（きずな）を壊す恐れ」「夫婦別姓論に欠けているものは、子供を含めた家族と家庭教育のありよう」「欧米では離婚が増え、子供たちがそれによる家庭崩壊の犠牲になっている」「夫婦別姓制度が家族の一体感を損ない、子供に悪影響を及ぼすことは間違いない」）は 270 頁。</span></li>
-
-<li id="s4"><a class="fn-num" href="#r4">4.</a> 同上、 258-259 頁（久武綾子ほかの研究を引用しつつ、 1875 年の苗字義務化、 1876 年の太政官指令、 1898 年明治民法による夫婦同氏の成立を整理）。あわせて、国立国会図書館レファレンス協同データベース「明治 9 年に出されたという夫婦別氏に関する制度の本文と解説を読みたい」<br/><a href="https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373&amp;page=ref_view">https://crd.ndl.go.jp/reference/entry/index.php?id=1000374373</a></li>
-
-<li id="s5"><a class="fn-num" href="#r5">5.</a> 酒井智大「明治前期は夫婦別氏だったのか」有斐閣 Online ロージャーナル、 2025 年 6 月 4 日<br/><a href="https://yuhikaku.com/articles/-/27967">https://yuhikaku.com/articles/-/27967</a><br/><span style="color:var(--muted)">明治 9 年太政官指令の位置づけと、民法起草者が同指令を「実際ノ慣習」に反するとして重視しなかった経緯を、史料に基づいて検証している。</span></li>
-
-<li id="s6"><a class="fn-num" href="#r6">6.</a> 内閣府政府広報室「家族の法制に関する世論調査」（令和 3 年 12 月調査、令和 4 年 3 月公表）<br/>調査結果ページ <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/">https://survey.gov-online.go.jp/r03/r03-kazoku/</a><br/>概要 PDF <a href="https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf">https://survey.gov-online.go.jp/r03/r03-kazoku/gairyaku.pdf</a><br/><span style="color:var(--muted)">調査対象 5,000 人、有効回収数 2,884 人（57.7%）、郵送法。本文引用箇所は、問 5 （通称使用の限界、 59.3%）、問 8 （一体感、 37.8% ／ 61.6%）、問 10 （子どもへの影響、 69.0% ／ 30.3%）、問 11 （影響の内訳、 78.6% ／ 60.1% ／ 23.1%）、問 12 （制度の選択、 27.0% ／ 42.2% ／ 28.9%）、および表 12- 参考（平成 29 年 12 月調査の設問文と 42.5% ／ 29.3% ／ 24.4%）。「単純比較は行わない」旨の注記は概要 2 頁。</span></li>
-
-<li id="s7"><a class="fn-num" href="#r7">7.</a> 経団連提言「選択肢のある社会の実現を目指して 〜女性活躍に対する制度の壁を乗り越える〜」（概要） 2024 年 6 月 18 日、 2025 年 5 月 7 日改訂<br/><a href="https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf">https://www.keidanren.or.jp/policy/2024/044_gaiyo.pdf</a><br/><span style="color:var(--muted)">本文引用箇所は 3 頁（女性役員の 88% 、企業の 91% 、婚姻時に夫婦同姓しか選択できない国は日本のみとされること、 CEDAW の 2003 年・ 2009 年・ 2016 年の是正勧告）、 4 頁（1991 年からの法制審議会の議論、 1996 年答申、法務省による 1996 年・ 2010 年の改正法案準備）、 5 頁（旧姓の通称使用の限界）。</span></li>
-
-<li id="s8"><a class="fn-num" href="#r8">8.</a> 最高裁判所大法廷 令和 3 年 6 月 23 日決定（令和 2 年（ク）第 102 号 市町村長処分不服申立て却下審判に対する抗告棄却決定に対する特別抗告事件）決定文<br/><a href="https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf">https://www.courts.go.jp/assets/hanrei/hanrei-pdf-90412.pdf</a><br/><span style="color:var(--muted)">多数意見（「次元を異にする」）は 2 頁。裁判官深山卓也・岡村和美・長嶺安政の補足意見、裁判官三浦守の意見、裁判官宮崎裕子・宇賀克也の反対意見（子の氏と離婚・再婚に関する論述）、裁判官草野耕一の反対意見（福利の比較衡量、 43-49 頁）を含む。</span></li>
-
-<li id="s9"><a class="fn-num" href="#r9">9.</a> "Fallacies", <em>Stanford Encyclopedia of Philosophy</em>（初出 2015 年 5 月 29 日、最終改訂 2024 年 8 月 30 日）<br/><a href="https://plato.stanford.edu/entries/fallacies/">https://plato.stanford.edu/entries/fallacies/</a><br/><span style="color:var(--muted)">藁人形論法（straw man）は "an opponent's point of view is distorted in order to make it easier to refute" 、人身攻撃（ad hominem）は "bringing negative aspects of an arguer, or their situation, to bear on the view they are advancing" と定義されている。</span></li>
-
-<li id="s10"><a class="fn-num" href="#r10">10.</a> 「別姓、 3 野党の法案審議入り 衆院法務委、 28 年ぶり」時事ドットコム、 2025 年 5 月 30 日<br/><a href="https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol">https://www.jiji.com/jc/article?k=2025053000157&amp;g=pol</a><br/>あわせて「選択的別姓法案審議入り／衆院法務委で 28 年ぶり」しんぶん赤旗、 2025 年 5 月 31 日<br/><a href="https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html">https://www.jcp.or.jp/akahata/aik25/2025-05-31/2025053101_02_0.html</a></li>
-
-<li id="s11"><a class="fn-num" href="#r11">11.</a> 論理学の基礎概念（命題、量化子、妥当性と健全性、省略三段論法、場合分け）については、日本語の入門書として次を参照。野矢茂樹『まったくゼロからの論理学』岩波書店<br/><a href="https://www.iwanami.co.jp/book/b496835.html">https://www.iwanami.co.jp/book/b496835.html</a><br/>同『新版 論理トレーニング』産業図書、 2006 年（哲学教科書シリーズ）</li>
-
-<li id="s12"><a class="fn-num" href="#r12">12.</a> David Hume, <em>A Treatise of Human Nature</em>, Book III, Part I, Section I （1739-1740 年）<br/><a href="https://www.gutenberg.org/ebooks/4705">https://www.gutenberg.org/ebooks/4705</a><br/><span style="color:var(--muted)">「 is 」から「 ought 」への移行が説明なしに行われていることを指摘した箇所。いわゆる「ヒュームの法則」の出典。</span></li>
-
-<li id="s13"><a class="fn-num" href="#r13">13.</a> 内閣府男女共同参画局「夫婦の姓（名字・氏）に関するデータ」<br/><a href="https://www.gender.go.jp/research/fufusei/index.html">https://www.gender.go.jp/research/fufusei/index.html</a><br/><span style="color:var(--muted)">厚生労働省「人口動態統計」に基づく。令和 6 年（2024 年）に婚姻した夫婦のうち、夫の姓を選んだのは 456,453 組（94.1%）。なお 2015 年最高裁判決は当時の状況を「 96% 以上」としている。</span></li>
-
-<li id="s14"><a class="fn-num" href="#r14">14.</a> 「自民党と日本維新の会、連立政権合意書の全文」日本経済新聞、 2025 年 10 月<br/><a href="https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/">https://www.nikkei.com/article/DGXZQOUA20AP30Q5A021C2000000/</a><br/>進捗については「自維 連立政権合意書の要旨と進捗」時事ドットコム<br/><a href="https://www.jiji.com/jc/v8?id=20251021jiirenritu">https://www.jiji.com/jc/v8?id=20251021jiirenritu</a></li>
-
-<li id="s15"><a class="fn-num" href="#r15">15.</a> 「遠のく選択的夫婦別姓 高市政権、旧姓法制化目指す - 不便解消狙い、与野党に賛否」時事ドットコム、 2026 年 3 月 5 日<br/><a href="https://www.jiji.com/jc/article?k=2026030400853&amp;g=pol">https://www.jiji.com/jc/article?k=2026030400853&amp;g=pol</a></li>
-</ol>
-
-    </div>
-</div>
-
-</div>
-
-</div>
-
-<script src="assets/shell.js"></script>
-
 </body>
 </html>
