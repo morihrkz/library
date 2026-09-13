@@ -24,12 +24,12 @@ h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line); padding:22px; margin:0 0 48px;}
-.toc .label{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:12px;}
-.toc ol{margin:0; padding-left:0; list-style:none;}
-.toc li{margin-bottom:7px; font-size:14.5px;}
-.toc a{color:var(--text); text-decoration:none;}
-.toc a:hover{color:var(--accent); text-decoration:underline;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
 h3{font-size:18px; margin:32px 0 12px;}
 h4,h5{font-size:16px; margin:24px 0 10px;}
@@ -74,17 +74,21 @@ pre code{background:none; padding:0;}
 <div class="kicker">教育政策比較</div>
 <h1>道徳教育政策の比較研究 - 文部科学省の方針と諸外国の実践</h1>
 <p class="subtitle">文部科学省の方針と諸外国の道徳教育を辿る論考。</p>
-<div class="toc"><div class="label">目次</div><ol><li><a href="#sec1">1 ．はじめに</a></li>
-<li><a href="#sec2">2 ．文部科学省は「徳育」にどう向き合ってきたか</a></li>
-<li><a href="#sec3">3 ．諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</a></li>
-<li><a href="#sec4">4 ．考察 - 制度の多様性から何が見えるか</a></li>
-<li><a href="#sec5">5 ．結び</a></li></ol></div>
-<h2 id="sec1">1 ．はじめに</h2>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol><li><a href="#sec1">はじめに</a></li>
+<li><a href="#sec2">文部科学省は「徳育」にどう向き合ってきたか</a></li>
+<li><a href="#sec3">諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</a></li>
+<li><a href="#sec4">考察 - 制度の多様性から何が見えるか</a></li>
+<li><a href="#sec5">結び</a></li>
+</ol>
+</nav>
+<h2 id="sec1">1. はじめに</h2>
 <p>「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、 19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』（1861 年、原題 Education: Intellectual, Moral, and Physical）で示した「知育（intellectual education）・徳育（moral education）・体育（physical education）」という枠組みを、福沢諭吉が『学問のすゝめ』（1872 年）で紹介したことを一つの契機として日本に定着したとされる。
 知育・体育が学力や運動能力という比較的測定しやすい対象を扱うのに対し、徳育、すなわち人格や道徳性の涵養を学校教育がどこまで、どのように担うべきかという問いは、明治期から今日に至るまで繰り返し論争の的になってきた。筆者自身、三育のうち徳育こそが人の生き方の基盤として特に重要ではないかと考えている一人だが、それが学校教育の制度として現にどう扱われているのかは、実のところよく知らなかった。
 本稿では、文部科学省（文科省）が徳育に関してどのような方針を持っているのか、また諸外国では道徳教育・人格教育に相当する取り組みがどう行われているのかを、公表資料に基づいて確認する。諸外国の事例については、宗教教育との結びつきが強いのではないかという予想を出発点としつつ、その当否は調査結果に沿って判断する。</p>
 <p>（出典 : 三育の由来・スペンサーと福沢諭吉の関係については manabitoya.com「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」 https://manabitoya.com/about-san-iku <sup class="fnref"><a id="fnref-16-1" href="#ref-16">[16]</a></sup> （二次情報）、原典は Herbert Spencer, "Education: Intellectual, Moral, and Physical"（1861 年） https://archive.org/details/spencereducation00spen <sup class="fnref"><a id="fnref-17-1" href="#ref-17">[17]</a></sup>）</p>
-<h2 id="sec2">2 ．文部科学省は「徳育」にどう向き合ってきたか</h2>
+<h2 id="sec2">2. 文部科学省は「徳育」にどう向き合ってきたか</h2>
 <p>まず確認しておくべきは、文科省が現在の公式文書で「徳育」という語をほとんど用いていないという点である。
 文科省が運営する「道徳教育アーカイブ」サイトを見ても、目標や制度の説明に使われているのは一貫して「道徳教育」であり、「徳育」という表記は見当たらない。教育振興基本計画などの近年の答申類でも、道徳教育の推進という語は用いられるが、「徳育」を前面に立てた記述は確認できなかった。
 つまり「徳育」は近代教育の理念を語るうえでの一般名詞としては今も流通しているが、文科省の制度上の呼称としては「道徳教育」、より具体的には後述する「特別の教科 道徳」に置き換わっている、というのが現状である。</p>
@@ -99,7 +103,7 @@ pre code{background:none; padding:0;}
 <p>もう一点、日本の道徳教育を考えるうえで見落とせないのが、宗教との関係である。教育基本法第 15 条は第 1 項で宗教に関する寛容の態度や一般的な教養を教育上尊重すべきものと定める一方、第 2 項で国公立学校が特定の宗教のための宗教教育その他宗教的活動を行うことを禁じている。
 つまり日本の公立学校の道徳教育は、制度設計として宗教とは明確に切り離された世俗的な枠組みとして組み立てられている。この点は、後述する諸外国との比較において重要な軸になる。</p>
 <p>（出典 : 文部科学省「道徳教育アーカイブ」 https://doutoku.mext.go.jp/html/basic.html <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> ／中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日、 https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> ／文部科学省「小学校学習指導要領解説 特別の教科 道徳編」 https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> ／教育基本法（平成十八年法律第百二十号）第 15 条、 https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> ／仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 https://senben.org/archives/5747 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> ／自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 https://www.jlaf.jp/kyokasho/2019/0305_60.html <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup>）</p>
-<h2 id="sec3">3 ．諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</h2>
+<h2 id="sec3">3. 諸外国の道徳教育・人格教育 - 宗教との距離はさまざま</h2>
 <p>諸外国では道徳教育に相当する取り組みが、宗教教育と密接に結びついた形で行われているのではないか、というのが筆者の当初の仮説であった。
 結論から言えば、調査した範囲では、この仮説は一部の国には当てはまるが、全体としては当てはまらない。以下、欧州・北米・東アジアの計 5 か国の事例を、宗教との関わりが強いものから弱いものへと並べて紹介する。</p>
 <h3>ドイツ - 宗教教育が憲法上の教科</h3>
@@ -122,7 +126,7 @@ pre code{background:none; padding:0;}
 ドイツのように宗教教育を憲法上の教科として制度の中心に据える国がある一方、韓国・フランス・アメリカのように、法制度としては宗教から独立した（あるいは宗教からの中立性そのものを教育内容とする）世俗的な人格教育・公民教育を採用する国も複数見られた。イギリスはその中間で、宗教教育と世俗的な公民教育を並存させている。
 筆者の当初の仮説、すなわち諸外国の徳育相当の取り組みは宗教と密接に関わるものが多いのではないかという予想は、調査した事例の範囲では支持されなかった。少なくとも本稿で扱った 5 か国のうち、宗教を制度の中核に置くのはドイツのみであり、残る 4 か国は世俗的な枠組みを採用しているか、宗教教育と世俗教育を切り分ける形を取っている。</p>
 <p>(出典 : ドイツ連邦共和国基本法第 7 条、 https://www.gesetze-im-internet.de/gg/art_7.html <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> ／ konfessionen.org 「 Religionsunterricht in Deutschland 」 https://konfessionen.org/religionsunterricht-deutschland/ <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> （二次情報）／ Religion Media Centre 「 Factsheet: Religious Education in schools 」 https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/ <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> （二次情報）／ Association for Citizenship Teaching 「 Citizenship national curriculum 」 https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/ <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> （二次情報）／ The Korea Herald 「 Progress of Character Education Promotion Act 」 https://www.koreaherald.com/article/1383433 <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> （二次情報）／한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」 https://news.knue.ac.kr/news/articleView.html?idxno=1519 <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> （二次情報）／フランス教育省（éduscol）「 Enseignement moral et civique 」 https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> ／ Anti-Defamation League 「 Religion in the Public Schools 」 https://www.adl.org/media/15792/download <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> （二次情報）／ Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」 https://nwef.org/2021/08/09/character-education-in-school/ <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> (二次情報))</p>
-<h2 id="sec4">4 ．考察 - 制度の多様性から何が見えるか</h2>
+<h2 id="sec4">4. 考察 - 制度の多様性から何が見えるか</h2>
 <p>日本と諸外国を並べて見えてくるのは、道徳教育・人格教育という営みが「教科として制度化するかどうか」「宗教と結びつけるかどうか」という、独立した二つの軸の組み合わせとして存在しているという構図である。
 日本は、道徳を独立教科として制度化する一方、宗教とは明確に切り離すという選択をしている。これはフランスの世俗的な EMC や、韓国の人性教育振興法に近い立ち位置といえる。他方、ドイツは教科としての制度化と宗教との結びつきの両方を選び、イギリスは宗教教育と世俗的公民教育を別建てで両方とも制度化し、アメリカは州ごとの裁量に委ねる形で緩やかに制度化している。
 どの組み合わせが望ましいかは、政教分離の憲法上の位置づけや、社会における宗教の存在感、教育行政の集権・分権の度合いといった、各国固有の条件に左右される話であり、一意の正解があるとは考えにくい。</p>
@@ -134,7 +138,7 @@ pre code{background:none; padding:0;}
 <p>徳育を重要だと考える立場から見れば、日本が道徳を教科として制度化したこと自体は、諸外国の少なからぬ事例と軌を一にする選択に見えるかもしれない。他方で、検定教科書と評価という手法を通じて価値観の伝達を国が主導することへの懸念は、仙台弁護士会や自由法曹団の意見書が示すように、日本国内でも解消されていない。
 この対立は、道徳教育の必要性そのものというより、それをどのような手段・制度で担わせるかという設計の問題に関わっている。筆者自身は徳育の重要性を否定しないが、その重要性から直ちに現行の教科化の是非が導かれるわけではないという点は、調査を通じて改めて意識させられた。
 この是非についての判断は、本稿の範囲を超えるものとして読者に委ねたい。</p>
-<h2 id="sec5">5 ．結び</h2>
+<h2 id="sec5">5. 結び</h2>
 <p>文科省は「徳育」という語こそ前面に用いていないものの、「特別の教科 道徳」という形で道徳教育を制度化し、宗教とは切り離した世俗的な枠組みでこれを運用している。
 諸外国に目を向けると、道徳教育・人格教育に相当する取り組み自体は広く見られるものの、宗教との関わり方は一様ではなく、宗教を制度の中心に据える国もあれば、世俗性を積極的に掲げる国もあった。「諸外国の徳育は宗教と結びつきやすい」という仮説は、少なくとも本稿が調査した範囲では裏づけられなかった。
 徳育をめぐる制度設計は、国ごとの歴史的・憲法的条件を映す鏡のようなものであり、その先にある「徳育は重要か、重要だとしてどう担うべきか」という問いへの答えは、読者それぞれの判断に委ねられている。</p>

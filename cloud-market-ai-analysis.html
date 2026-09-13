@@ -24,12 +24,12 @@ h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line); padding:22px; margin:0 0 48px;}
-.toc .label{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:12px;}
-.toc ol{margin:0; padding-left:0; list-style:none;}
-.toc li{margin-bottom:7px; font-size:14.5px;}
-.toc a{color:var(--text); text-decoration:none;}
-.toc a:hover{color:var(--accent); text-decoration:underline;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
 h3{font-size:18px; margin:32px 0 12px;}
 h4,h5{font-size:16px; margin:24px 0 10px;}
@@ -79,18 +79,22 @@ pre code{background:none; padding:0;}
 予測 調査会社・金融機関等が具体的数値で公表した見通し
 シナリオ 本稿作成にあたり複数の情報を統合して検討した仮説的な将来像
 （ラベルのない記述は決算発表・公式資料等の一次情報にもとづく事実）</p></div>
-<div class="toc"><div class="label">目次</div><ol><li><a href="#sec1">1 ．はじめに</a></li>
-<li><a href="#sec2">2 ．三社、および同種サービス提供企業の現状分析</a></li>
-<li><a href="#sec3">3 ．AI ブームとの関係</a></li>
-<li><a href="#sec4">4 ．今後の予測・シナリオ分析</a></li>
-<li><a href="#sec5">5 ．まとめ・所感</a></li>
-<li><a href="#sec6">6 ．用語集</a></li></ol></div>
-<h2 id="sec1">1 ．はじめに</h2>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol><li><a href="#sec1">はじめに</a></li>
+<li><a href="#sec2">三社、および同種サービス提供企業の現状分析</a></li>
+<li><a href="#sec3">AI ブームとの関係</a></li>
+<li><a href="#sec4">今後の予測・シナリオ分析</a></li>
+<li><a href="#sec5">まとめ・所感</a></li>
+<li><a href="#sec6">用語集</a></li>
+</ol>
+</nav>
+<h2 id="sec1">1. はじめに</h2>
 <p>本稿は、 Amazon Web Services （以下 AWS）、 Microsoft Azure （以下 Azure）、 Google Cloud の大手クラウド事業者三社、および同種のクラウド計算サービスを提供するその他の企業（Oracle 、 Alibaba Cloud 、 Tencent Cloud 、 IBM 等）を対象に、クラウドコンピューティング市場における市場シェア・成長動向を整理するとともに、 2023 年以降続いている生成 AI （人間のような自然な文章・画像・音声などを新たに「生成」できる AI 技術の総称）ブームとの関係性を検討する。</p>
 <p>クラウドコンピューティングとは、企業や個人が自前でサーバー機器を保有・管理する代わりに、インターネット経由で計算資源（サーバーの処理能力やデータの保存領域）を必要な分だけ借りて使う仕組みを指す。近年、この「借りる」対象に、生成 AI モデルの開発・運用に必要な高性能な計算資源（GPU 等の専用半導体を大量に積んだサーバー）が急速に加わっており、クラウド市場の勢力図そのものが AI ブームによって書き換えられつつある。</p>
 <p>本稿で扱う範囲は、①AWS ・ Azure ・ Google Cloud の三大クラウド事業者（いわゆる「ハイパースケーラー」、超大規模にデータセンターを展開する事業者を指す業界用語）を主軸としつつ、②Oracle Cloud Infrastructure （OCI）のように AI 特化で急成長している事業者、③Alibaba Cloud ・ Tencent Cloud といった AI ・クラウド事業のグローバル展開を進める中国系事業者、④IBM のようにハイブリッドクラウドで独自の位置を占める事業者も視野に含める。</p>
 <p>本稿は 2026 年 8 月 5 日時点で Web 検索により収集できた情報にもとづく。数値の性質に応じて「確立した事実（決算発表・公式資料等の一次情報）」「業界アナリストの見立て（予測・推計）」「推測的なシナリオ（まとめ・所感の章で複数の情報を統合して検討する将来像）」の 3 段階を区別して記述し、分類基準は各章の該当箇所に明記する。</p>
-<h2 id="sec2">2 ．三社、および同種サービス提供企業の現状分析</h2>
+<h2 id="sec2">2. 三社、および同種サービス提供企業の現状分析</h2>
 <p>AWS ・ Azure ・ Google Cloud の市場シェア推移と、三社および Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM の直近決算を、一次資料・調査会社データで整理する部である。</p>
 <h3>「市場シェア」「成長率」をどう読むか</h3>
 <p><strong>市場シェアとは</strong>、ある市場全体の売上のうち特定企業が占める割合であり、 Synergy Research Group や Canalys といった調査会社が各社の決算等から推計して算出する。どの調査会社も集計対象の定義が微妙に異なるため、同じ四半期でも数値が数ポイントずれることがある。</p>
@@ -151,7 +155,7 @@ Microsoft は商業向け残存履行義務（RPO 、将来にわたり履行が
 <p><strong>IBM</strong>: クラウド単独開示はなし。
 2026 年 Q2 （4 〜 6 月）のソフトウェアセグメントは 78 億ドル、 +5.1%（Red Hat/Hybrid Cloud 関連 +11%）。ソフトウェア ARR246 億ドル、 +8% （出典 : <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup>、 2026 年 7 月）。</p>
 <p>三大クラウド事業者による寡占構造自体は崩れていないが、成長率で見ると Oracle のような AI 特化型事業者が三社を上回るペースで拡大しており、市場周辺で新しい勢力図が形成されつつある。</p>
-<h2 id="sec3">3 ．AI ブームとの関係</h2>
+<h2 id="sec3">3. AI ブームとの関係</h2>
 <p>本稿の中核部分である。各社の提携・出資関係、設備投資（CapEx）、売上への寄与という三つの側面から、生成 AI ブームがクラウド事業とどう結びついているかを検討する。</p>
 <h3>主要な提携・出資関係</h3>
 <p>生成 AI の開発には膨大な計算資源が必要となる。「計算資源を大量に必要とする AI 企業」と「計算資源を提供できるクラウド事業者」の間で、出資を伴う深い提携関係が次々と築かれているのが 2023 年以降の大きな特徴である。</p>
@@ -210,7 +214,7 @@ OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体で
 <p>以上は各社の公式開示であり「確立した事実」に区分できる。業界全体への寄与度については、 Synergy Research Group の分析（生成 AI 関連クラウドサービス成長率が前年比 165% 、 AI 関連支出シェアが 2023 年 8%→2026 年 19%）もあるが、二次報道からの要約で一次資料は未確認のため「アナリストの見立て」として扱う（出典 : <sup class="fnref"><a id="fnref-43-1" href="#ref-43">[43]</a></sup>） 。</p>
 <p><strong>AI 関連事業は各社のクラウド部門にとって「将来の成長ドライバー候補」ではなく「現に成長率を押し上げている主要因」に転じつつある</strong>。
 Google Cloud ・ Azure の成長率が AWS を上回る背景には、 OpenAI ・ Anthropic との深い提携（Azure）や TPU 基盤戦略（Google Cloud）を強みにできている点が指摘できる。 AWS も大型契約と独自チップ Trainium で対抗しており、売上の絶対額では依然最大手である。</p>
-<h2 id="sec4">4 ．今後の予測・シナリオ分析</h2>
+<h2 id="sec4">4. 今後の予測・シナリオ分析</h2>
 <p><strong>本章は確立した事実の記述ではなく、予測・仮説的なシナリオの検討である。</strong> 各予測・シナリオには予測またはシナリオのラベルを付す。ラベル基準は、①調査会社・金融機関等が具体的数値で公表した見通しには予測、②本稿作成にあたり複数の事実・予測を組み合わせて検討した仮説的な将来像にはシナリオである。</p>
 <h3>市場規模に関するアナリスト予測</h3>
 <p>予測 Gartner は 2026 年の世界 IT 支出が前年比 14.2% 増の 6.37 兆ドルに達すると予測（年内に複数回上方修正、 2 月 +10.8%/6.15 兆ドル→4 月 +13.5%/6.31 兆ドル→7 月 14.2%/6.37 兆ドル）（出典 : <sup class="fnref"><a id="fnref-44-1" href="#ref-44">[44]</a></sup> 、 2026 年 7 月 27 日）。同社は世界 AI 支出を 2026 年に前年比 47% 増の 2.59 兆ドル、 2027 年に 3.49 兆ドルと予測、 AI インフラが支出全体の 45% 超で最大セグメントという（出典 : <sup class="fnref"><a id="fnref-45-1" href="#ref-45">[45]</a></sup> 、 2026 年 5 月 19 日）。</p>
@@ -247,7 +251,7 @@ AI 関連の売上・受注残高が積み上がり続け、 CapEx に見合う�
 <p>シナリオ C <strong>選別的な成長が続くケース（A と B の中間）</strong>。
 市場全体は成長を続けるが、投資家・顧客企業が AI プロジェクトの費用対効果をより厳しく見極めるようになり、成長率に「勝ち組」と「見劣りする陣営」の差が拡大していく。市場全体の急落ではなく、個別企業・個別プロジェクト単位での淘汰が進む可能性がある。</p>
 <p>いずれのシナリオが実現するにせよ、電力・半導体という物理的制約と規制当局の動向という制度的要因が、今後 1 〜 3 年の展開を左右する重要な変数になると考えられる。</p>
-<h2 id="sec5">5 ．まとめ・所感</h2>
+<h2 id="sec5">5. まとめ・所感</h2>
 <p>クラウド市場は依然として AWS ・ Azure ・ Google Cloud の三社が 63% 前後のシェアを占める寡占構造にあるが、成長率で見ると Azure（+43%）・ Google Cloud（+82%）が AWS（+37%）を上回るペースで拡大しており、シェアの序列もゆっくり変化しつつある。この変化を牽引しているのが生成 AI ブームであり、 Microsoft-OpenAI 、 Amazon-Anthropic/OpenAI 、 Google-Anthropic といった出資と大型クラウド契約を組み合わせた深い提携関係が各社のクラウド事業の成長エンジンとして機能していることは、複数の一次資料から確認できる事実である。</p>
 <p>一方、この成長を支える設備投資は年々上方修正され続けており、主要 4 社合計で 2026 年に 7,000 億ドルを超える規模との推計もある。投資ペースの持続可能性については、 BIS ・著名投資家による警鐘と、 Goldman Sachs や Nvidia ・ Microsoft 経営陣の楽観的な見方が対立しており、 2026 年 8 月時点で決着はついていない。
 筆者の見立てとしては、各社決算の売上・受注残高の伸びは事実として確認できる一方、その裏側にある資金の流れの持続性は外部からの検証が難しく、当面は楽観論・悲観論双方に留意しながら状況を注視するのが妥当と考える。</p>
@@ -255,7 +259,7 @@ AI 関連の売上・受注残高が積み上がり続け、 CapEx に見合う�
 AWS は売上規模・営業利益率で依然最大かつ最も収益性の高いクラウド事業者、 Azure は既存の企業向けソフトウェア基盤と OpenAI との提携を組み合わせた独自の強み、 Google Cloud は自社 TPU と検索・ AI 研究の技術力を武器に急成長している。 Oracle のような特化型プレイヤーの台頭も新たな競争軸をもたらしている。
 それぞれ異なる強み・リスクを抱えながら、同じ AI ブームの波に乗っている、というのが最も公平な整理であろう。</p>
 <p>今後 1 〜 3 年は、電力・半導体という物理的制約、規制当局の動き、そして「 AI 投資が実需に見合う収益を生み出せるか」という根本的な問いへの答えが、業界の勢力図を左右する。個々の企業の株価や短期的なニュースよりも、こうした構造的な変数の動きを継続的に追うことをお勧めしたい。</p>
-<h2 id="sec6">6 ．用語集</h2>
+<h2 id="sec6">6. 用語集</h2>
 <table>
 <thead>
 <tr>

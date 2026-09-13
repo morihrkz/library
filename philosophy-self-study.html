@@ -24,12 +24,12 @@ h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line); padding:22px; margin:0 0 48px;}
-.toc .label{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:12px;}
-.toc ol{margin:0; padding-left:0; list-style:none;}
-.toc li{margin-bottom:7px; font-size:14.5px;}
-.toc a{color:var(--text); text-decoration:none;}
-.toc a:hover{color:var(--accent); text-decoration:underline;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
 h3{font-size:18px; margin:32px 0 12px;}
 h4,h5{font-size:16px; margin:24px 0 10px;}
@@ -76,10 +76,14 @@ pre code{background:none; padding:0;}
 <p class="subtitle">別記事「倫理学は哲学の中でどこに立つか」の下書きから切り出した実践ノート。</p>
 <div class="meta">【方法と限界】専門的な素養を持たない成人が、哲学・倫理学を独学で学ぶための実践ノート。
 「何を学ぶか」(学問的な位置づけや学びの順序)ではなく、「どう考え、どう学習を組み立てるか」という方法論に絞って整理する。</div>
-<div class="toc"><div class="label">目次</div><ol><li><a href="#sec1">1 ．哲学的に考えるとは何か</a></li>
-<li><a href="#sec2">2 ．独学カリキュラムの組み立て方</a></li>
-<li><a href="#sec3">3 ．次のアクション</a></li></ol></div>
-<h2 id="sec1">1 ．哲学的に考えるとは何か</h2>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol><li><a href="#sec1">哲学的に考えるとは何か</a></li>
+<li><a href="#sec2">独学カリキュラムの組み立て方</a></li>
+<li><a href="#sec3">次のアクション</a></li>
+</ol>
+</nav>
+<h2 id="sec1">1. 哲学的に考えるとは何か</h2>
 <p>知識の暗記ではなく、問い・概念・論証を扱う技術。</p>
 <p>哲学を独学する際、最初に理解しておきたいのは、哲学は哲学者の名前と学説を大量に覚えるだけの学問ではないということである。歴史上の思想家を知ることは重要だが、それ以上に重要なのは、その思想家が「何を問題にし、どの前提から出発し、どのような理由によって結論へ到達したのか」を追跡することである。</p>
 <p>その意味で、哲学の学習は読書と論証の訓練が一体になっている。難解な文章に出会ったとき、「何となく深いことを言っている」と受け取るのではなく、問い、定義、前提、理由、結論、反例を分けて読む。この読み方を身につけると、古典哲学だけでなく、政治・法律・科学・ AI ・日常生活に関する議論にも応用できる。</p>
@@ -102,7 +106,7 @@ pre code{background:none; padding:0;}
 <p>哲学を学ぶうえで意外に難しいのが、反対意見を公平に理解することである。自分が賛成しやすい立場だけを強く書き、反対側を弱い形で紹介すると、議論は簡単に勝てる。しかし、それでは理解は深まらない。</p>
 <p>そこで有効なのが、相手の立場を、本人が認めてもよいと思えるほど強い形にしてから検討する方法である。一般にスティールマンと呼ばれるこの姿勢は、単に「相手に優しくする」ためのものではない。最も強い反論を受けても維持できる部分だけを残すことで、自分の立場の本当の強さと弱さが見えるからである。</p>
 <p>※「スティールマン(steelman)」は伝統的な哲学用語ではなく、相手の主張を弱く歪めて反論する「藁人形論法(ストローマン)」の対義語として、2010 年代前半にオンラインの合理主義コミュニティ(LessWrong 等)で広まった比較的新しい言い方である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup>。学術的な起源を持つ概念ではない点に注意する。</p>
-<h2 id="sec2">2 ．独学カリキュラムの組み立て方</h2>
+<h2 id="sec2">2. 独学カリキュラムの組み立て方</h2>
 <p>関心から出発し、基礎・原典・論争へ進む実践的な設計。</p>
 <p>哲学の独学で最も困りやすいのは、教材が少ないことではなく、むしろ多すぎることである。入門書、哲学史、個別の哲学者の研究書、原典、大学講義、論文、動画など、入口はいくらでもある。その結果、「何から始めればよいのか分からない」という状態になりやすい。</p>
 <p>この問題には、唯一の正解となるカリキュラムがあるわけではない。ただし、学習を「地図を作る段階」「一つの問題を深く考える段階」「原典と研究書を往復する段階」「自分で論証する段階」に分けると、迷走をかなり減らせる。</p>
@@ -150,7 +154,7 @@ pre code{background:none; padding:0;}
 <h3>学習の深さを測る</h3>
 <p>哲学では、読んだ本の冊数や覚えた哲学者の人数が、そのまま理解の深さを示すわけではない。一つの立場を、自分と反対の立場からでも公平に説明できるか。その立場の前提を指摘できるか。反例を考えられるか。自分の考えがどの条件で変わるかを説明できるか。こうした能力の方が、哲学的理解の目安になりやすい。</p>
 <p>したがって、独学の成果確認には小さな「論文」を定期的に書く方法が向いている。長文である必要はない。問い、立場 A 、立場 B 、自分の評価、未解決問題を数ページにまとめるだけでも、受け身の読書から能動的な研究へ移行できる。</p>
-<h2 id="sec3">3 ．次のアクション</h2>
+<h2 id="sec3">3. 次のアクション</h2>
 <p>☐ 気になっているテーマを一つ選び、「問いを正確にする」の手順で一文の問いに落とし込む</p>
 <p>☐ そのテーマについて、「ノートの型」を使って最初の 1 ページを書いてみる</p>
 <div class="refs">
