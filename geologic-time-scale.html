@@ -53,6 +53,22 @@ sup.fnref a:hover{text-decoration:underline;}
 .refs li{margin-bottom:11px;}
 .refs em{font-style:italic;}
 .note{font-size:13px; color:var(--muted); margin-top:20px;}
+.diagram-figure{margin:0 0 30px;}
+.diagram-figure svg{width:100%; height:auto; display:block;}
+.diagram-figure figcaption{font-size:13px; color:var(--muted); margin-top:10px; line-height:1.7;}
+.diagram-band-label{font-size:13px; fill:#fff;}
+.diagram-band-label.dark{fill:var(--text);}
+.diagram-leader-label{font-size:12.5px; fill:var(--text); text-anchor:middle;}
+.diagram-leader-line{stroke:var(--muted); stroke-width:1;}
+.diagram-axis-line{stroke:var(--line); stroke-width:1;}
+.diagram-axis-tick{stroke:var(--line); stroke-width:1;}
+.diagram-axis-text{font-size:12px; fill:var(--muted); text-anchor:middle;}
+.diagram-event circle{fill:var(--bg); stroke:var(--accent); stroke-width:1.6;}
+.diagram-event text{font-size:12px; fill:var(--accent); text-anchor:middle; font-weight:bold;}
+.diagram-event-line{stroke:var(--accent); stroke-width:1; stroke-dasharray:2 2;}
+.diagram-zoom-box{fill:none; stroke:var(--accent); stroke-width:1.4; stroke-dasharray:5 4;}
+.diagram-group-label{font-size:12.5px; fill:var(--muted); text-anchor:middle;}
+.diagram-group-line{stroke:var(--muted); stroke-width:1;}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
 blockquote p{margin-bottom:10px;}
@@ -134,24 +150,64 @@ pre code{background:none; padding:0;}
 <h2 id="sec2">2. 図解 1: 過去 100 億年 - 地球誕生前から顕生代まで</h2>
 <p>最初の図は、直近 100 億年を線形の目盛りで表したものである。左端が 100 億年前、右端が現在にあたる。地球そのものの年齢は約 45.4 億年、放射年代測定によって求められている <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。したがって図の左側、半分あまりを占める斜線部分は、まだ地球が存在しない時代にあたる。
 ちなみに宇宙の年齢は約 138 億年と見積もられており <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> 、図の左端（100 億年前）の時点で、宇宙自体はすでに約 38 億歳であった。この記事の他の図はすべて地球自身の歴史だけを扱うが、この最初の図だけは、地球が生まれる前の時代からの目盛りになっている。</p>
-<p>誕生・好転の出来事
-環境の激変</p>
-<p>地球が存在しない時代
-太古代
-原生代</p>
-<p>冥王代</p>
-<p>顕生代</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>4</p>
-<p>100 億年前
-80 億年前
-60 億年前
-40 億年前
-20 億年前
-現在</p>
-<p>▶ 破線で囲った直近 10 億年（右端の 1 割）を、次の図解 2 でさらに拡大する。</p>
+<figure class="diagram-figure">
+<svg viewBox="0 0 1000 200" role="img" aria-label="過去100億年を線形目盛りで示した帯グラフ。左端が100億年前、右端が現在。地球誕生前の時代・冥王代・太古代・原生代・顕生代の五つに色分けされ、直近10億年を破線で囲んでいる。">
+<defs>
+<pattern id="d1-hatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<rect width="8" height="8" fill="#eceee7"/>
+<line x1="0" y1="0" x2="0" y2="8" stroke="#c3c9bb" stroke-width="3"/>
+</pattern>
+</defs>
+<line class="diagram-axis-line" x1="50" y1="165" x2="950" y2="165"/>
+<rect x="50" y="110" width="491.4" height="50" fill="url(#d1-hatch)"/>
+<rect x="541.4" y="110" width="48.6" height="50" fill="#cfd6c6"/>
+<rect x="590" y="110" width="135" height="50" fill="#b7c4ae"/>
+<rect x="725" y="110" width="176.3" height="50" fill="#93a68f"/>
+<rect x="901.3" y="110" width="48.7" height="50" fill="#3d5a52"/>
+<text class="diagram-band-label dark" x="295.7" y="139">地球が存在しない時代</text>
+<text class="diagram-band-label" x="813.15" y="139">原生代</text>
+<line class="diagram-leader-line" x1="565.7" y1="48" x2="565.7" y2="110"/>
+<text class="diagram-leader-label" x="565.7" y="38">冥王代</text>
+<line class="diagram-leader-line" x1="657.5" y1="48" x2="657.5" y2="110"/>
+<text class="diagram-leader-label" x="657.5" y="38">太古代</text>
+<line class="diagram-leader-line" x1="925.65" y1="48" x2="925.65" y2="110"/>
+<text class="diagram-leader-label" x="925.65" y="38">顕生代</text>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="541.4" y1="99" x2="541.4" y2="110"/>
+<circle cx="541.4" cy="90" r="9"/>
+<text x="541.4" y="94">1</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="635.15" y1="99" x2="635.15" y2="110"/>
+<circle cx="635.15" cy="90" r="9"/>
+<text x="635.15" y="94">2</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="734" y1="99" x2="734" y2="110"/>
+<circle cx="734" cy="90" r="9"/>
+<text x="734" y="94">3</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="889.9" y1="99" x2="889.9" y2="110"/>
+<circle cx="889.9" cy="90" r="9"/>
+<text x="889.9" y="94">4</text>
+</g>
+<rect class="diagram-zoom-box" x="860" y="105" width="90" height="60"/>
+<line class="diagram-axis-tick" x1="50" y1="165" x2="50" y2="171"/>
+<line class="diagram-axis-tick" x1="230" y1="165" x2="230" y2="171"/>
+<line class="diagram-axis-tick" x1="410" y1="165" x2="410" y2="171"/>
+<line class="diagram-axis-tick" x1="590" y1="165" x2="590" y2="171"/>
+<line class="diagram-axis-tick" x1="770" y1="165" x2="770" y2="171"/>
+<line class="diagram-axis-tick" x1="950" y1="165" x2="950" y2="171"/>
+<text class="diagram-axis-text" x="50" y="187">100億年前</text>
+<text class="diagram-axis-text" x="230" y="187">80億年前</text>
+<text class="diagram-axis-text" x="410" y="187">60億年前</text>
+<text class="diagram-axis-text" x="590" y="187">40億年前</text>
+<text class="diagram-axis-text" x="770" y="187">20億年前</text>
+<text class="diagram-axis-text" x="950" y="187">現在</text>
+</svg>
+<figcaption>▶ 破線で囲った直近 10 億年（右端の 1 割）を、次の図解 2 でさらに拡大する。</figcaption>
+</figure>
 <p>帯の幅を見るだけで、地球誕生前の時代・冥王代・太古代・原生代を合わせた長い時間に対して、顕生代がいかに薄い帯かが分かる。図中の①〜④は、この長い時間の中で起きた出来事である。</p>
 <p>①は地球の誕生で、太陽系の材料が集まって原始の地球ができたのは約 45.4 億年前とされる <sup class="fnref"><a id="fnref-12-2" href="#ref-12">[12]</a></sup> 。この境界の左側（斜線部分）には、まだ地球という天体そのものが存在しない。
 ②は「生命の起源」で、確実な化石証拠（オーストラリアや南アフリカのストロマトライト）にもとづくもっとも古い生命の記録は約 35 億年前にさかのぼり、グリーンランドの地層に残る炭素同位体などの間接的な痕跡はさらにさかのぼって約 41 億年前まで議論されている <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> 。地球誕生からわずか数億年後、地球がまだ隕石の衝突にさらされていた冥王代の終わり頃には、すでに生命が存在していた可能性がある。
@@ -159,62 +215,151 @@ pre code{background:none; padding:0;}
 ④は「スノーボールアース」で、約 7 億年前から 6 億 3500 万年前にかけて、赤道付近まで氷に覆われるほどの全球凍結が少なくとも二度起きたとされる出来事である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。この時代の名前（クライオジェニアン紀）は次の図解 2 で登場する。</p>
 <h2 id="sec3">3. 図解 2: 過去 10 億年 - 原生代の終わりからカンブリア爆発へ</h2>
 <p>二枚目の図は、図解 1 の右端 10 億年を 10 倍に拡大したものである。左端が 10 億年前、右端が現在にあたる。</p>
-<p>顕生代</p>
-<p>トニアン紀
-古生代
-中生代</p>
-<p>クライオジェニアン紀</p>
-<p>エディアカラン紀</p>
-<p>新生代</p>
-<p>1</p>
-<p>2</p>
-<p>3</p>
-<p>10 億年前
-8 億年前
-6 億年前
-4 億年前
-2 億年前
-現在</p>
-<p>▶ 破線で囲った直近 1 億年（右端のごく一部）を、次の図解 3 でさらに拡大する。</p>
-<p>この図では、図解 1 で厚さ 135 ピクセルしかなかった顕生代が、画面の右側 5 割以上を占めるまで拡大されている。それでもなお、古生代・中生代・新生代という「代」の三区分は、それぞれ幅がかなり違う。もっとも新しい新生代（直近 6600 万年）は、この図の中でも一段と薄い帯にとどまる。</p>
+<figure class="diagram-figure">
+<svg viewBox="0 0 1000 200" role="img" aria-label="過去10億年を線形目盛りで示した帯グラフ。左端が10億年前、右端が現在。トニアン紀・クライオジェニアン紀・エディアカラン紀・古生代・中生代・新生代に色分けされ、直近1億年を破線で囲んでいる。">
+<line class="diagram-axis-line" x1="50" y1="165" x2="950" y2="165"/>
+<rect x="50" y="110" width="252" height="50" fill="#93a68f"/>
+<rect x="302" y="110" width="76.5" height="50" fill="#7e9483"/>
+<rect x="378.5" y="110" width="84.6" height="50" fill="#6a8577"/>
+<rect x="463.1" y="110" width="260.1" height="50" fill="#4f6f63"/>
+<rect x="723.2" y="110" width="167.4" height="50" fill="#3d5a52"/>
+<rect x="890.6" y="110" width="59.4" height="50" fill="#7fa08f"/>
+<text class="diagram-band-label" x="176" y="139">トニアン紀</text>
+<text class="diagram-band-label" x="593.15" y="139">古生代</text>
+<text class="diagram-band-label" x="806.9" y="139">中生代</text>
+<line class="diagram-group-line" x1="463.1" y1="28" x2="950" y2="28"/>
+<line class="diagram-group-line" x1="463.1" y1="28" x2="463.1" y2="34"/>
+<line class="diagram-group-line" x1="950" y1="28" x2="950" y2="34"/>
+<text class="diagram-group-label" x="706.55" y="20">顕生代</text>
+<line class="diagram-leader-line" x1="340.25" y1="20" x2="340.25" y2="110"/>
+<text class="diagram-leader-label" x="340.25" y="15">クライオジェニアン紀</text>
+<line class="diagram-leader-line" x1="420.8" y1="50" x2="420.8" y2="110"/>
+<text class="diagram-leader-label" x="420.8" y="45">エディアカラン紀</text>
+<line class="diagram-leader-line" x1="920.3" y1="50" x2="920.3" y2="110"/>
+<text class="diagram-leader-label" x="920.3" y="45">新生代</text>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="468" y1="99" x2="468" y2="110"/>
+<circle cx="468" cy="90" r="9"/>
+<text x="468" y="94">1</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="723.2" y1="99" x2="723.2" y2="110"/>
+<circle cx="723.2" cy="90" r="9"/>
+<text x="723.2" y="94">2</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="890.6" y1="99" x2="890.6" y2="110"/>
+<circle cx="890.6" cy="90" r="9"/>
+<text x="890.6" y="94">3</text>
+</g>
+<rect class="diagram-zoom-box" x="860" y="105" width="90" height="60"/>
+<line class="diagram-axis-tick" x1="50" y1="165" x2="50" y2="171"/>
+<line class="diagram-axis-tick" x1="230" y1="165" x2="230" y2="171"/>
+<line class="diagram-axis-tick" x1="410" y1="165" x2="410" y2="171"/>
+<line class="diagram-axis-tick" x1="590" y1="165" x2="590" y2="171"/>
+<line class="diagram-axis-tick" x1="770" y1="165" x2="770" y2="171"/>
+<line class="diagram-axis-tick" x1="950" y1="165" x2="950" y2="171"/>
+<text class="diagram-axis-text" x="50" y="187">10億年前</text>
+<text class="diagram-axis-text" x="230" y="187">8億年前</text>
+<text class="diagram-axis-text" x="410" y="187">6億年前</text>
+<text class="diagram-axis-text" x="590" y="187">4億年前</text>
+<text class="diagram-axis-text" x="770" y="187">2億年前</text>
+<text class="diagram-axis-text" x="950" y="187">現在</text>
+</svg>
+<figcaption>▶ 破線で囲った直近 1 億年（右端のごく一部）を、次の図解 3 でさらに拡大する。</figcaption>
+</figure>
+<p>この図では、図解 1 では帯の幅にして全体のわずか 5 パーセントほどしかなかった顕生代が、画面の右側 5 割以上を占めるまで拡大されている。それでもなお、古生代・中生代・新生代という「代」の三区分は、それぞれ幅がかなり違う。もっとも新しい新生代（直近 6600 万年）は、この図の中でも一段と薄い帯にとどまる。</p>
 <p>①は「カンブリア爆発」で、約 5 億 4100 万年前から 5 億 3000 万年前にかけて、現在見られる動物の主要な門（からだの基本設計のグループ）の大半が、地質学的には一瞬といえる短期間に出そろった出来事である <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。この境界が、原生代と顕生代、そして原生代最後の紀であるエディアカラン紀と古生代最初の紀であるカンブリア紀を分けている。
 ②は「 P-T 境界」、約 2 億 5200 万年前に起きた地球史上最大の大量絶滅で、海生生物の 9 割以上、陸上の脊椎動物の 7 割が姿を消したとされる <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。この絶滅が古生代と中生代を分ける境界となっている。
 ③は「 K-Pg 境界」、約 6600 万年前に中生代と新生代を分けた出来事で、次の図解 3 で詳しく扱う。</p>
 <h2 id="sec4">4. 図解 3: 過去 1 億年 - 恐竜の黄昏から人類の登場まで</h2>
 <p>三枚目の図は、図解 2 の右端 1 億年をさらに 10 倍に拡大したものである。左端が 1 億年前、右端が現在にあたる。図解 1 から数えると、 10 倍・ 10 倍で合計 100 倍のズームにあたる。</p>
-<p>新生代</p>
-<p>白亜紀（後期）
-古第三紀
-新第三紀</p>
-<p>第四紀</p>
-<p>1</p>
-<p>2</p>
-<p>1 億年前
-8000 万年前
-6000 万年前
-4000 万年前
-2000 万年前
-現在</p>
+<figure class="diagram-figure">
+<svg viewBox="0 0 1000 200" role="img" aria-label="過去1億年を線形目盛りで示した帯グラフ。左端が1億年前、右端が現在。白亜紀後期・古第三紀・新第三紀・第四紀に色分けされ、直近1000万年を破線で囲んでいる。">
+<line class="diagram-axis-line" x1="50" y1="165" x2="950" y2="165"/>
+<rect x="50" y="110" width="306" height="50" fill="#3d5a52"/>
+<rect x="356" y="110" width="387" height="50" fill="#6b8f7e"/>
+<rect x="743" y="110" width="183.78" height="50" fill="#8fae9c"/>
+<rect x="926.78" y="110" width="23.22" height="50" fill="#b7cdbd"/>
+<text class="diagram-band-label" x="203" y="139">白亜紀（後期）</text>
+<text class="diagram-band-label" x="549.5" y="139">古第三紀</text>
+<text class="diagram-band-label dark" x="834.89" y="139">新第三紀</text>
+<line class="diagram-group-line" x1="356" y1="28" x2="950" y2="28"/>
+<line class="diagram-group-line" x1="356" y1="28" x2="356" y2="34"/>
+<line class="diagram-group-line" x1="950" y1="28" x2="950" y2="34"/>
+<text class="diagram-group-label" x="653" y="20">新生代</text>
+<line class="diagram-leader-line" x1="938.39" y1="50" x2="938.39" y2="110"/>
+<text class="diagram-leader-label" x="938.39" y="45">第四紀</text>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="356" y1="99" x2="356" y2="110"/>
+<circle cx="356" cy="90" r="9"/>
+<text x="356" y="94">1</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="947.3" y1="99" x2="947.3" y2="110"/>
+<circle cx="947.3" cy="90" r="9"/>
+<text x="947.3" y="94">2</text>
+</g>
+<rect class="diagram-zoom-box" x="860" y="105" width="90" height="60"/>
+<line class="diagram-axis-tick" x1="50" y1="165" x2="50" y2="171"/>
+<line class="diagram-axis-tick" x1="230" y1="165" x2="230" y2="171"/>
+<line class="diagram-axis-tick" x1="410" y1="165" x2="410" y2="171"/>
+<line class="diagram-axis-tick" x1="590" y1="165" x2="590" y2="171"/>
+<line class="diagram-axis-tick" x1="770" y1="165" x2="770" y2="171"/>
+<line class="diagram-axis-tick" x1="950" y1="165" x2="950" y2="171"/>
+<text class="diagram-axis-text" x="50" y="187">1億年前</text>
+<text class="diagram-axis-text" x="230" y="187">8000万年前</text>
+<text class="diagram-axis-text" x="410" y="187">6000万年前</text>
+<text class="diagram-axis-text" x="590" y="187">4000万年前</text>
+<text class="diagram-axis-text" x="770" y="187">2000万年前</text>
+<text class="diagram-axis-text" x="950" y="187">現在</text>
+</svg>
+<figcaption>▶ 破線で囲った直近 1000 万年を、次の図解 4 でさらに拡大する。</figcaption>
+</figure>
 <p>①は「 K-Pg 境界」、約 6600 万年前にメキシコ・ユカタン半島に直径 10 〜 15 キロメートルの小天体が衝突し（チクシュルーブ・クレーター）、鳥類を除く恐竜を含む種の約 75 パーセントを絶滅させたとされる出来事である <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。中生代と新生代の境界であり、この一本の破線は、図解 2 と図解 3 の両方に共通して登場する境界線でもある（図解 2 の③と同じ出来事）。</p>
 <p>②は現生人類（ホモ・サピエンス）の出現で、モロッコのジェベル・イルード遺跡の化石から、少なくとも約 30 万年前にさかのぼるとされる <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。この図の中では右端からわずか 3 ピクセルの位置にあたり、恐竜絶滅から人類登場までの 6600 万年近い空白と比べて、人類の歴史がいかに短いかが分かる。</p>
 <p>なお、現在の地質時代である完新世（かんしんせい）の始まりは約 1 万 1700 年前とされるが、この図の縮尺（1 万年でおよそ 0.1 ピクセル）では、もはや線として描き分けることができない。次の図解 4 （過去 1000 万年）では、この直近 1000 万年をさらに 10 倍拡大し、人類の進化にかかわる出来事を、はじめて線としてではなく帯として区別できるようになる。</p>
 <h2 id="sec5">5. 図解 4: 過去 1000 万年 - 人類の進化が見えてくるスケール</h2>
 <p>四枚目の図は、図解 3 の右端 1000 万年をさらに 10 倍に拡大したものである。左端が 1000 万年前、右端が現在にあたる。図解 1 から図解 4 まで、 10 倍のズームを三回重ねており、合計で 1000 倍の拡大になる。</p>
-<p>中新世（後期）
-鮮新世
-更新世</p>
-<p>完新世</p>
-<p>1</p>
-<p>2</p>
-<p>1000 万年前
-800 万年前
-600 万年前
-400 万年前
-200 万年前
-現在</p>
+<figure class="diagram-figure">
+<svg viewBox="0 0 1000 200" role="img" aria-label="過去1000万年を線形目盛りで示した帯グラフ。左端が1000万年前、右端が現在。中新世後期・鮮新世・更新世・完新世に色分けされている。">
+<line class="diagram-axis-line" x1="50" y1="165" x2="950" y2="165"/>
+<rect x="50" y="110" width="420.3" height="50" fill="#8fae9c"/>
+<rect x="470.3" y="110" width="247.5" height="50" fill="#8fae9c"/>
+<rect x="717.8" y="110" width="231.1" height="50" fill="#b7cdbd"/>
+<rect x="948.9" y="110" width="1.1" height="50" fill="#b7cdbd"/>
+<text class="diagram-band-label dark" x="260.15" y="139">中新世（後期）</text>
+<text class="diagram-band-label dark" x="594.05" y="139">鮮新世</text>
+<text class="diagram-band-label dark" x="833.35" y="139">更新世</text>
+<line class="diagram-leader-line" x1="949.45" y1="50" x2="949.45" y2="110"/>
+<text class="diagram-leader-label" x="949.45" y="45">完新世</text>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="779" y1="99" x2="779" y2="110"/>
+<circle cx="779" cy="90" r="9"/>
+<text x="779" y="94">1</text>
+</g>
+<g class="diagram-event">
+<line class="diagram-event-line" x1="923" y1="99" x2="923" y2="110"/>
+<circle cx="923" cy="90" r="9"/>
+<text x="923" y="94">2</text>
+</g>
+<line class="diagram-axis-tick" x1="50" y1="165" x2="50" y2="171"/>
+<line class="diagram-axis-tick" x1="230" y1="165" x2="230" y2="171"/>
+<line class="diagram-axis-tick" x1="410" y1="165" x2="410" y2="171"/>
+<line class="diagram-axis-tick" x1="590" y1="165" x2="590" y2="171"/>
+<line class="diagram-axis-tick" x1="770" y1="165" x2="770" y2="171"/>
+<line class="diagram-axis-tick" x1="950" y1="165" x2="950" y2="171"/>
+<text class="diagram-axis-text" x="50" y="187">1000万年前</text>
+<text class="diagram-axis-text" x="230" y="187">800万年前</text>
+<text class="diagram-axis-text" x="410" y="187">600万年前</text>
+<text class="diagram-axis-text" x="590" y="187">400万年前</text>
+<text class="diagram-axis-text" x="770" y="187">200万年前</text>
+<text class="diagram-axis-text" x="950" y="187">現在</text>
+</svg>
+</figure>
 <p>この図は、図解 3 で唯一登場した「新生代」の内部、そのまた一部（新第三紀の後半と第四紀）をさらに拡大したものにあたる。中新世と鮮新世は同じ配色にしてあるが、これは両方とも新第三紀に属する「世」だからで、図解 3 の新第三紀の帯の色に対応している。同じように更新世と完新世は、図解 3 の第四紀の帯の色に対応している。</p>
 <p>①はホモ・エレクトスの出現で、もっとも古い化石証拠は約 190 万年前にさかのぼる <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 。アフリカで生まれ、ユーラシア各地へ広がった最初期の人類の一種である。
-②はホモ・サピエンス（現生人類）の出現で、図解 3 でも登場した約 30 万年前の出来事である <sup class="fnref"><a id="fnref-8-2" href="#ref-8">[8]</a></sup> 。この図の縮尺（100 万年でおよそ 10 ピクセル）では、①からおよそ 160 万年かけて、更新世という一つの「世」の中にとどまり続けたことが視覚的に分かる。</p>
+②はホモ・サピエンス（現生人類）の出現で、図解 3 でも登場した約 30 万年前の出来事である <sup class="fnref"><a id="fnref-8-2" href="#ref-8">[8]</a></sup> 。この図の縮尺（100 万年でおよそ 90 ピクセル）では、①からおよそ 160 万年かけて、更新世という一つの「世」の中にとどまり続けたことが視覚的に分かる。</p>
 <p>なお、農耕の開始など人類の文明にかかわる出来事は、この図が表す完新世（約 1 万 1700 年前〜現在）の中に収まる。しかし完新世そのものが、この図の縮尺ではおよそ 1 ピクセルの線にしかならない。人類の文明の細部を見るには、この図解 4 のさらに数百倍拡大する必要がある、というのが率直な感覚である。</p>
 <h2 id="sec6">6. 「ジュラ紀」「白亜紀」は何にちなむ名前か</h2>
 <p>紀の名前の多くは、その時代の地層が最初に研究された土地の名前（地名）にちなむ。 19 世紀のヨーロッパ、とりわけ英国で地質学が確立したため、英国やその周辺の地名が目立つ <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。</p>
