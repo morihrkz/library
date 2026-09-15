@@ -8,6 +8,8 @@
 :root{
   --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
   --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+  --straw:#a8462f; --straw-bg:#f7ece8; --straw-line:#e3c3b8;
+  --real-bg:#eaf0ec; --real-line:#c6d6cb;
 }
 *{box-sizing:border-box;}
 body{
@@ -62,6 +64,32 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 pre{font-size:14px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
+
+/* --- 図解用スタイル --- */
+figure.diagram{margin:0 0 36px; padding:20px 18px 16px; background:var(--box); border:1px solid var(--line);}
+figure.diagram svg{display:block; width:100%; height:auto; max-width:100%;}
+figcaption{font-size:13px; color:var(--muted); margin-top:12px; text-align:center; line-height:1.7;}
+
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 20px;}
+.compare .card{border:1px solid var(--line); padding:16px 18px; font-size:14.5px; line-height:1.75;}
+.compare .card .tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.05em;
+  padding:2px 9px; margin-bottom:10px;}
+.compare .real{background:var(--real-bg); border-color:var(--real-line);}
+.compare .real .tag{background:var(--real-line); color:var(--accent);}
+.compare .straw{background:var(--straw-bg); border-color:var(--straw-line);}
+.compare .straw .tag{background:var(--straw-line); color:var(--straw);}
+.distort-note{font-size:14px; background:none; border:none; border-top:1px dashed var(--line);
+  padding-top:12px; margin:0 0 28px; color:var(--text);}
+.distort-note strong{color:var(--straw);}
+@media (max-width:560px){
+  .compare{grid-template-columns:1fr;}
+}
+
+.dfn-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0 0 24px;}
+.dfn-grid .dfn{border:1px solid var(--line); background:var(--box); padding:14px 16px; font-size:14px; line-height:1.7;}
+.dfn-grid .dfn b{display:block; color:var(--accent); font-size:14.5px; margin-bottom:4px;}
+@media (max-width:560px){ .dfn-grid{grid-template-columns:1fr;} }
+
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:24px;}
@@ -87,20 +115,72 @@ pre code{background:none; padding:0;}
 <p>議論における詭弁のなかでも特によく見られるものに、藁人形論法がある。相手が実際に述べた主張ではなく、それを歪めて弱く、あるいは極端にした偽物の主張を勝手に作り上げ、その偽物を叩いて「論破した」ことにしてしまう手口である。
 名前の由来は、本物の敵ではなく藁でできた弱い人形を叩くという比喩にある。</p>
 <p>たとえば、次のようなやり取りを考えてみる。</p>
-<p><strong>実際の発言</strong>「移民の受け入れ基準を少し緩めるべきだ」</p>
-<p><strong>すり替えられた反論</strong>「国境をなくして誰でも無制限に入れろと言うのか、それは無責任だ」</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 720 190" role="img" aria-label="実際の発言「移民の受け入れ基準を少し緩めるべきだ」が、すり替えられた反論「国境をなくして誰でも無制限に入れろと言うのか」に歪められ、その歪めた版への反論が元の主張への勝利として扱われる様子">
+<defs>
+<marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect x="20" y="20" width="330" height="70" fill="var(--real-bg)" stroke="var(--real-line)"/>
+<text x="35" y="42" font-size="12" fill="var(--accent)" font-weight="700">実際の発言</text>
+<text x="35" y="65" font-size="13" fill="currentColor">「移民の受け入れ基準を</text>
+<text x="35" y="82" font-size="13" fill="currentColor">少し緩めるべきだ」</text>
+
+<line x1="350" y1="55" x2="410" y2="55" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+<text x="380" y="45" font-size="11" fill="var(--straw)" text-anchor="middle">歪める</text>
+
+<rect x="410" y="20" width="290" height="70" fill="var(--straw-bg)" stroke="var(--straw-line)"/>
+<text x="425" y="42" font-size="12" fill="var(--straw)" font-weight="700">すり替えられた反論（藁人形）</text>
+<text x="425" y="65" font-size="13" fill="currentColor">「国境をなくして誰でも</text>
+<text x="425" y="82" font-size="13" fill="currentColor">無制限に入れろと言うのか」</text>
+
+<line x1="555" y1="90" x2="555" y2="125" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+<text x="580" y="112" font-size="11" fill="var(--straw)">攻撃して</text>
+
+<rect x="180" y="135" width="530" height="45" fill="none" stroke="var(--straw)" stroke-dasharray="4 3"/>
+<text x="445" y="163" font-size="13" fill="var(--straw)" text-anchor="middle" font-weight="700">「論破した」ことにする ─ 元の主張には一言も反論していない</text>
+</svg>
+<figcaption>元の発言はそのままに、反論しやすい極端な主張へすり替えてから攻撃する構図。</figcaption>
+</figure>
+
 <p>相手は基準の緩和としか言っていないのに、より極端で反論しやすい主張にすり替えられている。</p>
 <p>この詭弁が厄介なのは、聞き手には「相手を論破した」ように見えてしまう点にある。実際には元の主張には一言も反論できていないにもかかわらず、議論に勝った空気だけが生まれる。
 結果として論点は深まらず、対話は破壊される。</p>
 <h2 id="sec2">2. なぜ人はこの詭弁に陥るのか - 三段階の仕組みと、 SNS 時代のわな</h2>
 <p>ここでは、藁人形論法を三段階に整理する。第一に相手の主張を歪め、第二にその歪めた版を攻撃し、第三にその攻撃を元の主張への反論として扱う。
 実際の議論には、悪意のない誤解、要約をめぐる争い、根拠の弱い反論もあるため、三段階にきれいに当てはまらないからといって問題がないわけではない。</p>
-<p>1</p>
-<p>相手の主張を実際より弱く、あるいは極端な形に歪める。</p>
-<p>2</p>
-<p>その歪めた版 - 藁人形 - を攻撃する。</p>
-<p>3</p>
-<p>藁人形を倒したことをもって、元の主張そのものを論破したかのように錯覚させる。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 700 230" role="img" aria-label="三段階の仕組み：1.相手の主張を歪める、2.歪めた版（藁人形）を攻撃する、3.藁人形を倒したことを元の主張への勝利にすり替える、という循環">
+<defs>
+<marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<circle cx="130" cy="60" r="54" fill="var(--real-bg)" stroke="var(--real-line)"/>
+<text x="130" y="52" font-size="20" fill="var(--accent)" text-anchor="middle" font-weight="700">1</text>
+<text x="130" y="72" font-size="12" fill="currentColor" text-anchor="middle">主張を歪める</text>
+
+<circle cx="350" cy="60" r="54" fill="var(--straw-bg)" stroke="var(--straw-line)"/>
+<text x="350" y="52" font-size="20" fill="var(--straw)" text-anchor="middle" font-weight="700">2</text>
+<text x="350" y="72" font-size="12" fill="currentColor" text-anchor="middle">藁人形を攻撃する</text>
+
+<circle cx="570" cy="60" r="54" fill="var(--straw-bg)" stroke="var(--straw-line)"/>
+<text x="570" y="52" font-size="20" fill="var(--straw)" text-anchor="middle" font-weight="700">3</text>
+<text x="570" y="72" font-size="11.5" fill="currentColor" text-anchor="middle">元の主張への</text>
+<text x="570" y="88" font-size="11.5" fill="currentColor" text-anchor="middle">勝利と錯覚させる</text>
+
+<line x1="184" y1="60" x2="290" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"/>
+<line x1="404" y1="60" x2="510" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+<path d="M 570 114 C 570 190, 130 190, 130 114" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr2)"/>
+<text x="350" y="205" font-size="11" fill="var(--muted)" text-anchor="middle">元の主張はそのまま置き去りにされる</text>
+</svg>
+<figcaption>藁人形論法が成立するまでの三段階。相手の元の主張には最後まで触れられない。</figcaption>
+</figure>
+
 <p>人がこの詭弁に陥りやすい理由は単純だ。相手の主張をそのままの強さで受け止めて反論するより、極端な形に描き直したほうが圧倒的に反論しやすい。
 加えて、 SNS のように短い言葉が拡散されやすい環境では、複雑な留保つきの主張よりも、単純化され感情を刺激する主張のほうが目に留まりやすい。切り取られた動画や発言が「わかりやすい」からこそ拡散し、元の文脈は置き去りにされる。</p>
 <p>有害さは学術的な議論の場でも指摘されてきた。反対意見を不当に弱めて紹介すれば、それに続く反論もまた説得力を失う。
@@ -112,60 +192,104 @@ pre code{background:none; padding:0;}
 分野やテレビ・広告・討論会など場面が偏っては、「藁人形論法は特定の陣営の専売特許だ」という誤った印象を与えかねない。政治的な立場に関わらず、誰もがこの詭弁を使い、また使われうることを意識しながら読んでほしい。</p>
 <h3>小泉進次郎氏の会見動画 - 日本 / 政治家の発言そのものを作り替える</h3>
 <p>2025 年 5 月、「小泉進次郎氏が消費税 15% を主張している」とする 45 秒の動画が X 上で拡散し、 1 万回以上リポストされた。動画は 2017 年 6 月 1 日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
-<p>元の主張</p>
-<p>増税には慎重、少子化対策は待ったなし（同じ会見で「消費増税というのは選択肢にはなり得ない」と発言）</p>
-<p>すり替えられた主張</p>
-<p>消費税 15% を積極的に推進している</p>
-<p><strong>歪曲点 :</strong> 両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
+
+<div class="compare">
+<div class="card real"><span class="tag">元の主張</span>増税には慎重、少子化対策は待ったなし（同じ会見で「消費増税というのは選択肢にはなり得ない」と発言）</div>
+<div class="card straw"><span class="tag">すり替えられた主張</span>消費税 15% を積極的に推進している</div>
+</div>
+<p class="distort-note"><strong>歪曲点：</strong>両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
+
 <p>出典 <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> : 日本ファクトチェックセンター（2025 年 5 月 23 日）</p>
 <h3>「オープンボーダー」への飛躍 - 米国 / 2016 年大統領選、討論会での応酬</h3>
 <p>2016 年 10 月 19 日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー（国境の撤廃）を望んでいる」と述べた。根拠とされたのは、 2013 年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
-<p>元の主張</p>
-<p>エネルギー・貿易面での地域統合（国境警備強化を含む 2013 年の移民改革法案は支持）</p>
-<p>すり替えられた主張</p>
-<p>移民の無制限受け入れ</p>
-<p><strong>歪曲点 :</strong> 両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
+
+<div class="compare">
+<div class="card real"><span class="tag">元の主張</span>エネルギー・貿易面での地域統合（国境警備強化を含む 2013 年の移民改革法案は支持）</div>
+<div class="card straw"><span class="tag">すり替えられた主張</span>移民の無制限受け入れ</div>
+</div>
+<p class="distort-note"><strong>歪曲点：</strong>両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
+
 <p>出典 <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> : PolitiFact （2016 年 10 月 20 日）</p>
 <h3>発言の後半を切り落とす - 日本 / テレビ報道発言の切り抜き</h3>
 <p>2026 年 1 月、中道改革連合の斉藤鉄夫共同代表が TBS テレビの番組で発言した場面を切り取った動画が X で拡散した。</p>
-<p>元の発言（全文）</p>
-<p>「人間の幸せ以上、人間より他にもっと大事なものがある……そういう考え方には立たない。人間を中心に考えていくことが中道主義の本質だ」</p>
-<p>拡散した動画（後半カット）</p>
-<p>「人間の幸せ以上、人間より他にもっと大事なものがある」</p>
-<p><strong>歪曲点 :</strong> 発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
+
+<div class="compare">
+<div class="card real"><span class="tag">元の発言（全文）</span>「人間の幸せ以上、人間より他にもっと大事なものがある……そういう考え方には立たない。人間を中心に考えていくことが中道主義の本質だ」</div>
+<div class="card straw"><span class="tag">拡散した動画（後半カット）</span>「人間の幸せ以上、人間より他にもっと大事なものがある」</div>
+</div>
+<p class="distort-note"><strong>歪曲点：</strong>発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
+
 <p>出典 <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> : 時事通信（2026 年 2 月 2 日）</p>
 <h3>「カナダ型医療」の脅し - 米国 / 2009 年、医療保険改革をめぐる広告</h3>
 <p>2009 年、米国の医療保険改革をめぐり、保守系団体の Patients United Now と Patients First は「ワシントンはカナダ型の医療制度を持ち込もうとしている」とする広告を展開した。</p>
-<p>元の提案</p>
-<p>公的保険の選択肢を追加する案</p>
-<p>すり替えられた主張</p>
-<p>カナダのような完全な政府運営制度への移行</p>
-<p><strong>歪曲点 :</strong> 専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
+
+<div class="compare">
+<div class="card real"><span class="tag">元の提案</span>公的保険の選択肢を追加する案</div>
+<div class="card straw"><span class="tag">すり替えられた主張</span>カナダのような完全な政府運営制度への移行</div>
+</div>
+<p class="distort-note"><strong>歪曲点：</strong>専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
+
 <p>出典 <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> : FactCheck.org （2009 年 7 月 17 日）</p>
 <h3>同じ党内でも起きる - 米国 / 2019 年、民主党予備選討論会</h3>
 <p>2019 年 6 月の米民主党予備選討論会では、穏健派候補のデラニー氏が、サンダース氏の掲げる国民皆保険制度「メディケア・フォー・オール」について発言した。</p>
-<p>サンダース氏の法案</p>
-<p>病院への診療報酬をメディケア水準に固定するとは規定していない</p>
-<p>デラニー氏の主張</p>
-<p>「すべての病院がメディケア並みの支払いになれば経営が立ち行かなくなる」</p>
-<p><strong>歪曲点 :</strong> 米公共放送 PBS はデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
+
+<div class="compare">
+<div class="card real"><span class="tag">サンダース氏の法案</span>病院への診療報酬をメディケア水準に固定するとは規定していない</div>
+<div class="card straw"><span class="tag">デラニー氏の主張</span>「すべての病院がメディケア並みの支払いになれば経営が立ち行かなくなる」</div>
+</div>
+<p class="distort-note"><strong>歪曲点：</strong>米公共放送 PBS はデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
+
 <p>出典 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> : PBS NewsHour （2019 年 6 月 27 日）</p>
 <h2 id="sec4">4. 明日から相手の議論をスチールマン化するために - 実践のための三つの問いと、隣接する詭弁</h2>
 <p>ここまで見た五つの事例に共通するのは、対立する陣営の政治家であれ、同じ党派の候補者であれ、テレビ番組で発言した候補者であれ、誰もが藁人形論法を使い、また使われうるという事実である。左右どちらの立場にも、この詭弁を犯した側と犯された側が存在した。</p>
 <p>議論を建設的に進めるためには、反論する前に一呼吸置き、次のように自問するとよい。</p>
-<p>相手の主張そのものと戦っているか、それとも自分が作った弱い版と戦っているか</p>
-<p>Q1</p>
-<p>相手が実際に言った言葉は何か。</p>
-<p>Q2</p>
-<p>その主張を、相手自身が最も納得できる形で要約できているか。</p>
-<p>Q3</p>
-<p>自分が今から叩こうとしているのは相手の主張そのものか、それとも作り上げた弱い版にすぎないのか。</p>
+<p class="pull">相手の主張そのものと戦っているか、それとも自分が作った弱い版と戦っているか</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 640 260" role="img" aria-label="反論前に自問する三つの問い。Q1相手が実際に言った言葉は何か、Q2相手自身が最も納得できる形で要約できているか、Q3自分は相手の主張そのものと戦っているか作った弱い版と戦っているか、を順に確認してから反論する循環">
+<defs>
+<marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect x="30" y="20" width="180" height="80" fill="var(--box)" stroke="var(--line)"/>
+<text x="120" y="45" font-size="13" fill="var(--accent)" text-anchor="middle" font-weight="700">Q1</text>
+<text x="120" y="66" font-size="12" fill="currentColor" text-anchor="middle">相手が実際に</text>
+<text x="120" y="83" font-size="12" fill="currentColor" text-anchor="middle">言った言葉は何か</text>
+
+<rect x="230" y="20" width="180" height="80" fill="var(--box)" stroke="var(--line)"/>
+<text x="320" y="45" font-size="13" fill="var(--accent)" text-anchor="middle" font-weight="700">Q2</text>
+<text x="320" y="66" font-size="12" fill="currentColor" text-anchor="middle">相手が最も納得できる</text>
+<text x="320" y="83" font-size="12" fill="currentColor" text-anchor="middle">形で要約できているか</text>
+
+<rect x="430" y="20" width="180" height="80" fill="var(--box)" stroke="var(--line)"/>
+<text x="520" y="45" font-size="13" fill="var(--accent)" text-anchor="middle" font-weight="700">Q3</text>
+<text x="520" y="66" font-size="12" fill="currentColor" text-anchor="middle">戦っているのは主張</text>
+<text x="520" y="83" font-size="12" fill="currentColor" text-anchor="middle">そのものか、弱い版か</text>
+
+<line x1="214" y1="60" x2="226" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"/>
+<line x1="414" y1="60" x2="426" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"/>
+
+<rect x="230" y="150" width="180" height="55" fill="var(--real-bg)" stroke="var(--real-line)"/>
+<text x="320" y="183" font-size="13" fill="var(--accent)" text-anchor="middle" font-weight="700">スチールマンで反論する</text>
+
+<path d="M 520 104 C 520 150, 410 150, 410 150" fill="none" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr3)"/>
+<path d="M 230 178 C 150 178, 120 140, 120 104" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr3)"/>
+<text x="140" y="220" font-size="10.5" fill="var(--muted)" text-anchor="middle">答えに自信がなければ Q1 に戻る</text>
+</svg>
+<figcaption>反論の前に自問する三つの問い。答えに詰まれば Q1 に戻り、要約をやり直す。</figcaption>
+</figure>
+
 <p>この問いに正直に答える姿勢こそがスチールマンを作る作業であり、不毛な論破合戦を実りある対話に変える第一歩となる。</p>
 <p>なお、藁人形論法には隣接する詭弁がいくつかある。いずれも相手の主張を正確に扱わない点で親戚関係にあるが、歪め方の方向性はそれぞれ異なる。</p>
-<p>チェリーピッキング都合のよい事実だけを並べる。</p>
-<p>滑り坂論法些細な譲歩が破滅的な結果に直結すると決めつける。</p>
-<p>人身攻撃主張ではなく人格を攻撃する。</p>
-<p>偽のジレンマ選択肢を二つしかないかのように狭める。</p>
+
+<div class="dfn-grid">
+<div class="dfn"><b>チェリーピッキング</b>都合のよい事実だけを並べる。</div>
+<div class="dfn"><b>滑り坂論法</b>些細な譲歩が破滅的な結果に直結すると決めつける。</div>
+<div class="dfn"><b>人身攻撃</b>主張ではなく人格を攻撃する。</div>
+<div class="dfn"><b>偽のジレンマ</b>選択肢を二つしかないかのように狭める。</div>
+</div>
+
 <div class="refs">
 <h2>参考文献 - 検証に用いた記事一覧</h2>
 <ol><li id="ref-1"><a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/">小泉進次郎氏が消費増税を主張 ? 恣意的な切り貼り【ファクトチェック】</a>日本ファクトチェックセンター , 2025 年 5 月 23 日 <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2"><a href="https://www.jiji.com/jc/article?k=2026020200704&amp;g=pol">中道・斉藤氏「人間より大事なものある」動画は誤り テレビ番組発言の切り抜きが拡散【チェック ! 選挙】</a>時事通信 , 2026 年 2 月 2 日 <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3"><a href="https://www.politifact.com/factchecks/2016/oct/20/donald-trump/donald-trump-says-hillary-clinton-wants-have-open-/">In final debate, Trump wrongly says Clinton wants open borders</a>PolitiFact, 2016 年 10 月 20 日 <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4"><a href="https://www.factcheck.org/2009/07/canadian-straw-man/">Canadian Straw Man</a>FactCheck.org, 2009 年 7 月 17 日 <a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5"><a href="https://www.pbs.org/newshour/politics/fact-check-delaneys-debate-claim-that-medicare-for-all-will-shutter-hospitals-goes-overboard">Fact check: Delaney's debate claim that 'Medicare For All' will shutter hospitals goes overboard</a>PBS NewsHour, 2019 年 6 月 27 日 <a class="fnback" href="#fnref-5-1">↩</a></li></ol>
