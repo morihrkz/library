@@ -7,7 +7,8 @@
 <style>
 :root{
   --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+  --accent2:#9a5b3d; --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+  --bad:#8a4a3d; --good:#3d5a52;
 }
 *{box-sizing:border-box;}
 body{
@@ -66,6 +67,40 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:24px;}
 }
+
+/* --- 図解用の追加スタイル --- */
+figure{margin:0 0 36px; padding:0;}
+figure.diagram{background:var(--box); border:1px solid var(--line); padding:24px 22px 18px;}
+figure.diagram svg{display:block; width:100%; height:auto; overflow:visible;}
+figcaption{font-size:13px; color:var(--muted); margin-top:14px; line-height:1.7;}
+figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
+
+.dfn-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 28px;}
+@media (max-width:560px){.dfn-grid{grid-template-columns:1fr;}}
+.dfn-card{background:var(--box); border:1px solid var(--line); border-left:3px solid var(--muted); padding:16px 18px;}
+.dfn-card.on{border-left-color:var(--accent);}
+.dfn-term{font-weight:700; font-size:14.5px; margin-bottom:6px;}
+.dfn-card.on .dfn-term{color:var(--accent);}
+.dfn-en{font-size:12px; color:var(--muted); font-weight:400;}
+.dfn-body{font-size:13.5px; color:var(--muted); line-height:1.75;}
+
+.stance-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); margin:0 0 28px;}
+@media (max-width:560px){.stance-grid{grid-template-columns:1fr;}}
+.stance{padding:18px 20px;}
+.stance-a{border-right:1px solid var(--line); border-top:3px solid var(--bad);}
+.stance-b{border-top:3px solid var(--good);}
+@media (max-width:560px){.stance-a{border-right:none; border-bottom:1px solid var(--line);}}
+.stance-title{font-weight:700; font-size:14.5px; margin-bottom:8px;}
+.stance-a .stance-title{color:var(--bad);}
+.stance-b .stance-title{color:var(--good);}
+.stance-body{font-size:13.5px; color:var(--muted); line-height:1.75; margin-bottom:10px;}
+.stance-core{font-size:12.5px; border-top:1px dashed var(--line); padding-top:8px; margin-top:8px; color:var(--text);}
+.stance-core b{font-weight:700;}
+
+.tag{display:inline-block; font-size:10.5px; letter-spacing:.04em; font-weight:700; padding:2px 8px;
+  border-radius:2px; vertical-align:middle; margin-left:8px;}
+.tag-fact{background:#dfe6e0; color:var(--accent);}
+.tag-claim{background:#f1e2d8; color:var(--accent2);}
 </style>
 </head>
 <body>
@@ -89,18 +124,47 @@ pre code{background:none; padding:0;}
 <h2 id="sec1">1. 要旨</h2>
 <p>本稿は、デイヴィッド・ベネターが提示した「非対称性（asymmetry）」論証を軸に、反出生主義（antinatalism）を哲学史・論理学・心理学の三つの観点から検討する。まず、シレノスの逸話からショーペンハウアーに至る思想史的系譜を整理し、次にベネターの論証を命題として定式化したうえで、非存在者への述語づけという論理学的難点と、パーフィットの非同一性問題（non-identity problem）との関係を検討する。さらに、情動予測の誤り（affective forecasting error）、快楽の踏み車（hedonic treadmill）、ポリアンナ原理、終末管理理論（terror management theory）、ピーク・エンド則といった心理学の知見を導入し、人間が出生や人生の価値をどのように評価しがちかという記述的な側面を補う。結論として、本稿は反出生主義を「正しい」とも「誤り」とも断定せず、出生をめぐる価値判断の構造そのものを可視化することを目的とする。</p>
 <p><strong>キーワード</strong>：反出生主義／ベネターの非対称性／非同一性問題／情動予測の誤り／快楽の踏み車／ポリアンナ原理／終末管理理論</p>
-<p>ベネターの非対称性を表す 2×2 の図
-「生まれた場合」と「生まれなかった場合」を横軸に、「苦痛」と「喜び」を縦軸にとった 2 行 2 列の図。生まれた場合は苦痛も喜びも存在し、生まれなかった場合は苦痛が存在しないことは良いことだが、喜びが存在しないことは誰かにとっての損失とは言いにくいとされる。
-生まれた場合
-生まれなかった場合</p>
-<p>苦痛</p>
-<p>苦痛が存在する（悪い）</p>
-<p>苦痛が存在しない（良い）
-喜び</p>
-<p>喜びが存在する（良い）</p>
-<p>喜びが存在しない
-（悪くはない = 損失とは言えない）</p>
-<p>図 1. ベネターの非対称性論証の概念図（Benatar, 2006, pp. 30–49 の議論を基に筆者作成）。生まれなかった場合の「苦痛の不在」は無条件に良いと評価できるのに対し、「喜びの不在」はそれを惜しむ主体が存在しない以上、悪いとは言えないとされる。この評価の非対称性が論証全体の要となる。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 720 300" role="img" aria-label="ベネターの非対称性の2行2列の図。生まれた場合は苦痛が悪く喜びが良い。生まれなかった場合は苦痛の不在が良く、喜びの不在は悪くない。">
+  <defs>
+    <marker id="arrowEnd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <text x="230" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">生まれた場合</text>
+  <text x="500" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">生まれなかった場合</text>
+
+  <line x1="150" y1="42" x2="150" y2="280" stroke="var(--line)" stroke-width="1"/>
+  <line x1="365" y1="42" x2="365" y2="280" stroke="var(--line)" stroke-width="1"/>
+  <line x1="10" y1="150" x2="710" y2="150" stroke="var(--line)" stroke-width="1"/>
+
+  <text x="75" y="90" font-size="13" font-weight="700" fill="currentColor">苦痛</text>
+  <text x="75" y="225" font-size="13" font-weight="700" fill="currentColor">喜び</text>
+
+  <rect x="160" y="56" width="195" height="84" fill="none"/>
+  <text x="257" y="90" text-anchor="middle" font-size="13.5" fill="var(--bad)" font-weight="700">苦痛が存在する</text>
+  <text x="257" y="112" text-anchor="middle" font-size="12.5" fill="var(--bad)">（悪い）</text>
+
+  <rect x="375" y="56" width="330" height="84" fill="none"/>
+  <text x="540" y="90" text-anchor="middle" font-size="13.5" fill="var(--good)" font-weight="700">苦痛が存在しない</text>
+  <text x="540" y="112" text-anchor="middle" font-size="12.5" fill="var(--good)">（良い）</text>
+
+  <rect x="160" y="160" width="195" height="110" fill="none"/>
+  <text x="257" y="200" text-anchor="middle" font-size="13.5" fill="var(--good)" font-weight="700">喜びが存在する</text>
+  <text x="257" y="222" text-anchor="middle" font-size="12.5" fill="var(--good)">（良い）</text>
+
+  <rect x="375" y="160" width="330" height="110" fill="none"/>
+  <text x="540" y="196" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">喜びが存在しない</text>
+  <text x="540" y="218" text-anchor="middle" font-size="12.5" fill="currentColor">（悪くはない＝</text>
+  <text x="540" y="236" text-anchor="middle" font-size="12.5" fill="currentColor">損失とは言えない）</text>
+
+  <path d="M560,140 C 560,148 580,150 580,158" fill="none" stroke="var(--accent2)" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arrowEnd)"/>
+  <text x="600" y="152" font-size="11" fill="var(--accent2)">評価の非対称性</text>
+</svg>
+<figcaption><span class="fig-label">図 1.</span> ベネターの非対称性論証の概念図（Benatar, 2006, pp. 30–49 の議論を基に筆者作成）。生まれなかった場合の「苦痛の不在」は無条件に良いと評価できるのに対し、「喜びの不在」はそれを惜しむ主体が存在しない以上、悪いとは言えないとされる。この評価の非対称性が論証全体の要となる。</figcaption>
+</figure>
+
 <h2 id="sec2">2. 序論 - 問題の所在</h2>
 <p>「もし最初から存在しなかったら、苦しむこともなかったのではないか」という思いつきは、日常のふとした瞬間に多くの人の頭をよぎる。この直観は通常、一過性の感慨として消費され、思想としては顧みられない。しかし哲学の一分野は、この直観を放置せず、命題として定式化し、論証として検討してきた。それが<strong>反出生主義（antinatalism）</strong>である。</p>
 <p>反出生主義の中心的な主張は、次のように要約できる。</p>
@@ -109,6 +173,39 @@ pre code{background:none; padding:0;}
 </blockquote>
 <p>この主張 P は、一見単純だが、支持するにせよ棄却するにせよ、少なくとも三つの異なる学問領域の道具立てを要求する。第一に、幸福・苦痛・善悪といった評価概念を扱う倫理学（哲学）。第二に、「まだ存在していない者」について述語づけを行うことの妥当性を問う様相論理学・存在論（論理学）。第三に、人間が自らの人生や出生をどのように評価し、その評価がどのようなバイアスの影響を受けるかを扱う心理学である。本稿は、この三領域を横断しながら、反出生主義、とりわけデイヴィッド・ベネター（David Benatar）が提示した「非対称性（asymmetry）」論証を検討する。</p>
 <p>あらかじめ断っておきたいのは、本稿は P の真偽について最終的な立場を確定させることを目的としない、という点である。むしろ目的は、 P という主張がどれほど多くの理論的な仮定に依存しているかを明らかにすることにある。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 720 220" role="img" aria-label="主張Pを中心に、倫理学、論理学・存在論、心理学の三分野が支える構造のハブ&amp;スポーク図">
+  <defs>
+    <marker id="arrowEnd2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="270" y="86" width="180" height="48" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+  <text x="360" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">主張 P</text>
+  <text x="360" y="123" text-anchor="middle" font-size="11" fill="var(--accent)">出生は無条件に正当化されない</text>
+
+  <line x1="300" y1="86" x2="150" y2="40" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd2)"/>
+  <rect x="30" y="6" width="180" height="46" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+  <text x="120" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">倫理学</text>
+  <text x="120" y="42" text-anchor="middle" font-size="10.5" fill="var(--muted)">幸福・苦痛・善悪の評価概念</text>
+
+  <line x1="360" y1="86" x2="360" y2="40" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd2)"/>
+  <rect x="270" y="6" width="180" height="46" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+  <text x="360" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">論理学・存在論</text>
+  <text x="360" y="42" text-anchor="middle" font-size="10.5" fill="var(--muted)">非存在者への述語づけ</text>
+
+  <line x1="420" y1="86" x2="570" y2="40" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd2)"/>
+  <rect x="510" y="6" width="180" height="46" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+  <text x="600" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">心理学</text>
+  <text x="600" y="42" text-anchor="middle" font-size="10.5" fill="var(--muted)">評価バイアスの記述</text>
+
+  <line x1="360" y1="134" x2="360" y2="190" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="360" y="208" text-anchor="middle" font-size="11" fill="var(--muted)">本稿は P の真偽を断定せず、依存する前提を可視化する</text>
+</svg>
+<figcaption><span class="fig-label">図 2.</span> 主張 P の検討に必要な三つの学問領域。本稿はこの三領域を横断して、それぞれの角度から前提を検討する構成を取る。</figcaption>
+</figure>
+
 <h2 id="sec3">3. 思想史的背景</h2>
 <p>反出生主義という術語自体は比較的新しいが、「生まれてこない方がよい」という発想の系譜は古代にまで遡る。</p>
 <p>古代ギリシャには「シレノスの知恵」として知られる逸話がある。伝承によれば、フリギア王ミダスが森の賢者シレノスを捕らえ、「人間にとって最善のものは何か」と問い詰めたところ、シレノスは次のように答えたとされる。</p>
@@ -117,24 +214,49 @@ pre code{background:none; padding:0;}
 </blockquote>
 <p>同じ結論は、独立した文脈でも繰り返し現れる。悲劇詩人ソポクレスの『コロノスのオイディプス』の合唱歌（1224–1228 行付近）には「生まれないことこそ、あらゆる思案を超えて最善である」という一節があり（Sophocles, <em>Oedipus at Colonus</em>）、詩人テオグニス（前 6 世紀）にも類似の詠嘆が見られる。 19 世紀に入ると、フリードリヒ・ニーチェが『悲劇の誕生』第 3 章でこの逸話を取り上げ、ギリシャ悲劇の根底にある厭世的な知を論じる出発点とした（Nietzsche, 1872/1993）。同じ 19 世紀、アルトゥル・ショーペンハウアーは主著『意志と表象としての世界』において、欲望とその不断の不充足を人間存在の基本構造として体系化し、生を無条件に肯定する楽観主義的な形而上学を批判した（Schopenhauer, 1818/2004）。</p>
 <p>現代の反出生主義において決定的な役割を果たしたのが、南アフリカの哲学者デイヴィッド・ベネターである。 2006 年に刊行された著書 <em>Better Never to Have Been: The Harm of Coming into Existence</em>（邦訳『生まれてこない方が良かった - 存在してしまうことの害悪』小島和男・田村宜義訳、すずさわ書店、 2017 年）において、ベネターは「存在すること」と「存在しないこと」を比較するための独自の論理を体系的に構築した（Benatar, 2006）。次節では、この論証を命題論理の形式に近い形で整理する。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 720 130" role="img" aria-label="シレノスの逸話からベネターに至る思想史の年表。古代ギリシャのシレノス、ソポクレス、19世紀のニーチェとショーペンハウアー、2006年のベネターへと繋がる。">
+  <defs>
+    <marker id="arrowEnd3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <line x1="30" y1="70" x2="690" y2="70" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrowEnd3)"/>
+
+  <circle cx="60" cy="70" r="4" fill="currentColor"/>
+  <text x="60" y="50" text-anchor="middle" font-size="11" fill="var(--muted)">前 8 世紀頃</text>
+  <text x="60" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">シレノスの逸話</text>
+
+  <circle cx="240" cy="70" r="4" fill="currentColor"/>
+  <text x="240" y="50" text-anchor="middle" font-size="11" fill="var(--muted)">前 5 世紀頃</text>
+  <text x="240" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">ソポクレス</text>
+
+  <circle cx="420" cy="70" r="4" fill="currentColor"/>
+  <text x="420" y="50" text-anchor="middle" font-size="11" fill="var(--muted)">19 世紀</text>
+  <text x="420" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">ショーペンハウアー／ニーチェ</text>
+
+  <circle cx="650" cy="70" r="5" fill="var(--accent)"/>
+  <text x="650" y="50" text-anchor="middle" font-size="11" fill="var(--accent)">2006 年</text>
+  <text x="650" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">ベネター</text>
+</svg>
+<figcaption><span class="fig-label">図 3.</span> 「生まれない方がよい」という発想の思想史的系譜。古代の逸話的直観が、 19 世紀の体系的な厭世哲学を経て、 2006 年のベネターによる論理的な論証として定式化されるまでの流れ。</figcaption>
+</figure>
+
 <h2 id="sec4">4. ベネターの非対称性論証</h2>
 <h3>論証の定式化</h3>
 <p>ベネターの議論の核心は、次の四つの評価命題として整理できる（図 1 も参照）。</p>
-<ol>
-<li>
-<p>苦痛が存在することは悪い。（Bad）</p>
-</li>
-<li>
-<p>苦痛が存在しないことは良い - たとえそれを享受する主体が存在しなくても。（Good, even if no one benefits）</p>
-</li>
-<li>
-<p>喜びが存在することは良い。（Good）</p>
-</li>
-<li>
-<p>喜びが存在しないことは、それによって喪失を被る主体が存在しない限り、悪くはない。（Not bad, unless there is deprivation for someone）</p>
-</li>
-</ol>
+
+<div class="dfn-grid">
+<div class="dfn-card"><div class="dfn-term">命題 1</div><div class="dfn-body">苦痛が存在することは悪い。（Bad）</div></div>
+<div class="dfn-card on"><div class="dfn-term">命題 2</div><div class="dfn-body">苦痛が存在しないことは良い - たとえそれを享受する主体が存在しなくても。（Good, even if no one benefits）</div></div>
+<div class="dfn-card"><div class="dfn-term">命題 3</div><div class="dfn-body">喜びが存在することは良い。（Good）</div></div>
+<div class="dfn-card on"><div class="dfn-term">命題 4</div><div class="dfn-body">喜びが存在しないことは、それによって喪失を被る主体が存在しない限り、悪くはない。（Not bad, unless there is deprivation for someone）</div></div>
+</div>
+<p class="note">命題 2 ・ 4 （色付き）が「主体の不在」を扱う非対称の核であり、批判の焦点となる。</p>
+
 <p>命題 2 と命題 4 の非対称性が論証の要である。両者はともに「主体の不在」を含意する事態を扱っているが、評価は対称にならない。ベネターはこれを、既に存在する人物同士の比較（たとえば、ある人が頭痛を経験しない方がよい、という判断）と、存在／非存在の比較（生まれない方が頭痛を経験せずに済む、という判断）とでは、後者において「主体なき評価」が要求される点に注意を促す。この非対称性を認めるなら、生まれることは常に何らかの害（苦痛）を伴うのに対し、生まれないことは何の害も伴わない、という結論が導かれる。</p>
+
 <h3>論証の妥当性と健全性</h3>
 <p>論理学の基本的な区別を用いるなら、ある論証は前提から結論が形式的に導出できるとき「妥当（valid）」であり、かつすべての前提が実際に真であるとき「健全（sound）」である。ベネターの論証は、命題 1 から 4 を前提として受け入れる限り、結論（生まれないことは生まれることより望ましい）を導く点では概ね妥当な構造を持つ。したがって批判の焦点は、論証の形式ではなく、前提そのもの - とりわけ命題 2 と命題 4 の非対称性を正当化する根拠 - に向けられることになる。この点は次章で論理学的に、またその次の心理学的検討の章で検討する。</p>
 <table>
@@ -165,10 +287,54 @@ pre code{background:none; padding:0;}
 <h3>非同一性問題との接続</h3>
 <p>ここで接続すべきなのが、デレク・パーフィットが『理由と人格』（<em>Reasons and Persons</em>, 1984）で定式化した<strong>非同一性問題（non-identity problem）</strong>である。パーフィットは、ある行為（たとえば出生のタイミングを選ぶこと）が、行為の結果として生まれてくる人物そのものの同一性を左右する場合、その行為を「誰かにとって悪い」と評価することが論理的に困難になる事例を示した。仮にある人物 A が、別の条件下では A とは異なる人物 B が生まれていたはずの状況で生を受けたとする。 A の人生がどれほど困難であっても、 A にとって「生まれなかった方がよかった」と言うためには、 A が存在しない状態と比較しなければならない。ところが A が存在しない状態とは、多くの場合、 A という同一個体がまったく存在しない状態を意味し、「 A にとって」という比較の基準点自体が消失してしまう。</p>
 <p>ベネターの非対称性論証は、まさにこの非同一性問題を回避するために「主体なき評価（subject-independent evaluation）」という迂回路を用意したものだと理解できる。命題 2 （苦痛の不在は主体がなくても良い）は、非同一性問題が突きつける「誰にとって良いのか」という要求そのものを無効化する戦略なのである。この戦略が成功しているかどうかについては、エリザベス・ハーマンによる書評（Harman, 2009）や、ジェフ・マクマハンによる集団倫理学の検討（McMahan, 1981）など、分析哲学の内部でも評価が分かれている。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 720 260" role="img" aria-label="非存在者への述語づけの問題から非同一性問題を経て、ベネターの主体なき評価という迂回路に至る論証の連鎖図">
+  <defs>
+    <marker id="arrowEnd4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+  <rect x="20" y="20" width="220" height="66" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+  <text x="130" y="44" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">非存在者への述語づけ</text>
+  <text x="130" y="62" text-anchor="middle" font-size="10.5" fill="var(--muted)">マイノング対ラッセル（1905）</text>
+  <text x="130" y="76" text-anchor="middle" font-size="10.5" fill="var(--muted)">の現代版</text>
+
+  <line x1="240" y1="53" x2="290" y2="53" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd4)"/>
+
+  <rect x="290" y="20" width="220" height="66" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
+  <text x="400" y="40" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">可能世界意味論</text>
+  <text x="400" y="58" text-anchor="middle" font-size="10.5" fill="var(--muted)">transworld identity が</text>
+  <text x="400" y="72" text-anchor="middle" font-size="10.5" fill="var(--muted)">依然として係争的</text>
+
+  <line x1="400" y1="86" x2="400" y2="126" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd4)"/>
+
+  <rect x="180" y="126" width="360" height="66" rx="3" fill="none" stroke="var(--accent2)" stroke-width="1.4"/>
+  <text x="360" y="150" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent2)">パーフィットの非同一性問題</text>
+  <text x="360" y="168" text-anchor="middle" font-size="10.5" fill="var(--muted)">「 A にとって」という比較の基準点が</text>
+  <text x="360" y="182" text-anchor="middle" font-size="10.5" fill="var(--muted)">消失する（Parfit, 1984）</text>
+
+  <line x1="360" y1="192" x2="360" y2="222" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd4)"/>
+
+  <rect x="130" y="222" width="460" height="34" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+  <text x="360" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">ベネターの迂回路：主体なき評価（命題 2）</text>
+</svg>
+<figcaption><span class="fig-label">図 4.</span> 非存在者への述語づけをめぐる問題が非同一性問題へと接続し、ベネターの非対称性論証がそれを「主体なき評価」という迂回路で回避しようとする論証の連鎖。</figcaption>
+</figure>
+
 <h3>反出生主義と反フラストレーション主義</h3>
 <p>論理構造としてベネターの議論に近接するのが、クリストフ・フェイゲが提示した<strong>反フラストレーション主義（antifrustrationism）</strong>である（Fehige, 1998）。フェイゲは、選好功利主義の枠組みにおいて「満たされなかった選好」を悪と見なす一方、「そもそも存在しない選好」は満たす必要も欠く必要もないため中立であると論じた。この立場は、ベネターの非対称性と独立に、しかし同じ論理的形状で「生まれないことの中立性ないし優位性」を導出する点で注目に値する。異なる出発点（快楽説と選好説）から類似の結論に到達しているという事実は、非対称性という論理構造そのものに一定の頑健性があることを示唆する一方、複数の理論が同じ結論を支持しているという事実だけでは、その結論の真理性は証明されないことにも留意すべきである。</p>
 <h2 id="sec6">6. 心理学的検討 - 出生と人生の評価をめぐるバイアス</h2>
 <p>哲学的・論理学的な検討だけでは、なぜ多くの人が反出生主義の結論に直観的な抵抗を感じるのか、その理由は説明されない。ここで心理学の知見が補助線として有効になる。人間が自らの人生や将来の出来事をどう評価するかには、いくつかの体系的な偏り（バイアス）が知られている。</p>
+
+<div class="dfn-grid">
+<div class="dfn-card"><div class="dfn-term">情動予測の誤り <span class="dfn-en">Affective Forecasting Error</span></div><div class="dfn-body">将来の幸福・苦痛の強度や持続時間を過大評価する傾向（ミスワンティング）。 Gilbert &amp; Wilson, 2000 。</div></div>
+<div class="dfn-card"><div class="dfn-term">快楽の踏み車 <span class="dfn-en">Hedonic Treadmill</span></div><div class="dfn-body">良い出来事にも悪い出来事にも順応し、主観的幸福感が基準点に回帰する現象。 Brickman &amp; Campbell, 1971 。</div></div>
+<div class="dfn-card"><div class="dfn-term">ポリアンナ原理 <span class="dfn-en">Pollyanna Principle</span></div><div class="dfn-body">自らの経験・記憶を実際より肯定的に処理・想起する傾向。 Matlin &amp; Stang, 1978 。</div></div>
+<div class="dfn-card"><div class="dfn-term">終末管理理論 <span class="dfn-en">Terror Management Theory</span></div><div class="dfn-body">死の不可避性への実存的不安を文化的世界観や自尊心で管理する。 Solomon et al., 1991 。</div></div>
+<div class="dfn-card"><div class="dfn-term">ピーク・エンド則 <span class="dfn-en">Peak-End Rule</span></div><div class="dfn-body">感情の総量ではなく、ピーク時点と終了直前の状態で回顧的に評価する傾向。 Kahneman et al., 1993 。</div></div>
+</div>
+
 <h3>情動予測の誤り（Affective Forecasting Error）</h3>
 <p>ダニエル・ギルバートとティモシー・ウィルソンは、人間が将来の感情状態を予測する際に系統的な誤りを犯すことを示した（Gilbert &amp; Wilson, 2000）。人は将来の出来事がもたらす幸福や苦痛の強度・持続時間を過大評価する傾向があり、この現象は「ミスワンティング（miswanting）」とも呼ばれる。この知見は反出生主義の議論に対して両義的に作用する。一方で、人が人生の苦痛を過大評価しがちだとすれば、「人生は耐えがたい」という直観そのものが予測誤差の産物である可能性がある。他方で、人が将来の喜びを過大評価しがちだとすれば、出生を決定する側（親）が子の将来の幸福を楽観的に見積もりすぎているという、反出生主義的な懸念を補強する材料にもなりうる。</p>
 <h3>快楽の踏み車とポリアンナ原理</h3>
@@ -179,6 +345,21 @@ pre code{background:none; padding:0;}
 <p>ダニエル・カーネマンらが実証したピーク・エンド則（peak-end rule）は、人があるエピソードを回顧的に評価する際、その最中の感情の総量（デュレーション）ではなく、感情のピーク時点と終了直前の状態に基づいて評価する傾向を指す（Kahneman, Fredrickson, Schreiber, &amp; Redelmeier, 1993）。人生全体の価値づけという、反出生主義が扱う最も大きな評価の単位においても、この認知的近道が作用している可能性がある。すなわち、人生全体に占める苦痛の総量を厳密に積算するのではなく、際立った喜びの瞬間や、人生の終盤の質によって人生全体への評価が左右されるとすれば、ベネターが前提とする「苦痛と喜びの単純な比較」という発想自体が、実際の人間の評価様式とは乖離していることになる。</p>
 <h2 id="sec7">7. 批判的応答 - これは「死にたい」の議論ではない</h2>
 <p>心理学的な補助線を踏まえたうえで、反出生主義について広く見られる誤解を整理しておく必要がある。それは、反出生主義を自死の肯定・推奨と混同することである。この混同は、論理的には初歩的な誤りであるが、心理学的には前節で見た終末管理理論が示唆するように、死を想起させる話題全般に対する防衛的反応として生じやすい。</p>
+
+<div class="stance-grid">
+<div class="stance stance-a">
+<div class="stance-title">問い A - 新たな生を始めさせること</div>
+<div class="stance-body">まだ存在していない者を新たに存在させることは倫理的に正当化できるか、という反出生主義の中心命題。子の同意を得ることが原理的に不可能な状態での決定を問う。</div>
+<div class="stance-core"><b>論点の核心：</b>まだ存在しない者にとっての利益・不利益をどう語るか。</div>
+</div>
+<div class="stance stance-b">
+<div class="stance-title">問い B - 既存の生をどう扱うか</div>
+<div class="stance-body">既に存在している人物の生についての問いで、まったく別の論理階層に属する。既存の人物には経験・関係・記憶・将来への期待があり、当人の自律的な選好がすでに形成されている。</div>
+<div class="stance-core"><b>論点の核心：</b>本人の選好・自律性がすでに存在する。</div>
+</div>
+</div>
+<p class="note">反出生主義が扱うのは問い A であり、問い B とは論理的に独立している。両者の混同が「死にたいという議論だ」という誤解を生む。</p>
+
 <p>反出生主義が扱う中心命題は「まだ存在していない者を新たに存在させることは倫理的に正当化できるか」である。これに対し、既に存在している人物の生についての問いは、まったく別の論理階層に属する。既存の人物には経験・関係・記憶・将来への期待があり、当人の自律的な選好がすでに形成されている。したがって「新たな生を始めさせることの是非」と「既存の生をどう扱うか」は、論理的に独立した問いとして区別されなければならない。反出生主義の内部でも、この区別を明示する論者（Benatar, 2006 など）と、区別を怠ったまま論じられる通俗的な理解との間には大きな溝がある。</p>
 <p>次に、出生の決定構造そのものに注目したい。出生とは、決定者（多くの場合は親）が、決定される本人（子）の同意を得ることが原理的に不可能な状態で下す決定である。子は健康・環境・関係・境遇のいずれについても選択に参加できない。この非対称な決定構造をどう倫理的に評価するかが、反出生主義が投げかける本質的な問いである。ここでもまた、論理学的検討の章で扱った非同一性問題と、心理学的検討の章で扱った情動予測の誤りが交差する。親が子の将来の幸福を楽観的に見積もる傾向（情動予測の誤り）と、子がまだ存在しないためにその決定に「本人にとっての」異議を申し立てる主体を欠くという構造（非同一性問題）は、互いに補強し合う関係にある。</p>
 <h2 id="sec8">8. 結論 - 開かれた問いとして</h2>
