@@ -39,6 +39,21 @@ h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding
 .card:hover .card-title{color:var(--accent);}
 .card .card-desc{font-size:13px; color:var(--muted); line-height:1.7; margin:0;}
 .note{font-size:13px; color:var(--muted); margin-top:20px;}
+.series-box{background:var(--box); border:1px solid var(--accent); padding:22px 22px 20px; margin:0 0 20px;}
+.series-head{font-size:13px; letter-spacing:.1em; color:var(--accent); font-weight:bold; margin:0 0 8px;}
+.series-note{font-size:13.5px; color:var(--muted); line-height:1.8; margin:0 0 18px;}
+.series-steps{list-style:none; margin:0; padding:0; counter-reset:series;}
+.series-step{counter-increment:series; display:flex; align-items:flex-start; gap:14px; margin:0 0 4px;}
+.series-step:not(:last-child){padding-bottom:4px; border-left:2px solid var(--line); margin-left:13px; padding-left:0;}
+.series-step .series-num{flex:none; width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff;
+  font-size:13px; font-weight:bold; display:flex; align-items:center; justify-content:center; margin-left:-13px;}
+.series-step a{display:block; text-decoration:none; color:var(--text); padding:6px 0 16px;}
+.series-step .card-title{font-size:15px; font-weight:bold; margin:0 0 5px; line-height:1.6;}
+.series-step a:hover .card-title{color:var(--accent); text-decoration:underline;}
+.series-step .card-desc{font-size:13px; color:var(--muted); line-height:1.7; margin:0;}
+@media (max-width:480px){
+  .series-box{padding:18px 16px 16px;}
+}
 strong{font-weight:bold;}
 a{color:var(--link);}
 @media (max-width:600px){
@@ -81,11 +96,17 @@ a{color:var(--link);}
 
 <h2 id="sec1">1. 比較政治学・時事分析（9 本）</h2>
 <p class="group-desc">権威主義体制の定義・生存・崩壊から、ポピュリズム、政党ラベル、民意の変換理論、そして敵意の政治的動員まで、比較政治学の枠組みで書かれた論考群。</p>
+<div class="series-box">
+<p class="series-head">連続 4 部作・通し読み推奨</p>
+<p class="series-note">以下の 4 本はもともと一つの長大な論考であったものを、読みやすさのために四分割したシリーズである。各回は独立して読めるが、権威主義の定義（第 1 回）から生存・崩壊の力学（第 2 回）、民主主義との規範的な比較（第 3 回）、そしてポピュリズムという内側からの脅威（第 4 回）へと議論が積み上がる構成になっているため、番号順に読み進めることを勧める。</p>
+<ol class="series-steps">
+<li class="series-step"><span class="series-num">1</span><a href="regime-01-concept-and-history.html"><p class="card-title">権威主義とは何か - 概念史からの定義</p><p class="card-desc">近代国家の形成からワイマール共和国の崩壊、戦前日本の事例まで、権威主義という言葉の輪郭を確かめる。</p></a></li>
+<li class="series-step"><span class="series-num">2</span><a href="regime-02-survival-and-collapse.html"><p class="card-title">権威主義はいかに生き残り、崩れるのか</p><p class="card-desc">冷戦後の類型論からデジタル監視まで、体制が生き延びる仕組みと内部に潜む構造的弱点を検討する。</p></a></li>
+<li class="series-step"><span class="series-num">3</span><a href="regime-03-democracy-and-authoritarianism.html"><p class="card-title">民主主義国家は善で権威主義国家は悪か</p><p class="card-desc">開発独裁論・アジア的価値観論・民主的平和論を最も強い形で検討し、民主主義の優位性の所在を見定める。</p></a></li>
+<li class="series-step"><span class="series-num">4</span><a href="regime-04-populism-and-democracy.html"><p class="card-title">ポピュリズムは民主主義国家の弱点か</p><p class="card-desc">選挙という手続きを通じて民主主義が自らを壊していく条件と、それを防ぐ方法を東アジアの事例に適用する。</p></a></li>
+</ol>
+</div>
 <div class="cards">
-<a class="card" href="regime-01-concept-and-history.html"><p class="card-title">権威主義とは何か - 概念史からの定義</p><p class="card-desc">近代国家の形成からワイマール共和国の崩壊、戦前日本の事例まで、権威主義という言葉の輪郭を確かめる。</p></a>
-<a class="card" href="regime-02-survival-and-collapse.html"><p class="card-title">権威主義はいかに生き残り、崩れるのか</p><p class="card-desc">冷戦後の類型論からデジタル監視まで、体制が生き延びる仕組みと内部に潜む構造的弱点を検討する。</p></a>
-<a class="card" href="regime-03-democracy-and-authoritarianism.html"><p class="card-title">民主主義国家は善で権威主義国家は悪か</p><p class="card-desc">開発独裁論・アジア的価値観論・民主的平和論を最も強い形で検討し、民主主義の優位性の所在を見定める。</p></a>
-<a class="card" href="regime-04-populism-and-democracy.html"><p class="card-title">ポピュリズムは民主主義国家の弱点か</p><p class="card-desc">選挙という手続きを通じて民主主義が自らを壊していく条件と、それを防ぐ方法を東アジアの事例に適用する。</p></a>
 <a class="card" href="party-label-theory.html"><p class="card-title">政党ラベルの情報経済学</p><p class="card-desc">法制度・選挙制度・党内組織の三層から、政党ラベルが示す中身の解像度を検討する。</p></a>
 <a class="card" href="hostility-mobilization-legitimacy.html"><p class="card-title">敵意を動員する国、しない国</p><p class="card-desc">過去の被害の記憶を対外的な敵意へと組み替える国を分けるものを、正統性の観点から検討する。</p></a>
 <a class="card" href="emotion-politicization.html"><p class="card-title">感情の政治資源化論</p><p class="card-desc">米国・欧州・日本に共通する分断とポピュリズムの構造を、心理学の知見から読み解く。</p></a>
