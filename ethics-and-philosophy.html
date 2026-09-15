@@ -8,13 +8,14 @@
 :root{
   --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
   --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+  --accent2:#a0673d; --accent2-soft:#f3e6da;
 }
 *{box-sizing:border-box;}
 body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.wrap{max-width:860px; margin:0 auto; padding:56px 26px 120px;}
 .kicker{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:18px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -62,6 +63,33 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 pre{font-size:14px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
+
+/* --- figures --- */
+figure{margin:0 0 34px;}
+figure svg{max-width:100%; height:auto; display:block; margin:0 auto;}
+figcaption{font-size:13px; color:var(--muted); text-align:center; margin-top:12px; line-height:1.7;}
+.dfn-grid{display:grid; grid-template-columns:1fr; gap:10px; margin:0 0 28px;}
+.dfn{background:var(--box); border:1px solid var(--line); border-left:4px solid var(--accent); padding:14px 18px;}
+.dfn.is-ethics{border-left-color:var(--accent2); background:var(--accent2-soft);}
+.dfn-term{font-weight:bold; color:var(--accent); font-size:14.5px; margin-bottom:4px;}
+.dfn.is-ethics .dfn-term{color:var(--accent2);}
+.dfn-body{font-size:14.5px; color:var(--text);}
+.tag{display:inline-block; font-size:11.5px; letter-spacing:.05em; font-weight:bold;
+  padding:2px 9px; border-radius:11px; margin-right:6px;}
+.tag-fact{background:#dfe8e2; color:var(--accent);}
+.tag-claim{background:var(--accent2-soft); color:var(--accent2);}
+.stance-pair{display:grid; grid-template-columns:1fr; gap:16px; margin:0 0 10px;}
+.stance{border:1px solid var(--line); padding:20px 22px;}
+.stance-a{border-top:4px solid var(--accent);}
+.stance-b{border-top:4px solid var(--accent2);}
+.stance-label{font-size:12.5px; letter-spacing:.08em; font-weight:bold; margin-bottom:8px;}
+.stance-a .stance-label{color:var(--accent);}
+.stance-b .stance-label{color:var(--accent2);}
+.stance-core{font-size:13.5px; color:var(--muted); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);}
+@media (min-width:620px){
+  .stance-pair{grid-template-columns:1fr 1fr;}
+  .dfn-grid{grid-template-columns:1fr 1fr;}
+}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:24px;}
@@ -74,8 +102,8 @@ pre code{background:none; padding:0;}
 <h1>倫理学は哲学の中でどこに立つか - 学問的位置づけと独学の手引き</h1>
 <p class="subtitle">Where Does Ethics Stand within Philosophy? Disciplinary Position and a Guide to Self-Study</p>
 <div class="lede"><p>倫理学の学問的位置づけと、独学で学び始める際の順序について論じる小論。事実と提案・仮説は本文中で明示的に区別する。</p></div>
-<div class="meta">【方法と限界】本稿では、哲学の下位分野としての一般的な分類や、日本の学習指導要領・大学の学部学科構成にかかわる記述を「事実」として扱い、出典を明記する。
-一方、独学における学びの順序にかかわる記述は学問的立場の違いであって事実ではないため、対立する双方の論拠をそれぞれ最も強い形で提示したうえで検討する、提案・仮説として扱う。</div>
+<div class="meta"><span class="tag tag-fact">事実</span>哲学の下位分野としての一般的な分類、日本の学習指導要領・大学の学部学科構成にかかわる記述は出典を明記した事実として扱う。
+<span class="tag tag-claim">提案・仮説</span>独学における学びの順序にかかわる記述は学問的立場の違いであって事実ではないため、対立する双方の論拠をそれぞれ最も強い形で提示したうえで検討する、提案・仮説として扱う。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
 <ol><li><a href="#sec1">序論 - 倫理学は哲学の一分野としてどう位置づけられるか</a></li>
@@ -85,59 +113,238 @@ pre code{background:none; padding:0;}
 <li><a href="#sec5">結論 - 専門的素養のない学習者にとっての意義</a></li>
 </ol>
 </nav>
+
 <h2 id="sec1">1. 序論 - 倫理学は哲学の一分野としてどう位置づけられるか</h2>
 <p>「倫理学は哲学の一分野である」という説明は、日常的にしばしば耳にする。
 しかしこの一文がどこまで厳密に成り立つかは、改めて問うてみると意外に曖昧である。哲学という学問全体の中で倫理学がどのような位置を占め、他の下位分野とどう区別されるのかを整理せずに使われることが多いからだ。</p>
 <p>本稿の目的は、「倫理学は哲学の一分野としてどう位置づけられるか」という問いに、学問的な整理と教育制度上の観察の両面から答えることにある。
 加えて、専門的な素養を持たない成人がこの分野に独学で入っていく際、どのような順序で学び始めるのが妥当かという、より実践的な論点についても検討する。</p>
 <p><strong>由来について :</strong> 筆者自身は哲学・倫理学の専門教育を受けていない成人であり、 2021 年に NHK 総合「よるドラ」枠で放送されたドラマ「ここは今から倫理です。」（原作 : 雨瀬シオリ）に触れて以来、倫理学への関心を持ち続けている <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。ただしこれは筆者個人の問題関心の由来にすぎず、以下の議論の学術的な根拠として用いるものではない。</p>
+
 <h2 id="sec2">2. 倫理学の学問的位置づけ - 哲学の下位分野としての一般的な整理</h2>
 <p>西洋哲学の伝統において、哲学という学問はいくつかの下位分野に分けて理解されるのが一般的である。代表的な整理では、実在とは何かを問う<strong>形而上学</strong>、知識の性質や限界を問う<strong>認識論</strong>、正しい行為とは何かを問う<strong>倫理学</strong>、美とは何かを問う<strong>美学</strong>、そして正しい推論の形式を問う<strong>論理学</strong>の五つが中核として挙げられる <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。</p>
-<p>形而上学実在の最も一般的なあり方を問う分野。「そもそも何が存在するのか」を扱う。</p>
-<p>認識論知識とは何か、どのように成立し、どこまで信頼できるのかを問う分野。</p>
-<p>倫理学何をなすべきか、何が善い行為・善い生き方かを問う分野。</p>
-<p>美学美とは何か、なぜ人は物事を美しいと感じるのかを問う分野。</p>
-<p>論理学正しい推論の形式とは何かを、前提と結論の関係から問う分野。</p>
+
+<figure>
+<svg viewBox="0 0 760 430" role="img" aria-label="哲学を中心に、形而上学・認識論・倫理学・美学・論理学の五分野が周囲に配置され、倫理学が強調されている図。形而上学と認識論から倫理学へ、根拠づけの関係を示す矢印が伸びている。">
+<defs>
+  <marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+  </marker>
+</defs>
+<!-- center: philosophy -->
+<circle cx="380" cy="215" r="58" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<text x="380" y="211" text-anchor="middle" font-size="15" font-weight="bold" fill="currentColor">哲学</text>
+<text x="380" y="229" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7">Philosophy</text>
+
+<!-- five spokes -->
+<!-- metaphysics: top-left -->
+<line x1="380" y1="215" x2="150" y2="80" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+<rect x="60" y="50" width="180" height="60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="150" y="76" text-anchor="middle" font-size="13.5" fill="currentColor">形而上学</text>
+<text x="150" y="94" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">実在とは何か</text>
+
+<!-- epistemology: top-right -->
+<line x1="380" y1="215" x2="610" y2="80" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+<rect x="520" y="50" width="180" height="60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="610" y="76" text-anchor="middle" font-size="13.5" fill="currentColor">認識論</text>
+<text x="610" y="94" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">知識とは何か</text>
+
+<!-- ethics: right, highlighted -->
+<line x1="380" y1="215" x2="660" y2="290" stroke="currentColor" stroke-width="1.5"/>
+<rect x="580" y="260" width="180" height="60" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="2"/>
+<text x="670" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--accent2)">倫理学</text>
+<text x="670" y="304" text-anchor="middle" font-size="10" fill="var(--accent2)" opacity="0.85">何をなすべきか</text>
+
+<!-- aesthetics: bottom-left -->
+<line x1="380" y1="215" x2="150" y2="340" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+<rect x="60" y="310" width="180" height="60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="150" y="336" text-anchor="middle" font-size="13.5" fill="currentColor">美学</text>
+<text x="150" y="354" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">美とは何か</text>
+
+<!-- logic: bottom -->
+<line x1="380" y1="215" x2="380" y2="390" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+<rect x="290" y="390" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<text x="380" y="415" text-anchor="middle" font-size="13.5" fill="currentColor">論理学 - 推論の形式</text>
+
+<!-- grounding arrows into ethics -->
+<path d="M 220 105 C 350 150, 480 180, 585 260" fill="none" stroke="var(--accent2)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrow1)"/>
+<path d="M 590 108 C 560 160, 560 200, 585 255" fill="none" stroke="var(--accent2)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrow1)"/>
+<text x="330" y="150" font-size="10" fill="var(--accent2)">善さは実在するか</text>
+<text x="605" y="185" font-size="10" fill="var(--accent2)">倫理的真理は知りうるか</text>
+</svg>
+<figcaption>哲学の五つの中核的下位分野。倫理学（強調）は独立した孤立分野ではなく、形而上学・認識論からの問いによって基礎づけの関係を持つ。</figcaption>
+</figure>
+
+<div class="dfn-grid">
+<div class="dfn"><div class="dfn-term">形而上学</div><div class="dfn-body">実在の最も一般的なあり方を問う分野。「そもそも何が存在するのか」を扱う。</div></div>
+<div class="dfn"><div class="dfn-term">認識論</div><div class="dfn-body">知識とは何か、どのように成立し、どこまで信頼できるのかを問う分野。</div></div>
+<div class="dfn is-ethics"><div class="dfn-term">倫理学</div><div class="dfn-body">何をなすべきか、何が善い行為・善い生き方かを問う分野。</div></div>
+<div class="dfn"><div class="dfn-term">美学</div><div class="dfn-body">美とは何か、なぜ人は物事を美しいと感じるのかを問う分野。</div></div>
+<div class="dfn"><div class="dfn-term">論理学</div><div class="dfn-body">正しい推論の形式とは何かを、前提と結論の関係から問う分野。</div></div>
+</div>
+
 <p>これらは互いに独立した孤立分野ではなく、相互に影響し合う関係にある。
 たとえば形而上学は「善さは客観的に実在する性質なのか」という問いを通じて倫理学の基礎づけに関わり、認識論は「私たちは倫理的な真理を知りうるのか」という問いを通じて、倫理学のうち道徳判断の性質そのものを扱う分野（メタ倫理学）と接続する <sup class="fnref"><a id="fnref-1-2" href="#ref-1">[1]</a></sup> 。</p>
 <p>なお、これらの五分野に加えて、科学哲学・政治哲学・宗教哲学・言語哲学のように、特定の対象領域に哲学的方法を適用する応用的な分野も存在する。
 倫理学はこの意味で、哲学という大きな学問体系を構成する、複数ある下位分野のうちの一つに位置づけられる。</p>
-<p>ただし倫理学が扱う「善く生きるとはどういうことか」という問いは、人間の実践に直結するという点で、他の下位分野と比べて独自の重みを持つとも言える。この重みづけ自体は事実の記述ではなく、本稿の解釈であることを断っておく。</p>
+<p class="pull">倫理学が扱う「善く生きるとはどういうことか」という問いは、人間の実践に直結するという点で、他の下位分野と比べて独自の重みを持つとも言える。</p>
+<p class="note">※ この重みづけ自体は事実の記述ではなく、本稿の解釈であることを断っておく。</p>
+
 <p>さらに、倫理学それ自体も、問いの水準に応じて内部に三つの層を持つことが一般的に整理されている。
 「どのような行為が正しいか」という規準そのものを探究する規範倫理学、「善い」「正しい」という道徳的な言葉や判断がそもそも何を意味するのかを問うメタ倫理学、そして生命倫理・環境倫理のような具体的な現実の課題に理論を適用する応用倫理学の三つである <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。</p>
-<p>規範倫理学何をなすべきか、何が正しい行為かという規準そのものを探究する層。</p>
-<p>メタ倫理学「善い」「正しい」という道徳的な言葉や判断がそもそも何を意味するのかを問う層。</p>
-<p>応用倫理学生命倫理・環境倫理など、具体的な現実の課題に倫理学の理論を適用する層。</p>
+
+<figure>
+<svg viewBox="0 0 700 260" role="img" aria-label="倫理学内部の三層構造。規範倫理学、メタ倫理学、応用倫理学が横に並び、応用倫理学の具体的な問いが規範倫理学の問いへ、さらにメタ倫理学の問いへと接続していく様子を矢印で示す。">
+<defs>
+  <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+  </marker>
+</defs>
+<!-- three layer boxes -->
+<rect x="20" y="30" width="200" height="80" fill="var(--box)" stroke="currentColor" stroke-width="1.3"/>
+<text x="120" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="currentColor">メタ倫理学</text>
+<text x="120" y="84" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.75">道徳的判断の意味を問う</text>
+
+<rect x="250" y="30" width="200" height="80" fill="var(--box)" stroke="currentColor" stroke-width="1.3"/>
+<text x="350" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="currentColor">規範倫理学</text>
+<text x="350" y="84" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.75">正しい行為の規準を問う</text>
+
+<rect x="480" y="30" width="200" height="80" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="1.8"/>
+<text x="580" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--accent2)">応用倫理学</text>
+<text x="580" y="84" text-anchor="middle" font-size="10.5" fill="var(--accent2)" opacity="0.85">生命倫理・環境倫理等</text>
+
+<!-- arrows: applied -> normative -> meta, right to left -->
+<line x1="480" y1="70" x2="455" y2="70" stroke="var(--accent2)" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<line x1="250" y1="70" x2="225" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+<!-- example question chain below -->
+<text x="580" y="145" text-anchor="middle" font-size="11" fill="var(--accent2)">「AI の判断に責任を負うのは誰か」</text>
+<line x1="580" y1="155" x2="580" y2="175" stroke="var(--accent2)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<path d="M 560 175 C 480 195, 420 195, 360 175" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow2)"/>
+<text x="460" y="215" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">「責任とは何か」</text>
+<path d="M 330 175 C 260 195, 200 195, 140 175" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow2)"/>
+<text x="220" y="240" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">「道徳的言明は客観的真偽を持つか」</text>
+</svg>
+<figcaption>倫理学内部の三層。応用倫理学の具体的な問いを突き詰めると、規範倫理学、さらにメタ倫理学の問いへと接続していく（例：AI の責任問題）。</figcaption>
+</figure>
+
+<div class="dfn-grid">
+<div class="dfn"><div class="dfn-term">規範倫理学</div><div class="dfn-body">何をなすべきか、何が正しい行為かという規準そのものを探究する層。</div></div>
+<div class="dfn"><div class="dfn-term">メタ倫理学</div><div class="dfn-body">「善い」「正しい」という道徳的な言葉や判断がそもそも何を意味するのかを問う層。</div></div>
+<div class="dfn is-ethics"><div class="dfn-term">応用倫理学</div><div class="dfn-body">生命倫理・環境倫理など、具体的な現実の課題に倫理学の理論を適用する層。</div></div>
+</div>
+
 <p>この三層は互いに独立ではない。
 たとえば「 AI の判断に責任を負うのは誰か」という応用倫理学の問いを突き詰めると、「責任とは何か」という規範倫理学の問いに、さらには「道徳的な言明はそもそも客観的な真偽を持つのか」というメタ倫理学の問いに接続していく。</p>
+
 <h2 id="sec3">3. 日本の教育制度における「倫理」と「哲学」の扱いの差 - 高校の科目名と大学の学部学科構成の観察</h2>
 <p>前章の学問的な整理を踏まえたとき、日本の教育制度には興味深いねじれが観察される。
 高等学校では、公民科の選択科目として「倫理」が置かれている <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。 2018 年改訂の高等学校学習指導要領解説（公民編）によれば、「倫理」は必履修科目「公共」で培った考え方を基盤とし、古今東西の幅広い知的蓄積を通して、現代の倫理的課題を探究する科目として位置づけられている <sup class="fnref"><a id="fnref-2-2" href="#ref-2">[2]</a></sup> 。</p>
 <p>一方、大学に目を移すと、「哲学科」という名称の学科は複数の大学に設置されている。
 たとえば日本大学文理学部の哲学科は、哲学・倫理学・美学・宗教学の四分野を柱とするカリキュラムを持ち、倫理学はその一分野として位置づけられている <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。他方で、東京大学文学部のように、倫理学を哲学専修課程から独立させた「倫理学専修課程」を置く例も確認できる <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。</p>
-<p><strong>確認の限界 :</strong> したがって、「大学には哲学科はあるが倫理学科は一般に存在しない」と単純に断定することはできない。確認できる範囲で言えるのは、倫理学を哲学科の中の一分野として扱う体制と、倫理学を独立した専修課程として扱う体制の両方が存在するということであり、後者よりも前者の体制の方が広く見られる、という程度の一般的傾向にとどまる。全国の大学を対象にした悉皆調査は行っていないため、これ以上踏み込んだ統計的な主張は控える。</p>
+
+<figure>
+<svg viewBox="0 0 700 300" role="img" aria-label="高校と大学での倫理学の扱いを比較する図。高校では公民科の中に独立科目「倫理」が置かれているのに対し、大学では日本大学文理学部のように哲学科の一分野として倫理学が含まれる体制と、東京大学文学部のように倫理学専修課程として独立している体制の両方が存在する。">
+<!-- high school column -->
+<text x="150" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="currentColor">高等学校（公民科）</text>
+<rect x="50" y="45" width="200" height="50" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+<text x="150" y="75" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.75">公共（必履修）</text>
+<rect x="50" y="110" width="200" height="55" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="1.8"/>
+<text x="150" y="142" text-anchor="middle" font-size="13.5" font-weight="bold" fill="var(--accent2)">倫理（選択科目）</text>
+<line x1="150" y1="95" x2="150" y2="110" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+
+<!-- divider -->
+<line x1="350" y1="20" x2="350" y2="280" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+
+<!-- university column: two coexisting patterns -->
+<text x="530" y="28" text-anchor="middle" font-size="13" font-weight="bold" fill="currentColor">大学（学部学科構成 - 両体制が併存）</text>
+
+<text x="450" y="55" font-size="11" fill="currentColor" opacity="0.8">例：日本大学文理学部</text>
+<rect x="400" y="65" width="220" height="50" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+<text x="510" y="87" text-anchor="middle" font-size="12.5" fill="currentColor">哲学科</text>
+<text x="510" y="104" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">哲学・倫理学・美学・宗教学</text>
+<rect x="470" y="115" width="80" height="26" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="1.4"/>
+<text x="510" y="133" text-anchor="middle" font-size="10.5" fill="var(--accent2)">倫理学</text>
+
+<text x="450" y="185" font-size="11" fill="currentColor" opacity="0.8">例：東京大学文学部</text>
+<rect x="400" y="195" width="100" height="45" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+<text x="450" y="222" text-anchor="middle" font-size="12" fill="currentColor">哲学専修課程</text>
+<rect x="515" y="195" width="105" height="45" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="1.8"/>
+<text x="567" y="222" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--accent2)">倫理学専修課程</text>
+<text x="567" y="260" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">（独立した課程）</text>
+</svg>
+<figcaption>高校では「倫理」という独立科目名が使われる一方、大学では倫理学を哲学科の一分野として扱う体制（日本大学の例）と、独立した専修課程として扱う体制（東京大学の例）の双方が確認できる。</figcaption>
+</figure>
+
+<div class="box"><strong>確認の限界 :</strong> したがって、「大学には哲学科はあるが倫理学科は一般に存在しない」と単純に断定することはできない。確認できる範囲で言えるのは、倫理学を哲学科の中の一分野として扱う体制と、倫理学を独立した専修課程として扱う体制の両方が存在するということであり、後者よりも前者の体制の方が広く見られる、という程度の一般的傾向にとどまる。全国の大学を対象にした悉皆調査は行っていないため、これ以上踏み込んだ統計的な主張は控える。</div>
 <p>それでもなお、高校の科目名が「倫理」であるのに対し、大学の学科名の多くが「哲学科」であるという名称上の非対称は、確認できた事実として残る。
 この非対称がどのような歴史的経緯によって生じたのかについては、本稿で十分な裏付けを取ることができなかったため、未確認として扱い、以降の議論では前提としない。</p>
+
 <h2 id="sec4">4. 独学における学びの順序 - 提案・仮説として - 倫理学から入るか、認識論・形而上学から入るか</h2>
 <p>専門的な素養を持たない成人が哲学的な探究に独学で入っていこうとするとき、しばしば「倫理学から始めるべきか、それとも認識論・形而上学のようなより基礎的な分野から始めるべきか」という論点に行き当たる。
 ここから先は事実の記述ではなく、対立する二つの立場の検討という形をとる。両者はいずれも一定の説得力を持つ論者が実際に主張しうる立場であり、片方を弱めて提示することのないよう、それぞれの最も強い論拠を示す。</p>
-<p>立場 A - 倫理学から入る</p>
+
+<div class="stance-pair">
+<div class="stance stance-a">
+<div class="stance-label">立場 A - 倫理学から入る</div>
 <p>倫理学が扱う問い - 何をなすべきか、何が善い生き方か - は、学習者自身の日常的な意思決定や社会的な関心と直結しており、抽象的な体系を先に学ぶよりも動機づけを維持しやすい。具体的な倫理的ジレンマ（たとえば医療における選択、環境をめぐる責任）を出発点にすれば、専門用語を先に暗記する必要なく、実感を伴って哲学的思考の型に触れられる。</p>
-<p>論拠の核心 : 学習の動機づけと持続可能性を重視する。</p>
-<p>立場 B - 認識論・形而上学から入る</p>
+<div class="stance-core">論拠の核心 : 学習の動機づけと持続可能性を重視する。</div>
+</div>
+<div class="stance stance-b">
+<div class="stance-label">立場 B - 認識論・形而上学から入る</div>
 <p>倫理学の議論の多くは、暗黙のうちに「知識とは何か」「実在するとはどういうことか」という認識論・形而上学的な前提に依拠している。たとえば「善は客観的に実在するか」というメタ倫理学の中心的な論点は、形而上学的実在論をめぐる議論を土台にしている。この前提を検討せずに倫理学の各論に入ると、議論の土台が見えないまま応用問題だけを追いかけることになりかねない。</p>
-<p>論拠の核心 : 議論の前提を先に検討する体系的な理解を重視する。</p>
+<div class="stance-core">論拠の核心 : 議論の前提を先に検討する体系的な理解を重視する。</div>
+</div>
+</div>
+
 <p>両者はどちらも一定の説得力を持ち、いずれか一方が明確に優れているとは言い切れない。
 強いて言えば、動機づけの持続を重視するなら立場 A の、体系的な理解の土台を重視するなら立場 B の入り口が、それぞれ相対的に適していると考えられる。これは提案にとどまり、学問的に確立した結論ではない。</p>
 <p>実際には、両者を対立する二択として扱うのではなく、並行して学び、必要に応じて往復することが、多くの独学者にとって現実的な進め方になるだろう。
 具体的には、倫理的なジレンマから関心を持ち始めた学習者が、その議論を深めるなかで「そもそも善とは何か」という形而上学的な問いに自然と押し出される、という順序も十分にありうる。この場合、立場 A の入り口を取りながら、結果として立場 B が重視する前提の検討にも到達することになる。</p>
+
+<figure>
+<svg viewBox="0 0 700 300" role="img" aria-label="独学の三段階循環図。第一に一方の入り口（倫理学、または認識論・形而上学）から学びを始め、第二に支えきれない問いに直面してもう一方の分野へ押し出され、第三にその視点を携えて元の問いに立ち戻るという循環を示す。">
+<defs>
+  <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+  </marker>
+</defs>
+<!-- three stage circle: top, right, left arranged as a cycle -->
+<!-- stage 1: entry -->
+<rect x="255" y="20" width="190" height="66" fill="var(--box)" stroke="currentColor" stroke-width="1.3"/>
+<text x="350" y="47" text-anchor="middle" font-size="12.5" font-weight="bold" fill="currentColor">① 入り口を選ぶ</text>
+<text x="350" y="66" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">倫理学 or 認識論・形而上学</text>
+
+<!-- stage 2: pushed out -->
+<rect x="470" y="180" width="200" height="66" fill="var(--accent2-soft)" stroke="var(--accent2)" stroke-width="1.5"/>
+<text x="570" y="207" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--accent2)">② 支えきれない問いに直面</text>
+<text x="570" y="226" text-anchor="middle" font-size="10" fill="var(--accent2)" opacity="0.85">もう一方の分野へ押し出される</text>
+
+<!-- stage 3: return -->
+<rect x="30" y="180" width="200" height="66" fill="var(--box)" stroke="currentColor" stroke-width="1.3"/>
+<text x="130" y="207" text-anchor="middle" font-size="12.5" font-weight="bold" fill="currentColor">③ 元の問いに立ち戻る</text>
+<text x="130" y="226" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">深い解像度で再検討する</text>
+
+<!-- cycle arrows -->
+<path d="M 445 55 C 520 90, 560 140, 565 178" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow3)"/>
+<path d="M 468 220 C 380 245, 320 245, 232 220" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow3)"/>
+<path d="M 145 178 C 165 140, 220 90, 265 57" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrow3)"/>
+<text x="583" y="130" font-size="10" fill="currentColor" opacity="0.75">深める</text>
+<text x="350" y="272" font-size="10" fill="currentColor" opacity="0.75">視点を携えて戻る</text>
+<text x="175" y="120" font-size="10" fill="currentColor" opacity="0.75">再び深める（往復継続）</text>
+</svg>
+<figcaption>独学の往復を三段階として捉えた図。二択に固執せず、必要に応じて分野間を往復しながら理解を深めていく一つの目安。</figcaption>
+</figure>
+
 <p>この往復は、次のような三段階として捉えることもできる。
 第一に、自らの関心に沿って一方の入り口（倫理学、あるいは認識論・形而上学）から学びを始める。第二に、議論を深める過程で、当初の入り口だけでは支えきれない問い - たとえば「なぜその基準を正しいと言えるのか」 - に直面し、もう一方の分野へと押し出される。第三に、そこで得た視点を携えて元の問いに立ち戻り、より深い解像度で再検討する。これもまた提案の域を出ないが、独学者が二択に固執せず進むための一つの目安にはなるだろう。</p>
+
 <h2 id="sec5">5. 結論 - 専門的素養のない学習者にとっての意義</h2>
 <p>以上、倫理学を哲学の下位分野の一つとして整理したうえで、日本の教育制度に見られる「倫理」と「哲学」の名称上のねじれを確認できる範囲の事実として扱い、独学における学びの入り口については両論を提示するにとどめた。
 専門的な素養を持たない学習者にとって、この学問領域は決して閉ざされたものではない。</p>
 <p>むしろ、どちらの入り口から入っても、最終的には他の下位分野との接続を避けて通れないという構造そのものが、独学者を体系的な理解へと導く手がかりになりうる。
 この意味で、倫理学に関心を持つことは、哲学という学問全体への入り口を得ることでもある、というのが本稿の結論である。これもまた提案にとどまり、以降の学習の中で検証されるべき仮説として位置づけておきたい。</p>
+
 <div class="refs">
 <h2>参考文献 - 事実確認に用いた出典一覧</h2>
 <ol><li id="ref-1"><a href="https://kotobank.jp/word/%E5%93%B2%E5%AD%A6-101028">哲学（テツガク）とは - コトバンク（日本大百科全書ほか収録）</a>朝日新聞出版・小学館ほか , コトバンク <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2"><a href="https://www.mext.go.jp/content/20211102-mxt_kyoiku02-100002620_04.pdf">高等学校学習指導要領（平成 30 年告示）解説 公民編</a>文部科学省 , 2018 年 7 月 <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3"><a href="https://www.nihon-u.ac.jp/academics/undergraduate/f_humanities_and_sciences/">文理学部 | 日本大学（哲学科 - 哲学・倫理学・美学・宗教学の 4 分野）</a>日本大学 文理学部 , 公式サイト <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4"><a href="https://www.l.u-tokyo.ac.jp/komaba/prospectus.html">各専修課程等の紹介 - 進学ガイダンス冊子 PROSPECTUS | 東京大学文学部・大学院人文社会系研究科</a>東京大学文学部・大学院人文社会系研究科 , 公式サイト（「哲学専修課程」「倫理学専修課程」が個別の専修課程として掲載）<a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5"><a href="https://natalie.mu/comic/news/404140">ドラマ「ここは今から倫理です。」 1 月から NHK で放送、主演は山田裕貴</a>コミックナタリー , 放送期間 2021 年 1 月 16 日 - 3 月 13 日、原作 : 雨瀬シオリ <a class="fnback" href="#fnref-5-1">↩</a></li><li id="ref-6"><a href="https://kotobank.jp/word/%E5%80%AB%E7%90%86%E5%AD%A6-150514">倫理学（リンリガク）とは - コトバンク（日本大百科全書ほか収録）</a>小学館ほか , コトバンク <a class="fnback" href="#fnref-6-1">↩</a></li></ol>
