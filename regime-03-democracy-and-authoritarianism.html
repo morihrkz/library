@@ -62,6 +62,17 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 pre{font-size:14px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
+
+/* --- 図解用スタイル --- */
+figure.diagram{margin:0 0 36px; padding:20px 18px 16px; background:var(--box); border:1px solid var(--line);}
+figure.diagram svg{display:block; width:100%; height:auto; max-width:100%;}
+figcaption{font-size:13px; color:var(--muted); margin-top:12px; text-align:center; line-height:1.7;}
+@media (max-width:480px){
+  figure.diagram{overflow-x:auto; -webkit-overflow-scrolling:touch; position:relative; padding-top:32px;}
+  figure.diagram svg{max-width:none;}
+  figure.diagram::before{content:"→ 横にスクロールできます"; position:absolute; top:8px; right:14px; font-size:11px; color:var(--muted);}
+}
+
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:24px;}
@@ -125,6 +136,44 @@ pre code{background:none; padding:0;}
 <p>権威主義体制の統治能力の限界を最も鮮明に示す実証研究の一つが、経済学者アマルティア・センによる飢饉の研究である。センは、「機能している民主主義において飢饉が起きたことは、世界の歴史上一度もない」と述べた。その理由は、民主主義国の指導者が選挙で審判を受け、独立した報道によって政策の失敗を公にさらされるため、飢饉のような破局的な失敗を回避する強いインセンティブを持つのに対し、権威主義体制の指導者はそうした説明責任の圧力から相対的に免れているためだと説明される。</p>
 <p>この知見が示唆しているのは、民主主義の強みが「正しい政策を最初から選べること」にあるのではないという可能性である。実際、前章で見たように、民主主義は短期主義に陥りやすく、ポピュリズムに脆弱で、大衆迎合の圧力にさらされ続ける。政策決定の質そのものにおいて、民主主義が権威主義に対して常に優れていると主張することはできない。</p>
 <p>むしろ民主主義に固有の強みとして残るのは、選挙による権力交代、自由な報道による監視、独立した司法による抑制、議会による審議、市民社会による異議申し立てという、複数の回路が組み合わさって作る、失敗を発見し修正する仕組みそのものである。この回路が機能している限り、政策が誤ったとしても、その誤りは選挙という平和的な手続きを通じて是正されうる。逆に、この回路を欠く権威主義体制では、誤りは実績にもとづく正統性が崩れるまで、あるいは体制内部の粛清や、体制外部での実力行使という不安定な形でしか表出されない。</p>
+
+<figure class="diagram">
+<svg viewBox="0 0 700 320" style="min-width:640px" role="img" aria-label="民主主義と権威主義における政策の失敗への対応を対比する図。民主主義では政策の失敗が選挙・報道・司法によって発見され、政権交代を通じて修正されるという循環を描くのに対し、権威主義では失敗が情報統制によって発見されないまま蓄積し、体制の崩壊か対外的な破局でしか清算されない、循環を持たない経路として描かれる">
+<text x="175" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="#3d5a52">民主主義 - 修正の回路がある</text>
+<text x="525" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="#65695f">権威主義 - 修正の回路がない</text>
+
+<rect x="80" y="48" width="190" height="34" fill="#ffffff" stroke="#3d5a52"/>
+<text x="175" y="70" text-anchor="middle" font-size="12" fill="#242522">政策の失敗</text>
+<line x1="175" y1="82" x2="175" y2="106" stroke="#3d5a52" marker-end="url(#a3)"/>
+<rect x="55" y="106" width="240" height="34" fill="#eceee7" stroke="#3d5a52"/>
+<text x="175" y="128" text-anchor="middle" font-size="11.5" fill="#242522">選挙・報道・司法による発見</text>
+<line x1="175" y1="140" x2="175" y2="164" stroke="#3d5a52" marker-end="url(#a3)"/>
+<rect x="80" y="164" width="190" height="34" fill="#ffffff" stroke="#3d5a52"/>
+<text x="175" y="186" text-anchor="middle" font-size="12" fill="#242522">政権交代・是正</text>
+<path d="M 270 181 C 340 181 340 65 270 65" fill="none" stroke="#3d5a52" marker-end="url(#a3)"/>
+<text x="330" y="128" text-anchor="middle" font-size="10" fill="#3d5a52">循環する</text>
+
+<rect x="430" y="48" width="190" height="34" fill="#ffffff" stroke="#a9b3ab"/>
+<text x="525" y="70" text-anchor="middle" font-size="12" fill="#242522">政策の失敗</text>
+<line x1="525" y1="82" x2="525" y2="106" stroke="#65695f" marker-end="url(#a4)"/>
+<rect x="405" y="106" width="240" height="34" fill="#f2f0e9" stroke="#a9b3ab"/>
+<text x="525" y="128" text-anchor="middle" font-size="11.5" fill="#242522">情報統制により発見されない</text>
+<line x1="525" y1="140" x2="525" y2="164" stroke="#65695f" marker-end="url(#a4)"/>
+<rect x="405" y="164" width="240" height="34" fill="#f2f0e9" stroke="#a9b3ab"/>
+<text x="525" y="186" text-anchor="middle" font-size="11.5" fill="#242522">誤りが蓄積する</text>
+<line x1="525" y1="198" x2="525" y2="222" stroke="#65695f" marker-end="url(#a4)"/>
+<rect x="405" y="222" width="240" height="34" fill="#ffffff" stroke="#a9b3ab"/>
+<text x="525" y="244" text-anchor="middle" font-size="11.5" fill="#242522">体制崩壊、または対外的破局</text>
+<text x="525" y="272" text-anchor="middle" font-size="10" fill="#65695f">循環しない・後戻りできない</text>
+
+<defs>
+<marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3d5a52"/></marker>
+<marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#65695f"/></marker>
+</defs>
+</svg>
+<figcaption>民主主義の強みは「間違えないこと」ではなく、失敗を発見し修正する回路が循環している点にある。権威主義にはこの循環そのものが存在しない。</figcaption>
+</figure>
+
 <p>ここから導かれる仮説は、次のようなものである。民主主義の最大の強みは「間違えないこと」ではなく、「間違えた政府を取り替えられること」にあるのではないか。</p>
 <p>この仮説は、断定として提示されるべきではない。前章で見た多数派の専制やポピュリズムへの脆弱性は、この「取り替える」という回路そのものが常に安泰だとは限らないことを示している。選挙で選ばれた指導者が、選挙という回路そのものを掘り崩していくという可能性については、本稿の先で改めて検討しなければならない。ここでは、反論可能な作業仮説として、この一文を掲げておく。</p>
 <h2 id="sec6">6. 民主主義国は本当に平和なのか</h2>
@@ -156,7 +205,7 @@ pre code{background:none; padding:0;}
 <p>この優位は、あらゆる場面で民主主義が権威主義に勝るという意味での優位ではない。失敗からの回復力（レジリエンス）における優位である。民主主義は「常に正しい」制度ではない。むしろ、「間違いを発見し、権力を交代させ、制度を修正するための回路を比較的多く持つ」制度として評価できるのではないか、というのが本稿の暫定的な結論である。</p>
 <p>平和という論点についても、単純な「イエス」を返すことはできない。民主化という出来事それ自体、とりわけその移行過程は、平和ではなくむしろ紛争のリスクを高めうる。平和をもたらしうるのは、内発的に生じ、十分な制度的基盤を伴いながら時間をかけて定着した民主主義であって、外部からの強制や性急な体制転換の試みではない。</p>
 <p>しかし、ここで議論を終わらせるわけにはいかない。第 4 章で提示した仮説 - 民主主義の強みは、間違えないことではなく、間違えた政府を取り替えられることにある - には、一つの重大な留保がついていた。それは、この「取り替える」回路そのものが常に安泰だとは限らないという留保である。</p>
-<p>第 3 章で触れたポピュリズムは、既存の代表制が有権者の要求を十分に汲み取れていないことを知らせる警告シグナルでありうる一方で、選挙という制度そのものを掘り崩す出発点にもなりうる。独裁者がクーデタで民主主義を倒すのではなく、民主的な選挙で選ばれた指導者が、その選挙という手続きを通じて、民主主義を少しずつ壊していくとしたら、何が起こるのか。</p>
+<p>第 3 章で触れたポピュリズムは、既存の代表制が有権者の要求を十分に汲み取れていないことを知らせる警告シグナルでありうる一方で、選挙という制度そのものを掘り崩す出発点にもなりうる。独裁者がクーデターで民主主義を倒すのではなく、民主的な選挙で選ばれた指導者が、その選挙という手続きを通じて、民主主義を少しずつ壊していくとしたら、何が起こるのか。</p>
 <p>この問いは、権威主義でも古典的な意味での民主化の失敗でもない、もう一つの経路である。次はこの経路に取り組む。</p>
 <div class="refs">
 <h2>参考文献</h2>
