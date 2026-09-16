@@ -21,9 +21,10 @@ h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line); padding:20px 24px;}
-.toc ol{columns:2; column-gap:24px; margin:0; padding:0; list-style-position:inside;}
-.toc li{font-size:14.5px; break-inside:avoid;}
+.toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
+.toc-title{font-size:13px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
+.toc ol{columns:2; column-gap:24px; margin:0; padding-left:1.3em;}
+.toc li{font-size:14.5px; margin-bottom:7px; break-inside:avoid;}
 .toc a{color:var(--text); text-decoration:none;}
 .toc a:hover{color:var(--accent); text-decoration:underline;}
 h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 10px;}
@@ -54,7 +55,8 @@ h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding
 <p class="subtitle">Library — A Portal to 40 Articles written with the help of AI</p>
 <div class="lede"><p>AI が作成した 40 記事のポータルページ。</p></div>
 
-<div class="toc">
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
 <ol>
 <li><a href="#sec1">比較政治学・時事分析（ 9 本）</a></li>
 <li><a href="#sec2">心理学（ 6 本）</a></li>
@@ -64,7 +66,7 @@ h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding
 <li><a href="#sec6">テクノロジー・産業分析（ 4 本）</a></li>
 <li><a href="#sec7">社会評論・生き方・文章技法（ 4 本）</a></li>
 </ol>
-</div>
+</nav>
 
 <h2 id="sec1">1. 比較政治学・時事分析（ 9 本）</h2>
 <p class="group-desc">権威主義体制の定義・生存・崩壊から、ポピュリズム、政党ラベル、民意の変換理論、そして敵意の政治的動員まで、比較政治学の枠組みで書かれた論考群。</p>
