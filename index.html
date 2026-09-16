@@ -7,7 +7,7 @@
 <style>
 :root{
   --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7;
 }
 *{box-sizing:border-box;}
 body{
@@ -21,8 +21,8 @@ h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line);}
-.toc ol{columns:2; column-gap:24px;}
+.toc{background:var(--box); border:1px solid var(--line); padding:20px 24px;}
+.toc ol{columns:2; column-gap:24px; margin:0; padding:0; list-style-position:inside;}
 .toc li{font-size:14.5px; break-inside:avoid;}
 .toc a{color:var(--text); text-decoration:none;}
 .toc a:hover{color:var(--accent); text-decoration:underline;}
@@ -36,11 +36,6 @@ h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding
 .card:hover .card-title{color:var(--accent);}
 .card .card-desc{font-size:13px; color:var(--muted); line-height:1.7; margin:0;}
 .note{font-size:13px; color:var(--muted); margin-top:20px;}
-strong{font-weight:bold;}
-a{color:var(--link);}
-figure{margin:0 0 40px;}
-figure svg{max-width:100%; height:auto; display:block; margin:0 auto;}
-figcaption{font-size:13px; color:var(--muted); text-align:center; margin-top:12px; line-height:1.7;}
 @media (max-width:600px){
   .cards{grid-template-columns:1fr;}
   .toc ol{columns:1;}
@@ -56,60 +51,8 @@ figcaption{font-size:13px; color:var(--muted); text-align:center; margin-top:12p
 
 <div class="kicker">ポータル</div>
 <h1>書庫</h1>
-<p class="subtitle">Library — A Portal to 40 Essays across Seven Fields</p>
-<div class="lede"><p>比較政治学・時事分析、心理学、哲学・論理学、自然科学、歴史・宗教・教育、テクノロジー・産業分析、社会評論・生き方・文章技法という 7 分野にわたる全 40 本の記事を、テーマの近さに基づき分類したポータルである。分類は筆者の判断によるものであり、唯一の分野への帰属を意味しない。権威主義体制の分析が民意の変換理論に接続し、羨望の心理学が順位形成の構造論へとつながるなど、隣接する主題が随所に見つかる。</p></div>
-
-<figure>
-<svg viewBox="0 0 780 304" role="img" aria-label="比較政治学・時事分析、心理学、哲学・論理学、自然科学、歴史・宗教・教育、テクノロジー・産業分析、社会評論・生き方・文章技法の七分野が並び、各分野に含まれる記事数が示された図。分野間には主題的な接続の例も破線で示されている。">
-
-<!-- 7 group nodes: box width 100, x = center-50, y=14, height=76 -->
-<g font-size="11">
-<rect x="10" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="60" y="40" text-anchor="middle" font-weight="bold" fill="currentColor">比較政治学・</text>
-<text x="60" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">時事分析</text>
-<text x="60" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">9 本</text>
-
-<rect x="120" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="170" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">心理学</text>
-<text x="170" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">6 本</text>
-
-<rect x="230" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="280" y="40" text-anchor="middle" font-weight="bold" fill="currentColor">哲学・</text>
-<text x="280" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">論理学</text>
-<text x="280" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">8 本</text>
-
-<rect x="340" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="390" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">自然科学</text>
-<text x="390" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">4 本</text>
-
-<rect x="450" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="500" y="40" text-anchor="middle" font-weight="bold" fill="currentColor">歴史・宗教・</text>
-<text x="500" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">教育</text>
-<text x="500" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">5 本</text>
-
-<rect x="560" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="610" y="40" text-anchor="middle" font-weight="bold" fill="currentColor">テクノロジー・</text>
-<text x="610" y="54" text-anchor="middle" font-weight="bold" fill="currentColor">産業分析</text>
-<text x="610" y="76" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">4 本</text>
-
-<rect x="670" y="14" width="100" height="76" fill="var(--box)" stroke="currentColor" stroke-width="1.1"/>
-<text x="720" y="34" text-anchor="middle" font-weight="bold" fill="currentColor">社会評論・</text>
-<text x="720" y="48" text-anchor="middle" font-weight="bold" fill="currentColor">生き方・</text>
-<text x="720" y="62" text-anchor="middle" font-weight="bold" fill="currentColor">文章技法</text>
-<text x="720" y="80" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10">4 本</text>
-</g>
-
-<!-- cross-links illustrating adjacency mentioned in lede -->
-<path d="M 60 90 C 40 154, 100 224, 390 224 C 550 224, 570 164, 610 91" fill="none" stroke="#a0673d" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.8"/>
-<text x="390" y="244" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">例：権威主義体制の分析 ―― 民意の変換理論</text>
-
-<path d="M 170 90 C 200 134, 240 154, 280 160 C 320 154, 300 124, 270 91" fill="none" stroke="#a0673d" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.8"/>
-<text x="235" y="180" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8">例：羨望の心理学 ―― 順位形成の構造論</text>
-
-<text x="390" y="296" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">分野の境界は暫定的であり、破線は分野をまたぐ主題的接続の一例を示す</text>
-</svg>
-<figcaption>「書庫」は全 40 本の記事を七分野に分類したポータルであり、分野間には破線で示したような主題的な接続が随所に存在する。</figcaption>
-</figure>
+<p class="subtitle">Library — A Portal to 40 Articles written with the help of AI</p>
+<div class="lede"><p>AI が作成した 40 記事のポータルページ。</p></div>
 
 <div class="toc">
 <ol>
