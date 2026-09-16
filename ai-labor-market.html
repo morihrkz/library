@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI は仕事を「奪う」のか、労働の交換条件を「書き換える」のか――タスクベース理論から見る AI と労働市場</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg); color:var(--text); margin:0;
+  line-height:2;
+}
+.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.kicker{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
+h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
+.subtitle{font-size:18px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
+  font-size:13px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
+.lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
+h3{font-size:18px; margin:32px 0 12px;}
+h4,h5{font-size:16px; margin:24px 0 10px;}
+p{font-size:16px; margin:0 0 20px;}
+.pull{font-size:20px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
+  padding-left:20px; margin:34px 0;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box strong{color:var(--accent);}
+table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:14px;}
+th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
+th{background:var(--box);}
+ul,ol{padding-left:1.4em; margin:0 0 20px;}
+li{margin-bottom:9px;}
+a{color:var(--link);}
+sup.fnref{font-size:.72em;}
+sup.fnref a{color:var(--link); text-decoration:none;}
+sup.fnref a:hover{text-decoration:underline;}
+.fnback{font-size:12px; margin-left:4px; text-decoration:none;}
+.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs ul,.refs ol{font-size:13.5px; line-height:1.65;}
+.refs li{margin-bottom:11px;}
+.refs em{font-style:italic;}
+.note{font-size:13px; color:var(--muted); margin-top:20px;}
+strong{font-weight:bold;}
+blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
+blockquote p{margin-bottom:10px;}
+blockquote p:last-child{margin-bottom:0;}
+hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
+code{font-size:.88em; background:var(--box); padding:.1em .3em;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:24px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker">労働経済学・テクノロジー分析</div>
+<h1>AI は仕事を「奪う」のか、労働の交換条件を「書き換える」のか<br>――タスクベース理論から見る AI と労働市場</h1>
+<p class="subtitle">Does AI Destroy Jobs, or Rewrite the Terms of Exchange? A Task-Based View of AI and the Labor Market</p>
+<div class="meta">【方法と限界】本稿は、タスクベース理論など実証研究の蓄積がある知見と、生成 AI の急速な進歩を踏まえた理論的外挿とを、可能な限り区別して記述する。将来の雇用への定量的な影響については、経済学者の間でも推定値が大きく割れており、本稿はいずれの立場にも断定的にコミットしない。企業の設備投資額など固有の数値は、本サイトの既出記事で出典とともに確認したものを参照している。</div>
+<div class="lede"><p>「 AI で仕事はなくなるか」という問いは、労働を単一の変数として扱う点で、キャリア論における「好きな仕事か、稼げる仕事か」という二択と同じ誤りを犯している。本稿は、労働をタスクの束として捉えるタスクベース理論と、本サイト既出の生成 AI 産業分析を接続し、 AI が労働市場に与える影響を、雇用の増減という一次元の問いではなく、労働の交換条件の書き換えとして再定式化する。</p></div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">序論――「 AI で仕事はなくなるか」という問いの立て方</a></li>
+<li><a href="#sec2">労働をタスクの束として見る――代替・補完・新規タスク創出</a></li>
+<li><a href="#sec3">何が変わりつつあるのか――道具から「常時稼働エージェント」へ</a></li>
+<li><a href="#sec4">交換条件の再設計――五軸モデルを AI 時代に当てはめる</a></li>
+<li><a href="#sec5">資本と労働のあいだ――生産性の分配は誰に向かうのか</a></li>
+<li><a href="#sec6">結論――個人は何を選べるか</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 序論――「 AI で仕事はなくなるか」という問いの立て方</h2>
+<p>生成 AI をめぐる労働市場論は、おおむね二つの陣営に分かれてきた。一方は、 AI が人間の認知タスクを広範囲に代替し、大規模な失業を招くと予測する悲観論である。もう一方は、蒸気機関からコンピュータまで、過去の技術革新も「仕事を奪う」と恐れられながら、結局は新しい仕事を生み出し、総雇用は増え続けてきたという歴史的パターンを根拠に、過度な悲観を退ける楽観論である。</p>
+<p>両陣営はいずれも十分に説得力のある論拠を持っており、だからこそこの対立は決着することなく繰り返されている。しかし本稿の出発点にある問題意識は、本サイトの別稿で職業選択について論じた際の問題意識と同型である <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。すなわち、「仕事はなくなるか、なくならないか」という設問そのものが、労働という複雑な制度を、あるかないかの一次元の変数へ過度に単純化しているのではないか、という疑いである。</p>
+<p>職業選択論において、「好きな仕事か、稼げる仕事か」という二択は、収入・興味・自律性・持続可能性・将来価値という五つの軸から成る、より多次元の意思決定問題を覆い隠していた。同じ構造が、 AI と労働市場をめぐる議論にも存在するのではないか。<strong>ある仕事が「なくなる」か「残る」かではなく、その仕事を構成する個々のタスクの交換条件が、誰にとって、どの軸で、どれだけ変化するのか</strong>を問う方が、生産的である。</p>
+<p>本稿では、まず労働経済学におけるタスクベース理論を導入し（第 2 章）、生成 AI 産業の現状から何が実際に変わりつつあるのかを確認したうえで（第 3 章）、職業選択論で提示した五軸モデルを AI 時代に当てはめ直す（第 4 章）。続いて、この変化が資本と労働のどちらに有利に働くのかを検討し（第 5 章）、最後に個人が取りうる構えを論じる（第 6 章）。</p>
+
+<h2 id="sec2">2. 労働をタスクの束として見る――代替・補完・新規タスク創出</h2>
+<p>労働経済学において、職業を分析する際の重要な視点の転換は、 Autor, Levy &amp; Murnane （2003）に始まる「タスクベース理論」である。この理論では、職業を単一の塊としてではなく、複数の個別タスクの束として捉える。会計士という職業には、伝票の入力、仕訳の確認、決算書の作成、クライアントへの説明、税務戦略の助言など、性質の異なる複数のタスクが含まれている。技術革新は、職業全体を消滅させるのではなく、その内部のタスク構成を組み替える形で作用する。</p>
+<p>Acemoglu &amp; Restrepo （2019）は、この組み替えを二つの効果に分けて定式化した。第一は<strong>置換効果（displacement effect）</strong>であり、これまで人間が担っていたタスクを機械やソフトウェアが代替することで、その分の労働需要が失われる。第二は<strong>復元効果（reinstatement effect）</strong>であり、新しい技術がそれまで存在しなかった新規のタスク――技術の運用、保守、監督、新技術を前提にした新しい業務――を生み出し、そこに新たな労働需要が生まれる。総雇用がどうなるかは、この二つの効果のどちらが速く進むかにかかっている。</p>
+<p>この枠組みを裏づける事例として、しばしば銀行の ATM 導入が引き合いに出される（Bessen, 2015）。 ATM は窓口担当者が担っていた定型的な現金出納タスクを明確に代替した。しかし、 ATM 導入によって一支店あたりの運営コストが下がったことで銀行は出店数を増やし、窓口担当者の総数はむしろ増加した。ただし、その役割は現金出納から、金融商品の販売や顧客との関係構築へと組み替えられている。これは置換効果と復元効果が同時に進行し、後者が前者を上回った事例として理解できる。</p>
+<p>ここで注意すべきなのは、復元効果が常に置換効果に追いつくとは限らない点である。 Acemoglu &amp; Restrepo （2019）は、コスト削減効果はわずかだが労働者を置き換えてしまう「ほどほどの自動化（so-so automation）」という概念を提示している。この種の技術は、生産性をさほど押し上げないまま雇用と賃金を圧迫しうる。つまり、歴史的に総雇用が増え続けてきたという事実は、復元効果が常に十分だったことの証明にはならない。二つの効果の競争は、技術の種類ごとに個別に検証する必要がある問題である。</p>
+
+<h2 id="sec3">3. 何が変わりつつあるのか――道具から「常時稼働エージェント」へ</h2>
+<p>生成 AI が従来の自動化技術と異なる点は、代替の対象が定型的な肉体労働や単純な事務処理ではなく、文章作成、要約、コード生成、意思決定の下準備といった、これまで「ルーティンではない認知タスク」として自動化を免れてきた領域にまで及ぶ点にある。 Felten, Raj &amp; Seamans （2021）が開発した AI 職業曝露指標（AIOE）や、 Eloundou, Manning, Mishkin &amp; Rock （2023）の分析は、生成 AI による影響が特定の低スキル職種に偏らず、専門職を含む広範な職種に及ぶ可能性を示している。後者の推定では、米国の労働者の約 80% について、大規模言語モデルによって業務の少なくとも 1 割のタスクが影響を受け、約 19% については業務の半分以上が影響対象になりうるとされる <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。</p>
+<p>ただし、こうした「曝露（exposure）」の推定は、あるタスクに AI が技術的に到達しうるかを示すものであり、実際に経済的な代替が起きるかどうかとは別問題である点に注意が必要である。 Acemoglu （2024）は、生成 AI の経済全体への影響について、既存の推定の多くが誇張されている可能性を指摘し、今後十年間で見込める全要素生産性への押し上げ効果は最大でも 0.66% 程度にとどまるとの試算を示し、多くの論者が想定するよりも小幅である可能性を論じている。技術的な曝露と実際の労働代替のあいだには、コスト、規制、組織の意思決定など、複数の摩擦が介在する。</p>
+<p>本サイトの生成 AI 企業比較でも確認したように、 2026 年時点の変化として注目すべきは、 AI が単に人間の作業を補助する「道具」から、複数の工程を自律的に遂行する「エージェント」へと重心を移しつつある点である <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。テストの実行や Git 操作、プルリクエストの作成までを長時間にわたって自律的にこなすコーディングエージェントや、ブラウザ・ファイルシステム・ターミナルを備えた専用環境上でアプリへのサインインから長時間タスクの遂行までを自律的に行う常時稼働型エージェントは、単一のタスクを代替する従来型の自動化とは性質が異なる。個々のタスクを個別に自動化するのではなく、タスクの連鎖そのものを引き受ける主体が現れつつある、という変化である。</p>
+<p class="pull">道具としての AI は人間のタスク遂行を補助するが、エージェントとしての AI はタスクの連鎖そのものを引き受け、人間の役割を「遂行者」から「検証者」へと移動させる。</p>
+<p>この変化は、タスクベース理論の枠組みに新しい論点を加える。エージェント型 AI が一連のタスクを自律的に遂行する場合、人間に残る役割は、当初のタスクの遂行そのものではなく、その出力を検証し、責任を持って承認するという、より上流の監督タスクへと移行しやすい。これは復元効果の一種と見なせるが、遂行タスクに比べて必要な人数が少なく、求められる技能の性質も異なる点には留意が必要である。</p>
+
+<h2 id="sec4">4. 交換条件の再設計――五軸モデルを AI 時代に当てはめる</h2>
+<p>ここで、本サイトの職業選択論で提示した五軸モデル――収入・興味・自律性・持続可能性・将来価値――を、 AI によるタスク再編という文脈に置き直してみたい <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。五軸それぞれについて、 AI 以前から存在した論点と、 AI 時代に新たに加わる論点を整理すると、次のようになる。</p>
+<table>
+<thead>
+<tr>
+<th>軸</th>
+<th>AI 以前から存在した論点</th>
+<th>AI 時代に加わる論点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>収入</td>
+<td>生活を維持し、選択肢を増やすために十分な額が得られるか</td>
+<td>タスクの代替可能性に応じて賃金分布が再編される。ルーティン的な認知タスクの対価は圧縮され、判断・説明責任・タスクの検証を担う役割にはプレミアムがつく可能性がある</td>
+</tr>
+<tr>
+<td>興味</td>
+<td>作業内容・実現される価値・労働条件のいずれに選好を持つか</td>
+<td>「好きな作業」そのものが生成 AI の得意領域と重なりやすい。文章を書く、コードを書く、図案を作るといった内発的動機の源泉自体が、置換効果の対象になりうる</td>
+</tr>
+<tr>
+<td>自律性</td>
+<td>自分自身で選択し、自分なりの方法で仕事を遂行できる裁量があるか</td>
+<td>AI の出力を検証・承認する役割が新設される一方、その検証作業自体がアルゴリズムによって管理・評価される可能性が高まる</td>
+</tr>
+<tr>
+<td>持続可能性</td>
+<td>五年、十年という時間軸で継続しても心身・生活基盤が損なわれないか</td>
+<td>技能の陳腐化速度が加速し、同一の技能で持続できる期間そのものが短縮する</td>
+</tr>
+<tr>
+<td>将来価値</td>
+<td>その仕事に従事することで、次に選択できる仕事や人生の選択肢が拡大するか</td>
+<td>タスク代替の進行速度が不確実であるため、将来価値の見積もり自体が確率的な賭けにならざるを得ない</td>
+</tr>
+</tbody>
+</table>
+<p>この整理から見えてくるのは、 AI が労働市場に与える影響が、五軸に対して均等に作用するわけではないという点である。特に<strong>興味</strong>の軸への作用は、従来の自動化論があまり扱ってこなかった論点である。過去の自動化は、主に定型的な肉体労働や単純な事務処理を代替し、中間技能職を空洞化させる「雇用の二極化」を引き起こしてきた（Goos &amp; Manning, 2007）。しかし、これらの代替対象は、職業選択論でいう「作業内容そのものへの選好」の対象になりにくいタスクだった。しかし生成 AI が代替しうる文章作成やコード生成といったタスクは、しばしば当人が最も「好き」だと感じる作業そのものと重なる。職業選択論で述べた「統合型」――好きな活動を仕事として成立させ、そこから収入も得る型――を採用している人ほど、この変化の影響を強く受けうるという逆説がここにある。</p>
+<p>もう一つ重要なのは、<strong>将来価値</strong>の軸が持つ相対的な重みの増大である。職業選択論では、「まず稼ぐ」ことを優先し、後に別の働き方へ移行する「系列型」戦略について、時間的非整合性の罠――「後でやる」が実行されない傾向――を指摘した。 AI によるタスク再編は、この罠に加えて別の問題を持ち込む。系列型戦略が「稼ぐ」段階で蓄積する技能や資産そのものが、「移行する」段階に到達する前に陳腐化する可能性である。将来価値の見積もりが不確実になればなるほど、長期の時間軸を前提にした計画は、リスクの高い賭けへと変わる。</p>
+
+<h2 id="sec5">5. 資本と労働のあいだ――生産性の分配は誰に向かうのか</h2>
+<p>タスクベース理論は、置換効果と復元効果の綱引きによって総雇用がどう動くかを説明するが、それとは別に、 AI による生産性向上の果実が誰に分配されるのかという問題がある。 Autor &amp; Salomons （2018）は、自動化が必ずしも雇用そのものを減らすわけではないが、生産性の伸びに比べて雇用の伸びが鈍化する傾向――労働分配率の低下――を複数国のデータから示している。</p>
+<p>この論点は、生成 AI をめぐる産業構造とも直結する。本サイトのクラウド市場分析で確認したように、 AI 関連の設備投資は、計算資源を保有する少数の大手クラウド事業者に極めて集中している。 2026 年時点の見通しでは、主要 4 社合計の年間設備投資額が 7,000 億ドルを超える規模に達しており、 AI モデルの開発・提供に不可欠な計算資源そのものが、少数の企業に集約される構造になっている <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。生成 AI によって生み出される生産性向上の分け前が、タスクを遂行する労働者にどれだけ還元され、計算資源とモデルの知的財産を保有する資本側にどれだけ集約されるかは、労働分配率を左右する重要な変数である。</p>
+<p>この構図は、 AI による自動化が「資本偏向的技術変化（capital-biased technical change）」として作用する可能性を示唆する。 Acemoglu &amp; Restrepo （2018）が論じるように、自動化技術は、労働と資本の相対的な生産性を変化させることを通じて、所得の分配そのものを資本側に傾ける効果を持ちうる。仮に生成 AI による生産性向上が実現したとしても、その果実が計算資源を保有する企業の利益として計上され、賃金という形で労働側に還元される比率が低ければ、総雇用の水準とは独立に、労働分配率は低下しうる。</p>
+<p>ただし、この見立てにも留保が必要である。第 3 章で確認したように、 Acemoglu （2024）は生成 AI の生産性への寄与自体を慎重に見積もっており、巨額の設備投資が、確定した需要ではなく、競争上の地位を失うことへの恐れによって駆動されている可能性も指摘されている。本サイトの SaaS 構造分析で検討したように、 AI による価値の再配分は、労働と資本のあいだだけでなく、 UI ・ロジック・データという事業の層のあいだでも同時に進行しており <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 、現時点での巨額投資が将来の収益によって正当化されるかどうかは、なお不確実な賭けの段階にある。</p>
+
+<h2 id="sec6">6. 結論――個人は何を選べるか</h2>
+<p>ここまでの検討を踏まえると、「 AI で仕事はなくなるか」という問いへの本稿の答えは、次のように整理できる。<strong>タスクベース理論が示すように、 AI は職業を丸ごと消し去るのではなく、職業を構成するタスクの一部を代替し、別の一部を新設する。どちらの効果が優勢かは技術と職種によって異なり、事前に確定的に予測することはできない。</strong>より重要なのは、この再編が労働の交換条件――収入・興味・自律性・持続可能性・将来価値という五つの軸――にどう作用するかであり、その作用は職種によって大きく異なる。</p>
+<div class="box">
+<p style="margin:0"><strong>特に、これまでの自動化があまり触れてこなかった「興味」の軸と、不確実性が高まる「将来価値」の軸への作用は、生成 AI に固有の論点である。好きな作業そのものが代替対象になりうること、そして技能の陳腐化速度が加速することは、職業選択論で論じた「統合型」「系列型」といった戦略の前提を揺るがす。</strong></p>
+</div>
+<p>それでは、個人はどのような構えを取りうるか。職業選択論の実践的含意を踏まえるならば、次の三点が示唆される。第一に、タスクベース理論が示すように、代替が起きにくいのは、定型的な遂行そのものではなく、判断の説明責任を引き受けるタスク、初めて遭遇する状況での意思決定、対面での信頼構築を要するタスクである。技能を選ぶ際には、これらのタスクへの近接性を一つの基準にできる。</p>
+<p>第二に、「将来価値」の不確実性が高まっている以上、技能への投資は、単一の長期計画としてではなく、複数の選択肢を保持する短期の連鎖として設計する方が合理的である。職業選択論で指摘した時間的非整合性の罠――「後で」という留保に期限と実行条件を設定する必要性――は、 AI 時代にはより短い周期で繰り返し適用しなければならない。</p>
+<p>第三に、 AI による代替は、遂行者としての役割を縮小させる一方で、検証者・監督者としての役割を新設する。この新しい役割に必要な技能――出力の妥当性を評価する専門知識、誤りの責任を引き受ける判断力――を軽視しないことが、復元効果の側に立つための条件になる。</p>
+<p>職業選択論は、労働を「時間と能力を何らかの対象と交換する行為」として定式化し、問われるべきは「何を差し出し、何を得ようとしているのか」という交換条件の明確化であると結論づけた。 AI と労働市場をめぐる問いも、突き詰めれば同じ構造を持つ。<strong>「 AI が仕事を奪うか」ではなく、「自分は AI と何を分担し、その分担条件に、五年後の自分もなお納得できるか」</strong>――これが、本稿が最終的に提示する問いである。</p>
+
+<div class="refs">
+<h2>注</h2>
+<ol>
+<li id="ref-1">職業選択における五軸モデルおよび交換理論としての労働の定式化については、本サイトの<a href="vocational-choice-structure.html" target="_blank" rel="noopener">「職業選択における動機の二元論を超えて」</a>を参照。 <a class="fnback" href="#fnref-1-1">↩</a></li>
+<li id="ref-2">Eloundou, Manning, Mishkin &amp; Rock （2023）の推定は、大規模言語モデルおよびそれを用いたソフトウェア・ツールが労働者のタスクに及ぼす技術的な影響可能性を測定したものであり、実際の雇用代替の実現を保証するものではない点に注意が必要である。 <a class="fnback" href="#fnref-2-1">↩</a></li>
+<li id="ref-3">生成 AI 企業各社のコーディングエージェント・常時稼働型エージェントの現状については、本サイトの<a href="ai-industry-comparison.html" target="_blank" rel="noopener">「生成 AI 企業比較の基礎資料」</a>（情報基準日 2026 年 9 月 15 日）を参照。 <a class="fnback" href="#fnref-3-1">↩</a></li>
+<li id="ref-4">五軸モデルの詳細な定義については、本サイトの<a href="vocational-choice-structure.html" target="_blank" rel="noopener">「職業選択における動機の二元論を超えて」</a>第 3 章を参照。 <a class="fnback" href="#fnref-4-1">↩</a></li>
+<li id="ref-5">主要クラウド事業者 4 社の設備投資見通しの内訳・出典については、本サイトの<a href="cloud-market-ai-analysis.html" target="_blank" rel="noopener">「クラウドコンピューティング市場の構造分析」</a>第 3 章を参照。 <a class="fnback" href="#fnref-5-1">↩</a></li>
+<li id="ref-6">UI ・ロジック・データの三層モデルによる価値再配分の分析については、本サイトの<a href="saas-layered-analysis.html" target="_blank" rel="noopener">「『 SaaS 消滅』言説の実証的検討」</a>を参照。 <a class="fnback" href="#fnref-6-1">↩</a></li>
+</ol>
+<h2>参考文献</h2>
+<ul>
+<li>Autor, D. H., Levy, F., &amp; Murnane, R. J.(2003). The Skill Content of Recent Technological Change: An Empirical Exploration. <em>Quarterly Journal of Economics</em>, 118 (4), 1279–1333.</li>
+<li>Acemoglu, D., &amp; Restrepo, P.(2019). Automation and New Tasks: How Technology Displaces and Reinstates Labor. <em>Journal of Economic Perspectives</em>, 33 (2), 3–30.</li>
+<li>Acemoglu, D., &amp; Restrepo, P.(2018). The Race between Man and Machine: Implications of Technology for Growth, Factor Shares, and Employment. <em>American Economic Review</em>, 108 (6), 1488–1542.</li>
+<li>Autor, D. H.(2015). Why Are There Still So Many Jobs? The History and Future of Workplace Automation. <em>Journal of Economic Perspectives</em>, 29 (3), 3–30.</li>
+<li>Autor, D. H., &amp; Salomons, A.(2018). Is Automation Labor-Displacing? Productivity Growth, Employment, and the Labor Share. <em>Brookings Papers on Economic Activity</em>, Spring 2018, 1–87.</li>
+<li>Goos, M., &amp; Manning, A.(2007). Lousy and Lovely Jobs: The Rising Polarization of Work in Britain. <em>Review of Economics and Statistics</em>, 89 (1), 118–133.</li>
+<li>Bessen, J.(2015). <em>Learning by Doing: The Real Connection between Innovation, Wages, and Wealth</em>. Yale University Press.</li>
+<li>Eloundou, T., Manning, S., Mishkin, P., &amp; Rock, D.(2023). GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models. <em>arXiv:2303.10130</em>.</li>
+<li>Felten, E., Raj, M., &amp; Seamans, R.(2021). Occupational, Industry, and Geographic Exposure to Artificial Intelligence: A Novel Dataset and Its Potential Uses. <em>Strategic Management Journal</em>, 42 (12), 2195–2217.</li>
+<li>Acemoglu, D.(2024). The Simple Macroeconomics of AI. <em>NBER Working Paper</em> No. 32487.</li>
+<li>Zuboff, S.(2019). <em>The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</em>. PublicAffairs.</li>
+<li>Braverman, H.(1974). <em>Labor and Monopoly Capital: The Degradation of Work in the Twentieth Century</em>. Monthly Review Press.</li>
+</ul>
+<p class="note">注：本稿で参照した学術文献の書誌情報は、著者の記憶と一般に流通している要約に基づいて記載しており、逐語的な引用ではない。各文献の正確な内容確認には、原典に当たることを推奨する。企業の設備投資額・ AI 事業の売上等、本サイトの既出記事から参照した数値については、当該記事に記載された一次情報源を参照されたい。</p>
+</div>
+
+</div>
+</body>
+</html>
