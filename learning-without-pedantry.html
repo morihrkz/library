@@ -30,7 +30,7 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .toc a{color:var(--text); text-decoration:none;}
 .toc a:hover{color:var(--accent); text-decoration:underline;}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
-h3{font-size:20px; margin:32px 0 12px; color:var(--accent2);}
+h3{font-size:20px; margin:32px 0 12px;}
 h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
@@ -56,6 +56,14 @@ sup.fnref a:hover{text-decoration:underline;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
+.no-marker {
+  list-style: none;
+  padding-left: 0;
+}
+.no-marker-child {
+  list-style: none;
+  padding-left: 4;
+}
 </style>
 </head>
 <body>
@@ -68,33 +76,33 @@ sup.fnref a:hover{text-decoration:underline;}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ol>
+<ul class="no-marker">
 <li><a href="#sec1">1. 要旨</a></li>
 <li><a href="#sec2">2. 問題の所在</a></li>
 <li><a href="#sec3">3. 心理学的知見――なぜ知識は人を尊大にしうるか</a>
-<ol>
+<ul class="no-marker-child">
 <li>3.1 ダニング゠クルーガー効果と自己評価の非対称性</li>
 <li>3.2 知的謙虚さという心理学的構成概念</li>
 <li>3.3 自己決定理論――何のために学ぶのか</li>
 <li>3.4 成長マインドセットとの接続</li>
-</ol>
+</ul>
 </li>
 <li><a href="#sec4">4. 哲学的知見――徳としての知的謙虚さ</a>
-<ol>
+<ul class="no-marker-child">
 <li>4.1 徳認識論における知的徳と知的悪徳</li>
 <li>4.2 ソクラテスの「無知の知」</li>
 <li>4.3 東洋思想における謙虚さの位置づけ</li>
-</ol>
+</ul>
 </li>
 <li><a href="#sec5">5. 社会学的背景――学歴社会と文化資本</a>
-<ol>
+<ul class="no-marker-child">
 <li>5.1 ブルデューの文化資本論</li>
 <li>5.2 日本における学歴社会という文脈</li>
-</ol>
+</ul>
 </li>
 <li><a href="#sec6">6. 実践への示唆</a></li>
 <li><a href="#sec7">7. 結論</a></li>
-</ol>
+</ul>
 </nav>
 
 <h2 id="sec1">1. 要旨</h2>

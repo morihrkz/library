@@ -78,6 +78,10 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
+.no-marker {
+  list-style: none;
+  padding-left: 0;
+}
 </style>
 </head>
 <body>
@@ -88,12 +92,12 @@ pre code{background:none; padding:0;}
 <div class="lede"><p>二年間更新していなかった自社ウェブサイトを、レンタルサーバーから GitHub Pages へ移した記録。</p></div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ol><li><a href="#sec1">はじめに</a></li>
+<ul class="no-marker"><li><a href="#sec1">はじめに</a></li>
 <li><a href="#sec2">なぜサーバーを移すことにしたのか</a></li>
 <li><a href="#sec3">先に調べる、特に DNS を</a></li>
 <li><a href="#sec4">ここからが本番、実際の移行作業</a></li>
 <li><a href="#sec5">終わってから、わかったこと</a></li>
-</ol>
+</ul>
 </nav>
 <h2 id="sec1">1. はじめに</h2>
 <p>「もとのサーバーから HTML ファイルを GitHub Pages に移し、ドメインの向き先を変える。」
