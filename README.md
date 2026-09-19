@@ -40,7 +40,7 @@ AI と共同で執筆した論考を公開する GitHub Pages サイトのリポ
 
 ## 記事の統合・改題・削除
 
-過去に複数記事を 1 本へ統合した例がある(例: `envy-comparison-theory.html` と `ranking-formation-structure.html` を `social-comparison-theory.html` へ統合)。この場合は、統合元ファイルを削除し、`index.html` のリンク・本数表記・分野説明文を統合後の内容に合わせて更新する。
+過去に複数記事を 1 本へ統合した例がある(例: `envy-comparison-theory.html` と `ranking-formation-structure.html` を `social-comparison-theory.html` へ統合。また、詳論記事 `nanto-rokushu-buddhism.html` を通史記事 `japanese-buddhist-sects.html` の 1 章へ統合)。この場合は、統合元ファイルを削除し、`index.html` のリンク・本数表記・分野説明文を統合後の内容に合わせて更新する。他記事(文章技法カタログなど)が統合元ファイルを具体例として参照している場合は、そのリンク・引用元表記も統合後のファイル・章番号に更新する。
 
 ## 次のテーマを検討する
 
