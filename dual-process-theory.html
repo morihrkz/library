@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「システム 1 」「システム 2 」を読み解く――『独学大全』と二重過程理論</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg); color:var(--text); margin:0;
+  line-height:2;
+}
+.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
+h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
+.subtitle{font-size:18px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:13px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:14.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
+h3{font-size:18px; margin:32px 0 12px;}
+p{font-size:16px; margin:0 0 20px;}
+.pull{font-size:20px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
+  padding-left:20px; margin:34px 0;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box strong{color:var(--accent);}
+table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:14px;}
+th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
+th{background:var(--box);}
+ul,ol{padding-left:1.4em; margin:0 0 20px;}
+li{margin-bottom:9px;}
+a{color:var(--link);}
+sup.fnref{font-size:.72em;}
+sup.fnref a{color:var(--link); text-decoration:none;}
+sup.fnref a:hover{text-decoration:underline;}
+.fnback{font-size:12px; margin-left:4px; text-decoration:none;}
+.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs ol{font-size:13.5px; line-height:1.65;}
+.refs li{margin-bottom:11px;}
+.refs em{font-style:italic;}
+.note{font-size:13px; color:var(--muted); margin-top:20px;}
+strong{font-weight:bold;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:24px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker">認知心理学・独学論</div>
+<h1>「システム 1 」「システム 2 」を読み解く<br>――『独学大全』と二重過程理論</h1>
+<p class="subtitle">Reading System 1 and System 2: Dokugaku Taizen and Dual-Process Theory</p>
+<div class="lede"><p>『独学大全』が独学の挫折を説明する際に用いる「速い思考」と「遅い思考」という枠組みは、認知心理学者ダニエル・カーネマンの二重過程理論に由来する。本稿は、独学大全での扱いと理論的背景、実践への意味づけ、そして学術的な異論までを順に読み解く。</p></div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">1. 導入――独学大全はなぜ「二つの思考」を持ち出すのか</a></li>
+<li><a href="#sec2">2. 『独学大全』における記述の要約</a></li>
+<li><a href="#sec3">3. 原典の理論的背景――カーネマンの二重過程理論</a></li>
+<li><a href="#sec4">4. 独学大全の文脈での意味づけ</a></li>
+<li><a href="#sec5">5. 批判的検討――二重過程理論は本当に「二つ」なのか</a></li>
+<li><a href="#sec6">6. まとめ</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 導入――独学大全はなぜ「二つの思考」を持ち出すのか</h2>
+<p>独学を志す者が最初にぶつかる壁は、知識の不足でも教材の選び方でもなく、「続かない」という事態そのものである。『独学大全』は、独学を挫折させる要因への対処法を 55 の技法として整理した書物であり、この事態を意志力の弱さという個人の資質に帰属させず、人間の認知の仕組みに根ざした一般的な現象として説明しようとする。その冒頭近くでは、なぜ人は「学ぼう」と決めても続かないのかという問いに答えるため、無意識的・自動的に働く思考様式と、意識的・熟慮的に働く思考様式という、認知心理学で広く参照されてきた二分法――二重過程理論――が導入されているとされる <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。</p>
+<p>この二分法は、ダニエル・カーネマンが一般向けの著作『ファスト &amp; スロー』で普及させた「 System1 」「 System2 」という呼称で知られる。『独学大全』がこの枠組みを採用するのは、独学という営みが、目先の快適さや慣れた行動を選びがちな思考（System1）を抑え、目標に照らして計画的に行動する思考（System2）を意図的に稼働させ続ける作業だからだと考えられる <sup class="fnref"><a id="fnref-6-2" href="#ref-6">[6]</a></sup> 。本稿は、この速い思考と遅い思考の対比、その背後にあるヒューリスティックとバイアスの研究、そして独学という実践への意味づけを、順に読み解いていく。</p>
+<p>独学書という体裁をとる書物が、意志力論や精神論ではなく認知心理学の枠組みを最初に置くこと自体に、ある種の立場表明が見て取れる。すなわち、独学が続かないのは学習者の人格の欠陥ではなく、人間という種に共通する認知の設計上の特徴であり、したがって対処法もまた根性論ではなく、認知の仕組みに即した技術として与えられるべきだ、という前提である。本稿では、まず同書内での扱われ方を確認し、次いでその理論的な出自と学術的な現在地を検討したうえで、この前提そのものの妥当性にも触れる。</p>
+<div class="box"><strong>【本稿の射程】</strong>『独学大全』内で System1 ／ System2 に言及する具体的な章・技法番号・ページは、公開されている書評・読書メモ等の範囲では特定できなかった（該当箇所未特定）。このため本稿は、同書の一般的な紹介記事・読者による要約（後掲の参考文献に明記）で確認できる範囲の内容に基づいて記述し、原文からの逐語引用や原文ページ数の指定は行わない。事実記述と、筆者（本稿の執筆者）による解釈・提案は本文中でラベルを分けて明示する。</div>
+
+<h2 id="sec2">2. 『独学大全』における記述の要約</h2>
+<p><strong>【事実】</strong>読書猿『独学大全――絶対に「学ぶこと」をあきらめたくない人のための 55 の技法』（ダイヤモンド社、 2020 年）は、全 788 ページ、 55 の技法を「なぜ学ぶのか」（第 1 部、 15 技法）「何を学べばよいか」（第 2 部、 18 技法）「どのように学べばよいか」（第 3 部、 22 技法）の三部に分けて構成した書物である <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。</p>
+<p><strong>【事実・該当箇所未特定】</strong> System1 ／ System2 への言及は、第 1 部の冒頭付近、学習を継続する動機づけを扱う箇所にあるとされる。ある読者による読書メモでは、当該箇所を「学びの動機付けマップ」と呼ばれる図解と結びつけて紹介しており、そこでは人間が新しい学習対象を前にしたとき、本能的・直感的に働く System1 がその対象を優先度の低いものと判断しやすく、これを理性的・分析的な System2 が補正することで初めて、腰を据えた学習が可能になる、という趣旨で説明されているという <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。この読者メモは公開されている個人のブログ記事であり、原文の引用箇所・ページ数までは示されていない。したがって、この要約が同書の記述をどこまで正確に反映しているかは、原本を直接確認できない本稿の調査範囲では検証しきれていない。</p>
+<p>いずれにせよ、複数の独立した紹介記事・要約記事が、同書が「無意識に流されやすい思考」と「意識的に制御する思考」という対比を、独学の継続という文脈に結びつけて説明している点でおおむね一致している <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。本稿はこの限りで、『独学大全』が二重過程理論的な枠組みを、独学が続かない理由の説明装置として採用している、という理解に立って以下を論じる。</p>
+<p>もう一点、事実として確認できるのは、『独学大全』が単に理論を紹介するだけの書物ではなく、 55 の技法という具体的な行動手順の集積として構成されている点である <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。第 1 部「なぜ学ぶのか」に含まれる技法群には、目標を立てる技法、挫折を管理する技法、他人との比較から生じる感情を制御する技法などが含まれるとされており、 System1 ／ System2 の対比は、これら個々の技法に通底する理論的な土台として、部の冒頭に置かれている可能性が高い。ただし、この配置上の位置づけについても、本稿の調査範囲では章・節の見出しレベルでの確認はできておらず、あくまで複数の紹介記事から推測できる範囲にとどまる。</p>
+
+<h2 id="sec3">3. 原典の理論的背景――カーネマンの二重過程理論</h2>
+<p>「 System1 」「 System2 」という名称そのものは、心理学者キース・スタノビッチとリチャード・ウェストが 2000 年の論文で提唱したものであり、ダニエル・カーネマンの独創ではない <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。カーネマンは 2011 年の著作『 Thinking, Fast and Slow 』（邦訳『ファスト &amp; スロー』、村井章子訳、早川書房、 2012 年）で、この二分法を一般読者向けに整理し、広く普及させた <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。二重過程理論自体はさらに古く、推論研究や社会的認知研究の文脈で 1970 年代から 1990 年代にかけて複数の系譜で提唱されてきたものであり、カーネマンの著作はその集大成的な一般向け紹介と位置づけられる。</p>
+<p>同書によれば、 System1 は速く、自動的で、努力を要さず、連想や直感によって働く思考であり、 System2 は遅く、努力を要し、規則にもとづいた計算や比較検討によって働く思考である。人間の判断や意思決定の大半は System1 が担っており、 System2 は通常は「監督者」として控えめに働き、 System1 の出す答えに違和感があるときや、意識的な集中が必要な課題（暗算、初めての手続きの遂行など）に直面したときにのみ本格的に稼働するとされる。</p>
+<p>この枠組みを支える経験的な土台のひとつが、カーネマンとエイモス・トヴェルスキーが 1970 年代に行ったヒューリスティックとバイアスの研究である。両者は 1974 年の論文で、人間が不確実な状況下で確率を見積もる際、代表性ヒューリスティック（対象が典型的な事例にどれだけ似ているかで判断する）、利用可能性ヒューリスティック（記憶から想起しやすい事例の頻度を過大評価する）、係留と調整（アンカリング、最初に提示された数値に判断が引きずられる）といった簡便な経験則に頼っており、それが体系的な誤り（バイアス）を生むことを示した <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。これらの経験則は System1 の働き方の具体例として、『ファスト &amp; スロー』のなかで繰り返し参照されている。</p>
+<p>『ファスト &amp; スロー』はさらに、 System1 が引き起こす判断の癖として、いくつかの現象に固有の名前を与えている。たとえば、目の前にある限られた情報だけで筋の通った物語を組み立て、手元にない情報の存在を考慮に入れないまま結論を出してしまう傾向（本書では "What You See Is All There Is" 、頭文字をとって WYSIATI と呼ばれる）や、ある対象の一つの側面（たとえば見た目の良さ）に対する印象が、その対象の無関係な側面（たとえば能力や誠実さ）の評価にまで影響してしまうハロー効果、将来の作業に要する時間や費用を実際より楽観的に見積もってしまう計画の誤謬などが、 System1 主導の判断の具体例として挙げられている。これらはいずれも、判断の速さと引き換えに、情報の不足や無関係な手がかりの混入に対して脆弱になるという、 System1 に共通する性質を示す例として位置づけられている。</p>
+<div class="pull">速い思考は答えを出すのが速いだけでなく、答えを疑わずに済ませてしまう点で、遅い思考による点検を必要とする。</div>
+<p>もう一つ広く知られる関連研究に、カーネマンとトヴェルスキーが 1979 年に発表したプロスペクト理論がある。これは、人間が利得と損失を対称に評価せず、同額の損失を同額の利得よりも強く嫌う（損失回避）ことなどを定式化したもので、期待効用理論では説明しきれない意思決定の癖を捉えた研究として、行動経済学の基礎の一つに数えられている <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。この功績によりカーネマンは 2002 年にノーベル経済学賞を受賞した（トヴェルスキーは 1996 年に死去しており受賞対象外だった）。</p>
+<p>『ファスト &amp; スロー』が挙げる二つの思考様式の特徴を整理すると、次のようになる。</p>
+<table>
+<tr><th>特徴</th><th>System1 （速い思考）</th><th>System2 （遅い思考）</th></tr>
+<tr><td>速度</td><td>速い、ほぼ瞬時</td><td>遅い、時間を要する</td></tr>
+<tr><td>努力</td><td>努力を要さない</td><td>努力を要し、疲労する</td></tr>
+<tr><td>制御</td><td>自動的、意図しなくても働く</td><td>意図的に発動させる必要がある</td></tr>
+<tr><td>働き方</td><td>連想・パターン認識・直感</td><td>規則の適用・比較検討・計算</td></tr>
+<tr><td>典型例</td><td>簡単な暗算、顔の表情の読み取り、慣れた道を歩く</td><td>複雑な暗算、初めての書類の記入、論理的な議論の検証</td></tr>
+</table>
+<p>この表が示すように、両者の区別は多くの場合、単一の軸（作業記憶を要するかどうか、努力を要するかどうか等）に沿った程度差として記述できる。この点は、後述する批判的検討において重要な論点となる。まとめると、『独学大全』が参照する System1 ／ System2 という語彙の背後には、（a）ヒューリスティックとバイアスに関する実証研究の蓄積、（b）それを一般向けに「二つのシステム」という比喩で整理したカーネマンの著作、という二つの層がある。次節では、この比喩を独学という実践に当てはめることにどのような意味があるかを検討する。</p>
+
+<h2 id="sec4">4. 独学大全の文脈での意味づけ</h2>
+<p><strong>【以下、提案・解釈】</strong>ここからは事実記述ではなく、独学大全の枠組みを独学の実践に接続する際の、本稿執筆者による解釈と提案である。</p>
+<p>独学が挫折する典型的な局面――机に向かうこと自体を先延ばしにする、 SNS や動画といった手近な刺激に流れる、計画を立てたその日のうちに計画を放棄する――は、いずれも System1 が優勢な状態として記述しなおすことができる。目の前の負荷を避け、慣れた快適な行動を選ぶことは、 System1 にとってはむしろ「正しく」機能している状態であり、意志力の欠如という道徳的な評価を持ち込む必要はない、という捉え方が可能になる。この捉え方自体は、独学が続かないことへの自己非難を和らげる効果を持ちうる点で、実践上の意義があると考えられる。</p>
+<p>『独学大全』が随所で強調する「環境づくり」という方針は、この二重過程理論的な理解と整合的に解釈できる。 System2 は稼働に努力を要し、疲労や誘惑の多い環境では容易に力を失う。したがって、 System2 の意志力に頼って System1 を都度抑え込むのではなく、そもそも System1 が誤った選択をしにくいように環境や手順の側を設計する――たとえば、学習を始めるまでの手順を単純化する、誘惑となる刺激を物理的に遠ざける、学習を習慣として自動化し System2 の判断を介さずに着手できるようにする――という発想は、 System2 の限られた資源を節約しながら学習を継続させる方策として理にかなっている。</p>
+<p>言い換えれば、独学における「二つのシステム」の含意は、 System1 を敵視して System2 で常に制圧せよということではなく、 System1 が誤作動しにくい環境を整えたうえで、望ましい行動そのものを新たな習慣として System1 側に「委譲」していく、という設計思想として読むことができる。これは本稿の解釈であり、独学大全の原文がこの表現でそう述べているという事実主張ではない。</p>
+<p><strong>【事実、ただし独学大全との直接的な結びつきは未確認】</strong>この「行動を習慣化して System2 の負担を減らす」という発想を裏づけうる実証研究として、フィリッパ・ラリーらが 2010 年に行った習慣形成の追跡調査がある。同研究は、被験者に日常のなかで新しい行動（食事や運動に関する簡単な習慣）を継続してもらい、その行動が意識的な決断を経ずに自動的に行えるようになるまでの日数を測定したもので、平均して 66 日程度を要し、個人差や行動の複雑さによって 18 日から 254 日まで大きくばらついたことを報告している <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。この知見は独学大全を直接の対象とした研究ではないが、「環境づくり」によって望ましい行動を自動化するという発想が、単なる比喩以上の実証的な裏づけを持ちうることを示す傍証として参照できる。</p>
+
+<h2 id="sec5">5. 批判的検討――二重過程理論は本当に「二つ」なのか</h2>
+<p>ここまでは二重過程理論を、独学の実践に応用可能な枠組みとして扱ってきた。しかし、この理論そのものが認知心理学において無条件に確立した事実というわけではない。ここでは、二重過程理論に対する学術的な異論を、その論者が実際に主張しうる最も強い形で提示したうえで検討する。</p>
+<h3>単一プロセス説の主張</h3>
+<p>アリー・クルグランスキーとゲルト・ギーゲレンツァーは 2011 年の論文で、直感的判断と熟慮的判断は、質的に異なる二つの独立したシステムによってではなく、手がかりの利用可能性や適用可能性といった共通の原理によって、単一の連続的な過程のなかで説明できると論じた。彼らの主張の核心は、「速い／遅い」「無意識的／意識的」といった特徴の対比は、実際には程度の差であり、脳内に二つの独立したモジュールが存在することを示す証拠にはならない、という点にある <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。</p>
+<p>これに先立ち、マグダ・オズマンは 2004 年の総説論文で、当時提唱されていた複数の二重過程理論（推論研究における暗黙的処理と明示的処理の区別など）を横断的に検討し、いずれの理論も「速い・自動的・無意識的」対「遅い・制御的・意識的」という特徴の束を一貫した形でまとめ上げられておらず、個々の特徴が実験によって別々の組み合わせで観察されることを指摘した。オズマンの結論は、二重過程理論を全面的に棄却するものではないが、当時の理論的枠組みが特徴の寄せ集めにとどまり、厳密な検証に耐える形になっていないという、方法論上の弱点を突くものだった <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。この指摘は、後のクルグランスキーとギーゲレンツァー、メルニコフとバーグの批判の先駆けとなっている。</p>
+<p>この批判をさらに強めた形で提示したのが、デイヴィッド・メルニコフとジョン・バーグの 2018 年の論文である。両者は、これまで「 System1 的特徴」とされてきた性質（自動的である、意識に上らない、制御不能である等）と「 System2 的特徴」（努力を要する、意識的である、制御可能である等）が、実際の認知過程においてはきれいに二極化せず、多くの過程がその両方の特徴を混在させて持つことを示す研究を整理し、 Type1 ／ Type2 という二分類そのものが経験的に擁護しがたい可能性を指摘した <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。</p>
+<h3>二重過程理論の擁護</h3>
+<p>一方、二重過程理論の側にも応答がある。ジョナサン・エヴァンズとキース・スタノビッチは 2013 年の論文で、単一プロセス説からの批判を五つの論点に整理したうえで反論し、少なくとも「作業記憶を要する遅い処理」と「作業記憶を要さない速い処理」という機能的な区別は、多くの実験的証拠によって支持されると主張した。ただし両者は、この区別を厳密に独立した「二つのシステム」として語ることには慎重で、脳の特定部位に一対一で対応する実体的なモジュールというより、機能的なタイプ（Type1 処理／ Type2 処理）として捉え直す立場をとっている <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。</p>
+<h3>関連する再現性の問題</h3>
+<p>加えて、『ファスト &amp; スロー』第 4 章で紹介された社会的プライミング（無意識的な刺激が後の行動に影響を与えるとする実験群）については、後の追試で有意な効果が再現されない事例が相次いだ。統計的な再分析では、同章が引用する 12 本の論文のうち大半が、再現可能性の低さを示す指標（R-Index）で低い値を示すことが報告されている <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。カーネマン自身も 2012 年、プライミング研究者に宛てた公開書簡のなかで、この分野に「破局」が迫っていると警告しており、後年の版では該当章の記述に留保が付されている。ただし、この再現性の問題は System1 ／ System2 という枠組み自体の可否とは区別されるべき論点であり、二重過程理論全体を無効化するものではない。</p>
+<p>以上を踏まえると、二重過程理論をめぐる論争には現時点で決着がついていない。単一プロセス説の側も、二重過程理論を完全に置き換えるだけの説明力を持つモデルを提示できているわけではなく、双方の陣営を検討したある評者は、この論争を「どちらの立場を採るべきかを決める十分な証拠は現状ない」状態にあると評している <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。特定の立場に肩入れすることは本稿の目的ではない。</p>
+<p>この論争を整理する基準として、たとえば「複数の独立した研究グループによる再現が確認されているか」という観点を採用するなら、 System1 ／ System2 という大枠の対比（作業記憶を要する処理と要さない処理の機能的な区別）自体は、エヴァンズとスタノビッチが整理したように多くの追試を経て一定の頑健性を示している一方、その対比を「脳内の二つの独立したシステム」という実体的な主張にまで拡張する部分については、独立した再現よりもむしろ理論的な反例（両方の特徴を併せ持つ処理の存在）の指摘が積み重なっている段階にある。この基準に沿う限り、前者（機能的な区別）は確立した知見に近く、後者（実体的な二分法）はなお議論の続く仮説として扱うのが妥当だろう、というのが本稿の判断である。</p>
+
+<h2 id="sec6">6. まとめ</h2>
+<p>『独学大全』が採用する System1 ／ System2 という枠組みは、独学が挫折する理由を個人の意志の弱さに帰す代わりに、人間一般に備わった認知の傾向として説明し直し、その傾向に応じた環境設計という具体的な対処法へつなげる点で、実践的な価値を持つ。同時に、この枠組みの元になっている二重過程理論そのものは、脳内に文字どおり「二つの独立したシステム」が存在するかという点で、認知心理学のなかで現在も議論が続いている仮説である。独学大全における言及の教育的な有用性と、その背景理論の学術的な確からしさは、区別して評価される必要がある。</p>
+<p>本稿で確認したように、単一プロセス説の側も二重過程理論の側も、互いを完全に論破するだけの決定打を欠いたまま、それぞれの論拠を積み重ねている段階にある。この状況は、独学大全のような応用的な文脈での二重過程理論の利用を無効にするものではない。ある理論的枠組みが、脳の実装レベルで文字どおり正しいかどうかという問いと、その枠組みを比喩として用いることで人間の行動理解や行動変容に役立つかどうかという問いは、別の水準にある。読者が同書の記述を実践に活かす際には、 System1 ／ System2 を厳密な脳の解剖学的区分としてではなく、行動を変えるための扱いやすい比喩として受け取り、かつその比喩の限界――速さと遅さの対比が実際には連続的な程度差であり、個々の認知過程が両方の特徴を併せ持ちうること――を頭の片隅に置いておくのが、もっとも堅実な態度だろう。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<ol>
+<li id="ref-1">読書猿『独学大全――絶対に「学ぶこと」をあきらめたくない人のための 55 の技法』ダイヤモンド社、 2020 年。 <a class="fnback" href="#fnref-1-1">↩</a></li>
+<li id="ref-2">ダニエル・カーネマン（村井章子訳）『<em>ファスト &amp; スロー――あなたの意思はどのように決まるか ?</em> 』（上・下）早川書房、 2012 年。 <a class="fnback" href="#fnref-2-1">↩</a></li>
+<li id="ref-3">Tversky, A., &amp; Kahneman, D.(1974). Judgment under uncertainty: Heuristics and biases. <em>Science, 185</em>(4157), 1124–1131. <a class="fnback" href="#fnref-3-1">↩</a></li>
+<li id="ref-4">Kahneman, D., &amp; Tversky, A.(1979). Prospect theory: An analysis of decision under risk. <em>Econometrica, 47</em>(2), 263–291. <a class="fnback" href="#fnref-4-1">↩</a></li>
+<li id="ref-5">Kruglanski, A. W., &amp; Gigerenzer, G.(2011). Intuitive and deliberate judgments are based on common principles. <em>Psychological Review, 118</em>(1), 97–109. <a class="fnback" href="#fnref-5-1">↩</a></li>
+<li id="ref-6">sho_tokyo 「独学大全第 1 章で学んだ人間の思考『システム 1 とシステム 2 』について」 note 、閲覧日 2026 年 9 月 20 日、<a href="https://note.com/sho_tokyo/n/nf4c67c7ead52">https://note.com/sho_tokyo/n/nf4c67c7ead52</a>（個人の読書メモであり、原文該当箇所の引用・ページ数は示されていない）。 <a class="fnback" href="#fnref-6-1">↩</a> <a class="fnback" href="#fnref-6-2">↩</a></li>
+<li id="ref-7">Melnikoff, D. E., &amp; Bargh, J. A.(2018). The mythical number two. <em>Trends in Cognitive Sciences, 22</em>(8), 280–293. <a class="fnback" href="#fnref-7-1">↩</a></li>
+<li id="ref-8">Evans, J. St. B. T., &amp; Stanovich, K. E.(2013). Dual-process theories of higher cognition: Advancing the debate. <em>Perspectives on Psychological Science, 8</em>(3), 223–241. <a class="fnback" href="#fnref-8-1">↩</a></li>
+<li id="ref-9">Schimmack, U., Heene, M., &amp; Kesavan, K.(2017). Reconstruction of a train wreck: How priming research went of the rails. <em>Replicability-Index</em>（ブログ）、 2017 年 2 月 2 日、<a href="https://replicationindex.com/2017/02/02/reconstruction-of-a-train-wreck-how-priming-research-went-of-the-rails/">https://replicationindex.com/2017/02/02/reconstruction-of-a-train-wreck-how-priming-research-went-of-the-rails/</a>。 <a class="fnback" href="#fnref-9-1">↩</a></li>
+<li id="ref-10">Stanovich, K. E., &amp; West, R. F.(2000). Individual differences in reasoning: Implications for the rationality debate? <em>Behavioral and Brain Sciences, 23</em>(5), 645–665. <a class="fnback" href="#fnref-10-1">↩</a></li>
+<li id="ref-11">Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J.(2010). How are habits formed: Modelling habit formation in the real world. <em>European Journal of Social Psychology, 40</em>(6), 998–1009. <a class="fnback" href="#fnref-11-1">↩</a></li>
+<li id="ref-12">Osman, M.(2004). An evaluation of dual-process theories of reasoning. <em>Psychonomic Bulletin &amp; Review, 11</em>(6), 988–1010. <a class="fnback" href="#fnref-12-1">↩</a></li>
+</ol>
+<p class="note">本稿は学術論文ではなく、公開情報にもとづく解説記事である。『独学大全』の原文該当箇所は本稿の調査範囲では特定できず、二次的な要約・紹介記事に依拠した部分は本文中に明記した。また、二重過程理論をめぐる学術的な論争は現在進行形であり、本稿での整理は 2026 年 9 月時点で確認できた文献にもとづく暫定的なものである。</p>
+</div>
+</div>
+</body>
+</html>
