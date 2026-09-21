@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アンダーマイニング効果――報酬はなぜやる気を奪うのか</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --accent2:#9a5b3d; --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg); color:var(--text); margin:0;
+  line-height:2;
+}
+.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
+.subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
+.toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
+.toc ol{margin:0; padding-left:1.3em;}
+.toc li{margin-bottom:7px; font-size:16.5px;}
+.toc li ol{margin-top:7px; margin-bottom:11px;}
+.toc li li{font-size:15.5px; color:var(--muted); margin-bottom:5px;}
+.toc a{color:var(--text); text-decoration:none;}
+.toc a:hover{color:var(--accent); text-decoration:underline;}
+h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
+h3{font-size:20px; margin:32px 0 12px;}
+h4,h5{font-size:18px; margin:24px 0 10px;}
+p{font-size:19px; margin:0 0 20px;}
+.pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
+  padding-left:20px; margin:34px 0;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box strong{color:var(--accent);}
+.box h4{margin-top:0; color:var(--accent2);}
+ul,ol{padding-left:1.4em; margin:0 0 20px;}
+li{margin-bottom:9px;}
+a{color:var(--link);}
+sup.fnref{font-size:.72em;}
+sup.fnref a{color:var(--link); text-decoration:none;}
+sup.fnref a:hover{text-decoration:underline;}
+.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs ol{font-size:15.5px; line-height:1.65;}
+.refs li{margin-bottom:11px;}
+.refs em{font-style:italic;}
+.refs li a.backref{color:var(--link); text-decoration:none; margin-left:6px; font-size:14px;}
+.refs li a.backref:hover{text-decoration:underline;}
+.note{font-size:15px; color:var(--muted); margin-top:20px;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:27px;}
+}
+.no-marker {
+  list-style: none;
+  padding-left: 0;
+}
+.no-marker-child {
+  list-style: none;
+  padding-left: 4px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">認知心理学・組織行動論</div>
+<h1>アンダーマイニング効果<br>――報酬はなぜやる気を奪うのか</h1>
+<p class="subtitle">How External Rewards Undermine Intrinsic Motivation</p>
+<div class="meta">【本稿の目的】本稿は、報酬が内発的動機づけを損なうアンダーマイニング効果について、デシらの実証研究に基づく発生機序を整理し、組織・教育・家庭という三つの応用場面における対策を検討する試論である。報酬制度そのものを否定するものではなく、報酬の種類・提示の仕方によって効果の向きが変わりうるという条件つきの命題を扱う。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ul class="no-marker">
+<li><a href="#sec1">1. アンダーマイニング効果とは何か</a></li>
+<li><a href="#sec2">2. 何故、やる気が消えるのか――メカニズムと原因</a></li>
+<li><a href="#sec3">3. 日常やビジネスに潜む具体例</a></li>
+<li><a href="#sec4">4. アンダーマイニング効果を防ぐ対策</a></li>
+<li><a href="#sec5">5. まとめ――報酬そのものは悪ではない</a></li>
+</ul>
+</nav>
+
+<h2 id="sec1">1. アンダーマイニング効果とは何か</h2>
+<h3>●現象の定義</h3>
+<p>部下の成果を正当に評価しようとインセンティブ制度を導入したところ、以前は自発的に出ていた改善提案がぱたりと止んだ。子どもに読書習慣をつけさせようと一冊読むごとに小遣いを与えたところ、小遣いの出ない本には見向きもしなくなった。善意から出発した報酬が、意図とは逆にやる気そのものを消してしまう――この逆説は、心理学において再現性の高い現象として繰り返し確認されている。</p>
+<p>この現象は、アンダーマイニング効果 (undermining effect) と呼ばれる。それ自体に興味や楽しさを感じて行っていた行動に対して金銭や物品などの外的な報酬を与えると、かえってその行動への意欲が低下する現象を指し、心理学ではこれを「過剰正当化効果 (overjustification effect) 」とも呼ぶ。行動の理由（正当化根拠）が、内側から与えられていたものから外側の報酬へと「過剰に」上書きされてしまう、という意味である。原因は報酬の多寡ではない。行動の意味づけが「自分がやりたいからやる」から「報酬のためにやる」へとすり替わることそのものが、やる気を静かに侵食するのである。</p>
+<h3>●内発的動機づけと外発的動機づけ</h3>
+<p>この現象を理解する鍵は、動機づけを二種類に区別することにある。</p>
+<ul>
+<li><strong>内発的動機づけ (intrinsic motivation) </strong>――活動そのものが持つ面白さ・達成感・好奇心の充足を理由に行動する状態。誰に強制されずとも、報酬がなくても続けられる。</li>
+<li><strong>外発的動機づけ (extrinsic motivation) </strong>――報酬・評価・罰の回避など、活動の外部にある結果を得るために行動する状態。金銭的インセンティブや成績評価はこの典型である。</li>
+</ul>
+<p>以上を踏まえれば、アンダーマイニング効果の正体は、内発的動機づけによって支えられていた行動に外発的動機づけ（報酬）を上乗せした結果、内発的動機づけの側が縮小するという現象だと言える。報酬を「与える」という足し算の操作が、動機づけの総量では引き算に働くという点に、この現象の逆説性がある。やる気は、報酬を足せば足すほど増えるとは限らない。</p>
+
+<h2 id="sec2">2. 何故、やる気が消えるのか――メカニズムと原因</h2>
+<h3>●デシのソマパズル実験</h3>
+<p>この逆説を最初に実証的に示したのは、アメリカの心理学者エドワード・デシ (Edward L. Deci) である。デシは 1971 年、大学生を対象に立方体を組み合わせる「ソマパズル」を用いた実験を行った <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。参加者を二群に分け、一方の群にはパズルを解くたびに金銭報酬を与え、もう一方の群には何も与えなかった。実験の合間、参加者が自由に過ごせる休憩時間を設けて、それぞれの群が休憩中も自発的にパズルへ取り組む時間を観察したところ、報酬を受け取っていた群は、報酬が打ち切られた後の休憩時間にパズルへ触れる時間が有意に短くなった。報酬のなかった群では、そうした低下は見られなかった。</p>
+<h3>●自己決定理論とその後のメタ分析</h3>
+<p>この結果が示すのは、報酬がパズルという活動の「意味」を書き換えてしまったという事実である。デシと共同研究者のリチャード・ライアン (Richard M. Ryan) は、後にこの現象を体系化した自己決定理論 (self-determination theory) を提唱し、内発的動機づけを支える心理的な要因として次の二つを挙げた <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<ul>
+<li><strong>自己決定感（sense of autonomy）</strong>――自分の行動を自分の意志で選んでいるという感覚。</li>
+<li><strong>有能感（sense of competence）</strong>――自分の能力が発揮され、向上しているという感覚。</li>
+</ul>
+<p>報酬が導入されると、行動の主導権が「自分」から「報酬を出す相手」へと知覚上移ってしまう。行為者は自分の行動を、自らの興味の発露としてではなく、報酬という外部の要求に応じた手段として認知し直す。この認知の書き換えこそが、行動の目的を「楽しさ・やりがい」から「報酬の獲得」へとすり替える過程であり、自己決定感の喪失として説明される。加えて、報酬が成果と連動する場合、報酬を得られなかった経験は「自分には能力がない」というシグナルとしても働きうるため、有能感をも損ないやすい。</p>
+<p>もっとも、あらゆる報酬が同じように作用するわけではない点には注意が要る。デシらが 1999 年に行った 128 の実験を対象とするメタ分析では、参加や課題完成そのものに対して一律に支払われる報酬は内発的動機づけを低下させる一方、行動そのものへの言語的なフィードバック（称賛）は、むしろ内発的動機づけを高める方向に働くことが確認されている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。つまり効果の向きを決めるのは、報酬の有無ではなく、報酬が行為者にどう解釈されるかである。</p>
+
+<h2 id="sec3">3. 日常やビジネスに潜む具体例</h2>
+<h3>●ビジネスの現場</h3>
+<p>成果主義インセンティブの典型的な失敗例として、営業目標の達成度合いにのみ紐づいたボーナス制度が挙げられる。目標達成が報酬に直結すると、社員の関心は「顧客にとって良い提案は何か」から「どうすれば数字を達成できるか」へと収斂しやすい。結果として、契約書上の数字には表れない改善提案や、目標に直接寄与しない品質へのこだわりが後退する。これは、業務そのものへの内発的な関心が、報酬という外的な尺度に置き換えられてしまう典型例である。</p>
+<h3>●教育・家庭の現場</h3>
+<p>心理学者マーク・レッパー (Mark R. Lepper) らが 1973 年に行った実験は、この現象が子どもにも同様に生じることを示した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。もともとお絵描きを好んでいた幼児を対象に、「上手に描けたら賞状をあげる」と事前に約束して描かせた群と、約束せずに描かせた群を比較したところ、事前に報酬を約束された群は、後日の自由時間にお絵描きへ向ける時間が有意に減少した。約束のなかった群にはこの低下が見られなかった。</p>
+<p>家庭でも構図は同じである。勉強や読書、片付けに対して「一つ終えるごとにお小遣い」という仕組みを導入し続けると、子どもはやがて報酬の出ない範囲の勉強や片付けには手を付けなくなる。行動の意味が「知りたいから読む」「きれいにしたいから片付ける」から「小遣いのために動く」へと置き換わってしまうためである。</p>
+
+<div class="box">
+<p style="margin:0;"><strong>注意点</strong>――アンダーマイニング効果が確認されるのは、主として「もともと内発的な興味が存在していた行動」に報酬を導入した場合である。もともと退屈で誰も自発的にはやりたがらない作業（単純な事務処理など）に報酬を設定する場合には、この効果は生じにくい。対策を検討する際は、対象の行動がどちら側に属するかをまず見極める必要がある。</p>
+</div>
+
+<h2 id="sec4">4. アンダーマイニング効果を防ぐ対策</h2>
+<h3>●三つの対策</h3>
+<p>対策の要点は、報酬を全廃することではなく、報酬の種類と与え方を使い分けることにある。</p>
+<ul>
+<li><strong>物質的報酬と精神的報酬の使い分け</strong>――金銭や物品といった物質的報酬 (tangible reward) は、成果と機械的に連動させるほど自己決定感を奪いやすい。一方、称賛や承認といった精神的報酬（social reward）は、言語的なフィードバックとして機能し、有能感を補強する方向に働きやすい。</li>
+<li><strong>結果ではなく過程を褒める</strong>――「よくできたね」という結果への賞賛よりも、「工夫して粘り強く取り組んだね」という過程（努力・戦略・工夫）への言及の方が、行為者本人の努力に原因を帰属させやすく、次の行動への自己決定感を保ちやすい。</li>
+<li><strong>予告しない・成果と機械的に連動させない</strong>――レッパーらの実験が示すように、報酬を事前に約束し成果と直結させる設計ほど、内発的動機づけへの悪影響が大きい。予期しない形での事後的な感謝や評価は、悪影響が相対的に小さいことが知られている。</li>
+</ul>
+<h3>●エンハンシング効果という対概念</h3>
+<p>この文脈で対になる概念が「エンハンシング効果 (enhancing effect) 」である。これは、言語的な報酬（称賛・肯定的フィードバック）によって、むしろ内発的動機づけが高まる現象を指す <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。同じ「報酬」という言葉で括られていても、物質的報酬が過剰正当化を招きやすいのに対し、有能感を伝える言語的報酬は動機づけを増幅させうる。両者を区別せずに「褒美」と一括りにしてしまうことが、多くの現場での失敗の出発点になっている。</p>
+
+<table>
+<thead>
+<tr><th>観点</th><th>アンダーマイニング効果を招きやすい設計</th><th>エンハンシング効果につながりやすい設計</th></tr>
+</thead>
+<tbody>
+<tr><td>報酬の種類</td><td>金銭・物品などの物質的報酬</td><td>言語的な称賛・承認</td></tr>
+<tr><td>評価の焦点</td><td>結果（成果の量・達成の有無）</td><td>過程（努力・工夫・戦略）</td></tr>
+<tr><td>提示のタイミング</td><td>事前に約束し、成果と機械的に連動</td><td>事後的・予期しない形で伝える</td></tr>
+<tr><td>行為者への影響</td><td>自己決定感・有能感の低下</td><td>有能感の補強</td></tr>
+</tbody>
+</table>
+
+<h2 id="sec5">5. まとめ――報酬そのものは悪ではない</h2>
+<p>アンダーマイニング効果は、報酬という手段そのものを否定する理論ではない。デシらの研究が一貫して示しているのは、報酬の効果は、それが行為者の自己決定感と有能感をどう左右するかによって決まるという条件つきの命題である。物質的報酬を成果に機械的に連動させ、事前に約束する設計は内発的動機づけを侵食しやすく、過程への言語的な承認は、逆にそれを補強しうる。</p>
+<p>部下や子ども、あるいは自分自身のやる気を長期的に維持しようとするならば、「何を、どう褒め、どう報いるか」という設計の粒度にこそ注意を払う必要がある。報酬を出すか出さないかという二択ではなく、内発的動機づけと外発的動機づけのバランスをどう組み立てるか――アンダーマイニング効果という逆説は、その設計思想の重要性を教えている。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<ol>
+<li id="ref-1">Deci, E. L. (1971). Effects of externally mediated rewards on intrinsic motivation. <em>Journal of Personality and Social Psychology</em>, 18 (1), 105–115. <a href="https://psycnet.apa.org/record/1971-19620-001">APA PsycNet</a> <a class="fnback" href="#fnref-1-1">↩</a></li>
+<li id="ref-2">Deci, E. L., &amp; Ryan, R. M. (1985). <em>Intrinsic Motivation and Self-Determination in Human Behavior</em>. Plenum Press. <a href="https://selfdeterminationtheory.org/">Self-Determination Theory</a> <a class="fnback" href="#fnref-2-1">↩</a></li>
+<li id="ref-3">Deci, E. L., Koestner, R., &amp; Ryan, R. M. (1999). A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation. <em>Psychological Bulletin</em>, 125 (6), 627–668. <a href="https://psycnet.apa.org/record/1999-01567-001">APA PsycNet</a> <a class="fnback" href="#fnref-3-1">↩</a></li>
+<li id="ref-4">Lepper, M. R., Greene, D., &amp; Nisbett, R. E. (1973). Undermining children's intrinsic interest with extrinsic reward: A test of the "overjustification" hypothesis. <em>Journal of Personality and Social Psychology</em>, 28 (1), 129–137. <a href="https://psycnet.apa.org/record/1974-10497-001">APA PsycNet</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
+<li id="ref-5">Henderlong, J., &amp; Lepper, M. R. (2002). The effects of praise on children's intrinsic motivation: A review and synthesis. <em>Psychological Bulletin</em>, 128 (5), 774–795. <a href="https://psycnet.apa.org/record/2002-15694-005">APA PsycNet</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
+</ol>
+<p class="note">本稿で紹介した実験知見は、いずれも実証研究として再現・追試が重ねられてきたものだが、報酬設計の最適解は組織文化・年齢・課題の性質によって異なりうる。個別の制度設計に適用する際は、対象となる行動がもともと内発的な関心を伴うものかどうかを見極めた上で検討することが望ましい。</p>
+</div>
+
+</div>
+</body>
+</html>
