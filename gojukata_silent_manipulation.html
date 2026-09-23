@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>五十肩の正体</title>
+<style>
+:root{
+  --bg:#f7f8f6;
+  --text:#242522;
+  --muted:#65695f;
+  --accent:#3d5a52;
+  --line:#d7dcd2;
+  --box:#eceee7;
+  --link:#3d5a52;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);margin:0;line-height:2;}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px;}
+a{color:var(--link);}
+.kicker{font-size:15px;letter-spacing:.14em;color:var(--accent);font-weight:700;margin:0 0 14px;}
+h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 14px;font-weight:700;}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px;}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9;}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px;color:var(--muted);}
+.lede p{font-size:20px;margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 24px;}
+h3{font-size:20px;margin:32px 0 12px;}
+p{font-size:19px;margin:0 0 20px;}
+.pull{font-size:22px;font-weight:700;color:var(--accent);border-left:4px solid var(--accent);padding-left:20px;margin:34px 0;}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px;}
+.box strong{color:var(--accent);}
+table{width:100%;border-collapse:collapse;font-size:16px;margin:0 0 28px;}
+th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;}
+th{background:var(--box);}
+ul,ol{padding-left:1.4em;margin:0 0 20px;}
+ul li,ol li{margin-bottom:9px;font-size:19px;}
+sup{font-size:0.72em;}
+sup a{color:var(--link);text-decoration:none;}
+sup a:hover{text-decoration:underline;}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px;}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0;}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word;}
+.refs em{font-style:italic;}
+.note{font-size:15px;color:var(--muted);margin-top:20px;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:27px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">整形外科・肩関節疾患</p>
+<h1>五十肩の正体<br>――原因の理解から、サイレント・マニピュレーションという新しい選択肢まで</h1>
+<p class="subtitle">Understanding Frozen Shoulder: Causes, Standard Care, and Silent Manipulation as an Emerging Treatment Option</p>
+
+<div class="meta">
+【方法と限界】本稿は日本整形外科学会や国内複数の整形外科クリニックが公開している解説記事を基に、五十肩（肩関節周囲炎）の一般的な原因・病期・治療の考え方を整理したものである。症状の現れ方や治療への反応には個人差が大きく、本稿の内容は特定の患者の診断・治療方針を保証するものではない。実際の診断・治療は整形外科専門医の診察を受けたうえで判断してほしい。
+</div>
+
+<div class="lede">
+<p>肩が上がらない。夜、寝返りを打つたびに痛みで目が覚める。「年のせい」の一言で片づけられがちなこの症状には、五十肩（医学的には肩関節周囲炎）という名前があり、放置すれば半年から二年近く生活の質を奪い続けることもある。</p>
+<p>厄介なのは、多くの人がやがて自然に治ると信じて我慢し、拘縮（関節が硬く動かなくなること）が進行してから受診するケースが少なくないことだ。本稿では五十肩がなぜ起こるのかという原因の側面と、保存療法で改善しない場合に選択肢となる「サイレント・マニピュレーション」という比較的新しい治療法について、現時点でわかっていることを整理する。</p>
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">五十肩とは何か――肩関節周囲炎という別名</a></li>
+<li><a href="#sec2">なぜ五十肩は起こるのか――加齢だけでは説明できない原因</a></li>
+<li><a href="#sec3">三つの病期――炎症期・拘縮期・回復期</a></li>
+<li><a href="#sec4">標準治療の骨格――保存療法でできること</a></li>
+<li><a href="#sec5">保存療法で改善しないとき――マニピュレーションという選択</a></li>
+<li><a href="#sec6">サイレント・マニピュレーションのしくみ</a></li>
+<li><a href="#sec7">効果とリスク――エビデンスから見えてくること</a></li>
+<li><a href="#sec8">治療後のリハビリと再発予防</a></li>
+<li><a href="#sec9">まとめ――肩の痛みとどう向き合うか</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 五十肩とは何か――肩関節周囲炎という別名</h2>
+<p>「五十肩」は俗称であり、医学的には肩関節周囲炎、あるいは凍結肩（フローズンショルダー）と呼ばれる <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。四十代で起これば四十肩、五十代で起これば五十肩と呼び分けられることもあるが、病態としては同じものを指している。</p>
+<p>特徴的なのは、転倒や打撲のような明確なきっかけがないまま、ある日突然肩に痛みが生じ、徐々に腕が上がらなくなっていく点だ。腱板断裂（肩のインナーマッスルである腱板が切れる外傷性の疾患）と混同されやすいが、五十肩は関節を包む「関節包」という袋状の組織そのものが炎症を起こし、やがて硬く縮んでしまうことで動きが制限される点が本質的に異なる。</p>
+
+<h2 id="sec2">2. なぜ五十肩は起こるのか――加齢だけでは説明できない原因</h2>
+<p>五十肩の直接的な引き金は、関節を構成する骨・軟骨・靭帯・腱などが加齢とともに変性し、その周囲の組織に炎症が起きることだと考えられている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。ただし、加齢だけがすべてを説明するわけではない。長時間のデスクワークによる猫背などの不良姿勢、逆に肩の使いすぎ、あるいは運動不足による血流低下も発症の背景として挙げられる <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>見落とされがちなのが、全身の持病との関係だ。心疾患、パーキンソン病、脳卒中、甲状腺疾患といった基礎疾患を持つ人は五十肩を発症しやすいことが知られている <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 。とりわけ糖尿病との関連は臨床的に重要で、高血糖の状態が続くと全身の結合組織が硬くなりやすく、五十肩の発症リスクそのものを押し上げるだけでなく、いったん発症すると注射やリハビリテーションを行っても改善が乏しい難治性の経過をたどりやすいことが指摘されている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
+
+<div class="pull">五十肩は「歳のせい」の一言で片づけられがちだが、背景には姿勢・生活習慣・全身疾患という複数の要因が重なっている。</div>
+
+<h2 id="sec3">3. 三つの病期――炎症期・拘縮期・回復期</h2>
+<p>五十肩の経過は、大きく三つの病期に分けて理解すると全体像がつかみやすい <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。</p>
+
+<table>
+<tr><th>病期</th><th>主な症状</th><th>おおよその期間</th></tr>
+<tr><td>炎症期（疼痛期・急性期）</td><td>安静にしていても痛む。夜間痛で睡眠が妨げられる。</td><td>2 〜 9 か月</td></tr>
+<tr><td>拘縮期</td><td>痛みは徐々に和らぐが、関節包が硬くなり可動域が大きく制限される。</td><td>4 〜 12 か月</td></tr>
+<tr><td>回復期</td><td>少しずつ動きが戻っていく。</td><td>早くて 5 か月、長いと 24 か月</td></tr>
+</table>
+
+<p>この表からもわかるとおり、五十肩は「いつか自然に治る」疾患ではあるものの、その「いつか」が二年近くに及ぶこともある。とりわけ拘縮期に入り、 3 か月から半年以上リハビリテーションを継続しても可動域の改善が乏しい場合、あるいはむしろ制限が悪化している場合には、関節包そのものの拘縮が強く進行している状態を疑う必要がある <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。この見極めが、後述するマニピュレーションという選択肢を検討するかどうかの分かれ目になる。</p>
+
+<h2 id="sec4">4. 標準治療の骨格――保存療法でできること</h2>
+<p>五十肩の治療は、原則として手術によらない保存療法が中心となる。痛みを抑えながら肩の動きをできる範囲で保ち、少しずつ可動域を取り戻していくという考え方だ <sup id="fnref-2-4"><a href="#ref-2">[2]</a></sup> 。具体的には次のような手段が組み合わされる。</p>
+
+<div class="box">
+<ul>
+<li><strong>薬物療法：　</strong>消炎鎮痛剤の内服や外用薬で痛みをコントロールする。</li>
+<li><strong>注射療法：　</strong>痛みが強い場合、関節内や肩峰下へのステロイド注射・ヒアルロン酸注射などが検討される。</li>
+<li><strong>温熱療法・運動療法：　</strong>痛みが落ち着いてきた段階で、理学療法士の指導のもとリハビリテーションを進める。</li>
+</ul>
+</div>
+
+<p>炎症期に無理に動かそうとすると痛みが増悪し、かえって回復を遅らせることがある。逆に拘縮期に入ってから動かさずにいると、関節包の癒着がさらに進んでしまう。病期に応じて「守るべき時期」と「動かすべき時期」を見極めることが、保存療法の要になる。</p>
+
+<h2 id="sec5">5. 保存療法で改善しないとき――マニピュレーションという選択</h2>
+<p>多くの患者は保存療法だけで時間をかけて回復していく。しかし一部には、数か月から半年以上のリハビリテーションを続けても可動域がほとんど改善しない、いわゆる難治性の拘縮肩が存在する。こうしたケースで検討されるのが「マニピュレーション（徒手的関節受動術）」と呼ばれる、硬くなった関節包を物理的に剥がす処置だ。</p>
+<p>マニピュレーションには大きく二つの方法がある。一つは全身麻酔をかけたうえで入院して行う「関節鏡視下関節受動術」。もう一つが、本稿で取り上げる「サイレント・マニピュレーション」であり、全身麻酔も入院も必要とせず、日帰りの外来で行うことができる <sup name="ref4b" id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。</p>
+
+<h2 id="sec6">6. サイレント・マニピュレーションのしくみ</h2>
+<p>サイレント・マニピュレーションは、超音波（エコー）を用いて肩や腕を支配する頸部の神経（頸神経根）を正確に狙い、局所麻酔薬を注射して神経ブロックをかけたうえで、患者が覚醒した状態のまま肩関節を他動的に動かし、硬くなった関節包を剥離する治療法である <sup name="ref5a" id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。全身麻酔を用いず、意識がある状態で行うことから「サイレント（静かな）」という名がついている。</p>
+<p>おおよその流れは次のとおりだ。</p>
+<ol>
+<li>エコーガイド下で頸部から神経ブロック注射を行い、肩から腕にかけての知覚を麻痺させる。</li>
+<li>麻酔が十分に効いていることを確認したうえで、医師が肩を屈曲・外転・内旋などさまざまな方向へ動かし、癒着した関節包を剥がしていく <sup name="ref5b" id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 。</li>
+<li>処置自体は 10 分程度で終わることが多い <sup name="ref5c" id="fnref-5-3"><a href="#ref-5">[5]</a></sup> 。</li>
+<li>術後は麻酔の影響で肩を自力で動かせないため、しばらくの間三角巾で固定する。</li>
+</ol>
+<p>健康保険が適用される治療であり、自己負担 3 割の場合でおおよそ 7,000 円前後が目安とされる <sup name="ref2b" id="fnref-2-5"><a href="#ref-2">[2]</a></sup> 。全身麻酔下の関節受動術に比べて身体への負担や入院の手間が小さいことから、難治性の拘縮肩に対する選択肢として近年広がりを見せている。</p>
+
+<h2 id="sec7">7. 効果とリスク――エビデンスから見えてくること</h2>
+<p>効果に関しては、 1,665 肩という大規模な症例を対象にした後ろ向き研究で、施術から 1 週間後には可動域の改善がみられ、その効果が 3 か月後まで維持されていたことが報告されている <sup name="ref6a" id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。短期的には可動域・疼痛・臨床スコアのいずれにおいても改善が確認されており、長らく改善しなかった拘縮が短時間の処置で大きく動くようになるという点で、患者にとってのインパクトは大きい。</p>
+<p>一方で、リスクを軽視すべきではない。術後の MRI 評価では、関節唇損傷が 13.3 パーセント、骨挫傷が 50 パーセントの症例で認められたとする報告があり、関節包を強制的に剥離するという処置の性質上、一定の組織損傷を伴うことが示唆されている <sup name="ref7a" id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。また、頸部への注射という手技自体にも、出血や神経損傷といった合併症のリスクが伴う <sup name="ref7b" id="fnref-7-2"><a href="#ref-7">[7]</a></sup> 。</p>
+
+<div class="box">
+<strong>誰に向いている治療か</strong><br>
+サイレント・マニピュレーションは万人向けの治療ではない。数か月から半年以上、保存療法を続けても可動域の改善が乏しい、あるいは悪化している難治性の拘縮肩が対象であり、炎症期のように痛みそのものが強い段階でいきなり選択される治療ではない。適応の判断は、病期の見極めを含めて整形外科専門医に委ねるべき領域だ。
+</div>
+
+<h2 id="sec8">8. 治療後のリハビリと再発予防</h2>
+<p>サイレント・マニピュレーションは、処置そのものよりも術後の経過管理が成否を分けるといっても過言ではない。麻酔で得られた可動域は、放置すればすぐに関節包の癒着が再形成され、元の硬さに戻ってしまう。そのため術後早期からリハビリテーションを開始し、獲得した可動域を維持していくことが欠かせない <sup name="ref1b" id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。多くの施設で、術後 3 か月程度は通院してのリハビリテーションが推奨されている <sup name="ref4c" id="fnref-4-3"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>処置を受けて終わりではなく、処置の後にどれだけ肩を「動かし続けられるか」が、長期的な予後を左右する。この点は、薬物や注射に頼りがちな保存療法とも共通する、五十肩治療全体を貫く原則だといえる。</p>
+
+<h2 id="sec9">9. まとめ――肩の痛みとどう向き合うか</h2>
+<p>五十肩は、加齢という避けがたい要因に、姿勢や生活習慣、糖尿病をはじめとする全身疾患といった複数の要因が重なって生じる。多くの場合は炎症期・拘縮期・回復期という経過をたどりながら、時間をかけて自然に改善していく。だからこそ、「そのうち治る」という思い込みのまま、拘縮が進むにまかせてしまうケースが少なくない。</p>
+<p>もし数か月にわたるリハビリテーションを続けても腕の上がりが改善しない、あるいは悪化しているように感じるなら、それは一度、専門医に相談すべきサインかもしれない。サイレント・マニピュレーションは、そうした難治性の拘縮肩に対して短時間で大きな改善をもたらしうる一方、組織損傷や合併症のリスクも伴う処置であり、その適応は自己判断ではなく専門的な診察のうえで検討されるべきものである。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<p id="ref-1"><a href="#fnref-1-1">[1]</a> 日本整形外科学会による疾患解説。肩関節周囲炎（五十肩）の定義、術後リハビリテーションの重要性について。 <a href="https://www.joa.or.jp/public/sick/condition/frozen_shoulder.html">日本整形外科学会「五十肩（肩関節周囲炎）」</a></p>
+<p id="ref-2"><a href="#fnref-2-1">[2]</a> 五十肩の原因、不良姿勢・運動不足・全身疾患との関連、サイレント・マニピュレーションの治療の流れと費用について。 <a href="https://ar-ex.jp/column/column-5197/">AR-Ex 尾山台整形外科「五十肩の治療法（サイレントマニピュレーション）」</a></p>
+<p id="ref-3"><a href="#fnref-3-1">[3]</a> 糖尿病と五十肩発症・難治化の関連、五十肩の三つの病期（炎症期・拘縮期・回復期）とその期間について。 <a href="https://matsudo-iida.com/column/frozen-shoulder-healing-time">松戸常盤平いいだ整形外科運動器リハビリテーションクリニック「五十肩（肩関節周囲炎）はどのくらいで治る ? 」</a></p>
+<p id="ref-4"><a href="#fnref-4-1">[4]</a> 拘縮期における病態の見極め方、サイレント・マニピュレーションと入院・全身麻酔を要する関節鏡視下関節受動術との違い、術後リハビリテーションの期間について。 <a href="https://hasegawaseikei.com/2026/04/14/1030/">はせがわ整形外科運動器エコークリニック「五十肩（凍結肩）に対するサイレントマニピュレーションとは ? 」</a></p>
+<p id="ref-5"><a href="#fnref-5-1">[5]</a> 超音波ガイド下頸神経根ブロックによる施術のしくみと処置時間について。 <a href="https://komatsu-seikei2022.jp/disease-top/shoulder/disease-017/">こまつ整形外科クリニック「凍結肩（五十肩）②サイレント・マニピュレーション」</a></p>
+<p id="ref-6"><a href="#fnref-6-1">[6]</a> 1,665 肩を対象とした後ろ向き研究による短期的な有効性（可動域・疼痛・臨床スコアの改善）について。 <a href="https://note.com/utashima/n/ncac997099d3f">歌島大輔「五十肩のサイレントマニピュレーションは『魔法』か『賭け』か ? 最新論文で徹底解説」</a></p>
+<p id="ref-7"><a href="#fnref-7-1">[7]</a> 術後 MRI で確認された関節唇損傷・骨挫傷の頻度、頸部注射に伴う合併症リスクについて。 <a href="https://nakamura-orthopedics.com/column/post-22.html">なかむら整形外科「拘縮肩に対するサイレント・マニピュレーション（非観血的関節授動術）とは」</a></p>
+</div>
+
+<p class="note">本稿は国内整形外科クリニックおよび学会の公開情報を基にした一般向けの解説であり、大規模な臨床試験による確立されたガイドラインをすべて網羅したものではない。症状の程度や適切な治療法は個人差が大きいため、実際の診断・治療方針は必ず整形外科専門医の診察を受けて判断してほしい。</p>
+
+</div>
+</body>
+</html>
