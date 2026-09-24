@@ -130,7 +130,12 @@ sup a:hover{text-decoration:underline}
 .refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
 .refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
 .refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
 .refs em{font-style:italic}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px}
@@ -226,15 +231,17 @@ sup a:hover{text-decoration:underline}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
-<p id="ref-1"><a href="#fnref-1-1">[1]</a> Susan T. Fiske and Shelley E. Taylor, <em>Social Cognition</em>, 初版 1984 年刊行の教科書で提示された「認知的節約家 (cognitive miser) 」の概念にもとづく（版・刊年の詳細は要出典確認）。</p>
-<p id="ref-2"><a href="#fnref-2-1">[2]</a> Daniel Kahneman, <em>Thinking, Fast and Slow</em>, Farrar, Straus and Giroux, 2011 年。二重過程理論（システム 1 ・システム 2 ）を一般向けに解説した代表的著作。</p>
-<p id="ref-3"><a href="#fnref-3-1">[3]</a> Lee McIntyre, <em>Post-Truth</em>, MIT Press, 2018 年。「ポスト真実」概念を政治哲学の観点から整理した著作。</p>
-<p id="ref-4"><a href="#fnref-4-1">[4]</a> Cass R. Sunstein, <em>#Republic: Divided Democracy in the Age of Social Media</em>, Princeton University Press, 2017 年。エコーチェンバー現象とその民主主義への影響を論じた著作。</p>
-<p id="ref-5"><a href="#fnref-5-1">[5]</a> Milo Bianchi, Paolo Buonanno, and Paolo Pinotti, "Do Immigrants Cause Crime?", <em>Journal of the European Economic Association</em>, Vol. 10, No. 6, 2012 年。イタリアのデータを用い、移民と犯罪の関係は罪種によって異なると報告した実証研究。</p>
-<p id="ref-6"><a href="#fnref-6-1">[6]</a> Brian Bell, Francesco Fasani, and Stephen Machin, "Crime and Immigration: Evidence from Large Immigrant Waves", <em>Review of Economics and Statistics</em>, Vol. 95, No. 4, 2013 年。英国における大規模な移民流入と犯罪の関係を検証した実証研究。</p>
-<p id="ref-7"><a href="#fnref-7-1">[7]</a> Cas Mudde and Cristóbal Rovira Kaltwasser, <em>Populism: A Very Short Introduction</em>, Oxford University Press, 2017 年。ポピュリズムを「中心の薄いイデオロギー」として定義する、政治学における標準的な入門書。</p>
-<p id="ref-8"><a href="#fnref-8-1">[8]</a> 日本の刑法犯認知件数の長期的な推移については、警察庁が毎年公表する犯罪統計資料が基礎データとなる。認知件数は 2002 年をピークに長期的な減少傾向にあり、この期間は在留外国人数が増加した時期と重なる（個別年次の数値は同資料を参照されたい）。 <a href="https://www.npa.go.jp/publications/statistics/index.html">警察庁 犯罪統計資料</a></p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Susan T. Fiske and Shelley E. Taylor, <em>Social Cognition</em>, 初版 1984 年刊行の教科書で提示された「認知的節約家 (cognitive miser) 」の概念にもとづく（版・刊年の詳細は要出典確認）。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Daniel Kahneman, <em>Thinking, Fast and Slow</em>, Farrar, Straus and Giroux, 2011 年。二重過程理論（システム 1 ・システム 2) を一般向けに解説した代表的著作。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Lee McIntyre, <em>Post-Truth</em>, MIT Press, 2018 年。「ポスト真実」概念を政治哲学の観点から整理した著作。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Cass R. Sunstein, <em>#Republic: Divided Democracy in the Age of Social Media</em>, Princeton University Press, 2017 年。エコーチェンバー現象とその民主主義への影響を論じた著作。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Milo Bianchi, Paolo Buonanno, and Paolo Pinotti, "Do Immigrants Cause Crime?", <em>Journal of the European Economic Association</em>, Vol. 10, No. 6, 2012 年。イタリアのデータを用い、移民と犯罪の関係は罪種によって異なると報告した実証研究。</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Brian Bell, Francesco Fasani, and Stephen Machin, "Crime and Immigration: Evidence from Large Immigrant Waves", <em>Review of Economics and Statistics</em>, Vol. 95, No. 4, 2013 年。英国における大規模な移民流入と犯罪の関係を検証した実証研究。</li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> Cas Mudde and Cristóbal Rovira Kaltwasser, <em>Populism: A Very Short Introduction</em>, Oxford University Press, 2017 年。ポピュリズムを「中心の薄いイデオロギー」として定義する、政治学における標準的な入門書。</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> 日本の刑法犯認知件数の長期的な推移については、警察庁が毎年公表する犯罪統計資料が基礎データとなる。認知件数は 2002 年をピークに長期的な減少傾向にあり、この期間は在留外国人数が増加した時期と重なる（個別年次の数値は同資料を参照されたい）。 <a href="https://www.npa.go.jp/publications/statistics/index.html">警察庁 犯罪統計資料</a></li>
+</ol>
 </div>
 
 <p class="note">本稿は理論的概念の接続を目的とした考察であり、個別の実証研究（例えば特定の移民集団と犯罪率との関係）についての結論を主張するものではない。また、参考文献欄に付した書誌情報のうち、版・刊年等の細部について確認が及ばなかった箇所は本文中にその旨を明記した。</p>
