@@ -22,19 +22,25 @@ h1{font-size:32px;line-height:1.55;margin:0 0 18px}
 h2{font-size:26px;line-height:1.5;margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
 h3{font-size:20px;margin:32px 0 12px}
 p{font-size:19px;margin:0 0 20px}
-.lede{font-size:20px;color:var(--muted);border-left:3px solid var(--accent);padding-left:18px}
+.lede{color:var(--muted);border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
 .pull{font-size:22px;line-height:1.75;color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding:3px 0 3px 20px;margin:34px 0}
 .box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:28px 0;font-size:19px;}
 .box strong{color:var(--accent)}
 table{border-collapse:collapse;width:100%;font-size:16px;margin:24px 0 32px}
 th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
 th{background:var(--box);text-align:left}
-ul,ol{padding-left:1.4em}
-li{margin-bottom:9px}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+li{margin-bottom:9px;font-size:19px}
 sup{font-size:.72em}
 a{color:var(--link)}
 .refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px}
 .refs li{font-size:15.5px;line-height:1.65;margin-bottom:11px}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted)}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -44,15 +50,9 @@ a{color:var(--link)}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 sup a{color:var(--link);text-decoration:none}
 sup a:hover{text-decoration:underline}
-.refs li a.backref{color:var(--link);text-decoration:none;margin-left:6px;font-size:14px}
-.refs li a.backref:hover{text-decoration:underline}
 @media (max-width:480px){
   .wrap{padding:40px 18px 90px}
   h1{font-size:27px}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
 }
 </style>
 </head>
@@ -62,31 +62,29 @@ sup a:hover{text-decoration:underline}
 <div class="kicker">社会心理学・ジェンダー論的検討</div>
 <h1>性暴力被害者への非難はなぜ生じるのか<br>――被害者非難をめぐる社会心理学的考察</h1>
 <p class="subtitle">Why Are Victims of Sexual Violence Blamed? A Social-Psychological Study of Victim Blaming</p>
-<div class="lede"><p>公正世界信念・責任帰属・システム正当化・両面価値的性差別・レイプ神話を中心に</p></div>
+<div class="lede">
+<p>性暴力の被害を訴えた女性に対して、別の女性が「なぜそんな行動をしたのか」「本当に被害者なのか」といった非難や疑念を向けることがある。この現象は、「女性なのに女性の味方をしない」という性別上の矛盾だけで説明すると見えにくくなる。被害者非難は、性別、性差別的態度、公正世界への信念、被害者と観察者との類似性、事件の状況、政治的・集団的アイデンティティなど、複数の要因が交差する現象だからである。</p>
+</div>
 <div class="meta">
 本稿の目的：特定の性別や個人の心理を診断することではなく、被害者非難という現象がなぜ、どのような条件のもとで生じるのかを、複数の社会心理学的要因から検討する。
 </div>
 
-<p class="lede">
-性暴力の被害を訴えた女性に対して、別の女性が「なぜそんな行動をしたのか」「本当に被害者なのか」といった非難や疑念を向けることがある。この現象は、「女性なのに女性の味方をしない」という性別上の矛盾だけで説明すると見えにくくなる。被害者非難は、性別、性差別的態度、公正世界への信念、被害者と観察者との類似性、事件の状況、政治的・集団的アイデンティティなど、複数の要因が交差する現象だからである。
-</p>
-
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 最初に確認すべきこと――「女性が女性を批判する」という問いの限界</a></li>
-<li><a href="#sec2">2. 公正世界信念――「こんなことは、自分には起こらない」と思いたい</a></li>
-<li><a href="#sec3">3. 防衛的帰属――「自分にも起こりうる」をどう処理するか</a></li>
-<li><a href="#sec4">4. システム正当化――不平等な秩序を、人はなぜ受け入れるのか</a></li>
-<li><a href="#sec5">5. 両面価値的性差別――「守るべき女性」という理想像</a></li>
-<li><a href="#sec6">6. レイプ神話――被害者を測る「典型像」</a></li>
-<li><a href="#sec7">7. 事件の文脈は大きい――「見知らぬ加害者」と「知人による被害」</a></li>
-<li><a href="#sec8">8. 政治的・集団的アイデンティティ――事件が「陣営」の問題になるとき</a></li>
-<li><a href="#sec9">9. DARVO はどこまで使えるか</a></li>
-<li><a href="#sec10">10. 日本の具体的事例をどう扱うべきか</a></li>
-<li><a href="#sec11">11. 総合モデル――被害者非難は「一つの原因」ではない</a></li>
-<li><a href="#sec12">12. 結論――「女性の心理」ではなく、「被害者非難を生む条件」を見る</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">最初に確認すべきこと――「女性が女性を批判する」という問いの限界</a></li>
+<li><a href="#sec2">公正世界信念――「こんなことは、自分には起こらない」と思いたい</a></li>
+<li><a href="#sec3">防衛的帰属――「自分にも起こりうる」をどう処理するか</a></li>
+<li><a href="#sec4">システム正当化――不平等な秩序を、人はなぜ受け入れるのか</a></li>
+<li><a href="#sec5">両面価値的性差別――「守るべき女性」という理想像</a></li>
+<li><a href="#sec6">レイプ神話――被害者を測る「典型像」</a></li>
+<li><a href="#sec7">事件の文脈は大きい――「見知らぬ加害者」と「知人による被害」</a></li>
+<li><a href="#sec8">政治的・集団的アイデンティティ――事件が「陣営」の問題になるとき</a></li>
+<li><a href="#sec9">DARVO はどこまで使えるか</a></li>
+<li><a href="#sec10">日本の具体的事例をどう扱うべきか</a></li>
+<li><a href="#sec11">総合モデル――被害者非難は「一つの原因」ではない</a></li>
+<li><a href="#sec12">結論――「女性の心理」ではなく、「被害者非難を生む条件」を見る</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 最初に確認すべきこと――「女性が女性を批判する」という問いの限界</h2>
@@ -96,7 +94,7 @@ sup a:hover{text-decoration:underline}
 </p>
 <h3>●研究データが示す傾向</h3>
 <p>
-たとえば、 37 研究を統合した Suarez と Gadalla （2010）のメタ分析では、レイプ神話受容（rape myth acceptance）は平均的に男性のほうが女性より高かった <sup><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 。近年の研究でも、被害者非難について男性のほうが高いという結果が報告されている <sup><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。したがって、「女性は性暴力被害者に厳しい」という一般化は、少なくとも研究上の標準的な結論ではない。
+たとえば、 37 研究を統合した Suarez と Gadalla (2010) のメタ分析では、レイプ神話受容 (rape myth acceptance) は平均的に男性のほうが女性より高かった <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。近年の研究でも、被害者非難について男性のほうが高いという結果が報告されている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。したがって、「女性は性暴力被害者に厳しい」という一般化は、少なくとも研究上の標準的な結論ではない。
 </p>
 <h3>●女性側の要因</h3>
 <p>
@@ -107,10 +105,10 @@ sup a:hover{text-decoration:underline}
 <h2 id="sec2">2. 公正世界信念――「こんなことは、自分には起こらない」と思いたい</h2>
 <h3>●公正世界信念とは</h3>
 <p>
-被害者非難を理解するうえで古典的かつ重要なのが、 Melvin Lerner によって発展させられた「公正世界」への信念である <sup><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。人は、自分が生きる世界をある程度予測可能で意味のあるものとして理解したい。努力や善行と結果がまったく無関係で、誰にでも突然深刻な被害が起こりうると考えることは、心理的な不安を高める。
+被害者非難を理解するうえで古典的かつ重要なのが、 Melvin Lerner によって発展させられた「公正世界」への信念である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。人は、自分が生きる世界をある程度予測可能で意味のあるものとして理解したい。努力や善行と結果がまったく無関係で、誰にでも突然深刻な被害が起こりうると考えることは、心理的な不安を高める。
 </p>
 <p>
-そのため、不幸に遭った人物について「何か原因があったはずだ」と考え、その原因を本人の行動や性格に帰属させることがある。これが被害者非難につながる場合がある。後続研究でも、公正世界信念とレイプ神話受容・被害者非難との関連が報告されている <sup><a href="#ref-3" id="fnref-3-2">[3]</a></sup> 。
+そのため、不幸に遭った人物について「何か原因があったはずだ」と考え、その原因を本人の行動や性格に帰属させることがある。これが被害者非難につながる場合がある。後続研究でも、公正世界信念とレイプ神話受容・被害者非難との関連が報告されている <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。性差別的態度もあわせて検討した比較文化研究でも、公正世界信念と被害者非難との関連は単一の文化圏に限られたものではないことが示されている <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。
 </p>
 <h3>●留保点</h3>
 <p>
@@ -120,7 +118,7 @@ sup a:hover{text-decoration:underline}
 <h2 id="sec3">3. 防衛的帰属――「自分にも起こりうる」をどう処理するか</h2>
 <h3>●防衛的帰属とは</h3>
 <p>
-被害者と自分との心理的距離も重要である。 Walster （1966）や Shaver （1970）の研究に端を発する防衛的帰属研究は、観察者が事故や被害の責任を誰に帰属させるかが、出来事の重大さや観察者との関連性などによって変化することを示した <sup><a href="#ref-4" id="fnref-4-1">[4]</a></sup> <sup><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 。
+被害者と自分との心理的距離も重要である。 Walster (1966) や Shaver (1970) の研究に端を発する防衛的帰属研究は、観察者が事故や被害の責任を誰に帰属させるかが、出来事の重大さや観察者との関連性などによって変化することを示した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。
 </p>
 <h3>●解釈上の注意</h3>
 <p>
@@ -133,14 +131,14 @@ sup a:hover{text-decoration:underline}
 <h2 id="sec4">4. システム正当化――不平等な秩序を、人はなぜ受け入れるのか</h2>
 <h3>●システム正当化理論とは</h3>
 <p>
-Jost と Banaji （1994）が提唱したシステム正当化理論は、人が既存の社会制度や社会的配置を、必ずしも自分の利益になるわけではない場合にも正当化しうることを説明する理論である <sup><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。
+Jost と Banaji (1994) が提唱したシステム正当化理論は、人が既存の社会制度や社会的配置を、必ずしも自分の利益になるわけではない場合にも正当化しうることを説明する理論である <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。
 </p>
 <p>
 この理論は、性別による不平等を考える場合にも応用されてきた。しかし、「女性は不利な立場にあるから、その不利なシステムを正当化する」というだけでは、研究結果を過度に単純化してしまう。
 </p>
 <h3>●実証研究の結果</h3>
 <p>
-実際、女性の被害者非難についてシステム正当化を直接検討した研究では、性別によって効果が異なる結果も得られている。 Ståhl 、 Eek 、 Kazemi （2010）の研究では、ジェンダー関連のシステム正当化傾向が女性被害者への非難を予測したのは男性参加者であり、女性参加者では同じ結果が得られなかった <sup><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。これは、システム正当化理論を「女性自身が自分の抑圧を守る」という一方向の説明に使うことへの重要な注意である。
+実際、女性の被害者非難についてシステム正当化を直接検討した研究では、性別によって効果が異なる結果も得られている。 Ståhl 、 Eek 、 Kazemi (2010) の研究では、ジェンダー関連のシステム正当化傾向が女性被害者への非難を予測したのは男性参加者であり、女性参加者では同じ結果が得られなかった <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。これは、システム正当化理論を「女性自身が自分の抑圧を守る」という一方向の説明に使うことへの重要な注意である。
 </p>
 <div class="box">
 <strong>批判的ポイント：</strong>システム正当化理論は「被害を受ける側が、自分の不利益を喜んで支持する」という単純な理論ではない。現実には、システム正当化、集団アイデンティティ、個人的利益、政治的態度などが異なる方向に作用しうる。
@@ -149,14 +147,14 @@ Jost と Banaji （1994）が提唱したシステム正当化理論は、人が
 <h2 id="sec5">5. 両面価値的性差別――「守るべき女性」という理想像</h2>
 <h3>●両面価値的性差別の理論</h3>
 <p>
-Glick と Fiske （1996）の両面価値的性差別理論は、性差別を露骨な敵意だけで捉えない点に大きな特徴がある <sup><a href="#ref-8" id="fnref-8-1">[8]</a></sup> 。敵意的性差別（hostile sexism）は女性を競争相手・脅威として扱う。一方、慈悲的性差別（benevolent sexism）は、女性を純粋で弱く、男性から保護されるべき存在として理想化する。
+Glick と Fiske (1996) の両面価値的性差別理論は、性差別を露骨な敵意だけで捉えない点に大きな特徴がある <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。敵意的性差別 (hostile sexism) は女性を競争相手・脅威として扱う。一方、慈悲的性差別 (benevolent sexism) は、女性を純粋で弱く、男性から保護されるべき存在として理想化する。
 </p>
 <p>
 一見すると後者は女性に好意的である。しかし、「望ましい女性像」を設定すれば、そこから外れる女性を低く評価することにつながりうる。この点は性暴力被害者への評価にも関係する。
 </p>
 <h3>●実証研究</h3>
 <p>
-実証研究では、慈悲的性差別や伝統的ジェンダー役割が、特にデートレイプのような状況で被害者非難と関連することが報告されている <sup><a href="#ref-9" id="fnref-9-1">[9]</a></sup> 。さらに 2023 年のメタ分析では、両面価値的性差別が女性に対する暴力を支持する態度・行動と関連することが、広範な研究を統合した分析から検討されている <sup><a href="#ref-11" id="fnref-11-1">[11]</a></sup> 。
+実証研究では、慈悲的性差別や伝統的ジェンダー役割が、特にデートレイプのような状況で被害者非難と関連することが報告されている <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。さらに 2023 年のメタ分析では、両面価値的性差別が女性に対する暴力を支持する態度・行動と関連することが、広範な研究を統合した分析から検討されている <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。
 </p>
 <p>
 したがって、「女性は守られるべきだ」という態度が、必ずしも被害者に無条件の共感を与えるとは限らない。むしろ、「守るに値する女性とはどのような女性か」という暗黙の基準が存在するとき、被害者の服装、飲酒、性的行動、職業、交友関係などが評価対象になりうる。
@@ -165,10 +163,10 @@ Glick と Fiske （1996）の両面価値的性差別理論は、性差別を露
 <h2 id="sec6">6. レイプ神話――被害者を測る「典型像」</h2>
 <h3>●レイプ神話の測定</h3>
 <p>
-Burt （1980）は、性暴力について社会に流通する誤った通念を「 rape myths 」として測定する研究を大きく発展させた <sup><a href="#ref-12" id="fnref-12-1">[12]</a></sup> 。典型的なレイプ神話には、「本当の被害なら激しく抵抗したはずだ」「知人間では性暴力は起こりにくい」「被害者の行動が原因だった」といった認識が含まれる。
+Burt (1980) は、性暴力について社会に流通する誤った通念を「 rape myths 」として測定する研究を大きく発展させた <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。典型的なレイプ神話には、「本当の被害なら激しく抵抗したはずだ」「知人間では性暴力は起こりにくい」「被害者の行動が原因だった」といった認識が含まれる。
 </p>
 <p>
-ここで重要なのは、レイプ神話が単なる「無知」ではなく、被害者非難と結びつく社会的認知のパターンとして研究されてきたことである。 Suarez と Gadalla （2010）のメタ分析では、レイプ神話受容は男性で平均的に高かった一方、女性にも当然存在していた <sup><a href="#ref-2" id="fnref-2-2">[2]</a></sup> 。
+ここで重要なのは、レイプ神話が単なる「無知」ではなく、被害者非難と結びつく社会的認知のパターンとして研究されてきたことである。 Suarez と Gadalla (2010) のメタ分析では、レイプ神話受容は男性で平均的に高かった一方、女性にも当然存在していた <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。
 </p>
 <h3>●性別よりも重要な問い</h3>
 <p>
@@ -178,23 +176,23 @@ Burt （1980）は、性暴力について社会に流通する誤った通念�
 <h2 id="sec7">7. 事件の文脈は大きい――「見知らぬ加害者」と「知人による被害」</h2>
 <h3>●事件の文脈による差</h3>
 <p>
-被害者非難は、被害者の属性だけでなく、事件の文脈によっても変化する。研究レビューでは、見知らぬ人物によるレイプより、知人・交際相手などによるレイプの場面で被害者への責任帰属が高くなりやすいことが報告されている <sup><a href="#ref-3" id="fnref-3-3">[3]</a></sup> 。
+被害者非難は、被害者の属性だけでなく、事件の文脈によっても変化する。研究レビューでは、見知らぬ人物によるレイプより、知人・交際相手などによるレイプの場面で被害者への責任帰属が高くなりやすいことが報告されている <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup> 。
 </p>
 <p>
 これは、典型的な「暴力的な見知らぬ加害者」というイメージから外れるほど、「なぜ逃げなかったのか」「なぜ会ったのか」「なぜ飲酒したのか」といった因果推論が入り込みやすくなることと関係する。
 </p>
 <h3>●近年の実証研究</h3>
 <p>
-ただし、ここにも単純化は禁物である。近年の研究では、知人間の性暴力場面について、敵意的性差別や被害者の同意があったと認識する程度などが被害者非難を予測した一方、慈悲的性差別は他の変数を統制すると有意な予測因子ではなかった <sup><a href="#ref-13" id="fnref-13-1">[13]</a></sup> 。つまり、「慈悲的性差別があれば必ず被害者を非難する」という単純な図式ではない。
+ただし、ここにも単純化は禁物である。近年の研究では、知人間の性暴力場面について、敵意的性差別や被害者の同意があったと認識する程度などが被害者非難を予測した一方、慈悲的性差別は他の変数を統制すると有意な予測因子ではなかった <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。つまり、「慈悲的性差別があれば必ず被害者を非難する」という単純な図式ではない。
 </p>
 
 <h2 id="sec8">8. 政治的・集団的アイデンティティ――事件が「陣営」の問題になるとき</h2>
 <h3>●動機づけられた推論</h3>
 <p>
-被害者非難が、純粋に性暴力についての判断だけではなく、政治的・社会的対立と結びつく場合もある。 Kunda （1990）が整理した動機づけられた推論（motivated reasoning）は、人が望ましい結論に向かうよう情報処理を行いうることを示す重要な概念である <sup><a href="#ref-14" id="fnref-14-1">[14]</a></sup> 。
+被害者非難が、純粋に性暴力についての判断だけではなく、政治的・社会的対立と結びつく場合もある。 Kunda (1990) が整理した動機づけられた推論 (motivated reasoning) は、人が望ましい結論に向かうよう情報処理を行いうることを示す重要な概念である <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。
 </p>
 <p>
-さらに、文化的・政治的アイデンティティを守る方向に情報を処理する現象については、 Kahan らの研究を含む「 identity-protective cognition 」の議論がある <sup><a href="#ref-15" id="fnref-15-1">[15]</a></sup> 。この観点からは、ある告発が「自分の支持する人物」「自分が属する政治陣営」「自分が信頼する制度」への攻撃として認識された場合、告発内容の吟味よりも集団防衛が優先される可能性を考えることができる。
+さらに、文化的・政治的アイデンティティを守る方向に情報を処理する現象については、 Kahan らの研究を含む「 identity-protective cognition 」の議論がある <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。この観点からは、ある告発が「自分の支持する人物」「自分が属する政治陣営」「自分が信頼する制度」への攻撃として認識された場合、告発内容の吟味よりも集団防衛が優先される可能性を考えることができる。
 </p>
 <h3>●個人への適用の限界</h3>
 <p>
@@ -203,11 +201,11 @@ Burt （1980）は、性暴力について社会に流通する誤った通念�
 
 <h2 id="sec9">9. DARVO はどこまで使えるか</h2>
 <p>
-被害者を嘲笑する行為一般の説明として「 DARVO （Deny, Attack, Reverse Victim and Offender）」を持ち出すことがあるが、これは適用範囲を広げすぎている可能性がある。
+被害者を嘲笑する行為一般の説明として「 DARVO (Deny, Attack, Reverse Victim and Offender) 」を持ち出すことがあるが、これは適用範囲を広げすぎている可能性がある。
 </p>
-<h3>●DARVOの定義</h3>
+<h3>●DARVO の定義</h3>
 <p>
-DARVO は Jennifer Freyd によって提示され、その後の研究では、加害行為を指摘された側が「否認・攻撃・被害者と加害者の立場の逆転」を行うパターンとして検討されてきた。 Harsey 、 Zurbriggen 、 Freyd （2017）は、加害者による被害者への対抗反応として DARVO を検討している <sup><a href="#ref-16" id="fnref-16-1">[16]</a></sup> 。
+DARVO は Jennifer Freyd によって提示され、その後の研究では、加害行為を指摘された側が「否認・攻撃・被害者と加害者の立場の逆転」を行うパターンとして検討されてきた。 Harsey 、 Zurbriggen 、 Freyd (2017) は、加害者による被害者への対抗反応として DARVO を検討している <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。
 </p>
 <h3>●適用範囲の限定</h3>
 <p>
@@ -217,7 +215,7 @@ DARVO は Jennifer Freyd によって提示され、その後の研究では、�
 <h2 id="sec10">10. 日本の具体的事例をどう扱うべきか</h2>
 <h3>●伊藤詩織氏をめぐる事例</h3>
 <p>
-伊藤詩織氏をめぐる一連の SNS 上の言動は、「女性による女性への被害者非難」を考える具体例として取り上げることができる。はすみとしこ氏については、伊藤氏が自身を題材としたと主張するイラスト等をめぐって提訴し、東京地裁・東京高裁で損害賠償を命じる判断が示され、 2023 年には上告が退けられて高裁判決が確定したと報告されている <sup><a href="#ref-17" id="fnref-17-1">[17]</a></sup> 。
+伊藤詩織氏をめぐる一連の SNS 上の言動は、「女性による女性への被害者非難」を考える具体例として取り上げることができる。はすみとしこ氏については、伊藤氏が自身を題材としたと主張するイラスト等をめぐって提訴し、東京地裁・東京高裁で損害賠償を命じる判断が示され、 2023 年には上告が退けられて高裁判決が確定したと報告されている <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 。
 </p>
 <h3>●法的評価と心理学的説明の区別</h3>
 <p>
@@ -272,24 +270,25 @@ DARVO は Jennifer Freyd によって提示され、その後の研究では、�
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Lerner, M. J.(1980). <em>The Belief in a Just World: A Fundamental Delusion</em>. Springer. <a href="#fnref-1-1" class="backref">↩</a></li>
-<li id="ref-2">Suarez, E., &amp; Gadalla, T. M.(2010). Stop blaming the victim: A meta-analysis on rape myths. <em>Journal of Interpersonal Violence, 25</em>(11), 2010–2035. DOI: <a href="https://doi.org/10.1177/0886260509354503">10.1177/0886260509354503</a>. <a href="#fnref-2-1" class="backref">↩a</a> <a href="#fnref-2-2" class="backref">↩b</a></li>
-<li id="ref-3">Russell, K. J., &amp; Hand, C. J.(2017). Rape myth acceptance, victim blame attribution and Just World Beliefs: A rapid evidence assessment. <em>Aggression and Violent Behavior, 37</em>, 153–160. DOI: <a href="https://doi.org/10.1016/j.avb.2017.10.008">10.1016/j.avb.2017.10.008</a>. <a href="#fnref-3-1" class="backref">↩a</a> <a href="#fnref-3-2" class="backref">↩b</a> <a href="#fnref-3-3" class="backref">↩c</a></li>
-<li id="ref-4">Walster, E.(1966). Assignment of responsibility for an accident. <em>Journal of Personality and Social Psychology, 3</em>(1), 73–79. <a href="#fnref-4-1" class="backref">↩</a></li>
-<li id="ref-5">Shaver, K. G.(1970). Defensive attribution: Effects of severity and relevance on the responsibility assigned for an accident. <em>Journal of Personality and Social Psychology, 14</em>(2), 101–113. <a href="#fnref-5-1" class="backref">↩</a></li>
-<li id="ref-6">Jost, J. T., &amp; Banaji, M. R.(1994). The role of stereotyping in system-justification and the production of false consciousness. <em>British Journal of Social Psychology, 33</em>(1), 1–27. <a href="#fnref-6-1" class="backref">↩</a></li>
-<li id="ref-7">Ståhl, T., Eek, D., &amp; Kazemi, A.(2010). Rape victim blaming as system justification: The role of gender and activation of complementary stereotypes. <em>Social Justice Research, 23</em>, 239–258. DOI: <a href="https://doi.org/10.1007/s11211-010-0117-0">10.1007/s11211-010-0117-0</a>. <a href="#fnref-7-1" class="backref">↩</a></li>
-<li id="ref-8">Glick, P., &amp; Fiske, S. T.(1996). The Ambivalent Sexism Inventory: Differentiating hostile and benevolent sexism. <em>Journal of Personality and Social Psychology, 70</em>(3), 491–512. <a href="#fnref-8-1" class="backref">↩</a></li>
-<li id="ref-9">Yamawaki, N.(2007). Rape perception and the function of ambivalent sexism and gender-role traditionality. <em>Journal of Interpersonal Violence, 22</em>(4). <a href="#fnref-9-1" class="backref">↩</a></li>
-<li id="ref-10">Pedersen, S. H., &amp; Strömwall, L. A.(2013). Victim blame, sexism and just-world beliefs: A cross-cultural comparison. <em>Psychiatry, Psychology and Law, 20</em>(6), 932–941.</li>
-<li id="ref-11">Hollander, J. A., et al.(2023/2024). Linking ambivalent sexism to violence-against-women attitudes and behaviors: A three-level meta-analytic review. <em>Sexuality &amp; Culture, 28</em>, 851–882. <a href="#fnref-11-1" class="backref">↩</a></li>
-<li id="ref-12">Burt, M. R.(1980). Cultural myths and supports for rape. <em>Journal of Personality and Social Psychology, 38</em>(2), 217–230. <a href="#fnref-12-1" class="backref">↩</a></li>
-<li id="ref-13">Lindgren, L., &amp; Landström, S.(2026). Blame attributions in acquaintance rape: Effects of ambivalent sexism and sexual consent. <em>SAGE Open</em>. DOI: <a href="https://doi.org/10.1177/21582440261416135">10.1177/21582440261416135</a>. <a href="#fnref-13-1" class="backref">↩</a></li>
-<li id="ref-14">Kunda, Z.(1990). The case for motivated reasoning. <em>Psychological Bulletin, 108</em>(3), 480–498. <a href="#fnref-14-1" class="backref">↩</a></li>
-<li id="ref-15">Kahan, D. M.(2013). Ideology, motivated reasoning, and cognitive reflection. <em>Judgment and Decision Making, 8</em>(4), 407–424. <a href="#fnref-15-1" class="backref">↩</a></li>
-<li id="ref-16">Harsey, S. J., Zurbriggen, E. L., &amp; Freyd, J. J.(2017). Perpetrator responses to victim confrontation: DARVO and victim self-blame. <em>Journal of Aggression, Maltreatment &amp; Trauma, 26</em>(6), 644–663. DOI: <a href="https://doi.org/10.1080/10926771.2017.1320777">10.1080/10926771.2017.1320777</a>. <a href="#fnref-16-1" class="backref">↩</a></li>
-<li id="ref-17">伊藤詩織氏・はすみとしこ氏らをめぐる訴訟については、東京地裁・東京高裁の判断および関連報道を参照した。個々の投稿者の心理的動機については、裁判上の事実認定から直接導出していない。 <a href="#fnref-17-1" class="backref">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Lerner, M. J. (1980) . <em>The Belief in a Just World: A Fundamental Delusion</em>. Springer.</li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Suarez, E., &amp; Gadalla, T. M. (2010) . Stop blaming the victim: A meta-analysis on rape myths. <em>Journal of Interpersonal Violence, 25</em>(11) , 2010–2035. DOI: <a href="https://doi.org/10.1177/0886260509354503">10.1177/0886260509354503</a>.</li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> <sup><a href="#fnref-3-3">c</a></sup> Russell, K. J., &amp; Hand, C. J. (2017) . Rape myth acceptance, victim blame attribution and Just World Beliefs: A rapid evidence assessment. <em>Aggression and Violent Behavior, 37</em>, 153–160. DOI: <a href="https://doi.org/10.1016/j.avb.2017.10.008">10.1016/j.avb.2017.10.008</a>.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Walster, E. (1966) . Assignment of responsibility for an accident. <em>Journal of Personality and Social Psychology, 3</em>(1) , 73–79.</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Shaver, K. G. (1970) . Defensive attribution: Effects of severity and relevance on the responsibility assigned for an accident. <em>Journal of Personality and Social Psychology, 14</em>(2) , 101–113.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Jost, J. T., &amp; Banaji, M. R. (1994) . The role of stereotyping in system-justification and the production of false consciousness. <em>British Journal of Social Psychology, 33</em>(1) , 1–27.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Ståhl, T., Eek, D., &amp; Kazemi, A. (2010) . Rape victim blaming as system justification: The role of gender and activation of complementary stereotypes. <em>Social Justice Research, 23</em>, 239–258. DOI: <a href="https://doi.org/10.1007/s11211-010-0117-0">10.1007/s11211-010-0117-0</a>.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Glick, P., &amp; Fiske, S. T. (1996) . The Ambivalent Sexism Inventory: Differentiating hostile and benevolent sexism. <em>Journal of Personality and Social Psychology, 70</em>(3) , 491–512.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Yamawaki, N. (2007) . Rape perception and the function of ambivalent sexism and gender-role traditionality. <em>Journal of Interpersonal Violence, 22</em>(4) .</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Pedersen, S. H., &amp; Strömwall, L. A. (2013) . Victim blame, sexism and just-world beliefs: A cross-cultural comparison. <em>Psychiatry, Psychology and Law, 20</em>(6) , 932–941.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Hollander, J. A., et al. (2023/2024) . Linking ambivalent sexism to violence-against-women attitudes and behaviors: A three-level meta-analytic review. <em>Sexuality &amp; Culture, 28</em>, 851–882.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Burt, M. R. (1980) . Cultural myths and supports for rape. <em>Journal of Personality and Social Psychology, 38</em>(2) , 217–230.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Lindgren, L., &amp; Landström, S. (2026) . Blame attributions in acquaintance rape: Effects of ambivalent sexism and sexual consent. <em>SAGE Open</em>. DOI: <a href="https://doi.org/10.1177/21582440261416135">10.1177/21582440261416135</a>.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Kunda, Z. (1990) . The case for motivated reasoning. <em>Psychological Bulletin, 108</em>(3) , 480–498.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Kahan, D. M. (2013) . Ideology, motivated reasoning, and cognitive reflection. <em>Judgment and Decision Making, 8</em>(4) , 407–424.</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Harsey, S. J., Zurbriggen, E. L., &amp; Freyd, J. J. (2017) . Perpetrator responses to victim confrontation: DARVO and victim self-blame. <em>Journal of Aggression, Maltreatment &amp; Trauma, 26</em>(6) , 644–663. DOI: <a href="https://doi.org/10.1080/10926771.2017.1320777">10.1080/10926771.2017.1320777</a>.</li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> 伊藤詩織氏・はすみとしこ氏らをめぐる訴訟については、東京地裁・東京高裁の判断および関連報道を参照した。個々の投稿者の心理的動機については、裁判上の事実認定から直接導出していない。</li>
 </ol>
 
 <p class="note">

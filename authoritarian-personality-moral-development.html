@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -41,16 +41,19 @@ table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{font-size:19px; margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -63,10 +66,6 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -77,30 +76,31 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <div class="lede">
 <p>権威主義的パーソナリティ研究と道徳発達段階論という、出自の異なる二つの心理学の系譜を検討する。両者はいずれも、「集団への同一化の強さ」や「敵味方の二分法」を、状況が変われば消える一時的な反応としてではなく、個人差・発達段階として捉え直そうとした点で共通する。査読を経た測定尺度・段階論としての到達点と、それぞれが受けてきた方法論的批判とを、公平に並べて検討する。</p>
 </div>
+<div class="meta">【方法と限界】権威主義的パーソナリティ研究 (F 尺度・ RWA) が示すのは、内集団への従順さと外集団への非寛容さが結びつく相関関係であり、単純な因果関係を意味しない。道徳発達段階論についても、その普遍性の主張は文化的な偏り（スネアリーの批判）とケアの倫理の軽視（ギリガンの批判）によって限定されている。本稿はいずれの理論も、特定個人・政治的立場・文化を断定的に評価するために用いるものではない。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 序論――同一化の強さを「個人差」として捉え直す</a></li>
-<li><a href="#sec2">2. 権威主義的パーソナリティ――アドルノらの F 尺度（1950）</a></li>
-<li><a href="#sec3">3. 右翼権威主義（RWA）――アルテマイヤーによる再定式化（1981）</a></li>
-<li><a href="#sec4">4. 道徳発達段階論の枠組み――コールバーグの三水準六段階</a></li>
-<li><a href="#sec5">5. 慣習的水準――「仲間か否か」を道徳判断の基準にする段階</a></li>
-<li><a href="#sec6">6. 理論への疑義――文化的普遍性とギリガンの批判</a></li>
-<li><a href="#sec7">7. 二つの系譜の交点――内集団バイアス研究との接続</a></li>
-<li><a href="#sec8">8. 結論――測定可能な構えと、その限界</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">序論――同一化の強さを「個人差」として捉え直す</a></li>
+<li><a href="#sec2">権威主義的パーソナリティ――アドルノらの F 尺度 (1950)</a></li>
+<li><a href="#sec3">右翼権威主義 (RWA) ――アルテマイヤーによる再定式化 (1981)</a></li>
+<li><a href="#sec4">道徳発達段階論の枠組み――コールバーグの三水準六段階</a></li>
+<li><a href="#sec5">慣習的水準――「仲間か否か」を道徳判断の基準にする段階</a></li>
+<li><a href="#sec6">理論への疑義――文化的普遍性とギリガンの批判</a></li>
+<li><a href="#sec7">二つの系譜の交点――内集団バイアス研究との接続</a></li>
+<li><a href="#sec8">結論――測定可能な構えと、その限界</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 序論――同一化の強さを「個人差」として捉え直す</h2>
-<p>意味のない基準で二つのグループに分けられただけでも、人は自分の属するグループを優遇する。この知見は、心理学者ヘンリー・タジフェルらが 1971 年に行った最小条件集団パラダイムによって確立された <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。この実験が示したのは、集団への同一化と内集団びいきが、特殊な個人にのみ生じる例外的な傾向ではなく、誰にでも生じうる状況依存的な作動だということである。この論点は<a href="group-identity-bias.html">集団同一性と内集団バイアス</a>で検討した。</p>
+<p>意味のない基準で二つのグループに分けられただけでも、人は自分の属するグループを優遇する。この知見は、心理学者ヘンリー・タジフェルらが 1971 年に行った最小条件集団パラダイムによって確立された <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。この実験が示したのは、集団への同一化と内集団びいきが、特殊な個人にのみ生じる例外的な傾向ではなく、誰にでも生じうる状況依存的な作動だということである。この論点は<a href="group-identity-bias.html">集団同一性と内集団バイアス</a>で検討した。</p>
 <h3>●個人差として捉える問い</h3>
 <p>しかし、心理学にはこれとは別の問いを立てた系譜がある。集団への同一化の強さや、内集団の規範への従順さ・外集団への非寛容さの度合いには、状況が同じでも個人によって明確な差がある。この個人差は、たまたま測定時にばらついた誤差ではなく、比較的安定した性格傾向、あるいは加齢とともに移行していく発達の段階として捉えられるのではないか。この問いを掲げて、それぞれ独立に、かつ査読を経た測定尺度・段階論として結実した二つの研究系譜が、本稿で扱う<strong>権威主義的パーソナリティ研究</strong>と<strong>道徳発達段階論</strong>である。</p>
 <p>権威主義的パーソナリティ研究は、第二次世界大戦後、「なぜ一般市民がファシズムや偏見を受け入れたのか」という問いから出発し、内集団の権威への服従と外集団への非寛容とを併せ持つパーソナリティ傾向を測定しようとした。道徳発達段階論は、道徳的判断そのものが加齢とともに発達すると想定し、その中間段階として「集団の規範に従っているか否か」を善悪の基準にする水準を位置づけた。出自も方法論もまったく異なるこの二つの系譜が、なぜ同じ主題――集団への構えの個人差・発達差――に行き着いたのかを、本稿は順を追って検討する。</p>
 <h3>●本稿の構成</h3>
-<p>まず権威主義的パーソナリティ研究の起源である F 尺度と、その方法論的批判を確認し（第 2 章）、その後継である右翼権威主義（RWA）を検討する（第 3 章）。次に、道徳発達段階論の全体像を確認したうえで（第 4 章）、集団規範を基準にする「慣習的水準」に焦点を当てる（第 5 章）。この理論に向けられた批判も公平に扱い（第 6 章）、最後に、両系譜の共通点と、内集団バイアス研究との接続を検討して（第 7 章）、結論する（第 8 章）。</p>
+<p>まず権威主義的パーソナリティ研究の起源である F 尺度と、その方法論的批判を確認し（第 2 章）、その後継である右翼権威主義 (RWA) を検討する（第 3 章）。次に、道徳発達段階論の全体像を確認したうえで（第 4 章）、集団規範を基準にする「慣習的水準」に焦点を当てる（第 5 章）。この理論に向けられた批判も公平に扱い（第 6 章）、最後に、両系譜の共通点と、内集団バイアス研究との接続を検討して（第 7 章）、結論する（第 8 章）。</p>
 
-<h2 id="sec2">2. 権威主義的パーソナリティ――アドルノらの F 尺度（1950）</h2>
-<p>1950 年、哲学者・社会学者テオドール・アドルノを中心とする研究チームは、『権威主義的パーソナリティ』と題する大部の研究書を発表した <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。この研究の出発点にあったのは、第二次世界大戦とホロコーストという歴史的経験を踏まえた、きわめて切実な問いだった。特別に悪辣な少数の指導者だけでなく、なぜ多数の一般市民までもがファシズムの主張を受け入れ、偏見を内面化したのか。アドルノらはフランクフルト学派の批判理論と精神分析の枠組みを組み合わせ、この受容しやすさを、社会構造の問題としてだけでなく、個人のパーソナリティ構造の問題として説明しようとした。</p>
+<h2 id="sec2">2. 権威主義的パーソナリティ――アドルノらの F 尺度 (1950)</h2>
+<p>1950 年、哲学者・社会学者テオドール・アドルノを中心とする研究チームは、『権威主義的パーソナリティ』と題する大部の研究書を発表した <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。この研究の出発点にあったのは、第二次世界大戦とホロコーストという歴史的経験を踏まえた、きわめて切実な問いだった。特別に悪辣な少数の指導者だけでなく、なぜ多数の一般市民までもがファシズムの主張を受け入れ、偏見を内面化したのか。アドルノらはフランクフルト学派の批判理論と精神分析の枠組みを組み合わせ、この受容しやすさを、社会構造の問題としてだけでなく、個人のパーソナリティ構造の問題として説明しようとした。</p>
 <h3>●F 尺度の内容</h3>
 <p>この理論的関心を測定可能な形にしたのが、 <strong>F 尺度（潜在的ファシズム尺度）</strong>である。アドルノらは、権威主義的パーソナリティが単一の特性ではなく、相互に関連しあう複数の傾向の束であると考え、質問紙調査によってこれを測定しようとした。</p>
 <div class="box">
@@ -108,13 +108,13 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 慣習的な価値観への硬直的な固執、内集団の権威への無批判な服従、規範から逸脱した者への攻撃性、内省や想像力を軽視する態度、自分自身の弱さや衝動を認めず他者に投影する傾向、力や強さそのものへの誇張された関心。アドルノらの精神分析的な説明では、これらは幼少期の厳格すぎる家庭のしつけによって生じた抑圧された敵意が、権威者本人にではなく、より弱い立場にある外集団へと置き換えられた結果だと解釈された。
 </div>
 <h3>●方法論的批判</h3>
-<p>F 尺度が示した知見――権威への服従と外集団への非寛容が、統計的に一貫して結びついて現れる――は、それ自体としては大きな反響を呼んだ。しかし、この研究は発表直後から、方法論的に強い批判を受けることになる。社会心理学者ロザリンド・クリスティとマリー・ジャホダが 1954 年に編集した批判的検討書は、この批判を体系的にまとめている <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。</p>
+<p>F 尺度が示した知見――権威への服従と外集団への非寛容が、統計的に一貫して結びついて現れる――は、それ自体としては大きな反響を呼んだ。しかし、この研究は発表直後から、方法論的に強い批判を受けることになる。社会心理学者ロザリンド・クリスティとマリー・ジャホダが 1954 年に編集した批判的検討書は、この批判を体系的にまとめている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
 <p>批判の要点は、大きく三つに整理できる。第一に<strong>黙従バイアス</strong>の問題である。 F 尺度の項目はすべて、賛成するほど権威主義的傾向が高いと採点される向きで統一されており、内容とは無関係に「質問文に同意しやすい」という回答スタイルそのものが、高得点として誤って測定されてしまう可能性があった。第二に<strong>循環論法</strong>の批判である。尺度を作る際の項目選定が、アドルノらの理論的な想定を反映して行われており、理論が尺度を作り、その尺度の結果が理論を裏づけるという、閉じた円環に陥っているという指摘だった。第三に<strong>政治的立場の偏り</strong>である。 F 尺度は権威主義を事実上、政治的右派に固有の現象として扱っており、左派にも同様の権威主義的な硬直性がありうるという可能性を、理論の設計段階で排除していた。</p>
 <p>これらの批判は、権威主義的パーソナリティという着眼点そのものを無効化するものではなかった。むしろ、測定の技術的な欠陥を克服すれば、この着眼点は救い出せるはずだという方向で、後継の研究が続くことになる。</p>
 
-<h2 id="sec3">3. 右翼権威主義（RWA）――アルテマイヤーによる再定式化（1981）</h2>
-<p>心理学者ボブ・アルテマイヤーは 1981 年、 F 尺度が抱えていた方法論的な欠陥を踏まえたうえで、権威主義的パーソナリティという着眼点を測定可能な形に再構築した <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。アルテマイヤーのアプローチが F 尺度と決定的に異なる点は、理論を先に立ててから項目を作るのではなく、多数の候補項目を実際に調査したうえで、統計的に互いに強く相関して一つのまとまりを作る特性群を、事後的に見出したことにある。</p>
-<p>この手続きから浮かび上がったのが<strong>右翼権威主義（right-wing authoritarianism, RWA）</strong>という構成概念であり、次の三つの要素から成る。</p>
+<h2 id="sec3">3. 右翼権威主義 (RWA) ――アルテマイヤーによる再定式化 (1981)</h2>
+<p>心理学者ボブ・アルテマイヤーは 1981 年、 F 尺度が抱えていた方法論的な欠陥を踏まえたうえで、権威主義的パーソナリティという着眼点を測定可能な形に再構築した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。アルテマイヤーのアプローチが F 尺度と決定的に異なる点は、理論を先に立ててから項目を作るのではなく、多数の候補項目を実際に調査したうえで、統計的に互いに強く相関して一つのまとまりを作る特性群を、事後的に見出したことにある。</p>
+<p>この手続きから浮かび上がったのが<strong>右翼権威主義 (right-wing authoritarianism, RWA)</strong>という構成概念であり、次の三つの要素から成る。</p>
 <table>
 <thead><tr><th>要素</th><th>内容</th></tr></thead>
 <tbody>
@@ -126,15 +126,15 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <h3>●測定の改良点</h3>
 <p>この定式化には、 F 尺度への批判を踏まえた改良が随所に埋め込まれている。項目は黙従バイアスの影響を抑えるよう配慮して構成され、精神分析的な仮説に依拠せず、実証的に観察される相関関係そのものを構成概念の土台にした。「右翼」という語は、特定の政党支持を意味するのではなく、既存の（正統だと認識された）権威・慣習の側に立つという意味で用いられており、この点は F 尺度が抱えていた政治的立場の偏りという批判への、部分的な応答になっている。</p>
 <h3>●政治心理学における応用</h3>
-<p>RWA は、その後の政治心理学において、繰り返し使われる測定尺度として定着した。政治学者スタンリー・フェルドマンは、権威主義を「社会的な同調を強制しようとする構え」として理論的に位置づけ直し、これが特定の政策争点（治安・移民・伝統的な家族規範など）への態度を予測することを示している <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。また、心理学者ジョン・ダケットは、 RWA を、集団間の地位の優劣そのものへの選好を測る<strong>社会的支配志向性（social dominance orientation）</strong>という、別系統の構成概念と組み合わせた二重過程モデルを提示し、権威への服従という動機と、集団間の優劣そのものを求める動機とが、異なる経路から偏見を予測することを示した <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。</p>
+<p>RWA は、その後の政治心理学において、繰り返し使われる測定尺度として定着した。政治学者スタンリー・フェルドマンは、権威主義を「社会的な同調を強制しようとする構え」として理論的に位置づけ直し、これが特定の政策争点（治安・移民・伝統的な家族規範など）への態度を予測することを示している <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。また、心理学者ジョン・ダケットは、 RWA を、集団間の地位の優劣そのものへの選好を測る<strong>社会的支配志向性 (social dominance orientation)</strong>という、別系統の構成概念と組み合わせた二重過程モデルを提示し、権威への服従という動機と、集団間の優劣そのものを求める動機とが、異なる経路から偏見を予測することを示した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
 <div class="pull">内集団への同調圧力と、外集団への攻撃性は、別々の傾向ではなく、一つの個人差として結びつきやすい。</div>
 <h3>●相関と因果の限界</h3>
 <p>RWA が示すのは、内集団の慣習・権威への従順さと、外集団への非寛容さとが、たまたま同時に起きる別々の現象なのではなく、一つの安定した個人差として統計的に結びついているという知見である。ただし、これはあくまで<strong>相関</strong>の知見である。 RWA の高さが特定の政治的行動を<strong>引き起こす</strong>のか、それとも特定の社会的立場や不安の経験が RWA の高さと特定の政治的行動の双方を生み出す共通の背景要因なのかについては、単純な自己申告式の質問紙調査だけから因果関係を断定することはできない。</p>
 
 <h2 id="sec4">4. 道徳発達段階論の枠組み――コールバーグの三水準六段階</h2>
-<p>ここまで検討した権威主義的パーソナリティ研究とは出自も方法論もまったく異なる系譜として、心理学者ローレンス・コールバーグが 1958 年の博士論文で提示した<strong>道徳発達段階論</strong>がある <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。コールバーグは、ジャン・ピアジェの認知発達理論を道徳判断の領域に拡張し、人が「なぜそれが正しい（あるいは間違っている）と考えるのか」という判断の<strong>理由づけの構造</strong>が、加齢とともに一定の順序で発達すると考えた。重要なのは、この理論が対象にしているのが「何を正しいと判断するか」という結論そのものではなく、その結論を導く<strong>推論の形式</strong>だという点である。</p>
+<p>ここまで検討した権威主義的パーソナリティ研究とは出自も方法論もまったく異なる系譜として、心理学者ローレンス・コールバーグが 1958 年の博士論文で提示した<strong>道徳発達段階論</strong>がある <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。コールバーグは、ジャン・ピアジェの認知発達理論を道徳判断の領域に拡張し、人が「なぜそれが正しい（あるいは間違っている）と考えるのか」という判断の<strong>理由づけの構造</strong>が、加齢とともに一定の順序で発達すると考えた。重要なのは、この理論が対象にしているのが「何を正しいと判断するか」という結論そのものではなく、その結論を導く<strong>推論の形式</strong>だという点である。</p>
 <h3>●実証的な検証方法</h3>
-<p>コールバーグは、架空の道徳的ジレンマ（重病の妻の薬を買う金がない男性が、薬局から薬を盗むべきか、という「ハインツのジレンマ」がよく知られる）への回答とその理由づけを、幅広い年齢層の被験者から聴き取る面接調査を通じて、この発達段階を実証的に裏づけようとした。この方法論は、その後 1969 年の理論的整理 <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> を経て、心理学者アン・コルビーらによる 20 年にわたる縦断的追跡調査 <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> によって、同一の被験者群を継続的に調べても段階が想定どおりの順序で進むことが確認され、理論としての実証的な基盤を固めていった。</p>
+<p>コールバーグは、架空の道徳的ジレンマ（重病の妻の薬を買う金がない男性が、薬局から薬を盗むべきか、という「ハインツのジレンマ」がよく知られる）への回答とその理由づけを、幅広い年齢層の被験者から聴き取る面接調査を通じて、この発達段階を実証的に裏づけようとした。この方法論は、その後 1969 年の理論的整理 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> を経て、心理学者アン・コルビーらによる 20 年にわたる縦断的追跡調査 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> によって、同一の被験者群を継続的に調べても段階が想定どおりの順序で進むことが確認され、理論としての実証的な基盤を固めていった。</p>
 <h3>●三水準六段階の構造</h3>
 <p>コールバーグの理論は、道徳判断の発達を三つの水準・六つの段階に整理する。</p>
 <table>
@@ -152,8 +152,8 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <h2 id="sec5">5. 慣習的水準――「仲間か否か」を道徳判断の基準にする段階</h2>
 <p>コールバーグの段階論のうち、<strong>慣習的水準</strong>――多くの青年期以降の人間が到達するとされる、第 3 段階・第 4 段階――は、本稿の主題にとって特に重要な意味を持つ。この水準では、ある行為が正しいかどうかの判断基準が、自分が所属する集団・社会の期待や規範そのものに置かれる。</p>
-<h3>●第 3・4 段階の内容</h3>
-<p>第 3 段階は、しばしば「よい子（good boy/nice girl）」志向と呼ばれる。この段階にある人にとって、道徳的に正しい行為とは、周囲の期待に応え、身近な人間関係の中で「よい人」だと認められる行為である。第 4 段階は「法と秩序」志向と呼ばれ、判断の基準が身近な対人関係を超えて、社会全体の法・制度・秩序の維持へと広がる。いずれの段階にも共通するのは、<strong>判断の基準が、自分が属する集団や社会の内部で共有された規範そのものに置かれている</strong>という点である。言い換えれば、慣習的水準にある人にとって、ある行為の正しさは、それが「仲間の期待に沿っているか」「既存の秩序を維持するか」によって決まる。</p>
+<h3>●第 3 ・ 4 段階の内容</h3>
+<p>第 3 段階は、しばしば「よい子 (good boy/nice girl) 」志向と呼ばれる。この段階にある人にとって、道徳的に正しい行為とは、周囲の期待に応え、身近な人間関係の中で「よい人」だと認められる行為である。第 4 段階は「法と秩序」志向と呼ばれ、判断の基準が身近な対人関係を超えて、社会全体の法・制度・秩序の維持へと広がる。いずれの段階にも共通するのは、<strong>判断の基準が、自分が属する集団や社会の内部で共有された規範そのものに置かれている</strong>という点である。言い換えれば、慣習的水準にある人にとって、ある行為の正しさは、それが「仲間の期待に沿っているか」「既存の秩序を維持するか」によって決まる。</p>
 <h3>●後慣習的水準との対比</h3>
 <p>これに対して<strong>後慣習的水準</strong>（第 5 段階・第 6 段階）は、判断の基準を、特定の集団や社会が現に共有している規範そのものから切り離す。第 5 段階では、社会契約として合意されうる、より一般的な権利や手続きの正当性が基準になる。そして第 6 段階では、特定の社会の慣習や法がどうであれ、それを超えたところにある普遍的な倫理原則――正義や基本的人権など――が、判断の最終的な拠り所になる。コールバーグの理論において、後慣習的水準にある人物の道徳的判断は、自分が属する集団の規範と対立してでも、より普遍的な原則を優先しうるという点で、慣習的水準とは質的に異なる。</p>
 <div class="box">
@@ -163,21 +163,21 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <h2 id="sec6">6. 理論への疑義――文化的普遍性とギリガンの批判</h2>
 <p>コールバーグの段階論は、その体系性と実証的な裏づけの厚みにもかかわらず、単純な普遍的発達モデルとしては、現在では無条件に受け入れられていない。批判は大きく二つの方向から寄せられてきた。</p>
 <h3>●文化的普遍性への疑義</h3>
-<p>第一の批判は、<strong>文化的普遍性</strong>への疑義である。心理学者ジョン・スネアリーは 1985 年、世界各国で行われたコールバーグ理論の追試研究を広く比較検討したレビュー論文の中で、前慣習的水準・慣習的水準への到達はおおむね文化を超えて共通して観察される一方、第 5 段階以降の後慣習的水準への到達は、非西洋圏の共同体主義的な文化においてはきわめて稀にしか観察されないことを報告した <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。この知見は、後慣習的水準を「より発達した、より普遍的な」段階として位置づけるコールバーグの前提そのものに、文化的な偏り――具体的には、個人の権利を重視する西洋近代的な価値観を、発達の到達点として暗黙に特権化しているのではないかという疑い――を投げかけるものだった。</p>
+<p>第一の批判は、<strong>文化的普遍性</strong>への疑義である。心理学者ジョン・スネアリーは 1985 年、世界各国で行われたコールバーグ理論の追試研究を広く比較検討したレビュー論文の中で、前慣習的水準・慣習的水準への到達はおおむね文化を超えて共通して観察される一方、第 5 段階以降の後慣習的水準への到達は、非西洋圏の共同体主義的な文化においてはきわめて稀にしか観察されないことを報告した <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この知見は、後慣習的水準を「より発達した、より普遍的な」段階として位置づけるコールバーグの前提そのものに、文化的な偏り――具体的には、個人の権利を重視する西洋近代的な価値観を、発達の到達点として暗黙に特権化しているのではないかという疑い――を投げかけるものだった。</p>
 <h3>●ギリガンによる批判</h3>
-<p>第二の批判は、心理学者キャロル・ギリガンが 1982 年の著書で提示した、より根本的な理論的異議である <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。ギリガンは、コールバーグの理論全体が、権利・公正・普遍的原則を重視する<strong>正義の倫理（ethic of justice）</strong>を、暗黙のうちに道徳性そのものの基準として採用していると指摘した。ギリガンによれば、これとは異なる、具体的な人間関係における配慮・責任・つながりを重視する<strong>ケアの倫理（ethic of care）</strong>という、もう一つの道徳的な声が存在する。コールバーグの面接調査法・採点基準は、正義の倫理に基づく推論をより高い段階として評価する構造になっており、ケアの倫理に基づく推論を、実際よりも未発達な段階として過小評価してしまう可能性がある、というのがギリガンの批判の核心である。</p>
+<p>第二の批判は、心理学者キャロル・ギリガンが 1982 年の著書で提示した、より根本的な理論的異議である <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。ギリガンは、コールバーグの理論全体が、権利・公正・普遍的原則を重視する<strong>正義の倫理 (ethic of justice)</strong>を、暗黙のうちに道徳性そのものの基準として採用していると指摘した。ギリガンによれば、これとは異なる、具体的な人間関係における配慮・責任・つながりを重視する<strong>ケアの倫理 (ethic of care)</strong>という、もう一つの道徳的な声が存在する。コールバーグの面接調査法・採点基準は、正義の倫理に基づく推論をより高い段階として評価する構造になっており、ケアの倫理に基づく推論を、実際よりも未発達な段階として過小評価してしまう可能性がある、というのがギリガンの批判の核心である。</p>
 <p>これら二つの批判を踏まえると、コールバーグの段階論は、道徳的判断に加齢に伴う発達的な構造があるという主張自体は今日も広く参照される一方、その段階の内容・順序・普遍性を、特定の文化的・倫理学的立場から中立な、唯一の発達経路として提示することはできない、という限定つきの理論として理解するのが妥当である。</p>
 
 <h2 id="sec7">7. 二つの系譜の交点――内集団バイアス研究との接続</h2>
 <p>ここまで検討してきた権威主義的パーソナリティ研究（第 2 章・第 3 章）と道徳発達段階論（第 4 章〜第 6 章）は、出発点も方法論もまったく異なる。前者は第二次世界大戦後の政治的危機感から出発し、精神分析理論を経て、統計的に洗練された性格特性の測定尺度へと至った。後者はピアジェの認知発達理論を出発点とし、面接調査に基づく段階論として体系化された。それでも両者には、明確な共通点がある。</p>
 <h3>●個人差としての把握</h3>
-<p>第一に、両者とも、集団への同一化の強さや、内集団規範への従順さ・外集団への非寛容さの度合いを、<strong>単なる状況要因ではなく、個人差・発達段階として捉え直そうとした</strong>点である。最小条件集団パラダイムが示したのは、意味のない基準による分類だけでも内集団びいきが生じるという、状況に依存する基底的な傾向だった <sup class="fnref"><a id="fnref-10-2" href="#ref-10">[10]</a></sup> 。これに対し RWA は、同じ状況に置かれても、内集団への同調圧力と外集団への攻撃性がとりわけ強く結びつきやすい個人が存在することを示す。コールバーグの慣習的水準は、集団の規範を道徳判断の基準にする構えが、発達の一段階として位置づけられることを示す。三者は矛盾する知見ではなく、<strong>状況に共通する基底的な傾向の上に、個人差・発達差が重なる</strong>という、重層的な関係として理解できる。</p>
+<p>第一に、両者とも、集団への同一化の強さや、内集団規範への従順さ・外集団への非寛容さの度合いを、<strong>単なる状況要因ではなく、個人差・発達段階として捉え直そうとした</strong>点である。最小条件集団パラダイムが示したのは、意味のない基準による分類だけでも内集団びいきが生じるという、状況に依存する基底的な傾向だった <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> 。これに対し RWA は、同じ状況に置かれても、内集団への同調圧力と外集団への攻撃性がとりわけ強く結びつきやすい個人が存在することを示す。コールバーグの慣習的水準は、集団の規範を道徳判断の基準にする構えが、発達の一段階として位置づけられることを示す。三者は矛盾する知見ではなく、<strong>状況に共通する基底的な傾向の上に、個人差・発達差が重なる</strong>という、重層的な関係として理解できる。</p>
 <h3>●方法論的批判の経験</h3>
-<p>第二の共通点は、いずれも査読を経た測定尺度・段階論として構築されており、かつ、その構築過程そのものが方法論的な批判にさらされ、批判を踏まえた再定式化（F 尺度から RWA へ）や、理論的な限定（コールバーグ理論に対するスネアリー・ギリガンの批判）を経てきたという点である。この点は、両理論を無批判に受け入れることも、批判があったことのみをもって理論全体を退けることも、いずれも適切でないことを示している。</p>
+<p>第二の共通点は、いずれも査読を経た測定尺度・段階論として構築されており、かつ、その構築過程そのものが方法論的な批判にさらされ、批判を踏まえた再定式化 (F 尺度から RWA へ）や、理論的な限定（コールバーグ理論に対するスネアリー・ギリガンの批判）を経てきたという点である。この点は、両理論を無批判に受け入れることも、批判があったことのみをもって理論全体を退けることも、いずれも適切でないことを示している。</p>
 <h3>●理論的な接続の試み</h3>
 <p>両者の接続をさらに一歩進めるならば、コールバーグの後慣習的水準――集団の内外を問わない普遍的原則で判断する段階――は、 RWA が測定する傾向（慣習への固執・規範逸脱者への攻撃性）の対極に位置づけられる、という見立ても成り立つ。ただし、この対応関係は、両理論を直接比較した実証研究によって確立されたものではなく、本稿による理論的な類推にとどまることを明記しておく。</p>
 <div class="box">
-<strong>道徳心理学の二重過程理論との違いについて：</strong>本稿で扱った道徳発達段階論を、道徳心理学におけるもう一つの主要な立場――心理学者ジョナサン・ハイトが提示した社会的直観主義モデル、すなわち道徳的判断はまず直観が先に生じ、理由づけは事後的に構成されるという立場 <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup>――と混同しないよう注意が要る。コールバーグの理論は、道徳判断が年齢とともに、より意識的で原則に基づいた推論へと発達していくという、認知発達論的な立場に立つ。この二つの立場がどう整合するのか、あるいはしないのかという検討は、<a href="group-identity-bias.html#sec8">集団同一性と内集団バイアス</a>第 8 章が独立稿の課題として残した「道徳的判断の二重過程理論」そのものの主題であり、本稿の範囲を超える。
+<strong>道徳心理学の二重過程理論との違いについて：</strong>本稿で扱った道徳発達段階論を、道徳心理学におけるもう一つの主要な立場――心理学者ジョナサン・ハイトが提示した社会的直観主義モデル、すなわち道徳的判断はまず直観が先に生じ、理由づけは事後的に構成されるという立場 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup>――と混同しないよう注意が要る。コールバーグの理論は、道徳判断が年齢とともに、より意識的で原則に基づいた推論へと発達していくという、認知発達論的な立場に立つ。この二つの立場がどう整合するのか、あるいはしないのかという検討は、<a href="group-identity-bias.html#sec8">集団同一性と内集団バイアス</a>第 8 章が独立稿の課題として残した「道徳的判断の二重過程理論」そのものの主題であり、本稿の範囲を超える。
 </div>
 
 <h2 id="sec8">8. 結論――測定可能な構えと、その限界</h2>
@@ -187,20 +187,20 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Adorno, T. W., Frenkel-Brunswik, E., Levinson, D. J., &amp; Sanford, R. N.(1950). <em>The Authoritarian Personality</em>. Harper &amp; Brothers. <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">Christie, R., &amp; Jahoda, M.(Eds.).(1954). <em>Studies in the Scope and Method of "The Authoritarian Personality"</em>. Free Press. <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">Altemeyer, B.(1981). <em>Right-Wing Authoritarianism</em>. University of Manitoba Press. <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">Duckitt, J.(2001). A dual-process cognitive-motivational theory of ideology and prejudice. <em>Advances in Experimental Social Psychology</em>, 33, 41–113. <a href="https://doi.org/10.1016/S0065-2601(01)80004-6">DOI</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">Kohlberg, L.(1958). <em>The Development of Modes of Moral Thinking and Choice in the Years 10 to 16</em>(Doctoral dissertation). University of Chicago. <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">Kohlberg, L.(1969). Stage and sequence: The cognitive-developmental approach to socialization. In D. A. Goslin (Ed.), <em>Handbook of Socialization Theory and Research</em>(pp. 347–480). Rand McNally. <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">Colby, A., Kohlberg, L., Gibbs, J., &amp; Lieberman, M.(1983). A longitudinal study of moral judgment. <em>Monographs of the Society for Research in Child Development</em>, 48 (1–2, Serial No. 200). <a href="https://doi.org/10.2307/1165935">DOI</a> <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">Gilligan, C.(1982). <em>In a Different Voice: Psychological Theory and Women's Development</em>. Harvard University Press. <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">Snarey, J. R.(1985). Cross-cultural universality of social-moral development: A critical review of Kohlbergian research. <em>Psychological Bulletin</em>, 97 (2), 202–232. <a href="https://doi.org/10.1037/0033-2909.97.2.202">DOI</a> <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10">Tajfel, H., Billig, M. G., Bundy, R. P., &amp; Flament, C.(1971). Social categorization and intergroup behaviour. <em>European Journal of Social Psychology</em>, 1 (2), 149–178. <a href="https://doi.org/10.1002/ejsp.2420010202">DOI</a> <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11">Haidt, J.(2001). The emotional dog and its rational tail: A social intuitionist approach to moral judgment. <em>Psychological Review</em>, 108 (4), 814–834. <a href="https://doi.org/10.1037/0033-295X.108.4.814">DOI</a> <a class="fnback" href="#fnref-11-1">↩</a></li>
-<li id="ref-12">Feldman, S.(2003). Enforcing social conformity: A theory of authoritarianism. <em>Political Psychology</em>, 24 (1), 41–74. <a href="https://doi.org/10.1111/0162-895X.00316">DOI</a> <a class="fnback" href="#fnref-12-1">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Adorno, T. W., Frenkel-Brunswik, E., Levinson, D. J., &amp; Sanford, R. N. (1950) . <em>The Authoritarian Personality</em>. Harper &amp; Brothers.</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Christie, R., &amp; Jahoda, M. (Eds.) . (1954) . <em>Studies in the Scope and Method of "The Authoritarian Personality"</em>. Free Press.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Altemeyer, B. (1981) . <em>Right-Wing Authoritarianism</em>. University of Manitoba Press.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Duckitt, J. (2001) . A dual-process cognitive-motivational theory of ideology and prejudice. <em>Advances in Experimental Social Psychology</em>, 33, 41–113. <a href="https://doi.org/10.1016/S0065-2601(01)80004-6">DOI</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Kohlberg, L. (1958) . <em>The Development of Modes of Moral Thinking and Choice in the Years 10 to 16</em>(Doctoral dissertation) . University of Chicago.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Kohlberg, L. (1969) . Stage and sequence: The cognitive-developmental approach to socialization. In D. A. Goslin (Ed.) , <em>Handbook of Socialization Theory and Research</em>(pp. 347–480) . Rand McNally.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Colby, A., Kohlberg, L., Gibbs, J., &amp; Lieberman, M. (1983) . A longitudinal study of moral judgment. <em>Monographs of the Society for Research in Child Development</em>, 48 (1–2, Serial No. 200) . <a href="https://doi.org/10.2307/1165935">DOI</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Gilligan, C. (1982) . <em>In a Different Voice: Psychological Theory and Women's Development</em>. Harvard University Press.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Snarey, J. R. (1985) . Cross-cultural universality of social-moral development: A critical review of Kohlbergian research. <em>Psychological Bulletin</em>, 97 (2) , 202–232. <a href="https://doi.org/10.1037/0033-2909.97.2.202">DOI</a></li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> Tajfel, H., Billig, M. G., Bundy, R. P., &amp; Flament, C. (1971) . Social categorization and intergroup behaviour. <em>European Journal of Social Psychology</em>, 1 (2) , 149–178. <a href="https://doi.org/10.1002/ejsp.2420010202">DOI</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Haidt, J. (2001) . The emotional dog and its rational tail: A social intuitionist approach to moral judgment. <em>Psychological Review</em>, 108 (4) , 814–834. <a href="https://doi.org/10.1037/0033-295X.108.4.814">DOI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Feldman, S. (2003) . Enforcing social conformity: A theory of authoritarianism. <em>Political Psychology</em>, 24 (1) , 41–74. <a href="https://doi.org/10.1111/0162-895X.00316">DOI</a></li>
 </ol>
 </div>
 

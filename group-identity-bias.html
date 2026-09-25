@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -41,16 +41,19 @@ table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{font-size:19px; margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -63,10 +66,6 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -77,31 +76,32 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <div class="lede">
 <p>社会的アイデンティティ理論と最小条件集団パラダイムを軸に、人が「自分たちの集団」というだけで評価や資源配分を変えてしまう内集団びいきの構造、その動機づけをめぐる仮説の対立、そして敵意へとエスカレートする条件までを検討する。</p>
 </div>
+<div class="meta">【方法と限界】最小条件集団パラダイムが示す「内集団びいきという現象」そのものは、繰り返し再現されてきた頑健な実証知見である。しかし、なぜそれが生じるのかという動機づけの説明（自己高揚仮説・不確実性低減仮説）は現在も並立する仮説であり、本稿はいずれか一方を確立した結論として提示しない。第 7 章で触れる SNS 上の党派性への理論の適用は、確立した実証研究ではなく本稿による理論的な類推であることを明記した箇所に限って述べたものである。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 序論――なぜ「集団」というだけで態度が変わるのか</a></li>
-<li><a href="#sec2">2. 社会的アイデンティティ理論の基礎――個人的アイデンティティと社会的アイデンティティ</a></li>
-<li><a href="#sec3">3. 最小条件集団パラダイム――意味のない基準でも内集団びいきは生じる</a></li>
-<li><a href="#sec4">4. なぜ内集団びいきは生じるのか――動機づけをめぐる複数の仮説</a></li>
-<li><a href="#sec5">5. 「内集団への愛」と「外集団への憎しみ」は別のものである</a></li>
-<li><a href="#sec6">6. 集団間の比較がエスカレートする条件――資源の希少性と現実的葛藤理論</a></li>
-<li><a href="#sec7">7. 現代的応用――SNS 上の党派性と「陣営」形成</a></li>
-<li><a href="#sec8">8. 結論――内集団バイアスは病理ではなく認知の default である</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">序論――なぜ「集団」というだけで態度が変わるのか</a></li>
+<li><a href="#sec2">社会的アイデンティティ理論の基礎――個人的アイデンティティと社会的アイデンティティ</a></li>
+<li><a href="#sec3">最小条件集団パラダイム――意味のない基準でも内集団びいきは生じる</a></li>
+<li><a href="#sec4">なぜ内集団びいきは生じるのか――動機づけをめぐる複数の仮説</a></li>
+<li><a href="#sec5">「内集団への愛」と「外集団への憎しみ」は別のものである</a></li>
+<li><a href="#sec6">集団間の比較がエスカレートする条件――資源の希少性と現実的葛藤理論</a></li>
+<li><a href="#sec7">現代的応用――SNS 上の党派性と「陣営」形成</a></li>
+<li><a href="#sec8">結論――内集団バイアスは病理ではなく認知の default である</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 序論――なぜ「集団」というだけで態度が変わるのか</h2>
 <p>母校のスポーツチームが勝つと、自分が何もしていないのに誇らしい。出身地が話題になったニュースで、自分とは無関係な出来事なのに、悪く言われると少し腹が立つ。逆に、自分が所属したこともない集団に対しては、何の感情も動かない。これらはいずれも、ごくありふれた経験である。しかし、よく考えると奇妙でもある。個人としての自分には、何の変化も起きていない。変わったのは、ある集団が「自分たちの集団」だと分類されたという、ただそれだけの事実である。</p>
 <p>この「ただそれだけの事実」が、なぜ評価や感情、ときには資源の配分までも変えてしまうのか。本稿の目的は、社会的アイデンティティ理論・最小条件集団パラダイム・内集団びいきの動機づけ理論を中心に、この問いを検討することにある。内集団びいきは病理でも特殊な現象でもなく、実証的に繰り返し確認されてきた認知の標準的な作動である。ただし、なぜそれが生じるのかという動機づけの説明には、現在も議論の余地が残る複数の仮説が並立している。本稿はそのいずれか一つを唯一の正解として断定せず、確立した実証知見と、議論の余地がある理論的説明とを書き分けながら進める。扱う理論の多くは、既存の三本――羨望と順位形成の構造を扱った<a href="social-comparison-theory.html">社会的比較の理論と構造</a>、性暴力被害者への非難を扱った<a href="victim-blaming-psychology.html">被害者非難をめぐる社会心理学的考察</a>――と同じ「比較・序列・正当化」という関心軸の上に位置する。個人と個人の比較ではなく、集団と集団の比較が主題になる点が、これら既存記事との違いである。</p>
-<p>人間は、他者を個人として評価する前に、しばしば「その人がどの集団に属するか」という情報を先に処理する。出身、所属、支持するチーム、使う言語、時には着ている服の色。これらの手がかりは、対象の個人的な性質について何一つ教えてくれないにもかかわらず、評価に影響を与える。本稿が検討するのは、この「集団への分類」という、それ自体としては中立的なはずの認知操作が、なぜ評価の偏り――<strong>内集団びいき（ingroup favoritism）</strong>――を生み出すのかという問いである。</p>
-<p>内集団びいきとは、自分が所属する集団（内集団）のメンバーを、所属しない集団（外集団）のメンバーよりも好意的に評価し、資源配分や協力行動において優遇する傾向を指す。この現象を理解するための出発点として、心理学者ヘンリー・タジフェルは 1970 年、 <em>Scientific American</em> 誌に発表した論文で次のように問いを立てた。人が他集団を差別的に扱うために、いったいどれほどの利害対立や歴史的な敵対関係が必要なのか、という問いである <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。この問いへの答えは、本稿の第 3 章で見るとおり、直観に反するものだった。</p>
+<p>人間は、他者を個人として評価する前に、しばしば「その人がどの集団に属するか」という情報を先に処理する。出身、所属、支持するチーム、使う言語、時には着ている服の色。これらの手がかりは、対象の個人的な性質について何一つ教えてくれないにもかかわらず、評価に影響を与える。本稿が検討するのは、この「集団への分類」という、それ自体としては中立的なはずの認知操作が、なぜ評価の偏り――<strong>内集団びいき (ingroup favoritism)</strong>――を生み出すのかという問いである。</p>
+<p>内集団びいきとは、自分が所属する集団（内集団）のメンバーを、所属しない集団（外集団）のメンバーよりも好意的に評価し、資源配分や協力行動において優遇する傾向を指す。この現象を理解するための出発点として、心理学者ヘンリー・タジフェルは 1970 年、 <em>Scientific American</em> 誌に発表した論文で次のように問いを立てた。人が他集団を差別的に扱うために、いったいどれほどの利害対立や歴史的な敵対関係が必要なのか、という問いである <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。この問いへの答えは、本稿の第 3 章で見るとおり、直観に反するものだった。</p>
 <p>本稿はまず、内集団びいきの理論的な基盤である社会的アイデンティティ理論を確認し（第 2 章）、その理論を裏づけた実験群である最小条件集団パラダイムを検討する（第 3 章）。次に、なぜこの偏りが生じるのかという動機づけの水準の説明を、対立する複数の仮説を公平に並べたうえで検討し（第 4 章）、「内集団への愛」と「外集団への憎しみ」という、しばしば混同される二つの現象を区別する（第 5 章）。さらに、集団間の比較が敵意にまでエスカレートする条件を検討し（第 6 章）、現代の情報環境における応用として SNS 上の党派性に触れたのち（第 7 章）、内集団バイアスの位置づけについて結論する（第 8 章）。</p>
 
 <h2 id="sec2">2. 社会的アイデンティティ理論の基礎――個人的アイデンティティと社会的アイデンティティ</h2>
-<p>タジフェルとジョン・ターナーが 1979 年に提示した<strong>社会的アイデンティティ理論（social identity theory）</strong>は、人の自己概念が単一のものではなく、二つの異なる水準から構成されると考える <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。一つは<strong>個人的アイデンティティ（personal identity）</strong>であり、性格、能力、個人的な人間関係など、他者との比較において自分を個体として際立たせる属性である。もう一つは<strong>社会的アイデンティティ（social identity）</strong>であり、自分がどの集団（国籍、職業、支持政党、出身校、趣味のコミュニティなど）に属しているかという自己認識と、その所属に付随する感情的・価値的な意味づけである。</p>
-<p>タジフェルとターナーの理論では、自己概念がこの二つの極のあいだを状況に応じて移動すると想定される。ある状況では自分を「個人としての A さん」として認識し、別の状況では自分を「 A チームの一員」として認識する。後者の水準――社会的アイデンティティ――が際立った状態を、ジョン・ターナーらはのちに<strong>自己カテゴリー化理論（self-categorization theory）</strong>としてさらに体系化した <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。この理論によれば、社会的アイデンティティが際立つと、人は自分自身を、内集団の典型的なメンバー像に近い、いわば没個性化された存在として認識するようになる。</p>
-<h3>社会的アイデンティティ理論が想定する三つの過程</h3>
+<p>タジフェルとジョン・ターナーが 1979 年に提示した<strong>社会的アイデンティティ理論 (social identity theory)</strong>は、人の自己概念が単一のものではなく、二つの異なる水準から構成されると考える <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。一つは<strong>個人的アイデンティティ (personal identity)</strong>であり、性格、能力、個人的な人間関係など、他者との比較において自分を個体として際立たせる属性である。もう一つは<strong>社会的アイデンティティ (social identity)</strong>であり、自分がどの集団（国籍、職業、支持政党、出身校、趣味のコミュニティなど）に属しているかという自己認識と、その所属に付随する感情的・価値的な意味づけである。</p>
+<p>タジフェルとターナーの理論では、自己概念がこの二つの極のあいだを状況に応じて移動すると想定される。ある状況では自分を「個人としての A さん」として認識し、別の状況では自分を「 A チームの一員」として認識する。後者の水準――社会的アイデンティティ――が際立った状態を、ジョン・ターナーらはのちに<strong>自己カテゴリー化理論 (self-categorization theory)</strong>としてさらに体系化した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。この理論によれば、社会的アイデンティティが際立つと、人は自分自身を、内集団の典型的なメンバー像に近い、いわば没個性化された存在として認識するようになる。</p>
+<h3>●社会的アイデンティティ理論が想定する三つの過程</h3>
 <p>社会的アイデンティティ理論は、内集団びいきに至る過程を、おおむね次の三段階として説明する。</p>
 <table>
 <thead><tr><th>過程</th><th>内容</th></tr></thead>
@@ -114,26 +114,26 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <p>この枠組みの核心は、集団への所属が、単なる分類のラベルではなく、<strong>自己評価と結びついた心理的資源</strong>として機能するという点にある。自集団の地位が高いと評価されれば、それは間接的に自己の肯定的な評価につながり、自集団の地位が低いと評価されれば、自己評価にも負の影響が及びうる。この結びつきこそが、なぜ人が自分の個人的な利害とは無関係に見える集団間の優劣に、しばしば強く反応するのかを説明する理論的な土台になる。</p>
 
 <h2 id="sec3">3. 最小条件集団パラダイム――意味のない基準でも内集団びいきは生じる</h2>
-<p>社会的アイデンティティ理論のうち、最も驚くべき、そして最も繰り返し検証されてきた主張は、内集団びいきが生じるために<strong>利害の対立も、既存の敵意も、直接の接触さえも必要ではない</strong>という点である。この主張を実証したのが、タジフェル、ビリグ、バンディ、フラマンが 1971 年に発表した一連の実験、いわゆる<strong>最小条件集団パラダイム（minimal group paradigm）</strong>である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。</p>
+<p>社会的アイデンティティ理論のうち、最も驚くべき、そして最も繰り返し検証されてきた主張は、内集団びいきが生じるために<strong>利害の対立も、既存の敵意も、直接の接触さえも必要ではない</strong>という点である。この主張を実証したのが、タジフェル、ビリグ、バンディ、フラマンが 1971 年に発表した一連の実験、いわゆる<strong>最小条件集団パラダイム (minimal group paradigm)</strong>である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
 <div class="box">
 <strong>実験の骨子</strong><br>
 実験参加者（当初はイギリスの男子学生）は、絵画の好み（クレーやカンディンスキーのどちらを好むか）や、画面上の点の数を推測する課題の結果など、当人の実生活とは何の関係もない些細な基準によって、二つのグループのいずれかに無作為に近い形で割り振られた。参加者は自分と同じグループの他のメンバーが誰であるかを知らず、面識もなく、直接の相互作用の機会もなかった。そのうえで、参加者には「自分の所属グループのメンバー」と「もう一方のグループのメンバー」に対して、匿名の報酬（金銭に相当するポイント）をどう配分するかを決めさせた。参加者自身がその配分から利益を得ることはない設計だった。
 </div>
-<p>結果は明確だった。参加者は、内集団のメンバーに対して外集団のメンバーよりも多くの報酬を割り当てる傾向を、一貫して示した <sup class="fnref"><a id="fnref-4-2" href="#ref-4">[4]</a></sup> 。さらに注目すべき点として、参加者に与えられた選択肢のなかには「両グループの合計利益を最大化する配分」と「内集団と外集団の差を最大化する配分」が競合する場合があったが、参加者はしばしば後者――絶対的な利益の大きさよりも、内集団と外集団の<strong>相対的な差</strong>を優先する配分――を選んだ。自分の所属グループへの絶対的な利益ではなく、外集団との差そのものが、選好の対象になっていたということである。</p>
+<p>結果は明確だった。参加者は、内集団のメンバーに対して外集団のメンバーよりも多くの報酬を割り当てる傾向を、一貫して示した <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。さらに注目すべき点として、参加者に与えられた選択肢のなかには「両グループの合計利益を最大化する配分」と「内集団と外集団の差を最大化する配分」が競合する場合があったが、参加者はしばしば後者――絶対的な利益の大きさよりも、内集団と外集団の<strong>相対的な差</strong>を優先する配分――を選んだ。自分の所属グループへの絶対的な利益ではなく、外集団との差そのものが、選好の対象になっていたということである。</p>
 <p>この結果が示すのは、内集団びいきが、過去の対立の記憶や、資源をめぐる現実の利害対立、あるいは個人的な利己心のみによって説明されるものではない、という点である。<strong>意味のないカテゴリーへの分類という、それだけの操作</strong>が、集団間の評価の偏りを引き起こすのに十分だった。この知見は、その後数十年にわたり、被験者の年齢・文化・カテゴリーの基準を変えながら繰り返し再現され、社会心理学における最も頑健な知見の一つとして確立している。</p>
 
 <h2 id="sec4">4. なぜ内集団びいきは生じるのか――動機づけをめぐる複数の仮説</h2>
 <p>最小条件集団パラダイムが「内集団びいきは、些細な分類だけで生じる」という<strong>事実</strong>を確立したのに対し、「では、なぜそれが生じるのか」という<strong>動機づけの説明</strong>については、現在も複数の仮説が並立しており、単一の説明に決着しているわけではない。本章では、代表的な二つの仮説を、それぞれの論者が主張しうる最も強い形で提示する。</p>
-<h3>自己高揚仮説――肯定的な社会的アイデンティティへの動機</h3>
-<p>第一の仮説は<strong>自己高揚仮説（self-esteem hypothesis）</strong>と呼ばれる。ドミニク・エイブラムズとマイケル・ホッグが 1988 年に整理した定式化によれば、人には肯定的な自己評価を維持・向上させたいという基本的な動機があり、社会的アイデンティティ理論の枠組みのもとでは、自集団を他集団よりも優れたものとして評価すること（内集団びいき）が、その肯定的な自己評価を得るための手段になる <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。この仮説の強い形を採れば、内集団びいきを行った人は自尊心が高まり、逆に自尊心が脅かされた人ほど、それを回復する手段として内集団びいきに訴えやすくなる、という双方向の予測が導かれる。</p>
-<p>この仮説は直観的な説得力を持つ一方、実証研究の評価は割れている。マーク・ルービンとマイルズ・ヒューストンが 1998 年に行った 40 件以上の研究のレビューでは、「内集団びいきが自尊心を高める」「自尊心の低さが内集団びいきを動機づける」という、仮説の全面的かつ無限定な形については、一貫した支持が得られなかったと報告されている <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。ルービンとヒューストンは、この不一致が仮説そのものの誤りというより、先行研究の多くが「全般的な性格特性としての自尊心」を測定しており、社会的アイデンティティ理論が本来想定する「特定の社会的状況における状態としての自尊心」を測定していなかったことに起因する可能性を指摘し、より限定された形での仮説の再定式化を提案している。したがって、自己高揚仮説は「完全に反証された」わけでも「無条件に確立された」わけでもなく、<strong>どのような条件のもとで、どのような種類の自尊心について成り立つのかが、なお検討途上にある仮説</strong>という位置づけが妥当である。</p>
-<h3>不確実性低減仮説――自己と世界を予測可能にする動機</h3>
-<p>第二の仮説は、ホッグが発展させた<strong>不確実性低減理論（uncertainty-identity theory）</strong>である。この理論は、人が集団に同一化する根本的な動機を、自尊心の追求ではなく、<strong>自己や世界についての主観的な不確実性を低減したいという欲求</strong>に置く <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。集団に所属し、その集団の規範やアイデンティティを自己に取り込むことは、「自分が何者で、どう振る舞うべきか」という問いに、明確な指針を与える。集団への同一化が特に強まるのは、個人的なアイデンティティが脅かされたり、自己概念が不安定になったりする状況――たとえば、大きな社会変動や、個人としての立場が不明瞭な状況――であるとされる。</p>
+<h3>●自己高揚仮説――肯定的な社会的アイデンティティへの動機</h3>
+<p>第一の仮説は<strong>自己高揚仮説 (self-esteem hypothesis)</strong>と呼ばれる。ドミニク・エイブラムズとマイケル・ホッグが 1988 年に整理した定式化によれば、人には肯定的な自己評価を維持・向上させたいという基本的な動機があり、社会的アイデンティティ理論の枠組みのもとでは、自集団を他集団よりも優れたものとして評価すること（内集団びいき）が、その肯定的な自己評価を得るための手段になる <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この仮説の強い形を採れば、内集団びいきを行った人は自尊心が高まり、逆に自尊心が脅かされた人ほど、それを回復する手段として内集団びいきに訴えやすくなる、という双方向の予測が導かれる。</p>
+<p>この仮説は直観的な説得力を持つ一方、実証研究の評価は割れている。マーク・ルービンとマイルズ・ヒューストンが 1998 年に行った 40 件以上の研究のレビューでは、「内集団びいきが自尊心を高める」「自尊心の低さが内集団びいきを動機づける」という、仮説の全面的かつ無限定な形については、一貫した支持が得られなかったと報告されている <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。ルービンとヒューストンは、この不一致が仮説そのものの誤りというより、先行研究の多くが「全般的な性格特性としての自尊心」を測定しており、社会的アイデンティティ理論が本来想定する「特定の社会的状況における状態としての自尊心」を測定していなかったことに起因する可能性を指摘し、より限定された形での仮説の再定式化を提案している。したがって、自己高揚仮説は「完全に反証された」わけでも「無条件に確立された」わけでもなく、<strong>どのような条件のもとで、どのような種類の自尊心について成り立つのかが、なお検討途上にある仮説</strong>という位置づけが妥当である。</p>
+<h3>●不確実性低減仮説――自己と世界を予測可能にする動機</h3>
+<p>第二の仮説は、ホッグが発展させた<strong>不確実性低減理論 (uncertainty-identity theory)</strong>である。この理論は、人が集団に同一化する根本的な動機を、自尊心の追求ではなく、<strong>自己や世界についての主観的な不確実性を低減したいという欲求</strong>に置く <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。集団に所属し、その集団の規範やアイデンティティを自己に取り込むことは、「自分が何者で、どう振る舞うべきか」という問いに、明確な指針を与える。集団への同一化が特に強まるのは、個人的なアイデンティティが脅かされたり、自己概念が不安定になったりする状況――たとえば、大きな社会変動や、個人としての立場が不明瞭な状況――であるとされる。</p>
 <p>自己高揚仮説と不確実性低減仮説は、互いに排他的な主張ではない。両者は、集団への同一化と内集団びいきが果たしうる異なる心理的機能（肯定的な自己評価の獲得と、認知的な不確実性の低減）を指摘しており、一方が他方を反証するものではなく、状況によって、あるいは併存する形で作用しうる、複数の動機づけ経路として理解するのが妥当である。本稿は、いずれの仮説がより「正しい」かを断定しない。確立しているのは、内集団びいきという<strong>現象</strong>そのものの頑健さであり、その背後にある<strong>動機づけの完全な説明</strong>は、なお開かれた研究課題である。</p>
 
 <h2 id="sec5">5. 「内集団への愛」と「外集団への憎しみ」は別のものである</h2>
 <p>内集団びいきという現象は、しばしば「外集団への敵意」と同一視される。しかし、この二つを安易に同一視することは、この分野の研究が積み重ねてきた重要な区別を見失わせる。<a href="social-comparison-theory.html#sec7">社会的比較の理論と構造</a>第 7 章が「集団への愛と、認められたい欲求は別のものだ」として整理したのと同じ種類の注意が、ここでも要る。</p>
-<p>心理学者マリリン・ブリューワーは 1999 年、この論点を体系的に検討したレビュー論文で、民族中心主義・内集団びいき・偏見をめぐる従来の研究の多くが、「内集団への愛」と「外集団への憎しみ」を相互に結びついた一つの現象として暗黙に前提してきたことを指摘した <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。しかし、異文化間の研究と実験室実験の双方から得られる証拠は、この前提とは異なる像を支持する。ブリューワーによれば、内集団への同一化は、必ずしも外集団への否定的な態度とは結びついておらず、内集団びいきや集団間の差別の多くは、外集団への直接的な敵意によってではなく、<strong>内集団メンバーへの優遇的な取り扱い</strong>によって動機づけられている。</p>
+<p>心理学者マリリン・ブリューワーは 1999 年、この論点を体系的に検討したレビュー論文で、民族中心主義・内集団びいき・偏見をめぐる従来の研究の多くが、「内集団への愛」と「外集団への憎しみ」を相互に結びついた一つの現象として暗黙に前提してきたことを指摘した <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。しかし、異文化間の研究と実験室実験の双方から得られる証拠は、この前提とは異なる像を支持する。ブリューワーによれば、内集団への同一化は、必ずしも外集団への否定的な態度とは結びついておらず、内集団びいきや集団間の差別の多くは、外集団への直接的な敵意によってではなく、<strong>内集団メンバーへの優遇的な取り扱い</strong>によって動機づけられている。</p>
 <p>この区別を、第 3 章で見た最小条件集団パラダイムに当てはめると理解しやすい。あの実験で観察されたのは、外集団のメンバーへの積極的な害意ではなく、内集団のメンバーへの相対的な優遇だった。参加者は外集団を「憎んで」いたわけではない。ただ、内集団をより多く「 favor （優遇）」していたにすぎない。この区別は些細な言葉の違いではない。「内集団への愛」は、外部からの脅威が存在しない状況でも生じうる、いわば集団への同一化の標準的な作動であるのに対し、「外集団への憎しみ」は、それとは別の条件――次章で検討する、資源の希少性や象徴的な脅威の知覚――が加わって初めて前面化する現象だからである。</p>
 <div class="box">
 <strong>整理 :</strong> 「自分たちの集団を好ましく思うこと」それ自体は、他集団への敵意を必然的に含意しない。集団への愛着や誇りを、直ちに排外主義や敵意の兆候として扱う議論は、この区別を見落としている可能性がある。
@@ -141,16 +141,16 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <h2 id="sec6">6. 集団間の比較がエスカレートする条件――資源の希少性と現実的葛藤理論</h2>
 <p>前章で確認したとおり、内集団びいきは必ずしも外集団への敵意を伴わない。では、単なる優遇のレベルを越えて、集団間の関係が明確な敵意や葛藤にまでエスカレートするのは、どのような条件のもとでなのか。</p>
-<h3>現実的葛藤理論――資源をめぐる競合</h3>
-<p>この問いに対する古典的な回答が、心理学者ムザファー・シェリフらが 1949 年から 1954 年にかけて行った一連のフィールド実験、通称<strong>ロバーズケーブ実験</strong>に基づく<strong>現実的葛藤理論（realistic conflict theory）</strong>である <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。この実験では、互いに面識のない少年たちが夏季キャンプで二つの集団に分けられ、まず各集団内での結束を形成する期間を経たのち、賞品を懸けた競技という形で、二つの集団が明確な利害の対立（勝者総取りの資源配分）に置かれた。</p>
-<p>この段階で、集団間には敵対的な態度や行動――相手集団への蔑称、対立、時には実際の衝突――が急速に生じた。シェリフらの結論は、集団間の敵意は、個々のメンバーの性格や既存の偏見からではなく、<strong>集団間で限られた資源（この場合は賞品と、それに伴う優越の地位）をめぐる、客観的な利害の対立</strong>から生じるというものだった。この理論のもう一つの重要な含意は、対立の逆もまた成り立つという点である。実験の後半では、両集団が協力しなければ達成できない<strong>上位目標（superordinate goals）</strong>――故障した給水設備の修理など――を設定することで、集団間の敵意が緩和されたことも報告されている。</p>
-<h3>最小条件集団パラダイムと現実的葛藤理論の関係</h3>
+<h3>●現実的葛藤理論――資源をめぐる競合</h3>
+<p>この問いに対する古典的な回答が、心理学者ムザファー・シェリフらが 1949 年から 1954 年にかけて行った一連のフィールド実験、通称<strong>ロバーズケーブ実験</strong>に基づく<strong>現実的葛藤理論 (realistic conflict theory)</strong>である <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この実験では、互いに面識のない少年たちが夏季キャンプで二つの集団に分けられ、まず各集団内での結束を形成する期間を経たのち、賞品を懸けた競技という形で、二つの集団が明確な利害の対立（勝者総取りの資源配分）に置かれた。</p>
+<p>この段階で、集団間には敵対的な態度や行動――相手集団への蔑称、対立、時には実際の衝突――が急速に生じた。シェリフらの結論は、集団間の敵意は、個々のメンバーの性格や既存の偏見からではなく、<strong>集団間で限られた資源（この場合は賞品と、それに伴う優越の地位）をめぐる、客観的な利害の対立</strong>から生じるというものだった。この理論のもう一つの重要な含意は、対立の逆もまた成り立つという点である。実験の後半では、両集団が協力しなければ達成できない<strong>上位目標 (superordinate goals)</strong>――故障した給水設備の修理など――を設定することで、集団間の敵意が緩和されたことも報告されている。</p>
+<h3>●最小条件集団パラダイムと現実的葛藤理論の関係</h3>
 <p>ここで、第 3 章の最小条件集団パラダイムとの関係を整理しておく必要がある。最小条件集団パラダイムは、利害の対立が一切ない状況でも内集団びいきが生じることを示した。一方、現実的葛藤理論は、実際の資源をめぐる対立が加わると、単なる優遇を超えた明確な敵意が生じることを示した。この二つは矛盾する知見ではない。むしろ、<strong>内集団びいきという基底的な傾向（最小条件集団パラダイムが示す土台）の上に、現実の資源競合（現実的葛藤理論が示す条件）が加わることで、敵意という、より強い反応が上乗せされる</strong>という、段階的な関係として理解するのが妥当である。</p>
-<p>集団間の脅威は、物質的な資源だけに限られない。心理学者ウォルター・ステファンとクッキー・ステファンの<strong>統合的脅威理論</strong>は、資源・安全に関わる<strong>現実的脅威</strong>と、価値観・世界観・文化的アイデンティティに関わる<strong>象徴的脅威</strong>を区別する <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。相手集団が自分たちの資源を直接奪っているわけではなくとも、「自分たちの価値観や存在そのものが軽視されている」という象徴的な脅威の知覚は、現実的な資源競合と同じように、集団間の敵意を強める方向に働きうる。社会的アイデンティティ理論の予測（第 2 章）とあわせて考えれば、集団間の境界が明確で越えがたく、かつ地位の格差が不当・不安定だと認識されている場合には、こうした脅威の知覚がとりわけ強い反応を引き起こしやすい。</p>
+<p>集団間の脅威は、物質的な資源だけに限られない。心理学者ウォルター・ステファンとクッキー・ステファンの<strong>統合的脅威理論</strong>は、資源・安全に関わる<strong>現実的脅威</strong>と、価値観・世界観・文化的アイデンティティに関わる<strong>象徴的脅威</strong>を区別する <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。相手集団が自分たちの資源を直接奪っているわけではなくとも、「自分たちの価値観や存在そのものが軽視されている」という象徴的な脅威の知覚は、現実的な資源競合と同じように、集団間の敵意を強める方向に働きうる。社会的アイデンティティ理論の予測（第 2 章）とあわせて考えれば、集団間の境界が明確で越えがたく、かつ地位の格差が不当・不安定だと認識されている場合には、こうした脅威の知覚がとりわけ強い反応を引き起こしやすい。</p>
 
 <h2 id="sec7">7. 現代的応用――SNS 上の党派性と「陣営」形成</h2>
 <p>ここまでの理論は、いずれも対面での集団を対象にした研究に基づく。現代の情報環境、とりわけ SNS 上での「陣営」形成に、これらの理論をどこまで適用できるだろうか。</p>
-<p>政治学者シャント・アイエンガーとショーン・ウェストウッドは 2015 年、アメリカの有権者を対象にした研究で、支持政党という所属集団への感情的な同一化――<strong>感情的分極化（affective polarization）</strong>――が、政策上の意見の対立という実質的な内容から、ある程度独立した形で強まっていることを報告した <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。この研究が示す一つの含意は、支持政党という集団への態度が、人種などの伝統的な社会集団への態度と同程度か、それ以上に強い自動的な選好や忌避を伴いうるという点である。</p>
+<p>政治学者シャント・アイエンガーとショーン・ウェストウッドは 2015 年、アメリカの有権者を対象にした研究で、支持政党という所属集団への感情的な同一化――<strong>感情的分極化 (affective polarization)</strong>――が、政策上の意見の対立という実質的な内容から、ある程度独立した形で強まっていることを報告した <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。この研究が示す一つの含意は、支持政党という集団への態度が、人種などの伝統的な社会集団への態度と同程度か、それ以上に強い自動的な選好や忌避を伴いうるという点である。</p>
 <div class="box">
 <strong>本稿の見立てでは</strong>――ここは確立した実証研究ではなく、本稿による理論的な類推として明確に区別して述べる――支持政党やオンライン上の「陣営」への同一化は、最小条件集団パラダイムが示した基底的な内集団びいきの傾向と、現実的葛藤理論・統合的脅威理論が示す資源・象徴をめぐる対立の知覚とが、重なり合って生じている可能性がある。政策論争という実質的な対立軸（現実的脅威に相当しうる要素）に加え、「自分たちの価値観そのものが軽視されている」という象徴的脅威の知覚が、意見の相違を「陣営」への帰属の問題へと変換しているとすれば、これは第 6 章で見た構造の、オンライン空間における延長として理解できる。ただし、これはあくまで理論的な類推であり、特定の政治的立場の是非を判定するものではない。
 </div>
@@ -158,30 +158,30 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <h2 id="sec8">8. 結論――内集団バイアスは病理ではなく認知の default である</h2>
 <p>本稿で検討してきた知見を総合すると、次のように整理できる。内集団びいきは、特定の性格や特殊な状況にのみ生じる例外的な現象ではない。最小条件集団パラダイムが示したとおり（第 3 章）、意味のない基準による分類だけで、利害の対立も既存の敵意もない状態で生じる、いわば<strong>認知の default （初期設定）</strong>である。この傾向は、それ自体としては病理でも道徳的な欠陥でもない。第 5 章で確認したとおり、内集団への愛着は、必ずしも外集団への敵意を意味しない。</p>
-<p>それでも、この基底的な傾向は、第 6 章・第 7 章で見た条件――資源の希少性、地位格差の不当性・不安定性の知覚、象徴的な脅威――が加わることで、単なる優遇を超えた明確な敵意へとエスカレートしうる。したがって、実践的な含意は次の二点に整理できる。第一に、集団間の対立を「悪意ある個人の集まり」として道徳的に断罪するのではなく、どのような条件がエスカレーションを引き起こしているのかという構造の問題として捉えること。第二に、シェリフらが示した上位目標の設定（第 6 章）に加え、心理学者トーマス・ペティグルーとリンダ・トロップが 2006 年に 500 件以上の先行研究を統合したメタ分析で確認した<strong>集団間接触</strong>の効果――適切な条件のもとでの集団間の接触が偏見を減らす効果は、幅広い対象・状況にわたって頑健に観察されている <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> ――など、実証的に裏づけられた介入手段が存在することを踏まえ、個人・制度の双方の水準で、対立の緩和に取り組む余地があること。</p>
-<h3>道徳的判断の二重過程理論との接続について</h3>
-<p>本稿の主題である内集団びいきは、集団に関わる評価の多くが、熟慮に先立つ速い直観的な判断として生じることを示唆する。この点は、道徳心理学における<strong>二重過程理論</strong>――心理学者ジョナサン・ハイトが提示した社会的直観主義モデル（道徳的判断はしばしば直観が先に生じ、理由づけは事後的に構成される、とする立場）<sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> や、ジョシュア・グリーンらの fMRI 研究が示した、道徳的ジレンマにおける情動的処理と熟慮的処理の並存 <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> ――と接続しうる論点である。「内集団のメンバーを弁護し、外集団のメンバーを非難する」という判断が、まず直観的に生じ、理由づけがあとから構成されるという可能性は、内集団びいきと道徳的判断の二重過程理論を橋渡しする、興味深い検討課題である。<a href="free-will-and-determinism.html#sec6">自由意志と決定論</a>第 6 章で扱った、自由意志への信念が不正行為の抑制に関わるという知見 <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> も、道徳的判断が単なる論理的推論以上の、心理的な足場を必要とすることを示す点で、遠く共鳴する。ただし、これらの接続を本格的に検討することは本稿の範囲を超える。道徳的判断の二重過程理論そのものの検討は、独立した稿の課題として残しておく。</p>
+<p>それでも、この基底的な傾向は、第 6 章・第 7 章で見た条件――資源の希少性、地位格差の不当性・不安定性の知覚、象徴的な脅威――が加わることで、単なる優遇を超えた明確な敵意へとエスカレートしうる。したがって、実践的な含意は次の二点に整理できる。第一に、集団間の対立を「悪意ある個人の集まり」として道徳的に断罪するのではなく、どのような条件がエスカレーションを引き起こしているのかという構造の問題として捉えること。第二に、シェリフらが示した上位目標の設定（第 6 章）に加え、心理学者トーマス・ペティグルーとリンダ・トロップが 2006 年に 500 件以上の先行研究を統合したメタ分析で確認した<strong>集団間接触</strong>の効果――適切な条件のもとでの集団間の接触が偏見を減らす効果は、幅広い対象・状況にわたって頑健に観察されている <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> ――など、実証的に裏づけられた介入手段が存在することを踏まえ、個人・制度の双方の水準で、対立の緩和に取り組む余地があること。</p>
+<h3>●道徳的判断の二重過程理論との接続について</h3>
+<p>本稿の主題である内集団びいきは、集団に関わる評価の多くが、熟慮に先立つ速い直観的な判断として生じることを示唆する。この点は、道徳心理学における<strong>二重過程理論</strong>――心理学者ジョナサン・ハイトが提示した社会的直観主義モデル（道徳的判断はしばしば直観が先に生じ、理由づけは事後的に構成される、とする立場）<sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> や、ジョシュア・グリーンらの fMRI 研究が示した、道徳的ジレンマにおける情動的処理と熟慮的処理の並存 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> ――と接続しうる論点である。「内集団のメンバーを弁護し、外集団のメンバーを非難する」という判断が、まず直観的に生じ、理由づけがあとから構成されるという可能性は、内集団びいきと道徳的判断の二重過程理論を橋渡しする、興味深い検討課題である。<a href="free-will-and-determinism.html#sec6">自由意志と決定論</a>第 6 章で扱った、自由意志への信念が不正行為の抑制に関わるという知見 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> も、道徳的判断が単なる論理的推論以上の、心理的な足場を必要とすることを示す点で、遠く共鳴する。ただし、これらの接続を本格的に検討することは本稿の範囲を超える。道徳的判断の二重過程理論そのものの検討は、独立した稿の課題として残しておく。</p>
 <p>他人の集団が敗れたからといって、あなたの集団が勝ったことにはならない。それでも、自分の所属する集団が引き合いに出されただけで、心が動く。この反応は、意志の弱さでも、特殊な悪意でもない。それは、集団という単位で世界を理解しようとする、人間の認知にあらかじめ組み込まれた作動である。問題は、この作動そのものを消去することではない。集団への同一化にともなう評価の偏りが、いつ、いかなる条件のもとで、単なる優遇から敵意へと踏み越えるのかを見極め、その一線の手前で踏みとどまる仕組みを、個人と制度の双方に用意しておくことである。</p>
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Tajfel, H.(1970). Experiments in intergroup discrimination. <em>Scientific American</em>, 223 (5), 96–102. <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">Tajfel, H., &amp; Turner, J. C.(1979). An integrative theory of intergroup conflict. In W. G. Austin &amp; S. Worchel (Eds.), <em>The Social Psychology of Intergroup Relations</em>(pp. 33–47). Brooks/Cole. <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">Turner, J. C., Hogg, M. A., Oakes, P. J., Reicher, S. D., &amp; Wetherell, M. S.(1987). <em>Rediscovering the Social Group: A Self-Categorization Theory</em>. Blackwell. <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">Tajfel, H., Billig, M. G., Bundy, R. P., &amp; Flament, C.(1971). Social categorization and intergroup behaviour. <em>European Journal of Social Psychology</em>, 1 (2), 149–178. <a href="https://doi.org/10.1002/ejsp.2420010202">DOI</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">Abrams, D., &amp; Hogg, M. A.(1988). Comments on the motivational status of self-esteem in social identity and intergroup discrimination. <em>European Journal of Social Psychology</em>, 18 (4), 317–334. <a href="https://doi.org/10.1002/ejsp.2420180403">DOI</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">Rubin, M., &amp; Hewstone, M.(1998). Social identity theory's self-esteem hypothesis: A review and some suggestions for clarification. <em>Personality and Social Psychology Review</em>, 2 (1), 40–62. <a href="https://doi.org/10.1207/s15327957pspr0201_3">DOI</a> <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">Hogg, M. A.(2000). Subjective uncertainty reduction through self-categorization: A motivational theory of social identity processes. <em>European Review of Social Psychology</em>, 11 (1), 223–255. <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">Brewer, M. B.(1999). The psychology of prejudice: Ingroup love or outgroup hate? <em>Journal of Social Issues</em>, 55 (3), 429–444. <a href="https://doi.org/10.1111/0022-4537.00126">DOI</a> <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">Sherif, M., Harvey, O. J., White, B. J., Hood, W. R., &amp; Sherif, C. W.(1961). <em>Intergroup Conflict and Cooperation: The Robbers Cave Experiment</em>. University Book Exchange. <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10">Stephan, W. G., &amp; Stephan, C. W.(2000). An integrated threat theory of prejudice. In S. Oskamp (Ed.), <em>Reducing Prejudice and Discrimination</em>(pp. 23–45). Lawrence Erlbaum. <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11">Iyengar, S., &amp; Westwood, S. J.(2015). Fear and loathing across party lines: New evidence on group polarization. <em>American Journal of Political Science</em>, 59 (3), 690–707. <a href="https://doi.org/10.1111/ajps.12152">DOI</a> <a class="fnback" href="#fnref-11-1">↩</a></li>
-<li id="ref-12">Pettigrew, T. F., &amp; Tropp, L. R.(2006). A meta-analytic test of intergroup contact theory. <em>Journal of Personality and Social Psychology</em>, 90 (5), 751–783. <a class="fnback" href="#fnref-12-1">↩</a></li>
-<li id="ref-13">Haidt, J.(2001). The emotional dog and its rational tail: A social intuitionist approach to moral judgment. <em>Psychological Review</em>, 108 (4), 814–834. <a href="https://doi.org/10.1037/0033-295X.108.4.814">DOI</a> <a class="fnback" href="#fnref-13-1">↩</a></li>
-<li id="ref-14">Greene, J. D., Sommerville, R. B., Nystrom, L. E., Darley, J. M., &amp; Cohen, J. D.(2001). An fMRI investigation of emotional engagement in moral judgment. <em>Science</em>, 293 (5537), 2105–2108. <a href="https://doi.org/10.1126/science.1062872">DOI</a> <a class="fnback" href="#fnref-14-1">↩</a></li>
-<li id="ref-15">Vohs, K. D., &amp; Schooler, J. W.(2008). The value of believing in free will: Encouraging a belief in determinism increases cheating. <em>Psychological Science</em>, 19 (1), 49–54. <a href="https://doi.org/10.1111/j.1467-9280.2008.02045.x">DOI</a> <a class="fnback" href="#fnref-15-1">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Tajfel, H. (1970) . Experiments in intergroup discrimination. <em>Scientific American</em>, 223 (5) , 96–102.</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Tajfel, H., &amp; Turner, J. C. (1979) . An integrative theory of intergroup conflict. In W. G. Austin &amp; S. Worchel (Eds.) , <em>The Social Psychology of Intergroup Relations</em>(pp. 33–47) . Brooks/Cole.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Turner, J. C., Hogg, M. A., Oakes, P. J., Reicher, S. D., &amp; Wetherell, M. S. (1987) . <em>Rediscovering the Social Group: A Self-Categorization Theory</em>. Blackwell.</li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> Tajfel, H., Billig, M. G., Bundy, R. P., &amp; Flament, C. (1971) . Social categorization and intergroup behaviour. <em>European Journal of Social Psychology</em>, 1 (2) , 149–178. <a href="https://doi.org/10.1002/ejsp.2420010202">DOI</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Abrams, D., &amp; Hogg, M. A. (1988) . Comments on the motivational status of self-esteem in social identity and intergroup discrimination. <em>European Journal of Social Psychology</em>, 18 (4) , 317–334. <a href="https://doi.org/10.1002/ejsp.2420180403">DOI</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Rubin, M., &amp; Hewstone, M. (1998) . Social identity theory's self-esteem hypothesis: A review and some suggestions for clarification. <em>Personality and Social Psychology Review</em>, 2 (1) , 40–62. <a href="https://doi.org/10.1207/s15327957pspr0201_3">DOI</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Hogg, M. A. (2000) . Subjective uncertainty reduction through self-categorization: A motivational theory of social identity processes. <em>European Review of Social Psychology</em>, 11 (1) , 223–255.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Brewer, M. B. (1999) . The psychology of prejudice: Ingroup love or outgroup hate? <em>Journal of Social Issues</em>, 55 (3) , 429–444. <a href="https://doi.org/10.1111/0022-4537.00126">DOI</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Sherif, M., Harvey, O. J., White, B. J., Hood, W. R., &amp; Sherif, C. W. (1961) . <em>Intergroup Conflict and Cooperation: The Robbers Cave Experiment</em>. University Book Exchange.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Stephan, W. G., &amp; Stephan, C. W. (2000) . An integrated threat theory of prejudice. In S. Oskamp (Ed.) , <em>Reducing Prejudice and Discrimination</em>(pp. 23–45) . Lawrence Erlbaum.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Iyengar, S., &amp; Westwood, S. J. (2015) . Fear and loathing across party lines: New evidence on group polarization. <em>American Journal of Political Science</em>, 59 (3) , 690–707. <a href="https://doi.org/10.1111/ajps.12152">DOI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Pettigrew, T. F., &amp; Tropp, L. R. (2006) . A meta-analytic test of intergroup contact theory. <em>Journal of Personality and Social Psychology</em>, 90 (5) , 751–783.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Haidt, J. (2001) . The emotional dog and its rational tail: A social intuitionist approach to moral judgment. <em>Psychological Review</em>, 108 (4) , 814–834. <a href="https://doi.org/10.1037/0033-295X.108.4.814">DOI</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Greene, J. D., Sommerville, R. B., Nystrom, L. E., Darley, J. M., &amp; Cohen, J. D. (2001) . An fMRI investigation of emotional engagement in moral judgment. <em>Science</em>, 293 (5537) , 2105–2108. <a href="https://doi.org/10.1126/science.1062872">DOI</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Vohs, K. D., &amp; Schooler, J. W. (2008) . The value of believing in free will: Encouraging a belief in determinism increases cheating. <em>Psychological Science</em>, 19 (1) , 49–54. <a href="https://doi.org/10.1111/j.1467-9280.2008.02045.x">DOI</a></li>
 </ol>
 </div>
 
