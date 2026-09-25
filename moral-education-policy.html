@@ -43,14 +43,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -77,21 +76,25 @@ pre code{background:none; padding:0;}
 <div class="kicker">教育政策比較</div>
 <h1>道徳教育政策の比較研究<br>――文部科学省の方針と諸外国の実践</h1>
 <p class="subtitle">A Comparative Study of Moral Education Policy: MEXT Guidelines and Practices Abroad</p>
-<div class="lede"><p>文部科学省の方針と諸外国の道徳教育を辿る論考。</p></div>
+<div class="lede">
+<p>「知育・徳育・体育」という三分法のうち、徳育、すなわち道徳教育だけが学校教育制度のなかでどう扱われているのか、筆者自身よく知らないままに重要だと思い込んでいた。本稿ではまず、文部科学省が道徳教育をめぐってどのような方針を持ち、それがどのような経緯で「特別の教科 道徳」という制度に至ったのかを一次資料で確認する。</p>
+<p>そのうえで、道徳教育・人格教育に相当する取り組みは諸外国では宗教教育と密接に結びついているのではないか、という筆者の仮説を、欧州・北米・東アジアの 5 か国の事例に照らして検証する。</p>
+</div>
+<div class="meta">【方法と限界】本稿は文部科学省・各国政府等の一次資料と、報道・解説記事等の二次情報を基に構成した比較整理であり、独自調査による実証研究ではない。学習指導要領の改正経緯など制度の事実関係は一次資料に基づく確立した事実として扱うが、教科化の是非をめぐる論争や宗教との関わりの評価は「見解が分かれる事項」として区別して記述した。取り上げた 5 か国の事例は諸外国全体を代表するものではなく、あくまで個別の事例として扱う。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. はじめに</a></li>
-<li><a href="#sec2">2. 文部科学省は「徳育」にどう向き合ってきたか</a></li>
-<li><a href="#sec3">3. 諸外国の道徳教育・人格教育――宗教との距離はさまざま</a></li>
-<li><a href="#sec4">4. 考察――制度の多様性から何が見えるか</a></li>
-<li><a href="#sec5">5. 結び</a></li>
-</ul>
+<ol><li><a href="#sec1">はじめに</a></li>
+<li><a href="#sec2">文部科学省は「徳育」にどう向き合ってきたか</a></li>
+<li><a href="#sec3">諸外国の道徳教育・人格教育――宗教との距離はさまざま</a></li>
+<li><a href="#sec4">考察――制度の多様性から何が見えるか</a></li>
+<li><a href="#sec5">結び</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. はじめに</h2>
-<p>「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、 19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』（1861 年、原題 Education: Intellectual, Moral, and Physical）で示した「知育（intellectual education）・徳育（moral education）・体育（physical education）」という枠組みを、福沢諭吉が『学問のすゝめ』（1872 年）で紹介したことを一つの契機として日本に定着したとされる。
+<p>「知育・徳育・体育」という言葉を、学校教育の目標として掲げる文言のなかで目にしたことのある人は多いだろう。この三分法は、 19 世紀イギリスの思想家ハーバート・スペンサーが著書『教育論』 (1861 年、原題 Education: Intellectual, Moral, and Physical) で示した「知育 (intellectual education) ・徳育 (moral education) ・体育 (physical education) 」という枠組みを、福沢諭吉が『学問のすゝめ』 (1872 年）で紹介したことを一つの契機として日本に定着したとされる。
 知育・体育が学力や運動能力という比較的測定しやすい対象を扱うのに対し、徳育、すなわち人格や道徳性の涵養を学校教育がどこまで、どのように担うべきかという問いは、明治期から今日に至るまで繰り返し論争の的になってきた。筆者自身、三育のうち徳育こそが人の生き方の基盤として特に重要ではないかと考えている一人だが、それが学校教育の制度として現にどう扱われているのかは、実のところよく知らなかった。
 本稿では、文部科学省（文科省）が徳育に関してどのような方針を持っているのか、また諸外国では道徳教育・人格教育に相当する取り組みがどう行われているのかを、公表資料に基づいて確認する。諸外国の事例については、宗教教育との結びつきが強いのではないかという予想を出発点としつつ、その当否は調査結果に沿って判断する。</p>
-<p>（出典 : 三育の由来・スペンサーと福沢諭吉の関係については manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」 <sup class="fnref"><a id="fnref-16-1" href="#ref-16">[16]</a></sup>（二次情報）、原典は Herbert Spencer, "Education: Intellectual, Moral, and Physical"（1861 年） <sup class="fnref"><a id="fnref-17-1" href="#ref-17">[17]</a></sup>）</p>
+<p>（出典 : 三育の由来・スペンサーと福沢諭吉の関係については manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup>（二次情報）、原典は Herbert Spencer, "Education: Intellectual, Moral, and Physical" (1861 年） <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup>)</p>
 <h2 id="sec2">2. 文部科学省は「徳育」にどう向き合ってきたか</h2>
 <p>まず確認しておくべきは、文科省が現在の公式文書で「徳育」という語をほとんど用いていないという点である。
 文科省が運営する「道徳教育アーカイブ」サイトを見ても、目標や制度の説明に使われているのは一貫して「道徳教育」であり、「徳育」という表記は見当たらない。教育振興基本計画などの近年の答申類でも、道徳教育の推進という語は用いられるが、「徳育」を前面に立てた記述は確認できなかった。
@@ -106,30 +109,31 @@ pre code{background:none; padding:0;}
 これらの論者は、道徳性そのものを否定しているのではなく、それを検定教科書と数値化されない評価によって国家が方向づけようとする制度設計に反対している点で一貫しており、この論点は「見解が分かれる事項」として、確立した事実の記述とは区別して扱う必要がある。</p>
 <p>もう一点、日本の道徳教育を考えるうえで見落とせないのが、宗教との関係である。教育基本法第 15 条は第 1 項で宗教に関する寛容の態度や一般的な教養を教育上尊重すべきものと定める一方、第 2 項で国公立学校が特定の宗教のための宗教教育その他宗教的活動を行うことを禁じている。
 つまり日本の公立学校の道徳教育は、制度設計として宗教とは明確に切り離された世俗的な枠組みとして組み立てられている。この点は、後述する諸外国との比較において重要な軸になる。</p>
-<p>（出典 : 文部科学省「道徳教育アーカイブ」 <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> ／中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日、 <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> ／文部科学省「小学校学習指導要領解説 特別の教科 道徳編」 <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> ／教育基本法（平成十八年法律第百二十号）第 15 条、 <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> ／仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> ／自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup>）</p>
+<p>（出典 : 文部科学省「道徳教育アーカイブ」 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> ／中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日、 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> ／文部科学省「小学校学習指導要領解説 特別の教科 道徳編」 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> ／教育基本法（平成十八年法律第百二十号）第 15 条、 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> ／仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> ／自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup>)</p>
 <h2 id="sec3">3. 諸外国の道徳教育・人格教育――宗教との距離はさまざま</h2>
 <p>諸外国では道徳教育に相当する取り組みが、宗教教育と密接に結びついた形で行われているのではないか、というのが筆者の当初の仮説であった。
 結論から言えば、調査した範囲では、この仮説は一部の国には当てはまるが、全体としては当てはまらない。以下、欧州・北米・東アジアの計 5 か国の事例を、宗教との関わりが強いものから弱いものへと並べて紹介する。</p>
-<h3>ドイツ――宗教教育が憲法上の教科</h3>
-<p>ドイツでは、基本法（憲法）第 7 条第 3 項が「宗教科目は、無宗派学校を除き、公立学校における正規の教科である」と定めており、宗教教育は数学などと違って憲法上の地位を持つ数少ない教科である。実際の授業は各州の所管で、プロテスタント・カトリックなど宗派別に編成されるのが基本形だが、宗教科の履修を望まない、あるいは離脱した生徒のために、多くの州が世俗的な倫理科（"Ethik"）を代替科目として設けている。
+<h3>●ドイツ――宗教教育が憲法上の教科</h3>
+<p>ドイツでは、基本法（憲法）第 7 条第 3 項が「宗教科目は、無宗派学校を除き、公立学校における正規の教科である」と定めており、宗教教育は数学などと違って憲法上の地位を持つ数少ない教科である。実際の授業は各州の所管で、プロテスタント・カトリックなど宗派別に編成されるのが基本形だが、宗教科の履修を望まない、あるいは離脱した生徒のために、多くの州が世俗的な倫理科 ("Ethik") を代替科目として設けている。
 宗教教育を人格形成の中核に据える発想が、憲法レベルで制度化されている代表例といえる。</p>
-<h3>イギリス（イングランド）――宗教教育と公民教育の二本立て</h3>
-<p>イングランドでは、公費維持学校において宗教教育（RE）が 5 歳から 16 歳まで必修とされているが、これは国の統一カリキュラム（ナショナル・カリキュラム）の一部ではなく、地方ごとに設置される「合意シラバス協議会」が定める地域別のシラバスに基づいて実施される。内容はキリスト教を中心としつつ複数の主要宗教や非宗教的な人生観・倫理も扱うことが求められており、保護者には子どもを授業から外させる権利が法律上認められている。
+<h3>●イギリス（イングランド）――宗教教育と公民教育の二本立て</h3>
+<p>イングランドでは、公費維持学校において宗教教育 (RE) が 5 歳から 16 歳まで必修とされているが、これは国の統一カリキュラム（ナショナル・カリキュラム）の一部ではなく、地方ごとに設置される「合意シラバス協議会」が定める地域別のシラバスに基づいて実施される。内容はキリスト教を中心としつつ複数の主要宗教や非宗教的な人生観・倫理も扱うことが求められており、保護者には子どもを授業から外させる権利が法律上認められている。
 これとは別に、シティズンシップ教育（公民教育）は 2002 年からナショナル・カリキュラムの必修科目（中等教育段階）として法定化されており、社会的・道徳的責任、政治的リテラシー、地域社会への参加を三本柱としている。
 イギリスの場合、宗教に関わる道徳教育と、宗教と切り離された公民教育とが並存している点が特徴的である。</p>
-<h3>韓国――世界初とされる人格教育の法制化</h3>
+<h3>●韓国――世界初とされる人格教育の法制化</h3>
 <p>韓国は 2015 年、「人性教育振興法」を制定・施行した。健全な人格を備えた市民の育成を目的として、国・地方自治体に人格教育に関する体系的な施策の策定を義務づける内容で、特定の宗教を前提としない世俗的な人格教育を国が法律で義務化した世界初の事例とされる。
 これに先立ち、韓国の学校教育課程には「道徳」科が伝統的に置かれており、道徳的判断力や価値・態度、実践行動を評価する仕組みも組み込まれてきた。儒教的な人倫思想の影響は指摘されるものの、制度としては特定宗教の教義を教える枠組みではない。</p>
-<h3>フランス――「ライシテ」に基づく世俗的な道徳・公民教育</h3>
-<p>フランスでは「道徳・公民教育」（EMC）が学校教育課程に組み込まれている。フランス教育省の資料によれば、 EMC が伝えるべき価値として、尊厳・自由・平等・連帯・ライシテ（政教分離・世俗性の原則）・正義の精神・他者の尊重・男女平等・寛容などが掲げられ、ライシテは「思想・良心の自由と公共空間における平等を保障する条件」として明示的に教えられる。
+<h3>●フランス――「ライシテ」に基づく世俗的な道徳・公民教育</h3>
+<p>フランスでは「道徳・公民教育」 (EMC) が学校教育課程に組み込まれている。フランス教育省の資料によれば、 EMC が伝えるべき価値として、尊厳・自由・平等・連帯・ライシテ（政教分離・世俗性の原則）・正義の精神・他者の尊重・男女平等・寛容などが掲げられ、ライシテは「思想・良心の自由と公共空間における平等を保障する条件」として明示的に教えられる。
 フランスの道徳教育は、宗教を排除するという意味で世俗的なだけでなく、宗教からの中立を積極的に教える内容そのものに組み込んでいる点が特徴である。</p>
-<h3>アメリカ合衆国――政教分離原則の下での「人格教育」</h3>
-<p>アメリカの公教育は、合衆国憲法修正第 1 条が定める政教分離原則の下、宗派教育を行うことができない。フロリダ州など各州が定める「人格教育（character education）」の基準は、尊重・責任・信頼・公正・思いやり・奉仕・リーダーシップといった、特定の宗教に依拠しない徳目を掲げるものとして設計されており、反差別問題を扱う団体の資料でも、宗教を扱う場合は特定の信仰を推奨も否定もしない、中立的・客観的な扱いにとどめるべきことが強調されている。
+<h3>●アメリカ合衆国――政教分離原則の下での「人格教育」</h3>
+<p>アメリカの公教育は、合衆国憲法修正第 1 条が定める政教分離原則の下、宗派教育を行うことができない。フロリダ州など各州が定める「人格教育 (character education) 」の基準は、尊重・責任・信頼・公正・思いやり・奉仕・リーダーシップといった、特定の宗教に依拠しない徳目を掲げるものとして設計されており、反差別問題を扱う団体の資料でも、宗教を扱う場合は特定の信仰を推奨も否定もしない、中立的・客観的な扱いにとどめるべきことが強調されている。
 全米で統一された道徳教育制度があるわけではなく、州や学区ごとの裁量が大きい点も付言しておく。</p>
 <p>以上 5 か国を見る限り、道徳教育・人格教育に相当する制度が広く見られる一方で、宗教との関係は国によって大きく異なる。
 ドイツのように宗教教育を憲法上の教科として制度の中心に据える国がある一方、韓国・フランス・アメリカのように、法制度としては宗教から独立した（あるいは宗教からの中立性そのものを教育内容とする）世俗的な人格教育・公民教育を採用する国も複数見られた。イギリスはその中間で、宗教教育と世俗的な公民教育を並存させている。
 筆者の当初の仮説、すなわち諸外国の徳育相当の取り組みは宗教と密接に関わるものが多いのではないかという予想は、調査した事例の範囲では支持されなかった。少なくとも本稿で扱った 5 か国のうち、宗教を制度の中核に置くのはドイツのみであり、残る 4 か国は世俗的な枠組みを採用しているか、宗教教育と世俗教育を切り分ける形を取っている。</p>
-<p>(出典 : ドイツ連邦共和国基本法第 7 条、 <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> ／ konfessionen.org 「 Religionsunterricht in Deutschland 」 <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup>（二次情報）／ Religion Media Centre 「 Factsheet: Religious Education in schools 」 <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup>（二次情報）／ Association for Citizenship Teaching 「 Citizenship national curriculum 」 <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup>（二次情報）／ The Korea Herald 「 Progress of Character Education Promotion Act 」 <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup>（二次情報）／한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」 <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup>（二次情報）／フランス教育省（éduscol）「 Enseignement moral et civique 」 <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> ／ Anti-Defamation League 「 Religion in the Public Schools 」 <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup>（二次情報）／ Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」 <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup>(二次情報))</p>
+<p class="pull">「諸外国の徳育は宗教と結びつきやすい」という仮説は、少なくとも本稿が調査した 5 か国の範囲では裏づけられなかった。</p>
+<p>（出典 : ドイツ連邦共和国基本法第 7 条、 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> ／ konfessionen.org 「 Religionsunterricht in Deutschland 」 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup>（二次情報）／ Religion Media Centre 「 Factsheet: Religious Education in schools 」 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup>（二次情報）／ Association for Citizenship Teaching 「 Citizenship national curriculum 」 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup>（二次情報）／ The Korea Herald 「 Progress of Character Education Promotion Act 」 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup>（二次情報）／한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup>（二次情報）／フランス教育省（éduscol) 「 Enseignement moral et civique 」 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> ／ Anti-Defamation League 「 Religion in the Public Schools 」 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup>（二次情報）／ Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup>（二次情報）)</p>
 <h2 id="sec4">4. 考察――制度の多様性から何が見えるか</h2>
 <p>日本と諸外国を並べて見えてくるのは、道徳教育・人格教育という営みが「教科として制度化するかどうか」「宗教と結びつけるかどうか」という、独立した二つの軸の組み合わせとして存在しているという構図である。
 日本は、道徳を独立教科として制度化する一方、宗教とは明確に切り離すという選択をしている。これはフランスの世俗的な EMC や、韓国の人性教育振興法に近い立ち位置といえる。他方、ドイツは教科としての制度化と宗教との結びつきの両方を選び、イギリスは宗教教育と世俗的公民教育を別建てで両方とも制度化し、アメリカは州ごとの裁量に委ねる形で緩やかに制度化している。
@@ -138,7 +142,7 @@ pre code{background:none; padding:0;}
 この印象を裏づける手がかりの一つが、全国規模の調査制度の設計に見て取れる。文部科学省が毎年実施する「全国学力・学習状況調査」は国語・算数（数学）・理科等を対象としており、道徳科はその対象に含まれていない。他方、スポーツ庁が 1964 年（昭和 39 年）以来毎年実施する「体力・運動能力調査」（現「全国体力・運動能力、運動習慣等調査」）は、子供の体力・運動能力を全国規模かつ経年で数値把握する仕組みを持つ。
 つまり知育と体育には、成果を全国規模で可視化・比較する制度的な装置がそれぞれ用意されているのに対し、道徳科は「数値などによる評価は行わない」という方針が文部科学省によって明確に定められており、全国的な達成度調査の対象にもなっていない。徳育が知育・体育と並ぶ三育の一つでありながら、公共の議論や政策評価の場面で相対的に見えにくい位置に置かれやすいとすれば、その一因はこうした測定制度の有無という構造にあるのかもしれない。
 これは徳育が軽んじられてよいという主張ではなく、むしろ数値による測定になじみにくい価値を教育がどう扱うかという、三育の三分法が本来はらんでいた難問を、そのまま映し出しているようにも見える。</p>
-<p>（出典 : 文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 <sup class="fnref"><a id="fnref-18-1" href="#ref-18">[18]</a></sup> ／スポーツ庁「全国体力・運動能力、運動習慣等調査」 <sup class="fnref"><a id="fnref-19-1" href="#ref-19">[19]</a></sup> ／文部科学省「論点メモ（道徳科における評価について）」 <sup class="fnref"><a id="fnref-20-1" href="#ref-20">[20]</a></sup>）</p>
+<p>（出典 : 文部科学省「全国的な学力調査（全国学力・学習状況調査等）」 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> ／スポーツ庁「全国体力・運動能力、運動習慣等調査」 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> ／文部科学省「論点メモ（道徳科における評価について）」 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup>)</p>
 <p>徳育を重要だと考える立場から見れば、日本が道徳を教科として制度化したこと自体は、諸外国の少なからぬ事例と軌を一にする選択に見えるかもしれない。他方で、検定教科書と評価という手法を通じて価値観の伝達を国が主導することへの懸念は、仙台弁護士会や自由法曹団の意見書が示すように、日本国内でも解消されていない。
 この対立は、道徳教育の必要性そのものというより、それをどのような手段・制度で担わせるかという設計の問題に関わっている。筆者自身は徳育の重要性を否定しないが、その重要性から直ちに現行の教科化の是非が導かれるわけではないという点は、調査を通じて改めて意識させられた。
 この是非についての判断は、本稿の範囲を超えるものとして読者に委ねたい。</p>
@@ -150,26 +154,26 @@ pre code{background:none; padding:0;}
 <h2>参考文献・出典一覧</h2>
 <p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
 <ol>
-<li id="ref-1">文部科学省「道徳教育アーカイブ」。 <a href="https://doutoku.mext.go.jp/html/basic.html">文部科学省サイト</a> <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日。 <a href="https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf">文部科学省 公開 PDF</a> <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">文部科学省「小学校学習指導要領解説 特別の教科 道徳編」平成 27 年 7 月。 <a href="https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf">文部科学省 公開 PDF</a> <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">教育基本法（平成十八年法律第百二十号）第 15 条。 <a href="https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm">衆議院 法律案・条文データベース</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」。 <a href="https://senben.org/archives/5747">仙台弁護士会サイト</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」。 <a href="https://www.jlaf.jp/kyokasho/2019/0305_60.html">自由法曹団サイト</a> <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">ドイツ連邦共和国基本法（Grundgesetz）第 7 条。 <a href="https://www.gesetze-im-internet.de/gg/art_7.html">Gesetze im Internet</a> <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">konfessionen.org 「 Religionsunterricht in Deutschland 」（二次情報）。 <a href="https://konfessionen.org/religionsunterricht-deutschland/">konfessionen.org</a> <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">Religion Media Centre 「 Factsheet: Religious Education in schools 」（二次情報）。 <a href="https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/">Religion Media Centre</a> <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10">Association for Citizenship Teaching 「 Citizenship national curriculum 」（二次情報）。 <a href="https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/">Association for Citizenship Teaching</a> <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11">The Korea Herald 「 [Ahn Byung-il] Progress of Character Education Promotion Act 」（二次情報）。 <a href="https://www.koreaherald.com/article/1383433">The Korea Herald</a> <a class="fnback" href="#fnref-11-1">↩</a></li>
-<li id="ref-12">한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」（二次情報）。 <a href="https://news.knue.ac.kr/news/articleView.html?idxno=1519">한국교원대신문</a> <a class="fnback" href="#fnref-12-1">↩</a></li>
-<li id="ref-13">フランス教育省 éduscol 「 Enseignement moral et civique 」。 <a href="https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique">éduscol</a> <a class="fnback" href="#fnref-13-1">↩</a></li>
-<li id="ref-14">Anti-Defamation League 「 Religion in the Public Schools 」（二次情報）。 <a href="https://www.adl.org/media/15792/download">Anti-Defamation League</a> <a class="fnback" href="#fnref-14-1">↩</a></li>
-<li id="ref-15">Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」（二次情報）。 <a href="https://nwef.org/2021/08/09/character-education-in-school/">Noah Webster Educational Foundation</a> <a class="fnback" href="#fnref-15-1">↩</a></li>
-<li id="ref-16">manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」（二次情報、スペンサー・福沢諭吉に関する記述の典拠）。 <a href="https://manabitoya.com/about-san-iku">manabitoya.com</a> <a class="fnback" href="#fnref-16-1">↩</a></li>
-<li id="ref-17">Herbert Spencer, <em>Education: Intellectual, Moral, and Physical</em>（1861 年、原典、知育・徳育・体育の英語表現の典拠）。 <a href="https://archive.org/details/spencereducation00spen">Internet Archive</a> <a class="fnback" href="#fnref-17-1">↩</a></li>
-<li id="ref-18">文部科学省「全国的な学力調査（全国学力・学習状況調査等）」。 <a href="https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/">文部科学省サイト</a> <a class="fnback" href="#fnref-18-1">↩</a></li>
-<li id="ref-19">スポーツ庁「全国体力・運動能力、運動習慣等調査」。 <a href="https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm">スポーツ庁サイト</a> <a class="fnback" href="#fnref-19-1">↩</a></li>
-<li id="ref-20">文部科学省「論点メモ（道徳科における評価について）」。 <a href="https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm">文部科学省サイト</a> <a class="fnback" href="#fnref-20-1">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 文部科学省「道徳教育アーカイブ」。 <a href="https://doutoku.mext.go.jp/html/basic.html">文部科学省サイト</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 中央教育審議会「道徳に係る教育課程の改善等について（答申）」 2014 年 10 月 21 日。 <a href="https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo0/toushin/__icsFiles/afieldfile/2014/10/21/1352890_1.pdf">文部科学省 公開 PDF</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> 文部科学省「小学校学習指導要領解説 特別の教科 道徳編」平成 27 年 7 月。 <a href="https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2016/01/08/1356257_4.pdf">文部科学省 公開 PDF</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 教育基本法（平成十八年法律第百二十号）第 15 条。 <a href="https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/16520061222120.htm">衆議院 法律案・条文データベース</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 仙台弁護士会「道徳の教科化等に反対し学校教育法施行規則改正案及び学習指導要領改訂案に反対する意見書」。 <a href="https://senben.org/archives/5747">仙台弁護士会サイト</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> 自由法曹団「道徳の教科化に反対し、学習権保障の観点から問題がある日本教科書の道徳教科書の採択に反対する」。 <a href="https://www.jlaf.jp/kyokasho/2019/0305_60.html">自由法曹団サイト</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> ドイツ連邦共和国基本法 (Grundgesetz) 第 7 条。 <a href="https://www.gesetze-im-internet.de/gg/art_7.html">Gesetze im Internet</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> konfessionen.org 「 Religionsunterricht in Deutschland 」（二次情報）。 <a href="https://konfessionen.org/religionsunterricht-deutschland/">konfessionen.org</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Religion Media Centre 「 Factsheet: Religious Education in schools 」（二次情報）。 <a href="https://religionmediacentre.org.uk/factsheets/religious-education-report-2018/">Religion Media Centre</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Association for Citizenship Teaching 「 Citizenship national curriculum 」（二次情報）。 <a href="https://www.teachingcitizenship.org.uk/citizenship-national-curriculum/">Association for Citizenship Teaching</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> The Korea Herald 「 [Ahn Byung-il] Progress of Character Education Promotion Act 」（二次情報）。 <a href="https://www.koreaherald.com/article/1383433">The Korea Herald</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> 한국교원대신문「 Character Education Promotion Act: Movement to Cultivate Humanity 」（二次情報）。 <a href="https://news.knue.ac.kr/news/articleView.html?idxno=1519">한국교원대신문</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> フランス教育省 éduscol 「 Enseignement moral et civique 」。 <a href="https://eduscol.education.gouv.fr/4446/enseignement-moral-et-civique">éduscol</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Anti-Defamation League 「 Religion in the Public Schools 」（二次情報）。 <a href="https://www.adl.org/media/15792/download">Anti-Defamation League</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Noah Webster Educational Foundation 「 Why Your School Needs a Character-Based Curriculum 」（二次情報）。 <a href="https://nwef.org/2021/08/09/character-education-in-school/">Noah Webster Educational Foundation</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> manabitoya.com 「徳育・知育・体育とされる『三育』の定義や起源、実践校などのまとめ」（二次情報、スペンサー・福沢諭吉に関する記述の典拠）。 <a href="https://manabitoya.com/about-san-iku">manabitoya.com</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Herbert Spencer, <em>Education: Intellectual, Moral, and Physical</em>(1861 年、原典、知育・徳育・体育の英語表現の典拠）。 <a href="https://archive.org/details/spencereducation00spen">Internet Archive</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> 文部科学省「全国的な学力調査（全国学力・学習状況調査等）」。 <a href="https://www.mext.go.jp/a_menu/shotou/gakuryoku-chousa/">文部科学省サイト</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> スポーツ庁「全国体力・運動能力、運動習慣等調査」。 <a href="https://www.mext.go.jp/sports/b_menu/toukei/kodomo/zencyo/1368222.htm">スポーツ庁サイト</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> 文部科学省「論点メモ（道徳科における評価について）」。 <a href="https://www.mext.go.jp/b_menu/shingi/chousa/shotou/111/shiryo/attach/1365879.htm">文部科学省サイト</a></li>
 </ol>
 </div>
 </div>

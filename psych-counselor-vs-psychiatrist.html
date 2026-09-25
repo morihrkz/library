@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -42,14 +42,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -59,7 +62,6 @@ strong{font-weight:bold;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker{list-style:none; padding-left:0;}
 </style>
 </head>
 <body>
@@ -73,14 +75,14 @@ strong{font-weight:bold;}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 導入</a></li>
-<li><a href="#sec2">2. 制度上の役割分担の整理</a></li>
-<li><a href="#sec3">3. 「悩み」と「精神疾患」の境界という問題そのものの検討</a></li>
-<li><a href="#sec4">4. 神経科学的知見</a></li>
-<li><a href="#sec5">5. オンライン上の精神科医による相談対応という現象の検討</a></li>
-<li><a href="#sec6">6. 結論</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">導入</a></li>
+<li><a href="#sec2">制度上の役割分担の整理</a></li>
+<li><a href="#sec3">「悩み」と「精神疾患」の境界という問題そのものの検討</a></li>
+<li><a href="#sec4">神経科学的知見</a></li>
+<li><a href="#sec5">オンライン上の精神科医による相談対応という現象の検討</a></li>
+<li><a href="#sec6">結論</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 導入</h2>
@@ -91,13 +93,13 @@ strong{font-weight:bold;}
 
 <h2 id="sec2">2. 制度上の役割分担の整理</h2>
 <p>まず、制度が実際にどのような線引きを定めているかを確認する。この節は事実の記述が中心であり、以下で述べる制度的枠組みは、いずれも法令・公的資料に基づく確立された事実である。</p>
-<h3>心理カウンセラー（公認心理師・臨床心理士）の職務範囲</h3>
+<h3>●心理カウンセラー（公認心理師・臨床心理士）の職務範囲</h3>
 <p>日本において「心理カウンセラー」と呼ばれる専門職の中核をなすのが、公認心理師と臨床心理士である。両者は制度的位置づけが大きく異なる。</p>
-<p>公認心理師は、 2015 年制定・ 2017 年施行の公認心理師法に基づく国家資格である <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。同法第 2 条は、公認心理師が業として行う行為を次の四つに限定して列挙している。すなわち、①心理に関する支援を要する者の心理状態の観察・分析、②本人への心理に関する相談・助言・指導その他の援助、③関係者への相談・助言・指導その他の援助、④心の健康に関する知識の普及のための教育・情報提供である <sup class="fnref"><a id="fnref-1-2" href="#ref-1">[1]</a></sup> 。重要なのは、この列挙のなかに「診断」が含まれていない点である。心理検査等を実施し結果を分析することは公認心理師の業務だが、その結果に基づいて疾患名を確定する「診断」という行為そのものは、医師の業務として制度上区別されている。</p>
-<p>公認心理師は名称独占資格であり、業務独占資格ではない。公認心理師法第 44 条は「公認心理師でない者は、公認心理師という名称を使用してはならない」と定めるにとどまり、心理相談業務そのものを公認心理師以外が行うことを禁じているわけではない <sup class="fnref"><a id="fnref-1-3" href="#ref-1">[1]</a></sup> 。加えて同法第 42 条第 2 項は、支援対象者に主治医がいる場合、公認心理師はその指示を受けなければならないと定めており、医師との関係において公認心理師の独立性は制度上限定的である <sup class="fnref"><a id="fnref-1-4" href="#ref-1">[1]</a></sup><sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。</p>
-<p>一方、臨床心理士は公益財団法人日本臨床心理士資格認定協会が認定する民間資格であり、国家資格ではない。 1988 年に資格制度が発足し、 5 年ごとの資格更新が義務づけられている点が公認心理師（更新制度なし）との制度的な違いである <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。医療機関や教育機関では、公認心理師と臨床心理士の両方を保有する者も多く、両資格は排他的ではないが、法的な位置づけとしては「国家資格に基づく名称独占」と「民間団体による認定」という別種のものである。</p>
-<h3>精神科医の職務範囲</h3>
-<p>精神科医は医師免許を前提とする以上、医師法上の医療行為――診断・処方・手術等――を行うことができる。これに加えて、精神保健福祉法は「精神保健指定医」という追加的な資格を設けており、これを持つ医師のみが行いうる職務がある。具体的には、本人の同意によらない入院形態である医療保護入院・措置入院に際しての診察・判定、措置入院解除の判定、一定の行動制限の判定、定期病状報告に係る診察等である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。医療保護入院には指定医 1 名の診断が、自傷他害のおそれを要件とする措置入院にはより厳格な指定医 2 名の診断が求められる <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。</p>
+<p>公認心理師は、 2015 年制定・ 2017 年施行の公認心理師法に基づく国家資格である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。同法第 2 条は、公認心理師が業として行う行為を次の四つに限定して列挙している。すなわち、①心理に関する支援を要する者の心理状態の観察・分析、②本人への心理に関する相談・助言・指導その他の援助、③関係者への相談・助言・指導その他の援助、④心の健康に関する知識の普及のための教育・情報提供である <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。重要なのは、この列挙のなかに「診断」が含まれていない点である。心理検査等を実施し結果を分析することは公認心理師の業務だが、その結果に基づいて疾患名を確定する「診断」という行為そのものは、医師の業務として制度上区別されている。</p>
+<p>公認心理師は名称独占資格であり、業務独占資格ではない。公認心理師法第 44 条は「公認心理師でない者は、公認心理師という名称を使用してはならない」と定めるにとどまり、心理相談業務そのものを公認心理師以外が行うことを禁じているわけではない <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。加えて同法第 42 条第 2 項は、支援対象者に主治医がいる場合、公認心理師はその指示を受けなければならないと定めており、医師との関係において公認心理師の独立性は制度上限定的である <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup><sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>一方、臨床心理士は公益財団法人日本臨床心理士資格認定協会が認定する民間資格であり、国家資格ではない。 1988 年に資格制度が発足し、 5 年ごとの資格更新が義務づけられている点が公認心理師（更新制度なし）との制度的な違いである <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。医療機関や教育機関では、公認心理師と臨床心理士の両方を保有する者も多く、両資格は排他的ではないが、法的な位置づけとしては「国家資格に基づく名称独占」と「民間団体による認定」という別種のものである。</p>
+<h3>●精神科医の職務範囲</h3>
+<p>精神科医は医師免許を前提とする以上、医師法上の医療行為――診断・処方・手術等――を行うことができる。これに加えて、精神保健福祉法は「精神保健指定医」という追加的な資格を設けており、これを持つ医師のみが行いうる職務がある。具体的には、本人の同意によらない入院形態である医療保護入院・措置入院に際しての診察・判定、措置入院解除の判定、一定の行動制限の判定、定期病状報告に係る診察等である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。医療保護入院には指定医 1 名の診断が、自傷他害のおそれを要件とする措置入院にはより厳格な指定医 2 名の診断が求められる <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
 <p>つまり、精神科医（特に精神保健指定医）は、診断・処方という医療行為に加えて、本人の意に反した入院という、人身の自由に関わる強い権限を行使しうる立場にある。これは心理カウンセラーには制度上認められていない権限である。</p>
 
 <div class="box">
@@ -136,19 +138,19 @@ strong{font-weight:bold;}
 <p class="figcaption">図 : 権限は下位資格の範囲を包含しながら積み上がる構造になっており、精神保健指定医のみが人身の自由に関わる判定権限を持つ。</p>
 </div>
 
-<h3>保険診療上の建前</h3>
-<p>保険診療の範囲という観点からも、両者の間には明確な線が引かれている。公認心理師・臨床心理士が行う通常のカウンセリングは、原則として健康保険の適用対象外であり、自由診療（自費）として提供されるのが一般的である <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。</p>
-<p>これには例外がある。医師（または医師の指示のもとで看護師等）がうつ病等の気分障害に対して行う認知行動療法、特定の精神疾患に対する通院・在宅精神療法、医師による標準型精神分析療法（45 分を超えるもの）、入院・通院集団精神療法などは、診療報酬上の要件を満たせば保険適用となりうる <sup class="fnref"><a id="fnref-6-2" href="#ref-6">[6]</a></sup> 。ただし、これらの診療報酬項目の正確な名称・点数区分の詳細な原文までは本稿の調査で確認できておらず、この段落の記述は二次資料に基づく一般的な整理にとどまることを断っておく（未確認）。</p>
+<h3>●保険診療上の建前</h3>
+<p>保険診療の範囲という観点からも、両者の間には明確な線が引かれている。公認心理師・臨床心理士が行う通常のカウンセリングは、原則として健康保険の適用対象外であり、自由診療（自費）として提供されるのが一般的である <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</p>
+<p>これには例外がある。医師（または医師の指示のもとで看護師等）がうつ病等の気分障害に対して行う認知行動療法、特定の精神疾患に対する通院・在宅精神療法、医師による標準型精神分析療法 (45 分を超えるもの）、入院・通院集団精神療法などは、診療報酬上の要件を満たせば保険適用となりうる <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup> 。ただし、これらの診療報酬項目の正確な名称・点数区分の詳細な原文までは本稿の調査で確認できておらず、この段落の記述は二次資料に基づく一般的な整理にとどまることを断っておく（未確認）。</p>
 <p>ここから見えてくるのは、「相談・カウンセリング」と「保険適用される医療行為としての精神療法」との間の線引きが、資格の種類よりもむしろ「誰が、どのような形式で」行うかに依存する、やや込み入った制度設計になっているという点である。同じ「話を聞く」という行為でも、医師が診療の一環として行えば保険診療になりうるが、公認心理師が行えば原則として自費になる。この非対称性は、次節で扱う「悩みと疾患の境界」の問題と、実は無関係ではない。</p>
 
 <h2 id="sec3">3. 「悩み」と「精神疾患」の境界という問題そのものの検討</h2>
 <p>制度上の役割分担は、「悩み相談」と「疾患の診断・治療」が明確に区別できることを前提としている。しかし、この前提そのものが、精神医学・心理学において古くから論争の対象となってきた。</p>
-<h3>臨床的な鑑別の考え方――グラデーションとしての評価</h3>
+<h3>●臨床的な鑑別の考え方――グラデーションとしての評価</h3>
 <p>まず確認しておきたいのは、「過去の嫌な思い出を思い出し、気持ちがふさぎ込んでしまう」という訴えそのものが、臨床的にどのように評価されうるかである。ここで強調しておきたいのは、この訴え単体から「これは疾患である」あるいは「これは正常範囲の悩みである」と断定することは、本稿の目的ではないし、そもそも臨床的にも適切ではないという点である。あくまで、臨床家がどのような評価軸を用いてこの種の訴えを検討するか、その考え方の枠組みを示すにとどめる。</p>
-<p>一つの手がかりは、正常な悲哀反応（グリーフ）とうつ病エピソードの鑑別という、精神医学において蓄積のある論点である。 DSM （精神疾患の診断・統計マニュアル）の旧版である DSM-IV-TR には「死別除外（bereavement exclusion）」という規定があり、大切な人を亡くしてから一定期間内の抑うつ症状は、原則としてうつ病エピソードの診断対象から除外されていた。 DSM-5 ではこの除外規定が撤廃され、死別後であってもうつ病エピソードの基準を満たせば診断されうることになった <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。この改訂は、「正常な悲哀に医療のラベルを貼りすぎているのではないか」という懸念から、当時大きな論争を呼んだ <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。</p>
-<p>臨床的には、正常な悲哀反応とうつ病エピソードは、いくつかの特徴によって区別されると説明されることが多い。正常な悲哀では、故人を思い出す際に悲しみと同時に、温かい記憶などの穏やかな感情も混在して経験されることが多く、自尊心は基本的に保たれる。これに対しうつ病エピソードでは、無価値感や自己嫌悪といった、より侵食的な感覚が特徴的とされる <sup class="fnref"><a id="fnref-7-2" href="#ref-7">[7]</a></sup><sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。もっとも、これらはあくまで臨床的な傾向としての目安であり、個別の事例に機械的に適用できる境界線ではない。</p>
-<p>もう一つの手がかりは、 PTSD （心的外傷後ストレス障害）との鑑別である。 DSM-5 の PTSD 診断基準における基準 A （外傷的出来事への曝露）は、「死亡、死の脅威、実際のまたは脅された重篤な負傷、実際のまたは脅された性的暴力」への曝露に限定されている <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。つまり、単に「嫌な思い出」というだけでは、この基準 A を満たすとは限らない。また、 PTSD における侵入記憶は、それが不随意的に生じ、あたかも出来事が現在再び起きているかのような感覚を伴う点で、うつ病における反芻思考（voluntary に近い、繰り返し思考をめぐらせる過程）とは質的に異なるとされる <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。</p>
-<p>これらを踏まえると、「過去の嫌な思い出を思い出し気持ちがふさぎ込む」という訴えは、それだけでは PTSD の診断基準（基準 A）を厳密には満たさない可能性が高く、むしろ正常範囲の反芻思考・一過性の悲哀反応から、うつ病エピソードに至るまでのスペクトラム上のどこかに位置づけて評価されるべき事例である可能性が高い。ただし、これは一般論としての評価軸の説明であり、実際にどこに位置づけられるかは、期間・重症度・機能障害の程度など、個別の臨床情報を踏まえた専門家の評価を要する。</p>
+<p>一つの手がかりは、正常な悲哀反応（グリーフ）とうつ病エピソードの鑑別という、精神医学において蓄積のある論点である。 DSM （精神疾患の診断・統計マニュアル）の旧版である DSM-IV-TR には「死別除外 (bereavement exclusion) 」という規定があり、大切な人を亡くしてから一定期間内の抑うつ症状は、原則としてうつ病エピソードの診断対象から除外されていた。 DSM-5 ではこの除外規定が撤廃され、死別後であってもうつ病エピソードの基準を満たせば診断されうることになった <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。この改訂は、「正常な悲哀に医療のラベルを貼りすぎているのではないか」という懸念から、当時大きな論争を呼んだ <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。</p>
+<p>臨床的には、正常な悲哀反応とうつ病エピソードは、いくつかの特徴によって区別されると説明されることが多い。正常な悲哀では、故人を思い出す際に悲しみと同時に、温かい記憶などの穏やかな感情も混在して経験されることが多く、自尊心は基本的に保たれる。これに対しうつ病エピソードでは、無価値感や自己嫌悪といった、より侵食的な感覚が特徴的とされる <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup><sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。もっとも、これらはあくまで臨床的な傾向としての目安であり、個別の事例に機械的に適用できる境界線ではない。</p>
+<p>もう一つの手がかりは、 PTSD （心的外傷後ストレス障害）との鑑別である。 DSM-5 の PTSD 診断基準における基準 A （外傷的出来事への曝露）は、「死亡、死の脅威、実際のまたは脅された重篤な負傷、実際のまたは脅された性的暴力」への曝露に限定されている <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。つまり、単に「嫌な思い出」というだけでは、この基準 A を満たすとは限らない。また、 PTSD における侵入記憶は、それが不随意的に生じ、あたかも出来事が現在再び起きているかのような感覚を伴う点で、うつ病における反芻思考 (voluntary に近い、繰り返し思考をめぐらせる過程）とは質的に異なるとされる <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。</p>
+<p>これらを踏まえると、「過去の嫌な思い出を思い出し気持ちがふさぎ込む」という訴えは、それだけでは PTSD の診断基準（基準 A) を厳密には満たさない可能性が高く、むしろ正常範囲の反芻思考・一過性の悲哀反応から、うつ病エピソードに至るまでのスペクトラム上のどこかに位置づけて評価されるべき事例である可能性が高い。ただし、これは一般論としての評価軸の説明であり、実際にどこに位置づけられるかは、期間・重症度・機能障害の程度など、個別の臨床情報を踏まえた専門家の評価を要する。</p>
 
 <div class="box">
 <p><strong>「悩み」から「疾患」までのスペクトラム（概念図）</strong></p>
@@ -183,39 +185,39 @@ strong{font-weight:bold;}
 </div>
 </div>
 
-<h3>カテゴリカル診断への批判と次元モデル</h3>
-<p>この「境界」の問題は、より根本的には、精神医学における診断のあり方そのものへの方法論的懐疑と結びついている。 DSM は伝統的に、症状の組み合わせが一定の基準を満たすか否かで「診断がつく / つかない」を判定するカテゴリカル（範疇的）な分類方式を採ってきた。この方式に対しては、複数の診断基準を同時に満たす併存疾患（comorbidity）が多発すること、カットオフ値（基準を満たすとみなす症状数等の閾値）が本質的に恣意的であることなどの批判が、専門家の間で継続的に提起されてきた。</p>
-<p>これに対する代表的な代替案が、 HiTOP （Hierarchical Taxonomy of Psychopathology 、精神病理の階層分類）と呼ばれる次元モデルである。 HiTOP は、精神病理を「ある / なし」の二値ではなく連続的な次元（スペクトラム）として捉え、内在化（抑うつ・不安など）・外在化（物質使用・攻撃性など）・思考障害といった上位次元のもとに、症状群を階層的に位置づける <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。研究の蓄積により、次元的な評価の方が、従来のカテゴリカル診断よりも臨床的有用性の指標において高く評価される場合があると報告されている <sup class="fnref"><a id="fnref-12-2" href="#ref-12">[12]</a></sup> 。</p>
+<h3>●カテゴリカル診断への批判と次元モデル</h3>
+<p>この「境界」の問題は、より根本的には、精神医学における診断のあり方そのものへの方法論的懐疑と結びついている。 DSM は伝統的に、症状の組み合わせが一定の基準を満たすか否かで「診断がつく / つかない」を判定するカテゴリカル（範疇的）な分類方式を採ってきた。この方式に対しては、複数の診断基準を同時に満たす併存疾患 (comorbidity) が多発すること、カットオフ値（基準を満たすとみなす症状数等の閾値）が本質的に恣意的であることなどの批判が、専門家の間で継続的に提起されてきた。</p>
+<p>これに対する代表的な代替案が、 HiTOP (Hierarchical Taxonomy of Psychopathology 、精神病理の階層分類）と呼ばれる次元モデルである。 HiTOP は、精神病理を「ある / なし」の二値ではなく連続的な次元（スペクトラム）として捉え、内在化（抑うつ・不安など）・外在化（物質使用・攻撃性など）・思考障害といった上位次元のもとに、症状群を階層的に位置づける <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。研究の蓄積により、次元的な評価の方が、従来のカテゴリカル診断よりも臨床的有用性の指標において高く評価される場合があると報告されている <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 。</p>
 <p>この対立軸は、「専門家の間で見解が分かれている、なお検証が進められている論点」として位置づけるのが適切である。 HiTOP のような次元モデルは実証研究に基づく有力な代替案として提示されているが、 DSM のカテゴリカル診断が臨床実務・保険制度・研究の互換性において果たしてきた実務的な役割も大きく、いずれか一方が完全に「正しい」と確定しているわけではない。</p>
-<h3>医療化批判と生物医学モデル――対立の最も強い形</h3>
-<p>さらに視野を広げると、「精神疾患というカテゴリーそのものが、どこまで実在する自然種（natural kind）であり、どこまで社会的・歴史的に構築されたものか」という、より哲学的な対立軸が存在する。</p>
-<p>医療化批判の立場を代表する論者の一人が、精神科医トーマス・サズである。サズは 1960 年の議論において、「精神疾患」という概念そのものが論理的な誤りを含んでいると主張し、これを人間関係における道徳的葛藤を医学の言葉に置き換えて扱いやすくするための「神話」であると論じた <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> 。この立場を最も強い形で理解するなら、精神的苦悩を「疾患」というラベルで扱うこと自体が、本来は人生の文脈で理解されるべき経験を、当人から遠ざけてしまう危険を持つ、という批判として捉えられる。</p>
-<p>社会学者アラン・ホーウィッツとジェローム・ウェイクフィールドは、共著『喪失の悲しみ（The Loss of Sadness）』（2007 年）において、正常な悲哀反応が精神医学によって過度に「うつ病」として医療化されてきたと論じている <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 。前節で触れた死別除外規定の撤廃は、まさにこの医療化批判が具体的に問題視してきた論点の一つである。</p>
-<p>一方、生物医学モデルの立場を代表する論者の一人が、精神科医ケネス・ケンドラーである。ケンドラーは、 DSM の診断カテゴリーが厳密な意味での自然種であるとは必ずしも主張せず、むしろ精神疾患を、症状群を一貫して生み出す何らかの因果的な機序によって統一される「機序的性質クラスター（mechanistic property cluster）」として捉える、より穏健な形で診断の妥当性を擁護している <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> 。彼はまた、診断の妥当性を、先行要因（家族集積性等）・並存する検査結果・将来の経過（治療反応性等）といった複数の観点から実証的に検証する枠組みを提示しており、「精神疾患は単なる社会的構築物にすぎない」という強い社会構築主義には与しない一方、「 DSM のカテゴリーがそのまま生物学的実在を切り出している」という単純な生物医学モデルにも与しない、中間的な立場を取っていると言える <sup class="fnref"><a id="fnref-15-2" href="#ref-15">[15]</a></sup> 。</p>
+<h3>●医療化批判と生物医学モデル――対立の最も強い形</h3>
+<p>さらに視野を広げると、「精神疾患というカテゴリーそのものが、どこまで実在する自然種 (natural kind) であり、どこまで社会的・歴史的に構築されたものか」という、より哲学的な対立軸が存在する。</p>
+<p>医療化批判の立場を代表する論者の一人が、精神科医トーマス・サズである。サズは 1960 年の議論において、「精神疾患」という概念そのものが論理的な誤りを含んでいると主張し、これを人間関係における道徳的葛藤を医学の言葉に置き換えて扱いやすくするための「神話」であると論じた <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。この立場を最も強い形で理解するなら、精神的苦悩を「疾患」というラベルで扱うこと自体が、本来は人生の文脈で理解されるべき経験を、当人から遠ざけてしまう危険を持つ、という批判として捉えられる。</p>
+<p>社会学者アラン・ホーウィッツとジェローム・ウェイクフィールドは、共著『喪失の悲しみ (The Loss of Sadness) 』 (2007 年）において、正常な悲哀反応が精神医学によって過度に「うつ病」として医療化されてきたと論じている <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。前節で触れた死別除外規定の撤廃は、まさにこの医療化批判が具体的に問題視してきた論点の一つである。</p>
+<p>一方、生物医学モデルの立場を代表する論者の一人が、精神科医ケネス・ケンドラーである。ケンドラーは、 DSM の診断カテゴリーが厳密な意味での自然種であるとは必ずしも主張せず、むしろ精神疾患を、症状群を一貫して生み出す何らかの因果的な機序によって統一される「機序的性質クラスター (mechanistic property cluster) 」として捉える、より穏健な形で診断の妥当性を擁護している <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。彼はまた、診断の妥当性を、先行要因（家族集積性等）・並存する検査結果・将来の経過（治療反応性等）といった複数の観点から実証的に検証する枠組みを提示しており、「精神疾患は単なる社会的構築物にすぎない」という強い社会構築主義には与しない一方、「 DSM のカテゴリーがそのまま生物学的実在を切り出している」という単純な生物医学モデルにも与しない、中間的な立場を取っていると言える <sup id="fnref-15-2"><a href="#ref-15">[15]</a></sup> 。</p>
 <p>このように、医療化批判と生物医学モデルの対立は、しばしば戯画化されて語られがちだが（前者を「精神疾患は存在しないと主張する立場」、後者を「あらゆる苦悩を脳の病気とみなす立場」と単純化するなど）、実際の学術的な議論はそれぞれもっと繊細である。本稿はこの対立のどちらか一方が正しいと断定する立場は取らない。</p>
 
 <div class="pull">相談を聞くことと、鑑別診断のための情報収集を行うことは、臨床実践の構造上、外形的には区別がつきにくい。</div>
 
 <h2 id="sec4">4. 神経科学的知見</h2>
 <p>「悩みか疾患か」という境界問題に、神経科学はどこまで答えを与えるのだろうか。</p>
-<p>ストレス反応・記憶の想起・気分の調節に関わる神経基盤について、一般的に確立されている知見を確認する。扁桃体は情動処理、とりわけ恐怖・不安反応やストレス反応の惹起に関与するとされる <sup class="fnref"><a id="fnref-16-1" href="#ref-16">[16]</a></sup> 。海馬は文脈的な記憶・学習に中心的な役割を持つと同時に、ストレスホルモンであるコルチゾールを介した HPA 軸（視床下部・下垂体・副腎系）へのネガティブフィードバック調節にも関与するとされる <sup class="fnref"><a id="fnref-16-2" href="#ref-16">[16]</a></sup><sup class="fnref"><a id="fnref-17-1" href="#ref-17">[17]</a></sup> 。前頭前皮質は情動制御や意思決定に関わり、扁桃体の活動を抑制的に調整する回路を持つとされる <sup class="fnref"><a id="fnref-17-2" href="#ref-17">[17]</a></sup> 。 HPA 軸はストレス反応を担う内分泌系の中枢であり、慢性的な過活動は海馬・前頭前皮質に構造的な影響を及ぼしうるとする報告がある <sup class="fnref"><a id="fnref-16-3" href="#ref-16">[16]</a></sup><sup class="fnref"><a id="fnref-17-3" href="#ref-17">[17]</a></sup> 。</p>
+<p>ストレス反応・記憶の想起・気分の調節に関わる神経基盤について、一般的に確立されている知見を確認する。扁桃体は情動処理、とりわけ恐怖・不安反応やストレス反応の惹起に関与するとされる <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。海馬は文脈的な記憶・学習に中心的な役割を持つと同時に、ストレスホルモンであるコルチゾールを介した HPA 軸（視床下部・下垂体・副腎系）へのネガティブフィードバック調節にも関与するとされる <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup><sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 。前頭前皮質は情動制御や意思決定に関わり、扁桃体の活動を抑制的に調整する回路を持つとされる <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup> 。 HPA 軸はストレス反応を担う内分泌系の中枢であり、慢性的な過活動は海馬・前頭前皮質に構造的な影響を及ぼしうるとする報告がある <sup id="fnref-16-3"><a href="#ref-16">[16]</a></sup><sup id="fnref-17-3"><a href="#ref-17">[17]</a></sup> 。</p>
 <p>これらはいずれも、専門誌における神経伝達物質レベルの詳細な相互作用機序にまでは立ち入らない、比較的確立された一般的知見の水準にとどめて紹介している。</p>
 <p>問題は、これらの神経科学的知見が、「悩み」と「疾患」を明確に二分する基準を提供してくれるかどうかである。結論から言えば、現時点でそのような明確な基準は存在しないというのが、複数の総説から読み取れる一般的な含意である。扁桃体・海馬・前頭前皮質・ HPA 軸をめぐる回路は、正常範囲のストレス反応から病的な状態に至るまで、同じ神経基盤が量的な差異（活動の強度・持続時間・可塑的変化の程度など）として連続的に関与しているとする見方が有力であり、「ここから先は疾患」という質的な閾値を神経科学が単独で提供しているわけではない。この点を正面から論じた単一の決定的な総説を本稿の調査では特定できておらず（未確認）、複数の個別研究・総説から得られる一般的な含意として記述していることを断っておく。</p>
 <p>言い換えれば、神経科学は「悩みと疾患が連続的である」という立場とも、「明確な閾値がある」という立場とも、決定的な形では決着をつけていない。むしろ、この境界問題は本質的に、生物学的な事実だけでなく、診断基準・社会的機能・本人の苦痛の程度など、複数の次元を組み合わせた臨床的・社会的な判断を要する問題であり続けている。</p>
 
 <h2 id="sec5">5. オンライン上の精神科医による相談対応という現象の検討</h2>
 <p>以上を踏まえたうえで、本稿の出発点であった疑問――精神科医を名乗る人物が、オンライン上で「悩み相談」寄りの内容に応答する場面が見られること――について検討する。</p>
-<h3>考えられる説明</h3>
-<p>第一に、臨床的必然性という観点からの説明がある。精神科の診察は、血液検査や画像検査のような客観的な検査に依存する部分が限定的であり、問診（面接）そのものが診断の中心的な手段である <sup class="fnref"><a id="fnref-18-1" href="#ref-18">[18]</a></sup> 。病歴の聴取、症状の推移、患者の反応や表情の観察などを総合して診断に至るプロセスそのものが、外形的には「相談を聞く」行為と見分けがつきにくい。この意味で、「悩みを聞く」ことと「鑑別診断のための情報収集を行う」ことは、臨床実践の構造上、連続的にならざるを得ない側面がある。オンラインでの一般向けの情報発信においても、この臨床実践の延長線上で「相談を聞く」形式が採られること自体は、ある程度説明可能である。</p>
+<h3>●考えられる説明</h3>
+<p>第一に、臨床的必然性という観点からの説明がある。精神科の診察は、血液検査や画像検査のような客観的な検査に依存する部分が限定的であり、問診（面接）そのものが診断の中心的な手段である <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> 。病歴の聴取、症状の推移、患者の反応や表情の観察などを総合して診断に至るプロセスそのものが、外形的には「相談を聞く」行為と見分けがつきにくい。この意味で、「悩みを聞く」ことと「鑑別診断のための情報収集を行う」ことは、臨床実践の構造上、連続的にならざるを得ない側面がある。オンラインでの一般向けの情報発信においても、この臨床実践の延長線上で「相談を聞く」形式が採られること自体は、ある程度説明可能である。</p>
 <p>第二に、制度上の建前と臨床実践の実態との乖離という説明がある。前節までで確認したように、「悩み」と「疾患」の境界そのものが学術的に連続的なものとして議論されている以上、実際の相談内容が、事前に「これは心理カウンセラーの領域」「これは精神科医の領域」ときれいに仕分けられるとは限らない。そうである以上、視聴者側から見た相談内容が「悩み相談寄り」に見える場合でも、応答する側（精神科医）の内部では、それを鑑別診断のプロセスの一部として位置づけている可能性がある。</p>
 <p>第三に、メディア環境・視聴者ニーズという要因も考えられる。オンラインコンテンツにおいては、視聴者が抱える具体的な悩みに即した形での情報提供が、視聴者の関心・需要に応えやすい形式である可能性がある。この要因は、臨床的な必然性というよりも、情報発信という活動が持つメディア特性に由来するものであり、他の二つの説明とは性質が異なる。</p>
 <p>いずれの説明も、他の説明を排除するものではなく、複合的に作用している可能性が高い。本稿はこれらのうちどれか一つを唯一の正しい説明として断定する立場は取らない。</p>
-<h3>批判的な視点</h3>
+<h3>●批判的な視点</h3>
 <p>他方で、この現象に対して向けられうる批判的な視点も、その論者が主張しうる最も強い形で提示しておく必要がある。</p>
-<p>一つは、資格外の分野への越境という懸念である。医療広告ガイドラインの枠組みでは、 SNS や動画等での医療機関・医師の情報発信のうち、受診等への誘引性があり医師等が特定できるものは「広告」として規制対象となりうる。この枠組みのもとでは、オンライン上での「個別の診療相談」は本来的にリスクが指摘されており、受診への誘導にとどめるべきだとする考え方が示されている <sup class="fnref"><a id="fnref-19-1" href="#ref-19">[19]</a></sup> 。この観点に立てば、精神科医による個別性の強い「相談対応」的なコンテンツは、本来の医療広告規制が想定する範囲との緊張関係を持ちうる、という批判は十分に成り立つ。</p>
+<p>一つは、資格外の分野への越境という懸念である。医療広告ガイドラインの枠組みでは、 SNS や動画等での医療機関・医師の情報発信のうち、受診等への誘引性があり医師等が特定できるものは「広告」として規制対象となりうる。この枠組みのもとでは、オンライン上での「個別の診療相談」は本来的にリスクが指摘されており、受診への誘導にとどめるべきだとする考え方が示されている <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 。この観点に立てば、精神科医による個別性の強い「相談対応」的なコンテンツは、本来の医療広告規制が想定する範囲との緊張関係を持ちうる、という批判は十分に成り立つ。</p>
 <p>もう一つは、専門性の希釈化への懸念である。「相談を聞く」という行為が精神科医によっても心理カウンセラーによっても行われうるという状況が広がれば、心理カウンセラーという専門職が担ってきた固有の専門性・存在意義が見えにくくなるのではないか、という懸念は、心理職の立場から提起されうる。</p>
-<h3>心理カウンセラー側から見た職域の観点</h3>
-<p>実際、公認心理師制度そのものについても、心理職コミュニティの内部から、その独立性・専門性のあり方をめぐる議論が存在する。公認心理師は主治医がいる場合にその指示を受ける義務を負う制度設計となっており、これは「指導」よりも拘束力が強い「指示」という語が用いられている点も含め、心理職の独立した専門性がどこまで制度的に担保されているかについて、心理職側から懸念が示されてきた経緯がある <sup class="fnref"><a id="fnref-20-1" href="#ref-20">[20]</a></sup> 。このような制度的背景を踏まえれば、医師が「悩み相談」的な領域にまで積極的に進出する現象は、心理職側から見て、ただでさえ限定的な自らの職域がさらに侵食されるのではないか、という懸念として受け止められうる。</p>
+<h3>●心理カウンセラー側から見た職域の観点</h3>
+<p>実際、公認心理師制度そのものについても、心理職コミュニティの内部から、その独立性・専門性のあり方をめぐる議論が存在する。公認心理師は主治医がいる場合にその指示を受ける義務を負う制度設計となっており、これは「指導」よりも拘束力が強い「指示」という語が用いられている点も含め、心理職の独立した専門性がどこまで制度的に担保されているかについて、心理職側から懸念が示されてきた経緯がある <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> 。このような制度的背景を踏まえれば、医師が「悩み相談」的な領域にまで積極的に進出する現象は、心理職側から見て、ただでさえ限定的な自らの職域がさらに侵食されるのではないか、という懸念として受け止められうる。</p>
 
 <h2 id="sec6">6. 結論</h2>
 <p>本稿は「悩み相談は心理カウンセラーへ、精神疾患の疑いは精神科医へ」という問題提起から出発し、制度・学術双方の観点からこれを検討してきた。</p>
@@ -225,28 +227,28 @@ strong{font-weight:bold;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">公認心理師法（平成 27 年法律第 68 号）、第 2 条・第 42 条・第 44 条。 <a href="https://laws.e-gov.go.jp/law/427AC0000000068">e-Gov 法令検索</a>、<a href="https://www.mhlw.go.jp/web/t_doc?dataId=80ab4905&amp;dataType=0&amp;pageNo=1">厚生労働省法令等データベース</a> <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">公認心理師の職責に関する解説。<a href="https://psychologist.x0.com/terms/511.html">公認心理師用語集</a> <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">臨床心理士資格制度の概要（公益財団法人日本臨床心理士資格認定協会の認定による民間資格、 1988 年発足、 5 年ごとの更新制）。<a href="https://www.siu.ac.jp/news/detail.html?news=1511">札幌国際大学</a>、<a href="https://www.isu.ac.jp/psychology/03.html">医療創生大学</a> <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">精神保健指定医の職務（措置入院・医療保護入院時の診察・判定等）。精神保健及び精神障害者福祉に関する法律。<a href="https://www.nisseikyo.or.jp/guide/psychiatry04.php">日本精神科病院協会「精神保健福祉法の解説」</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">医療保護入院・措置入院における精神保健指定医の診断要件。<a href="https://www.mhlw.go.jp/file/05-Shingikai-12201000-Shakaiengokyokushougaihokenfukushibu-Kikakuka/0000149864.pdf">厚生労働省「医療保護入院制度に関する参考資料」</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">カウンセリングの保険適用の範囲（未確認 : 診療報酬点数表原文は未参照、二次資料に基づく整理）。 <a href="https://cotree.jp/columns/1221">cotree 「カウンセリング保険適用の三つの条件」</a>、<a href="https://wemeet.co.jp/blog/2337/">ウィーミート「心理カウンセリングとは」</a> <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">DSM-5 における死別除外規定の撤廃と、正常な悲哀反応とうつ病エピソードの鑑別。 <a href="https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Depression-Bereavement-Exclusion.pdf">APA "Major Depressive Disorder and the Bereavement Exclusion"</a> <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">死別除外規定撤廃をめぐる論争。 <a href="https://www.aafp.org/pubs/afp/issues/2014/1115/p690.html">AAFP "Grief and Major Depression—Controversy Over Changes in DSM-5 Diagnostic Criteria"</a> <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">正常な悲哀とうつ病エピソードの鑑別における自尊心・無価値感の違い。 <a href="https://innovationscns.com/the-bereavement-exclusion-and-dsm-5-an-update-and-commentary/">Innovations in Clinical Neuroscience "The Bereavement Exclusion and DSM-5"</a> <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10">DSM-5 の PTSD 診断基準 A の定義。 <a href="https://www.ptsd.va.gov/professional/treat/essentials/dsm5_ptsd.asp">National Center for PTSD</a> <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11">PTSD における侵入記憶の不随意性・再体験性と、抑うつにおける反芻思考との質的差異。 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4439411/">PMC "Re-experiencing traumatic events in PTSD"</a> <a class="fnback" href="#fnref-11-1">↩</a></li>
-<li id="ref-12">HiTOP （階層的精神病理分類）の概要と、カテゴリカル診断との臨床的有用性の比較。 Kotov et al. <em>World Psychiatry</em> 2020. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.20730">Wiley Online Library</a> 、 <a href="https://www.apa.org/pubs/journals/features/abn-abn0000258.pdf">APA 解説</a> <a class="fnback" href="#fnref-12-1">↩</a></li>
-<li id="ref-13">Thomas Szasz, <em>The Myth of Mental Illness</em>（1960 年の議論）。 <a href="https://www.cambridge.org/core/journals/irish-journal-of-psychological-medicine/article/abs/myth-of-mental-illness-50-years-after-publication-what-does-it-mean-today/E994E035FEA0A68B4B7F4DC111E77AFF">Cambridge Core "The Myth of Mental Illness: 50 years after publication"</a> 、 <a href="https://en.wikipedia.org/wiki/The_Myth_of_Mental_Illness">Wikipedia 解説</a> <a class="fnback" href="#fnref-13-1">↩</a></li>
-<li id="ref-14">Allan V. Horwitz and Jerome C. Wakefield, <em>The Loss of Sadness: How Psychiatry Transformed Normal Sorrow into Depressive Disorder</em>（2007 年）。 <a href="https://www.amazon.com/Loss-Sadness-Psychiatry-Transformed-Depressive/dp/0195313046">Amazon 書誌情報</a> <a class="fnback" href="#fnref-14-1">↩</a></li>
-<li id="ref-15">Kenneth Kendler による精神疾患診断の妥当性論・機序的性質クラスターモデル。 <a href="https://www.psychiatrictimes.com/view/our-closing-argument-in-defense-of-psychiatric-diagnosis">Psychiatric Times "Our Closing Argument in Defense of Psychiatric Diagnosis"</a> 、 <a href="https://www.semanticscholar.org/paper/What-kinds-of-things-are-psychiatric-disorders-Kendler-Zachar/283fba16e7ff41cbc177dd6af593dec876ec5a00">Semantic Scholar</a> <a class="fnback" href="#fnref-15-1">↩</a></li>
-<li id="ref-16">扁桃体・ HPA 軸・ストレス反応に関する神経科学的知見。 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5987037/">PMC "Stress-Induced Functional Alterations in Amygdala"</a> <a class="fnback" href="#fnref-16-1">↩</a></li>
-<li id="ref-17">海馬・前頭前皮質・ HPA 軸の相互作用に関する神経科学的知見。 <a href="https://openstax.org/books/introduction-behavioral-neuroscience/pages/12-2-neural-mechanisms-and-circuitry-of-the-stress-response">OpenStax "Introduction to Behavioral Neuroscience" 12.2</a> <a class="fnback" href="#fnref-17-1">↩</a></li>
-<li id="ref-18">精神科診察における問診（面接）の中心性。 <a href="https://www.comhbo.net/?page_id=13149">COMHBO 「精神科医はどうやって診断しているのか」</a> <a class="fnback" href="#fnref-18-1">↩</a></li>
-<li id="ref-19">医療広告ガイドライン上の SNS ・動画における個別診療相談のリスク。<a href="https://www.aplawjapan.com/application/files/1817/6161/2965/Newsletter_LFS_002.pdf">「 SNS ・動画医療広告規制のポイントと留意点」</a> <a class="fnback" href="#fnref-19-1">↩</a></li>
-<li id="ref-20">公認心理師制度における医師の指示義務と、心理職の独立性・専門性をめぐる懸念。 <a href="https://note.com/inext/n/n6f40d652adb2">note/ 臨床心理マガジン iNEXT 「頑張れ！心理職の専門性」</a> <a class="fnback" href="#fnref-20-1">↩</a></li>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> 公認心理師法（平成 27 年法律第 68 号）、第 2 条・第 42 条・第 44 条。 <a href="https://laws.e-gov.go.jp/law/427AC0000000068">e-Gov 法令検索</a>、<a href="https://www.mhlw.go.jp/web/t_doc?dataId=80ab4905&amp;dataType=0&amp;pageNo=1">厚生労働省法令等データベース</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 公認心理師の職責に関する解説。<a href="https://psychologist.x0.com/terms/511.html">公認心理師用語集</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> 臨床心理士資格制度の概要（公益財団法人日本臨床心理士資格認定協会の認定による民間資格、 1988 年発足、 5 年ごとの更新制）。<a href="https://www.siu.ac.jp/news/detail.html?news=1511">札幌国際大学</a>、<a href="https://www.isu.ac.jp/psychology/03.html">医療創生大学</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 精神保健指定医の職務（措置入院・医療保護入院時の診察・判定等）。精神保健及び精神障害者福祉に関する法律。<a href="https://www.nisseikyo.or.jp/guide/psychiatry04.php">日本精神科病院協会「精神保健福祉法の解説」</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 医療保護入院・措置入院における精神保健指定医の診断要件。<a href="https://www.mhlw.go.jp/file/05-Shingikai-12201000-Shakaiengokyokushougaihokenfukushibu-Kikakuka/0000149864.pdf">厚生労働省「医療保護入院制度に関する参考資料」</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> カウンセリングの保険適用の範囲（未確認 : 診療報酬点数表原文は未参照、二次資料に基づく整理）。 <a href="https://cotree.jp/columns/1221">cotree 「カウンセリング保険適用の三つの条件」</a>、<a href="https://wemeet.co.jp/blog/2337/">ウィーミート「心理カウンセリングとは」</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> DSM-5 における死別除外規定の撤廃と、正常な悲哀反応とうつ病エピソードの鑑別。 <a href="https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Depression-Bereavement-Exclusion.pdf">APA "Major Depressive Disorder and the Bereavement Exclusion"</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> 死別除外規定撤廃をめぐる論争。 <a href="https://www.aafp.org/pubs/afp/issues/2014/1115/p690.html">AAFP "Grief and Major Depression—Controversy Over Changes in DSM-5 Diagnostic Criteria"</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 正常な悲哀とうつ病エピソードの鑑別における自尊心・無価値感の違い。 <a href="https://innovationscns.com/the-bereavement-exclusion-and-dsm-5-an-update-and-commentary/">Innovations in Clinical Neuroscience "The Bereavement Exclusion and DSM-5"</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> DSM-5 の PTSD 診断基準 A の定義。 <a href="https://www.ptsd.va.gov/professional/treat/essentials/dsm5_ptsd.asp">National Center for PTSD</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> PTSD における侵入記憶の不随意性・再体験性と、抑うつにおける反芻思考との質的差異。 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4439411/">PMC "Re-experiencing traumatic events in PTSD"</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> HiTOP （階層的精神病理分類）の概要と、カテゴリカル診断との臨床的有用性の比較。 Kotov et al. <em>World Psychiatry</em> 2020. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wps.20730">Wiley Online Library</a> 、 <a href="https://www.apa.org/pubs/journals/features/abn-abn0000258.pdf">APA 解説</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Thomas Szasz, <em>The Myth of Mental Illness</em>(1960 年の議論）。 <a href="https://www.cambridge.org/core/journals/irish-journal-of-psychological-medicine/article/abs/myth-of-mental-illness-50-years-after-publication-what-does-it-mean-today/E994E035FEA0A68B4B7F4DC111E77AFF">Cambridge Core "The Myth of Mental Illness: 50 years after publication"</a> 、 <a href="https://en.wikipedia.org/wiki/The_Myth_of_Mental_Illness">Wikipedia 解説</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Allan V. Horwitz and Jerome C. Wakefield, <em>The Loss of Sadness: How Psychiatry Transformed Normal Sorrow into Depressive Disorder</em>(2007 年）。 <a href="https://www.amazon.com/Loss-Sadness-Psychiatry-Transformed-Depressive/dp/0195313046">Amazon 書誌情報</a></li>
+<li id="ref-15">^ <sup><a href="#fnref-15-1">a</a></sup> <sup><a href="#fnref-15-2">b</a></sup> Kenneth Kendler による精神疾患診断の妥当性論・機序的性質クラスターモデル。 <a href="https://www.psychiatrictimes.com/view/our-closing-argument-in-defense-of-psychiatric-diagnosis">Psychiatric Times "Our Closing Argument in Defense of Psychiatric Diagnosis"</a> 、 <a href="https://www.semanticscholar.org/paper/What-kinds-of-things-are-psychiatric-disorders-Kendler-Zachar/283fba16e7ff41cbc177dd6af593dec876ec5a00">Semantic Scholar</a></li>
+<li id="ref-16">^ <sup><a href="#fnref-16-1">a</a></sup> <sup><a href="#fnref-16-2">b</a></sup> <sup><a href="#fnref-16-3">c</a></sup> 扁桃体・ HPA 軸・ストレス反応に関する神経科学的知見。 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5987037/">PMC "Stress-Induced Functional Alterations in Amygdala"</a></li>
+<li id="ref-17">^ <sup><a href="#fnref-17-1">a</a></sup> <sup><a href="#fnref-17-2">b</a></sup> <sup><a href="#fnref-17-3">c</a></sup> 海馬・前頭前皮質・ HPA 軸の相互作用に関する神経科学的知見。 <a href="https://openstax.org/books/introduction-behavioral-neuroscience/pages/12-2-neural-mechanisms-and-circuitry-of-the-stress-response">OpenStax "Introduction to Behavioral Neuroscience" 12.2</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> 精神科診察における問診（面接）の中心性。 <a href="https://www.comhbo.net/?page_id=13149">COMHBO 「精神科医はどうやって診断しているのか」</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> 医療広告ガイドライン上の SNS ・動画における個別診療相談のリスク。<a href="https://www.aplawjapan.com/application/files/1817/6161/2965/Newsletter_LFS_002.pdf">「 SNS ・動画医療広告規制のポイントと留意点」</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> 公認心理師制度における医師の指示義務と、心理職の独立性・専門性をめぐる懸念。 <a href="https://note.com/inext/n/n6f40d652adb2">note/ 臨床心理マガジン iNEXT 「頑張れ！心理職の専門性」</a></li>
 </ol>
 </div>
 <p class="note">注 : 本稿は特定の配信者・チャンネルを分析対象とせず、一般的な現象として論じたものである。制度に関する記述（第 2 章）は法令・公的資料に基づく事実の整理だが、保険診療の適用範囲に関する一部の記述、および HPA 軸・神経回路に関する一部の一般的知見は、原典未確認または複数の二次資料に基づく整理であることを本文中に明記した。医療化批判と生物医学モデルの対立については、本稿はどちらか一方を正しいものとして断定していない。</p>

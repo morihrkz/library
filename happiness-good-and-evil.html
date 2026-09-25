@@ -39,7 +39,7 @@ table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{margin-bottom:9px; font-size:19px;}
 a{color:var(--link);}
 sup{font-size:.72em;}
 sup a{color:var(--link); text-decoration:none;}
@@ -47,6 +47,11 @@ sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
 .refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -64,10 +69,10 @@ strong{font-weight:bold;}
 <div class="kicker">哲学・心理学・神経科学</div>
 <h1>正しい幸福、邪悪な幸福<br>――その区別は成り立つのか</h1>
 <p class="subtitle">Righteous Happiness, Malicious Happiness: Does the Distinction Hold?</p>
-<div class="meta">【方法と限界】本稿は、哲学・心理学・神経科学における確認可能な知見と、そこから導かれる解釈上の仮説とを区別して記述する。心理学・神経科学の実証研究は集団レベルの傾向を示すものであり、個別の事例を一般法則として提示するものではない。哲学的主張は検証済みの科学的事実ではなく、人間の生の理解の仕方についての思考の枠組みとして扱う。仏教用語（「慢」「憍」）の説明は二次資料に基づくものであり、原典は未確認である。</div>
 <div class="lede">
 <p>子や孫の笑顔への喜び、同窓会で覚える優越感、そして生まれながらの障害や劣悪な環境で育った人を知って覚える「自分はまだ幸せだ」という安堵――同じ「幸福」という言葉でくくられるこの三つの感情に、道徳的な質の違いはあるのだろうか。哲学・心理学・神経科学の知見を横断しながら検討する。</p>
 </div>
+<div class="meta">【方法と限界】本稿は、哲学・心理学・神経科学における確認可能な知見と、そこから導かれる解釈上の仮説とを区別して記述する。心理学・神経科学の実証研究は集団レベルの傾向を示すものであり、個別の事例を一般法則として提示するものではない。哲学的主張は検証済みの科学的事実ではなく、人間の生の理解の仕方についての思考の枠組みとして扱う。仏教用語（「慢」「憍」）の説明は二次資料に基づくものであり、原典は未確認である。</div>
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
@@ -92,7 +97,7 @@ strong{font-weight:bold;}
 <p>快楽に質的な違いを認めるかどうかという問いは、功利主義の内部にすでに刻み込まれている。ジェレミー・ベンサムは、快楽の道徳的価値を強度・持続性・確実性・遠近性などの量的な指標のみで測定できるとし、「詩も遊戯も、もたらす快楽の量が等しければ同格である」という趣旨の立場をとった（プッシュピン詩論と呼ばれることがある）。この立場に立てば、子や孫の笑顔がもたらす快楽と、同窓会での優越感がもたらす快楽は、量さえ等しければ道徳的に等価ということになる。</p>
 <p>これに対し、ベンサムの後継者であったジョン・スチュアート・ミルは、『功利主義論』(<em>Utilitarianism</em>, 1861) において、快楽には量だけでなく質の違いがあると主張した <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。ミルは「二種類の快楽をともに経験した者のほとんどが、一方を明確に好む」という基準を持ち出し、知性・感情・想像力・道徳的感覚に由来する「高級な快楽」は、単なる感覚的満足である「低級な快楽」よりも価値が高いとした。「満足した豚であるより不満足な人間であるほうがよく、満足した愚者であるより不満足なソクラテスであるほうがよい」というミルの言葉は、この立場を端的に表している。ただし、ミルの議論に対しては、「経験者の多数が好む」という基準自体がすでに質の違いを前提としており、循環論法に陥っているのではないかという批判が、哲学研究の内部で今も続いている。</p>
 <h3>●アリストテレスの幸福論</h3>
-<p>アリストテレスは、ミルより二千年以上早く、快楽（ヘードネー、 hedone ）と幸福（エウダイモニア、 eudaimonia ）を明確に区別していた <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。エウダイモニアはしばしば「幸福」と訳されるが、直訳的には「よく生きること」「魂の卓越性に基づいた活動」に近い概念である。『ニコマコス倫理学』においてアリストテレスは、快楽に浸るだけの生を、家畜にもふさわしい生であるとして退け、快楽そのものを幸福の定義とすることを拒んだ。とはいえアリストテレスは快楽を全否定したわけではなく、快楽とは活動が十分にうまく機能したときに、その活動に伴って生じる「完成」のようなものだと位置づけている。最も優れた快楽は、徳に基づく行為や観想的な活動に伴うものだとされる。この枠組みに従えば、子や孫の成長を見守るという徳ある関係性に根差した喜びと、他者との比較のみに基づく優越感とでは、たとえ主観的な快の強度が同じであっても、活動としての質が異なるということになる。</p>
+<p>アリストテレスは、ミルより二千年以上早く、快楽（ヘードネー、 hedone) と幸福（エウダイモニア、 eudaimonia) を明確に区別していた <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。エウダイモニアはしばしば「幸福」と訳されるが、直訳的には「よく生きること」「魂の卓越性に基づいた活動」に近い概念である。『ニコマコス倫理学』においてアリストテレスは、快楽に浸るだけの生を、家畜にもふさわしい生であるとして退け、快楽そのものを幸福の定義とすることを拒んだ。とはいえアリストテレスは快楽を全否定したわけではなく、快楽とは活動が十分にうまく機能したときに、その活動に伴って生じる「完成」のようなものだと位置づけている。最も優れた快楽は、徳に基づく行為や観想的な活動に伴うものだとされる。この枠組みに従えば、子や孫の成長を見守るという徳ある関係性に根差した喜びと、他者との比較のみに基づく優越感とでは、たとえ主観的な快の強度が同じであっても、活動としての質が異なるということになる。</p>
 <h3>●ストア派と仏教の視点</h3>
 <p>ストア派もまた、他者との比較に基づく快に対して懐疑的な立場をとった。ストア派の哲学者エピクテトスは、嫉妬や優越感といった感情の根に、「自分の力の及ばないもの」――他者の評価や社会的地位――を、あたかも自分の力の及ぶものであるかのように扱ってしまう誤った判断があると論じた <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。ストア派が理想としたアパテイア (apatheia) は、感情を持たない冷淡さではなく、誤った価値判断から生じる動揺のない、落ち着いた心の状態を指す。エピクテトスに従えば、同窓会での優越感は、本来自分の意のままにならない他者との比較に幸福の基盤を置いてしまっている点で、脆く、動揺を招きやすい感情だということになる。</p>
 <p>比較文化的な視点を補足すれば、仏教思想にも他者との比較に基づく心の働きに対する批判的な伝統がある。仏教では、自分と他者を比較して自らを高く評価しようとする心の働きを「慢」（まん、サンスクリット語のマーナに由来）と呼び、渇愛から生まれる根本的な煩悩の一つに数える <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。これは他者と比較せずに自惚れる「憍」（きょう）とは区別される概念とされる。ただし、この記述は入門的な仏教用語解説に基づく二次資料からのものであり、原典の当該箇所そのものには本稿執筆時点で当たれていない。</p>
@@ -115,7 +120,7 @@ strong{font-weight:bold;}
 
 <h2 id="sec4">4. 神経科学における知見</h2>
 <h3>●快楽の神経基盤</h3>
-<p>神経科学の知見は、この二分法をむしろ揺さぶる方向に働く場合がある。神経科学者ケント・ベリッジとモートン・クリンゲルバッハらの研究によれば、脳内の快楽（「好き」、 liking ）は、側坐核や腹側淡蒼球などに存在する比較的小さな「快楽ホットスポット」によって生成されており、味覚的な快から社会的な快に至るまで、驚くほど共通した神経回路が活性化することが人間の脳画像研究で示唆されている <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。この知見は、子や孫への喜びと同窓会での優越感が、脳内では共通した「快楽の通貨」を用いて処理されている可能性を示すものであり、両者を神経科学的に峻別することの難しさを示唆する。</p>
+<p>神経科学の知見は、この二分法をむしろ揺さぶる方向に働く場合がある。神経科学者ケント・ベリッジとモートン・クリンゲルバッハらの研究によれば、脳内の快楽（「好き」、 liking) は、側坐核や腹側淡蒼球などに存在する比較的小さな「快楽ホットスポット」によって生成されており、味覚的な快から社会的な快に至るまで、驚くほど共通した神経回路が活性化することが人間の脳画像研究で示唆されている <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。この知見は、子や孫への喜びと同窓会での優越感が、脳内では共通した「快楽の通貨」を用いて処理されている可能性を示すものであり、両者を神経科学的に峻別することの難しさを示唆する。</p>
 <h3>●ドーパミンをめぐる誤解</h3>
 <p>なお、ベリッジらの研究は、ドーパミンの役割についても通念に修正を迫っている。ドーパミンは長らく「快楽物質」とみなされてきたが、ベリッジらの一連の研究は、脳内ドーパミン水準の操作が引き起こすのは報酬に対する「欲しい」 (wanting) という動機づけの変化であって、必ずしも「好き」 (liking) という快楽そのものの変化ではないことを示している <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。この区別に従えば、同窓会での優越感を追い求める動機づけの強さと、それを実際に得たときの快楽の質は、別の神経基盤に依存している可能性があり、単純に「ドーパミンが出るから同じ快楽」と結論づけることはできない。</p>
 <h3>●オキシトシンと内集団びいき</h3>
@@ -214,26 +219,28 @@ strong{font-weight:bold;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※ 番号をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
-<p id="ref-1"><a href="#fnref-1-1">[1]</a> Mill, J. S. <em>Utilitarianism</em>(1861) , Chapter 2.</p>
-<p id="ref-2"><a href="#fnref-2-1">[2]</a> Aristotle. <em>Nicomachean Ethics</em>, Book I, Book X （邦訳含む複数の版を参照）。</p>
-<p id="ref-3"><a href="#fnref-3-1">[3]</a> Epictetus. <em>Enchiridion</em> / <em>Discourses</em>（ストア派の心の統制に関する議論）。</p>
-<p id="ref-4"><a href="#fnref-4-1">[4]</a> 「慢」および「憍」の説明 :Weblio 辞書「慢」項目、大谷大学「生活の中の仏教用語」、東京国際仏教塾の解説記事（いずれも二次資料。原典未確認）。</p>
-<p id="ref-5"><a href="#fnref-5-1">[5]</a> Williams, B. (1981) . Moral luck. In <em>Moral Luck: Philosophical Papers 1973–1980</em>. Cambridge University Press. （初出は 1976 年、 <em>Proceedings of the Aristotelian Society</em>, Supplementary Volume 50 ）。</p>
-<p id="ref-6"><a href="#fnref-6-1">[6]</a> Nagel, T. (1979) . Moral luck. In <em>Mortal Questions</em>. Cambridge University Press.</p>
-<p id="ref-7"><a href="#fnref-7-1">[7]</a> Ryan, R. M., &amp; Deci, E. L. (2001) . On happiness and human potentials: A review of research on hedonic and eudaimonic well-being. <em>Annual Review of Psychology</em>, 52, 141–166.</p>
-<p id="ref-8"><a href="#fnref-8-1">[8]</a> Ryff, C. D. Eudaimonic well-being の六次元モデルに関する一連の研究。</p>
-<p id="ref-9"><a href="#fnref-9-1">[9]</a> Kashdan, T. B., Biswas-Diener, R., &amp; King, L. A. (2008) . Reconsidering happiness: The costs of distinguishing between hedonics and eudaimonia. <em>The Journal of Positive Psychology</em>, 3 (4) , 219–233.</p>
-<p id="ref-10"><a href="#fnref-10-1">[10]</a> Festinger, L. (1954) . A theory of social comparison processes. <em>Human Relations</em>, 7 (2) , 117–140.</p>
-<p id="ref-11"><a href="#fnref-11-1">[11]</a> シャーデンフロイデと悪意ある妬みに関する実証研究（ Frontiers in Psychology 掲載論文ほか）。</p>
-<p id="ref-12"><a href="#fnref-12-1">[12]</a> Clark, A. E., Frijters, P., &amp; Shields, M. A. (2008) . Relative income, happiness, and utility: An explanation for the Easterlin paradox and other puzzles. <em>Journal of Economic Literature</em>, 46 (1) , 95–144.</p>
-<p id="ref-13"><a href="#fnref-13-1">[13]</a> Wills, T. A. (1981) . Downward comparison principles in social psychology. <em>Psychological Bulletin</em>, 90 (2) , 245–271.</p>
-<p id="ref-14"><a href="#fnref-14-1">[14]</a> Yalom, I. D. (1980) . <em>Existential Psychotherapy</em>. Basic Books （実存的な罪悪感の議論） ; Montada, L., &amp; Schneider, A. (1989) . Justice and emotional reactions to the disadvantaged. <em>Social Justice Research</em>, 3 (4) , 313–344.</p>
-<p id="ref-15"><a href="#fnref-15-1">[15]</a> Berridge, K. C., &amp; Kringelbach, M. L. (2015) . Pleasure systems in the brain. <em>Neuron</em>, 86 (3) , 646–664.</p>
-<p id="ref-16"><a href="#fnref-16-1">[16]</a> Berridge, K. C., &amp; Kringelbach, M. L. (2008) . Affective neuroscience of pleasure: Reward in humans and animals. <em>Psychopharmacology</em>, 199 (3) , 457–480.</p>
-<p id="ref-17"><a href="#fnref-17-1">[17]</a> De Dreu, C. K. W., et al. (2010) . The neuropeptide oxytocin regulates parochial altruism in intergroup conflict among humans. <em>Science</em>, 328 (5984) , 1408–1411.</p>
-<p id="ref-18"><a href="#fnref-18-1">[18]</a> De Dreu, C. K. W., et al. (2011) . Oxytocin promotes human ethnocentrism. <em>PNAS</em>, 108 (4) , 1262–1266.</p>
-<p id="ref-19"><a href="#fnref-19-1">[19]</a> Fliessbach, K., et al. (2007) . Social comparison affects reward-related brain activity in the human ventral striatum. <em>Science</em>, 318 (5854) , 1305–1308.</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Mill, J. S. <em>Utilitarianism</em>(1861) , Chapter 2.</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Aristotle. <em>Nicomachean Ethics</em>, Book I, Book X （邦訳含む複数の版を参照）。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Epictetus. <em>Enchiridion</em> / <em>Discourses</em>（ストア派の心の統制に関する議論）。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 「慢」および「憍」の説明 :Weblio 辞書「慢」項目、大谷大学「生活の中の仏教用語」、東京国際仏教塾の解説記事（いずれも二次資料。原典未確認）。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Williams, B. (1981) . Moral luck. In <em>Moral Luck: Philosophical Papers 1973–1980</em>. Cambridge University Press. （初出は 1976 年、 <em>Proceedings of the Aristotelian Society</em>, Supplementary Volume 50) 。</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Nagel, T. (1979) . Moral luck. In <em>Mortal Questions</em>. Cambridge University Press.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Ryan, R. M., &amp; Deci, E. L. (2001) . On happiness and human potentials: A review of research on hedonic and eudaimonic well-being. <em>Annual Review of Psychology</em>, 52, 141–166.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Ryff, C. D. Eudaimonic well-being の六次元モデルに関する一連の研究。</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Kashdan, T. B., Biswas-Diener, R., &amp; King, L. A. (2008) . Reconsidering happiness: The costs of distinguishing between hedonics and eudaimonia. <em>The Journal of Positive Psychology</em>, 3 (4) , 219–233.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Festinger, L. (1954) . A theory of social comparison processes. <em>Human Relations</em>, 7 (2) , 117–140.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> シャーデンフロイデと悪意ある妬みに関する実証研究 (Frontiers in Psychology 掲載論文ほか）。</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Clark, A. E., Frijters, P., &amp; Shields, M. A. (2008) . Relative income, happiness, and utility: An explanation for the Easterlin paradox and other puzzles. <em>Journal of Economic Literature</em>, 46 (1) , 95–144.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Wills, T. A. (1981) . Downward comparison principles in social psychology. <em>Psychological Bulletin</em>, 90 (2) , 245–271.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Yalom, I. D. (1980) . <em>Existential Psychotherapy</em>. Basic Books （実存的な罪悪感の議論） ; Montada, L., &amp; Schneider, A. (1989) . Justice and emotional reactions to the disadvantaged. <em>Social Justice Research</em>, 3 (4) , 313–344.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Berridge, K. C., &amp; Kringelbach, M. L. (2015) . Pleasure systems in the brain. <em>Neuron</em>, 86 (3) , 646–664.</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Berridge, K. C., &amp; Kringelbach, M. L. (2008) . Affective neuroscience of pleasure: Reward in humans and animals. <em>Psychopharmacology</em>, 199 (3) , 457–480.</li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> De Dreu, C. K. W., et al. (2010) . The neuropeptide oxytocin regulates parochial altruism in intergroup conflict among humans. <em>Science</em>, 328 (5984) , 1408–1411.</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> De Dreu, C. K. W., et al. (2011) . Oxytocin promotes human ethnocentrism. <em>PNAS</em>, 108 (4) , 1262–1266.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Fliessbach, K., et al. (2007) . Social comparison affects reward-related brain activity in the human ventral striatum. <em>Science</em>, 318 (5854) , 1305–1308.</li>
+</ol>
 </div>
 <p class="note">注 : 本稿は学術論文ではなく、公開された研究知見と代表的な哲学的主張をもとにした一般向けの学術的読み物である。心理学・神経科学の実証研究は集団レベルの傾向を示すものであり、特定個人の心理状態を診断するものではない。哲学的主張は検証済みの科学的事実ではなく、人間の生の理解の仕方についての思考の枠組みであり、両者を同列に断定的に扱うことはできない。特に「慢」「憍」に関する仏教用語の説明は二次資料に基づくものであり、原典未確認である点に留意されたい。</p>
 </div>

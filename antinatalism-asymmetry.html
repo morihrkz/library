@@ -21,8 +21,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -36,22 +36,25 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{margin-bottom:9px; font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -101,10 +104,6 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   border-radius:2px; vertical-align:middle; margin-left:8px;}
 .tag-fact{background:#dfe6e0; color:var(--accent);}
 .tag-claim{background:#f1e2d8; color:var(--accent2);}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -112,21 +111,26 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <div class="kicker">哲学・論理学</div>
 <h1>反出生主義の非対称性論証<br>――哲学的・論理学的・心理学的検討</h1>
 <p class="subtitle">The Asymmetry Argument in Antinatalism: A Philosophical, Logical, and Psychological Examination</p>
-<div class="lede"><p>生まれてくることは正当化できるか――反出生主義における非対称性論証の哲学的・論理学的・心理学的検討。 2026 年 8 月。</p></div>
+<div class="lede">
+<p>生まれてきたことは、当人がいかなる同意も与えられなかった決定の結果である。デイヴィッド・ベネターは、この事実を出発点に「生まれてこない方がよかった」と論じる。苦痛が存在しないことは無条件に良いことだが、喜びが存在しないことはそれを惜しむ主体がいない以上、悪いとは言えない――という評価の非対称性に基づく議論である。</p>
+<p>本稿は、この非対称性論証を思想史・論理学・心理学という三つの角度から検討する。目的は反出生主義の当否に決着をつけることではなく、出生という出来事の価値評価がどれほど多くの未検討の前提――存在論的な前提、認知的な偏り――に支えられているかを可視化することにある。</p>
+</div>
+<div class="meta">【方法と限界】本稿は反出生主義を「正しい」とも「誤り」とも断定することを目的とせず、論証の構造を検討する哲学的考察である。心理学的知見（情動予測の誤り・快楽の踏み車・ポリアンナ原理・終末管理理論・ピーク・エンド則）は集団レベルの傾向を示す実証研究であり、特定の個人の人生評価を診断・断定するものではなく、研究間で知見の一様性に限界がある点にも留意する。反出生主義は自死の推奨・肯定とは異なる主張であり、本稿はその混同を招かないよう 7 章で明示的に区別する。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. 要旨</a></li>
-<li><a href="#sec2">2. 序論――問題の所在</a></li>
-<li><a href="#sec3">3. 思想史的背景</a></li>
-<li><a href="#sec4">4. ベネターの非対称性論証</a></li>
-<li><a href="#sec5">5. 論理学的検討</a></li>
-<li><a href="#sec6">6. 心理学的検討――出生と人生の評価をめぐるバイアス</a></li>
-<li><a href="#sec7">7. 批判的応答――これは「死にたい」の議論ではない</a></li>
-<li><a href="#sec8">8. 結論――開かれた問いとして</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">要旨</a></li>
+<li><a href="#sec2">序論――問題の所在</a></li>
+<li><a href="#sec3">思想史的背景</a></li>
+<li><a href="#sec4">ベネターの非対称性論証</a></li>
+<li><a href="#sec5">論理学的検討</a></li>
+<li><a href="#sec6">心理学的検討――出生と人生の評価をめぐるバイアス</a></li>
+<li><a href="#sec7">批判的応答――これは「死にたい」の議論ではない</a></li>
+<li><a href="#sec8">結論――開かれた問いとして</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. 要旨</h2>
-<p>本稿は、デイヴィッド・ベネターが提示した「非対称性（asymmetry）」論証を軸に、反出生主義（antinatalism）を哲学史・論理学・心理学の三つの観点から検討する。まず、シレノスの逸話からショーペンハウアーに至る思想史的系譜を整理し、次にベネターの論証を命題として定式化したうえで、非存在者への述語づけという論理学的難点と、パーフィットの非同一性問題（non-identity problem）との関係を検討する。さらに、情動予測の誤り（affective forecasting error）、快楽の踏み車（hedonic treadmill）、ポリアンナ原理、終末管理理論（terror management theory）、ピーク・エンド則といった心理学の知見を導入し、人間が出生や人生の価値をどのように評価しがちかという記述的な側面を補う。結論として、本稿は反出生主義を「正しい」とも「誤り」とも断定せず、出生をめぐる価値判断の構造そのものを可視化することを目的とする。</p>
+<p>本稿は、デイヴィッド・ベネターが提示した「非対称性 (asymmetry) 」論証を軸に、反出生主義 (antinatalism) を哲学史・論理学・心理学の三つの観点から検討する。まず、シレノスの逸話からショーペンハウアーに至る思想史的系譜を整理し、次にベネターの論証を命題として定式化したうえで、非存在者への述語づけという論理学的難点と、パーフィットの非同一性問題 (non-identity problem) との関係を検討する。さらに、情動予測の誤り (affective forecasting error) 、快楽の踏み車 (hedonic treadmill) 、ポリアンナ原理、終末管理理論 (terror management theory) 、ピーク・エンド則といった心理学の知見を導入し、人間が出生や人生の価値をどのように評価しがちかという記述的な側面を補う。結論として、本稿は反出生主義を「正しい」とも「誤り」とも断定せず、出生をめぐる価値判断の構造そのものを可視化することを目的とする。</p>
 <p><strong>キーワード</strong>：反出生主義／ベネターの非対称性／非同一性問題／情動予測の誤り／快楽の踏み車／ポリアンナ原理／終末管理理論</p>
 
 <figure class="diagram">
@@ -166,16 +170,16 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   <path d="M560,140 C 560,148 580,150 580,158" fill="none" stroke="var(--accent2)" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arrowEnd)"/>
   <text x="600" y="152" font-size="11" fill="var(--accent2)">評価の非対称性</text>
 </svg>
-<figcaption><span class="fig-label">図 1.</span> ベネターの非対称性論証の概念図（Benatar, 2006, pp. 30–49 の議論を基に筆者作成）。生まれなかった場合の「苦痛の不在」は無条件に良いと評価できるのに対し、「喜びの不在」はそれを惜しむ主体が存在しない以上、悪いとは言えないとされる。この評価の非対称性が論証全体の要となる。</figcaption>
+<figcaption><span class="fig-label">図 1.</span> ベネターの非対称性論証の概念図 (Benatar, 2006, pp. 30–49 の議論を基に筆者作成）。生まれなかった場合の「苦痛の不在」は無条件に良いと評価できるのに対し、「喜びの不在」はそれを惜しむ主体が存在しない以上、悪いとは言えないとされる。この評価の非対称性が論証全体の要となる。</figcaption>
 </figure>
 
 <h2 id="sec2">2. 序論――問題の所在</h2>
-<p>「もし最初から存在しなかったら、苦しむこともなかったのではないか」という思いつきは、日常のふとした瞬間に多くの人の頭をよぎる。この直観は通常、一過性の感慨として消費され、思想としては顧みられない。しかし哲学の一分野は、この直観を放置せず、命題として定式化し、論証として検討してきた。それが<strong>反出生主義（antinatalism）</strong>である。</p>
+<p>「もし最初から存在しなかったら、苦しむこともなかったのではないか」という思いつきは、日常のふとした瞬間に多くの人の頭をよぎる。この直観は通常、一過性の感慨として消費され、思想としては顧みられない。しかし哲学の一分野は、この直観を放置せず、命題として定式化し、論証として検討してきた。それが<strong>反出生主義 (antinatalism)</strong>である。</p>
 <p>反出生主義の中心的な主張は、次のように要約できる。</p>
 <blockquote>
-<p><strong>P ：</strong>新たな人間を存在させること（procreation）は、それ自体では倫理的に無条件に正当化されない。</p>
+<p><strong>P ：</strong>新たな人間を存在させること (procreation) は、それ自体では倫理的に無条件に正当化されない。</p>
 </blockquote>
-<p>この主張 P は、一見単純だが、支持するにせよ棄却するにせよ、少なくとも三つの異なる学問領域の道具立てを要求する。第一に、幸福・苦痛・善悪といった評価概念を扱う倫理学（哲学）。第二に、「まだ存在していない者」について述語づけを行うことの妥当性を問う様相論理学・存在論（論理学）。第三に、人間が自らの人生や出生をどのように評価し、その評価がどのようなバイアスの影響を受けるかを扱う心理学である。本稿は、この三領域を横断しながら、反出生主義、とりわけデイヴィッド・ベネター（David Benatar）が提示した「非対称性（asymmetry）」論証を検討する。</p>
+<p>この主張 P は、一見単純だが、支持するにせよ棄却するにせよ、少なくとも三つの異なる学問領域の道具立てを要求する。第一に、幸福・苦痛・善悪といった評価概念を扱う倫理学（哲学）。第二に、「まだ存在していない者」について述語づけを行うことの妥当性を問う様相論理学・存在論（論理学）。第三に、人間が自らの人生や出生をどのように評価し、その評価がどのようなバイアスの影響を受けるかを扱う心理学である。本稿は、この三領域を横断しながら、反出生主義、とりわけデイヴィッド・ベネター (David Benatar) が提示した「非対称性 (asymmetry) 」論証を検討する。</p>
 <p>あらかじめ断っておきたいのは、本稿は P の真偽について最終的な立場を確定させることを目的としない、という点である。むしろ目的は、 P という主張がどれほど多くの理論的な仮定に依存しているかを明らかにすることにある。</p>
 
 <figure class="diagram">
@@ -214,10 +218,10 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <p>反出生主義という術語自体は比較的新しいが、「生まれてこない方がよい」という発想の系譜は古代にまで遡る。</p>
 <p>古代ギリシャには「シレノスの知恵」として知られる逸話がある。伝承によれば、フリギア王ミダスが森の賢者シレノスを捕らえ、「人間にとって最善のものは何か」と問い詰めたところ、シレノスは次のように答えたとされる。</p>
 <blockquote>
-<p>最善のものは、そもそも生まれないこと。次善のものは、生まれてしまったなら、できるだけ早く死ぬこと。アリストテレス『エウデモス』断片（散逸）、プルタルコス『アポロニオスへの慰め』 27 章に引用（Plutarch, <em>Consolatio ad Apollonium</em>, 27）</p>
+<p>最善のものは、そもそも生まれないこと。次善のものは、生まれてしまったなら、できるだけ早く死ぬこと。アリストテレス『エウデモス』断片（散逸）、プルタルコス『アポロニオスへの慰め』 27 章に引用 (Plutarch, <em>Consolatio ad Apollonium</em>, 27)<sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></p>
 </blockquote>
-<p>同じ結論は、独立した文脈でも繰り返し現れる。悲劇詩人ソポクレスの『コロノスのオイディプス』の合唱歌（1224–1228 行付近）には「生まれないことこそ、あらゆる思案を超えて最善である」という一節があり（Sophocles, <em>Oedipus at Colonus</em>）、詩人テオグニス（前 6 世紀）にも類似の詠嘆が見られる。 19 世紀に入ると、フリードリヒ・ニーチェが『悲劇の誕生』第 3 章でこの逸話を取り上げ、ギリシャ悲劇の根底にある厭世的な知を論じる出発点とした（Nietzsche, 1872/1993）。同じ 19 世紀、アルトゥル・ショーペンハウアーは主著『意志と表象としての世界』において、欲望とその不断の不充足を人間存在の基本構造として体系化し、生を無条件に肯定する楽観主義的な形而上学を批判した（Schopenhauer, 1818/2004）。</p>
-<p>現代の反出生主義において決定的な役割を果たしたのが、南アフリカの哲学者デイヴィッド・ベネターである。 2006 年に刊行された著書 <em>Better Never to Have Been: The Harm of Coming into Existence</em>（邦訳『生まれてこない方が良かった――存在してしまうことの害悪』小島和男・田村宜義訳、すずさわ書店、 2017 年）において、ベネターは「存在すること」と「存在しないこと」を比較するための独自の論理を体系的に構築した（Benatar, 2006）。次節では、この論証を命題論理の形式に近い形で整理する。</p>
+<p>同じ結論は、独立した文脈でも繰り返し現れる。悲劇詩人ソポクレスの『コロノスのオイディプス』の合唱歌 (1224–1228 行付近）には「生まれないことこそ、あらゆる思案を超えて最善である」という一節があり (Sophocles, <em>Oedipus at Colonus</em>)<sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 、詩人テオグニス（前 6 世紀）にも類似の詠嘆が見られる。 19 世紀に入ると、フリードリヒ・ニーチェが『悲劇の誕生』第 3 章でこの逸話を取り上げ、ギリシャ悲劇の根底にある厭世的な知を論じる出発点とした (Nietzsche, 1872/1993)<sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。同じ 19 世紀、アルトゥル・ショーペンハウアーは主著『意志と表象としての世界』において、欲望とその不断の不充足を人間存在の基本構造として体系化し、生を無条件に肯定する楽観主義的な形而上学を批判した (Schopenhauer, 1818/2004)<sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>現代の反出生主義において決定的な役割を果たしたのが、南アフリカの哲学者デイヴィッド・ベネターである。 2006 年に刊行された著書 <em>Better Never to Have Been: The Harm of Coming into Existence</em>（邦訳『生まれてこない方が良かった――存在してしまうことの害悪』小島和男・田村宜義訳、すずさわ書店、 2017 年）において、ベネターは「存在すること」と「存在しないこと」を比較するための独自の論理を体系的に構築した (Benatar, 2006)<sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。次節では、この論証を命題論理の形式に近い形で整理する。</p>
 
 <figure class="diagram">
 <svg viewBox="0 0 720 130" role="img" aria-label="シレノスの逸話からベネターに至る思想史の年表。古代ギリシャのシレノス、ソポクレス、19世紀のニーチェとショーペンハウアー、2006年のベネターへと繋がる。">
@@ -248,21 +252,21 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </figure>
 
 <h2 id="sec4">4. ベネターの非対称性論証</h2>
-<h3>論証の定式化</h3>
+<h3>●論証の定式化</h3>
 <p>ベネターの議論の核心は、次の四つの評価命題として整理できる（図 1 も参照）。</p>
 
 <div class="dfn-grid">
-<div class="dfn-card"><div class="dfn-term">命題 1</div><div class="dfn-body">苦痛が存在することは悪い。（Bad）</div></div>
-<div class="dfn-card on"><div class="dfn-term">命題 2</div><div class="dfn-body">苦痛が存在しないことは良い――たとえそれを享受する主体が存在しなくても。（Good, even if no one benefits）</div></div>
-<div class="dfn-card"><div class="dfn-term">命題 3</div><div class="dfn-body">喜びが存在することは良い。（Good）</div></div>
-<div class="dfn-card on"><div class="dfn-term">命題 4</div><div class="dfn-body">喜びが存在しないことは、それによって喪失を被る主体が存在しない限り、悪くはない。（Not bad, unless there is deprivation for someone）</div></div>
+<div class="dfn-card"><div class="dfn-term">命題 1</div><div class="dfn-body">苦痛が存在することは悪い。 (Bad)</div></div>
+<div class="dfn-card on"><div class="dfn-term">命題 2</div><div class="dfn-body">苦痛が存在しないことは良い――たとえそれを享受する主体が存在しなくても。 (Good, even if no one benefits)</div></div>
+<div class="dfn-card"><div class="dfn-term">命題 3</div><div class="dfn-body">喜びが存在することは良い。 (Good)</div></div>
+<div class="dfn-card on"><div class="dfn-term">命題 4</div><div class="dfn-body">喜びが存在しないことは、それによって喪失を被る主体が存在しない限り、悪くはない。 (Not bad, unless there is deprivation for someone)</div></div>
 </div>
 <p class="note">命題 2 ・ 4 （色付き）が「主体の不在」を扱う非対称の核であり、批判の焦点となる。</p>
 
 <p>命題 2 と命題 4 の非対称性が論証の要である。両者はともに「主体の不在」を含意する事態を扱っているが、評価は対称にならない。ベネターはこれを、既に存在する人物同士の比較（たとえば、ある人が頭痛を経験しない方がよい、という判断）と、存在／非存在の比較（生まれない方が頭痛を経験せずに済む、という判断）とでは、後者において「主体なき評価」が要求される点に注意を促す。この非対称性を認めるなら、生まれることは常に何らかの害（苦痛）を伴うのに対し、生まれないことは何の害も伴わない、という結論が導かれる。</p>
 
-<h3>論証の妥当性と健全性</h3>
-<p>論理学の基本的な区別を用いるなら、ある論証は前提から結論が形式的に導出できるとき「妥当（valid）」であり、かつすべての前提が実際に真であるとき「健全（sound）」である。ベネターの論証は、命題 1 から 4 を前提として受け入れる限り、結論（生まれないことは生まれることより望ましい）を導く点では概ね妥当な構造を持つ。したがって批判の焦点は、論証の形式ではなく、前提そのもの――とりわけ命題 2 と命題 4 の非対称性を正当化する根拠――に向けられることになる。この点は次章で論理学的に、またその次の心理学的検討の章で検討する。</p>
+<h3>●論証の妥当性と健全性</h3>
+<p>論理学の基本的な区別を用いるなら、ある論証は前提から結論が形式的に導出できるとき「妥当 (valid) 」であり、かつすべての前提が実際に真であるとき「健全 (sound) 」である。ベネターの論証は、命題 1 から 4 を前提として受け入れる限り、結論（生まれないことは生まれることより望ましい）を導く点では概ね妥当な構造を持つ <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。したがって批判の焦点は、論証の形式ではなく、前提そのもの――とりわけ命題 2 と命題 4 の非対称性を正当化する根拠――に向けられることになる。この点は次章で論理学的に、またその次の心理学的検討の章で検討する。</p>
 <table>
 <thead>
 <tr>
@@ -285,12 +289,12 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </tbody>
 </table>
 <h2 id="sec5">5. 論理学的検討</h2>
-<h3>非存在者への述語づけという問題</h3>
-<p>ベネターの論証に対する最も鋭い批判のひとつは、存在論的な水準に向けられる。すなわち、<strong>「まだ存在していない者」について、「その者にとって良い・悪い」と語ることは、そもそも意味をなすのか</strong>という問いである。この論点は、 20 世紀初頭の分析哲学における存在論争――アレクシウス・マイノング（Alexius Meinong）が「黄金の山」のような非存在対象にも一定の性質を帰属させうると論じたのに対し、バートランド・ラッセルが「現在のフランス王は禿げている」という文を論理形式の分析によって処理し、非存在対象への安易な述語づけを回避しようとした論争（Russell, 1905）- の現代版だと見ることができる。存在しない対象を主語とする文に真理値を与えられるかという古典的難問が、反出生主義においては「まだ生まれていない者の福利」という形で再演されているのである。</p>
-<p>この問題への一つの応答は、様相論理学における可能世界意味論（possible-world semantics）を援用することである（Kripke, 1980）。「その人が生まれていたら幸福だっただろう」という反実仮想文は、現実世界とは異なる可能世界における当該個体の状態を参照する文として解釈できる。しかし、この解釈を採用しても問題は完全には解消しない。可能世界間で「同一の個体」を同定するための基準（transworld identity）そのものが哲学的に係争的だからである。ある可能世界で存在しなかった個体は、そもそも同定すべき同一の対象を持たないのではないか、という反論が可能である。</p>
-<h3>非同一性問題との接続</h3>
-<p>ここで接続すべきなのが、デレク・パーフィットが『理由と人格』（<em>Reasons and Persons</em>, 1984）で定式化した<strong>非同一性問題（non-identity problem）</strong>である。パーフィットは、ある行為（たとえば出生のタイミングを選ぶこと）が、行為の結果として生まれてくる人物そのものの同一性を左右する場合、その行為を「誰かにとって悪い」と評価することが論理的に困難になる事例を示した。仮にある人物 A が、別の条件下では A とは異なる人物 B が生まれていたはずの状況で生を受けたとする。 A の人生がどれほど困難であっても、 A にとって「生まれなかった方がよかった」と言うためには、 A が存在しない状態と比較しなければならない。ところが A が存在しない状態とは、多くの場合、 A という同一個体がまったく存在しない状態を意味し、「 A にとって」という比較の基準点自体が消失してしまう。</p>
-<p>ベネターの非対称性論証は、まさにこの非同一性問題を回避するために「主体なき評価（subject-independent evaluation）」という迂回路を用意したものだと理解できる。命題 2 （苦痛の不在は主体がなくても良い）は、非同一性問題が突きつける「誰にとって良いのか」という要求そのものを無効化する戦略なのである。この戦略が成功しているかどうかについては、エリザベス・ハーマンによる書評（Harman, 2009）や、ジェフ・マクマハンによる集団倫理学の検討（McMahan, 1981）など、分析哲学の内部でも評価が分かれている。</p>
+<h3>●非存在者への述語づけという問題</h3>
+<p>ベネターの論証に対する最も鋭い批判のひとつは、存在論的な水準に向けられる。すなわち、<strong>「まだ存在していない者」について、「その者にとって良い・悪い」と語ることは、そもそも意味をなすのか</strong>という問いである。この論点は、 20 世紀初頭の分析哲学における存在論争――アレクシウス・マイノング (Alexius Meinong) が「黄金の山」のような非存在対象にも一定の性質を帰属させうると論じたのに対し、バートランド・ラッセルが「現在のフランス王は禿げている」という文を論理形式の分析によって処理し、非存在対象への安易な述語づけを回避しようとした論争 (Russell, 1905)<sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> の現代版だと見ることができる。存在しない対象を主語とする文に真理値を与えられるかという古典的難問が、反出生主義においては「まだ生まれていない者の福利」という形で再演されているのである。</p>
+<p>この問題への一つの応答は、様相論理学における可能世界意味論 (possible-world semantics) を援用することである (Kripke, 1980)<sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。「その人が生まれていたら幸福だっただろう」という反実仮想文は、現実世界とは異なる可能世界における当該個体の状態を参照する文として解釈できる。しかし、この解釈を採用しても問題は完全には解消しない。可能世界間で「同一の個体」を同定するための基準 (transworld identity) そのものが哲学的に係争的だからである <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。ある可能世界で存在しなかった個体は、そもそも同定すべき同一の対象を持たないのではないか、という反論が可能である。</p>
+<h3>●非同一性問題との接続</h3>
+<p>ここで接続すべきなのが、デレク・パーフィットが『理由と人格』(<em>Reasons and Persons</em>, 1984)<sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> で定式化した<strong>非同一性問題 (non-identity problem)</strong>である。パーフィットは、ある行為（たとえば出生のタイミングを選ぶこと）が、行為の結果として生まれてくる人物そのものの同一性を左右する場合、その行為を「誰かにとって悪い」と評価することが論理的に困難になる事例を示した。仮にある人物 A が、別の条件下では A とは異なる人物 B が生まれていたはずの状況で生を受けたとする。 A の人生がどれほど困難であっても、 A にとって「生まれなかった方がよかった」と言うためには、 A が存在しない状態と比較しなければならない。ところが A が存在しない状態とは、多くの場合、 A という同一個体がまったく存在しない状態を意味し、「 A にとって」という比較の基準点自体が消失してしまう。</p>
+<p>ベネターの非対称性論証は、まさにこの非同一性問題を回避するために「主体なき評価 (subject-independent evaluation) 」という迂回路を用意したものだと理解できる。命題 2 （苦痛の不在は主体がなくても良い）は、非同一性問題が突きつける「誰にとって良いのか」という要求そのものを無効化する戦略なのである。この戦略が成功しているかどうかについては、エリザベス・ハーマンによる書評 (Harman, 2009)<sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> や、ジェフ・マクマハンによる集団倫理学の検討 (McMahan, 1981)<sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> など、分析哲学の内部でも評価が分かれている。</p>
 
 <figure class="diagram">
 <svg viewBox="0 0 720 260" role="img" aria-label="非存在者への述語づけの問題から非同一性問題を経て、ベネターの主体なき評価という迂回路に至る論証の連鎖図">
@@ -301,7 +305,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   </defs>
   <rect x="20" y="20" width="220" height="66" rx="3" fill="none" stroke="var(--line)" stroke-width="1.2"/>
   <text x="130" y="44" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">非存在者への述語づけ</text>
-  <text x="130" y="62" text-anchor="middle" font-size="10.5" fill="var(--muted)">マイノング対ラッセル（1905）</text>
+  <text x="130" y="62" text-anchor="middle" font-size="10.5" fill="var(--muted)">マイノング対ラッセル (1905)</text>
   <text x="130" y="76" text-anchor="middle" font-size="10.5" fill="var(--muted)">の現代版</text>
 
   <line x1="240" y1="53" x2="290" y2="53" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd4)"/>
@@ -316,18 +320,18 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   <rect x="180" y="126" width="360" height="66" rx="3" fill="none" stroke="var(--accent2)" stroke-width="1.4"/>
   <text x="360" y="150" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent2)">パーフィットの非同一性問題</text>
   <text x="360" y="168" text-anchor="middle" font-size="10.5" fill="var(--muted)">「 A にとって」という比較の基準点が</text>
-  <text x="360" y="182" text-anchor="middle" font-size="10.5" fill="var(--muted)">消失する（Parfit, 1984）</text>
+  <text x="360" y="182" text-anchor="middle" font-size="10.5" fill="var(--muted)">消失する (Parfit, 1984)</text>
 
   <line x1="360" y1="192" x2="360" y2="222" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrowEnd4)"/>
 
   <rect x="130" y="222" width="460" height="34" rx="3" fill="none" stroke="var(--accent)" stroke-width="1.6"/>
-  <text x="360" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">ベネターの迂回路：主体なき評価（命題 2）</text>
+  <text x="360" y="244" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--accent)">ベネターの迂回路：主体なき評価（命題 2)</text>
 </svg>
 <figcaption><span class="fig-label">図 4.</span> 非存在者への述語づけをめぐる問題が非同一性問題へと接続し、ベネターの非対称性論証がそれを「主体なき評価」という迂回路で回避しようとする論証の連鎖。</figcaption>
 </figure>
 
-<h3>反出生主義と反フラストレーション主義</h3>
-<p>論理構造としてベネターの議論に近接するのが、クリストフ・フェイゲが提示した<strong>反フラストレーション主義（antifrustrationism）</strong>である（Fehige, 1998）。フェイゲは、選好功利主義の枠組みにおいて「満たされなかった選好」を悪と見なす一方、「そもそも存在しない選好」は満たす必要も欠く必要もないため中立であると論じた。この立場は、ベネターの非対称性と独立に、しかし同じ論理的形状で「生まれないことの中立性ないし優位性」を導出する点で注目に値する。異なる出発点（快楽説と選好説）から類似の結論に到達しているという事実は、非対称性という論理構造そのものに一定の頑健性があることを示唆する一方、複数の理論が同じ結論を支持しているという事実だけでは、その結論の真理性は証明されないことにも留意すべきである。</p>
+<h3>●反出生主義と反フラストレーション主義</h3>
+<p>論理構造としてベネターの議論に近接するのが、クリストフ・フェイゲが提示した<strong>反フラストレーション主義 (antifrustrationism)</strong>である (Fehige, 1998)<sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。フェイゲは、選好功利主義の枠組みにおいて「満たされなかった選好」を悪と見なす一方、「そもそも存在しない選好」は満たす必要も欠く必要もないため中立であると論じた。この立場は、ベネターの非対称性と独立に、しかし同じ論理的形状で「生まれないことの中立性ないし優位性」を導出する点で注目に値する。異なる出発点（快楽説と選好説）から類似の結論に到達しているという事実は、非対称性という論理構造そのものに一定の頑健性があることを示唆する一方、複数の理論が同じ結論を支持しているという事実だけでは、その結論の真理性は証明されないことにも留意すべきである。</p>
 <h2 id="sec6">6. 心理学的検討――出生と人生の評価をめぐるバイアス</h2>
 <p>哲学的・論理学的な検討だけでは、なぜ多くの人が反出生主義の結論に直観的な抵抗を感じるのか、その理由は説明されない。ここで心理学の知見が補助線として有効になる。人間が自らの人生や将来の出来事をどう評価するかには、いくつかの体系的な偏り（バイアス）が知られている。</p>
 
@@ -339,14 +343,14 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <div class="dfn-card"><div class="dfn-term">ピーク・エンド則 <span class="dfn-en">Peak-End Rule</span></div><div class="dfn-body">感情の総量ではなく、ピーク時点と終了直前の状態で回顧的に評価する傾向。 Kahneman et al., 1993 。</div></div>
 </div>
 
-<h3>情動予測の誤り（Affective Forecasting Error）</h3>
-<p>ダニエル・ギルバートとティモシー・ウィルソンは、人間が将来の感情状態を予測する際に系統的な誤りを犯すことを示した（Gilbert &amp; Wilson, 2000）。人は将来の出来事がもたらす幸福や苦痛の強度・持続時間を過大評価する傾向があり、この現象は「ミスワンティング（miswanting）」とも呼ばれる。この知見は反出生主義の議論に対して両義的に作用する。一方で、人が人生の苦痛を過大評価しがちだとすれば、「人生は耐えがたい」という直観そのものが予測誤差の産物である可能性がある。他方で、人が将来の喜びを過大評価しがちだとすれば、出生を決定する側（親）が子の将来の幸福を楽観的に見積もりすぎているという、反出生主義的な懸念を補強する材料にもなりうる。</p>
-<h3>快楽の踏み車とポリアンナ原理</h3>
-<p>快楽の踏み車（hedonic treadmill 、 hedonic adaptation とも）とは、人が良い出来事にも悪い出来事にも一定期間で順応し、主観的幸福感が比較的安定した基準点（set point）に回帰する現象を指す（Brickman &amp; Campbell, 1971 ； Diener, Lucas, &amp; Scollon, 2006）。これに関連して、心理学ではしばしば<strong>ポリアンナ原理（Pollyanna principle）</strong>、すなわち人が自らの経験や記憶を実際よりも肯定的に処理・想起する傾向が指摘される（Matlin &amp; Stang, 1978 ； Taylor, 1989 の「ポジティブ・イリュージョン」論も参照）。この二つの知見を組み合わせると、人が「生まれてきてよかった」と回答する傾向には、経験そのものの質とは独立に働く認知的な補正機構が関与している可能性が浮かび上がる。反出生主義者はこの点を、生の質に関する自己申告的な評価（self-report）を額面通りに信頼することへの警鐘として用いることができる。もっとも、適応や想起の肯定的歪みが存在するという事実だけから、それらの評価が「誤り」であると断定することはできない点には注意が必要である。適応は害への対処として機能的でもありうるからである。</p>
-<h3>終末管理理論</h3>
-<p>シェルドン・ソロモン、ジェフ・グリーンバーグ、トム・ピジンスキーらが展開した<strong>終末管理理論（terror management theory）</strong>は、人間が自らの死の不可避性を認識することに由来する実存的不安を、文化的世界観や自尊心の維持によって管理していると論じる（Solomon, Greenberg, &amp; Pyszczynski, 1991）。この理論の枠組みを出生の問題に延長するなら、「生」を無条件に肯定する態度そのものが、死の不安を管理するための防衛機制の一部である可能性が浮上する。反出生主義が多くの人にとって直観的に受け入れがたく感じられる背景には、単なる論理的な反論だけでなく、こうした実存的な防衛反応が働いているという仮説は、議論の情緒的な強度を説明する一助となる。</p>
-<h3>ピーク・エンド則と人生全体の評価</h3>
-<p>ダニエル・カーネマンらが実証したピーク・エンド則（peak-end rule）は、人があるエピソードを回顧的に評価する際、その最中の感情の総量（デュレーション）ではなく、感情のピーク時点と終了直前の状態に基づいて評価する傾向を指す（Kahneman, Fredrickson, Schreiber, &amp; Redelmeier, 1993）。人生全体の価値づけという、反出生主義が扱う最も大きな評価の単位においても、この認知的近道が作用している可能性がある。すなわち、人生全体に占める苦痛の総量を厳密に積算するのではなく、際立った喜びの瞬間や、人生の終盤の質によって人生全体への評価が左右されるとすれば、ベネターが前提とする「苦痛と喜びの単純な比較」という発想自体が、実際の人間の評価様式とは乖離していることになる。</p>
+<h3>●情動予測の誤り (Affective Forecasting Error)</h3>
+<p>ダニエル・ギルバートとティモシー・ウィルソンは、人間が将来の感情状態を予測する際に系統的な誤りを犯すことを示した (Gilbert &amp; Wilson, 2000)<sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。人は将来の出来事がもたらす幸福や苦痛の強度・持続時間を過大評価する傾向があり、この現象は「ミスワンティング (miswanting) 」とも呼ばれる。この知見は反出生主義の議論に対して両義的に作用する。一方で、人が人生の苦痛を過大評価しがちだとすれば、「人生は耐えがたい」という直観そのものが予測誤差の産物である可能性がある。他方で、人が将来の喜びを過大評価しがちだとすれば、出生を決定する側（親）が子の将来の幸福を楽観的に見積もりすぎているという、反出生主義的な懸念を補強する材料にもなりうる。</p>
+<h3>●快楽の踏み車とポリアンナ原理</h3>
+<p>快楽の踏み車 (hedonic treadmill 、 hedonic adaptation とも）とは、人が良い出来事にも悪い出来事にも一定期間で順応し、主観的幸福感が比較的安定した基準点 (set point) に回帰する現象を指す (Brickman &amp; Campbell, 1971<sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> ； Diener, Lucas, &amp; Scollon, 2006<sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup>)。これに関連して、心理学ではしばしば<strong>ポリアンナ原理 (Pollyanna principle)</strong>、すなわち人が自らの経験や記憶を実際よりも肯定的に処理・想起する傾向が指摘される (Matlin &amp; Stang, 1978<sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> ； Taylor, 1989<sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> の「ポジティブ・イリュージョン」論も参照）。この二つの知見を組み合わせると、人が「生まれてきてよかった」と回答する傾向には、経験そのものの質とは独立に働く認知的な補正機構が関与している可能性が浮かび上がる。反出生主義者はこの点を、生の質に関する自己申告的な評価 (self-report) を額面通りに信頼することへの警鐘として用いることができる。もっとも、適応や想起の肯定的歪みが存在するという事実だけから、それらの評価が「誤り」であると断定することはできない点には注意が必要である。適応は害への対処として機能的でもありうるからである。</p>
+<h3>●終末管理理論</h3>
+<p>シェルドン・ソロモン、ジェフ・グリーンバーグ、トム・ピジンスキーらが展開した<strong>終末管理理論 (terror management theory)</strong>は、人間が自らの死の不可避性を認識することに由来する実存的不安を、文化的世界観や自尊心の維持によって管理していると論じる (Solomon, Greenberg, &amp; Pyszczynski, 1991)<sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 。この理論の枠組みを出生の問題に延長するなら、「生」を無条件に肯定する態度そのものが、死の不安を管理するための防衛機制の一部である可能性が浮上する。反出生主義が多くの人にとって直観的に受け入れがたく感じられる背景には、単なる論理的な反論だけでなく、こうした実存的な防衛反応が働いているという仮説は、議論の情緒的な強度を説明する一助となる。</p>
+<h3>●ピーク・エンド則と人生全体の評価</h3>
+<p>ダニエル・カーネマンらが実証したピーク・エンド則 (peak-end rule) は、人があるエピソードを回顧的に評価する際、その最中の感情の総量（デュレーション）ではなく、感情のピーク時点と終了直前の状態に基づいて評価する傾向を指す (Kahneman, Fredrickson, Schreiber, &amp; Redelmeier, 1993)<sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> 。人生全体の価値づけという、反出生主義が扱う最も大きな評価の単位においても、この認知的近道が作用している可能性がある。すなわち、人生全体に占める苦痛の総量を厳密に積算するのではなく、際立った喜びの瞬間や、人生の終盤の質によって人生全体への評価が左右されるとすれば、ベネターが前提とする「苦痛と喜びの単純な比較」という発想自体が、実際の人間の評価様式とは乖離していることになる。</p>
 <h2 id="sec7">7. 批判的応答――これは「死にたい」の議論ではない</h2>
 <p>心理学的な補助線を踏まえたうえで、反出生主義について広く見られる誤解を整理しておく必要がある。それは、反出生主義を自死の肯定・推奨と混同することである。この混同は、論理的には初歩的な誤りであるが、心理学的には前節で見た終末管理理論が示唆するように、死を想起させる話題全般に対する防衛的反応として生じやすい。</p>
 
@@ -364,7 +368,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </div>
 <p class="note">反出生主義が扱うのは問い A であり、問い B とは論理的に独立している。両者の混同が「死にたいという議論だ」という誤解を生む。</p>
 
-<p>反出生主義が扱う中心命題は「まだ存在していない者を新たに存在させることは倫理的に正当化できるか」である。これに対し、既に存在している人物の生についての問いは、まったく別の論理階層に属する。既存の人物には経験・関係・記憶・将来への期待があり、当人の自律的な選好がすでに形成されている。したがって「新たな生を始めさせることの是非」と「既存の生をどう扱うか」は、論理的に独立した問いとして区別されなければならない。反出生主義の内部でも、この区別を明示する論者（Benatar, 2006 など）と、区別を怠ったまま論じられる通俗的な理解との間には大きな溝がある。</p>
+<p>反出生主義が扱う中心命題は「まだ存在していない者を新たに存在させることは倫理的に正当化できるか」である。これに対し、既に存在している人物の生についての問いは、まったく別の論理階層に属する。既存の人物には経験・関係・記憶・将来への期待があり、当人の自律的な選好がすでに形成されている。したがって「新たな生を始めさせることの是非」と「既存の生をどう扱うか」は、論理的に独立した問いとして区別されなければならない。反出生主義の内部でも、この区別を明示する論者 (Benatar, 2006 など）<sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> と、区別を怠ったまま論じられる通俗的な理解との間には大きな溝がある。</p>
 <p>次に、出生の決定構造そのものに注目したい。出生とは、決定者（多くの場合は親）が、決定される本人（子）の同意を得ることが原理的に不可能な状態で下す決定である。子は健康・環境・関係・境遇のいずれについても選択に参加できない。この非対称な決定構造をどう倫理的に評価するかが、反出生主義が投げかける本質的な問いである。ここでもまた、論理学的検討の章で扱った非同一性問題と、心理学的検討の章で扱った情動予測の誤りが交差する。親が子の将来の幸福を楽観的に見積もる傾向（情動予測の誤り）と、子がまだ存在しないためにその決定に「本人にとっての」異議を申し立てる主体を欠くという構造（非同一性問題）は、互いに補強し合う関係にある。</p>
 <h2 id="sec8">8. 結論――開かれた問いとして</h2>
 <p>本稿は、反出生主義、とりわけベネターの非対称性論証を、哲学史的背景、論理学的な妥当性・健全性の検討、そして心理学的な記述的知見という三つの角度から検討してきた。結論として強調すべきは、反出生主義に対する賛否を分ける最終的な決着点は、いずれの角度からも一義的には得られない、という点である。</p>
@@ -372,34 +376,30 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <p>本稿は、以下の三つの問いを、決着のつかないまま読者に差し戻すことで結びとしたい。</p>
 <p><strong>残された問い :</strong> 幸福と苦痛は、単純に加算・比較できる量的な尺度として扱ってよいのか（ベネターの非対称性論証の章、および「ピーク・エンド則と人生全体の評価」の節）。まだ存在しない者の利益・不利益を語るとき、私たちはいかなる存在論的コミットメントを暗黙に引き受けているのか（論理学的検討の章）。人生の価値についての自己評価は、認知的バイアスによってどこまで、どの方向に歪められていると考えるべきか（心理学的検討の章）。これらの問いに単一の正解を与えることは、本稿の目的ではない。むしろ、出生という最も根源的な出来事に対して、私たちがいかに多くの未検討の前提を持ち込んでいるかを可視化することこそが、反出生主義という思考実験の哲学的価値であると考える。</p>
 <div class="refs">
-<h2>注</h2>
-<ol><li id="ref-1">
-<p>シレノスの逸話は、アリストテレスの散逸した対話篇『エウデモス』の断片として伝えられ、キケロ『トゥスクルム論争』第 1 巻にも類似の言及がある。本稿ではプルタルコスによる引用を典拠として採用した。</p>
-</li><li id="ref-2">
-<p>妥当性（validity）と健全性（soundness）の区別は標準的な論理学の教科書的区分に従う。ある論証が妥当であっても、前提が偽であれば結論の真理性は保証されない。</p>
-</li><li id="ref-3">
-<p>可能世界間の個体同一性（transworld identity）をめぐる論争については、対応者理論（counterpart theory 、 Lewis, 1968）などの代替的な扱いも存在するが、本稿では立ち入らない。</p>
-</li></ol>
-<h2>参考文献</h2>
-<p>Benatar, D.(2006). <em>Better Never to Have Been: The Harm of Coming into Existence.</em> Oxford University Press. （邦訳：小島和男・田村宜義訳『生まれてこない方が良かった――存在してしまうことの害悪』すずさわ書店、 2017 年）</p>
-<p>Brickman, P., &amp; Campbell, D. T.(1971). Hedonic relativism and planning the good society. In M. H. Appley (Ed.), <em>Adaptation-Level Theory</em>(pp. 287–305). Academic Press.</p>
-<p>Diener, E., Lucas, R. E., &amp; Scollon, C. N.(2006). Beyond the hedonic treadmill: Revising the adaptation theory of well-being. <em>American Psychologist, 61</em>(4), 305–314.</p>
-<p>Fehige, C.(1998). A Pareto principle for possible people. In C. Fehige &amp; U. Wessels (Eds.), <em>Preferences</em>(pp. 508–543). De Gruyter.</p>
-<p>Gilbert, D. T., &amp; Wilson, T. D.(2000). Miswanting: Some problems in the forecasting of future affective states. In J. P. Forgas (Ed.), <em>Thinking and Feeling: The Role of Affect in Social Cognition</em>(pp. 178–197). Cambridge University Press.</p>
-<p>Harman, E.(2009). Critical study: David Benatar, <em>Better Never to Have Been.</em> <em>Noûs, 43</em>(4), 776–785.</p>
-<p>Kahneman, D., Fredrickson, B. L., Schreiber, C. A., &amp; Redelmeier, D. A.(1993). When more pain is preferred to less: Adding a better end. <em>Psychological Science, 4</em>(6), 401–405.</p>
-<p>Kripke, S. A.(1980). <em>Naming and Necessity.</em> Harvard University Press.</p>
-<p>Lewis, D.(1968). Counterpart theory and quantified modal logic. <em>The Journal of Philosophy, 65</em>(5), 113–126.</p>
-<p>Matlin, M. W., &amp; Stang, D. J.(1978). <em>The Pollyanna Principle: Selectivity in Language, Memory, and Thought.</em> Schenkman.</p>
-<p>McMahan, J.(1981). Problems of population theory. <em>Ethics, 92</em>(1), 96–127.</p>
-<p>Nietzsche, F.(1993). <em>The Birth of Tragedy.</em>(S. Whiteside, Trans.). Penguin Classics. （原著 1872 年）</p>
-<p>Parfit, D.(1984). <em>Reasons and Persons.</em> Oxford University Press.</p>
-<p>Plutarch. <em>Consolation to Apollonius.</em> In <em>Moralia</em>, Vol. II (Loeb Classical Library).</p>
-<p>Russell, B.(1905). On denoting. <em>Mind, 14</em>(56), 479–493.</p>
-<p>Schopenhauer, A.(2004). <em>The World as Will and Representation.</em>(E. F. J. Payne, Trans.). Dover Publications. （原著 1818 年）</p>
-<p>Solomon, S., Greenberg, J., &amp; Pyszczynski, T.(1991). A terror management theory of social behavior: The psychological functions of self-esteem and cultural worldviews. <em>Advances in Experimental Social Psychology, 24</em>, 93–159.</p>
-<p>Sophocles. <em>Oedipus at Colonus.</em>(R. Fitzgerald, Trans.). In <em>The Three Theban Plays.</em> Penguin Classics.</p>
-<p>Taylor, S. E.(1989). <em>Positive Illusions: Creative Self-Deception and the Healthy Mind.</em> Basic Books.</p>
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> シレノスの逸話は、アリストテレスの散逸した対話篇『エウデモス』の断片として伝えられ、キケロ『トゥスクルム論争』第一巻にも類似の言及がある。本稿ではプルタルコスによる引用を典拠として採用した。 Plutarch. <em>Consolation to Apollonius.</em> In <em>Moralia</em>, Vol. II (Loeb Classical Library) .</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Sophocles. <em>Oedipus at Colonus.</em>(R. Fitzgerald, Trans.) . In <em>The Three Theban Plays.</em> Penguin Classics.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Nietzsche, F. (1993) . <em>The Birth of Tragedy.</em>(S. Whiteside, Trans.) . Penguin Classics. （原著 1872 年）</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Schopenhauer, A. (2004) . <em>The World as Will and Representation.</em>(E. F. J. Payne, Trans.) . Dover Publications. （原著 1818 年）</li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> Benatar, D. (2006) . <em>Better Never to Have Been: The Harm of Coming into Existence.</em> Oxford University Press. （邦訳：小島和男・田村宜義訳『生まれてこない方が良かった――存在してしまうことの害悪』すずさわ書店、 2017 年）</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> 妥当性 (validity) と健全性 (soundness) の区別は標準的な論理学の教科書的区分に従う。ある論証が妥当であっても、前提が偽であれば結論の真理性は保証されない。</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Russell, B. (1905) . On denoting. <em>Mind, 14</em>(56) , 479–493.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Kripke, S. A. (1980) . <em>Naming and Necessity.</em> Harvard University Press.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 可能世界間の個体同一性 (transworld identity) をめぐる論争については、対応者理論 (counterpart theory) などの代替的な扱いも存在するが、本稿では立ち入らない。 Lewis, D. (1968) . Counterpart theory and quantified modal logic. <em>The Journal of Philosophy, 65</em>(5) , 113–126.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Parfit, D. (1984) . <em>Reasons and Persons.</em> Oxford University Press.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Harman, E. (2009) . Critical study: David Benatar, <em>Better Never to Have Been.</em> <em>Noûs, 43</em>(4) , 776–785.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> McMahan, J. (1981) . Problems of population theory. <em>Ethics, 92</em>(1) , 96–127.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Fehige, C. (1998) . A Pareto principle for possible people. In C. Fehige &amp; U. Wessels (Eds.) , <em>Preferences</em>(pp. 508–543) . De Gruyter.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Gilbert, D. T., &amp; Wilson, T. D. (2000) . Miswanting: Some problems in the forecasting of future affective states. In J. P. Forgas (Ed.) , <em>Thinking and Feeling: The Role of Affect in Social Cognition</em>(pp. 178–197) . Cambridge University Press.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Brickman, P., &amp; Campbell, D. T. (1971) . Hedonic relativism and planning the good society. In M. H. Appley (Ed.) , <em>Adaptation-Level Theory</em>(pp. 287–305) . Academic Press.</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Diener, E., Lucas, R. E., &amp; Scollon, C. N. (2006) . Beyond the hedonic treadmill: Revising the adaptation theory of well-being. <em>American Psychologist, 61</em>(4) , 305–314.</li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Matlin, M. W., &amp; Stang, D. J. (1978) . <em>The Pollyanna Principle: Selectivity in Language, Memory, and Thought.</em> Schenkman.</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Taylor, S. E. (1989) . <em>Positive Illusions: Creative Self-Deception and the Healthy Mind.</em> Basic Books.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Solomon, S., Greenberg, J., &amp; Pyszczynski, T. (1991) . A terror management theory of social behavior: The psychological functions of self-esteem and cultural worldviews. <em>Advances in Experimental Social Psychology, 24</em>, 93–159.</li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Kahneman, D., Fredrickson, B. L., Schreiber, C. A., &amp; Redelmeier, D. A. (1993) . When more pain is preferred to less: Adding a better end. <em>Psychological Science, 4</em>(6) , 401–405.</li>
+</ol>
 </div>
 </div>
 </body>

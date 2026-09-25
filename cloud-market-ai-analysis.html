@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -35,7 +35,7 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
@@ -43,15 +43,18 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -79,39 +78,40 @@ pre code{background:none; padding:0;}
 <p class="subtitle">A Structural Analysis of the Cloud Computing Market: Shifting Competitive Dynamics under Generative AI Demand</p>
 <div class="lede"><p>AWS ・ Azure ・ Google Cloud 、および Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM を対象に、市場シェアと決算データで現状を整理し、各社の AI 提携・投資と今後 1 〜 3 年のシナリオを一次資料と出典で積み上げて読み解く調査レポート。 2026 年 8 月。</p></div>
 <div class="meta">【比較の前提】市場シェアは、 IaaS ・ PaaS ・ SaaS の範囲、地域、四半期、売上かランレートかで値が変わる。各社の会計年度・開示セグメントも一致しない。本稿中の実績、会社ガイダンス、調査会社の予測、筆者のシナリオは同じ確度の情報ではない。</div>
-<div class="lede"><p><strong>凡例</strong>
-予測 調査会社・金融機関等が具体的数値で公表した見通し
-シナリオ 本稿作成にあたり複数の情報を統合して検討した仮説的な将来像
-（ラベルのない記述は決算発表・公式資料等の一次情報にもとづく事実）</p></div>
+<div class="box"><strong>凡例</strong><br>
+予測 ―― 調査会社・金融機関等が具体的数値で公表した見通し<br>
+シナリオ ―― 本稿作成にあたり複数の情報を統合して検討した仮説的な将来像<br>
+（ラベルのない記述は決算発表・公式資料等の一次情報にもとづく事実）</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. はじめに</a></li>
-<li><a href="#sec2">2. 三社、および同種サービス提供企業の現状分析</a></li>
-<li><a href="#sec3">3. AI ブームとの関係</a></li>
-<li><a href="#sec4">4. 今後の予測・シナリオ分析</a></li>
-<li><a href="#sec5">5. まとめ・所感</a></li>
-<li><a href="#sec6">6. 用語集</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">はじめに</a></li>
+<li><a href="#sec2">三社、および同種サービス提供企業の現状分析</a></li>
+<li><a href="#sec3">AI ブームとの関係</a></li>
+<li><a href="#sec4">今後の予測・シナリオ分析</a></li>
+<li><a href="#sec5">まとめ・所感</a></li>
+<li><a href="#sec6">用語集</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. はじめに</h2>
-<p>本稿は、 Amazon Web Services （以下 AWS）、 Microsoft Azure （以下 Azure）、 Google Cloud の大手クラウド事業者三社、および同種のクラウド計算サービスを提供するその他の企業（Oracle 、 Alibaba Cloud 、 Tencent Cloud 、 IBM 等）を対象に、クラウドコンピューティング市場における市場シェア・成長動向を整理するとともに、 2023 年以降続いている生成 AI （人間のような自然な文章・画像・音声などを新たに「生成」できる AI 技術の総称）ブームとの関係性を検討する。</p>
-<p>クラウドコンピューティングとは、企業や個人が自前でサーバー機器を保有・管理する代わりに、インターネット経由で計算資源（サーバーの処理能力やデータの保存領域）を必要な分だけ借りて使う仕組みを指す。近年、この「借りる」対象に、生成 AI モデルの開発・運用に必要な高性能な計算資源（GPU 等の専用半導体を大量に積んだサーバー）が急速に加わっており、クラウド市場の勢力図そのものが AI ブームによって書き換えられつつある。</p>
-<p>本稿で扱う範囲は、①AWS ・ Azure ・ Google Cloud の三大クラウド事業者（いわゆる「ハイパースケーラー」、超大規模にデータセンターを展開する事業者を指す業界用語）を主軸としつつ、②Oracle Cloud Infrastructure （OCI）のように AI 特化で急成長している事業者、③Alibaba Cloud ・ Tencent Cloud といった AI ・クラウド事業のグローバル展開を進める中国系事業者、④IBM のようにハイブリッドクラウドで独自の位置を占める事業者も視野に含める。</p>
+<p>本稿は、 Amazon Web Services （以下 AWS) 、 Microsoft Azure （以下 Azure) 、 Google Cloud の大手クラウド事業者三社、および同種のクラウド計算サービスを提供するその他の企業 (Oracle 、 Alibaba Cloud 、 Tencent Cloud 、 IBM 等）を対象に、クラウドコンピューティング市場における市場シェア・成長動向を整理するとともに、 2023 年以降続いている生成 AI （人間のような自然な文章・画像・音声などを新たに「生成」できる AI 技術の総称）ブームとの関係性を検討する。</p>
+<p>クラウドコンピューティングとは、企業や個人が自前でサーバー機器を保有・管理する代わりに、インターネット経由で計算資源（サーバーの処理能力やデータの保存領域）を必要な分だけ借りて使う仕組みを指す。近年、この「借りる」対象に、生成 AI モデルの開発・運用に必要な高性能な計算資源 (GPU 等の専用半導体を大量に積んだサーバー）が急速に加わっており、クラウド市場の勢力図そのものが AI ブームによって書き換えられつつある。</p>
+<p>本稿で扱う範囲は、①AWS ・ Azure ・ Google Cloud の三大クラウド事業者（いわゆる「ハイパースケーラー」、超大規模にデータセンターを展開する事業者を指す業界用語）を主軸としつつ、②Oracle Cloud Infrastructure (OCI) のように AI 特化で急成長している事業者、③Alibaba Cloud ・ Tencent Cloud といった AI ・クラウド事業のグローバル展開を進める中国系事業者、④IBM のようにハイブリッドクラウドで独自の位置を占める事業者も視野に含める。</p>
 <p>本稿は 2026 年 8 月 5 日時点で Web 検索により収集できた情報にもとづく。数値の性質に応じて「確立した事実（決算発表・公式資料等の一次情報）」「業界アナリストの見立て（予測・推計）」「推測的なシナリオ（まとめ・所感の章で複数の情報を統合して検討する将来像）」の 3 段階を区別して記述し、分類基準は各章の該当箇所に明記する。</p>
 <h2 id="sec2">2. 三社、および同種サービス提供企業の現状分析</h2>
 <p>AWS ・ Azure ・ Google Cloud の市場シェア推移と、三社および Oracle ・ Alibaba Cloud ・ Tencent Cloud ・ IBM の直近決算を、一次資料・調査会社データで整理する部である。</p>
-<h3>「市場シェア」「成長率」をどう読むか</h3>
+<h3>●「市場シェア」「成長率」をどう読むか</h3>
 <p><strong>市場シェアとは</strong>、ある市場全体の売上のうち特定企業が占める割合であり、 Synergy Research Group や Canalys といった調査会社が各社の決算等から推計して算出する。どの調査会社も集計対象の定義が微妙に異なるため、同じ四半期でも数値が数ポイントずれることがある。</p>
 <p><strong>なぜシェアと成長率の両方を見る必要があるか</strong>。シェアは「今どれだけ大きいか」という静的な情報しか示さない。
 成長率（前年同期比の伸び）を合わせて見ることで「勢いが増しているか失速しているか」が分かる。後述の通り AWS は首位を保ちつつも成長率で他二社に見劣りしており、両方を見て初めて勢力図の変化が見えてくる。</p>
-<h3>クラウドインフラ市場全体のシェア推移</h3>
-<p>Synergy Research Group によれば、世界のクラウドインフラサービス（IaaS/PaaS）市場は 2026 年第 1 四半期（1 〜 3 月期）に四半期支出 1,286 億ドル、年換算（ARR）で初めて 5,000 億ドルを突破した。前年同期比成長率は 35% で 10 四半期連続の加速という。シェアは AWS28% ・ Azure21% ・ Google Cloud14% （三社合計 63%）。
-一方、成長率では前年同期比で Google Cloud+63% 、 Azure+40% と大きく伸びたのに対し AWS は +19% にとどまる。 AI 関連需要が市場全体に占める比率は 2023 年の約 8% から 2026 年時点で約 19% へ上昇したとも分析している（出典 : <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 、 2026 年 4 月 29 日）。</p>
-<p>一つ前の 2025 年第 3 四半期は、 AWS29% ・ Azure20% ・ Google Cloud13% （三社合計 63%）、市場規模は四半期 1,069 億ドルで +30% 。 AWS シェアは 2021 年頃の 32% 台から緩やかに低下する一方、 Azure ・ Google Cloud は拡大、 Oracle や「ネオクラウド」（GPU 特化型の新興事業者）もわずかにシェアを伸ばしていると指摘される（出典 : <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 、 2025 年 11 月 19 日）。</p>
-<p>別の調査会社 Canalys では、確認できた最新の一次的な数値（2025 年 Q2）で AWS32% ・三社合計 65% と、 Synergy Research よりやや高めに出ている。市場規模は四半期 953 億ドルで +22% （出典 : <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 、 2025 年 9 月時点）。
+<h3>●クラウドインフラ市場全体のシェア推移</h3>
+<p>Synergy Research Group によれば、世界のクラウドインフラサービス (IaaS/PaaS) 市場は 2026 年第 1 四半期 (1 〜 3 月期）に四半期支出 1,286 億ドル、年換算 (ARR) で初めて 5,000 億ドルを突破した。前年同期比成長率は 35% で 10 四半期連続の加速という。シェアは AWS28% ・ Azure21% ・ Google Cloud14% （三社合計 63%) 。
+一方、成長率では前年同期比で Google Cloud+63% 、 Azure+40% と大きく伸びたのに対し AWS は +19% にとどまる。 AI 関連需要が市場全体に占める比率は 2023 年の約 8% から 2026 年時点で約 19% へ上昇したとも分析している（出典 : <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 、 2026 年 4 月 29 日）。</p>
+<p>一つ前の 2025 年第 3 四半期は、 AWS29% ・ Azure20% ・ Google Cloud13% （三社合計 63%) 、市場規模は四半期 1,069 億ドルで +30% 。 AWS シェアは 2021 年頃の 32% 台から緩やかに低下する一方、 Azure ・ Google Cloud は拡大、 Oracle や「ネオクラウド」 (GPU 特化型の新興事業者）もわずかにシェアを伸ばしていると指摘される（出典 : <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 、 2025 年 11 月 19 日）。</p>
+<p>別の調査会社 Canalys では、確認できた最新の一次的な数値 (2025 年 Q2) で AWS32% ・三社合計 65% と、 Synergy Research よりやや高めに出ている。市場規模は四半期 953 億ドルで +22% （出典 : <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 、 2025 年 9 月時点）。
 なお 2026 年 Q1 ・ Q2 の Canalys 確定値は一次情報源にアクセスできず未確認である。</p>
-<p><strong>総括</strong> : 調査会社によりシェアの絶対値には数ポイントの幅がある（AWS で 28% 台〜 32% 台等）が、「 AWS が首位を維持しつつシェアはやや低下傾向、 Azure ・ Google Cloud が拡大」という方向性は複数の調査会社で一致する。</p>
-<h3>各社の直近決算（クラウド部門）</h3>
+<p><strong>総括</strong> : 調査会社によりシェアの絶対値には数ポイントの幅がある (AWS で 28% 台〜 32% 台等）が、「 AWS が首位を維持しつつシェアはやや低下傾向、 Azure ・ Google Cloud が拡大」という方向性は複数の調査会社で一致する。</p>
+<h3>●各社の直近決算（クラウド部門）</h3>
 <p>各社の会計区分の違いに注意が必要である。 AWS は Amazon の独立事業セグメント、 Azure は Microsoft の「 Intelligent Cloud 」というより大きなセグメントの一部として開示、 Google Cloud は Alphabet の独立セグメントである。
 単純な実額の横並び比較には限界がある。</p>
 <table>
@@ -127,10 +127,10 @@ pre code{background:none; padding:0;}
 <tbody>
 <tr>
 <td>AWS (Amazon)</td>
-<td>2026 年 Q2 （4 〜 6 月）</td>
+<td>2026 年 Q2 (4 〜 6 月）</td>
 <td>422 億ドル</td>
-<td>+37%（Jassy CEO は過去 18 四半期で最速と発言）</td>
-<td>166 億ドル（営業利益率約 39.3%）</td>
+<td>+37% (Jassy CEO は過去 18 四半期で最速と発言）</td>
+<td>166 億ドル（営業利益率約 39.3%)</td>
 </tr>
 <tr>
 <td>Azure (Microsoft Intelligent Cloud)</td>
@@ -141,43 +141,43 @@ pre code{background:none; padding:0;}
 </tr>
 <tr>
 <td>Google Cloud (Alphabet)</td>
-<td>2026 年 Q2 （4 〜 6 月）</td>
+<td>2026 年 Q2 (4 〜 6 月）</td>
 <td>248 億ドル</td>
 <td>+82%</td>
 <td>88 億ドル（前年同期 28 億ドルから大幅増）</td>
 </tr>
 </tbody>
 </table>
-<p>出典 : AWS は <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup>（2026 年 7 月 30 日）。 Microsoft は <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup>（2026 年 7 月 29 日）。 Google Cloud は <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 等の報道（2026 年 7 月 22 日、複数媒体で一致する数値。 SEC 一次資料には本調査ではアクセス不可）。</p>
+<p>出典 : AWS は <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup>(2026 年 7 月 30 日）。 Microsoft は <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup>(2026 年 7 月 29 日）。 Google Cloud は <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 等の報道 (2026 年 7 月 22 日、複数媒体で一致する数値。 SEC 一次資料には本調査ではアクセス不可）。</p>
 <p>AWS の営業利益率約 39% は、初期投資後は追加の顧客獲得コストが相対的に小さく済むというクラウド事業の高収益構造を示す。 Google Cloud の +82% という成長率も際立ち、長年の赤字先行から近年黒字化・拡大が進んでいる。
-Microsoft は商業向け残存履行義務（RPO 、将来にわたり履行が約束された契約残高）が 6,250 億ドル（前年比 +110%）に達し、うち約 45% が OpenAI 関連契約と FY2026 Q2 時点で開示している（出典 : <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup>）。</p>
-<h3>その他の主要クラウド事業者</h3>
+Microsoft は商業向け残存履行義務 (RPO 、将来にわたり履行が約束された契約残高）が 6,250 億ドル（前年比 +110%) に達し、うち約 45% が OpenAI 関連契約と FY2026 Q2 時点で開示している（出典 : <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup>)。</p>
+<h3>●その他の主要クラウド事業者</h3>
 <p><strong>Oracle Cloud Infrastructure (OCI)</strong>: 2026 会計年度 Q4 （暦年 3 〜 5 月、 6 月 10 日発表）で OCI 単体売上 58 億ドル、 +93% 。全社売上 192 億ドルで +21% 。
-残存履行義務（RPO）は 6,380 億ドル、 +363% と急拡大（大半は AI 関連の大型契約）。 2027 会計年度はクラウド売上成長率 58 〜 64% を見込む（出典 : <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 、 2026 年 6 月 10 日）。</p>
-<p><strong>Alibaba Cloud</strong>: 2026 年 1 〜 3 月期売上 416.26 億人民元（約 60.35 億米ドル）、 +38% 。調整後 EBITA37.96 億人民元（約 5.5 億米ドル）、 +57% （出典 : <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 、 2026 年 5 月 12 日）。</p>
-<p><strong>Tencent Cloud</strong>: クラウド単体は非開示（「 Business Services 」セグメントに包含）。 2026 年 1 〜 3 月期は同セグメントで +20% 、国際クラウド事業は +40% 超（出典 : <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 、 2026 年 5 月 13 日）。</p>
+残存履行義務 (RPO) は 6,380 億ドル、 +363% と急拡大（大半は AI 関連の大型契約）。 2027 会計年度はクラウド売上成長率 58 〜 64% を見込む（出典 : <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 、 2026 年 6 月 10 日）。</p>
+<p><strong>Alibaba Cloud</strong>: 2026 年 1 〜 3 月期売上 416.26 億人民元（約 60.35 億米ドル）、 +38% 。調整後 EBITA37.96 億人民元（約 5.5 億米ドル）、 +57% （出典 : <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 、 2026 年 5 月 12 日）。</p>
+<p><strong>Tencent Cloud</strong>: クラウド単体は非開示（「 Business Services 」セグメントに包含）。 2026 年 1 〜 3 月期は同セグメントで +20% 、国際クラウド事業は +40% 超（出典 : <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 、 2026 年 5 月 13 日）。</p>
 <p><strong>IBM</strong>: クラウド単独開示はなし。
-2026 年 Q2 （4 〜 6 月）のソフトウェアセグメントは 78 億ドル、 +5.1%（Red Hat/Hybrid Cloud 関連 +11%）。ソフトウェア ARR246 億ドル、 +8% （出典 : <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 、 2026 年 7 月）。</p>
+2026 年 Q2 (4 〜 6 月）のソフトウェアセグメントは 78 億ドル、 +5.1% (Red Hat/Hybrid Cloud 関連 +11%) 。ソフトウェア ARR246 億ドル、 +8% （出典 : <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 、 2026 年 7 月）。</p>
 <p>三大クラウド事業者による寡占構造自体は崩れていないが、成長率で見ると Oracle のような AI 特化型事業者が三社を上回るペースで拡大しており、市場周辺で新しい勢力図が形成されつつある。</p>
 <h2 id="sec3">3. AI ブームとの関係</h2>
-<p>本稿の中核部分である。各社の提携・出資関係、設備投資（CapEx）、売上への寄与という三つの側面から、生成 AI ブームがクラウド事業とどう結びついているかを検討する。</p>
-<h3>主要な提携・出資関係</h3>
+<p>本稿の中核部分である。各社の提携・出資関係、設備投資 (CapEx) 、売上への寄与という三つの側面から、生成 AI ブームがクラウド事業とどう結びついているかを検討する。</p>
+<h3>●主要な提携・出資関係</h3>
 <p>生成 AI の開発には膨大な計算資源が必要となる。「計算資源を大量に必要とする AI 企業」と「計算資源を提供できるクラウド事業者」の間で、出資を伴う深い提携関係が次々と築かれているのが 2023 年以降の大きな特徴である。</p>
-<p><strong>Microsoft × OpenAI</strong>: 2019 年以来の累計投資額は約 130 億ドルとされ、長らく Azure が独占クラウドプロバイダーであった（出典 : <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 、 2025 年 10 月 28 日）。
-同日、両社は提携を大幅改定。 Microsoft の持株比率は完全希薄化ベースで約 27% （持分価値約 1,350 億ドル）。 Azure 独占は終了し OpenAI は他クラウドも利用可能となったが、「サードパーティと共同開発した API 製品」は Azure 専有のまま。 Microsoft は OpenAI の IP へのアクセス権を 2032 年まで（非独占的に）保持する（出典 : <sup class="fnref"><a id="fnref-12-2" href="#ref-12">[12]</a></sup> 、 <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup>）。
-2026 年 2 月・ 4 月にも関係継続の声明が追加されたが詳細は未確認（出典 : <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 、 <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup>）。</p>
-<p><strong>Amazon × OpenAI</strong>: 2025 年 11 月 3 日、 AWS と OpenAI が 7 年・ 380 億ドル規模のクラウド計算契約を締結（出典 : <sup class="fnref"><a id="fnref-16-1" href="#ref-16">[16]</a></sup> 、 2025 年 11 月 3 日）。
-2026 年 2 月には Amazon が OpenAI へ出資（優先株 150 億ドル + 追加株式購入契約 350 億ドル、合計 500 億ドル）、 AWS 利用契約も 8 年で 1,000 億ドル拡大、 Trainium2 ギガワット分の導入も盛り込まれた。 2026 年 8 月時点で Amazon は前倒しで 500 億ドル投資を完了、 OpenAI 株式の約 5% （評価額約 8,520 億ドル）を保有と報じられる（出典 : <sup class="fnref"><a id="fnref-17-1" href="#ref-17">[17]</a></sup> 、 <sup class="fnref"><a id="fnref-18-1" href="#ref-18">[18]</a></sup>）。</p>
-<p><strong>Amazon × Anthropic</strong>: 2023 年 9 月 12.5 億ドル、 2024 年 3 月 27.5 億ドル追加（累計 40 億ドル）、同年 11 月さらに 40 億ドル追加（累計 80 億ドル）で AWS が「主要クラウド・トレーニングパートナー」に（出典 : <sup class="fnref"><a id="fnref-19-1" href="#ref-19">[19]</a></sup> 、 <sup class="fnref"><a id="fnref-20-1" href="#ref-20">[20]</a></sup>）。
-2026 年 4 月 20 日、 Amazon が即時 50 億ドル追加出資、マイルストーン条件付きで最大 200 億ドル追加可能な契約を発表。 Anthropic は 10 年で AWS 技術に 1,000 億ドル超投じ、最大 5 ギガワットの計算能力（Trainium2 〜 4）を確保するとされる（出典 : <sup class="fnref"><a id="fnref-21-1" href="#ref-21">[21]</a></sup> 、 <sup class="fnref"><a id="fnref-22-1" href="#ref-22">[22]</a></sup>）。
-象徴的な計算基盤「 Project Rainier 」は 2025 年 10 月 29 日、 Trainium2 チップ約 50 万基規模で稼働開始した（出典 : <sup class="fnref"><a id="fnref-23-1" href="#ref-23">[23]</a></sup>）。</p>
-<p><strong>Google × Anthropic</strong>: 2023 年から段階的出資（3 億ドル、追加 20 億ドル、 2025 年 1 月に 10 億ドル超追加）を経て、 2026 年 4 月 24 日に最大 400 億ドル規模の追加投資（うち 100 億ドル即時実行）を発表（出典 : <sup class="fnref"><a id="fnref-24-1" href="#ref-24">[24]</a></sup>）。あわせて 2025 年 10 月 23 日、最大 100 万基の Google 製 TPU （Tensor Processing Unit 、 Google 独自の AI 向け専用半導体）アクセスを含む「数百億ドル規模」のクラウド計算契約も発表（出典 : <sup class="fnref"><a id="fnref-25-1" href="#ref-25">[25]</a></sup>）。
+<p><strong>Microsoft × OpenAI</strong>: 2019 年以来の累計投資額は約 130 億ドルとされ、長らく Azure が独占クラウドプロバイダーであった（出典 : <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 、 2025 年 10 月 28 日）。
+同日、両社は提携を大幅改定。 Microsoft の持株比率は完全希薄化ベースで約 27% （持分価値約 1,350 億ドル）。 Azure 独占は終了し OpenAI は他クラウドも利用可能となったが、「サードパーティと共同開発した API 製品」は Azure 専有のまま。 Microsoft は OpenAI の IP へのアクセス権を 2032 年まで（非独占的に）保持する（出典 : <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 、 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup>)。
+2026 年 2 月・ 4 月にも関係継続の声明が追加されたが詳細は未確認（出典 : <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 、 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup>)。</p>
+<p><strong>Amazon × OpenAI</strong>: 2025 年 11 月 3 日、 AWS と OpenAI が 7 年・ 380 億ドル規模のクラウド計算契約を締結（出典 : <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 、 2025 年 11 月 3 日）。
+2026 年 2 月には Amazon が OpenAI へ出資（優先株 150 億ドル + 追加株式購入契約 350 億ドル、合計 500 億ドル）、 AWS 利用契約も 8 年で 1,000 億ドル拡大、 Trainium2 ギガワット分の導入も盛り込まれた。 2026 年 8 月時点で Amazon は前倒しで 500 億ドル投資を完了、 OpenAI 株式の約 5% （評価額約 8,520 億ドル）を保有と報じられる（出典 : <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 、 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup>)。</p>
+<p><strong>Amazon × Anthropic</strong>: 2023 年 9 月 12.5 億ドル、 2024 年 3 月 27.5 億ドル追加（累計 40 億ドル）、同年 11 月さらに 40 億ドル追加（累計 80 億ドル）で AWS が「主要クラウド・トレーニングパートナー」に（出典 : <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 、 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup>)。
+2026 年 4 月 20 日、 Amazon が即時 50 億ドル追加出資、マイルストーン条件付きで最大 200 億ドル追加可能な契約を発表。 Anthropic は 10 年で AWS 技術に 1,000 億ドル超投じ、最大 5 ギガワットの計算能力 (Trainium2 〜 4) を確保するとされる（出典 : <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> 、 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup>)。
+象徴的な計算基盤「 Project Rainier 」は 2025 年 10 月 29 日、 Trainium2 チップ約 50 万基規模で稼働開始した（出典 : <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup>)。</p>
+<p><strong>Google × Anthropic</strong>: 2023 年から段階的出資 (3 億ドル、追加 20 億ドル、 2025 年 1 月に 10 億ドル超追加）を経て、 2026 年 4 月 24 日に最大 400 億ドル規模の追加投資（うち 100 億ドル即時実行）を発表（出典 : <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup>)。あわせて 2025 年 10 月 23 日、最大 100 万基の Google 製 TPU (Tensor Processing Unit 、 Google 独自の AI 向け専用半導体）アクセスを含む「数百億ドル規模」のクラウド計算契約も発表（出典 : <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup>)。
 Google は Anthropic の出資者かつ TPU 供給元でありながら、自社 Gemini の Google DeepMind と Anthropic の Claude は市場で競合する複層的な関係にある（複数報道を統合した整理）。</p>
-<p><strong>Oracle × OpenAI (Stargate)</strong>: 2025 年 9 月、総額 3,000 億ドル・ 5 年間（2027 年開始予定）の計算契約を締結（出典 : <sup class="fnref"><a id="fnref-26-1" href="#ref-26">[26]</a></sup>）。
-OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体では米国内で最大約 30 ギガワット構築を目標に、総投資 5,000 億ドル〜 1 兆ドルとも報じられる。 2026 年 4 月時点でテキサス州アビリーン拠点（1.2 ギガワット）が稼働、複数州で建設中（出典 : <sup class="fnref"><a id="fnref-27-1" href="#ref-27">[27]</a></sup>）。</p>
-<p><strong>その他</strong> : xAI は 2025 年 6 月から OCI 上で Grok モデルを運用（出典 : <sup class="fnref"><a id="fnref-28-1" href="#ref-28">[28]</a></sup>）。 Meta が Llama 向けに Google TPU を利用する契約を結んだとの報道（2026 年 2 月）もあるが金額は未確認である（出典 : <sup class="fnref"><a id="fnref-29-1" href="#ref-29">[29]</a></sup>）。</p>
-<h3>AI 関連設備投資（CapEx）の規模</h3>
-<p>生成 AI の開発・提供にはデータセンター建設や専用半導体調達など巨額の設備投資（CapEx 、将来使用する固定資産への投資支出）が必要となる。各社とも「 AI 関連」と明示的に切り分けた金額は開示しておらず、以下は総設備投資額である点に留意されたい。</p>
+<p><strong>Oracle × OpenAI (Stargate)</strong>: 2025 年 9 月、総額 3,000 億ドル・ 5 年間 (2027 年開始予定）の計算契約を締結（出典 : <sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup>)。
+OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体では米国内で最大約 30 ギガワット構築を目標に、総投資 5,000 億ドル〜 1 兆ドルとも報じられる。 2026 年 4 月時点でテキサス州アビリーン拠点 (1.2 ギガワット）が稼働、複数州で建設中（出典 : <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup>)。</p>
+<p><strong>その他</strong> : xAI は 2025 年 6 月から OCI 上で Grok モデルを運用（出典 : <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup>)。 Meta が Llama 向けに Google TPU を利用する契約を結んだとの報道 (2026 年 2 月）もあるが金額は未確認である（出典 : <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup>)。</p>
+<h3>●AI 関連設備投資 (CapEx) の規模</h3>
+<p>生成 AI の開発・提供にはデータセンター建設や専用半導体調達など巨額の設備投資 (CapEx 、将来使用する固定資産への投資支出）が必要となる。各社とも「 AI 関連」と明示的に切り分けた金額は開示しておらず、以下は総設備投資額である点に留意されたい。</p>
 <table>
 <thead>
 <tr>
@@ -189,7 +189,7 @@ OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体で
 <tbody>
 <tr>
 <td>Amazon</td>
-<td>1,318 億ドル（前年 830 億ドルから +58.8%）</td>
+<td>1,318 億ドル（前年 830 億ドルから +58.8%)</td>
 <td>当初約 2,000 億ドル→7 月 30 日決算で 2,200 億ドルに上方修正（メモリ価格上昇等）</td>
 </tr>
 <tr>
@@ -199,7 +199,7 @@ OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体で
 </tr>
 <tr>
 <td>Microsoft</td>
-<td>報道間で数値が食い違い未確定（Q4 単独 242 億ドル）</td>
+<td>報道間で数値が食い違い未確定 (Q4 単独 242 億ドル）</td>
 <td>当初約 1,900 億ドル→1,750 億ドルに下方修正（主因はリース会計区分変更）。 FY26 Q4 単体は 410 億ドルで四半期最高</td>
 </tr>
 <tr>
@@ -209,54 +209,55 @@ OpenAI ・ Oracle ・ SoftBank 等の「 Stargate 」プロジェクト全体で
 </tr>
 </tbody>
 </table>
-<p>出典 : Amazon <sup class="fnref"><a id="fnref-30-1" href="#ref-30">[30]</a></sup> 、 <sup class="fnref"><a id="fnref-31-1" href="#ref-31">[31]</a></sup> 。 Alphabet <sup class="fnref"><a id="fnref-32-1" href="#ref-32">[32]</a></sup> 、 <sup class="fnref"><a id="fnref-33-1" href="#ref-33">[33]</a></sup> 。 Microsoft <sup class="fnref"><a id="fnref-34-1" href="#ref-34">[34]</a></sup> 、 <sup class="fnref"><a id="fnref-35-1" href="#ref-35">[35]</a></sup> 。 Meta <sup class="fnref"><a id="fnref-36-1" href="#ref-36">[36]</a></sup> 、 <sup class="fnref"><a id="fnref-37-1" href="#ref-37">[37]</a></sup> 。</p>
-<p>複数の業界報道の集計では 4 社合計の 2025 年実績は約 4,000 億〜 4,130 億ドル、 2026 年見通しは約 7,250 億ドル（+77%）とされる（単一の一次情報源による確定値ではない、出典 : <sup class="fnref"><a id="fnref-38-1" href="#ref-38">[38]</a></sup> 、 <sup class="fnref"><a id="fnref-39-1" href="#ref-39">[39]</a></sup>）。 Google ・ Amazon は決算のたびガイダンスを上方修正し続けており、設備投資計画が上振れし続ける状態は需要見通しの強さの表れである一方、後述の「 AI バブル」論争における懸念材料でもある。</p>
-<h3>AI 事業のクラウド成長への寄与</h3>
-<p>Microsoft は 2026 年 3 月期第 3 四半期決算で、 AI 事業の年率換算収益（四半期ペースを 1 年換算した値）が 370 億ドル（前年比 +123% 、 2025 年 1 月の 130 億ドルから増加）に達したと公表。同四半期の Azure 成長率は +40% （出典 : <sup class="fnref"><a id="fnref-40-1" href="#ref-40">[40]</a></sup>）。</p>
-<p>Amazon は 2026 年 7 月 30 日決算で Jassy CEO が「 AI ・チップ事業の年率換算収益が 250 億ドルを突破」と発言（出典 : <sup class="fnref"><a id="fnref-41-1" href="#ref-41">[41]</a></sup>）。</p>
-<p>Google Cloud は 2026 年 Q2 決算で、 AI ソリューション・ AI インフラ需要が売上成長（+82%）の牽引役と説明され、受注残高（バックログ）は 6 月末時点で 5,140 億ドル(第 1 四半期から 500 億ドル超増)(出典 : <sup class="fnref"><a id="fnref-42-1" href="#ref-42">[42]</a></sup>)。</p>
-<p>以上は各社の公式開示であり「確立した事実」に区分できる。業界全体への寄与度については、 Synergy Research Group の分析（生成 AI 関連クラウドサービス成長率が前年比 165% 、 AI 関連支出シェアが 2023 年 8%→2026 年 19%）もあるが、二次報道からの要約で一次資料は未確認のため「アナリストの見立て」として扱う（出典 : <sup class="fnref"><a id="fnref-43-1" href="#ref-43">[43]</a></sup>）。</p>
+<p>出典 : Amazon <sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup> 、 <sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup> 。 Alphabet <sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> 、 <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup> 。 Microsoft <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> 、 <sup id="fnref-35-1"><a href="#ref-35">[35]</a></sup> 。 Meta <sup id="fnref-36-1"><a href="#ref-36">[36]</a></sup> 、 <sup id="fnref-37-1"><a href="#ref-37">[37]</a></sup> 。</p>
+<p>複数の業界報道の集計では 4 社合計の 2025 年実績は約 4,000 億〜 4,130 億ドル、 2026 年見通しは約 7,250 億ドル (+77%) とされる（単一の一次情報源による確定値ではない、出典 : <sup id="fnref-38-1"><a href="#ref-38">[38]</a></sup> 、 <sup id="fnref-39-1"><a href="#ref-39">[39]</a></sup>)。 Google ・ Amazon は決算のたびガイダンスを上方修正し続けており、設備投資計画が上振れし続ける状態は需要見通しの強さの表れである一方、後述の「 AI バブル」論争における懸念材料でもある。</p>
+<h3>●AI 事業のクラウド成長への寄与</h3>
+<p>Microsoft は 2026 年 3 月期第 3 四半期決算で、 AI 事業の年率換算収益（四半期ペースを 1 年換算した値）が 370 億ドル（前年比 +123% 、 2025 年 1 月の 130 億ドルから増加）に達したと公表。同四半期の Azure 成長率は +40% （出典 : <sup id="fnref-40-1"><a href="#ref-40">[40]</a></sup>)。</p>
+<p>Amazon は 2026 年 7 月 30 日決算で Jassy CEO が「 AI ・チップ事業の年率換算収益が 250 億ドルを突破」と発言（出典 : <sup id="fnref-41-1"><a href="#ref-41">[41]</a></sup>)。</p>
+<p>Google Cloud は 2026 年 Q2 決算で、 AI ソリューション・ AI インフラ需要が売上成長 (+82%) の牽引役と説明され、受注残高（バックログ）は 6 月末時点で 5,140 億ドル（第 1 四半期から 500 億ドル超増）（出典 : <sup id="fnref-42-1"><a href="#ref-42">[42]</a></sup>)。</p>
+<p>以上は各社の公式開示であり「確立した事実」に区分できる。業界全体への寄与度については、 Synergy Research Group の分析（生成 AI 関連クラウドサービス成長率が前年比 165% 、 AI 関連支出シェアが 2023 年 8%→2026 年 19%) もあるが、二次報道からの要約で一次資料は未確認のため「アナリストの見立て」として扱う（出典 : <sup id="fnref-43-1"><a href="#ref-43">[43]</a></sup>)。</p>
 <p><strong>AI 関連事業は各社のクラウド部門にとって「将来の成長ドライバー候補」ではなく「現に成長率を押し上げている主要因」に転じつつある</strong>。
-Google Cloud ・ Azure の成長率が AWS を上回る背景には、 OpenAI ・ Anthropic との深い提携（Azure）や TPU 基盤戦略（Google Cloud）を強みにできている点が指摘できる。 AWS も大型契約と独自チップ Trainium で対抗しており、売上の絶対額では依然最大手である。</p>
+Google Cloud ・ Azure の成長率が AWS を上回る背景には、 OpenAI ・ Anthropic との深い提携 (Azure) や TPU 基盤戦略 (Google Cloud) を強みにできている点が指摘できる。 AWS も大型契約と独自チップ Trainium で対抗しており、売上の絶対額では依然最大手である。</p>
+<p class="pull">AI 関連事業は、クラウド部門にとって「将来の成長ドライバー候補」ではなく「現に成長率を押し上げている主要因」に転じつつある。</p>
 <h2 id="sec4">4. 今後の予測・シナリオ分析</h2>
 <p><strong>本章は確立した事実の記述ではなく、予測・仮説的なシナリオの検討である。</strong> 各予測・シナリオには予測またはシナリオのラベルを付す。ラベル基準は、①調査会社・金融機関等が具体的数値で公表した見通しには予測、②本稿作成にあたり複数の事実・予測を組み合わせて検討した仮説的な将来像にはシナリオである。</p>
-<h3>市場規模に関するアナリスト予測</h3>
-<p>予測 Gartner は 2026 年の世界 IT 支出が前年比 14.2% 増の 6.37 兆ドルに達すると予測(年内に複数回上方修正、 2 月 +10.8%/6.15 兆ドル→4 月 +13.5%/6.31 兆ドル→7 月 14.2%/6.37 兆ドル)(出典 : <sup class="fnref"><a id="fnref-44-1" href="#ref-44">[44]</a></sup> 、 2026 年 7 月 27 日)。同社は世界 AI 支出を 2026 年に前年比 47% 増の 2.59 兆ドル、 2027 年に 3.49 兆ドルと予測、 AI インフラが支出全体の 45% 超で最大セグメントという（出典 : <sup class="fnref"><a id="fnref-45-1" href="#ref-45">[45]</a></sup> 、 2026 年 5 月 19 日）。</p>
-<p>予測 IDC は世界の企業向けパブリッククラウド支出が 2026 年に初めて 1 兆ドルを突破、 +21% 超で成長すると予測。 PaaS （アプリケーション開発・実行基盤をサービス提供する形態）が AI ワークロード需要を背景に +37% と最速という（出典 : <sup class="fnref"><a id="fnref-46-1" href="#ref-46">[46]</a></sup> 、 2026 年 3 月）。</p>
-<p>予測 McKinsey は 2030 年までに AI 関連インフラへの累計投資額が 6.7 兆ドル（データセンター単体 5.2 兆ドル、電力・冷却等の周辺投資 1.3 兆ドル）に達すると試算。世界のデータセンター容量は 219 ギガワット拡大し、うち AI 向けが 156 ギガワット、 AI 向け容量比率は 2025 年の約 33% から 2030 年に約 70% へ上昇する見込みという（出典 : <sup class="fnref"><a id="fnref-47-1" href="#ref-47">[47]</a></sup> 、発表時期は未確認）。</p>
-<p>予測 Goldman Sachs は 2026 年のハイパースケーラー CapEx が前年比 36% 増の約 5,390 億ドル、 2027 年は +17% の約 6,290 億ドルと予測し、「 2027 年の市場コンセンサスはむしろ保守的すぎる」との見方を示す（出典 : <sup class="fnref"><a id="fnref-48-1" href="#ref-48">[48]</a></sup> 、 2026 年 1 月）。</p>
+<h3>●市場規模に関するアナリスト予測</h3>
+<p>予測 Gartner は 2026 年の世界 IT 支出が前年比 14.2% 増の 6.37 兆ドルに達すると予測（年内に複数回上方修正、 2 月 +10.8%/6.15 兆ドル→4 月 +13.5%/6.31 兆ドル→7 月 14.2%/6.37 兆ドル）（出典 : <sup id="fnref-44-1"><a href="#ref-44">[44]</a></sup> 、 2026 年 7 月 27 日）。同社は世界 AI 支出を 2026 年に前年比 47% 増の 2.59 兆ドル、 2027 年に 3.49 兆ドルと予測、 AI インフラが支出全体の 45% 超で最大セグメントという（出典 : <sup id="fnref-45-1"><a href="#ref-45">[45]</a></sup> 、 2026 年 5 月 19 日）。</p>
+<p>予測 IDC は世界の企業向けパブリッククラウド支出が 2026 年に初めて 1 兆ドルを突破、 +21% 超で成長すると予測。 PaaS （アプリケーション開発・実行基盤をサービス提供する形態）が AI ワークロード需要を背景に +37% と最速という（出典 : <sup id="fnref-46-1"><a href="#ref-46">[46]</a></sup> 、 2026 年 3 月）。</p>
+<p>予測 McKinsey は 2030 年までに AI 関連インフラへの累計投資額が 6.7 兆ドル（データセンター単体 5.2 兆ドル、電力・冷却等の周辺投資 1.3 兆ドル）に達すると試算。世界のデータセンター容量は 219 ギガワット拡大し、うち AI 向けが 156 ギガワット、 AI 向け容量比率は 2025 年の約 33% から 2030 年に約 70% へ上昇する見込みという（出典 : <sup id="fnref-47-1"><a href="#ref-47">[47]</a></sup> 、発表時期は未確認）。</p>
+<p>予測 Goldman Sachs は 2026 年のハイパースケーラー CapEx が前年比 36% 増の約 5,390 億ドル、 2027 年は +17% の約 6,290 億ドルと予測し、「 2027 年の市場コンセンサスはむしろ保守的すぎる」との見方を示す（出典 : <sup id="fnref-48-1"><a href="#ref-48">[48]</a></sup> 、 2026 年 1 月）。</p>
 <p>これらの予測には「二桁〜数十 % の高成長が続く」という共通点がある。
 ただし、上方修正だけから市場実勢が予測を上回ったと結論づけることはできない。対象範囲、為替前提、価格、調査モデルの見直しも改定に影響する。予測の一致は方向性の参考であり、将来の実績を保証しない。</p>
-<h3>「 AI バブル」論争――楽観論と悲観論</h3>
-<p><strong>悲観論・懸念</strong> : 国際決済銀行（BIS 、各国中央銀行の中央銀行とも呼ばれる国際機関）は 2026 年 6 月 28 日の年次経済報告で、 AI 投資ブームを 19 世紀の運河・鉄道バブル、 1920 年代の電化ブーム、ドットコムバブルになぞらえ、実需を上回る資本流入の危険性を警告した。ハイパースケーラー 5 社の 2025 〜 2026 年累計 AI 投資額は 1 兆ドル超で、収益・フリーキャッシュフロー（事業活動で自由に使えるお金）の伸びを上回るペースで負債依存が強まっているという（出典 : <sup class="fnref"><a id="fnref-49-1" href="#ref-49">[49]</a></sup> 、 2026 年 6 月 29 日）。
-著名投資家 Michael Burry 氏は 2026 年 6 月 30 日、 Nvidia 等への空売り（値下がりを見込む取引）を公表し「需要の多くはオフバランスの資金調達に支えられた循環的なものだ」と論じた（出典 : <sup class="fnref"><a id="fnref-50-1" href="#ref-50">[50]</a></sup>）。 Nvidia ・ OpenAI ・ Oracle ・ Microsoft 等の間で出資・供給契約が複雑に絡み合う「循環取引」への懸念もあり、総額は 2026 年時点で 8,000 億ドル超、需要の見かけ上の水増しではないかとの論点である（出典 : <sup class="fnref"><a id="fnref-51-1" href="#ref-51">[51]</a></sup> 、 2026 年 7 月 27 日）。
-ファンドマネージャー調査では「 AI バブルが最大のテールリスク」との回答が 45% に急増（前年 9 月の 11% から）した（出典 : <sup class="fnref"><a id="fnref-52-1" href="#ref-52">[52]</a></sup> 、 2026 年 6 月 8 日）。 Google の Sundar Pichai CEO 自身も「非合理性の要素がある」と認め、ドットコムとの類似を指摘し「バブルが弾ければ Google を含め無傷ではいられない」と発言している（出典 : <sup class="fnref"><a id="fnref-53-1" href="#ref-53">[53]</a></sup>）。</p>
-<p><strong>楽観論</strong> : Goldman Sachs は「米ハイテクセクターは少なくとも現時点ではバブルではない」とし、支出はむしろ過小評価の可能性を指摘する（出典 : <sup class="fnref"><a id="fnref-54-1" href="#ref-54">[54]</a></sup>）。一部アナリストは、 AI 投資が主に自己資金で賄われている点を挙げ、負債依存度が高かったドットコム期とは構造が異なると反論する（出典 : <sup class="fnref"><a id="fnref-52-2" href="#ref-52">[52]</a></sup>）。
-Nvidia の Jensen Huang CEO は「バブルという声は多いが景色は全く違う。人類史上最大のインフラ構築だ」と実需の強さを強調（出典 : <sup class="fnref"><a id="fnref-55-1" href="#ref-55">[55]</a></sup>）。 Microsoft の Satya Nadella CEO は「テック企業以外にも広く使われて初めて AI はバブルではないと言える」とし、現時点での判定を留保する立場を示す（出典 : <sup class="fnref"><a id="fnref-56-1" href="#ref-56">[56]</a></sup>）。</p>
+<h3>●「 AI バブル」論争――楽観論と悲観論</h3>
+<p><strong>悲観論・懸念</strong> : 国際決済銀行 (BIS 、各国中央銀行の中央銀行とも呼ばれる国際機関）は 2026 年 6 月 28 日の年次経済報告で、 AI 投資ブームを 19 世紀の運河・鉄道バブル、 1920 年代の電化ブーム、ドットコムバブルになぞらえ、実需を上回る資本流入の危険性を警告した。ハイパースケーラー 5 社の 2025 〜 2026 年累計 AI 投資額は 1 兆ドル超で、収益・フリーキャッシュフロー（事業活動で自由に使えるお金）の伸びを上回るペースで負債依存が強まっているという（出典 : <sup id="fnref-49-1"><a href="#ref-49">[49]</a></sup> 、 2026 年 6 月 29 日）。
+著名投資家 Michael Burry 氏は 2026 年 6 月 30 日、 Nvidia 等への空売り（値下がりを見込む取引）を公表し「需要の多くはオフバランスの資金調達に支えられた循環的なものだ」と論じた（出典 : <sup id="fnref-50-1"><a href="#ref-50">[50]</a></sup>)。 Nvidia ・ OpenAI ・ Oracle ・ Microsoft 等の間で出資・供給契約が複雑に絡み合う「循環取引」への懸念もあり、総額は 2026 年時点で 8,000 億ドル超、需要の見かけ上の水増しではないかとの論点である（出典 : <sup id="fnref-51-1"><a href="#ref-51">[51]</a></sup> 、 2026 年 7 月 27 日）。
+ファンドマネージャー調査では「 AI バブルが最大のテールリスク」との回答が 45% に急増（前年 9 月の 11% から）した（出典 : <sup id="fnref-52-1"><a href="#ref-52">[52]</a></sup> 、 2026 年 6 月 8 日）。 Google の Sundar Pichai CEO 自身も「非合理性の要素がある」と認め、ドットコムとの類似を指摘し「バブルが弾ければ Google を含め無傷ではいられない」と発言している（出典 : <sup id="fnref-53-1"><a href="#ref-53">[53]</a></sup>)。</p>
+<p><strong>楽観論</strong> : Goldman Sachs は「米ハイテクセクターは少なくとも現時点ではバブルではない」とし、支出はむしろ過小評価の可能性を指摘する（出典 : <sup id="fnref-54-1"><a href="#ref-54">[54]</a></sup>)。一部アナリストは、 AI 投資が主に自己資金で賄われている点を挙げ、負債依存度が高かったドットコム期とは構造が異なると反論する（出典 : <sup id="fnref-52-2"><a href="#ref-52">[52]</a></sup>)。
+Nvidia の Jensen Huang CEO は「バブルという声は多いが景色は全く違う。人類史上最大のインフラ構築だ」と実需の強さを強調（出典 : <sup id="fnref-55-1"><a href="#ref-55">[55]</a></sup>)。 Microsoft の Satya Nadella CEO は「テック企業以外にも広く使われて初めて AI はバブルではないと言える」とし、現時点での判定を留保する立場を示す（出典 : <sup id="fnref-56-1"><a href="#ref-56">[56]</a></sup>)。</p>
 <p>シナリオ以上を踏まえると、論争の核心は「 AI 技術の有用性」ではなく「現在の投資ペースが実需に見合っているか、資金調達構造は健全か」という点に集約できる。この論点の帰趨によってクラウド各社の立ち位置は大きく左右されうる。</p>
-<h3>各社の戦略動向</h3>
-<p>AWS は 2026 年の CapEx が約 2,000 億ドル規模（2025 年約 1,250 億ドルから約 60% 増）とされ、大半がデータセンター・電力・独自チップ Trainium に充てられる。 Trainium2 はほぼ完売、 Trainium3 も 2026 年出荷分の大半が予約済みで、将来収益コミットメントは 2,250 億ドルと報じられる（出典 : <sup class="fnref"><a id="fnref-57-1" href="#ref-57">[57]</a></sup>）。</p>
-<p>Microsoft は 2026 年 1 月、推論（学習済みモデルを使い実際に回答等を生成する処理）特化型自社チップ「 Maia 200 」を発表し、 Nvidia の開発者エコシステムへの対抗を鮮明にしている（出典 : <sup class="fnref"><a id="fnref-58-1" href="#ref-58">[58]</a></sup> 、 2026 年 1 月 26 日）。</p>
-<p>Google は 2026 年 4 月「 Google Cloud Next 2026 」で新世代 TPU 「 TPU 8 」（訓練特化 TPU 8t 、推論特化 TPU 8i）を発表。 5 月には資産運用大手 Blackstone との合弁で TPU データセンター事業（初期出資 50 億ドル、 2027 年に 500 メガワット稼働予定）も発表し、直接販売や外部資本との共同事業も模索している（出典 : <sup class="fnref"><a id="fnref-59-1" href="#ref-59">[59]</a></sup> 、 <sup class="fnref"><a id="fnref-60-1" href="#ref-60">[60]</a></sup>）。</p>
-<p>Oracle は汎用クラウドで AWS ・ Azure に正面から対抗するのではなく、 GPU 高密度・高性能計算（HPC）特化インフラ事業者としての位置づけを強めている、というのが複数アナリストの分析である。 2026 会計年度の OCI 売上は前年比 77% 増の 180 億ドルを見込むと CEO の Safra Catz 氏が言及したと報じられる（出典 : <sup class="fnref"><a id="fnref-26-2" href="#ref-26">[26]</a></sup>）。</p>
-<h3>リスク要因</h3>
+<h3>●各社の戦略動向</h3>
+<p>AWS は 2026 年の CapEx が約 2,000 億ドル規模 (2025 年約 1,250 億ドルから約 60% 増）とされ、大半がデータセンター・電力・独自チップ Trainium に充てられる。 Trainium2 はほぼ完売、 Trainium3 も 2026 年出荷分の大半が予約済みで、将来収益コミットメントは 2,250 億ドルと報じられる（出典 : <sup id="fnref-57-1"><a href="#ref-57">[57]</a></sup>)。</p>
+<p>Microsoft は 2026 年 1 月、推論（学習済みモデルを使い実際に回答等を生成する処理）特化型自社チップ「 Maia 200 」を発表し、 Nvidia の開発者エコシステムへの対抗を鮮明にしている（出典 : <sup id="fnref-58-1"><a href="#ref-58">[58]</a></sup> 、 2026 年 1 月 26 日）。</p>
+<p>Google は 2026 年 4 月「 Google Cloud Next 2026 」で新世代 TPU 「 TPU 8 」（訓練特化 TPU 8t 、推論特化 TPU 8i) を発表。 5 月には資産運用大手 Blackstone との合弁で TPU データセンター事業（初期出資 50 億ドル、 2027 年に 500 メガワット稼働予定）も発表し、直接販売や外部資本との共同事業も模索している（出典 : <sup id="fnref-59-1"><a href="#ref-59">[59]</a></sup> 、 <sup id="fnref-60-1"><a href="#ref-60">[60]</a></sup>)。</p>
+<p>Oracle は汎用クラウドで AWS ・ Azure に正面から対抗するのではなく、 GPU 高密度・高性能計算 (HPC) 特化インフラ事業者としての位置づけを強めている、というのが複数アナリストの分析である。 2026 会計年度の OCI 売上は前年比 77% 増の 180 億ドルを見込むと CEO の Safra Catz 氏が言及したと報じられる（出典 : <sup id="fnref-26-2"><a href="#ref-26">[26]</a></sup>)。</p>
+<h3>●リスク要因</h3>
 <p>第一に<strong>電力・データセンター容量の制約</strong>。
-ボトルネックが「半導体の生産能力」から「電力網」へ移行しつつあると指摘される。米国では新規の電力接続の順番待ちが数年単位に及ぶとされる（出典 : <sup class="fnref"><a id="fnref-61-1" href="#ref-61">[61]</a></sup> 、一次情報の裏取りは未完了）。</p>
+ボトルネックが「半導体の生産能力」から「電力網」へ移行しつつあると指摘される。米国では新規の電力接続の順番待ちが数年単位に及ぶとされる（出典 : <sup id="fnref-61-1"><a href="#ref-61">[61]</a></sup> 、一次情報の裏取りは未完了）。</p>
 <p>第二に<strong>半導体・ GPU 供給の制約</strong>。
-GPU 単体の生産能力は改善したが、ボトルネックは高帯域幅メモリ（HBM 、 AI 処理向け高速メモリ）や先端パッケージング技術に移行している。需要が供給を上回る状態が 2027 年頃まで続くとの見方があり、ハイパースケーラーの大量先行発注が最新 GPU 供給の大半を占有し中小 AI 企業を圧迫しているとの指摘もある（出典 : <sup class="fnref"><a id="fnref-62-1" href="#ref-62">[62]</a></sup>）。</p>
+GPU 単体の生産能力は改善したが、ボトルネックは高帯域幅メモリ (HBM 、 AI 処理向け高速メモリ）や先端パッケージング技術に移行している。需要が供給を上回る状態が 2027 年頃まで続くとの見方があり、ハイパースケーラーの大量先行発注が最新 GPU 供給の大半を占有し中小 AI 企業を圧迫しているとの指摘もある（出典 : <sup id="fnref-62-1"><a href="#ref-62">[62]</a></sup>)。</p>
 <p>第三に<strong>規制動向</strong>。
-米国では 2026 年前半 M&amp;A 審査は相対的に緩和傾向にある一方、 FTC ・ DOJ は 2026 年 2 月、 AI 関連の競合企業間提携に関する新ガイドライン検討の意見募集を開始した。 EU でもデジタル市場法（DMA 、大手デジタルプラットフォーマーの市場支配力を規制する EU 法）の適用範囲をクラウドサービスに拡大するかの検討が続く（出典 : <sup class="fnref"><a id="fnref-63-1" href="#ref-63">[63]</a></sup> 、 2026 年 7 月）。</p>
-<h3>今後 1 〜 3 年のシナリオ分析</h3>
+米国では 2026 年前半 M&amp;A 審査は相対的に緩和傾向にある一方、 FTC ・ DOJ は 2026 年 2 月、 AI 関連の競合企業間提携に関する新ガイドライン検討の意見募集を開始した。 EU でもデジタル市場法 (DMA 、大手デジタルプラットフォーマーの市場支配力を規制する EU 法）の適用範囲をクラウドサービスに拡大するかの検討が続く（出典 : <sup id="fnref-63-1"><a href="#ref-63">[63]</a></sup> 、 2026 年 7 月）。</p>
+<h3>●今後 1 〜 3 年のシナリオ分析</h3>
 <p>以上を踏まえ、今後 1 〜 3 年程度を見据えた複数のシナリオを提示する。<strong>以下はいずれも本稿作成にあたり複数の情報を統合して検討した仮説的な将来像であり、確定した事実ではない。</strong></p>
 <p>シナリオ A<strong>AI 投資が持続的に拡大するケース</strong>。
 AI 関連の売上・受注残高が積み上がり続け、 CapEx に見合う収益が実現していく場合、 Azure ・ Google Cloud はそれぞれ OpenAI ・ Anthropic との提携や自社製 AI チップを武器に AWS へのシェア追い上げをさらに強め、三社の競争は「総合力」から「 AI 基盤としての実力」へ重心を移すと考えられる。 Oracle のような特化型プレイヤーも AI 特化領域でシェアを伸ばしうる。この場合、電力・半導体の供給制約が実質的な成長の天井として作用する可能性が高い。</p>
 <p>シナリオ B<strong>AI バブル的な調整が入るケース</strong>。
-循環取引への懸念や ROI （投資回収）への疑念が強まり資金調達が難しくなる、あるいは顧客企業（OpenAI 等）の収益化が投資ペースに追いつかない場合、大型契約の見直しや設備投資計画の下方修正が生じうる。もっとも主要ハイパースケーラーの AI 投資は現時点で主に自己資金によるとの見方もあり、調整が入っても負債主導の急激な破綻連鎖より緩やかな減速・選別的見直しになる可能性も指摘される。 AI 以外の既存事業基盤がしっかりしている企業ほど耐性が高いと考えられる。</p>
-<p>シナリオ C <strong>選別的な成長が続くケース（A と B の中間）</strong>。
+循環取引への懸念や ROI （投資回収）への疑念が強まり資金調達が難しくなる、あるいは顧客企業 (OpenAI 等）の収益化が投資ペースに追いつかない場合、大型契約の見直しや設備投資計画の下方修正が生じうる。もっとも主要ハイパースケーラーの AI 投資は現時点で主に自己資金によるとの見方もあり、調整が入っても負債主導の急激な破綻連鎖より緩やかな減速・選別的見直しになる可能性も指摘される。 AI 以外の既存事業基盤がしっかりしている企業ほど耐性が高いと考えられる。</p>
+<p>シナリオ C <strong>選別的な成長が続くケース (A と B の中間）</strong>。
 市場全体は成長を続けるが、投資家・顧客企業が AI プロジェクトの費用対効果をより厳しく見極めるようになり、成長率に「勝ち組」と「見劣りする陣営」の差が拡大していく。市場全体の急落ではなく、個別企業・個別プロジェクト単位での淘汰が進む可能性がある。</p>
 <p>いずれのシナリオが実現するにせよ、電力・半導体という物理的制約と規制当局の動向という制度的要因が、今後 1 〜 3 年の展開を左右する重要な変数になると考えられる。</p>
 <h2 id="sec5">5. まとめ・所感</h2>
-<p>クラウド市場は依然として AWS ・ Azure ・ Google Cloud の三社が 63% 前後のシェアを占める寡占構造にあるが、成長率で見ると Azure（+43%）・ Google Cloud（+82%）が AWS（+37%）を上回るペースで拡大しており、シェアの序列もゆっくり変化しつつある。この変化を牽引しているのが生成 AI ブームであり、 Microsoft-OpenAI 、 Amazon-Anthropic/OpenAI 、 Google-Anthropic といった出資と大型クラウド契約を組み合わせた深い提携関係が各社のクラウド事業の成長エンジンとして機能していることは、複数の一次資料から確認できる事実である。</p>
+<p>クラウド市場は依然として AWS ・ Azure ・ Google Cloud の三社が 63% 前後のシェアを占める寡占構造にあるが、成長率で見ると Azure (+43%) ・ Google Cloud (+82%) が AWS (+37%) を上回るペースで拡大しており、シェアの序列もゆっくり変化しつつある。この変化を牽引しているのが生成 AI ブームであり、 Microsoft-OpenAI 、 Amazon-Anthropic/OpenAI 、 Google-Anthropic といった出資と大型クラウド契約を組み合わせた深い提携関係が各社のクラウド事業の成長エンジンとして機能していることは、複数の一次資料から確認できる事実である。</p>
 <p>一方、この成長を支える設備投資は年々上方修正され続けており、主要 4 社合計で 2026 年に 7,000 億ドルを超える規模との推計もある。投資ペースの持続可能性については、 BIS ・著名投資家による警鐘と、 Goldman Sachs や Nvidia ・ Microsoft 経営陣の楽観的な見方が対立しており、 2026 年 8 月時点で決着はついていない。
 筆者の見立てとしては、各社決算の売上・受注残高の伸びは事実として確認できる一方、その裏側にある資金の流れの持続性は外部からの検証が難しく、当面は楽観論・悲観論双方に留意しながら状況を注視するのが妥当と考える。</p>
 <p>いずれの企業にも偏った評価を避けるべきである。
@@ -274,7 +275,7 @@ AWS は売上規模・営業利益率で依然最大かつ最も収益性の高�
 <tbody>
 <tr>
 <td>ハイパースケーラー</td>
-<td>超大規模にデータセンターを展開するクラウド事業者を指す業界用語（AWS ・ Azure ・ Google Cloud 等）</td>
+<td>超大規模にデータセンターを展開するクラウド事業者を指す業界用語 (AWS ・ Azure ・ Google Cloud 等）</td>
 </tr>
 <tr>
 <td>市場シェア</td>
@@ -335,88 +336,73 @@ AWS は売上規模・営業利益率で依然最大かつ最も収益性の高�
 </tbody>
 </table>
 <div class="refs">
-<h2>出典一覧</h2>
-<p>市場シェア・決算関連</p>
-<ul>
-<li id="ref-1"><a href="https://www.srgresearch.com/articles/cloud-market-annual-revenue-run-rate-topped-half-a-trillion-dollars-in-q1-as-growth-surge-continues">Synergy Research Group （クラウド市場 ARR）</a> 2026/4/29 <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2"><a href="https://www.srgresearch.com/articles/cloud-market-share-trends-big-three-together-hold-63-while-oracle-and-the-neoclouds-inch-higher">Synergy Research Group （市場シェア推移）</a> 2025/11/19 <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3"><a href="https://www.channelinsider.com/infrastructure/canalys-cloud-hyperscaler-report-sept-2025/">ChannelInsider （Canalys 引用）</a> 2025/9 <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4"><a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report">Amazon 公式決算発表</a> 2026/7/30 <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5"><a href="https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast">Microsoft Investor Relations FY26 Q4</a> 2026/7/29 <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6"><a href="https://www.microsoft.com/en-us/investor/earnings/fy-2026-q2/press-release-webcast">Microsoft Investor Relations FY26 Q2</a> <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7"><a href="https://9to5google.com/2026/07/22/alphabet-q2-2026-earnings/">9to5Google （Alphabet Q2 2026 決算）</a> 2026/7/22 <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8"><a href="https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx">Oracle Investor Relations</a> 2026/6/10 <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9"><a href="https://www.sec.gov/Archives/edgar/data/0001577552/000110465926060224/tm2614494d1_ex99-1.htm">Alibaba Group SEC Form 6-K</a> 2026/5/12 <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10"><a href="https://static.www.tencent.com/uploads/2026/05/13/47382ae415a209fd161bc19a1f9b3704.pdf">Tencent 公式決算</a> 2026/5/13 <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11"><a href="https://www.stocktitan.net/news/IBM/ibm-releases-second-quarter-ak9qv75fd5eq.html">StockTitan （IBM Q2 決算）</a> 2026/7 <a class="fnback" href="#fnref-11-1">↩</a></li>
-</ul>
-<p>AI 提携・出資関連</p>
-<ul>
-<li id="ref-12"><a href="https://blogs.microsoft.com/blog/2025/10/28/the-next-chapter-of-the-microsoft-openai-partnership/">Microsoft 公式ブログ（Microsoft-OpenAI 提携改定）</a> 2025/10/28 <a class="fnback" href="#fnref-12-1">↩</a></li>
-<li id="ref-13"><a href="https://openai.com/index/next-chapter-of-microsoft-openai-partnership/">OpenAI 公式発表</a> 2025/10/28 <a class="fnback" href="#fnref-13-1">↩</a></li>
-<li id="ref-14"><a href="https://blogs.microsoft.com/blog/2026/02/27/microsoft-and-openai-joint-statement-on-continuing-partnership/">Microsoft 公式ブログ（2026/2/27 付）</a> <a class="fnback" href="#fnref-14-1">↩</a></li>
-<li id="ref-15"><a href="https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/">Microsoft 公式ブログ（2026/4/27 付）</a> <a class="fnback" href="#fnref-15-1">↩</a></li>
-<li id="ref-16"><a href="https://www.cnbc.com/2025/11/03/open-ai-amazon-aws-cloud-deal.html">CNBC （AWS-OpenAI 契約）</a> 2025/11/3 <a class="fnback" href="#fnref-16-1">↩</a></li>
-<li id="ref-17"><a href="https://www.geekwire.com/2026/filings-how-amazons-50b-openai-deal-actually-works-and-what-theyre-keeping-secret/">GeekWire （Amazon-OpenAI 出資）</a> <a class="fnback" href="#fnref-17-1">↩</a></li>
-<li id="ref-18"><a href="https://www.cnbc.com/2026/02/27/amazon-open-ai-cloud-jassy-altman.html">CNBC (Amazon-OpenAI)</a> <a class="fnback" href="#fnref-18-1">↩</a></li>
-<li id="ref-19"><a href="https://www.geekwire.com/2024/amazon-boosts-total-anthropic-investment-to-8b-deepens-ai-partnership-with-claude-maker/">GeekWire （Amazon-Anthropic 出資）</a> 2024 <a class="fnback" href="#fnref-19-1">↩</a></li>
-<li id="ref-20"><a href="https://techcrunch.com/2024/11/22/anthropic-raises-an-additional-4b-from-amazon-makes-aws-its-primary-cloud-partner/">TechCrunch （Anthropic 追加調達）</a> 2024/11/22 <a class="fnback" href="#fnref-20-1">↩</a></li>
-<li id="ref-21"><a href="https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai">Amazon 公式発表（Anthropic 追加投資）</a> 2026/4/20 <a class="fnback" href="#fnref-21-1">↩</a></li>
-<li id="ref-22"><a href="https://www.anthropic.com/news/anthropic-amazon-compute">Anthropic 公式発表</a> 2026/4/20 <a class="fnback" href="#fnref-22-1">↩</a></li>
-<li id="ref-23"><a href="https://www.datacenterdynamics.com/en/news/aws-activates-project-rainier-cluster-of-nearly-500000-trainium2-chips/">Data Center Dynamics (Project Rainier)</a> 2025/10/29 <a class="fnback" href="#fnref-23-1">↩</a></li>
-<li id="ref-24"><a href="https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets/">CNBC （Google-Anthropic 出資）</a> 2026/4/24 <a class="fnback" href="#fnref-24-1">↩</a></li>
-<li id="ref-25"><a href="https://www.cnbc.com/2025/10/23/anthropic-google-cloud-deal-tpu.html">CNBC （Anthropic-Google Cloud TPU 契約）</a> 2025/10/23 <a class="fnback" href="#fnref-25-1">↩</a></li>
-<li id="ref-26"><a href="https://www.datacenterfrontier.com/machine-learning/article/55316610/openai-and-oracles-300b-stargate-deal-building-ais-national-scale-infrastructure">Data Center Frontier (Oracle-OpenAI Stargate)</a> 2025/9 <a class="fnback" href="#fnref-26-1">↩</a></li>
-<li id="ref-27"><a href="https://www.datacenterdynamics.com/en/news/openai-announces-five-more-us-stargate-data-centers-with-oracle-and-softbank/">Data Center Dynamics （Stargate 拡張）</a> <a class="fnback" href="#fnref-27-1">↩</a></li>
-<li id="ref-28"><a href="https://www.oracle.com/news/announcement/xais-grok-models-are-now-on-oracle-cloud-infrastructure-2025-06-17/">Oracle 公式発表（xAI-OCI）</a> 2025/6/17 <a class="fnback" href="#fnref-28-1">↩</a></li>
-<li id="ref-29"><a href="https://www.techradar.com/pro/meta-and-google-could-be-about-to-sign-a-mega-ai-chip-deal-and-it-could-change-everything-in-the-tech-space">TechRadar (Meta-Google TPU)</a> 2026/2 <a class="fnback" href="#fnref-29-1">↩</a></li>
-</ul>
-<p>CapEx ・ AI 売上関連</p>
-<ul>
-<li id="ref-30"><a href="https://www.aol.com/articles/amazon-200-billion-ai-spending-153341032.html">AOL (Amazon CapEx)</a> <a class="fnback" href="#fnref-30-1">↩</a></li>
-<li id="ref-31"><a href="https://fortune.com/2026/07/30/andy-jassy-amazon-capex-demand-aws-pga-tour/">Fortune （Amazon 決算）</a> 2026/7/30 <a class="fnback" href="#fnref-31-1">↩</a></li>
-<li id="ref-32"><a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm">Alphabet SEC 提出資料</a> <a class="fnback" href="#fnref-32-1">↩</a></li>
-<li id="ref-33"><a href="https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html">CNBC （Google Q2 2026 決算）</a> 2026/7/22 <a class="fnback" href="#fnref-33-1">↩</a></li>
-<li id="ref-34"><a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">Microsoft 公式決算イベント資料</a> <a class="fnback" href="#fnref-34-1">↩</a></li>
-<li id="ref-35"><a href="https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html">CNBC （Microsoft Q3 決算）</a> 2026/4/29 <a class="fnback" href="#fnref-35-1">↩</a></li>
-<li id="ref-36"><a href="https://valueaddvc.com/blog/meta-145b-ai-capex-2026-why-zuckerberg-raised-guidance-twice">Value Add VC (Meta CapEx)</a> <a class="fnback" href="#fnref-36-1">↩</a></li>
-<li id="ref-37"><a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Meta 決算リリース</a> <a class="fnback" href="#fnref-37-1">↩</a></li>
-<li id="ref-38"><a href="https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion">Tom's Hardware （Big Tech AI 支出集計）</a> <a class="fnback" href="#fnref-38-1">↩</a></li>
-<li id="ref-39"><a href="https://www.statista.com/chart/35046/capital-expenditure-of-meta-alphabet-amazon-and-microsoft/">Statista （4 社 CapEx 比較）</a> <a class="fnback" href="#fnref-39-1">↩</a></li>
-<li id="ref-40"><a href="https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/">GeekWire (Microsoft AI run rate)</a> <a class="fnback" href="#fnref-40-1">↩</a></li>
-<li id="ref-41"><a href="https://www.investing.com/news/transcripts/earnings-call-transcript-amazon-tops-q2-2026-estimates-as-aws-growth-accelerates-93CH-4826442">Investing.com （Amazon 決算トランスクリプト）</a> 2026/7/30 <a class="fnback" href="#fnref-41-1">↩</a></li>
-<li id="ref-42"><a href="https://valueaddvc.com/blog/alphabet-205b-ai-capex-guidance-2026-what-googles-q2-earnings-raise-actually-buys">Value Add VC (Alphabet CapEx)</a> <a class="fnback" href="#fnref-42-1">↩</a></li>
-<li id="ref-43"><a href="https://www.datacenterdynamics.com/en/news/enterprise-cloud-infrastructure-spending-hits-143-billion-report/">Data Center Dynamics （Synergy Research 報道）</a> <a class="fnback" href="#fnref-43-1">↩</a></li>
-</ul>
-<p>市場予測関連</p>
-<ul>
-<li id="ref-44"><a href="https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion">Gartner Newsroom （IT 支出予測）</a> 2026/7/27 <a class="fnback" href="#fnref-44-1">↩</a></li>
-<li id="ref-45"><a href="https://www.gartner.com/en/newsroom/press-releases/2026-05-19-gartner-forecasts-worldwide-ai-spending-to-grow-47-percent-in-2026">Gartner Newsroom （AI 支出予測）</a> 2026/5/19 <a class="fnback" href="#fnref-45-1">↩</a></li>
-<li id="ref-46"><a href="https://www.biztechreports.com/news-archive/2026/3/20/global-public-cloud-spending-to-surpass-1-trillion-in-2026-driven-by-paas-and-ai-platform-adoption-idc-march-23-2026">BizTechReports （IDC 予測）</a> 2026/3 <a class="fnback" href="#fnref-46-1">↩</a></li>
-<li id="ref-47"><a href="https://datacentremagazine.com/articles/ai-infrastructure-to-require-7tn-by-2030-says-mckinsey">Data Centre Magazine （McKinsey 試算）</a> <a class="fnback" href="#fnref-47-1">↩</a></li>
-<li id="ref-48"><a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026">Goldman Sachs Insights （CapEx 予測）</a> 2026/1 <a class="fnback" href="#fnref-48-1">↩</a></li>
-</ul>
-<p>AI バブル論争関連</p>
-<ul>
-<li id="ref-49"><a href="https://fortune.com/2026/06/29/bis-central-bank-warning-hyperscaler-data-center-1-trillion-gamble-recession/">Fortune （BIS 警告）</a> 2026/6/29 <a class="fnback" href="#fnref-49-1">↩</a></li>
-<li id="ref-50"><a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262055020-big-short-michael-burry-ai-bubble-ramping-short-positions-nvidia-micron-tradingkey">TradingKey (Michael Burry)</a> 2026/6 <a class="fnback" href="#fnref-50-1">↩</a></li>
-<li id="ref-51"><a href="https://www.axios.com/2026/07/27/nvidia-openai-financing-ai-jensen-huang-ssi">Axios （循環取引懸念）</a> 2026/7/27 <a class="fnback" href="#fnref-51-1">↩</a></li>
-<li id="ref-52"><a href="https://fortune.com/2026/06/08/ai-boom-tech-stocks-bubble-fears-earnings-growth-chipmakers-ipo/">Fortune （ファンドマネージャー調査）</a> 2026/6/8 <a class="fnback" href="#fnref-52-1">↩</a></li>
-<li id="ref-53"><a href="https://www.techspot.com/news/110303-sundar-pichai-ai-boom-shows-irrational-investment-but.html">TechSpot （Pichai 発言）</a> <a class="fnback" href="#fnref-53-1">↩</a></li>
-<li id="ref-54"><a href="https://www.goldmansachs.com/insights/goldman-sachs-exchanges/the-ai-investment-boom-when-will-it-pay-off">Goldman Sachs （楽観見解）</a> <a class="fnback" href="#fnref-54-1">↩</a></li>
-<li id="ref-55"><a href="https://www.bloomberg.com/news/articles/2025-10-28/nvidia-s-huang-works-to-convince-investors-there-s-no-ai-bubble">Bloomberg （Huang 発言）</a> 2025/10/28 <a class="fnback" href="#fnref-55-1">↩</a></li>
-<li id="ref-56"><a href="https://80.lv/articles/microsoft-ceo-argues-ai-is-only-a-bubble-if-no-one-uses-it">80.lv （Nadella 発言）</a> <a class="fnback" href="#fnref-56-1">↩</a></li>
-</ul>
-<p>各社戦略・リスク要因関連</p>
-<ul>
-<li id="ref-57"><a href="https://convergedigest.com/amazon-ties-200-billion-2026-capex-plan-to-ai-aws-and-custom-silicon/">Converge Digest （AWS CapEx 計画）</a> <a class="fnback" href="#fnref-57-1">↩</a></li>
-<li id="ref-58"><a href="https://blogs.microsoft.com/blog/2026/01/26/maia-200-the-ai-accelerator-built-for-inference/">Microsoft 公式ブログ（Maia 200）</a> 2026/1/26 <a class="fnback" href="#fnref-58-1">↩</a></li>
-<li id="ref-59"><a href="https://cloud.google.com/blog/products/compute/ai-infrastructure-at-next26">Google Cloud Blog (TPU 8)</a> <a class="fnback" href="#fnref-59-1">↩</a></li>
-<li id="ref-60"><a href="https://www.blackstone.com/news/press/blackstone-announces-joint-venture-with-google-to-create-new-tpu-cloud/">Blackstone 公式発表（TPU JV）</a> <a class="fnback" href="#fnref-60-1">↩</a></li>
-<li id="ref-61"><a href="https://www.spheron.network/blog/ai-data-center-power-constraints-2026/">Spheron Blog （電力制約）</a> <a class="fnback" href="#fnref-61-1">↩</a></li>
-<li id="ref-62"><a href="https://newsletter.semianalysis.com/p/the-great-ai-silicon-shortage">SemiAnalysis （半導体供給制約）</a> <a class="fnback" href="#fnref-62-1">↩</a></li>
-<li id="ref-63"><a href="https://www.goodwinlaw.com/en/insights/publications/2026/07/insights-technology-antc-antitrust-competition-technology-1h-2026">Goodwin Law （規制動向）</a> 2026/7 <a class="fnback" href="#fnref-63-1">↩</a></li>
-</ul>
+<h2>参考文献・出典一覧</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Synergy Research Group （クラウド市場 ARR) 。 2026/4/29 。 <a href="https://www.srgresearch.com/articles/cloud-market-annual-revenue-run-rate-topped-half-a-trillion-dollars-in-q1-as-growth-surge-continues">原文</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Synergy Research Group （市場シェア推移）。 2025/11/19 。 <a href="https://www.srgresearch.com/articles/cloud-market-share-trends-big-three-together-hold-63-while-oracle-and-the-neoclouds-inch-higher">原文</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> ChannelInsider (Canalys 引用）。 2025/9 。 <a href="https://www.channelinsider.com/infrastructure/canalys-cloud-hyperscaler-report-sept-2025/">原文</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Amazon 公式決算発表。 2026/7/30 。 <a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report">原文</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Microsoft Investor Relations FY26 Q4 。 2026/7/29 。 <a href="https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast">原文</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Microsoft Investor Relations FY26 Q2 。 <a href="https://www.microsoft.com/en-us/investor/earnings/fy-2026-q2/press-release-webcast">原文</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 9to5Google (Alphabet Q2 2026 決算）。 2026/7/22 。 <a href="https://9to5google.com/2026/07/22/alphabet-q2-2026-earnings/">原文</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Oracle Investor Relations 。 2026/6/10 。 <a href="https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx">原文</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Alibaba Group SEC Form 6-K 。 2026/5/12 。 <a href="https://www.sec.gov/Archives/edgar/data/0001577552/000110465926060224/tm2614494d1_ex99-1.htm">原文</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Tencent 公式決算。 2026/5/13 。 <a href="https://static.www.tencent.com/uploads/2026/05/13/47382ae415a209fd161bc19a1f9b3704.pdf">原文</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> StockTitan (IBM Q2 決算）。 2026/7 。 <a href="https://www.stocktitan.net/news/IBM/ibm-releases-second-quarter-ak9qv75fd5eq.html">原文</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> Microsoft 公式ブログ (Microsoft-OpenAI 提携改定）。 2025/10/28 。 <a href="https://blogs.microsoft.com/blog/2025/10/28/the-next-chapter-of-the-microsoft-openai-partnership/">原文</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> OpenAI 公式発表。 2025/10/28 。 <a href="https://openai.com/index/next-chapter-of-microsoft-openai-partnership/">原文</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Microsoft 公式ブログ (2026/2/27 付）。 <a href="https://blogs.microsoft.com/blog/2026/02/27/microsoft-and-openai-joint-statement-on-continuing-partnership/">原文</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Microsoft 公式ブログ (2026/4/27 付）。 <a href="https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/">原文</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> CNBC (AWS-OpenAI 契約）。 2025/11/3 。 <a href="https://www.cnbc.com/2025/11/03/open-ai-amazon-aws-cloud-deal.html">原文</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> GeekWire (Amazon-OpenAI 出資）。 <a href="https://www.geekwire.com/2026/filings-how-amazons-50b-openai-deal-actually-works-and-what-theyre-keeping-secret/">原文</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> CNBC (Amazon-OpenAI) 。 <a href="https://www.cnbc.com/2026/02/27/amazon-open-ai-cloud-jassy-altman.html">原文</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> GeekWire (Amazon-Anthropic 出資）。 2024 。 <a href="https://www.geekwire.com/2024/amazon-boosts-total-anthropic-investment-to-8b-deepens-ai-partnership-with-claude-maker/">原文</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> TechCrunch (Anthropic 追加調達）。 2024/11/22 。 <a href="https://techcrunch.com/2024/11/22/anthropic-raises-an-additional-4b-from-amazon-makes-aws-its-primary-cloud-partner/">原文</a></li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> Amazon 公式発表 (Anthropic 追加投資）。 2026/4/20 。 <a href="https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai">原文</a></li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> Anthropic 公式発表。 2026/4/20 。 <a href="https://www.anthropic.com/news/anthropic-amazon-compute">原文</a></li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Data Center Dynamics (Project Rainier) 。 2025/10/29 。 <a href="https://www.datacenterdynamics.com/en/news/aws-activates-project-rainier-cluster-of-nearly-500000-trainium2-chips/">原文</a></li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> CNBC (Google-Anthropic 出資）。 2026/4/24 。 <a href="https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets/">原文</a></li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> CNBC (Anthropic-Google Cloud TPU 契約）。 2025/10/23 。 <a href="https://www.cnbc.com/2025/10/23/anthropic-google-cloud-deal-tpu.html">原文</a></li>
+<li id="ref-26">^ <sup><a href="#fnref-26-1">a</a></sup> <sup><a href="#fnref-26-2">b</a></sup> Data Center Frontier (Oracle-OpenAI Stargate) 。 2025/9 。 <a href="https://www.datacenterfrontier.com/machine-learning/article/55316610/openai-and-oracles-300b-stargate-deal-building-ais-national-scale-infrastructure">原文</a></li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> Data Center Dynamics (Stargate 拡張）。 <a href="https://www.datacenterdynamics.com/en/news/openai-announces-five-more-us-stargate-data-centers-with-oracle-and-softbank/">原文</a></li>
+<li id="ref-28"><a href="#fnref-28-1">^</a> Oracle 公式発表 (xAI-OCI) 。 2025/6/17 。 <a href="https://www.oracle.com/news/announcement/xais-grok-models-are-now-on-oracle-cloud-infrastructure-2025-06-17/">原文</a></li>
+<li id="ref-29"><a href="#fnref-29-1">^</a> TechRadar (Meta-Google TPU) 。 2026/2 。 <a href="https://www.techradar.com/pro/meta-and-google-could-be-about-to-sign-a-mega-ai-chip-deal-and-it-could-change-everything-in-the-tech-space">原文</a></li>
+<li id="ref-30"><a href="#fnref-30-1">^</a> AOL (Amazon CapEx) 。 <a href="https://www.aol.com/articles/amazon-200-billion-ai-spending-153341032.html">原文</a></li>
+<li id="ref-31"><a href="#fnref-31-1">^</a> Fortune (Amazon 決算）。 2026/7/30 。 <a href="https://fortune.com/2026/07/30/andy-jassy-amazon-capex-demand-aws-pga-tour/">原文</a></li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> Alphabet SEC 提出資料。 <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm">原文</a></li>
+<li id="ref-33"><a href="#fnref-33-1">^</a> CNBC (Google Q2 2026 決算）。 2026/7/22 。 <a href="https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html">原文</a></li>
+<li id="ref-34"><a href="#fnref-34-1">^</a> Microsoft 公式決算イベント資料。 <a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">原文</a></li>
+<li id="ref-35"><a href="#fnref-35-1">^</a> CNBC (Microsoft Q3 決算）。 2026/4/29 。 <a href="https://www.cnbc.com/2026/04/29/microsoft-msft-q3-earnings-report-2026.html">原文</a></li>
+<li id="ref-36"><a href="#fnref-36-1">^</a> Value Add VC (Meta CapEx) 。 <a href="https://valueaddvc.com/blog/meta-145b-ai-capex-2026-why-zuckerberg-raised-guidance-twice">原文</a></li>
+<li id="ref-37"><a href="#fnref-37-1">^</a> Meta 決算リリース。 <a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">原文</a></li>
+<li id="ref-38"><a href="#fnref-38-1">^</a> Tom's Hardware (Big Tech AI 支出集計）。 <a href="https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion">原文</a></li>
+<li id="ref-39"><a href="#fnref-39-1">^</a> Statista (4 社 CapEx 比較）。 <a href="https://www.statista.com/chart/35046/capital-expenditure-of-meta-alphabet-amazon-and-microsoft/">原文</a></li>
+<li id="ref-40"><a href="#fnref-40-1">^</a> GeekWire (Microsoft AI run rate) 。 <a href="https://www.geekwire.com/2026/microsoft-tops-wall-street-expectations-reports-accelerating-azure-growth-and-37b-ai-run-rate/">原文</a></li>
+<li id="ref-41"><a href="#fnref-41-1">^</a> Investing.com (Amazon 決算トランスクリプト）。 2026/7/30 。 <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-amazon-tops-q2-2026-estimates-as-aws-growth-accelerates-93CH-4826442">原文</a></li>
+<li id="ref-42"><a href="#fnref-42-1">^</a> Value Add VC (Alphabet CapEx) 。 <a href="https://valueaddvc.com/blog/alphabet-205b-ai-capex-guidance-2026-what-googles-q2-earnings-raise-actually-buys">原文</a></li>
+<li id="ref-43"><a href="#fnref-43-1">^</a> Data Center Dynamics (Synergy Research 報道）。 <a href="https://www.datacenterdynamics.com/en/news/enterprise-cloud-infrastructure-spending-hits-143-billion-report/">原文</a></li>
+<li id="ref-44"><a href="#fnref-44-1">^</a> Gartner Newsroom (IT 支出予測）。 2026/7/27 。 <a href="https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion">原文</a></li>
+<li id="ref-45"><a href="#fnref-45-1">^</a> Gartner Newsroom (AI 支出予測）。 2026/5/19 。 <a href="https://www.gartner.com/en/newsroom/press-releases/2026-05-19-gartner-forecasts-worldwide-ai-spending-to-grow-47-percent-in-2026">原文</a></li>
+<li id="ref-46"><a href="#fnref-46-1">^</a> BizTechReports (IDC 予測）。 2026/3 。 <a href="https://www.biztechreports.com/news-archive/2026/3/20/global-public-cloud-spending-to-surpass-1-trillion-in-2026-driven-by-paas-and-ai-platform-adoption-idc-march-23-2026">原文</a></li>
+<li id="ref-47"><a href="#fnref-47-1">^</a> Data Centre Magazine (McKinsey 試算）。 <a href="https://datacentremagazine.com/articles/ai-infrastructure-to-require-7tn-by-2030-says-mckinsey">原文</a></li>
+<li id="ref-48"><a href="#fnref-48-1">^</a> Goldman Sachs Insights (CapEx 予測）。 2026/1 。 <a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026">原文</a></li>
+<li id="ref-49"><a href="#fnref-49-1">^</a> Fortune (BIS 警告）。 2026/6/29 。 <a href="https://fortune.com/2026/06/29/bis-central-bank-warning-hyperscaler-data-center-1-trillion-gamble-recession/">原文</a></li>
+<li id="ref-50"><a href="#fnref-50-1">^</a> TradingKey (Michael Burry) 。 2026/6 。 <a href="https://www.tradingkey.com/analysis/stocks/us-stocks/262055020-big-short-michael-burry-ai-bubble-ramping-short-positions-nvidia-micron-tradingkey">原文</a></li>
+<li id="ref-51"><a href="#fnref-51-1">^</a> Axios （循環取引懸念）。 2026/7/27 。 <a href="https://www.axios.com/2026/07/27/nvidia-openai-financing-ai-jensen-huang-ssi">原文</a></li>
+<li id="ref-52">^ <sup><a href="#fnref-52-1">a</a></sup> <sup><a href="#fnref-52-2">b</a></sup> Fortune （ファンドマネージャー調査）。 2026/6/8 。 <a href="https://fortune.com/2026/06/08/ai-boom-tech-stocks-bubble-fears-earnings-growth-chipmakers-ipo/">原文</a></li>
+<li id="ref-53"><a href="#fnref-53-1">^</a> TechSpot (Pichai 発言）。 <a href="https://www.techspot.com/news/110303-sundar-pichai-ai-boom-shows-irrational-investment-but.html">原文</a></li>
+<li id="ref-54"><a href="#fnref-54-1">^</a> Goldman Sachs （楽観見解）。 <a href="https://www.goldmansachs.com/insights/goldman-sachs-exchanges/the-ai-investment-boom-when-will-it-pay-off">原文</a></li>
+<li id="ref-55"><a href="#fnref-55-1">^</a> Bloomberg (Huang 発言）。 2025/10/28 。 <a href="https://www.bloomberg.com/news/articles/2025-10-28/nvidia-s-huang-works-to-convince-investors-there-s-no-ai-bubble">原文</a></li>
+<li id="ref-56"><a href="#fnref-56-1">^</a> 80.lv (Nadella 発言）。 <a href="https://80.lv/articles/microsoft-ceo-argues-ai-is-only-a-bubble-if-no-one-uses-it">原文</a></li>
+<li id="ref-57"><a href="#fnref-57-1">^</a> Converge Digest (AWS CapEx 計画）。 <a href="https://convergedigest.com/amazon-ties-200-billion-2026-capex-plan-to-ai-aws-and-custom-silicon/">原文</a></li>
+<li id="ref-58"><a href="#fnref-58-1">^</a> Microsoft 公式ブログ (Maia 200) 。 2026/1/26 。 <a href="https://blogs.microsoft.com/blog/2026/01/26/maia-200-the-ai-accelerator-built-for-inference/">原文</a></li>
+<li id="ref-59"><a href="#fnref-59-1">^</a> Google Cloud Blog (TPU 8) 。 <a href="https://cloud.google.com/blog/products/compute/ai-infrastructure-at-next26">原文</a></li>
+<li id="ref-60"><a href="#fnref-60-1">^</a> Blackstone 公式発表 (TPU JV) 。 <a href="https://www.blackstone.com/news/press/blackstone-announces-joint-venture-with-google-to-create-new-tpu-cloud/">原文</a></li>
+<li id="ref-61"><a href="#fnref-61-1">^</a> Spheron Blog （電力制約）。 <a href="https://www.spheron.network/blog/ai-data-center-power-constraints-2026/">原文</a></li>
+<li id="ref-62"><a href="#fnref-62-1">^</a> SemiAnalysis （半導体供給制約）。 <a href="https://newsletter.semianalysis.com/p/the-great-ai-silicon-shortage">原文</a></li>
+<li id="ref-63"><a href="#fnref-63-1">^</a> Goodwin Law （規制動向）。 2026/7 。 <a href="https://www.goodwinlaw.com/en/insights/publications/2026/07/insights-technology-antc-antitrust-competition-technology-1h-2026">原文</a></li>
+</ol>
 </div>
 </div>
 </body>

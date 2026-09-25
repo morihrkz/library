@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -35,22 +35,25 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{margin-bottom:9px; font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -83,17 +82,17 @@ pre code{background:none; padding:0;}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 「お見合い」という現象――何を説明すべき対象とするか</a></li>
-<li><a href="#sec2">2. 傍観者効果と責任の分散――もっとも近い先行研究</a></li>
-<li><a href="#sec3">3. 社会的手抜きとの異同――似て非なる現象</a></li>
-<li><a href="#sec4">4. ゲーム理論による統合――ボランティアのジレンマ</a></li>
-<li><a href="#sec5">5. 公共財問題と「共有地の悲劇」――なぜ後者は直接の説明にならないか</a></li>
-<li><a href="#sec6">6. 組織論における知見――セクショナリズムとサイロ効果</a></li>
-<li><a href="#sec7">7. 政治哲学における知見――多数の手の問題と集合的責任の間隙</a></li>
-<li><a href="#sec8">8. 処方箋の検討――何が効き、何がまだ検証途上か</a></li>
-<li><a href="#sec9">9. 結び――残された論点</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">「お見合い」という現象――何を説明すべき対象とするか</a></li>
+<li><a href="#sec2">傍観者効果と責任の分散――もっとも近い先行研究</a></li>
+<li><a href="#sec3">社会的手抜きとの異同――似て非なる現象</a></li>
+<li><a href="#sec4">ゲーム理論による統合――ボランティアのジレンマ</a></li>
+<li><a href="#sec5">公共財問題と「共有地の悲劇」――なぜ後者は直接の説明にならないか</a></li>
+<li><a href="#sec6">組織論における知見――セクショナリズムとサイロ効果</a></li>
+<li><a href="#sec7">政治哲学における知見――多数の手の問題と集合的責任の間隙</a></li>
+<li><a href="#sec8">処方箋の検討――何が効き、何がまだ検証途上か</a></li>
+<li><a href="#sec9">結び――残された論点</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 「お見合い」という現象――何を説明すべき対象とするか</h2>
@@ -102,40 +101,40 @@ pre code{background:none; padding:0;}
 <p>ここで最初に明確にしておくべきことがある。人が自分の守備範囲を「常に」客観的な実態より狭く見積もる、という命題を、普遍的な心理法則として実証した研究を筆者は見出せなかった。むしろ調査を通じて明らかになったのは、この現象が単一の心理傾向ではなく、少なくとも三つの異なる水準――個人の心理過程、複数主体の戦略的相互作用、組織の構造的設計――が独立に、しかし相互に補強し合いながら同じ表面的結果を生み出している、という見立てである。以下では、傍観者効果、ボランティアのジレンマ、多数の手の問題、集合的責任の間隙などの知見を手がかりに、この三水準を順に検討し、最後に処方箋の有無を論じる。</p>
 
 <h2 id="sec2">2. 傍観者効果と責任の分散――もっとも近い先行研究</h2>
-<p>「お見合い」にもっとも近い心理学的知見は、社会心理学者ビブ・ラタネとジョン・ダーリーが 1968 年に発表した「傍観者効果」と、その説明概念である「責任の分散」である <sup class="fnref" id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。二人の研究は、 1964 年にニューヨークで起きたキティ・ジェノヴィーズ事件――多数の目撃者がいながら誰も有効な救助に動かなかったとされる殺人事件――を契機に着想されたもので、実験参加者が自分以外に発作を起こした人物の声を聞いている「他の参加者」が何人いると認識しているかを操作し、援助行動が生じる確率を測定した。結果、自分一人しか目撃者がいないと信じた参加者の約 85% が助けを呼びに行動したのに対し、他に複数の目撃者がいると信じた参加者では、行動を起こした割合が約 31% まで低下した <sup class="fnref" id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。周囲に人が多いほど、個々人が感じる責任は薄まる、というのがこの現象の核心である。</p>
+<p>「お見合い」にもっとも近い心理学的知見は、社会心理学者ビブ・ラタネとジョン・ダーリーが 1968 年に発表した「傍観者効果」と、その説明概念である「責任の分散」である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。二人の研究は、 1964 年にニューヨークで起きたキティ・ジェノヴィーズ事件――多数の目撃者がいながら誰も有効な救助に動かなかったとされる殺人事件――を契機に着想されたもので、実験参加者が自分以外に発作を起こした人物の声を聞いている「他の参加者」が何人いると認識しているかを操作し、援助行動が生じる確率を測定した。結果、自分一人しか目撃者がいないと信じた参加者の約 85% が助けを呼びに行動したのに対し、他に複数の目撃者がいると信じた参加者では、行動を起こした割合が約 31% まで低下した <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。周囲に人が多いほど、個々人が感じる責任は薄まる、というのがこの現象の核心である。</p>
 <p>この知見が「お見合い」と重なるのは、まさに「複数の当事者がいる」という条件そのものが、個々の当事者の当事者意識を減退させるという点においてである。三塁手は、遊撃手とレフトも同じ打球を追っているという事実を認識した瞬間、自分一人が全責任を負う状況ではないと感じ、結果として一歩を譲る。これは責任の分散が生む典型的な帰結だと言える。</p>
-<p>ただし、この知見を「傍観者効果は普遍的に生じる」という単純な形で受け取ることには注意が要る。 2011 年に心理学者ペーター・フィッシャーらが半世紀近くの研究蓄積を対象に行ったメタ分析（参加者総数 7,700 人超、独立した効果量 105 件）は、傍観者効果の全体的な効果量を中程度（g = -0.35）と推定した一方で、この効果が状況に応じて大きく変動することも示している <sup class="fnref" id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。具体的には、傍観者効果は緊急性の低い場面でもっとも生じやすく、明白に危険な緊急事態ではむしろ生じにくいこと、援助スキルの高い（competent な）傍観者がいる場合には効果が弱まること、などが報告されている <sup class="fnref" id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。野球の「お見合い」が、危険を伴わない日常的な場面であることを踏まえると、この現象が傍観者効果の生じやすい条件と重なっていることは、偶然ではないのかもしれない。</p>
+<p>ただし、この知見を「傍観者効果は普遍的に生じる」という単純な形で受け取ることには注意が要る。 2011 年に心理学者ペーター・フィッシャーらが半世紀近くの研究蓄積を対象に行ったメタ分析（参加者総数 7,700 人超、独立した効果量 105 件）は、傍観者効果の全体的な効果量を中程度 (g = -0.35) と推定した一方で、この効果が状況に応じて大きく変動することも示している <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。具体的には、傍観者効果は緊急性の低い場面でもっとも生じやすく、明白に危険な緊急事態ではむしろ生じにくいこと、援助スキルの高い (competent な）傍観者がいる場合には効果が弱まること、などが報告されている <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。野球の「お見合い」が、危険を伴わない日常的な場面であることを踏まえると、この現象が傍観者効果の生じやすい条件と重なっていることは、偶然ではないのかもしれない。</p>
 
 <h2 id="sec3">3. 社会的手抜きとの異同――似て非なる現象</h2>
-<p>責任の分散としばしば混同される概念に「社会的手抜き」（social loafing）がある。これはラタネが、キップリング・ウィリアムズおよびスティーヴン・ハーキンスとともに 1979 年に発表した研究に由来する概念で、集団で共同作業を行うとき、個人が単独で作業する場合よりも投入する努力の量を減らす傾向を指す <sup class="fnref" id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。実験では、大声を出す、拍手をするといった身体的課題や、論説・詩を評価する認知的課題の双方で、集団の人数が増えるほど一人当たりの努力量が低下することが確認された。</p>
+<p>責任の分散としばしば混同される概念に「社会的手抜き」 (social loafing) がある。これはラタネが、キップリング・ウィリアムズおよびスティーヴン・ハーキンスとともに 1979 年に発表した研究に由来する概念で、集団で共同作業を行うとき、個人が単独で作業する場合よりも投入する努力の量を減らす傾向を指す <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。実験では、大声を出す、拍手をするといった身体的課題や、論説・詩を評価する認知的課題の双方で、集団の人数が増えるほど一人当たりの努力量が低下することが確認された。</p>
 <p>両者の違いは明確にしておく必要がある。社会的手抜きは、すでに自分の担当だと認識されている共同作業の内部で、投入する努力の「量」が減る現象である。これに対し「お見合い」が示すのは、そもそもその課題が「自分の担当かどうか」という担当領域の「境界」の認知が狭まる現象であり、努力の配分ではなく、責任の所在そのものの認識に関わる。両者は同じ研究系譜から生まれた近縁の概念でありながら、説明する対象の水準が異なる。この記事が扱う現象を最も直接に説明するのは、努力量の問題としての社会的手抜きよりも、責任の所在の問題としての責任の分散・傍観者効果の系譜である。</p>
 
 <h2 id="sec4">4. ゲーム理論による統合――ボランティアのジレンマ</h2>
-<p>心理学の知見は、傍観者効果が「なぜ」生じるかについて、個人の内的な感覚（責任感の希薄化）を強調する。これに対しゲーム理論は、同じ現象を、当事者たちの合理的な戦略的相互作用の帰結として説明する枠組みを提供する。その代表が、社会学者アンドレアス・ディークマンが 1985 年に定式化した「ボランティアのジレンマ」（volunteer's dilemma）というゲーム構造である <sup class="fnref" id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
-<p>このゲームでは、複数の当事者のうち少なくとも一人が行動を引き受ければ全員が便益を得られるが、行動を引き受けた者だけがコストを負う。各当事者は、自分ではなく他の誰かが引き受けてくれることを望むため、全員が行動を先延ばしにする誘因を持つ。理論的な帰結として、対称的な均衡状態では、集団の人数が増えるほど各人が自ら行動を引き受ける確率は低下する <sup class="fnref" id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。経済学者ポル・カンポス = メルカーデは 2021 年の論文で、この理論モデルが傍観者効果の主要な説明枠組みとして経済学・社会学の理論研究で用いられてきたことを整理したうえで、動的なゲーム実験によってこの構造を検証し、集団のサイズが大きいほど援助行動が遅れ、かつ生起しにくくなることを確認している <sup class="fnref" id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
+<p>心理学の知見は、傍観者効果が「なぜ」生じるかについて、個人の内的な感覚（責任感の希薄化）を強調する。これに対しゲーム理論は、同じ現象を、当事者たちの合理的な戦略的相互作用の帰結として説明する枠組みを提供する。その代表が、社会学者アンドレアス・ディークマンが 1985 年に定式化した「ボランティアのジレンマ」 (volunteer's dilemma) というゲーム構造である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>このゲームでは、複数の当事者のうち少なくとも一人が行動を引き受ければ全員が便益を得られるが、行動を引き受けた者だけがコストを負う。各当事者は、自分ではなく他の誰かが引き受けてくれることを望むため、全員が行動を先延ばしにする誘因を持つ。理論的な帰結として、対称的な均衡状態では、集団の人数が増えるほど各人が自ら行動を引き受ける確率は低下する <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。経済学者ポル・カンポス = メルカーデは 2021 年の論文で、この理論モデルが傍観者効果の主要な説明枠組みとして経済学・社会学の理論研究で用いられてきたことを整理したうえで、動的なゲーム実験によってこの構造を検証し、集団のサイズが大きいほど援助行動が遅れ、かつ生起しにくくなることを確認している <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
 <p class="pull">誰かがやるべきだと全員が思っている状況こそが、誰もやらない状況を生む――これがボランティアのジレンマの核心である。</p>
-<p>この枠組みが優れているのは、心理学の「責任の分散」という説明と、経済学の「フリーライダー問題」という説明を、同一のゲーム構造の二つの記述として統合できる点にある。政治学者マンサー・オルソンが 1965 年の著作で定式化した公共財供給における「フリーライダー問題」は、集団の便益となる財（公共財）の供給コストを誰か一人あるいは少数が負担すれば全員が便益を享受できる場面で、各人が他者の負担に便乗しようとする結果、供給が過小になるという構造を指す <sup class="fnref" id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。境界領域の「担当」という行為は、まさにこの意味での公共財――誰かが引き受ければ関係者全員が助かるが、引き受けた者だけがコストを払う――として捉え直すことができる。</p>
+<p>この枠組みが優れているのは、心理学の「責任の分散」という説明と、経済学の「フリーライダー問題」という説明を、同一のゲーム構造の二つの記述として統合できる点にある。政治学者マンサー・オルソンが 1965 年の著作で定式化した公共財供給における「フリーライダー問題」は、集団の便益となる財（公共財）の供給コストを誰か一人あるいは少数が負担すれば全員が便益を享受できる場面で、各人が他者の負担に便乗しようとする結果、供給が過小になるという構造を指す <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。境界領域の「担当」という行為は、まさにこの意味での公共財――誰かが引き受ければ関係者全員が助かるが、引き受けた者だけがコストを払う――として捉え直すことができる。</p>
 
 <h2 id="sec5">5. 公共財問題と「共有地の悲劇」――なぜ後者は直接の説明にならないか</h2>
-<p>公共財問題としばしば並べて語られる概念に、生態学者ギャレット・ハーディンが 1968 年に発表した「共有地の悲劇」（tragedy of the commons）がある <sup class="fnref" id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。誰でも利用できる共有地（牧草地）では、各利用者が自分の家畜を増やすことで得る利益は全て自分のものになる一方、過放牧による共有地の劣化という損失は利用者全員で分担されるため、各人が合理的に振る舞うほど共有地が破壊されるという構造である。</p>
+<p>公共財問題としばしば並べて語られる概念に、生態学者ギャレット・ハーディンが 1968 年に発表した「共有地の悲劇」 (tragedy of the commons) がある <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。誰でも利用できる共有地（牧草地）では、各利用者が自分の家畜を増やすことで得る利益は全て自分のものになる一方、過放牧による共有地の劣化という損失は利用者全員で分担されるため、各人が合理的に振る舞うほど共有地が破壊されるという構造である。</p>
 <p>この記事の主題である「お見合い」を、共有地の悲劇の一種として説明したくなる誘惑があるが、両者は構造的に対称ではなく、混同すべきではない。共有地の悲劇が説明するのは、共有された資源の「過剰な利用」である。これに対し「お見合い」が示すのは、共有された責任の「過小な履行」である。前者は各人が資源を「取りすぎる」ことで全体が損なわれる問題、後者は各人が責任を「引き受けなすぎる」ことで全体が損なわれる問題であり、方向が逆である。この点で、「お見合い」現象を説明する枠組みとしては、共有地の悲劇よりも、公共財の過小供給を扱うフリーライダー問題およびボランティアのジレンマのほうが、構造的に正確な対応物だと言える。この区別を明確にしないまま両者を並べて論じる解説も見受けられるが、本稿ではこの点を意識的に書き分けておく。</p>
 
 <h2 id="sec6">6. 組織論における知見――セクショナリズムとサイロ効果</h2>
-<p>個人間の心理的・戦略的な力学に加えて、組織論はこの現象を、部門構造の設計そのものに起因する問題として扱ってきた。実務の世界では「サイロ効果」（silo effect）という語が広く使われている。複数の実務系メディアが伝えるところによれば、この語は 1988 年にグッドイヤー社のマネージャーであったフィル・エンサーが、部門・部署が互いに情報を共有しない組織のあり方を、農村の穀物貯蔵庫（サイロ）になぞらえて「機能的サイロ症候群」と呼んだことに由来するとされる。ただし、この起源に関する記述は実務系メディアの二次的な言及に基づくものであり、一次資料による確認はできなかったため、あくまで「そう伝えられている」という留保付きの逸話として扱う。</p>
-<p>これに対し、学術的な研究の蓄積も存在する。組織行動学者ファビオ・ベント、マルコ・タリアブーエ、フローラ・ロレンツォは 2020 年、組織のサイロ化に関する既存研究を対象にした範囲設定型レビュー（スコーピングレビュー）を発表し、 40 件の先行研究（うち実証研究 20 件）を検討したうえで、サイロ化を単なる部門間のコミュニケーション不足としてではなく、組織を一つの行動システム・ネットワークとして捉える視点から分析する必要があると論じている <sup class="fnref" id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。日本の行政学・経営学においても、組織文化論の観点からセクショナリズムを分析した研究があり、菊地彰は 2004 年の研究ノートで、行政組織における部門文化の対立構造という理論的視角からセクショナリズムを検討している <sup class="fnref" id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。</p>
+<p>個人間の心理的・戦略的な力学に加えて、組織論はこの現象を、部門構造の設計そのものに起因する問題として扱ってきた。実務の世界では「サイロ効果」 (silo effect) という語が広く使われている。複数の実務系メディアが伝えるところによれば、この語は 1988 年にグッドイヤー社のマネージャーであったフィル・エンサーが、部門・部署が互いに情報を共有しない組織のあり方を、農村の穀物貯蔵庫（サイロ）になぞらえて「機能的サイロ症候群」と呼んだことに由来するとされる。ただし、この起源に関する記述は実務系メディアの二次的な言及に基づくものであり、一次資料による確認はできなかったため、あくまで「そう伝えられている」という留保付きの逸話として扱う。</p>
+<p>これに対し、学術的な研究の蓄積も存在する。組織行動学者ファビオ・ベント、マルコ・タリアブーエ、フローラ・ロレンツォは 2020 年、組織のサイロ化に関する既存研究を対象にした範囲設定型レビュー（スコーピングレビュー）を発表し、 40 件の先行研究（うち実証研究 20 件）を検討したうえで、サイロ化を単なる部門間のコミュニケーション不足としてではなく、組織を一つの行動システム・ネットワークとして捉える視点から分析する必要があると論じている <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。日本の行政学・経営学においても、組織文化論の観点からセクショナリズムを分析した研究があり、菊地彰は 2004 年の研究ノートで、行政組織における部門文化の対立構造という理論的視角からセクショナリズムを検討している <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。</p>
 <p>ここで留保しておくべき点がある。日本の行政組織における「縦割り行政」は、一面的に否定されるべき欠陷としてのみ語られてきたわけではない。 1980 年代の第二次臨時行政調査会の答申は、高度に複雑化した行政需要のもとでは省庁による機能分担（縦割り）自体は不可避であり、各省庁が自らの行政責任の遂行に使命感を持つこと自体は行政の活力を高めるという評価も示していたとされる。つまり組織論の知見が示すのは、「境界による分担」そのものが悪いのではなく、境界の間隙にある課題――どの部署の分担にも明確に属さない課題――を処理する仕組みが欠けていることが問題である、という、より的を絞った理解である。</p>
 
 <h2 id="sec7">7. 政治哲学における知見――多数の手の問題と集合的責任の間隙</h2>
-<p>個人心理学と組織論の中間に位置するのが、政治哲学・倫理学における「責任の帰属」をめぐる議論である。政治学者デニス・トンプソンは 1980 年の論文で、「多数の手の問題」（problem of many hands）という概念を提示した <sup class="fnref" id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。近代国家の意思決定は、多数の官僚・政治家がそれぞれ異なる形で関与して初めて成立するため、ある政策の失敗について、特定の一人の個人に道徳的責任を帰属させることが構造的に困難になる、という問題である。トンプソンはこの問題への標準的な対応（階層的責任論・集合的責任論）がいずれも責任概念を歪めてしまうと批判し、ある個人が結果の原因であり、かつその行為が無知や強制のもとでなされたのでない場合に限って道徳的責任を負う、という「個人責任」基準による再構成を提案している <sup class="fnref" id="fnref-10-2"><a href="#ref-10">[10]</a></sup> 。経済産業省と厚生労働省がともに「所管が違う」と主張する場面は、この「多数の手」構造が生む典型的な帰結だと位置づけられる。</p>
-<p>より現代的な哲学の議論として、哲学者ステファニー・コリンズは 2019 年の論文で「集合的責任の間隙」（collective responsibility gaps）という概念を体系的に扱っている <sup class="fnref" id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。コリンズは、集合の類型（拡散的集合・目的論的集合・行為者的集合）と責任の類型（因果的責任・道徳的責任・将来に向けた責任）を組み合わせ、どの組み合わせにおいて「本来帰属させたい責任を、誰にも帰属させられない間隙」が生じるかを分析している。同論文の結論は単純な悲観論ではなく、間隙のいくつかは実際には埋めることができる一方、集合の類型によっては埋められない間隙も残る、という条件付きの診断である <sup class="fnref" id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 。この議論は、境界領域の担当が「誰のものでもなくなる」という現象が、単なる個々人の心理的な回避ではなく、集合的な意思決定構造そのものに内在する、哲学的に厳密化しうる問題であることを示している。</p>
+<p>個人心理学と組織論の中間に位置するのが、政治哲学・倫理学における「責任の帰属」をめぐる議論である。政治学者デニス・トンプソンは 1980 年の論文で、「多数の手の問題」 (problem of many hands) という概念を提示した <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。近代国家の意思決定は、多数の官僚・政治家がそれぞれ異なる形で関与して初めて成立するため、ある政策の失敗について、特定の一人の個人に道徳的責任を帰属させることが構造的に困難になる、という問題である。トンプソンはこの問題への標準的な対応（階層的責任論・集合的責任論）がいずれも責任概念を歪めてしまうと批判し、ある個人が結果の原因であり、かつその行為が無知や強制のもとでなされたのでない場合に限って道徳的責任を負う、という「個人責任」基準による再構成を提案している <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> 。経済産業省と厚生労働省がともに「所管が違う」と主張する場面は、この「多数の手」構造が生む典型的な帰結だと位置づけられる。</p>
+<p>より現代的な哲学の議論として、哲学者ステファニー・コリンズは 2019 年の論文で「集合的責任の間隙」 (collective responsibility gaps) という概念を体系的に扱っている <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。コリンズは、集合の類型（拡散的集合・目的論的集合・行為者的集合）と責任の類型（因果的責任・道徳的責任・将来に向けた責任）を組み合わせ、どの組み合わせにおいて「本来帰属させたい責任を、誰にも帰属させられない間隙」が生じるかを分析している。同論文の結論は単純な悲観論ではなく、間隙のいくつかは実際には埋めることができる一方、集合の類型によっては埋められない間隙も残る、という条件付きの診断である <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 。この議論は、境界領域の担当が「誰のものでもなくなる」という現象が、単なる個々人の心理的な回避ではなく、集合的な意思決定構造そのものに内在する、哲学的に厳密化しうる問題であることを示している。</p>
 
 <h2 id="sec8">8. 処方箋の検討――何が効き、何がまだ検証途上か</h2>
 <p>ここまで検討してきた諸研究のうち、実際に「回避する処方箋」として提案され、かつ何らかの実証的裏付けを伴うものと、構造的な設計論として提案されてはいるものの効果検証がまだ限定的なものとを、分けて示す。</p>
-<h3>確立に近い実証知見</h3>
-<p>心理学者マルコ・ヴァン・ボメルらは 2012 年の実験で、傍観者効果が生じやすい場面でも、監視カメラの存在を意識させるなど「自分の行動が見られている」という公的自己意識（public self-awareness）を高める手がかりを与えると、傍観者効果が逆転し、傍観者が多いほど援助行動が増える場合があることを示した <sup class="fnref" id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。これは、責任の所在をあらかじめ明確化し、当事者に「自分が見られている・特定されている」という感覚を持たせることが、責任の分散を打ち消す働きを持つことを示す実証的な知見である。組織における「担当者を個人名で明示する」「誰がその案件を最後まで見たかを記録に残す」といった実務的な工夫が有効だと考えられるのは、この知見と整合的である。ただし、この実験は主に対面の緊急場面を対象にしたものであり、組織の恒常的な業務分担にそのまま一般化できるかどうかは、筆者の見立てにとどまる。</p>
-<h3>構造的な設計論――効果検証は限定的</h3>
-<p>組織論では、境界領域の問題そのものを専任で扱う役割を組織構造に組み込むという発想が古くから存在する。組織社会学者ハワード・アルドリッチとダイアン・ハーカーは 1977 年の論文で、「境界連結役割」（boundary spanning role）という概念を提示し、組織と外部環境との間、あるいは組織内の異なる部門の間をつなぎ、情報の収集・伝達と、境界における摩擦の緩衝を専門的に担う役割が、組織構造上どのように生成し機能するかを理論化した <sup class="fnref" id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。この発想を延長すれば、「境界領域専任者を置く」という処方箋は理論的な裏付けを持つと言えるが、この記事の調査で確認できたのは境界連結役割という概念そのものの理論的整備であり、それを設置することが「お見合い」型の責任回避を実際にどの程度減らすかを測定した実証研究までは確認できなかった。</p>
-<p>もう一つの提案として、心理学者カール・ワイクと経営学者キャスリーン・サトクリフが提唱した「高信頼性組織」（high reliability organization）論がある。原子力発電所や空母の飛行甲板運用など、失敗が許されない組織を対象にした研究から導かれたこの枠組みは、失敗の兆候への強い関心、単純化への抵抗、現場の状況への感度、回復力への傾倒、専門知識への権限委譲という五つの原則からなる「集合的な用心深さ」（collective mindfulness）を特徴とする <sup class="fnref" id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。この理論は、責任や監視を意図的に重複させ、単純化した縦割りの分担に安住しないことの重要性を説く点で、境界領域の見落としに対する処方箋として参照されることがある。ただし高信頼性組織論は、原子力や航空管制のような高リスク環境の観察から帰納的に導かれた記述的な理論であり、一般的な企業組織や省庁間の分担にどこまで移転可能かは、理論の提唱者自身も含めて議論が続いている論点であって、確立した処方箋として扱うべきではない。</p>
+<h3>●確立に近い実証知見</h3>
+<p>心理学者マルコ・ヴァン・ボメルらは 2012 年の実験で、傍観者効果が生じやすい場面でも、監視カメラの存在を意識させるなど「自分の行動が見られている」という公的自己意識 (public self-awareness) を高める手がかりを与えると、傍観者効果が逆転し、傍観者が多いほど援助行動が増える場合があることを示した <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。これは、責任の所在をあらかじめ明確化し、当事者に「自分が見られている・特定されている」という感覚を持たせることが、責任の分散を打ち消す働きを持つことを示す実証的な知見である。組織における「担当者を個人名で明示する」「誰がその案件を最後まで見たかを記録に残す」といった実務的な工夫が有効だと考えられるのは、この知見と整合的である。ただし、この実験は主に対面の緊急場面を対象にしたものであり、組織の恒常的な業務分担にそのまま一般化できるかどうかは、筆者の見立てにとどまる。</p>
+<h3>●構造的な設計論――効果検証は限定的</h3>
+<p>組織論では、境界領域の問題そのものを専任で扱う役割を組織構造に組み込むという発想が古くから存在する。組織社会学者ハワード・アルドリッチとダイアン・ハーカーは 1977 年の論文で、「境界連結役割」 (boundary spanning role) という概念を提示し、組織と外部環境との間、あるいは組織内の異なる部門の間をつなぎ、情報の収集・伝達と、境界における摩擦の緩衝を専門的に担う役割が、組織構造上どのように生成し機能するかを理論化した <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。この発想を延長すれば、「境界領域専任者を置く」という処方箋は理論的な裏付けを持つと言えるが、この記事の調査で確認できたのは境界連結役割という概念そのものの理論的整備であり、それを設置することが「お見合い」型の責任回避を実際にどの程度減らすかを測定した実証研究までは確認できなかった。</p>
+<p>もう一つの提案として、心理学者カール・ワイクと経営学者キャスリーン・サトクリフが提唱した「高信頼性組織」 (high reliability organization) 論がある。原子力発電所や空母の飛行甲板運用など、失敗が許されない組織を対象にした研究から導かれたこの枠組みは、失敗の兆候への強い関心、単純化への抵抗、現場の状況への感度、回復力への傾倒、専門知識への権限委譲という五つの原則からなる「集合的な用心深さ」 (collective mindfulness) を特徴とする <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。この理論は、責任や監視を意図的に重複させ、単純化した縦割りの分担に安住しないことの重要性を説く点で、境界領域の見落としに対する処方箋として参照されることがある。ただし高信頼性組織論は、原子力や航空管制のような高リスク環境の観察から帰納的に導かれた記述的な理論であり、一般的な企業組織や省庁間の分担にどこまで移転可能かは、理論の提唱者自身も含めて議論が続いている論点であって、確立した処方箋として扱うべきではない。</p>
 <p>最後に、トンプソンの「個人責任」基準や、コリンズの「集合的責任の間隙」の分析は、いずれも実証研究というより哲学的な概念整理であり、境界領域の担当を「誰の責任にするか」を決めるための判断基準を提供するものであって、それを制度としてどう運用すれば現実に「お見合い」を減らせるかについては、実証的な効果測定の対象にはなじみにくい性質を持つ。これらは、処方箋というより、処方箋を設計する際に踏まえるべき規範的な指針として位置づけるのが適切である。</p>
 
 <div class="box">
@@ -148,23 +147,24 @@ pre code{background:none; padding:0;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Darley, J. M., &amp; Latané, B.(1968). Bystander intervention in emergencies: Diffusion of responsibility. <em>Journal of Personality and Social Psychology</em>, 8 (4), 377-383. <a href="#fnref-1-2">↩</a></li>
-<li id="ref-2">Fischer, P., Krueger, J. I., Greitemeyer, T., Vogrincic, C., Kastenmüller, A., Frey, D., Heene, M., Wicher, M., &amp; Kainbacher, M.(2011). The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies. <em>Psychological Bulletin</em>, 137 (4), 517-537. <a href="#fnref-2-2">↩</a></li>
-<li id="ref-3">Latané, B., Williams, K., &amp; Harkins, S.(1979). Many hands make light the work: The causes and consequences of social loafing. <em>Journal of Personality and Social Psychology</em>, 37 (6), 822-832. <a href="#fnref-3-1">↩</a></li>
-<li id="ref-4">Diekmann, A.(1985). Volunteer's Dilemma. <em>Journal of Conflict Resolution</em>, 29 (4), 605-610. <a href="#fnref-4-2">↩</a></li>
-<li id="ref-5">Campos-Mercade, P.(2021). The volunteer's dilemma explains the bystander effect. <em>Journal of Economic Behavior &amp; Organization</em>, 186, 646-661. <a href="#fnref-5-1">↩</a></li>
-<li id="ref-6">Olson, M.(1965). <em>The Logic of Collective Action: Public Goods and the Theory of Groups</em>. Harvard University Press. <a href="#fnref-6-1">↩</a></li>
-<li id="ref-7">Hardin, G.(1968). The Tragedy of the Commons. <em>Science</em>, 162 (3859), 1243-1248. <a href="#fnref-7-1">↩</a></li>
-<li id="ref-8">Bento, F., Tagliabue, M., &amp; Lorenzo, F.(2020). Organizational Silos: A Scoping Review Informed by a Behavioral Perspective on Systems and Networks. <em>Societies</em>, 10 (3), 56. <a href="#fnref-8-1">↩</a></li>
-<li id="ref-9">菊地彰（2004）「行政組織における部門文化とセクショナリズム――セクショナリズム分析への組織文化論からの理論的視角」『広島大学マネジメント研究』第 4 号、 151-164 頁。 <a href="#fnref-9-1">↩</a></li>
-<li id="ref-10">Thompson, D. F.(1980). Moral Responsibility of Public Officials: The Problem of Many Hands. <em>American Political Science Review</em>, 74 (4), 905-916. <a href="#fnref-10-2">↩</a></li>
-<li id="ref-11">Collins, S.(2019). Collective Responsibility Gaps. <em>Journal of Business Ethics</em>, 154 (4), 943-954. <a href="#fnref-11-2">↩</a></li>
-<li id="ref-12">Van Bommel, M., Van Prooijen, J.-W., Elffers, H., &amp; Van Lange, P. A. M.(2012). Be aware to care: Public self-awareness leads to a reversal of the bystander effect. <em>Journal of Experimental Social Psychology</em>, 48 (4), 926-930. <a href="#fnref-12-1">↩</a></li>
-<li id="ref-13">Aldrich, H., &amp; Herker, D.(1977). Boundary Spanning Roles and Organization Structure. <em>Academy of Management Review</em>, 2 (2), 217-230. <a href="#fnref-13-1">↩</a></li>
-<li id="ref-14">Weick, K. E., &amp; Sutcliffe, K. M.(2007). <em>Managing the Unexpected: Resilient Performance in an Age of Uncertainty</em>(2nd ed.). Jossey-Bass. <a href="#fnref-14-1">↩</a></li>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Darley, J. M., &amp; Latané, B. (1968) . Bystander intervention in emergencies: Diffusion of responsibility. <em>Journal of Personality and Social Psychology</em>, 8 (4) , 377-383.</li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Fischer, P., Krueger, J. I., Greitemeyer, T., Vogrincic, C., Kastenmüller, A., Frey, D., Heene, M., Wicher, M., &amp; Kainbacher, M. (2011) . The bystander-effect: A meta-analytic review on bystander intervention in dangerous and non-dangerous emergencies. <em>Psychological Bulletin</em>, 137 (4) , 517-537.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Latané, B., Williams, K., &amp; Harkins, S. (1979) . Many hands make light the work: The causes and consequences of social loafing. <em>Journal of Personality and Social Psychology</em>, 37 (6) , 822-832.</li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> Diekmann, A. (1985) . Volunteer's Dilemma. <em>Journal of Conflict Resolution</em>, 29 (4) , 605-610.</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Campos-Mercade, P. (2021) . The volunteer's dilemma explains the bystander effect. <em>Journal of Economic Behavior &amp; Organization</em>, 186, 646-661.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Olson, M. (1965) . <em>The Logic of Collective Action: Public Goods and the Theory of Groups</em>. Harvard University Press.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Hardin, G. (1968) . The Tragedy of the Commons. <em>Science</em>, 162 (3859) , 1243-1248.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Bento, F., Tagliabue, M., &amp; Lorenzo, F. (2020) . Organizational Silos: A Scoping Review Informed by a Behavioral Perspective on Systems and Networks. <em>Societies</em>, 10 (3) , 56.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 菊地彰 (2004) 「行政組織における部門文化とセクショナリズム――セクショナリズム分析への組織文化論からの理論的視角」『広島大学マネジメント研究』第 4 号、 151-164 頁。</li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> Thompson, D. F. (1980) . Moral Responsibility of Public Officials: The Problem of Many Hands. <em>American Political Science Review</em>, 74 (4) , 905-916.</li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> Collins, S. (2019) . Collective Responsibility Gaps. <em>Journal of Business Ethics</em>, 154 (4) , 943-954.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Van Bommel, M., Van Prooijen, J.-W., Elffers, H., &amp; Van Lange, P. A. M. (2012) . Be aware to care: Public self-awareness leads to a reversal of the bystander effect. <em>Journal of Experimental Social Psychology</em>, 48 (4) , 926-930.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Aldrich, H., &amp; Herker, D. (1977) . Boundary Spanning Roles and Organization Structure. <em>Academy of Management Review</em>, 2 (2) , 217-230.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Weick, K. E., &amp; Sutcliffe, K. M. (2007) . <em>Managing the Unexpected: Resilient Performance in an Age of Uncertainty</em>(2nd ed.) . Jossey-Bass.</li>
 </ol>
-<p class="note">本稿は学術論文ではなく、一般読者向けに既存の学術研究を紹介・整理した論考である。本文中の「確立した実証知見」「議論の途上にある提案」という分類は、筆者（Claude Code）が調査時点で確認できた実証研究の蓄積状況に基づく判断であり、各分野の専門家の間で異なる評価がありうる。特にセクショナリズム・サイロ効果に関する語源的な逸話（第 6 章）は、実務系メディアの二次的な言及に基づくものであり、一次資料による検証は行っていない。</p>
+<p class="note">本稿は学術論文ではなく、一般読者向けに既存の学術研究を紹介・整理した論考である。本文中の「確立した実証知見」「議論の途上にある提案」という分類は、筆者 (Claude Code) が調査時点で確認できた実証研究の蓄積状況に基づく判断であり、各分野の専門家の間で異なる評価がありうる。特にセクショナリズム・サイロ効果に関する語源的な逸話（第 6 章）は、実務系メディアの二次的な言及に基づくものであり、一次資料による検証は行っていない。</p>
 </div>
 
 </div>

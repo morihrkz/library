@@ -22,8 +22,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -45,14 +45,16 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -94,10 +96,6 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -109,11 +107,11 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <div class="meta">【判定の限界】ここでいう藁人形論法は、相手の主張をより弱く・極端に再構成して攻撃し、その攻撃を元の主張への反論として扱うこと、という作業上の定義である。不正確な要約や切り抜きが常に藁人形論法になるわけではない。事例では、元発言とファクトチェックの根拠を区別して読む。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. 藁人形論法とは何か――相手の言っていないことと戦っていないか</a></li>
-<li><a href="#sec2">2. なぜ人はこの詭弁に陥るのか――三段階の仕組みと、 SNS 時代のわな</a></li>
-<li><a href="#sec3">3. 実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</a></li>
-<li><a href="#sec4">4. 明日から相手の議論をスチールマン化するために――実践のための三つの問いと、隣接する詭弁</a></li>
-</ul>
+<ol><li><a href="#sec1">藁人形論法とは何か――相手の言っていないことと戦っていないか</a></li>
+<li><a href="#sec2">なぜ人はこの詭弁に陥るのか――三段階の仕組みと、 SNS 時代のわな</a></li>
+<li><a href="#sec3">実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</a></li>
+<li><a href="#sec4">明日から相手の議論をスチールマン化するために――実践のための三つの問いと、隣接する詭弁</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. 藁人形論法とは何か――相手の言っていないことと戦っていないか</h2>
 <p>議論における詭弁のなかでも特によく見られるものに、藁人形論法がある。相手が実際に述べた主張ではなく、それを歪めて弱く、あるいは極端にした偽物の主張を勝手に作り上げ、その偽物を叩いて「論破した」ことにしてしまう手口である。
@@ -190,11 +188,11 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p>有害さは学術的な議論の場でも指摘されてきた。反対意見を不当に弱めて紹介すれば、それに続く反論もまた説得力を失う。
 読者や聴衆は、歪められた主張しか知らないまま「論破された」と信じ込み、実際の論点についての理解はむしろ後退する。</p>
 <h4>用語メモ : スチールマンと好意的解釈の原則</h4>
-<p>だからこそ、相手の主張は「その論者が言いうる最も強い形」で提示したうえで検討すべきだとされる。この姿勢はスチールマン（steel man 、鋼鉄人形）や、好意的解釈の原則（principle of charity）と呼ばれ、藁人形論法の対概念として繰り返し語られてきた。</p>
+<p>だからこそ、相手の主張は「その論者が言いうる最も強い形」で提示したうえで検討すべきだとされる。この姿勢はスチールマン (steel man 、鋼鉄人形）や、好意的解釈の原則 (principle of charity) と呼ばれ、藁人形論法の対概念として繰り返し語られてきた。</p>
 <h2 id="sec3">3. 実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</h2>
 <p>ここからは、実際に報道・検証された 5 件を見ていく。
 分野やテレビ・広告・討論会など場面が偏っては、「藁人形論法は特定の陣営の専売特許だ」という誤った印象を与えかねない。政治的な立場に関わらず、誰もがこの詭弁を使い、また使われうることを意識しながら読んでほしい。</p>
-<h3>小泉進次郎氏の会見動画――日本 / 政治家の発言そのものを作り替える</h3>
+<h3>●小泉進次郎氏の会見動画――日本 / 政治家の発言そのものを作り替える</h3>
 <p>2025 年 5 月、「小泉進次郎氏が消費税 15% を主張している」とする 45 秒の動画が X 上で拡散し、 1 万回以上リポストされた。動画は 2017 年 6 月 1 日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
 
 <div class="compare">
@@ -203,8 +201,8 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </div>
 <p class="distort-note"><strong>歪曲点：</strong>両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
 
-<p>出典 <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> : 日本ファクトチェックセンター（2025 年 5 月 23 日）</p>
-<h3>「オープンボーダー」への飛躍――米国 / 2016 年大統領選、討論会での応酬</h3>
+<p>出典 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> : 日本ファクトチェックセンター (2025 年 5 月 23 日）</p>
+<h3>●「オープンボーダー」への飛躍――米国 / 2016 年大統領選、討論会での応酬</h3>
 <p>2016 年 10 月 19 日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー（国境の撤廃）を望んでいる」と述べた。根拠とされたのは、 2013 年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
 
 <div class="compare">
@@ -213,8 +211,8 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </div>
 <p class="distort-note"><strong>歪曲点：</strong>両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
 
-<p>出典 <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> : PolitiFact （2016 年 10 月 20 日）</p>
-<h3>発言の後半を切り落とす――日本 / テレビ報道発言の切り抜き</h3>
+<p>出典 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> : PolitiFact (2016 年 10 月 20 日）</p>
+<h3>●発言の後半を切り落とす――日本 / テレビ報道発言の切り抜き</h3>
 <p>2026 年 1 月、中道改革連合の斉藤鉄夫共同代表が TBS テレビの番組で発言した場面を切り取った動画が X で拡散した。</p>
 
 <div class="compare">
@@ -223,8 +221,8 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </div>
 <p class="distort-note"><strong>歪曲点：</strong>発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
 
-<p>出典 <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> : 時事通信（2026 年 2 月 2 日）</p>
-<h3>「カナダ型医療」の脅し――米国 / 2009 年、医療保険改革をめぐる広告</h3>
+<p>出典 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> : 時事通信 (2026 年 2 月 2 日）</p>
+<h3>●「カナダ型医療」の脅し――米国 / 2009 年、医療保険改革をめぐる広告</h3>
 <p>2009 年、米国の医療保険改革をめぐり、保守系団体の Patients United Now と Patients First は「ワシントンはカナダ型の医療制度を持ち込もうとしている」とする広告を展開した。</p>
 
 <div class="compare">
@@ -233,8 +231,8 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </div>
 <p class="distort-note"><strong>歪曲点：</strong>専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
 
-<p>出典 <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> : FactCheck.org （2009 年 7 月 17 日）</p>
-<h3>同じ党内でも起きる――米国 / 2019 年、民主党予備選討論会</h3>
+<p>出典 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> : FactCheck.org (2009 年 7 月 17 日）</p>
+<h3>●同じ党内でも起きる――米国 / 2019 年、民主党予備選討論会</h3>
 <p>2019 年 6 月の米民主党予備選討論会では、穏健派候補のデラニー氏が、サンダース氏の掲げる国民皆保険制度「メディケア・フォー・オール」について発言した。</p>
 
 <div class="compare">
@@ -243,7 +241,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </div>
 <p class="distort-note"><strong>歪曲点：</strong>米公共放送 PBS はデラニー氏の主張を誤りと判定した。この例は、藁人形論法が党派の対立を越えてだけでなく、同じ党派内の候補者同士でも起こりうることを示している。</p>
 
-<p>出典 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> : PBS NewsHour （2019 年 6 月 27 日）</p>
+<p>出典 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> : PBS NewsHour (2019 年 6 月 27 日）</p>
 <h2 id="sec4">4. 明日から相手の議論をスチールマン化するために――実践のための三つの問いと、隣接する詭弁</h2>
 <p>ここまで見た五つの事例に共通するのは、対立する陣営の政治家であれ、同じ党派の候補者であれ、テレビ番組で発言した候補者であれ、誰もが藁人形論法を使い、また使われうるという事実である。左右どちらの立場にも、この詭弁を犯した側と犯された側が存在した。</p>
 <p>議論を建設的に進めるためには、反論する前に一呼吸置き、次のように自問するとよい。</p>
@@ -296,7 +294,8 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 
 <div class="refs">
 <h2>参考文献――検証に用いた記事一覧</h2>
-<ol><li id="ref-1"><a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/">小泉進次郎氏が消費増税を主張 ? 恣意的な切り貼り【ファクトチェック】</a>日本ファクトチェックセンター , 2025 年 5 月 23 日 <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2"><a href="https://www.jiji.com/jc/article?k=2026020200704&amp;g=pol">中道・斉藤氏「人間より大事なものある」動画は誤り テレビ番組発言の切り抜きが拡散【チェック ! 選挙】</a>時事通信 , 2026 年 2 月 2 日 <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3"><a href="https://www.politifact.com/factchecks/2016/oct/20/donald-trump/donald-trump-says-hillary-clinton-wants-have-open-/">In final debate, Trump wrongly says Clinton wants open borders</a>PolitiFact, 2016 年 10 月 20 日 <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4"><a href="https://www.factcheck.org/2009/07/canadian-straw-man/">Canadian Straw Man</a>FactCheck.org, 2009 年 7 月 17 日 <a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5"><a href="https://www.pbs.org/newshour/politics/fact-check-delaneys-debate-claim-that-medicare-for-all-will-shutter-hospitals-goes-overboard">Fact check: Delaney's debate claim that 'Medicare For All' will shutter hospitals goes overboard</a>PBS NewsHour, 2019 年 6 月 27 日 <a class="fnback" href="#fnref-5-1">↩</a></li></ol>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol><li id="ref-1"><a href="#fnref-1-1">^</a> 小泉進次郎氏が消費増税を主張 ? 恣意的な切り貼りと判定。<a href="https://www.factcheckcenter.jp/fact-check/politics/false-shinjiro-for-higher-taxes/">日本ファクトチェックセンター</a>, 2025 年 5 月 23 日。</li><li id="ref-2"><a href="#fnref-2-1">^</a> 中道・斉藤氏「人間より大事なものある」動画は誤り、テレビ番組発言の切り抜きが拡散と判定。<a href="https://www.jiji.com/jc/article?k=2026020200704&amp;g=pol">時事通信</a>, 2026 年 2 月 2 日。</li><li id="ref-3"><a href="#fnref-3-1">^</a> トランプ氏の「クリントン氏はオープンボーダーを望んでいる」発言を「ほぼ誤り」と判定。<a href="https://www.politifact.com/factchecks/2016/oct/20/donald-trump/donald-trump-says-hillary-clinton-wants-have-open-/">PolitiFact</a>, 2016 年 10 月 20 日。</li><li id="ref-4"><a href="#fnref-4-1">^</a> 医療保険改革をめぐる「カナダ型医療」広告を藁人形論法と評した検証記事。<a href="https://www.factcheck.org/2009/07/canadian-straw-man/">FactCheck.org</a>, 2009 年 7 月 17 日。</li><li id="ref-5"><a href="#fnref-5-1">^</a> デラニー氏の「メディケア・フォー・オール」批判を誤りと判定。<a href="https://www.pbs.org/newshour/politics/fact-check-delaneys-debate-claim-that-medicare-for-all-will-shutter-hospitals-goes-overboard">PBS NewsHour</a>, 2019 年 6 月 27 日。</li></ol>
 </div>
 </div>
 </body>

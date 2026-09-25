@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -44,14 +44,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -61,10 +64,6 @@ strong{font-weight:bold;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
 }
 </style>
 </head>
@@ -78,15 +77,15 @@ strong{font-weight:bold;}
 </div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 導入――「幸せホルモン」という言葉の手前にある問い</a></li>
-<li><a href="#sec2">2. これは何学の研究か――学際性の見取り図</a></li>
-<li><a href="#sec3">3. 五つの物質、五つの快感</a></li>
-<li><a href="#sec4">4. 通説をどこまで信じてよいか</a></li>
-<li><a href="#sec5">5. 日常のなかで分泌を促す</a></li>
-<li><a href="#sec6">6. 五つの物質だけではない――他にも関わるとされる脳内物質</a></li>
-<li><a href="#sec7">7. まとめ</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">導入――「幸せホルモン」という言葉の手前にある問い</a></li>
+<li><a href="#sec2">これは何学の研究か――学際性の見取り図</a></li>
+<li><a href="#sec3">五つの物質、五つの快感</a></li>
+<li><a href="#sec4">通説をどこまで信じてよいか</a></li>
+<li><a href="#sec5">日常のなかで分泌を促す</a></li>
+<li><a href="#sec6">五つの物質だけではない――他にも関わるとされる脳内物質</a></li>
+<li><a href="#sec7">まとめ</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 導入――「幸せホルモン」という言葉の手前にある問い</h2>
@@ -95,12 +94,12 @@ strong{font-weight:bold;}
 <p>本稿ではまず、この主題が神経科学・心理学・医学・生物学・行動経済学の重なり合う学際領域であることを各学会・学術機関の自己定義から整理したうえで、五つの物質それぞれの分泌条件と結びつく快感の違いを解説する。続けて、「ドーパミンは快感物質である」「ハグをするとオキシトシンが増える」「ランナーズハイはエンドルフィンによる」「セロトニンは幸せホルモンである」という四つの通説を、確立した知見・議論中の論点・裏付けの弱い俗説に区分して検証し、さらにこの五物質にとどまらず、内因性カンナビノイド・バソプレシン・ GABA ・フェニルエチルアミンといった他の物質についても確立の度合いに差があることを示す。最後に、日常的かつ合法的な範囲で各物質の分泌を促すとされる行動を、確度に応じた表現で紹介する。</p>
 
 <h2 id="sec2">2. これは何学の研究か――学際性の見取り図</h2>
-<p>日本神経科学学会は、神経科学を「神経系の構造・機能・発達・遺伝学・生化学・生理学・薬理学・病理学などを扱う自然科学の一分野」と定義しつつ、近年は心理学・情報科学・統計学・医学など多様な分野からの参入によって学際的性質を強めていると説明している <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。この定義が示す通り、神経科学は「脳の物理的な機構」――神経伝達物質の合成・放出・受容体との結合・神経回路の活動――を扱う点に強みがある。</p>
-<p>これに対して心理学は、異なる切り口を持つ。日本学術会議・心理学教育学委員会が策定した「大学教育の分野別質保証のための教育課程編成上の参照基準 心理学分野」(2014 年)は、心理学を「人の心と行動の動きを科学的に解明する学問」と定義し、(a)人の認知・行動の原理を客観的に解明するアプローチと、(b)個人の主観的な思い・感情・経験を理論的基礎に据えて解明するアプローチの二側面があるとしている <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。すなわち心理学は、脳内物質が引き起こす「主観的な快感・幸福感の経験」そのものを扱う点で、神経科学と相補的な位置にある。</p>
-<p>医学、とりわけ精神医学・生理学は、臨床応用の観点を担う。日本薬学会は副腎髄質からのアドレナリン分泌や交感神経 - 副腎髄質系の仕組みを解説しており <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 、こうした内分泌・薬理学的機構の理解は治療薬の開発や、分泌異常が関わる疾患の診断・治療に直結する。後述するうつ病のモノアミン仮説をめぐる論争も、まさに医学(精神医学)がこの主題に関わる典型例である。</p>
-<p>生物学は、神経伝達物質やホルモンがどのような分子として、どの生化学的経路で合成されるかという、より基盤的な層を扱う。たとえばセロトニンは必須アミノ酸トリプトファンから合成されることが知られており <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 、この合成経路の解明は生化学・分子生物学の対象である。</p>
-<p>さらに近年では、行動経済学(神経経済学)もこの主題に接近しつつある。ドーパミンが期待値の評価やリスク判断、遅延価値割引、社会的公正の感覚といった意思決定の過程に果たす役割を扱う研究領域であり、「経済学は本質的に選択に関する学問であり、動機づけの神経基盤の理解は経済学的概念によって説明しうる」とする総説も発表されている <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。</p>
-<p>以上を整理すると、次のような切り分けが可能である。主観的な快感・幸福感の「経験」を扱うのが心理学、その経験を生み出す脳内の物理的機構を扱うのが神経科学、臨床的な異常への応用を扱うのが医学、分子・合成経路という基盤を扱うのが生物学、そして意思決定・行動選択への応用を扱うのが行動経済学である。「神経心理薬理学」という学際的な呼称が「精神薬理学と基礎神経科学の学際科学」と定義されている例 <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> が象徴するように、この領域はどれか一つの学問の専有物ではなく、複数の学問が協働する学際領域として捉えるのが実態に近い。</p>
+<p>日本神経科学学会は、神経科学を「神経系の構造・機能・発達・遺伝学・生化学・生理学・薬理学・病理学などを扱う自然科学の一分野」と定義しつつ、近年は心理学・情報科学・統計学・医学など多様な分野からの参入によって学際的性質を強めていると説明している <sup><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。この定義が示す通り、神経科学は「脳の物理的な機構」――神経伝達物質の合成・放出・受容体との結合・神経回路の活動――を扱う点に強みがある。</p>
+<p>これに対して心理学は、異なる切り口を持つ。日本学術会議・心理学教育学委員会が策定した「大学教育の分野別質保証のための教育課程編成上の参照基準 心理学分野」 (2014 年）は、心理学を「人の心と行動の動きを科学的に解明する学問」と定義し、 (a) 人の認知・行動の原理を客観的に解明するアプローチと、 (b) 個人の主観的な思い・感情・経験を理論的基礎に据えて解明するアプローチの二側面があるとしている <sup><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。すなわち心理学は、脳内物質が引き起こす「主観的な快感・幸福感の経験」そのものを扱う点で、神経科学と相補的な位置にある。</p>
+<p>医学、とりわけ精神医学・生理学は、臨床応用の観点を担う。日本薬学会は副腎髄質からのアドレナリン分泌や交感神経 - 副腎髄質系の仕組みを解説しており <sup><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 、こうした内分泌・薬理学的機構の理解は治療薬の開発や、分泌異常が関わる疾患の診断・治療に直結する。後述するうつ病のモノアミン仮説をめぐる論争も、まさに医学（精神医学）がこの主題に関わる典型例である。</p>
+<p>生物学は、神経伝達物質やホルモンがどのような分子として、どの生化学的経路で合成されるかという、より基盤的な層を扱う。たとえばセロトニンは必須アミノ酸トリプトファンから合成されることが知られており <sup><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 、この合成経路の解明は生化学・分子生物学の対象である。</p>
+<p>さらに近年では、行動経済学（神経経済学）もこの主題に接近しつつある。ドーパミンが期待値の評価やリスク判断、遅延価値割引、社会的公正の感覚といった意思決定の過程に果たす役割を扱う研究領域であり、「経済学は本質的に選択に関する学問であり、動機づけの神経基盤の理解は経済学的概念によって説明しうる」とする総説も発表されている <sup><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。</p>
+<p>以上を整理すると、次のような切り分けが可能である。主観的な快感・幸福感の「経験」を扱うのが心理学、その経験を生み出す脳内の物理的機構を扱うのが神経科学、臨床的な異常への応用を扱うのが医学、分子・合成経路という基盤を扱うのが生物学、そして意思決定・行動選択への応用を扱うのが行動経済学である。「神経心理薬理学」という学際的な呼称が「精神薬理学と基礎神経科学の学際科学」と定義されている例 <sup><a id="fnref-6-1" href="#ref-6">[6]</a></sup> が象徴するように、この領域はどれか一つの学問の専有物ではなく、複数の学問が協働する学際領域として捉えるのが実態に近い。</p>
 
 <div class="figure">
 <svg viewBox="0 0 700 460" role="img" aria-labelledby="fig1title fig1desc">
@@ -145,11 +144,11 @@ strong{font-weight:bold;}
 
 <h2 id="sec3">3. 五つの物質、五つの快感</h2>
 <p>同じ「快感」という言葉でくくられがちな五つの物質だが、分泌のきっかけも、結びつく感情の質も、実際にはそれぞれ異なる。</p>
-<p><strong>アドレナリン(エピネフリン)</strong>は副腎髄質から分泌される。交感神経が優位になる場面、すなわちストレス・恐怖・興奮・危険の察知といった状況で分泌が高まるとされる <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。結びつく感情は、恐怖や不安に対する「戦闘態勢」への切り替えであり、心拍数・血圧の上昇に伴う集中力・注意力の向上をもたらす。いわゆる「スリル」や「興奮」の快感がこれに関連づけられることが多い。ただし、五物質の中でアドレナリンについては、スリル体験時の主観的な快感と分泌量の相関を直接測定した査読論文を今回の調査では特定できておらず、薬学会や健康関連機関による生理学的な解説にとどまる点は明記しておく必要がある。</p>
-<p><strong>ドーパミン</strong>は、報酬、とりわけ予測されていなかった報酬や、新奇性のある体験、達成の見込みそのものによって分泌が高まるとされる <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。従来は「快感物質」と単純化されてきたが、後述するように、近年の研究はこの理解に修正を迫っている。達成感というよりも、対象を「追い求める」意欲そのものに強く関わる物質だと考えるほうが、現在の知見には近い。</p>
-<p><strong>オキシトシン</strong>は視床下部から分泌され、授乳・出産・スキンシップ・他者との信頼関係の構築といった場面で放出されるとされる <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。結びつく感情は、信頼感・共感・絆・安心感であり、ストレス緩和や情緒の安定にも関与するとされる。「肯定的な社会的相互作用が中枢でのオキシトシン放出を促し、社会的絆の形成とストレス反応性の低下をもたらす」とする研究の蓄積がある <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。ただし、その強度については四章で検討する留保が付く。</p>
-<p><strong>セロトニン</strong>は必須アミノ酸トリプトファンから合成され、セロトニン神経から分泌される。日光を浴びることや、規則的なリズム運動によって分泌が促されると考えられている <sup class="fnref"><a id="fnref-4-2" href="#ref-4">[4]</a></sup> 。脳の過剰な興奮を鎮め、精神を安定させる働きがあるとされ、これが「幸福感を高める」という理解、ひいては「幸せホルモン」という通称の根拠になっている。もっとも、この呼称そのものにも慎重な検討が必要である。</p>
-<p><strong>エンドルフィン(β- エンドルフィン)</strong>は、痛みやストレスへの反応として分泌される内因性オピオイドである。とりわけ持続的な有酸素運動の際に血中濃度が上昇することが複数の研究で示されている <sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。鎮痛作用に加え、笑い・恋愛・嗜好性の高い食事など幅広い快感・多幸感に関連するとされる。社会的な笑いが痛覚閾値を上げるという実験結果 <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> は、エンドルフィンが運動時の鎮痛物質にとどまらず、集団の結束を支える社会的な機能も担っている可能性を示している。</p>
+<p><strong>アドレナリン（エピネフリン）</strong>は副腎髄質から分泌される。交感神経が優位になる場面、すなわちストレス・恐怖・興奮・危険の察知といった状況で分泌が高まるとされる <sup><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。結びつく感情は、恐怖や不安に対する「戦闘態勢」への切り替えであり、心拍数・血圧の上昇に伴う集中力・注意力の向上をもたらす。いわゆる「スリル」や「興奮」の快感がこれに関連づけられることが多い。ただし、五物質の中でアドレナリンについては、スリル体験時の主観的な快感と分泌量の相関を直接測定した査読論文を今回の調査では特定できておらず、薬学会や健康関連機関による生理学的な解説にとどまる点は明記しておく必要がある。</p>
+<p><strong>ドーパミン</strong>は、報酬、とりわけ予測されていなかった報酬や、新奇性のある体験、達成の見込みそのものによって分泌が高まるとされる <sup><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。従来は「快感物質」と単純化されてきたが、後述するように、近年の研究はこの理解に修正を迫っている。達成感というよりも、対象を「追い求める」意欲そのものに強く関わる物質だと考えるほうが、現在の知見には近い。</p>
+<p><strong>オキシトシン</strong>は視床下部から分泌され、授乳・出産・スキンシップ・他者との信頼関係の構築といった場面で放出されるとされる <sup><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。結びつく感情は、信頼感・共感・絆・安心感であり、ストレス緩和や情緒の安定にも関与するとされる。「肯定的な社会的相互作用が中枢でのオキシトシン放出を促し、社会的絆の形成とストレス反応性の低下をもたらす」とする研究の蓄積がある <sup><a id="fnref-10-1" href="#ref-10">[10]</a></sup> 。ただし、その強度については四章で検討する留保が付く。</p>
+<p><strong>セロトニン</strong>は必須アミノ酸トリプトファンから合成され、セロトニン神経から分泌される。日光を浴びることや、規則的なリズム運動によって分泌が促されると考えられている <sup><a id="fnref-4-2" href="#ref-4">[4]</a></sup> 。脳の過剰な興奮を鎮め、精神を安定させる働きがあるとされ、これが「幸福感を高める」という理解、ひいては「幸せホルモン」という通称の根拠になっている。もっとも、この呼称そのものにも慎重な検討が必要である。</p>
+<p><strong>エンドルフィン（β- エンドルフィン）</strong>は、痛みやストレスへの反応として分泌される内因性オピオイドである。とりわけ持続的な有酸素運動の際に血中濃度が上昇することが複数の研究で示されている <sup><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。鎮痛作用に加え、笑い・恋愛・嗜好性の高い食事など幅広い快感・多幸感に関連するとされる。社会的な笑いが痛覚閾値を上げるという実験結果 <sup><a id="fnref-12-1" href="#ref-12">[12]</a></sup> は、エンドルフィンが運動時の鎮痛物質にとどまらず、集団の結束を支える社会的な機能も担っている可能性を示している。</p>
 
 <table>
 <thead>
@@ -170,26 +169,26 @@ strong{font-weight:bold;}
 <tr>
 <td>ドーパミン</td>
 <td>予測されない報酬・新奇性・達成の見込み</td>
-<td>「追い求める」意欲(単純な快感ではない)</td>
-<td>動機づけ・予測誤差の信号として確立(四の一を参照)</td>
+<td>「追い求める」意欲（単純な快感ではない）</td>
+<td>動機づけ・予測誤差の信号として確立（四の一を参照）</td>
 </tr>
 <tr>
 <td>オキシトシン</td>
 <td>授乳・出産・スキンシップ・信頼関係の構築</td>
 <td>信頼・共感・絆・安心感</td>
-<td>相関研究は多いが、再現性・測定法に強い留保(四の二を参照)</td>
+<td>相関研究は多いが、再現性・測定法に強い留保（四の二を参照）</td>
 </tr>
 <tr>
 <td>セロトニン</td>
 <td>日光浴・規則的なリズム運動</td>
 <td>精神の安定</td>
-<td>大枠は支持。うつ病との単純な因果関係は否定的(四の四を参照)</td>
+<td>大枠は支持。うつ病との単純な因果関係は否定的（四の四を参照）</td>
 </tr>
 <tr>
 <td>エンドルフィン</td>
 <td>持続的な有酸素運動・痛み・社会的な笑い</td>
 <td>鎮痛・多幸感・集団の結束</td>
-<td>運動時の血中濃度上昇は確立。脳内多幸感への直接寄与には留保(四の三を参照)</td>
+<td>運動時の血中濃度上昇は確立。脳内多幸感への直接寄与には留保（四の三を参照）</td>
 </tr>
 </tbody>
 </table>
@@ -197,31 +196,31 @@ strong{font-weight:bold;}
 <h2 id="sec4">4. 通説をどこまで信じてよいか</h2>
 <p>ここまでの解説はいずれも、一般向けの理解として広く受け入れられているものである。しかし、その一つひとつを掘り下げると、確立した知見と呼べるもの、いまなお議論が続いているもの、そして単純化が過ぎる俗説とに分かれてくる。以下では、区分の基準を「複数の独立した研究で再現されているか」「総説や専門機関に広く支持されているか」「近年の系統的レビューやメタ分析でどう扱われているか」に置き、四つの通説を検証する。</p>
 <div class="box">
-<h3>本稿が用いる三区分</h3>
+<h3>●本稿が用いる三区分</h3>
 <p style="margin-bottom:0"><strong>確立した知見</strong>――複数の独立した研究・系統的レビューで再現され、専門機関の間で広く支持されているもの。<br><strong>議論中の論点</strong>――個別の研究では支持されるが、分野全体としては再現性や測定法に強い留保が付くもの。<br><strong>裏付けの弱い俗説</strong>――実証データが乏しいまま広く流通しているもの。</p>
 </div>
 
-<h3>ドーパミンは快感物質か</h3>
-<p>Schultz らによる古典的な研究 <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> は、サルを用いた実験で、ドーパミンニューロンが「予測されなかった報酬」には強く反応する一方、「完全に予測された報酬」にはほとんど反応せず、「予測された報酬が得られなかった場合」には発火が抑制されることを示した。これは、ドーパミンが快感そのものの信号ではなく、「予測誤差」の信号であることを示す知見として広く引用されている。</p>
-<p>さらに、 Berridge と Robinson らによる一連の研究 <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> は、「欲求(wanting)」を媒介する脳回路と「快(liking)」を媒介する脳回路が、解離可能であることを示した。ドーパミンを枯渇させたラットでも、甘い溶液に対する「快」を示す表情反応は保たれる一方、その溶液を「求める」行動は消失する。</p>
+<h3>●ドーパミンは快感物質か</h3>
+<p>Schultz らによる古典的な研究 <sup><a id="fnref-13-1" href="#ref-13">[13]</a></sup> は、サルを用いた実験で、ドーパミンニューロンが「予測されなかった報酬」には強く反応する一方、「完全に予測された報酬」にはほとんど反応せず、「予測された報酬が得られなかった場合」には発火が抑制されることを示した。これは、ドーパミンが快感そのものの信号ではなく、「予測誤差」の信号であることを示す知見として広く引用されている。</p>
+<p>さらに、 Berridge と Robinson らによる一連の研究 <sup><a id="fnref-14-1" href="#ref-14">[14]</a></sup> は、「欲求 (wanting) 」を媒介する脳回路と「快 (liking) 」を媒介する脳回路が、解離可能であることを示した。ドーパミンを枯渇させたラットでも、甘い溶液に対する「快」を示す表情反応は保たれる一方、その溶液を「求める」行動は消失する。</p>
 <p>したがって、「ドーパミン = 快感物質」という説明は、一般向けの単純化としては流通しているものの、神経科学的にはやや不正確であり、「動機づけ・欲求・予測誤差の信号」と理解するほうが現在の学術的合意に近い。これは確立した知見に区分してよい論点である。</p>
 <p class="pull">ドーパミンは快感そのものの信号ではなく、対象を「追い求める」動機づけの信号である。</p>
 
-<h3>ハグをするとオキシトシンは増えるか</h3>
-<p>Light 、 Grewen 、 Amico による研究 <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> は、閉経前の女性 59 名を対象に、パートナーとの温かい接触前後の血漿オキシトシン濃度と血圧を測定し、ハグの頻度が高い女性ほどオキシトシン濃度が高く、血圧・心拍数が低いという関連を報告した。この研究は「ハグでオキシトシンが増える」という言説の主要な根拠の一つになっている。</p>
-<p>しかし、オキシトシン研究全体には近年強い懐疑が向けられている。検出力の低さ、結果を見てから仮説を立てる問題(HARKing)、再現の失敗が分野を悩ませているとの指摘があり、経鼻投与されたオキシトシンが実際に脳の標的領域に到達する証拠の乏しさや、血漿オキシトシンの測定法そのものの信頼性の低さが問題視されてきた。決定打となったのが、 Burenkova らによる系統的レビューとメタ分析 <sup class="fnref"><a id="fnref-16-1" href="#ref-16">[16]</a></sup> である。 63 件の研究(メタ分析対象 51 件、対象者数 3,741 名)を精査した結果、前後比較デザインでは社会的相互作用が期待されたホルモン変化をもたらさなかった一方、相関デザインでは有意な正の相関が確認された。著者らは測定方法が研究間で標準化されていないことを主な要因として挙げ、信頼できる測定手法の確立が今後の課題だと結論づけている。</p>
+<h3>●ハグをするとオキシトシンは増えるか</h3>
+<p>Light 、 Grewen 、 Amico による研究 <sup><a id="fnref-15-1" href="#ref-15">[15]</a></sup> は、閉経前の女性 59 名を対象に、パートナーとの温かい接触前後の血漿オキシトシン濃度と血圧を測定し、ハグの頻度が高い女性ほどオキシトシン濃度が高く、血圧・心拍数が低いという関連を報告した。この研究は「ハグでオキシトシンが増える」という言説の主要な根拠の一つになっている。</p>
+<p>しかし、オキシトシン研究全体には近年強い懐疑が向けられている。検出力の低さ、結果を見てから仮説を立てる問題 (HARKing) 、再現の失敗が分野を悩ませているとの指摘があり、経鼻投与されたオキシトシンが実際に脳の標的領域に到達する証拠の乏しさや、血漿オキシトシンの測定法そのものの信頼性の低さが問題視されてきた。決定打となったのが、 Burenkova らによる系統的レビューとメタ分析 <sup><a id="fnref-16-1" href="#ref-16">[16]</a></sup> である。 63 件の研究（メタ分析対象 51 件、対象者数 3,741 名）を精査した結果、前後比較デザインでは社会的相互作用が期待されたホルモン変化をもたらさなかった一方、相関デザインでは有意な正の相関が確認された。著者らは測定方法が研究間で標準化されていないことを主な要因として挙げ、信頼できる測定手法の確立が今後の課題だと結論づけている。</p>
 <p>つまり「ハグでオキシトシンが増える」という言説は、個別の研究では支持されているものの、分野全体としては再現性と測定法に強い留保が付く、議論中の論点として扱うのが適切である。</p>
 
-<h3>ランナーズハイの正体――エンドルフィンかエンドカンナビノイドか</h3>
-<p>血中を循環するβ- エンドルフィンは血液脳関門を通過しにくいことが以前から指摘されており、この事実が「エンドルフィンが脳内の多幸感を直接引き起こす」という説への疑問の出発点になっている。これに対して、 Fuss らの研究 <sup class="fnref"><a id="fnref-17-1" href="#ref-17">[17]</a></sup> は、マウスを用いた薬理学的・分子遺伝学的・行動学的手法により、運動後の急性の抗不安作用・鎮痛作用がカンナビノイド受容体を介して媒介されることを示した。</p>
-<p>ただし、この研究にも留保がある <sup class="fnref"><a id="fnref-18-1" href="#ref-18">[18]</a></sup> 。「オピオイドシグナルなしでも『ハイ』な状態が生じることを示したにとどまり、エンドカンナビノイドシグナルを遮断した場合にどうなるかまでは示していない」「受容体レベルの決定的な実験はマウスで行われたものであり、ヒトでの実証ではない」「ヒトにおいてどのような状況でエンドカンナビノイドが放出されるのかは、なお十分に分かっていない」といった批判が寄せられている。</p>
+<h3>●ランナーズハイの正体――エンドルフィンかエンドカンナビノイドか</h3>
+<p>血中を循環するβ- エンドルフィンは血液脳関門を通過しにくいことが以前から指摘されており、この事実が「エンドルフィンが脳内の多幸感を直接引き起こす」という説への疑問の出発点になっている。これに対して、 Fuss らの研究 <sup><a id="fnref-17-1" href="#ref-17">[17]</a></sup> は、マウスを用いた薬理学的・分子遺伝学的・行動学的手法により、運動後の急性の抗不安作用・鎮痛作用がカンナビノイド受容体を介して媒介されることを示した。</p>
+<p>ただし、この研究にも留保がある <sup><a id="fnref-18-1" href="#ref-18">[18]</a></sup> 。「オピオイドシグナルなしでも『ハイ』な状態が生じることを示したにとどまり、エンドカンナビノイドシグナルを遮断した場合にどうなるかまでは示していない」「受容体レベルの決定的な実験はマウスで行われたものであり、ヒトでの実証ではない」「ヒトにおいてどのような状況でエンドカンナビノイドが放出されるのかは、なお十分に分かっていない」といった批判が寄せられている。</p>
 <p>したがって、「ランナーズハイ = エンドルフィン」という単純な図式は、血液脳関門の問題によって近年後退しつつあり、エンドカンナビノイドの関与を支持する証拠が強まっているものの、ヒトでの決定的な実証は依然として不足している。両者は排他的というより、併存的に働いている可能性も残されており、現時点では議論中の論点と位置づけるのが妥当である。</p>
 
-<h3>セロトニンは幸せホルモンか</h3>
+<h3>●セロトニンは幸せホルモンか</h3>
 <p>セロトニンが精神の安定に関わるという大枠の機能自体には、相応の裏付けがある。しかし、「幸せホルモン」という呼称、とりわけそれをうつ病の説明と結びつける語りには、より慎重な検討が必要である。</p>
-<p>Moncrieff らによる系統的なアンブレラレビュー <sup class="fnref"><a id="fnref-19-1" href="#ref-19">[19]</a></sup> は、うつ病とセロトニンの間に一貫した関連があるという証拠は見当たらないと結論づけた。この論文は大きな注目を集めたが、同時に複数の反論も出されている <sup class="fnref"><a id="fnref-20-1" href="#ref-20">[20]</a></sup> 。専門家の間では、「セロトニン仮説が近年になって初めて否定されたわけではなく、単純なモノアミン仮説には数十年前から十分な科学的根拠がないとされてきた」という指摘もあり、実際に 1965 年の時点で、後にこの仮説の主唱者の一人とされるハーバード大学の精神科医が、仮説を確証も否定もできないとすでに結論づけていた <sup class="fnref"><a id="fnref-21-1" href="#ref-21">[21]</a></sup> 。</p>
-<p>さらに、体内のセロトニンのおよそ九割は腸で作られているが、この末梢のセロトニンは血液脳関門を通過できず、気分に直接影響するのは脳内に存在する残り一〜二割程度のセロトニンであるとされる。「腸のセロトニンを増やせば幸せになる」という語りは、この末梢と中枢の違いを無視した誤解であるという指摘もある <sup class="fnref"><a id="fnref-22-1" href="#ref-22">[22]</a></sup> 。</p>
-<p>以上を踏まえると、「セロトニン = 幸せホルモン」という呼び方は、(一)精神安定への関与という大枠では支持されるものの、(二)うつ病との単純な因果関係については現在強く疑問視されており、(三)腸のセロトニンと脳内セロトニンを混同する俗説も広く流布している、という三層に分けて理解する必要がある。単純な確立した知見とは言い切れず、慎重な扱いを要する論点である。</p>
+<p>Moncrieff らによる系統的なアンブレラレビュー <sup><a id="fnref-19-1" href="#ref-19">[19]</a></sup> は、うつ病とセロトニンの間に一貫した関連があるという証拠は見当たらないと結論づけた。この論文は大きな注目を集めたが、同時に複数の反論も出されている <sup><a id="fnref-20-1" href="#ref-20">[20]</a></sup> 。専門家の間では、「セロトニン仮説が近年になって初めて否定されたわけではなく、単純なモノアミン仮説には数十年前から十分な科学的根拠がないとされてきた」という指摘もあり、実際に 1965 年の時点で、後にこの仮説の主唱者の一人とされるハーバード大学の精神科医が、仮説を確証も否定もできないとすでに結論づけていた <sup><a id="fnref-21-1" href="#ref-21">[21]</a></sup> 。</p>
+<p>さらに、体内のセロトニンのおよそ九割は腸で作られているが、この末梢のセロトニンは血液脳関門を通過できず、気分に直接影響するのは脳内に存在する残り一〜二割程度のセロトニンであるとされる。「腸のセロトニンを増やせば幸せになる」という語りは、この末梢と中枢の違いを無視した誤解であるという指摘もある <sup><a id="fnref-22-1" href="#ref-22">[22]</a></sup> 。</p>
+<p>以上を踏まえると、「セロトニン = 幸せホルモン」という呼び方は、（一）精神安定への関与という大枠では支持されるものの、（二）うつ病との単純な因果関係については現在強く疑問視されており、（三）腸のセロトニンと脳内セロトニンを混同する俗説も広く流布している、という三層に分けて理解する必要がある。単純な確立した知見とは言い切れず、慎重な扱いを要する論点である。</p>
 
 <h2 id="sec5">5. 日常のなかで分泌を促す</h2>
 <p>ここまでの検証を踏まえたうえで、日常的・合法的な範囲で各物質の分泌を促すとされる行動を、確度に応じた表現で整理する。サプリメントや薬物、医療的介入による人為的な増減は本稿の主題ではないため取り上げない。</p>
@@ -229,10 +228,10 @@ strong{font-weight:bold;}
 
 <h2 id="sec6">6. 五つの物質だけではない――他にも関わるとされる脳内物質</h2>
 <p>ここまで取り上げてきたアドレナリン・ドーパミン・オキシトシン・セロトニン・エンドルフィンの五つは、一般向けの「幸せホルモン」の語りで頻繁に名指しされる代表例にすぎない。実際には、これら以外にも快感や幸福感に関与するとされる物質が複数存在する。ここでは代表的な四つを取り上げ、確立の度合いに応じて紹介する。</p>
-<p><strong>内因性カンナビノイド(アナンダミド)</strong>は、四章で触れたランナーズハイの議論にすでに登場している物質である。 1992 年、 Devane らはブタの脳からカンナビノイド受容体(CB1)に結合する脂質性の物質を単離し、サンスクリット語で「至福」を意味する「 ananda 」にちなんで「アナンダミド」と名付けた <sup class="fnref"><a id="fnref-23-1" href="#ref-23">[23]</a></sup> 。この物質は脳内で作られる内因性のカンナビノイドであり、大麻の主成分である THC と同じ受容体に結合して多幸感をもたらすとされる。四章で見たように、運動後の抗不安作用・鎮痛作用にカンナビノイド受容体が関与するという知見 <sup class="fnref"><a id="fnref-17-2" href="#ref-17">[17]</a></sup> とあわせて考えると、アナンダミドは五物質と並んで比較的裏付けの厚い「快感物質」の候補だと言える。</p>
-<p><strong>バソプレシン</strong>は、オキシトシンと構造・起源の近いホルモンであり、対の関係で語られることが多い。プレーリーハタネズミという一夫一婦制をとる齧歯類を用いた研究群は、オキシトシンが主に雌のペアボンド(つがいの絆)形成に、バソプレシンが主に雄のペアボンド形成と縄張り防衛行動に関与し、両者が中脳辺縁系のドーパミン報酬系と協調して作用することで、特定の相手への選好(パートナー選好)が形成されることを示している <sup class="fnref"><a id="fnref-24-1" href="#ref-24">[24]</a></sup> 。オキシトシンだけでなくバソプレシンも社会的な絆の形成に関与するという知見は、動物モデルにおいては比較的確立した知見に区分できる。ただし、四章で見たオキシトシン研究への懐疑と同様、ヒトにおける効果の大きさや測定法の妥当性については、なお慎重な検証が必要である。</p>
-<p><strong>GABA(γ- アミノ酪酸)</strong>は、脳内で最も広く働く抑制性の神経伝達物質であり、他の四物質のように「快感を生み出す」というより、「不快や不安を鎮めることで、間接的に心地よさをもたらす」物質として理解するのが正確である。 GABA 系の機能低下が不安障害やうつ病の病態に関与するという「 GABA 仮説」を検討した総説は、 GABA 作動性の機能不全が不安障害とうつ病に共通する病態生理である可能性を指摘している <sup class="fnref"><a id="fnref-25-1" href="#ref-25">[25]</a></sup> 。したがって GABA を他の五物質と同列の「快感物質」として扱うのは正確でなく、「快の生成」と「不快の除去」という異なるメカニズムに位置づけて理解する必要がある。</p>
-<p><strong>フェニルエチルアミン(PEA)</strong>は、「恋愛ホルモン」「恋の分子」として日本語圏でも広く紹介されている物質である。この結びつきは、精神科医 Michael Liebowitz が 1983 年の著書で、 PEA の化学構造がアンフェタミン類に似ており、恋愛初期の高揚感に似た気分の変化を引き起こしうると推測したことに端を発する。しかし、この仮説を裏付ける実証データはこれまで一度も示されていない。恋愛中の人とそうでない人の PEA 濃度を直接比較した研究は存在せず、さらに Liebowitz 自身も、経口摂取した PEA は速やかに酵素分解されるため脳内で十分な濃度に達しないことを著書の中で認めていた <sup class="fnref"><a id="fnref-26-1" href="#ref-26">[26]</a></sup> 。この点を詳細に検証した McGill 大学サイエンス・アンド・ソサエティ室の解説も、 PEA と恋愛感情を直接結びつける科学的根拠は存在しないと指摘している <sup class="fnref"><a id="fnref-27-1" href="#ref-27">[27]</a></sup> 。したがって「 PEA= 恋愛ホルモン」という言説は、五物質の解説で扱った俗説以上に裏付けが薄い、典型的な単純化の例として位置づけられる。</p>
+<p><strong>内因性カンナビノイド（アナンダミド）</strong>は、四章で触れたランナーズハイの議論にすでに登場している物質である。 1992 年、 Devane らはブタの脳からカンナビノイド受容体 (CB1) に結合する脂質性の物質を単離し、サンスクリット語で「至福」を意味する「 ananda 」にちなんで「アナンダミド」と名付けた <sup><a id="fnref-23-1" href="#ref-23">[23]</a></sup> 。この物質は脳内で作られる内因性のカンナビノイドであり、大麻の主成分である THC と同じ受容体に結合して多幸感をもたらすとされる。四章で見たように、運動後の抗不安作用・鎮痛作用にカンナビノイド受容体が関与するという知見 <sup><a id="fnref-17-2" href="#ref-17">[17]</a></sup> とあわせて考えると、アナンダミドは五物質と並んで比較的裏付けの厚い「快感物質」の候補だと言える。</p>
+<p><strong>バソプレシン</strong>は、オキシトシンと構造・起源の近いホルモンであり、対の関係で語られることが多い。プレーリーハタネズミという一夫一婦制をとる齧歯類を用いた研究群は、オキシトシンが主に雌のペアボンド（つがいの絆）形成に、バソプレシンが主に雄のペアボンド形成と縄張り防衛行動に関与し、両者が中脳辺縁系のドーパミン報酬系と協調して作用することで、特定の相手への選好（パートナー選好）が形成されることを示している <sup><a id="fnref-24-1" href="#ref-24">[24]</a></sup> 。オキシトシンだけでなくバソプレシンも社会的な絆の形成に関与するという知見は、動物モデルにおいては比較的確立した知見に区分できる。ただし、四章で見たオキシトシン研究への懐疑と同様、ヒトにおける効果の大きさや測定法の妥当性については、なお慎重な検証が必要である。</p>
+<p><strong>GABA （γ- アミノ酪酸）</strong>は、脳内で最も広く働く抑制性の神経伝達物質であり、他の四物質のように「快感を生み出す」というより、「不快や不安を鎮めることで、間接的に心地よさをもたらす」物質として理解するのが正確である。 GABA 系の機能低下が不安障害やうつ病の病態に関与するという「 GABA 仮説」を検討した総説は、 GABA 作動性の機能不全が不安障害とうつ病に共通する病態生理である可能性を指摘している <sup><a id="fnref-25-1" href="#ref-25">[25]</a></sup> 。したがって GABA を他の五物質と同列の「快感物質」として扱うのは正確でなく、「快の生成」と「不快の除去」という異なるメカニズムに位置づけて理解する必要がある。</p>
+<p><strong>フェニルエチルアミン (PEA)</strong>は、「恋愛ホルモン」「恋の分子」として日本語圏でも広く紹介されている物質である。この結びつきは、精神科医 Michael Liebowitz が 1983 年の著書で、 PEA の化学構造がアンフェタミン類に似ており、恋愛初期の高揚感に似た気分の変化を引き起こしうると推測したことに端を発する。しかし、この仮説を裏付ける実証データはこれまで一度も示されていない。恋愛中の人とそうでない人の PEA 濃度を直接比較した研究は存在せず、さらに Liebowitz 自身も、経口摂取した PEA は速やかに酵素分解されるため脳内で十分な濃度に達しないことを著書の中で認めていた <sup><a id="fnref-26-1" href="#ref-26">[26]</a></sup> 。この点を詳細に検証した McGill 大学サイエンス・アンド・ソサエティ室の解説も、 PEA と恋愛感情を直接結びつける科学的根拠は存在しないと指摘している <sup><a id="fnref-27-1" href="#ref-27">[27]</a></sup> 。したがって「 PEA= 恋愛ホルモン」という言説は、五物質の解説で扱った俗説以上に裏付けが薄い、典型的な単純化の例として位置づけられる。</p>
 <p>以上の四物質は、五物質と比べて一般への浸透度は低いものの、アナンダミドとバソプレシンは動物実験を中心に相応の裏付けがあり、 GABA は快感そのものではなく不安・不快の除去という異なる経路で幸福感に寄与し、 PEA に至っては「恋愛ホルモン」という通俗的な語りを支える実証データがそもそも存在しない。ここでも、確立した知見・議論中の論点・裏付けのない俗説という三区分は有効に機能する。</p>
 
 <div class="figure">
@@ -284,7 +283,7 @@ strong{font-weight:bold;}
 <text x="655" y="100" text-anchor="middle" font-size="13" fill="#242522">アナンダミドは</text>
 <text x="655" y="115" text-anchor="middle" font-size="13" fill="#242522">快感物質の候補</text>
 </svg>
-<p class="figure-caption">図 2: 本稿で検証した主要な通説・知見を、俗説から確立した知見までの一本の軸上に位置づけたもの(位置は本文の検証結果に基づく目安であり、厳密な数値尺度ではない)</p>
+<p class="figure-caption">図 2: 本稿で検証した主要な通説・知見を、俗説から確立した知見までの一本の軸上に位置づけたもの（位置は本文の検証結果に基づく目安であり、厳密な数値尺度ではない）</p>
 </div>
 
 <h2 id="sec7">7. まとめ</h2>
@@ -294,34 +293,35 @@ strong{font-weight:bold;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">日本神経科学学会「日本神経科学学会とは」 <a href="https://www.jnss.org/about">jnss.org</a> <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">日本学術会議 心理学・教育学委員会心理学分野の参照基準検討分科会「大学教育の分野別質保証のための教育課程編成上の参照基準 心理学分野」 2014 年 9 月 30 日 <a href="https://www.scj.go.jp/ja/info/kohyo/pdf/kohyo-22-h140930-4.pdf">PDF</a> <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">公益社団法人日本薬学会「アドレナリン」 <a href="https://www.pharm.or.jp/words/post-8.html">pharm.or.jp</a> <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">厚生労働省 e- ヘルスネット「セロトニン」 <a href="https://www.e-healthnet.mhlw.go.jp/information/keywords/serotonin">e-healthnet.mhlw.go.jp</a> <a class="fnback" href="#fnref-4-1">↩</a> <a class="fnback" href="#fnref-4-2">↩</a></li>
-<li id="ref-5">Westbrook, A. &amp; Frank, M. (2018). Dopamine, Effort-Based Choice, and Behavioral Economics. <em>Frontiers in Behavioral Neuroscience</em>. <a href="https://www.frontiersin.org/journals/behavioral-neuroscience/articles/10.3389/fnbeh.2018.00052/full">全文</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">Neuropsychopharmacology. Wikipedia. <a href="https://en.wikipedia.org/wiki/Neuropsychopharmacology">Wikipedia</a> <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">公益社団法人日本薬学会「交感神経 - 副腎髄質系」 <a href="https://www.pharm.or.jp/words/word00898.html">pharm.or.jp</a> <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">Cools, R. (2013). The Cost of Dopamine for Dynamic Cognitive Control. <em>Frontiers in Human Neuroscience</em>. <a href="https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2013.00762/full">全文</a> <a class="fnback" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">名古屋大学「研究成果」 <a href="https://www.nagoya-u.ac.jp/researchinfo/result/2021/11/post-126.html">nagoya-u.ac.jp</a> <a class="fnback" href="#fnref-9-1">↩</a></li>
-<li id="ref-10">Uvnäs-Moberg, K. et al. Oxytocin, social bonding and stress regulation. Karolinska Institutet / Swedish University of Agricultural Sciences. <a href="https://pub.epsilon.slu.se/31486/1/uvnas-moberg-k-et-al-20230810.pdf">PDF</a> <a class="fnback" href="#fnref-10-1">↩</a></li>
-<li id="ref-11">StatPearls. Biochemistry, Endorphin. National Center for Biotechnology Information. <a href="https://www.ncbi.nlm.nih.gov/books/NBK470306/">NCBI</a> <a class="fnback" href="#fnref-11-1">↩</a></li>
-<li id="ref-12">Dunbar, R.I.M. et al. (2012). Social laughter is correlated with an elevated pain threshold. <em>Proceedings of the Royal Society B</em>, 279(1731), 1161-1167. <a href="https://royalsocietypublishing.org/rspb/article/279/1731/1161/73984/Social-laughter-is-correlated-with-an-elevated">全文</a> <a class="fnback" href="#fnref-12-1">↩</a></li>
-<li id="ref-13">Schultz, W., Dayan, P., &amp; Montague, P.R. (1997). A neural substrate of prediction and reward. <em>Science</em>, 275(5306), 1593-1599.(要旨は <a href="https://www.pnas.org/doi/pdf/10.1073/pnas.1014269108">PNAS</a> 経由で確認) <a class="fnback" href="#fnref-13-1">↩</a></li>
-<li id="ref-14">Berridge, K.C. &amp; Robinson, T.E. (2007; 続報 2025). The debate over dopamine's role in reward. Berridge Lab, University of Michigan. <a href="https://sites.lsa.umich.edu/berridge-lab/">Berridge Lab</a> <a class="fnback" href="#fnref-14-1">↩</a></li>
-<li id="ref-15">Light, K.C., Grewen, K.M., &amp; Amico, J.A. (2005). More frequent partner hugs and higher oxytocin levels are linked to lower blood pressure and heart rate in premenopausal women. <em>Biological Psychology</em>, 69(1), 5-21. <a href="https://mzellner.com/page4/files/2005-light.pdf">PDF</a> <a class="fnback" href="#fnref-15-1">↩</a></li>
-<li id="ref-16">Burenkova, O.V. et al. (2023). Toward Establishing Standardized Methods for the Measurement of Oxytocin in Social Neuroscience. <em>Psychological Bulletin</em>, 149(9-10), 549-579. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11077008/">PMC</a> <a class="fnback" href="#fnref-16-1">↩</a></li>
-<li id="ref-17">Fuss, J. et al. (2015). A runner's high depends on cannabinoid receptors in mice. <em>PNAS</em>, 112(42), 13105-13108. <a href="https://www.pnas.org/doi/10.1073/pnas.1514996112">PNAS</a> <a class="fnback" href="#fnref-17-1">↩</a> <a class="fnback" href="#fnref-17-2">↩</a></li>
-<li id="ref-18">Do Endocannabinoids Cause the Runner's High? Evidence and Open Questions. PubMed. <a href="https://pubmed.ncbi.nlm.nih.gov/35081831/">PubMed</a> <a class="fnback" href="#fnref-18-1">↩</a></li>
-<li id="ref-19">Moncrieff, J. et al. (2022). The serotonin theory of depression: a systematic umbrella review of the evidence. <em>Molecular Psychiatry</em>, 28, 3243-3256. <a href="https://www.nature.com/articles/s41380-022-01661-0">全文</a> <a class="fnback" href="#fnref-19-1">↩</a></li>
-<li id="ref-20">Serotonin and depression - a riposte to Moncrieff et al. (2022). PubMed. <a href="https://pubmed.ncbi.nlm.nih.gov/36356194/">PubMed</a> <a class="fnback" href="#fnref-20-1">↩</a></li>
-<li id="ref-21">The Serotonin Fixation: Much Ado About Nothing New. <em>Psychiatric Times</em>. <a href="https://www.psychiatrictimes.com/view/the-serotonin-fixation-much-ado-about-nothing-new">記事</a> <a class="fnback" href="#fnref-21-1">↩</a></li>
-<li id="ref-22">5 Myths About Serotonin. <em>Psychology Today</em>. <a href="https://www.psychologytoday.com/ca/blog/the-modern-brain/202207/5-myths-about-serotonin">記事</a> <a class="fnback" href="#fnref-22-1">↩</a></li>
-<li id="ref-23">Devane, W.A. et al. (1992). Isolation and Structure of a Brain Constituent That Binds to the Cannabinoid Receptor. <em>Science</em>, 258(5090), 1946-1949. <a href="https://www.researchgate.net/publication/21684638_Isolation_and_Structure_of_a_Brain_Constituent_That_Binds_to_the_Cannabinoid_Receptor">ResearchGate</a> <a class="fnback" href="#fnref-23-1">↩</a></li>
-<li id="ref-24">Young, L.J. &amp; Wang, Z. (2004). The neurobiology of pair bonding. <em>Nature Neuroscience</em>, 7(10), 1048-1054. <a href="https://www.nature.com/articles/nn1327">全文</a> <a class="fnback" href="#fnref-24-1">↩</a></li>
-<li id="ref-25">Möhler, H. (2012). The GABA system in anxiety and depression and its therapeutic potential. <em>Neuropharmacology</em>, 62(1), 42-53. <a href="https://pubmed.ncbi.nlm.nih.gov/21889518/">PubMed</a> <a class="fnback" href="#fnref-25-1">↩</a></li>
-<li id="ref-26">Conti, M. (2024). There is no "love molecule". No evidence that phenylethylamine is directly involved in romantic love. Preprints.org, 2024070336. <a href="https://www.preprints.org/manuscript/202407.0336">Preprints.org</a> <a class="fnback" href="#fnref-26-1">↩</a></li>
-<li id="ref-27">Phenylethylamine is Said To Stoke the Fire of Love. Here Comes the Water Bucket. McGill University Office for Science and Society. <a href="https://www.mcgill.ca/oss/article/history-general-science/phenylethylamine-said-stroke-fire-love-here-comes-water-bucket">記事</a> <a class="fnback" href="#fnref-27-1">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 日本神経科学学会「日本神経科学学会とは」 <a href="https://www.jnss.org/about">jnss.org</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 日本学術会議 心理学・教育学委員会心理学分野の参照基準検討分科会「大学教育の分野別質保証のための教育課程編成上の参照基準 心理学分野」 2014 年 9 月 30 日 <a href="https://www.scj.go.jp/ja/info/kohyo/pdf/kohyo-22-h140930-4.pdf">PDF</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> 公益社団法人日本薬学会「アドレナリン」 <a href="https://www.pharm.or.jp/words/post-8.html">pharm.or.jp</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> 厚生労働省 e- ヘルスネット「セロトニン」 <a href="https://www.e-healthnet.mhlw.go.jp/information/keywords/serotonin">e-healthnet.mhlw.go.jp</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Westbrook, A. &amp; Frank, M. (2018) . Dopamine, Effort-Based Choice, and Behavioral Economics. <em>Frontiers in Behavioral Neuroscience</em>. <a href="https://www.frontiersin.org/journals/behavioral-neuroscience/articles/10.3389/fnbeh.2018.00052/full">全文</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Neuropsychopharmacology. Wikipedia. <a href="https://en.wikipedia.org/wiki/Neuropsychopharmacology">Wikipedia</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 公益社団法人日本薬学会「交感神経 - 副腎髄質系」 <a href="https://www.pharm.or.jp/words/word00898.html">pharm.or.jp</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Cools, R. (2013) . The Cost of Dopamine for Dynamic Cognitive Control. <em>Frontiers in Human Neuroscience</em>. <a href="https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2013.00762/full">全文</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 名古屋大学「研究成果」 <a href="https://www.nagoya-u.ac.jp/researchinfo/result/2021/11/post-126.html">nagoya-u.ac.jp</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Uvnäs-Moberg, K. et al. Oxytocin, social bonding and stress regulation. Karolinska Institutet / Swedish University of Agricultural Sciences. <a href="https://pub.epsilon.slu.se/31486/1/uvnas-moberg-k-et-al-20230810.pdf">PDF</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> StatPearls. Biochemistry, Endorphin. National Center for Biotechnology Information. <a href="https://www.ncbi.nlm.nih.gov/books/NBK470306/">NCBI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Dunbar, R.I.M. et al. (2012) . Social laughter is correlated with an elevated pain threshold. <em>Proceedings of the Royal Society B</em>, 279 (1731) , 1161-1167. <a href="https://royalsocietypublishing.org/rspb/article/279/1731/1161/73984/Social-laughter-is-correlated-with-an-elevated">全文</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Schultz, W., Dayan, P., &amp; Montague, P.R. (1997) . A neural substrate of prediction and reward. <em>Science</em>, 275 (5306) , 1593-1599. （要旨は <a href="https://www.pnas.org/doi/pdf/10.1073/pnas.1014269108">PNAS</a> 経由で確認）</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Berridge, K.C. &amp; Robinson, T.E. (2007; 続報 2025) . The debate over dopamine's role in reward. Berridge Lab, University of Michigan. <a href="https://sites.lsa.umich.edu/berridge-lab/">Berridge Lab</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Light, K.C., Grewen, K.M., &amp; Amico, J.A. (2005) . More frequent partner hugs and higher oxytocin levels are linked to lower blood pressure and heart rate in premenopausal women. <em>Biological Psychology</em>, 69 (1) , 5-21. <a href="https://mzellner.com/page4/files/2005-light.pdf">PDF</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Burenkova, O.V. et al. (2023) . Toward Establishing Standardized Methods for the Measurement of Oxytocin in Social Neuroscience. <em>Psychological Bulletin</em>, 149 (9-10) , 549-579. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11077008/">PMC</a></li>
+<li id="ref-17">^ <sup><a href="#fnref-17-1">a</a></sup> <sup><a href="#fnref-17-2">b</a></sup> Fuss, J. et al. (2015) . A runner's high depends on cannabinoid receptors in mice. <em>PNAS</em>, 112 (42) , 13105-13108. <a href="https://www.pnas.org/doi/10.1073/pnas.1514996112">PNAS</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Do Endocannabinoids Cause the Runner's High? Evidence and Open Questions. PubMed. <a href="https://pubmed.ncbi.nlm.nih.gov/35081831/">PubMed</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Moncrieff, J. et al. (2022) . The serotonin theory of depression: a systematic umbrella review of the evidence. <em>Molecular Psychiatry</em>, 28, 3243-3256. <a href="https://www.nature.com/articles/s41380-022-01661-0">全文</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Serotonin and depression - a riposte to Moncrieff et al. (2022) . PubMed. <a href="https://pubmed.ncbi.nlm.nih.gov/36356194/">PubMed</a></li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> The Serotonin Fixation: Much Ado About Nothing New. <em>Psychiatric Times</em>. <a href="https://www.psychiatrictimes.com/view/the-serotonin-fixation-much-ado-about-nothing-new">記事</a></li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> 5 Myths About Serotonin. <em>Psychology Today</em>. <a href="https://www.psychologytoday.com/ca/blog/the-modern-brain/202207/5-myths-about-serotonin">記事</a></li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Devane, W.A. et al. (1992) . Isolation and Structure of a Brain Constituent That Binds to the Cannabinoid Receptor. <em>Science</em>, 258 (5090) , 1946-1949. <a href="https://www.researchgate.net/publication/21684638_Isolation_and_Structure_of_a_Brain_Constituent_That_Binds_to_the_Cannabinoid_Receptor">ResearchGate</a></li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> Young, L.J. &amp; Wang, Z. (2004) . The neurobiology of pair bonding. <em>Nature Neuroscience</em>, 7 (10) , 1048-1054. <a href="https://www.nature.com/articles/nn1327">全文</a></li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> Möhler, H. (2012) . The GABA system in anxiety and depression and its therapeutic potential. <em>Neuropharmacology</em>, 62 (1) , 42-53. <a href="https://pubmed.ncbi.nlm.nih.gov/21889518/">PubMed</a></li>
+<li id="ref-26"><a href="#fnref-26-1">^</a> Conti, M. (2024) . There is no "love molecule". No evidence that phenylethylamine is directly involved in romantic love. Preprints.org, 2024070336. <a href="https://www.preprints.org/manuscript/202407.0336">Preprints.org</a></li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> Phenylethylamine is Said To Stoke the Fire of Love. Here Comes the Water Bucket. McGill University Office for Science and Society. <a href="https://www.mcgill.ca/oss/article/history-general-science/phenylethylamine-said-stroke-fire-love-here-comes-water-bucket">記事</a></li>
 </ol>
 <p class="note">本稿は、幸福感・快感に関わる脳内物質をめぐる一般向けの語りを、学際性の見取り図と通説検証という二つの観点から整理した論考であり、査読を経た学術論文ではない。個々の研究の紹介は要約にとどまり、原論文が付す条件・限界のすべてを反映しているわけではない。図 1 ・図 2 は本文の記述を視覚化した補助図であり、独自の測定データに基づくものではない。より正確な情報を求める場合は、各参考文献の一次資料に直接あたられたい。</p>
 </div>

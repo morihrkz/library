@@ -18,9 +18,10 @@ body{
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
+.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0; margin:0 0 40px; color:var(--muted); font-size:15px; line-height:1.9;}
 .toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
 .toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
 .toc ol{margin:0; padding-left:1.3em;}
@@ -41,28 +42,22 @@ p{font-size:19px; margin:0 0 20px;}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
-.refs li a.backref{color:var(--link); text-decoration:none; margin-left:6px; font-size:14px;}
-.refs li a.backref:hover{text-decoration:underline;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
-.no-marker-child {
-  list-style: none;
-  padding-left: 4px;
 }
 </style>
 </head>
@@ -72,16 +67,20 @@ sup.fnref a:hover{text-decoration:underline;}
 <div class="kicker">認知心理学・組織行動論</div>
 <h1>アンダーマイニング効果<br>――報酬はなぜやる気を奪うのか</h1>
 <p class="subtitle">How External Rewards Undermine Intrinsic Motivation</p>
-<div class="meta">【本稿の目的】本稿は、報酬が内発的動機づけを損なうアンダーマイニング効果について、デシらの実証研究に基づく発生機序を整理し、組織・教育・家庭という三つの応用場面における対策を検討する試論である。報酬制度そのものを否定するものではなく、報酬の種類・提示の仕方によって効果の向きが変わりうるという条件つきの命題を扱う。</div>
+<div class="lede">
+<p>報酬は、やる気を引き出す最も直感的な手段に見える。だが興味や楽しさから自発的に行っていた行動に金銭や物品の報酬を与えると、かえってその行動への意欲が失われる――この逆説は、心理学の実証研究によって繰り返し確認されてきた。</p>
+<p>本稿では、この「アンダーマイニング効果」がなぜ・どのように生じるのかをデシらの実験と自己決定理論に基づいて整理し、報酬の設計次第でこの逆説を避けられるのかを、組織・教育・家庭という三つの場面から検討する。</p>
+</div>
+<div class="meta">【方法と限界】本稿の議論は、デシのソマパズル実験・レッパーらの幼児実験・デシらによる 128 件のメタ分析という、再現性の確認された実証研究に基づく。ただし、これらの知見から導かれる組織・教育・家庭という三つの応用場面での対策は、実験結果からの敷衍による試論であり、個別の制度設計に適用できる一般法則として提示するものではない。報酬の効果は報酬の種類や提示の仕方によって向きが変わりうるため、対象となる行動の性質を個別に見極めた上で検討する必要がある。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. アンダーマイニング効果とは何か</a></li>
-<li><a href="#sec2">2. 何故、やる気が消えるのか――メカニズムと原因</a></li>
-<li><a href="#sec3">3. 日常やビジネスに潜む具体例</a></li>
-<li><a href="#sec4">4. アンダーマイニング効果を防ぐ対策</a></li>
-<li><a href="#sec5">5. まとめ――報酬そのものは悪ではない</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">アンダーマイニング効果とは何か</a></li>
+<li><a href="#sec2">何故、やる気が消えるのか――メカニズムと原因</a></li>
+<li><a href="#sec3">日常やビジネスに潜む具体例</a></li>
+<li><a href="#sec4">アンダーマイニング効果を防ぐ対策</a></li>
+<li><a href="#sec5">まとめ――報酬そのものは悪ではない</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. アンダーマイニング効果とは何か</h2>
@@ -148,13 +147,13 @@ sup.fnref a:hover{text-decoration:underline;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
-<p class="note">※↩をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合、戻り先は最初の参照箇所です。</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Deci, E. L. (1971). Effects of externally mediated rewards on intrinsic motivation. <em>Journal of Personality and Social Psychology</em>, 18 (1), 105–115. <a href="https://psycnet.apa.org/record/1971-19620-001">APA PsycNet</a> <a class="fnback" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">Deci, E. L., &amp; Ryan, R. M. (1985). <em>Intrinsic Motivation and Self-Determination in Human Behavior</em>. Plenum Press. <a href="https://selfdeterminationtheory.org/">Self-Determination Theory</a> <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">Deci, E. L., Koestner, R., &amp; Ryan, R. M. (1999). A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation. <em>Psychological Bulletin</em>, 125 (6), 627–668. <a href="https://psycnet.apa.org/record/1999-01567-001">APA PsycNet</a> <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">Lepper, M. R., Greene, D., &amp; Nisbett, R. E. (1973). Undermining children's intrinsic interest with extrinsic reward: A test of the "overjustification" hypothesis. <em>Journal of Personality and Social Psychology</em>, 28 (1), 129–137. <a href="https://psycnet.apa.org/record/1974-10497-001">APA PsycNet</a> <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">Henderlong, J., &amp; Lepper, M. R. (2002). The effects of praise on children's intrinsic motivation: A review and synthesis. <em>Psychological Bulletin</em>, 128 (5), 774–795. <a href="https://psycnet.apa.org/record/2002-15694-005">APA PsycNet</a> <a class="fnback" href="#fnref-5-1">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Deci, E. L. (1971). Effects of externally mediated rewards on intrinsic motivation. <em>Journal of Personality and Social Psychology</em>, 18 (1), 105–115. <a href="https://psycnet.apa.org/record/1971-19620-001">APA PsycNet</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Deci, E. L., &amp; Ryan, R. M. (1985). <em>Intrinsic Motivation and Self-Determination in Human Behavior</em>. Plenum Press. <a href="https://selfdeterminationtheory.org/">Self-Determination Theory</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Deci, E. L., Koestner, R., &amp; Ryan, R. M. (1999). A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation. <em>Psychological Bulletin</em>, 125 (6), 627–668. <a href="https://psycnet.apa.org/record/1999-01567-001">APA PsycNet</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Lepper, M. R., Greene, D., &amp; Nisbett, R. E. (1973). Undermining children's intrinsic interest with extrinsic reward: A test of the "overjustification" hypothesis. <em>Journal of Personality and Social Psychology</em>, 28 (1), 129–137. <a href="https://psycnet.apa.org/record/1974-10497-001">APA PsycNet</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Henderlong, J., &amp; Lepper, M. R. (2002). The effects of praise on children's intrinsic motivation: A review and synthesis. <em>Psychological Bulletin</em>, 128 (5), 774–795. <a href="https://psycnet.apa.org/record/2002-15694-005">APA PsycNet</a></li>
 </ol>
 <p class="note">本稿で紹介した実験知見は、いずれも実証研究として再現・追試が重ねられてきたものだが、報酬設計の最適解は組織文化・年齢・課題の性質によって異なりうる。個別の制度設計に適用する際は、対象となる行動がもともと内発的な関心を伴うものかどうかを見極めた上で検討することが望ましい。</p>
 </div>
