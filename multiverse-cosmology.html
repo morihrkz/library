@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -43,15 +43,18 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -78,22 +77,22 @@ pre code{background:none; padding:0;}
 <h1>多元宇宙論とビッグバン以前<br>――理論宇宙論における観測事実と仮説の境界</h1>
 <p class="subtitle">Multiverse Theory and What Preceded the Big Bang: The Boundary between Observation and Hypothesis in Theoretical Cosmology</p>
 <div class="lede"><p>マルチバースとビッグバン以前をめぐる観測事実・理論的帰結・仮説を区別して整理する理論宇宙論エッセイ。</p></div>
-<div class="lede"><p>本稿は、理論宇宙論の現状を一般読者向けに説明することを目的とした解説であり、特定の未検証理論を事実として断定するものではない。観測事実・理論的帰結・未検証の仮説・哲学的解釈を混ぜないことを編集方針とし、数値・年代・書誌情報は原論文および公的な科学資料に一件ずつ照らして確認している。</p></div>
+<div class="meta">【方法と限界】本稿は、理論宇宙論の現状を一般読者向けに説明することを目的とした解説であり、特定の未検証理論を事実として断定するものではない。観測事実・理論的帰結・未検証の仮説・哲学的解釈を混ぜないことを編集方針とし、数値・年代・書誌情報は原論文および公的な科学資料に一件ずつ照らして確認している。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. この記事の読み方</a></li>
-<li><a href="#sec2">2. 二つの違和感から</a></li>
-<li><a href="#sec3">3. ビッグバンは宇宙の爆発ではない</a></li>
-<li><a href="#sec4">4. インフレーションは何を説明し、何をまだ説明していないのか</a></li>
-<li><a href="#sec5">5. 永久インフレーションとマルチバース――数学から出てくる「別の宇宙」</a></li>
-<li><a href="#sec6">6. 真空エネルギーと宇宙定数――120 桁問題の本当の姿</a></li>
-<li><a href="#sec7">7. 「似た宇宙」を四つに分ける――テグマークと多世界解釈</a></li>
-<li><a href="#sec8">8. 野村泰紀氏の量子マルチバース――魅力的だが、まだ確立理論ではない</a></li>
-<li><a href="#sec9">9. では「ビッグバンの前」はどうなるのか</a></li>
-<li><a href="#sec10">10. 無境界・トンネル・量子バウンス――三つの「その先」の描像</a></li>
-<li><a href="#sec11">11. なぜ「前」という言葉が難しいのか</a></li>
-<li><a href="#sec12">12. 最後に残るもの――宇宙論の強さは「分からない」と言えることにある</a></li>
-</ul>
+<ol><li><a href="#sec1">この記事の読み方</a></li>
+<li><a href="#sec2">二つの違和感から</a></li>
+<li><a href="#sec3">ビッグバンは宇宙の爆発ではない</a></li>
+<li><a href="#sec4">インフレーションは何を説明し、何をまだ説明していないのか</a></li>
+<li><a href="#sec5">永久インフレーションとマルチバース――数学から出てくる「別の宇宙」</a></li>
+<li><a href="#sec6">真空エネルギーと宇宙定数――120 桁問題の本当の姿</a></li>
+<li><a href="#sec7">「似た宇宙」を四つに分ける――テグマークと多世界解釈</a></li>
+<li><a href="#sec8">野村泰紀氏の量子マルチバース――魅力的だが、まだ確立理論ではない</a></li>
+<li><a href="#sec9">では「ビッグバンの前」はどうなるのか</a></li>
+<li><a href="#sec10">無境界・トンネル・量子バウンス――三つの「その先」の描像</a></li>
+<li><a href="#sec11">なぜ「前」という言葉が難しいのか</a></li>
+<li><a href="#sec12">最後に残るもの――宇宙論の強さは「分からない」と言えることにある</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. この記事の読み方</h2>
 <p>以下では、観測によって確かめられていること、そこから強く支持される理論、理論上は整合的だが未検証の提案、そして哲学的な解釈をできるだけ分けて扱う。
@@ -112,8 +111,8 @@ pre code{background:none; padding:0;}
 <h2 id="sec3">3. ビッグバンは宇宙の爆発ではない</h2>
 <p>ビッグバンという名前は、どうしても一個の爆弾が空間の中で爆発したような映像を呼び起こす。
 しかし標準的な宇宙論が描いているのは、そういう出来事ではない。宇宙は膨張しており、過去へ遡るほど高温・高密度になっていく。
-ESA/Hubble の用語解説も、ビッグバンという語は爆発を指すのではなく、空間そのものの膨張を指す言葉なのだと明示している。</p>
-<p>私たちが直接見られる最も古い光は、宇宙マイクロ波背景放射（CMB）である。 NASA の解説によれば、これはビッグバンから約 38 万年後、宇宙がまだ高温・高密度で不透明だった時代の終わりに放たれた光である。
+ESA/Hubble の用語解説も、ビッグバンという語は爆発を指すのではなく、空間そのものの膨張を指す言葉なのだと明示している。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></p>
+<p>私たちが直接見られる最も古い光は、宇宙マイクロ波背景放射 (CMB) である。 NASA の解説によれば、これはビッグバンから約 38 万年後、宇宙がまだ高温・高密度で不透明だった時代の終わりに放たれた光である。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup>
 それ以前の宇宙は高温のプラズマで、光は電子によって頻繁に散乱され、現在のように自由に遠くまで進めなかった。
 つまり、宇宙の「最初」を語るとき、私たちは映像を直接見ているのではない。現在に残された痕跡を使って、より早い時代を推定している。</p>
 <p>ここは重要だ。宇宙論は「 138 億年前の現場をカメラで撮った学問」ではない。
@@ -125,10 +124,10 @@ CMB 、銀河の分布、元素の存在量、宇宙膨張など、異なる観�
 <p>宇宙論では「見えない過去」を、現在に残された観測可能な痕跡から復元する。</p>
 <h2 id="sec4">4. インフレーションは何を説明し、何をまだ説明していないのか</h2>
 <p>初期宇宙を考えるうえで重要な仮説が、宇宙インフレーションである。非常に早い時代に、空間が急激な加速膨張を経験したと考える。
-この考え方は、宇宙が大規模には非常に平坦に見えることや、遠く離れた領域の性質が驚くほど似ていることを説明する枠組みを与えた。
+この考え方は、宇宙が大規模には非常に平坦に見えることや、遠く離れた領域の性質が驚くほど似ていることを説明する枠組みを与えた。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup>
 さらに、量子的な揺らぎが宇宙の膨張によって大きなスケールへ引き伸ばされ、後の銀河や大規模構造の種になったという描像も、現在の宇宙論の重要な柱になっている。</p>
 <p>ただし、ここで「インフレーションは観測された」と言い切ってしまうと、話を一段飛ばしてしまう。
-CMB の統計的性質はインフレーションの予測と整合的だが、インフレーションそのものを直接撮影したわけではない。
+CMB の統計的性質はインフレーションの予測と整合的だが <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 、インフレーションそのものを直接撮影したわけではない。
 とくに、インフレーションを駆動した物理的機構や、その最初の条件はまだ分かっていない。</p>
 <p><strong>証拠の強さを整理すると：</strong>
 CMB などの観測は、初期宇宙の平坦性や密度ゆらぎの性質を非常に精密に制約している。
@@ -143,8 +142,8 @@ CMB などの観測は、初期宇宙の平坦性や密度ゆらぎの性質を�
 全体としてインフレーションが未来へ向かって終わらないという構造が生じうる。
 その過程で「ポケット宇宙」や「泡宇宙」と呼ばれる領域を考えることができる。</p>
 <p>ただし、ここで一つ注意がいる。「インフレーションを採用した瞬間、マルチバースが数学的必然として立ち現れる」という言い方は強すぎる。
-Alan Guth 自身のレビューは、多くのインフレーション模型が未来方向に終わらないインフレーションへ至ると論じる一方で、
-インフレーションする時空は過去方向には測地線的に不完全であり（Borde–Guth–Vilenkin の定理）、
+Alan Guth 自身のレビューは、多くのインフレーション模型が未来方向に終わらないインフレーションへ至ると論じる一方で <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 、
+インフレーションする時空は過去方向には測地線的に不完全であり (Borde–Guth–Vilenkin の定理）<sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 、
 インフレーション領域の過去側の境界を記述するには、インフレーション以外の物理が必要だと明言している。
 つまり「未来に向かって永久」という話と、「過去から無限に続く」という話を混同してはいけない。</p>
 <p>さらに、泡宇宙そのものを直接観測できるわけではない。私たちが観測できるのは、私たちの宇宙の内部に残る痕跡だけである。
@@ -160,22 +159,22 @@ Alan Guth 自身のレビューは、多くのインフレーション模型が�
 量子場理論の真空エネルギーの扱いには、正則化、繰り込み、重力との結合などが関わり、単純なゼロ点エネルギーの足し算をそのまま観測可能な宇宙定数と同一視することはできない。
 本当の問題は、重力と量子場理論を組み合わせたとき、なぜ観測される宇宙定数がこれほど小さいのかを自然に説明できないことである。
 実際、この問題を包括的に検討した Jerome Martin のレビューは、しばしば引かれる「 122 桁」という数字そのものが、
-自由場の真空エネルギーを正しく繰り込んだ場合には成り立たないと指摘している。</p>
+自由場の真空エネルギーを正しく繰り込んだ場合には成り立たないと指摘している。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></p>
 <p>そこで、もし宇宙ごとに真空エネルギーが異なるならどうなるか、という発想が出てくる。
 ある値が大きすぎれば銀河形成が難しくなる。すると、観測者が存在できる宇宙は、その条件を満たす領域に偏る。
-Steven Weinberg は 1987 年、宇宙定数に対するこの種の人間原理的な上限を論じ、後のダークエネルギー観測と比較して大きな影響を与えた。</p>
+Steven Weinberg は 1987 年、宇宙定数に対するこの種の人間原理的な上限を論じ、後のダークエネルギー観測と比較して大きな影響を与えた。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
 <p>ただし、ここでも「人間原理が宇宙定数を予言した」と単純化しない方がよい。
 何を確率分布として採用するか、観測者をどう定義するか、どのようなマルチバースを想定するかによって結論が変わりうるからである。
 人間原理は強力な説明の候補だが、それだけで問題が完全に解決したわけではない。</p>
 <p><strong>「 10500 」という数字にも注意。</strong>
-超弦理論のランドスケープでは、余剰次元のコンパクト化にどうフラックスを載せるかによって、非常に多数の真空解が生じうると議論されている。
+超弦理論のランドスケープでは、余剰次元のコンパクト化にどうフラックスを載せるかによって、非常に多数の真空解が生じうると議論されている。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup>
 よく引かれる 10500 は、その真空を数え上げる試みから出てきた見積もりの一つにすぎない。
-数え方や対象とする構成を変えれば桁数そのものが大きく変わり、たとえば F 理論のあるコンパクト化については 10272000 という見積もりも報告されている。
+数え方や対象とする構成を変えれば桁数そのものが大きく変わり、たとえば F 理論のあるコンパクト化については 10272000 という見積もりも報告されている。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup>
 いずれにせよ、これは「宇宙が 10500 個存在する」という意味ではないし、ランドスケープの解が実際に実現していることが観測で確認されたわけでもない。
 「膨大な数の理論的真空候補」と「膨大な数の実在宇宙」を同じ記事にしないことが重要である。</p>
 <h2 id="sec7">7. 「似た宇宙」を四つに分ける――テグマークと多世界解釈</h2>
 <p>「マルチバース」という言葉が混乱を招く最大の理由の一つは、異なる種類のアイデアが同じ単語で呼ばれていることだ。
-Max Tegmark は、マルチバースについて四つのレベルを区別する分類を提示した。
+Max Tegmark は、マルチバースについて四つのレベルを区別する分類を提示した。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup>
 これは「四種類の宇宙が観測された」という分類ではなく、異なる理論的アイデアを整理するための概念的な地図である。</p>
 <table>
 <thead>
@@ -213,12 +212,12 @@ Level I は、非常に広大な空間の中で物質配置が再現される可
 Level III は、量子状態のユニタリーな時間発展を多世界的に解釈する。
 「パラレルワールド」という一語で両者を包むと、物理的な違いが消えてしまう。</p>
 <h2 id="sec8">8. 野村泰紀氏の量子マルチバース――魅力的だが、まだ確立理論ではない</h2>
-<p>ここで野村泰紀氏（カリフォルニア大学バークレー校）の仕事が登場する。野村氏は 2011 年の論文で、永久インフレーションによるマルチバースと量子力学の多世界は同じものだ、とする枠組みを提示した。
+<p>ここで野村泰紀氏（カリフォルニア大学バークレー校）の仕事が登場する。野村氏は 2011 年の論文で、永久インフレーションによるマルチバースと量子力学の多世界は同じものだ、とする枠組みを提示した。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup>
 その発想の魅力は、「無限に増殖する宇宙を外側から数える」という描像そのものを疑い、観測者がアクセスできる有限の領域と、その量子状態の記述から宇宙論を考え直そうとする点にある。</p>
 <p>これは、永久インフレーションに伴う「測度問題」とも関係する。無限個の泡宇宙が存在するなら、「どの種類の宇宙がどのくらいの割合で存在するか」をどう定義すればよいのか。
 無限個どうしを単純に数えて比率を取ることはできない。どこで切って、どの順番で極限を取るかによって結果が変わりうるからだ。</p>
-<p>野村氏のアプローチは、宇宙を量子状態として記述し、観測者の地平線に関連する自由度を重視することで、この問題を量子力学の枠組みから捉え直そうとする。
-さらに 2012 年には、マルチバースを記述する量子状態は始まりも終わりもない「静的」なものであるべきだ、という踏み込んだ提案も行っている。
+<p>野村氏のアプローチは、宇宙を量子状態として記述し、観測者の地平線に関連する自由度を重視することで、この問題を量子力学の枠組みから捉え直そうとする。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup>
+さらに 2012 年には、マルチバースを記述する量子状態は始まりも終わりもない「静的」なものであるべきだ、という踏み込んだ提案も行っている。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup>
 ここには、一般相対論と量子力学をどう一つの理論にまとめるかという、現代物理学最大級の問題が横たわっている。</p>
 <p>しかし、ここは本稿で最も慎重に扱うべき場所でもある。
 「永久インフレーションと多世界解釈は完全に同一の実在だ」と観測によって確定したわけではない。
@@ -240,17 +239,17 @@ Level III は、量子状態のユニタリーな時間発展を多世界的に�
 ただし、その「かもしれない」を確認するには、量子重力の実験的検証が必要である。</p>
 <h2 id="sec10">10. 無境界・トンネル・量子バウンス――三つの「その先」の描像</h2>
 <h3>ハートル＝ホーキングの無境界提案</h3>
-<p>Hartle と Hawking は 1983 年、「宇宙の波動関数」を量子論的に記述する際、宇宙の初期状態に通常の時間的境界を置かないという無境界提案を示した。
+<p>Hartle と Hawking は 1983 年、「宇宙の波動関数」を量子論的に記述する際、宇宙の初期状態に通常の時間的境界を置かないという無境界提案を示した。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup>
 重要なのは、「宇宙が時間の中の一点から始まった」と単純に考えるのではなく、初期宇宙の幾何そのものを量子的に扱うことだ。</p>
 <p>よく使われる「南極より南には行けない」という比喩は、数学的構造を直感的に説明するためのものだ。
 それは「宇宙の南極が実際に丸い空間だった」という観測結果ではない。
 また、虚時間を使った定式化は、日常語でいう「時間を別の方向へ流す」という話でもない。</p>
 <h3>ヴィレンキンのトンネル提案</h3>
-<p>Alexander Vilenkin は、宇宙の波動関数に異なる境界条件を与え、量子トンネル効果によって宇宙が生成されるという提案を行った。
+<p>Alexander Vilenkin は、宇宙の波動関数に異なる境界条件を与え、量子トンネル効果によって宇宙が生成されるという提案を行った。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup>
 ここでいう「 nothing （無）」は、日常語の「何もない空間」と同じではない。
 物理学では、理論が何を前提にしているかを明確にしなければならず、「無」という一語から哲学的な絶対無を連想してはいけない。</p>
 <h3>ループ量子宇宙論と量子バウンス</h3>
-<p>ループ量子宇宙論（LQC）では、量子幾何学の効果によって、古典一般相対論が予測する特異点が回避され、収縮宇宙がバウンスして膨張宇宙へ移行する可能性が研究されている。
+<p>ループ量子宇宙論 (LQC) では、量子幾何学の効果によって、古典一般相対論が予測する特異点が回避され、収縮宇宙がバウンスして膨張宇宙へ移行する可能性が研究されている。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup>
 これは「ビッグバンの前にも宇宙があった」という非常に魅力的な描像を与える。
 しかし、それはあくまで LQC という理論枠組みの中で得られる結果であり、私たちの宇宙が実際にその歴史をたどったと観測で確定したわけではない。</p>
 <p><strong>無境界</strong>「始まり」を通常の境界として置かない</p>
@@ -299,39 +298,40 @@ Level III は、量子状態のユニタリーな時間発展を多世界的に�
 <div class="refs">
 <h2>付録 主要参考文献・確認資料</h2>
 <p>以下はすべて、査読誌の原論文または公的機関の公開資料である。書誌情報（誌名・巻・ページ・年）は一件ずつ原典に当たって確認した。</p>
-<ol><li id="ref-1">Alan H. Guth, <em>Eternal inflation and its implications</em>, Journal of Physics A <strong>40</strong>, 6811–6826 (2007).
-   <a href="https://arxiv.org/abs/hep-th/0702178">arXiv:hep-th/0702178</a></li><li id="ref-2">Arvind Borde, Alan H. Guth, Alexander Vilenkin, <em>Inflationary spacetimes are not past-complete</em>, Physical Review Letters <strong>90</strong>, 151301 (2003).
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。</p>
+<ol><li id="ref-1"><a href="#fnref-1-1">^</a> Alan H. Guth, <em>Eternal inflation and its implications</em>, Journal of Physics A <strong>40</strong>, 6811–6826 (2007) .
+   <a href="https://arxiv.org/abs/hep-th/0702178">arXiv:hep-th/0702178</a></li><li id="ref-2"><a href="#fnref-2-1">^</a> Arvind Borde, Alan H. Guth, Alexander Vilenkin, <em>Inflationary spacetimes are not past-complete</em>, Physical Review Letters <strong>90</strong>, 151301 (2003) .
    <a href="https://arxiv.org/abs/gr-qc/0110012">arXiv:gr-qc/0110012</a>
-――インフレーションする時空が過去方向に測地線的不完全であることを示した定理。</li><li id="ref-3">Alan H. Guth, <em>Inflation</em>, Carnegie Observatories Astrophysics Series, Vol. 2: <em>Measuring and Modeling the Universe</em>(2004).
-   <a href="https://arxiv.org/abs/astro-ph/0404546">arXiv:astro-ph/0404546</a></li><li id="ref-4">Planck Collaboration, <em>Planck 2018 results. X. Constraints on inflation</em>, Astronomy &amp; Astrophysics <strong>641</strong>, A10 (2020).
+――インフレーションする時空が過去方向に測地線的不完全であることを示した定理。</li><li id="ref-3"><a href="#fnref-3-1">^</a> Alan H. Guth, <em>Inflation</em>, Carnegie Observatories Astrophysics Series, Vol. 2: <em>Measuring and Modeling the Universe</em>(2004) .
+   <a href="https://arxiv.org/abs/astro-ph/0404546">arXiv:astro-ph/0404546</a></li><li id="ref-4"><a href="#fnref-4-1">^</a> Planck Collaboration, <em>Planck 2018 results. X. Constraints on inflation</em>, Astronomy &amp; Astrophysics <strong>641</strong>, A10 (2020) .
    <a href="https://arxiv.org/abs/1807.06211">arXiv:1807.06211</a>
-――空間曲率やスペクトル指数の制約はこの最終成果に基づく。</li><li id="ref-5">NASA Science, <em>Big Bang and the Evolution of the Universe</em>.
+――空間曲率やスペクトル指数の制約はこの最終成果に基づく。</li><li id="ref-5"><a href="#fnref-5-1">^</a> NASA Science, <em>Big Bang and the Evolution of the Universe</em>.
    <a href="https://science.nasa.gov/astrophysics/programs/physics-of-the-cosmos/big-bang-and-the-evolution-of-the-universe/">science.nasa.gov</a>
-――CMB がビッグバンから約 38 万年後に放たれたという記述の出典。</li><li id="ref-6">ESA/Hubble, <em>Word Bank: Big Bang</em>.
+――CMB がビッグバンから約 38 万年後に放たれたという記述の出典。</li><li id="ref-6"><a href="#fnref-6-1">^</a> ESA/Hubble, <em>Word Bank: Big Bang</em>.
    <a href="https://esahubble.org/wordbank/big-bang/">esahubble.org</a>
-――「ビッグバン」が爆発ではなく空間の膨張を指すという記述の出典。</li><li id="ref-7">J. B. Hartle and S. W. Hawking, <em>Wave function of the Universe</em>, Physical Review D <strong>28</strong>, 2960 (1983).
-   <a href="https://doi.org/10.1103/PhysRevD.28.2960">DOI</a></li><li id="ref-8">Alexander Vilenkin, <em>Creation of universes from nothing</em>, Physics Letters B <strong>117</strong>, 25–28 (1982).
-   <a href="https://ui.adsabs.harvard.edu/abs/1982PhLB..117...25V/abstract">ADS</a></li><li id="ref-9">Abhay Ashtekar, Tomasz Pawlowski, Parampreet Singh, <em>Quantum Nature of the Big Bang: Improved dynamics</em>, Physical Review D <strong>74</strong>, 084003 (2006).
-   <a href="https://arxiv.org/abs/gr-qc/0607039">arXiv:gr-qc/0607039</a></li><li id="ref-10">Steven Weinberg, <em>Anthropic Bound on the Cosmological Constant</em>, Physical Review Letters <strong>59</strong>, 2607–2610 (1987).
-    <a href="https://doi.org/10.1103/PhysRevLett.59.2607">DOI</a></li><li id="ref-11">Jerome Martin, <em>Everything You Always Wanted To Know About The Cosmological Constant Problem (But Were Afraid To Ask)</em>, Comptes Rendus Physique <strong>13</strong>, 566–665 (2012).
+――「ビッグバン」が爆発ではなく空間の膨張を指すという記述の出典。</li><li id="ref-7"><a href="#fnref-7-1">^</a> J. B. Hartle and S. W. Hawking, <em>Wave function of the Universe</em>, Physical Review D <strong>28</strong>, 2960 (1983) .
+   <a href="https://doi.org/10.1103/PhysRevD.28.2960">DOI</a></li><li id="ref-8"><a href="#fnref-8-1">^</a> Alexander Vilenkin, <em>Creation of universes from nothing</em>, Physics Letters B <strong>117</strong>, 25–28 (1982) .
+   <a href="https://ui.adsabs.harvard.edu/abs/1982PhLB..117...25V/abstract">ADS</a></li><li id="ref-9"><a href="#fnref-9-1">^</a> Abhay Ashtekar, Tomasz Pawlowski, Parampreet Singh, <em>Quantum Nature of the Big Bang: Improved dynamics</em>, Physical Review D <strong>74</strong>, 084003 (2006) .
+   <a href="https://arxiv.org/abs/gr-qc/0607039">arXiv:gr-qc/0607039</a></li><li id="ref-10"><a href="#fnref-10-1">^</a> Steven Weinberg, <em>Anthropic Bound on the Cosmological Constant</em>, Physical Review Letters <strong>59</strong>, 2607–2610 (1987) .
+    <a href="https://doi.org/10.1103/PhysRevLett.59.2607">DOI</a></li><li id="ref-11"><a href="#fnref-11-1">^</a> Jerome Martin, <em>Everything You Always Wanted To Know About The Cosmological Constant Problem (But Were Afraid To Ask)</em>, Comptes Rendus Physique <strong>13</strong>, 566–665 (2012) .
     <a href="https://arxiv.org/abs/1205.3365">arXiv:1205.3365</a><ul>
 <li>「 120 桁のずれ」という通説そのものを批判的に検討した総説。</li>
 </ul>
-</li><li id="ref-12">Michael R. Douglas, <em>The String Theory Landscape</em>, Universe <strong>5</strong>, 176 (2019).
+</li><li id="ref-12"><a href="#fnref-12-1">^</a> Michael R. Douglas, <em>The String Theory Landscape</em>, Universe <strong>5</strong>, 176 (2019) .
     <a href="https://doi.org/10.3390/universe5070176">DOI</a><ul>
 <li>ランドスケープと真空の数え上げに関する総説。</li>
 </ul>
-</li><li id="ref-13">Washington Taylor and Yi-Nan Wang, <em>The F-theory geometry with most flux vacua</em>, JHEP <strong>12</strong>(2015) 164.
+</li><li id="ref-13"><a href="#fnref-13-1">^</a> Washington Taylor and Yi-Nan Wang, <em>The F-theory geometry with most flux vacua</em>, JHEP <strong>12</strong>(2015) 164.
     <a href="https://arxiv.org/abs/1511.03209">arXiv:1511.03209</a><ul>
-<li>真空数の見積もりが数え方に強く依存することを示す例（10272000）。</li>
+<li>真空数の見積もりが数え方に強く依存することを示す例 (10272000) 。</li>
 </ul>
-</li><li id="ref-14">Yasunori Nomura, <em>Physical Theories, Eternal Inflation, and Quantum Universe</em>, JHEP <strong>11</strong>(2011) 063.
+</li><li id="ref-14"><a href="#fnref-14-1">^</a> Yasunori Nomura, <em>Physical Theories, Eternal Inflation, and Quantum Universe</em>, JHEP <strong>11</strong>(2011) 063.
     <a href="https://arxiv.org/abs/1104.2324">arXiv:1104.2324</a><ul>
 <li>「永久インフレーションのマルチバースと量子力学の多世界は同じもの」と結論する論文。</li>
 </ul>
-</li><li id="ref-15">Yasunori Nomura, <em>The Static Quantum Multiverse</em>, Physical Review D <strong>86</strong>, 083505 (2012).
-    <a href="https://arxiv.org/abs/1205.5550">arXiv:1205.5550</a></li><li id="ref-16">Yasunori Nomura, <em>Quantum Mechanics, Gravity, and the Multiverse</em>, Astronomical Review <strong>7</strong>, 36 (2012).
-    <a href="https://arxiv.org/abs/1205.2675">arXiv:1205.2675</a></li><li id="ref-17">Max Tegmark, <em>Parallel Universes</em>, in <em>Science and Ultimate Reality: From Quantum to Cosmos</em>, eds. J. D. Barrow, P. C. W. Davies, C. L. Harper (Cambridge University Press, 2004).
+</li><li id="ref-15"><a href="#fnref-15-1">^</a> Yasunori Nomura, <em>The Static Quantum Multiverse</em>, Physical Review D <strong>86</strong>, 083505 (2012) .
+    <a href="https://arxiv.org/abs/1205.5550">arXiv:1205.5550</a></li><li id="ref-16"><a href="#fnref-16-1">^</a> Yasunori Nomura, <em>Quantum Mechanics, Gravity, and the Multiverse</em>, Astronomical Review <strong>7</strong>, 36 (2012) .
+    <a href="https://arxiv.org/abs/1205.2675">arXiv:1205.2675</a></li><li id="ref-17"><a href="#fnref-17-1">^</a> Max Tegmark, <em>Parallel Universes</em>, in <em>Science and Ultimate Reality: From Quantum to Cosmos</em>, eds. J. D. Barrow, P. C. W. Davies, C. L. Harper (Cambridge University Press, 2004) .
     <a href="https://arxiv.org/abs/astro-ph/0302131">arXiv:astro-ph/0302131</a><ul>
 <li>Level I 〜 IV の四分類の原典。</li>
 </ul>

@@ -18,7 +18,7 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  line-height:1.95;
+  line-height:2;
   font-size:19px;
 }
 .wrap{
@@ -35,31 +35,33 @@ body{
 }
 h1{
   font-size:32px;
-  line-height:1.5;
+  line-height:1.6;
   color:var(--text);
   margin:0 0 12px;
   font-weight:700;
 }
 .subtitle{
   font-size:20px;
+  line-height:1.8;
   color:var(--muted);
   margin:0 0 28px;
 }
 .meta{
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  padding:18px 0;
+  padding:16px 0;
   color:var(--muted);
   font-size:15px;
+  line-height:1.9;
   margin:0 0 40px;
 }
 .lede{
-  font-size:20px;
   color:var(--muted);
   border-left:3px solid var(--accent);
   padding-left:18px;
-  margin:0 0 46px;
+  margin:0 0 40px;
 }
+.lede p{font-size:20px}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
@@ -113,23 +115,18 @@ sup a:hover{text-decoration:underline}
   padding-top:25px;
 }
 .refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
-ol.reflist{font-size:15.5px;line-height:1.65}
-ol.reflist li{margin-bottom:11px}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+ol.reflist{margin:0 0 11px}
+ol.reflist li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
 ol.reflist em{font-style:italic}
-.back{font-size:14px;color:var(--accent);text-decoration:none;margin-left:6px}
-.back:hover{text-decoration:underline}
-.biblist{font-size:15.5px;line-height:1.65;padding-left:1.4em}
-.biblist li{margin-bottom:11px}
-.biblist em{font-style:italic}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:28px}
 .note li{margin-bottom:8px}
 @media (max-width:480px){
   .wrap{padding:32px 16px 80px}
   h1{font-size:27px}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
 }
 </style>
 </head>
@@ -143,25 +140,25 @@ ol.reflist em{font-style:italic}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. もし、違う国で育てられていたら</a></li>
-<li><a href="#sec2">2. 「同じ人物」であることと「今のような人物」であること</a></li>
-<li><a href="#sec3">3. 環境は「自分」をどこまで作るのか</a></li>
-<li><a href="#sec4">4. 生まれつきの部分は無視できるか</a></li>
-<li><a href="#sec5">5. 「別人になる」という言葉を、もう一度疑う</a></li>
-<li><a href="#sec6">6. 二つの「自分はない」を比べる</a></li>
-<li><a href="#sec7">7. 自分について語る物語という視点</a></li>
-<li><a href="#sec8">8. 証拠の強さで議論を仕分ける</a></li>
-<li><a href="#sec9">9. 結論――「自分がない」のではなく、「自分は一つではない」</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">もし、違う国で育てられていたら</a></li>
+<li><a href="#sec2">「同じ人物」であることと「今のような人物」であること</a></li>
+<li><a href="#sec3">環境は「自分」をどこまで作るのか</a></li>
+<li><a href="#sec4">生まれつきの部分は無視できるか</a></li>
+<li><a href="#sec5">「別人になる」という言葉を、もう一度疑う</a></li>
+<li><a href="#sec6">二つの「自分はない」を比べる</a></li>
+<li><a href="#sec7">自分について語る物語という視点</a></li>
+<li><a href="#sec8">証拠の強さで議論を仕分ける</a></li>
+<li><a href="#sec9">結論――「自分がない」のではなく、「自分は一つではない」</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. もし、違う国で育てられていたら</h2>
 <p>生後一歳。まだ言葉も話さず、自分が何者かという感覚すらおぼろげなこの時期に、もしまったく異なる家庭に養子として引き取られていたら――たとえば日本ではなく、韓国や中国の家庭で。</p>
 <p>想像してみてほしい。話す言語が変わる。通う学校が変わる。褒められる行動と叱られる行動が変わる。歴史の授業で習う出来事の意味づけが変わる。友人と距離をどう取るかという暗黙のルールが変わる。二十年後、その人物は今のあなたとどれくらい似ているだろうか。趣味も、価値観も、「自分はこういう人間だ」という自己像も、おそらく今とはかなり違うものになっているはずだ。</p>
 <p>この直観は強い。強すぎて、次のような結論に誘い込まれそうになる――「では、今の自分というのは、しょせん偶然の産物にすぎない。固定した『自分』などどこにも存在しないのではないか」。</p>
-<p>実は、よく似た主張をする本がある。しんめい P 著・鎌田東二監修『自分とか、ないから。教養としての東洋哲学』（サンクチュアリ出版、 2024 年刊、 ISBN 978-4-8014-0127-3 ）である <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup><sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。同書はインド・中国・日本の思想を一般読者向けに紹介しながら、「自分」という実体への素朴な信頼を揺さぶる。本稿は、同書の本文を執筆時点で直接確認していないため、その論証の詳細を再構成することはしない。特に、「自己は食べたものから構成されている」という論点については、公開されている書誌・紹介情報だけから同書の議論全体を正確に再現することができないため、「物質的・構成的な観点から自己の固定性を疑う議論」として、比較のための輪郭だけを示すにとどめる。</p>
-<p>本稿が主役に据えるのは、その物質構成論ではなく、冒頭に掲げた養子の思考実験である。そしてこの思考実験を、哲学における人格の同一性（personal identity）という古い問いの土俵に乗せて検討する。人格の同一性とは、時間をまたいで存在する人物について、「過去のこの人物」と「現在のこの人物」がなぜ同一人物だと言えるのかを問う問題である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。</p>
+<p>実は、よく似た主張をする本がある。しんめい P 著・鎌田東二監修『自分とか、ないから。教養としての東洋哲学』（サンクチュアリ出版、 2024 年刊、 ISBN 978-4-8014-0127-3) である <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup><sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。同書はインド・中国・日本の思想を一般読者向けに紹介しながら、「自分」という実体への素朴な信頼を揺さぶる。本稿は、同書の本文を執筆時点で直接確認していないため、その論証の詳細を再構成することはしない。特に、「自己は食べたものから構成されている」という論点については、公開されている書誌・紹介情報だけから同書の議論全体を正確に再現することができないため、「物質的・構成的な観点から自己の固定性を疑う議論」として、比較のための輪郭だけを示すにとどめる。</p>
+<p>本稿が主役に据えるのは、その物質構成論ではなく、冒頭に掲げた養子の思考実験である。そしてこの思考実験を、哲学における人格の同一性 (personal identity) という古い問いの土俵に乗せて検討する。人格の同一性とは、時間をまたいで存在する人物について、「過去のこの人物」と「現在のこの人物」がなぜ同一人物だと言えるのかを問う問題である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。</p>
 <p>ここで、あらかじめ一つの区別を立てておきたい。思考実験の中で使う「別人になる」という言葉には、実は二つの異なる意味が紛れ込んでいる。</p>
 <ul>
 <li>第一に、<strong>数的同一性</strong>――同じ一人の人間なのか、という哲学上の問題。</li>
@@ -248,31 +245,18 @@ ol.reflist em{font-style:italic}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol class="reflist">
-<li id="ref-1">Stanford Encyclopedia of Philosophy, "Personal Identity," 2023 年版および現行版。人格の存続について、心理的連続性説、身体的・生物学的連続性説、両者の組み合わせ、反基準説など複数の立場が整理されている。<a class="back" href="#fnref-1-1">↩</a></li>
-<li id="ref-2">しんめい P 著、鎌田東二監修『自分とか、ないから。教養としての東洋哲学』サンクチュアリ出版、 2024 年 4 月。国立国会図書館書誌によれば ISBN 978-4-8014-0127-3 、 349 頁。<a class="back" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">CiNii Books 「自分とか、ないから。 : 教養としての東洋哲学」。著者しんめい P 、監修鎌田東二、サンクチュアリ出版、 2024 年 4 月として確認できる。<a class="back" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">John Locke, <em>An Essay Concerning Human Understanding</em>, Book II, Chapter XXVII "Of Identity and Diversity." 第 2 巻第 27 章は 1694 年刊行の第 2 版で追加された。現代の人格同一性論における心理的連続性説の重要な出発点の一つ。<a class="back" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">Derek Parfit, <em>Reasons and Persons</em>, Oxford University Press, 1984. 人格同一性と心理的連続性を区別し、「生存において何が重要か」を検討した代表的著作。<a class="back" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">Hazel Rose Markus &amp; Shinobu Kitayama, "Culture and the Self: Implications for Cognition, Emotion, and Motivation," <em>Psychological Review</em>, 98 (2), 224–253, 1991. DOI: 10.1037/0033-295X.98.2.224.<a class="back" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">Steven J. Heine, Darrin R. Lehman, Hazel Rose Markus &amp; Shinobu Kitayama, "Is There a Universal Need for Positive Self-Regard?", <em>Psychological Review</em>, 106 (4), 766–794, 1999. DOI: 10.1037/0033-295X.106.4.766.<a class="back" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">Tinca J. C. Polderman et al., "Meta-analysis of the Heritability of Human Traits Based on Fifty Years of Twin Studies," <em>Nature Genetics</em>, 47, 702–709, 2015. DOI: 10.1038/ng.3285. この研究は多数の形質についての双生児研究を統合したものであり、個人の性格が一定割合「遺伝で決まる」という意味ではない。<a class="back" href="#fnref-8-1">↩</a></li>
-<li id="ref-9">Marya Schechtman, <em>The Constitution of Selves: Theories of Personal Identity and Psychological Continuity</em>, Cornell University Press, 1996. 自己の物語的構成を人格同一性の問題と関連づけて論じる代表的研究の一つ。<a class="back" href="#fnref-9-1">↩</a></li>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> Stanford Encyclopedia of Philosophy, "Personal Identity," 2023 年版および現行版。人格の存続について、心理的連続性説、身体的・生物学的連続性説、両者の組み合わせ、反基準説など複数の立場が整理されている。 <a href="https://plato.stanford.edu/entries/identity-personal/">Stanford Encyclopedia of Philosophy</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> しんめい P 著、鎌田東二監修『自分とか、ないから。教養としての東洋哲学』サンクチュアリ出版、 2024 年 4 月。国立国会図書館書誌によれば ISBN 978-4-8014-0127-3 、 349 頁。 <a href="https://ndlsearch.ndl.go.jp/books/R100000038-I4694667">国立国会図書館書誌情報</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> CiNii Books 「自分とか、ないから。 : 教養としての東洋哲学」。著者しんめい P 、監修鎌田東二、サンクチュアリ出版、 2024 年 4 月として確認できる。 <a href="https://ci.nii.ac.jp/ncid/BD0654918X">CiNii Books</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> John Locke, <em>An Essay Concerning Human Understanding</em>, Book II, Chapter XXVII "Of Identity and Diversity." 第 2 巻第 27 章は 1694 年刊行の第 2 版で追加された。現代の人格同一性論における心理的連続性説の重要な出発点の一つ。 <a href="https://plato.stanford.edu/entries/locke-personal-identity/">Stanford Encyclopedia of Philosophy: Locke on Personal Identity</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Derek Parfit, <em>Reasons and Persons</em>, Oxford University Press, 1984. 人格同一性と心理的連続性を区別し、「生存において何が重要か」を検討した代表的著作。</li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> Hazel Rose Markus &amp; Shinobu Kitayama, "Culture and the Self: Implications for Cognition, Emotion, and Motivation," <em>Psychological Review</em>, 98 (2), 224–253, 1991. <a href="https://doi.org/10.1037/0033-295X.98.2.224">DOI</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Steven J. Heine, Darrin R. Lehman, Hazel Rose Markus &amp; Shinobu Kitayama, "Is There a Universal Need for Positive Self-Regard?", <em>Psychological Review</em>, 106 (4), 766–794, 1999. <a href="https://doi.org/10.1037/0033-295X.106.4.766">DOI</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Tinca J. C. Polderman et al., "Meta-analysis of the Heritability of Human Traits Based on Fifty Years of Twin Studies," <em>Nature Genetics</em>, 47, 702–709, 2015. この研究は多数の形質についての双生児研究を統合したものであり、個人の性格が一定割合「遺伝で決まる」という意味ではない。 <a href="https://doi.org/10.1038/ng.3285">DOI</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Marya Schechtman, <em>The Constitution of Selves: Theories of Personal Identity and Psychological Continuity</em>, Cornell University Press, 1996. 自己の物語的構成を人格同一性の問題と関連づけて論じる代表的研究の一つ。</li>
 </ol>
-
-<h3>参考文献・出典（書誌情報）</h3>
-<ul class="biblist">
-<li>Locke, John. <em>An Essay Concerning Human Understanding</em>. Book II, Chapter XXVII, added in the 2nd edition, 1694.</li>
-<li>Markus, Hazel Rose, &amp; Kitayama, Shinobu. "Culture and the Self: Implications for Cognition, Emotion, and Motivation." <em>Psychological Review</em>, 98 (2), 224–253, 1991. <a href="https://doi.org/10.1037/0033-295X.98.2.224">DOI</a></li>
-<li>Parfit, Derek. <em>Reasons and Persons</em>. Oxford University Press, 1984.</li>
-<li>Polderman, Tinca J. C., et al. "Meta-analysis of the Heritability of Human Traits Based on Fifty Years of Twin Studies." <em>Nature Genetics</em>, 47, 702–709, 2015. <a href="https://doi.org/10.1038/ng.3285">DOI</a></li>
-<li>Schechtman, Marya. <em>The Constitution of Selves: Theories of Personal Identity and Psychological Continuity</em>. Cornell University Press, 1996.</li>
-<li>Heine, Steven J., Lehman, Darrin R., Markus, Hazel Rose, &amp; Kitayama, Shinobu. "Is There a Universal Need for Positive Self-Regard?" <em>Psychological Review</em>, 106 (4), 766–794, 1999. <a href="https://doi.org/10.1037/0033-295X.106.4.766">DOI</a></li>
-<li>Stanford Encyclopedia of Philosophy. "Personal Identity." <a href="https://plato.stanford.edu/entries/identity-personal/">Stanford Encyclopedia of Philosophy</a></li>
-<li>Stanford Encyclopedia of Philosophy. "Locke on Personal Identity." <a href="https://plato.stanford.edu/entries/locke-personal-identity/">Stanford Encyclopedia of Philosophy</a></li>
-<li>国立国会図書館「自分とか、ないから。 : 教養としての東洋哲学」書誌情報。 <a href="https://ndlsearch.ndl.go.jp/books/R100000038-I4694667">ndlsearch.ndl.go.jp</a></li>
-<li>CiNii Books 「自分とか、ないから。 : 教養としての東洋哲学」。 <a href="https://ci.nii.ac.jp/ncid/BD0654918X">ci.nii.ac.jp</a></li>
-</ul>
 
 </div>
 

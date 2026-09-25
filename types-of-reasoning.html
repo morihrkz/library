@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -35,7 +35,7 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
@@ -43,15 +43,18 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -80,18 +79,18 @@ pre code{background:none; padding:0;}
 <div class="lede"><p>演繹・帰納・アブダクション・類推。実際の探究をたどりながら、四つの推論がどこで役割を交代するのかを見ていく。</p></div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. はじめに――同じ建物の中で、死亡率だけが違った</a></li>
-<li><a href="#sec2">2. 推論とは何か――既知から未知へ渡る</a></li>
-<li><a href="#sec3">3. 演繹――前提が真なら、結論を逃がさない</a></li>
-<li><a href="#sec4">4. 帰納――観察の列から、まだ見ていない世界へ</a></li>
-<li><a href="#sec5">5. アブダクション――意外な事実から説明を探す</a></li>
-<li><a href="#sec6">6. 類推――別の世界で見つけた構造を、こちらへ持ち込む</a></li>
-<li><a href="#sec7">7. アリストテレスからパースへ――推論を分類する歴史</a></li>
-<li><a href="#sec8">8. 医学・裁判・科学・探偵――四つの推論を実戦で使う</a></li>
-<li><a href="#sec9">9. 誤推論の地図――もっともらしさに騙されないために</a></li>
-<li><a href="#sec10">10. AI 時代の推論――「答え」を受け取る前に、推論の種類を見る</a></li>
-<li><a href="#sec11">11. エピローグ――推論とは、未知へ向かうための道具箱である</a></li>
-</ul>
+<ol><li><a href="#sec1">はじめに――同じ建物の中で、死亡率だけが違った</a></li>
+<li><a href="#sec2">推論とは何か――既知から未知へ渡る</a></li>
+<li><a href="#sec3">演繹――前提が真なら、結論を逃がさない</a></li>
+<li><a href="#sec4">帰納――観察の列から、まだ見ていない世界へ</a></li>
+<li><a href="#sec5">アブダクション――意外な事実から説明を探す</a></li>
+<li><a href="#sec6">類推――別の世界で見つけた構造を、こちらへ持ち込む</a></li>
+<li><a href="#sec7">アリストテレスからパースへ――推論を分類する歴史</a></li>
+<li><a href="#sec8">医学・裁判・科学・探偵――四つの推論を実戦で使う</a></li>
+<li><a href="#sec9">誤推論の地図――もっともらしさに騙されないために</a></li>
+<li><a href="#sec10">AI 時代の推論――「答え」を受け取る前に、推論の種類を見る</a></li>
+<li><a href="#sec11">エピローグ――推論とは、未知へ向かうための道具箱である</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. はじめに――同じ建物の中で、死亡率だけが違った</h2>
 <p>1847 年、ウィーン総合病院。同じ建物の中に、同じように妊婦を受け入れる二つの産科クリニックがあった。</p>
@@ -122,7 +121,7 @@ pre code{background:none; padding:0;}
 <p>演繹は「何が必然的に言えるか」。帰納は「何がまだ見ていない世界にも成り立ちそうか」。アブダクションは「何がこの事実を説明しうるか」。類推は「別の場所に、この問題を考えるための構造がないか」。</p>
 <h3>「四つ」は自然法則ではない</h3>
 <p>最初に、この点をはっきりさせておきたい。この記事は「論理学には四種類の推論しかない」と主張するものではない。実際、推論には確率的推論、統計的推論、類推的推論、反事実的推論、意思決定に関わる推論など、さまざまな分類と細分化がある。</p>
-<p>さらに、類推を独立した第四類型とすることにも議論がある。 Stanford Encyclopedia of Philosophy が指摘するように、類推的議論は広義の帰納的・拡張的推論として扱われることもある。
+<p>さらに、類推を独立した第四類型とすることにも議論がある。 Stanford Encyclopedia of Philosophy が指摘するように、類推的議論は広義の帰納的・拡張的推論として扱われることもある <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。
 したがって、ここでいう「四つ」は、パースの三分法に類推を機械的に追加した学説上の完成図ではなく、一般読者が思考の違いを見分けるための実用的な枠組みと考えるのが適切である。</p>
 <h2 id="sec3">3. 演繹――前提が真なら、結論を逃がさない</h2>
 <h3>必然性を扱う推論</h3>
@@ -131,7 +130,7 @@ pre code{background:none; padding:0;}
 S は M である。
 したがって、 S は P である。</p>
 <p>これは古典的な三段論法の基本形である。具体的には「すべての人間は死すべきものである」「ソクラテスは人間である」「ゆえにソクラテスは死すべきものである」といった形になる。</p>
-<p>現代論理学では、ここで「妥当性（validity）」と「健全性（soundness）」を区別する。妥当な議論とは、前提がすべて真である場合に結論が偽になることがない議論である。健全な議論とは、妥当であり、しかも実際に前提が真である議論である。</p>
+<p>現代論理学では、ここで「妥当性 (validity) 」と「健全性 (soundness) 」を区別する。妥当な議論とは、前提がすべて真である場合に結論が偽になることがない議論である。健全な議論とは、妥当であり、しかも実際に前提が真である議論である。</p>
 <h3>「演繹は新しい知識を生まない」の正しい意味</h3>
 <p>演繹について「新しい知識を生まない」という説明は、論理的にはある意味で正しい。しかし日常語としては誤解を招く。
 前提に論理的に含まれていた帰結を人間がまだ知らなかった場合、その帰結を明示することには大きな知的価値がある。</p>
@@ -151,7 +150,7 @@ S は M である。
 <p>この推論は、どれほど多くの白鳥を観察しても、論理的には次の一羽が白いことを保証しない。
 この問題は、単なる「観察数が少ない」という話ではない。有限の過去の観察から、未来や未観察の事例についてどこまで正当化できるのかという、より根本的な問題である。</p>
 <h3>ヒュームと「帰納の問題」</h3>
-<p>デイヴィッド・ヒュームは、経験から未来について推論する際に、自然がこれまでと同じように振る舞うという前提が必要になることを指摘した。しかし、その前提を過去の経験から正当化しようとすると、再び帰納に頼ることになる。この問題が、近代哲学における「帰納の問題」の核心である。</p>
+<p>デイヴィッド・ヒュームは、経験から未来について推論する際に、自然がこれまでと同じように振る舞うという前提が必要になることを指摘した <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。しかし、その前提を過去の経験から正当化しようとすると、再び帰納に頼ることになる。この問題が、近代哲学における「帰納の問題」の核心である。</p>
 <p>この問題があるからといって、帰納が無価値になるわけではない。むしろ科学、日常生活、統計的判断では、未来について何らかの期待を形成せずには行動できない。
 問題は「帰納は確実か」ではなく、どのような帰納が、どの程度の支持を与えるのかへ移る。</p>
 <h3>「たくさん見た」は「正しく見た」と同じではない</h3>
@@ -170,26 +169,26 @@ S は M である。
 しかし、 A が真なら C は当然のこととして説明できる。
 したがって、 A を仮説として検討する理由がある。</p>
 <p>ここで「したがって A は真である」と言い切ってはいけない。アブダクションの結論は仮説であり、調査すべき候補である。
-現代の哲学では、 abduction という語が「最良の説明への推論（Inference to the Best Explanation）」という意味で使われる場合もあるが、パース自身の概念は現代のこの用法と完全には一致しない。</p>
+現代の哲学では、 abduction という語が「最良の説明への推論 (Inference to the Best Explanation) 」という意味で使われる場合もあるが、パース自身の概念は現代のこの用法と完全には一致しない <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
 <h3>冒頭の謎――ゼンメルワイスが疑ったもの</h3>
 <p>冒頭で触れたウィーン総合病院の謎に戻ろう。 1847 年当時、二つの産科クリニックの死亡率の差は誰の目にも明らかだった。同時代の記録によれば、医師と医学生が担当する第一クリニックの産褥熱による死亡率は、助産師だけが担当する第二クリニックの数倍に達し、一部の年では一割前後にのぼっていたという。
 設備も患者層もほぼ同じ環境で、なぜこれほどの差が生まれるのか。この意外な事実こそが、アブダクションの出発点である「驚くべき事実 C 」にあたる。</p>
 <p>ゼンメルワイスは、当時信じられていた「悪い空気（瘴気）が病気を運ぶ」という説明では、二つのクリニックの差を説明できないことに気づいていた。空気は同じ建物の中を流れているからである。
 転機になったのは、同僚の法医学者が、解剖中に誤って自分の指を傷つけ、産褥熱とよく似た症状で亡くなったという出来事だった。ここでゼンメルワイスは一つの仮説に至る。「医師や医学生が、死体の解剖を行った後に、手を洗わないまま産科の診察に向かっているとしたら、この死亡率の差は当然のこととして説明できる」。これがアブダクションの核心にある思考の運びである。</p>
 <p>この仮説は、まだ証明されたわけではない。しかしゼンメルワイスは、そこから検証可能な次の一手を導いた。もし仮説が正しいなら、医師に塩素石灰水で手を洗わせれば死亡率は下がるはずだ、という演繹的な予測である。
-1847 年にこの手洗いを義務づけたところ、死亡率は数か月のうちに大きく下がったと記録されている。ある集計では、彼が受け持った病棟の死亡率は導入前の 18.27 パーセントから、導入後の 1848 年には 1.27 パーセントにまで下がったとされる。</p>
+1847 年にこの手洗いを義務づけたところ、死亡率は数か月のうちに大きく下がったと記録されている。ある集計では、彼が受け持った病棟の死亡率は導入前の 18.27 パーセントから、導入後の 1848 年には 1.27 パーセントにまで下がったとされる <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。</p>
 <p>ここで注意したいのは、この結果が仮説を「証明した」わけではないという点である。死亡率の低下は、仮説と矛盾しない強い証拠にはなるが、当時のゼンメルワイス自身、なぜ手洗いが効くのかを微生物学的に説明することはできなかった。
 彼の主張は、細菌説が確立する以前の医学界で長く受け入れられず、彼自身は晩年に不遇のうちに世を去っている。仮説が事実によって支持されることと、仮説が学界に受け入れられることは、また別の問題なのである。</p>
 <h3>もう一つの実例――ジョン・スノウとポンプの取っ手</h3>
 <p>もう一つ、意外な事実から仮説を立てた実例を見ておきたい。 1854 年、ロンドンのソーホー地区でコレラが猛威をふるい、十日足らずで数百人が命を落とした。
 医師ジョン・スノウは、亡くなった人々の住所を地図上に一つずつ書き込んでいった。できあがった地図は、死者が街の一角に集中して分布していることを示していた。その中心には、ブロード街の共同水道ポンプがあった。</p>
-<p>「不衛生な空気が原因」という当時の常識では、この地理的な集中は説明しにくい。しかし「このポンプの水が汚染されているとすれば、この分布は当然のこととして説明できる」と考えれば、意外な事実は筋の通った仮説に置き換わる。スノウは 1854 年 9 月 7 日、この分析を町の当局に示し、ポンプの取っ手を外させた。</p>
+<p>「不衛生な空気が原因」という当時の常識では、この地理的な集中は説明しにくい。しかし「このポンプの水が汚染されているとすれば、この分布は当然のこととして説明できる」と考えれば、意外な事実は筋の通った仮説に置き換わる。スノウは 1854 年 9 月 7 日、この分析を町の当局に示し、ポンプの取っ手を外させた <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。</p>
 <p>ただし、ここでも慎重でありたい。流行はその時点ですでに下火になりつつあったとする研究もあり、「取っ手を外したことが流行を止めた」と単純に言い切ることには注意が必要である。
 それでも、地図という形で空間的な偏りを可視化し、そこから汚染源という仮説を引き出したスノウの推論の運び方そのものは、その後の疫学という分野の基礎になった。</p>
 <h3>パースの「新しいアイデア」</h3>
 <p>パースの後期の説明では、アブダクションは説明的仮説を形成する論理的操作とされる。彼は、演繹が仮説からテスト可能な帰結を導き、帰納が実験や観察を通じて仮説を評価する一方、アブダクションがそもそも「何を試すべきか」という候補を生み出す段階を担うと考えた。
 ゼンメルワイスの仮説形成、そこから導かれた「手洗いをすれば死亡率が下がるはずだ」という予測、そして実際の死亡率という観察による評価は、まさにこの三つの段階に対応している。</p>
-<p>ただし、パースはこの概念を 50 年以上にわたって改訂した。 1878 年には「仮説」という語を中心に論じ、後年に abduction という用語を明確に展開している。したがって、「パースが最初から完成した三段階モデルを持っていた」と描くのは適切ではない。</p>
+<p>ただし、パースはこの概念を 50 年以上にわたって改訂した。 1878 年には「仮説」という語を中心に論じ <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 、後年に abduction という用語を明確に展開している。したがって、「パースが最初から完成した三段階モデルを持っていた」と描くのは適切ではない。</p>
 <h3>医師の診断は、アブダクションだけではない</h3>
 <p>患者に発熱、咳、呼吸困難などの症状があるとする。医師はそれらを観察し、感染症、炎症、心肺系の問題など複数の可能性を考える。
 症状を説明する候補をつくる点ではアブダクションが働く。そこから「この病気なら検査値はこうなるはずだ」と予測する場面では演繹的な構造が現れる。検査結果を蓄積し、どの仮説がどの程度支持されるかを考える際には確率的推論が関わる。</p>
@@ -201,51 +200,52 @@ S は M である。
 <h2 id="sec6">6. 類推――別の世界で見つけた構造を、こちらへ持ち込む</h2>
 <h3>「似ている」から一歩進んで、「同じ関係があるか」を考える</h3>
 <p>類推は、二つの対象や状況の間に重要な類似を見つけ、既知の側で成立している関係を未知の側について考える手がかりにする。</p>
-<p>既知の領域（source / base）: A と B の間には関係 R がある。</p>
-<p>未知の領域（target）: C と D は、重要な構造で A と B に対応する。
+<p>既知の領域 (source / base) : A と B の間には関係 R がある。</p>
+<p>未知の領域 (target) : C と D は、重要な構造で A と B に対応する。
 したがって、 C と D にも、 R に対応する関係があるかもしれない。</p>
 <p>類推的議論は一般に、結論を必然的には保証しない。二つの対象にいくつかの共通点があったとしても、別の点まで共通しているとは限らない。だから類推は「証明」というより、しばしば推論の方向を与える道具として働く。</p>
 <h3>表面ではなく構造を見る</h3>
-<p>認知科学者ダドリー・ジェントナーの 1983 年の構造写像理論は、類推を考えるうえで重要である。この理論では、対象そのものの表面的属性よりも、対象間の関係を対応づけることが重視される。また、高次の関係が組み上がる「 systematicity 」が、どの対応を採用するかに関係する。</p>
+<p>認知科学者ダドリー・ジェントナーの 1983 年の構造写像理論は、類推を考えるうえで重要である <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この理論では、対象そのものの表面的属性よりも、対象間の関係を対応づけることが重視される。また、高次の関係が組み上がる「 systematicity 」が、どの対応を採用するかに関係する。</p>
 <p>「 A は赤く、 B も赤い」という類似と、「 A が B を押すと B が C を動かし、その結果 C が変化する。別の領域でも同じ因果的な関係が組み上がっている」という類似では、思考上の価値が違う。
 後者では、色や形ではなく関係構造が移されているからである。</p>
 <h3>太陽系という借り物のかたち</h3>
 <p>科学史には、既知の領域の構造を別の領域の理解に利用する例が多い。 1909 年、物理学者アーネスト・ラザフォードの研究室で、ガイガーとマースデンが金の薄膜にアルファ粒子を撃ち込む実験を行った。大半の粒子はそのまま通り抜けたが、ごく一部が大きく跳ね返ってきた。
 この意外な結果から、ラザフォードは原子の質量のほとんどが中心の小さな核に集中しているという仮説にたどり着き、 1911 年、電子がその核の周りを回るという原子模型を発表した。このとき彼が借りてきた構造が、太陽の周りを惑星が回るという、当時すでによく知られていた太陽系の姿だった。</p>
 <p>しかし、この類推には早くから限界が見えていた。古典物理学の法則をそのまま当てはめると、軌道を回る電子はエネルギーを失って徐々に核へ落ち込み、原子はすぐに崩壊してしまうはずである。
-1913 年、ニールス・ボーアはこの問題に取り組み、電子が特定のとびとびの軌道だけを取りうるという量子論的な条件を付け加えることで、原子の安定性を説明した。太陽系モデルは、原子の構造を理解するための最初の足がかりとしては有効だったが、どこまでが本当に「同じ」で、どこからが借り物にすぎないのかを見極める作業を経て、初めて次の理解へつながったのである。</p>
+1913 年、ニールス・ボーアはこの問題に取り組み、電子が特定のとびとびの軌道だけを取りうるという量子論的な条件を付け加えることで、原子の安定性を説明した <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。太陽系モデルは、原子の構造を理解するための最初の足がかりとしては有効だったが、どこまでが本当に「同じ」で、どこからが借り物にすぎないのかを見極める作業を経て、初めて次の理解へつながったのである。</p>
 <p>もちろん、類推には限界がある。電気回路を水の流れにたとえるモデルも、水流のすべてが電気の性質と対応するわけではない。何が対応し、何が対応しないかを切り分けることが類推の品質を決める。</p>
 <h3>カワセミと 500 系新幹線――着想を移すということ</h3>
 <p>日本の 500 系新幹線の先頭形状は、カワセミのくちばしを着想源とした設計例として広く紹介されている。 JR 西日本の技術者だった仲津英治は、趣味の野鳥観察を通じてカワセミに親しんでいた。カワセミは水面へ飛び込む瞬間、ほとんど水しぶきを立てない。
 この姿から着想を得たのが、高速走行時に新幹線がトンネルに突入すると発生する「トンネル微気圧波」という騒音問題への対応だった。</p>
 <p>開発チームは、さまざまな形状の弾丸を細いパイプに撃ち込んで生じる圧力波を測定する実験や、スーパーコンピューターによるトンネル内走行のシミュレーションを重ねた。そうして解析から浮かび上がった理想的な形状は、カワセミのくちばしの輪郭にきわめて近いものだったという。
-500 系の先頭車両は、全長 27 メートルのうち半分を超える 15 メートルにわたって断面を徐々に絞り込む、戦闘機を思わせる鋭い形状になっている。</p>
+500 系の先頭車両は、全長 27 メートルのうち半分を超える 15 メートルにわたって断面を徐々に絞り込む、戦闘機を思わせる鋭い形状になっている <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。</p>
 <p>ここで大切なのは、「カワセミの形をそのままコピーした」という話ではないことだ。自然界の形状から着想を得ても、実際の設計には流体力学的解析、模型試験、設計上の制約などが必要になる。
-類推は解答そのものではなく、解答を探す方向を変える発見的手がかりなのである。</p>
+類推は解答そのものではなく、解答を探す方向を変える発見的手がかりなのである。
+なお、この逸話は公開されているインタビュー記事 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> で確認できる範囲に限定して紹介しており、設計プロセスの細部までは踏み込んでいない。</p>
 <p><strong>類推の問い</strong></p>
 <p>この問題と構造的に似ているものは、別の分野にないか。そして、その類似から移してよい関係は何か。</p>
 <h2 id="sec7">7. アリストテレスからパースへ――推論を分類する歴史</h2>
 <h3>「推論の種類」は、時代とともに姿を変えてきた</h3>
 <p>四つの推論を一枚の表に並べると、最初から人類がそのように分類してきたように見える。しかし実際には、推論の分類そのものが長い歴史を持つ。</p>
 <h3>アリストテレス――形式を捉える</h3>
-<p>アリストテレスの論理学は、推論を形式として分析する伝統の出発点の一つである。三段論法は、前提の内容を変えても成立する形式を取り出すことで、「なぜこの結論が導かれるのか」を明示した。</p>
+<p>アリストテレスの論理学は、推論を形式として分析する伝統の出発点の一つである <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。三段論法は、前提の内容を変えても成立する形式を取り出すことで、「なぜこの結論が導かれるのか」を明示した。</p>
 <p>この伝統の強みは、個々の議論を離れて形式そのものを検査できる点にある。「すべての M は P 、 S は M 、ゆえに S は P 」という構造を取り出せば、個々の固有名詞や話題に左右されず妥当性を調べられる。</p>
 <h3>近代哲学――経験から一般化できるのか</h3>
-<p>近代になると、経験科学の発展とともに、観察された事例から一般的法則へ進む推論が大きな問題になる。 1620 年、フランシス・ベーコンは著書『新機関（ノヴム・オルガヌム）』で、個別の観察を積み重ねて一般的な法則へ登っていく方法を論じ、アリストテレス的な三段論法とは別の道筋を示した。
+<p>近代になると、経験科学の発展とともに、観察された事例から一般的法則へ進む推論が大きな問題になる。 1620 年、フランシス・ベーコンは著書『新機関（ノヴム・オルガヌム）』で、個別の観察を積み重ねて一般的な法則へ登っていく方法を論じ、アリストテレス的な三段論法とは別の道筋を示した <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。
 ヒュームはさらに進んで、その積み重ねの正当化そのものに鋭い問題を提起した。</p>
 <p>ここで「論理的に必然な推論」と「経験からもっともらしく進む推論」の違いが鮮明になる。後者をどう評価するかは、現在に至るまで哲学の重要なテーマである。</p>
 <h3>ポパー――「確かめる」から「反証する」へ</h3>
-<p>ヒュームが投げかけた問題に、 20 世紀に別の角度から応答したのが哲学者カール・ポパーである。 1934 年の著書『研究の論理』で、ポパーは、科学の仮説は観察を積み重ねて確かめられるのではなく、反証されうる形で大胆に提示され、実際に反証を試みられることで鍛えられるのだと論じた。</p>
+<p>ヒュームが投げかけた問題に、 20 世紀に別の角度から応答したのが哲学者カール・ポパーである。 1934 年の著書『研究の論理』で、ポパーは、科学の仮説は観察を積み重ねて確かめられるのではなく、反証されうる形で大胆に提示され、実際に反証を試みられることで鍛えられるのだと論じた <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。</p>
 <p>この見方に立つと、ケプラーが円軌道の仮説を捨てた場面は、単に「観測によって帰納的に確かめそこねた」というより、「反証にさらされて、より良い仮説に置き換わった」という形で理解できる。
 帰納の問題そのものが解決したかどうかは今も議論があるが、少なくとも科学的探究を「仮説を大胆に立て、それを壊せるかどうか試す」という運動として見る視点は、アブダクションと演繹と帰納の連携を考えるうえで、もう一つの補助線になる。</p>
 <h3>ケプラーの「火星との戦争」――三つの推論が組み合わさった探究</h3>
 <p>パースが三分法を論じるよりも二世紀以上前、天文学者ヨハネス・ケプラーは、まさにこの三つの推論を実地で組み合わせていた。彼は 1600 年頃から、恩師ティコ・ブラーエが遺した膨大な観測記録をもとに火星の軌道を割り出す作業に取りかかり、後年これを自ら「火星との戦争」と呼んでいる。</p>
 <p>ケプラーは当時の標準的な前提である「軌道は円である」から出発し、円軌道が正しければ観測されるはずの位置を演繹的に導いた。ところが、その予測はティコの観測データと最大で 8 分角ほど食い違った。
 ティコの観測誤差はふだん 2 分角以内に収まっていたから、この食い違いは測定の誤差では片づけられない大きさだった。ここでケプラーは「軌道は円ではなく、別の形なのではないか」という仮説に踏み出す。これがアブダクションにあたる段階である。</p>
-<p>1605 年までに、ケプラーは軌道が太陽を一つの焦点とする楕円であるという仮説にたどり着いた。この仮説から演繹される位置は、円軌道の場合よりもはるかに精度よくティコのデータと一致した。予測と観測を繰り返し突き合わせるこの過程は帰納的な検証にあたる。 1609 年、ケプラーはこの成果を『新天文学』として発表した。
+<p>1605 年までに、ケプラーは軌道が太陽を一つの焦点とする楕円であるという仮説にたどり着いた。この仮説から演繹される位置は、円軌道の場合よりもはるかに精度よくティコのデータと一致した。予測と観測を繰り返し突き合わせるこの過程は帰納的な検証にあたる。 1609 年、ケプラーはこの成果を『新天文学』として発表した <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。
 演繹によって予測を立て、意外な食い違いからアブダクションで新しい仮説を立て、その仮説を再び演繹と観測の突き合わせで確かめる。この一連の流れは、パースが後に理論として整理することになる探究の循環を、実地で先取りしていたと見ることができる。</p>
 <h3>パース――科学的探究そのものを推論として見る</h3>
-<p>19 世紀後半のパースは、演繹と帰納だけでは科学者が実際に行っていることを十分に説明できないと考えた。未知の現象に直面して仮説を考え出すという働きを独立した問題として取り上げ、アブダクションを論じた。</p>
+<p>19 世紀後半のパースは、演繹と帰納だけでは科学者が実際に行っていることを十分に説明できないと考えた <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。未知の現象に直面して仮説を考え出すという働きを独立した問題として取り上げ、アブダクションを論じた。</p>
 <p>成熟期のパースにとって、アブダクションは仮説形成、演繹は仮説からテスト可能な帰結を導く段階、帰納は実験や観察によって仮説を評価する段階という、科学的探究の循環と結びついていった。
 ただし、これは現在のすべての科学研究を一枚の公式にしたものではない。パース自身の思想も生涯にわたって変化した。</p>
 <h3>類推はどこに入るのか</h3>
@@ -358,18 +358,18 @@ S は M である。
 それが、推論を学ぶ最大の効用なのかもしれない。</p>
 <div class="refs">
 <h2>主要参考文献・出典</h2>
-<ol><li id="ref-1">Charles S. Peirce, “Deduction, Induction, and Hypothesis,” <em>Popular Science Monthly</em>, 13 (1878), 470–482.
-   <a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI">Wikisource （原文）</a></li><li id="ref-2">Stanford Encyclopedia of Philosophy, “Abduction” および “Peirce on Abduction.”
-   <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-3">Stanford Encyclopedia of Philosophy, “Charles Sanders Peirce.”
-   <a href="https://plato.stanford.edu/entries/peirce/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-4">Stanford Encyclopedia of Philosophy, “Analogy and Analogical Reasoning.”
-   <a href="https://plato.stanford.edu/entries/reasoning-analogy/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-5">Dedre Gentner, “Structure-Mapping: A Theoretical Framework for Analogy,” <em>Cognitive Science</em>, 7 (2), 1983, 155–170.
-   <a href="https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog0702_3">Wiley Online Library</a></li><li id="ref-6">David Hume, <em>An Enquiry Concerning Human Understanding</em>, Section IV–V. 帰納と因果推論をめぐる古典的問題。</li><li id="ref-7">Aristotle, <em>Prior Analytics</em>. 三段論法を含む古典論理の基礎文献。</li><li id="ref-8">Ignaz Semmelweis の産褥熱に関する記録について、 James Lind Library, “Ignaz Phillip Semmelweis’ studies of death in childbirth.”
-   <a href="https://www.jameslindlibrary.org/articles/ignaz-phillip-semmelweis-studies-of-death-in-childbirth/">James Lind Library</a></li><li id="ref-9">John Snow と 1854 年ブロード街コレラ流行について、 London Museum, “John Snow: Cholera &amp; the Broad Street pump.”
-   <a href="https://www.londonmuseum.org.uk/collections/london-stories/john-snow-cholera-broad-street-pump/">London Museum</a></li><li id="ref-10">Johannes Kepler の火星研究について、 Johannes Kepler, <em>Astronomia Nova</em>（1609）、および “The great Martian catastrophe and how Kepler fixed it,” <em>Physics Today</em> 。
-    <a href="https://physicstoday.aip.org/features/the-great-martian-catastrophe-and-how-kepler-fixed-it">Physics Today</a></li><li id="ref-11">Ernest Rutherford の原子模型と Niels Bohr による修正について、 American Physical Society, “May, 1911: Rutherford and the Discovery of the Atomic Nucleus” および “March 6, 1913: Bohr describes his model of atom to Rutherford.”
-    <a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus">APS News</a></li><li id="ref-12">500 系新幹線とカワセミの関係について、仲津英治氏インタビュー、 Japan for Sustainability 。
-    <a href="https://www.japanfs.org/ja/projects/biomimicry/biomimicry_id033307.html">Japan for Sustainability</a></li><li id="ref-13">Francis Bacon, <em>Novum Organum</em>(1620). 帰納法を論じた古典。</li><li id="ref-14">Karl Popper, <em>Logik der Forschung</em>(1934; 英訳 <em>The Logic of Scientific Discovery</em>, 1959). 反証可能性の議論。</li></ol>
-<p><strong>編集方針 :</strong> この記事は一般読者向けの解説であり、学術論文ではない。特に「類推＝パースの第四の正式分類」「科学＝単純な帰納の積み重ね」「説明できる＝真である」といった短絡を避けた。歴史的なエピソードについては、複数の資料で確認できる事実のみを採用し、数値が資料によって食い違う場合は幅を持たせるか、代表的な一つの出典に基づく数値であることを明示した。ジョン・スノウのポンプの取っ手の逸話についても、「取っ手を外したことで流行が止まった」という単純化された通説をそのまま採らず、流行がすでに下火になっていたという指摘があることを併記している。カワセミと 500 系新幹線の事例も、設計史の細部を未確認のまま膨らませず、公開されているインタビュー等で確認できる範囲に限定して扱っている。</p>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol><li id="ref-1"><a href="#fnref-1-1">^</a> Charles S. Peirce, “Deduction, Induction, and Hypothesis,” <em>Popular Science Monthly</em>, 13 (1878) , 470–482.
+   <a href="https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI">Wikisource （原文）</a></li><li id="ref-2"><a href="#fnref-2-1">^</a> Stanford Encyclopedia of Philosophy, “Abduction” および “Peirce on Abduction.”
+   <a href="https://plato.stanford.edu/entries/abduction/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-3"><a href="#fnref-3-1">^</a> Stanford Encyclopedia of Philosophy, “Charles Sanders Peirce.”
+   <a href="https://plato.stanford.edu/entries/peirce/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-4"><a href="#fnref-4-1">^</a> Stanford Encyclopedia of Philosophy, “Analogy and Analogical Reasoning.”
+   <a href="https://plato.stanford.edu/entries/reasoning-analogy/">Stanford Encyclopedia of Philosophy</a></li><li id="ref-5"><a href="#fnref-5-1">^</a> Dedre Gentner, “Structure-Mapping: A Theoretical Framework for Analogy,” <em>Cognitive Science</em>, 7 (2) , 1983, 155–170.
+   <a href="https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog0702_3">Wiley Online Library</a></li><li id="ref-6"><a href="#fnref-6-1">^</a> David Hume, <em>An Enquiry Concerning Human Understanding</em>, Section IV–V. 帰納と因果推論をめぐる古典的問題。</li><li id="ref-7"><a href="#fnref-7-1">^</a> Aristotle, <em>Prior Analytics</em>. 三段論法を含む古典論理の基礎文献。</li><li id="ref-8"><a href="#fnref-8-1">^</a> Ignaz Semmelweis の産褥熱に関する記録について、 James Lind Library, “Ignaz Phillip Semmelweis’ studies of death in childbirth.”
+   <a href="https://www.jameslindlibrary.org/articles/ignaz-phillip-semmelweis-studies-of-death-in-childbirth/">James Lind Library</a></li><li id="ref-9"><a href="#fnref-9-1">^</a> John Snow と 1854 年ブロード街コレラ流行について、 London Museum, “John Snow: Cholera &amp; the Broad Street pump.”
+   <a href="https://www.londonmuseum.org.uk/collections/london-stories/john-snow-cholera-broad-street-pump/">London Museum</a></li><li id="ref-10"><a href="#fnref-10-1">^</a> Johannes Kepler の火星研究について、 Johannes Kepler, <em>Astronomia Nova</em>(1609) 、および “The great Martian catastrophe and how Kepler fixed it,” <em>Physics Today</em> 。
+    <a href="https://physicstoday.aip.org/features/the-great-martian-catastrophe-and-how-kepler-fixed-it">Physics Today</a></li><li id="ref-11"><a href="#fnref-11-1">^</a> Ernest Rutherford の原子模型と Niels Bohr による修正について、 American Physical Society, “May, 1911: Rutherford and the Discovery of the Atomic Nucleus” および “March 6, 1913: Bohr describes his model of atom to Rutherford.”
+    <a href="https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus">APS News</a></li><li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> 500 系新幹線とカワセミの関係について、仲津英治氏インタビュー、 Japan for Sustainability 。
+    <a href="https://www.japanfs.org/ja/projects/biomimicry/biomimicry_id033307.html">Japan for Sustainability</a></li><li id="ref-13"><a href="#fnref-13-1">^</a> Francis Bacon, <em>Novum Organum</em>(1620) . 帰納法を論じた古典。</li><li id="ref-14"><a href="#fnref-14-1">^</a> Karl Popper, <em>Logik der Forschung</em>(1934; 英訳 <em>The Logic of Scientific Discovery</em>, 1959) . 反証可能性の議論。</li></ol>
 </div>
 </div>
 </body>

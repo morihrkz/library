@@ -18,8 +18,8 @@ body{
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; color:var(--muted); margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
 .toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
@@ -41,28 +41,22 @@ p{font-size:19px; margin:0 0 20px;}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
-.refs li a.backref{color:var(--link); text-decoration:none; margin-left:6px; font-size:14px;}
-.refs li a.backref:hover{text-decoration:underline;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
-.no-marker-child {
-  list-style: none;
-  padding-left: 4px;
 }
 </style>
 </head>
@@ -76,50 +70,50 @@ sup.fnref a:hover{text-decoration:underline;}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 要旨</a></li>
-<li><a href="#sec2">2. 問題の所在</a></li>
-<li><a href="#sec3">3. 心理学的知見――なぜ知識は人を尊大にしうるか</a></li>
-<li><a href="#sec4">4. 哲学的知見――徳としての知的謙虚さ</a></li>
-<li><a href="#sec5">5. 社会学的背景――学歴社会と文化資本</a></li>
-<li><a href="#sec6">6. 実践への示唆</a></li>
-<li><a href="#sec7">7. 結論</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">要旨</a></li>
+<li><a href="#sec2">問題の所在</a></li>
+<li><a href="#sec3">心理学的知見――なぜ知識は人を尊大にしうるか</a></li>
+<li><a href="#sec4">哲学的知見――徳としての知的謙虚さ</a></li>
+<li><a href="#sec5">社会学的背景――学歴社会と文化資本</a></li>
+<li><a href="#sec6">実践への示唆</a></li>
+<li><a href="#sec7">結論</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 要旨</h2>
-<p>本稿は、人文科学・社会科学・自然科学を横断して学ぶことの喜びを享受しながら、いわゆる「衒学（pedantry）」に陥らず、また知識の多寡を他者との上下関係に読み替えてしまう態度を避けるための心構えを、心理学・哲学・社会学の知見を統合して論じる。ダニング゠クルーガー効果と知的謙虚さ（intellectual humility）研究、徳認識論における知的徳・知的悪徳の区別、そしてピエール・ブルデューの文化資本論を軸に、学びを「所有」ではなく「探究の過程」として位置づけ直すことの意義を検討する。結論として、知識を自己の価値の証明手段にしないための具体的な心掛けを五点に整理する。</p>
+<p>本稿は、人文科学・社会科学・自然科学を横断して学ぶことの喜びを享受しながら、いわゆる「衒学 (pedantry) 」に陥らず、また知識の多寡を他者との上下関係に読み替えてしまう態度を避けるための心構えを、心理学・哲学・社会学の知見を統合して論じる。ダニング゠クルーガー効果と知的謙虚さ (intellectual humility) 研究、徳認識論における知的徳・知的悪徳の区別、そしてピエール・ブルデューの文化資本論を軸に、学びを「所有」ではなく「探究の過程」として位置づけ直すことの意義を検討する。結論として、知識を自己の価値の証明手段にしないための具体的な心掛けを五点に整理する。</p>
 <p><strong>キーワード</strong>：衒学／知的謙虚さ／徳認識論／文化資本／学歴社会／成長マインドセット</p>
 
 <h2 id="sec2">2. 問題の所在</h2>
-<p>生涯のある時期に至って初めて、人文科学・社会科学・自然科学の別なく学術的な知識に触れる喜びを知る、ということが起こる。これは特に珍しいことではない。むしろ、実務的な必要から離れて「知りたいから知る」という動機が前面に出てくるのは、人生の後半においてしばしば起こる現象である <sup class="fnref"><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。専門的な素養を持たない成人が、こうした動機から哲学・倫理学を独学で学び始める際の学問的な位置づけと順序については、別稿で検討している <sup class="fnref"><a href="#ref-15" id="fnref-15-1">[15]</a></sup> 。また、そもそも学びを継続すること自体がなぜ難しいのかという、より手前にある認知的な問いについても、別稿で検討している <sup class="fnref"><a href="#ref-16" id="fnref-16-1">[16]</a></sup> 。問題は、この喜びそのものではなく、それが副作用として生み出しうる二つの態度にある。</p>
-<p>第一に、獲得した知識を誇示し、細部への拘泥それ自体を目的化してしまう「衒学」。第二に、知識の多寡を人間の価値の序列に読み替え、他者を暗黙のうちに見下してしまう態度である。英語版ウィキペディアの「 Pedantry 」の項目は、衒学者を「規則や瑣末な事柄への過度なこだわりによって特徴づけられる者」と定義し、しばしば「知識をひけらかす（showing off one's learning）」行為を伴うと説明している <sup class="fnref"><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 。この二つの態度は独立した現象ではなく、共通の根を持つ。それは、知識を「探究の途上にある暫定的な理解」としてではなく、「所有物」あるいは「地位の証明」として扱ってしまう認知の歪みである。</p>
+<p>生涯のある時期に至って初めて、人文科学・社会科学・自然科学の別なく学術的な知識に触れる喜びを知る、ということが起こる。これは特に珍しいことではない。むしろ、実務的な必要から離れて「知りたいから知る」という動機が前面に出てくるのは、人生の後半においてしばしば起こる現象である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。専門的な素養を持たない成人が、こうした動機から哲学・倫理学を独学で学び始める際の学問的な位置づけと順序については、別稿で検討している <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。また、そもそも学びを継続すること自体がなぜ難しいのかという、より手前にある認知的な問いについても、別稿で検討している <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。問題は、この喜びそのものではなく、それが副作用として生み出しうる二つの態度にある。</p>
+<p>第一に、獲得した知識を誇示し、細部への拘泥それ自体を目的化してしまう「衒学」。第二に、知識の多寡を人間の価値の序列に読み替え、他者を暗黙のうちに見下してしまう態度である。英語版ウィキペディアの「 Pedantry 」の項目は、衒学者を「規則や瑣末な事柄への過度なこだわりによって特徴づけられる者」と定義し、しばしば「知識をひけらかす (showing off one's learning) 」行為を伴うと説明している <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。この二つの態度は独立した現象ではなく、共通の根を持つ。それは、知識を「探究の途上にある暫定的な理解」としてではなく、「所有物」あるいは「地位の証明」として扱ってしまう認知の歪みである。</p>
 <p>本稿では、この根の部分を心理学・哲学・社会学の三つの角度から検討し、学ぶことを謳歌しながら衒学的にならないための実践的な心掛けを導く。</p>
 
 <h2 id="sec3">3. 心理学的知見――なぜ知識は人を尊大にしうるか</h2>
 
 <h3>●ダニング゠クルーガー効果と自己評価の非対称性</h3>
-<p>1999 年にデイヴィッド・ダニングとジャスティン・クルーガーが発表した研究は、ある領域における能力が低い人ほど、自分の能力を過大評価する傾向があることを示した <sup class="fnref"><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。この効果は通俗的には「初心者ほど自信過剰になる」という文脈で語られることが多いが、原論文が指摘したより重要な点は、メタ認知能力（自分の理解の限界を認識する能力）そのものが、当該領域の知識や技能と共に発達するという構造にある。つまり、ある分野を学び始めた人は、自分がどれだけ理解していないかを正確に把握するための物差しをまだ持っていない。</p>
-<p>ここに逆説がある。多少なりとも学習が進み、体系的な知識を獲得し始めた段階、すなわち「もう入門者ではない」という自己認識が芽生える段階こそが、実は最も尊大になりやすい時期でもありうる。専門家の域に達すればむしろ「知らないことの広大さ」が見えてきて謙虚になる、という逆 U 字型の推移が示唆される研究もある <sup class="fnref"><a href="#ref-3" id="fnref-3-2">[3]</a></sup> 。晩年になって学問の喜びを知ったばかりの学習者は、まさにこの中間段階に位置しやすく、意識的な注意が必要な時期だと言える。</p>
+<p>1999 年にデイヴィッド・ダニングとジャスティン・クルーガーが発表した研究は、ある領域における能力が低い人ほど、自分の能力を過大評価する傾向があることを示した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。この効果は通俗的には「初心者ほど自信過剰になる」という文脈で語られることが多いが、原論文が指摘したより重要な点は、メタ認知能力（自分の理解の限界を認識する能力）そのものが、当該領域の知識や技能と共に発達するという構造にある。つまり、ある分野を学び始めた人は、自分がどれだけ理解していないかを正確に把握するための物差しをまだ持っていない。</p>
+<p>ここに逆説がある。多少なりとも学習が進み、体系的な知識を獲得し始めた段階、すなわち「もう入門者ではない」という自己認識が芽生える段階こそが、実は最も尊大になりやすい時期でもありうる。専門家の域に達すればむしろ「知らないことの広大さ」が見えてきて謙虚になる、という逆 U 字型の推移が示唆される研究もある <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。晩年になって学問の喜びを知ったばかりの学習者は、まさにこの中間段階に位置しやすく、意識的な注意が必要な時期だと言える。</p>
 
 <h3>●知的謙虚さという心理学的構成概念</h3>
-<p>2010 年代以降、パーソナリティ心理学・社会心理学の分野で「知的謙虚さ（intellectual humility）」が独立した研究対象として確立されてきた。テネル・ポーターらの定義によれば、知的謙虚さとは「自分の知的な限界や誤りを認識し、それを心地よく受け入れられる度合い」を指す <sup class="fnref"><a href="#ref-4" id="fnref-4-1">[4]</a></sup> 。重要なのは、これは自己卑下や自信の欠如とは異なるという点である。ポーターらの一連の研究は、知的謙虚さの高い人物ほど、意見の対立する相手の主張を丁寧に検討し、新しい情報に対して開かれた態度を取り、かつ学業的にも良好な成果を上げる傾向があることを示している <sup class="fnref"><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 。</p>
+<p>2010 年代以降、パーソナリティ心理学・社会心理学の分野で「知的謙虚さ (intellectual humility) 」が独立した研究対象として確立されてきた。テネル・ポーターらの定義によれば、知的謙虚さとは「自分の知的な限界や誤りを認識し、それを心地よく受け入れられる度合い」を指す <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。重要なのは、これは自己卑下や自信の欠如とは異なるという点である。ポーターらの一連の研究は、知的謙虚さの高い人物ほど、意見の対立する相手の主張を丁寧に検討し、新しい情報に対して開かれた態度を取り、かつ学業的にも良好な成果を上げる傾向があることを示している <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
 <p>すなわち知的謙虚さは「知らないふりをすること」ではなく、「自分の知識の輪郭を正確に把握し、その外側が存在することを常に前提すること」である。衒学者の特徴は、知識の量そのものではなく、この輪郭認識の欠如、つまり自分の理解が及んでいる範囲とそうでない範囲の境界を見失っていることにあると整理できる。</p>
 
 <div class="pull">知識の多寡ではなく、その知識の「縁（ふち）」がどこにあるかを意識し続けられるかどうかが、謙虚さと尊大さを分ける。</div>
 
 <h3>●自己決定理論――何のために学ぶのか</h3>
-<p>エドワード・デシとリチャード・ライアンが体系化した自己決定理論は、人間の動機づけを大きく「内発的動機づけ」と「外発的動機づけ」に分ける <sup class="fnref"><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。内発的動機づけとは、活動そのものに内在する興味や満足を源泉とする動機であり、外発的動機づけは報酬・評価・他者からの承認といった活動の外部にある結果を源泉とする動機である。学問を「知りたいから知る」という形で始めた場合、その出発点はきわめて内発的動機づけに近い。</p>
-<p>しかし、知識が蓄積されるにつれて、他者に語る機会が増え、そこで得られる賞賛や「物知りだ」という評価が、動機づけの重心を外発的な方向へ静かに引き寄せていくことがある。自己決定理論の枠組みで言えば、これは「自我関与（ego-involvement）」と呼ばれる状態への移行であり、活動の目的が「理解すること」から「自分の有能さを他者に、あるいは自分自身に証明すること」へとすり替わる現象である <sup class="fnref"><a href="#ref-6" id="fnref-6-2">[6]</a></sup> 。衒学的な語り口は、この自我関与が言語化された症状として現れたものと見ることができる。</p>
+<p>エドワード・デシとリチャード・ライアンが体系化した自己決定理論は、人間の動機づけを大きく「内発的動機づけ」と「外発的動機づけ」に分ける <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。内発的動機づけとは、活動そのものに内在する興味や満足を源泉とする動機であり、外発的動機づけは報酬・評価・他者からの承認といった活動の外部にある結果を源泉とする動機である。学問を「知りたいから知る」という形で始めた場合、その出発点はきわめて内発的動機づけに近い。</p>
+<p>しかし、知識が蓄積されるにつれて、他者に語る機会が増え、そこで得られる賞賛や「物知りだ」という評価が、動機づけの重心を外発的な方向へ静かに引き寄せていくことがある。自己決定理論の枠組みで言えば、これは「自我関与 (ego-involvement) 」と呼ばれる状態への移行であり、活動の目的が「理解すること」から「自分の有能さを他者に、あるいは自分自身に証明すること」へとすり替わる現象である <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup> 。衒学的な語り口は、この自我関与が言語化された症状として現れたものと見ることができる。</p>
 
 <h3>●成長マインドセットとの接続</h3>
-<p>キャロル・ドゥエックの研究が示した「固定マインドセット」と「成長マインドセット」の区別も、この文脈で示唆的である <sup class="fnref"><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。固定マインドセットを持つ人は、能力や知性を固定的な資質として捉え、その優秀さを証明し続けることに関心を向ける。対して成長マインドセットを持つ人は、能力を努力によって発展させられる過程として捉え、失敗や無知の発覚を脅威ではなく学習の機会として受け止める。知識をひけらかす衒学的な語りは、固定マインドセット的に「自分がすでに到達した地点」を誇示する行為であるのに対し、知的謙虚さは成長マインドセット的に「自分がまだ到達していない地点」を意識し続ける態度だと言い換えられる。</p>
+<p>キャロル・ドゥエックの研究が示した「固定マインドセット」と「成長マインドセット」の区別も、この文脈で示唆的である <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。固定マインドセットを持つ人は、能力や知性を固定的な資質として捉え、その優秀さを証明し続けることに関心を向ける。対して成長マインドセットを持つ人は、能力を努力によって発展させられる過程として捉え、失敗や無知の発覚を脅威ではなく学習の機会として受け止める。知識をひけらかす衒学的な語りは、固定マインドセット的に「自分がすでに到達した地点」を誇示する行為であるのに対し、知的謙虚さは成長マインドセット的に「自分がまだ到達していない地点」を意識し続ける態度だと言い換えられる。</p>
 
 <h2 id="sec4">4. 哲学的知見――徳としての知的謙虚さ</h2>
 
 <h3>●徳認識論における知的徳と知的悪徳</h3>
-<p>認識論の一分野である徳認識論（virtue epistemology）は、知識を単なる「正当化された真なる信念」としてではなく、知的な徳（intellectual virtues）の行使の産物として捉える立場である <sup class="fnref"><a href="#ref-8" id="fnref-8-1">[8]</a></sup> 。この枠組みでは、開かれた心、知的な誠実さ、そして謙虚さは、正確な信念を形成するために必要な性格的特性、すなわち「知的徳」として位置づけられる。</p>
-<p>哲学者クワシム・カッサムは、これと対をなす「知的悪徳（intellectual vices）」を体系的に論じ、その代表例として「傲慢（arrogance）」「教条主義（dogmatism）」、そして「軽率さ（carelessness）」を挙げている <sup class="fnref"><a href="#ref-9" id="fnref-9-1">[9]</a></sup> 。カッサムの分析で興味深いのは、知的悪徳を単なる道徳的欠陥としてではなく、「真理への到達を妨げる認識論的な障害」として捉える点である。衒学は、知識量の多さそれ自体が悪徳なのではなく、その知識を他者との比較や自己の優位性の証明に用いる態度、すなわち傲慢の一形態として位置づけられる。</p>
+<p>認識論の一分野である徳認識論 (virtue epistemology) は、知識を単なる「正当化された真なる信念」としてではなく、知的な徳 (intellectual virtues) の行使の産物として捉える立場である <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この枠組みでは、開かれた心、知的な誠実さ、そして謙虚さは、正確な信念を形成するために必要な性格的特性、すなわち「知的徳」として位置づけられる。</p>
+<p>哲学者クワシム・カッサムは、これと対をなす「知的悪徳 (intellectual vices) 」を体系的に論じ、その代表例として「傲慢 (arrogance) 」「教条主義 (dogmatism) 」、そして「軽率さ (carelessness) 」を挙げている <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。カッサムの分析で興味深いのは、知的悪徳を単なる道徳的欠陥としてではなく、「真理への到達を妨げる認識論的な障害」として捉える点である。衒学は、知識量の多さそれ自体が悪徳なのではなく、その知識を他者との比較や自己の優位性の証明に用いる態度、すなわち傲慢の一形態として位置づけられる。</p>
 
 <div class="box">
 <h4>知的徳と知的悪徳の対応</h4>
@@ -130,27 +124,27 @@ sup.fnref a:hover{text-decoration:underline;}
 </div>
 
 <h3>●ソクラテスの「無知の知」</h3>
-<p>西洋哲学の出発点に置かれるソクラテスの逸話は、この主題にとって示唆的である。プラトンの『ソクラテスの弁明』によれば、デルフォイの神託が「ソクラテスより知恵のある者はいない」と告げたことに困惑したソクラテスは、賢者とされる人々を訪ね歩いて対話を重ねる。その結果彼が到達したのは、「彼らは知らないことを知っていると思い込んでいるが、私は知らないことを知らないと自覚している。その自覚の分だけ、私の方がわずかに賢いのかもしれない」という逆説的な結論であった <sup class="fnref"><a href="#ref-10" id="fnref-10-1">[10]</a></sup> 。</p>
-<p>この逸話が二千年以上にわたって哲学教育の出発点に置かれ続けている理由は、それが単なる謙遜の美徳を説いているのではなく、「知識の増大と、自分の無知の範囲についての自覚は、本来並行して進むべきものである」という認識論的な主張を含んでいるからである。ソクラテスにとって対話（dialektike）とは、知識を披露する場ではなく、自他の無知の輪郭を互いに明らかにしていく共同作業であった。この態度は、現代の知的謙虚さ研究が実証的に示している構造と驚くほど整合している。</p>
+<p>西洋哲学の出発点に置かれるソクラテスの逸話は、この主題にとって示唆的である。プラトンの『ソクラテスの弁明』によれば、デルフォイの神託が「ソクラテスより知恵のある者はいない」と告げたことに困惑したソクラテスは、賢者とされる人々を訪ね歩いて対話を重ねる。その結果彼が到達したのは、「彼らは知らないことを知っていると思い込んでいるが、私は知らないことを知らないと自覚している。その自覚の分だけ、私の方がわずかに賢いのかもしれない」という逆説的な結論であった <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。</p>
+<p>この逸話が二千年以上にわたって哲学教育の出発点に置かれ続けている理由は、それが単なる謙遜の美徳を説いているのではなく、「知識の増大と、自分の無知の範囲についての自覚は、本来並行して進むべきものである」という認識論的な主張を含んでいるからである。ソクラテスにとって対話 (dialektike) とは、知識を披露する場ではなく、自他の無知の輪郭を互いに明らかにしていく共同作業であった。この態度は、現代の知的謙虚さ研究が実証的に示している構造と驚くほど整合している。</p>
 
 <h3>●東洋思想における謙虚さの位置づけ</h3>
-<p>儒教の古典である『論語』為政篇には、次のような一節がある。「これを知るをこれを知るとなし、知らざるを知らずとなす、これ知るなり」 <sup class="fnref"><a href="#ref-11" id="fnref-11-1">[11]</a></sup> 。これは弟子の子路に対して孔子が与えた教えとされ、「知っていることを知っていると言い、知らないことを知らないと言う、それこそが知るということである」という意味である。ソクラテスの逸話と発想の根を同じくするこの言葉が、時代・地域を異にする複数の知的伝統において独立に強調されてきたという事実は、「知の輪郭を正確に自覚すること」が、特定の文化に限定されない普遍的な知的徳であることを示唆している。</p>
+<p>儒教の古典である『論語』為政篇には、次のような一節がある。「これを知るをこれを知るとなし、知らざるを知らずとなす、これ知るなり」 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。これは弟子の子路に対して孔子が与えた教えとされ、「知っていることを知っていると言い、知らないことを知らないと言う、それこそが知るということである」という意味である。ソクラテスの逸話と発想の根を同じくするこの言葉が、時代・地域を異にする複数の知的伝統において独立に強調されてきたという事実は、「知の輪郭を正確に自覚すること」が、特定の文化に限定されない普遍的な知的徳であることを示唆している。</p>
 
 <h2 id="sec5">5. 社会学的背景――学歴社会と文化資本</h2>
 
 <h3>●ブルデューの文化資本論</h3>
-<p>フランスの社会学者ピエール・ブルデューは、 1979 年の著作『ディスタンクシオン』において、知識・教養・話し方・美的な趣味などが「文化資本」として機能し、経済資本と並んで社会的地位の再生産に寄与すると論じた <sup class="fnref"><a href="#ref-12" id="fnref-12-1">[12]</a></sup> 。ブルデューが強調したのは、文化資本の効果が「何を知っているか」よりも「どのようにそれを示すか」、すなわち立ち居振る舞いとしての「卓越化（distinction）」において発揮されるという点である。教養を誇示する語り口それ自体が、他者との差異化と階層的な位置取りの手段として機能してしまう構造がここにある。</p>
+<p>フランスの社会学者ピエール・ブルデューは、 1979 年の著作『ディスタンクシオン』において、知識・教養・話し方・美的な趣味などが「文化資本」として機能し、経済資本と並んで社会的地位の再生産に寄与すると論じた <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。ブルデューが強調したのは、文化資本の効果が「何を知っているか」よりも「どのようにそれを示すか」、すなわち立ち居振る舞いとしての「卓越化 (distinction) 」において発揮されるという点である。教養を誇示する語り口それ自体が、他者との差異化と階層的な位置取りの手段として機能してしまう構造がここにある。</p>
 <p>この視点に立つと、衒学は単なる個人の性格的傾向ではなく、教養が社会的な差異化の記号として機能する社会構造の中で、無自覚に選び取られてしまう振る舞いのパターンだとも言える。個人の心掛けだけでなく、自分の語りがどのような社会的効果を持ちうるかを自覚することも、この問題への対処の一部となる。</p>
 
 <h3>●日本における学歴社会という文脈</h3>
-<p>日本社会において、学歴が就職・結婚・社会的評価といった多方面での地位配分と強く結びついてきたことは、教育社会学において繰り返し論じられてきた論点である <sup class="fnref"><a href="#ref-13" id="fnref-13-1">[13]</a></sup> 。この構造の帰結として、「学問を身につけていること」自体が、序列関係を暗示する記号として機能しやすい社会的土壌が形成されてきたと考えられる。学歴が本来意味するのは特定の教育課程を修了した事実にすぎないが、それが人格や能力全般の優劣を示す記号として拡大解釈される傾向が根強いことも、複数の実証研究や社会評論で指摘されてきた。</p>
+<p>日本社会において、学歴が就職・結婚・社会的評価といった多方面での地位配分と強く結びついてきたことは、教育社会学において繰り返し論じられてきた論点である <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。この構造の帰結として、「学問を身につけていること」自体が、序列関係を暗示する記号として機能しやすい社会的土壌が形成されてきたと考えられる。学歴が本来意味するのは特定の教育課程を修了した事実にすぎないが、それが人格や能力全般の優劣を示す記号として拡大解釈される傾向が根強いことも、複数の実証研究や社会評論で指摘されてきた。</p>
 <p>この文脈を踏まえると、実務的な必要から離れて学び始めた者が、その喜びを語る際に、意図せずして「学歴社会的な優劣の物差し」を再演してしまう危険がある。純粋な知的好奇心から出発した学びであっても、それを語る言葉遣いや態度が、社会に流通する既存の序列意識を強化する形になってしまえば、本人の意図とは無関係に他者を見下す効果を持ちうる。</p>
 
 <h2 id="sec6">6. 実践への示唆</h2>
 <p>以上の心理学・哲学・社会学の知見を踏まえ、学ぶことを謳歌しながら衒学的にならず、他者を見下す態度を避けるための心掛けを、次の五点に整理する。</p>
 
 <h3>●知識を「所有物」ではなく「暫定的な理解」として扱う</h3>
-<p>知的謙虚さ研究が示すように、重要なのは知識の量そのものではなく、その知識の輪郭、すなわち「どこまでが分かっていて、どこから先が分かっていないか」を常に意識することである。新しい知見に接するたびに、自分の既存の理解が更新される可能性を前提として学ぶ姿勢が、成長マインドセットと直結する <sup class="fnref"><a href="#ref-14" id="fnref-14-1">[14]</a></sup> 。</p>
+<p>知的謙虚さ研究が示すように、重要なのは知識の量そのものではなく、その知識の輪郭、すなわち「どこまでが分かっていて、どこから先が分かっていないか」を常に意識することである。新しい知見に接するたびに、自分の既存の理解が更新される可能性を前提として学ぶ姿勢が、成長マインドセットと直結する <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。</p>
 
 <h3>●語る前に「誰のために語るか」を自問する</h3>
 <p>自己決定理論の観点からは、知識を語る動機が「相手の理解を助けるため」なのか「自分の有能さを証明するため」なのかを、都度点検することが有効である。後者に傾いていると感じたときは、自我関与が動機づけの重心を占めつつある兆候として捉えることができる。</p>
@@ -169,23 +163,24 @@ sup.fnref a:hover{text-decoration:underline;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">生涯発達心理学の領域では、中高年期における学習動機の変化が論じられており、実務的必要性から離れた内発的な知的探究への関心の高まりが指摘されている。エリク・エリクソンの心理社会的発達段階論における成人後期・老年期の課題（生成継承性・統合）とも関連づけて論じられることが多い。<a href="#fnref-1-1" class="backref">↩</a></li>
-<li id="ref-2">Wikipedia, "Pedantry," <a href="https://en.wikipedia.org/wiki/Pedantry" target="_blank" rel="noopener">Wikipedia</a>（閲覧： 2026 年 9 月）。<a href="#fnref-2-1" class="backref">↩</a></li>
-<li id="ref-3">Kruger, J., &amp; Dunning, D.(1999). "Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments." <em>Journal of Personality and Social Psychology</em>, 77 (6), 1121–1134. 概説として Wikipedia, "Dunning–Kruger effect," <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect" target="_blank" rel="noopener">Wikipedia</a> 。<a href="#fnref-3-1" class="backref">↩</a><a href="#fnref-3-2" class="backref">↩</a></li>
-<li id="ref-4">Porter, T., &amp; Schumann, K.(2018). "Intellectual humility and openness to the opposing view." <em>Self and Identity</em>, 17 (2), 139–162. 概説として Wikipedia, "Intellectual humility," <a href="https://en.wikipedia.org/wiki/Intellectual_humility" target="_blank" rel="noopener">Wikipedia</a> 。<a href="#fnref-4-1" class="backref">↩</a></li>
-<li id="ref-5">Porter, T., Elnakouri, A., Meyers, E. A., Shibayama, T., Jayawickreme, E., &amp; Grossmann, I.(2022). "Predictors and consequences of intellectual humility." <em>Nature Reviews Psychology</em>, 1 (9), 524–536. <a href="https://doi.org/10.1038/s44159-022-00081-9" target="_blank" rel="noopener">DOI</a><a href="#fnref-5-1" class="backref">↩</a></li>
-<li id="ref-6">Deci, E. L., &amp; Ryan, R. M.(1985). <em>Intrinsic Motivation and Self-Determination in Human Behavior</em>. Plenum Press. 理論の公式解説として Self-Determination Theory, <a href="https://selfdeterminationtheory.org/theory/" target="_blank" rel="noopener">selfdeterminationtheory.org</a> 。<a href="#fnref-6-1" class="backref">↩</a><a href="#fnref-6-2" class="backref">↩</a></li>
-<li id="ref-7">Dweck, C. S.(2006). <em>Mindset: The New Psychology of Success</em>. Random House. 概説として Wikipedia, "Carol Dweck," <a href="https://en.wikipedia.org/wiki/Carol_Dweck" target="_blank" rel="noopener">Wikipedia</a> 。<a href="#fnref-7-1" class="backref">↩</a></li>
-<li id="ref-8">徳認識論の概説として Stanford Encyclopedia of Philosophy, "Virtue Epistemology," <a href="https://plato.stanford.edu/entries/epistemology-virtue/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy</a> 。<a href="#fnref-8-1" class="backref">↩</a></li>
-<li id="ref-9">Cassam, Q.(2019). <em>Vices of the Mind: From the Intellectual to the Political</em>. Oxford University Press. 関連する概説として Stanford Encyclopedia of Philosophy, "Epistemic Virtue and Vice," <a href="https://plato.stanford.edu/entries/epistemic-virtue-vice/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy</a> 。<a href="#fnref-9-1" class="backref">↩</a></li>
-<li id="ref-10">Plato, <em>Apology</em>, 21a–23c （邦訳例：プラトン『ソクラテスの弁明』）。原文・英訳は Perseus Digital Library, <a href="http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0170" target="_blank" rel="noopener">perseus.tufts.edu</a> で参照可能。<a href="#fnref-10-1" class="backref">↩</a></li>
-<li id="ref-11">『論語』為政篇第十七章「知之為知之、不知為不知、是知也」。邦訳・原文は各種公開データベース（例：中国哲学書電子化計画 <a href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener">ctext.org</a>）で参照可能。<a href="#fnref-11-1" class="backref">↩</a></li>
-<li id="ref-12">Bourdieu, P.(1979). <em>La Distinction: Critique sociale du jugement</em>. Les Éditions de Minuit. （英訳： <em>Distinction: A Social Critique of the Judgement of Taste</em>, 1984）。概説として Wikipedia, "Cultural capital," <a href="https://en.wikipedia.org/wiki/Cultural_capital" target="_blank" rel="noopener">Wikipedia</a> 。<a href="#fnref-12-1" class="backref">↩</a></li>
-<li id="ref-13">日本の学歴社会に関する社会学的研究の代表例として、苅谷剛彦『階層化日本と教育危機』（有信堂高文社、 2001 年）、竹内洋『学歴貴族の栄光と挫折』（講談社学術文庫、 2011 年）などが挙げられる。<a href="#fnref-13-1" class="backref">↩</a></li>
-<li id="ref-14">問いの立て方・概念分析・ノートを「思考の実験室」として使う方法など、知識を「暫定的な理解」として扱いながら学びを進める具体的な技術については、<a href="philosophy-self-study.html" target="_blank" rel="noopener">「哲学的思考の技術と独学カリキュラムの設計」</a>を参照。<a href="#fnref-14-1" class="backref">↩</a></li>
-<li id="ref-15">専門的な素養を持たない成人が哲学・倫理学を独学で学び始める際の学問的な位置づけと、学びの入り口の選び方については、<a href="ethics-and-philosophy.html" target="_blank" rel="noopener">「倫理学は哲学の中でどこに立つか――学問的位置づけと独学の手引き」</a>を参照。<a href="#fnref-15-1" class="backref">↩</a></li>
-<li id="ref-16">学びが続かないことの認知心理学的な背景については、<a href="dual-process-theory.html" target="_blank" rel="noopener">「『システム 1 』『システム 2 』を読み解く――『独学大全』と二重過程理論」</a>を参照。<a href="#fnref-16-1" class="backref">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 生涯発達心理学の領域では、中高年期における学習動機の変化が論じられており、実務的必要性から離れた内発的な知的探究への関心の高まりが指摘されている。エリク・エリクソンの心理社会的発達段階論における成人後期・老年期の課題（生成継承性・統合）とも関連づけて論じられることが多い。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Wikipedia, "Pedantry," <a href="https://en.wikipedia.org/wiki/Pedantry" target="_blank" rel="noopener">Wikipedia</a>（閲覧： 2026 年 9 月）。</li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Kruger, J., &amp; Dunning, D. (1999) . "Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments." <em>Journal of Personality and Social Psychology</em>, 77 (6) , 1121–1134. 概説として Wikipedia, "Dunning–Kruger effect," <a href="https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect" target="_blank" rel="noopener">Wikipedia</a> 。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Porter, T., &amp; Schumann, K. (2018) . "Intellectual humility and openness to the opposing view." <em>Self and Identity</em>, 17 (2) , 139–162. 概説として Wikipedia, "Intellectual humility," <a href="https://en.wikipedia.org/wiki/Intellectual_humility" target="_blank" rel="noopener">Wikipedia</a> 。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Porter, T., Elnakouri, A., Meyers, E. A., Shibayama, T., Jayawickreme, E., &amp; Grossmann, I. (2022) . "Predictors and consequences of intellectual humility." <em>Nature Reviews Psychology</em>, 1 (9) , 524–536. <a href="https://doi.org/10.1038/s44159-022-00081-9" target="_blank" rel="noopener">DOI</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> Deci, E. L., &amp; Ryan, R. M. (1985) . <em>Intrinsic Motivation and Self-Determination in Human Behavior</em>. Plenum Press. 理論の公式解説として Self-Determination Theory, <a href="https://selfdeterminationtheory.org/theory/" target="_blank" rel="noopener">selfdeterminationtheory.org</a> 。</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Dweck, C. S. (2006) . <em>Mindset: The New Psychology of Success</em>. Random House. 概説として Wikipedia, "Carol Dweck," <a href="https://en.wikipedia.org/wiki/Carol_Dweck" target="_blank" rel="noopener">Wikipedia</a> 。</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> 徳認識論の概説として Stanford Encyclopedia of Philosophy, "Virtue Epistemology," <a href="https://plato.stanford.edu/entries/epistemology-virtue/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy</a> 。</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Cassam, Q. (2019) . <em>Vices of the Mind: From the Intellectual to the Political</em>. Oxford University Press. 関連する概説として Stanford Encyclopedia of Philosophy, "Epistemic Virtue and Vice," <a href="https://plato.stanford.edu/entries/epistemic-virtue-vice/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy</a> 。</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Plato, <em>Apology</em>, 21a–23c （邦訳例：プラトン『ソクラテスの弁明』）。原文・英訳は Perseus Digital Library, <a href="http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0170" target="_blank" rel="noopener">perseus.tufts.edu</a> で参照可能。</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> 『論語』為政篇第十七章「知之為知之、不知為不知、是知也」。邦訳・原文は各種公開データベース（例：中国哲学書電子化計画 <a href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener">ctext.org</a>)で参照可能。</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Bourdieu, P. (1979) . <em>La Distinction: Critique sociale du jugement</em>. Les Éditions de Minuit. （英訳： <em>Distinction: A Social Critique of the Judgement of Taste</em>, 1984) 。概説として Wikipedia, "Cultural capital," <a href="https://en.wikipedia.org/wiki/Cultural_capital" target="_blank" rel="noopener">Wikipedia</a> 。</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> 日本の学歴社会に関する社会学的研究の代表例として、苅谷剛彦『階層化日本と教育危機』（有信堂高文社、 2001 年）、竹内洋『学歴貴族の栄光と挫折』（講談社学術文庫、 2011 年）などが挙げられる。</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> 問いの立て方・概念分析・ノートを「思考の実験室」として使う方法など、知識を「暫定的な理解」として扱いながら学びを進める具体的な技術については、<a href="philosophy-self-study.html" target="_blank" rel="noopener">「哲学的思考の技術と独学カリキュラムの設計」</a>を参照。</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> 専門的な素養を持たない成人が哲学・倫理学を独学で学び始める際の学問的な位置づけと、学びの入り口の選び方については、<a href="ethics-and-philosophy.html" target="_blank" rel="noopener">「倫理学は哲学の中でどこに立つか――学問的位置づけと独学の手引き」</a>を参照。</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> 学びが続かないことの認知心理学的な背景については、<a href="dual-process-theory.html" target="_blank" rel="noopener">「『システム 1 』『システム 2 』を読み解く――『独学大全』と二重過程理論」</a>を参照。</li>
 </ol>
 </div>
 

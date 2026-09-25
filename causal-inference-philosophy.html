@@ -12,29 +12,38 @@
 *{box-sizing:border-box}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  line-height:1.95;
+  line-height:2;
 }
 .wrap{max-width:820px;margin:auto;padding:56px 26px 120px}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
-h1{font-size:32px;line-height:1.55;margin:0 0 18px}
-.subtitle{font-size:20px;color:var(--muted);margin:0 0 34px}
-.meta{font-size:15px;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:42px}
+h1{font-size:32px;line-height:1.6;margin:0 0 18px}
+.subtitle{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{font-size:15px;line-height:1.9;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:40px}
 h2{font-size:26px;line-height:1.5;margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
 h3{font-size:20px;margin:32px 0 12px}
 p{font-size:19px;margin:0 0 20px}
-.lede{font-size:20px;color:var(--muted);border-left:3px solid var(--accent);padding-left:18px}
 .pull{font-size:22px;line-height:1.75;color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding:3px 0 3px 20px;margin:34px 0}
 .box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:28px 0;font-size:19px;}
 .box strong{color:var(--accent)}
-table{border-collapse:collapse;width:100%;font-size:16px;margin:24px 0 32px}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:24px 0 28px}
 th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
 th{background:var(--box);text-align:left}
-ul,ol{padding-left:1.4em}
-li{margin-bottom:9px}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+li{font-size:19px;margin-bottom:9px}
 sup{font-size:.72em}
 a{color:var(--link)}
 .refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
-.refs li{font-size:15.5px;line-height:1.65;margin-bottom:11px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted)}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -44,15 +53,9 @@ a{color:var(--link)}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 sup a{color:var(--link);text-decoration:none}
 sup a:hover{text-decoration:underline}
-.refs li a.backref{color:var(--link);text-decoration:none;margin-left:6px;font-size:14px}
-.refs li a.backref:hover{text-decoration:underline}
 @media (max-width:480px){
   .wrap{padding:40px 18px 90px}
   h1{font-size:27px}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
 }
 </style>
 </head>
@@ -62,23 +65,25 @@ sup a:hover{text-decoration:underline}
 <div class="kicker">哲学・科学方法論</div>
 <h1>「これが原因だ」とどうして言えるのか<br>――因果推論の哲学、ヒュームから統計的因果推論まで</h1>
 <p class="subtitle">What Makes Something a Cause? The Philosophy of Causal Inference, from Hume to Statistical Causal Inference</p>
-<div class="lede"><p>規則性説・反実仮想理論・確率的因果論・操作可能性理論・潜在的結果モデル・因果ダイアグラムを中心に</p></div>
-<div class="meta">
-本稿の目的：特定の事例における因果関係の有無を裁定することではなく、「原因」という概念そのものが哲学的にどれほど難しい対象であり、それに対して哲学と統計学がそれぞれどのような解決を試みてきたのかを、複数の理論を横断して検討する。
+
+<div class="lede">
+<p>
+「タバコは肺がんの原因である」「あの一言が喧嘩の原因だった」――因果の語りは日常のいたるところにある。しかし、「原因」そのものを指差して示すことは誰にもできない。見えるのは、ある出来事の後に別の出来事が続いた、という時間的な前後関係だけである。この一見単純な概念が、哲学において二百年以上にわたり決着のつかない難問であり続け、現代の統計学・疫学・機械学習の分野では今なお実務上の中心課題であり続けている理由を、規則性説・反実仮想理論・確率的因果論・操作可能性理論・潜在的結果モデル・因果ダイアグラムを中心にたどる。
+</p>
 </div>
 
-<p class="lede">
-「タバコは肺がんの原因である」「あの一言が喧嘩の原因だった」――因果の語りは日常のいたるところにある。しかし、「原因」そのものを指差して示すことは誰にもできない。見えるのは、ある出来事の後に別の出来事が続いた、という時間的な前後関係だけである。この一見単純な概念が、哲学において二百年以上にわたり決着のつかない難問であり続け、現代の統計学・疫学・機械学習の分野では今なお実務上の中心課題であり続けている理由を、以下でたどる。
-</p>
+<div class="meta">
+【本稿の目的と範囲】特定の事例における因果関係の有無を裁定することではなく、「原因」という概念そのものが哲学的にどれほど難しい対象であり、それに対して哲学と統計学がそれぞれどのような解決を試みてきたのかを、複数の理論を横断して検討する。
+</div>
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 因果は感覚経験の中に見つからない――規則性説から反実仮想理論へ</a></li>
-<li><a href="#sec2">2. 反実仮想理論のほころびと、それを補う二つの視点――確率と介入</a></li>
-<li><a href="#sec3">3. 因果推論を実践に落とし込む――統計学が磨いた道具立て</a></li>
-<li><a href="#sec4">4. 因果の向きはどこから来るのか、そして哲学と統計はどう補い合うのか</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">因果は感覚経験の中に見つからない――規則性説から反実仮想理論へ</a></li>
+<li><a href="#sec2">反実仮想理論のほころびと、それを補う二つの視点――確率と介入</a></li>
+<li><a href="#sec3">因果推論を実践に落とし込む――統計学が磨いた道具立て</a></li>
+<li><a href="#sec4">因果の向きはどこから来るのか、そして哲学と統計はどう補い合うのか</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 因果は感覚経験の中に見つからない――規則性説から反実仮想理論へ</h2>
@@ -87,19 +92,19 @@ sup a:hover{text-decoration:underline}
 因果関係について考えるとき、まず注意すべきなのは、私たちが日常的に「原因を見た」と感じる経験そのものが、実は錯覚を含みうるという点である。ビリヤードの球がぶつかって別の球が動く場面を見て、私たちは「衝突が運動の原因だ」と即座に理解する。しかし、そこで実際に感覚器官が捉えているのは、一つの球が動き、接触があり、もう一つの球が動いた、という一連の出来事の系列にすぎない。出来事と出来事を結びつける「力」や「必然性」そのものは、どの感覚器官によっても直接には捉えられない。この事実は因果関係の存在を否定するものではなく、因果という概念が単純な感覚経験の記録以上の何かを含んでいることを示している。以下の議論は、特定の事例における因果の有無を断定する道具ではなく、因果推論という営みが依拠している前提そのものを吟味する枠組みとして読まれるべきである。
 </p>
 <p>
-この懐疑を最初に厳密な形で突き詰めたのが、18 世紀スコットランドの哲学者デイヴィッド・ヒュームである。ヒュームは『人間知性研究』の中で、因果関係の核心にあるとされる「必然的結合」――原因が結果を生み出さずにはいられないという、あの拘束力の感覚――は、どれだけ経験を重ねても知覚データの中には見出せないと論じた <sup><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。私たちが実際に観察できるのは、ある種の出来事(A)に続いて別の種類の出来事(B)が繰り返し生じるという「恒常的な連接」だけである。因果関係とは、外界に実在する結びつきの発見ではなく、同じ型の出来事の反復を観察してきた人間の心が、A の後に B が続くことを期待するようになる、心理的な習慣の産物にすぎない――これが規則性説と呼ばれる立場であり、後の因果論のほぼすべてが、ヒュームのこの懐疑にどう応答するかという形で組み立てられていくことになる。
+この懐疑を最初に厳密な形で突き詰めたのが、 18 世紀スコットランドの哲学者デイヴィッド・ヒュームである。ヒュームは『人間知性研究』の中で、因果関係の核心にあるとされる「必然的結合」――原因が結果を生み出さずにはいられないという、あの拘束力の感覚――は、どれだけ経験を重ねても知覚データの中には見出せないと論じた <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。私たちが実際に観察できるのは、ある種の出来事 (A) に続いて別の種類の出来事 (B) が繰り返し生じるという「恒常的な連接」だけである。因果関係とは、外界に実在する結びつきの発見ではなく、同じ型の出来事の反復を観察してきた人間の心が、 A の後に B が続くことを期待するようになる、心理的な習慣の産物にすぎない――これが規則性説と呼ばれる立場であり、後の因果論のほぼすべてが、ヒュームのこの懐疑にどう応答するかという形で組み立てられていくことになる。
 </p>
-<div class="pull">見えているのは、原因が結果を生み出す瞬間ではなく、A の後に B が続くという反復だけである。</div>
+<div class="pull">見えているのは、原因が結果を生み出す瞬間ではなく、 A の後に B が続くという反復だけである。</div>
 <p>
-規則性説には、単純な相関を因果と取り違えてしまうという致命的な弱点がある。朝、雄鶏が鳴いた後に日が昇るという規則性は無数に観察できるが、雄鶏の鳴き声が日の出の原因だとは誰も考えない。ジョン・スチュアート・ミルは、単なる先行事象ではなく「十分条件かつ必要条件の集合」として原因を定式化しようと試みたが <sup><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 、規則性という発想の枠組み自体の限界を克服するには至らなかった。
+規則性説には、単純な相関を因果と取り違えてしまうという致命的な弱点がある。朝、雄鶏が鳴いた後に日が昇るという規則性は無数に観察できるが、雄鶏の鳴き声が日の出の原因だとは誰も考えない。ジョン・スチュアート・ミルは、単なる先行事象ではなく「十分条件かつ必要条件の集合」として原因を定式化しようと試みたが <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 、規則性という発想の枠組み自体の限界を克服するには至らなかった。
 </p>
 <h3>●反実仮想理論の登場</h3>
 <p>
-この袋小路を打開しようとしたのが、20 世紀後半にデイヴィッド・ルイスが提示した反実仮想理論である <sup><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。ルイスの発想は単純明快である。「C が A の原因である」とは、もし C が起こらなかったとしたら、A も起こらなかっただろう、という反実仮想的な依存関係が成り立つことだ、というものである。雄鶏の鳴き声が日の出の原因ではないと直感的に分かるのは、雄鶏が鳴かなかったとしても日は昇っていただろうと誰もが判断できるからである。この判断の妥当性を、ルイスは可能世界意味論という枠組みで厳密化した。現実世界に最もよく似ていながら、C が起こらなかった可能世界を想定し、そこでも A が起こるかどうかを問う、という手続きである。
+この袋小路を打開しようとしたのが、 20 世紀後半にデイヴィッド・ルイスが提示した反実仮想理論である <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。ルイスの発想は単純明快である。「 C が A の原因である」とは、もし C が起こらなかったとしたら、 A も起こらなかっただろう、という反実仮想的な依存関係が成り立つことだ、というものである。雄鶏の鳴き声が日の出の原因ではないと直感的に分かるのは、雄鶏が鳴かなかったとしても日は昇っていただろうと誰もが判断できるからである。この判断の妥当性を、ルイスは可能世界意味論という枠組みで厳密化した。現実世界に最もよく似ていながら、 C が起こらなかった可能世界を想定し、そこでも A が起こるかどうかを問う、という手続きである。
 </p>
 <h3>●後悔の心理学との接続</h3>
 <p>
-この理論が重要なのは、単に因果の一つの定義を提供したからではなく、後悔や自責の念を扱う心理学が前提としている思考の構造そのものと直結している点にある。「あの時ああしていれば、こうならなかったのに」という後悔の反実仮想的な思考は、まさにルイスが因果の定義の核心に据えた「なければ起きなかった」という判断の形式そのものである <sup><a href="#ref-4" id="fnref-4-1">[4]</a></sup> 。因果推論の哲学と、後悔という感情の心理学は、現実には存在しない「もう一つの世界」を頭の中に構築し、現実と比較するという同じ認知的な操作を土台にしている。
+この理論が重要なのは、単に因果の一つの定義を提供したからではなく、後悔や自責の念を扱う心理学が前提としている思考の構造そのものと直結している点にある。「あの時ああしていれば、こうならなかったのに」という後悔の反実仮想的な思考は、まさにルイスが因果の定義の核心に据えた「なければ起きなかった」という判断の形式そのものである <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。因果推論の哲学と、後悔という感情の心理学は、現実には存在しない「もう一つの世界」を頭の中に構築し、現実と比較するという同じ認知的な操作を土台にしている。
 </p>
 
 <h2 id="sec2">2. 反実仮想理論のほころびと、それを補う二つの視点――確率と介入</h2>
@@ -108,36 +113,36 @@ sup a:hover{text-decoration:underline}
 反実仮想理論は直感に合致する場面が多い一方、いくつかの思考実験によってその限界が指摘されてきた。代表的なのが「先取り」と呼ばれる事例群である。ある殺人者が被害者に毒を盛ったが、その毒が効く前に、別の暗殺者が撃った銃弾で被害者が死んだとする。この場合、毒を盛った行為が死の原因であるとは通常考えない。しかし反実仮想理論を機械的に適用すると、「毒を盛らなかったとしても、別の暗殺者に撃たれて死んでいただろう」という反実仮想的な依存関係が成立せず、毒を盛った行為も撃った行為も「原因」として認定できなくなってしまう。もう一つの難問が「過剰決定」である。二人の狙撃手がそれぞれ独立に、しかし同時に被害者を撃ち、どちらの弾も単独で致死的だったとする。この場合、どちらの狙撃手の行為も、それ単独では「なければ死ななかった」とは言えない――もう一方の弾が命中していたはずだからである。しかし常識的には、両者とも死の原因であるとみなすのが自然である。
 </p>
 <div class="box">
-<strong>思考実験が担っている役割：</strong>これらの事例は、現実に起こりうる出来事というより、理論の限界を精密に切り分けるために哲学者が設計した概念的な道具である。ルイス自身も後年、因果的依存の連鎖(ある出来事の連鎖を通じた間接的な依存)という考え方を導入して先取り問題への応答を試みたが <sup><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 、こうした事例をすべて自然に処理できる単一の反実仮想理論は、現在に至るまで合意を得ていない。
+<strong>思考実験が担っている役割：</strong>これらの事例は、現実に起こりうる出来事というより、理論の限界を精密に切り分けるために哲学者が設計した概念的な道具である。ルイス自身も後年、因果的依存の連鎖（ある出来事の連鎖を通じた間接的な依存）という考え方を導入して先取り問題への応答を試みたが <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 、こうした事例をすべて自然に処理できる単一の反実仮想理論は、現在に至るまで合意を得ていない。
 </div>
 <h3>●確率的因果論</h3>
 <p>
-反実仮想理論が抱えるこうしたほころびに対して、哲学は二つの異なる方向から代替案を示してきた。一つは、依存関係を「あったか、なかったか」という二値で捉えるのをやめ、確率の変化として捉え直す道である。パトリック・スッピスが提示した確率的因果論は、原因を「結果が生じる確率を引き上げるもの」として定式化する <sup><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。喫煙が肺がんの原因であるという主張は、「喫煙者は必ず肺がんになる」という決定論的な主張ではなく、「喫煙は、他の条件が同じであれば、肺がんが発症する確率を統計的に有意に引き上げる」という確率的な主張として理解する方が、医学や疫学の実務に近い。この立場は、必ずしも結果を引き起こすわけではない要因を「原因」として扱えるという利点を持つ一方、単純な確率上昇の基準だけでは偽の相関を排除できないという弱点を抱える。ある要因が結果の確率を引き上げて見えるのは、両者に共通する第三の要因(交絡要因)が存在するためかもしれないからである。
+反実仮想理論が抱えるこうしたほころびに対して、哲学は二つの異なる方向から代替案を示してきた。一つは、依存関係を「あったか、なかったか」という二値で捉えるのをやめ、確率の変化として捉え直す道である。パトリック・スッピスが提示した確率的因果論は、原因を「結果が生じる確率を引き上げるもの」として定式化する <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。喫煙が肺がんの原因であるという主張は、「喫煙者は必ず肺がんになる」という決定論的な主張ではなく、「喫煙は、他の条件が同じであれば、肺がんが発症する確率を統計的に有意に引き上げる」という確率的な主張として理解する方が、医学や疫学の実務に近い。この立場は、必ずしも結果を引き起こすわけではない要因を「原因」として扱えるという利点を持つ一方、単純な確率上昇の基準だけでは偽の相関を排除できないという弱点を抱える。ある要因が結果の確率を引き上げて見えるのは、両者に共通する第三の要因（交絡要因）が存在するためかもしれないからである。
 </p>
 <h3>●操作可能性理論と介入主義</h3>
 <p>
-もう一つの道は、因果を観察者の記録としてではなく、行為者による「操作」の観点から捉え直すことである。フィンランドの哲学者ゲオルク・ヘンリク・フォン・ウリクトは、C が A の原因であるとは、C を意図的に生じさせることによって A を実現できる、という実践的な関係として理解すべきだと提案した <sup><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。この操作可能性という発想を体系的な理論にまで練り上げたのが、ジェームズ・ウッドワードの介入主義である <sup><a href="#ref-8" id="fnref-8-1">[8]</a></sup> 。ウッドワードによれば、「C は A の原因である」とは、他のすべての要因を一定に保ったまま、外部から C だけに理想的な介入を加えたとき、A の値が変化する、という関係を意味する。ここでの「介入」とは、単なる観察や、C と相関する自然な変動ではなく、C 以外の因果構造を乱さずに C だけを操作する、という理念化された手続きである。この理論の強みは、思考実験に頼らずとも「介入した場合にどうなるか」という問いを、実験科学の言葉でそのまま扱える点にある。ランダム化比較試験が因果推論の黄金基準とされる理由も、まさにここにある。被験者を無作為に処置群と対照群に割り付けるという操作こそが、ウッドワードの言う「理想的な介入」を、現実の実験の中で近似的に実現する手続きだからである。
+もう一つの道は、因果を観察者の記録としてではなく、行為者による「操作」の観点から捉え直すことである。フィンランドの哲学者ゲオルク・ヘンリク・フォン・ウリクトは、 C が A の原因であるとは、 C を意図的に生じさせることによって A を実現できる、という実践的な関係として理解すべきだと提案した <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。この操作可能性という発想を体系的な理論にまで練り上げたのが、ジェームズ・ウッドワードの介入主義である <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。ウッドワードによれば、「 C は A の原因である」とは、他のすべての要因を一定に保ったまま、外部から C だけに理想的な介入を加えたとき、 A の値が変化する、という関係を意味する。ここでの「介入」とは、単なる観察や、 C と相関する自然な変動ではなく、 C 以外の因果構造を乱さずに C だけを操作する、という理念化された手続きである。この理論の強みは、思考実験に頼らずとも「介入した場合にどうなるか」という問いを、実験科学の言葉でそのまま扱える点にある。ランダム化比較試験が因果推論の黄金基準とされる理由も、まさにここにある。被験者を無作為に処置群と対照群に割り付けるという操作こそが、ウッドワードの言う「理想的な介入」を、現実の実験の中で近似的に実現する手続きだからである。
 </p>
 
 <h2 id="sec3">3. 因果推論を実践に落とし込む――統計学が磨いた道具立て</h2>
 <h3>●潜在的結果モデル</h3>
 <p>
-哲学が概念の整合性を追求してきた一方、統計学は同じ問題を、実際にデータから因果効果を推定するための方法論として発展させてきた。その基礎にあるのが、イェジ・ネイマンが 1920 年代に着想し、ドナルド・ルービンが定式化した潜在的結果モデルである <sup><a href="#ref-9" id="fnref-9-1">[9]</a></sup> 。このモデルでは、ある個体が処置を受けた場合の結果と、受けなかった場合の結果という、二つの「潜在的結果」を想定し、因果効果をこの二つの差として定義する。ここに、因果推論の根本的な困難――ルービンの因果モデルの文脈でしばしば「因果推論の根本問題」と呼ばれる制約――が現れる。一人の個体について、処置を受けた場合と受けなかった場合の結果を、同時に観察することは原理的にできない。私たちは常に、起こらなかった方の可能性という、観察不可能な反実仮想的な値と向き合っている。統計的因果推論の技法の多くは、多数の個体にわたる平均を取ることで、この観察できない反実仮想を近似的に推定しようとする試みであり、その意味でルービンのモデルは、前章で見た反実仮想理論を測定可能な形に翻訳したものだと言える。
+哲学が概念の整合性を追求してきた一方、統計学は同じ問題を、実際にデータから因果効果を推定するための方法論として発展させてきた。その基礎にあるのが、イェジ・ネイマンが 1920 年代に着想し、ドナルド・ルービンが定式化した潜在的結果モデルである <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。このモデルでは、ある個体が処置を受けた場合の結果と、受けなかった場合の結果という、二つの「潜在的結果」を想定し、因果効果をこの二つの差として定義する。ここに、因果推論の根本的な困難――ルービンの因果モデルの文脈でしばしば「因果推論の根本問題」と呼ばれる制約――が現れる。一人の個体について、処置を受けた場合と受けなかった場合の結果を、同時に観察することは原理的にできない。私たちは常に、起こらなかった方の可能性という、観察不可能な反実仮想的な値と向き合っている。統計的因果推論の技法の多くは、多数の個体にわたる平均を取ることで、この観察できない反実仮想を近似的に推定しようとする試みであり、その意味でルービンのモデルは、前章で見た反実仮想理論を測定可能な形に翻訳したものだと言える。
 </p>
 <h3>●因果ダイアグラムとドゥ演算子</h3>
 <p>
-この枠組みをさらに発展させ、変数間の因果構造そのものを図として表現し、どの変数を統制すればよいかを機械的に判定する体系を築いたのが、ジューディア・パールの因果ダイアグラム(有向非巡回グラフ)とドゥ演算子である <sup><a href="#ref-10" id="fnref-10-1">[10]</a></sup> 。パールは、単なる観察に基づく確率(見ることの科学)と、介入を仮定した確率(することの科学)、そして反実仮想的な問い(想像することの科学)を三段の階層として整理し、ウッドワードの介入主義とルイスの反実仮想理論を、一つの数学的な体系の中に統合してみせた <sup><a href="#ref-11" id="fnref-11-1">[11]</a></sup> 。
+この枠組みをさらに発展させ、変数間の因果構造そのものを図として表現し、どの変数を統制すればよいかを機械的に判定する体系を築いたのが、ジューディア・パールの因果ダイアグラム（有向非巡回グラフ）とドゥ演算子である <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。パールは、単なる観察に基づく確率（見ることの科学）と、介入を仮定した確率（することの科学）、そして反実仮想的な問い（想像することの科学）を三段の階層として整理し、ウッドワードの介入主義とルイスの反実仮想理論を、一つの数学的な体系の中に統合してみせた <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。
 </p>
 <h3>●シンプソンのパラドックス</h3>
 <p>
-この因果構造への着目が実務上どれほど重要かを端的に示すのが、統計学者エドワード・シンプソンが 1951 年に定式化した、いわゆるシンプソンのパラドックスである <sup><a href="#ref-12" id="fnref-12-1">[12]</a></sup> 。これは、データ全体を集計すると、ある処置が有害に見えるにもかかわらず、性別や重症度といった部分集団ごとに層別して見ると、同じ処置がむしろ有益に見える、という逆転現象を指す。この逆転はどちらの見方が「正しい」か、集計と層別のどちらが真の因果構造を反映しているかという、純粋に統計的な手続きだけでは決まらない問題である。判断を分けるのは、その第三の変数(性別や重症度)が、原因と結果の両方に影響を与える交絡要因なのか、それとも原因が結果に至る経路の途中にある媒介変数なのか、という因果構造そのものについての知識である。パールの因果ダイアグラムが提供する最大の実務的な貢献は、この「どの変数を統制すべきか」という問いに、データだけからではなく、ドメイン知識に基づく因果構造の仮定を明示的に組み込んだ上で、機械的な判定手続きを与えた点にある。
+この因果構造への着目が実務上どれほど重要かを端的に示すのが、統計学者エドワード・シンプソンが 1951 年に定式化した、いわゆるシンプソンのパラドックスである <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。これは、データ全体を集計すると、ある処置が有害に見えるにもかかわらず、性別や重症度といった部分集団ごとに層別して見ると、同じ処置がむしろ有益に見える、という逆転現象を指す。この逆転はどちらの見方が「正しい」か、集計と層別のどちらが真の因果構造を反映しているかという、純粋に統計的な手続きだけでは決まらない問題である。判断を分けるのは、その第三の変数（性別や重症度）が、原因と結果の両方に影響を与える交絡要因なのか、それとも原因が結果に至る経路の途中にある媒介変数なのか、という因果構造そのものについての知識である。パールの因果ダイアグラムが提供する最大の実務的な貢献は、この「どの変数を統制すべきか」という問いに、データだけからではなく、ドメイン知識に基づく因果構造の仮定を明示的に組み込んだ上で、機械的な判定手続きを与えた点にある。
 </p>
 <div class="pull">相関は、因果の存在を示唆するが、因果構造の仮定なしには、何を統制すべきかを教えてくれない。</div>
 
 <h2 id="sec4">4. 因果の向きはどこから来るのか、そして哲学と統計はどう補い合うのか</h2>
 <h3>●因果の非対称性の起源</h3>
 <p>
-ここまでの議論は、因果関係が「ある」か「ない」かをどう判定するかを扱ってきたが、より根源的な問いも残されている。なぜ因果は、過去から未来へという一方向にしか働かないように見えるのか、という問題である。物理学の基礎方程式の多くは時間反転対称であり、原因が結果に先立つという非対称性を方程式そのものからは導けない。ハンス・ライヘンバッハは、この非対称性を、共通原因の原理――相関する二つの出来事の間に直接の因果関係がない場合、その相関は必ず過去に位置する共通の原因によって説明されるという原理――と、熱力学第二法則が要請するエントロピー増大の方向性に結びつけて説明しようとした <sup><a href="#ref-13" id="fnref-13-1">[13]</a></sup> 。ヒュー・プライスはこの議論をさらに掘り下げ、因果の非対称性そのものが、宇宙の初期条件という、特殊で説明を要する低エントロピー状態に由来する、と論じている <sup><a href="#ref-14" id="fnref-14-1">[14]</a></sup> 。この問題は、観測事実として確立している物理法則と、宇宙の初期条件や時間の本性についての哲学的な仮説との境界を明確に意識しながら扱う必要がある論点であり、多元宇宙論をめぐる議論と同様に <sup><a href="#ref-15" id="fnref-15-1">[15]</a></sup> 、「検証可能な物理理論」と「その理論をめぐる形而上学的な解釈」とを混同しないことが、健全な議論の前提になる。
+ここまでの議論は、因果関係が「ある」か「ない」かをどう判定するかを扱ってきたが、より根源的な問いも残されている。なぜ因果は、過去から未来へという一方向にしか働かないように見えるのか、という問題である。物理学の基礎方程式の多くは時間反転対称であり、原因が結果に先立つという非対称性を方程式そのものからは導けない。ハンス・ライヘンバッハは、この非対称性を、共通原因の原理――相関する二つの出来事の間に直接の因果関係がない場合、その相関は必ず過去に位置する共通の原因によって説明されるという原理――と、熱力学第二法則が要請するエントロピー増大の方向性に結びつけて説明しようとした <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。ヒュー・プライスはこの議論をさらに掘り下げ、因果の非対称性そのものが、宇宙の初期条件という、特殊で説明を要する低エントロピー状態に由来する、と論じている <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。この問題は、観測事実として確立している物理法則と、宇宙の初期条件や時間の本性についての哲学的な仮説との境界を明確に意識しながら扱う必要がある論点であり、多元宇宙論をめぐる議論と同様に <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 、「検証可能な物理理論」と「その理論をめぐる形而上学的な解釈」とを混同しないことが、健全な議論の前提になる。
 </p>
 <h3>●哲学と統計の階層構造</h3>
 <p>
@@ -158,7 +163,7 @@ sup a:hover{text-decoration:underline}
 </tbody>
 </table>
 <p>
-このモデルの利点は、「因果とは結局何なのか」という一枚岩の問いを、「どの文脈で、どの理論が、どの目的のために使われているのか」という、より扱いやすい一連の問いへと分解できることである。規則性説、反実仮想理論、確率的因果論、操作可能性理論は、いずれも検証済みの事実というより、因果という概念をどう定義すべきかについての哲学的な提案であり、相互に競合し、決着していない。一方、潜在的結果モデル、因果ダイアグラム、ランダム化比較試験、交絡の統制は、これらの哲学的な定義のいずれかを(多くの場合、反実仮想理論と介入主義を土台として)実務に落とし込むために統計学が磨き上げてきた、検証可能な方法論である。哲学的な定義の探求と、統計的な推定の技法は、対立する二つの答えではなく、同じ難問に対する異なる層での応答として理解する方が生産的であり、両者を混同して、統計的に有意な相関を無条件に因果関係の証明であるかのように扱うことは避けなければならない。
+このモデルの利点は、「因果とは結局何なのか」という一枚岩の問いを、「どの文脈で、どの理論が、どの目的のために使われているのか」という、より扱いやすい一連の問いへと分解できることである。規則性説、反実仮想理論、確率的因果論、操作可能性理論は、いずれも検証済みの事実というより、因果という概念をどう定義すべきかについての哲学的な提案であり、相互に競合し、決着していない。一方、潜在的結果モデル、因果ダイアグラム、ランダム化比較試験、交絡の統制は、これらの哲学的な定義のいずれかを（多くの場合、反実仮想理論と介入主義を土台として）実務に落とし込むために統計学が磨き上げてきた、検証可能な方法論である。哲学的な定義の探求と、統計的な推定の技法は、対立する二つの答えではなく、同じ難問に対する異なる層での応答として理解する方が生産的であり、両者を混同して、統計的に有意な相関を無条件に因果関係の証明であるかのように扱うことは避けなければならない。
 </p>
 <p>
 <strong>因果とは、世界に刻まれた単一の事実として発見されるものではなく、反実仮想・介入・確率という複数の不完全なレンズを重ね合わせることで、その都度、実務的に再構成される関係である。</strong>
@@ -166,28 +171,29 @@ sup a:hover{text-decoration:underline}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Hume, D.(1748). <em>An Enquiry Concerning Human Understanding</em>. Section VII, "Of the Idea of Necessary Connexion". <a href="#fnref-1-1" class="backref">↩</a></li>
-<li id="ref-2">Mill, J. S.(1843). <em>A System of Logic</em>. Book III, Chapter V, "Of the Law of Causation". <a href="#fnref-2-1" class="backref">↩</a></li>
-<li id="ref-3">Lewis, D.(1973). Causation. <em>The Journal of Philosophy, 70</em>(17), 556–567. DOI: <a href="https://doi.org/10.2307/2025310">10.2307/2025310</a>. <a href="#fnref-3-1" class="backref">↩</a></li>
-<li id="ref-4">Kahneman, D., &amp; Miller, D. T.(1986). Norm theory: Comparing reality to its alternatives. <em>Psychological Review, 93</em>(2), 136–153. DOI: <a href="https://doi.org/10.1037/0033-295X.93.2.136">10.1037/0033-295X.93.2.136</a>. （反実仮想的思考の心理学的検討。哲学的な反実仮想理論とは独立の実証研究である点に留意）<a href="#fnref-4-1" class="backref">↩</a></li>
-<li id="ref-5">Lewis, D.(1986). Causation. In <em>Philosophical Papers, Vol. II</em>(Postscripts, pp. 172–213). Oxford University Press. <a href="#fnref-5-1" class="backref">↩</a></li>
-<li id="ref-6">Suppes, P.(1970). <em>A Probabilistic Theory of Causality</em>. North-Holland Publishing. <a href="#fnref-6-1" class="backref">↩</a></li>
-<li id="ref-7">von Wright, G. H.(1971). <em>Explanation and Understanding</em>. Cornell University Press. <a href="#fnref-7-1" class="backref">↩</a></li>
-<li id="ref-8">Woodward, J.(2003). <em>Making Things Happen: A Theory of Causal Explanation</em>. Oxford University Press. <a href="#fnref-8-1" class="backref">↩</a></li>
-<li id="ref-9">Rubin, D. B.(1974). Estimating causal effects of treatments in randomized and nonrandomized studies. <em>Journal of Educational Psychology, 66</em>(5), 688–701. DOI: <a href="https://doi.org/10.1037/h0037350">10.1037/h0037350</a>. （潜在的結果の着想自体はネイマンの 1923 年の論文に遡る。英訳: Neyman, J.(1923/1990). On the application of probability theory to agricultural experiments. <em>Statistical Science, 5</em>(4), 465–472.）<a href="#fnref-9-1" class="backref">↩</a></li>
-<li id="ref-10">Pearl, J.(2009). <em>Causality: Models, Reasoning, and Inference</em>(2nd ed.). Cambridge University Press. <a href="#fnref-10-1" class="backref">↩</a></li>
-<li id="ref-11">Pearl, J., &amp; Mackenzie, D.(2018). <em>The Book of Why: The New Science of Cause and Effect</em>. Basic Books. （「因果のはしご」という一般向けの比喩表現は本書による）<a href="#fnref-11-1" class="backref">↩</a></li>
-<li id="ref-12">Simpson, E. H.(1951). The interpretation of interaction in contingency tables. <em>Journal of the Royal Statistical Society: Series B, 13</em>(2), 238–241. <a href="#fnref-12-1" class="backref">↩</a></li>
-<li id="ref-13">Reichenbach, H.(1956). <em>The Direction of Time</em>. University of California Press. <a href="#fnref-13-1" class="backref">↩</a></li>
-<li id="ref-14">Price, H.(1996). <em>Time's Arrow and Archimedes' Point: New Directions for the Physics of Time</em>. Oxford University Press. <a href="#fnref-14-1" class="backref">↩</a></li>
-<li id="ref-15">本稿における「観測事実と仮説の境界を明示する」という方法論的態度は、多元宇宙論のような検証困難な理論を扱う際にも共通して求められる視座である。<a href="#fnref-15-1" class="backref">↩</a></li>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Hume, D.(1748). <em>An Enquiry Concerning Human Understanding</em>. Section VII, "Of the Idea of Necessary Connexion".</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Mill, J. S.(1843). <em>A System of Logic</em>. Book III, Chapter V, "Of the Law of Causation".</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Lewis, D.(1973). Causation. <em>The Journal of Philosophy, 70</em>(17), 556–567. DOI: <a href="https://doi.org/10.2307/2025310">10.2307/2025310</a>.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Kahneman, D., &amp; Miller, D. T.(1986). Norm theory: Comparing reality to its alternatives. <em>Psychological Review, 93</em>(2), 136–153. DOI: <a href="https://doi.org/10.1037/0033-295X.93.2.136">10.1037/0033-295X.93.2.136</a>. （反実仮想的思考の心理学的検討。哲学的な反実仮想理論とは独立の実証研究である点に留意）</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Lewis, D.(1986). Causation. In <em>Philosophical Papers, Vol. II</em>(Postscripts, pp. 172–213). Oxford University Press.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Suppes, P.(1970). <em>A Probabilistic Theory of Causality</em>. North-Holland Publishing.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> von Wright, G. H.(1971). <em>Explanation and Understanding</em>. Cornell University Press.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Woodward, J.(2003). <em>Making Things Happen: A Theory of Causal Explanation</em>. Oxford University Press.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Rubin, D. B.(1974). Estimating causal effects of treatments in randomized and nonrandomized studies. <em>Journal of Educational Psychology, 66</em>(5), 688–701. DOI: <a href="https://doi.org/10.1037/h0037350">10.1037/h0037350</a>. （潜在的結果の着想自体はネイマンの 1923 年の論文に遡る。英訳 : Neyman, J.(1923/1990). On the application of probability theory to agricultural experiments. <em>Statistical Science, 5</em>(4), 465–472.）</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Pearl, J.(2009). <em>Causality: Models, Reasoning, and Inference</em>(2nd ed.). Cambridge University Press.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Pearl, J., &amp; Mackenzie, D.(2018). <em>The Book of Why: The New Science of Cause and Effect</em>. Basic Books. （「因果のはしご」という一般向けの比喩表現は本書による）</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Simpson, E. H.(1951). The interpretation of interaction in contingency tables. <em>Journal of the Royal Statistical Society: Series B, 13</em>(2), 238–241.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Reichenbach, H.(1956). <em>The Direction of Time</em>. University of California Press.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Price, H.(1996). <em>Time's Arrow and Archimedes' Point: New Directions for the Physics of Time</em>. Oxford University Press.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> 本稿における「観測事実と仮説の境界を明示する」という方法論的態度は、多元宇宙論のような検証困難な理論を扱う際にも共通して求められる視座である。</li>
 </ol>
+</div>
 
 <p class="note">
 注：本稿は学術論文ではなく、公開された哲学的議論と統計学的方法論をもとにした一般向けの学術的読み物である。因果関係の哲学的な定義は現在も理論間で決着しておらず、本稿はいずれかの立場を最終的な正解として推奨するものではない。また、統計的因果推論の技法は、正しく特定された因果構造の仮定のもとで初めて妥当な推定を与えるものであり、手法の適用それ自体が因果構造の正しさを保証するわけではない。
 </p>
-</div>
 
 </div>
 </body>

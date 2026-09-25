@@ -18,11 +18,11 @@ body{
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
-.lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
@@ -43,15 +43,18 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ul,.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
 blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
@@ -63,10 +66,6 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -74,19 +73,19 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <div class="kicker">労働経済学・比較政治経済学</div>
 <h1>AI は労働をどう書き換え、その果実は誰が受け取るのか<br>――タスクベース理論から再分配政策まで</h1>
 <p class="subtitle">How AI Rewrites Labor and Who Captures Its Gains: From Task-Based Theory to Redistribution Policy</p>
-<div class="meta">【方法と限界】本稿は、タスクベース理論・福祉国家論・租税政策論など実証研究の蓄積がある知見と、生成 AI の急速な進歩を踏まえた理論的外挿とを、可能な限り区別して記述する。将来の雇用や再分配政策の帰趨についての定量的な予測は、研究者の間でも推定値が大きく割れており、本稿はいずれの立場にも断定的にコミットしない。特定の政策の是非についても最終的な推奨は行わず、どの制度がどの国の既存の政治経済構造と整合しやすいかという条件つきの分析にとどめる。企業の設備投資額など固有の数値は、出典とともに確認したものを参照している。</div>
 <div class="lede"><p>「 AI で仕事はなくなるか」という問いは、労働を単一の変数として扱う点で、キャリア論における「好きな仕事か、稼げる仕事か」という二択と同じ誤りを犯している。本稿は、労働をタスクの束として捉えるタスクベース理論を出発点に、 AI が労働市場に与える影響を、雇用の増減という一次元の問いではなく、労働の交換条件の書き換えとして再定式化する。そのうえで、書き換えの結果として生じる生産性の分配――誰が、どれだけ受け取るのか――という、より大きな問いへと歩を進める。技術がタスクを組み替える過程（第 2 〜 3 章）から、資本と労働のあいだの分配問題（第 4 章）、そして国家がその分配をどう設計し直せるか（第 5 〜 6 章）まで、一つの線でつなぐことを試みる。</p></div>
+<div class="meta">【方法と限界】本稿は、タスクベース理論・福祉国家論・租税政策論など実証研究の蓄積がある知見と、生成 AI の急速な進歩を踏まえた理論的外挿とを、可能な限り区別して記述する。将来の雇用や再分配政策の帰趨についての定量的な予測は、研究者の間でも推定値が大きく割れており、本稿はいずれの立場にも断定的にコミットしない。特定の政策の是非についても最終的な推奨は行わず、どの制度がどの国の既存の政治経済構造と整合しやすいかという条件つきの分析にとどめる。企業の設備投資額など固有の数値は、出典とともに確認したものを参照している。</div>
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 序論――問いの立て方を組み直す</a></li>
-<li><a href="#sec2">2. 労働をタスクの束として見る――代替・補完・エージェント化</a></li>
-<li><a href="#sec3">3. 交換条件の再設計――五軸モデルを AI 時代に当てはめる</a></li>
-<li><a href="#sec4">4. 生産性の分配問題――資本と労働、そして再分配政策の四類型</a></li>
-<li><a href="#sec5">5. なぜ国によって選択が割れ、誰が推進し誰が抵抗するか</a></li>
-<li><a href="#sec6">6. 結論――執行の壁を越えて、個人と国家は何を選べるか</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">序論――問いの立て方を組み直す</a></li>
+<li><a href="#sec2">労働をタスクの束として見る――代替・補完・エージェント化</a></li>
+<li><a href="#sec3">交換条件の再設計――五軸モデルを AI 時代に当てはめる</a></li>
+<li><a href="#sec4">生産性の分配問題――資本と労働、そして再分配政策の四類型</a></li>
+<li><a href="#sec5">なぜ国によって選択が割れ、誰が推進し誰が抵抗するか</a></li>
+<li><a href="#sec6">結論――執行の壁を越えて、個人と国家は何を選べるか</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 序論――問いの立て方を組み直す</h2>
@@ -100,19 +99,19 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <h2 id="sec2">2. 労働をタスクの束として見る――代替・補完・エージェント化</h2>
 <h3>●タスクベース理論の基礎</h3>
-<p>労働経済学において、職業を分析する際の重要な視点の転換は、 Autor, Levy &amp; Murnane （2003）に始まる「タスクベース理論」である。この理論では、職業を単一の塊としてではなく、複数の個別タスクの束として捉える。会計士という職業には、伝票の入力、仕訳の確認、決算書の作成、クライアントへの説明、税務戦略の助言など、性質の異なる複数のタスクが含まれている。技術革新は、職業全体を消滅させるのではなく、その内部のタスク構成を組み替える形で作用する。</p>
-<p>Acemoglu &amp; Restrepo （2019）は、この組み替えを二つの効果に分けて定式化した。第一は<strong>置換効果（displacement effect）</strong>であり、これまで人間が担っていたタスクを機械やソフトウェアが代替することで、その分の労働需要が失われる。第二は<strong>復元効果（reinstatement effect）</strong>であり、新しい技術がそれまで存在しなかった新規のタスク――技術の運用、保守、監督、新技術を前提にした新しい業務――を生み出し、そこに新たな労働需要が生まれる。総雇用がどうなるかは、この二つの効果のどちらが速く進むかにかかっている。</p>
-<p>この枠組みを裏づける事例として、しばしば銀行の ATM 導入が引き合いに出される（Bessen, 2015）。 ATM は窓口担当者が担っていた定型的な現金出納タスクを明確に代替した。しかし、 ATM 導入によって一支店あたりの運営コストが下がったことで銀行は出店数を増やし、窓口担当者の総数はむしろ増加した。ただし、その役割は現金出納から、金融商品の販売や顧客との関係構築へと組み替えられている。ここで注意すべきなのは、復元効果が常に置換効果に追いつくとは限らない点である。 Acemoglu &amp; Restrepo （2019）は、コスト削減効果はわずかだが労働者を置き換えてしまう「ほどほどの自動化（so-so automation）」という概念を提示している。この種の技術は、生産性をさほど押し上げないまま雇用と賃金を圧迫しうる。歴史的に総雇用が増え続けてきたという事実は、復元効果が常に十分だったことの証明にはならない。</p>
+<p>労働経済学において、職業を分析する際の重要な視点の転換は、 Autor, Levy &amp; Murnane (2003) に始まる「タスクベース理論」である。この理論では、職業を単一の塊としてではなく、複数の個別タスクの束として捉える。会計士という職業には、伝票の入力、仕訳の確認、決算書の作成、クライアントへの説明、税務戦略の助言など、性質の異なる複数のタスクが含まれている。技術革新は、職業全体を消滅させるのではなく、その内部のタスク構成を組み替える形で作用する。</p>
+<p>Acemoglu &amp; Restrepo (2019) は、この組み替えを二つの効果に分けて定式化した。第一は<strong>置換効果 (displacement effect)</strong>であり、これまで人間が担っていたタスクを機械やソフトウェアが代替することで、その分の労働需要が失われる。第二は<strong>復元効果 (reinstatement effect)</strong>であり、新しい技術がそれまで存在しなかった新規のタスク――技術の運用、保守、監督、新技術を前提にした新しい業務――を生み出し、そこに新たな労働需要が生まれる。総雇用がどうなるかは、この二つの効果のどちらが速く進むかにかかっている。</p>
+<p>この枠組みを裏づける事例として、しばしば銀行の ATM 導入が引き合いに出される (Bessen, 2015) 。 ATM は窓口担当者が担っていた定型的な現金出納タスクを明確に代替した。しかし、 ATM 導入によって一支店あたりの運営コストが下がったことで銀行は出店数を増やし、窓口担当者の総数はむしろ増加した。ただし、その役割は現金出納から、金融商品の販売や顧客との関係構築へと組み替えられている。ここで注意すべきなのは、復元効果が常に置換効果に追いつくとは限らない点である。 Acemoglu &amp; Restrepo (2019) は、コスト削減効果はわずかだが労働者を置き換えてしまう「ほどほどの自動化 (so-so automation) 」という概念を提示している。この種の技術は、生産性をさほど押し上げないまま雇用と賃金を圧迫しうる。歴史的に総雇用が増え続けてきたという事実は、復元効果が常に十分だったことの証明にはならない。</p>
 <h3>●生成 AI に固有の曝露</h3>
-<p>生成 AI が従来の自動化技術と異なる点は、代替の対象が定型的な肉体労働や単純な事務処理ではなく、文章作成、要約、コード生成、意思決定の下準備といった、これまで「ルーティンではない認知タスク」として自動化を免れてきた領域にまで及ぶ点にある。 Eloundou, Manning, Mishkin &amp; Rock （2023）の分析では、米国の労働者の約 80% について、大規模言語モデルによって業務の少なくとも 1 割のタスクが影響を受け、約 19% については業務の半分以上が影響対象になりうるとされる。ただし、こうした「曝露（exposure）」の推定は、あるタスクに AI が技術的に到達しうるかを示すものであり、実際に経済的な代替が起きるかどうかとは別問題である点に注意が必要である。 Acemoglu （2024）は、生成 AI の経済全体への影響について既存の推定の多くが誇張されている可能性を指摘し、今後十年間で見込める全要素生産性への押し上げ効果は最大でも 0.66% 程度にとどまるとの試算を示している。技術的な曝露と実際の労働代替のあいだには、コスト、規制、組織の意思決定など、複数の摩擦が介在する。</p>
+<p>生成 AI が従来の自動化技術と異なる点は、代替の対象が定型的な肉体労働や単純な事務処理ではなく、文章作成、要約、コード生成、意思決定の下準備といった、これまで「ルーティンではない認知タスク」として自動化を免れてきた領域にまで及ぶ点にある。 Eloundou, Manning, Mishkin &amp; Rock (2023) の分析では、米国の労働者の約 80% について、大規模言語モデルによって業務の少なくとも 1 割のタスクが影響を受け、約 19% については業務の半分以上が影響対象になりうるとされる。ただし、こうした「曝露 (exposure) 」の推定は、あるタスクに AI が技術的に到達しうるかを示すものであり、実際に経済的な代替が起きるかどうかとは別問題である点に注意が必要である。 Acemoglu (2024) は、生成 AI の経済全体への影響について既存の推定の多くが誇張されている可能性を指摘し、今後十年間で見込める全要素生産性への押し上げ効果は最大でも 0.66% 程度にとどまるとの試算を示している。技術的な曝露と実際の労働代替のあいだには、コスト、規制、組織の意思決定など、複数の摩擦が介在する。</p>
 <h3>●道具からエージェントへ</h3>
-<p>注目すべきは、 AI が単に人間の作業を補助する「道具」から、複数の工程を自律的に遂行する「エージェント」へと重心を移しつつある点である <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。テストの実行や Git 操作、プルリクエストの作成までを長時間にわたって自律的にこなすコーディングエージェントや、ブラウザ・ファイルシステム・ターミナルを備えた専用環境上でアプリへのサインインから長時間タスクの遂行までを自律的に行う常時稼働型エージェントは、単一のタスクを代替する従来型の自動化とは性質が異なる。個々のタスクを個別に自動化するのではなく、タスクの連鎖そのものを引き受ける主体が現れつつある、という変化である。</p>
+<p>注目すべきは、 AI が単に人間の作業を補助する「道具」から、複数の工程を自律的に遂行する「エージェント」へと重心を移しつつある点である <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。テストの実行や Git 操作、プルリクエストの作成までを長時間にわたって自律的にこなすコーディングエージェントや、ブラウザ・ファイルシステム・ターミナルを備えた専用環境上でアプリへのサインインから長時間タスクの遂行までを自律的に行う常時稼働型エージェントは、単一のタスクを代替する従来型の自動化とは性質が異なる。個々のタスクを個別に自動化するのではなく、タスクの連鎖そのものを引き受ける主体が現れつつある、という変化である。</p>
 <p class="pull">道具としての AI は人間のタスク遂行を補助するが、エージェントとしての AI はタスクの連鎖そのものを引き受け、人間の役割を「遂行者」から「検証者」へと移動させる。</p>
 <p>この変化は、タスクベース理論の枠組みに新しい論点を加える。エージェント型 AI が一連のタスクを自律的に遂行する場合、人間に残る役割は、当初のタスクの遂行そのものではなく、その出力を検証し、責任を持って承認するという、より上流の監督タスクへと移行しやすい。これは復元効果の一種と見なせるが、遂行タスクに比べて必要な人数が少なく、求められる技能の性質も異なる点には留意が必要である。</p>
 
 <h2 id="sec3">3. 交換条件の再設計――五軸モデルを AI 時代に当てはめる</h2>
 <h3>●五軸モデルの対応表</h3>
-<p>ここで、序論で示した五軸モデル――収入・興味・自律性・持続可能性・将来価値――を、 AI によるタスク再編という文脈に具体的に当てはめてみたい <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。五軸それぞれについて、 AI 以前から存在した論点と、 AI 時代に新たに加わる論点を整理すると、次のようになる。</p>
+<p>ここで、序論で示した五軸モデル――収入・興味・自律性・持続可能性・将来価値――を、 AI によるタスク再編という文脈に具体的に当てはめてみたい <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。五軸それぞれについて、 AI 以前から存在した論点と、 AI 時代に新たに加わる論点を整理すると、次のようになる。</p>
 <table>
 <thead>
 <tr>
@@ -150,18 +149,18 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 </tbody>
 </table>
 <h3>●興味の軸への作用</h3>
-<p>この整理から見えてくるのは、 AI が労働市場に与える影響が、五軸に対して均等に作用するわけではないという点である。特に<strong>興味</strong>の軸への作用は、従来の自動化論があまり扱ってこなかった論点である。過去の自動化は、主に定型的な肉体労働や単純な事務処理を代替し、中間技能職を空洞化させる「雇用の二極化」を引き起こしてきた（Goos &amp; Manning, 2007）。しかし、これらの代替対象は、「作業内容そのものへの選好」の対象になりにくいタスクだった。生成 AI が代替しうる文章作成やコード生成といったタスクは、しばしば当人が最も「好き」だと感じる作業そのものと重なる。「好きな活動を仕事として成立させ、そこから収入も得る」統合型の働き方を選んでいる人ほど、この変化の影響を強く受けうるという逆説がここにある。</p>
+<p>この整理から見えてくるのは、 AI が労働市場に与える影響が、五軸に対して均等に作用するわけではないという点である。特に<strong>興味</strong>の軸への作用は、従来の自動化論があまり扱ってこなかった論点である。過去の自動化は、主に定型的な肉体労働や単純な事務処理を代替し、中間技能職を空洞化させる「雇用の二極化」を引き起こしてきた (Goos &amp; Manning, 2007) 。しかし、これらの代替対象は、「作業内容そのものへの選好」の対象になりにくいタスクだった。生成 AI が代替しうる文章作成やコード生成といったタスクは、しばしば当人が最も「好き」だと感じる作業そのものと重なる。「好きな活動を仕事として成立させ、そこから収入も得る」統合型の働き方を選んでいる人ほど、この変化の影響を強く受けうるという逆説がここにある。</p>
 <h3>●将来価値の軸の重み</h3>
 <p>もう一つ重要なのは、<strong>将来価値</strong>の軸が持つ相対的な重みの増大である。「まず稼ぐ」ことを優先し、後に別の働き方へ移行する系列型の戦略には、時間的非整合性の罠――「後でやる」という留保が実行されない傾向――が伴う。 AI によるタスク再編は、この罠に加えて別の問題を持ち込む。系列型戦略が「稼ぐ」段階で蓄積する技能や資産そのものが、「移行する」段階に到達する前に陳腐化する可能性である。将来価値の見積もりが不確実になればなるほど、長期の時間軸を前提にした計画は、リスクの高い賭けへと変わる。</p>
 
 <h2 id="sec4">4. 生産性の分配問題――資本と労働、そして再分配政策の四類型</h2>
 <h3>●生産性分配と労働分配率</h3>
-<p>タスクベース理論は、置換効果と復元効果の綱引きによって総雇用がどう動くかを説明するが、それとは別に、 AI による生産性向上の果実が誰に分配されるのかという問題がある。 Autor &amp; Salomons （2018）は、自動化が必ずしも雇用そのものを減らすわけではないが、生産性の伸びに比べて雇用の伸びが鈍化する傾向――労働分配率の低下――を複数国のデータから示している。</p>
+<p>タスクベース理論は、置換効果と復元効果の綱引きによって総雇用がどう動くかを説明するが、それとは別に、 AI による生産性向上の果実が誰に分配されるのかという問題がある。 Autor &amp; Salomons (2018) は、自動化が必ずしも雇用そのものを減らすわけではないが、生産性の伸びに比べて雇用の伸びが鈍化する傾向――労働分配率の低下――を複数国のデータから示している。</p>
 <h3>●資本偏向的技術変化</h3>
-<p>この論点は、生成 AI をめぐる産業構造とも直結する。AI 関連の設備投資は、計算資源を保有する少数の大手クラウド事業者に極めて集中している。 2026 年時点の見通しでは、主要 4 社合計の年間設備投資額が 7,000 億ドルを超える規模に達しており、 AI モデルの開発・提供に不可欠な計算資源そのものが、少数の企業に集約される構造になっている <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。 Acemoglu &amp; Restrepo （2018）が論じるように、自動化技術は、労働と資本の相対的な生産性を変化させることを通じて、所得の分配そのものを資本側に傾ける「資本偏向的技術変化（capital-biased technical change）」として作用しうる。生成 AI による生産性向上が実現したとしても、その果実が計算資源を保有する企業の利益として計上され、賃金という形で労働側に還元される比率が低ければ、総雇用の水準とは独立に、労働分配率は低下しうる。</p>
-<p>ただし、この見立てには留保が必要である。前章で確認したように、 Acemoglu （2024）は生成 AI の生産性への寄与自体を慎重に見積もっており、巨額の設備投資が、確定した需要ではなく競争上の地位を失うことへの恐れによって駆動されている可能性も指摘されている。AI による価値の再配分は、労働と資本のあいだだけでなく、 UI ・ロジック・データという事業の層のあいだでも同時に進行しており <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 、現時点での巨額投資が将来の収益によって正当化されるかどうかは、なお不確実な賭けの段階にある。</p>
+<p>この論点は、生成 AI をめぐる産業構造とも直結する。AI 関連の設備投資は、計算資源を保有する少数の大手クラウド事業者に極めて集中している。 2026 年時点の見通しでは、主要 4 社合計の年間設備投資額が 7,000 億ドルを超える規模に達しており、 AI モデルの開発・提供に不可欠な計算資源そのものが、少数の企業に集約される構造になっている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。 Acemoglu &amp; Restrepo (2018) が論じるように、自動化技術は、労働と資本の相対的な生産性を変化させることを通じて、所得の分配そのものを資本側に傾ける「資本偏向的技術変化 (capital-biased technical change) 」として作用しうる。生成 AI による生産性向上が実現したとしても、その果実が計算資源を保有する企業の利益として計上され、賃金という形で労働側に還元される比率が低ければ、総雇用の水準とは独立に、労働分配率は低下しうる。</p>
+<p>ただし、この見立てには留保が必要である。前章で確認したように、 Acemoglu (2024) は生成 AI の生産性への寄与自体を慎重に見積もっており、巨額の設備投資が、確定した需要ではなく競争上の地位を失うことへの恐れによって駆動されている可能性も指摘されている。AI による価値の再配分は、労働と資本のあいだだけでなく、 UI ・ロジック・データという事業の層のあいだでも同時に進行しており <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 、現時点での巨額投資が将来の収益によって正当化されるかどうかは、なお不確実な賭けの段階にある。</p>
 <h3>●再分配政策の四類型</h3>
-<p>この分配問題への処方箋として、しばしば個別の政策――ベーシックインカム（UBI）か、ロボット税か――が二者択一のように提示される。しかし、この提示の仕方は、ここまで繰り返し指摘してきた誤りと同型である。複数の軸を持つ問題を、単一の正解を選ぶ二択に縮約してしまっているのである。実際の政策手段は、大きく四つに整理できる。</p>
+<p>この分配問題への処方箋として、しばしば個別の政策――ベーシックインカム (UBI) か、ロボット税か――が二者択一のように提示される。しかし、この提示の仕方は、ここまで繰り返し指摘してきた誤りと同型である。複数の軸を持つ問題を、単一の正解を選ぶ二択に縮約してしまっているのである。実際の政策手段は、大きく四つに整理できる。</p>
 <table>
 <thead>
 <tr>
@@ -172,19 +171,19 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 </thead>
 <tbody>
 <tr>
-<td>ベーシックインカム（UBI）</td>
+<td>ベーシックインカム (UBI)</td>
 <td>就労の有無を問わず、全成員に無条件の現金給付を行う。所得と労働参加を切り離す</td>
-<td>財源規模が巨大になりやすく、既存の選別的給付との代替関係をどう設計するかが争点になる（Van Parijs &amp; Vanderborght, 2017）</td>
+<td>財源規模が巨大になりやすく、既存の選別的給付との代替関係をどう設計するかが争点になる (Van Parijs &amp; Vanderborght, 2017)</td>
 </tr>
 <tr>
 <td>ロボット税・自動化税</td>
 <td>労働を代替する資本財の導入に課税し、代替によって生じる負の外部性（失業給付・再訓練コストなど）を課税者側に内部化させる</td>
-<td>「ほどほどの自動化」に絞って課税すべきという理論的な設計案がある一方、対象の線引きが難しい（Guerreiro, Rebelo &amp; Teles, 2022）</td>
+<td>「ほどほどの自動化」に絞って課税すべきという理論的な設計案がある一方、対象の線引きが難しい (Guerreiro, Rebelo &amp; Teles, 2022)</td>
 </tr>
 <tr>
 <td>AI 課税（計算資源・利益への課税）</td>
 <td>ロボット税を個別の資本財ではなく、 AI モデルの学習・推論に用いる計算資源や、 AI 事業から生じる利益そのものに広く課す</td>
-<td>対象を事業全体の利益に置くため線引き問題は緩和されるが、課税権が及ぶ法域の外へ利益を移転する租税回避の余地が残る（Korinek &amp; Stiglitz, 2019）</td>
+<td>対象を事業全体の利益に置くため線引き問題は緩和されるが、課税権が及ぶ法域の外へ利益を移転する租税回避の余地が残る (Korinek &amp; Stiglitz, 2019)</td>
 </tr>
 <tr>
 <td>社会保険制度の再設計</td>
@@ -193,64 +192,65 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 </tr>
 </tbody>
 </table>
-<p>この四類型は互いに排他的ではない。現実の政策論争では、財源調達の手段（ロボット税・ AI 課税）と給付の設計（UBI ・社会保険再設計）を組み合わせる形で議論されることが多い。<strong>どの再分配政策が「正しい」かではなく、どの政策がどの国の既存の制度・政治連合と整合するか</strong>を問う方が、実際に実現可能な処方箋にたどり着きやすい。この問いを、次章で検討する。</p>
+<p>この四類型は互いに排他的ではない。現実の政策論争では、財源調達の手段（ロボット税・ AI 課税）と給付の設計 (UBI ・社会保険再設計）を組み合わせる形で議論されることが多い。<strong>どの再分配政策が「正しい」かではなく、どの政策がどの国の既存の制度・政治連合と整合するか</strong>を問う方が、実際に実現可能な処方箋にたどり着きやすい。この問いを、次章で検討する。</p>
 
 <h2 id="sec5">5. なぜ国によって選択が割れ、誰が推進し誰が抵抗するか</h2>
 <h3>●福祉レジームの三類型</h3>
-<p>福祉国家論の古典である Esping-Andersen （1990）は、先進諸国の福祉制度を、自由主義レジーム（市場中心・選別的給付、米英型）、保守主義レジーム（職域ごとの社会保険中心、大陸欧州・日本型）、社会民主主義レジーム（普遍主義的給付、北欧型）の三類型に整理した。この類型論が示唆するのは、 AI による再分配政策の選択が、白紙の状態から最適な制度を選ぶ問題ではなく、既存の福祉制度の骨格に新しい要素を接ぎ木する問題だという点である。</p>
+<p>福祉国家論の古典である Esping-Andersen (1990) は、先進諸国の福祉制度を、自由主義レジーム（市場中心・選別的給付、米英型）、保守主義レジーム（職域ごとの社会保険中心、大陸欧州・日本型）、社会民主主義レジーム（普遍主義的給付、北欧型）の三類型に整理した。この類型論が示唆するのは、 AI による再分配政策の選択が、白紙の状態から最適な制度を選ぶ問題ではなく、既存の福祉制度の骨格に新しい要素を接ぎ木する問題だという点である。</p>
 <p>社会民主主義レジームの国（たとえばデンマーク）は、失業給付の水準を高く保ちながら再訓練・転職支援を積極的に行う「フレキシキュリティ」モデルをすでに備えている。この国にとって、 AI によるタスク代替への対応は、既存制度の対象範囲とスピードを拡張する漸進的な改革として設計しやすく、前章の四類型でいえば社会保険制度の再設計との親和性が高い。これに対し、保守主義レジームの国――日本はその典型である――は、社会保険が雇用形態（正規雇用としての継続的な就労）に強く紐づいている。この設計は終身雇用を前提にした時代には整合的だったが、 AI によるタスク代替が非正規雇用・フリーランス・ギグワーカーといった雇用形態の労働者に不均等に及んだ場合、既存の社会保険制度そのものが対象から漏れ落ちる労働者を構造的に生み出す。この国では、社会保険制度の再設計は、単なる対象拡張ではなく、雇用形態と給付資格を切り離すという、制度の設計思想そのものの転換を要求する、より困難な改革になる。自由主義レジームの国（たとえば米国）は、選別的給付の伝統が強く、普遍主義的な UBI の導入は既存の制度文化との断絶が大きい。<strong>同じ AI というショックに直面しても、既存制度の骨格が異なれば、政治的に選びやすい処方箋も異なる。</strong>制度は白紙に描かれるのではなく、既存の制度的遺産の上に積み増される。</p>
 <h3>●連合政治と技能の資産効果</h3>
-<p>制度の経路依存性は、政策選択の必要条件を示すが、十分条件ではない。既存制度と整合的な政策であっても、それを推進する政治連合が組めなければ実現しない。政策の実現可能性は、政策の内容の妥当性だけでなく、それを支持する勢力が閣僚ポストの配分・政策的距離・コミットメントの信頼性という条件のもとで安定した連合を組めるかどうかに依存する <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。 AI 再分配政策をめぐる連合政治には、単純な労働対資本という対立軸だけでは捉えきれない複雑さがある。 Iversen &amp; Soskice （2001）が指摘するように、社会保険への選好は、保有する技能がどれだけ職務特殊的か（他の職に転用しにくいか）によって分かれる。 AI によるタスク代替に強く曝露される中間技能層は手厚い再分配を支持する動機を持つ一方、代替されにくい高度専門職や、代替効果よりも資産効果の方が大きい層は、再分配拡充への支持を持ちにくい。</p>
+<p>制度の経路依存性は、政策選択の必要条件を示すが、十分条件ではない。既存制度と整合的な政策であっても、それを推進する政治連合が組めなければ実現しない。政策の実現可能性は、政策の内容の妥当性だけでなく、それを支持する勢力が閣僚ポストの配分・政策的距離・コミットメントの信頼性という条件のもとで安定した連合を組めるかどうかに依存する <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。 AI 再分配政策をめぐる連合政治には、単純な労働対資本という対立軸だけでは捉えきれない複雑さがある。 Iversen &amp; Soskice (2001) が指摘するように、社会保険への選好は、保有する技能がどれだけ職務特殊的か（他の職に転用しにくいか）によって分かれる。 AI によるタスク代替に強く曝露される中間技能層は手厚い再分配を支持する動機を持つ一方、代替されにくい高度専門職や、代替効果よりも資産効果の方が大きい層は、再分配拡充への支持を持ちにくい。</p>
 <p class="pull">再分配政策の対立軸は労働対資本ではなく、 AI に曝露される技能・資産を持つ層と、代替されにくいか資産効果で利益を得る層のあいだに引かれる。</p>
 <h3>●資本の抵抗と敵意動員</h3>
-<p>資本側、とりわけ計算資源を保有する大手 AI 企業は、 AI 課税やロボット税の導入に対して強い抵抗勢力になりうる。この抵抗は、単なるロビイングだけでなく、法域を選んで事業拠点を配置するという構造的な交渉力に支えられている。各国・各地方自治体は、データセンター誘致による雇用・税収を求めて優遇措置を競い合っており、この構図は AI 課税の導入局面でも同様に働きうる <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。課税を強化しようとする法域から、より緩やかな法域へ計算資源と利益計上を移すという選択肢が資本側に残る限り、単独の国による AI 課税は、意図した税収を確保できないまま、国内の投資誘致競争力だけを損なうリスクを負う。もう一つの構造的な力学として、「正統性の調達」という論点がある。再分配政策の設計・実行には、増税や給付制度の再編という政治的コストが伴う。このコストを引き受ける代わりに、為政者が特定集団への敵意動員によって不満のはけ口を作り、コストの高い再分配を回避するという選択肢も存在する <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。 AI による雇用不安が広がる局面で、その不安の原因を移民や外国企業といった外部集団に帰属させる言説が政治的に有利になりやすいことは、ポピュリズム政治の分析が示す通りである。</p>
+<p>資本側、とりわけ計算資源を保有する大手 AI 企業は、 AI 課税やロボット税の導入に対して強い抵抗勢力になりうる。この抵抗は、単なるロビイングだけでなく、法域を選んで事業拠点を配置するという構造的な交渉力に支えられている。各国・各地方自治体は、データセンター誘致による雇用・税収を求めて優遇措置を競い合っており、この構図は AI 課税の導入局面でも同様に働きうる <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。課税を強化しようとする法域から、より緩やかな法域へ計算資源と利益計上を移すという選択肢が資本側に残る限り、単独の国による AI 課税は、意図した税収を確保できないまま、国内の投資誘致競争力だけを損なうリスクを負う。もう一つの構造的な力学として、「正統性の調達」という論点がある。再分配政策の設計・実行には、増税や給付制度の再編という政治的コストが伴う。このコストを引き受ける代わりに、為政者が特定集団への敵意動員によって不満のはけ口を作り、コストの高い再分配を回避するという選択肢も存在する <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。 AI による雇用不安が広がる局面で、その不安の原因を移民や外国企業といった外部集団に帰属させる言説が政治的に有利になりやすいことは、ポピュリズム政治の分析が示す通りである。</p>
 
 <h2 id="sec6">6. 結論――執行の壁を越えて、個人と国家は何を選べるか</h2>
 <h3>●執行段階の三つの壁</h3>
-<p>連合政治を乗り越えて政策が導入されたとしても、執行段階には別の壁がある。第一に、線引きの問題である。ロボット税は、どの資本財を「労働を代替する」ものとして課税対象にするかという定義の困難を抱える。「ほどほどの自動化」に絞って課税することが理論的には望ましいが、この区別を税務執行の現場で運用可能な基準に落とし込むことは容易ではない。第二に、国際的な租税競争の問題である。資本移動性の高い課税対象に対する一国単独の課税強化は、他国との競争のなかで税収を確保できないまま自国の投資誘致力だけを損なう「底辺への競争（race to the bottom）」を招きやすい（Genschel &amp; Schwarz, 2011）。法人税の引き下げ競争に対して 2021 年に OECD で合意された国際最低税率のような多国間協調の枠組みが参考になるが、 AI 課税についてこの水準の国際合意を形成するには相当の時間を要すると見込まれる。第三に、財源規模の問題である。 UBI のように給付対象を全成員とする設計は、必要な財源規模が既存の社会保障予算の水準を大きく超えうる。<strong>執行可能性という観点からは、野心的な制度ほど実現の困難さが増すというトレードオフが、政策選択の背後に常に存在する。</strong></p>
+<p>連合政治を乗り越えて政策が導入されたとしても、執行段階には別の壁がある。第一に、線引きの問題である。ロボット税は、どの資本財を「労働を代替する」ものとして課税対象にするかという定義の困難を抱える。「ほどほどの自動化」に絞って課税することが理論的には望ましいが、この区別を税務執行の現場で運用可能な基準に落とし込むことは容易ではない。第二に、国際的な租税競争の問題である。資本移動性の高い課税対象に対する一国単独の課税強化は、他国との競争のなかで税収を確保できないまま自国の投資誘致力だけを損なう「底辺への競争 (race to the bottom) 」を招きやすい (Genschel &amp; Schwarz, 2011) 。法人税の引き下げ競争に対して 2021 年に OECD で合意された国際最低税率のような多国間協調の枠組みが参考になるが、 AI 課税についてこの水準の国際合意を形成するには相当の時間を要すると見込まれる。第三に、財源規模の問題である。 UBI のように給付対象を全成員とする設計は、必要な財源規模が既存の社会保障予算の水準を大きく超えうる。<strong>執行可能性という観点からは、野心的な制度ほど実現の困難さが増すというトレードオフが、政策選択の背後に常に存在する。</strong></p>
 <div class="box">
 <p style="margin:0"><strong>保守主義レジームの国（日本を含む）にとって現実的な優先順位は、雇用形態から切り離した社会保険制度の再設計を近い将来の課題として先行させ、 AI 課税による財源調達は、国際的な協調の枠組みが整うことを条件とした中期的な課題として位置づけることだろう。 UBI のような普遍主義的な現金給付は、既存制度との断絶が大きく、当面は理念型としての参照点にとどまる可能性が高い。</strong></p>
 </div>
 <h3>●正統性という条件</h3>
-<p>ただし、この漸進的な処方箋にも留保が必要である。再分配政策には常に、敵意動員という政治的により安価な代替肢が存在する。技術的に妥当な政策を設計するだけでは、その政策が実際に選ばれる保証にはならない。制度の存続を最終的に支えるのは、統治される側がその制度を受け入れるだけの正統性を認めるかどうかである <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。 AI による生産性向上の果実がどう分配されるかについて、負担を負う側（資本、あるいは代替されにくい高技能層）が、その分配ルールを不当な収奪ではなく、社会全体の持続可能性のための合理的な取り決めとして受け入れられるかどうかが、どの政策手段を選ぶか以前に問われる条件になる。</p>
+<p>ただし、この漸進的な処方箋にも留保が必要である。再分配政策には常に、敵意動員という政治的により安価な代替肢が存在する。技術的に妥当な政策を設計するだけでは、その政策が実際に選ばれる保証にはならない。制度の存続を最終的に支えるのは、統治される側がその制度を受け入れるだけの正統性を認めるかどうかである <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。 AI による生産性向上の果実がどう分配されるかについて、負担を負う側（資本、あるいは代替されにくい高技能層）が、その分配ルールを不当な収奪ではなく、社会全体の持続可能性のための合理的な取り決めとして受け入れられるかどうかが、どの政策手段を選ぶか以前に問われる条件になる。</p>
 <h3>●個人が取りうる構え</h3>
 <p>それでは、個人はどのような構えを取りうるか。第一に、代替が起きにくいのは、定型的な遂行そのものではなく、判断の説明責任を引き受けるタスク、初めて遭遇する状況での意思決定、対面での信頼構築を要するタスクである。技能を選ぶ際には、これらのタスクへの近接性を一つの基準にできる。第二に、「将来価値」の不確実性が高まっている以上、技能への投資は、単一の長期計画としてではなく、複数の選択肢を保持する短期の連鎖として設計する方が合理的である。時間的非整合性の罠――「後で」という留保に期限と実行条件を設定する必要性――は、 AI 時代にはより短い周期で繰り返し適用しなければならない。第三に、 AI による代替は、遂行者としての役割を縮小させる一方で、検証者・監督者としての役割を新設する。この新しい役割に必要な技能――出力の妥当性を評価する専門知識、誤りの責任を引き受ける判断力――を軽視しないことが、復元効果の側に立つための条件になる。</p>
-<p>労働を「時間と能力を何らかの対象と交換する行為」として捉えれば <sup class="fnref"><a id="fnref-1-2" href="#ref-1">[1]</a></sup> 、問われるべきは「何を差し出し、何を得ようとしているのか」という交換条件の明確化である。本稿が個人の水準で示す問いは「自分は AI と何を分担し、その分担条件に、五年後の自分もなお納得できるか」であり、国家の水準で示す問いはその裏返しである。<strong>再分配のルールを、負担を負う側もなお納得できる形で設計できるか</strong>――技術的に精緻な政策設計と、政治的な正統性の調達は、切り離せない一つの課題である。</p>
+<p>労働を「時間と能力を何らかの対象と交換する行為」として捉えれば <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 、問われるべきは「何を差し出し、何を得ようとしているのか」という交換条件の明確化である。本稿が個人の水準で示す問いは「自分は AI と何を分担し、その分担条件に、五年後の自分もなお納得できるか」であり、国家の水準で示す問いはその裏返しである。<strong>再分配のルールを、負担を負う側もなお納得できる形で設計できるか</strong>――技術的に精緻な政策設計と、政治的な正統性の調達は、切り離せない一つの課題である。</p>
 
 <div class="refs">
 <h2>注</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">五軸モデルおよび労働の交換理論としての定式化について、より立ち入った検討は<a href="vocational-choice-structure.html" target="_blank" rel="noopener">「職業選択における動機の二元論を超えて」</a>を参照。 <a class="fnback" href="#fnref-1-1">↩</a> <a class="fnback" href="#fnref-1-2">↩</a></li>
-<li id="ref-2">生成 AI 企業各社のコーディングエージェント・常時稼働型エージェントの現状については、<a href="ai-industry-comparison.html" target="_blank" rel="noopener">「生成 AI 企業比較の基礎資料」</a>（情報基準日 2026 年 9 月 15 日）を参照。 <a class="fnback" href="#fnref-2-1">↩</a></li>
-<li id="ref-3">主要クラウド事業者 4 社の設備投資見通しの内訳・出典については、<a href="cloud-market-ai-analysis.html" target="_blank" rel="noopener">「クラウドコンピューティング市場の構造分析」</a>第 3 章を参照。 <a class="fnback" href="#fnref-3-1">↩</a></li>
-<li id="ref-4">UI ・ロジック・データの三層モデルによる価値再配分の分析については、<a href="saas-layered-analysis.html" target="_blank" rel="noopener">「『 SaaS 消滅』言説の実証的検討」</a>を参照。 <a class="fnback" href="#fnref-4-1">↩</a></li>
-<li id="ref-5">連合政治における閣僚ポストの配分・政策的距離・コミットメントの信頼性という分析枠組みについては、<a href="chudo-kaikaku-rengo-analysis.html" target="_blank" rel="noopener">「中道改革連合はなぜ崩れたのか」</a>を参照。 <a class="fnback" href="#fnref-5-1">↩</a></li>
-<li id="ref-6">データセンター誘致をめぐる法域間の優遇競争については、<a href="ai-datacenter-politics.html" target="_blank" rel="noopener">「 AI データセンター政治化」</a>を参照。 <a class="fnback" href="#fnref-6-1">↩</a></li>
-<li id="ref-7">為政者による敵意動員と正統性調達コストの回避という論点については、<a href="hostility-mobilization-legitimacy.html" target="_blank" rel="noopener">「為政者が自国民の敵意を動員する国とそうでない国」</a>を参照。 <a class="fnback" href="#fnref-7-1">↩</a></li>
-<li id="ref-8">正統性が制度の存続を支えるという論点は、注 7 と同記事、および権威主義体制シリーズ（regime-01 〜 04）全体を通じた論点である。 <a class="fnback" href="#fnref-8-1">↩</a></li>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> 五軸モデルおよび労働の交換理論としての定式化について、より立ち入った検討は<a href="vocational-choice-structure.html" target="_blank" rel="noopener">「職業選択における動機の二元論を超えて」</a>を参照。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 生成 AI 企業各社のコーディングエージェント・常時稼働型エージェントの現状については、<a href="ai-industry-comparison.html" target="_blank" rel="noopener">「生成 AI 企業比較の基礎資料」</a>（情報基準日 2026 年 9 月 15 日）を参照。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> 主要クラウド事業者 4 社の設備投資見通しの内訳・出典については、<a href="cloud-market-ai-analysis.html" target="_blank" rel="noopener">「クラウドコンピューティング市場の構造分析」</a>第 3 章を参照。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> UI ・ロジック・データの三層モデルによる価値再配分の分析については、<a href="saas-layered-analysis.html" target="_blank" rel="noopener">「『 SaaS 消滅』言説の実証的検討」</a>を参照。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 連合政治における閣僚ポストの配分・政策的距離・コミットメントの信頼性という分析枠組みについては、<a href="chudo-kaikaku-rengo-analysis.html" target="_blank" rel="noopener">「中道改革連合はなぜ崩れたのか」</a>を参照。</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> データセンター誘致をめぐる法域間の優遇競争については、<a href="ai-datacenter-politics.html" target="_blank" rel="noopener">「 AI データセンター政治化」</a>を参照。</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 為政者による敵意動員と正統性調達コストの回避という論点については、<a href="hostility-mobilization-legitimacy.html" target="_blank" rel="noopener">「為政者が自国民の敵意を動員する国とそうでない国」</a>を参照。</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> 正統性が制度の存続を支えるという論点は、注 7 と同記事、および権威主義体制シリーズ (regime-01 〜 04) 全体を通じた論点である。</li>
 </ol>
 <h2>参考文献</h2>
 <ul>
-<li>Autor, D. H., Levy, F., &amp; Murnane, R. J.(2003). The Skill Content of Recent Technological Change: An Empirical Exploration. <em>Quarterly Journal of Economics</em>, 118 (4), 1279–1333.</li>
-<li>Acemoglu, D., &amp; Restrepo, P.(2019). Automation and New Tasks: How Technology Displaces and Reinstates Labor. <em>Journal of Economic Perspectives</em>, 33 (2), 3–30.</li>
-<li>Acemoglu, D., &amp; Restrepo, P.(2018). The Race between Man and Machine: Implications of Technology for Growth, Factor Shares, and Employment. <em>American Economic Review</em>, 108 (6), 1488–1542.</li>
-<li>Autor, D. H.(2015). Why Are There Still So Many Jobs? The History and Future of Workplace Automation. <em>Journal of Economic Perspectives</em>, 29 (3), 3–30.</li>
-<li>Autor, D. H., &amp; Salomons, A.(2018). Is Automation Labor-Displacing? Productivity Growth, Employment, and the Labor Share. <em>Brookings Papers on Economic Activity</em>, Spring 2018, 1–87.</li>
-<li>Goos, M., &amp; Manning, A.(2007). Lousy and Lovely Jobs: The Rising Polarization of Work in Britain. <em>Review of Economics and Statistics</em>, 89 (1), 118–133.</li>
-<li>Bessen, J.(2015). <em>Learning by Doing: The Real Connection between Innovation, Wages, and Wealth</em>. Yale University Press.</li>
-<li>Eloundou, T., Manning, S., Mishkin, P., &amp; Rock, D.(2023). GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models. <em>arXiv:2303.10130</em>.</li>
-<li>Felten, E., Raj, M., &amp; Seamans, R.(2021). Occupational, Industry, and Geographic Exposure to Artificial Intelligence: A Novel Dataset and Its Potential Uses. <em>Strategic Management Journal</em>, 42 (12), 2195–2217.</li>
-<li>Acemoglu, D.(2024). The Simple Macroeconomics of AI. <em>NBER Working Paper</em> No. 32487.</li>
-<li>Van Parijs, P., &amp; Vanderborght, Y.(2017). <em>Basic Income: A Radical Proposal for a Free Society and a Sane Economy</em>. Harvard University Press.</li>
-<li>Korinek, A., &amp; Stiglitz, J. E.(2019). Artificial Intelligence and Its Implications for Income Distribution and Unemployment. In <em>The Economics of Artificial Intelligence: An Agenda</em>. University of Chicago Press.</li>
-<li>Guerreiro, J., Rebelo, S., &amp; Teles, P.(2022). Should Robots Be Taxed? <em>Review of Economic Studies</em>, 89 (1), 279–311.</li>
-<li>Esping-Andersen, G.(1990). <em>The Three Worlds of Welfare Capitalism</em>. Princeton University Press.</li>
-<li>Iversen, T., &amp; Soskice, D.(2001). An Asset Theory of Social Policy Preferences. <em>American Political Science Review</em>, 95 (4), 875–893.</li>
-<li>Genschel, P., &amp; Schwarz, P.(2011). Tax Competition: A Literature Review. <em>Socio-Economic Review</em>, 9 (2), 339–370.</li>
-<li>Piketty, T.(2014). <em>Capital in the Twenty-First Century</em>. Harvard University Press.</li>
-<li>OECD (2021). <em>Statement on a Two-Pillar Solution to Address the Tax Challenges Arising from the Digitalisation of the Economy</em>.</li>
-<li>Zuboff, S.(2019). <em>The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</em>. PublicAffairs.</li>
-<li>Braverman, H.(1974). <em>Labor and Monopoly Capital: The Degradation of Work in the Twentieth Century</em>. Monthly Review Press.</li>
+<li>Autor, D. H., Levy, F., &amp; Murnane, R. J. (2003) . The Skill Content of Recent Technological Change: An Empirical Exploration. <em>Quarterly Journal of Economics</em>, 118 (4) , 1279–1333.</li>
+<li>Acemoglu, D., &amp; Restrepo, P. (2019) . Automation and New Tasks: How Technology Displaces and Reinstates Labor. <em>Journal of Economic Perspectives</em>, 33 (2) , 3–30.</li>
+<li>Acemoglu, D., &amp; Restrepo, P. (2018) . The Race between Man and Machine: Implications of Technology for Growth, Factor Shares, and Employment. <em>American Economic Review</em>, 108 (6) , 1488–1542.</li>
+<li>Autor, D. H. (2015) . Why Are There Still So Many Jobs? The History and Future of Workplace Automation. <em>Journal of Economic Perspectives</em>, 29 (3) , 3–30.</li>
+<li>Autor, D. H., &amp; Salomons, A. (2018) . Is Automation Labor-Displacing? Productivity Growth, Employment, and the Labor Share. <em>Brookings Papers on Economic Activity</em>, Spring 2018, 1–87.</li>
+<li>Goos, M., &amp; Manning, A. (2007) . Lousy and Lovely Jobs: The Rising Polarization of Work in Britain. <em>Review of Economics and Statistics</em>, 89 (1) , 118–133.</li>
+<li>Bessen, J. (2015) . <em>Learning by Doing: The Real Connection between Innovation, Wages, and Wealth</em>. Yale University Press.</li>
+<li>Eloundou, T., Manning, S., Mishkin, P., &amp; Rock, D. (2023) . GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models. <em>arXiv:2303.10130</em>.</li>
+<li>Felten, E., Raj, M., &amp; Seamans, R. (2021) . Occupational, Industry, and Geographic Exposure to Artificial Intelligence: A Novel Dataset and Its Potential Uses. <em>Strategic Management Journal</em>, 42 (12) , 2195–2217.</li>
+<li>Acemoglu, D. (2024) . The Simple Macroeconomics of AI. <em>NBER Working Paper</em> No. 32487.</li>
+<li>Van Parijs, P., &amp; Vanderborght, Y. (2017) . <em>Basic Income: A Radical Proposal for a Free Society and a Sane Economy</em>. Harvard University Press.</li>
+<li>Korinek, A., &amp; Stiglitz, J. E. (2019) . Artificial Intelligence and Its Implications for Income Distribution and Unemployment. In <em>The Economics of Artificial Intelligence: An Agenda</em>. University of Chicago Press.</li>
+<li>Guerreiro, J., Rebelo, S., &amp; Teles, P. (2022) . Should Robots Be Taxed? <em>Review of Economic Studies</em>, 89 (1) , 279–311.</li>
+<li>Esping-Andersen, G. (1990) . <em>The Three Worlds of Welfare Capitalism</em>. Princeton University Press.</li>
+<li>Iversen, T., &amp; Soskice, D. (2001) . An Asset Theory of Social Policy Preferences. <em>American Political Science Review</em>, 95 (4) , 875–893.</li>
+<li>Genschel, P., &amp; Schwarz, P. (2011) . Tax Competition: A Literature Review. <em>Socio-Economic Review</em>, 9 (2) , 339–370.</li>
+<li>Piketty, T. (2014) . <em>Capital in the Twenty-First Century</em>. Harvard University Press.</li>
+<li>OECD (2021) . <em>Statement on a Two-Pillar Solution to Address the Tax Challenges Arising from the Digitalisation of the Economy</em>.</li>
+<li>Zuboff, S. (2019) . <em>The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</em>. PublicAffairs.</li>
+<li>Braverman, H. (1974) . <em>Labor and Monopoly Capital: The Degradation of Work in the Twentieth Century</em>. Monthly Review Press.</li>
 </ul>
 <p class="note">注 : 本稿で参照した学術文献の書誌情報は、著者の記憶と一般に流通している要約に基づいて記載しており、逐語的な引用ではない。各文献の正確な内容確認には、原典に当たることを推奨する。企業の設備投資額・ AI 事業の売上等の数値については、記載された一次情報源を参照されたい。各国の社会保障制度・税制の詳細は簡略化されており、政策設計の実務には各国の一次資料を参照する必要がある。</p>
 </div>

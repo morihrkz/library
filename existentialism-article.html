@@ -18,8 +18,8 @@ body{
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
 .toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
@@ -40,19 +40,20 @@ table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
 th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
+li{margin-bottom:9px; font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
 .refs em{font-style:italic;}
-.refs li a.backref{color:var(--link); text-decoration:none; margin-left:6px; font-size:14px;}
-.refs li a.backref:hover{text-decoration:underline;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 figure{margin:0 0 36px; padding:0;}
 figure.diagram{background:var(--box); border:1px solid var(--line); padding:24px 22px 18px;}
@@ -62,14 +63,6 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
-}
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
-.no-marker-child {
-  list-style: none;
-  padding-left: 4px;
 }
 </style>
 </head>
@@ -83,55 +76,55 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker">
-<li><a href="#sec1">1. 要旨</a></li>
-<li><a href="#sec2">2. はじめに――なぜ「実存主義」は分類しにくいのか</a></li>
-<li><a href="#sec3">3. 実存主義の中心的主張</a></li>
-<li><a href="#sec4">4. 思想家たちの多様性――一枚岩ではない実存主義</a></li>
-<li><a href="#sec5">5. 有神論的実存主義と無神論的実存主義</a></li>
-<li><a href="#sec6">6. 実存主義を取り巻く「主義」たち――排他的か、共存可能か</a>
-<ul class="no-marker-child">
-<li>6.1 ニヒリズムとの対比</li>
-<li>6.2 不条理主義との近接</li>
-<li>6.3 現象学との方法論的つながり</li>
-<li>6.4 ヒューマニズムとの共鳴</li>
-<li>6.5 マルクス主義との緊張と接続の試み</li>
-<li>6.6 構造主義との対立</li>
-</ul>
+<ol>
+<li><a href="#sec1">要旨</a></li>
+<li><a href="#sec2">はじめに――なぜ「実存主義」は分類しにくいのか</a></li>
+<li><a href="#sec3">実存主義の中心的主張</a></li>
+<li><a href="#sec4">思想家たちの多様性――一枚岩ではない実存主義</a></li>
+<li><a href="#sec5">有神論的実存主義と無神論的実存主義</a></li>
+<li><a href="#sec6">実存主義を取り巻く「主義」たち――排他的か、共存可能か</a>
+<ol>
+<li><a href="#sec6-1">ニヒリズムとの対比</a></li>
+<li><a href="#sec6-2">不条理主義との近接</a></li>
+<li><a href="#sec6-3">現象学との方法論的つながり</a></li>
+<li><a href="#sec6-4">ヒューマニズムとの共鳴</a></li>
+<li><a href="#sec6-5">マルクス主義との緊張と接続の試み</a></li>
+<li><a href="#sec6-6">構造主義との対立</a></li>
+</ol>
 </li>
-<li><a href="#sec7">7. 図解――実存主義をめぐる思想地図</a></li>
-<li><a href="#sec8">8. 結論</a></li>
-</ul>
+<li><a href="#sec7">図解――実存主義をめぐる思想地図</a></li>
+<li><a href="#sec8">結論</a></li>
+</ol>
 </nav>
 
 <h2 id="sec1">1. 要旨</h2>
 <p>実存主義は、しばしば「暗い」「虚無的」な哲学として誤解される。しかし実存主義を掲げた思想家たちの主張は一枚岩ではなく、有神論者から無神論者まで、悲観論者から幸福を説く者まで、内部にかなりの幅を持つ。本稿では実存主義の中心概念を確認したうえで、ニヒリズム・不条理主義・現象学・ヒューマニズム・マルクス主義・構造主義という、しばしば実存主義と混同されたり対比されたりする隣接思想を整理し、それぞれが実存主義と排他的な関係にあるのか、それとも共存し得るのかを検討する。結論を先取りすれば、実存主義は体系ではなく一つの「態度」であるがゆえに、多くの主義と部分的に重なり合いながら、なお区別され続けている。</p>
 
 <h2 id="sec2">2. はじめに――なぜ「実存主義」は分類しにくいのか</h2>
-<p>「実存主義者を三人集めれば、四つの立場ができる」――これは誇張ではない。無神論を公言したサルトルと、カトリックに改宗したガブリエル・マルセルは、ともに「実存主義」というラベルの下に括られながら、思想的にはほぼ正反対の場所に立っていた <sup class="fnref"><a href="#ref-1" id="fnref-1-1">[1]</a></sup> 。さらにアルベール・カミュに至っては、自らを「実存主義者」と呼ばれることを生涯拒み続けた <sup class="fnref"><a href="#ref-2" id="fnref-2-1">[2]</a></sup> 。哲学者スティーブン・クロウェルは、実存主義を特定の教説の体系としてではなく、「特定の体系的哲学を拒否するための一般的なアプローチ」として捉えるべきだと述べている <sup class="fnref"><a href="#ref-1" id="fnref-1-2">[1]</a></sup> 。つまり実存主義とは、あらかじめ答えを持った閉じた理論ではなく、いくつかの共通する問いの立て方を共有する、ゆるやかな思想の集まりなのである。この性質こそが、本稿の主題である「他の主義との併存可能性」を考える出発点になる。</p>
+<p>「実存主義者を三人集めれば、四つの立場ができる」――これは誇張ではない。無神論を公言したサルトルと、カトリックに改宗したガブリエル・マルセルは、ともに「実存主義」というラベルの下に括られながら、思想的にはほぼ正反対の場所に立っていた <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。さらにアルベール・カミュに至っては、自らを「実存主義者」と呼ばれることを生涯拒み続けた <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。哲学者スティーブン・クロウェルは、実存主義を特定の教説の体系としてではなく、「特定の体系的哲学を拒否するための一般的なアプローチ」として捉えるべきだと述べている <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。つまり実存主義とは、あらかじめ答えを持った閉じた理論ではなく、いくつかの共通する問いの立て方を共有する、ゆるやかな思想の集まりなのである。この性質こそが、本稿の主題である「他の主義との併存可能性」を考える出発点になる。</p>
 
 <h2 id="sec3">3. 実存主義の中心的主張</h2>
-<p>実存主義に共通する核は、「実存は本質に先行する（existence precedes essence）」という命題に集約される <sup class="fnref"><a href="#ref-1" id="fnref-1-3">[1]</a></sup> 。ナイフのような道具は、作られる前から「紙を切るもの」という本質（用途）が設計図として存在する。しかし人間には、生まれる前に定められた「こうあるべき本質」は存在しない。人間はまず存在し、そのあとで、自らの選択と行為を通じて自分自身の本質を作り上げていく――これが実存主義の出発点である。</p>
+<p>実存主義に共通する核は、「実存は本質に先行する (existence precedes essence) 」という命題に集約される <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。ナイフのような道具は、作られる前から「紙を切るもの」という本質（用途）が設計図として存在する。しかし人間には、生まれる前に定められた「こうあるべき本質」は存在しない。人間はまず存在し、そのあとで、自らの選択と行為を通じて自分自身の本質を作り上げていく――これが実存主義の出発点である。</p>
 <p>この立場からは、いくつかの関連概念が派生する。</p>
 <table>
 <thead><tr><th>概念</th><th>内容</th></tr></thead>
 <tbody>
-<tr><td>不条理（the Absurd）</td><td>世界そのものには、あらかじめ用意された意味はない。意味は人間が事後的に作り出すものである。</td></tr>
-<tr><td>事実性（facticity）</td><td>生まれた時代・身体・境遇など、自分では選べない所与の条件。</td></tr>
-<tr><td>真正性（authenticity）</td><td>他人の期待や社会通念に流されず、自らの自由と責任にもとづいて生きること。</td></tr>
-<tr><td>不安（angst）</td><td>「自分の人生の意味は自分で作るしかない」という自由と責任を自覚したときに生じる、根源的な不安。</td></tr>
+<tr><td>不条理 (the Absurd)</td><td>世界そのものには、あらかじめ用意された意味はない。意味は人間が事後的に作り出すものである。</td></tr>
+<tr><td>事実性 (facticity)</td><td>生まれた時代・身体・境遇など、自分では選べない所与の条件。</td></tr>
+<tr><td>真正性 (authenticity)</td><td>他人の期待や社会通念に流されず、自らの自由と責任にもとづいて生きること。</td></tr>
+<tr><td>不安 (angst)</td><td>「自分の人生の意味は自分で作るしかない」という自由と責任を自覚したときに生じる、根源的な不安。</td></tr>
 </tbody>
 </table>
 <div class="pull">人間はまず実存し、世界のただ中で出会い、立ち現れ、そのあとで自らを定義する。――サルトル『実存主義とは何か』の趣旨より</div>
 
 <h2 id="sec4">4. 思想家たちの多様性――一枚岩ではない実存主義</h2>
-<p>実存主義の系譜は、 19 世紀のキルケゴールとニーチェに遡る。キルケゴールは各個人が自らの人生に意味を与える「主体的真理」を説き、信仰への飛躍を肯定した <sup class="fnref"><a href="#ref-3" id="fnref-3-1">[3]</a></sup> 。他方でニーチェは「神は死んだ」と宣言し、個人が自らの価値を創造する必要を説いた <sup class="fnref"><a href="#ref-4" id="fnref-4-1">[4]</a></sup> 。この時点ですでに、実存主義の内部には有神論的な系譜と無神論的な系譜という二つの水脈が存在していたことがわかる。</p>
-<p>20 世紀に入ると、ハイデガーが『存在と時間』で存在論的な分析を展開し <sup class="fnref"><a href="#ref-5" id="fnref-5-1">[5]</a></sup> 、サルトルがこれを引き継ぎつつ「実存は本質に先行する」というテーゼを明確化した <sup class="fnref"><a href="#ref-2" id="fnref-2-2">[2]</a></sup> 。もっともハイデガー自身は後年、「サルトルは私の思想を主観主義的な目的のために流用した」と述べ、両者の解釈の違いを強調している <sup class="fnref"><a href="#ref-1" id="fnref-1-4">[1]</a></sup> 。ボーヴォワールはサルトルの自由論を継承しつつも、女性が置かれた「状況」による自由の制約という視点を導入し、フェミニズム実存主義とも呼べる立場を切り開いた <sup class="fnref"><a href="#ref-6" id="fnref-6-1">[6]</a></sup> 。そしてカミュは、不条理な世界に直面してもなお生きることを選ぶ姿勢――「シーシュポスは幸福であると想像しなければならない」という結論――を提示しながらも、自らを実存主義者の輪から外そうとした <sup class="fnref"><a href="#ref-2" id="fnref-2-3">[2]</a></sup> 。</p>
+<p>実存主義の系譜は、 19 世紀のキルケゴールとニーチェに遡る。キルケゴールは各個人が自らの人生に意味を与える「主体的真理」を説き、信仰への飛躍を肯定した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。他方でニーチェは「神は死んだ」と宣言し、個人が自らの価値を創造する必要を説いた <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。この時点ですでに、実存主義の内部には有神論的な系譜と無神論的な系譜という二つの水脈が存在していたことがわかる。</p>
+<p>20 世紀に入ると、ハイデガーが『存在と時間』で存在論的な分析を展開し <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 、サルトルがこれを引き継ぎつつ「実存は本質に先行する」というテーゼを明確化した <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。もっともハイデガー自身は後年、「サルトルは私の思想を主観主義的な目的のために流用した」と述べ、両者の解釈の違いを強調している <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup> 。ボーヴォワールはサルトルの自由論を継承しつつも、女性が置かれた「状況」による自由の制約という視点を導入し、フェミニズム実存主義とも呼べる立場を切り開いた <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。そしてカミュは、不条理な世界に直面してもなお生きることを選ぶ姿勢――「シーシュポスは幸福であると想像しなければならない」という結論――を提示しながらも、自らを実存主義者の輪から外そうとした <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 。</p>
 <p>このように、実存主義を代表するとされる思想家たちの間にすら、有神論と無神論、自由の絶対性と状況による制約、実存主義というラベルの受容と拒否といった、いくつもの分岐が走っている。次節では、その中でもとりわけ重要な分岐である「神をめぐる立場の違い」を見る。</p>
 
 <h2 id="sec5">5. 有神論的実存主義と無神論的実存主義</h2>
-<p>サルトルは実存主義を「一貫した無神論の立場からすべての帰結を引き出そうとする企て」だと説明した <sup class="fnref"><a href="#ref-2" id="fnref-2-4">[2]</a></sup> 。この定義だけを見ると、実存主義は無神論と一体のものに思える。しかし実際には、キルケゴールの信仰への飛躍、神学者パウル・ティリッヒの「神を通じて自己を達成する」という実存主義的神学、カトリックに改宗したガブリエル・マルセルの「対話」と「現在」を重視する思想など、有神論を前提とする実存主義の系譜も確かに存在する <sup class="fnref"><a href="#ref-1" id="fnref-1-5">[1]</a></sup> 。</p>
-<p>つまり実存主義そのものは、神の存在を肯定するか否定するかという点については中立であり、「神の否定を必須とはしない」 <sup class="fnref"><a href="#ref-1" id="fnref-1-6">[1]</a></sup> 。実存主義が要求しているのは、あらかじめ与えられた本質（それが神による設計であれ、社会的役割であれ）に頼らず、自らの自由と責任において生きよ、という一点にほぼ尽きる。神を信じるかどうかは、その要求を満たすための一つの選択肢の違いにすぎない。ここに、実存主義が単一の教義体系ではなく、共通の「問いの立て方」を共有する態度であることが、はっきりと表れている。</p>
+<p>サルトルは実存主義を「一貫した無神論の立場からすべての帰結を引き出そうとする企て」だと説明した <sup id="fnref-2-4"><a href="#ref-2">[2]</a></sup> 。この定義だけを見ると、実存主義は無神論と一体のものに思える。しかし実際には、キルケゴールの信仰への飛躍、神学者パウル・ティリッヒの「神を通じて自己を達成する」という実存主義的神学、カトリックに改宗したガブリエル・マルセルの「対話」と「現在」を重視する思想など、有神論を前提とする実存主義の系譜も確かに存在する <sup id="fnref-1-5"><a href="#ref-1">[1]</a></sup> 。</p>
+<p>つまり実存主義そのものは、神の存在を肯定するか否定するかという点については中立であり、「神の否定を必須とはしない」 <sup id="fnref-1-6"><a href="#ref-1">[1]</a></sup> 。実存主義が要求しているのは、あらかじめ与えられた本質（それが神による設計であれ、社会的役割であれ）に頼らず、自らの自由と責任において生きよ、という一点にほぼ尽きる。神を信じるかどうかは、その要求を満たすための一つの選択肢の違いにすぎない。ここに、実存主義が単一の教義体系ではなく、共通の「問いの立て方」を共有する態度であることが、はっきりと表れている。</p>
 
 <figure class="diagram">
 <svg viewBox="0 0 640 260" role="img" aria-label="実存主義が有神論的実存主義と無神論的実存主義という二つの系譜に分かれ、それぞれに代表的な思想家が連なることを示す樹形図。">
@@ -164,23 +157,23 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <h2 id="sec6">6. 実存主義を取り巻く「主義」たち――排他的か、共存可能か</h2>
 <p>ここからが本稿の中心的な問いである。実存主義は、しばしば他の「主義」と混同されたり、対立するものとして扱われたりする。だが実際の関係は、単純な排他・包含の二分法では割り切れない。以下、代表的な六つの思想潮流を取り上げ、実存主義との距離を測っていく。</p>
 
-<h3>6.1 ニヒリズムとの対比――隣接していながら正反対</h3>
-<p>実存主義はしばしばニヒリズム（虚無主義）と混同されるが、両者は明確に区別される <sup class="fnref"><a href="#ref-1" id="fnref-1-7">[1]</a></sup> 。ニヒリズムは「人生や世界には意味がない」という認識それ自体で立ち止まる。これに対し実存主義は、世界に既製の意味がないことを認めたうえで、なお人間が自らの手で意味を創造し続けることを説く。カミュが「シーシュポスは幸福であると想像すべきだ」と述べたのは、意味の不在を嘆く代わりに、意味の不在の中で生きる姿勢そのものを肯定したからである <sup class="fnref"><a href="#ref-2" id="fnref-2-5">[2]</a></sup> 。したがって実存主義とニヒリズムは、出発点（世界に固有の意味はない）を共有しながら、そこから先の結論において袂を分かつ、いわば「兄弟でありながら対立者」の関係にある。両者は排他的というより、同じ問いに対する二つの異なる回答なのである。</p>
+<h3 id="sec6-1">6.1 ニヒリズムとの対比――隣接していながら正反対</h3>
+<p>実存主義はしばしばニヒリズム（虚無主義）と混同されるが、両者は明確に区別される <sup id="fnref-1-7"><a href="#ref-1">[1]</a></sup> 。ニヒリズムは「人生や世界には意味がない」という認識それ自体で立ち止まる。これに対し実存主義は、世界に既製の意味がないことを認めたうえで、なお人間が自らの手で意味を創造し続けることを説く。カミュが「シーシュポスは幸福であると想像すべきだ」と述べたのは、意味の不在を嘆く代わりに、意味の不在の中で生きる姿勢そのものを肯定したからである <sup id="fnref-2-5"><a href="#ref-2">[2]</a></sup> 。したがって実存主義とニヒリズムは、出発点（世界に固有の意味はない）を共有しながら、そこから先の結論において袂を分かつ、いわば「兄弟でありながら対立者」の関係にある。両者は排他的というより、同じ問いに対する二つの異なる回答なのである。</p>
 
-<h3>6.2 不条理主義（アブサーディズム）との近接――実存主義の一変種</h3>
-<p>カミュに代表される不条理主義は、意味を求める人間の欲求と、意味を与えない沈黙の世界との「両立不可能性」から不条理が生じると捉える立場である <sup class="fnref"><a href="#ref-2" id="fnref-2-6">[2]</a></sup> 。不条理主義は実存主義の枠組みと多くを共有するため、実質的には実存主義の一変種とみなされることが多い。カミュ自身がその呼称を拒んだ事実は、むしろ実存主義という運動の内部にすら、自称・他称をめぐる緊張があったことを示す好例だと言える。</p>
+<h3 id="sec6-2">6.2 不条理主義（アブサーディズム）との近接――実存主義の一変種</h3>
+<p>カミュに代表される不条理主義は、意味を求める人間の欲求と、意味を与えない沈黙の世界との「両立不可能性」から不条理が生じると捉える立場である <sup id="fnref-2-6"><a href="#ref-2">[2]</a></sup> 。不条理主義は実存主義の枠組みと多くを共有するため、実質的には実存主義の一変種とみなされることが多い。カミュ自身がその呼称を拒んだ事実は、むしろ実存主義という運動の内部にすら、自称・他称をめぐる緊張があったことを示す好例だと言える。</p>
 
-<h3>6.3 現象学との方法論的つながり</h3>
-<p>ハイデガーとサルトルはいずれも、フッサールに始まる現象学――対象そのものよりも、対象がどのように主観的経験として立ち現れるかを記述する方法論――を土台として自らの実存分析を組み立てた <sup class="fnref"><a href="#ref-1" id="fnref-1-8">[1]</a></sup> 。この意味で現象学は、実存主義と対立する主義というより、実存主義がその主張を展開するために用いた「方法」そのものに近い。両者は排他的関係にはなく、現象学という土台の上に実存主義という建物が建てられている、と捉えるのが実情に近い。</p>
+<h3 id="sec6-3">6.3 現象学との方法論的つながり</h3>
+<p>ハイデガーとサルトルはいずれも、フッサールに始まる現象学――対象そのものよりも、対象がどのように主観的経験として立ち現れるかを記述する方法論――を土台として自らの実存分析を組み立てた <sup id="fnref-1-8"><a href="#ref-1">[1]</a></sup> 。この意味で現象学は、実存主義と対立する主義というより、実存主義がその主張を展開するために用いた「方法」そのものに近い。両者は排他的関係にはなく、現象学という土台の上に実存主義という建物が建てられている、と捉えるのが実情に近い。</p>
 
-<h3>6.4 ヒューマニズムとの共鳴</h3>
-<p>サルトルは 1945 年の講演に「実存主義はヒューマニズムである」という題を与えた <sup class="fnref"><a href="#ref-2" id="fnref-2-7">[2]</a></sup> 。人間の自由と責任を中心に据える点で、実存主義とヒューマニズム（人間中心主義）は強く共鳴する。ただし両者は同一物ではない。伝統的なヒューマニズムが「人間には共通の本性（理性など）が備わっている」という前提を置くことがあるのに対し、実存主義は「あらかじめ定まった人間の本質」そのものを否定する。共鳴しながらも前提を異にする、という点で、この関係は「共存はするが完全には一致しない」典型例である。</p>
+<h3 id="sec6-4">6.4 ヒューマニズムとの共鳴</h3>
+<p>サルトルは 1945 年の講演に「実存主義はヒューマニズムである」という題を与えた <sup id="fnref-2-7"><a href="#ref-2">[2]</a></sup> 。人間の自由と責任を中心に据える点で、実存主義とヒューマニズム（人間中心主義）は強く共鳴する。ただし両者は同一物ではない。伝統的なヒューマニズムが「人間には共通の本性（理性など）が備わっている」という前提を置くことがあるのに対し、実存主義は「あらかじめ定まった人間の本質」そのものを否定する。共鳴しながらも前提を異にする、という点で、この関係は「共存はするが完全には一致しない」典型例である。</p>
 
-<h3>6.5 マルクス主義との緊張と接続の試み</h3>
-<p>サルトルは 1960 年代、『弁証法的理性批判』において、個人の自由を出発点とする実存主義と、階級や経済構造といった集団的・歴史的条件を重視するマルクス主義との調停を試みた <sup class="fnref"><a href="#ref-1" id="fnref-1-9">[1]</a></sup> 。この試みが示すのは、個人の主体性を軸とする実存主義と、社会構造を軸とするマルクス主義は、本来は焦点の置き方が異なるがゆえに緊張関係を持ちながらも、思想家の実践においては部分的に接続され得る、ということである。完全な排他関係でも、単純な包含関係でもない。</p>
+<h3 id="sec6-5">6.5 マルクス主義との緊張と接続の試み</h3>
+<p>サルトルは 1960 年代、『弁証法的理性批判』において、個人の自由を出発点とする実存主義と、階級や経済構造といった集団的・歴史的条件を重視するマルクス主義との調停を試みた <sup id="fnref-1-9"><a href="#ref-1">[1]</a></sup> 。この試みが示すのは、個人の主体性を軸とする実存主義と、社会構造を軸とするマルクス主義は、本来は焦点の置き方が異なるがゆえに緊張関係を持ちながらも、思想家の実践においては部分的に接続され得る、ということである。完全な排他関係でも、単純な包含関係でもない。</p>
 
-<h3>6.6 構造主義との対立――思想史上「排他」に近い例</h3>
-<p>1960 年代のフランス思想界では、レヴィ゠ストロースらに代表される構造主義が台頭し、個人の主体的な選択を中心に据える実存主義への批判として広く受け止められた。構造主義は、個人の自由な選択以前に、言語や社会関係を規定する無意識的な「構造」が存在すると考える立場であり、実存主義が前提とする自由な主体という発想そのものに疑いを投げかけた <sup class="fnref"><a href="#ref-7" id="fnref-7-1">[7]</a></sup> 。本稿で取り上げた諸主義の中では、これがもっとも「排他的」と呼ぶにふさわしい関係に近い。とはいえこれも、思想内容として完全に両立不可能というより、フランス思想界における世代交代と論争の文脈で先鋭化した対立という側面が大きい。</p>
+<h3 id="sec6-6">6.6 構造主義との対立――思想史上「排他」に近い例</h3>
+<p>1960 年代のフランス思想界では、レヴィ゠ストロースらに代表される構造主義が台頭し、個人の主体的な選択を中心に据える実存主義への批判として広く受け止められた。構造主義は、個人の自由な選択以前に、言語や社会関係を規定する無意識的な「構造」が存在すると考える立場であり、実存主義が前提とする自由な主体という発想そのものに疑いを投げかけた <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。本稿で取り上げた諸主義の中では、これがもっとも「排他的」と呼ぶにふさわしい関係に近い。とはいえこれも、思想内容として完全に両立不可能というより、フランス思想界における世代交代と論争の文脈で先鋭化した対立という側面が大きい。</p>
 
 <div class="box">
 <strong>留意点：</strong>以上の整理は初学者向けの見取り図であり、各思想の細部にはここで触れていない多くの異論・留保がある。特に構造主義とポスト構造主義、あるいはマルクス主義内部の諸潮流との関係は、専門的な議論では本稿よりはるかに複雑に扱われる。
@@ -235,14 +228,15 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 
 <div class="refs">
 <h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
-<li id="ref-1">Wikipedia contributors, "Existentialism," <em>Wikipedia, The Free Encyclopedia</em>. <a href="https://en.wikipedia.org/wiki/Existentialism" target="_blank" rel="noopener">Wikipedia</a>（2026 年 9 月 18 日閲覧）。本稿の全体的な記述の多くは本項目にもとづく。<a href="#fnref-1-1" class="backref">↩</a><a href="#fnref-1-2" class="backref">↩</a><a href="#fnref-1-3" class="backref">↩</a><a href="#fnref-1-4" class="backref">↩</a><a href="#fnref-1-5" class="backref">↩</a><a href="#fnref-1-6" class="backref">↩</a><a href="#fnref-1-7" class="backref">↩</a><a href="#fnref-1-8" class="backref">↩</a><a href="#fnref-1-9" class="backref">↩</a></li>
-<li id="ref-2">Wikipedia contributors, "Jean-Paul Sartre" および "Albert Camus," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Jean-Paul_Sartre" target="_blank" rel="noopener">Wikipedia</a> ／ <a href="https://en.wikipedia.org/wiki/Albert_Camus" target="_blank" rel="noopener">Wikipedia</a> 。サルトルの講演「実存主義とはヒューマニズムである（L'existentialisme est un humanisme）」およびカミュ『シーシュポスの神話（Le Mythe de Sisyphe）』に関する記述の典拠。<a href="#fnref-2-1" class="backref">↩</a><a href="#fnref-2-2" class="backref">↩</a><a href="#fnref-2-3" class="backref">↩</a><a href="#fnref-2-4" class="backref">↩</a><a href="#fnref-2-5" class="backref">↩</a><a href="#fnref-2-6" class="backref">↩</a><a href="#fnref-2-7" class="backref">↩</a></li>
-<li id="ref-3">Wikipedia contributors, "Søren Kierkegaard," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard" target="_blank" rel="noopener">Wikipedia</a><a href="#fnref-3-1" class="backref">↩</a></li>
-<li id="ref-4">Wikipedia contributors, "Friedrich Nietzsche," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Friedrich_Nietzsche" target="_blank" rel="noopener">Wikipedia</a><a href="#fnref-4-1" class="backref">↩</a></li>
-<li id="ref-5">Wikipedia contributors, "Being and Time," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Being_and_Time" target="_blank" rel="noopener">Wikipedia</a>（ハイデガー『存在と時間』）<a href="#fnref-5-1" class="backref">↩</a></li>
-<li id="ref-6">Wikipedia contributors, "Simone de Beauvoir," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Simone_de_Beauvoir" target="_blank" rel="noopener">Wikipedia</a><a href="#fnref-6-1" class="backref">↩</a></li>
-<li id="ref-7">Wikipedia contributors, "Structuralism," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Structuralism" target="_blank" rel="noopener">Wikipedia</a>（構造主義と実存主義の思想史的対立に関する一般的背景）<a href="#fnref-7-1" class="backref">↩</a></li>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> <sup><a href="#fnref-1-5">e</a></sup> <sup><a href="#fnref-1-6">f</a></sup> <sup><a href="#fnref-1-7">g</a></sup> <sup><a href="#fnref-1-8">h</a></sup> <sup><a href="#fnref-1-9">i</a></sup> Wikipedia contributors, "Existentialism," <em>Wikipedia, The Free Encyclopedia</em>. <a href="https://en.wikipedia.org/wiki/Existentialism" target="_blank" rel="noopener">Wikipedia</a>(2026 年 9 月 18 日閲覧）。本稿の全体的な記述の多くは本項目にもとづく。</li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> <sup><a href="#fnref-2-4">d</a></sup> <sup><a href="#fnref-2-5">e</a></sup> <sup><a href="#fnref-2-6">f</a></sup> <sup><a href="#fnref-2-7">g</a></sup> Wikipedia contributors, "Jean-Paul Sartre" および "Albert Camus," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Jean-Paul_Sartre" target="_blank" rel="noopener">Wikipedia</a> ／ <a href="https://en.wikipedia.org/wiki/Albert_Camus" target="_blank" rel="noopener">Wikipedia</a> 。サルトルの講演「実存主義とはヒューマニズムである (L'existentialisme est un humanisme) 」およびカミュ『シーシュポスの神話 (Le Mythe de Sisyphe) 』に関する記述の典拠。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Wikipedia contributors, "Søren Kierkegaard," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/S%C3%B8ren_Kierkegaard" target="_blank" rel="noopener">Wikipedia</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Wikipedia contributors, "Friedrich Nietzsche," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Friedrich_Nietzsche" target="_blank" rel="noopener">Wikipedia</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Wikipedia contributors, "Being and Time," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Being_and_Time" target="_blank" rel="noopener">Wikipedia</a>（ハイデガー『存在と時間』）</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Wikipedia contributors, "Simone de Beauvoir," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Simone_de_Beauvoir" target="_blank" rel="noopener">Wikipedia</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Wikipedia contributors, "Structuralism," <em>Wikipedia</em>. <a href="https://en.wikipedia.org/wiki/Structuralism" target="_blank" rel="noopener">Wikipedia</a>（構造主義と実存主義の思想史的対立に関する一般的背景）</li>
 </ol>
 </div>
 

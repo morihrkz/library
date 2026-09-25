@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -35,7 +35,7 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
@@ -43,14 +43,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 .diagram-figure{margin:0 0 30px;}
@@ -82,10 +85,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -94,23 +93,23 @@ pre code{background:none; padding:0;}
 <h1>地質時代入門<br>―― 100 億年を四段階のスケールでたどる</h1>
 <p class="subtitle">An Introduction to Geologic Time: Tracing Ten Billion Years across Four Nested Scales</p>
 <div class="lede"><p>「ジュラ紀」「白亜紀」のような地質時代の名前は知っていても、その並び順や長さの感覚には自信が持てない、という読者のために書いた入門記事。過去 100 億年・過去 10 億年・過去 1 億年・過去 1000 万年の四つの図を、すべて引き伸ばしのない一定の（線形の）スケールで作成し、直前の図の右端（直近の一部）を次の図で拡大していく構成にした。 2026 年 9 月。</p></div>
-<div class="meta">【方法と限界】年代の数値は国際層序委員会（ICS）による国際年代層序表を基準とし、境界の年代は執筆時点で広く使われている値に丸めた。地質年代の境界は現在も微調整が続いており、将来の改訂で数百万年単位の見直しがありうる。また四つの図はいずれも「線形」目盛りで作った。地質時代の解説図は情報を詰め込むために対数目盛りや不均等な帯を使うことが多いが、それでは長さの直感的な比較ができない。ここでは代わりに「同じ定規のまま倍率だけを上げて三回ズームする」という方法をとった。</div>
+<div class="meta">【方法と限界】年代の数値は国際層序委員会 (ICS) による国際年代層序表を基準とし、境界の年代は執筆時点で広く使われている値に丸めた。地質年代の境界は現在も微調整が続いており、将来の改訂で数百万年単位の見直しがありうる。また四つの図はいずれも「線形」目盛りで作った。地質時代の解説図は情報を詰め込むために対数目盛りや不均等な帯を使うことが多いが、それでは長さの直感的な比較ができない。ここでは代わりに「同じ定規のまま倍率だけを上げて三回ズームする」という方法をとった。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. 「地質時代」とは何か――入れ子になった物差し</a></li>
-<li><a href="#sec2">2. 図解 1: 過去 100 億年――地球誕生前から顕生代まで</a></li>
-<li><a href="#sec3">3. 図解 2: 過去 10 億年――原生代の終わりからカンブリア爆発へ</a></li>
-<li><a href="#sec4">4. 図解 3: 過去 1 億年――恐竜の黄昏から人類の登場まで</a></li>
-<li><a href="#sec5">5. 図解 4: 過去 1000 万年――人類の進化が見えてくるスケール</a></li>
-<li><a href="#sec6">6. 「ジュラ紀」「白亜紀」は何にちなむ名前か</a></li>
-<li><a href="#sec7">7. 新生代の「世」と、まだ認められていない「人新世」</a></li>
-</ul>
+<ol><li><a href="#sec1">「地質時代」とは何か――入れ子になった物差し</a></li>
+<li><a href="#sec2">図解 1: 過去 100 億年――地球誕生前から顕生代まで</a></li>
+<li><a href="#sec3">図解 2: 過去 10 億年――原生代の終わりからカンブリア爆発へ</a></li>
+<li><a href="#sec4">図解 3: 過去 1 億年――恐竜の黄昏から人類の登場まで</a></li>
+<li><a href="#sec5">図解 4: 過去 1000 万年――人類の進化が見えてくるスケール</a></li>
+<li><a href="#sec6">「ジュラ紀」「白亜紀」は何にちなむ名前か</a></li>
+<li><a href="#sec7">新生代の「世」と、まだ認められていない「人新世」</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. 「地質時代」とは何か――入れ子になった物差し</h2>
 <p>「ジュラ紀」も「白亜紀」も、地質学者が地球の歴史を区分するために付けた名前の一つである。
-これらの区分は思いつきで並んでいるのではなく、長さの違う四段階の物差しが入れ子になった、階層構造を持つ体系である。国際層序委員会（ICS）が定める国際年代層序表 <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> と、米国地質調査所（USGS）の解説 <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> によれば、その階層は大きい方から次のように並ぶ。</p>
+これらの区分は思いつきで並んでいるのではなく、長さの違う四段階の物差しが入れ子になった、階層構造を持つ体系である。国際層序委員会 (ICS) が定める国際年代層序表 <sup><a id="fnref-1-1" href="#ref-1">[1]</a></sup> と、米国地質調査所 (USGS) の解説 <sup><a id="fnref-2-1" href="#ref-2">[2]</a></sup> によれば、その階層は大きい方から次のように並ぶ。</p>
 <h3>累代・代・紀・世という四段階</h3>
-<p>もっとも大きな単位は「累代（るいだい、 eon）」で、数億年から数十億年の幅を持つ。地球の歴史は冥王代・太古代・原生代・顕生代という四つの累代に分かれ、このうち「ジュラ紀」や「白亜紀」を含むのは、もっとも新しい顕生代（けんせいだい）である。</p>
+<p>もっとも大きな単位は「累代（るいだい、 eon) 」で、数億年から数十億年の幅を持つ。地球の歴史は冥王代・太古代・原生代・顕生代という四つの累代に分かれ、このうち「ジュラ紀」や「白亜紀」を含むのは、もっとも新しい顕生代（けんせいだい）である。</p>
 <table>
 <thead>
 <tr>
@@ -122,25 +121,25 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>累代（eon）</td>
+<td>累代 (eon)</td>
 <td>るいだい</td>
 <td>数億〜数十億年</td>
 <td>太古代・原生代・顕生代</td>
 </tr>
 <tr>
-<td>代（era）</td>
+<td>代 (era)</td>
 <td>だい</td>
 <td>数千万〜数億年</td>
 <td>古生代・中生代・新生代</td>
 </tr>
 <tr>
-<td>紀（period）</td>
+<td>紀 (period)</td>
 <td>き</td>
 <td>数百万〜数千万年</td>
 <td>ジュラ紀・白亜紀・第四紀</td>
 </tr>
 <tr>
-<td>世（epoch）</td>
+<td>世 (epoch)</td>
 <td>せい</td>
 <td>数百万年前後</td>
 <td>暁新世・完新世</td>
@@ -150,11 +149,11 @@ pre code{background:none; padding:0;}
 <p>つまり「ジュラ紀」は、顕生代という累代の中の、中生代という代の中の、一つの紀にすぎない。
 逆に言えば、「ジュラ紀」を単独で覚えても、それが 46 億年の地球史のどのあたりに位置し、前後にどれだけの時間が広がっているのかは分からない。以下の四つの図は、この位置関係を体感するために作った。</p>
 <h3>「顕生代」だけが特別に細かく分けられている理由</h3>
-<p>地質時代の区分は、もともと地層に残る化石の移り変わりをもとに作られた。硬い殻や骨を持つ生物が爆発的に増えたのは、地球の歴史（約 46 億年 <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup>）のうちの直近 5 億 4100 万年ほどにすぎない。この「目に見える生物の時代」を指すのが顕生代であり、それ以前の 40 億年あまりは、まとめて太古代・原生代と呼ばれる。
+<p>地質時代の区分は、もともと地層に残る化石の移り変わりをもとに作られた。硬い殻や骨を持つ生物が爆発的に増えたのは、地球の歴史（約 46 億年 <sup><a id="fnref-3-1" href="#ref-3">[3]</a></sup>)のうちの直近 5 億 4100 万年ほどにすぎない。この「目に見える生物の時代」を指すのが顕生代であり、それ以前の 40 億年あまりは、まとめて太古代・原生代と呼ばれる。
 言い換えると、地質時代の区分は年代に対して一様に細かいわけではなく、化石として残りやすい直近の時代ほど、紀・世という細かい単位まで名前が付いている。これが、「ジュラ紀」のような紀の名前ばかりが有名で、太古代や原生代の内部の名前をほとんど聞いたことがない理由である。</p>
 <h2 id="sec2">2. 図解 1: 過去 100 億年――地球誕生前から顕生代まで</h2>
-<p>最初の図は、直近 100 億年を線形の目盛りで表したものである。左端が 100 億年前、右端が現在にあたる。地球そのものの年齢は約 45.4 億年、放射年代測定によって求められている <sup class="fnref"><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。したがって図の左側、半分あまりを占める斜線部分は、まだ地球が存在しない時代にあたる。
-ちなみに宇宙の年齢は約 138 億年と見積もられており <sup class="fnref"><a id="fnref-13-1" href="#ref-13">[13]</a></sup> 、図の左端（100 億年前）の時点で、宇宙自体はすでに約 38 億歳であった。この記事の他の図はすべて地球自身の歴史だけを扱うが、この最初の図だけは、地球が生まれる前の時代からの目盛りになっている。</p>
+<p>最初の図は、直近 100 億年を線形の目盛りで表したものである。左端が 100 億年前、右端が現在にあたる。地球そのものの年齢は約 45.4 億年、放射年代測定によって求められている <sup><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。したがって図の左側、半分あまりを占める斜線部分は、まだ地球が存在しない時代にあたる。
+ちなみに宇宙の年齢は約 138 億年と見積もられており <sup><a id="fnref-13-1" href="#ref-13">[13]</a></sup> 、図の左端 (100 億年前）の時点で、宇宙自体はすでに約 38 億歳であった。この記事の他の図はすべて地球自身の歴史だけを扱うが、この最初の図だけは、地球が生まれる前の時代からの目盛りになっている。</p>
 <figure class="diagram-figure">
 <svg viewBox="0 0 1000 200" role="img" aria-label="過去100億年を線形目盛りで示した帯グラフ。左端が100億年前、右端が現在。地球誕生前の時代・冥王代・太古代・原生代・顕生代の五つに色分けされ、直近10億年を破線で囲んでいる。">
 <defs>
@@ -214,10 +213,10 @@ pre code{background:none; padding:0;}
 <figcaption>▶ 破線で囲った直近 10 億年（右端の 1 割）を、次の図解 2 でさらに拡大する。</figcaption>
 </figure>
 <p>帯の幅を見るだけで、地球誕生前の時代・冥王代・太古代・原生代を合わせた長い時間に対して、顕生代がいかに薄い帯かが分かる。図中の①〜④は、この長い時間の中で起きた出来事である。</p>
-<p>①は地球の誕生で、太陽系の材料が集まって原始の地球ができたのは約 45.4 億年前とされる <sup class="fnref"><a id="fnref-12-2" href="#ref-12">[12]</a></sup> 。この境界の左側（斜線部分）には、まだ地球という天体そのものが存在しない。
-②は「生命の起源」で、確実な化石証拠（オーストラリアや南アフリカのストロマトライト）にもとづくもっとも古い生命の記録は約 35 億年前にさかのぼり、グリーンランドの地層に残る炭素同位体などの間接的な痕跡はさらにさかのぼって約 41 億年前まで議論されている <sup class="fnref"><a id="fnref-15-1" href="#ref-15">[15]</a></sup> 。地球誕生からわずか数億年後、地球がまだ隕石の衝突にさらされていた冥王代の終わり頃には、すでに生命が存在していた可能性がある。
-③は「大酸化イベント」で、約 24 億年前、シアノバクテリアの光合成によって大気中に酸素が急増しはじめた出来事である <sup class="fnref"><a id="fnref-3-2" href="#ref-3">[3]</a></sup> 。それまでほぼ無酸素だった地球の大気組成を一変させ、後のあらゆる好気性生物（酸素を使う生物）の前提を作った、生命史でもっとも重要な環境変化の一つである。
-④は「スノーボールアース」で、約 7 億年前から 6 億 3500 万年前にかけて、赤道付近まで氷に覆われるほどの全球凍結が少なくとも二度起きたとされる出来事である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。この時代の名前（クライオジェニアン紀）は次の図解 2 で登場する。</p>
+<p>①は地球の誕生で、太陽系の材料が集まって原始の地球ができたのは約 45.4 億年前とされる <sup><a id="fnref-12-2" href="#ref-12">[12]</a></sup> 。この境界の左側（斜線部分）には、まだ地球という天体そのものが存在しない。
+②は「生命の起源」で、確実な化石証拠（オーストラリアや南アフリカのストロマトライト）にもとづくもっとも古い生命の記録は約 35 億年前にさかのぼり、グリーンランドの地層に残る炭素同位体などの間接的な痕跡はさらにさかのぼって約 41 億年前まで議論されている <sup><a id="fnref-15-1" href="#ref-15">[15]</a></sup> 。地球誕生からわずか数億年後、地球がまだ隕石の衝突にさらされていた冥王代の終わり頃には、すでに生命が存在していた可能性がある。
+③は「大酸化イベント」で、約 24 億年前、シアノバクテリアの光合成によって大気中に酸素が急増しはじめた出来事である <sup><a id="fnref-3-2" href="#ref-3">[3]</a></sup> 。それまでほぼ無酸素だった地球の大気組成を一変させ、後のあらゆる好気性生物（酸素を使う生物）の前提を作った、生命史でもっとも重要な環境変化の一つである。
+④は「スノーボールアース」で、約 7 億年前から 6 億 3500 万年前にかけて、赤道付近まで氷に覆われるほどの全球凍結が少なくとも二度起きたとされる出来事である <sup><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。この時代の名前（クライオジェニアン紀）は次の図解 2 で登場する。</p>
 <h2 id="sec3">3. 図解 2: 過去 10 億年――原生代の終わりからカンブリア爆発へ</h2>
 <p>二枚目の図は、図解 1 の右端 10 億年を 10 倍に拡大したものである。左端が 10 億年前、右端が現在にあたる。</p>
 <figure class="diagram-figure">
@@ -274,8 +273,8 @@ pre code{background:none; padding:0;}
 <figcaption>▶ 破線で囲った直近 1 億年（右端のごく一部）を、次の図解 3 でさらに拡大する。</figcaption>
 </figure>
 <p>この図では、図解 1 では帯の幅にして全体のわずか 5 パーセントほどしかなかった顕生代が、画面の右側 5 割以上を占めるまで拡大されている。それでもなお、古生代・中生代・新生代という「代」の三区分は、それぞれ幅がかなり違う。もっとも新しい新生代（直近 6600 万年）は、この図の中でも一段と薄い帯にとどまる。</p>
-<p>①は「カンブリア爆発」で、約 5 億 4100 万年前から 5 億 3000 万年前にかけて、現在見られる動物の主要な門（からだの基本設計のグループ）の大半が、地質学的には一瞬といえる短期間に出そろった出来事である <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。この境界が、原生代と顕生代、そして原生代最後の紀であるエディアカラン紀と古生代最初の紀であるカンブリア紀を分けている。
-②は「 P-T 境界」、約 2 億 5200 万年前に起きた地球史上最大の大量絶滅で、海生生物の 9 割以上、陸上の脊椎動物の 7 割が姿を消したとされる <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。この絶滅が古生代と中生代を分ける境界となっている。
+<p>①は「カンブリア爆発」で、約 5 億 4100 万年前から 5 億 3000 万年前にかけて、現在見られる動物の主要な門（からだの基本設計のグループ）の大半が、地質学的には一瞬といえる短期間に出そろった出来事である <sup><a id="fnref-5-1" href="#ref-5">[5]</a></sup> 。この境界が、原生代と顕生代、そして原生代最後の紀であるエディアカラン紀と古生代最初の紀であるカンブリア紀を分けている。
+②は「 P-T 境界」、約 2 億 5200 万年前に起きた地球史上最大の大量絶滅で、海生生物の 9 割以上、陸上の脊椎動物の 7 割が姿を消したとされる <sup><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。この絶滅が古生代と中生代を分ける境界となっている。
 ③は「 K-Pg 境界」、約 6600 万年前に中生代と新生代を分けた出来事で、次の図解 3 で詳しく扱う。</p>
 <h2 id="sec4">4. 図解 3: 過去 1 億年――恐竜の黄昏から人類の登場まで</h2>
 <p>三枚目の図は、図解 2 の右端 1 億年をさらに 10 倍に拡大したものである。左端が 1 億年前、右端が現在にあたる。図解 1 から数えると、 10 倍・ 10 倍で合計 100 倍のズームにあたる。</p>
@@ -321,9 +320,9 @@ pre code{background:none; padding:0;}
 </svg>
 <figcaption>▶ 破線で囲った直近 1000 万年を、次の図解 4 でさらに拡大する。</figcaption>
 </figure>
-<p>①は「 K-Pg 境界」、約 6600 万年前にメキシコ・ユカタン半島に直径 10 〜 15 キロメートルの小天体が衝突し（チクシュルーブ・クレーター）、鳥類を除く恐竜を含む種の約 75 パーセントを絶滅させたとされる出来事である <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。中生代と新生代の境界であり、この一本の破線は、図解 2 と図解 3 の両方に共通して登場する境界線でもある（図解 2 の③と同じ出来事）。</p>
-<p>②は現生人類（ホモ・サピエンス）の出現で、モロッコのジェベル・イルード遺跡の化石から、少なくとも約 30 万年前にさかのぼるとされる <sup class="fnref"><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。この図の中では右端からわずか 3 ピクセルの位置にあたり、恐竜絶滅から人類登場までの 6600 万年近い空白と比べて、人類の歴史がいかに短いかが分かる。</p>
-<p>なお、現在の地質時代である完新世（かんしんせい）の始まりは約 1 万 1700 年前とされるが、この図の縮尺（1 万年でおよそ 0.1 ピクセル）では、もはや線として描き分けることができない。次の図解 4 （過去 1000 万年）では、この直近 1000 万年をさらに 10 倍拡大し、人類の進化にかかわる出来事を、はじめて線としてではなく帯として区別できるようになる。</p>
+<p>①は「 K-Pg 境界」、約 6600 万年前にメキシコ・ユカタン半島に直径 10 〜 15 キロメートルの小天体が衝突し（チクシュルーブ・クレーター）、鳥類を除く恐竜を含む種の約 75 パーセントを絶滅させたとされる出来事である <sup><a id="fnref-7-1" href="#ref-7">[7]</a></sup> 。中生代と新生代の境界であり、この一本の破線は、図解 2 と図解 3 の両方に共通して登場する境界線でもある（図解 2 の③と同じ出来事）。</p>
+<p>②は現生人類（ホモ・サピエンス）の出現で、モロッコのジェベル・イルード遺跡の化石から、少なくとも約 30 万年前にさかのぼるとされる <sup><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。この図の中では右端からわずか 3 ピクセルの位置にあたり、恐竜絶滅から人類登場までの 6600 万年近い空白と比べて、人類の歴史がいかに短いかが分かる。</p>
+<p>なお、現在の地質時代である完新世（かんしんせい）の始まりは約 1 万 1700 年前とされるが、この図の縮尺 (1 万年でおよそ 0.1 ピクセル）では、もはや線として描き分けることができない。次の図解 4 （過去 1000 万年）では、この直近 1000 万年をさらに 10 倍拡大し、人類の進化にかかわる出来事を、はじめて線としてではなく帯として区別できるようになる。</p>
 <h2 id="sec5">5. 図解 4: 過去 1000 万年――人類の進化が見えてくるスケール</h2>
 <p>四枚目の図は、図解 3 の右端 1000 万年をさらに 10 倍に拡大したものである。左端が 1000 万年前、右端が現在にあたる。図解 1 から図解 4 まで、 10 倍のズームを三回重ねており、合計で 1000 倍の拡大になる。</p>
 <figure class="diagram-figure">
@@ -363,11 +362,11 @@ pre code{background:none; padding:0;}
 </svg>
 </figure>
 <p>この図は、図解 3 で唯一登場した「新生代」の内部、そのまた一部（新第三紀の後半と第四紀）をさらに拡大したものにあたる。中新世と鮮新世は同じ配色にしてあるが、これは両方とも新第三紀に属する「世」だからで、図解 3 の新第三紀の帯の色に対応している。同じように更新世と完新世は、図解 3 の第四紀の帯の色に対応している。</p>
-<p>①はホモ・エレクトスの出現で、もっとも古い化石証拠は約 190 万年前にさかのぼる <sup class="fnref"><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 。アフリカで生まれ、ユーラシア各地へ広がった最初期の人類の一種である。
-②はホモ・サピエンス（現生人類）の出現で、図解 3 でも登場した約 30 万年前の出来事である <sup class="fnref"><a id="fnref-8-2" href="#ref-8">[8]</a></sup> 。この図の縮尺（100 万年でおよそ 90 ピクセル）では、①からおよそ 160 万年かけて、更新世という一つの「世」の中にとどまり続けたことが視覚的に分かる。</p>
+<p>①はホモ・エレクトスの出現で、もっとも古い化石証拠は約 190 万年前にさかのぼる <sup><a id="fnref-14-1" href="#ref-14">[14]</a></sup> 。アフリカで生まれ、ユーラシア各地へ広がった最初期の人類の一種である。
+②はホモ・サピエンス（現生人類）の出現で、図解 3 でも登場した約 30 万年前の出来事である <sup><a id="fnref-8-2" href="#ref-8">[8]</a></sup> 。この図の縮尺 (100 万年でおよそ 90 ピクセル）では、①からおよそ 160 万年かけて、更新世という一つの「世」の中にとどまり続けたことが視覚的に分かる。</p>
 <p>なお、農耕の開始など人類の文明にかかわる出来事は、この図が表す完新世（約 1 万 1700 年前〜現在）の中に収まる。しかし完新世そのものが、この図の縮尺ではおよそ 1 ピクセルの線にしかならない。人類の文明の細部を見るには、この図解 4 のさらに数百倍拡大する必要がある、というのが率直な感覚である。</p>
 <h2 id="sec6">6. 「ジュラ紀」「白亜紀」は何にちなむ名前か</h2>
-<p>紀の名前の多くは、その時代の地層が最初に研究された土地の名前（地名）にちなむ。 19 世紀のヨーロッパ、とりわけ英国で地質学が確立したため、英国やその周辺の地名が目立つ <sup class="fnref"><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。</p>
+<p>紀の名前の多くは、その時代の地層が最初に研究された土地の名前（地名）にちなむ。 19 世紀のヨーロッパ、とりわけ英国で地質学が確立したため、英国やその周辺の地名が目立つ <sup><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。</p>
 <table>
 <thead>
 <tr>
@@ -418,12 +417,13 @@ pre code{background:none; padding:0;}
 新生代の紀（古第三紀・新第三紀・第四紀）や、太古代・原生代の中の細かい区分（トニアン紀・クライオジェニアン紀・エディアカラン紀など）は地名ではなく、時代の性質（古い / 新しい第三の地層、氷河期を意味するギリシャ語など）にちなんだ命名が中心になる。</p>
 <h2 id="sec7">7. 新生代の「世」と、まだ認められていない「人新世」</h2>
 <p>図解 3 ・図解 4 で見てきたとおり、新生代は暁新世・始新世・漸新世・中新世・鮮新世・更新世・完新世という七つの「世」にさらに細分される。このうち更新世と完新世の内部は、図解 4 で視覚的に確認したとおりである。人類が経験してきた歴史のほとんどは、この二つ、更新世（約 258 万〜 1 万 1700 年前）と完新世（約 1 万 1700 年前〜現在）に収まる。</p>
-<p>近年、この完新世の後にもう一つ、人類の活動が地球環境を変えた時代として「人新世（アントロポセン）」を新設する提案が地質学界で議論された。カナダのクロフォード湖の堆積物にみられる放射性核種などを「黄金の釘」（時代境界を示す基準地点）とする案が検討されたが、 2024 年 3 月、国際層序委員会の下部組織による投票で否決され、同年 3 月に国際地質科学連合（IUGS）もこの決定を追認した <sup class="fnref"><a id="fnref-10-1" href="#ref-10">[10]</a></sup>,<sup class="fnref"><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。
+<p>近年、この完新世の後にもう一つ、人類の活動が地球環境を変えた時代として「人新世（アントロポセン）」を新設する提案が地質学界で議論された。カナダのクロフォード湖の堆積物にみられる放射性核種などを「黄金の釘」（時代境界を示す基準地点）とする案が検討されたが、 2024 年 3 月、国際層序委員会の下部組織による投票で否決され、同年 3 月に国際地質科学連合 (IUGS) もこの決定を追認した <sup><a id="fnref-10-1" href="#ref-10">[10]</a></sup>,<sup><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。
 つまり 2026 年現在、「人新世」は正式な地質時代の単位ではなく、あくまで完新世の内部の出来事として扱われている。ただし、この否決は「人類が地球環境を変えていること」自体を否定するものではなく、あくまで「正式な地質時代の単位として区切るのに適切な、地層に残る単一の境界を定義できるか」という、地質学の作法上の判断にとどまる。</p>
-<p>この記事の図解 4 でいえば、人新世として提案された時代（20 世紀半ば以降、いまからおよそ 75 年ほど）は、右端からさらに 13 万倍前後拡大しなければ見えてこない、きわめて細い一点にすぎない。それでもなお、この一点をめぐって地質学の国際機関が正式な投票を行うほどの議論が起きていること自体が、地質時代の区分が過去の遺物ではなく、現在も更新され続けている生きた体系であることを示している。</p>
+<p>この記事の図解 4 でいえば、人新世として提案された時代 (20 世紀半ば以降、いまからおよそ 75 年ほど）は、右端からさらに 13 万倍前後拡大しなければ見えてこない、きわめて細い一点にすぎない。それでもなお、この一点をめぐって地質学の国際機関が正式な投票を行うほどの議論が起きていること自体が、地質時代の区分が過去の遺物ではなく、現在も更新され続けている生きた体系であることを示している。</p>
 <div class="refs">
-<h2>脚注一覧</h2>
-<ol><li id="ref-1">International Commission on Stratigraphy, <em>International Chronostratigraphic Chart</em>. <a href="https://stratigraphy.org/timescale/">stratigraphy.org</a> <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2">U.S. Geological Survey, <em>Divisions of Geologic Time—Major Chronostratigraphic and Geochronologic Units</em>, USGS Fact Sheet. <a href="https://pubs.usgs.gov/pp/1879/v1/pp1879v1c.pdf">pubs.usgs.gov</a> <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3">Smithsonian National Museum of Natural History, <em>History of Life on Earth</em>. <a href="https://naturalhistory.si.edu/education/teaching-resources/life-science/early-life-earth-animal-origins">naturalhistory.si.edu</a> <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4">PMC (National Center for Biotechnology Information), <em>Biological diversification linked to environmental stabilization following the Sturtian Snowball glaciation</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10456883/">ncbi.nlm.nih.gov</a> <a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5">Britannica, <em>Cambrian explosion</em>. <a href="https://www.britannica.com/science/Cambrian-explosion">britannica.com</a> <a class="fnback" href="#fnref-5-1">↩</a></li><li id="ref-6">Smithsonian Magazine, <em>How Did the 'Great Dying' Kill 96 Percent of Earth's Ocean-Dwelling Creatures?</em> <a href="https://www.smithsonianmag.com/smart-news/how-did-great-dying-kill-96-percent-earths-ocean-dwelling-creatures-180970992/">smithsonianmag.com</a> <a class="fnback" href="#fnref-6-1">↩</a></li><li id="ref-7">NASA Science, <em>Deep Impact and the Mass Extinction of Species 65 Million Years Ago</em>. <a href="https://science.nasa.gov/earth/deep-impact-and-the-mass-extinction-of-species-65-million-years-ago/">science.nasa.gov</a> <a class="fnback" href="#fnref-7-1">↩</a></li><li id="ref-8">Smithsonian, National Museum of Natural History (Human Origins Program), <em>Our species arose at least 300,000 years ago</em>. <a href="https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago">humanorigins.si.edu</a> <a class="fnback" href="#fnref-8-1">↩</a></li><li id="ref-9">C. Bentley (AGU Blogosphere), <em>Geologic timescale names</em>, Mountain Beltway. <a href="https://mountainbeltway.all-geo.org/2011/09/27/geologic-timescale-names/">mountainbeltway.all-geo.org</a> / ZME Science, <em>How geological periods got their names</em>. <a href="https://www.zmescience.com/feature-post/natural-sciences/geology-and-paleontology/earth-dynamics/how-geological-periods-got-their-names/">zmescience.com</a> <a class="fnback" href="#fnref-9-1">↩</a></li><li id="ref-10">Nature (news), <em>It's final: the Anthropocene is not an epoch, despite protest over vote</em>, 2024. <a href="https://www.nature.com/articles/d41586-024-00868-1">nature.com</a> <a class="fnback" href="#fnref-10-1">↩</a></li><li id="ref-11">International Commission on Stratigraphy, <em>Joint Statement by IUGS and ICS</em>. <a href="https://stratigraphy.org/news/152">stratigraphy.org</a> <a class="fnback" href="#fnref-11-1">↩</a></li><li id="ref-12">Space.com, <em>How old is Earth?</em> <a href="https://www.space.com/24854-how-old-is-earth.html">space.com</a> <a class="fnback" href="#fnref-12-1">↩</a></li><li id="ref-13">NASA Jet Propulsion Laboratory, <em>Planck Mission Brings Universe Into Sharp Focus</em>. <a href="https://www.jpl.nasa.gov/news/planck-mission-brings-universe-into-sharp-focus/">jpl.nasa.gov</a> <a class="fnback" href="#fnref-13-1">↩</a></li><li id="ref-14">Smithsonian, National Museum of Natural History (Human Origins Program), <em>Homo erectus</em>. <a href="https://humanorigins.si.edu/evidence/human-fossils/species/homo-erectus">humanorigins.si.edu</a> <a class="fnback" href="#fnref-14-1">↩</a></li><li id="ref-15">Natural History Museum (London), <em>The origin of life on Earth: From basic chemicals to complex organisms</em>. <a href="https://www.nhm.ac.uk/discover/origin-of-life-on-earth.html">nhm.ac.uk</a> <a class="fnback" href="#fnref-15-1">↩</a></li></ol>
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol><li id="ref-1"><a href="#fnref-1-1">^</a> International Commission on Stratigraphy, <em>International Chronostratigraphic Chart</em>. <a href="https://stratigraphy.org/timescale/">stratigraphy.org</a></li><li id="ref-2"><a href="#fnref-2-1">^</a> U.S. Geological Survey, <em>Divisions of Geologic Time—Major Chronostratigraphic and Geochronologic Units</em>, USGS Fact Sheet. <a href="https://pubs.usgs.gov/pp/1879/v1/pp1879v1c.pdf">pubs.usgs.gov</a></li><li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Smithsonian National Museum of Natural History, <em>History of Life on Earth</em>. <a href="https://naturalhistory.si.edu/education/teaching-resources/life-science/early-life-earth-animal-origins">naturalhistory.si.edu</a></li><li id="ref-4"><a href="#fnref-4-1">^</a> PMC (National Center for Biotechnology Information) , <em>Biological diversification linked to environmental stabilization following the Sturtian Snowball glaciation</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10456883/">ncbi.nlm.nih.gov</a></li><li id="ref-5"><a href="#fnref-5-1">^</a> Britannica, <em>Cambrian explosion</em>. <a href="https://www.britannica.com/science/Cambrian-explosion">britannica.com</a></li><li id="ref-6"><a href="#fnref-6-1">^</a> Smithsonian Magazine, <em>How Did the 'Great Dying' Kill 96 Percent of Earth's Ocean-Dwelling Creatures?</em> <a href="https://www.smithsonianmag.com/smart-news/how-did-great-dying-kill-96-percent-earths-ocean-dwelling-creatures-180970992/">smithsonianmag.com</a></li><li id="ref-7"><a href="#fnref-7-1">^</a> NASA Science, <em>Deep Impact and the Mass Extinction of Species 65 Million Years Ago</em>. <a href="https://science.nasa.gov/earth/deep-impact-and-the-mass-extinction-of-species-65-million-years-ago/">science.nasa.gov</a></li><li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Smithsonian, National Museum of Natural History (Human Origins Program) , <em>Our species arose at least 300,000 years ago</em>. <a href="https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago">humanorigins.si.edu</a></li><li id="ref-9"><a href="#fnref-9-1">^</a> C. Bentley (AGU Blogosphere) , <em>Geologic timescale names</em>, Mountain Beltway. <a href="https://mountainbeltway.all-geo.org/2011/09/27/geologic-timescale-names/">mountainbeltway.all-geo.org</a> / ZME Science, <em>How geological periods got their names</em>. <a href="https://www.zmescience.com/feature-post/natural-sciences/geology-and-paleontology/earth-dynamics/how-geological-periods-got-their-names/">zmescience.com</a></li><li id="ref-10"><a href="#fnref-10-1">^</a> Nature (news) , <em>It's final: the Anthropocene is not an epoch, despite protest over vote</em>, 2024. <a href="https://www.nature.com/articles/d41586-024-00868-1">nature.com</a></li><li id="ref-11"><a href="#fnref-11-1">^</a> International Commission on Stratigraphy, <em>Joint Statement by IUGS and ICS</em>. <a href="https://stratigraphy.org/news/152">stratigraphy.org</a></li><li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> Space.com, <em>How old is Earth?</em> <a href="https://www.space.com/24854-how-old-is-earth.html">space.com</a></li><li id="ref-13"><a href="#fnref-13-1">^</a> NASA Jet Propulsion Laboratory, <em>Planck Mission Brings Universe Into Sharp Focus</em>. <a href="https://www.jpl.nasa.gov/news/planck-mission-brings-universe-into-sharp-focus/">jpl.nasa.gov</a></li><li id="ref-14"><a href="#fnref-14-1">^</a> Smithsonian, National Museum of Natural History (Human Origins Program) , <em>Homo erectus</em>. <a href="https://humanorigins.si.edu/evidence/human-fossils/species/homo-erectus">humanorigins.si.edu</a></li><li id="ref-15"><a href="#fnref-15-1">^</a> Natural History Museum (London) , <em>The origin of life on Earth: From basic chemicals to complex organisms</em>. <a href="https://www.nhm.ac.uk/discover/origin-of-life-on-earth.html">nhm.ac.uk</a></li></ol>
 </div>
 </div>
 </body>

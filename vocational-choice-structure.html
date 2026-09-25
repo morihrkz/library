@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -37,7 +37,7 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
@@ -45,14 +45,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -79,8 +82,8 @@ pre code{background:none; padding:0;}
 <div class="kicker">労働経済学</div>
 <h1>職業選択における動機の二元論を超えて<br>――労働を「交換」として捉える理論的試論</h1>
 <p class="subtitle">Beyond the Dichotomy of Passion and Income: A Treatise on Vocational Choice as an Act of Exchange</p>
-<div class="meta">【方法と限界】本稿では、確認可能な事実、先行研究における知見、そしてそこから導かれる解釈を、可能な限り区別して記述するよう努めた。特に事例研究の節で参照した個別の経歴については、それを「成功法則」として一般化することを意図的に避けている。</div>
 <div class="lede"><p>キャリア論の試論。「好きな仕事か、稼げる仕事か」という二択そのものを解体し、職業選択を交換条件の設計として組み直す。</p></div>
+<div class="meta">【方法と限界】本稿では、確認可能な事実、先行研究における知見、そしてそこから導かれる解釈を、可能な限り区別して記述するよう努めた。特に事例研究の節で参照した個別の経歴については、それを「成功法則」として一般化することを意図的に避けている。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
 <ol>
@@ -106,11 +109,12 @@ pre code{background:none; padding:0;}
 第 4 章では、就労類型論、ライフステージ依存性、そして実践的な自己診断の枠組みを順に論じ、第 5 章で結論として、職業選択の本質を「交換の設計」として定式化する。</p>
 <h3>●理論的背景――三つの参照枠</h3>
 <p>本稿がまず参照するのは、エドワード・デシとリチャード・ライアンによる自己決定理論 (Self-Determination Theory, SDT) である。 SDT の重要な貢献の一つは、人間の動機づけを「内発的＝望ましい」「外発的＝望ましくない」という単純な二分法で捉えることを退けた点にある。
-Ryan &amp; Deci (2000) が示したように、外発的動機づけは、統合の度合いに応じて複数の段階に区分される。すなわち、外部からの圧力によってのみ行動する「外的調整」から、行動の価値を自分自身のものとして内面化し、他の目標や価値観と統合した「統合的調整」まで、動機づけは連続体 (continuum) として存在する。</p>
-<p>第二の理論的支柱は、教育社会学者・本田由紀による「やりがい搾取」論である。本田 (2007) は、労働者自身の「自己実現」への欲求を利用して、低賃金・長時間労働を正当化する構造を指摘し、その正当化の手段として趣味性・ゲーム性・奉仕性・サークル性（カルト性）といった要素を挙げている（本田 2011 も参照）。
+Ryan &amp; Deci (2000)<sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> が示したように、外発的動機づけは、統合の度合いに応じて複数の段階に区分される。すなわち、外部からの圧力によってのみ行動する「外的調整」から、行動の価値を自分自身のものとして内面化し、他の目標や価値観と統合した「統合的調整」まで、動機づけは連続体 (continuum) として存在する。
+この連続体モデルは、その後の実証研究や理論的検討によっても支持されており、労働の文脈への応用 (Gagné &amp; Deci, 2005)<sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> や、組織における自己決定理論の到達点を総括するレビュー (Deci, Olafsen, &amp; Ryan, 2017)<sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> においても、動機づけの自律性という中心的な視点は引き継がれている。</p>
+<p>第二の理論的支柱は、教育社会学者・本田由紀による「やりがい搾取」論である。本田 (2007)<sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> は、労働者自身の「自己実現」への欲求を利用して、低賃金・長時間労働を正当化する構造を指摘し、その正当化の手段として趣味性・ゲーム性・奉仕性・サークル性（カルト性）といった要素を挙げている（本田 2011<sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> も参照）。
 この議論は、 SDT が提示する「動機づけの自律性は望ましい」という命題に対して、重要な留保を加える。すなわち、労働者本人が動機づけを内面化していたとしても、その内面化自体が構造的な搾取の結果である場合がありうる、という点である。</p>
-<p>第三の理論的支柱は、行動経済学における時間的非整合性 (time inconsistency) の議論である。 Ainslie (1975) が定式化した双曲割引モデルは、人間が将来の報酬を評価する際に、時間的に近い報酬を不釣り合いに高く評価する傾向を示している。
-この傾向は、「今は稼ぐことに専念し、将来、好きなことに移行する」という戦略を採用する人にとって、看過できない罠を意味する。 Frederick, Loewenstein &amp; O'Donoghue (2002) が包括的にレビューしているように、将来の自分に対する計画は、その計画が具体的な条件によって拘束されていない限り、実行される保証を持たない。</p>
+<p>第三の理論的支柱は、行動経済学における時間的非整合性 (time inconsistency) の議論である。 Ainslie (1975)<sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> が定式化した双曲割引モデルは、人間が将来の報酬を評価する際に、時間的に近い報酬を不釣り合いに高く評価する傾向を示している。
+この傾向は、「今は稼ぐことに専念し、将来、好きなことに移行する」という戦略を採用する人にとって、看過できない罠を意味する。 Frederick, Loewenstein &amp; O'Donoghue (2002)<sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> が包括的にレビューしているように、将来の自分に対する計画は、その計画が具体的な条件によって拘束されていない限り、実行される保証を持たない。</p>
 <h2 id="sec2">2. 「好き」と「金銭」を内側から検証する</h2>
 <h3>●「好きな仕事」という概念の分解</h3>
 <p>議論を先に進める前に、「好きな仕事」という言葉そのものを分解しておく必要がある。日常的な用法において、この言葉には少なくとも三つの異なる意味が混在している。</p>
@@ -128,11 +132,11 @@ Ryan &amp; Deci (2000) が示したように、外発的動機づけは、統合
 <p>建築が好きな人が建築家になる。写真が好きな人が写真家になる。文章を書くことが好きな人がプロのライターになる。ゲーム好きの人がゲームクリエイターになる。<br>
 それらは望ましいものとして描かれることが多い。ただしその「好きなことを仕事にすれば好きなことをしながら報酬を得られるので幸せ」という考えには、見落とされがちな落とし穴が存在する。</p>
 <p>趣味という活動には、失敗してもよいという自由が備わっている。「今日は取り組みたくない」と思えば休むことができ、誰にも評価されなくても活動は成立する。しかし同じ活動が仕事になった途端、そこには、顧客・納期・売上・競争・契約・品質管理といった、外部からの評価と拘束の体系が入り込む。つまり“好きなこと”が“仕事”へと変化した時点でその活動と本人との関係性が変化する。その結果、それが“好きなこと”でなくなることも珍しくない。</p>
-<p>好きなことを仕事にしたことで関心が減退する現象については、他にも、過剰正当化効果 overjustification effect （＝アンダーマイニング効果 undermining effect ）があるが、本稿ではそれに言及しない。</p>
+<p>好きなことを仕事にしたことで関心が減退する現象については、他にも、過剰正当化効果 overjustification effect （＝アンダーマイニング効果 undermining effect) があるが、本稿ではそれに言及しない。</p>
 <h3>●やりがい搾取のメカニズムと自己防衛</h3>
-<p>本章冒頭で触れた本田 (2007) の議論は、この論点をさらに深める上で重要である。本田は、「自己実現系ワーカホリック」という概念、およびその背景にある「やりがい」の動員について論じ、趣味性・ゲーム性・奉仕性・サークル性（カルト性）といった要素を挙げている。
+<p>本章冒頭で触れた本田 (2007)<sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> の議論は、この論点をさらに深める上で重要である。本田は、「自己実現系ワーカホリック」という概念、およびその背景にある「やりがい」の動員について論じ、趣味性・ゲーム性・奉仕性・サークル性（カルト性）といった要素を挙げている。
 要するに、「あなたはこの仕事が好きなはずだ」「社会のためになっているはずだ」「これは成長の機会だ」という言説が、実質的には低賃金や過重労働を正当化するための道具として機能してしまう場合がある、ということである。</p>
-<p><strong>「好きだから条件が悪くても構わない」は、危険な論理である。</strong></p>
+<p class="pull">「好きだから条件が悪くても構わない」は、危険な論理である。</p>
 <p>仕事の内容が好きであることと、労働の対価が適正であることは、本来まったく別の問題である。むしろ好きな仕事に従事している人ほど、「好きなのだから我慢できるはずだ」という自己説得によって、自らの手で労働条件を切り下げてしまう危険がある点に注意が必要である。</p>
 <p>この自己防衛の必要性は、 SDT の枠組みからも裏づけられる。動機づけが自律的であるためには、本人がその活動の価値を内面化していることに加え、その内面化が外部からの不当な圧力の産物ではないことが条件となる。「好き」という感情は、しばしばこの区別を曖昧にする働きを持つ。</p>
 <h3>●金銭的動機の再評価――人生を支えるインフラとしての労働</h3>
@@ -153,15 +157,16 @@ Ryan &amp; Deci (2000) が示したように、外発的動機づけは、統合
 <tr><td><strong>自律性</strong></td><td>自分自身で選択し、自分なりの方法で仕事を遂行できる裁量があるか。</td></tr>
 <tr><td><strong>持続可能性</strong></td><td>5 年、 10 年という時間軸で継続しても、心身や生活基盤が損なわれないか。</td></tr>
 <tr><td><strong>将来価値</strong></td><td>その仕事に従事することで、次に選択できる仕事や人生の選択肢が拡大するか。</td></tr></tbody></table>
+<p>この五軸のうち「将来価値」は、教育や訓練への投資が将来の稼得能力を高めるとみなす人的資本論 (Becker, 1964)<sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> の発想と親和的である。すなわち、当面の収入や興味と引き換えに、将来の選択肢を「資本」として蓄積するという視点である。</p>
 <p>この五軸を用いて眺めると、「好きな仕事」と「稼げる仕事」が、一本の線分の両端に位置する対概念ではないことが明確になる。両者はむしろ、独立した複数の評価軸のうちの二つにすぎない。</p>
 <h3>●キャリアの時間軸上の系列化――「まず稼ぐ」戦略の合理性とその限界</h3>
-<p>ここで、元競艇選手である池田明美氏の経歴を、一つの興味深い事例として検討したい。公開されている報道によれば、池田氏は 1997 年 5 月に競艇選手としてデビューし、 A1 級レーサーとして活動した時期を持ち、優勝 10 回、生涯獲得賞金 3 億円超という実績を残した。 2020 年末に現役を引退した後は山口県防府市に移住し、動物愛護団体「無限の空」の代表として犬猫の保護活動に従事している。また、現役時代から動物愛護ユニット「ハッピーアニマルズ」の活動にも関わっていたと報じられている。</p>
+<p>ここで、元競艇選手である池田明美氏の経歴を、一つの興味深い事例として検討したい。公開されている報道によれば、池田氏は 1997 年 5 月に競艇選手としてデビューし、 A1 級レーサーとして活動した時期を持ち、優勝 10 回、生涯獲得賞金 3 億円超という実績を残した。 2020 年末に現役を引退した後は山口県防府市に移住し、動物愛護団体「無限の空」の代表として犬猫の保護活動に従事している。また、現役時代から動物愛護ユニット「ハッピーアニマルズ」の活動にも関わっていたと報じられている。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
 <p>この経歴は、就労と目的を時間軸上で分離する一つの実例として参照することができる。「まず収入を確保し、その後に自分が望む活動へ移行する」という戦略――本稿ではこれを、就労と目的を時間軸上に分離するという意味で「系列型」戦略と呼ぶ――を考察するための材料として示唆に富む。</p>
 <p>「まず稼ぐ」という考え方には合理性がある。金銭には、単なる消費能力を超えた意味がある。金銭的な余裕があれば、転職できる。学び直すことができる。生活拠点を移すことができる。休息を取ることができる。事業を始めることができる。家族を支えることができる。すなわち、一定の資産や貯蓄は、将来の選択肢そのものを購入する機能を持つ。この意味において、「今は関心の薄い仕事であっても、一定期間従事して資金を形成する」という戦略は、十分に合理的な選択でありうる。</p>
 <p>しかし、ここに第 1 章で述べた時間的非整合性の罠が生じる。「あと 5 年だけ」、「 1,000 万円、貯まったら」、「もう少し昇進してから」などと言って留保を重ねているうちに、 5 年が 10 年になり、 10 年が 20 年になる、という事態は珍しくない。将来の自分が、現在の自分との約束を確実に履行してくれるという保証は、どこにも存在しない。</p>
-<p>「後でやる」は計画ではない。
+<p class="pull">「後でやる」は計画ではない。<br>
 「いつ、何を達成したら、何を始めるか」まで確定して、初めて計画になる。</p>
-<p>Frederick, Loewenstein &amp; O'Donoghue (2002) が指摘するように、将来時点の行動に関する意思決定は、その決定が具体的な条件――期限、達成基準、実行トリガー――によって拘束されていない限り、実行段階で先延ばしにされる傾向を持つ。「系列型」戦略を採用する際には、この点への対策が不可欠である。</p>
+<p>Frederick, Loewenstein &amp; O'Donoghue (2002)<sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> が指摘するように、将来時点の行動に関する意思決定は、その決定が具体的な条件――期限、達成基準、実行トリガー――によって拘束されていない限り、実行段階で先延ばしにされる傾向を持つ。「系列型」戦略を採用する際には、この点への対策が不可欠である。</p>
 <h2 id="sec4">4. 類型論と実践</h2>
 <h3>●就労と人生の関係に関する類型論</h3>
 <p>ここで、最初に提示した「好きか、稼げるか」という二択をあらためて解体しておきたい。仕事と人生の関係には、少なくとも次の四つの型が存在する。</p>
@@ -203,18 +208,19 @@ Ryan &amp; Deci (2000) が示したように、外発的動機づけは、統合
 ただし、「後で」という留保には、必ず期限と実行条件を設定しなければならない。そして「好きだから」という理由づけには、生活基盤を損なわないという条件を必ず付さなければならない。</p>
 <p>職業選択において本当に問われているのは、「好きか、金銭か」という二者択一ではない。<strong>自分の人生を、どのような交換条件のもとで設計するのか</strong>という、より根本的な問いなのである。</p>
 <div class="refs">
-<h2>参考文献</h2>
-<ul>
-<li>Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55 (1), 68–78.</li>
-<li>Gagné, M., &amp; Deci, E. L. (2005). Self-determination theory and work motivation. <em>Journal of Organizational Behavior</em>, 26, 331–362.</li>
-<li>Deci, E. L., Olafsen, A. H., &amp; Ryan, R. M. (2017). Self-determination theory in work organizations: The state of a science. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 4, 19–43.</li>
-<li>本田由紀 (2007) 「自己実現という罠――『やりがい』の搾取――拡大する新たな『働きすぎ』」『世界』 762 号。</li>
-<li>本田由紀 (2011) 『軋む社会――教育・仕事・若者の現在』河出書房新社。</li>
-<li>Ainslie, G. (1975). Specious reward: A behavioral theory of impulsiveness and impulse control. <em>Psychological Bulletin</em>, 82 (4), 463–496.</li>
-<li>Frederick, S., Loewenstein, G., &amp; O'Donoghue, T. (2002). Time discounting and time preference: A critical review. <em>Journal of Economic Literature</em>, 40 (2), 351–401.</li>
-<li>Becker, G. S. (1964). <em>Human Capital: A Theoretical and Empirical Analysis, with Special Reference to Education</em>. University of Chicago Press.</li>
-<li>池田明美氏の経歴については、 BOAT RACE 公式資料、まいどなニュース（ 2022 年 8 月 28 日）、日刊スポーツ（ 2020 年 3 月 4 日）等の公開資料を参照した。</li>
-</ul>
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55 (1), 68–78.</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Gagné, M., &amp; Deci, E. L. (2005). Self-determination theory and work motivation. <em>Journal of Organizational Behavior</em>, 26, 331–362.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Deci, E. L., Olafsen, A. H., &amp; Ryan, R. M. (2017). Self-determination theory in work organizations: The state of a science. <em>Annual Review of Organizational Psychology and Organizational Behavior</em>, 4, 19–43.</li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> 本田由紀 (2007) 「自己実現という罠――『やりがい』の搾取――拡大する新たな『働きすぎ』」『世界』 762 号。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 本田由紀 (2011) 『軋む社会――教育・仕事・若者の現在』河出書房新社。</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Ainslie, G. (1975). Specious reward: A behavioral theory of impulsiveness and impulse control. <em>Psychological Bulletin</em>, 82 (4), 463–496.</li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> Frederick, S., Loewenstein, G., &amp; O'Donoghue, T. (2002). Time discounting and time preference: A critical review. <em>Journal of Economic Literature</em>, 40 (2), 351–401.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Becker, G. S. (1964). <em>Human Capital: A Theoretical and Empirical Analysis, with Special Reference to Education</em>. University of Chicago Press.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 池田明美氏の経歴については、 BOAT RACE 公式資料、まいどなニュース (2022 年 8 月 28 日）、日刊スポーツ (2020 年 3 月 4 日）等の公開資料を参照した。</li>
+</ol>
 </div>
 </div>
 </body>

@@ -20,8 +20,8 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{font-size:20px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
@@ -35,7 +35,7 @@ h4,h5{font-size:18px; margin:24px 0 10px;}
 p{font-size:19px; margin:0 0 20px;}
 .pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent);
   padding-left:20px; margin:34px 0;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
 .box strong{color:var(--accent);}
 table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
 th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
@@ -43,14 +43,17 @@ th{background:var(--box);}
 ul,ol{padding-left:1.4em; margin:0 0 20px;}
 li{margin-bottom:9px;font-size:19px;}
 a{color:var(--link);}
-sup.fnref{font-size:.72em;}
-sup.fnref a{color:var(--link); text-decoration:none;}
-sup.fnref a:hover{text-decoration:underline;}
-.fnback{font-size:14px; margin-left:4px; text-decoration:none;}
+sup{font-size:.72em;}
+sup a{color:var(--link); text-decoration:none;}
+sup a:hover{text-decoration:underline;}
 .refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
 .refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs ol{font-size:15.5px; line-height:1.65;}
-.refs li{margin-bottom:11px;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
 .refs em{font-style:italic;}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 strong{font-weight:bold;}
@@ -66,10 +69,6 @@ pre code{background:none; padding:0;}
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
 }
-.no-marker {
-  list-style: none;
-  padding-left: 0;
-}
 </style>
 </head>
 <body>
@@ -77,15 +76,16 @@ pre code{background:none; padding:0;}
 <div class="kicker">哲学入門</div>
 <h1>哲学的思考の技術と独学カリキュラムの設計</h1>
 <p class="subtitle">The Art of Philosophical Thinking and the Design of a Self-Study Curriculum</p>
-<div class="lede"><p>別記事「倫理学は哲学の中でどこに立つか」 <sup class="fnref"><a id="fnref-5-1" href="#ref-5">[5]</a></sup> の下書きから切り出した実践ノート。独学が挫折しやすいこと自体の認知的な背景については、別稿「システム 1 」「システム 2 」を読み解く <sup class="fnref"><a id="fnref-7-1" href="#ref-7">[7]</a></sup> で検討している。</p></div>
+<div class="lede"><p>哲学的な思考は、哲学者の名前や学説を暗記することではなく、問いを立て、概念を区別し、論証を検討する技術である。専門的な素養を持たない独学者にとって難しいのは、教材が少ないことではなく、むしろ多すぎて何から手をつければよいか分からなくなることである。本稿は、その「考え方」と「学び方の設計」に絞って整理する実践ノートであり、別記事「倫理学は哲学の中でどこに立つか」 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> の下書きから切り出した。独学が挫折しやすいこと自体の認知的な背景については、別稿「システム 1 」「システム 2 」を読み解く <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> で検討している。</p></div>
 <div class="meta">【方法と限界】専門的な素養を持たない成人が、哲学・倫理学を独学で学ぶための実践ノート。
 「何を学ぶか」（学問的な位置づけや学びの順序）ではなく、「どう考え、どう学習を組み立てるか」という方法論に絞って整理する。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ul class="no-marker"><li><a href="#sec1">1. 哲学的に考えるとは何か</a></li>
-<li><a href="#sec2">2. 独学カリキュラムの組み立て方</a></li>
-<li><a href="#sec3">3. 次のアクション</a></li>
-</ul>
+<ol>
+<li><a href="#sec1">哲学的に考えるとは何か</a></li>
+<li><a href="#sec2">独学カリキュラムの組み立て方</a></li>
+<li><a href="#sec3">次のアクション</a></li>
+</ol>
 </nav>
 <h2 id="sec1">1. 哲学的に考えるとは何か</h2>
 <p>知識の暗記ではなく、問い・概念・論証を扱う技術。</p>
@@ -109,14 +109,14 @@ pre code{background:none; padding:0;}
 <h3>スティールマンと反対意見の扱い</h3>
 <p>哲学を学ぶうえで意外に難しいのが、反対意見を公平に理解することである。自分が賛成しやすい立場だけを強く書き、反対側を弱い形で紹介すると、議論は簡単に勝てる。しかし、それでは理解は深まらない。</p>
 <p>そこで有効なのが、相手の立場を、本人が認めてもよいと思えるほど強い形にしてから検討する方法である。一般にスティールマンと呼ばれるこの姿勢は、単に「相手に優しくする」ためのものではない。最も強い反論を受けても維持できる部分だけを残すことで、自分の立場の本当の強さと弱さが見えるからである。</p>
-<p>※「スティールマン（steelman）」は伝統的な哲学用語ではなく、相手の主張を弱く歪めて反論する「藁人形論法（ストローマン）」の対義語として、 2010 年代前半にオンラインの合理主義コミュニティ（LessWrong 等）で広まった比較的新しい言い方である <sup class="fnref"><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。学術的な起源を持つ概念ではない点に注意する。</p>
+<p>※「スティールマン (steelman) 」は伝統的な哲学用語ではなく、相手の主張を弱く歪めて反論する「藁人形論法（ストローマン）」の対義語として、 2010 年代前半にオンラインの合理主義コミュニティ (LessWrong 等）で広まった比較的新しい言い方である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。学術的な起源を持つ概念ではない点に注意する。</p>
 <h2 id="sec2">2. 独学カリキュラムの組み立て方</h2>
 <p>関心から出発し、基礎・原典・論争へ進む実践的な設計。</p>
 <p>哲学の独学で最も困りやすいのは、教材が少ないことではなく、むしろ多すぎることである。入門書、哲学史、個別の哲学者の研究書、原典、大学講義、論文、動画など、入口はいくらでもある。その結果、「何から始めればよいのか分からない」という状態になりやすい。</p>
 <p>この問題には、唯一の正解となるカリキュラムがあるわけではない。ただし、学習を「地図を作る段階」「一つの問題を深く考える段階」「原典と研究書を往復する段階」「自分で論証する段階」に分けると、迷走をかなり減らせる。</p>
 <h3>第 1 段階――まず地図を作る</h3>
 <p>最初から一人の哲学者の原典を完全に理解しようとするより、哲学全体の地図を先に持つ方が、自分がどこにいるのかを把握しやすい。形而上学、認識論、倫理学、論理学、美学という大きな区分に加え、政治哲学、科学哲学、心の哲学、言語哲学などの存在を知るだけでもよい。</p>
-<p>それぞれが問う中心的な問いは異なる。実在とは何か、何が存在するのかを問うのが形而上学、知識とは何か・何をもって「知っている」と言えるのかを問うのが認識論、善悪や「なすべきこと」の基準を問うのが倫理学、推論の妥当性そのものを扱うのが論理学、美や芸術的価値の性格を問うのが美学である。同様に、権力や正義の根拠を問うのが政治哲学、科学的説明や方法の性格を問うのが科学哲学、意識や心的状態の本性を問うのが心の哲学、意味や指示の仕組みを問うのが言語哲学である <sup class="fnref"><a id="fnref-1-1" href="#ref-1">[1]</a></sup> 。</p>
+<p>それぞれが問う中心的な問いは異なる。実在とは何か、何が存在するのかを問うのが形而上学、知識とは何か・何をもって「知っている」と言えるのかを問うのが認識論、善悪や「なすべきこと」の基準を問うのが倫理学、推論の妥当性そのものを扱うのが論理学、美や芸術的価値の性格を問うのが美学である。同様に、権力や正義の根拠を問うのが政治哲学、科学的説明や方法の性格を問うのが科学哲学、意識や心的状態の本性を問うのが心の哲学、意味や指示の仕組みを問うのが言語哲学である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。</p>
 <p>この段階の目標は「詳しく知る」ことではなく、「知らない領域がどこにあるかを知る」ことである。百科事典的な知識を増やすことより、全体像を一枚の地図として持つことを優先する。</p>
 <h3>第 2 段階――一つの問題を選ぶ</h3>
 <p>地図ができたら、自分が本当に考えたい問題を一つ選ぶ。「人は自由なのか」「幸福とは何か」「他者をどこまで助けるべきか」「動物にどのような権利を認めるべきか」「 AI の判断に責任を負うのは誰か」など、具体的な問いで構わない。</p>
@@ -124,7 +124,7 @@ pre code{background:none; padding:0;}
 <h3>第 3 段階――哲学者を「答え」ではなく「対話相手」として読む</h3>
 <p>哲学史を学ぶとき、「カントはこう言った」「功利主義はこう考える」という暗記に偏ると、思想が平板になる。むしろ一人の哲学者を、自分の問いに対して一つの答えを提示する対話相手として読むとよい。</p>
 <p>たとえば義務論を読むなら、「なぜ結果だけではなく行為の原理を問題にするのか」と問い、功利主義を読むなら、「なぜ結果を評価することが重要なのか」と問う。そして双方を対決させる。さらに徳倫理学を加えることで、「そもそも正しい行為だけを決めれば十分なのか」という別の問いが生まれる。このように思想を比較すると、哲学史が単なる年代順の知識ではなく、問題をめぐる長い対話として見えてくる。</p>
-<p>※ 義務論・功利主義・徳倫理学の三分類は現代の規範倫理学で標準的に使われる整理である <sup class="fnref"><a id="fnref-2-1" href="#ref-2">[2]</a></sup> 。特に徳倫理学は二十世紀半ばまで下火だったが、アンスコムが 1958 年の論文「近代道徳哲学」で義務論・功利主義双方の前提を批判したことが、その後の復興の大きな契機になったとされる <sup class="fnref"><a id="fnref-3-1" href="#ref-3">[3]</a></sup> 。</p>
+<p>※ 義務論・功利主義・徳倫理学の三分類は現代の規範倫理学で標準的に使われる整理である <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。特に徳倫理学は二十世紀半ばまで下火だったが、アンスコムが 1958 年の論文「近代道徳哲学」で義務論・功利主義双方の前提を批判したことが、その後の復興の大きな契機になったとされる <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
 <h3>第 4 段階――原典と解説を往復する</h3>
 <p>原典だけを読むと、前提となる議論や時代背景が分からず、解説だけを読むと、著者自身の議論を直接検証できない。この両方に弱点がある。そのため、独学では「解説で地図を得る → 原典の該当箇所を読む → 自分の言葉で要約する → 解説に戻って確認する」という往復が有効である。</p>
 <p>原典を一冊すべて読破することを、必ずしも最初の目標にする必要はない。重要なのは、哲学者の議論を自分の目で追い、どこまで理解でき、どこから理解できなくなるのかを確認することである。</p>
@@ -156,14 +156,23 @@ pre code{background:none; padding:0;}
 </ol>
 <p>この形式なら、後から読み返したときに「何を知っていたか」だけでなく「どのように考えが変化したか」まで確認できる。独学では、この変化そのものが重要な学習成果になる。</p>
 <h3>学習の深さを測る</h3>
-<p>哲学では、読んだ本の冊数や覚えた哲学者の人数が、そのまま理解の深さを示すわけではない。一つの立場を、自分と反対の立場からでも公平に説明できるか。その立場の前提を指摘できるか。反例を考えられるか。自分の考えがどの条件で変わるかを説明できるか。こうした能力の方が、哲学的理解の目安になりやすい <sup class="fnref"><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。</p>
+<p>哲学では、読んだ本の冊数や覚えた哲学者の人数が、そのまま理解の深さを示すわけではない。一つの立場を、自分と反対の立場からでも公平に説明できるか。その立場の前提を指摘できるか。反例を考えられるか。自分の考えがどの条件で変わるかを説明できるか。こうした能力の方が、哲学的理解の目安になりやすい <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</p>
 <p>したがって、独学の成果確認には小さな「論文」を定期的に書く方法が向いている。長文である必要はない。問い、立場 A 、立場 B 、自分の評価、未解決問題を数ページにまとめるだけでも、受け身の読書から能動的な研究へ移行できる。</p>
 <h2 id="sec3">3. 次のアクション</h2>
 <p>☐ 気になっているテーマを一つ選び、「問いを正確にする」の手順で一文の問いに落とし込む</p>
 <p>☐ そのテーマについて、「ノートの型」を使って最初の 1 ページを書いてみる</p>
 <div class="refs">
-<h2>出典</h2>
-<ol><li id="ref-1">哲学の伝統的な分野区分（形而上学・認識論・倫理学・論理学・美学、および政治哲学・科学哲学・心の哲学・言語哲学などの派生分野）の概説として、 <a href="https://www.britannica.com/topic/philosophy">Encyclopaedia Britannica, "Philosophy"</a> 。 <a class="fnback" href="#fnref-1-1">↩</a></li><li id="ref-2">義務論・功利主義（帰結主義）・徳倫理学という現代規範倫理学の三分類について、 Stanford Encyclopedia of Philosophy の各項目――<a href="https://plato.stanford.edu/entries/ethics-deontological/">"Deontological Ethics"</a> 、 <a href="https://plato.stanford.edu/entries/consequentialism/">"Consequentialism"</a> 、 <a href="https://plato.stanford.edu/entries/ethics-virtue/">"Virtue Ethics"</a> 。 <a class="fnback" href="#fnref-2-1">↩</a></li><li id="ref-3">Anscombe, G. E. M.(1958). "Modern Moral Philosophy." <em>Philosophy</em>, 33 (124), 1-19. 書誌情報は <a href="https://philpapers.org/rec/GEMMMP">PhilPapers</a> を参照。 <a class="fnback" href="#fnref-3-1">↩</a></li><li id="ref-4">「スティールマン」の語の成立と 2010 年代前半の合理主義コミュニティにおける広まりについて、 <a href="https://en.wikipedia.org/wiki/Steelman">Wikipedia, "Steelman"</a> 。 <a class="fnback" href="#fnref-4-1">↩</a></li><li id="ref-5">独学における「倫理学から入るか、認識論・形而上学から入るか」という論点の学問的な背景については、 <a href="ethics-and-philosophy.html" target="_blank" rel="noopener">「倫理学は哲学の中でどこに立つか――学問的位置づけと独学の手引き」</a> を参照。 <a class="fnback" href="#fnref-5-1">↩</a></li><li id="ref-6">読んだ冊数や覚えた哲学者の人数を理解の深さと混同しないための心構えについては、 <a href="learning-without-pedantry.html" target="_blank" rel="noopener">「学ぶ喜びと衒学のあいだ――知的謙虚さの心理学と徳倫理学から」</a> を参照。 <a class="fnback" href="#fnref-6-1">↩</a></li><li id="ref-7">独学が続かない理由の認知心理学的な背景については、 <a href="dual-process-theory.html" target="_blank" rel="noopener">「『システム 1 』『システム 2 』を読み解く――『独学大全』と二重過程理論」</a> を参照。 <a class="fnback" href="#fnref-7-1">↩</a></li></ol>
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 哲学の伝統的な分野区分（形而上学・認識論・倫理学・論理学・美学、および政治哲学・科学哲学・心の哲学・言語哲学などの派生分野）の概説として、 <a href="https://www.britannica.com/topic/philosophy">Encyclopaedia Britannica, "Philosophy"</a> 。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 義務論・功利主義（帰結主義）・徳倫理学という現代規範倫理学の三分類について、 Stanford Encyclopedia of Philosophy の各項目――<a href="https://plato.stanford.edu/entries/ethics-deontological/">"Deontological Ethics"</a> 、 <a href="https://plato.stanford.edu/entries/consequentialism/">"Consequentialism"</a> 、 <a href="https://plato.stanford.edu/entries/ethics-virtue/">"Virtue Ethics"</a> 。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Anscombe, G. E. M. (1958) . "Modern Moral Philosophy." <em>Philosophy</em>, 33 (124) , 1-19. 書誌情報は <a href="https://philpapers.org/rec/GEMMMP">PhilPapers</a> を参照。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 「スティールマン」の語の成立と 2010 年代前半の合理主義コミュニティにおける広まりについて、 <a href="https://en.wikipedia.org/wiki/Steelman">Wikipedia, "Steelman"</a> 。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 独学における「倫理学から入るか、認識論・形而上学から入るか」という論点の学問的な背景については、 <a href="ethics-and-philosophy.html" target="_blank" rel="noopener">「倫理学は哲学の中でどこに立つか――学問的位置づけと独学の手引き」</a> を参照。</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> 読んだ冊数や覚えた哲学者の人数を理解の深さと混同しないための心構えについては、 <a href="learning-without-pedantry.html" target="_blank" rel="noopener">「学ぶ喜びと衒学のあいだ――知的謙虚さの心理学と徳倫理学から」</a> を参照。</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 独学が続かない理由の認知心理学的な背景については、 <a href="dual-process-theory.html" target="_blank" rel="noopener">「『システム 1 』『システム 2 』を読み解く――『独学大全』と二重過程理論」</a> を参照。</li>
+</ol>
 </div>
 </div>
 </body>

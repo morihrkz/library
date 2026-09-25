@@ -4,191 +4,494 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>書庫</title>
+<meta name="description" content="AI と共に書いた論考 60 本のポータル。比較政治学・心理学・哲学・自然科学などの論考を書架と目録から探せます。">
 <style>
 :root{
   --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7;
+  --line:#d7dcd2; --box:#eceee7; --paper:#fbfcfa; --spine-ink:#f3f4ef;
+  --wood:#cdd3c6; --wood-dark:#b9c0b1;
+  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --c1:#3d5a52; --c2:#5b6b4e; --c3:#34424a; --c4:#4a6670;
+  --c5:#6b5a45; --c6:#45505e; --c7:#5d4f5c; --c8:#587060;
 }
 *{box-sizing:border-box;}
-body{
-  background:var(--bg); color:var(--text); margin:0;
-  line-height:2;
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--text); margin:0; line-height:2;}
+a{color:var(--accent);}
+.wrap{max-width:1040px; margin:0 auto; padding:56px 26px 120px;}
+.c1{--c:var(--c1);} .c2{--c:var(--c2);} .c3{--c:var(--c3);} .c4{--c:var(--c4);}
+.c5{--c:var(--c5);} .c6{--c:var(--c6);} .c7{--c:var(--c7);} .c8{--c:var(--c8);}
+
+/* ---------- 題字 ---------- */
+.masthead{display:grid; grid-template-columns:1fr auto; gap:8px 40px; align-items:end;}
+.topline{grid-column:1 / -1; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:700;
+  border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:34px;}
+.topline .updated{color:var(--muted); font-weight:400; letter-spacing:.06em; font-variant-numeric:tabular-nums;}
+h1{font-family:var(--serif); font-weight:600; font-size:clamp(76px, 13vw, 136px); line-height:1; letter-spacing:.06em; margin:0;}
+h1 .en{display:block; font-size:15px; letter-spacing:.5em; color:var(--muted); font-weight:400; margin-top:22px; text-transform:uppercase;}
+.subtitle{font-size:20px; color:var(--muted); line-height:1.8; margin:28px 0 0; grid-column:1 / -1; max-width:40em;}
+.lede{grid-column:1 / -1; border-left:3px solid var(--accent); padding-left:18px; margin:24px 0 0; max-width:44em;}
+.lede p{font-size:20px; color:var(--muted); margin:0;}
+.stats{display:grid; grid-template-columns:repeat(2, auto); gap:18px 34px; margin:0; align-self:center;}
+.stats div{border-top:1px solid var(--line); padding-top:6px;}
+.stats dt{font-size:13px; letter-spacing:.14em; color:var(--muted);}
+.stats dd{margin:0; font-family:var(--serif); font-size:38px; line-height:1.3; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.stats dd small{font-family:inherit; font-size:15px; color:var(--muted); margin-left:2px;}
+
+/* 全記事の分量を一本の帯で見せる */
+.strip{display:flex; height:10px; margin:48px 0 0; gap:1px; border-radius:2px; overflow:hidden;}
+.strip i{background:var(--c); opacity:.9;}
+
+/* ---------- 節見出し ---------- */
+.sec-head{display:flex; align-items:baseline; gap:18px; margin:88px 0 8px; border-bottom:1px solid var(--line); padding-bottom:9px;}
+.sec-head .no{font-family:var(--serif); font-size:15px; color:var(--accent); letter-spacing:.12em; font-variant-numeric:tabular-nums;}
+h2{font-size:26px; line-height:1.5; margin:0; letter-spacing:.04em;}
+.sec-head .aside{margin-left:auto; font-size:14px; color:var(--muted);}
+.sec-lead{font-size:16.5px; color:var(--muted); margin:0 0 30px;}
+
+/* ---------- 書架 ---------- */
+.books{--H:216px; --k:1; display:flex; flex-wrap:wrap; gap:31px 3px; padding:0 14px 9px; margin-top:20px;
+  background:repeating-linear-gradient(to bottom, transparent 0 var(--H), var(--wood) var(--H) calc(var(--H) + 9px), transparent calc(var(--H) + 9px) calc(var(--H) + 31px));}
+.divider{flex:none; display:flex; flex-direction:column; align-items:center; gap:6px; width:26px; margin:calc(var(--H) * .3) 5px 0 9px; height:calc(var(--H) * .7);
+  border-left:3px solid var(--c); background:var(--box); padding:8px 0; color:var(--c); font-weight:700;}
+.divider .dn{font-family:var(--serif); font-size:12px; font-variant-numeric:tabular-nums;}
+.divider .dl{writing-mode:vertical-rl; font-size:12px; letter-spacing:.12em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.pair{display:flex; gap:3px;}
+.pair:first-child .divider{margin-left:0;}
+.book{--h:180px; --w:30px; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  width:var(--w); height:calc(var(--h) * var(--k)); margin-top:calc(var(--H) - var(--h) * var(--k)); padding:12px 0 9px; background:var(--c); color:var(--spine-ink); text-decoration:none;
+  border-radius:2px 2px 0 0;
+  box-shadow:inset 2px 0 0 rgba(255,255,255,.14), inset -4px 0 0 rgba(0,0,0,.16);
+  transition:transform .28s cubic-bezier(.2,.7,.2,1), opacity .25s, filter .25s;
+  animation:rise .6s cubic-bezier(.2,.7,.2,1) both; animation-delay:calc(var(--i) * 14ms);}
+.book::before,.book::after{content:""; position:absolute; left:4px; right:4px; height:3px;
+  border-top:1px solid rgba(255,255,255,.35); border-bottom:1px solid rgba(255,255,255,.35);}
+.book::before{top:5px;} .book::after{bottom:26px;}
+.book .t{writing-mode:vertical-rl; font-size:13px; letter-spacing:.1em; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-height:calc(var(--h) * var(--k) - 52px);}
+.book .n{font-size:10px; letter-spacing:.04em; opacity:.8; font-variant-numeric:tabular-nums;}
+.book:hover,.book:focus-visible,.book.is-lit{transform:translateY(-12px);}
+.book:focus-visible{outline:2px solid var(--text); outline-offset:3px;}
+.book.is-new .n::before{content:""; position:absolute; top:-5px; right:-3px; width:9px; height:9px; border-radius:50%; background:#c9a86a; box-shadow:0 0 0 2px var(--bg);}
+.book.is-dim{opacity:.16; filter:grayscale(1);}
+@keyframes rise{from{transform:translateY(24px); opacity:0;} to{transform:none; opacity:1;}}
+
+/* 書見台(ホバーした本の概要) */
+.stand{margin:14px 0 0; background:var(--paper); border:1px solid var(--line);
+  border-left:4px solid var(--c, var(--accent)); padding:14px 20px; min-height:92px;
+  box-shadow:0 10px 30px -18px rgba(36,37,34,.45); transition:border-color .2s;}
+.stand .s-kicker{font-size:13px; letter-spacing:.12em; color:var(--c, var(--accent)); font-weight:700; margin:0;}
+.stand .s-title{font-size:18px; font-weight:700; line-height:1.6; margin:2px 0 2px;}
+.stand .s-desc{font-size:15px; color:var(--muted); line-height:1.8; margin:0;}
+.stand .s-meta{font-size:13px; color:var(--muted); margin:4px 0 0; font-variant-numeric:tabular-nums;}
+
+/* ---------- 読み筋 ---------- */
+.path{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, 1fr); gap:0; counter-reset:step;}
+.path li{position:relative; padding:40px 18px 0 0; counter-increment:step;}
+.path li::before{content:counter(step, decimal-leading-zero); position:absolute; top:0; left:0; font-family:var(--serif);
+  font-size:15px; color:var(--bg); background:var(--accent); width:30px; height:30px; line-height:30px; text-align:center; border-radius:50%;}
+.path li::after{content:""; position:absolute; top:15px; left:38px; right:8px; border-top:1px dashed var(--accent); opacity:.5;}
+.path li:last-child::after{display:none;}
+.path .p-verb{display:block; font-size:13px; letter-spacing:.12em; color:var(--accent); font-weight:700;}
+.path a{display:block; font-size:17px; font-weight:700; line-height:1.6; color:var(--text); text-decoration:none; margin:4px 0 6px;}
+.path a:hover{color:var(--accent); text-decoration:underline;}
+.path .p-desc{font-size:14.5px; color:var(--muted); line-height:1.8; margin:0;}
+
+/* ---------- 新着 ---------- */
+.arrivals{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;}
+.arrival{display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--text); background:var(--paper);
+  border:1px solid var(--line); border-top:4px solid var(--c); padding:16px 18px 18px; transition:transform .2s, box-shadow .2s;}
+.arrival:hover{transform:translateY(-3px); box-shadow:0 12px 24px -16px rgba(36,37,34,.5);}
+.arrival .a-date{font-size:13px; color:var(--muted); letter-spacing:.06em; font-variant-numeric:tabular-nums;}
+.arrival .a-title{font-size:16.5px; font-weight:700; line-height:1.6;}
+.arrival:hover .a-title{color:var(--accent);}
+.arrival .a-cat{font-size:13px; color:var(--c); font-weight:700; margin-top:auto;}
+
+/* ---------- 目録 ---------- */
+.toolbar{position:sticky; top:0; z-index:6; background:rgba(247,248,246,.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  padding:14px 0 12px; margin:0 0 10px; border-bottom:1px solid var(--line);}
+.search{display:flex; align-items:center; gap:10px; background:var(--paper); border:1px solid var(--line); padding:0 14px; transition:border-color .2s;}
+.search:focus-within{border-color:var(--accent);}
+.search svg{flex:none; color:var(--muted);}
+.search input{flex:1; min-width:0; border:0; background:transparent; font:inherit; font-size:17px; color:var(--text); padding:11px 0; outline:none;}
+.search kbd{font:inherit; font-size:12px; color:var(--muted); border:1px solid var(--line); padding:0 7px; line-height:1.8;}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0;}
+.chip{font:inherit; font-size:14px; line-height:1.6; color:var(--text); background:transparent; border:1px solid var(--line); padding:4px 12px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:7px; transition:background .15s, border-color .15s, color .15s;}
+.chip:hover{border-color:var(--accent);}
+.chip.is-on{background:var(--accent); border-color:var(--accent); color:var(--spine-ink);}
+.chip-n{font-size:12px; opacity:.75; font-variant-numeric:tabular-nums;}
+.dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--c); font-style:normal;}
+.chip.is-on .dot{box-shadow:0 0 0 1.5px var(--spine-ink);}
+.status{display:flex; justify-content:space-between; align-items:center; gap:12px; margin:10px 0 0; font-size:14px; color:var(--muted);}
+.status output{font-variant-numeric:tabular-nums;}
+.random{font:inherit; font-size:14px; color:var(--accent); background:none; border:0; padding:0; cursor:pointer; text-decoration:underline; text-underline-offset:3px;}
+.random:hover{color:var(--text);}
+
+.group{margin:44px 0 0;}
+.g-head{display:flex; align-items:baseline; gap:14px;}
+.g-no{font-family:var(--serif); font-size:28px; line-height:1; color:var(--c); font-variant-numeric:tabular-nums;}
+h3{font-size:20px; margin:0; line-height:1.6;}
+.g-count{margin-left:auto; font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums;}
+.g-desc{font-size:15px; color:var(--muted); line-height:1.9; margin:6px 0 16px; max-width:52em;}
+.entries{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.entry a{display:flex; flex-direction:column; height:100%; background:var(--box); border:1px solid var(--line); border-left:3px solid var(--c);
+  padding:16px 20px 16px 18px; text-decoration:none; color:var(--text); transition:background .2s, border-color .2s;}
+.entry a:hover{background:var(--paper); border-color:var(--c);}
+.e-kicker{font-size:12.5px; letter-spacing:.1em; color:var(--c); font-weight:700; line-height:1.7;}
+.e-title{font-size:17px; font-weight:700; line-height:1.6; margin:2px 0 6px;}
+.entry a:hover .e-title{color:var(--accent);}
+.e-desc{font-size:14.5px; color:var(--muted); line-height:1.8;}
+.e-meta{font-size:12.5px; color:var(--muted); margin-top:auto; padding-top:10px; font-variant-numeric:tabular-nums; letter-spacing:.02em;}
+.entry[hidden],.group[hidden]{display:none;}
+.empty{font-size:17px; color:var(--muted); text-align:center; padding:48px 0; margin:0;}
+
+.note{font-size:15px; color:var(--muted); margin:72px 0 0; border-top:1px solid var(--line); padding-top:20px;}
+
+@media (max-width:860px){
+  .masthead{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(4, auto); justify-content:start; margin-top:32px;}
+  .path{grid-template-columns:1fr 1fr; row-gap:32px;}
+  .path li:nth-child(2)::after{display:none;}
+  .arrivals{grid-template-columns:1fr 1fr;}
 }
-.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
-.kicker{font-size:13px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
-h1{font-size:29px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
-.subtitle{font-size:18px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.lede{font-size:18px; color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{margin:0 0 14px;}
-.lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
-.toc-title{font-size:13px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
-.toc ol{columns:2; column-gap:24px; margin:0; padding-left:1.3em;}
-.toc li{font-size:14.5px; margin-bottom:7px; break-inside:avoid;}
-.toc a{color:var(--text); text-decoration:none;}
-.toc a:hover{color:var(--accent); text-decoration:underline;}
-h2{font-size:23px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 10px;}
-.group-desc{font-size:14px; color:var(--muted); margin:0 0 24px;}
-.cards{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:0 0 28px;}
-.card{display:block; background:var(--box); border:1px solid var(--line); padding:18px 20px;
-  text-decoration:none; color:var(--text);}
-.card:hover{border-color:var(--accent);}
-.card .card-title{font-size:15.5px; font-weight:bold; color:var(--text); margin:0 0 8px; line-height:1.6;}
-.card:hover .card-title{color:var(--accent);}
-.card .card-desc{font-size:13px; color:var(--muted); line-height:1.7; margin:0;}
-.note{font-size:13px; color:var(--muted); margin-top:20px;}
-.feature{background:var(--box); border:1px solid var(--line); border-left:4px solid var(--accent); padding:22px 26px; margin:0 0 46px;}
-.feature-title{font-size:13px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 10px;}
-.feature-desc{font-size:14px; color:var(--muted); margin:0 0 14px; line-height:1.8;}
-.feature ul{list-style:none; padding-left:0; margin:0;}
-.feature li{font-size:14.5px; margin-bottom:9px;}
-.feature li:last-child{margin-bottom:0;}
-.feature a{color:var(--text); text-decoration:none; font-weight:bold;}
-.feature a:hover{color:var(--accent); text-decoration:underline;}
-.feature .feature-note{font-weight:normal; color:var(--muted);}
-@media (max-width:600px){
-  .cards{grid-template-columns:1fr;}
-  .toc ol{columns:1;}
+@media (max-width:640px){
+  .entries{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2, auto);}
+  .books{--H:170px; --k:.78;}
+  .book{width:calc(var(--w) * .8);}
+  .book .t{font-size:12px;}
+  .search kbd{display:none;}
 }
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
-  h1{font-size:24px;}
+  .subtitle,.lede p{font-size:17px;}
+  .stats dd{font-size:30px;}
+  .path{grid-template-columns:1fr;}
+  .path li::after{display:none;}
+  .arrivals{grid-template-columns:1fr;}
+  .books{padding:0 6px 9px; column-gap:2px;}
+  .divider{margin-left:6px; margin-right:3px;}
+  .book{width:calc(var(--w) * .68);}
+  .sec-head .aside{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation:none !important; transition:none !important;}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="kicker">ポータル</div>
-<h1>書庫</h1>
-<p class="subtitle">Library — A Portal to 60 Articles written with the help of AI</p>
-<div class="lede"><p>AI が作成した 60 記事のポータルページ。</p></div>
+<header class="masthead">
+<div class="topline"><span>AI と共に書いた論考のポータル</span><span class="updated">最終更新 2026-09-25</span></div>
+<h1>書庫 <span class="en">Library</span></h1>
+<dl class="stats">
+<div><dt>論考</dt><dd><span data-stat="total">60</span> <small>本</small></dd></div>
+<div><dt>分野</dt><dd><span data-stat="groups">8</span> <small>分野</small></dd></div>
+<div><dt>総文字数</dt><dd>約 <span data-stat="chars">68</span> <small>万字</small></dd></div>
+<div><dt>通読の目安</dt><dd>約 <span data-stat="hours">19</span> <small>時間</small></dd></div>
+</dl>
+<p class="subtitle">An Open Stack of Essays on Politics, Mind, Philosophy and Science, Written in Dialogue with AI</p>
+<div class="lede"><p>比較政治学から素粒子物理、そして五十肩まで。 AI と対話を重ねて書き上げた論考を、一冊ずつ背表紙にして並べました。背の厚さは本文の分量を表しています。</p></div>
+</header>
+<div class="strip" id="strip" aria-hidden="true"></div>
 
-<nav class="toc" aria-label="目次">
-<p class="toc-title">目次</p>
-<ol>
-<li><a href="#sec1">比較政治学・時事分析 (11)</a></li>
-<li><a href="#sec2">心理学 (17)</a></li>
-<li><a href="#sec3">哲学・論理学 (12)</a></li>
-<li><a href="#sec4">自然科学 (5)</a></li>
-<li><a href="#sec5">歴史・宗教・教育 (5)</a></li>
-<li><a href="#sec6">テクノロジー・産業分析 (5)</a></li>
-<li><a href="#sec7">社会評論・生き方・文章技法 (3)</a></li>
-<li><a href="#sec8">健康・生活 (2)</a></li></ol></nav>
+<section aria-labelledby="h-shelf">
+<div class="sec-head"><span class="no">01</span><h2 id="h-shelf">書架</h2><span class="aside">背の厚さ ＝ 本文の分量</span></div>
+<p class="sec-lead">背表紙にカーソルを合わせると、書見台に概要が出ます。クリックでその論考を開きます。</p>
+<div class="books" id="shelves"></div>
+<div class="stand is-idle" id="stand" aria-live="polite">
+<p class="s-kicker">書見台</p>
+<p class="s-title">一冊、手に取ってみてください。</p>
+<p class="s-desc">背表紙は分野ごとに色分けし、分野の仕切り札の後ろに並べています。金色の印は新着です。</p>
+</div>
+</section>
 
-<div class="feature" aria-label="横断特集：独学をめぐる四本">
-<p class="feature-title">横断特集 : 独学をめぐる 4 本</p>
-<p class="feature-desc">「独学」という主題は、心理学・哲学・社会評論の三クラスタにまたがって書かれている。四本は互いに相互参照リンクを張っており、関心に応じて読む記事を選べる。</p>
-<ul class="no-marker">
-<li><a href="philosophy-self-study.html">哲学的思考の技術と独学カリキュラムの設計</a> <span class="feature-note">―― 何をどう学ぶか、計画を立てる</span></li>
-<li><a href="ethics-and-philosophy.html">倫理学は哲学の中でどこに立つか</a> <span class="feature-note">―― 哲学という分野の地図を得て、学びの入り口を選ぶ</span></li>
-<li><a href="learning-without-pedantry.html">学ぶ喜びと衒学のあいだ</a> <span class="feature-note">―― 学び続けるための心構えを保つ</span></li>
-<li><a href="dual-process-theory.html">「システム 1 」「システム 2 」を読み解く</a> <span class="feature-note">―― なぜ学びが続かなくなるのかを理解する</span></li>
-</ul>
+<section aria-labelledby="h-path">
+<div class="sec-head"><span class="no">02</span><h2 id="h-path">読み筋――独学をめぐる四本</h2></div>
+<p class="sec-lead">心理学・哲学・社会評論の三分野にまたがって書かれた、独学のための四本。互いに相互参照しているので、どこから読み始めても構いません。</p>
+<ol class="path">
+<li><span class="p-verb">計画を立てる</span><a href="philosophy-self-study.html">哲学的思考の技術と独学カリキュラムの設計</a><p class="p-desc">何を、どの順で、どう学ぶか。</p></li>
+<li><span class="p-verb">地図を得る</span><a href="ethics-and-philosophy.html">倫理学は哲学の中でどこに立つか</a><p class="p-desc">哲学という分野の見取り図から、学びの入り口を選ぶ。</p></li>
+<li><span class="p-verb">心構えを保つ</span><a href="learning-without-pedantry.html">学ぶ喜びと衒学のあいだ</a><p class="p-desc">知識を誇示せずに、学び続けるために。</p></li>
+<li><span class="p-verb">つまずきを知る</span><a href="dual-process-theory.html">「システム 1 」「システム 2 」を読み解く</a><p class="p-desc">なぜ学びが続かなくなるのかを理解する。</p></li>
+</ol>
+</section>
+
+<section aria-labelledby="h-new">
+<div class="sec-head"><span class="no">03</span><h2 id="h-new">新着</h2></div>
+<div class="arrivals" id="arrivals"></div>
+</section>
+
+<section aria-labelledby="h-cat">
+<div class="sec-head"><span class="no">04</span><h2 id="h-cat">目録</h2><span class="aside">全 <span data-stat="total">60</span> 本</span></div>
+<div class="toolbar">
+<label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="q" type="search" placeholder="題名・分野・概要から探す" aria-label="論考を検索" autocomplete="off"><kbd>/</kbd></label>
+<div class="chips" id="chips" role="group" aria-label="分野で絞り込む">
+<button class="chip is-on" type="button" data-cat="all" aria-pressed="true">すべて <span class="chip-n">60</span></button>
+<button class="chip" type="button" data-cat="1" aria-pressed="false"><i class="dot c1"></i>比較政治学・時事分析 <span class="chip-n">11</span></button>
+<button class="chip" type="button" data-cat="2" aria-pressed="false"><i class="dot c2"></i>心理学 <span class="chip-n">17</span></button>
+<button class="chip" type="button" data-cat="3" aria-pressed="false"><i class="dot c3"></i>哲学・論理学 <span class="chip-n">12</span></button>
+<button class="chip" type="button" data-cat="4" aria-pressed="false"><i class="dot c4"></i>自然科学 <span class="chip-n">5</span></button>
+<button class="chip" type="button" data-cat="5" aria-pressed="false"><i class="dot c5"></i>歴史・宗教・教育 <span class="chip-n">5</span></button>
+<button class="chip" type="button" data-cat="6" aria-pressed="false"><i class="dot c6"></i>テクノロジー・産業分析 <span class="chip-n">5</span></button>
+<button class="chip" type="button" data-cat="7" aria-pressed="false"><i class="dot c7"></i>社会評論・生き方・文章技法 <span class="chip-n">3</span></button>
+<button class="chip" type="button" data-cat="8" aria-pressed="false"><i class="dot c8"></i>健康・生活 <span class="chip-n">2</span></button>
+</div>
+<div class="status"><output id="count" aria-live="polite">60 本を表示中</output><button class="random" id="random" type="button">ランダムに一冊開く</button></div>
 </div>
 
-<h2 id="sec1">1. 比較政治学・時事分析 (11)</h2>
-<p class="group-desc">権威主義体制の定義・生存・崩壊から、ポピュリズム、政党ラベル、民意の変換理論、そして敵意の政治的動員まで、比較政治学の枠組みで書かれた論考群。</p>
-<div class="cards">
-<a class="card" href="regime-01-concept-and-history.html"><p class="card-title">権威主義とは何か――概念史からの定義</p><p class="card-desc">近代国家の形成からワイマール共和国の崩壊、戦前日本の事例まで、権威主義という言葉の輪郭を確かめる。</p></a>
-<a class="card" href="regime-02-survival-and-collapse.html"><p class="card-title">権威主義はいかに生き残り、崩れるのか</p><p class="card-desc">冷戦後の類型論からデジタル監視まで、体制が生き延びる仕組みと内部に潜む構造的弱点を検討する。</p></a>
-<a class="card" href="regime-03-democracy-and-authoritarianism.html"><p class="card-title">民主主義国家は善で権威主義国家は悪か</p><p class="card-desc">開発独裁論・アジア的価値観論・民主的平和論を最も強い形で検討し、民主主義の優位性の所在を見定める。</p></a>
-<a class="card" href="regime-04-populism-and-democracy.html"><p class="card-title">ポピュリズムは民主主義国家の弱点か</p><p class="card-desc">選挙という手続きを通じて民主主義が自らを壊していく条件と、それを防ぐ方法を東アジアの事例に適用する。</p></a>
-<a class="card" href="party-label-theory.html"><p class="card-title">政党ラベルの情報経済学</p><p class="card-desc">法制度・選挙制度・党内組織の三層から、政党ラベルが示す中身の解像度を検討する。</p></a>
-<a class="card" href="hostility-mobilization-legitimacy.html"><p class="card-title">敵意を動員する国、しない国</p><p class="card-desc">過去の被害の記憶を対外的な敵意へと組み替える国を分けるものを、正統性の観点から検討する。</p></a>
-<a class="card" href="emotion-politicization.html"><p class="card-title">感情の政治資源化論</p><p class="card-desc">米国・欧州・日本に共通する分断とポピュリズムの構造を、心理学の知見から読み解く。</p></a>
-<a class="card" href="ai-datacenter-politics.html"><p class="card-title">AI データセンター問題の日米比較</p><p class="card-desc">米国 2026 年中間選挙と日本・印西市を比較し、データセンター問題が争点化する過程の違いを検討する。</p></a>
-<a class="card" href="theory-of-popular-will.html"><p class="card-title">民意の変換理論</p><p class="card-desc">一票が政治的決定へ変換されるまでに何が起きているのかを、政治学・社会選択論・心理学・政治哲学の四学から案内する。</p></a>
-<a class="card" href="chudo-kaikaku-rengo-analysis.html"><p class="card-title">中道改革連合はなぜ崩れたのか</p><p class="card-desc">立憲民主党の「ボトムアップ」と公明党の「トップダウン」という図式を、連合分裂の経緯から検証する。</p></a>
-<a class="card" href="populism-vs-academia.html"><p class="card-title">学術的言説の「響きにくさ」</p><p class="card-desc">断定的な言説と学術的言説の非対称性を、認知的処理コストと社会的流通構造の両面から検討する。</p></a>
-</div>
+<section class="group" id="cat1" data-cat="1">
+<div class="g-head"><span class="g-no">01</span><h3>比較政治学・時事分析</h3><span class="g-count"><span class="g-n">11</span> 本</span></div>
+<p class="g-desc">権威主義体制の定義・生存・崩壊から、ポピュリズム、政党ラベル、民意の変換理論、そして敵意の政治的動員まで、比較政治学の枠組みで書かれた論考群。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-09-09" data-len="16707"><a href="regime-01-concept-and-history.html"><span class="e-kicker">比較政治学</span><span class="e-title">権威主義とは何か――概念史からの定義</span><span class="e-desc">近代国家の形成からワイマール共和国の崩壊、戦前日本の事例まで、権威主義という言葉の輪郭を確かめる。</span><span class="e-meta">約 1.7 万字 ・ 読了目安 28 分</span></a></li>
+<li class="entry" data-date="2026-09-09" data-len="16164"><a href="regime-02-survival-and-collapse.html"><span class="e-kicker">比較政治学</span><span class="e-title">権威主義はいかに生き残り、崩れるのか</span><span class="e-desc">冷戦後の類型論からデジタル監視まで、体制が生き延びる仕組みと内部に潜む構造的弱点を検討する。</span><span class="e-meta">約 1.6 万字 ・ 読了目安 27 分</span></a></li>
+<li class="entry" data-date="2026-09-09" data-len="10805"><a href="regime-03-democracy-and-authoritarianism.html"><span class="e-kicker">比較政治学</span><span class="e-title">民主主義国家は善で権威主義国家は悪か</span><span class="e-desc">開発独裁論・アジア的価値観論・民主的平和論を最も強い形で検討し、民主主義の優位性の所在を見定める。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-09-09" data-len="15898"><a href="regime-04-populism-and-democracy.html"><span class="e-kicker">比較政治学</span><span class="e-title">ポピュリズムは民主主義国家の弱点か</span><span class="e-desc">選挙という手続きを通じて民主主義が自らを壊していく条件と、それを防ぐ方法を東アジアの事例に適用する。</span><span class="e-meta">約 1.6 万字 ・ 読了目安 26 分</span></a></li>
+<li class="entry" data-date="2026-08-11" data-len="10736"><a href="party-label-theory.html"><span class="e-kicker">政治経済学</span><span class="e-title">政党ラベルの情報経済学</span><span class="e-desc">法制度・選挙制度・党内組織の三層から、政党ラベルが示す中身の解像度を検討する。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-08-13" data-len="23488"><a href="hostility-mobilization-legitimacy.html"><span class="e-kicker">比較政治学</span><span class="e-title">敵意を動員する国、しない国</span><span class="e-desc">過去の被害の記憶を対外的な敵意へと組み替える国を分けるものを、正統性の観点から検討する。</span><span class="e-meta">約 2.3 万字 ・ 読了目安 39 分</span></a></li>
+<li class="entry" data-date="2026-08-19" data-len="18425"><a href="emotion-politicization.html"><span class="e-kicker">比較政治心理学</span><span class="e-title">感情の政治資源化論</span><span class="e-desc">米国・欧州・日本に共通する分断とポピュリズムの構造を、心理学の知見から読み解く。</span><span class="e-meta">約 1.8 万字 ・ 読了目安 31 分</span></a></li>
+<li class="entry" data-date="2026-08-15" data-len="11897"><a href="ai-datacenter-politics.html"><span class="e-kicker">比較政治学・政策分析</span> <span class="e-title">AI データセンター問題の日米比較</span><span class="e-desc">米国 2026 年中間選挙と日本・印西市を比較し、データセンター問題が争点化する過程の違いを検討する。</span><span class="e-meta">約 1.2 万字 ・ 読了目安 20 分</span></a></li>
+<li class="entry" data-date="2026-08-28" data-len="42214"><a href="theory-of-popular-will.html"><span class="e-kicker">政治学・社会選択論・心理学・政治哲学――学際的検討</span><span class="e-title">民意の変換理論</span><span class="e-desc">一票が政治的決定へ変換されるまでに何が起きているのかを、政治学・社会選択論・心理学・政治哲学の四学から案内する。</span><span class="e-meta">約 4.2 万字 ・ 読了目安 70 分</span></a></li>
+<li class="entry" data-date="2026-09-16" data-len="10775"><a href="chudo-kaikaku-rengo-analysis.html"><span class="e-kicker">政治解説・組織論</span><span class="e-title">中道改革連合はなぜ崩れたのか</span><span class="e-desc">立憲民主党の「ボトムアップ」と公明党の「トップダウン」という図式を、連合分裂の経緯から検証する。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-09-23" data-len="5612"><a href="populism-vs-academia.html"><span class="e-kicker">政治学・科学コミュニケーション論</span><span class="e-title">学術的言説の「響きにくさ」</span><span class="e-desc">断定的な言説と学術的言説の非対称性を、認知的処理コストと社会的流通構造の両面から検討する。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 9 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec2">2. 心理学 (17)</h2>
-<p class="group-desc">後悔・社会的比較・被害者非難・集団同一性・権威主義的パーソナリティと道徳発達段階論といった対人心理の現象から、ユング心理学の理論と批判、互酬性戦略の再検討、そして脳内物質・幸福の倫理・精神医療の制度論までを扱う。</p>
-<div class="cards">
-<a class="card" href="jungian-psychology.html"><p class="card-title">ユング心理学――理論の骨格とその批判的検討</p><p class="card-desc">個性化過程などの主要概念を河合隼雄の仕事とともにたどり、両者に向けられてきた批判を整理する。</p></a>
-<a class="card" href="counterfactual-regret-psychology.html"><p class="card-title">人はなぜ選ばなかった道を悔やみ続けるのか</p><p class="card-desc">反実仮想思考・規範理論・可能自己・物語的誤謬から、後悔が長期にわたって持続する理由を検討する。</p></a>
-<a class="card" href="social-comparison-theory.html"><p class="card-title">社会的比較の理論と構造</p><p class="card-desc">半順序・スカラー化・重みの配分という構造分析と、羨望の神経科学・集団間感情理論を統合し、個人の比較が集団の敵意へ育つ仕組みを描く。</p></a>
-<a class="card" href="victim-blaming-psychology.html"><p class="card-title">性暴力被害者への非難はなぜ生じるのか</p><p class="card-desc">公正世界信念・責任帰属・システム正当化・両面価値的性差別・レイプ神話を中心に検討する。</p></a>
-<a class="card" href="group-identity-bias.html"><p class="card-title">集団同一性と内集団バイアス</p><p class="card-desc">社会的アイデンティティ理論・最小条件集団パラダイムを軸に、なぜ「自分たちの集団」というだけで評価が変わるのかを検討する。</p></a>
-<a class="card" href="authoritarian-personality-moral-development.html"><p class="card-title">権威主義的パーソナリティと道徳発達段階論</p><p class="card-desc">アドルノの F 尺度からアルテマイヤーの右翼権威主義、コールバーグの道徳発達段階論まで、集団への同一化を個人差・発達段階として捉え直した二つの系譜を検討する。</p></a>
-<a class="card" href="moral-social-intuitionism.html"><p class="card-title">道徳は先に判断され、理由は後から届く</p><p class="card-desc">ハイトの社会的直観主義モデルと道徳的当惑・嫌悪感操作実験、道徳基盤理論、グリーンのもう一つの二重過程モデルまでを検討する。</p></a>
-<a class="card" href="moral-foundations-theory.html"><p class="card-title">道徳は単一の物差しでは測れない</p><p class="card-desc">道徳基盤理論の人類学的な出自、六つの基盤の内部構造、政治的立場による重みづけの経験的知見、測定法・因子構造・因果の向きをめぐる学術的批判を検討する。</p></a>
-<a class="card" href="reciprocity-critique.html"><p class="card-title">互酬性戦略の再検討</p><p class="card-desc">GIVE &amp; TAKE のギバー論を、対抗言説の側から読み直す書評・論考。</p></a>
-<a class="card" href="brain-chemicals-happiness.html"><p class="card-title">幸福感の脳内物質は何学の対象か</p><p class="card-desc">ドーパミン・オキシトシン・セロトニンなど五物質の分泌の仕組みを整理し、四つの通説を確立した知見・論争中・俗説に区分して検証する。</p></a>
-<a class="card" href="happiness-good-and-evil.html"><p class="card-title">正しい幸福、邪悪な幸福――その区別は成り立つのか</p><p class="card-desc">Mill の質的功利主義から社会的比較理論、報酬系の神経科学まで、快楽の善悪を分かつ基準を三つの学問領域から検討する。</p></a>
-<a class="card" href="winning-and-happiness.html"><p class="card-title">勝つことは幸せか――優越の自覚と幸福の質を問う</p><p class="card-desc">アリストテレスの卓越性、ストア派の道徳的運、地位財と社会的比較、報酬系の神経科学を武器に、勝利の幸福の質を検討する。</p></a>
-<a class="card" href="psych-counselor-vs-psychiatrist.html"><p class="card-title">心理カウンセラーと精神科医――役割分担の建前と、揺らぐ境界線</p><p class="card-desc">公認心理師・臨床心理士・精神保健指定医の権限差から、 DSM の診断境界論、医療化批判までを架橋する比較検討。</p></a>
-<a class="card" href="dual-process-theory.html"><p class="card-title">「システム 1 」「システム 2 」を読み解く――『独学大全』と二重過程理論</p><p class="card-desc">独学の挫折を説明する「速い思考」と「遅い思考」の枠組みを、カーネマンの二重過程理論に遡り、その学術的な異論までたどる。</p></a>
-<a class="card" href="boundary-underestimation.html"><p class="card-title">守備範囲の錯覚――境界領域における責任過小認知の学術的位置づけ</p><p class="card-desc">野球の「お見合い」を起点に、傍観者効果・ボランティアのジレンマ・セクショナリズム・多数の手の問題を横断して検討する。</p></a>
-<a class="card" href="undermining-effect.html"><p class="card-title">アンダーマイニング効果――報酬はなぜやる気を奪うのか</p><p class="card-desc">デシの実験と自己決定理論から、報酬が内発的動機づけを損なう機序と、エンハンシング効果を生かした対策を検討する。</p></a>
-<a class="card" href="ideal-actual-self-discrepancy.html"><p class="card-title">埋まらない距離の現象学――理想自己と現実自己の乖離</p><p class="card-desc">理想自己と現実自己の慢性的乖離という主題を、心理学・発達論・実存哲学の知見から、中年期における先鋭化とともに分析する。</p></a>
-</div>
+<section class="group" id="cat2" data-cat="2">
+<div class="g-head"><span class="g-no">02</span><h3>心理学</h3><span class="g-count"><span class="g-n">17</span> 本</span></div>
+<p class="g-desc">後悔・社会的比較・被害者非難・集団同一性・権威主義的パーソナリティと道徳発達段階論といった対人心理の現象から、ユング心理学の理論と批判、互酬性戦略の再検討、そして脳内物質・幸福の倫理・精神医療の制度論までを扱う。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-09-14" data-len="7149"><a href="jungian-psychology.html"><span class="e-kicker">心理学</span><span class="e-title">ユング心理学――理論の骨格とその批判的検討</span><span class="e-desc">個性化過程などの主要概念を河合隼雄の仕事とともにたどり、両者に向けられてきた批判を整理する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 12 分</span></a></li>
+<li class="entry" data-date="2026-09-13" data-len="6943"><a href="counterfactual-regret-psychology.html"><span class="e-kicker">認知心理学・哲学的検討</span><span class="e-title">人はなぜ選ばなかった道を悔やみ続けるのか</span><span class="e-desc">反実仮想思考・規範理論・可能自己・物語的誤謬から、後悔が長期にわたって持続する理由を検討する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 12 分</span></a></li>
+<li class="entry" data-date="2026-09-18" data-len="20128"><a href="social-comparison-theory.html"><span class="e-kicker">社会心理学・哲学</span><span class="e-title">社会的比較の理論と構造</span><span class="e-desc">半順序・スカラー化・重みの配分という構造分析と、羨望の神経科学・集団間感情理論を統合し、個人の比較が集団の敵意へ育つ仕組みを描く。</span><span class="e-meta">約 2.0 万字 ・ 読了目安 34 分</span></a></li>
+<li class="entry" data-date="2026-09-13" data-len="6789"><a href="victim-blaming-psychology.html"><span class="e-kicker">社会心理学・ジェンダー論的検討</span><span class="e-title">性暴力被害者への非難はなぜ生じるのか</span><span class="e-desc">公正世界信念・責任帰属・システム正当化・両面価値的性差別・レイプ神話を中心に検討する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 11 分</span></a></li>
+<li class="entry" data-date="2026-09-19" data-len="10140"><a href="group-identity-bias.html"><span class="e-kicker">社会心理学</span><span class="e-title">集団同一性と内集団バイアス</span><span class="e-desc">社会的アイデンティティ理論・最小条件集団パラダイムを軸に、なぜ「自分たちの集団」というだけで評価が変わるのかを検討する。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 17 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="9198"><a href="authoritarian-personality-moral-development.html"><span class="e-kicker">政治心理学・道徳発達心理学</span><span class="e-title">権威主義的パーソナリティと道徳発達段階論</span><span class="e-desc">アドルノの F 尺度からアルテマイヤーの右翼権威主義、コールバーグの道徳発達段階論まで、集団への同一化を個人差・発達段階として捉え直した二つの系譜を検討する。</span><span class="e-meta">約 0.9 万字 ・ 読了目安 15 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="7889"><a href="moral-social-intuitionism.html"><span class="e-kicker">道徳心理学・社会心理学</span><span class="e-title">道徳は先に判断され、理由は後から届く</span><span class="e-desc">ハイトの社会的直観主義モデルと道徳的当惑・嫌悪感操作実験、道徳基盤理論、グリーンのもう一つの二重過程モデルまでを検討する。</span><span class="e-meta">約 0.8 万字 ・ 読了目安 13 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="7159"><a href="moral-foundations-theory.html"><span class="e-kicker">道徳心理学・政治心理学</span><span class="e-title">道徳は単一の物差しでは測れない</span><span class="e-desc">道徳基盤理論の人類学的な出自、六つの基盤の内部構造、政治的立場による重みづけの経験的知見、測定法・因子構造・因果の向きをめぐる学術的批判を検討する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 12 分</span></a></li>
+<li class="entry" data-date="2026-08-13" data-len="10756"><a href="reciprocity-critique.html"><span class="e-kicker">組織論批判</span><span class="e-title">互酬性戦略の再検討</span> <span class="e-desc">GIVE &amp; TAKE のギバー論を、対抗言説の側から読み直す書評・論考。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-09-19" data-len="9855"><a href="brain-chemicals-happiness.html"><span class="e-kicker">神経科学・心理学・学際研究</span><span class="e-title">幸福感の脳内物質は何学の対象か</span><span class="e-desc">ドーパミン・オキシトシン・セロトニンなど五物質の分泌の仕組みを整理し、四つの通説を確立した知見・論争中・俗説に区分して検証する。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 16 分</span></a></li>
+<li class="entry" data-date="2026-09-19" data-len="11093"><a href="happiness-good-and-evil.html"><span class="e-kicker">哲学・心理学・神経科学</span><span class="e-title">正しい幸福、邪悪な幸福――その区別は成り立つのか</span> <span class="e-desc">Mill の質的功利主義から社会的比較理論、報酬系の神経科学まで、快楽の善悪を分かつ基準を三つの学問領域から検討する。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-09-25" data-len="6832"><a href="winning-and-happiness.html"><span class="e-kicker">哲学・心理学・神経科学</span><span class="e-title">勝つことは幸せか――優越の自覚と幸福の質を問う</span><span class="e-desc">アリストテレスの卓越性、ストア派の道徳的運、地位財と社会的比較、報酬系の神経科学を武器に、勝利の幸福の質を検討する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 11 分</span></a></li>
+<li class="entry" data-date="2026-09-19" data-len="9837"><a href="psych-counselor-vs-psychiatrist.html"><span class="e-kicker">精神医学・臨床心理学・医事法</span><span class="e-title">心理カウンセラーと精神科医――役割分担の建前と、揺らぐ境界線</span><span class="e-desc">公認心理師・臨床心理士・精神保健指定医の権限差から、 DSM の診断境界論、医療化批判までを架橋する比較検討。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 16 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="8387"><a href="dual-process-theory.html"><span class="e-kicker">認知心理学・独学論</span><span class="e-title">「システム 1 」「システム 2 」を読み解く――『独学大全』と二重過程理論</span><span class="e-desc">独学の挫折を説明する「速い思考」と「遅い思考」の枠組みを、カーネマンの二重過程理論に遡り、その学術的な異論までたどる。</span><span class="e-meta">約 0.8 万字 ・ 読了目安 14 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="8433"><a href="boundary-underestimation.html"><span class="e-kicker">社会心理学・組織論・政治哲学の横断的検討</span><span class="e-title">守備範囲の錯覚――境界領域における責任過小認知の学術的位置づけ</span><span class="e-desc">野球の「お見合い」を起点に、傍観者効果・ボランティアのジレンマ・セクショナリズム・多数の手の問題を横断して検討する。</span><span class="e-meta">約 0.8 万字 ・ 読了目安 14 分</span></a></li>
+<li class="entry" data-date="2026-09-21" data-len="4490"><a href="undermining-effect.html"><span class="e-kicker">認知心理学・組織行動論</span><span class="e-title">アンダーマイニング効果――報酬はなぜやる気を奪うのか</span><span class="e-desc">デシの実験と自己決定理論から、報酬が内発的動機づけを損なう機序と、エンハンシング効果を生かした対策を検討する。</span><span class="e-meta">約 0.4 万字 ・ 読了目安 7 分</span></a></li>
+<li class="entry" data-date="2026-09-23" data-len="5224"><a href="ideal-actual-self-discrepancy.html"><span class="e-kicker">心理学・哲学的考察</span><span class="e-title">埋まらない距離の現象学――理想自己と現実自己の乖離</span><span class="e-desc">理想自己と現実自己の慢性的乖離という主題を、心理学・発達論・実存哲学の知見から、中年期における先鋭化とともに分析する。</span><span class="e-meta">約 0.5 万字 ・ 読了目安 9 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec3">3. 哲学・論理学 (12)</h2>
-<p class="group-desc">反出生主義から倫理学の学問的位置づけ、論証分析、推論の類型学、因果推論の哲学、言語哲学、独学の方法論、自由意志論、実存主義までをまとめる。</p>
-<div class="cards">
-<a class="card" href="antinatalism-asymmetry.html"><p class="card-title">生まれてくることは正当化できるか</p><p class="card-desc">反出生主義における非対称性論証を、哲学・論理学・心理学の三方向から検討する。</p></a>
-<a class="card" href="ethics-and-philosophy.html"><p class="card-title">倫理学は哲学の中でどこに立つか</p><p class="card-desc">倫理学の学問的位置づけと、独学で学び始める際の順序について論じる小論。</p></a>
-<a class="card" href="logic-argumentation.html"><p class="card-title">論理学入門――選択的夫婦別姓論争にみる論証</p><p class="card-desc">選択的夫婦別姓をめぐる議論を教材に、論証を点検する道具を八つ学ぶ。</p></a>
-<a class="card" href="strawman-fallacy.html"><p class="card-title">藁人形論法の研究</p><p class="card-desc">相手の主張を弱く・極端に再構成して攻撃する論証歪曲の構造と識別方法を検討する。</p></a>
-<a class="card" href="types-of-reasoning.html"><p class="card-title">推論の類型学</p><p class="card-desc">演繹・帰納・アブダクション・類推という四つの推論が、実際の探究のどこで役割を交代するのかを見ていく。</p></a>
-<a class="card" href="causal-inference-philosophy.html"><p class="card-title">「これが原因だ」とどうして言えるのか</p><p class="card-desc">ヒュームの規則性説から反実仮想理論、統計的因果推論まで、「原因」という概念の哲学的な難しさをたどる。</p></a>
-<a class="card" href="not-being-hit-by-a-car.html"><p class="card-title">「轢かれなかったから、いま私は生きている」と言えるか</p><p class="card-desc">反実仮想理論を字義通り適用する立場と、因果的選択の理論からの懐疑とを対決させ、反実仮想的依存と因果の語りの間の段差を検討する。</p></a>
-<a class="card" href="philosophy-psycholinguistics.html"><p class="card-title">言語哲学と心理言語学</p><p class="card-desc">概念分析で意味を問う言語哲学と、実験で心と脳の言語処理を調べる心理言語学、二つの伝統の見取り図。</p></a>
-<a class="card" href="philosophy-self-study.html"><p class="card-title">哲学的思考の技術と独学カリキュラムの設計</p><p class="card-desc">専門的な素養を持たない成人が、哲学・倫理学をどう考え、どう学習を組み立てるかの実践ノート。</p></a>
-<a class="card" href="the-composite-self.html"><p class="card-title">「自分」は存在しないのか</p><p class="card-desc">一歳で養子に出されていたら、という思考実験から、人格の同一性・心理的連続性・文化心理学の観点で「自分」を検討する。</p></a>
-<a class="card" href="free-will-and-determinism.html"><p class="card-title">自由意志は決定論と両立できるか</p><p class="card-desc">ラプラスの悪魔からリベット実験まで、非両立論・両立論・リバタリアニズムの対立構造を検討する。</p></a>
-<a class="card" href="existentialism-article.html"><p class="card-title">実存主義とは何か</p><p class="card-desc">ニヒリズム・不条理主義・現象学・ヒューマニズム・マルクス主義・構造主義との距離を測り、実存主義を思想地図の中に位置づける。</p></a>
-</div>
+<section class="group" id="cat3" data-cat="3">
+<div class="g-head"><span class="g-no">03</span><h3>哲学・論理学</h3><span class="g-count"><span class="g-n">12</span> 本</span></div>
+<p class="g-desc">反出生主義から倫理学の学問的位置づけ、論証分析、推論の類型学、因果推論の哲学、言語哲学、独学の方法論、自由意志論、実存主義までをまとめる。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-08-26" data-len="10298"><a href="antinatalism-asymmetry.html"><span class="e-kicker">哲学・論理学</span><span class="e-title">生まれてくることは正当化できるか</span><span class="e-desc">反出生主義における非対称性論証を、哲学・論理学・心理学の三方向から検討する。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 17 分</span></a></li>
+<li class="entry" data-date="2026-09-04" data-len="5146"><a href="ethics-and-philosophy.html"><span class="e-kicker">哲学・学問案内</span><span class="e-title">倫理学は哲学の中でどこに立つか</span><span class="e-desc">倫理学の学問的位置づけと、独学で学び始める際の順序について論じる小論。</span><span class="e-meta">約 0.5 万字 ・ 読了目安 9 分</span></a></li>
+<li class="entry" data-date="2026-08-25" data-len="18743"><a href="logic-argumentation.html"><span class="e-kicker">論理学</span><span class="e-title">論理学入門――選択的夫婦別姓論争にみる論証</span><span class="e-desc">選択的夫婦別姓をめぐる議論を教材に、論証を点検する道具を八つ学ぶ。</span><span class="e-meta">約 1.9 万字 ・ 読了目安 31 分</span></a></li>
+<li class="entry" data-date="2026-07-29" data-len="3873"><a href="strawman-fallacy.html"><span class="e-kicker">論理学・論証分析</span><span class="e-title">藁人形論法の研究</span><span class="e-desc">相手の主張を弱く・極端に再構成して攻撃する論証歪曲の構造と識別方法を検討する。</span><span class="e-meta">約 0.4 万字 ・ 読了目安 6 分</span></a></li>
+<li class="entry" data-date="2026-08-28" data-len="16095"><a href="types-of-reasoning.html"><span class="e-kicker">論理学</span><span class="e-title">推論の類型学</span><span class="e-desc">演繹・帰納・アブダクション・類推という四つの推論が、実際の探究のどこで役割を交代するのかを見ていく。</span><span class="e-meta">約 1.6 万字 ・ 読了目安 27 分</span></a></li>
+<li class="entry" data-date="2026-09-17" data-len="6515"><a href="causal-inference-philosophy.html"><span class="e-kicker">哲学・科学方法論</span><span class="e-title">「これが原因だ」とどうして言えるのか</span><span class="e-desc">ヒュームの規則性説から反実仮想理論、統計的因果推論まで、「原因」という概念の哲学的な難しさをたどる。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 11 分</span></a></li>
+<li class="entry" data-date="2026-09-25" data-len="6966"><a href="not-being-hit-by-a-car.html"><span class="e-kicker">哲学・因果推論</span><span class="e-title">「轢かれなかったから、いま私は生きている」と言えるか</span><span class="e-desc">反実仮想理論を字義通り適用する立場と、因果的選択の理論からの懐疑とを対決させ、反実仮想的依存と因果の語りの間の段差を検討する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 12 分</span></a></li>
+<li class="entry" data-date="2026-08-23" data-len="6262"><a href="philosophy-psycholinguistics.html"><span class="e-kicker">言語哲学</span><span class="e-title">言語哲学と心理言語学</span><span class="e-desc">概念分析で意味を問う言語哲学と、実験で心と脳の言語処理を調べる心理言語学、二つの伝統の見取り図。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 10 分</span></a></li>
+<li class="entry" data-date="2026-09-04" data-len="4318"><a href="philosophy-self-study.html"><span class="e-kicker">哲学入門</span><span class="e-title">哲学的思考の技術と独学カリキュラムの設計</span><span class="e-desc">専門的な素養を持たない成人が、哲学・倫理学をどう考え、どう学習を組み立てるかの実践ノート。</span><span class="e-meta">約 0.4 万字 ・ 読了目安 7 分</span></a></li>
+<li class="entry" data-date="2026-09-14" data-len="8126"><a href="the-composite-self.html"><span class="e-kicker">哲学的思考実験・人格の同一性論</span><span class="e-title">「自分」は存在しないのか</span><span class="e-desc">一歳で養子に出されていたら、という思考実験から、人格の同一性・心理的連続性・文化心理学の観点で「自分」を検討する。</span><span class="e-meta">約 0.8 万字 ・ 読了目安 14 分</span></a></li>
+<li class="entry" data-date="2026-09-18" data-len="10021"><a href="free-will-and-determinism.html"><span class="e-kicker">哲学・心の哲学・神経科学</span><span class="e-title">自由意志は決定論と両立できるか</span><span class="e-desc">ラプラスの悪魔からリベット実験まで、非両立論・両立論・リバタリアニズムの対立構造を検討する。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 17 分</span></a></li>
+<li class="entry" data-date="2026-09-18" data-len="5280"><a href="existentialism-article.html"><span class="e-kicker">哲学・思想史</span><span class="e-title">実存主義とは何か</span><span class="e-desc">ニヒリズム・不条理主義・現象学・ヒューマニズム・マルクス主義・構造主義との距離を測り、実存主義を思想地図の中に位置づける。</span><span class="e-meta">約 0.5 万字 ・ 読了目安 9 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec4">4. 自然科学 (5)</h2>
-<p class="group-desc">電気工学の基礎から地質時代・素粒子物理学・理論宇宙論、そして老年学をめぐる科学と疑似科学の境界まで、確立した事実と未解決の問いを区別しながら説明する解説記事。</p>
-<div class="cards">
-<a class="card" href="battery-voltage-and-charge.html"><p class="card-title">バッテリー電圧降下と残量推定の科学</p><p class="card-desc">バケツの水勢と電池の電圧、似て非なる二つの「圧力降下」を読み解く技術解説。</p></a>
-<a class="card" href="geologic-time-scale.html"><p class="card-title">地質時代入門―― 100 億年を四段階でたどる</p><p class="card-desc">過去 100 億年、 10 億年、 1 億年、 1000 万年の四つの図を、すべて線形スケールで作成した入門記事。</p></a>
-<a class="card" href="multiverse-cosmology.html"><p class="card-title">多元宇宙論とビッグバン以前</p><p class="card-desc">理論宇宙論における観測事実・理論的帰結・未検証の仮説の境界を区別して整理する。</p></a>
-<a class="card" href="particle-physics-intro.html"><p class="card-title">素粒子物理学概論</p><p class="card-desc">原子核の内部から観測可能な宇宙まで、確立した事実と未解決の問いを区別しながらたどる。</p></a>
-<a class="card" href="aging-pseudoscience.html"><p class="card-title">「老化は治療可能な疾患」は科学か</p><p class="card-desc">デビッド・シンクレアの言説を検証し、分野としてのジェロサイエンスと個人の主張への評価を切り分ける。</p></a>
-</div>
+<section class="group" id="cat4" data-cat="4">
+<div class="g-head"><span class="g-no">04</span><h3>自然科学</h3><span class="g-count"><span class="g-n">5</span> 本</span></div>
+<p class="g-desc">電気工学の基礎から地質時代・素粒子物理学・理論宇宙論、そして老年学をめぐる科学と疑似科学の境界まで、確立した事実と未解決の問いを区別しながら説明する解説記事。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-09-02" data-len="6464"><a href="battery-voltage-and-charge.html"><span class="e-kicker">電気工学・科学解説</span><span class="e-title">バッテリー電圧降下と残量推定の科学</span><span class="e-desc">バケツの水勢と電池の電圧、似て非なる二つの「圧力降下」を読み解く技術解説。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 11 分</span></a></li>
+<li class="entry" data-date="2026-09-03" data-len="5912"><a href="geologic-time-scale.html"><span class="e-kicker">地学・科学解説</span><span class="e-title">地質時代入門―― 100 億年を四段階でたどる</span><span class="e-desc">過去 100 億年、 10 億年、 1 億年、 1000 万年の四つの図を、すべて線形スケールで作成した入門記事。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 10 分</span></a></li>
+<li class="entry" data-date="2026-08-25" data-len="8815"><a href="multiverse-cosmology.html"><span class="e-kicker">理論宇宙論</span><span class="e-title">多元宇宙論とビッグバン以前</span><span class="e-desc">理論宇宙論における観測事実・理論的帰結・未検証の仮説の境界を区別して整理する。</span><span class="e-meta">約 0.9 万字 ・ 読了目安 15 分</span></a></li>
+<li class="entry" data-date="2026-07-28" data-len="31356"><a href="particle-physics-intro.html"><span class="e-kicker">物理学概論</span><span class="e-title">素粒子物理学概論</span><span class="e-desc">原子核の内部から観測可能な宇宙まで、確立した事実と未解決の問いを区別しながらたどる。</span><span class="e-meta">約 3.1 万字 ・ 読了目安 52 分</span></a></li>
+<li class="entry" data-date="2026-09-24" data-len="3812"><a href="aging-pseudoscience.html"><span class="e-kicker">老年学・科学社会学的検討</span><span class="e-title">「老化は治療可能な疾患」は科学か</span><span class="e-desc">デビッド・シンクレアの言説を検証し、分野としてのジェロサイエンスと個人の主張への評価を切り分ける。</span><span class="e-meta">約 0.4 万字 ・ 読了目安 6 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec5">5. 歴史・宗教・教育 (5)</h2>
-<p class="group-desc">日本仏教の宗派史、キリスト教とイスラームの分岐史、時代区分論、教養教育の理念史、道徳教育政策の比較研究など、制度と観念の歴史をたどる論考。</p>
-<div class="cards">
-<a class="card" href="japanese-buddhist-sects.html"><p class="card-title">日本仏教宗派史</p><p class="card-desc">日本の仏教の伝統宗教と定義される「十三宗五十六派」の成立と分岐を、時代順に検討する。</p></a>
-<a class="card" href="comparative-religion-christianity-islam.html"><p class="card-title">比較宗教学入門</p><p class="card-desc">キリスト教とイスラームの分岐史を、公会議・継承争い・宗教改革といった出来事に即して辿り、日本仏教の宗派史と比較する。</p></a>
-<a class="card" href="modern-contemporary-periods.html"><p class="card-title">「近代」と「現代」の時代区分論</p><p class="card-desc">世界史と日本史を一本の年表に重ね合わせて読む、対照年表つきの論考。</p></a>
-<a class="card" href="liberal-arts-history.html"><p class="card-title">教養教育の理念史</p><p class="card-desc">リベラルアーツの語源・歴史的展開から、米国モデルの比較、日本における受容までを整理する。</p></a>
-<a class="card" href="moral-education-policy.html"><p class="card-title">道徳教育政策の比較研究</p><p class="card-desc">文部科学省の方針と諸外国の道徳教育の実践を比較して辿る。</p></a>
-</div>
+<section class="group" id="cat5" data-cat="5">
+<div class="g-head"><span class="g-no">05</span><h3>歴史・宗教・教育</h3><span class="g-count"><span class="g-n">5</span> 本</span></div>
+<p class="g-desc">日本仏教の宗派史、キリスト教とイスラームの分岐史、時代区分論、教養教育の理念史、道徳教育政策の比較研究など、制度と観念の歴史をたどる論考。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-07-31" data-len="10905"><a href="japanese-buddhist-sects.html"><span class="e-kicker">宗教史</span><span class="e-title">日本仏教宗派史</span><span class="e-desc">日本の仏教の伝統宗教と定義される「十三宗五十六派」の成立と分岐を、時代順に検討する。</span><span class="e-meta">約 1.1 万字 ・ 読了目安 18 分</span></a></li>
+<li class="entry" data-date="2026-09-20" data-len="7493"><a href="comparative-religion-christianity-islam.html"><span class="e-kicker">宗教史・比較宗教学</span><span class="e-title">比較宗教学入門</span><span class="e-desc">キリスト教とイスラームの分岐史を、公会議・継承争い・宗教改革といった出来事に即して辿り、日本仏教の宗派史と比較する。</span><span class="e-meta">約 0.7 万字 ・ 読了目安 12 分</span></a></li>
+<li class="entry" data-date="2026-07-27" data-len="22644"><a href="modern-contemporary-periods.html"><span class="e-kicker">歴史学・時代区分論</span><span class="e-title">「近代」と「現代」の時代区分論</span><span class="e-desc">世界史と日本史を一本の年表に重ね合わせて読む、対照年表つきの論考。</span><span class="e-meta">約 2.3 万字 ・ 読了目安 38 分</span></a></li>
+<li class="entry" data-date="2026-08-06" data-len="19181"><a href="liberal-arts-history.html"><span class="e-kicker">教育思想史</span><span class="e-title">教養教育の理念史</span><span class="e-desc">リベラルアーツの語源・歴史的展開から、米国モデルの比較、日本における受容までを整理する。</span><span class="e-meta">約 1.9 万字 ・ 読了目安 32 分</span></a></li>
+<li class="entry" data-date="2026-08-23" data-len="7568"><a href="moral-education-policy.html"><span class="e-kicker">教育政策比較</span><span class="e-title">道徳教育政策の比較研究</span><span class="e-desc">文部科学省の方針と諸外国の道徳教育の実践を比較して辿る。</span><span class="e-meta">約 0.8 万字 ・ 読了目安 13 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec6">6. テクノロジー・産業分析 (5)</h2>
-<p class="group-desc">生成 AI 企業比較、クラウド市場、インターネット相互接続、 SaaS の構造変化、そして AI と労働市場・再分配政策の関係まで、一次資料と実証研究に基づく産業・経済分析。</p>
-<div class="cards">
-<a class="card" href="ai-industry-comparison.html"><p class="card-title">生成 AI 企業比較の基礎資料</p><p class="card-desc">生成 AI ・ AI エージェント・ AI コーディングを中心に、企業・基盤モデル・製品を整理した比較表。</p></a>
-<a class="card" href="cloud-market-ai-analysis.html"><p class="card-title">クラウドコンピューティング市場の構造分析</p><p class="card-desc">AWS, Azure, Google Cloud 等の市場シェアと決算データから、 AI 需要による勢力図の変化を読み解く。</p></a>
-<a class="card" href="internet-peering-cdn.html"><p class="card-title">インターネット相互接続論</p><p class="card-desc">ピアリング・トランジット・ CDN 事業者のお金の流れと企業モデルの違いを実例とともに解説する。</p></a>
-<a class="card" href="saas-layered-analysis.html"><p class="card-title">「 SaaS is dead 」言説の実証的検討</p><p class="card-desc">UI ・ロジック・データの三層モデルで、 AI エージェント時代の SaaS を検証する。</p></a>
-<a class="card" href="ai-labor-and-redistribution.html"><p class="card-title">AI は労働をどう書き換え、その果実は誰が受け取るのか</p><p class="card-desc">タスクベース理論・五軸モデルから、生産性の分配問題と再分配政策の制度・政治まで、一続きに検討する。</p></a>
-</div>
+<section class="group" id="cat6" data-cat="6">
+<div class="g-head"><span class="g-no">06</span><h3>テクノロジー・産業分析</h3><span class="g-count"><span class="g-n">5</span> 本</span></div>
+<p class="g-desc">生成 AI 企業比較、クラウド市場、インターネット相互接続、 SaaS の構造変化、そして AI と労働市場・再分配政策の関係まで、一次資料と実証研究に基づく産業・経済分析。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-08-10" data-len="5538"><a href="ai-industry-comparison.html"><span class="e-kicker">産業動向・比較資料</span><span class="e-title">生成 AI 企業比較の基礎資料</span><span class="e-desc">生成 AI ・ AI エージェント・ AI コーディングを中心に、企業・基盤モデル・製品を整理した比較表。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 9 分</span></a></li>
+<li class="entry" data-date="2026-08-05" data-len="13063"><a href="cloud-market-ai-analysis.html"><span class="e-kicker">産業構造分析</span><span class="e-title">クラウドコンピューティング市場の構造分析</span> <span class="e-desc">AWS, Azure, Google Cloud 等の市場シェアと決算データから、 AI 需要による勢力図の変化を読み解く。</span><span class="e-meta">約 1.3 万字 ・ 読了目安 22 分</span></a></li>
+<li class="entry" data-date="2026-08-01" data-len="46088"><a href="internet-peering-cdn.html"><span class="e-kicker">ネットワーク工学</span><span class="e-title">インターネット相互接続論</span><span class="e-desc">ピアリング・トランジット・ CDN 事業者のお金の流れと企業モデルの違いを実例とともに解説する。</span><span class="e-meta">約 4.6 万字 ・ 読了目安 77 分</span></a></li>
+<li class="entry" data-date="2026-08-12" data-len="9475"><a href="saas-layered-analysis.html"><span class="e-kicker">産業構造分析</span><span class="e-title">「 SaaS is dead 」言説の実証的検討</span> <span class="e-desc">UI ・ロジック・データの三層モデルで、 AI エージェント時代の SaaS を検証する。</span><span class="e-meta">約 0.9 万字 ・ 読了目安 16 分</span></a></li>
+<li class="entry" data-date="2026-09-17" data-len="10467"><a href="ai-labor-and-redistribution.html"><span class="e-kicker">労働経済学・比較政治経済学</span> <span class="e-title">AI は労働をどう書き換え、その果実は誰が受け取るのか</span><span class="e-desc">タスクベース理論・五軸モデルから、生産性の分配問題と再分配政策の制度・政治まで、一続きに検討する。</span><span class="e-meta">約 1.0 万字 ・ 読了目安 17 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec7">7. 社会評論・生き方・文章技法 (3)</h2>
-<p class="group-desc">職業選択の理論的試論、学ぶことと衒学の境界を探る考察、そして書くための実践技法カタログという、それぞれ独立したテーマの評論群。</p>
-<div class="cards">
-<a class="card" href="vocational-choice-structure.html"><p class="card-title">職業選択における動機の二元論を超えて</p><p class="card-desc">「好きな仕事か、稼げる仕事か」という二択そのものを解体し、職業選択を交換条件の設計として組み直す試論。</p></a>
-<a class="card" href="learning-without-pedantry.html"><p class="card-title">学ぶ喜びと衒学のあいだ</p><p class="card-desc">知的謙虚さの心理学・徳認識論・文化資本論から、知識を誇示せず学び続けるための心掛けを探る。</p></a>
-<a class="card" href="writing-techniques.html"><p class="card-title">文章表現技法の体系</p><p class="card-desc">修辞学・心理学・ジャーナリズム・誌面設計から集めた、書くための実践技法カタログ、 18 技法。</p></a>
-</div>
+<section class="group" id="cat7" data-cat="7">
+<div class="g-head"><span class="g-no">07</span><h3>社会評論・生き方・文章技法</h3><span class="g-count"><span class="g-n">3</span> 本</span></div>
+<p class="g-desc">職業選択の理論的試論、学ぶことと衒学の境界を探る考察、そして書くための実践技法カタログという、それぞれ独立したテーマの評論群。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-09-02" data-len="9229"><a href="vocational-choice-structure.html"><span class="e-kicker">労働経済学</span><span class="e-title">職業選択における動機の二元論を超えて</span><span class="e-desc">「好きな仕事か、稼げる仕事か」という二択そのものを解体し、職業選択を交換条件の設計として組み直す試論。</span><span class="e-meta">約 0.9 万字 ・ 読了目安 15 分</span></a></li>
+<li class="entry" data-date="2026-09-18" data-len="6402"><a href="learning-without-pedantry.html"><span class="e-kicker">哲学・心理学・社会学</span><span class="e-title">学ぶ喜びと衒学のあいだ</span><span class="e-desc">知的謙虚さの心理学・徳認識論・文化資本論から、知識を誇示せず学び続けるための心掛けを探る。</span><span class="e-meta">約 0.6 万字 ・ 読了目安 11 分</span></a></li>
+<li class="entry" data-date="2026-08-27" data-len="11805"><a href="writing-techniques.html"><span class="e-kicker">文章技法カタログ</span><span class="e-title">文章表現技法の体系</span><span class="e-desc">修辞学・心理学・ジャーナリズム・誌面設計から集めた、書くための実践技法カタログ、 18 技法。</span><span class="e-meta">約 1.2 万字 ・ 読了目安 20 分</span></a></li>
+</ol>
+</section>
 
-<h2 id="sec8">8. 健康・生活 (2)</h2>
-<p class="group-desc">整形外科疾患の原因と治療選択、高齢者向け住まいの制度区分など、暮らしに直結する医療・福祉の実務知識をまとめる。</p>
-<div class="cards">
-<a class="card" href="gojukata_silent_manipulation.html"><p class="card-title">五十肩の正体――原因の理解から、サイレント・マニピュレーションという新しい選択肢まで</p><p class="card-desc">五十肩がなぜ起こるのかという原因の側面と、保存療法で改善しない場合の新しい治療選択肢を整理する。</p></a>
-<a class="card" href="private-elder-housing.html"><p class="card-title">介護付き、住宅型、サ高住、グループホーム――四つの「高齢者向け住まい」を分けるものは何か</p><p class="card-desc">特定施設入居者生活介護の指定の有無を軸に、四類型の費用・介護保険の使い方の違いを整理する。</p></a>
-</div>
+<section class="group" id="cat8" data-cat="8">
+<div class="g-head"><span class="g-no">08</span><h3>健康・生活</h3><span class="g-count"><span class="g-n">2</span> 本</span></div>
+<p class="g-desc">整形外科疾患の原因と治療選択、高齢者向け住まいの制度区分など、暮らしに直結する医療・福祉の実務知識をまとめる。</p>
+<ol class="entries">
+<li class="entry" data-date="2026-09-23" data-len="4262"><a href="gojukata_silent_manipulation.html"><span class="e-kicker">整形外科・肩関節疾患</span><span class="e-title">五十肩の正体――原因の理解から、サイレント・マニピュレーションという新しい選択肢まで</span><span class="e-desc">五十肩がなぜ起こるのかという原因の側面と、保存療法で改善しない場合の新しい治療選択肢を整理する。</span><span class="e-meta">約 0.4 万字 ・ 読了目安 7 分</span></a></li>
+<li class="entry" data-date="2026-09-23" data-len="5363"><a href="private-elder-housing.html"><span class="e-kicker">高齢者福祉制度の解説</span><span class="e-title">介護付き、住宅型、サ高住、グループホーム――四つの「高齢者向け住まい」を分けるものは何か</span><span class="e-desc">特定施設入居者生活介護の指定の有無を軸に、四類型の費用・介護保険の使い方の違いを整理する。</span><span class="e-meta">約 0.5 万字 ・ 読了目安 9 分</span></a></li>
+</ol>
+</section>
 
-<p class="note">分類は主観的な整理であり、複数分野にまたがる文書を便宜的に一つのグループへ収めている場合がある（例：「民意の変換理論」は政治学に置いたが社会選択論・心理学・哲学の内容も含む）。</p>
+<p class="empty" id="empty" hidden>該当する論考は見つかりませんでした。</p>
+</section>
+
+<p class="note">分類は主観的な整理であり、複数分野にまたがる論考を便宜的に一つの分野へ収めている場合があります（例 : 「民意の変換理論」は比較政治学に置いていますが、社会選択論・心理学・哲学の内容も含みます）。文字数と読了目安は、参考文献欄を除いた本文から機械的に算出した概算です（毎分 600 字換算）。</p>
 
 </div>
+<script>
+(() => {
+  const groups = [...document.querySelectorAll('.group')];
+  const entries = [...document.querySelectorAll('.entry')];
+  const shelves = document.getElementById('shelves');
+  const stand = document.getElementById('stand');
+  const strip = document.getElementById('strip');
+  const q = document.getElementById('q');
+  const chips = [...document.querySelectorAll('.chip')];
+  const count = document.getElementById('count');
+  const empty = document.getElementById('empty');
+  const lens = entries.map(e => +e.dataset.len);
+  const minL = Math.min(...lens), maxL = Math.max(...lens);
+  const dates = [...new Set(entries.map(e => e.dataset.date))].sort().reverse();
+  const newDates = new Set(dates.slice(0, 2));
+
+  // 統計は目録から数え直す(記事追加時に目録へ一項目足すだけで済むように)
+  const total = entries.length, chars = lens.reduce((a, b) => a + b, 0);
+  const set = (k, v) => document.querySelectorAll(`[data-stat="${k}"]`).forEach(n => n.textContent = v);
+  set('total', total); set('groups', groups.length);
+  set('chars', Math.round(chars / 1e4)); set('hours', Math.round(chars / 600 / 60));
+
+  // 各項目にデータを付与
+  const books = [];
+  let idx = 0;
+  groups.forEach(g => {
+    const cat = g.dataset.cat, name = g.querySelector('h3').textContent;
+    g.classList.add('c' + cat);
+    g.querySelector('.g-n').textContent = g.querySelectorAll('.entry').length;
+    const div = document.createElement('div');
+    div.className = 'divider c' + cat;
+    div.title = name;
+    div.innerHTML = '<span class="dn"></span><span class="dl"></span>';
+    div.querySelector('.dn').textContent = String(cat).padStart(2, '0');
+    div.querySelector('.dl').textContent = name;
+    const pair = document.createElement('div');
+    pair.className = 'pair';
+    pair.appendChild(div);
+    shelves.appendChild(pair);
+    g.querySelectorAll('.entry').forEach(e => {
+      const a = e.querySelector('a');
+      const title = e.querySelector('.e-title').textContent;
+      const len = +e.dataset.len;
+      e.dataset.cat = cat;
+      e._text = (title + e.querySelector('.e-desc').textContent + e.querySelector('.e-kicker').textContent + name).toLowerCase().replace(/\s+/g, '');
+      const b = document.createElement('a');
+      b.className = 'book c' + cat + (newDates.has(e.dataset.date) ? ' is-new' : '');
+      b.href = a.getAttribute('href');
+      const r = (len - minL) / (maxL - minL);
+      let h = 0; for (const ch of b.href) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+      b.style.setProperty('--w', Math.round(22 + Math.sqrt(r) * 34) + 'px');
+      b.style.setProperty('--h', (164 + (h % 5) * 12) + 'px');
+      b.style.setProperty('--i', idx++);
+      b.setAttribute('aria-label', title);
+      b.innerHTML = '<span class="t"></span><span class="n"></span>';
+      b.querySelector('.t').textContent = title.split('――')[0];
+      b.querySelector('.n').textContent = Math.round(len / 1000) + 'k';
+      b._entry = e; b._cat = cat; b._name = name;
+      e._book = b;
+      (pair.childElementCount === 1 ? pair : shelves).appendChild(b); books.push(b);
+      const s = document.createElement('i');
+      s.className = 'c' + cat; s.style.flexGrow = len;
+      strip.appendChild(s);
+    });
+  });
+
+  // 書見台
+  const idle = stand.innerHTML;
+  const show = b => {
+    const e = b._entry;
+    stand.className = 'stand c' + b._cat;
+    stand.innerHTML = '<p class="s-kicker"></p><p class="s-title"></p><p class="s-desc"></p><p class="s-meta"></p>';
+    stand.querySelector('.s-kicker').textContent = b._name + ' ／ ' + e.querySelector('.e-kicker').textContent;
+    stand.querySelector('.s-title').textContent = e.querySelector('.e-title').textContent;
+    stand.querySelector('.s-desc').textContent = e.querySelector('.e-desc').textContent;
+    stand.querySelector('.s-meta').textContent = e.querySelector('.e-meta').textContent + ' ・ ' + e.dataset.date + ' 追加';
+  };
+  books.forEach(b => {
+    b.addEventListener('mouseenter', () => show(b));
+    b.addEventListener('focus', () => show(b));
+  });
+  shelves.addEventListener('mouseleave', () => { stand.className = 'stand is-idle'; stand.innerHTML = idle; });
+
+  // 新着
+  const arrivals = document.getElementById('arrivals');
+  [...entries].sort((a, b) => b.dataset.date.localeCompare(a.dataset.date) || entries.indexOf(b) - entries.indexOf(a))
+    .slice(0, 4).forEach(e => {
+      const a = document.createElement('a');
+      a.className = 'arrival c' + e.dataset.cat;
+      a.href = e.querySelector('a').getAttribute('href');
+      a.innerHTML = '<span class="a-date"></span><span class="a-title"></span><span class="a-cat"></span>';
+      a.querySelector('.a-date').textContent = e.dataset.date;
+      a.querySelector('.a-title').textContent = e.querySelector('.e-title').textContent;
+      a.querySelector('.a-cat').textContent = e._book._name;
+      arrivals.appendChild(a);
+    });
+
+  // 検索と絞り込み
+  let cat = 'all';
+  const apply = () => {
+    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let n = 0;
+    entries.forEach(e => {
+      const ok = (cat === 'all' || e.dataset.cat === cat) && terms.every(t => e._text.includes(t));
+      e.hidden = !ok; e._book.classList.toggle('is-dim', !ok);
+      if (ok) n++;
+    });
+    groups.forEach(g => g.hidden = !g.querySelector('.entry:not([hidden])'));
+    count.textContent = n === total ? `${total} 本を表示中` : `${total} 本中 ${n} 本を表示中`;
+    empty.hidden = n > 0;
+  };
+  q.addEventListener('input', apply);
+  chips.forEach(c => c.addEventListener('click', () => {
+    cat = c.dataset.cat;
+    chips.forEach(x => { x.classList.toggle('is-on', x === c); x.setAttribute('aria-pressed', x === c); });
+    apply();
+  }));
+  document.addEventListener('keydown', ev => {
+    if (ev.key === '/' && document.activeElement !== q) { ev.preventDefault(); q.focus(); }
+    if (ev.key === 'Escape' && document.activeElement === q) { q.value = ''; apply(); q.blur(); }
+  });
+  document.getElementById('random').addEventListener('click', () => {
+    const pool = entries.filter(e => !e.hidden);
+    if (pool.length) location.href = pool[Math.floor(Math.random() * pool.length)].querySelector('a').href;
+  });
+})();
+</script>
 </body>
 </html>
