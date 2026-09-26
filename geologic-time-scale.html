@@ -24,11 +24,14 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
 h3{font-size:20px; margin:32px 0 12px;}
 h4,h5{font-size:18px; margin:24px 0 10px;}
@@ -84,6 +87,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -96,7 +100,12 @@ pre code{background:none; padding:0;}
 <div class="meta">【方法と限界】年代の数値は国際層序委員会 (ICS) による国際年代層序表を基準とし、境界の年代は執筆時点で広く使われている値に丸めた。地質年代の境界は現在も微調整が続いており、将来の改訂で数百万年単位の見直しがありうる。また四つの図はいずれも「線形」目盛りで作った。地質時代の解説図は情報を詰め込むために対数目盛りや不均等な帯を使うことが多いが、それでは長さの直感的な比較ができない。ここでは代わりに「同じ定規のまま倍率だけを上げて三回ズームする」という方法をとった。</div>
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
-<ol><li><a href="#sec1">「地質時代」とは何か――入れ子になった物差し</a></li>
+<ol><li><a href="#sec1">「地質時代」とは何か――入れ子になった物差し</a>
+<ol>
+<li><a href="#sec1-1">累代・代・紀・世という四段階</a></li>
+<li><a href="#sec1-2">「顕生代」だけが特別に細かく分けられている理由</a></li>
+</ol>
+</li>
 <li><a href="#sec2">図解 1: 過去 100 億年――地球誕生前から顕生代まで</a></li>
 <li><a href="#sec3">図解 2: 過去 10 億年――原生代の終わりからカンブリア爆発へ</a></li>
 <li><a href="#sec4">図解 3: 過去 1 億年――恐竜の黄昏から人類の登場まで</a></li>
@@ -108,7 +117,7 @@ pre code{background:none; padding:0;}
 <h2 id="sec1">1. 「地質時代」とは何か――入れ子になった物差し</h2>
 <p>「ジュラ紀」も「白亜紀」も、地質学者が地球の歴史を区分するために付けた名前の一つである。
 これらの区分は思いつきで並んでいるのではなく、長さの違う四段階の物差しが入れ子になった、階層構造を持つ体系である。国際層序委員会 (ICS) が定める国際年代層序表 <sup><a id="fnref-1-1" href="#ref-1">[1]</a></sup> と、米国地質調査所 (USGS) の解説 <sup><a id="fnref-2-1" href="#ref-2">[2]</a></sup> によれば、その階層は大きい方から次のように並ぶ。</p>
-<h3>累代・代・紀・世という四段階</h3>
+<h3 id="sec1-1">1.1 累代・代・紀・世という四段階</h3>
 <p>もっとも大きな単位は「累代（るいだい、 eon) 」で、数億年から数十億年の幅を持つ。地球の歴史は冥王代・太古代・原生代・顕生代という四つの累代に分かれ、このうち「ジュラ紀」や「白亜紀」を含むのは、もっとも新しい顕生代（けんせいだい）である。</p>
 <table>
 <thead>
@@ -148,7 +157,7 @@ pre code{background:none; padding:0;}
 </table>
 <p>つまり「ジュラ紀」は、顕生代という累代の中の、中生代という代の中の、一つの紀にすぎない。
 逆に言えば、「ジュラ紀」を単独で覚えても、それが 46 億年の地球史のどのあたりに位置し、前後にどれだけの時間が広がっているのかは分からない。以下の四つの図は、この位置関係を体感するために作った。</p>
-<h3>「顕生代」だけが特別に細かく分けられている理由</h3>
+<h3 id="sec1-2">1.2 「顕生代」だけが特別に細かく分けられている理由</h3>
 <p>地質時代の区分は、もともと地層に残る化石の移り変わりをもとに作られた。硬い殻や骨を持つ生物が爆発的に増えたのは、地球の歴史（約 46 億年 <sup><a id="fnref-3-1" href="#ref-3">[3]</a></sup>)のうちの直近 5 億 4100 万年ほどにすぎない。この「目に見える生物の時代」を指すのが顕生代であり、それ以前の 40 億年あまりは、まとめて太古代・原生代と呼ばれる。
 言い換えると、地質時代の区分は年代に対して一様に細かいわけではなく、化石として残りやすい直近の時代ほど、紀・世という細かい単位まで名前が付いている。これが、「ジュラ紀」のような紀の名前ばかりが有名で、太古代や原生代の内部の名前をほとんど聞いたことがない理由である。</p>
 <h2 id="sec2">2. 図解 1: 過去 100 億年――地球誕生前から顕生代まで</h2>

@@ -26,9 +26,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -95,6 +98,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -109,7 +113,15 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p class="toc-title">目次</p>
 <ol><li><a href="#sec1">藁人形論法とは何か――相手の言っていないことと戦っていないか</a></li>
 <li><a href="#sec2">なぜ人はこの詭弁に陥るのか――三段階の仕組みと、 SNS 時代のわな</a></li>
-<li><a href="#sec3">実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</a></li>
+<li><a href="#sec3">実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</a>
+<ol>
+<li><a href="#sec3-1">小泉進次郎氏の会見動画――日本 / 政治家の発言そのものを作り替える</a></li>
+<li><a href="#sec3-2">「オープンボーダー」への飛躍――米国 / 2016 年大統領選、討論会での応酬</a></li>
+<li><a href="#sec3-3">発言の後半を切り落とす――日本 / テレビ報道発言の切り抜き</a></li>
+<li><a href="#sec3-4">「カナダ型医療」の脅し――米国 / 2009 年、医療保険改革をめぐる広告</a></li>
+<li><a href="#sec3-5">同じ党内でも起きる――米国 / 2019 年、民主党予備選討論会</a></li>
+</ol>
+</li>
 <li><a href="#sec4">明日から相手の議論をスチールマン化するために――実践のための三つの問いと、隣接する詭弁</a></li>
 </ol>
 </nav>
@@ -192,7 +204,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <h2 id="sec3">3. 実例に見る藁人形論法――日本 2 件・欧米 3 件、政治から SNS まで</h2>
 <p>ここからは、実際に報道・検証された 5 件を見ていく。
 分野やテレビ・広告・討論会など場面が偏っては、「藁人形論法は特定の陣営の専売特許だ」という誤った印象を与えかねない。政治的な立場に関わらず、誰もがこの詭弁を使い、また使われうることを意識しながら読んでほしい。</p>
-<h3>●小泉進次郎氏の会見動画――日本 / 政治家の発言そのものを作り替える</h3>
+<h3 id="sec3-1">3.1 小泉進次郎氏の会見動画――日本 / 政治家の発言そのものを作り替える</h3>
 <p>2025 年 5 月、「小泉進次郎氏が消費税 15% を主張している」とする 45 秒の動画が X 上で拡散し、 1 万回以上リポストされた。動画は 2017 年 6 月 1 日の日本記者クラブでの会見から短い発言を恣意的に抜き出し、前後の文脈を排除してつなぎ合わせたものだった。</p>
 
 <div class="compare">
@@ -202,7 +214,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p class="distort-note"><strong>歪曲点：</strong>両者の差は、賛成か反対かという立場そのものの逆転にある。</p>
 
 <p>出典 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> : 日本ファクトチェックセンター (2025 年 5 月 23 日）</p>
-<h3>●「オープンボーダー」への飛躍――米国 / 2016 年大統領選、討論会での応酬</h3>
+<h3 id="sec3-2">3.2 「オープンボーダー」への飛躍――米国 / 2016 年大統領選、討論会での応酬</h3>
 <p>2016 年 10 月 19 日の米大統領候補討論会で、トランプ氏はクリントン氏について「彼女はオープンボーダー（国境の撤廃）を望んでいる」と述べた。根拠とされたのは、 2013 年にブラジルの銀行での講演で語った「開かれた貿易と開かれた国境を伴う半球共通市場が私の夢だ」という一節である。</p>
 
 <div class="compare">
@@ -212,7 +224,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p class="distort-note"><strong>歪曲点：</strong>両者は主題からして異なる。米ファクトチェック団体 PolitiFact はトランプ氏の発言を「ほぼ誤り」と判定した。</p>
 
 <p>出典 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> : PolitiFact (2016 年 10 月 20 日）</p>
-<h3>●発言の後半を切り落とす――日本 / テレビ報道発言の切り抜き</h3>
+<h3 id="sec3-3">3.3 発言の後半を切り落とす――日本 / テレビ報道発言の切り抜き</h3>
 <p>2026 年 1 月、中道改革連合の斉藤鉄夫共同代表が TBS テレビの番組で発言した場面を切り取った動画が X で拡散した。</p>
 
 <div class="compare">
@@ -222,7 +234,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p class="distort-note"><strong>歪曲点：</strong>発言の後半を削除することで、趣旨が正反対に見えるよう編集されていた。新聞協会加盟社などが参加するファクトチェック団体リトマスがこれを誤りと認定している。</p>
 
 <p>出典 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> : 時事通信 (2026 年 2 月 2 日）</p>
-<h3>●「カナダ型医療」の脅し――米国 / 2009 年、医療保険改革をめぐる広告</h3>
+<h3 id="sec3-4">3.4 「カナダ型医療」の脅し――米国 / 2009 年、医療保険改革をめぐる広告</h3>
 <p>2009 年、米国の医療保険改革をめぐり、保守系団体の Patients United Now と Patients First は「ワシントンはカナダ型の医療制度を持ち込もうとしている」とする広告を展開した。</p>
 
 <div class="compare">
@@ -232,7 +244,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <p class="distort-note"><strong>歪曲点：</strong>専門医受診に半年待たされるといったカナダの事例を持ち出す手法を、米 FactCheck.org は藁人形論法と評した。</p>
 
 <p>出典 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> : FactCheck.org (2009 年 7 月 17 日）</p>
-<h3>●同じ党内でも起きる――米国 / 2019 年、民主党予備選討論会</h3>
+<h3 id="sec3-5">3.5 同じ党内でも起きる――米国 / 2019 年、民主党予備選討論会</h3>
 <p>2019 年 6 月の米民主党予備選討論会では、穏健派候補のデラニー氏が、サンダース氏の掲げる国民皆保険制度「メディケア・フォー・オール」について発言した。</p>
 
 <div class="compare">

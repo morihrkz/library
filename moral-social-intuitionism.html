@@ -24,9 +24,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -68,6 +71,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -88,7 +92,13 @@ pre code{background:none; padding:0;}
 <li><a href="#sec5">実証研究 (2) ――嫌悪感の催眠操作実験</a></li>
 <li><a href="#sec6">道徳基盤理論への展開</a></li>
 <li><a href="#sec7">もう一つの二重過程理論――グリーンとトロッコ問題</a></li>
-<li><a href="#sec8">批判的検討――理由づけは本当に後付けなのか</a></li>
+<li><a href="#sec8">批判的検討――理由づけは本当に後付けなのか</a>
+<ol>
+<li><a href="#sec8-1">推論と直観を時間的に切り離すことへの異論</a></li>
+<li><a href="#sec8-2">道徳的当惑そのものへの追試の失敗</a></li>
+<li><a href="#sec8-3">理由づけが判断を動かすという反証</a></li>
+</ol>
+</li>
 <li><a href="#sec9">心理学クラスタの他記事との接続</a></li>
 <li><a href="#sec10">まとめ</a></li>
 </ol>
@@ -137,11 +147,11 @@ pre code{background:none; padding:0;}
 
 <h2 id="sec8">8. 批判的検討――理由づけは本当に後付けなのか</h2>
 <p>SIM は道徳心理学に大きな影響を与えた一方、その中心的な主張――理由づけは判断の原因ではなく事後的な正当化にすぎない――に対しては、複数の方向から異論が寄せられてきた。</p>
-<h3>●推論と直観を時間的に切り離すことへの異論</h3>
+<h3 id="sec8-1">8.1 推論と直観を時間的に切り離すことへの異論</h3>
 <p>ピサロとブルームは 2003 年、ハイト (2001) への論評のなかで、 SIM が依拠する事例の多くは、実際には過去の推論の産物である直観を、あたかも「その場限りに生じた直観」であるかのように扱っている、と指摘した。ある行為に対する瞬時の嫌悪反応それ自体が、幼少期からの道徳教育や過去の熟慮の蓄積を通じて形成されてきたものだとすれば、直観と理性を時間的に切り離して対立させる図式は単純化しすぎている、という批判である <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。ハイトは同年の応答論文で、 SIM は推論が直観の長期的な形成に影響することを排除していないと反論したが <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 、この論争は、推論と直観の役割分担をどの時間的スケールで線引きするかという、なお決着していない論点を残している。</p>
-<h3>●道徳的当惑そのものへの追試の失敗</h3>
+<h3 id="sec8-2">8.2 道徳的当惑そのものへの追試の失敗</h3>
 <p>SIM の経験的な支柱である道徳的当惑の頑健性そのものにも、疑問が呈されている。ロイズマン、キム、リーマンは 2015 年、「ジュリーとマークの物語」の追試を行い、多くの参加者が実験者による「無害である」という設定を額面どおりには受け入れず、関係への悪影響や将来のリスクを想定し続けていたことを示した。また、参加者が発する「とにかく間違っている」という言明も、理由の欠如というより、結果の有無に左右されない義務論的な立場の一貫した表明として解釈できる場合が多く、元の報告にあったような当惑の再現率は大幅に低かったと報告している <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。この追試結果は、道徳的当惑を「理由なき判断」の証拠とみなす解釈そのものの前提を掘り崩すものである。</p>
-<h3>●理由づけが判断を動かすという反証</h3>
+<h3 id="sec8-3">8.3 理由づけが判断を動かすという反証</h3>
 <p>理由づけが判断に先行し、判断内容を実際に変えうることを示す研究も存在する。パクストン、アンガー、グリーンは 2012 年、認知的熟慮テストで反省的な思考をあらかじめ促した参加者や、議論の強さと熟慮のための時間を操作された参加者が、それぞれより功利主義的な判断へと動いたことを報告し、理由づけは単なる事後的な正当化ではなく、判断そのものを動かしうる経路であると主張した <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。ただし 2022 年に行われたこの研究の事前登録追試では、二回の追試のうち一回では操作の効果がまったく確認されず、もう一回でも議論の強さの効果はごくわずかにとどまり、原論文の結果は安定して再現されなかったと報告されている <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。</p>
 <p>以上を踏まえると、理由づけの因果的な役割についても、 SIM への批判についても、いずれも最終的な決着にはまだ距離がある。道徳的当惑の再現性は疑問視される一方、理由づけが判断を動かすことを示した研究もまた再現性の壁に直面しており、「直観が先か、理由が先か」という単純な二者択一で答えられる段階には、この分野はまだ至っていない。</p>
 

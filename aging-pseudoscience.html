@@ -26,8 +26,11 @@ h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:7
 .lede p:last-child{margin-bottom:0}
 .meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 24px}
@@ -58,6 +61,7 @@ sup a:hover{text-decoration:underline}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -80,7 +84,12 @@ sup a:hover{text-decoration:underline}
 <p class="toc-title">目次</p>
 <ol>
 <li><a href="#sec1">問題の所在――シンクレアの主張とその射程</a></li>
-<li><a href="#sec2">ジェロサイエンスは疑似科学か――制度的基盤の検討</a></li>
+<li><a href="#sec2">ジェロサイエンスは疑似科学か――制度的基盤の検討</a>
+<ol>
+<li><a href="#sec2-1">老化の特徴と介入試験プログラム</a></li>
+<li><a href="#sec2-2">TAME試験とWHOによる疾病分類への編入</a></li>
+</ol>
+</li>
 <li><a href="#sec3">シンクレア個人の研究をめぐる論争――サーチュインとレスベラトロール</a></li>
 <li><a href="#sec4">2024 年の紛糾――イヌの「若返り」と学会からの離反</a></li>
 <li><a href="#sec5">利益相反という論点</a></li>
@@ -94,7 +103,9 @@ sup a:hover{text-decoration:underline}
 <p>問題は、この査読済みの基礎研究から、書籍・講演・企業の広報発表における「老化は治療できる」「老化を逆転させる薬が 10 年以内に実用化する」といった発言までの距離である。両者は同じ研究者から発せられていても、検証の水準が全く異なる。</p>
 
 <h2 id="sec2">2. ジェロサイエンスは疑似科学か――制度的基盤の検討</h2>
+<h3 id="sec2-1">2.1 老化の特徴と介入試験プログラム</h3>
 <p>老化そのものを研究対象とする学問領域「ジェロサイエンス（老年生物学）」は、疑似科学として片づけられる周辺領域ではなく、米国国立衛生研究所 (NIH) 傘下の国立老化研究所 (NIA) が制度的に支援する確立分野である <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。 2013 年に提唱された「老化の特徴 (Hallmarks of Aging) 」という枠組みは、老化に関わる生物学的機構を分類する概念的な足場として広く受け入れられ、 NIA が資金提供する Interventions Testing Program は、ラパマイシン・アカルボース・ 17 α - エストラジオールなど複数の薬剤について、複数施設にまたがる再現性のある寿命延長効果を確認している <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。</p>
+<h3 id="sec2-2">2.2 TAME試験とWHOによる疾病分類への編入</h3>
 <p>臨床応用の面でも、安価な糖尿病治療薬メトホルミンを非糖尿病の高齢者に投与し、老化に関連する疾患群の発症を遅らせられるかを検証する TAME 試験 (Targeting Aging with Metformin) が、米国老化研究連盟 (AFAR) の主導のもとで計画されている <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。さらに世界保健機関 (WHO) は、国際疾病分類第 11 版 (ICD-11) において「老化関連 (Ageing-Related, XT9T) 」という病因分類コードを新設し、老化を個別疾患の背景にある一つの原因・危険因子として位置づける枠組みを制度化した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
 <p class="pull">分野としてのジェロサイエンスは、査読・再現性・公的資金による検証という科学の標準的な手続きを経た、疑似科学とは区別される確立分野である。</p>
 

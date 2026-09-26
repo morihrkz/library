@@ -24,9 +24,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
   font-size:15px; line-height:1.9; padding:16px 0; margin:0 0 40px;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -68,6 +71,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -86,7 +90,13 @@ pre code{background:none; padding:0;}
 <li><a href="#sec3">六つの基盤とその進化的根拠</a></li>
 <li><a href="#sec4">測定法――道徳基盤質問紙と道徳基盤辞書</a></li>
 <li><a href="#sec5">政治的立場による重みづけの経験的知見</a></li>
-<li><a href="#sec6">学術的批判――測定・構造・因果の三つの争点</a></li>
+<li><a href="#sec6">学術的批判――測定・構造・因果の三つの争点</a>
+<ol>
+<li><a href="#sec6-1">WEIRD サンプルへの偏りと因子構造の問題</a></li>
+<li><a href="#sec6-2">基盤の「生得性」への異論</a></li>
+<li><a href="#sec6-3">因果の向き――基盤は政治的立場の原因か、それとも結果か</a></li>
+</ol>
+</li>
 <li><a href="#sec7">理論のその後――MFT 2.0 への改訂</a></li>
 <li><a href="#sec8">本ライブラリの既存記事との接続</a></li>
 <li><a href="#sec9">まとめ</a></li>
@@ -126,11 +136,11 @@ pre code{background:none; padding:0;}
 
 <h2 id="sec6">6. 学術的批判――測定・構造・因果の三つの争点</h2>
 <p>MFT は道徳心理学に広範な影響を与えた一方、理論の根幹に関わる複数の批判にさらされてきた。ここでは測定対象の偏り、因子構造の妥当性、因果の向きという三つの争点を順に見る。</p>
-<h3>●WEIRD サンプルへの偏りと因子構造の問題</h3>
+<h3 id="sec6-1">6.1 WEIRD サンプルへの偏りと因子構造の問題</h3>
 <p>MFT の実証研究の多くは、欧米の、高学歴で、工業化された、豊かで、民主主義的な社会 (WEIRD) のサンプルに依拠してきた。ドウルヨル、アルパー、ユルマズによる 2019 年の研究は、 WEIRD 圏と非 WEIRD 圏の複数の国のデータを用いて MFQ の因子構造を検証し、当初想定された五因子（後に六因子）のモデルが、非 WEIRD 圏のサンプルでは同じようには再現されず、とりわけ拘束基盤（忠誠・権威・神聖）が独立した因子として分離しにくいことを示した <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。これは、六つの基盤という区分そのものが、理論が前提とするほど文化を超えて安定した構造なのかという、測定論的な疑問を投げかけるものである。</p>
-<h3>●基盤の「生得性」への異論</h3>
+<h3 id="sec6-2">6.2 基盤の「生得性」への異論</h3>
 <p>スーラーとチャーチランドは 2011 年、より理論的な角度から MFT を批判した。二人は、各基盤が進化的に「モジュール化」された、生得的で独立した心理メカニズムであるという MFT の主張が、神経科学的な証拠によって十分に裏づけられているとは言いがたいと論じた。感情や認知のより一般的な仕組み（例えば、脅威への反応や嫌悪感の処理）が複数の基盤にまたがって働いている可能性があり、六つの基盤を互いに独立したモジュールとして切り分ける必要は必ずしもない、という批判である <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。</p>
-<h3>●因果の向き――基盤は政治的立場の原因か、それとも結果か</h3>
+<h3 id="sec6-3">6.3 因果の向き――基盤は政治的立場の原因か、それとも結果か</h3>
 <p>最も根本的な批判は、因果の向きに関わる。 MFT は「道徳基盤への重みづけの違いが政治的立場の違いを生む」という向きの説明を前提とすることが多いが、スミス、アルフォード、ヒビング、マーティン、タイバーによる 2017 年の研究は、この因果の向きが実は逆かもしれないという可能性を検討した。同研究は、先に政治的アイデンティティが（イデオロギー的な社会化や、より根深い気質的傾向によって）形成され、道徳基盤の質問紙への回答はその政治的アイデンティティを事後的に言語化したものにすぎない、という代替仮説を排除できないと論じている <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。この批判が正しければ、道徳基盤の重みづけは政治的立場の違いを説明する独立変数ではなく、単なる代理変数（政治的立場をすでに知っていれば予測できる、それを言い換えただけの指標）にすぎない、ということになる。</p>
 <div class="box"><strong>三つの争点の関係</strong>これら三つの批判は独立に見えるが、互いに補強し合う関係にある。因子構造が文化によって不安定である（争点一）ことは、六基盤が普遍的で生得的なモジュールだという主張（争点二への反論）を弱め、さらに、基盤スコアが実は政治的立場の代理変数にすぎないとすれば（争点三）、そもそも「基盤」という独立した心理的実体を措定する必要自体が疑わしくなる、という順序で批判は連動している。</div>
 

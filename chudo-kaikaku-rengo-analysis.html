@@ -24,9 +24,12 @@ h1{font-size:32px;line-height:1.6;font-weight:700;color:var(--text);margin:0 0 1
 .lede p{font-size:20px;margin:0 0 14px}
 .lede p:last-child{margin-bottom:0}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px;line-height:1.5;font-weight:700;margin:52px 0 9px;padding-bottom:9px;border-bottom:1px solid var(--line)}
@@ -57,6 +60,7 @@ figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;text-align:center
 @media (max-width:480px){
   .wrap{padding:32px 16px 80px}
   h1{font-size:27px}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -72,7 +76,11 @@ figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;text-align:center
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
 <ol>
-<li><a href="#sec1">何が起きたのか――発足から分裂までの経緯</a></li>
+<li><a href="#sec1">何が起きたのか――発足から分裂までの経緯</a>
+<ol>
+<li><a href="#sec1-1">「政党を作る」ことと「政党を育てる」ことは別である</a></li>
+</ol>
+</li>
 <li><a href="#sec2">立憲民主党の意思決定はボトムアップだったのか</a></li>
 <li><a href="#sec3">公明党の意思決定はトップダウンだったのか</a></li>
 <li><a href="#sec4">「ボトムアップ対トップダウン」という図式を超えて</a></li>
@@ -140,7 +148,7 @@ figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;text-align:center
 
 <p>そして 8 月 31 日に 3 党合流は断念され、 9 月 9 日、中道改革連合は旧立憲系と旧公明系に分かれる「新たな形態」を決定した。公明系は公明党へ再結集し、立憲系は新党を立ち上げる一方、衆院では統一会派「中道」を組み、政策立案や選挙活動などで協力する構想が示された。 NHK の報道でも、この分裂後に統一会派を組む方針が伝えられている。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup></p>
 
-<h3>●「政党を作る」ことと「政党を育てる」ことは別である</h3>
+<h3 id="sec1-1">1.1 「政党を作る」ことと「政党を育てる」ことは別である</h3>
 <p>今回の分裂を理解するには、 8 月の合流拒否だけでなく、そもそも 1 月の結党がどのような条件で成立したかを見る必要がある。中道改革連合の結党は、時間的には極端に短かった。衆院解散を目前にして立憲民主党と公明党の衆院議員が一気に新党へ移り、共同代表、共同幹事長、共同政調会長など、双方の幹部を組み合わせた共同体制が作られた。テレビ朝日も 1 月 21 日、共同体制を採る方針を報じている。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup></p>
 
 <p>これは選挙戦略としては合理的な側面がある一方、選挙直前の「上からの統合」と、党員・地方議員・支持団体まで含めた「組織としての統合」は同じではない。実際、結党時点で立憲側の参院議員や自治体議員、地方組織はそのまま立憲民主党に残った。愛知の近藤昭一氏も 1 月 22 日、衆院議員等が中道に入りつつ参院議員・自治体議員や地方組織は当面立憲民主党に所属すると説明していた。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> つまり中道は、最初から「国会議員を中心に急造された政党」という性格を持っていたのである。選挙で成功していれば、議員が地方組織へ浸透し、時間をかけて新党のアイデンティティを作る可能性もあっただろう。しかし大幅な議席減という結果は、統合をさらに深めるための政治的エネルギーを急速に失わせた。</p>

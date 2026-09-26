@@ -24,10 +24,13 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
 
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px; margin-bottom:11px;}
+.toc li li{font-size:15.5px; color:var(--muted); margin-bottom:5px;}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -69,6 +72,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -83,7 +87,13 @@ pre code{background:none; padding:0;}
 <p class="toc-title">目次</p>
 <ol>
 <li><a href="#sec1">はじめに</a></li>
-<li><a href="#sec2">言語哲学とは何か</a></li>
+<li><a href="#sec2">言語哲学とは何か</a>
+<ol>
+<li><a href="#sec2-1">定義・研究対象</a></li>
+<li><a href="#sec2-2">歴史的展開――言語論的転回</a></li>
+<li><a href="#sec2-3">代表的な論点・学説の対立</a></li>
+</ol>
+</li>
 <li><a href="#sec3">心理言語学とは何か</a></li>
 <li><a href="#sec4">日本国内の事情</a></li>
 <li><a href="#sec5">海外の事情</a></li>
@@ -96,13 +106,13 @@ pre code{background:none; padding:0;}
 両者はいずれも名前に「言語」を含むが、方法論も歴史も大きく異なる。
 本稿の目的は、この二つの分野の全体像――定義、歴史、主要な論点、国内外の研究状況、そして両分野の関係――を把握することにある。専門的な予備知識を前提とせず、初出の専門用語にはその都度説明を添える方針で書いた。</p>
 <h2 id="sec2">2. 言語哲学とは何か</h2>
-<h3>●定義・研究対象</h3>
+<h3 id="sec2-1">2.1 定義・研究対象</h3>
 <p>言語哲学 (philosophy of language) は、指示 (reference 。ある言葉がどの対象を指すか）、真理 (truth) 、意味 (meaning) 、必然性 (necessity) といった、言語一般に関わる概念を哲学的に解明しようとする分野である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。似た名前の「言語的哲学」 (linguistic philosophy, 日常言語の使われ方に注目して特定の哲学的問題を解こうとする立場）と区別されることもあるが、本記事では広く言語そのものを対象とする哲学分野全般を指して「言語哲学」と呼ぶ <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。</p>
 <p>研究対象には、語や文がどのようにして現実の対象を指し示すのかという指示の問題、文の意味はその真理条件（その文が真であるための条件）によって定まるという考え方、そして発話を単なる事実の記述ではなく一種の行為として捉える言語行為論 (speech act theory) などが含まれる <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。言語行為論では、発話を「言うことそのものの行為（発語行為）」「言うことで何かをなす行為（発語内行為、例えば約束や命令）」、「言うことによって聞き手に及ぼす効果（発語媒介行為）」の三層に分けて分析する <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。</p>
-<h3>●歴史的展開――言語論的転回</h3>
+<h3 id="sec2-2">2.2 歴史的展開――言語論的転回</h3>
 <p>20 世紀の分析哲学は、「言語論的転回 (linguistic turn) 」と呼ばれる大きな方向転換を経験した。これは、世界を理解する前にまず、世界を記述するのに用いる言語そのものを理解しなければならない、という発想への転換である <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
 <p>哲学者マイケル・ダメットによれば、この転回はゴットロープ・フレーゲの 1884 年の著作『算術の基礎』に遡ることができるとされる <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。フレーゲに続き、バートランド・ラッセルは 1905 年の論文「指示について (On Denoting) 」で、日常言語の表面的な文法構造が哲学的な混乱を生む場合があることを示し、論理分析によってその混乱を解消できることを示した <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup> 。さらにルートヴィヒ・ウィトゲンシュタインは、 1921 年の『論理哲学論考』において、言語・思考・現実が共通の論理構造を持つと論じ、これによって言語論的転回が本格的に定着したとされる <sup id="fnref-3-4"><a href="#ref-3">[3]</a></sup> 。</p>
-<h3>●代表的な論点・学説の対立</h3>
+<h3 id="sec2-3">2.3 代表的な論点・学説の対立</h3>
 <p>言語哲学には、現在も決着していない対立がいくつかある。以下では、それぞれの学説がどの区分（確立した見解・論争中の見解・少数説）に属するかを、調査で確認できた範囲の根拠とともに示す。</p>
 <p><strong>(a) 固有名の指示をめぐる記述説と因果説</strong></p>
 <p>20 世紀半ばまで有力だったのは、フレーゲとラッセルに由来する「記述説」である。これは、固有名（人名など）はある記述（あるいは記述の束）と同義であるか、その記述を対象が満たすことによって指示が定まる、とする立場である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>

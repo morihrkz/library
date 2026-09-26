@@ -25,9 +25,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -68,6 +71,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 
 /* --- 図解・対比用の追加スタイル --- */
@@ -122,7 +126,12 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <li><a href="#sec1">こころの骨格――自我・影・元型・自己</a></li>
 <li><a href="#sec2">河合隼雄と日本的展開――中空構造と箱庭療法</a></li>
 <li><a href="#sec3">「科学」として検証できるか――反証可能性・ MBTI ・共時性</a></li>
-<li><a href="#sec4">河合隼雄への批判――日本人論・方法論・ジェンダー</a></li>
+<li><a href="#sec4">河合隼雄への批判――日本人論・方法論・ジェンダー</a>
+<ol>
+<li><a href="#sec4-1">「日本人論」としての本質主義批判</a></li>
+<li><a href="#sec4-2">方法論上の弱さとジェンダー批判</a></li>
+</ol>
+</li>
 <li><a href="#sec5">ユングその人をめぐる論争――反ユダヤ主義疑惑と『赤の書』</a></li>
 <li><a href="#sec6">なぜ今も読まれるのか――ポップ心理学から脳科学まで</a></li>
 </ol>
@@ -240,9 +249,9 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 
 <h2 id="sec4">4. 河合隼雄への批判――日本人論・方法論・ジェンダー</h2>
 <p>日本にユング心理学を根づかせた功労者として敬愛される河合隼雄だが、その理論と社会的な活動の両面で、いくつかの角度から批判の対象にもなってきた。</p>
-<h3>●「日本人論」としての本質主義批判</h3>
+<h3 id="sec4-1">4.1 「日本人論」としての本質主義批判</h3>
 <p>河合の<strong>中空構造論</strong>は、「日本人には独自の国民性がある」と語る「日本人論」というジャンルの一部として批判の対象にもなってきた。社会学者のピーター・ N ・デールらは、こうした語りの多くが検証しづらい文化的本質主義に陥りやすく、時に文化的なナショナリズムの一形態として機能してしまう危うさを指摘している。「日本人はこういうものだ」という物語は、心地よく響く分だけ、反証しにくいという問題を抱えている。</p>
-<h3>●方法論上の弱さとジェンダー批判</h3>
+<h3 id="sec4-2">4.2 方法論上の弱さとジェンダー批判</h3>
 <p>もう一つの批判は、河合の仕事が個々のクライアントとの対話を丁寧に記述する「事例研究」を中心に据えている点に向けられる。懐疑的な立場の研究者たちは、逸話的な事例の積み重ねは、対照試験のようなより客観的な検証手続きに置き換わるものではないと指摘してきた。さらに、河合の代表作『母性社会日本の病理』 (1976 年）が「母性優位の社会」として日本を描いた枠組みに対しては、社会学者の上野千鶴子が 1997 年の論考「女装した家父長制」の中で、日本社会の権力構造は実質的には家父長制でありながら、それが「母性」という優しいイメージの名のもとに行使されるため、批判すべき「敵」の所在がかえって見えにくくなる、と指摘している。</p>
 
 <div class="stance-grid">

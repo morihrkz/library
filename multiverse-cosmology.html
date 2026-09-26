@@ -24,9 +24,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -68,6 +71,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -89,7 +93,13 @@ pre code{background:none; padding:0;}
 <li><a href="#sec7">「似た宇宙」を四つに分ける――テグマークと多世界解釈</a></li>
 <li><a href="#sec8">野村泰紀氏の量子マルチバース――魅力的だが、まだ確立理論ではない</a></li>
 <li><a href="#sec9">では「ビッグバンの前」はどうなるのか</a></li>
-<li><a href="#sec10">無境界・トンネル・量子バウンス――三つの「その先」の描像</a></li>
+<li><a href="#sec10">無境界・トンネル・量子バウンス――三つの「その先」の描像</a>
+<ol>
+<li><a href="#sec10-1">ハートル＝ホーキングの無境界提案</a></li>
+<li><a href="#sec10-2">ヴィレンキンのトンネル提案</a></li>
+<li><a href="#sec10-3">ループ量子宇宙論と量子バウンス</a></li>
+</ol>
+</li>
 <li><a href="#sec11">なぜ「前」という言葉が難しいのか</a></li>
 <li><a href="#sec12">最後に残るもの――宇宙論の強さは「分からない」と言えることにある</a></li>
 </ol>
@@ -238,17 +248,17 @@ Level III は、量子状態のユニタリーな時間発展を多世界的に�
 もしそうなら、特異点は本当の「宇宙の端」ではなく、古典理論の近似が壊れる場所なのかもしれない。
 ただし、その「かもしれない」を確認するには、量子重力の実験的検証が必要である。</p>
 <h2 id="sec10">10. 無境界・トンネル・量子バウンス――三つの「その先」の描像</h2>
-<h3>ハートル＝ホーキングの無境界提案</h3>
+<h3 id="sec10-1">10.1 ハートル＝ホーキングの無境界提案</h3>
 <p>Hartle と Hawking は 1983 年、「宇宙の波動関数」を量子論的に記述する際、宇宙の初期状態に通常の時間的境界を置かないという無境界提案を示した。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup>
 重要なのは、「宇宙が時間の中の一点から始まった」と単純に考えるのではなく、初期宇宙の幾何そのものを量子的に扱うことだ。</p>
 <p>よく使われる「南極より南には行けない」という比喩は、数学的構造を直感的に説明するためのものだ。
 それは「宇宙の南極が実際に丸い空間だった」という観測結果ではない。
 また、虚時間を使った定式化は、日常語でいう「時間を別の方向へ流す」という話でもない。</p>
-<h3>ヴィレンキンのトンネル提案</h3>
+<h3 id="sec10-2">10.2 ヴィレンキンのトンネル提案</h3>
 <p>Alexander Vilenkin は、宇宙の波動関数に異なる境界条件を与え、量子トンネル効果によって宇宙が生成されるという提案を行った。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup>
 ここでいう「 nothing （無）」は、日常語の「何もない空間」と同じではない。
 物理学では、理論が何を前提にしているかを明確にしなければならず、「無」という一語から哲学的な絶対無を連想してはいけない。</p>
-<h3>ループ量子宇宙論と量子バウンス</h3>
+<h3 id="sec10-3">10.3 ループ量子宇宙論と量子バウンス</h3>
 <p>ループ量子宇宙論 (LQC) では、量子幾何学の効果によって、古典一般相対論が予測する特異点が回避され、収縮宇宙がバウンスして膨張宇宙へ移行する可能性が研究されている。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup>
 これは「ビッグバンの前にも宇宙があった」という非常に魅力的な描像を与える。
 しかし、それはあくまで LQC という理論枠組みの中で得られる結果であり、私たちの宇宙が実際にその歴史をたどったと観測で確定したわけではない。</p>

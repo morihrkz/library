@@ -22,9 +22,10 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
 .toc ol{margin:0; padding-left:1.3em;}
-.toc li{margin-bottom:7px; font-size:16.5px;}
+.toc li{margin-bottom:7px; font-size:16.5px;;break-inside:avoid}
 .toc li ol{margin-top:7px; margin-bottom:11px;}
 .toc li li{font-size:15.5px; color:var(--muted); margin-bottom:5px;}
 .toc a{color:var(--text); text-decoration:none;}
@@ -63,6 +64,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -78,7 +80,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <p class="toc-title">目次</p>
 <ol>
 <li><a href="#sec1">要旨</a></li>
-<li><a href="#sec2">はじめに――なぜ「実存主義」は分類しにくいのか</a></li>
+<li><a href="#sec2">なぜ実存主義は分類しにくいのか</a></li>
 <li><a href="#sec3">実存主義の中心的主張</a></li>
 <li><a href="#sec4">思想家たちの多様性――一枚岩ではない実存主義</a></li>
 <li><a href="#sec5">有神論的実存主義と無神論的実存主義</a></li>
@@ -92,7 +94,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <li><a href="#sec6-6">構造主義との対立</a></li>
 </ol>
 </li>
-<li><a href="#sec7">図解――実存主義をめぐる思想地図</a></li>
+<li><a href="#sec7">実存主義をめぐる思想地図</a></li>
 <li><a href="#sec8">結論</a></li>
 </ol>
 </nav>
@@ -100,7 +102,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <h2 id="sec1">1. 要旨</h2>
 <p>実存主義は、しばしば「暗い」「虚無的」な哲学として誤解される。しかし実存主義を掲げた思想家たちの主張は一枚岩ではなく、有神論者から無神論者まで、悲観論者から幸福を説く者まで、内部にかなりの幅を持つ。本稿では実存主義の中心概念を確認したうえで、ニヒリズム・不条理主義・現象学・ヒューマニズム・マルクス主義・構造主義という、しばしば実存主義と混同されたり対比されたりする隣接思想を整理し、それぞれが実存主義と排他的な関係にあるのか、それとも共存し得るのかを検討する。結論を先取りすれば、実存主義は体系ではなく一つの「態度」であるがゆえに、多くの主義と部分的に重なり合いながら、なお区別され続けている。</p>
 
-<h2 id="sec2">2. はじめに――なぜ「実存主義」は分類しにくいのか</h2>
+<h2 id="sec2">2. なぜ実存主義は分類しにくいのか</h2>
 <p>「実存主義者を三人集めれば、四つの立場ができる」――これは誇張ではない。無神論を公言したサルトルと、カトリックに改宗したガブリエル・マルセルは、ともに「実存主義」というラベルの下に括られながら、思想的にはほぼ正反対の場所に立っていた <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。さらにアルベール・カミュに至っては、自らを「実存主義者」と呼ばれることを生涯拒み続けた <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。哲学者スティーブン・クロウェルは、実存主義を特定の教説の体系としてではなく、「特定の体系的哲学を拒否するための一般的なアプローチ」として捉えるべきだと述べている <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。つまり実存主義とは、あらかじめ答えを持った閉じた理論ではなく、いくつかの共通する問いの立て方を共有する、ゆるやかな思想の集まりなのである。この性質こそが、本稿の主題である「他の主義との併存可能性」を考える出発点になる。</p>
 
 <h2 id="sec3">3. 実存主義の中心的主張</h2>
@@ -179,7 +181,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <strong>留意点：</strong>以上の整理は初学者向けの見取り図であり、各思想の細部にはここで触れていない多くの異論・留保がある。特に構造主義とポスト構造主義、あるいはマルクス主義内部の諸潮流との関係は、専門的な議論では本稿よりはるかに複雑に扱われる。
 </div>
 
-<h2 id="sec7">7. 図解――実存主義をめぐる思想地図</h2>
+<h2 id="sec7">7. 実存主義をめぐる思想地図</h2>
 <figure class="diagram">
 <svg viewBox="0 0 700 420" role="img" aria-label="実存主義を中心円とし、現象学・不条理主義・ヒューマニズムが重なり合う円として、マルクス主義が破線で部分的に接続する箱として、ニヒリズムと構造主義が対立関係にある別の箱として描かれる関係図。">
   <circle cx="350" cy="220" r="100" fill="none" stroke="var(--accent)" stroke-width="2"/>

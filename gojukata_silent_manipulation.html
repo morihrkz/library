@@ -26,8 +26,11 @@ h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 14px;font-weight:
 .lede p{font-size:20px;margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px;}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px;}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 24px;}
@@ -58,6 +61,7 @@ sup a:hover{text-decoration:underline;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -81,12 +85,27 @@ sup a:hover{text-decoration:underline;}
 <p class="toc-title">目次</p>
 <ol>
 <li><a href="#sec1">五十肩とは何か――肩関節周囲炎という別名</a></li>
-<li><a href="#sec2">なぜ五十肩は起こるのか――加齢だけでは説明できない原因</a></li>
+<li><a href="#sec2">なぜ五十肩は起こるのか――加齢だけでは説明できない原因</a>
+<ol>
+<li><a href="#sec2-1">加齢・姿勢・生活習慣という背景要因</a></li>
+<li><a href="#sec2-2">糖尿病など全身疾患との関連</a></li>
+</ol>
+</li>
 <li><a href="#sec3">三つの病期――炎症期・拘縮期・回復期</a></li>
 <li><a href="#sec4">標準治療の骨格――保存療法でできること</a></li>
 <li><a href="#sec5">保存療法で改善しないとき――マニピュレーションという選択</a></li>
-<li><a href="#sec6">サイレントマニピュレーションのしくみ</a></li>
-<li><a href="#sec7">効果とリスク――エビデンスから見えてくること</a></li>
+<li><a href="#sec6">サイレントマニピュレーションのしくみ</a>
+<ol>
+<li><a href="#sec6-1">神経ブロックによる剥離のしくみ</a></li>
+<li><a href="#sec6-2">施術の流れと費用</a></li>
+</ol>
+</li>
+<li><a href="#sec7">効果とリスク――エビデンスから見えてくること</a>
+<ol>
+<li><a href="#sec7-1">短期的な効果に関するエビデンス</a></li>
+<li><a href="#sec7-2">確認されているリスク</a></li>
+</ol>
+</li>
 <li><a href="#sec8">治療後のリハビリと再発予防</a></li>
 <li><a href="#sec9">まとめ――肩の痛みとどう向き合うか</a></li>
 </ol>
@@ -97,7 +116,9 @@ sup a:hover{text-decoration:underline;}
 <p>特徴的なのは、転倒や打撲のような明確なきっかけがないまま、ある日突然肩に痛みが生じ、徐々に腕が上がらなくなっていく点だ。腱板断裂（肩のインナーマッスルである腱板が切れる外傷性の疾患）と混同されやすいが、五十肩は関節を包む「関節包」という袋状の組織そのものが炎症を起こし、やがて硬く縮んでしまうことで動きが制限される点が本質的に異なる。</p>
 
 <h2 id="sec2">2. なぜ五十肩は起こるのか――加齢だけでは説明できない原因</h2>
+<h3 id="sec2-1">2.1 加齢・姿勢・生活習慣という背景要因</h3>
 <p>五十肩の直接的な引き金は、関節を構成する骨・軟骨・靭帯・腱などが加齢とともに変性し、その周囲の組織に炎症が起きることだと考えられている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。ただし、加齢だけがすべてを説明するわけではない。長時間のデスクワークによる猫背などの不良姿勢、逆に肩の使いすぎ、あるいは運動不足による血流低下も発症の背景として挙げられる <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。</p>
+<h3 id="sec2-2">2.2 糖尿病など全身疾患との関連</h3>
 <p>見落とされがちなのが、全身の持病との関係だ。心疾患、パーキンソン病、脳卒中、甲状腺疾患といった基礎疾患を持つ人は五十肩を発症しやすいことが知られている <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 。とりわけ糖尿病との関連は臨床的に重要で、高血糖の状態が続くと全身の結合組織が硬くなりやすく、五十肩の発症リスクそのものを押し上げるだけでなく、いったん発症すると注射やリハビリテーションを行っても改善が乏しい難治性の経過をたどりやすいことが指摘されている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
 
 <div class="pull">五十肩は「歳のせい」の一言で片づけられがちだが、背景には姿勢・生活習慣・全身疾患という複数の要因が重なっている。</div>
@@ -132,7 +153,9 @@ sup a:hover{text-decoration:underline;}
 <p>マニピュレーションには大きく二つの方法がある。一つは全身麻酔をかけたうえで入院して行う「関節鏡視下関節受動術」。もう一つが、本稿で取り上げる「サイレントマニピュレーション」であり、全身麻酔も入院も必要とせず、日帰りの外来で行うことができる <sup name="ref4b" id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。</p>
 
 <h2 id="sec6">6. サイレントマニピュレーションのしくみ</h2>
+<h3 id="sec6-1">6.1 神経ブロックによる剥離のしくみ</h3>
 <p>サイレントマニピュレーションは、超音波（エコー）を用いて肩や腕を支配する頸部の神経（頸神経根）を正確に狙い、局所麻酔薬を注射して神経ブロックをかけたうえで、患者が覚醒した状態のまま肩関節を他動的に動かし、硬くなった関節包を剥離する治療法である <sup name="ref5a" id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。全身麻酔を用いず、意識がある状態で行うことから「サイレント（静かな）」という名がついている。</p>
+<h3 id="sec6-2">6.2 施術の流れと費用</h3>
 <p>おおよその流れは次のとおりだ。</p>
 <ol>
 <li>エコーガイド下で頸部から神経ブロック注射を行い、肩から腕にかけての知覚を麻痺させる。</li>
@@ -143,7 +166,9 @@ sup a:hover{text-decoration:underline;}
 <p>健康保険が適用される治療であり、自己負担 3 割の場合でおおよそ 7,000 円前後が目安とされる <sup name="ref2b" id="fnref-2-5"><a href="#ref-2">[2]</a></sup> 。全身麻酔下の関節受動術に比べて身体への負担や入院の手間が小さいことから、難治性の拘縮肩に対する選択肢として近年広がりを見せている。</p>
 
 <h2 id="sec7">7. 効果とリスク――エビデンスから見えてくること</h2>
+<h3 id="sec7-1">7.1 短期的な効果に関するエビデンス</h3>
 <p>効果に関しては、 1,665 肩という大規模な症例を対象にした後ろ向き研究で、施術から 1 週間後には可動域の改善がみられ、その効果が 3 か月後まで維持されていたことが報告されている <sup name="ref6a" id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。短期的には可動域・疼痛・臨床スコアのいずれにおいても改善が確認されており、長らく改善しなかった拘縮が短時間の処置で大きく動くようになるという点で、患者にとってのインパクトは大きい。</p>
+<h3 id="sec7-2">7.2 確認されているリスク</h3>
 <p>一方で、リスクを軽視すべきではない。術後の MRI 評価では、関節唇損傷が 13.3 パーセント、骨挫傷が 50 パーセントの症例で認められたとする報告があり、関節包を強制的に剥離するという処置の性質上、一定の組織損傷を伴うことが示唆されている <sup name="ref7a" id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。また、頸部への注射という手技自体にも、出血や神経損傷といった合併症のリスクが伴う <sup name="ref7b" id="fnref-7-2"><a href="#ref-7">[7]</a></sup> 。</p>
 
 <div class="box">

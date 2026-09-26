@@ -24,9 +24,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -74,6 +77,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -91,7 +95,12 @@ pre code{background:none; padding:0;}
 <li><a href="#sec2">疑問の所在――バケツの水勢はなぜ弱まるのか</a></li>
 <li><a href="#sec3">水流アナロジーの射程――オームの法則という共通言語</a></li>
 <li><a href="#sec4">電圧の正体――水位ではなく、化学ポテンシャル差</a></li>
-<li><a href="#sec5">なぜ放電とともに電圧は下がるのか――本稿の核心</a></li>
+<li><a href="#sec5">なぜ放電とともに電圧は下がるのか――本稿の核心</a>
+<ol>
+<li><a href="#sec5-1">起電力の低下――電極活物質の組成変化</a></li>
+<li><a href="#sec5-2">内部抵抗による電圧降下 (IR ドロップ）</a></li>
+</ol>
+</li>
 <li><a href="#sec6">電圧だけで残量を測ることの妥当性と限界</a></li>
 <li><a href="#sec7">水流アナロジーはどこで破綻するか</a></li>
 <li><a href="#sec8">結語――疑問への回答</a></li>
@@ -157,12 +166,12 @@ pre code{background:none; padding:0;}
 「電池の中の何かが電気を押し出しているのではないか」という比喩的な直感は、この化学ポテンシャル差の存在を言い当てている点で的外れではないが、それを重力のような力学的な圧力と同一視するべきではない、というのがここでの結論である。</p>
 <h2 id="sec5">5. なぜ放電とともに電圧は下がるのか――本稿の核心</h2>
 <p>放電中に測定される電池の電圧（端子電圧）の低下には、性質の異なる二つの要因が寄与している。一つは起電力そのものの低下であり、もう一つは内部抵抗による電圧降下 (IR ドロップ）である。この二つを区別することが、疑問に正確に答えるための鍵になる。</p>
-<h3>●起電力の低下――電極活物質の組成変化</h3>
+<h3 id="sec5-1">5.1 起電力の低下――電極活物質の組成変化</h3>
 <p>リチウムイオン電池を例に取ると、放電とは、負極（一般に黒鉛）に蓄えられていたリチウムイオンが結晶構造の層のあいだから抜け出し（脱インターカレーション）、電解質を介して正極の結晶構造の中に入り込む（インターカレーション）過程である <sup><a id="fnref-5-1" href="#ref-5">[5]</a></sup><sup><a id="fnref-6-1" href="#ref-6">[6]</a></sup> 。このとき、負極から放出された電子は外部回路を通って正極へ流れ、これが負荷に供給される電流となる。
 電極間の電位差は、正極・負極それぞれの活物質中に含まれるリチウムの量（組成）に依存して決まるため、放電が進んでリチウムの組成が変化するにつれて、電極間の電位差そのもの、すなわち起電力が徐々に低下していく <sup><a id="fnref-5-2" href="#ref-5">[5]</a></sup><sup><a id="fnref-6-2" href="#ref-6">[6]</a></sup> 。
 これは水位が下がるように水圧が下がる現象と、現象としてはよく似ているが、その実体は電極を構成する物質の化学的な組成変化であり、重力とは無関係である。</p>
 <p>電池の電圧が下がるのは、電極の中の化学的な「地形」そのものが、放電が進むにつれて刻一刻と作り替えられているからである。</p>
-<h3>●内部抵抗による電圧降下 (IR ドロップ）</h3>
+<h3 id="sec5-2">5.2 内部抵抗による電圧降下 (IR ドロップ）</h3>
 <p>もう一つの要因は、電池内部の電解質・電極・集電体などが持つ電気抵抗（内部抵抗）によって生じる電圧降下である。電流が流れているときの端子電圧は、起電力から、この内部抵抗による電圧降下分を差し引いたものになる。
 電流を取り出すほど、また内部抵抗が大きいほど、この電圧降下は大きくなる <sup><a id="fnref-7-1" href="#ref-7">[7]</a></sup><sup><a id="fnref-8-1" href="#ref-8">[8]</a></sup> 。内部抵抗は温度や充電状態、劣化の進行度によっても変化することが報告されている <sup><a id="fnref-8-2" href="#ref-8">[8]</a></sup> 。
 負荷を急にかけたときに電圧が一時的にがくんと下がる現象（電圧サグ）は、主にこの IR ドロップによるものであり、電池内部の化学的な状態（真の残量）が瞬時に変化したわけではない <sup><a id="fnref-7-2" href="#ref-7">[7]</a></sup> 。この区別を怠ると、「重い負荷をかけたら電圧が下がったので残量が急に減った」という誤解が生じやすい。</p>

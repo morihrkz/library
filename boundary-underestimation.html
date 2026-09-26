@@ -24,9 +24,12 @@ h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-wei
 .lede p{font-size:20px; margin:0 0 14px;}
 .lede p:last-child{margin-bottom:0;}
 .toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
 .toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 .toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:16.5px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px;}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px;}
 .toc a{color:var(--text);text-decoration:none}
 .toc a:hover{color:var(--accent);text-decoration:underline}
 h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
@@ -68,6 +71,7 @@ pre code{background:none; padding:0;}
 @media (max-width:480px){
   .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
+  .toc>ol{columns:1}
 }
 </style>
 </head>
@@ -90,7 +94,12 @@ pre code{background:none; padding:0;}
 <li><a href="#sec5">公共財問題と「共有地の悲劇」――なぜ後者は直接の説明にならないか</a></li>
 <li><a href="#sec6">組織論における知見――セクショナリズムとサイロ効果</a></li>
 <li><a href="#sec7">政治哲学における知見――多数の手の問題と集合的責任の間隙</a></li>
-<li><a href="#sec8">処方箋の検討――何が効き、何がまだ検証途上か</a></li>
+<li><a href="#sec8">処方箋の検討――何が効き、何がまだ検証途上か</a>
+<ol>
+<li><a href="#sec8-1">確立に近い実証知見</a></li>
+<li><a href="#sec8-2">構造的な設計論――効果検証は限定的</a></li>
+</ol>
+</li>
 <li><a href="#sec9">結び――残された論点</a></li>
 </ol>
 </nav>
@@ -130,9 +139,9 @@ pre code{background:none; padding:0;}
 
 <h2 id="sec8">8. 処方箋の検討――何が効き、何がまだ検証途上か</h2>
 <p>ここまで検討してきた諸研究のうち、実際に「回避する処方箋」として提案され、かつ何らかの実証的裏付けを伴うものと、構造的な設計論として提案されてはいるものの効果検証がまだ限定的なものとを、分けて示す。</p>
-<h3>●確立に近い実証知見</h3>
+<h3 id="sec8-1">8.1 確立に近い実証知見</h3>
 <p>心理学者マルコ・ヴァン・ボメルらは 2012 年の実験で、傍観者効果が生じやすい場面でも、監視カメラの存在を意識させるなど「自分の行動が見られている」という公的自己意識 (public self-awareness) を高める手がかりを与えると、傍観者効果が逆転し、傍観者が多いほど援助行動が増える場合があることを示した <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。これは、責任の所在をあらかじめ明確化し、当事者に「自分が見られている・特定されている」という感覚を持たせることが、責任の分散を打ち消す働きを持つことを示す実証的な知見である。組織における「担当者を個人名で明示する」「誰がその案件を最後まで見たかを記録に残す」といった実務的な工夫が有効だと考えられるのは、この知見と整合的である。ただし、この実験は主に対面の緊急場面を対象にしたものであり、組織の恒常的な業務分担にそのまま一般化できるかどうかは、筆者の見立てにとどまる。</p>
-<h3>●構造的な設計論――効果検証は限定的</h3>
+<h3 id="sec8-2">8.2 構造的な設計論――効果検証は限定的</h3>
 <p>組織論では、境界領域の問題そのものを専任で扱う役割を組織構造に組み込むという発想が古くから存在する。組織社会学者ハワード・アルドリッチとダイアン・ハーカーは 1977 年の論文で、「境界連結役割」 (boundary spanning role) という概念を提示し、組織と外部環境との間、あるいは組織内の異なる部門の間をつなぎ、情報の収集・伝達と、境界における摩擦の緩衝を専門的に担う役割が、組織構造上どのように生成し機能するかを理論化した <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。この発想を延長すれば、「境界領域専任者を置く」という処方箋は理論的な裏付けを持つと言えるが、この記事の調査で確認できたのは境界連結役割という概念そのものの理論的整備であり、それを設置することが「お見合い」型の責任回避を実際にどの程度減らすかを測定した実証研究までは確認できなかった。</p>
 <p>もう一つの提案として、心理学者カール・ワイクと経営学者キャスリーン・サトクリフが提唱した「高信頼性組織」 (high reliability organization) 論がある。原子力発電所や空母の飛行甲板運用など、失敗が許されない組織を対象にした研究から導かれたこの枠組みは、失敗の兆候への強い関心、単純化への抵抗、現場の状況への感度、回復力への傾倒、専門知識への権限委譲という五つの原則からなる「集合的な用心深さ」 (collective mindfulness) を特徴とする <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。この理論は、責任や監視を意図的に重複させ、単純化した縦割りの分担に安住しないことの重要性を説く点で、境界領域の見落としに対する処方箋として参照されることがある。ただし高信頼性組織論は、原子力や航空管制のような高リスク環境の観察から帰納的に導かれた記述的な理論であり、一般的な企業組織や省庁間の分担にどこまで移転可能かは、理論の提唱者自身も含めて議論が続いている論点であって、確立した処方箋として扱うべきではない。</p>
 <p>最後に、トンプソンの「個人責任」基準や、コリンズの「集合的責任の間隙」の分析は、いずれも実証研究というより哲学的な概念整理であり、境界領域の担当を「誰の責任にするか」を決めるための判断基準を提供するものであって、それを制度としてどう運用すれば現実に「お見合い」を減らせるかについては、実証的な効果測定の対象にはなじみにくい性質を持つ。これらは、処方箋というより、処方箋を設計する際に踏まえるべき規範的な指針として位置づけるのが適切である。</p>
