@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>専門知への信頼を基礎づける</title>
+<style>
+:root{
+  --bg:#f7f8f6;
+  --text:#242522;
+  --muted:#65695f;
+  --accent:#3d5a52;
+  --line:#d7dcd2;
+  --box:#eceee7;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:2;margin:0}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px}
+a{color:var(--accent)}
+.kicker{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.5;margin:52px 0 0;padding-bottom:9px;border-bottom:1px solid var(--line)}
+h3{font-size:20px;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+.pull{font-size:22px;font-weight:700;color:var(--accent);border-left:4px solid var(--accent);padding-left:20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px}
+.box strong{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:0 0 28px;font-size:16px}
+th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
+th{background:var(--box)}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+li{margin-bottom:9px;font-size:19px}
+sup{font-size:.72em}
+sup a{color:var(--accent);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted);margin-top:20px}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">認識論・科学社会学的検討</p>
+<h1>専門知への信頼を基礎づける<br>――証言の認識論から見た専門家依存の合理性</h1>
+<p class="subtitle">Grounding Trust in Expertise: A Treatise on the Epistemic Rationality of Deferring to Testimony</p>
+
+<div class="lede">
+<p>現代人の知識の大部分は、みずから検証したことのない専門家の証言に依拠している。この依存は、認識論にとって都合の悪い問いを突きつける――証拠に自らアクセスしていない信念が、いかにして正当化されうるのか。</p>
+<p>本稿は、証言の認識論 (epistemology of testimony) と科学社会学における専門知研究 (science and technology studies) の一次文献を手がかりに、専門家への信頼を「盲信」でも「全面的懐疑」でもない、検証可能な認識的実践として定式化することを試みる。</p>
+</div>
+
+<div class="meta">【方法と限界】本稿は哲学・科学社会学の文献に基づく理論的検討であり、特定の政策論争や個別の科学的主張の当否を裁定するものではない。気候科学など具体例を挙げる箇所も、合意の測定方法を説明するための例示であって、当該分野の実質的な正しさを本稿が保証するものではない。実証研究の知見と規範的な哲学的主張は区別して読まれたい。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">問題の所在――認識的依存という条件</a>
+<ol>
+<li><a href="#sec1-1">証言への依存はなぜ知識たりうるか</a></li>
+<li><a href="#sec1-2">ハードウィグの逆説――信頼が証拠に先立つ</a></li>
+</ol>
+</li>
+<li><a href="#sec2">専門性の境界を画定する</a>
+<ol>
+<li><a href="#sec2-1">専門知の局所性――ノヴィスと二人の専門家の問題</a></li>
+<li><a href="#sec2-2">貢献的専門知と対話的専門知</a></li>
+</ol>
+</li>
+<li><a href="#sec3">科学的合意の認識論的地位</a>
+<ol>
+<li><a href="#sec3-1">合意は集計ではなく検証の履歴である</a></li>
+<li><a href="#sec3-2">気候科学の事例に見る合意測定の方法論</a></li>
+<li><a href="#sec3-3">少数意見の重みをどう評価するか</a></li>
+</ol>
+</li>
+<li><a href="#sec4">信頼を調整する五つの指標</a>
+<ol>
+<li><a href="#sec4-1">証拠の独立性と再現性</a></li>
+<li><a href="#sec4-2">専門分野と問いの一致</a></li>
+<li><a href="#sec4-3">利益相反の開示と説明責任の逆説</a></li>
+<li><a href="#sec4-4">不確実性の表現</a></li>
+<li><a href="#sec4-5">訂正制度の作動</a></li>
+</ol>
+</li>
+<li><a href="#sec5">専門知の民主的正統性――二次評価という戦略</a>
+<ol>
+<li><a href="#sec5-1">事実の探求と価値の選択を分ける</a></li>
+</ol>
+</li>
+<li><a href="#sec6">生成 AI が証言の連鎖に加わるとき</a>
+<ol>
+<li><a href="#sec6-1">流暢性と信頼性の乖離</a></li>
+<li><a href="#sec6-2">幻覚的引用という新しい認識的リスク</a></li>
+</ol>
+</li>
+<li><a href="#sec7">結語――依存を手放さずに判断を保持する</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 問題の所在――認識的依存という条件</h2>
+
+<h3 id="sec1-1">1.1 証言への依存はなぜ知識たりうるか</h3>
+<p>知覚や記憶、推論と並んで、証言 (testimony) は私たちの信念のほとんどを支えている基礎的な情報源である。薬効、地震の観測、暗号通信の仕組み――そのいずれについても、私たちは自ら実験装置を組み立て、データを再計算したわけではない。認識論における証言研究は、この事態を例外的な弱さとしてではなく、知識獲得の標準的な経路として扱う。中心的な論争は、証言が知覚や推論に還元できる派生的な情報源にすぎないのか（還元主義）、それとも証言そのものが独立した正当化の源泉なのか（反還元主義）という点にある <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。証言がどのような条件で信念の正当化を与えるのかについては、この論争は今なお決着していない。ただし、いずれの立場を採るとしても、専門家の証言に依拠すること自体を直ちに「根拠なき信念」とみなす必要はない。本稿は、証言が独立した正当化源泉かという理論的な争点そのものには立ち入らず、証言という情報経路にどのような信頼性の条件を課すべきかを検討する、という実践的な立場をとる。</p>
+
+<h3 id="sec1-2">1.2 ハードウィグの逆説――信頼が証拠に先立つ</h3>
+<p>哲学者ジョン・ハードウィグは、この事態をさらに強い形で定式化した。彼によれば、現代の知識人はもはや自己完結的な探究者ではありえない。複雑に専門分化した領域の大半において、他者を信頼しない者は知ることができない。ハードウィグの見方では、多くの場合、信頼は経験的証拠や論理的推論よりもいっそう認識的に基礎的である。なぜなら、その証拠や推論そのものが、他者への信頼を通じてしか手に入らないからである <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。これは認識論において全面的に合意された結論ではなく、専門分化した現代社会における知識の依存構造を強調する論者の立場である。</p>
+
+<p class="pull">証拠にアクセスするための手段そのものが、他者への信頼を要求する。</p>
+
+<p>この逆説は、証言に依拠する知識の土台に倫理的な次元があることを示唆する。証言の信頼性は、証言者の誠実さや能力という、認識論的というより倫理的な性質に依存するからである。したがって「専門家を信じるべきか」という問いは、純粋に論理的な問いであると同時に、相手の誠実さ・利害・訂正への態度を評価する社会的な問いでもある。この二重性を見落とすと、信頼を単なる確率計算に還元してしまい、後述する利益相反や訂正制度の議論を見失うことになる。</p>
+
+<h2 id="sec2">2. 専門性の境界を画定する</h2>
+
+<h3 id="sec2-1">2.1 専門知の局所性――ノヴィスと二人の専門家の問題</h3>
+<p>専門家であることは、あらゆる問いについて専門的な判断ができることを意味しない。老化研究の細胞生物学者が老化の分子機構に深い知見を持っていても、臨床試験の設計や薬事制度、医療経済まで同じ水準で判断できるとは限らない。この論点を体系的に論じたのがアルヴィン・ゴールドマンである。彼は、専門知を持たない者（ノヴィス）が、互いに矛盾する主張をする二人の専門家のどちらを信じるべきかという「ノヴィス / 二専門家問題」を提示した。ゴールドマンが挙げる手がかりは、実績 (track record) 、資格や経歴、対立点についてどちらがより説得力のある論拠を示せるか、そして利害の有無である。しかし彼自身認めるとおり、これらの手がかりはいずれも間接的であり、ノヴィスが主張の中身そのものを直接検証できない以上、確実な判定を保証しない <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。この限界を自覚すること自体が、専門知に依存する際の第一の作法である。</p>
+
+<h3 id="sec2-2">2.2 貢献的専門知と対話的専門知</h3>
+<p>科学社会学の側からは、ハリー・コリンズとロバート・エヴァンズが専門知そのものの内部構造を分析している。両者は、ある分野に実際に貢献できる能力としての「貢献的専門知」と、その分野の実践者と流暢に対話できるが自ら研究を遂行するわけではない「対話的専門知」を区別した。彼らの狙いは、専門家と非専門家の境界を安易に溶かす当時の科学社会学の潮流――技術的な意思決定の権利を際限なく一般に拡張していく「拡張の問題」――に対して、専門知を政治的な決定権から切り離しつつ、なお有意味な概念として再建することにあった <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。この区別は、<a href="aging-pseudoscience.html">「老化は治療可能な疾患」は科学か</a>のような論争を読み解く際にも有効である。ある研究分野が制度的な基盤を持つことと、その分野に関わる特定の個人のあらゆる発言が確立した知見であることとは別の事柄であり、逆に、研究者個人をめぐる論争のみから関連分野全体を無効と結論することもできない。</p>
+
+<h2 id="sec3">3. 科学的合意の認識論的地位</h2>
+
+<h3 id="sec3-1">合意は集計ではなく検証の履歴である</h3>
+<p>「科学的合意」と聞くと、多数決や権威者の決定を思い浮かべやすい。しかし、科学史家ナオミ・オレスケスが論じるように、科学に単一の「科学的方法」というものは存在しない。科学の信頼性は、方法の画一性にではなく、多様な研究者集団が異議申し立てと批判の機会を十分に与えられたうえで研究成果を審査し、合意に達する（あるいは達しない）社会的過程の開放性にこそ由来する <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。この観点に立てば、合意の価値を測る問いは「何人が賛成しているか」ではなく、「どの分野の専門家が、どのような独立した方法とデータで検証し、どの範囲の結論に到達したか」に置き換わる。</p>
+
+<h3 id="sec3-2">3.2 気候科学の事例に見る合意測定の方法論</h3>
+<p>合意の測定そのものを実証的に行った研究として、気候科学分野の文献分析が挙げられる。ジョン・クックらは 1991 年から 2011 年に発表された地球温暖化関連の論文抄録 1 万 1944 件を分析し、人為的な温暖化について立場を明示している抄録に限れば、その 97.1 パーセントが人為的な地球温暖化を支持していることを示した（すべての抄録の 97.1 パーセントではない点に注意）<sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この研究が示したのは対象期間・論文数・分類基準とこの集計結果であり、個々の論文が同一データや同一前提を共有していないか、独立した裏づけとして重複計上していないかまでを検証したものではない。多数の論文が存在しても、それらが同じ観測網や同じモデルに依存していれば独立した検証の数は少ないという注意点は、クックらの研究結果から直接導かれるものではなく、合意を評価する際に別途問うべき一般的な論点である(<a href="causal-inference-philosophy.html">因果推論の哲学</a>が扱う独立性の問いとは対象が異なるが、根拠の依存関係を考えるという点で関連する）。</p>
+
+<h3 id="sec3-3">3.3 少数意見の重みをどう評価するか</h3>
+<p>主流の見解に対する異論の存在は、それ自体ではどちらの側を支持する証拠にもならない。少数意見が後に正しいと判明し、支配的な理論を覆すことはある。しかし、異論を唱えたという事実と、異論を裏づける強い証拠が存在するという事実は別である。ここでもゴールドマンの指摘が再び効いてくる――ノヴィスは対立する主張の中身を直接検証できないがゆえに、実績・検証可能性・他の研究者による追試の有無・既知の証拠をどれだけ包括的に説明できるかという間接的な指標に頼らざるをえない <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。開かれた議論とは、すべての立場を同じ確からしさとして扱うことではなく、いずれの立場についても等しくこれらの指標を問うことである。</p>
+
+<table>
+<tr><th>主張の型</th><th>典型的な問い</th><th>要求される検証</th></tr>
+<tr><td>観察</td><td>何が測定・記録されたか</td><td>測定方法の妥当性、再現性</td></tr>
+<tr><td>因果推論</td><td>何が何を引き起こしたか</td><td>比較対象の設計、交絡要因の統制</td></tr>
+<tr><td>予測</td><td>今後何が起こるか</td><td>モデルの検証履歴、不確実性の幅</td></tr>
+<tr><td>価値判断</td><td>何を優先すべきか</td><td>事実前提の吟味に加え、規範的な論拠</td></tr>
+</table>
+
+<h2 id="sec4">4. 信頼を調整する五つの指標</h2>
+
+<h3 id="sec4-1">4.1 証拠の独立性と再現性</h3>
+<p>単一の観察、事例報告、小規模な研究、そして複数の独立した方法で確認された知見は、同じ重みを持たない。研究結果が異なる集団や条件でも再現されているか、研究同士が本当に独立しているかを見極める必要がある。前節で見たとおり、論文数の多さは独立した裏づけの多さを直ちには意味しない。</p>
+
+<h3 id="sec4-2">4.2 専門分野と問いの一致</h3>
+<p>発言者の専門と問われている内容は一致しているだろうか。研究者の専門、臨床家の経験、統計家の方法論、行政機関の監視機能はそれぞれ異なる役割を担い、互いに補完し合う。コリンズとエヴァンズの区別 (2.2 節）を踏まえれば、ある人物が対話的専門知しか持たない領域で、貢献的専門知を要する問いに答えているとき、その発言の重みは慎重に評価されるべきである。</p>
+
+<h3 id="sec4-3">4.3 利益相反の開示と説明責任の逆説</h3>
+<p>資金源や職業上の利害は、主張が誤りであることを直ちに証明するものではないが、研究の問いの立て方や比較対象、結果の解釈に影響しうるため透明性が要る。もっとも、哲学者オノラ・オニールが指摘するように、開示や説明責任の仕組みを増やすことが、そのまま信頼の回復につながるとは限らない。過剰な説明責任の制度は、かえって「疑いの文化」を助長し、専門家の時間と注意を実質的な検証から報告書作成へと振り向けてしまう危険がある <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。求められるのは、すべてを開示させることではなく、判断の質を実際に左右しうる利害を特定し、その関係をデータや手続きの評価にどう結びつけるかを具体的に問う「知的な説明責任」である。</p>
+
+<h3 id="sec4-4">4.4 不確実性の表現</h3>
+<p>良い説明は、わかっていることだけでなく、わかっていないことも示す。「証拠がない」ことと「反証された」ことは同じではなく、「今のところ確かめられていない」ことと「起こりえない」ことも違う。留保や幅のある推定は説明を弱く見せることがあるが、それは自信のなさの表れではなく、証拠の限界に結論の強さを合わせている可能性がある。</p>
+
+<h3 id="sec4-5">4.5 訂正制度の作動</h3>
+<p>信頼に値する制度とは、誤りを一切起こさない制度ではなく、誤りが見つかったときに見直せる制度である。撤回監視の活動を続けるアイヴァン・オランスキーは、 Retraction Watch が把握する論文撤回件数の増加を報告し、これを制度の失敗の証拠としてではなく、記録を精査し訂正する自己修正機能が働いている兆候の一つとして肯定的に評価している <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。もっとも、撤回件数の増加だけから、研究不正そのものの増加や科学制度全体の健全性を直ちに結論することはできない。件数そのものの変化と、発表論文総数に対する撤回率の変化は別の指標であり、両者を混同すべきではない。データや方法の公開、査読、追試、訂正記事、独立監査は、知識を更新するための仕組みである。訂正が出たという事実だけで制度全体が失敗したとみなすのではなく、訂正を隠すのか、説明し記録し次の判断へ反映するのかという対応の違いにこそ注目すべきである。</p>
+
+<h2 id="sec5">5. 専門知の民主的正統性――二次評価という戦略</h2>
+
+<h3 id="sec5-1">5.1 事実の探求と価値の選択を分ける</h3>
+<p>複雑な技術社会において、責任ある公共政策は精緻な科学的推論に依拠せざるをえないが、一般市民はその推論を直接検証できない。この緊張は、技術的な公共政策の民主的正統性を損なうのではないかという疑念を生む。哲学者エリザベス・アンダーソンは、市民が科学的推論そのものを再現できなくても、信頼に値する専門家集団の合意について「二次的評価」――実績、手続きの健全性の証拠、批判への応答ぶりといった指標に基づく評価――を確度高く行えるのであれば、専門知への依存それ自体が民主的正統性を損なうものではないと論じる <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この議論は、非専門家による二次評価が原理的に可能であることの一般的な根拠を与えるものであり、誰が評価基準を設定し、影響を受ける市民の価値や経験が政策決定にどう組み込まれるかという別の問いまで解決するものではない。本稿の第 4 章で挙げた五つの指標も、アンダーソンの枠組みから導出されるものではなく、そうした二次評価を具体的に行うための、筆者自身による実践的な整理である。</p>
+
+<p>ただし、科学的知見が政策に関わるとき、証拠だけで選択が決まるわけではない。予測される結果について専門知が役立っても、その結果をどう評価し、誰が負担を引き受けるべきかには価値判断が含まれる。 AI の導入をめぐっても、技術性能の説明と、雇用や利益配分についての判断は同じ問いではない。 <a href="ai-industry-comparison.html">AI 産業の比較</a>や <a href="ai-labor-and-redistribution.html">AI と労働・再分配</a>を読む際には、企業の説明、測定できる性能、社会として選ぶべき方向を切り分けると議論が見えやすくなる。価値観の違いは、事実認識の違いだけから生まれるわけでもない。<a href="moral-foundations-theory.html">道徳基盤理論</a>が示すように、人々は道徳的な論点に異なる重みを与える。専門家が事実を明らかにしても、何を優先すべきかまで自動的に決着するわけではなく、専門知の権威を政策選択の正当化にそのまま流用しないことが、信頼を維持する条件になる。学術的な慎重さが公共の場でどう伝わるかという問題については、<a href="populism-vs-academia.html">学術的言説の「響きにくさ」</a>が、伝わりやすさと正しさが別の軸であることを論じている。</p>
+
+<h2 id="sec6">6. 生成 AI が証言の連鎖に加わるとき</h2>
+
+<h3 id="sec6-1">流暢性と信頼性の乖離</h3>
+<p>生成 AI は、文章を滑らかにまとめ、専門家のような語り口を作ることができる。しかし文体の整い方は、情報源の確かさや推論の妥当性を保証しない。ここでも、単に「 AI を信じるか」と問うのではなく、何を委ねているのかを具体化する必要がある。要約、検索、翻訳、診断、政策判断は、誤りの影響も必要な監督の水準も異なる。</p>
+
+<h3 id="sec6-2">幻覚的引用という新しい認識的リスク</h3>
+<p>この乖離が最も可視化された事例が、実在しない判例を AI が生成し、法律家がそれを検証せずに法廷文書に引用した 2023 年の事件である。米国の弁護士が ChatGPT に生成させた 6 件の架空の判例を含む準備書面を提出し、制裁を受けた <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この事件が示すのは、証言の連鎖に新しい種類の環が加わったという事実である。従来、証言の信頼性を評価する手がかりは、証言者の実績や利害、訂正への応答といった社会的な性質であった。生成 AI の出力は、そうした社会的な履歴を持たない――撤回の記録もなければ、査読も経ていない。回答に書かれた出典だけでなく、元の研究、対象集団、発表時期、研究の限界を独立にたどる作業は、 AI の利用が広がるほど省略できなくなる。複数の独立した資料が一致しているか、重要な反対証拠を無視していないかを見ることも変わらず必要である。回答を作ったシステム、導入を決めた組織、最終判断を下す人間の責任を分けて考えることは、知識への信頼と技術への責任をつなぐ作業になる。</p>
+
+<h2 id="sec7">7. 結語――依存を手放さずに判断を保持する</h2>
+<p>専門知への依存は、個人が無知であることから生じる例外的な状態ではない。社会の知識そのものが、多くの人々の専門的な作業と、それを伝える制度の上に成り立っている。ハードウィグの見方に従うなら、証拠にアクセスする手段そのものがすでに他者への信頼を前提としている場合が多く、その限りで「信じるか、疑うか」という二分法は出発点として適切ではない。適切な問いは、何について、どの範囲で、どのような根拠をもって専門家に依拠するかである。</p>
+
+<p>本稿で示した五つの指標――証拠の独立性、専門分野と問いの一致、利益相反の性質、不確実性の表現、訂正制度の作動――は、いずれも「信じる／信じない」の二択ではなく、「強く支持されている」「暫定的に支持されている」「まだ判断できない」「証拠と食い違う」という段階的な確度の判断を可能にする。新しい証拠に応じて判断を変える余地を残せば、誤りを認めることは敗北ではなく、知識を更新する過程になる。</p>
+
+<p>このテーマは、科学と疑似科学の境界を考える論考、学術的な説明が政治の場でどう受け取られるかを考える論考、 AI 企業や道徳的判断を扱う論考を一本の問いで結ぶ。その問いは「誰を信じるべきか」だけではなく、「どんな仕組みなら、信頼に値する知識を作り、誤りを発見し、異なる価値観を持つ人々へ説明できるのか」である。信頼とは疑問をなくすことではなく、疑問を検証可能な形にして、他者の知識に適切に依存する方法にほかならない。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Hardwig, J. (1991) . The Role of Trust in Knowledge. <em>The Journal of Philosophy</em>, 88 (12) , 693–708. <a href="https://philpapers.org/rec/HARTRO-3">PhilPapers</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Goldman, A. I. (2001) . Experts: Which Ones Should You Trust? <em>Philosophy and Phenomenological Research</em>, 63 (1) , 85–110. <a href="https://fas-philosophy.rutgers.edu/goldman/SeminarFall2007/October%2031st/Goldman%20-%20Experts%20Which%20Ones%20Should%20You%20Trust.pdf">Rutgers 大学公開 PDF</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Adler, J. (2006 年初出、随時改訂） . Epistemological Problems of Testimony. <em>Stanford Encyclopedia of Philosophy</em>. <a href="https://plato.stanford.edu/entries/testimony-episprob/">SEP 該当項目</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Collins, H. & Evans, R. (2002) . The Third Wave of Science Studies: Studies of Expertise and Experience. <em>Social Studies of Science</em>, 32 (2) , 235–296. <a href="https://journals.sagepub.com/doi/10.1177/0306312702032002003">SAGE Journals</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Anderson, E. (2011) . Democracy, Public Policy, and Lay Assessments of Scientific Testimony. <em>Episteme</em>, 8 (2) , 144–164. <a href="https://www.cambridge.org/core/journals/episteme/article/abs/democracy-public-policy-and-lay-assessments-of-scientific-testimony1/C96369F581A9091635E522D4ED671DBE">Cambridge Core</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Oreskes, N. (2019) . <em>Why Trust Science?</em> Princeton University Press. <a href="https://press.princeton.edu/books/hardcover/9780691179001/why-trust-science">Princeton University Press</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> O'Neill, O. (2002) . <em>A Question of Trust: The BBC Reith Lectures 2002.</em> Cambridge University Press. <a href="https://www.bbc.co.uk/programmes/p00gpsjm">BBC Reith Lectures アーカイブ</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Cook, J. et al. (2013) . Quantifying the Consensus on Anthropogenic Global Warming in the Scientific Literature. <em>Environmental Research Letters</em>, 8 (2) , 024024. <a href="https://iopscience.iop.org/article/10.1088/1748-9326/8/2/024024">IOPscience （オープンアクセス）</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Stanford Institute for Human-Centered AI (2024) . AI on Trial: Legal Models Hallucinate in 1 out of 6 (or More) Benchmarking Queries. （米国 Mata v. Avianca 事件を含む法律分野の AI 幻覚に関する報告。）<a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries">Stanford HAI</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Oransky, I. (2022) . Retractions Are Increasing, but Not Enough. <em>Nature</em>, 608, 9. <a href="https://www.nature.com/articles/d41586-022-02071-6">Nature 誌</a></li>
+</ol>
+</div>
+
+<p class="note">本稿は哲学・科学社会学の理論的検討であり、個別の科学的論争における当否の判定や、特定の政策の是非を主張するものではない。実証的な知見（合意率の数値など）と、規範的な哲学的主張（信頼の合理性に関する議論）は性質の異なる主張であり、区別して読まれたい。</p>
+
+</div>
+</body>
+</html>
