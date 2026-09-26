@@ -15,22 +15,20 @@
       --line: #dcded6;
       --accent: #315d50;
       --accent-soft: #e5ece6;
-      --serif: "Iowan Old Style", "Yu Mincho", "Hiragino Mincho ProN", serif;
-      --sans: "Avenir Next", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.75; }
+    body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.75; }
     a { color: inherit; }
     .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
     .topline { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
     .brand { color: var(--ink); font-weight: 650; letter-spacing: .08em; }
     .hero { padding: clamp(58px, 10vw, 128px) 0 70px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(210px, .65fr); gap: 48px; align-items: end; }
     .eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-    h1 { max-width: 740px; margin: 18px 0 20px; font-family: var(--serif); font-size: clamp(42px, 7vw, 82px); font-weight: 500; letter-spacing: -.055em; line-height: 1.12; }
-    .intro { max-width: 640px; color: #555d56; font-family: var(--serif); font-size: clamp(16px, 2vw, 19px); }
+    h1 { max-width: 740px; margin: 18px 0 20px; font-size: clamp(42px, 7vw, 82px); font-weight: 500; letter-spacing: -.055em; line-height: 1.12; }
+    .intro { max-width: 640px; color: #555d56; font-size: clamp(16px, 2vw, 19px); }
     .hero-note { border-left: 1px solid #9eaaa0; padding: 4px 0 4px 22px; color: var(--muted); font-size: 13px; }
-    .hero-note strong { display: block; color: var(--ink); font-family: var(--serif); font-size: 34px; font-weight: 500; line-height: 1.2; }
+    .hero-note strong { display: block; color: var(--ink); font-size: 34px; font-weight: 500; line-height: 1.2; }
     .indexbar { display: flex; flex-wrap: wrap; gap: 9px; padding: 22px 0 30px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .indexbar a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; color: #555d56; font-size: 11px; text-decoration: none; transition: .2s ease; }
     .indexbar a:hover, .indexbar a:focus-visible { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
@@ -38,13 +36,13 @@
     .cluster { padding: 46px 0 40px; border-bottom: 1px solid var(--line); }
     .cluster-head { display: grid; grid-template-columns: 62px minmax(0, 1fr) auto; gap: 18px; align-items: baseline; margin-bottom: 22px; }
     .cluster-no { color: var(--accent); font-size: 11px; letter-spacing: .12em; }
-    h2 { margin: 0; font-family: var(--serif); font-size: clamp(24px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
+    h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
     .cluster-desc { grid-column: 2 / 3; margin: -12px 0 0; color: var(--muted); font-size: 13px; }
     .count { color: var(--muted); font-size: 11px; letter-spacing: .08em; }
     .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
     .card { min-height: 150px; padding: 22px 22px 20px; background: var(--paper); text-decoration: none; transition: background .2s ease, color .2s ease; }
     .card:hover, .card:focus-visible { background: var(--accent-soft); outline: none; }
-    .card-title { display: block; font-family: var(--serif); font-size: 17px; font-weight: 600; line-height: 1.55; }
+    .card-title { display: block; font-size: 17px; font-weight: 600; line-height: 1.55; }
     .card-desc { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.7; }
     .card:hover .card-desc, .card:focus-visible .card-desc { color: #4b6056; }
     .series { grid-column: 2 / 3; margin: -9px 0 19px; color: var(--accent); font-size: 10px; letter-spacing: .12em; }
