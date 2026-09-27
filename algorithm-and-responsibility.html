@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「アルゴリズムが決めた」は説明になるか</title>
+<style>
+:root{
+  --bg:#f7f8f6;
+  --text:#242522;
+  --muted:#65695f;
+  --accent:#3d5a52;
+  --line:#d7dcd2;
+  --box:#eceee7;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px}
+a{color:var(--accent)}
+.kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
+h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 20px}
+h3{font-size:20px;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+ul,ol.body-list{padding-left:1.4em;margin:0 0 20px}
+li{font-size:19px;margin-bottom:9px}
+.pull{font-size:22px;font-weight:700;color:var(--accent);border-left:4px solid var(--accent);padding-left:20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px}
+.box strong{color:var(--accent)}
+sup{font-size:.72em}
+sup a{color:var(--accent);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted);margin-top:20px}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">法哲学・科学技術社会論的検討</p>
+
+<h1>「アルゴリズムが決めた」は説明になるか<br>――自動化された判断における説明責任と法的責任の所在</h1>
+
+<p class="subtitle">On the Distribution of Accountability in Algorithmic Decision-Making: Explanation, Contestability, and the Limits of the Human-in-the-Loop</p>
+
+<div class="lede">
+<p>採用選考のスコアリング、刑事司法における再犯リスク評価、行政給付の不正検知――こうした場面に統計モデルやアルゴリズムが介在するとき、結果に対する説明と法的責任の所在はどのように定まるのか。「システムがそう判定した」という言明は、原因の記述としては成り立っても、責任の帰属先を示す説明としては不完全である。</p>
+<p>本稿は、この不完全さがどこから生じ、制度としてどう埋め合わせうるかを、刑事司法と行政給付における代表的な事例を中心に、規制の条文・判例・科学技術社会論の知見に照らして検討する。</p>
+</div>
+
+<div class="meta">
+【方法と限界】本稿は独自の実証調査ではなく、公表された法令・判例・先行研究を総合した理論的検討である。個別の事例――とりわけ米国ウィスコンシン州の量刑支援ソフトウェアをめぐる訴訟や、オランダの児童手当をめぐる行政スキャンダル――から導かれる論点は、それぞれの法域・制度・用途に固有の文脈を持つ。他の法域や用途への一般化は限定的にのみ行い、事実として確認できる経緯と、そこから導かれる規範的な解釈とを区別して記述する。
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">予測と決定を分ける</a>
+<ol>
+<li><a href="#sec1-1">「データが決めた」という言い方の危うさ</a></li>
+<li><a href="#sec1-2">GDPR と AI 法が引いた境界線</a></li>
+</ol>
+</li>
+<li><a href="#sec2">「人間の関与」の実質</a>
+<ol>
+<li><a href="#sec2-1">州対ルーミス事件の構図</a></li>
+<li><a href="#sec2-2">名目的な人間関与という問題</a></li>
+</ol>
+</li>
+<li><a href="#sec3">公平性指標は一つに収束しない</a>
+<ol>
+<li><a href="#sec3-1">ProPublica の指摘と開発企業の反論</a></li>
+<li><a href="#sec3-2">数理的トレードオフとしての公平性</a></li>
+</ol>
+</li>
+<li><a href="#sec4">データの偏りは制度の履歴を運ぶ</a>
+<ol>
+<li><a href="#sec4-1">フィードバックループとしての予測</a></li>
+<li><a href="#sec4-2">児童手当スキャンダルの教訓</a></li>
+</ol>
+</li>
+<li><a href="#sec5">責任の分配と異議申立ての制度設計</a>
+<ol>
+<li><a href="#sec5-1">説明責任の四つの位相</a></li>
+<li><a href="#sec5-2">再審査に実質を与える条件</a></li>
+</ol>
+</li>
+<li><a href="#sec6">結論――問いを翻訳する</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 予測と決定を分ける</h2>
+
+<h3 id="sec1-1">1.1 「データが決めた」という言い方の危うさ</h3>
+<p>アルゴリズムとは、入力を一定の手順で処理して出力を得る仕組みである。単純な規則であれ統計モデルであれ、その出力は設計と運用の条件に依存する。何を目的変数とするか、どの誤りをより重く罰する損失関数を選ぶか、判定のしきい値をどこに置くか――これらはすべて人間が決めた選択であり、モデルが自律的に導いたものではない。</p>
+<p>「データが決めた」という言い方は、この一連の選択を自然現象のように見せ、選択の主体を後景に退かせる効果を持つ。しかし、データを集める範囲、学習に用いる期間、評価指標の選び方はいずれも設計段階の意思決定であり、結果だけを受け取る側からは見えにくくなっているに過ぎない。</p>
+
+<h3 id="sec1-2">1.2 GDPR と AI 法が引いた境界線</h3>
+<p>この論点は、すでに主要な法域の規制に部分的に反映されている。欧州連合の一般データ保護規則 (GDPR) 第 22 条は、法的効果またはこれに準ずる重大な影響を本人に及ぼす、専ら自動処理に基づく決定を原則として禁止する。ただし契約の締結・履行に必要な場合、加盟国法または EU 法が認める場合、本人の明示的同意がある場合という三つの例外があり、このうち契約上の必要性と明示的同意にもとづく場合には、少なくとも人間による介入を求める権利、本人が見解を表明する権利、決定に異議を申し立てる権利という保護措置を備えなければならない <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。したがって同条は、あらゆる重大な自動判定に対して無条件に人間の介入を保障するものではなく、適用の可否は処理の類型と具体的な運用の実態に左右される。</p>
+<p>2024 年 8 月 1 日に発効した欧州連合の AI 法 (Artificial Intelligence Act 、規則 (EU) 2024/1689) は、リスクに応じた段階的な規制としてこの考え方を具体化した。禁止される慣行は 2025 年 2 月 2 日から、汎用 AI モデルの提供者に対する義務は 2025 年 8 月 2 日から、それぞれ適用が始まっている。採用、信用審査、法執行、公共サービスへのアクセス判定などは、附属書 III に列挙された用途に該当する場合に「高リスク」に分類され、透明性・データガバナンス・人間による監督などの適合性義務を課されるが、これらの義務の多くは当初 2026 年 8 月 2 日に適用開始予定だったものが、その後の改正によって 2027 年 12 月 2 日へ、製品組み込み型の高リスク AI （附属書 I) については 2028 年 8 月 2 日へと、それぞれ再延期されている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。したがって、この分野の用途がすべて一律に同じ義務を負っているわけではなく、適用時期そのものが流動的である点に留意する必要がある。</p>
+<p>GDPR と AI 法は、保護法益も規制対象も異なる制度である。共通しているのは、重大な影響を及ぼしうる自動化に対して、適用条件に応じて人間の関与や本人保護を制度化しようとする動きがあるという点であり、本稿がここまで用いてきた「予測」――統計的な推論によって不確実な情報を提供すること――と「決定」――その情報を用いて利益と負担をどう配分するかという規範的な判断を下すこと――の区別は、両法律そのものが一貫して採用する分類というより、これらの制度を読み解くための本稿独自の分析上の枠組みである。</p>
+
+<div class="pull">「機械が決めた」は、責任の消失を意味するのではなく、責任の所在を問い直す作業の出発点にすぎない。</div>
+
+<h2 id="sec2">2. 「人間の関与」の実質</h2>
+
+<h3 id="sec2-1">2.1 州対ルーミス事件の構図</h3>
+<p>人間が最終的な決定権を持つという形式が、実質を伴うとは限らない。この点を象徴するのが、米国ウィスコンシン州最高裁判所が 2016 年に判断した州対ルーミス事件(<em>State v. Loomis</em>)である。被告人は、量刑判断の資料として用いられた再犯リスク評価ソフトウェア COMPAS の算出方法が営業秘密として非開示であったため、その根拠を争う機会が実質的に与えられなかったとして、適正手続の侵害を主張した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>州最高裁は被告人の適正手続の主張そのものは退けた一方で、 COMPAS のスコアを量刑の唯一の、あるいは決定的な根拠として用いてはならないこと、判決に（集団データに基づく点、個々の被告人について個別に検証されたものではない点などの）限界を説明する注意書きを付すことを、量刑裁判所に義務づけた。この判断は、アルゴリズムの算定根拠そのものを被告人が検証できるようにするところまでは踏み込んでおらず、「人間の裁判官が最終的に決定を下している」という事実と、その裁判官が根拠を実質的に吟味できたかという問いとの間に、なお隔たりを残した。</p>
+
+<h3 id="sec2-2">2.2 名目的な人間関与という問題</h3>
+<p>裁判官や現場担当者が形式上、最後にボタンを押すとしても、判断に割ける時間が短い、算出根拠が画面に示されない、あるいはスコアに反する判断を下すと説明責任を追加で負わされるといった条件が重なれば、名目上の裁量は実質を欠く。人間の関与を制度上意味あるものにするには、結果を理解し、疑い、覆すための情報・時間・権限が同時に確保されていなければならない。これは、 GDPR 第 22 条の保護措置が適用される場面において、人間の介入が形式だけでなく実質を伴うかを判定する際の、実務上の核心的な論点でもある。</p>
+
+<h2 id="sec3">3. 公平性指標は一つに収束しない</h2>
+
+<h3 id="sec3-1">3.1 ProPublica の指摘と開発企業の反論</h3>
+<p>2016 年、調査報道機関 ProPublica は、フロリダ州ブロワード郡の記録を用いて、 COMPAS のスコアと実際の再逮捕（以下、再犯の代理指標として扱う）との関係を検証した。分析によれば、実際には再逮捕されなかった被告人のうち、黒人の被告人が将来「高リスク」と誤って分類される割合は、白人の被告人に比べて有意に高かった <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。開発企業ノースポイント社（現 Equivant) は、較正の点――同じスコアを与えられた被告人であれば人種を問わず同程度の確率で実際に再逮捕されている――でモデルは公平であると反論し、 ProPublica の分析手法や解釈にも異議を唱えた。この論争は、単に異なる公平性の定義を選んだという以上に、対象とするデータ、分類のしきい値、アウトカムの扱い、各指標が実務上何を意味するかをめぐる実証的・方法論的な争いでもあった。</p>
+
+<h3 id="sec3-2">3.2 数理的トレードオフとしての公平性</h3>
+<p>両者の対立は、指標の選び方の違いだけに還元できない。もっとも、集団間で実際の基準率（ここでは再逮捕率）が異なる場合、較正の一致と誤り率の均等性という二つの公平性基準を一定の条件のもとで同時に満たすことはできないという不可能性が、統計学者アレクサンドラ・チョウデチョバによって示されている <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この結果は COMPAS の当該データに固有のものではなく、基準率に集団間の差がある限り一般に成り立つ数理的な制約である。この事実は、「精度が何パーセントか」という単一の指標だけでモデルの公平性を語ることの限界を示している。どの誤りをより重く見るか、どの集団間の格差を優先的に是正するかという選択には、統計学だけでは答えの出ない規範的な判断が伴う。</p>
+
+<div class="box">
+<strong>四つの誤りの非対称性</strong><br>
+再犯リスク評価であれば「実際には再犯しない人を高リスクと誤る」ことと「実際に再犯する人を低リスクと誤る」ことは、量刑という文脈では前者を重く見る立場と、公共の安全という文脈では後者を重く見る立場とが対立しうる。採用選考や医療診断でも同型の対立が生じる。どちらを優先するかは技術的な最適化の問題ではなく、誰がどのような負担を負うかという分配の問題である。
+</div>
+
+<h2 id="sec4">4. データの偏りは制度の履歴を運ぶ</h2>
+
+<h3 id="sec4-1">4.1 フィードバックループとしての予測</h3>
+<p>データ数学者キャシー・オニールは、著書『 Weapons of Math Destruction 』において、予測的警察活動の事例を取り上げ、過去の検挙記録を学習したモデルが特定の地域への警察配置を強め、その結果その地域でさらに検挙が増えるというフィードバックループを指摘した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この構造のもとでは、モデルの予測精度が検証されるたびに、モデル自身が作り出したパターンが「実証済みの傾向」として追認されてしまう。</p>
+<p>政治学者ヴァージニア・ユーバンクスも『 Automating Inequality 』において、米国の公的扶助や児童保護の現場に導入された自動判定システムが、貧困世帯や黒人世帯に対する監視をすでに歴史的に強めてきた制度の延長線上で運用され、既存の格差を数値の装いのもとで再生産する過程を記述している <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</p>
+
+<h3 id="sec4-2">4.2 児童手当スキャンダルの教訓</h3>
+<p>この論点を裏づける具体例として、オランダの税務当局が児童手当の不正受給を検知するために用いた、国籍・二重国籍をリスク要因の一つとして扱う自己学習型のリスク分類システムがある。 2020 年に公表された議会調査報告『 Ongekend onrecht （前例のない不正義）』は、このリスク選別だけでなく、複雑な現金給付制度が就労状況や収入のわずかな変化に敏感であったこと、不正対策のために設けられた厳格な法制度が税務当局によって過剰に執行されたこと、行政・政治・司法のいずれもがこれを長期にわたり是正できなかったことを、一体の構造的失敗として指摘した <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。数万世帯が誤って不正受給者と認定され、一括返還を求められて破産に追い込まれるという被害は、リスク選別モデル単独の結果ではなく、これらの制度的失敗が重なって生じたものであり、 2021 年の内閣総辞職はその政治的帰結であった。</p>
+<p>この事例が示すのは、アルゴリズムによるリスク選別そのものの技術的な巧拙以前に、異議申立ての窓口が実質的に機能せず、行政内部でも司法審査でも是正の機会が長期にわたり働かなかったという制度上の欠落である。誤りが明るみに出たのは、モデルの内部監査によってではなく、調査報道と議会調査によってであった。</p>
+
+<h2 id="sec5">5. 責任の分配と異議申立ての制度設計</h2>
+
+<h3 id="sec5-1">5.1 説明責任の四つの位相</h3>
+<p>法学者フランク・パスクアーレは『 The Black Box Society 』において、アルゴリズムによる意思決定の不透明性が、金融や検索エンジンといった分野で説明責任を回避する手段として機能してきたことを論じた <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この議論を踏まえ、本稿では責任の所在を、少なくとも次の四つの位相に分けて整理する（これは Pasquale 自身の分類ではなく、本稿独自の分析上の整理である）。第一に、誰が結果について説明する義務を負うか。第二に、誰が事前に予防策を取る権限を持っていたか。第三に、損害が生じた場合、誰が救済や補償を行うか。第四に、同じ不利益を繰り返さないために、誰が運用を変更する権限を持つか。</p>
+<p>これら四つは同一の主体に集中するとは限らない。モデルの開発者は仕様と既知の限界を説明する義務を負い、導入組織は利用目的と適用範囲を決定する権限を持ち、現場の担当者は例外を報告する立場にあり、独立した監督機関が運用の停止や是正を命じる権限を持つ、という分業も成り立ちうる。重要なのは、この分業が機能するための記録・連絡経路・是正権限が明文化されているかどうかであり、分業そのものを「誰の責任でもない」という状態の言い訳にしないことである。</p>
+
+<h3 id="sec5-2">5.2 再審査に実質を与える条件</h3>
+<p>異議申立ての制度は、窓口の存在だけでは機能しない。再審査を行う担当者には、判断の根拠にアクセスできること、本人から追加情報を受け取れること、モデルの出力を実際に覆せる権限を持つこと、そして判断の理由を記録できることが必要である。処理件数や処理時間に関する過度な数値目標が課されれば、これらの条件は書面上のものにとどまる。人間による再審査もまた、確証バイアスや組織内の圧力から自由ではない。人間を万能の是正装置として位置づけるのではなく、モデルの提案から独立した判断の機会を制度として確保し、判断のばらつきや覆した理由を継続的に点検する仕組みが必要である。</p>
+
+<h2 id="sec6">6. 結論――問いを翻訳する</h2>
+<p>アルゴリズムに判断を委ねても、人間の判断が消えるわけではない。目的の設定、データの収集、しきい値の選択、導入の決定、結果の追認、異議申立ての設計――判断の所在は消えるのではなく、これらの段階に分散し、結果だけを見る者からは見えにくくなる。したがって「機械が決めた」は、それ自体では責任の説明として成立しない。</p>
+<p>本稿で検討した GDPR と AI 法の枠組み、州対ルーミス事件、 ProPublica の検証、オランダの行政スキャンダルは、いずれも異なる法域と用途に属しながら、共通の構造を示している。すなわち、公平性は単一の指標に還元できず、人間の関与は権限と時間を伴わなければ名目にとどまり、データの偏りは制度の履歴を運び、責任は分業させることはできても消し去ることはできない。次に自動化された判断に出会ったとき、問うべきは「アルゴリズムは正しいか」だけではない。「誰がこの基準を選び、誰が結果を説明する義務を負い、誤りを誰が実際に直せるのか」という、制度設計の問いへと翻訳することが求められている。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> General Data Protection Regulation (Regulation (EU) 2016/679) , Article 22 ― Automated individual decision-making, including profiling. 条文全文は <a href="https://gdpr-info.eu/art-22-gdpr/">GDPR-info.eu 第 22 条</a>を参照。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Artificial Intelligence Act (Regulation (EU) 2024/1689) 。附属書 III の高リスク用途分類、および適用時期の改正を含む実施スケジュールについては <a href="https://artificialintelligenceact.eu/implementation-timeline/">EU Artificial Intelligence Act: Implementation Timeline</a> を参照。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner, "Machine Bias," <em>ProPublica</em>, May 23, 2016. <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">ProPublica 掲載記事</a>。開発企業側の反論に対する回答は <a href="https://www.propublica.org/article/propublica-responds-to-companys-critique-of-machine-bias-story">ProPublica による Northpointe への回答記事</a>を参照。</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> <em>State v. Loomis</em>, 881 N.W.2d 749 (Wis. 2016) 。再犯リスク評価ソフトウェア COMPAS の量刑手続における使用が争われた事件。 <a href="https://www.wicourts.gov/sc/opinion/DisplayDocument.pdf?content=pdf&seqNo=171690">Wisconsin 州最高裁判決原文 (PDF)</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Cathy O'Neil, <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>, Crown, 2016. <a href="https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction">Wikipedia: Weapons of Math Destruction</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Virginia Eubanks, <em>Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor</em>, St. Martin's Press, 2018. <a href="https://en.wikipedia.org/wiki/Virginia_Eubanks">Wikipedia: Virginia Eubanks （著者項目）</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> オランダ下院児童手当調査委員会『 Ongekend onrecht （前例のない不正義）』 2020 年 12 月 17 日公表。 <a href="https://www.houseofrepresentatives.nl/sites/default/files/atoms/files/verslag_pok_definitief-en-gb.docx.pdf">Dutch House of Representatives, "Unprecedented Injustice" （英訳報告書 PDF)</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Frank Pasquale, <em>The Black Box Society: The Secret Algorithms That Control Money and Information</em>, Harvard University Press, 2015. <a href="https://en.wikipedia.org/wiki/Frank_Pasquale">Wikipedia: Frank Pasquale （著者項目）</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Alexandra Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2 (2017) , pp. 153–163. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a></li>
+</ol>
+</div>
+
+<p class="note">本稿は法解釈および社会科学的知見の整理であり、個別の紛争に対する法的助言ではない。特定の事例（州対ルーミス事件、オランダの行政スキャンダル等）から確認できる経緯と、そこから導かれる一般的な制度設計上の含意とは区別して読まれたい。法域や用途が異なれば、規制の適用範囲や実務上の帰結も異なりうる。</p>
+
+</div>
+</body>
+</html>
