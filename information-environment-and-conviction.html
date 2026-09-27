@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>誤情報はなぜ広がるのか――知識不足の物語を超えて</title>
+<style>
+:root{
+  --bg:#f7f8f6;
+  --text:#242522;
+  --muted:#65695f;
+  --accent:#3d5a52;
+  --line:#d7dcd2;
+  --box:#eceee7;
+  --link:#3d5a52;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px}
+.kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
+h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 24px}
+h3{font-size:20px;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+.pull{font-size:22px;font-weight:700;color:var(--accent);border-left:4px solid var(--accent);padding-left:20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px}
+.box strong{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:0 0 28px;font-size:16px}
+table th,table td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
+table th{background:var(--box)}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+ul li,ol li{margin-bottom:9px;font-size:19px}
+a{color:var(--link)}
+sup{font-size:0.72em}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target, sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted);margin-top:20px}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">社会心理学・メディア研究</p>
+
+<h1>誤情報はなぜ広がるのか<br>――知識不足の物語を超えて</h1>
+<p class="subtitle">Beyond the Deficit Model: Repetition, Group Attribution, Source Trust, and Platform Design as Parallel Pathways of Misinformation Diffusion</p>
+
+<div class="lede">
+<p>誤った情報が広まり、訂正されてもなお影響を残す現象は、しばしば「受け手が知識を欠いているから」「よく考えずに信じるから」という説明に還元される。しかし実証研究が示す像はそれより複雑である。人は同じ主張に繰り返し触れるだけで、その主張をよりもっともらしく感じるようになる。主張は「誰が言ったか」「自分の属する集団の言葉かどうか」によって評価が変わる。そして、何度・どの順序で情報に接するかは、個人の注意力ではなく、プラットフォームの推薦設計によって大きく左右されている。</p>
+<p>本稿は、誤情報の拡散を単一の原因に帰属させず、反復接触、集団への帰属、発信者への信頼、プラットフォームの推薦設計という四つの経路に分けて整理し、それぞれを支える実証研究を参照しながら、経路どうしがどう絡み合うかを検討する。</p>
+</div>
+
+<div class="meta">
+【方法と限界】本稿は認知心理学・社会心理学・計算社会科学の実証研究を横断的に参照する総説的検討であり、新規のデータ収集や実験を伴わない。引用する個々の研究は特定の主張・実験条件・データセットに基づいており、その知見をそのまま別の文脈や情報環境に一般化できるとは限らない。特にプラットフォームのアルゴリズム設計に関する研究は、対象となったサービスの当時の仕様に依存する点に留意されたい。
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">導入――「知らないから信じる」という説明の限界</a></li>
+<li><a href="#sec2">反復接触と真実性の錯覚</a>
+<ol>
+<li><a href="#sec2-1">なじみが確からしさに読み替えられる仕組み</a></li>
+<li><a href="#sec2-2">反復への対処と訂正設計への含意</a></li>
+</ol>
+</li>
+<li><a href="#sec3">集団への帰属と社会的アイデンティティ</a>
+<ol>
+<li><a href="#sec3-1">情報は「誰の言葉か」の合図でもある</a></li>
+<li><a href="#sec3-2">動機づけられた推論を非対称に使わない</a></li>
+</ol>
+</li>
+<li><a href="#sec4">発信者への信頼と認識的依存</a>
+<ol>
+<li><a href="#sec4-1">専門知への依存という前提</a></li>
+<li><a href="#sec4-2">信頼の毀損と回復の非対称性</a></li>
+</ol>
+</li>
+<li><a href="#sec5">プラットフォームの推薦設計</a>
+<ol>
+<li><a href="#sec5-1">アルゴリズムが配分するのは真偽ではなく注意</a></li>
+<li><a href="#sec5-2">責任の所在を単純化しない</a></li>
+</ol>
+</li>
+<li><a href="#sec6">四つの経路の相互作用</a></li>
+<li><a href="#sec7">結論――個人の性格から社会の情報環境へ</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 導入――「知らないから信じる」という説明の限界</h2>
+<p>誤情報がなぜ広まり、訂正になぜ抵抗するのかという問いに対して、もっとも直感に訴える答えは「受け手の知識不足」である。本稿では、正しい情報を追加しさえすれば誤信念が解消するとみなすこの種の説明を、便宜上「知識不足への還元」と呼ぶ。この説明に従えば、対策は単純になる。正しい情報を届ければよい。訂正を出せばよい。事実確認機関を増やせばよい。</p>
+<p>ところが、この想定には二つの弱点がある。第一に、知識量の多い人が誤情報に抵抗力を持つとは限らない。ファツィオらの実験では、参加者が正誤を知っている主張であっても、繰り返し提示されるだけで真実らしさの評定が上がることが確認された <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。知識は反復の効果を完全には打ち消さない。第二に、誤情報が広まる過程には、個人が何を知っているかとは独立に働く要因が関与する。同じ主張に何度触れたか（反復接触）、どの集団に属する情報として届いたか（集団への帰属）、誰が発信したか（発信者への信頼）、そしてどのような順序で目に触れたか（プラットフォームの推薦設計）である。これらは知識の量を増やすだけでは変えられない。</p>
+<p>本稿は、この四つの経路――反復接触、集団への帰属、発信者への信頼、プラットフォームの推薦設計――を順に検討し、最後にそれらがどのように重なり合って一つの情報環境を形づくるかを論じる。</p>
+
+<div class="pull">誤情報の強さは、受け手の無知にではなく、情報が届く経路の構造に宿っている。</div>
+
+<h2 id="sec2">2. 反復接触と真実性の錯覚</h2>
+<h3 id="sec2-1">2.1 なじみが確からしさに読み替えられる仕組み</h3>
+<p>同じ主張に繰り返し触れると、その主張の処理が流暢になる。この処理の流暢さが、無関係のはずの真偽判断に流用される現象を、心理学では真実性の錯覚 (illusory truth effect) と呼ぶ <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。ペニークックらの実験では、フェイクニュースの見出しに一度触れただけの参加者が、その後の正確さの評定課題で有意に高い評定をつけた <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。ここで確認されたのは評定課題上の変化であり、実験参加者がその主張を実生活で信じ続けたか、他者に共有したかまでを直接測定したものではない。それでも、一度の接触で評定が動く点は、誤情報の拡散が「大量に何度も見た人」だけの問題ではない可能性を示唆する。</p>
+<p>前述のファツィオらの実験が指摘するように、この効果は参加者が反対の知識を持っている場合にも部分的に働く <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。つまり、正しい知識を持つことと、繰り返し提示された主張に流暢さを感じてしまうことは、別の心的過程である。前者が信念の内容を扱うのに対し、後者は主張の処理のしやすさという、いわば感覚に近い手がかりを扱う。両者が競合したとき、後者が判断に漏れ出すことがある。ただし、いずれの実験も評定課題という限られた測定に基づいており、実際の共有行動や長期的な信念への効果を同じ精度で示したものではない。</p>
+
+<h3 id="sec2-2">2.2 反復への対処と訂正設計への含意</h3>
+<p>この知見は、訂正記事の設計に直接跳ね返る。訂正が誤情報の文言をそのまま引用して掲載すれば、その訂正自体が誤情報への接触回数を一回増やすことになる。ルワンドウスキーらの整理によれば、誤情報は撤回された後も推論や記憶に影響を及ぼし続ける「継続的影響」を持ち、訂正は誤りを否定するだけでなく、事実に基づく代替の説明を積極的に提示する必要がある <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。誤りの引用を最小限にし、正しい情報を前面に置く構成は、反復接触が生む効果を訂正の側に取り込む工夫だと理解できる。</p>
+
+<h2 id="sec3">3. 集団への帰属と社会的アイデンティティ</h2>
+<p>反復接触が生む真実性の錯覚は、主張の内容そのものとは無関係に働く。しかし、それだけでは、ある誤情報が特定の集団のあいだでとりわけ広まりやすい理由は説明できない。ここでは、主張の評価が、発信者や受け手の集団への帰属によってどう変わるかを検討する。</p>
+<h3 id="sec3-1">3.1 情報は「誰の言葉か」の合図でもある</h3>
+<p>タジフェルとターナーの社会的アイデンティティ理論は、人が自己の評価の一部を、自分が所属する集団の評価から得ることを示した <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。この理論自体は誤情報の訂正を直接検証したものではないが、その枠組みを情報の受容に当てはめると、次のように予想できる。ある主張の評価は、その主張が真か偽かという次元だけでなく、「私たちの側の主張か、相手側の主張か」という次元でも行われうる。政治的に対立する話題では、内集団を非難する訂正は、事実の訂正であると同時に、集団への攻撃として受け取られることがある。</p>
+<p>この現象は特定の政治的立場に固有のものではない。カハンの実験研究は、認知反省テストの成績が高い参加者ほど、党派的・文化的立場に沿った方向に科学的リスク認識を解釈する傾向を示した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この結果は、分析的思考力の高さが常に事実認識の党派差を縮めるとは限らないことを示すが、対象は特定の争点・特定の参加者集団であり、あらゆる立場・あらゆる争点で同程度の効果が生じることまで実証したものではない。知識や思考力は、誤情報への抵抗力にも、集団に有利な結論を精緻化する能力にもなりうる。</p>
+
+<h3 id="sec3-2">3.2 動機づけられた推論を非対称に使わない</h3>
+<p>ここで注意すべきは、「動機づけられた推論」という語を、相手陣営の頑固さを説明するラベルとして一方的に使わないことである。カハンの研究が示すのは、党派的な立場を守るために証拠評価が歪む傾向が、少なくとも一部の争点では特定の政治的立場に限らず観察されるという点であり、この非対称でない可能性を、片方の陣営にだけ都合よく適用しないことが重要である <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 。自陣営の主張の出典を検証する頻度と、相手陣営の主張の出典を検証する頻度に差がないかを、分析者自身も点検する必要がある。</p>
+
+<h2 id="sec4">4. 発信者への信頼と認識的依存</h2>
+<p>集団への帰属は、主張の評価を「正誤」以外の軸――「味方の言葉か、相手の言葉か」――に動かす要因だった。この軸は、より一般的に言えば、受け手が発信者をどれだけ信頼しているかという問題の一部でもある。ここでは、発信者への信頼が判断の手がかりとして働く仕組みと、その限界を検討する。</p>
+<h3 id="sec4-1">4.1 専門知への依存という前提</h3>
+<p>私たちは、接する情報のほとんどを自分自身で検証することができない。哲学者ハードウィグが論じたように、現代の知識の大部分は、他者の証言への依存――認識的依存――なしには成立しない <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。この前提に立てば、ある主張を評価する際に、その発信者が過去にどれだけ正確であったか、誤りをどう訂正してきたかという実績を手がかりにすることは、非合理な近道ではなく、検証能力に限りのある人間にとって現実的な判断基準である。</p>
+
+<h3 id="sec4-2">4.2 信頼が情報の受け取りを左右するとき</h3>
+<p>しかし、この基準は諸刃の剣でもある。ある発信者や機関がひとたび読者の不信を買えば、その後にどれほど妥当な根拠を示しても、説明そのものが届きにくくなりうる。訂正の内容が正しいかどうかという問題と、訂正が信頼されるかどうかという問題は、独立して検討する必要がある。ハードウィグの議論は認識的依存という前提を示すものであり、信頼の毀損がどの程度回復しにくいかを実証的に測定したものではないが、本稿はこの前提から次のように提案する。信頼を支えるのは肩書きの誇示ではなく、どのデータをどう確認し、どこに不確実さが残るかを開示し、誤りが見つかった際に訂正履歴を残す過程そのものである。</p>
+
+<h2 id="sec5">5. プラットフォームの推薦設計</h2>
+<p>反復接触、集団への帰属、発信者への信頼は、いずれも受け手が情報をどう解釈するかに関わる要因である。しかし、そもそも何を・何度・どの順序で目にするかは、受け手個人の解釈より前の段階で、情報を配信する仕組みによって左右されている。ここでは、この配信の仕組み、すなわちプラットフォームの推薦設計を検討する。</p>
+<h3 id="sec5-1">5.1 推薦設計が情報への注意をどう配分するか</h3>
+<p>ヴォソギ、ロイ、アラルがツイッター（現 X) 上の情報拡散を大規模に分析した研究では、ファクトチェック機関が真偽を判定した 2006 年から 2017 年のニュースを対象に、虚偽の情報が真実の情報よりも速く、広く、深く拡散していたことが報告された。虚偽ニュースはより新奇に見え、それへの返信には恐怖・嫌悪・驚きの表現が多かったという分析も示されている <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。ただし、この研究はニュース拡散の観察データを扱ったものであり、推薦アルゴリズムの因果効果や滞在時間の最適化がこの拡散差を生んだことを検証したものではない。多くの推薦・ランキング機能は、利用者の反応など複数の信号を最適化の材料として用いるが、真偽や公共的価値が常に主要な最適化目標になっているとは限らない、という一般的な仮説として理解するのが妥当である。</p>
+<p>この過程を「アルゴリズムが利用者を思想的な泡に閉じ込める」という単純な図式に還元することもできない。バクシー、メッシング、アダミックは、政治的立場を自己申告した米国の利用者約 1,000 万人を対象に、 2015 年当時のフェイスブック上でのニュース接触を分析し、友人ネットワークの構成、ニュースフィードの順位付け、利用者自身のクリック選択のすべてが、立場の異なるニュースへの接触量を形づくっており、その寄与の大きさは立場や指標によって異なることを示した <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この研究は誤情報の拡散や真偽判断そのものを対象にしたものではないが、実際の情報接触が、フォロー関係、検索行動、報道機関の取捨選択、個人の選好、プラットフォームの設計が重なり合って生じる複合的な過程であることを示す一例として参照できる。</p>
+
+<h3 id="sec5-2">5.2 責任の所在を単純化しない</h3>
+<p>リベイロらは、ユーチューブ上の視聴・コメントの長期データと、 2019 年に収集した大量のチャンネル推薦を対象に、特定の政治的傾向を持つチャンネル群を結ぶ経路が推薦ネットワーク上に見られるかを監査した <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この監査は経路の存在を確かめたものであり、著者ら自身が指摘するとおり、推薦が利用者の信念や政治的態度を実際に変えたことを直接示す研究ではない。利用者の自己選択、事前の関心、外部サイトからの流入といった代替的な説明も排除されていない。他方でゲス、ネイグラー、タッカーの調査は、フェイクニュースの共有が利用者全体に一様に広がっているのではなく、一部の年齢層に偏って集中していたことを報告している <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。これらの知見を総合すると、拡散の説明を「アルゴリズムの設計」か「利用者の選好」かの二者択一に単純化することはできない。推薦を設計する企業、運用方針を定める組織、投稿を共有する個人、情報を検証して伝える報道機関のそれぞれに、異なる種類と範囲の責任があると考えるほうが、現時点の実証研究が示す像に近い。</p>
+
+<div class="box">
+<strong>四つの経路の要点</strong><br>
+反復接触は、主張の内容とは無関係な流暢さの感覚を確からしさの手がかりに変える。集団への帰属は、主張の評価を「正誤」だけでなく「味方か敵か」という次元でも行わせる。発信者への信頼は、検証能力に限りのある人間にとって現実的な判断基準であるが、一度失われると根拠が届きにくくなりうる資源でもある。プラットフォームの推薦設計は、利用者の反応など複数の信号を最適化の材料として用いており、真偽や公共的価値が常に主要な最適化目標になっているとは限らない。
+</div>
+
+<h2 id="sec6">6. 四つの経路の相互作用</h2>
+<p>ここまで見てきた四つの経路は、それぞれ別の研究が個別に検討してきたものであり、四つの因果連鎖を単一のデータで実証した研究があるわけではない。以下は、個別研究をつなぎ合わせた統合仮説として、四つの経路がどう連鎖しうるかを考えるものである。強い感情的反応を呼ぶ主張は、プラットフォーム上で拡散されやすい傾向が観察されており <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 、拡散の機会が増えるほど反復接触の機会も増え、真実性の錯覚が働きやすくなると考えられる <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 。また、フォロー関係や共有の連鎖が思想的に近い人々のネットワークを介して情報を運ぶ場合、反復して目にする主張は自分と同じ集団に属する発信者から届きやすくなる。この経路が働くとき、集団への帰属という評価軸と、発信者への信頼という評価軸が重なり、主張の検証が甘くなる条件がそろう。</p>
+<p>この相互作用を踏まえると、訂正や情報リテラシー教育を個人の注意力にのみ委ねる対策は限界を持つ。見出しだけで結論を決めない、発信者の実績を確かめる、感情的な反応の強さと証拠の強さを混同しないといった個人レベルの心がけは有効であるが、それだけで四つの経路すべてに対処できるわけではない。訂正記事の構成、報道機関の訂正慣行、プラットフォームの表示設計、公的機関の説明責任を組み合わせて、検証しやすい情報環境そのものを設計する必要がある。</p>
+
+<h2 id="sec7">7. 結論――個人の性格から社会の情報環境へ</h2>
+<p>誤情報への信念とその訂正への抵抗が、認知・社会・感情にまたがる複数の要因から生じることは、近年のレビューでも整理されている <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。本稿はこれを、受け手の知識不足や頑固さという単一の原因に還元せず、反復接触、集団への帰属、発信者への信頼、プラットフォームの推薦設計という四つの経路に分けて検討してきた。反復接触は主張の流暢さを確からしさの手がかりに変え、集団への帰属は評価の軸を正誤から味方・敵へと動かし、発信者への信頼は検証コストを引き受ける現実的だが脆くなりうる基準として働き、プラットフォームの推薦設計は真偽とは別の信号を基準に接触機会を配分しうる。これらは互いに独立した現象ではなく、一つの主張が広まっていく過程で連鎖的に作用しうる。</p>
+<p>したがって、誤情報への対策を「もっと事実を知らせる」という一手に集約することはできない。反復の設計、集団間の対話の場、発信者の説明責任、プラットフォームの表示設計という複数の水準に働きかけて初めて、訂正が届き、記憶に残り、判断に反映される条件が整う。確信の強さを個人の性格の問題として語るのではなく、その確信を支えている社会の情報環境の構造として捉え直すことが、この問題を扱う出発点になる。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Soroush Vosoughi, Deb Roy, and Sinan Aral, "The spread of true and false news online," <em>Science</em>, vol. 359, 2018. 虚偽の情報が真実の情報より速く広く拡散していたことを示した大規模観察研究。 <a href="https://www.science.org/doi/10.1126/science.aap9559">Science 誌掲載論文</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> Gordon Pennycook, Tyrone D. Cannon, and David G. Rand, "Prior exposure increases perceived accuracy of fake news," <em>Journal of Experimental Psychology: General</em>, vol. 147, 2018. 一度の接触が正確さの評定を高めることを示した実験研究。 <a href="https://doi.org/10.1037/xge0000465">論文 DOI</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Lisa K. Fazio, Nadia M. Brashier, B. Keith Payne, and Elizabeth J. Marsh, "Knowledge Does Not Protect Against Illusory Truth," <em>Journal of Experimental Psychology: General</em>, vol. 144, 2015. 正しい知識を持つ参加者にも反復による真実性の錯覚が生じることを示した研究。 <a href="https://doi.org/10.1037/xge0000098">論文 DOI</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Stephan Lewandowsky, Ullrich K. H. Ecker, Colleen M. Seifert, Norbert Schwarz, and John Cook, "Misinformation and Its Correction: Continued Influence and Successful Debiasing," <em>Psychological Science in the Public Interest</em>, vol. 13, 2012. 誤情報の継続的影響と有効な訂正方法を整理したレビュー論文。 <a href="https://doi.org/10.1177/1529100612451018">論文 DOI</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> Dan M. Kahan, "Ideology, Motivated Reasoning, and Cognitive Reflection," <em>Judgment and Decision Making</em>, vol. 8, no. 4, 2013, pp. 407–424. 分析的思考力の高さが党派的な事実認識のずれを縮めない場合があることを示した研究。 <a href="https://sjdm.org/~baron/journal/13/13313/jdm13313.pdf">論文 PDF</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Henri Tajfel and John C. Turner, "An Integrative Theory of Intergroup Conflict," in <em>The Social Psychology of Intergroup Relations</em>, Brooks/Cole, 1979. 社会的アイデンティティ理論の基礎を提示した章。 <a href="https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Intergroup_Relations/Tajfel_Turner_1979_An_integrative_theory_of_intergroup_conflict.pdf">論文 PDF</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> John Hardwig, "Epistemic Dependence," <em>The Journal of Philosophy</em>, vol. 82, 1985. 現代の知識形成が他者の証言への依存を前提とすることを論じた哲学論文。 <a href="https://www.jstor.org/stable/2026523">JSTOR 掲載ページ</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Eytan Bakshy, Solomon Messing, and Lada A. Adamic, "Exposure to ideologically diverse news and opinion on Facebook," <em>Science</em>, vol. 348, 2015. 多様な意見への接触を左右する要因を大規模観察データで検討した研究。 <a href="https://doi.org/10.1126/science.aaa1160">Science 誌掲載論文</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Manoel Horta Ribeiro, Raphael Ottoni, Robert West, Virgílio A. F. Almeida, and Wagner Meira Jr., "Auditing radicalization pathways on YouTube," in <em>Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency (FAT*)</em>, 2020. ユーチューブの推薦経路を追跡した監査研究。 <a href="https://doi.org/10.1145/3351095.3372879">論文 DOI</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Andrew Guess, Jonathan Nagler, and Joshua Tucker, "Less than you think: Prevalence and predictors of fake news dissemination on Facebook," <em>Science Advances</em>, vol. 5, 2019. フェイクニュース共有が年齢層に偏って集中していたことを報告した調査研究。 <a href="https://doi.org/10.1126/sciadv.aau4586">論文 DOI</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Ullrich K. H. Ecker, Stephan Lewandowsky, John Cook, et al., "The psychological drivers of misinformation belief and its resistance to correction," <em>Nature Reviews Psychology</em>, vol. 1, 2022. 誤情報への信念と訂正抵抗を生む認知的・社会的・感情的要因を統合したレビュー論文。 <a href="https://doi.org/10.1038/s44159-021-00006-y">論文 DOI</a></li>
+</ol>
+<p class="note">本稿で言及した実証研究は、いずれも特定の時期・特定のプラットフォーム・特定の参加者集団を対象にしたものであり、その知見を現在の情報環境全般に無条件に適用することはできない。特にプラットフォームの仕様やアルゴリズムは継続的に変更されており、引用した研究が対象とした当時の設計と現在の設計が同一であるとは限らない。</p>
+</div>
+
+</div>
+</body>
+</html>
