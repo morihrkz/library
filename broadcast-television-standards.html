@@ -30,6 +30,7 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <li><a href="#sec3">デジタル化で変わったもの</a><ol><li><a href="#sec3-1">電波にデータを載せる方式</a></li><li><a href="#sec3-2">地域と方式の選択</a></li></ol></li>
 <li><a href="#sec4">制作現場に残る時間形式</a><ol><li><a href="#sec4-1">フレームレートと変換</a></li><li><a href="#sec4-2">撮影地の照明とフリッカー</a></li></ol></li>
 <li><a href="#sec5">考察――技術は設備と慣行に残る</a></li>
+<li><a href="#sec6">コラム――英国で聞く米国ドラマの「声」</a><ol><li><a href="#sec6-1">「声が違う」という体験</a></li><li><a href="#sec6-2">原因は 24 fps から 25 fps への変換</a></li><li><a href="#sec6-3">アナログ時代と、デジタル放送の現在</a></li></ol></li>
 </ol></nav>
 
 <section><h2 id="sec1">1. テレビの「方式」は何を決めるのか</h2>
@@ -121,6 +122,26 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <p>テレビ方式の歴史を知ることは、規格名を暗記するためだけではない。仕様書の数字がどこから来たのか、撮影時に何を確かめるべきか、古い素材を新しい環境でどう扱うかを理解する手がかりとなる。</p>
 </section>
 
+<section><h2 id="sec6">6. コラム――英国で聞く米国ドラマの「声」</h2>
+<h3 id="sec6-1">6.1 「声が違う」という体験</h3>
+<p>米国で制作されたテレビドラマを、英国の放送で見た米国人が「俳優の声が、米国で聞き慣れたものと少し違う気がする」と感じる。この種の感想は、海外の放送や DVD で作品を見た人の間で語られてきた。ただし本コラムは、特定の個人の証言を記録したものではない。こうした報告に共通する典型的な体験として場面を再構成し、その原因を技術の面から検討する。</p>
+<p>似た体験は、実際に記録されている。オーストラリアの技術者 James Bunton は、 PAL 圏向けの DVD で映画を見たとき、俳優の声がインタビューで聞く声より高いことに気付いた。彼はその原因を突き止め、補正のためのスクリプトを公開している。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 気のせいと片付けず、原因を数字で確かめられるところが、この話の要点である。</p>
+<h3 id="sec6-2">6.2 原因は 24 fps から 25 fps への変換</h3>
+<p>米国のドラマの多くは、映画と同じ毎秒 24 コマ（運用上は 23.976 fps) で撮影される。 NTSC 系では、 4.1 節で触れた 2:3 プルダウンで 59.94 フィールドに収めるため、再生速度は実質的に変わらない。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> これに対して 25 fps を基準とする PAL 系では、 24 コマの素材をそのまま 25 コマとして再生する方法が最も単純で、広く使われてきた。この方法は「 PAL スピードアップ」と呼ばれる。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
+<p>速度の比は 25 ÷ 24 ≒ 1.0417 で、映像も音声も約 4.2 ％速く進む。音の高さは周波数の比で決まるので、上がる幅は 12 × log<sub>2</sub>(25/24) ≒ 0.707 半音、すなわち 71 セント弱である。 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> たとえば基本周波数 120 Hz の男声は、約 125 Hz になる。尺も縮み、 42 分の本編は約 40 分 19 秒、つまり約 1 分 41 秒短くなる。</p>
+<p class="pull">半音に満たない差でも、聞き慣れた声には手がかりが残る。</p>
+<p>単純な速度変更は、音声のすべての周波数を同じ比率で動かす。そのため声の高さだけでなく、声道の共鳴（フォルマント）の位置や話す速さも同時に変わる。この結果、声は「少し小柄な人が、少し早口で話している」ような響きに近づくと考えられる。 24p の解説には、この程度の変化は「通常は気付かれない」と書かれている。 <sup id="fnref-10-3"><a href="#ref-10">[10]</a></sup> 一方、英国のテレビ掲示板では、聞き慣れた主題曲の調が変わることを「気が散る」と述べる投稿がある。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 何十時間も同じ俳優の声を聞いてきた視聴者は、耳の中に比較の基準を持っている。その基準とのずれが、「違う気がする」という感覚になったと考えるのは自然である。ただしこれは、上の物理的な事実から導いた解釈であり、個々の体験を検証したものではない。</p>
+<h3 id="sec6-3">6.3 アナログ時代と、デジタル放送の現在</h3>
+<p>アナログ時代の PAL 放送では、この速度上げが標準的な処理だった。放送局にとっては設備の変更が不要で、尺が短くなった分だけ CM を入れやすいという利点もあった。上の掲示板の議論でも、多くの放送局は補正に手間をかけずに速度上げを受け入れたとされる。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 音程を元に戻す試みもあったが、 2000 年代の Channel 4 の例では音声に「揺らぎ」が残ったという投稿がある。同じ議論では、『 Torchwood: Miracle Day 』で補正が行われたことが、英国の視聴者に声の変化が気付かれやすいと考えられたためではないかと推測されている。ただしこれは掲示板の推測であり、放送局の公式説明ではない。</p>
+<p>デジタル放送になっても、この状況は自動的には解消しない。英国の地上デジタル放送も、本稿の 3 章と 4 章で見たとおり 25 fps ・ 50 系の時間形式を基準にしている。伝送方式がデジタルに変わっても、 24 fps の素材を 25 fps の番組として納める限り、速度上げをするか、音程を補正して尺だけ縮めるかという選択は残る。違いは、音程だけを戻すソフトウェアが普及し、補正という選択肢を取りやすくなった点にある。一方で、近年の DVD プレーヤーや PC には、 23.976 fps の素材を元のフレームレートのまま再生できるものがあり、速度上げが起きない経路も増えた。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup></p>
+<table><thead><tr><th>視聴の経路</th><th>24 fps 素材の扱い</th><th>声の高さ</th></tr></thead><tbody>
+<tr><td>アナログ PAL 放送</td><td>25 fps に速度上げするのが標準的</td><td>約 0.7 半音高い。補正は例外的</td></tr>
+<tr><td>デジタル放送 (25 fps 系）</td><td>速度上げ、または音程補正つきの変換。番組や納品仕様による</td><td>補正の有無で変わる</td></tr>
+<tr><td>24 fps のまま再生できる経路</td><td>フレームレートを変えない</td><td>原音どおり</td></tr>
+</tbody></table>
+<div class="box"><strong>自分の耳で確かめるには</strong><ul><li>放送された本編の尺を、米国版の尺と比べる。約 4 ％短ければ、速度上げが疑われる。</li><li>主題曲や劇伴の調を、原盤の音源と比べる。約 0.7 半音の差は、楽器で確かめられる。</li><li>音声の圧縮や音量処理など、別の要因も考えられるが、本稿では検証していない。</li></ul><p>デジタル放送の現在について、速度上げと補正がそれぞれどの程度の割合で行われているかを示す統計は、確認できていない。「今の放送でも必ず起きる」とも「もう起きない」とも言えず、番組ごとの納品仕様に依存する。</p></div>
+</section>
+
 <div class="refs"><h2>参考文献・資料</h2>
 <p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
 <ol>
@@ -132,6 +153,10 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <li id="ref-6"><a href="#fnref-6-1">^</a> DVB Project, “DTT Deployment Data,” DVB/EBU/BNE database snapshot, November 2023. <a href="https://dvb.org/solutions/dtt-deployment-data/">DVB 導入状況</a></li>
 <li id="ref-7"><a href="#fnref-7-1">^</a> Advanced Television Systems Committee, “Brazil Officially Adopts ATSC 3.0 Technologies for Its Next-Generation Television System,” 27 August 2025. <a href="https://www.atsc.org/news/brazil-officially-adopts-atsc-3-0-technologies-for-its-next-generation-television-system/">ATSC 発表</a></li>
 <li id="ref-8"><a href="#fnref-8-1">^</a> International Telecommunication Union, <em>Report ITU-R BT.624-4: Characteristics of television systems</em>, 1990. <a href="https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.624-4-1990-PDF-E.pdf">ITU 公開 PDF</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> <sup><a href="#fnref-9-3">c</a></sup> Wikipedia contributors, “576i,” <em>Wikipedia</em>, PAL speed-up の節 (2026 年 9 月 30 日閲覧）。 <a href="https://en.wikipedia.org/wiki/576i">Wikipedia</a></li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> <sup><a href="#fnref-10-3">c</a></sup> Wikipedia contributors, “24p,” <em>Wikipedia</em>, PAL 変換と 2:3 プルダウンの節 (2026 年 9 月 30 日閲覧）。 <a href="https://en.wikipedia.org/wiki/24p">Wikipedia</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> James Bunton, “Fixing PAL speedup and how film and video work,” 2016 年 5 月 1 日（個人ブログ。体験談と補正手順の記述であり、査読を経た資料ではない）。 <a href="https://blog.delx.au/2016/05/fixing-pal-speedup-and-how-film-and-video-work/">個人ブログ</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> “Correcting the speed of American programmes,” <em>TV Forum</em> スレッド（一般投稿者の発言であり、記述は個人の見解・推測を含む。 2026 年 9 月 30 日閲覧）。 <a href="https://www.tvforum.co.uk/tvhome/correcting-speed-american-programmes-46526">TV Forum 掲示板</a></li>
 </ol>
 <p class="note">方式の採用状況や規格は更新される。本稿は 2026 年 9 月 30 日時点に確認できる資料をもとに、代表的な技術と制作上の考え方を説明する。</p>
 </div>
