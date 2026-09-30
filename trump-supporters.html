@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>なぜ人は対極にある富豪を支持するのか――トランプ支持の逆説を考える</title>
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --text: #242522;
+      --muted: #65695f;
+      --accent: #3d5a52;
+      --line: #d7dcd2;
+      --box: #eceee7;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 2; }
+    main { max-width: 820px; margin: 0 auto; padding: 56px 26px 120px; }
+    .kicker { margin: 0 0 12px; color: var(--accent); font-size: 15px; font-weight: 700; letter-spacing: .1em; }
+    h1 { margin: 0 0 12px; color: var(--text); font-size: 32px; line-height: 1.6; }
+    .subtitle { margin: 0 0 28px; color: var(--muted); font-size: 20px; line-height: 1.8; }
+    .lede { margin: 0 0 40px; padding-left: 18px; border-left: 3px solid var(--accent); }
+    .lede p { margin: 0 0 14px; color: var(--muted); font-size: 20px; }
+    .lede p:last-child { margin-bottom: 0; }
+    .meta { margin: 0 0 40px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.9; }
+    p { margin: 0 0 20px; font-size: 19px; }
+    h2 { margin: 52px 0 20px; padding-bottom: 9px; border-bottom: 1px solid var(--line); font-size: 26px; line-height: 1.6; }
+    h3 { margin: 32px 0 12px; font-size: 20px; line-height: 1.7; }
+    ul, ol { margin: 0 0 20px; padding-left: 1.4em; }
+    li { margin-bottom: 9px; font-size: 19px; }
+    .pull { margin: 34px 0; padding-left: 20px; border-left: 4px solid var(--accent); color: var(--accent); font-size: 22px; font-weight: 700; line-height: 1.8; }
+    .box { margin: 0 0 28px; padding: 22px 24px; border: 1px solid var(--line); background: var(--box); font-size: 19px; }
+    .box strong { color: var(--accent); }
+    table { width: 100%; margin: 0 0 28px; border-collapse: collapse; font-size: 16px; line-height: 1.7; }
+    th, td { padding: 10px 11px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--box); }
+    .toc { margin: 0 0 46px; padding: 22px 26px; border: 1px solid var(--line); background: var(--box); }
+    .toc-title { margin: 0 0 14px; color: var(--accent); font-size: 15px; font-weight: 700; letter-spacing: .1em; }
+    .toc > ol { columns: 2; column-gap: 32px; margin: 0; padding-left: 1.5em; }
+    .toc li { break-inside: avoid; margin-bottom: 7px; font-size: 16.5px; }
+    .toc li ol { margin: 7px 0 11px; padding-left: 1.4em; }
+    .toc li li { margin-bottom: 5px; color: var(--muted); font-size: 15.5px; }
+    a { color: var(--accent); }
+    .toc a { color: var(--text); text-decoration: none; }
+    .toc a:hover { color: var(--accent); text-decoration: underline; }
+    sup { font-size: .72em; line-height: 0; vertical-align: super; }
+    sup a { color: var(--accent); text-decoration: none; }
+    sup a:hover { text-decoration: underline; }
+    :target { background: var(--box); outline: 4px solid var(--box); }
+    .refs { margin-top: 58px; padding-top: 25px; border-top: 1px solid var(--line); }
+    .refs h2 { margin-top: 0; padding-bottom: 0; border-bottom: none; }
+    .refs p { margin: 0 0 11px; font-size: 15.5px; line-height: 1.65; overflow-wrap: anywhere; }
+    .refs ol { margin: 0 0 11px; padding-left: 1.6em; }
+    .refs li { margin: 0 0 11px; font-size: 15.5px; line-height: 1.65; overflow-wrap: anywhere; }
+    .refs em { font-style: italic; }
+    .refs li > a:first-child { font-weight: 700; text-decoration: none; }
+    .refs sup a { font-style: italic; font-weight: 700; }
+    .note { margin-top: 20px; color: var(--muted); font-size: 15px; }
+    @media (max-width: 480px) {
+      main { padding: 36px 16px 90px; }
+      h1 { font-size: 27px; }
+      .toc > ol { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="kicker">政治社会学・アメリカ政治</p>
+    <h1>なぜ人は対極にある富豪を支持するのか<br>――トランプ支持の逆説を考える</h1>
+    <p class="subtitle">Why Voters Back a Billionaire: Class Position, Social Status, and Moral Boundaries in the Social Bases of Trump Support</p>
+    <div class="lede">
+      <p>トランプ支持をめぐっては、特定の学歴や階級に属する白人が支持基盤の中心だとしばしば語られる。ところがトランプは、富裕な家に生まれた資本家であり、人を雇う側の人間である。階級的位置が大きく異なる候補を支持する現象は、どう理解できるのか。</p>
+      <p>本稿の主張は三点にまとまる。第一に、支持基盤を単一の階級像で説明することは、実証研究に支えられない。第二に、支持者が対立を「雇う者対雇われる者」ではなく、「人民対エリート」といった別の軸で捉えるなら、階級的位置の隔たりは支持者自身の世界観の内側では矛盾にならない。第三に、それでもなお、物質的な利益と政治的な支持のずれは、規範的な問いとして残る。</p>
+    </div>
+    <div class="meta"><strong>方法と射程：</strong>本稿は、支持基盤に関する選挙研究、ポピュリズムの概念研究、質的な社会学研究を突き合わせる文献レビューである。新たな選挙データ分析は行わない。候補者の言説、投票行動、献金行動、支持者の主観的な語りは、それぞれ別の分析対象であり、そこから個々の支持者の動機を一律に推定することには限界がある。また、質的研究の対象は特定の地域や運動の参加者に限られ、トランプ支持者全体に一般化できるとは限らない。</div>
+  </header>
+
+  <nav class="toc" aria-label="目次">
+    <p class="toc-title">目次</p>
+    <ol>
+      <li><a href="#sec1">問題設定――階級が逆であるのに、なぜ支持が成り立つのか</a><ol><li><a href="#sec1-1">素朴な図式</a></li><li><a href="#sec1-2">本稿の手続き</a></li></ol></li>
+      <li><a href="#sec2">前提の吟味――誰が支持したのか</a><ol><li><a href="#sec2-1">学歴と階級の捉え方</a></li></ol></li>
+      <li><a href="#sec3">矛盾を説明する仮説</a><ol><li><a href="#sec3-1">仮説一 地位の脅威</a></li><li><a href="#sec3-2">仮説二 人民とエリートの線引き</a></li><li><a href="#sec3-3">仮説三 敵の選び方</a></li><li><a href="#sec3-4">仮説四 利害と帰属の乖離</a></li><li><a href="#sec3-5">仮説の整理</a></li></ol></li>
+      <li><a href="#sec4">ポピュリズム概念による整理</a><ol><li><a href="#sec4-1">薄いイデオロギーとしての定義</a></li><li><a href="#sec4-2">人民の代表と反多元主義</a></li><li><a href="#sec4-3">トランプの言説と富の位置づけ</a></li></ol></li>
+      <li><a href="#sec5">2016 年から 2024 年へ――支持連合の変化</a><ol><li><a href="#sec5-1">人口構成と投票行動</a></li><li><a href="#sec5-2">経済・移民と争点の優先順位</a></li></ol></li>
+      <li><a href="#sec6">支持基盤の階層的多様性――献金データから</a></li>
+      <li><a href="#sec7">結論</a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <section>
+      <h2 id="sec1">1. 問題設定――階級が逆であるのに、なぜ支持が成り立つのか</h2>
+      <h3 id="sec1-1">1.1 素朴な図式</h3>
+      <p>トランプ支持については、特定の学歴や階級に属する白人が支持基盤の中心だという図式が広く語られてきた。こうした説明は支持者を均質な集団として扱いがちである。</p>
+      <p>ところが、トランプ自身は不動産事業を営む家に生まれ、その事業を継いだ実業家である。資本家であり、人を雇う側の人間である。支持者の一部が雇われる側に位置するなら、階級的位置が大きく異なる候補を支持していることになる。階級的な利害が政治的な支持を規定するという素朴な想定に立てば、ここには説明すべき隔たりがある。</p>
+      <h3 id="sec1-2">1.2 本稿の手続き</h3>
+      <p>この矛盾を検討するには、二つの作業が必要である。第一に、図式の前提、つまり「誰が支持したのか」を吟味する。前提が事実として成り立たないなら、矛盾そのものが見かけ上のものかもしれない。第二に、前提が全面的にも部分的にも成り立つ場合を想定して、階級的位置の遠い候補が支持されうる理由を説明する仮説を整理する。</p>
+      <p>本稿では第 2 章で前提を吟味し、第 3 章で四つの仮説を整理する。続いて第 4 章でポピュリズムの概念を用いて全体を位置づけ、第 5 章で 2016 年から 2024 年への変化、第 6 章で支持者と献金者の階層的多様性を確認し、結論で答えをまとめる。</p>
+      <p class="pull">階級的な利害が逆であることは、支持が成り立たない理由にはならない。問うべきは、その支持がどのような線引きの上に成り立っているかである。</p>
+    </section>
+
+    <section>
+      <h2 id="sec2">2. 前提の吟味――誰が支持したのか</h2>
+      <h3 id="sec2-1">2.1 学歴と階級の捉え方</h3>
+      <p>2016 年選挙後、トランプの勝利は白人労働者階級の反乱として語られることが多かった。しかし、階級は単一の指標では定義できず、学歴、職業、資産、人種化された社会的位置など複数の軸を含む。白人労働者階級の支持をめぐる通俗的説明をレビューしたアンドリュー・J・チャーリン（Andrew J. Cherlin）は、そこには測定方法と選挙結果の読み方に不一致があると指摘している。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></p>
+      <p>ニコラス・カーンズ（Nicholas Carnes）とノーム・ルプ（Noam Lupu）は、 2016 年前後の学術調査を広く用いて通説を検証した。ここでの「労働者階級」は、大卒でなく、世帯所得が中央値未満の人々を指す。彼らは、「トランプ投票者の多数は白人労働者階級だった」という主張を退けた。白人労働者階級はトランプ投票者の 31 ％にとどまり、 2012 年のロムニーとほぼ同じだった。オバマからトランプへの乗り換え者についても、白人労働者階級が過剰に代表されていたわけではないという。他方で、白人労働者階級の投票者の過半数がトランプに投票したこと自体は認めている。ただし、過半数の支持はロムニーら以前の共和党候補にも見られ、その共和党への傾斜は 1990 年代以降の長期的な傾向であって、 2016 年に始まったものではないと論じている。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></p>
+      <p>したがって、特定の学歴層が重要な支持を与えたという知見を、支持基盤全体の均質性や単一の階級的利害の証拠として扱うことはできない。本稿では、非大卒の白人有権者を含む層から支持を得たという問題提起に絞り、その背景にある複数の説明を検討する。</p>
+      <p>階級的位置や集団的地位をめぐる語りについては、質的研究も手がかりとなる。アーリー・ラッセル・ホックシールド（Arlie Russell Hochschild）はルイジアナの Tea Party 支持者への長期の聞き取りから、列に並んで待つ自分たちの前に割り込む者がいるという感覚を「ディープ・ストーリー」として描いた。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> キャサリン・J・クレイマー（Katherine J. Cramer）はウィスコンシンの農村住民の語りから、都市の人々や政府から見下され、公正な扱いを得ていないという感覚が、「農村意識」として政治的態度を形づくると論じた。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> これらは支持者の語りや地位認識を考える材料となる。</p>
+      <p>なお、この二つの研究は、特定の地域や運動の参加者を対象にした質的研究であり、対象は主に Tea Party 運動やウィスコンシン州の政治である。トランプ支持者全体に、そのまま一般化することはできない。</p>
+    </section>
+
+    <section>
+      <h2 id="sec3">3. 矛盾を説明する仮説</h2>
+      <p>前提を吟味してもなお、非大卒層を中心とする一部の有権者が、階級的位置の遠い富豪を支持したという事実は残る。これを説明する仮説を四つに整理する。いずれも単独では十分でなく、互いに排他的でもない。</p>
+      <h3 id="sec3-1">3.1 仮説一 地位の脅威</h3>
+      <p>第一の仮説は、支持を動かした要因の一つは、社会的な序列の中での自分たちの位置に対する不安だとする。ダイアナ・C・マッツ（Diana C. Mutz）は 2012 年と 2016 年の代表パネル調査を用い、個人の経済状況の変化は候補選好にほとんど影響しなかった一方、貿易や中国をめぐる争点で共和党候補との距離が縮まったことが、支持の変化に関係したと報告した。これは白人の集団的地位や米国の国際的地位をめぐる脅威認知を重視する説明と整合するが、観察データに基づく単一研究の結果である。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> ノーム・ギドロン（Noam Gidron）とピーター・A・ホール（Peter A. Hall）は、先進民主主義国の調査から、主観的な社会的地位が低い人ほど右派ポピュリスト政党を支持しやすい傾向を示し、大学を出ていない男性に特に集中しやすい経済的・文化的変化が、長期的な地位認識の低下と結びついていたと論じる。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> ブライアン・F・シャフナー（Brian F. Schaffner）、マシュー・マクウィリアムズ（Matthew MacWilliams）、タティシェ・ネタ（Tatishe Nteta）は、 2016 年の白人有権者の投票では、人種と性別に関する態度が強い予測因子だったと報告している。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+      <p>この仮説のもとでは、階級的に遠い富豪への支持は必ずしも矛盾しない。候補者評価には、所得再分配だけでなく、社会的序列の中の位置への認識も関わりうるからである。候補者が地位の低下を語る言葉を提供することで支持を得る、という説明もこの枠組みに含まれる。ただし、これは支持者全員の動機を示すものではない。</p>
+      <h3 id="sec3-2">3.2 仮説二 人民とエリートの線引き</h3>
+      <p>第二の仮説は、支持者が政治的対立を「雇う者対雇われる者」ではなく、「人民対エリート」として捉える場合があるとする。この見方では、事業家である候補者も、既存の政治制度に異議を唱える人物として人民の側に位置づけられうる。前述のホックシールドが描いた「列への割り込み」の感覚は、公正な扱いをめぐる認識の一つの形である。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> クレイマーの研究も、政府や都市との関係をめぐる地域住民の認識が政治的態度に結びつく過程を示している。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></p>
+      <p>この仮説では、支持者が誰を代表者とみなし、誰を自分たちの声を聞かないエリートとみなすかが焦点となる。ただし、これを支える質的研究は対象地域や参加者が限られており、トランプ支持者全体にどこまで当てはまるかは確認されていない。</p>
+      <h3 id="sec3-3">3.3 仮説三 敵の選び方</h3>
+      <p>第三の仮説は、候補者の言説が、敵を経済的な位置ではなく、政治的・文化的な位置によって定義するとする。仮説二が支持者の側の認識を扱うのに対し、この仮説が扱うのは、候補者が誰を敵として名指すかという言説の側である。ポピュリズム論(第 4 章)の定義に従えば、ここでの「エリート」は、資本家や雇用者ではなく、政治家、官僚、メディア、大学といった、人民の意思を代表しない、あるいは人民を見下す存在として語られる。ミシェル・ラモント（Michèle Lamont）、パク・ボユン（Bo Yun Park）、エレナ・アヤラ＝ウルタド（Elena Ayala-Hurtado）は、 2016 年の選挙演説を質的に分析し、トランプの言説が白人労働者階級の一部にとっての地位低下への懸念や、国民的序列をめぐる不安に応答したと論じた。同時に、著者らは演説の受容を直接測定したものではないという限界を明記している。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></p>
+      <p>この見方では、富豪であることは欠点ではなく、むしろ資格になりうる。既存の政治家に借りのない、外部から来た人物という物語が成り立つからである。これはポピュリズム論の中核的な論点でもあり、第 4 章で詳しく扱う。</p>
+      <h3 id="sec3-4">3.4 仮説四 利害と帰属の乖離</h3>
+      <p>第四の仮説は、そもそも有権者が階級的な利害にもとづいて投票するという想定を疑う。有権者は、所得や雇用条件から自動的に政治的立場を導くのではなく、自分が属すると感じる集団、地域、宗教、人種化された帰属などから導く。この場合、物質的な利益と政治的な支持のずれは、例外ではなく、通常の姿である。</p>
+      <p>ここで重要なのは、階級投票が自然な状態であり、それからの逸脱を説明しなければならないという前提が、それ自体は一つの理論的な選択にすぎない点である。ただし、この仮説は、支持者が自分の利益を誤認していると主張するものではない。何を自分の利益とみなすかが、経済的地位だけでは決まらない、と述べているにすぎない。</p>
+      <h3 id="sec3-5">3.5 仮説の整理</h3>
+      <table>
+        <thead><tr><th>仮説</th><th>中心的な主張</th><th>主な根拠</th><th>留意点</th></tr></thead>
+        <tbody>
+          <tr><td>地位の脅威</td><td>社会的序列の中の位置への不安が支持に結びつく</td><td>マッツ、ギドロンとホール、シャフナーら</td><td>単一の研究に依存する主張があり、他の要因を排除しない</td></tr>
+          <tr><td>人民とエリートの線引き</td><td>政治的・地域的な帰属認識が、候補者や制度への評価を形づくる</td><td>ホックシールド、クレイマー</td><td>質的研究で、対象が特定の地域や運動に限られる</td></tr>
+          <tr><td>敵の選び方</td><td>候補者の言説が、敵を資本家ではなく、政治的・文化的なエリートとして定義する</td><td>ラモントら、ポピュリズム論(第 4 章)</td><td>演説の分析であり、受容を直接測っていない</td></tr>
+          <tr><td>利害と帰属の乖離</td><td>有権者は、階級的利害よりも帰属意識に沿って投票する</td><td>上記の研究全般</td><td>理論的な枠組みであり、個別に検証された命題ではない</td></tr>
+        </tbody>
+      </table>
+      <p>四つの仮説は、同じ現象を別の水準で説明している。地位の脅威は動機の水準、人民とエリートの線引きは世界観の水準、敵の選び方は言説の水準、利害と帰属の乖離は理論的前提の水準にあたる。したがって、どれが正しいかを競わせるよりも、それぞれがどの水準の証拠にもとづいているかを区別することが重要である。</p>
+    </section>
+
+    <section>
+      <h2 id="sec4">4. ポピュリズム概念による整理</h2>
+      <h3 id="sec4-1">4.1 薄いイデオロギーとしての定義</h3>
+      <p>現代政治学で広く用いられる定義の一つは、ポピュリズムを「薄い（中心的な）イデオロギー」と捉えるものである。カス・ムッデ（Cas Mudde）とクリストバル・ロビラ・カルトワッサー（Cristóbal Rovira Kaltwasser）によれば、ポピュリズムは社会を「純粋な人民」と「腐敗したエリート」という均質で対立的な二陣営に分け、政治は人民の一般意思を表現すべきだとする考え方である。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
+      <p>「薄い」とは、ポピュリズムが独自の政策体系を十分に備えていないことを指す。したがって、ポピュリズム自体から移民政策、税制、福祉、貿易政策などの具体的立場は導けない。これらはナショナリズムや保守主義、社会主義などの、より包括的な思想と結びついて形成される。ここで重要なのは、「エリート」が所得階層ではなく、道徳的・政治的な区分として語られる点である。</p>
+      <h3 id="sec4-2">4.2 人民の代表と反多元主義</h3>
+      <p>ポピュリズムを反エリート主義だけに還元することには問題がある。ヤン＝ヴェルナー・ミュラー（Jan-Werner Müller）は、ポピュリストに特徴的なのは「自分たちだけが真正な人民を代表する」という独占的な代表主張であり、対立者を正当な政治的競争者として認めない反多元主義だと論じる。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
+      <p>この観点では、「人民」はあらかじめ定まった人口集団ではなく、政治言説によって境界づけられる。誰が「本当のアメリカ人」とみなされ、誰が人民の外部に置かれるかは、ポピュリズムの政治的争点そのものである。第 3 章の仮説二は、この境界がどこに引かれるかについての支持者側の認識、仮説三は、同じ境界を候補者の言説がどう引くかにあたる。</p>
+      <h3 id="sec4-3">4.3 トランプの言説と富の位置づけ</h3>
+      <p>2016 年大統領選挙の公式声明や候補者の Twitter を分析したコリナ・ラカトゥス（Corina Lacatus）は、トランプ陣営とサンダース陣営の双方にポピュリスト的言説が見られた一方、両者が異なる政治課題に結びつけていたことを示した。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> J・エリック・オリバー（J. Eric Oliver）とウェンディ・M・ラーン（Wendy M. Rahn）も、 2016 年の候補者の演説や世論データを検討し、トランプの言説に単純化、反エリート主義、集合的な人民への訴えが際立っていたと論じる。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> これらの研究は、トランプをポピュリストとして分析することに経験的な根拠を与える。ただし、選挙運動の言説分析は、全ての政策や政権運営を一つの概念で説明するものではない。</p>
+      <p>この枠組みでは、富裕な候補者が人民の代表を名乗ることは、概念上の矛盾ではない。代表主張は富の格差を消すのではなく、別の軸で正当化し直す。候補者の成功や資産が「既存の利権に依存しない能力」や「国家を経営する力量」として提示される一方、ワシントンの政治家は人民から切り離された特権階級として描かれる。経済的エリートであることと、反政治エリートの言説を用いることは、政治的な物語の中で同時に成立しうる。</p>
+      <div class="box"><strong>分析上の区別：</strong>「トランプはポピュリストだから排外主義的である」と因果関係を短絡させるのではなく、ポピュリズムがどのような宿主イデオロギーと結びつき、具体的にどの集団を人民の内外に置くのかを問うべきである。</div>
+    </section>
+
+    <section>
+      <h2 id="sec5">5. 2016 年から 2024 年へ――支持連合の変化</h2>
+      <p>2024 年選挙について、 2016 年の印象論をそのまま当てはめないためには、有権者の構成と個人の投票移動、争点への態度を分けて見る必要がある。 Pew Research Center は、事後調査の回答を州の投票記録と照合した「投票確認済み有権者 (validated voters) 」を分析している。同じ調査パネルを過去の選挙にも用いるため、単純な出口調査よりも個人の投票参加・選択の変化を追いやすい。ただし、投票記録自体は誰に投票したかを記録せず、候補者選択は事後調査回答に依存する。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup></p>
+      <h3 id="sec5-1">5.1 人口構成と投票行動</h3>
+      <p>2024 年にトランプは、 2016 年・ 2020 年より人種・民族構成の多様な支持連合を得た。 Pew の推計では、トランプ投票者に占める非ヒスパニック系白人の割合は 2016 年の 88 ％、 2020 年の 86 ％から 2024 年には 78 ％へ低下した。ヒスパニック系有権者ではトランプの得票が 2020 年の 36 ％から 48 ％へ、黒人有権者では 8 ％から 15 ％へ上昇した。ただし、黒人・ヒスパニック系の変化の多くは、同一人物が民主党候補からトランプへ乗り換えたことではなく、誰が投票に参加したかの違いによって生じたと同分析は述べる。 <sup id="fnref-13-2"><a href="#ref-13">[13]</a></sup></p>
+      <p>この変化は、人種を問わず支持が一様に移動したことを意味しない。白人有権者の中でトランプに投票した割合は、 Pew の推計で 2016 年 54 ％、 2020 年 55 ％、 2024 年 55 ％とほぼ横ばいだった。一方、非大卒有権者では 2024 年にトランプが 14 ポイント差で優位となり、 2016 年の差の約 2 倍だった。大卒有権者ではハリスが 16 ポイント差で勝った。ここで示されているのは、白人全体の値と、人種を問わない非大卒層の値である。白人の非大卒層に限った数値ではないため、白人労働者層への訴求が消えたとは言えない。むしろ、従来の教育による分極化は維持されたまま、支持連合の一部が人種・民族面で広がったと考えるのが、この範囲の証拠と整合的である。 <sup id="fnref-13-3"><a href="#ref-13">[13]</a></sup></p>
+      <p>2024 年の結果には投票率の差も関わる。 2020 年のトランプ投票者の 89 ％が 2024 年にも投票したのに対し、 2020 年のバイデン投票者では 85 ％だった。また、 2020 年には投票資格がありながら投票せず、 2024 年に投票した人々の間では、トランプが 54 ％対 42 ％で優位だった。こうした結果は、支持拡大を個人の思想転換だけで説明できないことを示す。 <sup id="fnref-13-4"><a href="#ref-13">[13]</a></sup></p>
+      <h3 id="sec5-2">5.2 経済・移民と争点の優先順位</h3>
+      <p>争点については、選挙前の Pew 調査でトランプ支持者の 93 ％が経済、 82 ％が移民を「投票にとても重要」と答えた。移民をとても重要とみなすトランプ支持者の比率は、 2020 年から 21 ポイント上昇していた。これは支持者が選挙前に表明した争点の重要度であり、各争点が投票を引き起こした因果効果を測ったものではない。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></p>
+      <p>選挙後の大規模調査 AP VoteCast では、家計が「遅れをとっている」と感じる人や、インフレを最重要要因とした人ほどトランプ支持が強かったと報告された。経済と雇用を最重要課題とした有権者の約 6 割がトランプに投票したという。これらの結果は、2024 年には物価や家計への評価が強い選挙争点となったことを示す。なお、 AP VoteCast は大規模な有権者調査であり、 Pew の投票記録照合パネルとは標本設計も測定方法も異なる。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></p>
+      <p>以上から、 2016 年から 2024 年への継続性は、非大卒層や農村部でのトランプ優位、反既存政治の動員に見られる。他方で変化は、ヒスパニック系・黒人有権者の支持割合の上昇、非投票層の参加、そして経済・移民をめぐる争点環境に現れた。この結果は、第 3 章の仮説のうち、少なくとも地位の脅威だけでは 2024 年の拡大を説明しきれないことを示唆する。得票の人口統計的な分布だけでは支持の動機を断定できず、選挙時点ごとの経済状況、候補者、投票参加の差も含めて比較する必要がある。</p>
+    </section>
+
+    <section>
+      <h2 id="sec6">6. 支持基盤の階層的多様性――献金データから</h2>
+      <p>近年の献金データ研究は、トランプの政治資金基盤が単一の階層に限られないことを示している。ショーン・ケイツ（Sean Kates）、エリック・マニング（Eric Manning）、タリ・メンデルバーグ（Tali Mendelberg）、オマー・ワソウ（Omar Wasow）は資産価値、献金記録、投票者データを結びつけ、トランプが共和党の富裕な献金者の間では他候補より相対的に支持を得にくかった一方、新たな献金者を動員し、教育面でも献金者層を広げたと報告する。著者らはこれを複数の階層を含む「プルトポピュリスト的」な財政基盤として説明する。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></p>
+      <p>この研究の対象は献金者と選挙資金であり、投票者全体の構成や各人の投票動機を直接示すものではない。それでも、階級の位置と支持の強さが一対一には対応しないことを考える手がかりとなる。異なる階層の支持が、異なる理由や経路を通じて一つの政治連合にまとまりうる点に、富裕な候補者が大衆的支持を得る現象の一端がある。第 3 章の四つの仮説は、この過程をそれぞれ別の水準から説明する。</p>
+    </section>
+
+    <section>
+      <h2 id="sec7">7. 結論</h2>
+      <p>冒頭の問いに、三段階で答える。第一に、トランプが非大卒の白人有権者を含む層から重要な支持を得たことは確かだが、支持基盤全体を単一の階級像で捉える理解は実証研究に支えられていない。支持者の階層は、有権者の水準でも献金者の水準でも多様である。</p>
+      <p>第二に、階級的位置の隔たりがあっても、矛盾は支持者自身の世界観の内側では生じにくい。地位の脅威、人民とエリートの線引き、政治的・文化的エリートを敵とする言説、階級的利害と帰属意識の乖離といった仮説は、「雇う者対雇われる者」とは別の軸で対立が引かれていることを示している。この軸では、富豪は対極にある者ではなく、人民の側に置かれうる。したがって、この矛盾は、階級を経済的位置だけで定義し、有権者が階級的利害に従って投票するはずだと想定した場合に解消しがたく見える。</p>
+      <p>第三に、それでも問いは残る。ある政治家が実際にどの階層に利益をもたらし、あるいは不利益をもたらすかは、言説や動機の分析とは別の問題であり、本稿はその政策的帰結を分析していない。支持者の主観的な世界観の内側で矛盾がないことは、その支持が支持者の物質的利益に適うことを意味しない。今後の分析では、政治家の自己表象、支持者の社会経済的構成、個々の投票・献金動機、政策の分配的帰結を区別し、どの水準の証拠が何を説明するのかを明示することが求められる。</p>
+    </section>
+  </article>
+
+  <div class="refs">
+    <h2 id="refs-title">参考文献・資料</h2>
+    <p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+    <ol>
+      <li id="ref-1"><a href="#fnref-1-1">^</a> Andrew J. Cherlin, “A Review of the Popular and Scholarly Accounts of Donald Trump’s White Working-Class Support in the 2016 US Presidential Election,” <em>Societies</em>, 9(2), 2019, Article 36. <a href="https://doi.org/10.3390/soc9020036">論文情報・本文</a> .</li>
+      <li id="ref-2"><a href="#fnref-2-1">^</a> Nicholas Carnes and Noam Lupu, “The White Working Class and the 2016 Election,” <em>Perspectives on Politics</em>, 19(1), 2021, pp. 55–72. <a href="https://doi.org/10.1017/S1537592720001267">Cambridge Core</a>.</li>
+      <li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Arlie Russell Hochschild, <em>Strangers in Their Own Land: Anger and Mourning on the American Right</em>, The New Press, 2016. <a href="https://thenewpress.org/books/strangers-in-their-own-land/">出版社の書籍情報</a> .</li>
+      <li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> Katherine J. Cramer, <em>The Politics of Resentment: Rural Consciousness in Wisconsin and the Rise of Scott Walker</em>, University of Chicago Press, 2016. <a href="https://press.uchicago.edu/ucp/books/book/chicago/P/bo22879533.html">出版社の書籍情報</a> .</li>
+      <li id="ref-5"><a href="#fnref-5-1">^</a> Diana C. Mutz, “Status Threat, Not Economic Hardship, Explains the 2016 Presidential Vote,” <em>Proceedings of the National Academy of Sciences</em>, 115(19), 2018, E4330–E4339. <a href="https://doi.org/10.1073/pnas.1718155115">PNAS</a>.</li>
+      <li id="ref-6"><a href="#fnref-6-1">^</a> Noam Gidron and Peter A. Hall, “The Politics of Social Status: Economic and Cultural Roots of the Populist Right,” <em>The British Journal of Sociology</em>, 68(S1), 2017, S57–S84. <a href="https://doi.org/10.1111/1468-4446.12319">Wiley Online Library</a>.</li>
+      <li id="ref-7"><a href="#fnref-7-1">^</a> Brian F. Schaffner, Matthew MacWilliams, and Tatishe Nteta, “Understanding White Polarization in the 2016 Vote for President: The Sobering Role of Racism and Sexism,” <em>Political Science Quarterly</em>, 133(1), 2018, pp. 9–34. <a href="https://doi.org/10.1002/polq.12737">Wiley Online Library</a>.</li>
+      <li id="ref-8"><a href="#fnref-8-1">^</a> Michèle Lamont, Bo Yun Park, and Elena Ayala-Hurtado, “Trump’s Electoral Speeches and His Appeal to the American White Working Class,” <em>The British Journal of Sociology</em>, 68(S1), 2017, S153–S180. <a href="https://doi.org/10.1111/1468-4446.12315">Wiley Online Library</a>.</li>
+      <li id="ref-9"><a href="#fnref-9-1">^</a> Cas Mudde and Cristóbal Rovira Kaltwasser, <em>Populism: A Very Short Introduction</em>, Oxford University Press, 2017. <a href="https://doi.org/10.1093/actrade/9780190234874.001.0001">Oxford Academic</a>.</li>
+      <li id="ref-10"><a href="#fnref-10-1">^</a> Jan-Werner Müller, <em>What Is Populism?</em>, University of Pennsylvania Press, 2016. <a href="https://www.upenn.edu/pennpress/book/15570.html">出版社の書籍情報</a> .</li>
+      <li id="ref-11"><a href="#fnref-11-1">^</a> Corina Lacatus, “Populism and the 2016 American Election: Evidence from Official Press Releases and Twitter,” <em>PS: Political Science &amp; Politics</em>, 52(2), 2019, pp. 223–228. <a href="https://doi.org/10.1017/S104909651800183X">Cambridge Core</a>.</li>
+      <li id="ref-12"><a href="#fnref-12-1">^</a> J. Eric Oliver and Wendy M. Rahn, “Rise of the Trumpenvolk: Populism in the 2016 Election,” <em>The ANNALS of the American Academy of Political and Social Science</em>, 667(1), 2016, pp. 189–206. <a href="https://doi.org/10.1177/0002716216662639">SAGE Journals</a>.</li>
+      <li id="ref-13">^ <sup><a href="#fnref-13-1">a</a></sup> <sup><a href="#fnref-13-2">b</a></sup> <sup><a href="#fnref-13-3">c</a></sup> <sup><a href="#fnref-13-4">d</a></sup> Pew Research Center, “Behind Trump’s 2024 Victory, a More Racially and Ethnically Diverse Voter Coalition,” “How Voting Patterns Changed in the 2024 Election,” and “Detailed Demographic Profiles of Trump and Harris Voters in 2024,” 2025. 投票確認済み有権者の調査と方法説明。<a href="https://www.pewresearch.org/politics/2025/06/26/behind-trumps-2024-victory-a-more-racially-and-ethnically-diverse-voter-coalition/">報告書・関連分析</a> .</li>
+      <li id="ref-14"><a href="#fnref-14-1">^</a> Pew Research Center, “Issues and the 2024 Election,” September 9, 2024. 選挙前の登録有権者調査。<a href="https://www.pewresearch.org/politics/2024/09/09/issues-and-the-2024-election/">調査結果・方法</a> .</li>
+      <li id="ref-15"><a href="#fnref-15-1">^</a> Associated Press, “AP VoteCast: Voters Who Focused on the Economy Broke Hard for Trump,” November 2024. <a href="https://www.ap.org/news-highlights/spotlights/2024/ap-votecast-voters-who-focused-on-the-economy-broke-hard-for-trump/">調査結果</a> .</li>
+      <li id="ref-16"><a href="#fnref-16-1">^</a> Sean Kates, Eric Manning, Tali Mendelberg, and Omar Wasow, “Plutopopulism: Wealth and Trump’s Financial Base,” <em>American Political Science Review</em>, 120(1), 2026, pp. 92–109. <a href="https://doi.org/10.1017/S0003055425000061">Cambridge Core / 書誌情報</a> .</li>
+    </ol>
+  </div>
+  <p class="note">注記：本稿は、既存の研究文献を用いて論旨を再構成した文献レビューである。選挙研究の対象年・指標・方法は文献ごとに異なり、質的研究の知見は調査対象の外へ一般化できるとは限らない。</p>
+</main>
+</body>
+</html>
