@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理想的な選挙制度は存在するか</title>
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);line-height:2}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px}
+a{color:var(--link)}
+.kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 10px}
+h1{font-size:32px;line-height:1.6;margin:0 0 8px;color:var(--text)}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.7;margin:52px 0 20px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+h3{font-size:20px;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+li{font-size:19px;margin-bottom:9px}
+.pull{font-size:22px;font-weight:700;color:var(--accent);border-left:4px solid var(--accent);padding-left:20px;margin:34px 0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px}
+.box strong{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:16px}
+th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top;text-align:left}
+th{background:var(--box)}
+figure{margin:0 0 28px}
+figure svg{width:100%;height:auto;display:block;background:var(--box);border:1px solid var(--line)}
+figcaption{font-size:15px;color:var(--muted);line-height:1.8;margin-top:8px}
+sup{font-size:.72em}
+sup a{text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target,sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted);margin-top:20px}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">比較政治・選挙制度論</p>
+<h1>理想的な選挙制度は存在するか<br>――七つの民主主義から考える</h1>
+<p class="subtitle">The Search for an Ideal Electoral System: Trade-offs, Mathematical Limits, and Lessons from Seven Democratic Models</p>
+
+<div class="lede">
+<p>1981 年、マルタの総選挙で、得票の過半数を得た政党が政権を取れなかった。選挙制度は、票を議席に変える装置である。どんな装置を選ぶかで、同じ民意が違う政府に姿を変える。</p>
+<p>ニュージーランド、アイルランド、オーストラリア、ドイツ、マルタ、北欧、スイス。七つの制度を歩いてみると、「理想の制度」という問いの立て方そのものが、問い直される。</p>
+</div>
+
+<div class="meta">【方法と限界】本稿は各国の制度の骨格を比較する概説であり、特定の制度の優劣を実証的に決着させるものではない。確認できる制度上の事実と、そこから導く筆者の解釈は区別して書く。制度は改正されうるため、細部は各国の選挙管理機関などの一次資料で確かめてほしい。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">得票で勝ち、政権を逃した党</a></li>
+<li><a href="#sec2">「理想」を測る物差しは一つではない</a>
+<ol>
+<li><a href="#sec2-1">数学が示す限界</a></li>
+<li><a href="#sec2-2">五つの物差し</a></li>
+</ol>
+</li>
+<li><a href="#sec3">七つの制度を歩く</a>
+<ol>
+<li><a href="#sec3-1">ニュージーランド</a></li>
+<li><a href="#sec3-2">アイルランド</a></li>
+<li><a href="#sec3-3">オーストラリア</a></li>
+<li><a href="#sec3-4">ドイツ</a></li>
+<li><a href="#sec3-5">マルタ</a></li>
+<li><a href="#sec3-6">デンマークと北欧諸国</a></li>
+<li><a href="#sec3-7">スイス</a></li>
+</ol>
+</li>
+<li><a href="#sec4">並べてみる</a></li>
+<li><a href="#sec5">理想の追求から継続的な修繕へ</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 得票で勝ち、政権を逃した党</h2>
+<p>1981 年のマルタ総選挙では、国民党が第一選好票の 50.9 % を得て、過半数に達した。ところが 65 議席のうち労働党が 34 、国民党が 31 を占め、政権を握ったのは労働党だった。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 民意の多数派が、議会の多数派にならなかったのである。</p>
+<p>マルタは、有権者が候補者に順位をつけて投票する制度を使っている。仕組みは公正に見える。それでも、選挙区の線の引き方と票の分布の組み合わせによって、こうした逆転は起こる。この事態を受けて 1987 年に憲法が改正され、過半数の票を得た党が議席で過半数に届かない場合には、追加の議席が与えられることになった。</p>
+<figure>
+<svg viewBox="0 0 760 190" role="img" aria-label="1981年マルタ総選挙の得票率と議席率を並べた帯グラフ" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="62" font-size="15" font-weight="700" fill="#242522">得票率</text>
+<rect x="130" y="40" width="285" height="34" fill="#3d5a52"/>
+<rect x="415" y="40" width="275" height="34" fill="#a3b1a8"/>
+<text x="142" y="63" font-size="14" fill="#ffffff">国民党 50.9 %</text>
+<text x="427" y="63" font-size="14" fill="#242522">労働党 49.1 %</text>
+<text x="20" y="127" font-size="15" font-weight="700" fill="#242522">議席率</text>
+<rect x="130" y="105" width="267" height="34" fill="#3d5a52"/>
+<rect x="397" y="105" width="293" height="34" fill="#a3b1a8"/>
+<text x="142" y="128" font-size="14" fill="#ffffff">国民党 31 議席 47.7 %</text>
+<text x="409" y="128" font-size="14" fill="#242522">労働党 34 議席 52.3 % 政権獲得</text>
+<line x1="410" y1="28" x2="410" y2="152" stroke="#242522" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="410" y="20" font-size="13" fill="#65695f" text-anchor="middle">過半数</text>
+<text x="130" y="176" font-size="13" fill="#65695f">議席は全 65 。得票は第一選好票の割合。</text>
+</svg>
+<figcaption>図 1 ： 1981 年マルタ総選挙で生じた、得票の過半数と議席の過半数のねじれ</figcaption>
+</figure>
+
+<p>この一件は、本稿の問いにとって示唆的である。「公正な選挙制度」を設計したつもりでも、設計者が想定しなかった場面で、制度は民意と食い違う。では、食い違いが起きない制度、つまり理想の制度は、どこかの国に実在するのだろうか。結論は、最後に述べる。</p>
+
+<h2 id="sec2">2. 「理想」を測る物差しは一つではない</h2>
+
+<h3 id="sec2-1">2.1 数学が示す限界</h3>
+<p>経済学者ケネス・アロウは、 1951 年の著書で、いくつかのもっともらしい条件を同時に満たす完全な集計ルールは存在しないことを示した。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 二人以上の有権者が三つ以上の選択肢に順位をつけるとき、個々人の好みを一つの社会的な順位に束ねる万能の方法はない、という定理である。ここでいう条件は、全員が A を B より好むなら社会もそう判断する、特定の一人の好みが常に結論になることはない、無関係な選択肢の登場で順位が入れ替わらない、といった穏当なものばかりだ。制度の不完全性は、人間の知恵の不足ではなく、集計という営みに内在する限界なのである。</p>
+<p>政治学にも似た経験則がある。小選挙区で一議席を争う制度は二大政党に収斂しやすい、というデュヴェルジェの法則である。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 法則と呼ばれてはいるが例外は多く、あくまで傾向にすぎない。それでも、制度が政党の数や形を左右することは、多くの研究者が認めている。</p>
+<p class="pull">選挙制度とは、ある価値を得るために、別の価値を差し出す設計である。</p>
+
+<h3 id="sec2-2">2.2 五つの物差し</h3>
+<p>理想かどうかは、何を重んじるかで変わる。選挙制度を評価する物差しとして、よく挙がるものを五つ挙げておく。</p>
+<ul>
+<li><strong>比例性</strong>：政党の得票率と議席率がどれだけ近いか。</li>
+<li><strong>安定性</strong>：安定した政権が生まれ、継続して政策を実行できるか。</li>
+<li><strong>責任の明確さ</strong>：有権者が、うまくいかなかったとき誰を交代させればよいか分かるか。</li>
+<li><strong>地域との結びつき</strong>：特定の地域を代表する議員がいて、有権者が顔の見える関係を持てるか。</li>
+<li><strong>分かりやすさ</strong>：有権者が、自分の一票がどう議席に変わるかを理解できるか。</li>
+</ul>
+<p>比例性を高めれば小党が議会に入りやすくなり、連立の組み合わせが複雑になる。責任の所在は見えにくくなる。逆に、勝者が総取りする仕組みは責任が明確だが、死票が増える。五つすべてで満点の制度は、少なくとも現実には見当たらない。以下、七つの国と地域がどんな組み合わせを選んだかを見ていく。なお、本稿の「七つ」は項目の数である。オーストラリアは下院と上院で制度が異なる一方、北欧はデンマークを軸に数か国をまとめて扱っている。</p>
+
+<h2 id="sec3">3. 七つの制度を歩く</h2>
+
+<h3 id="sec3-1">3.1 ニュージーランド</h3>
+<p>ニュージーランドは、かつて英国と同じ小選挙区制を使っていた。転機は 1980 年代である。 1978 年と 1981 年の総選挙では、全国の得票で上回った政党が議席で敗れて政権を逃し、一定の票を集めた第三党にはほとんど議席が配分されなかった。こうした不満が続き、王立委員会が 1986 年に比例代表の導入を勧告した。そして 1993 年の国民投票で、小選挙区制を維持する案に対し、混合型比例代表制を選ぶ案が過半数を得た。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></p>
+<p>導入された混合型比例代表制では、有権者は二票を持つ。一票は地元の選挙区の候補者に、もう一票は政党に投じる。全体で 120 議席あり、議席の総数は政党票の割合に合わせて決まる。選挙区で勝った候補者は議員になり、足りない分は政党名簿から補う。日本の並立制では、選挙区と比例代表の議席が別々に数えられるが、ここでは全体の議席が政党票で決まる点が異なる。小党の乱立を抑えるため、政党票で 5 % に届くか、選挙区で一議席を取らなければ議席は配分されない。 1996 年の初適用以来、連立政権が常態となったが、 2020 年には労働党が単独過半数を得るという、この制度下では初めての結果も出ている。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></p>
+<p>ニュージーランドの例が教えるのは、制度は変えられるということだ。しかも、変える理由は理念ではなく、「票と議席のずれへの不満」という、身近な経験だった。</p>
+
+<h3 id="sec3-2">3.2 アイルランド</h3>
+<p>アイルランドの下院は、一つの選挙区から三人から五人を選ぶ。有権者は候補者に順位をつけ、当選に必要な票を超えた分や、落選した候補者の票は、次の順位に従って他の候補者へ移される。単記移譲式投票と呼ばれる仕組みである。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<p>この制度は 1922 年の独立国家の成立以来、使われている。同じ政党の候補者同士も票を争うため、有権者は政党だけでなく、人物を選ぶことになる。党幹部への従属は弱まり、議員は地元の要望に熱心に応える。この制度については 1959 年と 1968 年の二度、廃止して小選挙区制に切り替える案が国民投票にかけられ、どちらも否決された。長く使われるうちに、国民の側が制度を支持したのである。</p>
+
+<h3 id="sec3-3">3.3 オーストラリア</h3>
+<p>オーストラリアの下院は小選挙区だが、日本と違って、有権者は候補者全員に順位をつける。第一位の票で過半数を得た候補者がいなければ、最下位の候補者を除き、その票を次の順位に従って振り分ける。これを過半数が出るまで繰り返す。優先順位つき投票と呼ばれ、 1918 年に導入された。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></p>
+<p>一方、上院は単記移譲式投票による比例代表である。下院は政権を選ぶ場、上院は多様な民意を映す場と、役割を分けた設計になっている。さらに特徴的なのは、 1924 年から連邦選挙で投票が義務化されている点だ。投票しなければ罰金が科され、投票率は例年九割前後に達する。 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup></p>
+
+<h3 id="sec3-4">3.4 ドイツ</h3>
+<p>ドイツの連邦議会は、小選挙区と比例代表を組み合わせた制度を持つ。有権者の二票のうち、議席の総数を決めるのは政党票のほうである。選挙区の当選者は、政党の議席枠の中に数えられる。そのため、全体の議席配分は比例代表で決まり、地元の議員は選挙区から選ばれるという、二つの顔を持つ。ワイマール共和国で小党の乱立が政治の不安定を招いた反省から、 5 % の阻止条項があり、選挙区で三議席を取った政党は 5 % に届かなくても比例の議席を得られる、という例外規定（基本議席条項）も置かれてきた。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+<p>この制度は、思わぬ副作用を生んだ。ある政党が選挙区で議席を取りすぎると、比例の割合を保つために、他党にも追加の議席が与えられる。その結果、 2021 年の選挙では定数 598 に対し、議員数が 736 人に膨らんだ。これを受けて 2023 年に定数を 630 に固定し、追加の議席を廃止する改革が行われた。その代償として、選挙区で最多得票を得た候補者でも、所属政党の政党票による議席枠に収まらなければ当選できない。 2023 年の改革は、この基本議席条項も廃止していた。 2024 年に連邦憲法裁判所は、定数の固定を認めた一方、基本議席条項を廃止した部分は違憲と判断し、例外規定は暫定的に存続している。 2025 年の連邦議会選挙は、この新しい制度の初めての適用となった。 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> 理想的に見える仕組みでも、運用して初めて見える欠陥があり、直し続ける作業が欠かせないという例である。</p>
+
+<h3 id="sec3-5">3.5 マルタ</h3>
+<p>冒頭のマルタに戻ろう。マルタもアイルランドと同じく単記移譲式投票を使っており、一つの選挙区から五人を選ぶ。理論上は小党が議席を得やすい制度だが、実際には国民党と労働党の二大政党が議席をほぼ独占している。冒頭の逆転への対応として、 1987 年に補正の議席を与える規定が置かれたことは、先に述べたとおりである。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></p>
+<p>同じ制度でも、国によって結果は違う。制度は政治の行方を決める唯一の要因ではない。社会の亀裂や政党の歴史が、制度の働き方を変えるのである。 1981 年の逆転は、その複雑さの一つの現れだった。</p>
+
+<h3 id="sec3-6">3.6 デンマークと北欧諸国</h3>
+<p>デンマークは、非拘束名簿式の比例代表制を使う。有権者は政党に投票するが、政党の中の特定の候補者に票を入れることもできる。デンマーク本土の 175 議席のうち 135 議席を複数の選挙区に割り振り、残る 40 議席は、全国の得票と選挙区の議席とのずれを埋める調整議席として配分する。ほかにフェロー諸島とグリーンランドに各二議席がある。議席の配分に必要な得票率は 2 % と低い。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 小党が議会に入りやすく、過半数の政党がない状態が常である。そこでデンマークでは、少数与党が議会ごとに協力相手を探して政策を通す、少数派政権の運営が長く続いてきた。</p>
+<p>北欧の他の国も、比例代表制を基調にしている。ノルウェーとスウェーデンも調整議席を持ち、いずれも 4 % の基準を置く。ただしスウェーデンでは議席を得るための足切りであるのに対し、ノルウェーでは調整議席の配分を受けるための条件である。フィンランドは法定の阻止条項を持たず、候補者個人への投票を重視する。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 共通するのは、多様な民意を議会に反映させ、合意形成によって政策を決める政治文化である。ただし、それは制度だけで生まれたわけではない。労使の協調や、政党間の長い交渉の慣習が支えている。</p>
+
+<h3 id="sec3-7">3.7 スイス</h3>
+<p>スイスの国民議会は 200 議席で、各州を選挙区とする比例代表制を採る。有権者は他の政党の候補者を名簿に混ぜたり（パナシャージュ）、同じ候補者に複数の票を書いたり（累積投票）できる。州の代表である全州議会は 46 議席で、多くの州で多数代表制が使われる。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
+<p>スイスの特徴は、選挙の外にある。国民には、法律に対する国民投票を求める権利があり、十万人の署名があれば憲法改正を発議できる。さらに、七人の閣僚からなる連邦内閣には、「魔法の公式」と呼ばれる慣行のもと、主要四政党が二・二・二・一というほぼ固定した割合で参加してきた。選挙は、政権の座を奪い合う場というより、議会の勢力を測る機会に近い。直接民主制と合意形成の仕組みが、選挙の役割を軽くしているのである。 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup></p>
+
+<h2 id="sec4">4. 並べてみる</h2>
+<p>七つの制度を、「議席配分の比例性」と「有権者が候補者個人を選べる自由度」という二つの軸の上に置いてみる。下の図は、本稿の整理にもとづく概念的な配置であり、実測値ではない。</p>
+
+<figure>
+<svg viewBox="0 0 760 360" role="img" aria-label="七つの制度を、比例性と個人選択の自由度という二つの軸で配置した概念図" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="320" x2="720" y2="320" stroke="#65695f" stroke-width="2"/>
+<polygon points="720,314 732,320 720,326" fill="#65695f"/>
+<line x1="70" y1="320" x2="70" y2="36" stroke="#65695f" stroke-width="2"/>
+<polygon points="64,36 70,24 76,36" fill="#65695f"/>
+<text x="70" y="346" font-size="13" fill="#65695f">多数代表に近い</text>
+<text x="720" y="346" font-size="13" fill="#65695f" text-anchor="end">比例性が高い</text>
+<text x="84" y="36" font-size="13" fill="#65695f">個人を選ぶ自由が大きい</text>
+<text x="84" y="308" font-size="13" fill="#65695f">政党の名簿に従う</text>
+<g font-size="14" fill="#242522" text-anchor="middle">
+<circle cx="140" cy="190" r="7" fill="#3d5a52"/><text x="140" y="170">豪下院</text>
+<circle cx="290" cy="95" r="7" fill="#3d5a52"/><text x="290" y="79">マルタ</text>
+<circle cx="390" cy="70" r="7" fill="#3d5a52"/><text x="390" y="54">アイルランド</text>
+<circle cx="470" cy="150" r="7" fill="#3d5a52"/><text x="470" y="134">豪上院</text>
+<circle cx="570" cy="100" r="7" fill="#3d5a52"/><text x="570" y="84">スイス国民議会</text>
+<circle cx="690" cy="140" r="7" fill="#3d5a52"/><text x="690" y="124">デンマーク</text>
+<circle cx="600" cy="235" r="7" fill="#3d5a52"/><text x="600" y="219">ニュージーランド</text>
+<circle cx="665" cy="270" r="7" fill="#3d5a52"/><text x="665" y="254">ドイツ</text>
+</g>
+</svg>
+<figcaption>図 2 ：比例性と個人選択の自由度から見た、七つの制度のおおまかな位置。位置は概念的な目安であり、選挙区の規模や阻止条項によって実際は変わる。</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr><th>国・地域</th><th>制度の骨格</th><th>主な強み</th><th>主なトレードオフ</th></tr>
+</thead>
+<tbody>
+<tr><td>ニュージーランド</td><td>混合型比例代表制、二票制、 5 % 条項</td><td>比例性と地元代表の両立</td><td>連立交渉の長期化</td></tr>
+<tr><td>アイルランド</td><td>中規模選挙区の単記移譲式</td><td>人物を選ぶ自由</td><td>同じ党内の競争、地元偏重</td></tr>
+<tr><td>オーストラリア</td><td>下院は優先順位つき投票、上院は比例</td><td>過半数の支持を得た議員、役割分担</td><td>制度の複雑さ、投票の強制</td></tr>
+<tr><td>ドイツ</td><td>小選挙区と比例の併用、定数 630</td><td>厳密な比例性と地元代表</td><td>仕組みの分かりにくさ、比例枠による選挙区当選者の制限</td></tr>
+<tr><td>マルタ</td><td>単記移譲式、五人区、憲法上の補正議席規定</td><td>有権者の順位づけの反映、逆転時の補正</td><td>二大政党化による小党の排除</td></tr>
+<tr><td>デンマーク・北欧</td><td>非拘束名簿式の比例代表、全国の調整議席</td><td>多様な民意の反映、高い比例性</td><td>責任の所在の見えにくさ</td></tr>
+<tr><td>スイス</td><td>州単位の比例、名簿の混合と票の累積、直接民主制</td><td>幅広い意見の反映、国民が政策を直接決める余地</td><td>意思決定の遅さ</td></tr>
+</tbody>
+</table>
+
+<div class="box"><strong>読み取れること</strong>
+<ul>
+<li>単独で五つの物差しすべてを満たす制度は、七つのどこにもない。</li>
+<li>どの国も、何かを得るために何かを差し出す選択をしている。</li>
+<li>主たる制度の弱点を、別の仕組みで補う国もある。オーストラリアは上院で、マルタは補正議席で、スイスは直接民主制で補っている。</li>
+<li>同じ制度でも、社会の亀裂の構造によって働き方が変わる。単記移譲式のアイルランドは人物中心の政治を、マルタは極端な二大政党化を生んだ。</li>
+</ul>
+</div>
+
+<h2 id="sec5">5. 理想の追求から継続的な修繕へ</h2>
+<p>最初の問いに戻ろう。理想的な選挙制度は存在するのか。答えは、存在しない、である。ただし、それは悲観的な結論ではない。</p>
+<p>アロウの定理が示すように、万能の制度は論理的に存在しない。七つの国の経験も同じことを語る。ニュージーランドは票と議席のずれに耐えかねて制度を変え、ドイツは議員数の膨張に直面して制度を直した。アイルランドは、変えない選択を二度、国民投票で下した。マルタは、制度の穴を憲法改正で塞いだ。どの国も、完成された制度を持っているわけではなく、不満が積もるたびに調整を重ねている。</p>
+<p class="pull">理想の制度を探すより、自国の制度の欠点を見つけ、直し続ける仕組みを持つことのほうが大切である。</p>
+<p>では、私たちは何を手がかりにすればよいか。問うべきは「どの国の制度が最良か」ではなく、「自分たちの社会が何を最優先にし、どの欠点を引き受けるのか」である。第一に、自分が何を重んじるのかを自覚することである。安定か、多様性か、責任の明確さか。第二に、制度の欠点が見えたとき、それを改められる手続きがあるかを確かめることである。第三に、選挙制度は政治の一部にすぎないと知ることだ。北欧の合意の文化や、スイスの直接民主制のように、制度を取り巻く慣習が結果を大きく左右する。</p>
+<p>日本の衆議院は 1990 年代の改革で、小選挙区と比例代表を組み合わせた並立制を導入した。以来、死票の多さ、一票の格差、候補者選びの党本部への集中などが指摘され続けている。この制度が何を得て何を差し出したのかを問い直すとき、七つの国の歩みは、答えではなく、問いの立て方を教えてくれる。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> マルタの選挙制度と 1981 年総選挙、 1987 年の憲法改正に関する解説。 <a href="https://en.wikipedia.org/wiki/Elections_in_Malta">Wikipedia 「 Elections in Malta 」</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Arrow, K. J., 1951. <em>Social Choice and Individual Values</em>. Wiley. 概説は次のページを参照。 <a href="https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem">Wikipedia 「 Arrow's impossibility theorem 」</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Duverger, M., 1951. <em>Les partis politiques</em>. Armand Colin. 概説は次のページを参照。 <a href="https://en.wikipedia.org/wiki/Duverger%27s_law">Wikipedia 「 Duverger's law 」</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> ニュージーランドの選挙制度改革、 1986 年の王立委員会、 1993 年の国民投票、 1996 年以降の運用に関する解説。 <a href="https://en.wikipedia.org/wiki/Elections_in_New_Zealand">Wikipedia 「 Elections in New Zealand 」</a> <a href="https://elections.nz/democracy-in-nz/what-is-new-zealands-system-of-government/what-is-mmp">ニュージーランド選挙管理委員会の公式解説</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> アイルランドの単記移譲式投票と、 1959 年・ 1968 年の国民投票に関する解説。 <a href="https://en.wikipedia.org/wiki/Elections_in_the_Republic_of_Ireland">Wikipedia 「 Elections in the Republic of Ireland 」</a> <a href="https://www.electoralcommission.ie/irelands-voting-system/">アイルランド選挙委員会の公式解説</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> オーストラリアの優先順位つき投票、上院の比例代表、義務投票に関する解説。 <a href="https://en.wikipedia.org/wiki/Electoral_system_of_Australia">Wikipedia 「 Electoral system of Australia 」</a> <a href="https://www.aec.gov.au/learn/preferential-voting.htm">オーストラリア選挙管理委員会の公式解説</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> ドイツ連邦議会の選挙制度、 2023 年の改革、 2024 年の連邦憲法裁判所判断に関する解説。 <a href="https://en.wikipedia.org/wiki/Elections_in_Germany">Wikipedia 「 Elections in Germany 」</a> <a href="https://www.bundeswahlleiterin.de/en/bundestagswahlen/2025/informationen-waehler/wahlsystem.html">ドイツ連邦選挙管理官の公式解説</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> デンマークの選挙制度と調整議席に関する解説。スウェーデンの 4 % の基準と調整議席、ノルウェーの調整議席は、各国の選挙管理機関の解説で確認できる。ノルウェーの 4 % の基準とフィンランドの制度は、各国の選挙管理機関の公表資料で確かめてほしい。 <a href="https://en.wikipedia.org/wiki/Elections_in_Denmark">Wikipedia 「 Elections in Denmark 」</a> <a href="https://www.val.se/det-svenska-valsystemet/rostrakning-och-mandatfordelning/sa-fordelas-mandaten">スウェーデン選挙庁の公式解説（スウェーデン語）</a> <a href="https://www.valg.no/en/elections2/elections-in-norway/elections-to-the-storting--parliamentary-elections/">ノルウェー選挙管理局の公式解説</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> スイスの議会選挙、国民投票、連邦内閣の構成に関する解説。 <a href="https://en.wikipedia.org/wiki/Elections_in_Switzerland">Wikipedia 「 Elections in Switzerland 」</a></li>
+</ol>
+<p class="note">本稿は制度の骨格を概観する啓発的な文章であり、制度の優劣を実証的に断定するものではない。数値や制度の細部は改正されうるため、引用や政策の議論に用いる場合は、各国の公式資料で最新の内容を確認してほしい。</p>
+</div>
+
+</div>
+</body>
+</html>
