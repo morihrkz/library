@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「と思う」の機能分析</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg); color:var(--text); margin:0; line-height:2;}
+.wrap{max-width:820px; margin:0 auto; padding:56px 26px 120px;}
+.kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
+h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
+.subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
+.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
+.lede p{font-size:20px; margin:0 0 14px;}
+.lede p:last-child{margin-bottom:0;}
+.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0; margin:0 0 40px; color:var(--muted); font-size:15px; line-height:1.9;}
+.toc{background:var(--box); border:1px solid var(--line); padding:22px 26px; margin:0 0 46px;}
+.toc>ol{columns:2; column-gap:32px;}
+.toc-title{font-size:15px; letter-spacing:.1em; color:var(--accent); font-weight:700; margin:0 0 14px;}
+.toc ol{margin:0; padding-left:1.3em;}
+.toc li{margin-bottom:7px; font-size:16.5px; break-inside:avoid;}
+.toc li ol{margin-top:7px; margin-bottom:11px;}
+.toc li li{font-size:15.5px; color:var(--muted); margin-bottom:5px;}
+.toc a{color:var(--text); text-decoration:none;}
+.toc a:hover{color:var(--accent); text-decoration:underline;}
+h2{font-size:26px; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
+h3{font-size:20px; margin:32px 0 12px;}
+p{font-size:19px; margin:0 0 20px;}
+.pull{font-size:22px; font-weight:bold; color:var(--accent); border-left:4px solid var(--accent); padding-left:20px; margin:34px 0;}
+.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px; font-size:19px;}
+.box strong{color:var(--accent);}
+.box ul,.box ol{margin-bottom:0;}
+table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:16px;}
+th,td{border:1px solid var(--line); padding:10px 11px; text-align:left; vertical-align:top; line-height:1.8;}
+th{background:var(--box);}
+ul,ol{padding-left:1.4em; margin:0 0 20px;}
+li{margin-bottom:9px; font-size:19px;}
+a{color:var(--link);}
+.note{font-size:15px; color:var(--muted); margin-top:20px;}
+.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs p{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs em{font-style:italic;}
+.refs ol{margin:0 0 11px;}
+.refs li{font-size:15.5px; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
+sup{font-size:.72em; line-height:0; vertical-align:super;}
+sup a{text-decoration:none;}
+sup a:hover{text-decoration:underline;}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px;}
+  h1{font-size:27px;}
+  .toc>ol{columns:1;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">言語哲学・語用論・心理言語学</div>
+<h1>「と思う」の機能分析<br>―― 論理学・言語哲学・心理言語学からの検討</h1>
+<p class="subtitle">A Functional Analysis of the Japanese "to omou": Perspectives from Logic, the Philosophy of Language, and Psycholinguistics, with English Renderings as a Measuring Rod</p>
+<div class="lede">
+<p>日本語の「と思う」は、一つの形式でありながら、推量、意見、感想、意志、助言、同意、儀礼的な宣言など、性質の異なる多くの働きを担う。これを命題態度の報告として一括して扱うのか、発話行為上の標識として扱うのか、それとも使用頻度の高い定型として扱うのかは、どの学問領域の道具を用いるかで答えが変わる。本稿は、論理学、言語哲学・語用論、心理言語学の三つの観点から「と思う」の機能を整理し、観点ごとの説明力の違いを検討する。</p>
+<p>その際の物差しとして、各機能を英語に訳したときの形の変わり方を用いる。英訳は翻訳の推奨ではなく、機能の差を可視化するための対照の道具である。「と思う」に対応する英語の形式が、本稿の例では機能ごとに分かれて現れることは、機能の区別を考える手がかりになる。ただし、それは区別の証明ではなく、発見的な対照にとどまる。</p>
+</div>
+<div class="meta">【方法と限界】本稿の例文は、筆者が内省に基づいて作成したものであり、コーパス調査や母語話者の判断実験による確認を経ていない。英訳は機能の差を観察するための発見的な対照の道具であり、各文に自然な英訳が複数ありうるため、英訳の型は本稿の例と訳例における傾向を示すにとどまる。英語の理論・習得研究の日本語への適用は、類推または仮説である。「と思う」の機能分類は、観点の比較を見通しやすくするための暫定的な区分であって、確立した言語学上の分類ではない。論理学・言語哲学・心理言語学の各節は先行研究の整理が中心であり、筆者による実験・調査ではない。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">問題の設定と方法</a>
+<ol>
+<li><a href="#sec1-1">1 一つの形式と複数の働き</a></li>
+<li><a href="#sec1-2">2 英訳を物差しとする方法</a></li>
+</ol>
+</li>
+<li><a href="#sec2">論理学の観点――命題態度と信念論理</a>
+<ol>
+<li><a href="#sec2-1">1 命題態度としての「と思う」</a></li>
+<li><a href="#sec2-2">2 第一人称の非対称性とムーア的パラドクス</a></li>
+<li><a href="#sec2-3">3 否定辞上昇と作用域</a></li>
+<li><a href="#sec2-4">4 真理条件的分析の限界</a></li>
+</ol>
+</li>
+<li><a href="#sec3">言語哲学・語用論の観点</a>
+<ol>
+<li><a href="#sec3-1">1 括弧的動詞と断定の信頼度表示</a></li>
+<li><a href="#sec3-2">2 発話内の力と間接発話行為</a></li>
+<li><a href="#sec3-3">3 丁寧さとヘッジ</a></li>
+<li><a href="#sec3-4">4 意志の表明と遂行的用法</a></li>
+<li><a href="#sec3-5">5 情報のなわ張りと証拠性</a></li>
+</ol>
+</li>
+<li><a href="#sec4">心理言語学の観点</a>
+<ol>
+<li><a href="#sec4-1">1 習得――形式としての I think</a></li>
+<li><a href="#sec4-2">2 使用と定型化</a></li>
+<li><a href="#sec4-3">3 私的自己と「と思う」</a></li>
+</ol>
+</li>
+<li><a href="#sec5">機能別の分析と英訳による対照</a>
+<ol>
+<li><a href="#sec5-1">1 認識的機能</a></li>
+<li><a href="#sec5-2">2 評価的機能</a></li>
+<li><a href="#sec5-3">3 対人的機能</a></li>
+<li><a href="#sec5-4">4 意志的機能</a></li>
+<li><a href="#sec5-5">5 儀礼的・文体的機能</a></li>
+</ol>
+</li>
+<li><a href="#sec6">観点と機能の対応</a></li>
+<li><a href="#sec7">考察</a>
+<ol>
+<li><a href="#sec7-1">1 三つの観点の関係</a></li>
+<li><a href="#sec7-2">2 英訳という物差しの有効性と限界</a></li>
+<li><a href="#sec7-3">3 今後の課題</a></li>
+</ol>
+</li>
+<li><a href="#sec8">結論</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 問題の設定と方法</h2>
+
+<h3 id="sec1-1">1.1 一つの形式と複数の働き</h3>
+<p>本稿で「と思う」と呼ぶのは、動詞「思う」に引用の格助詞「と」が付いた形式、およびその活用形・接続形（「と思います」「と思って」「と思われる」など）の総称である。日本語のモダリティ研究では、話し手の判断や態度を示す形式の一つとして扱われてきた。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup><sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 文末の「と思う」には複数の形態と用法があることも、用例の記述研究で示されている。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
+<p>形式が一つであるのに対し、働きは一様ではない。次の五つの文は、いずれも「と思う」で終わっているが、していることが異なる。</p>
+<table>
+<tr><th style="width:32%">日本語</th><th style="width:16%">主たる働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>彼はもう出たと思う。</td><td>推量</td><td><em>I think he's already left.</em></td><td>保存型</td></tr>
+<tr><td>先に彼女と話したほうがいいと思う。</td><td>助言</td><td><em>You might want to talk to her first.</em></td><td>転移型</td></tr>
+<tr><td>来月、転職しようと思う。</td><td>意志</td><td><em>I'm thinking about changing jobs next month.</em></td><td>転移型</td></tr>
+<tr><td>私はそうは思わない。</td><td>反対</td><td><em>I don't see it that way.</em> / <em>I disagree.</em></td><td>転移型</td></tr>
+<tr><td>それでは始めたいと思います。</td><td>儀礼的な宣言</td><td><em>Let's get started.</em></td><td>消去型</td></tr>
+</table>
+<p>これらを同一の枠組みで説明できるのか、できないとすればどのような枠組みが必要になるのかが、本稿の問いである。論理学は「と思う」を命題態度の述語として、言語哲学・語用論は発話行為上の標識として、心理言語学は習得と使用における定型として、それぞれ捉える傾向がある。三つの観点は、同じ現象の異なる側面を照らしており、どれか一つが正解というものではない。本稿は、各観点がどの機能をよく説明し、どの機能を取りこぼすのかを検討する。</p>
+
+<h3 id="sec1-2">1.2 英訳を物差しとする方法</h3>
+<p>機能を区別する基準を、日本語の内部だけで立てることは難しい。同じ形式の働きの差は、その形式自身には現れにくいからである。そこで本稿は、各用法を英語に訳したときに、「思う」の担っていた働きが英語のどの要素に移るかを観察する。英語には、確信の度合いを副詞や法助動詞で、行為の種類を動詞や文型で、それぞれ別の形式に分けて表す手段が豊富にあり、本稿の例では機能の差が形に出やすい。英訳の形を、機能の差を探るための発見的な物差しとして用いる所以である。</p>
+<p>観察の便宜のため、英訳での現れ方を次の三つの型に分ける。</p>
+<table>
+<tr><th style="width:16%">型</th><th style="width:42%">定義</th><th>例</th></tr>
+<tr><td><strong>保存型</strong></td><td>英訳でも <em>think</em> 、 <em>believe</em> のような心的動詞が補文をとる構造が保たれる。</td><td>彼はもう出たと思う。→ <em>I think he's already left.</em></td></tr>
+<tr><td><strong>転移型</strong></td><td>「思う」の働きが、副詞・法助動詞・時制・文型・別の動詞など、心的動詞以外の形式へ移る。</td><td>明日は雨だと思う。→ <em>It'll probably rain tomorrow.</em></td></tr>
+<tr><td><strong>消去型</strong></td><td>対応する要素が英訳に現れず、行為そのものを述べる文に置き換わる。</td><td>それでは始めたいと思います。→ <em>Let's get started.</em></td></tr>
+</table>
+<p>この型分けには、次の留保が付く。第一に、一つの日本語文に自然な英訳が複数あることは普通であり、型は文脈によって変わる。表では代表的な訳を一つ挙げて型を付すが、これは傾向を示すものであって、機能と型が一対一に対応するという主張ではない。第二に、英訳の形が分かれることは、日本語側の機能が分かれていることの傍証にとどまり、証明にはならない。英語の語彙の豊かさや慣用の偏りが、差を生んでいる可能性があるからである。第三に、例文は筆者が内省に基づいて作成したものであり、コーパスや母語話者の判断で確認したものではない。したがって、以下の型分けから言えるのは、本稿の例文と訳例においてそのような差が見える、という範囲にとどまる。日英一般についての頻度や傾向は、比較コーパスや訳者間の一致度などの証拠を別に要する。</p>
+<p>あわせて、本文の記述を三つに区別する。「〜とされる」「〜と論じられている」は出典の知見を、「本稿は〜と解釈する」は筆者による日本語への適用・類推を、「仮説である」は未検証の見立てを指す。英語についての理論や習得研究は、日本語の「と思う」を直接に調べたものではなく、比較・理論背景として用いる。文献が実在し主題が関連することは、隣接する日本語の主張を実証することとは同じではない。</p>
+<p class="pull">「と思う」の機能の差は、英訳の形の割れ方に現れうる。</p>
+
+<h2 id="sec2">2. 論理学の観点――命題態度と信念論理</h2>
+
+<h3 id="sec2-1">2.1 命題態度としての「と思う」</h3>
+<p>「雨が降ると思う」は、話し手が、雨が降るという命題 p を信じている、という命題態度の構造として分析できる。 Hintikka 以来の信念論理では、「 a は p を信じている」は、 a が受け入れている可能世界のすべてで p が成り立つこととして形式化される。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> この分析では、「と思う」は補文 p を項にとる述語であり、「と」は補文を導く標識に当たる。</p>
+<p>この見方が最もよく当てはまるのは、他者や過去の自分の信念を記述する文である。「明日が締め切りだと思っていた」は、過去の自分が p を信じていたという記述であり、 p が偽であっても文全体は真でありうる。また、命題態度の文脈では、同じ対象を指す別の表現に置き換えると、真偽が変わることがある（指示的不透明性）。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 「彼は、昨日会った人が犯人だと思っている」の「昨日会った人」を、同じ人物を指す別の記述に替えると、彼の信念の記述としては正しくなくなる場合がある。</p>
+<p>これらの用法は、英訳でも <em>I thought the deadline was tomorrow</em> のように、 <em>think</em> と補文の構造を保つ。保存型である。命題態度の記述としての「と思う」は、英語との対応が最も素直である。</p>
+
+<h3 id="sec2-2">2.2 第一人称の非対称性とムーア的パラドクス</h3>
+<p>第一人称現在の「と思う」には、他の人称にない非対称性がある。「雨が降っているが、私はそうは思わない」は、命題内容に矛盾がないにもかかわらず、不自然に響く。 Moore が取り上げた、「雨が降っているが、私はそれを信じていない」という型の文（ムーア的パラドクス）である。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> Wittgenstein は、この問題を、第一人称現在の信念の表明が自分の心の観察報告ではなく、判断の表明に近い働きをすることと関連づけて論じた。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> ただし、これらの英語圏の議論は、日本語の「と思う」を直接に扱ったものではない。本稿は、第一人称現在の「と思う」を「話し手が p を信じている」という記述としてのみ読むと、説明しきれない面が残る、と解釈する。</p>
+<p>日本語には、さらに人称についての制約があると指摘されてきた。筆者の内省では、「彼は雨が降ると思う」は、第三者の信念を述べる文として単独では座りが悪く、「思っている」「思うようだ」などの形をとる。感情や感覚を表す私的述語の人称制約として論じられてきた現象と並行的であり、「思う」にも同種の制約があるのではないかと考える。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup><sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 英語の <em>think</em> では、 <em>He thinks it will rain</em> は自然な文である。ただし、終止形と進行形の違い、報告か推量か、談話文脈など、複数の条件が絡みうるため、この対照は談話条件を揃えた比較ではない。</p>
+<p>この対照から、日本語の終止形「と思う」は、構造上、話し手自身の態度の表明に偏っているように見える。この偏りが、「と思う」を信念の記述から話し手の態度標識へと転用しやすくしている、というのが本稿の解釈である。これは実証的に検証した結論ではなく、仮説である。自然さの判断実験やコーパス用例による確認が、今後の課題となる。</p>
+
+<h3 id="sec2-3">2.3 否定辞上昇と作用域</h3>
+<p>否定の位置も、論理的な観点から整理できる。「雨は降らないと思う」では、否定は従属節「降らない」の内側にあり、論理形式としては、 p の否定を信じている (B¬p) と読める。これに対して英語では、 <em>I don't think it will rain</em> のように、否定を主節に置く形が、同じ内容を述べる形として広く用いられるとされる。形式上は「 p を信じていない」（¬Bp) であるが、しばしば B¬p に近い意味で解釈される。この現象は否定辞上昇として知られ、 <em>think</em> 、 <em>believe</em> 、 <em>suppose</em> などの動詞に特徴的だとされる。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
+<p>¬Bp と B¬p は、論理的には別の命題であり、同値ではない。否定辞上昇の意味論的な分析も一枚岩ではない。 Gajewski は、否定辞上昇と否定極性表現のデータをもとに、特定の述語に結びついた前提（「 p か ¬p のいずれかを信じている」という含み）に基づく分析を論じている。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 本稿は、この論争には立ち入らない。</p>
+<p>日本語にも、「降るとは思わない」のような主節否定の形があり、筆者の内省では、「降らないと思う」とは読みや文脈条件が異なる。ただし、この差の実証は本稿の範囲外である。ここで確認できるのは、本稿の例では、日本語の「降らないと思う」が英訳で主節否定に移ることがある、という点にとどまる。この場合、心的動詞と補文の構造は英訳でも保たれるので保存型に分類するが、否定の位置だけは組み替えられている。</p>
+
+<h3 id="sec2-4">2.4 真理条件的分析の限界</h3>
+<p>信念の記述としての分析は、推量や過去の思い込み、あるいは「喜ぶと思って買ってきた」のような理由の表明には適合する。しかし、次の三つの用法では、「話し手が p を信じている」と読んでも、文の働きを捉え損なう。</p>
+<div class="box">
+<ul>
+<li><strong>助言</strong> : 「先に彼女と話したほうがいいと思う」の補文は、規範的な内容を含み、真偽を問いにくい。文の働きは信念の報告ではなく、相手への働きかけである。</li>
+<li><strong>意志</strong> : 「来月、転職しようと思う」は、未来の事態についての信念ではなく、話し手の意図を示す。</li>
+<li><strong>宣言</strong> : 「それでは始めたいと思います」は、始めたいという心的状態の報告ではなく、開始の遂行そのものである。</li>
+</ul>
+</div>
+<p>これらの用法は、真理条件的な分析の外にあり、その意味で、論理学的分析は「と思う」には信念の記述に還元できない働きがあることを示す反例の提供者として機能する。この残余を扱うのが、次節の言語哲学・語用論である。</p>
+
+<h2 id="sec3">3. 言語哲学・語用論の観点</h2>
+
+<h3 id="sec3-1">3.1 括弧的動詞と断定の信頼度表示</h3>
+<p>言語哲学において、 <em>I think</em> のような表現は、命題態度を述べる主節としてではなく、括弧的 (parenthetical) に働くことがあると指摘されてきた。 Urmson は、 <em>I think</em> や <em>I know</em> のような括弧的動詞が、文中や文末に挿入され、話し手の心的状態の記述ではなく、命題の受け取り方を示す標識として働く場合があることを論じた。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> Hooper は、主張的述語 (assertive predicates) の類を論じ、補文に主張の主眼がある用法があることを、統語的な証拠とともに示した。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> Simons は、この見方を、埋め込み動詞と証拠性・前提の関係の中で整理し直しており、 <em>I think it's raining</em> のような発話の主眼が補文にある場合を論じている。ただし、文頭・文末のすべての <em>I think</em> が同じ働きをするとまでは主張していない。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 英語では、このような <em>I think</em> は文頭にも文末にも置かれ、定型化の度合いも高い。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></p>
+<p>日本語の文末の「と思う」を、この括弧的用法と同じ位置づけで捉えるのは、本稿による比較上の仮説である。「彼はもう出たと思う」の主眼は、「彼がもう出た」にあり、「と思う」はその断定の確からしさを調整している、と本稿は解釈する。この用法は英訳でも <em>I think</em> として保たれる（保存型）。ただし、日本語の引用節構文と英語の括弧的 <em>I think</em> は、統語的位置、形態、談話上の条件が異なる。したがって、ここで言えるのは機能の類似であり、構文の同一視ではない。英語会話の <em>I think</em> の相互行為上の機能と定型性は、 Kärkkäinen の研究に詳しいが、その対象は英語である。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 一方、確信度の調整は、 <em>probably</em> や <em>must</em> のような副詞・助動詞でも担われる。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 同じ働きに複数の形式が使えるので、このときの英訳は、保存型にも転移型にもなる。</p>
+
+<h3 id="sec3-2">3.2 発話内の力と間接発話行為</h3>
+<p>断定の強さの調整は、会話の協調原理とも関わる。 Grice の質の格率は、確証のないことを言うなと要請する、協調原理の一部である。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> 「と思う」を、話し手が p を断定するだけの証拠をもたないことを明示し、この格率を守っていることを示す標識として働くものと見ることは可能だが、これは本稿による解釈の一つであり、 Grice 自身の分析ではない。 Searle の分析では、断定の誠実性条件は、話し手が p を信じていることである。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 「 p と思う」は、この誠実性条件（信念）をあえて明示することで、 p の真理への責任を弱める、と解釈できる。 p を直接断定する場合に比べ、断定の力が弱まるという対照は、文脈によって変わりうる語用論的な読みである。</p>
+<p>この弱化は、さらに、発話内の力そのものを置き換えることもある。「早めに相談したほうがいいと思う」は、字義上は意見の陳述であるが、実質的には助言、すなわち聞き手への指示的な行為である。 Searle が間接発話行為として論じた型にあたると見られる。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> ただし、一般理論だけでこの例の解釈が確定するわけではなく、文脈によっては、単なる意見や提案として読まれることもある。 英訳では、 <em>You might want to talk to someone sooner</em> のように、慣習化された間接的な指示表現が選ばれることが多く、働きが「思う」の動詞から法助動詞と文型へ移る（転移型）。 <em>I think you should ...</em> も可能であるが、この場合は、意見の陳述としての性格が残る（保存型）。</p>
+
+<h3 id="sec3-3">3.3 丁寧さとヘッジ</h3>
+<p>「と思う」は、丁寧さの標識としても働く。 Brown と Levinson のポライトネス理論では、相手の領域に踏み込まないための、断定の回避や緩和が、消極的ポライトネスの方策に位置づけられる。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> Lakoff は、語の範疇の境界をぼかす表現をヘッジとして論じた。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> 「と思う」や <em>I think</em> をこれらの枠組みで扱うのは、本稿による適用であり、両理論が「と思う」を直接検証したわけではない。 「お時間があれば、ご一緒したいと思います」は、願望の「たい」に「と思います」を重ね、二重に緩和している。英訳の <em>If you have time, I'd love to join you</em> では、緩和は、条件節と、仮定法の <em>would</em> に移る（転移型）。</p>
+<p>この観点からは、「と思う」の働きは、命題の確からしさの調整と、対人関係の調整との二つに分けられる。前者は認識的、後者は対人的な機能であり、同じ形式が、状況に応じて両方を同時に担う。両者を独立に検討できることは、機能を分ける実益の一つである。</p>
+
+<h3 id="sec3-4">3.4 意志の表明と遂行的用法</h3>
+<p>意志を表す「と思う」は、予測でも、心的状態の観察報告でもない。 Anscombe は、意図の表明が、未来の予測とも、自分の心の観察とも異なる、実践的な知の表現であることを論じた。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup> 「来月、転職しようと思う」は、話し手が将来の行為を引き受ける表明であり、 Searle の分類では、約束に近い、世界を言葉に合わせる向きの力をもつ。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> しかし、この文は、すでに決めたことから、まだ迷っていることまで、決意の度合いを区別しない。英訳では、 <em>I've decided to ...</em> 、 <em>I'm going to ...</em> 、 <em>I'm thinking about ...ing</em> のように、決意の度合いごとに別の形式が選ばれ、日本語がその度合いを明示していないことが、英訳の際の選択の必要として表面化する（転移型）。</p>
+<p>儀礼的な宣言の「と思います」は、 Austin の遂行的発話の考え方を参照すると整理しやすい。 <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup> 「それでは始めたいと思います」は、場面により、開始の意向表明、開始の予告、儀礼的な前置きのいずれとしても働きうる。実際の開始は発話後の行動で成立することもあり、発話自体が行為を成立させる典型的な遂行文と同一視はできない。ここでの「と思います」は、命題的内容が乏しく、発話を丁寧にする文体的な標識としての性格が強い、と本稿は解釈する。英訳では、 <em>Let's get started</em> のように、「思う」に対応する要素が現れず、呼びかけや勧誘の形で行為が述べられる（消去型）。この消去は形式上の観察であり、原文に意味がないことの証明にはならない。「発表させていただきたいと思います」のような表現は、 <em>I'd like to present ...</em> と訳せ、婉曲化された遂行表現 (hedged performative) との類比が考えられるが、 <sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup> 当該の日本語構文との対応は別に論じる必要がある。</p>
+
+<h3 id="sec3-5">3.5 情報のなわ張りと証拠性</h3>
+<p>日本語の文末形式の選択は、情報が話し手のなわ張りにあるか、聞き手のなわ張りにあるかによって左右される、という「情報のなわ張り理論」が提案されている。 <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup> 日英の文形の選択基準の違いを「と思う」を中心に論じた研究もあり、その分析資料が書き言葉であることや、地域差が課題であることは、著者自身が述べている。 <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup> したがって、この観点の知見は、一般的な法則としてではなく、示唆的な仮説として扱うのが適切である。</p>
+<p>また、情報の入手経路を示す証拠性の観点からも、「と思う」は位置づけられる。日本語には、「らしい」「ようだ」「そうだ」など、推論や伝聞を区別する形式がある。 <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup> 英語でも、 <em>apparently</em> 、 <em>it seems</em> 、 <em>must be</em> などが、証拠の種類に応じて使い分けられる。 <sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup> 「と思う」は、これらに比べると、証拠の種類を特定しない、中立的な形式であるように見える。これは筆者の見立てであり、「らしい」「ようだ」「そうだ」との対照や、情報源別の用法については、個別の資料による確認が要る。この見立てが当たっているなら、英訳では、文脈から証拠の種類を読み取って別の形式を選ぶ必要が生じ、転移型となりうる。</p>
+
+<h2 id="sec4">4. 心理言語学の観点</h2>
+
+<h3 id="sec4-1">4.1 習得――形式としての <em>I think</em></h3>
+<p>心理言語学の観点からは、心的動詞の習得研究が示唆的である。英語を母語とする幼児の自然発話を調べた研究では、一人の子どもの継続的な記録と、多数の二歳児の短い発話標本をもとに、 <em>think</em> や <em>know</em> のような心的動詞の初期の用法では、心的状態への言及よりも会話上の機能が先行することが報告されている。 <sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup> 補文をとる構文の習得を調べたコーパス研究は、英語を話す七人の子どもの発話を対象に、初期の複雑に見える発話で、主節が完全な命題を表さず、認識標識、注意喚起、発話内の力の標識として働く場合があると報告している。 <sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> これらは英語児の発達研究であり、成人の日本語の「と思う」が心理的に記述と標識に分かれることを示すものではない。括弧的な標識としての用法と、心的状態の記述としての用法が、心理的にも分離可能ではないかというのは、本稿の推論であり、前節までの論理学的な読みと語用論的な読みの区別と整合的であるにとどまる。</p>
+<p>日本語の「と思う」の習得については、本稿は先行研究を検討していない。英語についての知見を、日本語へ直接あてはめることはできず、この点は、今後の課題として残る。</p>
+
+<h3 id="sec4-2">4.2 使用と定型化</h3>
+<p>会話における <em>I think</em> の分布を記述した研究は、この形式が、認識的な用法（確からしさの調整）と対人的な用法（不一致の緩和など）の両方で使われることを示している。 <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> 英語では、 <em>I think</em> が高頻度で用いられ、補文標識 <em>that</em> が脱落することで、一つの定型へ近づいてきたと論じられている。 <sup id="fnref-15-2"><a href="#ref-15">[15]</a></sup> 同様の定型化は、日本語の文末の「と思う」「と思います」にも想定できるが、本稿は、頻度や定型化の程度を実測していない。</p>
+<p>定型化が進めば、話し手は、発話のたびに「思う」の意味を組み立て直さず、まとまりとして使用する可能性がある。この場合、「と思う」の意味は、動詞「思う」の語彙的な意味の総和からは予測しにくい。これは、 3.3 節と 3.4 節で見た、儀礼的な用法や緩和の用法が、命題的な内容をほとんどもたないことと整合する。ただし、これは仮説であり、心理言語学的な実験で確かめたものではない。</p>
+
+<h3 id="sec4-3">4.3 私的自己と「と思う」</h3>
+<p>日本語の話し手は、「思う」を、自分の内面の表出として使う。 Hirose は、直接話法・間接話法を、公的表現と私的表現の引用として捉える仮説を提示し、日本語の報告表現を論じた。 <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup> この枠組みを借りれば、第一人称の「と思う」を私的自己の表出として、第三者の記述に別の形式（「思っている」）が要ることを、その側面から解釈できるかもしれない。ただし、これは Hirose の対象を越える本稿の推論であり、個別の形式と談話条件を示す日本語データによる検討が要る。</p>
+<p>この解釈からは、日本語の「と思う」が、内面を表すという建前のまま、実際には、断定の緩和、対人的な配慮、儀礼的な標識として使われるという、形式と機能のずれが生じる。英語の <em>I think</em> にも、同様のずれはあるが、英語は、このずれを別の形式（副詞、法助動詞、文型）で補いやすいため、英訳の際には、機能ごとに別の形式が選ばれる。</p>
+
+<h2 id="sec5">5. 機能別の分析と英訳による対照</h2>
+<p>以上の三つの観点を踏まえ、「と思う」の機能を五つの群に分け、各群の代表例と英訳を対照する。ここでの分類は、英訳との対応を見やすくするための暫定的な整理であり、確立した言語学上の分類ではない。</p>
+
+<h3 id="sec5-1">5.1 認識的機能</h3>
+<p>確からしさの調整に関わる群で、推量、記憶や知識の限定、否定的な推量が含まれる。</p>
+<table>
+<tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>彼はもう出たと思う。</td><td>推量</td><td><em>I think he's already left.</em></td><td>保存型</td></tr>
+<tr><td>明日は雨だと思う。</td><td>推量</td><td><em>It'll probably rain tomorrow.</em></td><td>転移型</td></tr>
+<tr><td>たしか、会議は十時からだったと思う。</td><td>記憶</td><td><em>If I remember correctly, the meeting starts at ten.</em></td><td>転移型</td></tr>
+<tr><td>雨は降らないと思う。</td><td>否定的推量</td><td><em>I don't think it will rain.</em></td><td>保存型（否定辞上昇）</td></tr>
+</table>
+<p>推量は、保存型と転移型の両方で訳せる。確信度の表示が、心的動詞でも副詞でも担えるからである (3.1 節）。記憶の「と思う」では、興味深いずれがある。「十時からだった」の過去形は、会議の時刻が過去であることを示すのではなく、記憶に基づく判断であることの標識として働いている。英訳では、時制が現在形の <em>starts</em> になり、記憶に基づくという情報は、 <em>If I remember correctly</em> という別の形式へ移る。時制という文法範疇が、認識的な標識として使われていることが、英訳との対照で見えてくる。否定的な推量は、 2.3 節で見たとおり、否定辞上昇を伴う。</p>
+
+<h3 id="sec5-2">5.2 評価的機能</h3>
+<p>話し手の見解や感想を述べる群で、意見、体験の感想、直感が含まれる。</p>
+<table>
+<tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>最初の案のほうが安全だと思う。</td><td>意見</td><td><em>In my opinion, the first plan is safer.</em></td><td>転移型</td></tr>
+<tr><td>この映画は面白かったと思う。</td><td>感想</td><td><em>I really enjoyed this movie.</em></td><td>転移型</td></tr>
+<tr><td>まだ終わりではないと思う。</td><td>直感</td><td><em>Something tells me this isn't over.</em></td><td>転移型</td></tr>
+</table>
+<p>この群では、保存型が少ない。意見は、視点を明示する句(<em>In my opinion</em> 、 <em>As I see it</em>)へ移り、感想は、経験を述べる述語(<em>I enjoyed</em> 、 <em>I found it ...</em>)へ移る。感想の場合、「面白かった」という評価述語が、すでに話し手の視点に相対化された判断を表す。個人的な好みや趣味を表す述語についての相対主義的な分析は、この性質を説明する枠組みとして知られる。 <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> 「と思う」は、その主観性を重ねて明示するが、英語は、経験の述語そのものにその主観性を担わせるため、心的動詞が不要になる。この枠組みは、評価文の視点性を考える手がかりにはなるが、「と思う」が冗長な緩和標識であることを直接示す研究ではない。ここでの「と思う」を、論理的には冗長だが、語用論的には断定の緩和として働いていると見るのは、仮説である。</p>
+
+<h3 id="sec5-3">5.3 対人的機能</h3>
+<p>相手との関係の調整に関わる群で、助言、同意、反対、理由の表明が含まれる。</p>
+<table>
+<tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>先に彼女と話したほうがいいと思う。</td><td>助言</td><td><em>You might want to talk to her first.</em></td><td>転移型</td></tr>
+<tr><td>私もそう思う。</td><td>同意</td><td><em>I agree.</em> / <em>Same here.</em></td><td>転移型</td></tr>
+<tr><td>私はそうは思わない。</td><td>反対</td><td><em>I don't see it that way.</em> / <em>I disagree.</em></td><td>転移型</td></tr>
+<tr><td>喜ぶと思って、買ってきた。</td><td>理由</td><td><em>I thought you'd like it, so I bought it.</em></td><td>保存型</td></tr>
+<tr><td>ご迷惑かと思って、連絡しなかった。</td><td>理由・配慮</td><td><em>I didn't want to bother you, so I didn't call.</em></td><td>転移型</td></tr>
+</table>
+<p>助言は、 3.2 節で見た間接発話行為である。同意と反対は、英訳で <em>I agree</em> 、 <em>I disagree</em> のように、行為の種類を名指す動詞に移ることが多い。日本語の「そう思う」「そうは思わない」が、信念の有無の形で同意や反対を行うのに対して、英語は、同意や反対という行為を直接述べる傾向がある。これは、 Austin の言う明示的な遂行動詞への転移とも見られる。理由の「と思って」は、予想が動機になる場合（「喜ぶと思って」）は <em>I thought</em> で保存されるが、配慮が動機になる場合（「ご迷惑かと思って」）は、 <em>didn't want to</em> のような意志の表現へ移る。同じ「と思って」でも、働きが予想の記述か、配慮の表明かで、英訳の型が分かれる。</p>
+
+<h3 id="sec5-4">5.4 意志的機能</h3>
+<p>話し手の将来の行為についての群で、意志、予定、願望が含まれる。</p>
+<table>
+<tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>来月、引っ越そうと思う。</td><td>決定済みの意志</td><td><em>I've decided to move next month.</em></td><td>転移型</td></tr>
+<tr><td>毎朝走ろうと思う。</td><td>心づもり</td><td><em>I'm going to start running every morning.</em></td><td>転移型</td></tr>
+<tr><td>転職しようかと思っている。</td><td>思案中</td><td><em>I'm thinking about changing jobs.</em></td><td>転移型</td></tr>
+<tr><td>パーティーに行こうかと思う。</td><td>未決定</td><td><em>I might go to the party.</em></td><td>転移型</td></tr>
+</table>
+<p>この群はすべて転移型である。日本語は、「しようと思う」という一つの形式で、決定済みから未決定までを覆う一方、英語は、決意の度合いごとに別の形式を選ばせる。 3.4 節で述べた、日本語が決意の度合いを明示しないことが、英訳での形式選択の必要として現れる典型例である。意志の「と思う」が、信念の記述では説明できないことを、英訳の側から確かめることができる。</p>
+
+<h3 id="sec5-5">5.5 儀礼的・文体的機能</h3>
+<p>発話の内容よりも、場面や文体の調整に関わる群で、儀礼的な宣言、学術的な文体での客観化が含まれる。</p>
+<table>
+<tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
+<tr><td>それでは、始めたいと思います。</td><td>宣言</td><td><em>Let's get started.</em></td><td>消去型</td></tr>
+<tr><td>頑張りたいと思います。</td><td>決意表明</td><td><em>I'll do my best.</em></td><td>消去型</td></tr>
+<tr><td>効果は小さいと思われる。</td><td>客観化</td><td><em>It appears that the effect is small.</em></td><td>転移型</td></tr>
+<tr><td>結果から、睡眠が記憶に影響すると考えられる。</td><td>客観化</td><td><em>The results suggest that sleep affects memory.</em></td><td>転移型</td></tr>
+</table>
+<p>宣言と決意表明では、「思う」に対応する要素が英訳から消える（消去型）。この観察は、この用法の「と思います」が、命題的な内容に乏しく、丁寧さと場面の儀礼性を示す標識としての性格が強いことと整合的だが、それを証明するものではない。学術的な文体の「と思われる」「と考えられる」は、「思う」の自発形・受身形であり、動作主が消える。英訳でも、 <em>it appears that</em> のような非人称構文や、 <em>the results suggest</em> のような無生物主語へ移り、判断の主体が話し手から、観察や証拠へと置き換わる。これは、主体を消すことで判断を客観化する文体上の技法が、英語にも並行的にあることを示す。</p>
+
+<h2 id="sec6">6. 観点と機能の対応</h2>
+<p>前節までの分析を、観点ごとの説明力の観点から整理して表にまとめる。「○」は、その観点が、機能の主要な側面を説明できること、「△」は一部の側面しか説明できないことを示す。この評価は、本稿の分析に基づく筆者の判断であり、定量的な基準によるものではない。</p>
+<table>
+<tr><th style="width:18%">機能の群</th><th style="width:16%">論理学</th><th style="width:20%">言語哲学・語用論</th><th style="width:16%">心理言語学</th><th>英訳の型の傾向</th></tr>
+<tr><td>認識的機能</td><td>○ 命題態度・否定辞上昇</td><td>○ 括弧的用法・質の格率</td><td>○ 習得・定型化</td><td>保存型と転移型が併存</td></tr>
+<tr><td>評価的機能</td><td>△</td><td>○ 緩和・視点の明示</td><td>△</td><td>転移型が中心</td></tr>
+<tr><td>対人的機能</td><td>△</td><td>○ 間接発話行為・ポライトネス</td><td>△ 対人的用法の記述</td><td>転移型が中心、一部は保存型</td></tr>
+<tr><td>意志的機能</td><td>△</td><td>○ 意図の表明・約束</td><td>△</td><td>転移型</td></tr>
+<tr><td>儀礼的・文体的機能</td><td>△（反例として機能）</td><td>○ 遂行的発話・文体標識</td><td>○ 定型化</td><td>消去型と転移型</td></tr>
+</table>
+<p>表から読み取れるのは、論理学的な分析が有効なのは認識的機能に限られ、他の機能では、言語哲学・語用論の道具立てが必要になることである。心理言語学の知見は、機能を直接分類するというよりも、機能の分離可能性や定型化という、機能の存在を支える背景を提供する。本稿の例と訳例の範囲では、英訳の型は、観点の有効範囲とおおむね対応している。保存型は認識的機能に偏り、転移型は評価・対人・意志に広がり、消去型は儀礼的機能に現れる。</p>
+
+<h2 id="sec7">7. 考察</h2>
+
+<h3 id="sec7-1">7.1 三つの観点の関係</h3>
+<p>三つの観点は競合するものではなく、機能ごとに説明力が異なる。命題態度の記述に近い用法（推量、過去の思い込み、理由の予想）は論理学が、発話行為に関わる用法（助言、同意、反対、宣言）は語用論が、それぞれ主たる説明を与える。心理言語学は、第一人称現在の用法が、記述から標識へ転じる過程や、定型化の様相を問う。同じ形式が、記述、標識、定型という性質の異なる三つの層を同時にもつとき、そのどの層を前面に出すかが、機能の違いとして観察される、と整理できる。</p>
+<p>この整理に従えば、「と思う」の多義性は、語彙的な多義というよりも、構文的な、あるいは用法上の多機能性として捉えるのが適切ではないかと、本稿は考える。動詞「思う」の意味が複数あるのではなく、一つの構文が、文脈と位置に応じて、異なる層で働く、という見立てである。</p>
+
+<h3 id="sec7-2">7.2 英訳という物差しの有効性と限界</h3>
+<p>英訳を物差しとする方法は、機能の差を可視化する点で有効であった。特に、記憶の「と思う」における時制の転移 (5.1 節）、同意・反対における行為動詞への転移 (5.3 節）、意志における決意の度合いの分化 (5.4 節）は、日本語の内部だけを観察していては気づきにくい差であった。</p>
+<p>他方で、この方法には限界がある。第一に、英訳の型は、機能の存在を証明するものではなく、傍証にとどまる。第二に、英語は法表現の語彙が豊富であり、その偏りが、型の分布に反映されている可能性がある。第三に、英語を基準にすることは、英語で区別される機能を優先して見る偏りを生み、英語で区別されない日本語独自の機能を見落とす危険がある。たとえば、 2.2 節の人称制約は、英訳の観察だけでは見えにくい。物差しは、他の言語や、日本語内部の証拠と組み合わせて使う必要がある。</p>
+
+<h3 id="sec7-3">7.3 今後の課題</h3>
+<p>本稿は、内省に基づく例文と、先行研究の整理にとどまっており、実証的な検証を欠く。今後の課題として、次の点が挙げられる。</p>
+<ul>
+<li>書き言葉・話し言葉のコーパスを用いた、機能別の使用頻度と、英訳の型の分布の定量的な調査。</li>
+<li>母語話者の判断実験による、 2.2 節の人称制約や、 5.3 節の同意・反対の自然さの確認。</li>
+<li>文末のイントネーションや、前後の文脈が、機能の解釈に与える影響の検討。</li>
+<li>日本語の「と思う」の習得についての研究との接続 (4.1 節）。</li>
+</ul>
+
+<h2 id="sec8">8. 結論</h2>
+<p>本稿は、日本語の「と思う」の機能を、論理学、言語哲学・語用論、心理言語学の観点から分析し、英訳での現れ方を物差しとして対照した。分析の結果、本稿の例の範囲では、次のことが言える。第一に、命題態度としての分析は、推量や過去の思い込みなどの認識的機能に有効であるが、助言、意志、宣言などの用法には適合しない。第二に、これらの用法は、間接発話行為、意図の表明、遂行的発話などの語用論の概念によって説明される。第三に、心理言語学の知見は、記述と標識という二つの用法が分離可能であり、定型化が進みうることを示唆する。第四に、本稿の例と訳例では、機能ごとに、保存型、転移型、消去型という異なる現れ方が見られ、機能の区別を考える手がかりとなる。ただし、これは機能の区別の証明ではなく、発見的な対照にとどまる。</p>
+<p>これらの結論は、内省に基づく例文と先行研究の整理による暫定的なものであり、実証的な検証を要する。それでもなお、「と思う」を一つの意味をもつ動詞として扱うのではなく、複数の層で働く構文として扱う視点は、この形式の研究と、日英の対照研究の双方に、一定の見通しを与えると考える。</p>
+<p class="pull">「と思う」は、信念を述べる形式であると同時に、信念を述べない働きを多くもつ。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 益岡隆志『モダリティの文法』くろしお出版、 1991 年。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 仁田義雄『日本語のモダリティと人称』ひつじ書房、 1991 年。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> 田中寛「『いう』と『おもう』の言語学――複合辞を用いた日本語の主体・主観表現」『立命館言語文化研究』 22 巻 2 号、 2010 年、 145–179 頁。文末形式「と思う」の多様な形態と用法を記述。 <a href="https://ritsumei.repo.nii.ac.jp/record/2601/files/LCS_22_2pp145-179Tanaka.pdf">立命館リポジトリ 公開 PDF</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Hintikka, J. (1962) . <em>Knowledge and Belief: An Introduction to the Logic of the Two Notions</em>. Ithaca: Cornell University Press.</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Quine, W. V. (1956) . Quantifiers and propositional attitudes. <em>The Journal of Philosophy</em>, 53 (5) , 177–187.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Moore, G. E. (1942) . A reply to my critics. In P. A. Schilpp (Ed.) , <em>The Philosophy of G. E. Moore</em>(pp. 535–677) . Evanston: Northwestern University.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Wittgenstein, L. (1953) . <em>Philosophical Investigations</em>. Oxford: Blackwell.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Kuroda, S.-Y. (1973) . Where epistemology, style, and grammar meet: A case study from Japanese. In S. R. Anderson &amp; P. Kiparsky (Eds.) , <em>A Festschrift for Morris Halle</em>(pp. 337–391) . New York: Holt, Rinehart and Winston.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Kuno, S. (1973) . <em>The Structure of the Japanese Language</em>. Cambridge, MA: MIT Press.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Horn, L. R. (1989) . <em>A Natural History of Negation</em>. Chicago: University of Chicago Press.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Gajewski, J. (2007) . Neg-raising and polarity. <em>Linguistics and Philosophy</em>, 30 (3) , 289–328.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Urmson, J. O. (1952) . Parenthetical verbs. <em>Mind</em>, 61 (244) , 480–496.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Hooper, J. B. (1975) . On assertive predicates. In J. P. Kimball (Ed.) , <em>Syntax and Semantics</em>(Vol. 4, pp. 91–124) . New York: Academic Press.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Simons, M. (2007) . Observations on embedding verbs, evidentiality, and presupposition. <em>Lingua</em>, 117 (6) , 1034–1056.</li>
+<li id="ref-15">^ <sup><a href="#fnref-15-1">a</a></sup> <sup><a href="#fnref-15-2">b</a></sup> Thompson, S. A., &amp; Mulac, A. (1991) . A quantitative perspective on the grammaticization of epistemic parentheticals in English. In E. C. Traugott &amp; B. Heine (Eds.) , <em>Approaches to Grammaticalization</em>(Vol. 2, pp. 313–330) . Amsterdam: John Benjamins.</li>
+<li id="ref-16">^ <sup><a href="#fnref-16-1">a</a></sup> <sup><a href="#fnref-16-2">b</a></sup> Kärkkäinen, E. (2003) . <em>Epistemic Stance in English Conversation: A Description of Its Interactional Functions, with a Focus on I think</em>. Amsterdam: John Benjamins.</li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Palmer, F. R. (2001) . <em>Mood and Modality</em>(2nd ed.) . Cambridge: Cambridge University Press.</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Grice, H. P. (1975) . Logic and conversation. In P. Cole &amp; J. L. Morgan (Eds.) , <em>Syntax and Semantics</em>(Vol. 3, pp. 41–58) . New York: Academic Press.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Searle, J. R. (1969) . <em>Speech Acts: An Essay in the Philosophy of Language</em>. Cambridge: Cambridge University Press.</li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Searle, J. R. (1975) . Indirect speech acts. In P. Cole &amp; J. L. Morgan (Eds.) , <em>Syntax and Semantics</em>(Vol. 3, pp. 59–82) . New York: Academic Press.</li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> Brown, P., &amp; Levinson, S. C. (1987) . <em>Politeness: Some Universals in Language Usage</em>. Cambridge: Cambridge University Press.</li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> Lakoff, G. (1973) . Hedges: A study in meaning criteria and the logic of fuzzy concepts. <em>Journal of Philosophical Logic</em>, 2 (4) , 458–508.</li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Anscombe, G. E. M. (1957) . <em>Intention</em>. Oxford: Blackwell.</li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> Searle, J. R. (1975) . A taxonomy of illocutionary acts. In K. Gunderson (Ed.) , <em>Language, Mind, and Knowledge</em>(pp. 344–369) . Minneapolis: University of Minnesota Press.</li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> Austin, J. L. (1962) . <em>How to Do Things with Words</em>. Oxford: Clarendon Press.</li>
+<li id="ref-26"><a href="#fnref-26-1">^</a> Fraser, B. (1975) . Hedged performatives. In P. Cole &amp; J. L. Morgan (Eds.) , <em>Syntax and Semantics</em>(Vol. 3, pp. 187–210) . New York: Academic Press.</li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> 神尾昭雄『情報のなわ張り理論――言語の機能的分析』大修館書店、 1990 年。</li>
+<li id="ref-28"><a href="#fnref-28-1">^</a> 浅野裕子「『情報のなわ張り』と日英の文形の選択基準――『と思う』を中心に」『世界の日本語教育』 6 、 1996 年、 169–184 頁。日本語と英語で文末形式を選ぶ基準の違いを論じる。分析資料が書き言葉であること、地域差も検討課題であることを著者自身が述べる。 <a href="https://jpf.repo.nii.ac.jp/records/243">国際交流基金リポジトリ</a></li>
+<li id="ref-29"><a href="#fnref-29-1">^</a> Aoki, H. (1986) . Evidentials in Japanese. In W. Chafe &amp; J. Nichols (Eds.) , <em>Evidentiality: The Linguistic Coding of Epistemology</em>(pp. 223–238) . Norwood, NJ: Ablex.</li>
+<li id="ref-30"><a href="#fnref-30-1">^</a> Aikhenvald, A. Y. (2004) . <em>Evidentiality</em>. Oxford: Oxford University Press.</li>
+<li id="ref-31"><a href="#fnref-31-1">^</a> Shatz, M., Wellman, H. M., &amp; Silber, S. (1983) . The acquisition of mental verbs: A systematic investigation of the first reference to mental state. <em>Cognition</em>, 14 (3) , 301–321.</li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> Diessel, H., &amp; Tomasello, M. (2001) . The acquisition of finite complement clauses in English: A corpus-based analysis. <em>Cognitive Linguistics</em>, 12 (2) , 97–142.</li>
+<li id="ref-33"><a href="#fnref-33-1">^</a> Hirose, Y. (1995) . Direct and indirect speech as quotations of public and private expression. <em>Lingua</em>, 95 (4) , 223–238.</li>
+<li id="ref-34"><a href="#fnref-34-1">^</a> Lasersohn, P. (2005) . Context dependence, disagreement, and predicates of personal taste. <em>Linguistics and Philosophy</em>, 28 (6) , 643–686.</li>
+</ol>
+</div>
+<p class="note">※ 本稿は、先行研究の整理と筆者の内省に基づく試論である。参考文献の書誌情報は、公刊された文献の標準的な書式に従って記したが、引用にあたっては原典で確認されたい。英語例文は、論述のために作成したものである。</p>
+
+</div>
+</body>
+</html>
