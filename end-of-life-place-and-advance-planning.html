@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>どこで、誰に看取られて死ぬのか――病院・自宅・施設の現実と、事前の意思の限界</title>
+<style>
+:root{
+  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
+  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);line-height:2}
+.wrap{max-width:820px;margin:auto;padding:56px 26px 120px}
+.kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
+h1{font-size:32px;line-height:1.6;margin:0 0 18px}
+.subtitle{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 28px}
+.meta{font-size:15px;line-height:1.9;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:40px}
+h2{font-size:26px;line-height:1.5;margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+h3{font-size:20px;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:28px 0;font-size:19px}
+.box strong{color:var(--accent)}
+.box ul{margin-bottom:0}
+strong{color:var(--accent)}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:24px 0 28px}
+th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
+th{background:var(--box);text-align:left}
+ul,ol{padding-left:1.4em;margin:0 0 20px}
+li{margin-bottom:9px;font-size:19px}
+sup{font-size:.72em}
+a{color:var(--link)}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target,sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted)}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc ol{margin:0;padding-left:1.3em}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid}
+.toc li ol{margin-top:7px;margin-bottom:11px}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">医療社会学・生命倫理学的検討</div>
+<h1>どこで、誰に看取られて死ぬのか<br>――病院・自宅・施設の現実と、事前の意思の限界</h1>
+<p class="subtitle">Where and by Whom Do We Die? Hospitals, Homes, and Care Facilities, and the Limits of Advance Directives</p>
+<div class="lede">
+<p>人生の最終段階について家族や医療者と詳しく話し合っている人は、調査では 1.5% にとどまる。多くの人は、死を迎える場所や方法を、考えないまま最期を迎える。そのとき決める役目は、本人ではなく、そばにいる人に回ってくる。</p>
+<p>本稿は、死の場所が自宅から病院、さらに施設へと移ってきた経過をたどり、看取りを身体・担い手・制度・意思の四つの層の釣り合いとして捉え直す。延命の中止をめぐる法と倫理、事前の意思表明の限界も検討し、死を個人の自己決定に丸投げしないための論点を整理する。</p>
+</div>
+<div class="meta">
+【方法と限界】 本稿は、統計・制度・判例・研究という確認できる事実と、そこから導く解釈を区別して述べる。積極的安楽死の是非は扱わない。個別の医療・法律上の助言ではなく、研究や法の線引きが定まっていない点は、定まっていないものとして示し、結論は閉じない。統計の数値は、傾向を読むために丸めて用いる。
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">話し合われていない最期</a>
+<ol>
+<li><a href="#sec1-1">数字から入る</a></li>
+<li><a href="#sec1-2">本稿の問いと範囲</a></li>
+</ol>
+</li>
+<li><a href="#sec2">死の場所はどう変わったか</a>
+<ol>
+<li><a href="#sec2-1">自宅から病院へ</a></li>
+<li><a href="#sec2-2">病院から施設・自宅へ</a></li>
+<li><a href="#sec2-3">変化を説明する要因</a></li>
+</ol>
+</li>
+<li><a href="#sec3">看取りを四つの層で考える</a>
+<ol>
+<li><a href="#sec3-1">「病院死か自宅死か」を超えて</a></li>
+</ol>
+</li>
+<li><a href="#sec4">自宅と施設で看取る条件</a>
+<ol>
+<li><a href="#sec4-1">自宅で看取るために必要なもの</a></li>
+<li><a href="#sec4-2">施設で看取るとき</a></li>
+</ol>
+</li>
+<li><a href="#sec5">延命と中止をめぐる法と倫理</a>
+<ol>
+<li><a href="#sec5-1">手続きを重視する考え方</a></li>
+<li><a href="#sec5-2">法の側の線引き</a></li>
+</ol>
+</li>
+<li><a href="#sec6">事前の意思は届くのか</a>
+<ol>
+<li><a href="#sec6-1">人生会議という試み</a></li>
+<li><a href="#sec6-2">研究が示していること、示していないこと</a></li>
+<li><a href="#sec6-3">希望は変わるのか</a></li>
+</ol>
+</li>
+<li><a href="#sec7">結び――死を個人の自己決定に丸投げしないために</a>
+<ol>
+<li><a href="#sec7-1">決める、ということの条件</a></li>
+<li><a href="#sec7-2">社会が分かち持つ</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 話し合われていない最期</h2>
+
+<h3 id="sec1-1">1.1 数字から入る</h3>
+<p>人生の最終段階で受けたい医療・ケア、あるいは受けたくない医療・ケアについて、家族や医療・介護の担当者と話し合ったことがあるか。厚生労働省の 2022 年度の意識調査では、一般の人のうち、詳しく話し合っている人は 1.5% 、一応話し合っている人は 28.4% 、話し合ったことがない人は 68.6% だった <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。</p>
+<p>誰もがいずれ死ぬのに、その最期をどこで、どのように迎えたいかは、ほとんど話題にされない。縁起でもない、というのが理由の一つだろう。だが、話し合わないまま最期が近づくと、決める役目は本人ではなく、そばにいる家族や、たまたま担当になった医師に回ってくる。</p>
+
+<h3 id="sec1-2">1.2 本稿の問いと範囲</h3>
+<p>本稿の問いは、<strong>死ぬ場所と死に方を、本人が「決める」ことは、どこまで可能で、どこから社会の側の問題になるのか</strong>である。そのために、死の場所の移り変わり、場所ごとの条件、延命をめぐる法と倫理、事前の意思表明の限界を順にたどる。</p>
+<p>範囲についての断りを二つ置く。第一に、本稿は積極的安楽死の是非を論じない。扱うのは、「どこで」「誰が」「どう決めるか」という仕組みの側である。第二に、本稿は個別の医療・法律上の助言ではない。実際の判断は、主治医や自治体の相談窓口と話し合って進めてほしい。</p>
+
+<h2 id="sec2">2. 死の場所はどう変わったか</h2>
+
+<h3 id="sec2-1">2.1 自宅から病院へ</h3>
+<p>人口動態統計によれば、 1951 年には、死亡の 82% 台、つまり約 8 割が自宅だった。その後、病院での死亡が増え続け、 1970 年代の後半までに病院が自宅を上回り、 2005 年には病院での死亡が 79.8% 、つまり約 8 割に達した <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。 1950 年代までは、死は多くの人にとって家の中の出来事だった。それが半世紀ほどで、病院で迎えるのが普通になった。</p>
+<p>フランスの歴史家フィリップ・アリエスは、西欧の死を、共同体の中で営まれる身近な出来事から、医療の管理下で隠されるものへの移り変わりとして描いた <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。ただし、これは西欧についての議論であり、日本の経過がそのまま重なるとは限らない。日本の場合は、上の統計が示す経過を、まず事実として押さえておくのがよい。</p>
+
+<h3 id="sec2-2">2.2 病院から施設・自宅へ</h3>
+<p>2010 年頃からは、流れが変わる。病院での死亡の割合は下がり、老人ホームなどの施設と自宅での死亡が増えている。 2023 年の統計を病院・診療所、施設（老人ホーム・介護医療院・老健）、自宅の三つにまとめると、病院・診療所が約三分の二、施設が 15% 前後、自宅が約 17% となる <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>この数字を読むときには、区分の定義に注意したい。「病院」に診療所を含めるか、「施設」にどこまで含めるかは、資料によって異なる。また、公表されている集計をそのまま比べると、年次で区分が変わっている場合がある。本稿では、傾向を読むために丸めた数字を使い、厳密な値は原表で確認することを前提にする。</p>
+
+<h3 id="sec2-3">2.3 変化を説明する要因</h3>
+<p>変化の背景には、いくつかの要因が重なっていると考えられている。医療の発達で、自宅では対応できない処置が増えたこと。家族の形が変わり、自宅で看取る人手が減ったこと。公的な保険制度が、病院での診療を支えてきたこと。近年は、介護保険の施設が増え、死亡の場所の選択肢が広がったこと。ただし、それぞれの要因がどれだけ効いたのかを切り分けるのは難しく、ここでは仮説として並べるにとどめる。</p>
+
+<h2 id="sec3">3. 看取りを四つの層で考える</h2>
+
+<h3 id="sec3-1">3.1 「病院死か自宅死か」を超えて</h3>
+<p>「病院死は冷たく、自宅死は温かい」という図式は、感情的には分かりやすい。だが、この図式は、看取りを成り立たせている条件を見えなくする。看取りを、次の四つの層の釣り合いとして考えてみる。</p>
+<table>
+<tr><th>層</th><th>問い</th></tr>
+<tr><td>1. 身体</td><td>苦痛は緩和できるか。医療的なケアはどこまで必要か</td></tr>
+<tr><td>2. 担い手</td><td>誰が、どれだけの時間と労力を担うのか（家族・介護職・医師・看護師）</td></tr>
+<tr><td>3. 制度</td><td>死亡の確認、診療報酬、介護保険は、どの場所で何を支えるか</td></tr>
+<tr><td>4. 意思</td><td>本人の希望は、いつ・誰が・どう確かめるのか</td></tr>
+</table>
+<p>場所の違いは、この四層の釣り合いの違いとして整理できる。傾向を示すと、次のようになる。</p>
+<table>
+<tr><th>場所</th><th>身体</th><th>担い手</th><th>制度</th><th>意思</th></tr>
+<tr><td>病院</td><td>医療的な対応が手厚い</td><td>医療職が中心。家族は付き添いが主</td><td>医療保険が中心</td><td>治療方針の選択を迫られる場面が多い</td></tr>
+<tr><td>自宅</td><td>訪問診療・訪問看護に依存</td><td>家族の負担が大きくなりやすい</td><td>医療保険と介護保険の組み合わせ</td><td>本人の希望を反映しやすいが、家族の事情に左右される</td></tr>
+<tr><td>施設</td><td>施設の体制によって差が大きい</td><td>介護職が中心。家族と施設の役割分担が問われる</td><td>介護保険が中心。看取りへの報酬上の評価がある</td><td>入所時の確認が重要になる</td></tr>
+</table>
+<p>この表は優劣を付けるものではない。どの場所でも、四層のどこかが薄くなる。大切なのは、場所の名前ではなく、四つの層がそれぞれ満たされているかを確かめることである。</p>
+
+<h2 id="sec4">4. 自宅と施設で看取る条件</h2>
+
+<h3 id="sec4-1">4.1 自宅で看取るために必要なもの</h3>
+<p>自宅での看取りには、本人の希望だけでは足りない。訪問診療を行う医師、訪問看護、急変時に連絡できる体制、そして日常のケアを担う人が要る。 2006 年に創設された在宅療養支援診療所のように、制度の側も在宅の医療を支える仕組みを整えてきた。それでも、最後に残る負担が家族に偏りやすいことは、<a href="independence-norm-and-invisibility.html">自立規範の稿</a>で論じた「見えにくい依存」の問題とつながる。</p>
+<p>制度面で長く誤解されてきたのが、死亡診断書をめぐる医師法 20 条の運用である。この条文は、自ら診察しないで診断書を交付することを禁じ、診察後 24 時間以内の死亡であれば、改めて診察しなくても交付できると定めている。これが「診察後 24 時間を過ぎると診断書は出せない」と誤解され、在宅での看取りを妨げているとして、 2012 年に厚生労働省が通知で趣旨を確認した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。診察後 24 時間を超えていても、診療していた病気に関連した死亡と判断できる場合には、死亡後に改めて診察して診断書を交付できる、というのが趣旨である。なお、診療中の病気と関係なく異状があると認められる場合は、別に医師法 21 条にもとづく警察への届出が必要になる。</p>
+
+<h3 id="sec4-2">4.2 施設で看取るとき</h3>
+<p>高齢者向けの住まい・施設ごとの看取りへの対応は、<a href="elder-housing.html">七類型を比べた稿</a>で整理した。終身で暮らすことを前提にする特養では、看取りに対応するところが多い。ただし、医療的ケアの必要性が高まって長期入院になった場合は、退所になることがある。老健は在宅復帰を目的とするため、最期まで暮らす場としては、別の場への移行を検討することが多い。</p>
+<p>ここから、施設で看取るかどうかは、その施設の方針と体制に左右されることが分かる。入所の時点で、重度化したときや最期の迎え方について、施設がどこまで対応するのかを確かめておくことが、本人と家族を迷わせないための第一歩になる。</p>
+
+<h2 id="sec5">5. 延命と中止をめぐる法と倫理</h2>
+
+<h3 id="sec5-1">5.1 手続きを重視する考え方</h3>
+<p>延命治療の開始や中止をどう決めるか。厚生労働省は 2007 年に終末期医療の決定プロセスに関するガイドラインを定め、 2018 年に「人生の最終段階における医療・ケアの決定プロセスに関するガイドライン」として改訂した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この指針は、特定の治療を「してよい・してはならない」と線を引くのではなく、決め方の手続きを重視する。本人の意思を基本として、医療・ケアチームが本人や家族と繰り返し話し合い、その内容を文書にまとめる。本人の意思が確認できないときには、家族が本人の意思を推定する、という流れである。</p>
+<p>この考え方は、個別の事情に応じられる柔軟さを持つ。一方で、現場の医師や家族にとっては、「手続きを踏んだのに、あとで責任を問われないか」という不安が残りうる。</p>
+
+<h3 id="sec5-2">5.2 法の側の線引き</h3>
+<p>法の側には、裁判所が示した判断がある。 1998 年に起きた川崎協同病院事件では、昏睡状態の患者の気管内チューブを抜き、筋弛緩剤を投与して死亡させた医師が、殺人罪に問われた。 2009 年の最高裁決定は、有罪（懲役 1 年 6 か月、執行猶予 3 年）を確定させた。その理由として、患者の回復可能性や余命について的確な判断ができる状況ではなく、チューブを抜く行為は、法律上許される治療中止にあたらないと述べた <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</p>
+<p>この決定は、延命治療の中止が一般に許されるか否かを正面から決めたものではない。どのような条件がそろえば、中止が法的に許されるのか、その線引きは、現在も明確に定まっていない。本稿は、その線引きに答えを出さない。ただ、<strong>誰が、どの手続きで決めるのか</strong>という問いが、医療の現場と法の間で未決のまま残されている事実は、はっきり書いておきたい。</p>
+
+<h2 id="sec6">6. 事前の意思は届くのか</h2>
+
+<h3 id="sec6-1">6.1 人生会議という試み</h3>
+<p>本人が意思を伝えられなくなったときに備えて、元気なうちから、大切にしたい価値や望む医療・ケアを、信頼できる人と話し合っておく。この取り組みは ACP と略されるアドバンス・ケア・プランニングと呼ばれ、日本では「人生会議」という愛称で普及が図られている <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。大切にされているのは、一度決めて終わりにせず、気持ちの変化に応じて何度でも繰り返し話し合うことである。</p>
+
+<h3 id="sec6-2">6.2 研究が示していること、示していないこと</h3>
+<p>ACP の効果は、何を指標にするかで見え方が変わる。研究の概観によれば、事前指示書が作成される割合が高まる、本人・家族・医療者のあいだのコミュニケーションが改善する、家族の精神的な負担が軽くなる、といった過程に関する効果は、比較的よく示されている <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。他方、 <strong>ACP によって、本人の希望に沿った医療・ケアが実際に提供される（目標との一致）ことが増えるかどうか</strong>については、一致した結果が得られていない。 ACP の取り組みを根本から見直すべきだという批判も、医学誌に出されている <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。</p>
+<p>したがって、「話し合っておけば安心」という理解は、研究の現状とは合わない。話し合うことには意味があるが、それは希望が必ず実現する保証ではない。</p>
+
+<h3 id="sec6-3">6.3 希望は変わるのか</h3>
+<p>もう一つの論点は、元気なときの希望が、病床でも維持されるのかである。この点を検討した系統的レビューは、終末期の医療に関する希望は、多くの場合で比較的安定しているが、一部の人では変化し、とくに健康状態が変わったときに変わりやすいと報告している <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。「希望はすぐ揺らぐ」と言い切ることも、「一度決めれば変わらない」と考えることも、証拠とは合わない。変わりうる人がいることを前提にして、繰り返し確かめる仕組みが要る、というのが実際的な結論になる。</p>
+<p>ここで、事前の意思が表明されていない場合や、変化した場合に、誰が代わりに推定するのかという問題が浮かぶ。多くの場面でそれを担うのは家族である。本人の意思決定を、家族や集団の意向から切り離して考える個人主義の枠組みの利点と限界は、<a href="independence-norm-and-invisibility.html">自立規範の稿</a>でも検討した。</p>
+
+<h2 id="sec7">7. 結び――死を個人の自己決定に丸投げしないために</h2>
+
+<h3 id="sec7-1">7.1 決める、ということの条件</h3>
+<p>ここまでの議論を、三つにまとめる。第一に、死の場所は、自宅から病院、さらに施設や自宅へと移ってきた。どの場所でも、身体・担い手・制度・意思の四つの層の釣り合いが問われる。第二に、延命の中止をめぐっては、手続きと法の線引きが、現在も未決のまま残る。第三に、事前の意思表明には意味があるが、希望の実現を保証するものではなく、希望が変わりうることも前提にしなければならない。</p>
+<p>これらを重ねると、「死に方は本人が決めるべきだ」という言い方の限界が見える。自己決定は大切にされるべき原則だが、決めるための情報、話し合う相手、受け皿となる医療や介護の体制、そして決めたことを引き受けてくれる人がそろっていなければ、「自己決定」は、準備のないまま個人に責任を負わせることになりかねない。</p>
+
+<h3 id="sec7-2">7.2 社会が分かち持つ</h3>
+<p>死を個人の自己決定に丸投げしないとは、本人の意思を軽んじることではない。意思を支える条件を、社会の側で用意するということである。話し合いの場を日常にすること、在宅や施設での看取りを担う人を支えること、決める手続きと法の線引きを分かりやすくすること。いずれも、一人ひとりの努力ではなく、制度と共同体の仕事である。</p>
+<p>この主題は、自立を理想とする見方が依存を見えにくくしてきたという<a href="independence-norm-and-invisibility.html">自立規範の稿</a>の問いに戻ってくる。最期は、誰もが他者に頼らざるをえない局面だからである。また、結果を本人の手柄とみなす見方への疑いは、<a href="meritocracy-and-effort-justice.html">能力主義の正義を論じた稿</a>とも重なる。どのように最期を迎えたかによって、人の尊厳が左右されてはならない、という点で、二つの稿は同じ方向を向いている。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> 厚生労働省「人生の最終段階における医療・ケアに関する意識調査」令和 4 年度、一般国民向け調査の結果。報道・自治体資料による紹介を参照した（原典で再確認すること）。</li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> 厚生労働省『人口動態統計』死亡の場所別の死亡数・構成割合（1951 年〜 2023 年）。区分（病院・診療所・施設・自宅）は資料により異なる。長期の推移の整理は下記の解説も参照した。 <a href="https://www.dlri.co.jp/report/ld/470276.html">第一生命経済研究所の解説</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Ariès, P. (1977). <em>L'homme devant la mort</em>. Seuil.（邦訳 : 伊藤晃・成瀬駒男訳『死を前にした人間』みすず書房、 1990 年）</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 厚生労働省医政局長通知「医師法第 20 条ただし書の適切な運用について」（医政医発 0831 第 1 号、 2012 年 8 月 31 日）。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 厚生労働省「人生の最終段階における医療・ケアの決定プロセスに関するガイドライン」（2018 年 3 月改訂）。 <a href="https://www.tyojyu.or.jp/net/topics/tokushu/koreisha-end-of-life-care/guideline-kaitei.html">長寿科学振興財団の解説</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> 最高裁判所第三小法廷決定、 2009 年 12 月 7 日（川崎協同病院事件、<em>刑集</em> 63 巻 11 号 1899 頁）。</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 厚生労働省「人生会議（ACP）」公式サイト。 <a href="https://www.mhlw.go.jp/acp-jinseikaigi/about">厚生労働省</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Jimenez, G., Tan, W. S., Virk, A. K., et al. (2018). Overview of systematic reviews of advance care planning: Summary of evidence and global lessons. <em>Journal of Pain and Symptom Management</em>, 56(3), 436–459.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Morrison, R. S., Meier, D. E., &amp; Arnold, R. M. (2021). What's wrong with advance care planning? <em>JAMA</em>, 326(16), 1575–1576.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Auriemma, C. L., Nguyen, C. A., Bronheim, R., et al. (2014). Stability of end-of-life preferences: A systematic review of the evidence. <em>JAMA Internal Medicine</em>, 174(7), 1085–1092.</li>
+</ol>
+<p class="note">本稿は、看取りや延命治療に関する医療上・法律上の助言ではない。統計の数値や制度の記述は、執筆時点で参照できた資料にもとづく。引用した数値、通知、判例、研究の結論は、各文献の原典で確認されたい。</p>
+</div>
+
+</div>
+</body>
+</html>
