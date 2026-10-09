@@ -42,23 +42,33 @@
     .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
     .card { min-height: 150px; padding: 22px 22px 20px; background: var(--paper); text-decoration: none; transition: background .2s ease, color .2s ease; }
     .card:hover, .card:focus-visible { background: var(--accent-soft); outline: none; }
+    .cards.quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card:last-child:nth-child(3n+1) { grid-column: span 3; }
+    .card:last-child:nth-child(3n+2) { grid-column: span 2; }
+    .cards.quad .card:last-child:nth-child(n) { grid-column: auto; }
     .card-title { display: block; font-size: 17px; font-weight: 600; line-height: 1.55; }
     .card-desc { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.7; }
     .card:hover .card-desc, .card:focus-visible .card-desc { color: #4b6056; }
-    .series { grid-column: 2 / 3; margin: -9px 0 19px; color: var(--accent); font-size: 10px; letter-spacing: .12em; }
+    .group-label { display: flex; align-items: center; gap: 12px; margin: 30px 0 12px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .08em; line-height: 1.6; }
+    .group-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .group-label:first-of-type { margin-top: 0; }
+    .group-note { color: var(--muted); font-size: 11px; font-weight: 400; letter-spacing: .06em; }
     footer { padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; display: flex; justify-content: space-between; }
     @media (max-width: 760px) {
       .wrap { width: min(100% - 32px, 560px); }
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 64px 0 52px; }
       .hero-note { max-width: 310px; }
       .cluster-head { grid-template-columns: 36px minmax(0, 1fr) auto; gap: 10px; }
-      .cluster-desc, .series { grid-column: 2 / 4; }
+      .cluster-desc { grid-column: 2 / 4; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card:last-child:nth-child(3n+1), .card:last-child:nth-child(3n+2) { grid-column: auto; }
+      .card:last-child:nth-child(2n+1) { grid-column: span 2; }
       .card { min-height: 155px; padding: 17px; }
     }
     @media (max-width: 480px) {
       .topline { padding: 18px 0; font-size: 9px; }
-      .cards { grid-template-columns: 1fr; }
+      .cards, .cards.quad { grid-template-columns: 1fr; }
+      .card:last-child:nth-child(2n+1) { grid-column: auto; }
       .card { min-height: auto; padding: 17px 18px; }
       .cluster { padding: 36px 0 30px; }
       .cluster-desc { font-size: 12px; }
@@ -77,125 +87,161 @@
           <h1>問いから、<br>世界を読む。</h1>
           <p class="intro">哲学から素粒子物理学、五十肩まで。ひとつの答えを急がず、問いの輪郭をたどるための読みものを作りました。関心の入口から、隣り合うテーマへ。</p>
         </div>
-        <div class="hero-note"><strong>79</strong> 本の論考とガイド<br>八つのテーマを、読み進める順に。</div>
+        <div class="hero-note"><strong>79</strong> 本の論考とガイド<br>十一のテーマを、読み進める順に。</div>
       </div>
       <nav class="indexbar" aria-label="テーマから選ぶ">
-        <a href="#thinking">考える技法</a><a href="#mind">心と自己</a><a href="#ethics">倫理と生き方</a><a href="#politics">政治と社会</a><a href="#technology">技術と仕組み</a><a href="#science">自然科学</a><a href="#history">歴史と宗教</a><a href="#living">暮らしとケア</a>
+        <a href="#logic">論理と言葉</a><a href="#trust">知識と信頼</a><a href="#learning">学びと教育</a><a href="#self">自己と生き方</a><a href="#mind">心理と道徳</a><a href="#institutions">制度と公正</a><a href="#power">体制と権力</a><a href="#history">歴史と宗教</a><a href="#technology">技術と産業</a><a href="#science">自然科学</a><a href="#care">からだとケア</a>
       </nav>
     </header>
 
     <main>
-      <section class="cluster" id="thinking">
-        <div class="cluster-head"><span class="cluster-no">01 / METHOD</span><h2>考える技法</h2><span class="count">12 ARTICLES</span><p class="cluster-desc">問いをほどき、根拠を見分け、伝わる形に組み立てる。</p></div>
+      <section class="cluster" id="logic">
+        <div class="cluster-head"><span class="cluster-no">01 / LOGIC</span><h2>論理と言葉</h2><span class="count">8 ARTICLES</span><p class="cluster-desc">推論の型を知り、因果を問い、言葉と文章を精密に扱う。</p></div>
+        <h3 class="group-label">推論と論証</h3>
         <div class="cards">
-          <a class="card" href="philosophy-self-study.html"><span class="card-title">哲学的思考の技術と独学カリキュラム</span><span class="card-desc">まず「哲学的に考える」とは何か。学び方の地図から始める。</span></a>
           <a class="card" href="types-of-reasoning.html"><span class="card-title">推論の類型学</span><span class="card-desc">演繹・帰納・アブダクション・類推。既知から未知へ渡る道筋。</span></a>
           <a class="card" href="logic-argumentation.html"><span class="card-title">論理学入門</span><span class="card-desc">選択的夫婦別姓論争を題材に、主張と根拠のつながりを読む。</span></a>
-          <a class="card" href="philosophy-psycholinguistics.html"><span class="card-title">言語哲学と心理言語学</span><span class="card-desc">言語をめぐる二つの学問的伝統、その接点と違いを整理。</span></a>
+          <a class="card" href="strawman-fallacy.html"><span class="card-title">藁人形論法の研究</span><span class="card-desc">相手の議論はどこで歪められるか。識別と応答の実践。</span></a>
+        </div>
+        <h3 class="group-label">原因を語る</h3>
+        <div class="cards">
           <a class="card" href="causal-inference-philosophy.html"><span class="card-title">「これが原因だ」とどうして言えるのか</span><span class="card-desc">ヒュームから統計的因果推論へ、原因を語る方法をたどる。</span></a>
           <a class="card" href="not-being-hit-by-a-car.html"><span class="card-title">「轢かれなかったから、いま私は生きている」と言えるか</span><span class="card-desc">日常の偶然を手がかりに、因果と反実仮想を掘り下げる。</span></a>
-          <a class="card" href="expert-knowledge-and-trust.html"><span class="card-title">専門知への信頼を基礎づける</span><span class="card-desc">証言の認識論から、専門家への依存が合理的である条件を問う。</span></a>
-          <a class="card" href="information-environment-and-conviction.html"><span class="card-title">誤情報はなぜ広がるのか</span><span class="card-desc">反復接触、集団への帰属、発信者への信頼、推薦設計。四つの経路から拡散を考える。</span></a>
-          <a class="card" href="strawman-fallacy.html"><span class="card-title">藁人形論法の研究</span><span class="card-desc">相手の議論はどこで歪められるか。識別と応答の実践。</span></a>
-          <a class="card" href="learning-without-pedantry.html"><span class="card-title">学ぶ喜びと衒学のあいだ</span><span class="card-desc">知識が尊大さに変わるとき、知的謙虚さはどう働くか。</span></a>
-          <a class="card" href="writing-techniques.html"><span class="card-title">文章表現技法の体系</span><span class="card-desc">修辞・心理・物語・編集から、読む手を止めない 18 の技法。</span></a>
+        </div>
+        <h3 class="group-label">言葉と文章</h3>
+        <div class="cards">
+          <a class="card" href="philosophy-psycholinguistics.html"><span class="card-title">言語哲学と心理言語学</span><span class="card-desc">言語をめぐる二つの学問的伝統、その接点と違いを整理。</span></a>
           <a class="card" href="omou-functional-analysis.html"><span class="card-title">「と思う」の機能分析</span><span class="card-desc">論理学・言語哲学・心理言語学の観点から、英訳を物差しに「と思う」の働きを分析する。</span></a>
+          <a class="card" href="writing-techniques.html"><span class="card-title">文章表現技法の体系</span><span class="card-desc">修辞・心理・物語・編集から、読む手を止めない 18 の技法。</span></a>
         </div>
       </section>
 
-      <section class="cluster" id="mind">
-        <div class="cluster-head"><span class="cluster-no">02 / MIND</span><h2>心と自己</h2><span class="count">17 ARTICLES</span><p class="cluster-desc">判断、比較、記憶、動機。自分と他者を形づくる心理を探る。</p></div>
+      <section class="cluster" id="trust">
+        <div class="cluster-head"><span class="cluster-no">02 / TRUST</span><h2>知識と信頼</h2><span class="count">5 ARTICLES</span><p class="cluster-desc">何を、誰を、どこまで信じてよいのか。専門知と誤情報の境目を考える。</p></div>
+        <h3 class="group-label">信頼の根拠と線引き</h3>
         <div class="cards">
+          <a class="card" href="expert-knowledge-and-trust.html"><span class="card-title">専門知への信頼を基礎づける</span><span class="card-desc">証言の認識論から、専門家への依存が合理的である条件を問う。</span></a>
+          <a class="card" href="aging-pseudoscience.html"><span class="card-title">「老化は治療可能な疾患」は科学か</span><span class="card-desc">確立した研究分野と、研究者個人の主張を分けて検討。</span></a>
+        </div>
+        <h3 class="group-label">広がる誤情報と、届かない言葉</h3>
+        <div class="cards">
+          <a class="card" href="information-environment-and-conviction.html"><span class="card-title">誤情報はなぜ広がるのか</span><span class="card-desc">反復接触、集団への帰属、発信者への信頼、推薦設計。四つの経路から拡散を考える。</span></a>
+          <a class="card" href="education-and-conspiracy-belief.html"><span class="card-title">教養は陰謀信念を防ぐのか</span><span class="card-desc">ある元閣僚の事例を手がかりに、高学歴と陰謀信念をめぐる説明仮説を比べる。</span></a>
+          <a class="card" href="populism-vs-academia.html"><span class="card-title">学術的言説の「響きにくさ」</span><span class="card-desc">慎重な言葉が届きにくい構造と、単純化の拡散を考える。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="learning">
+        <div class="cluster-head"><span class="cluster-no">03 / LEARNING</span><h2>学びと教育</h2><span class="count">7 ARTICLES</span><p class="cluster-desc">どう学び、何を教え、どう測るか。独学から教育制度まで。</p></div>
+        <h3 class="group-label">独学の入口と、学ぶ態度</h3>
+        <div class="cards quad">
+          <a class="card" href="philosophy-self-study.html"><span class="card-title">哲学的思考の技術と独学カリキュラム</span><span class="card-desc">まず「哲学的に考える」とは何か。学び方の地図から始める。</span></a>
+          <a class="card" href="ethics-and-philosophy.html"><span class="card-title">倫理学は哲学の中でどこに立つか</span><span class="card-desc">学問としての位置づけを整理し、独学の入口を示す。</span></a>
           <a class="card" href="dual-process-theory.html"><span class="card-title">「システム 1 」「システム 2 」を読み解く</span><span class="card-desc">直感と思考の二重過程理論を、『独学大全』の文脈から。</span></a>
-          <a class="card" href="moral-social-intuitionism.html"><span class="card-title">道徳は先に判断され、理由は後から届く</span><span class="card-desc">道徳的判断を、ハイトの社会的直観主義から考える。</span></a>
-          <a class="card" href="group-identity-bias.html"><span class="card-title">集団同一性と内集団バイアス</span><span class="card-desc">「自分たち」という感覚は、評価や態度をどう変えるのか。</span></a>
-          <a class="card" href="authoritarian-personality-moral-development.html"><span class="card-title">権威主義的パーソナリティと道徳発達</span><span class="card-desc">集団への同一化を、個人差として捉えた二つの研究系譜。</span></a>
-          <a class="card" href="social-comparison-theory.html"><span class="card-title">社会的比較の理論と構造</span><span class="card-desc">羨望や順位はどう生まれるか。比較を測定装置として読む。</span></a>
-          <a class="card" href="undermining-effect.html"><span class="card-title">アンダーマイニング効果</span><span class="card-desc">報酬が内発的なやる気を弱めるのは、どんなときか。</span></a>
-          <a class="card" href="recognition-and-hobbies.html"><span class="card-title">承認欲求を満たす趣味の規範的評価</span><span class="card-desc">俳句投稿のように評価を待つ趣味を、動機づけ心理学と承認の哲学から検討する。</span></a>
-          <a class="card" href="vocational-choice-structure.html"><span class="card-title">職業選択における動機の二元論を超えて</span><span class="card-desc">「好きか、稼げるか」を、交換条件の設計として考え直す。</span></a>
-          <a class="card" href="review-give-and-take.html"><span class="card-title">親切は成功の戦略か</span><span class="card-desc">『 Give and Take 』を読み直す。引用される研究の性質を吟味する書評。</span></a>
-          <a class="card" href="counterfactual-regret-psychology.html"><span class="card-title">人はなぜ、選ばなかった道を悔やむのか</span><span class="card-desc">反実仮想、反芻、記憶の編集から後悔の持続を考える。</span></a>
-          <a class="card" href="review-jibun-toka-nai-kara.html"><span class="card-title">『自分とか、ないから。』は、何を手放させる本なのか</span><span class="card-desc">東洋思想の入口としての魅力と注意点を考える書評。</span></a>
+          <a class="card" href="learning-without-pedantry.html"><span class="card-title">学ぶ喜びと衒学のあいだ</span><span class="card-desc">知識が尊大さに変わるとき、知的謙虚さはどう働くか。</span></a>
+        </div>
+        <h3 class="group-label">教育の理念と制度設計</h3>
+        <div class="cards">
+          <a class="card" href="liberal-arts-history.html"><span class="card-title">教養教育の理念史</span><span class="card-desc">リベラルアーツの語源から、米国モデルの展開まで。</span></a>
+          <a class="card" href="moral-education-policy.html"><span class="card-title">道徳教育政策の比較研究</span><span class="card-desc">日本と諸外国の実践を比べ、宗教や制度との距離を考える。</span></a>
+          <a class="card" href="testing-stakes-not-institution.html"><span class="card-title">試験を分けても、歪みは消えない</span><span class="card-desc">試験機関を分離しても、結果に懸かる利害の重さが授業を歪める。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="self">
+        <div class="cluster-head"><span class="cluster-no">04 / SELF</span><h2>自己と生き方</h2><span class="count">9 ARTICLES</span><p class="cluster-desc">選ばなかった道、理想とのずれ、生の意味。自己のかたちを問う。</p></div>
+        <h3 class="group-label">別の道はあったか</h3>
+        <div class="cards">
+          <a class="card" href="free-will-and-determinism.html"><span class="card-title">自由意志は決定論と両立できるか</span><span class="card-desc">ラプラスの悪魔からリベット実験まで、自由の条件を検討。</span></a>
           <a class="card" href="if-adopted-at-one.html"><span class="card-title">一歳で別の家に行っていた私へ</span><span class="card-desc">「もしも」の人生から、自己の偶然性と選択を考えるエッセイ。</span></a>
+          <a class="card" href="counterfactual-regret-psychology.html"><span class="card-title">人はなぜ、選ばなかった道を悔やむのか</span><span class="card-desc">反実仮想、反芻、記憶の編集から後悔の持続を考える。</span></a>
+        </div>
+        <h3 class="group-label">自己像の構造</h3>
+        <div class="cards">
           <a class="card" href="ideal-actual-self-discrepancy.html"><span class="card-title">埋まらない距離の現象学</span><span class="card-desc">理想自己と現実自己の乖離を、可能性と時間から読み解く。</span></a>
           <a class="card" href="jungian-psychology.html"><span class="card-title">ユング心理学</span><span class="card-desc">自我・影・元型から河合隼雄まで、骨格と批判を押さえる。</span></a>
-          <a class="card" href="psych-counselor-vs-psychiatrist.html"><span class="card-title">心理カウンセラーと精神科医</span><span class="card-desc">制度上の役割と、悩み・精神疾患を分ける境界を考える。</span></a>
-          <a class="card" href="boundary-underestimation.html"><span class="card-title">守備範囲の錯覚</span><span class="card-desc">「誰かがやる」と皆が思うとき、責任はどう薄れるのか。</span></a>
-          <a class="card" href="victim-blaming-psychology.html"><span class="card-title">性暴力被害者への非難はなぜ生じるのか</span><span class="card-desc">公正世界信念などから、被害者非難の心理的な仕組みを考える。</span></a>
+          <a class="card" href="review-jibun-toka-nai-kara.html"><span class="card-title">『自分とか、ないから。』は、何を手放させる本なのか</span><span class="card-desc">東洋思想の入口としての魅力と注意点を考える書評。</span></a>
         </div>
-      </section>
-
-      <section class="cluster" id="ethics">
-        <div class="cluster-head"><span class="cluster-no">03 / LIFE</span><h2>倫理と生き方</h2><span class="count">8 ARTICLES</span><p class="cluster-desc">何を善いとするか、どう生きるか。価値の前提を問い直す。</p></div>
+        <h3 class="group-label">生の意味と価値</h3>
         <div class="cards">
-          <a class="card" href="ethics-and-philosophy.html"><span class="card-title">倫理学は哲学の中でどこに立つか</span><span class="card-desc">学問としての位置づけを整理し、独学の入口を示す。</span></a>
-          <a class="card" href="moral-foundations-theory.html"><span class="card-title">道徳は単一の物差しでは測れない</span><span class="card-desc">道徳基盤理論の起源、構造、測定法と学術的批判。</span></a>
-          <a class="card" href="moral-education-policy.html"><span class="card-title">道徳教育政策の比較研究</span><span class="card-desc">日本と諸外国の実践を比べ、宗教や制度との距離を考える。</span></a>
-          <a class="card" href="liberal-arts-history.html"><span class="card-title">教養教育の理念史</span><span class="card-desc">リベラルアーツの語源から、米国モデルの展開まで。</span></a>
           <a class="card" href="existentialism-article.html"><span class="card-title">実存主義とは何か</span><span class="card-desc">一枚岩ではない諸「主義」を、思想史の中に置き直す。</span></a>
-          <a class="card" href="free-will-and-determinism.html"><span class="card-title">自由意志は決定論と両立できるか</span><span class="card-desc">ラプラスの悪魔からリベット実験まで、自由の条件を検討。</span></a>
           <a class="card" href="antinatalism-asymmetry.html"><span class="card-title">反出生主義の非対称性論証</span><span class="card-desc">ベネターの議論を哲学・論理・心理の視点から吟味する。</span></a>
           <a class="card" href="happiness-theory.html"><span class="card-title">比較の中の幸福</span><span class="card-desc">比較依存性と道徳的運という二つの軸で、幸福の道徳的な質を統一的に説明する。</span></a>
         </div>
       </section>
 
-      <section class="cluster" id="politics">
-        <div class="cluster-head"><span class="cluster-no">04 / POWER</span><h2>政治と社会</h2><span class="count">20 ARTICLES</span><p class="cluster-desc">制度は何を代表し、権力はどう支えられ、感情はどう動員されるか。</p></div>
+      <section class="cluster" id="mind">
+        <div class="cluster-head"><span class="cluster-no">05 / MIND</span><h2>心理と道徳</h2><span class="count">11 ARTICLES</span><p class="cluster-desc">動機、比較、集団、道徳判断。人の心が動く仕組みを探る。</p></div>
+        <h3 class="group-label">報酬と動機</h3>
+        <div class="cards quad">
+          <a class="card" href="undermining-effect.html"><span class="card-title">アンダーマイニング効果</span><span class="card-desc">報酬が内発的なやる気を弱めるのは、どんなときか。</span></a>
+          <a class="card" href="recognition-and-hobbies.html"><span class="card-title">承認欲求を満たす趣味の規範的評価</span><span class="card-desc">俳句投稿のように評価を待つ趣味を、動機づけ心理学と承認の哲学から検討する。</span></a>
+          <a class="card" href="vocational-choice-structure.html"><span class="card-title">職業選択における動機の二元論を超えて</span><span class="card-desc">「好きか、稼げるか」を、交換条件の設計として考え直す。</span></a>
+          <a class="card" href="review-give-and-take.html"><span class="card-title">親切は成功の戦略か</span><span class="card-desc">『 Give and Take 』を読み直す。引用される研究の性質を吟味する書評。</span></a>
+        </div>
+        <h3 class="group-label">他者との関係のなかの自分</h3>
         <div class="cards">
-          <a class="card" href="testing-stakes-not-institution.html"><span class="card-title">試験を分けても、歪みは消えない</span><span class="card-desc">試験機関を分離しても、結果に懸かる利害の重さが授業を歪める。</span></a>
+          <a class="card" href="social-comparison-theory.html"><span class="card-title">社会的比較の理論と構造</span><span class="card-desc">羨望や順位はどう生まれるか。比較を測定装置として読む。</span></a>
+          <a class="card" href="boundary-underestimation.html"><span class="card-title">守備範囲の錯覚</span><span class="card-desc">「誰かがやる」と皆が思うとき、責任はどう薄れるのか。</span></a>
+        </div>
+        <h3 class="group-label">集団と非難</h3>
+        <div class="cards">
+          <a class="card" href="victim-blaming-psychology.html"><span class="card-title">性暴力被害者への非難はなぜ生じるのか</span><span class="card-desc">公正世界信念などから、被害者非難の心理的な仕組みを考える。</span></a>
+          <a class="card" href="group-identity-bias.html"><span class="card-title">集団同一性と内集団バイアス</span><span class="card-desc">「自分たち」という感覚は、評価や態度をどう変えるのか。</span></a>
+          <a class="card" href="authoritarian-personality-moral-development.html"><span class="card-title">権威主義的パーソナリティと道徳発達</span><span class="card-desc">集団への同一化を、個人差として捉えた二つの研究系譜。</span></a>
+        </div>
+        <h3 class="group-label">道徳判断のしくみ</h3>
+        <div class="cards">
+          <a class="card" href="moral-social-intuitionism.html"><span class="card-title">道徳は先に判断され、理由は後から届く</span><span class="card-desc">道徳的判断を、ハイトの社会的直観主義から考える。</span></a>
+          <a class="card" href="moral-foundations-theory.html"><span class="card-title">道徳は単一の物差しでは測れない</span><span class="card-desc">道徳基盤理論の起源、構造、測定法と学術的批判。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="institutions">
+        <div class="cluster-head"><span class="cluster-no">06 / INSTITUTIONS</span><h2>制度と公正</h2><span class="count">9 ARTICLES</span><p class="cluster-desc">票は何に変わり、制度は何を守り、公正とは何か。</p></div>
+        <h3 class="group-label">票が政治になるまで</h3>
+        <div class="cards">
+          <a class="card" href="ideal-electoral-system.html"><span class="card-title">理想的な選挙制度は存在するか</span><span class="card-desc">七つの民主主義の制度を比べ、トレードオフと数学的限界から問う。</span></a>
           <a class="card" href="theory-of-popular-will.html"><span class="card-title">民意の変換理論</span><span class="card-desc">投票から「民意」へ。政治学・社会選択論などで検討する。</span></a>
           <a class="card" href="party-label-theory.html"><span class="card-title">政党ラベルの情報経済学</span><span class="card-desc">法制度・選挙制度・党内組織の三層から、政党の看板を分析。</span></a>
-          <a class="card" href="understanding-trump-support.html"><span class="card-title">トランプはなぜ人々の心をつかんだのか</span><span class="card-desc">票の土台をなす党派性の上で、候補者の訴求と支持者の受け止めがどう働いたかを、三層に分けて分析する。</span></a>
-          <a class="card" href="emotion-politicization.html"><span class="card-title">感情の政治資源化論</span><span class="card-desc">「奪われ感」はなぜ政治を動かすのか。剥奪の知覚、集団と公正、感情の非対称、信念の固着という機構と、民主主義の応答を検討する。</span></a>
-          <a class="card" href="populism-vs-academia.html"><span class="card-title">学術的言説の「響きにくさ」</span><span class="card-desc">慎重な言葉が届きにくい構造と、単純化の拡散を考える。</span></a>
-          <a class="card" href="education-and-conspiracy-belief.html"><span class="card-title">教養は陰謀信念を防ぐのか</span><span class="card-desc">ある元閣僚の事例を手がかりに、高学歴と陰謀信念をめぐる説明仮説を比べる。</span></a>
-          <a class="card" href="hostility-mobilization-legitimacy.html"><span class="card-title">為政者はなぜ敵意を動員するのか</span><span class="card-desc">国家の正統性から、敵意を政治資源にする仕組みを比べる。</span></a>
+        </div>
+        <h3 class="group-label">事例で見る制度の設計</h3>
+        <div class="cards">
           <a class="card" href="chudo-kaikaku-rengo-analysis.html"><span class="card-title">中道改革連合はなぜ崩れたのか</span><span class="card-desc">発足から分裂までをたどり、意思決定の実像に迫る。</span></a>
           <a class="card" href="swiss_neutrality_and_direct_democracy.html"><span class="card-title">誰も守ってくれない国は、自分で決めるしかない</span><span class="card-desc">永世中立と直接民主主義、二つの制度を支える「委ねない」姿勢を追う。</span></a>
           <a class="card" href="multiple-official-languages.html"><span class="card-title">公用語が複数ある国の暮らし</span><span class="card-desc">スイス、ベルギー、カナダ、インド、南アフリカの議会・学校・行政を、属地・属人・共通語併用の型で比べる。</span></a>
-          <a class="card" href="china-overseas-footholds-colonial-comparison.html"><span class="card-title">中国の海外拠点は、百年前の植民地政策に似ているか</span><span class="card-desc">ラオスの「訓練センター」を起点に、港・鉄道・軍の手順と合意の形式を、列強の型と七つの軸で照らす。</span></a>
-          <a class="card" href="meritocracy-and-effort-justice.html"><span class="card-title">努力は誰の手柄か</span><span class="card-desc">運・遺伝・尊厳から、能力主義の正義を問い直す。選抜・報酬・尊厳を切り分ける。</span></a>
+        </div>
+        <h3 class="group-label">公正とは何か</h3>
+        <div class="cards">
           <a class="card" href="equality-vs-equity.html"><span class="card-title">平等と公平はどう違うのか</span><span class="card-desc">野球場の木箱の図解を手がかりに、同じものを配ることと機会を揃えることを分け、公平への三つの批判を検討する。</span></a>
+          <a class="card" href="meritocracy-and-effort-justice.html"><span class="card-title">努力は誰の手柄か</span><span class="card-desc">運・遺伝・尊厳から、能力主義の正義を問い直す。選抜・報酬・尊厳を切り分ける。</span></a>
           <a class="card" href="environment-thought-experiment.html"><span class="card-title">同じ環境で育てたら、人の差は消えるのか</span><span class="card-desc">全員を同じ環境で育てる思考実験を、双生児・養子・施設養育の研究から検討する。</span></a>
-          <a class="card" href="ideal-electoral-system.html"><span class="card-title">理想的な選挙制度は存在するか</span><span class="card-desc">七つの民主主義の制度を比べ、トレードオフと数学的限界から問う。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="power">
+        <div class="cluster-head"><span class="cluster-no">07 / POWER</span><h2>体制と権力</h2><span class="count">8 ARTICLES</span><p class="cluster-desc">権威主義、ポピュリズム、敵意の動員。権力を支える仕組みを見る。</p></div>
+        <h3 class="group-label">権威主義をめぐる連作<span class="group-note">概念 → 生存と崩壊 → 民主主義との比較 → ポピュリズム</span></h3>
+        <div class="cards quad">
           <a class="card" href="regime-01-concept-and-history.html"><span class="card-title">権威主義とは何か</span><span class="card-desc">概念と歴史を押さえ、近代国家と民主化の緊張を考える。</span></a>
           <a class="card" href="regime-02-survival-and-collapse.html"><span class="card-title">権威主義はいかに生き残り、そして崩れるのか</span><span class="card-desc">体制の型と生存戦略を、冷戦から 21 世紀まで追う。</span></a>
           <a class="card" href="regime-03-democracy-and-authoritarianism.html"><span class="card-title">民主主義国家は善で権威主義国家は悪か</span><span class="card-desc">開発独裁や民主的平和論を通じ、単純な対立図式を問い直す。</span></a>
           <a class="card" href="regime-04-populism-and-democracy.html"><span class="card-title">ポピュリズムは民主主義の弱点か</span><span class="card-desc">民主主義が自分自身を壊す可能性を、連作の結びに考える。</span></a>
         </div>
-        <div class="cluster-head" style="margin-top:16px"><span></span><p class="series">権威主義をめぐる連作　—　概念 → 生存と崩壊 → 民主主義との比較 → ポピュリズム</p></div>
-      </section>
-
-      <section class="cluster" id="technology">
-        <div class="cluster-head"><span class="cluster-no">05 / SYSTEMS</span><h2>技術と仕組み</h2><span class="count">9 ARTICLES</span><p class="cluster-desc">技術の進歩を、企業・インフラ・仕事・分配の仕組みから見る。</p></div>
+        <h3 class="group-label">支持と感情</h3>
         <div class="cards">
-          <a class="card" href="ai-industry-comparison.html"><span class="card-title">生成 AI 企業比較の基礎資料</span><span class="card-desc">主要企業のモデル、エージェント、コーディング環境を俯瞰。</span></a>
-          <a class="card" href="cloud-market-ai-analysis.html"><span class="card-title">クラウド市場の構造分析</span><span class="card-desc">生成 AI 需要はクラウド各社の勢力図をどう変えるのか。</span></a>
-          <a class="card" href="saas-layered-analysis.html"><span class="card-title">「 SaaS is dead 」言説の実証的検討</span> <span class="card-desc">UI ・ロジック・データの三層モデルで言説を検証する。</span></a>
-          <a class="card" href="internet-peering-cdn.html"><span class="card-title">インターネット相互接続論</span><span class="card-desc">ピアリング、トランジット、 CDN を技術とお金の流れから。</span></a>
-          <a class="card" href="ai-labor-and-redistribution.html"><span class="card-title">AI は労働をどう書き換え、その果実は誰が受け取るのか</span><span class="card-desc">タスクの変化から、生産性の分配と再分配政策へ進む。</span></a>
-          <a class="card" href="ai-datacenter-politics.html"><span class="card-title">AI データセンター問題の争点化過程</span><span class="card-desc">電力や地域摩擦は、なぜ日米で異なる政治課題になるのか。</span></a>
-          <a class="card" href="algorithm-and-responsibility.html"><span class="card-title">「アルゴリズムが決めた」は説明になるか</span> <span class="card-desc">GDPR ・ AI 法・ COMPAS 事件から、説明責任と法的責任の所在を検討。</span></a>
-          <a class="card" href="japan_industrial_products_strength.html"><span class="card-title">日本の工業製品が、なお譲らない場所</span><span class="card-desc">シェア陥落の時代、消費者の目に触れない領域でなお崩れない優位の構造を解き明かす。</span></a>
-          <a class="card" href="broadcast-television-standards.html"><span class="card-title">テレビ放送方式の系譜</span><span class="card-desc"> NTSC, PAL からデジタル放送まで、 29.97 fps が制作現場に残った理由をたどる。</span></a>
+          <a class="card" href="understanding-trump-support.html"><span class="card-title">トランプはなぜ人々の心をつかんだのか</span><span class="card-desc">票の土台をなす党派性の上で、候補者の訴求と支持者の受け止めがどう働いたかを、三層に分けて分析する。</span></a>
+          <a class="card" href="emotion-politicization.html"><span class="card-title">感情の政治資源化論</span><span class="card-desc">「奪われ感」はなぜ政治を動かすのか。剥奪の知覚、集団と公正、感情の非対称、信念の固着という機構と、民主主義の応答を検討する。</span></a>
         </div>
-      </section>
-
-      <section class="cluster" id="science">
-        <div class="cluster-head"><span class="cluster-no">06 / NATURE</span><h2>自然科学</h2><span class="count">6 ARTICLES</span><p class="cluster-desc">身近な現象から宇宙の始まりまで、説明のスケールを広げる。</p></div>
+        <h3 class="group-label">敵意の動員と対外進出</h3>
         <div class="cards">
-          <a class="card" href="battery-voltage-and-charge.html"><span class="card-title">バッテリー電圧降下と残量推定の科学</span><span class="card-desc">電池を水位にたとえる説明は、どこまで正確だろうか。</span></a>
-          <a class="card" href="particle-physics-intro.html"><span class="card-title">素粒子物理学概論</span><span class="card-desc">原子核から標準模型、観測可能な宇宙までを見渡す。</span></a>
-          <a class="card" href="geologic-time-scale.html"><span class="card-title">地質時代入門</span><span class="card-desc">地球誕生前から人類まで、四つの時間スケールでたどる。</span></a>
-          <a class="card" href="multiverse-cosmology.html"><span class="card-title">多元宇宙論とビッグバン以前</span><span class="card-desc">理論宇宙論で、観測事実と仮説の境界を見極める。</span></a>
-          <a class="card" href="aging-pseudoscience.html"><span class="card-title">「老化は治療可能な疾患」は科学か</span><span class="card-desc">確立した研究分野と、研究者個人の主張を分けて検討。</span></a>
-          <a class="card" href="brain-chemicals-happiness.html"><span class="card-title">幸福感の脳内物質は何学の対象か</span><span class="card-desc">「幸せホルモン」の通説を、分泌の仕組みから見直す。</span></a>
+          <a class="card" href="hostility-mobilization-legitimacy.html"><span class="card-title">為政者はなぜ敵意を動員するのか</span><span class="card-desc">国家の正統性から、敵意を政治資源にする仕組みを比べる。</span></a>
+          <a class="card" href="china-overseas-footholds-colonial-comparison.html"><span class="card-title">中国の海外拠点は、百年前の植民地政策に似ているか</span><span class="card-desc">ラオスの「訓練センター」を起点に、港・鉄道・軍の手順と合意の形式を、列強の型と七つの軸で照らす。</span></a>
         </div>
       </section>
 
       <section class="cluster" id="history">
-        <div class="cluster-head"><span class="cluster-no">07 / HERITAGE</span><h2>歴史と宗教</h2><span class="count">3 ARTICLES</span><p class="cluster-desc">思想や信仰の系譜をたどり、時代を区切る物差しを考える。</p></div>
+        <div class="cluster-head"><span class="cluster-no">08 / HERITAGE</span><h2>歴史と宗教</h2><span class="count">3 ARTICLES</span><p class="cluster-desc">思想や信仰の系譜をたどり、時代を区切る物差しを考える。</p></div>
         <div class="cards">
           <a class="card" href="modern-contemporary-periods.html"><span class="card-title">「近代」と「現代」の時代区分論</span><span class="card-desc">世界史と日本史の年表を見比べ、時代の境界を問い直す。</span></a>
           <a class="card" href="japanese-buddhist-sects.html"><span class="card-title">日本仏教宗派史</span><span class="card-desc">十三宗五十六派の成立と系譜を、全体像からたどる。</span></a>
@@ -203,12 +249,54 @@
         </div>
       </section>
 
-      <section class="cluster" id="living">
-        <div class="cluster-head"><span class="cluster-no">08 / EVERYDAY</span><h2>暮らしとケア</h2><span class="count">4 ARTICLES</span><p class="cluster-desc">医療、住まい、支え合い。日々の暮らしとケアのかたちを知る。</p></div>
+      <section class="cluster" id="technology">
+        <div class="cluster-head"><span class="cluster-no">09 / SYSTEMS</span><h2>技術と産業</h2><span class="count">9 ARTICLES</span><p class="cluster-desc">技術の進歩を、企業・インフラ・仕事・分配の仕組みから見る。</p></div>
+        <h3 class="group-label">AI の産業構造</h3>
+        <div class="cards">
+          <a class="card" href="ai-industry-comparison.html"><span class="card-title">生成 AI 企業比較の基礎資料</span><span class="card-desc">主要企業のモデル、エージェント、コーディング環境を俯瞰。</span></a>
+          <a class="card" href="cloud-market-ai-analysis.html"><span class="card-title">クラウド市場の構造分析</span><span class="card-desc">生成 AI 需要はクラウド各社の勢力図をどう変えるのか。</span></a>
+          <a class="card" href="saas-layered-analysis.html"><span class="card-title">「 SaaS is dead 」言説の実証的検討</span> <span class="card-desc">UI ・ロジック・データの三層モデルで言説を検証する。</span></a>
+        </div>
+        <h3 class="group-label">AI の社会的帰結</h3>
+        <div class="cards">
+          <a class="card" href="ai-labor-and-redistribution.html"><span class="card-title">AI は労働をどう書き換え、その果実は誰が受け取るのか</span><span class="card-desc">タスクの変化から、生産性の分配と再分配政策へ進む。</span></a>
+          <a class="card" href="algorithm-and-responsibility.html"><span class="card-title">「アルゴリズムが決めた」は説明になるか</span> <span class="card-desc">GDPR ・ AI 法・ COMPAS 事件から、説明責任と法的責任の所在を検討。</span></a>
+          <a class="card" href="ai-datacenter-politics.html"><span class="card-title">AI データセンター問題の争点化過程</span><span class="card-desc">電力や地域摩擦は、なぜ日米で異なる政治課題になるのか。</span></a>
+        </div>
+        <h3 class="group-label">ものづくりとインフラ</h3>
+        <div class="cards">
+          <a class="card" href="japan_industrial_products_strength.html"><span class="card-title">日本の工業製品が、なお譲らない場所</span><span class="card-desc">シェア陥落の時代、消費者の目に触れない領域でなお崩れない優位の構造を解き明かす。</span></a>
+          <a class="card" href="broadcast-television-standards.html"><span class="card-title">テレビ放送方式の系譜</span><span class="card-desc"> NTSC, PAL からデジタル放送まで、 29.97 fps が制作現場に残った理由をたどる。</span></a>
+          <a class="card" href="internet-peering-cdn.html"><span class="card-title">インターネット相互接続論</span><span class="card-desc">ピアリング、トランジット、 CDN を技術とお金の流れから。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="science">
+        <div class="cluster-head"><span class="cluster-no">10 / NATURE</span><h2>自然科学</h2><span class="count">5 ARTICLES</span><p class="cluster-desc">身近な現象から宇宙の始まりまで、説明のスケールを広げる。</p></div>
+        <h3 class="group-label">身近なしくみ</h3>
+        <div class="cards">
+          <a class="card" href="battery-voltage-and-charge.html"><span class="card-title">バッテリー電圧降下と残量推定の科学</span><span class="card-desc">電池を水位にたとえる説明は、どこまで正確だろうか。</span></a>
+          <a class="card" href="brain-chemicals-happiness.html"><span class="card-title">幸福感の脳内物質は何学の対象か</span><span class="card-desc">「幸せホルモン」の通説を、分泌の仕組みから見直す。</span></a>
+        </div>
+        <h3 class="group-label">地球・物質・宇宙</h3>
+        <div class="cards">
+          <a class="card" href="geologic-time-scale.html"><span class="card-title">地質時代入門</span><span class="card-desc">地球誕生前から人類まで、四つの時間スケールでたどる。</span></a>
+          <a class="card" href="particle-physics-intro.html"><span class="card-title">素粒子物理学概論</span><span class="card-desc">原子核から標準模型、観測可能な宇宙までを見渡す。</span></a>
+          <a class="card" href="multiverse-cosmology.html"><span class="card-title">多元宇宙論とビッグバン以前</span><span class="card-desc">理論宇宙論で、観測事実と仮説の境界を見極める。</span></a>
+        </div>
+      </section>
+
+      <section class="cluster" id="care">
+        <div class="cluster-head"><span class="cluster-no">11 / CARE</span><h2>からだとケア</h2><span class="count">5 ARTICLES</span><p class="cluster-desc">からだ、心の不調、老い、看取り。ケアのかたちを知る。</p></div>
+        <h3 class="group-label">からだと心の不調</h3>
         <div class="cards">
           <a class="card" href="gojukata_silent_manipulation.html"><span class="card-title">五十肩とサイレントマニピュレーション</span><span class="card-desc">背景要因と病期を踏まえ、難治例への選択肢まで整理。</span></a>
-          <a class="card" href="elder-housing.html"><span class="card-title">高齢者向け住まい・施設、七類型の違い</span><span class="card-desc">契約型の四類型に、判定型の老健、特養、養護老人ホームを加えて比べる。</span></a>
+          <a class="card" href="psych-counselor-vs-psychiatrist.html"><span class="card-title">心理カウンセラーと精神科医</span><span class="card-desc">制度上の役割と、悩み・精神疾患を分ける境界を考える。</span></a>
+        </div>
+        <h3 class="group-label">支える・住む・看取る</h3>
+        <div class="cards">
           <a class="card" href="independence-norm-and-invisibility.html"><span class="card-title">自立という規範は、誰を見えなくしているか</span><span class="card-desc">依存批判とケア倫理から、支援を受ける人と担う人を同じ視野に置き直す。</span></a>
+          <a class="card" href="elder-housing.html"><span class="card-title">高齢者向け住まい・施設、七類型の違い</span><span class="card-desc">契約型の四類型に、判定型の老健、特養、養護老人ホームを加えて比べる。</span></a>
           <a class="card" href="end-of-life-place-and-advance-planning.html"><span class="card-title">どこで、誰に看取られて死ぬのか</span><span class="card-desc">死の場所の移り変わりを四つの層で読み、延命の中止と事前の意思の限界を考える。</span></a>
         </div>
       </section>
