@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生まれた環境の思考実験</title>
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);line-height:2}
+.wrap{max-width:820px;margin:0 auto;padding:56px 26px 120px}
+.kicker{font-size:15px;letter-spacing:.14em;color:var(--accent);font-weight:700;margin:0 0 10px}
+h1{font-size:32px;line-height:1.6;margin:0 0 6px;color:var(--text)}
+.subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
+.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}
+.lede p{font-size:20px;color:var(--muted);margin:0 0 14px}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;color:var(--muted);font-size:15px;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
+.toc>ol{columns:2;column-gap:32px;margin:0;padding-left:1.6em}
+.toc-title{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
+.toc li{margin-bottom:7px;font-size:16.5px;break-inside:avoid;line-height:1.8}
+.toc li ol{margin-top:7px;margin-bottom:11px;padding-left:1.6em}
+.toc li li{font-size:15.5px;color:var(--muted);margin-bottom:5px}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:26px;line-height:1.5;border-bottom:1px solid var(--line);padding-bottom:9px;margin:52px 0 18px}
+h3{font-size:20px;line-height:1.6;margin:32px 0 12px}
+p{font-size:19px;margin:0 0 20px}
+strong{color:var(--accent)}
+a{color:var(--link)}
+ul,ol{margin:0 0 20px;padding-left:1.4em}
+li{font-size:19px;margin-bottom:9px}
+.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;font-size:19px}
+.tablewrap{overflow-x:auto;margin:0 0 28px}
+table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.8}
+th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
+th{background:var(--box)}
+sup{font-size:.72em;line-height:0}
+sup a{text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs ol{margin:0 0 11px}
+.refs li{font-size:15.5px;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target,sup:target{background:var(--box)}
+.note{font-size:15px;color:var(--muted);margin:20px 0 0}
+@media (max-width:480px){
+  .wrap{padding:36px 16px 90px}
+  h1{font-size:27px}
+  .toc>ol{columns:1}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="kicker">行動遺伝学・発達科学・社会政策</p>
+<h1>同じ環境で育てたら、人の差は消えるのか<br>――生まれた環境をめぐる思考実験</h1>
+<p class="subtitle">Raising Everyone Alike: A Thought Experiment on Environment, Heredity, and the Limits of Equalization</p>
+<div class="lede">
+<p>政府がすべての新生児を預かり、全員を同じ環境で育てたとしたら、人生の差はどこまで消えるのか。本稿はこの問いを、現実の実施を意図しない思考実験として扱い、双生児研究、養子研究、施設養育の研究、社会経済的背景の研究を手がかりに検討する。</p>
+<p>見通しを先に述べる。既存の研究から言えるのは、環境の差を揃えれば差は縮むだろうが、消えるとは考えにくい、という程度である。ただし、これは検証された事実ではなく、本稿の仮説である。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong> 本稿は、実在する研究の結果を紹介し、確立した知見、未確定の論点、投機的な仮説を区別して書く。紹介する研究は代表例であり、文献の網羅的な調査ではない。各研究は原論文の要旨と書誌データで確認したものであり、統計モデルの数式や推定方法には立ち入らない。全員を同じ環境で育てることの実施を提案するものではなく、実現を目指す意図もない。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">問い――全員を同じ環境で育てたら</a></li>
+<li><a href="#sec2">「同一の環境」を分解する</a>
+<ol>
+<li><a href="#sec2-1">環境の構成要素</a></li>
+<li><a href="#sec2-2">共有環境と非共有環境</a></li>
+</ol>
+</li>
+<li><a href="#sec3">既存の研究は何を語っているか</a>
+<ol>
+<li><a href="#sec3-1">双生児研究と養子研究</a></li>
+<li><a href="#sec3-2">剥奪の研究――環境が極端に欠けたとき</a></li>
+<li><a href="#sec3-3">社会経済的背景と環境の効果</a></li>
+<li><a href="#sec3-4">同じ遺伝子、同じ環境でも差は生まれる</a></li>
+</ol>
+</li>
+<li><a href="#sec4">二つの立場を最も強い形で</a>
+<ol>
+<li><a href="#sec4-1">環境を重視する立場の論拠</a></li>
+<li><a href="#sec4-2">生得的要因を重視する立場の論拠</a></li>
+<li><a href="#sec4-3">二つの立場の整合と、残る不一致</a></li>
+<li><a href="#sec4-4">国家による養育をめぐる賛否</a></li>
+</ol>
+</li>
+<li><a href="#sec5">思考実験から何が言えるか</a>
+<ol>
+<li><a href="#sec5-1">知見の区分</a></li>
+<li><a href="#sec5-2">筆者の提案・仮説</a></li>
+<li><a href="#sec5-3">倫理と実現の意図</a></li>
+<li><a href="#sec5-4">本稿の限界と自己点検</a></li>
+</ol>
+</li>
+<li><a href="#refs-heading">参考文献・出典一覧</a></li>
+</ol>
+</nav>
+<h2 id="sec1">1. 問い――全員を同じ環境で育てたら</h2>
+<p>政府がすべての新生児を一時的に預かり、全員を同じ環境で育てたとしたら、何が起きるのか。現実には不可能であり、本稿はこれを実現すべき構想として論じるものではない。実現する意図も、実施を提案する意図もない。変数をただ一つだけ動かしたとき、世界がどう見えるかを確かめるための、思考の道具である。</p>
+<p>出発点には素朴な見方がある。人の人生は多くの場合、育った環境によって形づくられる、という見方である。この見方が正しければ、環境の差を取り除いたとき、人生の差は大きく縮まるはずである。では、縮まらなかったとしたら。残った差は、何に由来するのか。この問いは、環境の影響の大きさを測る物差しとして役に立つ。</p>
+<p>見通しを先に述べる。既存の研究は、環境が人の発達に強く作用することと、同じ環境で育っても個人差が残ることの、両方を示している。この二つは矛盾しない。以下では、第二章で「同一の環境」の中身を分解し、第三章で実際の研究を紹介し、第四章で対立する二つの立場をそれぞれ最も強い形で検討し、第五章で、この思考実験から言えることと言えないことを整理する。</p>
+
+<h2 id="sec2">2. 「同一の環境」を分解する</h2>
+<h3 id="sec2-1">2.1 環境の構成要素</h3>
+<p>「同じ環境で育てる」と言うとき、揃えるべきものは一つではない。次の表は、主な要素と揃えやすさの見立てを示す。この表は本稿による整理であり、研究の結果ではない。</p>
+<div class="tablewrap">
+<table>
+<tr><th>要素</th><th>内容</th><th>揃えやすさ（本稿の見立て）</th></tr>
+<tr><td>食事・栄養</td><td>献立、量、衛生</td><td>高い。管理しやすい。</td></tr>
+<tr><td>教育</td><td>学習内容、教材、教員</td><td>内容は揃えられる。教員ごとの関わり方の違いは残る。</td></tr>
+<tr><td>言語</td><td>使用言語、語りかけの量と質</td><td>使用言語は揃えられる。養育者ごとの語りかけの違いは残る。</td></tr>
+<tr><td>人間関係</td><td>養育者、同年代の集団</td><td>低い。養育者との関係は、子どもごとに固有のものになる。</td></tr>
+<tr><td>偶然の出来事</td><td>病気、事故、出会い</td><td>揃えられない。</td></tr>
+<tr><td>胎内環境</td><td>出生前の栄養、母体の状態</td><td>政府が預かる前に決まっており、この思考実験の範囲外である。</td></tr>
+</table>
+</div>
+<p>表が示すとおり、揃えられるのは物質的・制度的な条件が中心であり、関係と偶然は揃わない。完全な同一環境は原理的に作れない。本稿はこの不可能性を、考察の欠陥ではなく前提として扱う。理想化した極限を置き、現実がそこからどれだけ離れるかを考えるための、基準点とするのである。</p>
+<h3 id="sec2-2">2.2 共有環境と非共有環境</h3>
+<p>行動遺伝学は、環境を二種類に分ける。共有環境とは、同じ家庭で育つ子どもに共通する環境である（家庭の経済状況、養育方針、居住地域など）。非共有環境とは、同じ家庭で育っても子どもごとに異なる経験である（友人、教師、病気、偶然の出来事など）。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> はこの区別に基づき、同じ家庭内の子どもの違いを説明する鍵として、非共有環境に注目した。</p>
+<p>もう一つ、用語を定義しておく。遺伝率とは、ある集団における個人差のうち、遺伝的な違いで説明される割合である。個人の中で遺伝が何割を占めるかを示す数ではなく、集団や環境が変われば値も変わりうる。</p>
+<p>政府がすべての子どもを預かる実験は、共有環境の差を縮める操作にあたる。しかし、非共有環境と偶然には、原理的に手が届かない。以下の章では、この区別を軸に研究を読む。</p>
+
+<h2 id="sec3">3. 既存の研究は何を語っているか</h2>
+<h3 id="sec3-1">3.1 双生児研究と養子研究</h3>
+<p>双生児研究は、遺伝子がほぼ同一の一卵性双生児と、平均して半分を共有する二卵性双生児を比べ、遺伝と環境の寄与を推定する方法である。養子研究は、血縁のある親子と血縁のない親子を比べる。</p>
+<p>2015 年のメタ分析は、 50 年分の双生児研究を集めた。対象は 2,748 本の論文、 17,804 の特性、約 1,460 万組の双生児である。特性全体の平均遺伝率は 49% であり、 69% の特性では、類似性が加算的な遺伝的変異だけで説明でき、共有環境の寄与を支持する結果は乏しかった。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></p>
+<p>別々に育てられた双生児を調べたミネソタ研究は、 100 組以上の双生児・三つ子を対象に、知能指数 (IQ) の個人差の約 70% が遺伝的変異と関連すると報告した。一卵性双生児は、別々に育っても、人格、興味、社会的態度で、一緒に育った場合と同程度に似ていた。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
+<p>養子研究も、共有環境の効果が小さいことを示唆する。コロラド養子研究は、養子 245 人とその生みの親・養親を、対照の非養子家庭 245 組と比べた。養子は幼少期には養親にわずかに似たが、児童期と青年期には似なくなった。一方で、生みの親には、対照家庭の親子と同じ程度に似ていった。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 同じ家庭で育つ養子どうしの相関も、多くの特性で 0 に近いと整理されている。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></p>
+<p>他方で、養家の影響が目に見える結果もある。韓国から米国へ養子に出された子どもは、準無作為に養家へ割り当てられた。この状況を利用した研究では、教育水準の高い親のもとで育った養子は、学歴、所得、健康で大きな差を示した。分散分解では、共有家庭環境が、学歴の分散の 14% と大学の選抜度の分散の 35% を説明した。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<h3 id="sec3-2">3.2 剥奪の研究――環境が極端に欠けたとき</h3>
+<p>ブカレスト早期介入プロジェクトは、ルーマニアで施設に預けられていた幼い子どもを、施設にとどまる群と里親家庭へ移る群に無作為に割り当てた。 54 か月齢まで追跡した結果、施設にとどまった子どもの認知発達は、施設に入ったことのない子どもよりも、里親家庭の子どもよりも、著しく低かった。里親家庭への移行による改善は、移行時の年齢が低いほど大きかった。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></p>
+<p>英国に養子として迎えられたルーマニアの子どもを追った ERA 研究は、施設で最長 43 か月を過ごした子どもを、 6 歳、 11 歳、 15 歳、そして 22 歳から 25 歳まで追跡した。施設にいた期間が 6 か月未満の子どもは、施設を経験していない英国の養子と同様に、症状が少なかった。 6 か月を超えた子どもでは、自閉症的な症状、脱抑制型の対人行動、不注意・多動が、成人期まで高い水準で続いた。 IQ 80 未満の割合は 6 歳と 11 歳で高かったが、成人期には差が消えた。 6 か月を超えた群の約五分の一は、どの時点でも問題を示さなかった。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+<p>集団で子どもを育てる試みにも、研究がある。イスラエルのキブツでは、夜間の就寝を子どもたちが共同の施設で行う方式と、親の家で行う方式があった。 14 〜 22 か月の乳児 48 人を比べた研究では、母親への安定した愛着を示した割合が、親の家で眠る群で 80% 、共同で眠る群で 48% だった。両群の間で、気質や日中の環境などに差はなかったと報告されている。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> ただし、本稿が確認した範囲では、この比較は小規模な単一の研究である。</p>
+<p>これらの研究から、本稿は一つの含意を引き出す。同一環境は、揃えるだけでは足りず、その養育の質が問われる。施設から家庭への移行が成績を改善したという結果は、環境の画一性よりも養育の質が重要であることを示唆する。ただしこれは本稿の解釈であり、仮説に属する。</p>
+<h3 id="sec3-3">3.3 社会経済的背景と環境の効果</h3>
+<p>米国の 7 歳の双生児を分析した研究では、家庭の社会経済的地位によって、 IQ の分散を説明する要因が変わった。貧困家庭では分散の約 60% が共有環境で説明され、遺伝の寄与はほぼ 0 だった。裕福な家庭では、ほぼ逆の傾向が見られた。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
+<p>この結果は、後続の検証で割れている。米国、オーストラリア、英国、スウェーデン、ドイツ、オランダの双生児・きょうだい計 24,926 組をまとめたメタ分析では、米国の研究では中程度の「遺伝子と社会経済的地位の交互作用」が支持されたが、米国以外では支持されなかった。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
+<p>環境を実際に動かした実験もある。 Moving to Opportunity は、貧困率の高い公営住宅の住民に、無作為に抽選で住宅バウチャーを与え、貧困率の低い地域への転居を促した。税務記録を用いた長期の追跡では、 13 歳になる前に転居した子どもは、大学進学率と所得が高く、ひとり親になる割合が低かった。青年期に転居した場合は、わずかに悪い影響があった。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></p>
+<h3 id="sec3-4">3.4 同じ遺伝子、同じ環境でも差は生まれる</h3>
+<p>遺伝と環境の両方を揃えても差が残ることを示す動物実験がある。遺伝的に同一の近交系マウス 40 匹を一つの大きな豊かな飼育環境で育てると、探索行動が時間とともに分かれ、個体差が拡大した。探索の広さは、成体の海馬の神経新生の個体差と相関していた。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 著者らは、発達の過程で生じる要因が、脳の可塑性と行動の個体差に寄与すると結論している。人間への外挿は、投機的である。</p>
+
+<h2 id="sec4">4. 二つの立場を最も強い形で</h2>
+<p>環境が人生を大きく左右するとする立場と、生得的要因の寄与が大きいとする立場を、それぞれの論者が主張しうる最も強い形で示し、そのうえで検討する。</p>
+<h3 id="sec4-1">4.1 環境を重視する立場の論拠</h3>
+<p>第一に、遺伝率の高さは、遺伝子が環境より根本的であることを意味しない。行動遺伝学の知見は「三つの法則」にまとめられてきた。あらゆる人間の行動特性は、ある程度は遺伝する。同じ家族で育つ効果は、遺伝子の効果より小さい。複雑な行動特性の分散の大きな部分は、遺伝子にも家族にも説明されない。この整理を示した Turkheimer は、遺伝子が環境より系統的な変動源に見えるのは、実質的な理由ではなく方法論上の理由によると論じ、双生児研究は便利な近道だが遺伝子の根本性を示すわけではないと述べた。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 遺伝率が貧困下で低く見えるという結果 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> は、この論点の具体例である。</p>
+<p>第二に、因果を最も確かに示すのは無作為化された介入であり、そこでは環境が効いている。ブカレストの実験 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup> と Moving to Opportunity<sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> は、遺伝との交絡を避けた設計で、環境が発達と成人後の成果を動かすことを示した。</p>
+<p>第三に、遺伝率の推定そのものに、環境が紛れ込む経路がある。双生児法は、一卵性と二卵性で環境の類似度が等しいという仮定に立つ。この仮定を検証した研究は、ほとんどの結果変数で厳密には成り立たないが、生じる偏りは小さい可能性が高いと結論した。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> さらに、教育年数に関わる遺伝的指数を、親が子に伝えなかった遺伝子変異だけで作っても、子の学歴にはなお、伝わった指数の約 30% に相当する効果があった。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 同胞間の比較で推定した遺伝的効果は、集団全体の推定より、学歴を含む複数の特性で小さかった。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 環境を重視する側は、ここから、遺伝的と呼ばれてきた差の相当な部分が、環境を介した経路を含むと主張できる。</p>
+<p>この立場で最も堅いのは、極端な剥奪が害を与えるという点である。ブカレストの実験 <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup> と ERA 研究 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> は、別個の研究でありながら、同じ方向を示した。一方、これらの研究は、通常の範囲の家庭間の差が成人期の差を大きく生むとまでは、述べていない。</p>
+<h3 id="sec4-2">4.2 生得的要因を重視する立場の論拠</h3>
+<p>第一に、遺伝の寄与は、一つの方法ではなく複数の方法で観察される。双生児研究のメタ分析 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 、別居双生児 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 、養子研究 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> は、異なる設計でありながら、遺伝的な違いが個人差に関与することで一致している。</p>
+<p>第二に、養親の影響は、成長とともに薄れる。養子は児童期以降、養親に似なくなる <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> 。また、別居双生児を調べた研究者らは、遺伝子が、子どもの環境を形づくることを通じても心理的な違いに作用すると示唆した。 <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup> 環境の効果に見えるものの一部が、遺伝的に選ばれた環境だという可能性である。</p>
+<p>第三に、論理上の帰結がある。遺伝率は割合であるから、環境の分散だけが縮めば、定義上、個人差に占める遺伝の割合は上がる。この立場の論者は、同一環境の実験では人生の差に占める遺伝の割合が上がる、と主張できる。これは割合の性質から導かれる推論であり、実験で検証されたものではない。</p>
+<p>この立場で最も堅いのは、通常の範囲の環境差のもとで、共有環境の寄与が小さいという点である。ただし、この結論は観察された環境の範囲に限られる。剥奪の研究が示すように、範囲の端では環境が大きく効く。また、遺伝の寄与が大きいことは、養育や教育の価値を減らさない。ミネソタ研究の著者ら自身が、そう述べている。 <sup id="fnref-3-4"><a href="#ref-3">[3]</a></sup></p>
+<h3 id="sec4-3">4.3 二つの立場の整合と、残る不一致</h3>
+<p>二つの立場は、環境の範囲と、測る対象の点で食い違っている、と本稿は考える。通常の範囲の家庭間の差が個人差に与える寄与は小さく、範囲の端、すなわち剥奪や極度の不利では大きい。これは、双方の知見を同時に説明する整理であるが、本稿の解釈であり、仮説に属する。</p>
+<p>分子遺伝学の結果も、どちらの極端も支持しない。約 300 万人を対象にした分析では、教育年数の個人差のうち、遺伝的指数で説明できるのは 12 〜 16% だった。親の指数を統制すると、指数と学歴の関連は、およそ半分になった。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 遺伝は「すべて」を決めておらず、その効果の一部は環境を介している。環境もまた、全てを決めてはいない。残る不一致は、非共有環境と偶然がどれだけ大きいか、という点にある。</p>
+<h3 id="sec4-4">4.4 国家による養育をめぐる賛否</h3>
+<p>国家や共同体が子どもの養育に関わる試みには、肯定的な結果と否定的な結果の両方がある。両方を並べる。</p>
+<p>肯定的な結果としては、質の高い早期介入がある。不利な状況にあるアフリカ系米国人の子どもを対象とした就学前プログラムの再評価は、その社会的収益率を、年 7 〜 10% と推定した。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> ブカレストの実験 <sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup> でも、施設から家庭への移行が成績を改善した。いずれも、家族から子どもを引き離す介入ではなく、子どもの養育の質を高める介入である。</p>
+<p>否定的な結果としては、カナダの寄宿学校がある。連邦政府は、 15 万人を超える先住民の子どもがこの制度に通ったと推計している。真実和解委員会は、この政策を、先住民を同化させることを目的とした「文化的ジェノサイド」と表現した。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 共同体で行われた方式にも、課題が見られた。キブツの共同就寝は、安定した愛着の割合が低いという差と関連していた。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup></p>
+<p>これらの事例は、国家や共同体による養育が、一律に善でも悪でもないことを示す。結果は、誰が、何の目的で、どのような関係の中で行うかに左右される。さらに、遺伝の寄与が大きいという知見は、介入が無効であることも、格差が正当であることも、導かない。同様に、環境の寄与が大きいという知見は、国家による養育の正当性を導かない。事実の記述から政策への移行には、価値判断が必要である。</p>
+
+<h2 id="sec5">5. 思考実験から何が言えるか</h2>
+<h3 id="sec5-1">5.1 知見の区分</h3>
+<div class="box"><p>知見を三つに区分する。</p><ol><li><strong>確立した知見</strong><br>独立した複数の研究で再現され、査読を経たもの</li><li><strong>未確定の論点</strong><br>支持する研究と反証する研究が併存するもの、または本稿が確認した範囲で単一の研究にとどまるもの</li><li><strong>投機的な仮説</strong><br>現時点で検証する手段がない、または検証されていない推論</li></ol></div>
+<div class="tablewrap">
+<table>
+<tr><th>主張</th><th>区分</th><th>根拠</th></tr>
+<tr><td>多くの特性で、個人差に遺伝的な違いが関与する。</td><td>確立した知見</td><td>双生児のメタ分析、別居双生児、養子研究が、異なる設計で一致している。</td></tr>
+<tr><td>IQ の個人差の約 70% が遺伝と関連する。</td><td>未確定の論点</td><td>別居双生児の推定値である。社会経済的地位による差が報告され、その再現は国により割れている。</td></tr>
+<tr><td>貧困下では遺伝率が低くなる。</td><td>未確定の論点</td><td>米国の研究は支持するが、米国以外のメタ分析は支持しない。</td></tr>
+<tr><td>極端な剥奪は発達に害を与える。</td><td>確立した知見</td><td>無作為化実験と自然実験が、別個の研究で同じ方向を示した。</td></tr>
+<tr><td>13 歳前の転居は成人後の成果を高める。</td><td>未確定の論点</td><td>大規模な無作為化実験の結果だが、本稿が確認した範囲では単一の実験である。</td></tr>
+<tr><td>共同就寝は愛着の安定を下げる。</td><td>未確定の論点</td><td>本稿が確認した範囲では、小規模な単一の研究にとどまる。</td></tr>
+<tr><td>遺伝的指数の関連の一部は、直接の効果ではない。</td><td>確立した知見</td><td>親の遺伝型を使う分析と同胞間の比較が、同じ方向を示した。その解釈は未確定である。</td></tr>
+<tr><td>遺伝的に同一の個体でも、同じ環境で個体差が生じる。</td><td>未確定の論点</td><td>マウスでの結果であり、人間にあてはまるかは検証されていない。</td></tr>
+<tr><td>同一環境で育てると、人生の差が縮む。</td><td>投機的な仮説</td><td>実施できず、検証する手段がない。</td></tr>
+<tr><td>同一環境では、個人差に占める遺伝の割合が上がる。</td><td>投機的な仮説</td><td>割合の性質からの推論であり、検証されていない。</td></tr>
+</table>
+</div>
+<h3 id="sec5-2">5.2 筆者の提案・仮説</h3>
+<p>以下は事実ではなく、既存の研究を手がかりにした本稿の仮説である。</p>
+<p><strong>提案・仮説 1</strong><br>全員を同じ環境で育てれば、共有環境に由来する差は縮み、極端な不利に置かれる子どもは減る。したがって、成績の下位は押し上げられるだろう。しかし、差は消えない。</p>
+<p><strong>提案・仮説 2</strong><br>残る差は、遺伝、非共有環境、偶然の三つに由来する。環境の分散が縮む分、遺伝の相対的な割合は上がると予想するが、三者の比率は検証のしようがない。</p>
+<p><strong>提案・仮説 3</strong><br>同一性そのものよりも、養育の質が決定的である。画一的な環境は、個々の子どもへの応答を欠けば、施設養育やキブツの共同就寝の研究が示すように、害を生みうる。</p>
+<h3 id="sec5-3">5.3 倫理と実現の意図</h3>
+<p>この思考実験は、国家が子どもを預かる制度を支持するものではない。実現する意図もない。親が子を育てる権利、子どもが家族から養育を受ける権利、国家の介入の限界は、本稿で紹介した研究だけでは決まらない。</p>
+<p>賛成の側の最も強い論拠は、生まれによる条件の差が本人の責任ではなく、環境が実際に子どもの将来を動かすという点にある。ブカレストの実験や Moving to Opportunity は、この論拠に事実の裏付けを与える。反対の側の最も強い論拠は、国家が子どもを家族から切り離した歴史が、重大な被害を生んだ点にある。カナダの寄宿学校の記録 <sup id="fnref-19-2"><a href="#ref-19">[19]</a></sup> は、その重さを示している。どちらの論拠も、片方だけを取れば誤る。思考実験の価値は、実施の是非ではなく、環境の効果がどこまで測れ、どこから測れないかを可視化することにある。</p>
+<h3 id="sec5-4">5.4 本稿の限界と自己点検</h3>
+<p>本稿が紹介した研究は代表例であり、網羅的な文献調査ではない。英語圏の研究に偏っている。各研究は原論文の要旨と書誌データで確認したもので、全文の精査に基づく箇所は限られる。扱った結果は、 IQ 、学歴、所得、愛着、精神的健康が中心であり、「人生」の他の側面は含まない。</p>
+<p>特定の結論に合う研究だけを選んでいないかを、執筆後に点検した。遺伝の寄与を示す研究（メタ分析、別居双生児、コロラド養子研究）と、環境の効果を示す研究（ブカレストの実験、 Moving to Opportunity ）を並べ、それぞれの批判も併記した。ただし、選択の偏りが皆無とは言い切れない。</p>
+
+<div class="refs">
+<h2 id="refs-heading">参考文献・出典一覧</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻ります。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクです。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Plomin R, Daniels D. 1987. Why are children in the same family so different from one another? <em>Behavioral and Brain Sciences</em> 10(1): 1–16. <a href="https://doi.org/10.1017/S0140525X00055941">DOI</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Polderman TJ, Benyamin B, de Leeuw CA, Sullivan PF, van Bochoven A, Visscher PM, Posthuma D. 2015. Meta-analysis of the heritability of human traits based on fifty years of twin studies. <em>Nature Genetics</em> 47(7): 702–709. <a href="https://doi.org/10.1038/ng.3285">DOI</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> <sup><a href="#fnref-3-3">c</a></sup> <sup><a href="#fnref-3-4">d</a></sup> Bouchard TJ, Lykken DT, McGue M, Segal NL, Tellegen A. 1990. Sources of human psychological differences: the Minnesota Study of Twins Reared Apart. <em>Science</em> 250(4978): 223–228. <a href="https://doi.org/10.1126/science.2218526">DOI</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> Plomin R, Fulker DW, Corley R, DeFries JC. 1997. Nature, nurture, and cognitive development from 1 to 16 years: a parent-offspring adoption study. <em>Psychological Science</em> 8(6): 442–447. <a href="https://doi.org/10.1111/j.1467-9280.1997.tb00458.x">DOI</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Sacerdote B. 2007. How large are the effects from changes in family environment? A study of Korean American adoptees. <em>The Quarterly Journal of Economics</em> 122(1): 119–157. <a href="https://doi.org/10.1162/qjec.122.1.119">DOI</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> <sup><a href="#fnref-6-3">c</a></sup> <sup><a href="#fnref-6-4">d</a></sup> Nelson CA, Zeanah CH, Fox NA, Marshall PJ, Smyke AT, Guthrie D. 2007. Cognitive recovery in socially deprived young children: the Bucharest Early Intervention Project. <em>Science</em> 318(5858): 1937–1940. <a href="https://doi.org/10.1126/science.1143921">DOI</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> Sonuga-Barke EJS, Kennedy M, Kumsta R, Knights N, Golm D, Rutter M, Maughan B, Schlotz W, Kreppner J. 2017. Child-to-adult neurodevelopmental and mental health trajectories after early life deprivation: the young adult follow-up of the longitudinal English and Romanian Adoptees study. <em>The Lancet</em> 389(10078): 1539–1548. <a href="https://doi.org/10.1016/S0140-6736(17)30045-4">DOI</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Sagi A, van IJzendoorn MH, Aviezer O, Donnell F, Mayseless O. 1994. Sleeping out of home in a kibbutz communal arrangement: it makes a difference for infant-mother attachment. <em>Child Development</em> 65(4): 992–1004. <a href="https://doi.org/10.1111/j.1467-8624.1994.tb00797.x">DOI</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> Turkheimer E, Haley A, Waldron M, D’Onofrio B, Gottesman II. 2003. Socioeconomic status modifies heritability of IQ in young children. <em>Psychological Science</em> 14(6): 623–628. <a href="https://doi.org/10.1046/j.0956-7976.2003.psci_1475.x">DOI</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Tucker-Drob EM, Bates TC. 2016. Large cross-national differences in gene × socioeconomic status interaction on intelligence. <em>Psychological Science</em> 27(2): 138–149. <a href="https://doi.org/10.1177/0956797615612727">DOI</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> Chetty R, Hendren N, Katz LF. 2016. The effects of exposure to better neighborhoods on children: new evidence from the Moving to Opportunity experiment. <em>American Economic Review</em> 106(4): 855–902. <a href="https://doi.org/10.1257/aer.20150572">DOI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Freund J, Brandmaier AM, Lewejohann L, Kirste I, Kritzler M, Krüger A, Sachser N, Lindenberger U, Kempermann G. 2013. Emergence of individuality in genetically identical mice. <em>Science</em> 340(6133): 756–759. <a href="https://doi.org/10.1126/science.1235294">DOI</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Turkheimer E. 2000. Three laws of behavior genetics and what they mean. <em>Current Directions in Psychological Science</em> 9(5): 160–164. <a href="https://doi.org/10.1111/1467-8721.00084">DOI</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Felson J. 2014. What can we learn from twin studies? A comprehensive evaluation of the equal environments assumption. <em>Social Science Research</em> 43: 184–199. <a href="https://doi.org/10.1016/j.ssresearch.2013.10.004">DOI</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Kong A, Thorleifsson G, Frigge ML, ほか . 2018. The nature of nurture: effects of parental genotypes. <em>Science</em> 359(6374): 424–428. <a href="https://doi.org/10.1126/science.aan6877">DOI</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Howe LJ, Morris TT, Cho Y, Hughes AMM, ほか . 2022. Within-sibship genome-wide association analyses decrease bias in estimates of direct genetic effects. <em>Nature Genetics</em> 54: 581–592. <a href="https://doi.org/10.1038/s41588-022-01062-7">DOI</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Okbay A, Wu Y, Wang N, ほか . 2022. Polygenic prediction of educational attainment within and between families from genome-wide association analyses in 3 million individuals. <em>Nature Genetics</em> 54(4): 437–449. <a href="https://doi.org/10.1038/s41588-022-01016-z">DOI</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Heckman JJ, Moon SH, Pinto R, Savelyev PA, Yavitz A. 2010. The rate of return to the HighScope Perry Preschool Program. <em>Journal of Public Economics</em> 94(1–2): 114–128. <a href="https://doi.org/10.1016/j.jpubeco.2009.11.001">DOI</a></li>
+<li id="ref-19">^ <sup><a href="#fnref-19-1">a</a></sup> <sup><a href="#fnref-19-2">b</a></sup> Truth and Reconciliation Commission of Canada. 2015. <em>Honouring the Truth, Reconciling for the Future: Summary of the Final Report of the Truth and Reconciliation Commission of Canada.</em> <a href="https://nctr.ca/wp-content/uploads/2021/01/Executive_Summary_English_Web.pdf">国立真実和解センター公開 PDF</a></li>
+</ol>
+</div>
+<p class="note">※ 本稿は思考実験であり、国家が子どもを預かる制度の実現を意図するものではない。紹介した研究の結果は、対象とした集団と時期に限られた知見であり、個人の将来を予測するものではない。</p>
+</div>
+</body>
+</html>
