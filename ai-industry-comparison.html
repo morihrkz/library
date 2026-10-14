@@ -96,7 +96,7 @@ pre code{background:none; padding:0;}
 <p class="subtitle">A Reference Compendium of Generative AI Enterprises: Foundation Models, Autonomous Agents, and Coding Environments</p>
 <div class="lede"><p>生成 AI ・ AI エージェント・ AI コーディングを軸に、主要企業の基盤モデル・製品・コーディングツールの現状を整理した比較資料である。 AI 業界は製品名・モデル名・提供条件が短期間で変わり、買収も「契約締結」と「買収完了」を区別して読む必要がある。</p></div>
 
-<div class="meta">【方法と限界】情報基準日は 2026 年 10 月 6 日。 SpaceX は xAI に続き Anysphere (Cursor) の買収も完了し、本資料では便宜上「 SpaceX 」 1 社にまとめたが、コーディングエージェントは Grok Build ・ Cursor Agent ・常時稼働型の Grok Bot の 3 系統が併存し、企業としては 1 社でも製品としては当面別系統のまま推移している。 Perplexity は他社のような大規模インフラ企業ではない独立系スタートアップだが、検索特化型の AI アシスタントとブラウザ / エージェント製品で存在感を増しているため、比較対象に加えた。</div>
+<div class="meta">【方法と限界】情報基準日は 2026 年 10 月 13 日（ Meta の Muse Wonder 発表、 Gemini 4 Argon の提供範囲拡大、 Claude Haiku 5.5 、 GPT-6.1 Sol Ultrafast を反映）。 Meta の新モデルの性能値は発表直後の自社公表値と第三者指標が混在しており、暫定的なものとして読む必要がある。 SpaceX は xAI に続き Anysphere (Cursor) の買収も完了し、本資料では便宜上「 SpaceX 」 1 社にまとめたが、コーディングエージェントは Grok Build ・ Cursor Agent ・常時稼働型の Grok Bot の 3 系統が併存し、企業としては 1 社でも製品としては当面別系統のまま推移している。 Perplexity は他社のような大規模インフラ企業ではない独立系スタートアップだが、検索特化型の AI アシスタントとブラウザ / エージェント製品で存在感を増しているため、比較対象に加えた。</div>
 
 <nav class="toc" aria-label="目次">
 <p class="toc-title">目次</p>
@@ -126,10 +126,12 @@ pre code{background:none; padding:0;}
 <div class="field">
 <div class="field-label">基盤モデル</div>
 <div class="field-body">
-<p><strong>Gemini 4 系（限定提供） + Gemini 3 系</strong></p>
+<p><strong>Gemini 4 系（有料利用者向けに提供開始） + Gemini 3 系</strong></p>
 <ul>
-<li>Gemini 4 Argon : 2026 年 9 月 30 日発表の新フラッグシップ。長時間のエージェント作業、ソフトウェア工学、法務・金融などの知識業務、サイバー防御を想定し、出力上限は従来の 64K から 100 万トークンへ拡大した。当面は Fairwind Program の信頼された防御担当者向けに限定して展開し、一般提供は「できるだけ早く」とされ、有料 API 利用者と Google AI Ultra 契約者から始める予定。導入価格は 100 万トークンあたり入力 2 ドル / 出力 10 ドル（導入期間後は 4 ドル / 20 ドル）<sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></li>
-<li>Gemini 3.8 Flash : 一般提供 （ 2026 年 9 月 2 日）。 Argon が一般提供に至るまでは、一般利用者が使える現行の主力 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></li>
+<li>Gemini 4 Argon : 2026 年 9 月 30 日発表の新フラッグシップ。長時間のエージェント作業、ソフトウェア工学、法務・金融などの知識業務、サイバー防御を想定し、出力上限は従来の 64K から 100 万トークンへ拡大した <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。発表時は Fairwind Program の信頼された防御担当者に限定していたが、 <strong>10 月 13 日に提供範囲を広げた</strong>（次項）。</li>
+<li>Argon の提供先（ 10 月 13 日） : Gemini アプリと検索の AI モードは Google AI Pro / Ultra 契約者、有料の Gemini API ・ Google AI Studio ・対象の Gemini Enterprise 契約者、 Android Studio ・ Firebase AI Logic で使える。 Antigravity は個人では Ultra 契約者に限られる。無料利用者と AI Plus には触れられていない。 API 価格は 100 万トークンあたり入力 2 ドル / 出力 10 ドル（キャッシュ入力 0.10 ドル）の導入価格が 11 月 30 日までで、 12 月 1 日から 4 ドル / 20 ドルになる（Opus 5.5 ・ Muse Wonder と同額）。 Fairwind Program は数百の承認済みパートナーへ拡大する <sup id="fnref-36-1"><a href="#ref-36">[36]</a></sup><sup id="fnref-37-1"><a href="#ref-37">[37]</a></sup></li>
+<li>Argon の性能の読み方 : Google 公表では、 Vals Index で首位（ 68.90 ％、 Sonnet 5.5 は 67.04 ％、 Opus 5.5 は 66.97 ％）、 DeepSWE 1.1 で 77.9 ％とした。一方 Terminal-Bench 4.0 では 57.4 ％で、 Opus 5.5 の 66.4 ％に届かない。 Artificial Analysis の総合指数は 53 で、 Opus 5.5 （ 58 ）、 Sonnet 5.5 と Muse Wonder Full （ともに 56 ）を下回る。「 100 万トークンの入出力」は継続プロトコルによる長大な作業を指し、 API 設定が必要で、 Gemini アプリの既定の挙動ではない <sup id="fnref-36-2"><a href="#ref-36">[36]</a></sup></li>
+<li>Gemini 3.8 Flash : 一般提供 （ 2026 年 9 月 2 日）。 Argon の提供対象に含まれない利用者にとっての現行の主力 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></li>
 <li>Gemini 3.1 Pro : Pro 級フラッグシップとして継続提供。 Gemini 3.5 Pro は、 Google DeepMind の責任者が 9 月 24 日に、 Flash 系を優先して「少し引いた」と説明している <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></li>
 <li>Gemini 3.5 Flash / Flash-Lite : 一般提供</li>
 <li>Gemini 3.5 Flash Cyber : セキュリティ特化。政府・信頼パートナー限定の試験提供</li>
@@ -146,6 +148,7 @@ pre code{background:none; padding:0;}
 <li>Antigravity 2.0 と同一のエージェント基盤を共有、複数エージェントの並行実行に対応</li>
 <li>2026 年 9 月 3 日、 Antigravity CLI 1.1.25 が Gemini 3.8 Flash をモデルカタログに追加。同日の Antigravity 2.12.2 では法人向け ADC 経由でも利用可能に <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></li>
 <li>2026 年 9 月、新ランタイム基盤 antigravity-preview-09-2026 を投入。プロンプトキャッシュ効率を約 22 ％改善したほか、ネイティブなコード検索ツール、行範囲単位でのファイル編集に対応。 IDE 側でも WSL 連携、 Office ファイルのドラッグ & ドロップ添付、サブエージェント実行のカード表示を追加した。旧 antigravity-preview-05-2026 は 10 月 5 日に提供終了予定だった <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></li>
+<li>10 月 2 日から 7 日にかけて Antigravity CLI の v1.2.15 から v1.3.1 までが連日公開された <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup> 。 10 月 13 日からは、 Antigravity のデスクトップアプリと CLI で Gemini 4 Argon を Ultra 契約者・対象の Gemini Enterprise 契約者が使えるようになり、 Antigravity のエージェント型コーディング画面が Gemini の macOS アプリにも入った <sup id="fnref-36-3"><a href="#ref-36">[36]</a></sup><sup id="fnref-37-2"><a href="#ref-37">[37]</a></sup></li>
 <li>2026 年 9 月下旬も Antigravity のリリースが続いた。 9 月 22 日の 2.17.0 で、コードを書く前に計画案を読んで編集できる Plan Review と <code>/plan</code> コマンドを追加。 9 月 28 日の 2.18.1 でプラグイン管理とマーケットプレイスを導入し、 9 月 30 日の 2.19.1 でサブエージェントへの直接メッセージ送信、会話のみの取り消し、 Markdown の PDF 出力に対応した <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></li>
 <li><strong>提供終了：</strong>旧 Gemini CLI （オープンソース）は 2026 年 6 月 18 日に個人向け終了。法人の Gemini Code Assist Standard / Enterprise 契約者のみ継続利用可</li>
 </ul>
@@ -160,6 +163,8 @@ pre code{background:none; padding:0;}
 <div class="field-body">
 <ul>
 <li>Google Search 、 Workspace 、 Android 、 Google Cloud</li>
+<li>Gemini アプリの「タスク」モードは、利用者が席を離れても Google アプリなどをまたいで作業を続け、 Instacart ・ OpenTable ・ Adobe ・ Shopify など 40 以上のアプリと接続する（ 10 月 13 日） <sup id="fnref-37-3"><a href="#ref-37">[37]</a></sup></li>
+<li>10 月 8 日の Gemini at Work で、チャット・自律的な多段作業・コンテンツ作成・ソフトウェア開発を一つにまとめる「 Gemini Agent 」を発表した。 Gmail ・ Docs ・ Drive ・ Sheets ・ Calendar に接続し、 Slack や Microsoft 365 にも届く。限定顧客向けの private preview で、一般提供の時期と価格は未公表。報道によれば Gemini 3 系のモデルを使う <sup id="fnref-38-1"><a href="#ref-38">[38]</a></sup></li>
 <li>Antigravity 2.0 に統合された開発環境（デスクトップ + CLI ）</li>
 <li>大規模クラウド・検索・データ基盤</li>
 </ul>
@@ -186,7 +191,7 @@ pre code{background:none; padding:0;}
 <p><strong>GPT-6 Astra / GPT-6.1 Sol / GPT-5.6 系</strong></p>
 <ul>
 <li>GPT-6.1 Sol （ 2026 年 9 月 29 日公開、 DevDay で発表） : GPT-6 Sol の改良版で、コーディング・コンピュータ操作・専門業務で Astra に迫る性能を、 Astra の 5 分の 1 の価格で提供する。 API 価格は 100 万トークンあたり入力 2 ドル / 出力 10 ドル（キャッシュ入力 0.10 ドル）。 ChatGPT Work ・ Codex ・ API で利用でき、 Codex CLI の既定モデルにもなった <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup><sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></li>
-<li>GPT-6 Astra Ultrafast : DevDay で発表された速度優先の提供枠。 Codex では最大約 8 倍の速さでトークンを生成するが、利用枠の消費も 8 倍になる。 API では標準価格の 6 倍。個人向けでは新設の Pro 500 プランなどで利用できる。 GPT-6.1 Sol の Ultrafast 版は近日提供予定 <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup></li>
+<li>GPT-6 Astra Ultrafast : DevDay で発表された速度優先の提供枠。 Codex では最大約 8 倍の速さでトークンを生成するが、利用枠の消費も 8 倍になる。 API では標準価格の 6 倍。個人向けでは新設の Pro 500 プランなどで利用できる。 GPT-6.1 Sol の Ultrafast 版は 10 月 8 日から API ・ Codex ・ ChatGPT Work で提供が始まった <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup><sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> 。第三者の転載記事によれば、最大約 8 倍の速度で、 API 価格は標準の 6 倍（入力 12 ドル / 出力 60 ドル）。 ChatGPT と Codex では Pro 500 ・従量課金の対象 Enterprise ・ Edu の契約者に限られ、 Plus と月額 200 ドルの Pro は対象外とされる。 OpenAI の公式告知そのものでは確認できていない <sup id="fnref-35-1"><a href="#ref-35">[35]</a></sup></li>
 <li>GPT-6 Astra : 2026 年 9 月公開の最新世代。 1M トークンのコンテキストと画像入力に対応するネイティブ・マルチモーダルモデルで、 Preparedness Framework 上のサイバーセキュリティ能力が初めて「 Critical 」水準に達した <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></li>
 <li>GPT-6 Sol / GPT-6 Luna （ 2026 年 9 月 22 日公開） : Astra と同様の手法で改良した下位モデル。 Sol は推論力を要する日常業務向け、 Luna は低コスト・高速処理向けで、 API 価格は 100 万トークンあたりそれぞれ入力 2 ドル / 出力 10 ドル、入力 0.10 ドル / 出力 0.50 ドルと旧世代比で 5 割以上安い <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></li>
 <li>GPT-5.6 （ Sol/Terra/Luna 、 2026 年 7 月公開）は前世代として併存 （ GPT-6 Sol / Luna とは同名の別モデル）</li>
@@ -247,8 +252,8 @@ pre code{background:none; padding:0;}
 <li>Claude Opus 5.5 （ 2026 年 9 月 22 日公開） : 新しい主力フラッグシップ。多くの作業で Fable 5.1 に匹敵する性能を、旧 Opus 5 より低い価格（入力 4 ドル / 出力 20 ドル。旧 Opus 5 は 5 ドル / 25 ドル）で実現。 1M トークンのコンテキストと最大 128K トークンの出力を備え、適応的思考は常時有効。 Anthropic は「新たな最上位モデル」と位置づけ、旧 Opus 5 から置き換わりつつある <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup><sup id="fnref-20-2"><a href="#ref-20">[20]</a></sup></li>
 <li>Claude Sonnet 5.5 （ 2026 年 9 月 28 日公開） : 速度と知性のバランス型の新世代。日常的な作業、バグ修正、資料・スライド・表計算の作成を想定し、 Opus 5.5 の「速くて安い相棒」と位置づけられる。 1M トークンのコンテキストと最大 128K トークンの出力に対応し、価格は旧 Sonnet 5 と同じ入力 2 ドル / 出力 10 ドル。 Claude API ・ Amazon Bedrock ・ Google Cloud ・ Microsoft Foundry で利用できる。旧 Sonnet 4.5 は 9 月 30 日に非推奨となり、 11 月 30 日に提供終了予定 <sup id="fnref-20-3"><a href="#ref-20">[20]</a></sup></li>
 <li>Claude Sonnet 5 : 前世代のバランス型</li>
-<li>Claude Haiku 5.5 : 軽量・低コスト用途の新世代。 Anthropic は Opus 5.5 の公開時に「今後数週間で公開」としたが、 10 月 6 日時点で公開は確認できていない</li>
-<li>Claude Haiku 4.5 : 現行の軽量・低コスト用途</li>
+<li>Claude Haiku 5.5 （ 2026 年 10 月 7 日公開） : 軽量・低コスト用途の新世代で、初めて Effort 設定を備えた Haiku 。 1M トークンのコンテキストと最大 128K トークンの出力に対応する。 100K トークン以下のプロンプトで 100 万トークンあたり入力 0.10 ドル / 出力 0.50 ドル（ 100K 超は 0.50 ドル / 2.50 ドル）と、 Haiku 4.5 のおよそ 10 分の 1 の単価で、 Anthropic は平均して約 75 ％安いとしている（同時に Sonnet 5.5 のキャッシュ読み出し価格も 100 万トークンあたり 0.20 ドルから 0.10 ドルへ下げた）。 Claude Platform ・ AWS ・ Google Cloud ・ Azure ・ Claude Code で利用でき、 Sonnet 5.5 ・ Opus 5.5 に続く 5.5 世代の小型モデルにあたる <sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup></li>
+<li>Claude Haiku 4.5 : 旧世代の軽量・低コスト用途</li>
 </ul>
 </div>
 </div>
@@ -314,7 +319,7 @@ pre code{background:none; padding:0;}
 <li><strong>Cursor Agent</strong> : エディタ内でコードベース全体を扱う AI エージェント。複数モデルを柔軟に切り替えられる点が特徴</li>
 <li><strong>Grok Bot</strong> : 2026 年 8 月 11 日に beta 公開された常時稼働型エージェント。ブラウザ・ファイルシステム・ターミナルを備えた専用クラウド環境上で稼働し、アプリへのサインインや長時間タスクの遂行までを自律的にこなす</li>
 <li><strong>買収完了 3 日後</strong>の 2026 年 8 月 17 日、 Cursor はリポジトリ・ PR ・コード閲覧・ GitHub 同期をまとめた <strong>Origin</strong>（コードホスティング）を早期ベータ公開した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。既存の有料プランに含まれ追加課金なし <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></li>
-<li>2026 年 9 月 14 日、 SpaceXAI は Grok と Cursor のサブスクリプションプランを数週間以内に統合する方針を発表した。 10 月 6 日時点で統合プランの正式な開始は確認できていない。報道では、 X と Grok をまとめた無料・月額 8 ドルの Lite ・月額 100 ドルの Ultra などの 4 階層案が検討されており、 Ultra には Grok Bot が含まれるとされる <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup></li>
+<li>2026 年 9 月 14 日、 SpaceXAI は Grok と Cursor のサブスクリプションプランを数週間以内に統合する方針を発表した。 10 月 13 日時点でも統合プランの正式な開始は確認できていない（ 10 月 4 日には、 Cursor を含み月額 200 ドルに達する 4 階層案のリークも報じられ、 Bloomberg 報道の 100 ドル上限と食い違っている <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> ）。報道では、 X と Grok をまとめた無料・月額 8 ドルの Lite ・月額 100 ドルの Ultra などの 4 階層案が検討されており、 Ultra には Grok Bot が含まれるとされる <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup></li>
 <li>Cursor のブランドは、買収完了前の 8 月 9 日付の報道で「今後数か月のうちに段階的に廃止される公算が大きい」とされた（社内会議の内容として報じられたもので、最終的な名称は変わりうる）。現時点では Cursor の名称で製品が提供されている <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup></li>
 <li>エージェント CLI/ ツールは当面 3 系統が併存しており、統合の行方が今後の焦点</li>
 </ul>
@@ -339,11 +344,11 @@ pre code{background:none; padding:0;}
 <section class="company" id="meta">
 <div class="company-head">
 <h2 class="name">Meta</h2>
-<div class="tagline">「配布力 × スーパーインテリジェンス」――30 億人規模のソーシャルグラフに Muse Spark ・ Muse ・ Muse Code を直接届ける企業。</div>
+<div class="tagline">「配布力 × スーパーインテリジェンス」――30 億人規模のソーシャルグラフに Muse Wonder ・ Muse Spark ・ Muse ・ Muse Code を直接届ける企業。</div>
 </div>
 <div class="field">
 <div class="field-label">企業としての位置づけ</div>
-<div class="field-body"><p>2025 年、 <strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進め、 2026 年 4 月の Muse Spark 1.0 から 9 月の 1.3 までほぼ月次のペースで改良を重ねている。</p></div>
+<div class="field-body"><p>2025 年、 <strong>Meta Superintelligence Labs (MSL)</strong> を新設し、 Scale AI 創業者を Chief AI Officer に招聘。 Llama のオープン戦略から、プロプライエタリなフロンティアモデルへの転換を進め、 2026 年 4 月の Muse Spark 1.0 から 9 月の 1.3 までほぼ月次のペースで改良を重ねてきた。 2026 年 10 月 12 日には、ギガワット級の Prometheus データセンターで学習した新世代の <strong>Muse Wonder / Muse Wonder Full</strong> を発表し、 Spark 系とは別の「はるかに大規模で高度なクラス」のモデルとして、 OpenAI ・ Anthropic ・ Google と並ぶフロンティア級だと主張している。 MSL 責任者の Alexandr Wang 氏は、特に個人向け・業務向けのエージェント作業で最先端だと述べた <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup><sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup></p></div>
 </div>
 <div class="field">
 <div class="field-label">代表的なチャット AI</div>
@@ -355,12 +360,17 @@ pre code{background:none; padding:0;}
 <div class="field">
 <div class="field-label">基盤モデル</div>
 <div class="field-body">
-<p><strong>Llama 4 + Muse Spark 二層構造</strong></p>
+<p><strong>Muse Wonder 系 + Muse Spark 系 + オープンウェイト（ Llama 4 ・ Muse Glimmer ）</strong></p>
 <ul>
+<li>Muse Wonder / Muse Wonder Full （ 2026 年 10 月 12 日発表） : 開発コード名 Watermelon 。テキスト・画像・音声・動画を入力でき、出力はテキスト。コンテキストは約 100 万トークン。大規模な事前学習と強化学習を Prometheus で行った。 Wonder は Meta Model API （ <code>muse-wonder-1.0</code> ）と Muse Code で使え、より高性能な Wonder Full は API では提供されず、 Muse Code の有料契約者（月額 50 ドルの Power Usage ・ 200 ドルの Maximum Usage ）だけが使える。将来は Muse の有料会員向け機能も Wonder で動かす予定 <sup id="fnref-28-2"><a href="#ref-28">[28]</a></sup><sup id="fnref-29-2"><a href="#ref-29">[29]</a></sup></li>
+<li>Wonder の API 価格は 100 万トークンあたり入力 4 ドル / 出力 20 ドル（キャッシュ入力 0.20 ドル）で、 Claude Opus 5.5 と同額、 GPT-6 Astra ・ Claude Fable 5.1 （入力 10 ドル / 出力 50 ドル）の 4 割。 Gemini 4 Argon の 12 月以降の価格とも同額で、上位モデルの価格帯が 4 ドル / 20 ドル前後に集まりつつある。 Spark 1.3 （入力 1.25 ドル / 出力 4.25 ドル）に比べると 3 倍超で、 Meta が低価格路線から上位価格帯へ踏み出したことを示す <sup id="fnref-29-3"><a href="#ref-29">[29]</a></sup></li>
+<li>独自機能は Active Memory と Active Focus の二つ。 Active Memory は、利用者に関する重要な情報を会話をまたいで保持し、新しい作業で必要になったときに呼び出す。 Active Focus は、障害や条件変更、失敗に遭っても目標を追い続け、別の方法を試すための機能で、重大な行動の前には許可を求める設計とされる <sup id="fnref-28-3"><a href="#ref-28">[28]</a></sup><sup id="fnref-29-4"><a href="#ref-29">[29]</a></sup></li>
+<li><strong>性能の読み方：</strong> Meta は自社公表の指標で、 Wonder Full が DeepSWE 1.1 で 79.0 （ GPT-6 Astra は 74.1 、 Opus 5.5 は 74.2 ） 、 SWE-Marathon で 57.5 （同 42.5 、 46.3 ）、法務エージェント指標 Harvey LAB-AA で 13.1 （同 8.6 、 4.2 ）と上回ったとする。一方、 Terminal-Bench 4.0-AA （ Wonder Full 57.1 に対し Astra 59.1 、 Opus 5.5 59.6 ）と HealthBench Pro （ 62.3 に対し 65.3 、 65.6 ）では下回る。第三者機関 Artificial Analysis の総合指数では Wonder Full が 56 で、 Opus 5.5 の 58 に届かず、 Sonnet 5.5 と並ぶ。 GPT-6 Astra ・ Gemini 4 Argon ・ Fable 5.1 は 53 、 Wonder は 52 だった。比較表には社内評価・各社提供値・第三者評価が混在し、コーディングツールも一部で異なる。したがって「フロンティア級に到達した」ことは確からしいが、「最上位に立った」とまでは言えない <sup id="fnref-29-5"><a href="#ref-29">[29]</a></sup><sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup></li>
+<li>Muse Spark （プロプライエタリ） : MSL のフロンティアモデル群。 1.0 （ 4 月）→ 1.1 （ 7 月、 100 万トークン対応）→ 1.2 （ 8 月）→ 1.3 （ 9 月 2 日、長時間の自律作業とコーディング向けに調整。 Wonder 登場後は低価格帯の位置づけ）<sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></li>
 <li>Llama 4 （オープンウェイト） : Scout / Maverick / Behemoth 。 Scout は 10M トークンの長文脈に対応</li>
-<li>Muse Spark （プロプライエタリ） : MSL のフロンティアモデル群。 1.0 （ 4 月）→ 1.1 （ 7 月、 100 万トークン対応）→ 1.2 （ 8 月）→ 1.3 （ 9 月 2 日、現行最新。長時間の自律作業とコーディング向けに調整）<sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></li>
 <li>Muse Glimmer （ 2026 年 8 月 10 日公開） : 300 億パラメータのオープンウェイト・マルチモーダルモデル。 Apache License 2.0 で配布され、 24 GB の民生用 GPU 1 枚でオフライン実行できる <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup></li>
-<li>「完全オープン」から「オープン + プロプライエタリ収益化」へ戦略転換</li>
+<li>Wonder 系の重みは公開されておらず、自己ホストはできない。 Meta は公開するかどうかを明言していないが、 Wang 氏は「オープンソースへの取り組みは続ける」と述べ、 Glimmer の重みと Muse エージェントを機器に載せる技術の公開を根拠に挙げた <sup id="fnref-28-4"><a href="#ref-28">[28]</a></sup><sup id="fnref-29-6"><a href="#ref-29">[29]</a></sup></li>
+<li>「完全オープン」から「小型はオープン、最上位は非公開」の二層へ戦略転換</li>
 </ul>
 </div>
 </div>
@@ -372,12 +382,13 @@ pre code{background:none; padding:0;}
 <li>2026 年 8 月 5 日に Spark 1.2 と同時に beta 公開されたターミナル型コーディングエージェント</li>
 <li>複数サブエージェントの並列実行、長尺タスクの自律完遂に対応</li>
 <li>2026 年 9 月 1 日に beta を終了して正式版へ移行。セッション間メッセージング、マルチエージェント・ワークフローエンジン、 SDK developer preview 、月額課金プランを追加</li>
+<li>10 月 12 日から Muse Wonder が使え、最上位の Wonder Full は Muse Code の契約者に限定された。契約者の既定は「 Contributor モード」で、入力したプロンプト・コード・ファイル・出力を Meta が将来のモデル改良に使いうる（無効にできるが、効くのは以後の入力のみ）。従量課金の API は学習に使わない Standard モードだけで動く。機密・個人情報の入力は Contributor 向けの規約で禁じられており、 Wonder Full を業務コードに使う場合は、この既定を確認する必要がある <sup id="fnref-29-7"><a href="#ref-29">[29]</a></sup></li>
 </ul>
 </div>
 </div>
 <div class="field">
 <div class="field-label">コーディング環境</div>
-<div class="field-body"><p><strong>Muse Code / Meta Model API</strong> 2026 年 9 月 1 日に正式版へ移行した CLI 中心のエージェント。 Meta Model API （ 2026 年 7 月 public preview 開始）により Spark を自社 API として提供。 VS Code / JetBrains 拡張は今後拡充予定。</p></div>
+<div class="field-body"><p><strong>Muse Code / Meta Model API</strong> 2026 年 9 月 1 日に正式版へ移行した CLI 中心のエージェント。 Meta Model API （ 2026 年 7 月 public preview 開始）により Spark ・ Wonder を自社 API として提供し、 OpenAI 互換・ Anthropic 互換の開発ツール向けインターフェースにも対応する。 VS Code / JetBrains 拡張は今後拡充予定。 Wonder Full は API では使えず、 Muse Code 契約者だけが使える。</p></div>
 </div>
 <div class="field">
 <div class="field-label">エコシステム / 強み</div>
@@ -385,7 +396,8 @@ pre code{background:none; padding:0;}
 <ul>
 <li>30 億人規模の配布網 : Facebook, Instagram, WhatsApp, Messenger, Threads に Meta AI を直接統合</li>
 <li>二層戦略 : Llama （オープン） + Muse （プロプライエタリ）のハイブリッド</li>
-<li>MSL への巨額投資と低価格 API によるコスト競争力、 Muse Code の月額課金化による収益化開始</li>
+<li>MSL への巨額投資と、ギガワット級の自社データセンター Prometheus による学習基盤。 Muse Code の月額課金化による収益化開始</li>
+<li>Active Memory を軸にした「個人エージェント」路線。利用者の情報を長期に保持して代行する機能は、 30 億人規模の配布網に載せるほど、プライバシーと安全面の負担も大きくなる（ Axios も「新たな課題」と指摘）。 Meta は、サイバー・生物分野の悪用対策と個人情報の保護を強化したと説明し、重大な行動では人間の確認を推奨しているが、モデルカードの詳細版は今後の公開で、独立した検証もこれからである <sup id="fnref-28-5"><a href="#ref-28">[28]</a></sup><sup id="fnref-30-2"><a href="#ref-30">[30]</a></sup></li>
 </ul>
 </div>
 </div>
@@ -398,7 +410,7 @@ pre code{background:none; padding:0;}
 </div>
 <div class="field">
 <div class="field-label">企業としての位置づけ</div>
-<div class="field-body"><p>2022 年創業。 Bing の検索結果と大規模言語モデルの要約・引用を組み合わせた「回答エンジン」として出発し、独自クローラーを持たずに市場参入した。他の 5 社と異なり大規模インフラや自社基盤モデル群を持たない独立系スタートアップだが、 2026 年 1 月の資金調達で評価額約 230 億ドルに達し、同年 8 月以降、報道によれば Nvidia の参加を含む評価額 300 億ドル超での追加調達も協議されている （ 10 月 6 日時点で成立の発表は確認できていない）<sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。</p></div>
+<div class="field-body"><p>2022 年創業。 Bing の検索結果と大規模言語モデルの要約・引用を組み合わせた「回答エンジン」として出発し、独自クローラーを持たずに市場参入した。他の 5 社と異なり大規模インフラや自社基盤モデル群を持たない独立系スタートアップだが、 2026 年 1 月の資金調達で評価額約 230 億ドルに達し、同年 8 月以降、報道によれば Nvidia の参加を含む評価額 300 億ドル超での追加調達も協議されている （ 10 月 13 日時点で成立の報道は確認できていない）<sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。</p></div>
 </div>
 <div class="field">
 <div class="field-label">代表的なチャット AI</div>
@@ -476,6 +488,17 @@ pre code{background:none; padding:0;}
 <li id="ref-25"><a href="#fnref-25-1">^</a> 「 Muse (AI agent) 」 , <em>Wikipedia</em> 。 <a href="https://en.wikipedia.org/wiki/Muse_(AI_agent)">Wikipedia</a></li>
 <li id="ref-26"><a href="#fnref-26-1">^</a> 「 Everything new coming to Meta's AI agent Muse 」（ 2026 年 9 月 23 日） , <em>TechCrunch</em> 。 <a href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/">TechCrunch 記事</a></li>
 <li id="ref-27"><a href="#fnref-27-1">^</a> 「 Muse Spark 」 , <em>Wikipedia</em> 。 <a href="https://en.wikipedia.org/wiki/Muse_Spark">Wikipedia</a></li>
+<li id="ref-28">^ <sup><a href="#fnref-28-1">a</a></sup> <sup><a href="#fnref-28-2">b</a></sup> <sup><a href="#fnref-28-3">c</a></sup> <sup><a href="#fnref-28-4">d</a></sup> <sup><a href="#fnref-28-5">e</a></sup> Ina Fried, 「 Meta unveils new frontier-class AI models to compete with OpenAI, Anthropic 」（ 2026 年 10 月 12 日） , <em>Axios</em> 。 <a href="https://www.axios.com/2026/10/12/meta-new-ai-models-anthropic-openai">Axios 記事</a></li>
+<li id="ref-29">^ <sup><a href="#fnref-29-1">a</a></sup> <sup><a href="#fnref-29-2">b</a></sup> <sup><a href="#fnref-29-3">c</a></sup> <sup><a href="#fnref-29-4">d</a></sup> <sup><a href="#fnref-29-5">e</a></sup> <sup><a href="#fnref-29-6">f</a></sup> <sup><a href="#fnref-29-7">g</a></sup> 「 Meta's new Muse Wonder and Muse Wonder Full models achieve frontier performance, but only the weaker one is available via API 」（ 2026 年 10 月） , <em>VentureBeat</em> 。 <a href="https://venturebeat.com/technology/metas-new-muse-wonder-and-muse-wonder-full-models-achieve-frontier-performance-but-only-the-weaker-one-is-available-via-api">VentureBeat 記事</a></li>
+<li id="ref-30">^ <sup><a href="#fnref-30-1">a</a></sup> <sup><a href="#fnref-30-2">b</a></sup> Meta, 「 Muse Wonder Model Card 」 , <em>Meta AI Research</em> 。 <a href="https://research.meta.ai/static/muse-wonder-model-card">Meta 公式モデルカード</a></li>
+<li id="ref-31"><a href="#fnref-31-1">^</a> 「 Anthropic Releases Claude Haiku 5.5 With Lower Prices and Effort Controls 」（ 2026 年 10 月） , <em>Let's Data Science</em> 。 <a href="https://letsdatascience.com/news/anthropic-releases-claude-haiku-55-with-lower-prices-and-eff-f698c663">Let's Data Science 記事</a></li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> 「 Ultrafast is rolling out today for GPT-6.1 Sol in the API, Codex, and ChatGPT Work 」（ 2026 年 10 月 8 日） , <em>OpenAI Developer Community</em> 。 <a href="https://community.openai.com/t/ultrafast-is-rolling-out-today-for-gpt-6-1-sol-in-the-api-codex-and-chatgpt-work/1404475/7.md">OpenAI Developer Community 投稿</a></li>
+<li id="ref-33"><a href="#fnref-33-1">^</a> 「 Antigravity CLI — October 2026 Releases 」 , <em>Havoptic</em> 。 <a href="https://www.havoptic.com/releases/antigravity-cli/2026/10">Havoptic リリース一覧</a></li>
+<li id="ref-34"><a href="#fnref-34-1">^</a> 「 X's leaked subscription bundles Grok and Cursor in plans up to $200 」（ 2026 年 10 月 4 日） , <em>Runtime Wire</em> 。 <a href="https://runtimewire.com/article/x-subscription-grok-cursor-leaked-plans">Runtime Wire 記事</a></li>
+<li id="ref-35"><a href="#fnref-35-1">^</a> 「 OpenAI Launches GPT-6.1 Sol Ultrafast with 8x Speed Boost 」（ 2026 年 10 月 8 日） , <em>KuCoin News</em> 。 <a href="https://www.kucoin.com/news/flash/openai-launches-gpt-6-1-sol-ultrafast-with-8x-speed-boost">KuCoin 記事</a></li>
+<li id="ref-36">^ <sup><a href="#fnref-36-1">a</a></sup> <sup><a href="#fnref-36-2">b</a></sup> <sup><a href="#fnref-36-3">c</a></sup> 「 Google makes Gemini 4 Argon broadly available with limited-time low API pricing of $2/$10 per 1M token 」（ 2026 年 10 月 13 日） , <em>VentureBeat</em> 。 <a href="https://venturebeat.com/technology/google-makes-gemini-4-argon-broadly-available-with-limited-time-low-api-pricing-of-2-10-per-1m-token">VentureBeat 記事</a></li>
+<li id="ref-37">^ <sup><a href="#fnref-37-1">a</a></sup> <sup><a href="#fnref-37-2">b</a></sup> <sup><a href="#fnref-37-3">c</a></sup> Google, 「 Gemini 4 Argon is now available in the Gemini app 」（ 2026 年 10 月 13 日） , <em>Google Blog</em> 。 <a href="https://blog.google/innovation-and-ai/products/gemini-app/gemini-4-argon-availability/">Google 公式ブログ</a></li>
+<li id="ref-38"><a href="#fnref-38-1">^</a> 「 Google Launches Gemini Agent to Rival OpenAI, Microsoft 」（ 2026 年 10 月 8 日） , <em>Tech Insider</em> 。 <a href="https://tech-insider.org/google-gemini-agent-launch-workplace-ai-2026/">Tech Insider 記事</a></li>
 </ol>
 </div>
 
