@@ -20,7 +20,7 @@
     html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.75; }
     a { color: inherit; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .wrap { width: calc(100% - 2rem); margin-inline: auto; }
     .topline { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
     .brand { color: var(--ink); font-weight: 650; letter-spacing: .08em; }
     .hero { padding: clamp(58px, 10vw, 128px) 0 70px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(210px, .65fr); gap: 48px; align-items: end; }
@@ -55,7 +55,7 @@
     .group-note { color: var(--muted); font-size: 11px; font-weight: 400; letter-spacing: .06em; }
     footer { padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; display: flex; justify-content: space-between; }
     @media (max-width: 760px) {
-      .wrap { width: min(100% - 32px, 560px); }
+      .wrap { width: calc(100% - 2rem); }
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 64px 0 52px; }
       .hero-note { max-width: 310px; }
       .cluster-head { grid-template-columns: 36px minmax(0, 1fr) auto; gap: 10px; }
