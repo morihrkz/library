@@ -25,7 +25,7 @@
 `index.html` をブラウザーで開くと、そのまま閲覧できます。ローカルサーバーを使う場合は、プロジェクトのルートで次のコマンドを実行してください。
 
 ```sh
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
 ブラウザーで <http://localhost:8000/> を開きます。
