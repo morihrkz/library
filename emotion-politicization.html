@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box;}
 body{background:var(--bg); color:var(--text); margin:0; line-height:2;}
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -53,14 +53,13 @@ sup a:hover{text-decoration:underline;}
 .refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">政治心理学・比較政治</div>
 <h1>感情の政治資源化論<br>――「奪われ感」はなぜ政治を動かすのか</h1>
 <p class="subtitle">The Political Instrumentalization of Emotion: Why Perceived Dispossession Moves Politics</p>
@@ -328,6 +327,6 @@ sup a:hover{text-decoration:underline;}
 </ol>
 </div>
 <p class="note">注記：本稿は、既存の研究文献と調査報告を用いて論旨を再構成した文献レビューである。心理学の実験知見は、現実の政治的行動へそのまま一般化できるとは限らない。因果の推定と処方の効果には、各節で述べた限界が伴う。</p>
-</div>
+</main>
 </body>
 </html>

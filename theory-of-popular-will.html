@@ -21,9 +21,7 @@ body{
   line-height:2;
   margin:0;
 }
-.wrap{
-  padding:56px 1rem 120px;
-}
+main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
 a{color:var(--link)}
 .kicker{
   color:var(--accent);
@@ -168,14 +166,13 @@ sup a:hover{text-decoration:underline}
   line-height:1.9;
 }
 @media (max-width:480px){
-  .wrap{padding:32px 1rem 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">政治学・社会選択論・心理学・政治哲学――学際的検討</p>
 
@@ -1174,6 +1171,6 @@ sup a:hover{text-decoration:underline}
 </ul>
 </div>
 
-</div>
+</main>
 </body>
 </html>

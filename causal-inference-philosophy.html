@@ -14,7 +14,7 @@ body{
   margin:0;background:var(--bg);color:var(--text);
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
 h1{font-size:32px;line-height:1.6;margin:0 0 18px}
 .subtitle{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 28px}
@@ -56,14 +56,13 @@ a{color:var(--link)}
 sup a{color:var(--link);text-decoration:none}
 sup a:hover{text-decoration:underline}
 @media (max-width:480px){
-  .wrap{padding:40px 18px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">哲学・科学方法論</div>
 <h1>「これが原因だ」とどうして言えるのか<br>――因果推論の哲学、ヒュームから統計的因果推論まで</h1>
@@ -219,6 +218,6 @@ sup a:hover{text-decoration:underline}
 注：本稿は学術論文ではなく、公開された哲学的議論と統計学的方法論をもとにした一般向けの学術的読み物である。因果関係の哲学的な定義は現在も理論間で決着しておらず、本稿はいずれかの立場を最終的な正解として推奨するものではない。また、統計的因果推論の技法は、正しく特定された因果構造の仮定のもとで初めて妥当な推定を与えるものであり、手法の適用それ自体が因果構造の正しさを保証するわけではない。
 </p>
 
-</div>
+</main>
 </body>
 </html>

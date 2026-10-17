@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
 h1{font-size:32px;line-height:1.6;margin:0 0 14px;color:var(--text);font-weight:bold}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -52,12 +52,12 @@ a{color:var(--link)}
 .refs sup a{font-style:italic;font-weight:700}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
-@media (max-width:480px){ .wrap{padding:36px 16px 90px} h1{font-size:27px}
+@media (max-width:480px){  h1{font-size:27px}
   .toc>ol{columns:1} }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">哲学・因果推論</div>
 <h1>「轢かれなかったから、いま私は生きている」と言えるか<br>――反実仮想的依存と因果的選択のあいだで</h1>
@@ -183,6 +183,6 @@ a{color:var(--link)}
 </p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

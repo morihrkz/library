@@ -8,7 +8,7 @@
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--link)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 10px}
 h1{font-size:32px;line-height:1.6;margin:0 0 8px;color:var(--text)}
@@ -52,14 +52,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target,sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">比較政治・選挙制度論</p>
 <h1>理想的な選挙制度は存在するか<br>――七つの民主主義から考える</h1>
@@ -319,6 +318,6 @@ sup a:hover{text-decoration:underline}
 <p class="note">本稿は制度の骨格を概観する啓発的な文章であり、制度の優劣を実証的に断定するものではない。数値や制度の細部は改正されうるため、引用や政策の議論に用いる場合は、各国の公式資料で最新の内容を確認してほしい。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

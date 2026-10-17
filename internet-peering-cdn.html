@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">ネットワーク工学</div>
 <h1>インターネット相互接続論<br>――ピアリング・トランジット・ CDN 事業モデル</h1>
 <p class="subtitle">On Internet Interconnection: Peering, Transit, and CDN Business Models</p>
@@ -964,6 +963,6 @@ Edgio の破綻に見られるように、専業型 CDN 市場は特に価格競
 <li id="ref-59"><a href="#fnref-59-1">^</a> <a href="https://secure.macrotrends.net/stocks/charts/AKAM/akamai-technologies/gross-margin">Akamai Technologies Gross Margin 2010-2025—Macrotrends</a></li></ol>
 </div>
 <p class="note">本文書は、公開されている一次資料・報道・技術文書を基に構成した解説であり、学術的な実証研究ではない。特に企業タイプ別の四分類（ CDN 専業型／プラットフォーム付随型のフリーミアム／プラットフォーム付随型の本体事業強化／コンテンツ企業自前型）は、実在企業の事業構造を理解しやすくするための分析上の枠組みであって、各社の実態を余さず説明する唯一の分類ではない。財務数値・料金・ PoP 数などは時点により変動するため、本文中に明記した出典と時点を必ず確認したうえで利用してほしい。</p>
-</div>
+</main>
 </body>
 </html>

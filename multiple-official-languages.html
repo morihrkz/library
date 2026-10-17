@@ -8,7 +8,7 @@
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 html{background:var(--bg);color:var(--text)}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;font-weight:700;color:var(--text);margin:0 0 12px}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -51,14 +51,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target,sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <p class="kicker">言語政策・比較制度</p>
 <h1>公用語が複数ある国の暮らし<br>――議場の通訳ブースから学校の教室まで</h1>
 <p class="subtitle">Many Official Languages, One State: Institutional Designs for Parliaments, Schools and Administrations in Five Countries</p>
@@ -396,6 +395,6 @@ sup a:hover{text-decoration:underline}
 </div>
 
 <p class="note">本稿は、五か国の制度を比較するための入門的な整理であり、各国の言語政策の全体像や最新の運用を網羅するものではない。法令の条文や統計の数値を引用する場合は、参考文献に挙げた一次資料で確認されたい。インドの議会通訳の拡充は報道に基づく記述で、運用の実態は確認できていない。</p>
-</div>
+</main>
 </body>
 </html>

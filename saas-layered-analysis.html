@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">産業構造分析</div>
 <h1>「 SaaS is dead 」言説の実証的検討<br>―― UI ・ロジック・データ三層モデルによる分析</h1>
 <p class="subtitle">An Empirical Examination of the 'SaaS is dead' Discourse: An Analysis through the UI-Logic-Data Layer Model</p>
@@ -237,6 +236,6 @@ SaaS は死んでもいないし、無条件に生き残るとも言い切れな
 <li id="ref-17"><a href="#fnref-17-1">^</a> FutureAGI, "AI Agent Compliance and Governance in 2026: A Practical Guide." (EU AI 法の高リスク AI システムに関する義務適用開始時期＝ 2026 年 8 月についての言及元 ) <a href="https://futureagi.com/blog/ai-agent-compliance-governance-2026">futureagi.com</a></li>
 </ol>
 </div>
-</div>
+</main>
 </body>
 </html>

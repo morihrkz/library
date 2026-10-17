@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">道徳心理学・社会心理学</div>
 <h1>道徳は先に判断され、理由は後から届く<br>――ハイトの社会的直観主義と道徳判断の二重過程理論</h1>
 <p class="subtitle">Moral Judgment and the Social Intuitionist Model: Jonathan Haidt's Dual-Process Approach to Ethics</p>
@@ -186,6 +185,6 @@ pre code{background:none; padding:0;}
 </ol>
 <p class="note">本稿は学術論文ではなく、公開されている実証研究にもとづく解説記事である。道徳的当惑・嫌悪感操作実験・理由づけの因果効果のいずれについても、追試による再現性の問題が指摘されており、本稿で示した各研究の位置づけは 2026 年 9 月時点で確認できた文献にもとづく暫定的なものである。</p>
 </div>
-</div>
+</main>
 </body>
 </html>

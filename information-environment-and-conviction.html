@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -58,14 +58,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">社会心理学・メディア研究</p>
 
@@ -186,6 +185,6 @@ sup a:hover{text-decoration:underline}
 <p class="note">本稿で言及した実証研究は、いずれも特定の時期・特定のプラットフォーム・特定の参加者集団を対象にしたものであり、その知見を現在の情報環境全般に無条件に適用することはできない。特にプラットフォームの仕様やアルゴリズムは継続的に変更されており、引用した研究が対象とした当時の設計と現在の設計が同一であるとは限らない。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

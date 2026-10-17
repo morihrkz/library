@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -64,14 +64,13 @@ blockquote p:last-child{margin-bottom:0;}
 hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
 code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">社会心理学</div>
 <h1>集団同一性と内集団バイアス<br>――なぜ「自分たちの集団」というだけで評価が変わるのか</h1>
 <p class="subtitle">Social Identity and Ingroup Bias: From the Minimal Group Paradigm to Intergroup Hostility</p>
@@ -209,6 +208,6 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 注 : 本稿は学術論文ではなく、公開された研究知見をもとにした一般向けの学術的読み物である。心理学の実証研究は集団レベルの傾向を示すものであり、特定個人・特定集団の内心を診断するものではない。内集団びいきの動機づけをめぐる仮説（自己高揚仮説・不確実性低減仮説）は、いずれも現在進行形の研究課題であり、本稿はいずれか一方を確立した結論として提示していない。第 7 章で触れた SNS 上の党派性への理論の適用は、本稿による理論的な類推であることを明記した箇所に限り述べたものであり、特定の政治的立場・政党・個人への評価を意図するものではない。
 </p>
 
-</div>
+</main>
 </body>
 </html>

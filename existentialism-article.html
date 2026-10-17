@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -60,14 +60,13 @@ figure.diagram svg{display:block; width:100%; height:auto; overflow:visible;}
 figcaption{font-size:15px; color:var(--muted); margin-top:14px; line-height:1.7;}
 figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">哲学・思想史</div>
 <h1>実存主義とは何か<br>――併存する諸「主義」の中でどう位置づけるか</h1>
@@ -242,6 +241,6 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 
 <p class="note">注：本稿は学術論文ではなく、公開された思想史的記述をもとにした一般向けの学術的読み物である。実存主義と隣接諸主義との関係についての整理は、初学者向けの見取り図として簡略化を含んでおり、各思想内部の異論・留保を網羅するものではない。</p>
 
-</div>
+</main>
 </body>
 </html>

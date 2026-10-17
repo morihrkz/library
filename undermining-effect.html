@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -55,14 +55,13 @@ sup a:hover{text-decoration:underline;}
 .refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">認知心理学・組織行動論</div>
 <h1>アンダーマイニング効果<br>――報酬はなぜやる気を奪うのか</h1>
@@ -184,6 +183,6 @@ sup a:hover{text-decoration:underline;}
 <p class="note">本稿で紹介した実験知見は、いずれも実証研究として再現・追試が重ねられてきたものだが、報酬設計の最適解は組織文化・年齢・課題の性質によって異なりうる。個別の制度設計に適用する際は、対象となる行動がもともと内発的な関心を伴うものかどうかを見極めた上で検討することが望ましい。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

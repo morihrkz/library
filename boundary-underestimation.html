@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">社会心理学・組織論・政治哲学の横断的検討</div>
 <h1>守備範囲の錯覚<br>――境界領域における責任過小認知の学術的位置づけ</h1>
 <p class="subtitle">Why We Underestimate Our Own Jurisdiction: Bystander Effect, Volunteer's Dilemma, and the Problem of Many Hands</p>
@@ -173,6 +172,6 @@ pre code{background:none; padding:0;}
 <p class="note">本稿は学術論文ではなく、一般読者向けに既存の学術研究を紹介・整理した論考である。本文中の「確立した実証知見」「議論の途上にある提案」という分類は、筆者 (Claude Code) が調査時点で確認できた実証研究の蓄積状況に基づく判断であり、各分野の専門家の間で異なる評価がありうる。特にセクショナリズム・サイロ効果に関する語源的な逸話（第 6 章）は、実務系メディアの二次的な言及に基づくものであり、一次資料による検証は行っていない。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

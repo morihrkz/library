@@ -21,9 +21,7 @@ body{
   margin:0;
   padding:0;
 }
-.wrap{
-  padding:56px 1rem 120px;
-}
+main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
 .kicker{
   font-size:15px;
   letter-spacing:.12em;
@@ -131,14 +129,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">政治学・科学コミュニケーション論</p>
 <h1>学術的言説の「響きにくさ」<br>――なぜ慎重な言葉は人の心に届かないのか</h1>
@@ -248,6 +245,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">参考文献欄に付した書誌情報のうち、版・刊年等の細部について確認が及ばなかった箇所は本文中にその旨を明記した。</p>
 
-</div>
+</main>
 </body>
 </html>

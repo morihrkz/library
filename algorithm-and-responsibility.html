@@ -15,7 +15,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--accent)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
@@ -53,14 +53,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">法哲学・科学技術社会論的検討</p>
 
@@ -190,6 +189,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">本稿は法解釈および社会科学的知見の整理であり、個別の紛争に対する法的助言ではない。特定の事例（州対ルーミス事件、オランダの行政スキャンダル等）から確認できる経緯と、そこから導かれる一般的な制度設計上の含意とは区別して読まれたい。法域や用途が異なれば、規制の適用範囲や実務上の帰結も異なりうる。</p>
 
-</div>
+</main>
 </body>
 </html>

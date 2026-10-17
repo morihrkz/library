@@ -15,7 +15,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -95,14 +95,13 @@ figcaption{font-size:15px; color:var(--muted); text-align:center; margin-top:12p
   .dfn-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">哲学・学問案内</div>
 <h1>倫理学は哲学の中でどこに立つか<br>――学問的位置づけと独学の手引き</h1>
 <p class="subtitle">The Disciplinary Position of Ethics within Philosophy: A Guide to Self-Study Sequencing</p>
@@ -394,6 +393,6 @@ figcaption{font-size:15px; color:var(--muted); text-align:center; margin-top:12p
 </ol>
 <p class="note">※ 本稿のうち、独学の入り口や順序にかかわる記述は学問的に確立した結論ではなく、著者による一つの整理案にとどまる。</p>
 </div>
-</div>
+</main>
 </body>
 </html>

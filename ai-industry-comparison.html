@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -78,7 +78,6 @@ pre code{background:none; padding:0;}
 .field-body strong{color:var(--accent);}
 
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
   .subtitle{font-size:17px;}
@@ -90,7 +89,7 @@ pre code{background:none; padding:0;}
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">産業動向・比較資料</div>
 <h1>生成 AI 企業比較の基礎資料<br>――モデル・エージェント・コーディング環境</h1>
 <p class="subtitle">A Reference Compendium of Generative AI Enterprises: Foundation Models, Autonomous Agents, and Coding Environments</p>
@@ -503,6 +502,6 @@ pre code{background:none; padding:0;}
 </div>
 
 <p class="note">各項目は公表情報および報道に基づく整理であり、非公開の内部資料は含まない。重要な判断に用いる場合は各社公式発表で再確認することが望ましい。このページは「 AI 各社の違いを把握するための概観表」であり、ベンチマーク順位や性能の絶対評価を示すものではない（情報基準日は冒頭の【方法と限界】を参照）。</p>
-</div>
+</main>
 </body>
 </html>

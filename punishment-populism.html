@@ -8,7 +8,7 @@
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.15em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;font-weight:700;margin:0 0 10px;color:var(--text)}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -51,14 +51,13 @@ th{background:var(--box)}
 .refs li:target,sup:target{background:var(--box)}
 .endnote{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <p class="kicker">刑事政策・世論研究</p>
 <h1>厳罰化を望む気持ちはポピュリズムか<br>――日本の世論・刑罰・証拠をたどる</h1>
 <p class="subtitle">Is Wanting Harsher Punishment Populism? Public Opinion, Penal Policy, and the Evidence in Japan</p>
@@ -164,6 +163,6 @@ th{background:var(--box)}
 </ol>
 </div>
 <p class="endnote">※ 本稿は、公開資料に基づく検討であり、個別の事件や立法の是非を判定するものではない。実証研究の知見は、対象とした国・時期・犯罪の種類に依存する。</p>
-</div>
+</main>
 </body>
 </html>

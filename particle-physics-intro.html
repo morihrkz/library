@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">物理学概論</div>
 <h1>素粒子物理学概論<br>――原子核から観測可能な宇宙まで</h1>
 <p class="subtitle">An Introduction to Particle Physics: From the Atomic Nucleus to the Observable Universe</p>
@@ -645,6 +644,6 @@ r 過程が実際にどのような天体現象で起きているのかは長く
 <li id="ref-46"><a href="#fnref-46-1">^</a> Nobel Prize Outreach, <em>The Nobel Prize in Physics 2011</em> press release (Perlmutter, Schmidt, Riess による 1998 年の超新星観測 ). <a href="https://www.nobelprize.org/prizes/physics/2011/press-release/">nobelprize.org</a></li>
 <li id="ref-47"><a href="#fnref-47-1">^</a> Scientific American, <em>The Cosmological Constant Is Physics' Most Embarrassing Problem</em>. <a href="https://www.scientificamerican.com/article/the-cosmological-constant-is-physics-most-embarrassing-problem/">scientificamerican.com</a></li></ol>
 </div>
-</div>
+</main>
 </body>
 </html>

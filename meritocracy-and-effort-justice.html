@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 
 /* 冒頭ブロック: kicker → h1 → subtitle → lede → meta */
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
@@ -67,14 +67,13 @@ sup a:hover{text-decoration:underline}
 .note{font-size:15px;color:var(--muted)}
 
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">政治哲学・社会倫理学的検討</div>
 <h1>努力は誰の手柄か<br>――能力主義の正義を、運・遺伝・尊厳から問い直す</h1>
@@ -263,6 +262,6 @@ sup a:hover{text-decoration:underline}
 <p class="note">本稿は、能力主義の是非について結論を出すものではない。哲学上の主張と、行動遺伝学・心理学・政治学の実証研究の結果は、位置づけが異なる。引用した研究の数値や結論は、各文献の原典で確認されたい。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

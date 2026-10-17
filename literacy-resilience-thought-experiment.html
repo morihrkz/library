@@ -7,7 +7,7 @@
 <style>
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 p{font-size:19px;margin:0 0 20px}
 a{color:var(--link)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 12px}
@@ -45,14 +45,13 @@ sup:target{background:var(--box)}
 .refs li:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">教育哲学・思考実験</p>
 <h1>義務教育に見分ける力を新設できるか<br>――ポピュリズムと陰謀論への耐性を問う思考実験</h1>
@@ -193,6 +192,6 @@ sup:target{background:var(--box)}
 </ol>
 </div>
 
-</div>
+</main>
 </body>
 </html>

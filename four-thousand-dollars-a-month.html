@@ -7,7 +7,7 @@
 <style>
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--link)}
 .kicker{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 10px}
 h1{font-size:32px;line-height:1.6;margin:0 0 6px;font-weight:700;color:var(--text)}
@@ -47,14 +47,13 @@ sup a:hover{text-decoration:underline}
 .refs p.endnote{font-size:15px;color:var(--muted);margin-top:20px}
 html{scroll-behavior:auto}
 @media (max-width:480px){
- .wrap{padding:36px 16px 90px}
  h1{font-size:27px}
  .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <p class="kicker">思考実験・労働経済学</p>
 <h1>月 60 万円を、死ぬまで<br>――当たりくじは人の働き方を変えるか</h1>
 <p class="subtitle">Lifetime Cash for a Hundred: A Thought Experiment on Work, Study and Retirement</p>
@@ -124,6 +123,6 @@ html{scroll-behavior:auto}
 </ol>
 <p class="endnote">※ 本稿は思考実験であり、実証研究の結果をそのまま本題に当てはめたものではない。引用した研究の条件と本題の違いは本文に記した。推測は「仮説」と明記したが、確度の低いものを多く含む。</p>
 </div>
-</div>
+</main>
 </body>
 </html>

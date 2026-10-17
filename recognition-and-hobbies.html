@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box;}
 body{background:var(--bg); color:var(--text); margin:0; line-height:2;}
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -51,14 +51,13 @@ sup a:hover{text-decoration:underline;}
 .refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1;}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">動機づけ心理学・社会哲学</div>
 <h1>承認欲求を満たす趣味の規範的評価<br>――動機づけ心理学と承認の哲学による検討</h1>
@@ -234,6 +233,6 @@ sup a:hover{text-decoration:underline;}
 <p class="note">※ 本稿は文献に基づく理論的考察であり、実証研究の知見と哲学的な規範的主張を区別して述べている。いずれも、特定の個人の活動に対する助言や評価を断定するものではない。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

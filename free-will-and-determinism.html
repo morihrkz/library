@@ -14,7 +14,7 @@ body{
   margin:0;background:var(--bg);color:var(--text);
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
 h1{font-size:32px;line-height:1.6;margin:0 0 18px}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -56,14 +56,13 @@ sup a:hover{text-decoration:underline}
 .refs sup a{font-style:italic;font-weight:700}
 .refs li:target, sup:target{background:var(--box)}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">哲学・心の哲学・神経科学</div>
 <h1>自由意志は決定論と両立できるか<br>――ラプラスの悪魔からリベット実験まで</h1>
@@ -280,6 +279,6 @@ sup a:hover{text-decoration:underline}
 注：本稿は学術論文ではなく、公開された哲学的議論と実証研究をもとにした一般向けの学術的読み物である。自由意志をめぐる非両立論・両立論・リバタリアニズムの対立は現在も決着しておらず、本稿はいずれかの立場を最終的な正解として推奨するものではない。神経科学の実験結果についても、その哲学的解釈は研究者の間で見解が分かれており、準備電位の意味づけは本稿執筆時点でなお係争中の論点である。
 </p>
 
-</div>
+</main>
 </body>
 </html>

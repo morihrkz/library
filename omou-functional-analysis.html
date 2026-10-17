@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box;}
 body{background:var(--bg); color:var(--text); margin:0; line-height:2;}
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -54,14 +54,13 @@ sup{font-size:.72em; line-height:0; vertical-align:super;}
 sup a{text-decoration:none;}
 sup a:hover{text-decoration:underline;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1;}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">言語哲学・語用論・心理言語学</div>
 <h1>「と思う」の機能分析<br>――論理学・言語哲学・心理言語学からの検討</h1>
@@ -369,6 +368,6 @@ A 氏の考えをそのまま言っているので、正しい。</li>
 </div>
 <p class="note">※ 本稿は、先行研究の整理と筆者の内省に基づく試論である。参考文献の書誌情報は、公刊された文献の標準的な書式に従って記したが、引用にあたっては原典で確認されたい。英語例文は、論述のために作成したものである。</p>
 
-</div>
+</main>
 </body>
 </html>

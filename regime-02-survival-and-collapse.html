@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -78,7 +78,6 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 }
 
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
@@ -89,7 +88,7 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">比較政治学</div>
 <h1>権威主義はいかに生き残り、そして崩れるのか<br>――冷戦から 21 世紀まで</h1>
 <p class="subtitle">How Authoritarian Regimes Survive, and How They Collapse: From the Cold War to the Twenty-First Century</p>
@@ -432,6 +431,6 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 <li>Christopher Walker. "The Cutting Edge of Sharp Power." <em>Journal of Democracy</em>. <a href="https://www.journalofdemocracy.org">journalofdemocracy.org</a>（アクセス日 :2026 年 7 月 27 日）</li>
 </ul>
 </div>
-</div>
+</main>
 </body>
 </html>

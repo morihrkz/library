@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;font-weight:700;color:var(--text);margin:0 0 14px}
 .subtitle{font-size:20px;line-height:1.8;color:var(--muted);margin:0 0 28px}
@@ -62,14 +62,13 @@ figure{margin:32px 0;padding:20px;background:var(--box);border:1px solid var(--l
 figure svg{display:block;width:100%;height:auto}
 figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;text-align:center}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">政治解説・政党組織論</p>
 <h1>なぜ立憲民主党出身者は立憲民主党に戻らなかったのか<br>――「民主改革の会」結成の論理と、加わらなかった議員たち</h1>
@@ -267,6 +266,6 @@ figcaption{font-size:14.5px;color:var(--muted);margin-top:12px;text-align:center
 <p class="note">注：本稿の情報基準日は 2026 年 10 月 13 日である。報道機関や百科事典で議員数や表現に差がある箇所では、時事通信など報道機関の記述を優先した。「仮住まい」は、時事通信が関係者の発言をもとに用いた表現である。「筆者の判断」「筆者の整理」と記した箇所は本稿の推論であり、当事者の説明ではない。一部の記事は会員限定のため公開部分のみを確認した。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

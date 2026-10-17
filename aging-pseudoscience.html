@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2;font-size:19px}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--link)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700}
@@ -58,14 +58,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target,sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">老年学・科学社会学的検討</p>
 
@@ -162,6 +161,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">本稿は英語圏の報道・査読論文・研究者の公開発言を二次資料として整理した論考であり、独自の実験的検証や臨床データの再解析を行ったものではない。老年学という分野の科学的地位と、特定の研究者個人の発言の妥当性は別個の問いであり、本稿はその区別を主眼とした。個別の製品（サプリメント等）の効能を保証するものではない。</p>
 
-</div>
+</main>
 </body>
 </html>

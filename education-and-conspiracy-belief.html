@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -58,14 +58,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">政治心理学・情報環境研究</p>
 
@@ -472,6 +471,6 @@ sup a:hover{text-decoration:underline}
 </section>
 </div>
 
-</div>
+</main>
 </body>
 </html>

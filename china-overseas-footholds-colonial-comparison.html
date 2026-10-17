@@ -8,7 +8,7 @@
 :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7;--link:#3d5a52}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);line-height:2}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 10px}
 h1{font-size:32px;line-height:1.6;margin:0 0 12px;color:var(--text)}
 .subtitle{font-size:20px;color:var(--muted);line-height:1.8;margin:0 0 28px}
@@ -51,14 +51,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target,sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <p class="kicker">国際政治・歴史比較</p>
 <h1>中国の海外拠点は、百年前の植民地政策に似ているか<br>――ラオスの「訓練センター」を起点に、列強の型と照らす</h1>
 <p class="subtitle">Do China's Overseas Footholds Echo Colonial Patterns? From a Laotian "Training Center" to the Imperial Order of a Century Ago</p>
@@ -214,6 +213,6 @@ sup a:hover{text-decoration:underline}
 </ol>
 </div>
 <p class="note">※ 本稿は 2026 年 10 月 7 日時点の報道に基づく。ラオスの施設に関する協定の内容、駐留規模、運用の実態は未公表であり、今後の報道や公開資料で評価が変わりうる。歴史上の事例との比較は類推であって、同一視ではない。</p>
-</div>
+</main>
 </body>
 </html>

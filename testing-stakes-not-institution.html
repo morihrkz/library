@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--link)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
@@ -57,14 +57,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">学習科学・制度設計への応答</p>
 
@@ -221,6 +220,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">本稿で参照した実証研究は、記憶・理解の定着、学習時のプレッシャー、カリキュラムへの波及という異なる水準の知見であり、それぞれの射程を超えて一般化していないかを注記しながら読んでほしい。また、本稿は教育と判定を分離する設計そのものの妥当性を否定する意図はなく、その設計に伴う論点を補うための考察である。 6 節の政策比較表は経験的なデータではなく、方向性を整理した仮説である。</p>
 
-</div>
+</main>
 </body>
 </html>

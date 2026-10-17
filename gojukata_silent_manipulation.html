@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);margin:0;line-height:2;}
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--link);}
 .kicker{font-size:15px;letter-spacing:.14em;color:var(--accent);font-weight:700;margin:0 0 14px;}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 14px;font-weight:700;}
@@ -58,14 +58,13 @@ sup a:hover{text-decoration:underline;}
 .refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px;color:var(--muted);margin-top:20px;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">整形外科・肩関節疾患</p>
 <h1>五十肩とサイレントマニピュレーション<br>――わかっていることと、難治例に対する選択肢</h1>
@@ -199,6 +198,6 @@ sup a:hover{text-decoration:underline;}
 
 <p class="note">本稿は国内整形外科クリニックおよび学会の公開情報を基にした一般向けの解説であり、大規模な臨床試験による確立されたガイドラインをすべて網羅したものではない。また、五十肩の発症の仕組みそのものが未解明であり、本稿で挙げた要因は確立した原因ではなく、関連が報告・指摘されているものである。症状の程度や適切な治療法は個人差が大きいため、実際の診断・治療方針は必ず整形外科専門医の診察を受けて判断してほしい。</p>
 
-</div>
+</main>
 </body>
 </html>

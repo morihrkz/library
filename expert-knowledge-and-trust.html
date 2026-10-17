@@ -15,7 +15,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--accent)}
 .kicker{font-size:15px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700}
@@ -56,14 +56,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">認識論・科学社会学的検討</p>
 <h1>専門知への信頼を基礎づける<br>――証言の認識論から見た専門家依存の合理性</h1>
@@ -217,6 +216,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">本稿は哲学・科学社会学の理論的検討であり、個別の科学的論争における当否の判定や、特定の政策の是非を主張するものではない。実証的な知見（合意率の数値など）と、規範的な哲学的主張（信頼の合理性に関する議論）は性質の異なる主張であり、区別して読まれたい。</p>
 
-</div>
+</main>
 </body>
 </html>

@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -68,14 +68,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">言語哲学</div>
 <h1>言語哲学と心理言語学<br>――二つの学問的伝統の見取り図</h1>
 <p class="subtitle">Philosophy of Language and Psycholinguistics: A Map of Two Scholarly Traditions</p>
@@ -173,6 +172,6 @@ pre code{background:none; padding:0;}
 </ol>
 </div>
 <p class="note"><strong>保留事項 :</strong> 日本国内に言語哲学・心理言語学それぞれに特化した独立の専門学会が存在するか否かは、今回の調査（ Web 検索）の範囲では確認できなかった。存在しないと断定はせず、「確認できなかった」と明記するにとどめる。海外事情と国内事情の「研究の層の厚さ」の対比は、確認できた学会・文献の範囲に基づく（筆者の見解）であり、査読を経た定量的な比較調査ではない。</p>
-</div>
+</main>
 </body>
 </html>

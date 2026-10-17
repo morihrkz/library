@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -64,14 +64,13 @@ blockquote p:last-child{margin-bottom:0;}
 hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
 code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">労働経済学・比較政治経済学</div>
 <h1>AI は労働をどう書き換え、その果実は誰が受け取るのか<br>――タスクベース理論から再分配政策まで</h1>
 <p class="subtitle">How AI Rewrites Labor and Who Captures Its Gains: From Task-Based Theory to Redistribution Policy</p>
@@ -293,6 +292,6 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <p class="note">注 : 本稿で参照した学術文献の書誌情報は、著者の記憶と一般に流通している要約に基づいて記載しており、逐語的な引用ではない。各文献の正確な内容確認には、原典に当たることを推奨する。企業の設備投資額・ AI 事業の売上等の数値については、記載された一次情報源を参照されたい。各国の社会保障制度・税制の詳細は簡略化されており、政策設計の実務には各国の一次資料を参照する必要がある。</p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

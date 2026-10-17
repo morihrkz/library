@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,14 +67,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">論理学</div>
 <h1>論理学入門<br>――選択的夫婦別姓論争にみる論証の構造分析</h1>
 <p class="subtitle">An Introduction to Logic: A Structural Analysis of Argumentation in the Selective Separate Surnames Debate</p>
@@ -549,6 +548,6 @@ pre code{background:none; padding:0;}
     <a href="https://www.jiji.com/jc/article?k=2026030400853&amp;g=pol">jiji.com</a></li></ol>
 </div>
 <p class="note">本稿は、論理的整合性を点検する方法論の解説であり、選択的夫婦別姓の是非そのものについての政策的立場を示すものではない。引用した判決・意見・世論調査は、本稿執筆時点で公表されていた資料に基づく。</p>
-</div>
+</main>
 </body>
 </html>

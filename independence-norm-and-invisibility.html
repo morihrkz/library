@@ -15,7 +15,7 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--text);line-height:2;margin:0;padding:0}
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 a{color:var(--accent)}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin:0 0 14px}
 h1{font-size:32px;line-height:1.6;color:var(--text);margin:0 0 18px;font-weight:700}
@@ -56,14 +56,13 @@ th{background:var(--box)}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">福祉哲学・ケア倫理</p>
 
@@ -210,6 +209,6 @@ th{background:var(--box)}
 
 <p class="note">本稿は政治哲学・ケア倫理の文献に基づく概念的考察であり、特定の制度や実践の実証的評価を行うものではない。引用した各理論の詳細な妥当性については、原典に当たられたい。</p>
 
-</div>
+</main>
 </body>
 </html>

@@ -15,7 +15,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -67,7 +67,6 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
@@ -108,7 +107,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">心理学</div>
 <h1>ユング心理学<br>――骨格・河合隼雄・批判的検証</h1>
 <p class="subtitle">Jungian Psychology Revisited: Core Concepts, Kawai Hayao, and a Critical Examination, Updated</p>
@@ -351,6 +350,6 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </ul>
 <p>本記事はあくまで「よく指摘される強みと弱み」を、対比を通じて整理したものである。ユング心理学とどう付き合うかは、読んだ者自身が決めることである。</p>
 </div>
-</div>
+</main>
 </body>
 </html>

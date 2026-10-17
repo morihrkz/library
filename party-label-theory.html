@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -93,14 +93,13 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
   figure.diagram::before{content:"→ 横にスクロールできます"; position:absolute; top:8px; right:14px; font-size:13px; color:var(--muted);}
 }
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">政治経済学</div>
 <h1>政党ラベルの情報経済学<br>――法制度・選挙制度・党内組織の三層分析</h1>
 <p class="subtitle">The Information Economics of Party Labels: A Three-Layer Analysis of Legal Institutions, Electoral Systems, and Intraparty Organization</p>
@@ -386,6 +385,6 @@ figcaption{font-size:15px; color:var(--muted); margin-top:12px; text-align:cente
 </ol>
 </div>
 <p class="note">本稿は制度分析にもとづく論考であり、特定の政党・候補者への支持または不支持を呼びかけるものではない。法令・判例・報道により確認できる事実と、政治学上の解釈とは、本文中で区別して記述した。数値は執筆時点（ 2026 年 8 月）に公開されていた情報による。</p>
-</div>
+</main>
 </body>
 </html>

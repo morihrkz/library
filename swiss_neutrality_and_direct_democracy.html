@@ -21,9 +21,7 @@ body{
   color:var(--text);
   line-height:2;
 }
-.wrap{
-  padding:56px 1rem 120px;
-}
+main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
 a{color:var(--link)}
 .kicker{
   font-size:15px;
@@ -136,14 +134,13 @@ sup a:hover{text-decoration:underline}
 .refs li:target, sup:target{background:var(--box)}
 .note{font-size:15px;color:var(--muted);margin-top:20px}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <p class="kicker">政治制度・比較政治</p>
 
@@ -262,6 +259,6 @@ sup a:hover{text-decoration:underline}
 
 <p class="note">本稿は永世中立と直接民主主義という制度の一般的な解説を目的とした紹介・分析記事であり、学術論文ではない。 2026 年 9 月の国民投票に関する記述は、事例紹介の一部として本文中に位置づけたものであり、本稿の主題はあくまで両制度そのものの解説である。当該国民投票の詳細な経緯・今後の展望については、専門にこれを扱う別稿を参照されたい。</p>
 
-</div>
+</main>
 </body>
 </html>

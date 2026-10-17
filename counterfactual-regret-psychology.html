@@ -14,7 +14,7 @@ body{
   margin:0;background:var(--bg);color:var(--text);
   line-height:1.95;
 }
-.wrap{padding:56px 1rem 120px}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px;letter-spacing:.12em;color:var(--accent);font-weight:700;margin-bottom:14px}
 h1{font-size:32px;line-height:1.55;margin:0 0 18px}
 .subtitle{font-size:20px;color:var(--muted);margin:0 0 34px}
@@ -53,14 +53,13 @@ a{color:var(--link)}
 sup a{color:var(--link);text-decoration:none}
 sup a:hover{text-decoration:underline}
 @media (max-width:480px){
-  .wrap{padding:40px 18px 90px}
   h1{font-size:27px}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">認知心理学・哲学的検討</div>
 <h1>人はなぜ、選ばなかった道を悔やみ続けるのか<br>――反実仮想思考と後悔の心理学</h1>
@@ -328,6 +327,6 @@ sup a:hover{text-decoration:underline}
 </p>
 </div>
 
-</div>
+</main>
 </body>
 </html>

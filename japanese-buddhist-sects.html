@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -66,14 +66,13 @@ pre{font-size:16px; background:var(--box); border:1px solid var(--line);
   padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
 pre code{background:none; padding:0;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 <div class="kicker">宗教史</div>
 <h1>日本仏教宗派史<br>――十三宗五十六派の成立と系譜</h1>
 <p class="subtitle">A History of Japanese Buddhist Sects: The Formation and Lineage of the Thirteen Schools and Fifty-Six Branches</p>
@@ -484,6 +483,6 @@ pre code{background:none; padding:0;}
 本文中の脚注 [1] 〜 [21] は、可能な範囲で各宗派・寺院の公式サイトを典拠として示したもの。<br>
 分類・法人統計の参照先 : <a href="https://www.bunka.go.jp/tokei_hakusho_shuppan/hakusho_nenjihokokusho/shukyo_nenkan/index.html">文化庁「宗教年鑑」</a></p>
 </div>
-</div>
+</main>
 </body>
 </html>

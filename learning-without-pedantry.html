@@ -14,7 +14,7 @@ body{
   background:var(--bg); color:var(--text); margin:0;
   line-height:2;
 }
-.wrap{padding:56px 1rem 120px;}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
 .kicker{font-size:15px; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
 h1{font-size:32px; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
 .subtitle{font-size:20px; color:var(--muted); margin:0 0 28px; line-height:1.8;}
@@ -54,14 +54,13 @@ sup a:hover{text-decoration:underline;}
 .refs li:target, sup:target{background:var(--box);}
 .note{font-size:15px; color:var(--muted); margin-top:20px;}
 @media (max-width:480px){
-  .wrap{padding:36px 16px 90px;}
   h1{font-size:27px;}
   .toc>ol{columns:1}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main>
 
 <div class="kicker">哲学・心理学・社会学</div>
 <h1>学ぶ喜びと衒学のあいだ<br>――知的謙虚さの心理学と徳倫理学から</h1>
@@ -210,6 +209,6 @@ sup a:hover{text-decoration:underline;}
 
 <p class="note">注：本稿は学術論文の体裁を借りた個人的なエッセイであり、査読を経た学術成果物ではない。引用文献の要旨は執筆者の理解に基づく要約であり、原典の精査を推奨する。</p>
 
-</div>
+</main>
 </body>
 </html>
