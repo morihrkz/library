@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>漏洩は増えたのか、見えるようになったのか――2026 年秋の個人情報流出報道を貫く四つの力学</title>
+<meta name="description" content="2026 年秋に相次いだ個人情報流出の報道を、技術、攻撃、制度、組織の四つの視点から検討する。統計で確認できた範囲と、仮説にとどまる範囲を区別して論じる。">
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--link:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+body{margin:0;background:var(--bg);color:var(--text);font-size:1.1875rem;line-height:1.85}
+main{padding:2.5rem clamp(1rem, 4vw, 4rem) 4rem;max-width:none;margin:0}
+a{color:var(--link)}
+.kicker{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .4rem}
+h1{font-size:2rem;color:var(--text);margin:0 0 .6rem}
+.subtitle{color:var(--muted);margin:0 0 1rem}
+.lede{border-left:4px solid var(--accent);padding-left:1rem;margin:1rem 0}
+.lede p{margin:0 0 .6rem}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin:0 0 2.5rem;color:var(--muted);font-size:.9rem;line-height:1.9}
+.meta p{margin:0}
+.toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+.toc>ol{columns:2;column-gap:2rem;margin:0}
+.toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+.toc li{margin-bottom:.3rem;break-inside:avoid}
+.toc li ol{margin:.3rem 0 .4rem}
+.toc li li{color:var(--muted)}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.35rem;margin-top:2.6rem}
+h3{font-size:1.25rem;margin-top:1.8rem}
+strong{color:var(--accent)}
+ul,ol{margin:0 0 1.2rem;padding-left:1.4em}
+.box{background:var(--box);border:1px solid var(--line);padding:1rem 1.2rem;margin:0 0 1.4rem}
+.box ul{margin-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:.95rem;margin:1rem 0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;vertical-align:top;text-align:left}
+th{background:var(--box)}
+sup{font-size:.72em;line-height:0}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line); margin-top:3rem; padding-top:1rem;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs p{font-size:.9rem; line-height:1.65; overflow-wrap:anywhere; word-break:break-word;}
+.refs em{font-style:italic;}
+.refs li{font-size:.9rem; line-height:1.65; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
+.endnote{font-size:.9rem;color:var(--muted)}
+@media (max-width:480px){
+  .toc>ol{columns:1}
+}
+/* 表のカード化(幅 40rem 以下) */
+@media (max-width:40rem){
+  table.cards, table.cards tbody, table.cards tr, table.cards td{display:block;width:100%;box-sizing:border-box}
+  table.cards thead, table.cards tr:has(> th){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);border:0;margin:0;padding:0}
+  table.cards tr{border:1px solid var(--line);margin:.7rem 0;background:var(--bg);overflow:hidden}
+  table.cards td{border:0;border-bottom:1px solid var(--line);padding:.45rem .7rem}
+  table.cards td:last-child{border-bottom:0}
+  table.cards td::before{content:attr(data-label);display:block;font-size:.8rem;font-weight:700;color:var(--accent)}
+  table.cards td:first-child{background:var(--box);font-weight:700}
+  table.cards td:first-child::before{display:none}
+}
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">情報セキュリティ・インシデント分析</p>
+<h1>漏洩は増えたのか、見えるようになったのか<br>――2026 年秋の個人情報流出報道を貫く四つの力学</h1>
+<p class="subtitle">Rising Severity, Rising Visibility, or Both? A Structural Analysis of the Autumn 2026 Wave of Personal-Data Breach Disclosures in Japan</p>
+
+<div class="lede">
+<p>2026 年 9 月下旬から 10 月上旬にかけて、国内の小売、外食、交通、娯楽の各社が、数百万件規模の個人情報の流出、またはそのおそれを相次いで公表した。ブックオフグループホールディングスは 10 月 9 日、会員情報が最大約 643 万件に及ぶ可能性を発表し <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 、第一興商は 10 月 8 日、個人情報の取り扱いを委託していた会社の従業員の端末がマルウェアに感染し、約 872 万件が外部に漏えいしたおそれがあると明らかにした <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>ところが、公的な統計や調査を並べると、「漏洩事案の件数が急増している」という単純な図式は支持されない。本稿の核心的な問いは、報道の集中の背後で「何が増え、何が見えるようになり、何が変わっていないのか」である。技術、攻撃、制度、組織の四つの視点から、事実と仮説を分けて検討する。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong> 本稿の事実の記述は、 2026 年 10 月 10 日までに公開された資料に基づき、出典を脚注で示した。警察庁と個人情報保護委員会の統計は、原資料の全文を取得できず、報道による引用を通して確認した。個別事案は各社の発表を報じた記事に依拠しており、続報で件数が変わりうる。確認できなかった事例と数値は記事から除いた。事実でない記述には「仮説」「提案」と明記した。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">2026 年秋、なぜこれほど漏洩報道が続くのか</a></li>
+<li><a href="#sec2">技術的要因：広がりすぎたアタックサーフェスと「設定の盲点」</a></li>
+<li><a href="#sec3">攻撃の進化：生成 AI を武器にする攻撃者とサプライチェーンの歪み</a></li>
+<li><a href="#sec4">制度と検知の視点：「漏洩が増えた」のか「隠せなくなった」のか</a>
+<ol>
+<li><a href="#sec4-1">「増えた」説の最も強い形</a></li>
+<li><a href="#sec4-2">「隠せなくなった」説の最も強い形</a></li>
+<li><a href="#sec4-3">判断とその根拠</a></li>
+</ol>
+</li>
+<li><a href="#sec5">組織の課題： DX の加速とセキュリティ人材不足の狭間で</a></li>
+<li><a href="#sec6">終章 企業に求められる次世代の防衛思想</a></li>
+<li><a href="#sec7">要点まとめ表</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 2026 年秋、なぜこれほど漏洩報道が続くのか</h2>
+<p>最初に、依頼の前提となる「漏洩報道が急増している」という認識を検証する。結論から言えば、「大規模な公表が短期間に集中した」ことは確認できるが、「事案の件数が急増している」ことは確認できなかった。</p>
+<p>報道の集中は事実として確認できる。ブックオフの事案では、子会社の会員管理システムが第三者の不正アクセスを受け、氏名、生年月日、メールアドレス、住所、パスワードのハッシュ値などが取得された可能性があるという。公表された約 643 万件は会員番号の件数であり、実際の人数ではないと報じられている <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。 10 月 7 日にはクラウドサービス「 IDCF クラウド」がランサムウェア攻撃を受け、 495 の企業と自治体に影響が及んだ <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。民間事業者の集計によれば、 9 月 15 日から 10 月 9 日までに確認できた公表は 67 件にのぼる。ただし、この集計は網羅的でなく、件数の単位も「件」「人」「レコード」と各社で異なり、前年同期との比較もない <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>一方、年単位の統計は別の姿を示す。次の表に、本稿で確認できた主な数値を整理する。</p>
+
+<table class="cards">
+<tr><th>指標</th><th>数値</th><th>前年との比較</th></tr>
+<tr><td data-label="指標">個人情報保護委員会が処理した民間事業者の漏えい等報告、 2025 年度</td><td data-label="数値">17,139 件 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></td><td data-label="前年との比較">前年度は 19,056 件で過去最多。約 1 割の減少</td></tr>
+<tr><td data-label="指標">上場企業とその子会社が公表した漏えい、紛失事故、 2025 年</td><td data-label="数値">180 件、 158 社 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></td><td data-label="前年との比較">件数は 4.7% 減、社数は過去最多</td></tr>
+<tr><td data-label="指標">同、漏えいした個人情報の人数</td><td data-label="数値">3,063 万 6,910 人分 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup></td><td data-label="前年との比較">93.1% 増。 100 万人以上の事故は 2 件から 6 件へ</td></tr>
+<tr><td data-label="指標">国内のランサムウェア被害報告、 2026 年上半期</td><td data-label="数値">123 件 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></td><td data-label="前年との比較">2020 年下半期の集計開始以降、半期で過去最多</td></tr>
+</table>
+
+<div class="box"><strong>前提の検証結果</strong><br>確認できたのは、大型事案の公表の集中、 1 件あたりの規模の拡大、ランサムウェア被害報告の過去最多である。確認できなかったのは、漏えい等の報告件数そのものの急増である。 2025 年度の報告件数も、 2025 年の上場企業の公表件数も、前年から減っている。したがって、本稿は「件数の増加」ではなく「規模の集中と可視化」を主題とする。</div>
+
+<p>以上を踏まえ、第 2 章から第 5 章で四つの視点を順に検討する。技術的要因、攻撃手法の変化、制度と検知の変化、組織の運用である。各視点で、確立した事実、未確定の仮説、投機的な理論を区別する。確立した事実とは、複数の独立した一次資料で確認でき争いがないものを指す。未確定の仮説とは、一部の資料が支持するが反証や反対の見解があるもの、投機的な理論とは、直接の裏付けがなく推論のみに基づくものを指す。</p>
+
+<h2 id="sec2">2. 技術的要因：広がりすぎたアタックサーフェスと「設定の盲点」</h2>
+<p>アタックサーフェス、すなわち攻撃者が侵入を試みうる接点の広がりは、侵害の入口の統計に現れている。 Verizon の 2026 年版 DBIR は、侵害の 31% がソフトウェアの脆弱性から始まり、盗まれたパスワードを抜いて最多の侵入経路になったと述べる <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。 Mandiant の M-Trends 2026 も、 2025 年の初期侵入経路の最多は脆弱性の悪用で 32% であり、 6 年連続の首位だったと報告している <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。国内でも、警察庁のランサムウェア被害の統計では、侵入経路が判明した事案の約 5 割が VPN 機器経由だった <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> 。いずれも境界に置かれた機器やサービスの脆弱性が、依然として主要な入口であることを示す。</p>
+<p>集中リスクの具体例が IDCF クラウドである。一つのクラウド事業者への攻撃が、 495 の利用者に同時に影響した <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。利用企業が自社のセキュリティを固めても、基盤側の侵害は防げない。</p>
+<p>認証基盤への攻撃も確認できる。 M-Trends 2026 によれば、攻撃者は長期有効な OAuth トークンやセッション Cookie を収集して防御を回避し、侵害した SaaS 事業者から鍵やアクセストークンを盗んで顧客環境へ横展開している。ランサムウェア集団は、バックアップ基盤、 ID サービス、仮想化の管理基盤を狙う傾向を強めており、 Active Directory 証明書サービスのテンプレートの設定不備も悪用の例として挙げられている <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> 。</p>
+
+<div class="box"><strong>仮説</strong><br>マルチクラウドと SaaS 連携の拡大に伴う設定不備、 API 連携の盲点、シャドー IT 、 IAM の複雑化が、近年の漏洩を押し上げているという見方は、直感的には説得力がある。しかし、 2025 年から 2026 年の国内事案についてこれを定量的に裏付ける資料を、本稿は確認できなかった。「クラウド上の事故の大半は利用者の設定ミスによる」という Gartner の予測は広く引用されるが、 2019 年に示された予測であり、実測値ではない <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。したがって、設定不備が主因であるという主張は、現時点では未確定の仮説にとどめる。確認できた事実は、脆弱な境界機器と、窃取された認証情報やトークンが主な入口になっていることである。</div>
+
+<h2 id="sec3">3. 攻撃の進化：生成 AI を武器にする攻撃者とサプライチェーンの歪み</h2>
+<p>生成 AI の悪用については、確認できた事実と、そこから先の推論を分けなければならない。事実として、 Anthropic は 2025 年 11 月、中国の国家支援とみられる集団が同社のモデルを使い、約 30 の標的に対する侵入活動の 80% から 90% を AI に実行させたと報告した。人間の判断が必要だったのは一つの作戦あたり 4 回から 6 回の分岐点にとどまり、攻撃者は作業を無害に見える小さな単位に分けて、安全機構を回避したという。同じ報告は、 AI が認証情報を幻覚したり、公開情報を秘密情報と誤認したりした限界も記している <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。なお、この報告は生成 AI の開発事業者自身による自己報告である点に留意が要る。</p>
+<p>他方で、 Google の M-Trends 2026 は、 2025 年を「侵害が直接 AI の結果として起きた年」とは見なしておらず、成功した侵入の大半は基本的な人的、体系的な不備に由来するとの立場をとる。マルウェアが実行中に LLM に問い合わせて検知を回避する例は確認されたとも述べている <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup> 。 Verizon も、攻撃手法の一部が生成 AI で強化されていると指摘する <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 。</p>
+
+<div class="box"><strong>仮説</strong><br>生成 AI は、自然なスピアフィッシングの文面作成や脆弱性探索の高速化を通じて、攻撃の費用と必要な技能を下げるという見方がある。ただし、 2026 年秋の国内の個々の流出事案が AI によって引き起こされたと示す資料は、本稿は確認できていない。 AI は攻撃を加速する要因の候補であって、現時点で国内の漏洩増加の原因とは言えない。</div>
+
+<p>サプライチェーンについては、国内の事案で具体的に確認できる。第一興商の事案では、侵害されたのは自社ではなく、個人情報の取り扱いを委託していた会社の従業員端末だった <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。 2025 年のアスクルの事案では、業務委託先が使っていた管理者アカウントの認証情報が悪用され、多要素認証が適用されていなかったと報じられた <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。 M-Trends 2026 が指摘する SaaS 事業者経由の横展開も同じ構造である <sup id="fnref-9-4"><a href="#ref-9">[9]</a></sup> 。委託先の侵害が発注元の漏洩として公表される構図は、複数の事案で共通している。なお、 OSS ライブラリ経由の侵入や中小取引先の脆弱性の統計は、今回の調査では裏付けを取れず、扱わなかった。</p>
+<p>ランサムウェアの手口は、暗号化にとどまらない。警察庁の統計は、暗号化による身代金要求に加え、データを盗んで公開をちらつかせる手口も確認されたとする。被害は大企業 79 件、中小企業 31 件、団体等 13 件で、調査と復旧に 1,000 万円以上を要した組織は回答の約 6 割、復旧に 1 か月以上かかった組織は約 5 割だった <sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup> 。 M-Trends 2026 は、ランサムウェア事案で「過去の侵害」が初期侵入経路の 30% に達し、前年の 15% から倍増したと報告する <sup id="fnref-9-5"><a href="#ref-9">[9]</a></sup> 。一度侵害された資格情報や環境が、次の攻撃の足場になりうることを示唆する。</p>
+
+<h2 id="sec4">4. 制度と検知の視点：「漏洩が増えた」のか「隠せなくなった」のか</h2>
+<p>この章では、結論を先に決めず、二つの説をそれぞれ最も強い形で示してから判断する。</p>
+
+<h3 id="sec4-1">4.1 「増えた」説の最も強い形</h3>
+<p>この説を主張する論者が示しうる最も強い論拠は、件数ではなく被害の規模と重みである。 2025 年の上場企業の事故では、件数が 4.7% 減る一方で、流出人数は 1,586 万人余から 3,063 万人余へと 93.1% 増え、 100 万人以上の事故は 2 件から 6 件へ 3 倍になった。公表した企業の数も 158 社で過去最多を更新した <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup> 。ランサムウェアの被害報告も、 2026 年上半期に半期として過去最多の 123 件に達した <sup id="fnref-7-4"><a href="#ref-7">[7]</a></sup> 。この論者は、個々の事案が大型化し、被害の裾が重くなっていることこそが本質であり、 2026 年秋の報道の集中は、その裾の事案が重なった結果だと主張できる。件数の減少は、小規模な誤送信などの減少で説明でき、深刻な侵害の増加を打ち消さない、という議論も成り立つ。</p>
+
+<h3 id="sec4-2">4.2 「隠せなくなった」説の最も強い形</h3>
+<p>この説の根拠は制度にある。 2022 年 4 月 1 日から、一定の漏えい等について個人情報保護委員会への報告と本人への通知が義務になった <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。報告対象は、要配慮個人情報を含む漏えい、財産的被害のおそれがあるもの、不正の目的によるおそれがあるもの、本人が 1,000 人を超えるものなどの類型で、速報は発覚から 3 日から 5 日以内、確報は 30 日以内、不正の目的のおそれがある場合は 60 日以内とされる <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。この論者は、義務化により、以前は組織内で処理されていた事案が公表の流れに乗るようになったと論じうる。検知の側でも、 M-Trends 2026 は、組織が自力で侵害の兆候を最初に見つけた割合が 2024 年の 43% から 2025 年の 52% に上がったと報告しており <sup id="fnref-9-6"><a href="#ref-9">[9]</a></sup> 、検知技術と運用の普及が過去の不正アクセスの発見を増やす経路を示唆する。さらに、 2024 年度に報告件数が過去最多となった主因は、人事給与系システム事業者のサーバーへの不正アクセス事案だったと報じられている。委託先の一事案が全体の統計を動かしうるほど、報告が制度に載るようになったことを物語る <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 。</p>
+
+<h3 id="sec4-3">4.3 判断とその根拠</h3>
+<p>資料に基づく判断は、どちらか一方ではなく、両説の併存である。ただし、二つの説が説明できる範囲は異なる。</p>
+<p>第一に、「件数が増えた」説は、少なくとも 2025 年については支持されない。個人情報保護委員会への報告件数も上場企業の公表件数も、前年から減っているからである <sup id="fnref-5-3"><a href="#ref-5">[5]</a></sup><sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup> 。第二に、「隠せなくなった」説は、 2022 年の義務化という水準の変化を説明できても、 2024 年から 2025 年への変動や、 2026 年秋の集中は説明できない。両年とも同じ制度の下にあるからである。第三に、義務化の前後の件数推移を、本稿は確認できていない。したがって、制度変更の効果の大きさは検証できなかった。第四に、検知率の上昇の根拠である M-Trends は世界の対応事例の集計で、国内の検知状況をそのまま表すものではない <sup id="fnref-9-7"><a href="#ref-9">[9]</a></sup> 。</p>
+<p>以上を踏まえると、最も確からしい説明は、被害の裾が重くなる傾向と、報告と公表を促す制度の定着が併存し、そこに偶然の集中が重なったというものである。この説明のうち、 2025 年の規模の拡大は確立した事実に近い <sup id="fnref-6-5"><a href="#ref-6">[6]</a></sup> 。制度が公表を増やしたという因果は、未確定の仮説である。 2026 年秋の集中が偶然か構造かは、投機的な領域にとどまり、四半期ごとの統計が出るまで判断を保留すべきである。</p>
+
+<table class="cards">
+<tr><th>主張</th><th>区分</th><th>根拠と限界</th></tr>
+<tr><td data-label="主張">2025 年の個人情報漏えいは大型化した</td><td data-label="区分">確立した事実に近い</td><td data-label="根拠と限界">TSR の調査で人数が 93.1% 増。ただし調査対象は上場企業とその子会社に限られる</td></tr>
+<tr><td data-label="主張">報告義務化により以前は表に出なかった事案が公表されるようになった</td><td data-label="区分">未確定の仮説</td><td data-label="根拠と限界">制度の存在は確認できるが、義務化前後の件数推移を確認できていない</td></tr>
+<tr><td data-label="主張">検知技術の普及で過去の侵害が見つかりやすくなった</td><td data-label="区分">未確定の仮説</td><td data-label="根拠と限界">世界の集計で自力検知が 43% から 52% に上昇。国内の実態は未確認</td></tr>
+<tr><td data-label="主張">2026 年秋の集中は構造的な増加の始まりである</td><td data-label="区分">投機的な理論</td><td data-label="根拠と限界">単発の期間であり、年単位の裏付けがない</td></tr>
+</table>
+
+<p>制度の今後にも触れておく。 2026 年 7 月 17 日に公布された改正個人情報保護法は、課徴金制度を導入するが、対象は不適正利用、不適正取得、第三者提供制限違反、統計作成特例の違反の 4 類型で、サイバー攻撃による漏えいそのものは対象外と整理されている <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。漏えい報告をめぐる抑止や誘因が、これで直ちに変わるとは言えない。</p>
+
+<h2 id="sec5">5. 組織の課題： DX の加速とセキュリティ人材不足の狭間で</h2>
+<p>人材と運用の問題は、国際調査では裏付けが取れる。 ISC2 の 2025 年調査には 16,029 人が回答し、 59% が重大または大きなスキル不足を挙げ、その割合は前年から 15% 上昇した。 33% は人員を十分に配置する資源がないと答え、 72% はセキュリティ要員の削減が侵害のリスクを大きく高めることに同意した <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。ただし、この調査は世界の専門家を対象にしており、国内の人材不足の規模を示すものではない。国内の不足人数の推計は調査ごとに幅が大きく、出所を確認できなかったため、数値は載せない。</p>
+<p>運用面の弱さを示す国内の事実として、 VPN 機器の脆弱性を突かれた被害が以前から指摘されているにもかかわらず、企業側の対策が進んでいないとの指摘が報じられている <sup id="fnref-7-5"><a href="#ref-7">[7]</a></sup> 。アスクルの事案で、委託先の管理者アカウントに多要素認証がなかったという報道も、運用上の隙を示す <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 。 M-Trends 2026 は、成功した侵入の大半が基本的な人的、体系的な不備に由来すると述べる <sup id="fnref-9-8"><a href="#ref-9">[9]</a></sup> 。</p>
+
+<div class="box"><strong>仮説</strong><br>事業展開の速さにセキュリティ運用の設計が追いつかず、後から返済すべき「セキュリティ的負債」が積み上がっているという見方は、上の事実と整合的である。しかし、 DX の速度と漏洩の関係を直接測った資料は確認できておらず、因果は未確定の仮説である。また、退職者アカウントの放置や内部不正対策の遅れが増えているという論点は、裏付けを取れなかったため、記事から外した。内部者による持ち出しや盗難は、 2025 年の上場企業の事故のうち 7 件、 3.8% にとどまる <sup id="fnref-6-6"><a href="#ref-6">[6]</a></sup> 。</div>
+
+<h2 id="sec6">6. 終章 企業に求められる次世代の防衛思想</h2>
+<p>これまでの検討で確認できた事実は、入口が境界機器と認証情報に偏ること、被害が委託先や基盤事業者を介して広がること、ランサムウェアの被害が長期化し費用が重いことである。この三点を受けて、以下は筆者の提案であり、効果を断定するものではない。</p>
+
+<div class="box"><strong>提案：境界防御から、ゼロトラスト、そして回復力へ</strong><br>
+境界の内側を信頼する発想は、 VPN 機器が最大の侵入経路になっている現状と合わない。提案の第一は、境界機器を「信頼の源」ではなく「最も攻撃される資産」として扱うことである。資産の把握、修正の迅速な適用、利用の最小化を優先し、すべてのアクセスをその都度検証するゼロトラストの考え方へ移る。</div>
+
+<div class="box"><strong>提案：委託先を含む認証の統制</strong><br>
+委託先の管理者アカウントの認証情報が悪用された事案は、発注元の統制の及ぶ範囲を再定義する必要を示す。委託先に対する多要素認証の要求、権限の最小化、端末の状態の確認を契約と運用に組み込むことを提案する。</div>
+
+<div class="box"><strong>提案：侵害を前提とした回復力</strong><br>
+攻撃者がバックアップ基盤と ID 基盤を狙う傾向を踏まえ、バックアップの分離と復旧手順の演習、侵害の早期検知を設計の前提に置く。復旧に 1 か月以上かかった組織が約 5 割という現実は、防ぎきれない事態への備えの価値を示唆する。</div>
+
+<p>これらは、特定の組織の責任を問うものではない。委託先や基盤事業者は、それ自身が高度な標的であり、発注元と同じ課題を抱える。防衛の単位を一社の内側から、取引と基盤の連鎖全体へ広げることが、規模が大きくなる被害への現実的な応答になる、と筆者は考える。</p>
+
+<h2 id="sec7">7. 要点まとめ表</h2>
+<table class="cards">
+<tr><th>主要原因</th><th>裏付けの区分</th><th>主な根拠</th><th>対策アプローチ、提案</th></tr>
+<tr><td data-label="主要原因">境界機器と認証情報を狙う侵入</td><td data-label="裏付けの区分">確立した事実に近い</td><td data-label="主な根拠">脆弱性悪用が最多の侵入経路。 VPN 機器経由が約 5 割</td><td data-label="対策アプローチ、提案">境界機器の資産管理と迅速な修正、ゼロトラストへの移行</td></tr>
+<tr><td data-label="主要原因">設定不備、 API 、シャドー IT</td><td data-label="裏付けの区分">未確定の仮説</td><td data-label="主な根拠">定量的な裏付けを確認できず</td><td data-label="対策アプローチ、提案">設定の継続的な点検。効果は検証が必要</td></tr>
+<tr><td data-label="主要原因">委託先、基盤事業者を介した侵害</td><td data-label="裏付けの区分">複数事案で確認</td><td data-label="主な根拠">第一興商、アスクル、 IDCF クラウドの事案</td><td data-label="対策アプローチ、提案">委託先の多要素認証と権限最小化を契約に組み込む</td></tr>
+<tr><td data-label="主要原因">生成 AI を使う攻撃</td><td data-label="裏付けの区分">未確定の仮説</td><td data-label="主な根拠">海外の自己報告あり。国内事案との因果は未確認</td><td data-label="対策アプローチ、提案">検知と対応の自動化の検討</td></tr>
+<tr><td data-label="主要原因">ランサムウェアの長期化</td><td data-label="裏付けの区分">確立した事実に近い</td><td data-label="主な根拠">報告 123 件で過去最多。復旧 1 か月以上が約 5 割</td><td data-label="対策アプローチ、提案">バックアップの分離、復旧演習、早期検知</td></tr>
+<tr><td data-label="主要原因">制度による可視化の進展</td><td data-label="裏付けの区分">未確定の仮説</td><td data-label="主な根拠">義務化は確認できるが推移は未確認</td><td data-label="対策アプローチ、提案">報告体制の整備。公表前提の危機管理</td></tr>
+<tr><td data-label="主要原因">人材とスキルの不足</td><td data-label="裏付けの区分">世界では裏付けあり、国内は未確認</td><td data-label="主な根拠">ISC2 調査でスキル不足を挙げた回答が 59%</td><td data-label="対策アプローチ、提案">外部委託と内製の役割分担の再設計</td></tr>
+</table>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> ITmedia NEWS 編集部。「ブックオフに不正アクセス、最大約 643 万件の個人情報流出　氏名、住所、ハッシュ化パスワードなど」。 2026 年 10 月 9 日。参照日 2026 年 10 月 10 日。 <a href="https://www.itmedia.co.jp/news/article/2610/09/2000002150/">ITmedia NEWS</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> NHK 。第一興商による約 872 万件の個人情報漏えいのおそれの発表を伝える報道。 2026 年 10 月 8 日。参照日 2026 年 10 月 10 日。 <a href="https://news.web.nhk/newsweb/na/nd-20261008de56831">NHK NEWS WEB</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Impress Watch 。「 IDCF クラウドの障害は「ランサムウェア攻撃」が原因　 495 の企業・自治体に影響」。 2026 年 10 月。参照日 2026 年 10 月 10 日。 <a href="https://www.watch.impress.co.jp/docs/news/2146693.html">Impress Watch</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> プラスチックパレット社。「情報漏えいはどこで起きたのか、 2026 年 9 〜 10 月の 64 件一覧」。 2026 年 10 月 10 日時点。民間事業者による独自集計であり、網羅性は保証されない。参照日 2026 年 10 月 10 日。 <a href="https://plastic-pallet.co.jp/joho-roei-ichiran-2026-10/">集計記事</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> <sup><a href="#fnref-5-3">c</a></sup> 個人情報保護委員会。令和 7 年度年次報告。 2026 年 7 月 7 日閣議了承。民間事業者の漏えい等事案の報告処理件数は、解決 .jp 「民間事業者における個人データの漏えい等 1 万 7,139 件」 2026 年 7 月 9 日による。参照日 2026 年 10 月 10 日。 <a href="https://www.kaiketsu-j.com/trouble/22893/">解決 .jp</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> <sup><a href="#fnref-6-3">c</a></sup> <sup><a href="#fnref-6-4">d</a></sup> <sup><a href="#fnref-6-5">e</a></sup> <sup><a href="#fnref-6-6">f</a></sup> 東京商工リサーチ。「 2025 年 上場企業の個人情報漏えい・紛失事故」。 2026 年 1 月 30 日発表。数値は ScanNetSecurity 「 100 万人以上の大型事故が前年から 3 倍増」 2026 年 2 月 20 日による。参照日 2026 年 10 月 10 日。 <a href="https://scan.netsecurity.ne.jp/article/2026/02/20/54668.html">ScanNetSecurity</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> <sup><a href="#fnref-7-3">c</a></sup> <sup><a href="#fnref-7-4">d</a></sup> <sup><a href="#fnref-7-5">e</a></sup> 警察庁。「令和 8 年上半期におけるサイバー空間をめぐる脅威の情勢等について」。 2026 年 9 月 10 日公表。数値は @IT 「ランサムウェア被害は過去最多　警察庁が明かした 2026 年上半期の異変」 2026 年 9 月 17 日による。参照日 2026 年 10 月 10 日。 <a href="https://atmarkit.itmedia.co.jp/ait/articles/2609/17/news010.html">@IT</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Verizon. <em>2026 Data Breach Investigations Report</em>. 2024 年 11 月 1 日から 2025 年 10 月 31 日までのインシデントを分析。参照日 2026 年 10 月 10 日。 <a href="https://www.verizon.com/business/resources/reports/dbir/">Verizon DBIR</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> <sup><a href="#fnref-9-3">c</a></sup> <sup><a href="#fnref-9-4">d</a></sup> <sup><a href="#fnref-9-5">e</a></sup> <sup><a href="#fnref-9-6">f</a></sup> <sup><a href="#fnref-9-7">g</a></sup> <sup><a href="#fnref-9-8">h</a></sup> Google Cloud, Mandiant. <em>M-Trends 2026</em>. 2025 年に実施した対応調査に基づく年次報告。参照日 2026 年 10 月 10 日。 <a href="https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026">Google Cloud ブログ</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> ITmedia 。「クラウド利用で高まる情報セキュリティリスク、その原因は ? IT 担当者が身に付けるべき運用の心構え」。 2021 年 10 月 13 日。 Gartner の 2019 年の予測を紹介した記事であり、実測値ではない。参照日 2026 年 10 月 10 日。 <a href="https://www.itmedia.co.jp/news/article/2110/13/1211013125/2">ITmedia</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Anthropic. <em>Disrupting the first reported AI-orchestrated cyber espionage campaign</em>. 2025 年 11 月 13 日。生成 AI 開発事業者自身による報告である。参照日 2026 年 10 月 10 日。 <a href="https://www.anthropic.com/news/disrupting-AI-espionage">Anthropic</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> ITmedia NEWS 。「アスクル、個人情報 74 万件漏えい　攻撃手法や初動対応を時系列順にまとめたレポートも公開」。 2025 年 12 月 12 日。追加の本人通知については ScanNetSecurity 、 2026 年 8 月 17 日。参照日 2026 年 10 月 10 日。 <a href="https://www.itmedia.co.jp/news/article/2512/12/1251212106/">ITmedia NEWS</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> BUSINESS LAWYERS 。漏えい等の報告義務に関する解説。 2022 年 4 月 1 日の義務化を解説する。参照日 2026 年 10 月 10 日。 <a href="https://www.businesslawyers.jp/practices/1433">BUSINESS LAWYERS</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> 個人情報保護委員会。漏えい等事案が発覚した場合に事業者が行うべき対応。速報、確報の期限と報告対象事態の類型。参照日 2026 年 10 月 10 日。 <a href="https://www.ppc.go.jp/personalinfo/legal/leakAction/">個人情報保護委員会</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> GVA 法律事務所。「令和 8 年個人情報保護法改正とは ? 」。 2026 年 5 月 15 日。成立、公布の日付と課徴金の対象類型については、長島・大野・常松法律事務所の速報解説も参照した。参照日 2026 年 10 月 10 日。 <a href="https://gvalaw.jp/blog/i20260515/">GVA 法律事務所</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> ISC2. <em>2025 Cybersecurity Workforce Study</em>. 2025 年 12 月 4 日。回答者 16,029 人。参照日 2026 年 10 月 10 日。 <a href="https://www.isc2.org/insights/2025/12/isc2-publishes-2025-cybersecurity-workforce-study">ISC2</a></li>
+</ol>
+</div>
+<p class="endnote">本稿は 2026 年 10 月 10 日時点の公開情報に基づく分析であり、個別の企業の責任を断定するものではない。事案の件数や原因は続報で変わりうる。「仮説」「提案」と明記した記述は、事実ではなく筆者の推論である。</p>
+</main>
+</body>
+</html>

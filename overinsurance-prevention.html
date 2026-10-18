@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>過剰な生命保険契約の現状と防止策</title>
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--link:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+body{margin:0;background:var(--bg);color:var(--text);font-size:1.1875rem;line-height:1.85}
+main{padding:2.5rem clamp(1rem, 4vw, 4rem) 4rem;max-width:none;margin:0}
+a{color:var(--link)}
+.kicker{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .4rem}
+h1{font-size:2rem;color:var(--text);margin:0 0 .6rem}
+.subtitle{color:var(--muted);margin:0 0 1rem}
+.lede{border-left:4px solid var(--accent);padding-left:1rem;margin:1rem 0}
+.lede p{margin:0 0 .6rem}
+.lede p:last-child{margin-bottom:0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin:0 0 2.5rem;color:var(--muted);font-size:.9rem;line-height:1.9}
+.meta p{margin:0}
+.toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+.toc>ol{columns:2;column-gap:2rem;margin:0}
+.toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+.toc li{margin-bottom:.3rem;break-inside:avoid}
+.toc li ol{margin:.3rem 0 .4rem}
+.toc li li{color:var(--muted)}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.35rem;margin-top:2.6rem}
+h3{font-size:1.25rem;margin-top:1.8rem}
+strong{color:var(--accent)}
+ul,ol{margin:0 0 1.2rem;padding-left:1.4em}
+.box{background:var(--box);border:1px solid var(--line);padding:1rem 1.2rem;margin:0 0 1.4rem}
+.box ul{margin-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:.95rem;margin:1rem 0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;vertical-align:top;text-align:left}
+th{background:var(--box)}
+sup{font-size:.72em;line-height:0}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line); margin-top:3rem; padding-top:1rem;}
+.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
+.refs p{font-size:.9rem; line-height:1.65; overflow-wrap:anywhere; word-break:break-word;}
+.refs em{font-style:italic;}
+.refs li{font-size:.9rem; line-height:1.65; overflow-wrap:anywhere; word-break:break-word;}
+.refs li>a:first-child{font-weight:700; text-decoration:none;}
+.refs sup a{font-style:italic; font-weight:700;}
+.refs li:target, sup:target{background:var(--box);}
+.endnote{font-size:.9rem;color:var(--muted)}
+@media (max-width:480px){
+  .toc>ol{columns:1}
+}
+/* 表のカード化(幅 40rem 以下) */
+@media (max-width:40rem){
+  table.cards, table.cards tbody, table.cards tr, table.cards td{display:block;width:100%;box-sizing:border-box}
+  table.cards thead, table.cards tr:has(> th){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);border:0;margin:0;padding:0}
+  table.cards tr{border:1px solid var(--line);margin:.7rem 0;background:var(--bg);overflow:hidden}
+  table.cards td{border:0;border-bottom:1px solid var(--line);padding:.45rem .7rem}
+  table.cards td:last-child{border-bottom:0}
+  table.cards td::before{content:attr(data-label);display:block;font-size:.8rem;font-weight:700;color:var(--accent)}
+  table.cards td:first-child{background:var(--box);font-weight:700}
+  table.cards td:first-child::before{display:none}
+}
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">家計・生命保険の検証</p>
+<h1>過剰な生命保険契約の現状と防止策<br>――「がん保険は必要ない」という言説も含めて検証する</h1>
+<p class="subtitle">Excessive Life Insurance Contracts: Current Conditions, Preventive Measures, and the Claim That Cancer Insurance Is Unnecessary</p>
+<div class="lede">
+<p>「生命保険は、学べば学ぶほど無駄な契約が多いことに気づく」。このような言説が見られる。その延長に、「がん保険は必要ない」という言説もある。公的な医療保障が手厚いので、民間のがん保険は要らないという主張である。ただし、これらを主張する論者の一次資料は、本稿では確認できていない（「限界」を参照）。</p>
+<p>本稿は、これらの言説を、結論の決まったものとしては扱わない。公的な統計と制度の資料、学術論文に当たり、問いを三つに分けて確かめる。一つ目は、過剰な契約とは何を指し、日本の統計から何が言えるか。二つ目は、がん保険は「必要ない」と言えるか。三つ目は、過剰な契約を防ぐために、制度と契約者の側で何ができるか。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong> 事実として記述するのは、公式統計・法令・官公庁や業界団体の資料、学術論文の書誌と要旨で確認できたものに限る。筆者の解釈は、解釈と分かる形で書き分けた。調査には回数の上限を設けたため、日本の家計を対象にした計量研究や、「無駄が多い」「がん保険は不要」とする論者の一次資料は確認できていない。本稿は、個別の契約の可否を判断する助言ではない。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">言葉をそろえる</a>
+<ol>
+<li><a href="#sec1-1">必要保障額という物差し</a></li>
+<li><a href="#sec1-2">「過剰」をどう定義するか</a></li>
+<li><a href="#sec1-3">「高額」をどう定義するか</a></li>
+</ol>
+</li>
+<li><a href="#sec2">公的保障と他の備え</a>
+<ol>
+<li><a href="#sec2-1">遺族年金の仕組み</a></li>
+<li><a href="#sec2-2">2028 年 4 月からの見直し</a></li>
+<li><a href="#sec2-3">年金以外の備え</a></li>
+</ol>
+</li>
+<li><a href="#sec3">過剰な契約の現状</a>
+<ol>
+<li><a href="#sec3-1">調査ごとに違う数字</a></li>
+<li><a href="#sec3-2">年齢別の加入額</a></li>
+<li><a href="#sec3-3">過剰論と不足論</a></li>
+<li><a href="#sec3-4">学術研究は何を言っているか</a></li>
+</ol>
+</li>
+<li><a href="#sec4">「がん保険は必要ない」という言説</a>
+<ol>
+<li><a href="#sec4-1">言説の最も強い形</a></li>
+<li><a href="#sec4-2">言説の外側にある論点</a></li>
+<li><a href="#sec4-3">どこまで成り立つか</a></li>
+</ol>
+</li>
+<li><a href="#sec5">過剰な契約の防止策</a>
+<ol>
+<li><a href="#sec5-1">制度による防止</a></li>
+<li><a href="#sec5-2">制度の限界</a></li>
+<li><a href="#sec5-3">契約者の側でできること</a></li>
+</ol>
+</li>
+<li><a href="#sec6">論点の区分</a></li>
+<li><a href="#sec7">結論</a></li>
+<li><a href="#sec8">限界</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 言葉をそろえる</h2>
+
+<h3 id="sec1-1">1.1 必要保障額という物差し</h3>
+<p>保険の要否を考えるとき、実務でよく使われるのが必要保障額である。万一のときに遺族が必要とする支出の見込みから、遺族年金や死亡退職金、配偶者の収入、貯蓄といった収入の見込みを差し引いた、不足額を指す。公益財団法人の生命保険文化センターは、この計算を「積み上げ方式」と呼び、支出には遺族の生活費、子の教育・結婚資金、住居費、葬儀費用などを、収入には遺族年金、死亡退職金、配偶者の就労収入、自己資産などを入れている。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></p>
+<p>同センターの事例（ 32 歳の会社員と自営業者）では、生活費を、末子の独立までは現在の 0.7 倍、独立後は 0.5 倍として計算している。ただし、この掛け率の理由はページに説明されていない。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 必要保障額は確定した数字ではなく、前提の置き方で動く試算である。</p>
+
+<h3 id="sec1-2">1.2 「過剰」をどう定義するか</h3>
+<p>「無駄」「過剰」という言葉が指すものは、論者によって異なる。本稿では二つの候補を比べる。</p>
+<p><strong>基準 A （必要額の基準）</strong><br>遺族や本人に必要な額のうち、公的保障や貯蓄などで足りない分を超える部分を、過剰とみなす。必要保障額の発想に、そのままつながる基準である。</p>
+<p><strong>基準 B （価格の基準）</strong><br>同じ保障を、別の商品や貯蓄といった他の手段で得る場合と比べて、割高な契約を過剰とみなす。保険料は、保険金の支払いに充てる純保険料と、会社の経費に充てる付加保険料からなる。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 付加保険料がある以上、平均すれば、保険料は給付の期待値（平均して受け取れる額）を上回る構造になる（筆者の整理）。</p>
+<p><strong>筆者の判断</strong><br>本稿は基準 A を主に採る。基準 B を「期待値で損かどうか」だけで測ると、どの保険も「損」になってしまい、要るか要らないかを分ける物差しにならないからである。リスクを避けたい人が、期待値では損でも備えを選ぶことは、それだけで不合理とは言えない（筆者の解釈）。ただし基準 A には、定義から「必要額を超える部分は過剰」が自動的に正しくなる、という循環の危険がある。実際に確かめるべきなのは、実際の加入額が必要額を超えているかどうかであり、それは日本のデータでは示せなかった。各社・各商品の付加保険料率の公表値も、確認できていない。</p>
+
+<h3 id="sec1-3">1.3 「高額」をどう定義するか</h3>
+<p>「高額」を、金額で決めることはできなかった。たとえば 2024 年度の調査で、世帯主の普通死亡保険金額（病気などで亡くなったときに支払われる保険金の額。加入世帯の平均）は 1,258 万円であるが、 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> これが高いか低いかは、家計ごとの必要額で決まる。そこで本稿は、「過剰」を、その世帯の必要額を超える部分と定義し、絶対額での線引きは行わない。</p>
+
+<h2 id="sec2">2. 公的保障と他の備え</h2>
+<p>必要保障額の「収入の見込み」にあたるのが、公的な給付と、勤務先や資産による備えである。これらが厚いほど、民間保険で上乗せすべき額は小さくなる。制度の数値は改定されうるため、基準日を併記する。</p>
+
+<h3 id="sec2-1">2.1 遺族年金の仕組み</h3>
+<table class="cards">
+<tr><th>制度</th><th>内容</th><th>基準日</th></tr>
+<tr><td data-label="制度">遺族基礎年金</td><td data-label="内容">対象は、子のある配偶者、または子である。子とは、 18 歳に達した後の最初の 3 月 31 日までの子（ 1 級・ 2 級の障害がある場合は 20 歳未満）を指す。額は、基本額 847,300 円に子の加算（ 2 人目まで各 243,800 円、 3 人目以降は各 81,300 円）を足したものである。子が 1 人の配偶者なら、年 1,091,100 円になる（本稿の計算）。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></td><td data-label="基準日">令和 8 年度</td></tr>
+<tr><td data-label="制度">遺族厚生年金</td><td data-label="内容">厚生年金に加入中の死亡などで支給される。額は、死亡した人の報酬比例の年金額（加入中の賃金と加入期間をもとに計算される厚生年金の額）の 4 分の 3 である。加入中の死亡などでは、被保険者期間が 300 月（ 25 年）に満たなくても、 300 月とみなして計算する。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></td><td data-label="基準日">2024 年 3 月の厚生労働省資料</td></tr>
+<tr><td data-label="制度">国民年金の独自給付</td><td data-label="内容">国民年金の第 1 号被保険者（国民年金だけに加入している人）を対象に、寡婦年金と死亡一時金がある。死亡一時金は、保険料を 36 月以上納めた人が亡くなった場合に、納付月数に応じて 12 万円から 32 万円が支給される。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></td><td data-label="基準日">令和 8 年度</td></tr>
+</table>
+<p>この表から読み取れるのは、遺族基礎年金が「子のいる家庭」に偏った給付だという点である。子がいない遺族は、遺族基礎年金の対象外となる。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup></p>
+
+<h3 id="sec2-2">2.2 2028 年 4 月からの見直し</h3>
+<p>2025 年 6 月に成立した、国民年金法等の一部を改正する法律により、 2028 年 4 月から遺族厚生年金が見直される予定である。 18 歳年度末までの子がいない配偶者のうち、女性は 2028 年度末時点で 40 歳未満の人、男性は 60 歳未満の人が、原則 5 年間の有期給付（期間が限られた給付）の対象となる。有期給付には加算がつき、現行の遺族厚生年金額の約 1.3 倍になる。 5 年たった後も、障害状態にある人や収入が十分でない人は、増額された遺族厚生年金を継続給付として受け取れる。一方、 18 歳年度末までの子を養育している間の給付は現行どおりである。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> <p><strong>筆者の読み</strong><br>この見直しの影響は、向きが一様ではない。子のいない配偶者のうち、女性の一部は期間が限られた給付になる。男性は、現行では死亡当時 55 歳以上の夫が遺族厚生年金の対象であり、 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 改正後は 60 歳未満の夫が新たに有期給付の対象となるため、対象が広がる面がある。いずれにせよ、公的保障の形が変わるので、必要保障額の前提も、制度の変更に合わせて見直す必要がある。</p>
+
+<h3 id="sec2-3">2.3 年金以外の備え</h3>
+<ul>
+<li><strong>高額療養費</strong><br>医療費の自己負担に、月ごとの上限を設ける制度である。令和 8 年 8 月から令和 9 年 7 月の 70 歳未満の限度額は、年収約 370 万円から約 770 万円の区分で、月 85,800 円 + （医療費−286,000 円）×1% である。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></li>
+<li><strong>傷病手当金</strong><br>協会けんぽの制度では、業務外の病気やけがで仕事を休み、待期の 3 日間を含めて 4 日以上仕事に就けなかった場合に、 1 日につき標準報酬日額の 3 分の 2 に相当する額が支給される。支給期間は、支給を開始した日から通算して 1 年 6 か月である。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></li>
+<li><strong>団体信用生命保険（団信）</strong><br>住宅金融支援機構の団信は、加入者が死亡または所定の身体障害状態になると、以後の同機構に対する債務の返済が不要になる仕組みである。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></li>
+<li><strong>相続税の非課税枠</strong><br>死亡保険金のうち、 500 万円×法定相続人の数までは相続税がかからない。（令和 8 年 4 月 1 日現在の法令等）<sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></li>
+<li><strong>勤務先の備え</strong><br>死亡退職金は、必要保障額の「収入の見込み」の項目に挙がっている。 <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 具体的な水準は、本稿では調べきれていない。</li>
+</ul>
+
+<h2 id="sec3">3. 過剰な契約の現状</h2>
+
+<h3 id="sec3-1">3.1 調査ごとに違う数字</h3>
+<p>日本の統計は、調査ごとに対象や定義が異なる。次の表では、数字ごとに、何の調査の、誰を対象にした、何の数字かを並べる。</p>
+<table class="cards">
+<tr><th>数字</th><th>値</th><th>対象と定義</th></tr>
+<tr><td data-label="数字">世帯加入率</td><td data-label="値">89.2%</td><td data-label="対象と定義">2024 年度の全国実態調査。世帯員 2 人以上の一般世帯、個人年金保険を含む全生保。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup></td></tr>
+<tr><td data-label="数字">世帯の普通死亡保険金額</td><td data-label="値">1,936 万円</td><td data-label="対象と定義">同。加入世帯の平均（未加入世帯を含まない）。 <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup></td></tr>
+<tr><td data-label="数字">世帯の年間払込保険料</td><td data-label="値">35.3 万円</td><td data-label="対象と定義">同。加入世帯の平均、個人年金保険を含む。 <sup id="fnref-3-4"><a href="#ref-3">[3]</a></sup></td></tr>
+<tr><td data-label="数字">世帯主が万一のときに必要と考える生活資金</td><td data-label="値">6,283 万円</td><td data-label="対象と定義">同。意識調査で、年間 354 万円×17.3 年の平均。計算した必要保障額ではない。 <sup id="fnref-3-5"><a href="#ref-3">[3]</a></sup></td></tr>
+<tr><td data-label="数字">個人の死亡保険金額（加入者の平均）</td><td data-label="値">887 万円</td><td data-label="対象と定義">2025 年度の生活保障に関する調査。 18 〜 79 歳の個人、回答数は 3,558 。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></td></tr>
+<tr><td data-label="数字">個人が必要と考える死亡保険金額</td><td data-label="値">1,569 万円</td><td data-label="対象と定義">同。加入の有無を問わない回答者（回答数 4,837 ）の平均。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup></td></tr>
+</table>
+<p>これらの数字は、同列には比べられない。加入額は加入者だけの平均であり、必要と考える額は加入の有無を問わない回答者の意識である。分母が異なるため、 2025 年度の報告書が「不足」と記述する差も、あくまで粗い比較である。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup></p>
+
+<h3 id="sec3-2">3.2 年齢別の加入額</h3>
+<p>2024 年度の調査で、世帯の普通死亡保険金額（加入世帯の平均）を世帯主の年齢別に見ると、次のとおりである。 <sup id="fnref-3-6"><a href="#ref-3">[3]</a></sup></p>
+<table class="cards">
+<tr><th>世帯主の年齢</th><th>世帯の普通死亡保険金額</th></tr>
+<tr><td data-label="世帯主の年齢">29 歳以下</td><td data-label="世帯の普通死亡保険金額">1,747 万円</td></tr>
+<tr><td data-label="世帯主の年齢">30 〜 34 歳</td><td data-label="世帯の普通死亡保険金額">2,526 万円（最高）</td></tr>
+<tr><td data-label="世帯主の年齢">35 〜 39 歳</td><td data-label="世帯の普通死亡保険金額">2,450 万円</td></tr>
+<tr><td data-label="世帯主の年齢">40 〜 44 歳</td><td data-label="世帯の普通死亡保険金額">2,475 万円</td></tr>
+<tr><td data-label="世帯主の年齢">45 〜 49 歳</td><td data-label="世帯の普通死亡保険金額">2,313 万円</td></tr>
+<tr><td data-label="世帯主の年齢">50 〜 54 歳</td><td data-label="世帯の普通死亡保険金額">2,504 万円</td></tr>
+<tr><td data-label="世帯主の年齢">55 〜 59 歳</td><td data-label="世帯の普通死亡保険金額">2,103 万円</td></tr>
+<tr><td data-label="世帯主の年齢">60 〜 64 歳</td><td data-label="世帯の普通死亡保険金額">1,910 万円</td></tr>
+<tr><td data-label="世帯主の年齢">65 〜 69 歳</td><td data-label="世帯の普通死亡保険金額">1,492 万円</td></tr>
+<tr><td data-label="世帯主の年齢">70 〜 74 歳</td><td data-label="世帯の普通死亡保険金額">1,114 万円</td></tr>
+</table>
+<p><strong>筆者の解釈</strong><br>最高値は 30 代前半だが、 30 〜 54 歳の各区分は 2,313 〜 2,526 万円の範囲に収まり、 30 代に集中しているとは言いにくい。一方、 65 歳以上でも 1,000 万円を超える加入額が残る。加入額は必要額ではないので、これだけでは過剰とは断定できない。</p>
+
+<h3 id="sec3-3">3.3 過剰論と不足論</h3>
+<p>「過剰」という主張を、最も強い形で組み立て直す（筆者の再構成である）。第一に、保険料には付加保険料が含まれ、 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 加入世帯の年間払込保険料は平均 35.3 万円にのぼる。 <sup id="fnref-3-7"><a href="#ref-3">[3]</a></sup> 第二に、扶養家族が少ないと考えられる高齢の世帯（筆者の推測）でも、 1,000 万円を超える死亡保険金額が加入されている。 <sup id="fnref-3-8"><a href="#ref-3">[3]</a></sup> 第三に、直近に加入した生命保険の加入目的の 1 位は「医療費や入院費のため」の 57.5% であるが、 <sup id="fnref-3-9"><a href="#ref-3">[3]</a></sup> 公的な高額療養費には、月ごとの自己負担の上限がある。 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup></p>
+<p>これに対し、業界団体の生命保険協会は、 2024 年 7 月の税制改正要望で、子どもを扶養している人が必要と考える死亡保険金は平均 2,289 万円、実際の加入額は平均 1,348 万円であり、「大きく不足している状況」だと述べている。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 税制改正の要望の根拠として集計された、意識調査と平均の比較であり、個々の家計の過不足を示すものではない。</p>
+<p>過剰論を検討する。加入額は必要額ではないため、高齢の世帯の加入額が必要額を超えているかどうかは、数字からは分からない。高齢層の加入は、遺産を残す動機でも説明できる。また、医療費を目的とする加入は、死亡保障の過剰論とは別の論点であり、第 4 節で扱う。日本で必要額を超えた加入がどの程度あるかを測った資料は、本稿では確認できなかった。したがって、「日本で無駄な契約が多い」という主張は、成り立つとも成り立たないとも、本稿では言えない。</p>
+<p>過剰論も不足論も、平均と意識調査に頼っている点で同じ弱さを持つ。両者は同時に成り立ちうる。米国の高齢の労働者を対象にした Bernheim ほか (2003) は、配偶者の死による生活水準の低下は平均では小さい一方、その平均は保険額と脆弱性の大きなミスマッチを隠している、と報告している。最も脆弱な層の多くは購入額が驚くほど少なく、脆弱性の低い層の多くは多い、とされている。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> ただし、これは米国の結果であり、日本に当てはまるかどうかは分からない。</p>
+
+<h3 id="sec3-4">3.4 学術研究は何を言っているか</h3>
+<p>生命保険の需要については、経済学に長い研究の蓄積がある。いずれも米国のデータや理論に基づく。</p>
+<p><strong>Lewis (1989)</strong><br>Yaari (1965) の理論モデルを広げ、世帯の全員の選好を明示的に組み込んだ。所得が不確実なライフサイクルのモデル（人が生涯の所得と消費を見通して、貯蓄や保険を選ぶと考える経済モデル）から、稼ぎ手である夫の生命への保険需要を導き、実証的な推定も、理論と整合的だったと報告している。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 遺される家族の選好が、保険需要を決める要因としてモデルに入っている、という点が要点である（筆者の整理）。</p>
+<p><strong>Fitzgerald (1989)</strong><br>夫が生命保険に加入している夫婦で、夫が先に亡くなった場合、寡婦の年金化した消費水準は、平均すると夫が生きていた場合より高い、という結果を示した。ただし夫の年齢を所与とすると、若い寡婦ほど相対的に不利である。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 平均で足りているように見えても、年齢などによって差がある、ということである。</p>
+<p><strong>Bernheim (1991)</strong><br>米国の高齢者で、社会保障の年金給付が増えると生命保険の保有が有意に増え、民間年金の保有が減ることを示し、典型的な世帯は資源の一定割合を遺贈できる形で持とうとする、と論じた。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 遺産動機から、生活保障とは別に保険を持つ人がいる、という議論である。</p>
+<p><strong>Sydnor (2010)</strong><br>住宅保険の免責額（自己負担額）の選択データを使い、多くの顧客が、期待値を大きく上回る費用を払ってでも低い免責額を選んでいることを示した。標準的なモデルに当てはめると、リスク回避度（危険を避けたい度合い）が非現実的に大きくなる。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 少額のリスクに過剰に備える傾向が、市場で観察されうることを示す研究である。ただし、対象は住宅保険であり、生命保険やがん保険の過剰加入を示す根拠にはならない。</p>
+<p>なお、本稿が日本の家計を対象にした計量研究を確認できていないことは、「限界」に記す。</p>
+
+<h2 id="sec4">4. 「がん保険は必要ない」という言説</h2>
+<p>がん保険は、死亡ではなく、がんの診断や治療に伴う支出と収入減に備える保険である。死亡保障とは別の物差しで考える必要がある。まず、加入の現状を確認する。生命保険文化センターの 2025 年度「生活保障に関する調査」では、がん保険・がん特約の加入率は 39.9% 、先進医療保険・先進医療特約の加入率は 28.4% である。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></p>
+
+<h3 id="sec4-1">4.1 言説の最も強い形</h3>
+<p>言説を、最も強い形で言い直すと次のようになる（筆者の再構成である）。第一に、公的医療保険の高額療養費により、保険診療の自己負担は月ごとの上限で止まる。年収約 370 万円から約 770 万円の区分なら、医療費が 100 万円かかっても、自己負担は月 92,940 円になる（本稿の計算。 85,800 円 + （ 1,000,000 円−286,000 円）×1% ）。 <sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup> 第二に、会社員などは、休業中に傷病手当金を受け取れる。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 第三に、これらで足りない分は、貯蓄で賄える。第四に、保険料には付加保険料が含まれる。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> したがって、基準 A でも基準 B でも、がん保険は過剰になりやすい、という主張である。</p>
+
+<h3 id="sec4-2">4.2 言説の外側にある論点</h3>
+<ul>
+<li><strong>罹患の確率</strong><br>国立がん研究センターのがん情報サービスによると、日本人が一生のうちにがんと診断される確率は、 2023 年のデータに基づき、男性 61.1% 、女性 50.1% である。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> ただし、確率が高いことは、保険が要ることを直接は意味しない。要否を決めるのは、罹患したときの支出と収入減が、貯蓄などで賄えるかどうかである（筆者の整理）。</li>
+<li><strong>高額療養費の対象外</strong><br>高額療養費の限度額は、保険診療の自己負担に対するものである。差額ベッド代や、保険適用外の先進医療の技術料などが対象外であることは、制度の一般的な理解だが、本稿では一次資料を確認できていない。先進医療の具体的な費用も、確認できていない。</li>
+<li><strong>収入の減少</strong><br>傷病手当金は、協会けんぽの制度では、標準報酬日額の 3 分の 2 に相当する額であり、通算 1 年 6 か月が上限である。 <sup id="fnref-8-3"><a href="#ref-8">[8]</a></sup> 給与の 3 分の 1 が失われ、 1 年 6 か月を過ぎれば手当もなくなる。自営業者などが加入する国民健康保険での扱いは、本稿では確認できていない。</li>
+<li><strong>先進医療の特約</strong><br>先進医療保険・先進医療特約の加入率は 28.4% である。 <sup id="fnref-18-2"><a href="#ref-18">[18]</a></sup> 先進医療は公的医療保険の対象外の治療であり、その費用は全額が自己負担になる、と一般に説明される。ただし、本稿では具体的な費用の資料を確認できていない。特約は、がん保険や医療保険に付加されることが多く、重複の確認が要る（筆者の推論）。</li>
+<li><strong>加入の目的</strong><br>直近に加入した生命保険の加入目的の 1 位が「医療費や入院費のため」の 57.5% であること <sup id="fnref-3-10"><a href="#ref-3">[3]</a></sup> は、医療費への不安が加入の大きな動機であることを示す。不安が大きいほど、必要額を超える契約が生じやすい（筆者の推論）。</li>
+</ul>
+
+<h3 id="sec4-3">4.3 どこまで成り立つか</h3>
+<p><strong>筆者の判断</strong><br>「がん保険は必要ない」は、条件付きで成り立つ。貯蓄で高額療養費の自己負担、保険適用外の費用、収入減を賄える会社員にとっては、がん保険の必要性は小さい。他方、貯蓄が少ない世帯や、傷病手当金を受けられない可能性のある人にとっては、そうは言い切れない。一律に「必要ない」とも「必須」とも言えず、世帯ごとの貯蓄と収入の構造で決まる。</p>
+<p>過剰との関係では、医療保険、がん保険、各種特約が、同じ「医療費への備え」という目的で重なる点に注意が要る（筆者の推論）。重なった保障の合計が、公的保障を差し引いた不足額を超えているかどうかが、基準 A での点検になる。</p>
+
+<h2 id="sec5">5. 過剰な契約の防止策</h2>
+
+<h3 id="sec5-1">5.1 制度による防止</h3>
+<ul>
+<li><strong>意向把握義務と情報提供義務</strong><br>平成 26 年の保険業法改正により、保険募集人には、顧客の意向を把握し、それに沿った提案をすることと、顧客が加入の適否を判断するのに必要な情報を提供することが求められる。複数の保険会社の商品を比較して推奨する場合は、比較可能な商品の概要と、特定の商品を推奨する理由の情報提供も求められる。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> 施行は平成 28 年 5 月 29 日、条文は保険業法 294 条・ 294 条の 2 とされるが、これらは検索結果の要約で確認したもので、一次資料では確認できていない。</li>
+<li><strong>クーリング・オフ</strong><br>生命保険協会によると、申込日とクーリング・オフに関する書面を受け取った日のいずれか遅い日から、その日を含めて 8 日以内なら、契約を撤回できる（延長している会社もある）。医師の診査を受けた場合や、保険期間が 1 年以内の契約などは対象外である。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup></li>
+<li><strong>高齢者への募集</strong><br>生命保険協会が高齢者向けのガイドラインを策定していることは、検索結果から分かったが、本文は確認できていない。</li>
+</ul>
+
+<h3 id="sec5-2">5.2 制度の限界</h3>
+<p>これらの制度は、募集のプロセスを整えるものである。意向把握は、顧客の意向に沿うことを求めるので、顧客が「万全に備えたい」と望めば、必要額を超える提案も意向に沿うことになりうる（筆者の推論）。募集人に、必要保障額の算定を義務づける規定も、本稿では確認できていない。情報提供義務も、商品の情報を渡すことを求めるものであり、「その人にとって過剰かどうか」を判定する仕組みではない（筆者の整理）。</p>
+
+<h3 id="sec5-3">5.3 契約者の側でできること</h3>
+<p>制度が過剰を直接は止めない以上、点検の中心は契約者の側になる。個別の契約の可否を決める目安ではなく、考え方の枠組みである。</p>
+<ul>
+<li>保障の目的を、死亡、医療、収入減に分けて書き出し、目的ごとに契約を並べる。</li>
+<li>各目的について、公的保障、勤務先の保障、団信、貯蓄を先に差し引き、残った不足額だけを保険の対象にする。</li>
+<li>医療保険、がん保険、特約が、同じ目的で重なっていないかを確認する。</li>
+<li>年間の払込保険料の合計を出す。加入世帯の平均は 35.3 万円である。 <sup id="fnref-3-11"><a href="#ref-3">[3]</a></sup></li>
+<li>末子の独立、住宅ローンの完済、転職や独立など、家計が変わる時点で見直す。</li>
+<li>申込み直後は、クーリング・オフの期間内に、内容を家族と確認する。 <sup id="fnref-21-2"><a href="#ref-21">[21]</a></sup></li>
+</ul>
+
+<h2 id="sec6">6. 論点の区分</h2>
+<p>ここまでの論点を、「確立した事実」「未確定の仮説」「投機的な理論」に分ける。基準は、一次資料で確認でき解釈の余地が小さいものを確立した事実、資料はあるが結果が割れる・条件に依存する・検証が不十分なものを未確定の仮説、理論として成り立ちうるが実証の裏付けが乏しいものを投機的な理論とする。判断は筆者のものである。</p>
+<table class="cards">
+<tr><th>区分</th><th>論点</th><th>根拠</th></tr>
+<tr><td data-label="区分">確立した事実</td><td data-label="論点">遺族基礎年金は子のある配偶者と子が対象。高額療養費には月ごとの上限があり、傷病手当金は標準報酬日額の 3 分の 2 、通算 1 年 6 か月（協会けんぽ）</td><td data-label="根拠">公的機関の資料 <sup id="fnref-4-4"><a href="#ref-4">[4]</a></sup><sup id="fnref-7-4"><a href="#ref-7">[7]</a></sup><sup id="fnref-8-4"><a href="#ref-8">[8]</a></sup></td></tr>
+<tr><td data-label="区分">確立した事実</td><td data-label="論点">がん保険・がん特約の加入率は 39.9% 。生涯のがん罹患確率は男性 61.1% 、女性 50.1% （ 2023 年データ）</td><td data-label="根拠">業界団体の調査、国立がん研究センター <sup id="fnref-18-3"><a href="#ref-18">[18]</a></sup><sup id="fnref-19-2"><a href="#ref-19">[19]</a></sup></td></tr>
+<tr><td data-label="区分">確立した事実</td><td data-label="論点">保険募集には、意向把握・情報提供の義務があり、クーリング・オフは原則 8 日以内</td><td data-label="根拠">金融庁、生命保険協会 <sup id="fnref-20-2"><a href="#ref-20">[20]</a></sup><sup id="fnref-21-3"><a href="#ref-21">[21]</a></sup></td></tr>
+<tr><td data-label="区分">未確定の仮説</td><td data-label="論点">日本で、必要額を超えた加入が多い</td><td data-label="根拠">状況証拠（高齢層の加入額、付加保険料の存在）はあるが、加入額と必要額を突き合わせた資料を確認できていない <sup id="fnref-3-12"><a href="#ref-3">[3]</a></sup></td></tr>
+<tr><td data-label="区分">未確定の仮説</td><td data-label="論点">がん保険は、貯蓄のある会社員には必要性が小さい</td><td data-label="根拠">制度上の条件からは言えるが、実際の自己負担や収入減の分布を示す資料を確認できていない</td></tr>
+<tr><td data-label="区分">未確定の仮説</td><td data-label="論点">必要の大きい層で保険が少ないというミスマッチが日本にもある</td><td data-label="根拠">米国の高齢の労働者の研究のみ <sup id="fnref-13-2"><a href="#ref-13">[13]</a></sup></td></tr>
+<tr><td data-label="区分">投機的な理論</td><td data-label="論点">住宅保険で見られた過剰な保険選択が、生命保険やがん保険にも当てはまる</td><td data-label="根拠">住宅保険での結果のみ <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup></td></tr>
+</table>
+
+<h2 id="sec7">7. 結論</h2>
+<p><strong>筆者の判断</strong><br>日本で過剰な生命保険契約が「多い」とも「少ない」とも、本稿は言えない。加入額と必要額を突き合わせた資料がなく、既存の数字は平均と意識調査にとどまるからである。確かなのは、状況証拠と制度の構造である。付加保険料が含まれること、高齢層にも 1,000 万円を超える加入額が残ること、公的保障が厚い領域（高額療養費、遺族年金、傷病手当金）があることは、過剰が生じうる余地を示す。</p>
+<p>「がん保険は必要ない」という言説は、貯蓄のある会社員という条件のもとでは成り立つ。条件を外すと成り立たない。防止策は、募集時の義務とクーリング・オフという制度の側にあるが、必要額を超えるかどうかを判定する仕組みは確認できなかった。そのため、最後の点検は、公的保障を差し引いた不足額を目的ごとに確かめる、契約者自身の作業になる。</p>
+<div class="box"><strong>点検の要点（筆者の整理）</strong><br>一つ目は、目的の分離である。死亡、医療、収入減を分ける。二つ目は、差し引きである。公的保障、勤務先の保障、貯蓄を先に引く。三つ目は、重複の確認である。医療保険、がん保険、特約が重なっていないかを見る。</div>
+
+<h2 id="sec8">8. 限界</h2>
+<ul>
+<li>日本の家計を対象にした、保険需要や過剰加入の計量研究を確認できていない。学術的な知見は、米国の研究と住宅保険の研究が中心である。</li>
+<li>「無駄が多い」「がん保険は不要」とする論者の一次資料を確認できていない。両言説は、筆者が組み立てた形で扱った。</li>
+<li>先進医療の費用、高額療養費の対象外となる費用の範囲、自営業者の傷病手当金の扱い、付加保険料の実際の水準について、一次資料を確認できていない。</li>
+<li>保険業法の条文と施行日、高齢者向けガイドラインの本文は、一次資料を確認できていない。</li>
+<li>年齢別の加入額は、加入世帯の平均である。平均は、個々の家計の過不足を隠す。</li>
+<li>制度の数値は令和 8 年度、調査は 2023 年から 2025 年度、制度改正の施行は 2028 年と、時点が混在している。</li>
+<li>本稿は、個別の契約の可否を断定する助言ではない。保険の要否は、家族構成、収入、資産、持病、住宅ローン、勤務先の制度によって変わる。</li>
+<li>調査は、検索と取得の回数に上限を設けて行った。上限に達したため、確認できなかった事項は、本文に記さずに外している。</li>
+</ul>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> 生命保険文化センター「万一の際に必要な保障額の算出方法と具体例」（更新日の記載なし。 2026 年 10 月 16 日取得）。 <a href="https://www.jili.or.jp/lifeplan/lifesecurity/1218.html">生命保険文化センター 解説ページ</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> 金融庁の審議会資料（ 2009 年 5 月 22 日作成の PDF 。資料名は PDF から確認できなかった。 2026 年 10 月 16 日取得）。 <a href="https://www.fsa.go.jp/singi/singi_kinyu/dai2/siryou/20090522/03.pdf">金融庁 公開 PDF</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> <sup><a href="#fnref-3-3">c</a></sup> <sup><a href="#fnref-3-4">d</a></sup> <sup><a href="#fnref-3-5">e</a></sup> <sup><a href="#fnref-3-6">f</a></sup> <sup><a href="#fnref-3-7">g</a></sup> <sup><a href="#fnref-3-8">h</a></sup> <sup><a href="#fnref-3-9">i</a></sup> <sup><a href="#fnref-3-10">j</a></sup> <sup><a href="#fnref-3-11">k</a></sup> <sup><a href="#fnref-3-12">l</a></sup> 生命保険文化センター『 <em>2024 （令和 6 ）年度 生命保険に関する全国実態調査</em>』 2025 年 1 月（ 2026 年 10 月 16 日取得）。 <a href="https://jili.or.jp/files/research/zenkokujittai/pdf/r6/2024honshiall.pdf">生命保険文化センター 公開 PDF</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> <sup><a href="#fnref-4-4">d</a></sup> 日本年金機構『<em>年金給付 ~ 第二部 ~</em> 』（令和 8 年度版の研修資料。 2026 年 10 月 16 日取得）。 <a href="https://www.nenkin.go.jp/service/riyoushabetsu/nenkiniin/kenshu/1.files/kyufu2026_02.pdf">日本年金機構 公開 PDF</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> 厚生労働省 年金局「これまでの年金部会も踏まえてご議論いただきたい論点」第 13 回社会保障審議会年金部会 資料 1 （ 2024 年 3 月 13 日。 2026 年 10 月 16 日取得）。 <a href="https://www.mhlw.go.jp/content/12601000/001224068.pdf">厚生労働省 公開 PDF</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> 厚生労働省「遺族厚生年金の見直しについて」（ページの更新日は 2025 年 6 月 30 日。 2026 年 10 月 16 日取得）。 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00020.html">厚生労働省 解説ページ</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> <sup><a href="#fnref-7-3">c</a></sup> <sup><a href="#fnref-7-4">d</a></sup> 厚生労働省「高額療養費制度の概要」（令和 8 年 8 月から令和 9 年 7 月の限度額を掲載。作成日の記載なし。 2026 年 10 月 16 日取得）。 <a href="https://www.mhlw.go.jp/content/001729632.pdf">厚生労働省 公開 PDF</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> <sup><a href="#fnref-8-3">c</a></sup> <sup><a href="#fnref-8-4">d</a></sup> 全国健康保険協会（協会けんぽ）「傷病手当金」（更新日の記載なし。検索結果の要約で内容を確認し、ページ本文は直接開いていない。 2026 年 10 月 16 日取得）。 <a href="https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html">協会けんぽ 解説ページ</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> 住宅金融支援機構「新機構団体信用生命保険制度」（更新日の記載なし。 2026 年 10 月 16 日取得）。 <a href="https://www.jhf.go.jp/danshin_menu/shin-danshin/index.html">住宅金融支援機構 制度ページ</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> 国税庁 タックスアンサー No.4114 （令和 8 年 4 月 1 日現在法令等。 2026 年 10 月 16 日取得）。 <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4114.htm">国税庁 タックスアンサー</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> 生命保険文化センター『 <em>2025 （令和 7 ）年度 生活保障に関する調査</em>』 2026 年 1 月（ 2026 年 10 月 16 日取得）。 <a href="https://www.jili.or.jp/files/research/chousa/pdf/r7/2025honshi_all-.pdf">生命保険文化センター 公開 PDF</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> 生命保険協会「令和 7 年度税制改正に関する要望」 2024 年 7 月（ 2026 年 10 月 16 日取得）。 <a href="https://www.seiho.or.jp/info/category/news/opinion-tax/pdf/2024.pdf">生命保険協会 公開 PDF</a></li>
+<li id="ref-13">^ <sup><a href="#fnref-13-1">a</a></sup> <sup><a href="#fnref-13-2">b</a></sup> Bernheim, B. D., Forni, L., Gokhale, J., &amp; Kotlikoff, L. J. (2003) . The mismatch between life insurance holdings and financial vulnerabilities: Evidence from the Health and Retirement Survey. <em>American Economic Review</em>, 93 (1) , 354-365. （本稿が確認した要旨は、 Federal Reserve Bank of Cleveland, Working Paper 01-09, 2001 年 7 月による。）<a href="https://www.clevelandfed.org/publications/working-paper/2001/wp-0109-the-mismatch-between-life-insurance-holdings-and-financial-vulnerabilities">クリーブランド連銀 ワーキングペーパー</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Lewis, F. D. (1989) . Dependents and the demand for life insurance. <em>American Economic Review</em>, 79 (3) , 452-467. <a href="https://ideas.repec.org/a/aea/aecrev/v79y1989i3p452-67.html">RePEc 書誌・要旨</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Fitzgerald, J. M. (1989) . The taste for bequests and well-being of widows: A model of life insurance demand by married couples. <em>Review of Economics and Statistics</em>, 71 (2) , 206-214. <a href="https://ideas.repec.org/a/tpr/restat/v71y1989i2p206-14.html">RePEc 書誌・要旨</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Bernheim, B. D. (1991) . How strong are bequest motives? Evidence based on estimates of the demand for life insurance and annuities. <em>Journal of Political Economy</em>, 99 (5) , 899-927. <a href="https://bernheim.people.stanford.edu/publications/how-strong-are-bequest-motives-evidence-based-estimates-demand-life-insurance-and">著者の論文ページ</a></li>
+<li id="ref-17">^ <sup><a href="#fnref-17-1">a</a></sup> <sup><a href="#fnref-17-2">b</a></sup> Sydnor, J. (2010) . (Over) insuring modest risks. <em>American Economic Journal: Applied Economics</em>, 2 (4) , 177-199. DOI: 10.1257/app.2.4.177. <a href="https://ideas.repec.org/a/aea/aejapp/v2y2010i4p177-99.html">RePEc 書誌・要旨</a></li>
+<li id="ref-18">^ <sup><a href="#fnref-18-1">a</a></sup> <sup><a href="#fnref-18-2">b</a></sup> <sup><a href="#fnref-18-3">c</a></sup> 生命保険文化センター「病気入院や特定の病気に備える生命保険の加入率は？」（ 2025 年度「生活保障に関する調査」の数字。更新日の記載なし。 2026 年 10 月 16 日取得）。 <a href="https://www.jili.or.jp/lifeplan/lifesecurity/9156.html">生命保険文化センター 解説ページ</a></li>
+<li id="ref-19">^ <sup><a href="#fnref-19-1">a</a></sup> <sup><a href="#fnref-19-2">b</a></sup> 国立がん研究センター がん情報サービス「最新がん統計」（更新・確認日は 2026 年 7 月 14 日。 2023 年の罹患データに基づく。 2026 年 10 月 16 日取得）。 <a href="https://ganjoho.jp/reg_stat/statistics/stat/summary.html">がん情報サービス 統計ページ</a></li>
+<li id="ref-20">^ <sup><a href="#fnref-20-1">a</a></sup> <sup><a href="#fnref-20-2">b</a></sup> 金融庁「平成 26 年改正保険業法（ 2 年以内施行）に係る政府令・監督指針案の公表について」（平成 27 年 2 月 18 日。 2026 年 10 月 16 日取得）。 <a href="https://www.fsa.go.jp/news/26/hoken/20150218-2.html">金融庁 公表ページ</a></li>
+<li id="ref-21">^ <sup><a href="#fnref-21-1">a</a></sup> <sup><a href="#fnref-21-2">b</a></sup> <sup><a href="#fnref-21-3">c</a></sup> 生命保険文化センター「「クーリング・オフ」ってできるの？」（更新日の記載なし。 2026 年 10 月 16 日取得）。 <a href="https://www.jili.or.jp/knows_learns/q_a/life_insurance/life_insurance_q10.html">生命保険文化センター Q&amp;A</a></li>
+</ol>
+</div>
+<p class="endnote">本稿は、公式統計・官公庁や業界団体の資料・学術論文の書誌と要旨に基づく検討であり、個別の契約の可否を断定する助言ではない。制度の数値は改定されうるため、判断にあたっては、各資料の最新版を確認する必要がある。</p>
+
+</main>
+</body>
+</html>
