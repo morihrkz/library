@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>米国ニュース市場の再編</title>
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--link:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-size:1.1875rem;line-height:1.85}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
+a{color:var(--link)}
+.kicker{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .4rem}
+h1{font-size:2rem;color:var(--text);margin:0 0 .5rem}
+.subtitle{color:var(--muted);margin:0 0 1rem}
+.lede{border-left:4px solid var(--accent);padding-left:1rem;margin:1rem 0}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin:0 0 2.5rem;color:var(--muted);font-size:.9rem;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+.toc>ol{columns:2;column-gap:2rem;margin:0}
+.toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+.toc li{margin-bottom:.3rem;break-inside:avoid}
+.toc li li{color:var(--muted)}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.35rem;margin-top:2.6rem}
+h3{font-size:1.25rem;margin-top:1.8rem}
+ul,ol{margin:0 0 1.2rem;padding-left:1.4em}
+.box{background:var(--box);border:1px solid var(--line);padding:1rem 1.2rem;margin:0 0 1.4rem}
+.box strong{color:var(--accent)}
+strong{color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:.95rem;margin:1rem 0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;vertical-align:top}
+th{background:var(--box);text-align:left}
+tr.grp th{background:var(--line);color:var(--text)}
+.num{text-align:right}
+sup{font-size:.72em}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+.refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target,sup:target{background:var(--box)}
+.endnote{font-size:.9rem;color:var(--muted)}
+table+.note{font-size:.9rem;color:var(--muted);margin:0 0 1.2rem}
+@media (max-width:640px){
+  table,tbody,tr,td{display:block;width:100%}
+  tr:first-child{display:none}
+  tr.grp{border:none;background:none;margin:1.4rem 0 .6rem}
+  tr.grp th{display:block;border:none;background:none;padding:0;color:var(--accent)}
+  tr{border:1px solid var(--line);margin:0 0 1rem;background:var(--bg)}
+  td{border:none;border-bottom:1px solid var(--line);padding:.5rem .7rem}
+  td:last-child{border-bottom:none}
+  td::before{content:attr(data-label);display:block;font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
+  td[data-label="媒体"]{background:var(--box);font-weight:700}
+  td.num{text-align:left}
+}
+@media (max-width:480px){
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">メディア論・米国ニュース市場</p>
+<h1 id="top">米国ニュース市場の再編<br>――党派・所有者・購読が「共通の情報源」を割ったあとで</h1>
+<p class="subtitle">Rebuilding the American News Market: Partisan Niches, Owner Influence, and Subscription Economics after the Shared Public Square</p>
+
+<div class="lede">
+<p>米国では、国民が同じ夕方のニュースを見る時代が終わり、党派・個人・購読という軸でニュース市場が細分化された。その空白を、旧来の看板を自立させた MS NOW 、所有者の価値観が問われる Politico 、短さと購読で売る Axios が、それぞれ別の方法で埋めようとしている。本稿は、この三媒体に右派メディアと老舗の動きを重ね、「再編」の型を整理する。</p>
+</div>
+
+<div class="meta">
+<strong>【方法と限界】</strong> 2026 年 10 月 20 日時点のウェブ調査と一般的な既知の事実にもとづく。調査で裏付けが取れなかった点は、その旨を明記した。党派的な評価（「右派」「左派」）は各媒体の一般的な位置づけであり、価値判断ではない。視聴率や購読者数のうち、媒体自身が公表した数値は独立の検証を経ていない。
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">全体像：不信と細分化</a></li>
+<li><a href="#sec2">メディアの地図：新興と老舗</a></li>
+<li><a href="#sec3">Fox は本当に「中立寄り」になったのか</a></li>
+<li><a href="#sec4">長い歴史をもつメディア</a>
+<ol>
+<li><a href="#sec4-1">三大ネットワーク (ABC ・ CBS ・ NBC)</a></li>
+<li><a href="#sec4-2">New York Times ・ Washington Post</a></li>
+</ol>
+</li>
+<li><a href="#sec5">MS NOW ――「老舗の左」の自立</a>
+<ol>
+<li><a href="#sec5-1">MSNBC から MS NOW へ</a></li>
+<li><a href="#sec5-2">数字の読み方</a></li>
+</ol>
+</li>
+<li><a href="#sec6">Politico ――所有者の価値観という問い</a>
+<ol>
+<li><a href="#sec6-1">Axel Springer 傘下の五年</a></li>
+<li><a href="#sec6-2">2026 年春の書簡</a></li>
+</ol>
+</li>
+<li><a href="#sec7">Axios ――短さと購読で売る</a>
+<ol>
+<li><a href="#sec7-1">元 Politico 記者たちの再出発</a></li>
+<li><a href="#sec7-2">Cox 傘下の現在</a></li>
+</ol>
+</li>
+<li><a href="#sec8">公共メディア： NPR と PBS</a></li>
+<li><a href="#sec9">まとめ：再編の三つの型</a></li>
+<li><a href="#sec10">補章：英独仏と日本の新興メディアの傾向</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 全体像：不信と細分化</h2>
+<p>米国では、全国ニュース組織を信頼する人の割合が低下している。 Pew Research Center の調査では、共和党支持者は民主党支持者よりもはるかに全国ニュースを信頼しない傾向があり、地元ニュースへの信頼（約 8 割）のほうが高い。また成人の約 2 割が、 SNS 上の「ニュース・インフルエンサー」から定期的にニュースを得ている。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> こうした環境で、特定の層に刺さる党派的メディアや、個人発信を軸にしたメディアが伸びてきた。</p>
+<p>ここで一つの問いが生じる。信頼が割れ、視聴者が分かれたのなら、市場に残る「中立」の居場所は誰が担うのか。本稿はこの問いを、 Fox の位置づけ、老舗の変質、そして MS NOW ・ Politico ・ Axios の三媒体という順で追う。</p>
+
+<h2 id="sec2">2. メディアの地図：新興と老舗</h2>
+<table>
+<tr><th>媒体</th><th>立ち位置</th><th>概要</th><th class="num">公式 YouTube チャンネルの登録者数（人）<sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></th></tr>
+<tr class="grp"><th colspan="4">新興・再編・独立系</th></tr>
+<tr><td data-label="媒体">One America News Network (OAN)</td><td data-label="立ち位置">強い保守・親トランプ</td><td data-label="概要">2013 年開局のケーブル局。 2020 年大統領選後の不正主張の報道をめぐり、 Dominion 社から名誉毀損で提訴された。視聴者規模は Fox や Newsmax よりはるかに小さい（ Pew 調査では OAN 視聴者の約 7 割が Fox も見ていた）。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">143 万</td></tr>
+<tr><td data-label="媒体">Newsmax</td><td data-label="立ち位置">強い保守（ケーブル）</td><td data-label="概要">Fox より右を狙い、 2020 年選挙後に視聴者を伸ばした。プライムタイムの視聴者は約 19 万～ 20 万人にとどまる（ Fox は約 230 万～ 240 万人）。開局年は今回の調査で確認できなかった。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">260 万</td></tr>
+<tr><td data-label="媒体">The Daily Wire</td><td data-label="立ち位置">保守（個人・購読型）</td><td data-label="概要">創設時期は今回の調査で確認できなかった。 2026 年 5 月、会社は主に本拠地ナッシュビルでの人員削減を認めた（規模は報道により食い違う）。 YouTube の登録者は 2025 年以降、停滞または減少が続くと報じられている。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup><sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">323 万</td></tr>
+<tr><td data-label="媒体">The Post Millennial</td><td data-label="立ち位置">保守</td><td data-label="概要">2017 年にカナダで創設されたオンライン媒体。 2022 年に Human Events Media Group が買収。 2025 年 11 月、 Just the News の親会社 JTN Network が同社と Human Events の買収を発表した。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">3.4 万</td></tr>
+<tr><td data-label="媒体">Human Events</td><td data-label="立ち位置">保守</td><td data-label="概要">1944 年創刊の老舗保守誌。 2013 年にデジタル専業化。「新興」というより「再編された旧媒体」である。</td><td class="num" data-label="公式 YouTube 登録者数">―</td></tr>
+<tr><td data-label="媒体">Just the News</td><td data-label="立ち位置">保守</td><td data-label="概要">ジャーナリストのジョン・ソロモン氏が率いる。上記のとおり JTN Network として保守系ブランドを集約しつつある。創設時期は今回の調査で確認できなかった（一般には 2019 年とされる）。</td><td class="num" data-label="公式 YouTube 登録者数">7.4 万</td></tr>
+<tr><td data-label="媒体">The Bulwark</td><td data-label="立ち位置">反トランプの保守・中道</td><td data-label="概要">2019 年創設。トランプ氏に批判的な元共和党系の論者が中心で、 Substack など購読型のオンライン配信を軸にしている。</td><td class="num" data-label="公式 YouTube 登録者数">179 万</td></tr>
+<tr><td data-label="媒体">Crooked Media</td><td data-label="立ち位置">進歩派（ポッドキャスト）</td><td data-label="概要">元オバマ政権スタッフらが関わる Pod Save America などの制作会社（設立経緯は一般知識による）。 2026 年に MS NOW との提携で、ポッドキャスト番組が同局に加わったとされる。 5 章で述べる。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">―</td></tr>
+<tr><td data-label="媒体">Mother Jones</td><td data-label="立ち位置">進歩派</td><td data-label="概要">1976 年創刊の調査報道誌（非営利）。「新興」ではないが、非営利・読者支援型モデルの代表例である。</td><td class="num" data-label="公式 YouTube 登録者数">37.8 万</td></tr>
+<tr><td data-label="媒体">Media Matters for America</td><td data-label="立ち位置">進歩派の監視団体</td><td data-label="概要">2004 年にデビッド・ブロック氏が設立。保守系メディアの発言を監視・批判する団体で、報道機関というより「メディア監視」組織である。 Fox 側は同団体を党派的だと批判している。</td><td class="num" data-label="公式 YouTube 登録者数">―</td></tr>
+<tr><td data-label="媒体">MS NOW</td><td data-label="立ち位置">進歩派（ケーブル）</td><td data-label="概要">旧 MSNBC 。 2025 年 11 月に改称し、 NBC から切り離された。 5 章で詳述する。</td><td class="num" data-label="公式 YouTube 登録者数">1,000 万</td></tr>
+<tr><td data-label="媒体">Politico</td><td data-label="立ち位置">無党派を標榜（政治専門）</td><td data-label="概要">ワシントンの政策・政局報道。ドイツの Axel Springer 傘下。 6 章で詳述する。</td><td class="num" data-label="公式 YouTube 登録者数">23.4 万</td></tr>
+<tr><td data-label="媒体">Axios</td><td data-label="立ち位置">無党派を標榜（短文）</td><td data-label="概要">元 Politico 記者が創設した短文ニュースと購読の媒体。 7 章で詳述する。</td><td class="num" data-label="公式 YouTube 登録者数">11.8 万</td></tr>
+<tr class="grp"><th colspan="4">長い歴史をもつ老舗</th></tr>
+<tr><td data-label="媒体">Fox News</td><td data-label="立ち位置">保守（ケーブル首位）</td><td data-label="概要">1996 年開局の大手ケーブル局（開局年は一般知識による）。 Dominion 社との訴訟を 7 億 8,750 万ドルで和解した。 2026 年もプライムタイムで首位（約 230 万～ 240 万人）を保つ。 3 章で詳述する。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">1,550 万</td></tr>
+<tr><td data-label="媒体">CNN</td><td data-label="立ち位置">主流（ケーブル）</td><td data-label="概要">1980 年開局のケーブルニュースの草分け（開局年は一般知識による）。 Forbes は、 2026 年 1 月に MS NOW のプライムタイム平均が CNN を上回ったと伝えた。親会社 Warner Bros. Discovery を Paramount が買収する計画があり、 CBS News との統合も議論されていると報じられた（ 2026 年 7 月時点で未完了）。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup><sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">1,990 万</td></tr>
+<tr><td data-label="媒体">ABC News</td><td data-label="立ち位置">主流・全国放送</td><td data-label="概要">三大ネットワークの一つ。かつて夕方のニュースが国民共通の情報源だった。現在は地方局を通じて影響力を保つ。 4 章で述べる。</td><td class="num" data-label="公式 YouTube 登録者数">1,990 万</td></tr>
+<tr><td data-label="媒体">CBS News</td><td data-label="立ち位置">主流・全国放送</td><td data-label="概要">三大ネットワークの一つ。 Paramount Skydance 傘下で経営体制が大きく変わった（詳細は今回の調査で未確認）。 4 章で述べる。</td><td class="num" data-label="公式 YouTube 登録者数">711 万</td></tr>
+<tr><td data-label="媒体">NBC News</td><td data-label="立ち位置">主流・全国放送</td><td data-label="概要">三大ネットワークの一つ。かつて夕方のニュースが国民共通の情報源だった。現在は地方局を通じて影響力を保つ。 4 章で述べる。なお、旧 MSNBC は NBC から切り離され、 MS NOW となった。</td><td class="num" data-label="公式 YouTube 登録者数">1,220 万</td></tr>
+<tr><td data-label="媒体">New York Times</td><td data-label="立ち位置">主流（リベラル寄りとされる）</td><td data-label="概要">1851 年創刊。デジタル購読で成功した例とされる。 4 章で述べる。</td><td class="num" data-label="公式 YouTube 登録者数">530 万</td></tr>
+<tr><td data-label="媒体">Washington Post</td><td data-label="立ち位置">主流</td><td data-label="概要">1877 年創刊。 2025 年 2 月にオーナーが論説面の方針を改め、 7 万 5,000 人以上が購読を解約したと報じられた。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">286 万</td></tr>
+<tr><td data-label="媒体">NPR</td><td data-label="立ち位置">公共放送（ラジオ）</td><td data-label="概要">1970 年開始。連邦資金に一部依存してきた。 2025 年に公共放送向けの約 11 億ドルが取り消された。 8 章で述べる。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">90.8 万</td></tr>
+<tr><td data-label="媒体">PBS</td><td data-label="立ち位置">公共放送（テレビ）</td><td data-label="概要">1969 年開始。 NPR と同じく連邦資金に一部依存してきた。影響を最も受けるのは小規模な地方局である。</td><td class="num" data-label="公式 YouTube 登録者数">181 万</td></tr>
+</table>
+<p class="note">※ 登録者数は、集計サービス vidIQ が 2026 年 10 月 17 日更新として表示した値で、表示桁数に丸められた概数である（出典は参考文献 [16] ）。 YouTube の公式ページを直接確認したものではなく、集計日や丸め方により公式の表示と異なりうる。「―」は、チャンネルを特定できず数字を確認できなかった媒体である（ Crooked Media は、傘下の番組チャンネルとは別に、同社自身のチャンネルを確認できなかった）。</p>
+<p>このほか注目すべき動きとして、 Substack など購読プラットフォーム上の個人ジャーナリスト群がある。 Substack は有料購読者が数百万規模に達したとされ、記者が組織を離れて独立する流れを後押ししている。</p>
+
+<h2 id="sec3">3. Fox は本当に「中立寄り」になったのか</h2>
+<p>「 Fox はもともと過激な右派論調で知られたが、時間とともに中立寄りになった」という見方がある。調査で確認できた事実は次のとおり。</p>
+<ul>
+<li>2023 年 4 月、 Fox は Dominion 社との名誉毀損訴訟を <strong>7 億 8,750 万ドル</strong>で和解した。数日後、看板キャスターのタッカー・カールソン氏と袂を分かった（会社側は「合意による離脱」と説明。因果関係は双方とも否定している）。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup></li>
+<li>Newsmax のクリストファー・ルディ CEO は、「 Fox は既存メディア（エスタブリッシュメント）になりつつある」と述べた。ただしこれは競合の立場からの主張であり、独立した検証ではない。</li>
+<li>2020 年選挙後、より過激な論調を求める視聴者の一部が Newsmax や OAN に流れた。</li>
+<li>2026 年も、 Fox はケーブルニュースの首位を維持している（ 5 月のプライムタイム平均約 240 万人、 7 月は約 230 万人で前年比 3.2% 減）。 Newsmax は約 19 万～ 20 万人にとどまる。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup></li>
+</ul>
+<p><strong>評価</strong><br>「 Fox が中立になった」と断定できる根拠は、今回の調査では見つからなかった。確かなのは、 (1) 巨額の和解を経て法的リスクへの警戒が強まったこと、 (2) Fox が「右の最大手」から見て相対的に穏健な存在になり、その右側に Newsmax などの競合が現れたこと、の二点である。「中立化」と言うより、<em>右派メディア市場が細分化され、 Fox が相対的に中央寄りに見える位置になった</em>と整理するのが妥当だろう。また、ニュース部門と、夜の論評（オピニオン）番組とでは性格が大きく異なる点にも注意が必要である。</p>
+<p>この整理は、右派だけの話ではない。次章以降で見るように、左派側でも「旧来の看板が自立し、競合が周囲に現れる」という同型の動きが進んでいる。</p>
+
+<h2 id="sec4">4. 長い歴史をもつメディア</h2>
+<h3 id="sec4-1">4.1 三大ネットワーク (ABC ・ CBS ・ NBC)</h3>
+<p>かつては夕方のニュースが国民共通の情報源だった。現在はケーブル、配信、 SNS に視聴者を奪われ、地方局を通じた影響力を保つ。 CBS は Paramount Skydance 傘下で経営体制が大きく変わった（今回の調査では詳細を確認できていない）。</p>
+<h3 id="sec4-2">4.2 New York Times ・ Washington Post</h3>
+<p>NYT （ 1851 年創刊）はデジタル購読で成功した例とされる。一方 WaPo （ 1877 年創刊）は、 2025 年 2 月にオーナーのジェフ・ベゾス氏が論説面を「個人の自由と自由市場」中心に改める方針を示し、 <strong>7 万 5,000 人以上</strong>のデジタル購読者が解約したと報じられた。論説編集者のデビッド・シップリー氏は辞任し、元編集主幹のマーティ・バロン氏は「臆病だ」と批判した。 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 所有者の意向が紙面に及ぶ危うさを示す事例である。</p>
+<p>この WaPo の事例は、本稿の後半で再び問われる。所有者の価値観が報道とどう折り合うかという問題は、 Politico でより露骨な形をとった。</p>
+
+<h2 id="sec5">5. MS NOW ――「老舗の左」の自立</h2>
+<h3 id="sec5-1">5.1 MSNBC から MS NOW へ</h3>
+<p>2025 年 11 月 15 日、ケーブルニュース局 MSNBC は MS NOW に改称した。名称は "My Source for News, Opinion, and the World" の頭文字とされ、「 MS 」という通称を残しつつ NBC の商標から離れる設計である。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup><sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> 背景には、 Comcast が NBCUniversal のケーブル局群を切り離して設立した Versant への移行がある。 Versant は 2026 年 1 月に上場企業として独立する計画で、 MS NOW はその傘下に入った。 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup></p>
+<p>変わったのは看板だけではない。 Semafor によれば、同局は NBC News の放送部門に依存する体制をやめ、独自に記者を雇い、ニューヨークのオフィスも 30 ロックフェラー・センターから西 43 丁目へ移した。局長のレベッカ・カトラー氏の下で、政治中心の取材班、午後のニュースレター、新たなポッドキャスト、 YouTube での旧番組の再公開が始まっている。さらに有料購読の提供も構想に挙がっていた。 <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup>2026 年には Crooked Media との提携によるポッドキャスト番組が加わり、 9 月には直接消費者向けの「 MS NOW 会員制」が始まったとされる。 <sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup></p>
+<p>この動きは、前章までの構図と重なる。 Human Events が「再編された旧媒体」であったのと同じく、 MS NOW も新興というより、巨大企業の一部門だった老舗が自立し、購読・音声・動画へ軸足を移した例である。注目すべきは、 Semafor が The Bulwark や Crooked Media との協議を「探索的」と伝えた点で、左派の老舗が新興の購読型媒体と手を組む可能性が、すでに視野に入っている。 <sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup></p>
+
+<h3 id="sec5-2">5.2 数字の読み方</h3>
+<p>視聴率は伸びているとされる。 Forbes は、 2026 年 1 月の MS NOW のプライムタイム平均が 100 万人を超え、前年同月比 20% 増で CNN を上回ったと伝えた。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 同誌は 6 月にも、 5 月のプライムタイムが全体で 9% 増、 25 ～ 54 歳層で 39% 増だったと報じている。ただしこれは Nielsen の確定値に先立ち、局側が提供した数字である。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
+<p>数字を読むときは、二つの留保が要る。一つめは規模の比較である。 3 章で見た Fox のプライムタイム平均（約 230 万～ 240 万人）に対し、 MS NOW の 100 万人台は半分に満たない（月が異なるため厳密な比較ではない）。二つめは出典の性質である。伸び率は局側の提供値で、独立の検証を経ていない。したがって「 Fox に次ぐ二位、 CNN を上回る」という位置づけまでは複数の報道で一致するものの、成長の持続性は今後の確定値を待つ必要がある。</p>
+<p>もう一つ、見落とせない論点がある。 Fox の「中立化」を問うたのと同じ物差しを当てれば、 MS NOW も「進歩派の最大手」として、その左側に新興の購読型媒体や個人ジャーナリストを抱える立場にある。市場の細分化は、右だけでなく左でも進んでいるのである。</p>
+
+<h2 id="sec6">6. Politico ――所有者の価値観という問い</h2>
+<h3 id="sec6-1">6.1 Axel Springer 傘下の五年</h3>
+<p>Politico は、ワシントンの議会・政策・選挙を専門に扱うニュース組織である。 2021 年 10 月、ドイツの Axel Springer が 10 億ドル超で買収を完了し、 Politico Europe や E&amp;E News などを含む形で傘下に収めた。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 収益の柱は、政策担当者や企業向けの法人向け購読サービス (Politico Pro) と、無料の読者向けニュースレターおよび広告である。無料で広く読ませ、専門情報を有料で売る二層構造である。</p>
+<p>Politico も購読収益を軸に伸びたが、所有者がドイツの出版社であり、その経営者が前面に出るという点で、 NYT のような創業家系の新聞とも、 WaPo のような個人オーナーとも異なる位置にある。</p>
+
+<h3 id="sec6-2">6.2 2026 年春の書簡</h3>
+<p>この構造が表面化したのが、 2026 年 4 月である。 Semafor によれば、 Politico の記者たち（欧州の拠点と、米国の労働組合員を含む）が 4 月 24 日、新任のグローバル編集長ジョナサン・グリーンバーガー氏に宛てて書簡を送った。内容は、 Axel Springer の CEO マティアス・デップナー氏が Politico 紙面で自らの政治的主張を繰り返し発信しており、「編集上の偏りという外見を帯びる」危険があるというものだった。書簡は、 2026 年 3 月のイラン情勢をめぐる寄稿と、 2025 年 10 月のパレスチナ支援をめぐる寄稿を例に挙げ、さらにバージニア州の事務所に Axel Springer の価値観を掲げた美術作品が置かれている点も問題にした。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></p>
+<p>記者側の要求は、寄稿に「筆者の見解は Politico を代表しない」という注記を付けること、デップナー氏の論説の厳格な基準審査、価値観を掲げた展示の撤去の三点だった。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> デップナー氏は同年 2 月の Semafor のインタビューで、出版社は中立を装うのでなく自らの価値観を明示すべきだ、という趣旨の考えを述べている。経営陣は 4 月 27 日の面談で、編集の独立を再確認し、報道は Axel Springer の価値観と「共存する」と説明したという。ただし、書簡の個別の要求が受け入れられたかどうかは、報道からは確認できない。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup></p>
+<p><strong>筆者の整理</strong><br>この件は、 WaPo のベゾス氏の論説面改革と同じ系譜に置ける。違いは、 WaPo では読者が解約という形で反応したのに対し、 Politico では記者が内側から異議を申し立てた点にある。「中立を標榜する媒体」と「価値観を明示すべきだという所有者」のあいだの緊張は、無党派を名乗る媒体ほど深刻になる。これは Fox の「中立化」論とは逆向きの問題で、中立を装うことの是非を所有者自身が問うているからである。</p>
+
+<h2 id="sec7">7. Axios ――短さと購読で売る</h2>
+<h3 id="sec7-1">7.1 元 Politico 記者たちの再出発</h3>
+<p>Axios は 2016 年に設立され、 2017 年に事業を開始した、バージニア州アーリントン拠点のニュース媒体である。創設者はジム・ヴァンデハイ氏、マイク・アレン氏、ロイ・シュワルツ氏で、全員が Politico の元関係者だった。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> つまり Politico と Axios は、同じ人々が時期をずらして築いた二つの媒体である。</p>
+<p>特徴は、記事の短さにある。多くの記事は 300 語未満で、箇条書きを多用する。収益の中心はネイティブ広告と、企業がスポンサーになるニュースレターである。そのうえで、年額 599 ドルからの法人向け購読「 Axios Pro 」、 2021 年に始めた地域別ニュースレター網、拡大するイベント事業が加わる。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 読者の時間が乏しい時代に、「短く、要点だけ」を売りにした設計である。</p>
+
+<h3 id="sec7-2">7.2 Cox 傘下の現在</h3>
+<p>2022 年 8 月、 Cox Enterprises が Axios を 5 億 2,500 万ドルで買収すると発表し、翌月に完了した。 Cox が 70% を持ち、創設者と従業員が 30% を保持する。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 同時に、社内向けコミュニケーション・ソフトの事業は Axios HQ として分離された。 <sup id="fnref-12-3"><a href="#ref-12">[12]</a></sup></p>
+<p>成長の後に調整が来る。 2024 年 8 月、 Axios は従業員約 50 人（全体の約 1 割）を削減した。 <sup id="fnref-12-4"><a href="#ref-12">[12]</a></sup>2026 年 3 月にも、全国・地域・映像などで 11 人を削減したと SNS 上で伝えられたが、この点は一次資料で確認できていない。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></p>
+<p><strong>筆者の整理</strong><br>Axios は、 Politico と同じく無党派を標榜するが、所有構造は異なる。大手の家族企業 Cox が過半を持つ一方、創設者が一定の株式を残している。 Politico のように外国の出版社の経営者が前面に出る構図とは違い、価値観をめぐる所有者との摩擦は、今回の調査では確認できなかった（ただし、確認できなかったことは、摩擦がないことの証明ではない）。むしろ Axios が抱えるのは、短文・広告・ニュースレターという収益モデルの持続性という、経営上の課題である。</p>
+
+<h2 id="sec8">8. 公共メディア： NPR と PBS</h2>
+<p>NPR （ 1970 年）や PBS （ 1969 年）は、 Corporation for Public Broadcasting (CPB) 経由の連邦資金に一部依存してきた。 2025 年、議会は<strong>約 11 億ドル</strong>の公共放送向け資金を取り消す法案（総額約 90 億ドルの取消し・減額パッケージの一部）を可決した。共和党側は「偏向」を理由に挙げた。 CPB は業務の終了を発表し、大半の職員は 2025 年 9 月 30 日付で退職、移行チームが 2026 年 1 月まで残る予定とされた。影響を最も受けるのは、連邦資金に頼る小規模な地方局である。 <sup id="fnref-15-2"><a href="#ref-15">[15]</a></sup></p>
+
+<h2 id="sec9">9. まとめ：再編の三つの型</h2>
+<p>調査を通じて見えてきたのは、再編が一様ではなく、少なくとも三つの型に分かれるという点である。</p>
+<div class="box">
+<strong>型 1 ：老舗の自立</strong><br>巨大企業の一部門だった看板が、独立して購読・音声・動画へ軸足を移す。 MS NOW 、 Human Events がこれに当たる。強みは既存の知名度、課題は規模の縮小と収益の再設計である。<br><br>
+<strong>型 2 ：所有者の価値観との緊張</strong><br>所有者の意向が紙面や報道の信頼に及ぶ。 WaPo では解約として、 Politico では記者の書簡として現れた。中立を標榜するほど、この緊張は深くなる。<br><br>
+<strong>型 3 ：短さと購読で売る新興</strong><br>Axios や Bulwark 、 Substack の個人ジャーナリストのように、読者の時間と購読を軸に事業を組む。柔軟だが、収益モデルの持続性が問われる。
+</div>
+<ul>
+<li>新興メディアは「党派・個人・購読」を軸に増えており、旧来の中立的な「共通の情報源」は縮小している。</li>
+<li>保守系では、 JTN Network のようにブランドが統合される動きがあり、左派側でも MS NOW が NBC から切り離されるなど、市場は右も左も再編の最中にある。</li>
+<li>Fox は依然として首位だが、その位置づけは周囲の変化で相対的に動いた。「中立化」の断定は慎重であるべきだ。</li>
+<li>老舗（ NYT 、 WaPo 、三大ネットワーク）も所有者・経営の影響を受け、公共メディアは資金面で岐路にある。</li>
+<li>無党派を標榜する Politico と Axios は、所有構造と収益モデルのそれぞれに固有の課題を抱える。</li>
+</ul>
+<p>冒頭の問い、すなわち「中立の居場所は誰が担うのか」への答えは、現時点で単一の媒体には見当たらない。中立を担うはずの媒体の側に、所有者の価値観と収益モデルという二つの重力がかかっているからである。読者に残された実践的な手がかりは、記事の書き手と所有者を確かめ、同じ出来事を複数の型の媒体で読み比べることだろう。</p>
+
+<h2 id="sec10">10. 補章：英独仏と日本の新興メディアの傾向</h2>
+<p>米国の動きは特殊ではない。 Reuters Institute の Digital News Report 2026 によれば、世界のニュースへの信頼度は 37% と調査開始以来の最低で、ソーシャルメディアや動画ネットワークでニュースに接する人 (54%) が、報道機関の自社サイトやアプリを使う人 (51%) を上回った。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> そのうえで、四か国の新興メディアの傾向を簡素に示す。</p>
+<table>
+<tr><th>国</th><th>傾向</th><th>代表例</th><th>留意点</th></tr>
+<tr><td data-label="国">英国</td><td data-label="傾向">保守系の放送型新興と、左派の動画・購読型のネット媒体が並ぶ。</td><td data-label="代表例">GB News （保守系ニュース局）、 Novara Media （左派のネット媒体）</td><td data-label="留意点">GB News の週間到達率は成人の 11% で、 BBC や ITV を大きく下回る。信頼度の評価は調査により割れる。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup></td></tr>
+<tr><td data-label="国">ドイツ</td><td data-label="傾向">保守系の購読型ネット媒体が伸び、非営利の調査報道との対立が表面化している。</td><td data-label="代表例">Nius （元 Bild 編集長のユリアン・ライヒェルト氏が率いる）、 Apollo News 、 Correctiv （非営利の調査報道）</td><td data-label="留意点">2026 年 10 月、 Correctiv は Nius の内部データ約 9 GB の流出を報じた。 Nius は不正に得たデータの使用だと反発しており、入手経緯は争いがある。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup></td></tr>
+<tr><td data-label="国">フランス</td><td data-label="傾向">大資本による右傾化への批判と、購読型の独立系媒体が対立する。</td><td data-label="代表例">CNews ・ Europe 1 ・ Prism Media （ Bolloré グループ）、 Mediapart （購読専業の調査報道。一般知識による）</td><td data-label="留意点">「 bollorisation 」と呼ばれる批判がある。 2026 年 10 月 17 日には、 CNews と Europe 1 の本社に約 100 人が押しかけ、両社は「威圧」と主張した。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup><sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup></td></tr>
+<tr><td data-label="国">日本</td><td data-label="傾向">新興は独自媒体よりも、プラットフォーム経由が中心である。伝統メディアの信頼が相対的に強い。</td><td data-label="代表例">Yahoo! ニュース（ネットニュースで最も信頼イメージが高い）</td><td data-label="留意点">NewsPicks など個別の新興媒体は今回確認できていない。総務省の調査では、信頼度は新聞が最も高く、ネットニュースサイトは雑誌を上回る一方、 SNS ・動画は低めである。日本のニュース信頼度は 41% と報じられた。 <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup><sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup><sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup></td></tr>
+</table>
+<p><strong>筆者の整理</strong><br>英独仏では、米国と同じく「右寄りの資本や所有者」と「購読型の独立系」が向き合う構図が見える。一方、日本では新興の主役が個別媒体ではなくプラットフォームであり、伝統メディアへの信頼も相対的に保たれている。ただし、国ごとの代表例は網羅ではなく、各国の事情を断定する材料にはならない。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Pew Research Center, News Habits and Media. <a href="https://www.pewresearch.org/topic/news-habits-media/media-society">Pew Research Center サイト</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Just the News, "JTN Network acquires The Post Millennial and Human Events." <a href="https://justthenews.com/accountability/media/jtn-network-acquires-post-millennial-human-events">Just the News サイト</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Fox News のカールソン氏離脱と Dominion 和解に関する報道。 <a href="https://www.tbsnews.net/node/621470">TBS News サイト</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> Barrett Media, 2026 年 7 月および 5 月のケーブルニュース視聴率。 <a href="https://barrettmedia.com/2026/07/30/fox-news-leads-ratings-cnn-jump/">7 月視聴率</a> <a href="https://barrettmedia.com/2026/06/04/fox-news-leads-may-ratings/">5 月視聴率</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> NPR, "Washington Post subscription cancellations after Bezos opinion changes," 2025 年 2 月。 <a href="https://npr.org/2025/02/28/nx-s1-5312819/washington-post-bezos-subscriptions-cancellations">NPR サイト</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> <sup><a href="#fnref-6-3">c</a></sup> <sup><a href="#fnref-6-4">d</a></sup> Semafor, "Exclusive: The old MSNBC relaunches into a new media world," 2025 年 11 月 16 日。 <a href="https://www.semafor.com/article/11/16/2025/the-old-msnbc-relaunches-into-a-new-media-world">Semafor サイト</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> <sup><a href="#fnref-7-3">c</a></sup> "MS NOW," Wikipedia. <a href="https://en.wikipedia.org/wiki/MS_NOW">Wikipedia</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Forbes, "MS NOW Charges Into 2026 With New Shows Posting Double-Digit Ratings Growth In Prime," 2026 年 1 月 28 日。 <a href="https://www.forbes.com/sites/markjoyella/2026/01/28/ms-now-charges-into-2026-with-new-shows-posting-double-digit-ratings-growth-in-prime/">Forbes サイト</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Forbes, "MS NOW Sees Ratings Gains Ahead Of Programming Changes," 2026 年 6 月 3 日。 <a href="https://www.forbes.com/sites/markjoyella/2026/06/03/ms-now-sees-ratings-gains-ahead-of-programming-changes/">Forbes サイト</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Digiday, "Axel Springer continues quest for premium audiences with $1 billion acquisition of Politico." <a href="https://digiday.com/media/cheatsheet-axel-springer-continues-quest-for-premium-audiences-with-1-billion-acquisition-of-politico/">Digiday サイト</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> Semafor, "Axel Springer, Politico execs meet with staff after letter warns CEO risks 'undermining our reputation'," 2026 年 4 月 27 日。 <a href="https://www.semafor.com/article/04/27/2026/axel-springer-politico-execs-meet-with-staff-after-letter-warns-ceo-risks-undermining-our-reputation">Semafor サイト</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> <sup><a href="#fnref-12-3">c</a></sup> <sup><a href="#fnref-12-4">d</a></sup> "Axios (website) ," Wikipedia. <a href="https://en.wikipedia.org/wiki/Axios_(website)">Wikipedia</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Cox Enterprises, "Cox Enterprises Acquires Axios Media Inc." <a href="https://www.coxenterprises.com/news/cox-enterprises-acquires-axios">Cox Enterprises サイト</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Lauren McGaughy による Axios 人員削減に関する SNS 投稿、 2026 年 3 月 17 日（二次的情報）。 <a href="https://x.com/lmcgaughy/status/2033904381200945421">X 投稿</a></li>
+<li id="ref-15">^ <sup><a href="#fnref-15-1">a</a></sup> <sup><a href="#fnref-15-2">b</a></sup> WDET, "Corporation for Public Broadcasting says it's shutting down," 2025 年 8 月 1 日。 <a href="https://wdet.org/2025/08/01/corporation-for-public-broadcasting-says-its-shutting-down/">WDET サイト</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> 各媒体の公式 YouTube チャンネルの登録者数（ vidIQ の表示値、 2026 年 10 月 17 日更新）。 <a href="https://vidiq.com/youtube-stats/channel/@foxnews/">vidIQ (Fox News)</a> <a href="https://vidiq.com/youtube-stats/channel/@cnn/">vidIQ (CNN)</a> <a href="https://vidiq.com/youtube-stats/channel/@abcnews/">vidIQ (ABC News)</a> <a href="https://vidiq.com/youtube-stats/channel/@cbsnews/">vidIQ (CBS News)</a> <a href="https://vidiq.com/youtube-stats/channel/@nbcnews/">vidIQ (NBC News)</a> <a href="https://vidiq.com/youtube-stats/channel/@nytimes/">vidIQ (New York Times)</a> <a href="https://vidiq.com/youtube-stats/channel/@washingtonpost/">vidIQ (Washington Post)</a> <a href="https://vidiq.com/youtube-stats/channel/@pbs/">vidIQ (PBS)</a> <a href="https://vidiq.com/youtube-stats/channel/@npr/">vidIQ (NPR)</a> <a href="https://vidiq.com/youtube-stats/channel/@oann/">vidIQ (OAN)</a> <a href="https://vidiq.com/youtube-stats/channel/@newsmaxtv/">vidIQ (Newsmax)</a> <a href="https://vidiq.com/youtube-stats/channel/@dailywire/">vidIQ (The Daily Wire)</a> <a href="https://vidiq.com/youtube-stats/channel/@realpostmillennial/">vidIQ (The Post Millennial)</a> <a href="https://vidiq.com/youtube-stats/channel/@justthenews/">vidIQ (Just the News)</a> <a href="https://vidiq.com/youtube-stats/channel/@bulwarkmedia/">vidIQ (The Bulwark)</a> <a href="https://vidiq.com/youtube-stats/channel/@motherjones/">vidIQ (Mother Jones)</a> <a href="https://vidiq.com/youtube-stats/channel/@msnow/">vidIQ (MS NOW)</a> <a href="https://vidiq.com/youtube-stats/channel/@politico/">vidIQ (Politico)</a> <a href="https://vidiq.com/youtube-stats/channel/@axios/">vidIQ (Axios)</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Barrett Media, "Daily Wire layoffs," 2026 年 5 月 1 日。 <a href="https://barrettmedia.com/2026/05/01/daily-wire-layoffs/">Barrett Media サイト</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Semafor, "Daily Wire under pressure, seeks strategic investors, targets IPO," 2026 年 6 月 23 日。 <a href="https://www.semafor.com/article/06/23/2026/daily-wire-under-pressure-seeks-strategic-investors-targets-ipo">Semafor サイト</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Columbia Journalism Review, CNN と Paramount ・ Warner Bros. Discovery の合併に関する記事。 <a href="https://www.cjr.org/feature/cnn-missed-opportunity-paramount-warner-bros-discovery-merger-ellison-larry-david-bari-weiss.php">CJR サイト</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Reuters Institute for the Study of Journalism, <em>Digital News Report 2026</em>, Overview and key findings. <a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/dnr-executive-summary">Reuters Institute サイト</a></li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> Ofcom, <em>News Consumption in the UK 2026</em>, 2026 年 9 月 15 日。 <a href="https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/adult-and-childrens-news-consumption-survey-2026/news-consumption-in-the-uk-2026_research-findings.pdf?v=425341">Ofcom 公開 PDF</a></li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> Correctiv, "Datenleak: Nius gewann während Kampagne gegen Brosius-Gersdorf neue Abonnenten," 2026 年 10 月 16 日。 <a href="https://correctiv.org/aktuelles/politik-2/2026/10/16/datenleak-nius-gewann-waehrend-kampagne-gegen-brosius-gersdorf-neue-abonnenten/">Correctiv サイト</a></li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Index on Censorship, "How a billionaire mogul pushed France's media to the right," 2025 年 10 月。 <a href="https://www.indexoncensorship.org/2025/10/how-a-billionaire-mogul-pushed-frances-media-to-the-right/">Index on Censorship サイト</a></li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> Boursorama (AFP) , 「 Le siège de CNews et Europe 1 dégradé 」 , 2026 年 10 月 17 日。 <a href="https://boursorama.com/actualite-economique/actualites/le-siege-de-cnews-et-europe-1-degrade-des-actes-d-intimidation-selon-ces-medias-78a6d2eda45c1a207ed4f7c1c76c5bef">Boursorama サイト</a></li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> 民放 online, 「後退つづく伝統メディア ニュース信頼度は 37 ％で過去最低…日本の変化は緩やか」。 <a href="https://minpo.online/article/37-sns.html">民放 online サイト</a></li>
+<li id="ref-26"><a href="#fnref-26-1">^</a> 不破雷蔵 , 「 1 番新聞、次いでテレビ…日本国内の政治や経済問題の情報源としてのメディアの信頼度（ 2026 年公開版）」 , Yahoo! ニュース エキスパート。 <a href="https://news.yahoo.co.jp/expert/articles/e90c83efbe8eeb1ee6e70a3e94798176e8e9418f">Yahoo! ニュース エキスパート</a></li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> 日本リサーチセンター (NRC) , 「 2025 年メディアの信頼性自主調査」。 <a href="https://www.nrc.co.jp/report/260209.html">NRC サイト</a></li>
+</ol>
+<p class="endnote">制約： Mother Jones および Media Matters の詳細、三大ネットワークの最新状況は、一般知識に依拠した部分があり、個別に一次資料で確認していない。 MS NOW と Axios の項は主に二次資料（ Wikipedia 、報道）にもとづく。視聴率の数値は集計方法（ Nielsen の測定変更）の影響を受け、媒体自身が公表した数値は独立の検証を経ていない。</p>
+</div>
+</main>
+</body>
+</html>
