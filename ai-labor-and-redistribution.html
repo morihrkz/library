@@ -66,6 +66,26 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -148,7 +168,7 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <h2 id="sec3">3. 交換条件の再設計――五軸モデルを AI 時代に当てはめる</h2>
 <h3 id="sec3-1">3.1 五軸モデルの対応表</h3>
 <p>ここで、序論で示した五軸モデル――収入・興味・自律性・持続可能性・将来価値――を、 AI によるタスク再編という文脈に具体的に当てはめてみたい <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。五軸それぞれについて、 AI 以前から存在した論点と、 AI 時代に新たに加わる論点を整理すると、次のようになる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>軸</th>
@@ -158,29 +178,29 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 </thead>
 <tbody>
 <tr>
-<td>収入</td>
-<td>生活を維持し、選択肢を増やすために十分な額が得られるか</td>
-<td>タスクの代替可能性に応じて賃金分布が再編される。ルーティン的な認知タスクの対価は圧縮され、判断・説明責任・タスクの検証を担う役割にはプレミアムがつく可能性がある</td>
+<td data-label="軸">収入</td>
+<td data-label="AI 以前から存在した論点">生活を維持し、選択肢を増やすために十分な額が得られるか</td>
+<td data-label="AI 時代に加わる論点">タスクの代替可能性に応じて賃金分布が再編される。ルーティン的な認知タスクの対価は圧縮され、判断・説明責任・タスクの検証を担う役割にはプレミアムがつく可能性がある</td>
 </tr>
 <tr>
-<td>興味</td>
-<td>作業内容・実現される価値・労働条件のいずれに選好を持つか</td>
-<td>「好きな作業」そのものが生成 AI の得意領域と重なりやすい。文章を書く、コードを書く、図案を作るといった内発的動機の源泉自体が、置換効果の対象になりうる</td>
+<td data-label="軸">興味</td>
+<td data-label="AI 以前から存在した論点">作業内容・実現される価値・労働条件のいずれに選好を持つか</td>
+<td data-label="AI 時代に加わる論点">「好きな作業」そのものが生成 AI の得意領域と重なりやすい。文章を書く、コードを書く、図案を作るといった内発的動機の源泉自体が、置換効果の対象になりうる</td>
 </tr>
 <tr>
-<td>自律性</td>
-<td>自分自身で選択し、自分なりの方法で仕事を遂行できる裁量があるか</td>
-<td>AI の出力を検証・承認する役割が新設される一方、その検証作業自体がアルゴリズムによって管理・評価される可能性が高まる</td>
+<td data-label="軸">自律性</td>
+<td data-label="AI 以前から存在した論点">自分自身で選択し、自分なりの方法で仕事を遂行できる裁量があるか</td>
+<td data-label="AI 時代に加わる論点">AI の出力を検証・承認する役割が新設される一方、その検証作業自体がアルゴリズムによって管理・評価される可能性が高まる</td>
 </tr>
 <tr>
-<td>持続可能性</td>
-<td>五年、十年という時間軸で継続しても心身・生活基盤が損なわれないか</td>
-<td>技能の陳腐化速度が加速し、同一の技能で持続できる期間そのものが短縮する</td>
+<td data-label="軸">持続可能性</td>
+<td data-label="AI 以前から存在した論点">五年、十年という時間軸で継続しても心身・生活基盤が損なわれないか</td>
+<td data-label="AI 時代に加わる論点">技能の陳腐化速度が加速し、同一の技能で持続できる期間そのものが短縮する</td>
 </tr>
 <tr>
-<td>将来価値</td>
-<td>その仕事に従事することで、次に選択できる仕事や人生の選択肢が拡大するか</td>
-<td>タスク代替の進行速度が不確実であるため、将来価値の見積もり自体が確率的な賭けにならざるを得ない</td>
+<td data-label="軸">将来価値</td>
+<td data-label="AI 以前から存在した論点">その仕事に従事することで、次に選択できる仕事や人生の選択肢が拡大するか</td>
+<td data-label="AI 時代に加わる論点">タスク代替の進行速度が不確実であるため、将来価値の見積もり自体が確率的な賭けにならざるを得ない</td>
 </tr>
 </tbody>
 </table>
@@ -197,7 +217,7 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <p>ただし、この見立てには留保が必要である。前章で確認したように、 Acemoglu (2024) は生成 AI の生産性への寄与自体を慎重に見積もっており、巨額の設備投資が、確定した需要ではなく競争上の地位を失うことへの恐れによって駆動されている可能性も指摘されている。AI による価値の再配分は、労働と資本のあいだだけでなく、 UI ・ロジック・データという事業の層のあいだでも同時に進行しており <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 、現時点での巨額投資が将来の収益によって正当化されるかどうかは、なお不確実な賭けの段階にある。</p>
 <h3 id="sec4-3">4.3 再分配政策の四類型</h3>
 <p>この分配問題への処方箋として、しばしば個別の政策――ベーシックインカム (UBI) か、ロボット税か――が二者択一のように提示される。しかし、この提示の仕方は、ここまで繰り返し指摘してきた誤りと同型である。複数の軸を持つ問題を、単一の正解を選ぶ二択に縮約してしまっているのである。実際の政策手段は、大きく四つに整理できる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>政策</th>
@@ -207,24 +227,24 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 </thead>
 <tbody>
 <tr>
-<td>ベーシックインカム (UBI)</td>
-<td>就労の有無を問わず、全成員に無条件の現金給付を行う。所得と労働参加を切り離す</td>
-<td>財源規模が巨大になりやすく、既存の選別的給付との代替関係をどう設計するかが争点になる (Van Parijs &amp; Vanderborght, 2017)</td>
+<td data-label="政策">ベーシックインカム (UBI)</td>
+<td data-label="設計思想">就労の有無を問わず、全成員に無条件の現金給付を行う。所得と労働参加を切り離す</td>
+<td data-label="主な論点">財源規模が巨大になりやすく、既存の選別的給付との代替関係をどう設計するかが争点になる (Van Parijs &amp; Vanderborght, 2017)</td>
 </tr>
 <tr>
-<td>ロボット税・自動化税</td>
-<td>労働を代替する資本財の導入に課税し、代替によって生じる負の外部性（失業給付・再訓練コストなど）を課税者側に内部化させる</td>
-<td>「ほどほどの自動化」に絞って課税すべきという理論的な設計案がある一方、対象の線引きが難しい (Guerreiro, Rebelo &amp; Teles, 2022)</td>
+<td data-label="政策">ロボット税・自動化税</td>
+<td data-label="設計思想">労働を代替する資本財の導入に課税し、代替によって生じる負の外部性（失業給付・再訓練コストなど）を課税者側に内部化させる</td>
+<td data-label="主な論点">「ほどほどの自動化」に絞って課税すべきという理論的な設計案がある一方、対象の線引きが難しい (Guerreiro, Rebelo &amp; Teles, 2022)</td>
 </tr>
 <tr>
-<td>AI 課税（計算資源・利益への課税）</td>
-<td>ロボット税を個別の資本財ではなく、 AI モデルの学習・推論に用いる計算資源や、 AI 事業から生じる利益そのものに広く課す</td>
-<td>対象を事業全体の利益に置くため線引き問題は緩和されるが、課税権が及ぶ法域の外へ利益を移転する租税回避の余地が残る (Korinek &amp; Stiglitz, 2019)</td>
+<td data-label="政策">AI 課税（計算資源・利益への課税）</td>
+<td data-label="設計思想">ロボット税を個別の資本財ではなく、 AI モデルの学習・推論に用いる計算資源や、 AI 事業から生じる利益そのものに広く課す</td>
+<td data-label="主な論点">対象を事業全体の利益に置くため線引き問題は緩和されるが、課税権が及ぶ法域の外へ利益を移転する租税回避の余地が残る (Korinek &amp; Stiglitz, 2019)</td>
 </tr>
 <tr>
-<td>社会保険制度の再設計</td>
-<td>失業給付・職業訓練・賃金保険を、特定の雇用形態（正規雇用など）に紐づける従来の設計から切り離し、タスク単位の代替に対応できる制度に組み替える</td>
-<td>新しい財源を必要とせず既存制度の対象範囲を広げる形で導入しやすい一方、給付水準は他の三案に比べて限定的になりやすい（デンマークの「フレキシキュリティ」モデルが参照例）</td>
+<td data-label="政策">社会保険制度の再設計</td>
+<td data-label="設計思想">失業給付・職業訓練・賃金保険を、特定の雇用形態（正規雇用など）に紐づける従来の設計から切り離し、タスク単位の代替に対応できる制度に組み替える</td>
+<td data-label="主な論点">新しい財源を必要とせず既存制度の対象範囲を広げる形で導入しやすい一方、給付水準は他の三案に比べて限定的になりやすい（デンマークの「フレキシキュリティ」モデルが参照例）</td>
 </tr>
 </tbody>
 </table>

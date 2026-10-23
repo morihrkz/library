@@ -54,6 +54,26 @@ sup a:hover{text-decoration:underline;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1;}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -175,14 +195,14 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec5-1">5.1 是認の条件と点検の指標</h3>
 <p>第 3 章と第 4 章の検討から、次のことが言える。 P1 は、趣味の実態に照らして強すぎる。 P2 は、条件によって成り立つ場合と成り立たない場合がある。したがって、 P3 は「承認を求めることは避けるべきである」という無条件の命題としては支持されず、「一定の条件のもとでは承認の追求が活動を損なう」という条件つきの命題に修正される。</p>
 <p>この条件が満たされつつあるかどうかを点検する指標を、これまでの議論から三つ導くことができる。次の表は、その試案である。</p>
-<table>
+<table class="cards">
 <thead>
 <tr><th>兆候</th><th>対応する理論的説明</th><th>点検の問い</th></tr>
 </thead>
 <tbody>
-<tr><td>評価されやすい題材だけを選ぶようになる</td><td>4.3 節で論じた、承認による活動の理由の統制</td><td>評価されなくても作りたい題材を、手元に持っているか</td></tr>
-<tr><td>落選が自己否定として経験される</td><td>4.4 節で論じた、自己価値の随伴</td><td>落選後に、作品の結果と自分の価値を区別して考えられるか</td></tr>
-<tr><td>他者の入選を素直に喜べない</td><td>社会的比較 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 、および 3.3 節で論じた外的善の競争的性格</td><td>他者の入選によって、自分の活動の楽しさが縮んでいないか</td></tr>
+<tr><td data-label="兆候">評価されやすい題材だけを選ぶようになる</td><td data-label="対応する理論的説明">4.3 節で論じた、承認による活動の理由の統制</td><td data-label="点検の問い">評価されなくても作りたい題材を、手元に持っているか</td></tr>
+<tr><td data-label="兆候">落選が自己否定として経験される</td><td data-label="対応する理論的説明">4.4 節で論じた、自己価値の随伴</td><td data-label="点検の問い">落選後に、作品の結果と自分の価値を区別して考えられるか</td></tr>
+<tr><td data-label="兆候">他者の入選を素直に喜べない</td><td data-label="対応する理論的説明">社会的比較 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 、および 3.3 節で論じた外的善の競争的性格</td><td data-label="点検の問い">他者の入選によって、自分の活動の楽しさが縮んでいないか</td></tr>
 </tbody>
 </table>
 <p>フェスティンガー (Festinger) は、人は自己の能力を評価する動因を持ち、客観的な基準がないときには他者との比較によってこれを行うと論じた。同じ投稿欄や同じ専門誌に作品を寄せる投稿者は、互いに比較しやすい相手であり、他者の入選が自己評価に影響を及ぼしやすい条件にある。ただし、この表は理論的な推論に基づく点検のための試案であり、妥当性が実証的に検証されたものではない。</p>

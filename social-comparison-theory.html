@@ -65,6 +65,26 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -156,12 +176,12 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 
 <h2 id="sec2">2. 比較にともなう判断は三つの操作に分解できる</h2>
 <p>他者との比較にともなって生じる感情は、しばしば一つの出来事として経験される。しかし、そこで生じているのは性質の異なる三つの操作である。ある人物が、隣に立った他者の所持品（例えば腕時計）が自分のものより高価であることに気づいたとする。この気づきに続いて、「この人物は自分より上位にある」という評価が生じ、さらに自己に対する否定的な感情が生じることがある。この一連の過程は、次の三段階に区別できる。</p>
-<table>
+<table class="cards">
 <thead><tr><th>操作</th><th>内容</th><th>随意性</th><th>評価的負荷</th></tr></thead>
 <tbody>
-<tr><td>①観測</td><td>差異に気づく（時計の価格が違うという事実の登録）</td><td>ほぼ不随意。抑制困難</td><td>なし。色の違いに気づくのと変わらない</td></tr>
-<tr><td>②射影</td><td>その差異を一本の軸に載せる（時計という対象を「経済力」という尺度に置き換える）</td><td>半自動的。軸は選択可能</td><td>なし。「差がある」という情報にとどまる</td></tr>
-<tr><td>③順位づけ</td><td>その軸の上での位置を、当人の全体的な価値の位置に読み替える</td><td>変更可能。介入の余地がある</td><td>ここで初めて生じる</td></tr>
+<tr><td data-label="操作">①観測</td><td data-label="内容">差異に気づく（時計の価格が違うという事実の登録）</td><td data-label="随意性">ほぼ不随意。抑制困難</td><td data-label="評価的負荷">なし。色の違いに気づくのと変わらない</td></tr>
+<tr><td data-label="操作">②射影</td><td data-label="内容">その差異を一本の軸に載せる（時計という対象を「経済力」という尺度に置き換える）</td><td data-label="随意性">半自動的。軸は選択可能</td><td data-label="評価的負荷">なし。「差がある」という情報にとどまる</td></tr>
+<tr><td data-label="操作">③順位づけ</td><td data-label="内容">その軸の上での位置を、当人の全体的な価値の位置に読み替える</td><td data-label="随意性">変更可能。介入の余地がある</td><td data-label="評価的負荷">ここで初めて生じる</td></tr>
 </tbody>
 </table>
 <p>否定的な感情を生じさせるのは、第三の操作のみである。評価的な負荷が生じるのは、一本の軸の上の位置が、当人の存在全体の位置として読み替えられた瞬間だけであり、この読み替えには必ず一つの機構が介在している。<strong>重み</strong>である。どの軸をどれだけ重く見るかという、あらかじめ与えられた配分がそれにあたる。「比較をやめる」という意志的な取り組みが機能しにくいのは、この三段階を区別せず、最も抑制困難な第一の操作を対象にしてしまうためである。目に入るものを選ぶことは難しい。一方、第三の操作は意識の対象に載せることで介入が可能であり、本稿の実践的な主張はこの一点に集約される。</p>
@@ -173,15 +193,15 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <h2 id="sec3">3. 多次元の対象には、順位がほとんど存在しない</h2>
 <p>「人間として、いずれが優位か」という問いは、日常言語としては自然に響く。しかし、この問いが前提とする構造を順序論の観点から検討すると、その自然さは成立しにくくなる。</p>
 <p>身長のように、任意の二要素間で必ず大小関係が定まる関係を<strong>全順序</strong>と呼ぶ。これに対し、複数の成分を持つ対象については<strong>半順序</strong>が用いられる。二者 A と B について「 A ≦ B 」が成立するのは、<strong>すべての成分において A が B 以下である場合</strong>に限られる。一つでも A が上回る成分があれば、 A ≦ B は成立しない。</p>
-<table>
+<table class="cards">
 <thead><tr><th></th><th>知識</th><th>体力</th><th>他者への誠実さ</th></tr></thead>
-<tbody><tr><td>A</td><td>8</td><td>3</td><td>6</td></tr><tr><td>B</td><td>5</td><td>9</td><td>6</td></tr></tbody>
+<tbody><tr><td data-label="">A</td><td data-label="知識">8</td><td data-label="体力">3</td><td data-label="他者への誠実さ">6</td></tr><tr><td data-label="">B</td><td data-label="知識">5</td><td data-label="体力">9</td><td data-label="他者への誠実さ">6</td></tr></tbody>
 </table>
 <p>この二者の間には順序が定まらない。半順序の用語では、この二者は<strong>比較不能</strong>であり、 A ∥ B と表記する。「比較できない」という状態は、測定の失敗でも判断の放棄でもなく、半順序という構造に含まれる<strong>正規の関係の一つ</strong>である。</p>
 <p>比較不能性は、例外ではなく多数派でもある。互いに独立で連続な <em>d</em> 個の成分を持つ二者を無作為に抽出したとき、いずれかが他方を全成分で上回る確率は 2/2<sup><em>d</em></sup> になる。</p>
-<table>
+<table class="cards">
 <thead><tr><th>成分の数 <em>d</em></th><th>比較可能である確率</th><th>比較不能である確率</th></tr></thead>
-<tbody><tr><td>1</td><td>100%</td><td>0%</td></tr><tr><td>2</td><td>50%</td><td>50%</td></tr><tr><td>5</td><td>約 6%</td><td>約 94%</td></tr><tr><td>10</td><td>約 0.2%</td><td>約 99.8%</td></tr></tbody>
+<tbody><tr><td data-label="成分の数 d">1</td><td data-label="比較可能である確率">100%</td><td data-label="比較不能である確率">0%</td></tr><tr><td data-label="成分の数 d">2</td><td data-label="比較可能である確率">50%</td><td data-label="比較不能である確率">50%</td></tr><tr><td data-label="成分の数 d">5</td><td data-label="比較可能である確率">約 6%</td><td data-label="比較不能である確率">約 94%</td></tr><tr><td data-label="成分の数 d">10</td><td data-label="比較可能である確率">約 0.2%</td><td data-label="比較不能である確率">約 99.8%</td></tr></tbody>
 </table>
 <p>評価対象を記述する成分が十個存在するだけで、無作為に選んだ二者が比較可能である確率は千分の二にまで低下する。「ある項目では自分より優位、別の項目では劣位にある他者がほとんどである」という経験的な感覚は、認知の歪みの産物ではなく、<strong>高次元空間の幾何学的な帰結</strong>である。ただし、この計算は成分間の独立性を仮定した初等的な試算であり、特定の文献に依拠するものではない。現実には健康と収入、学歴と語彙のように相関する成分が多く、実際の比較可能率はこれより高いと考えられるが、成分数の増加とともに全面的な優劣が急速に消失するという傾向自体は変わらない。</p>
 <h3 id="sec3-1">3.1 順位が生成されるのは、重みが付加されるためである</h3>

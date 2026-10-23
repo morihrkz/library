@@ -51,6 +51,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -99,10 +119,10 @@ sup a:hover{text-decoration:underline}
 
 <h2 id="sec2">2. 「平等」と「公平」の違いとは</h2>
 <p>平等 (Equality) は、全員に条件や資源を、同じ量・同じ内容で与えることを指す。公平 (Equity) は、各人の出発点や必要性の違いを考慮し、結果として機会や成果が等しくなるよう調整・配分することを指す。両者の本質的な違いは、揃える対象が「投入」、つまり配るものにあるのか、「結果」、つまり達成できる機会にあるのか、という点にある。</p>
-<table>
+<table class="cards">
 <tr><th>用語</th><th>英語</th><th>定義</th><th>中心的な問い</th></tr>
-<tr><td>平等</td><td>Equality</td><td>全員に条件や資源を、同じ量・同じ内容で与える。</td><td>条件や配分は同じか。</td></tr>
-<tr><td>公平</td><td>Equity</td><td>各人の出発点や必要性の違いを考慮し、結果として機会や成果が等しくなるよう調整・配分する。</td><td>結果としての機会・成果は揃うか。</td></tr>
+<tr><td data-label="用語">平等</td><td data-label="英語">Equality</td><td data-label="定義">全員に条件や資源を、同じ量・同じ内容で与える。</td><td data-label="中心的な問い">条件や配分は同じか。</td></tr>
+<tr><td data-label="用語">公平</td><td data-label="英語">Equity</td><td data-label="定義">各人の出発点や必要性の違いを考慮し、結果として機会や成果が等しくなるよう調整・配分する。</td><td data-label="中心的な問い">結果としての機会・成果は揃うか。</td></tr>
 </table>
 <p>公平は、「何でも平等にしないこと」ではない。初期状態の差、すなわちハンディキャップや構造的障壁（個人の努力では動かしにくい、社会の側にある仕組み上の妨げ）を埋めるための、合理的な調整である。また、公平は平等の単なる言い換えでもない。平等が配分の内容を問うのに対し、公平は配分の結果として何が揃うのかを問う。</p>
 

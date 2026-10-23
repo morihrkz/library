@@ -50,6 +50,26 @@ html{scroll-behavior:auto}
  h1{font-size:1.6875rem}
  .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -104,7 +124,7 @@ html{scroll-behavior:auto}
 <p><strong>仮説</strong><br>高齢者では、辞めるか否かよりも「退職の時期」と「働き方」が動くと推測する。フルタイムから短時間へ、有償の仕事から地域活動へ、といった変化である。収入以外の理由で働いている人は、あまり変わらないかもしれない。ただし、どの理由がどの程度を占めるかは、本稿では確認していない。贈与や介護・医療の備えに回す可能性もあり、確度は低い。</p>
 <h2 id="sec5">5. 結び――見えたこと、見えなかったこと</h2>
 <p>ここまでの主張を、確度で整理しておく。確立した事実とは、一次情報で確認でき、複数の独立した研究で一致するもの。未確定の仮説とは、研究はあるが結果が割れる、または単一の研究にとどまるもの。投機的な理論とは、観察の裏付けがほとんどないものである。</p>
-<table><thead><tr><th>主張</th><th>区分</th><th>根拠</th></tr></thead><tbody><tr><td>給付や臨時収入で、就労が大きく崩れた例は、調べた研究には見当たらない</td><td>確立した事実（本稿の条件の範囲で）</td><td>スウェーデン、米国、フィンランド、アラスカで、減少は穏やか、または見られなかった <sup id="fnref-3-6"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup><sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup><sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup></td></tr><tr><td>給付で仕事の質が上がるとは限らない</td><td>未確定の仮説</td><td>米国の実験が改善なしと報告したが、単一の研究にとどまる <sup id="fnref-5-4"><a href="#ref-5">[5]</a></sup></td></tr><tr><td>高齢層ほど働く量が減る</td><td>未確定の仮説</td><td>米国の研究は大きめ、スウェーデンの研究は差が小さいとし、割れている <sup id="fnref-3-7"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-4"><a href="#ref-4">[4]</a></sup></td></tr><tr><td>給付で幸福度が上がる</td><td>未確定の仮説</td><td>フィンランドは満足度が高く、米国は初年度のみで戻った <sup id="fnref-5-5"><a href="#ref-5">[5]</a></sup><sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup></td></tr><tr><td>生涯・月 60 万円で、現役世代が実際にどれだけ辞めるか</td><td>投機的な理論</td><td>本題の条件に合う観察がなく、既存研究からの外挿にとどまる</td></tr><tr><td>学生が社会人にならない、または進路を変える</td><td>投機的な理論</td><td>直接の実証がなく、米国の実験の若年層の傾向は示唆にとどまる <sup id="fnref-5-6"><a href="#ref-5">[5]</a></sup></td></tr></tbody></table>
+<table class="cards"><thead><tr><th>主張</th><th>区分</th><th>根拠</th></tr></thead><tbody><tr><td data-label="主張">給付や臨時収入で、就労が大きく崩れた例は、調べた研究には見当たらない</td><td data-label="区分">確立した事実（本稿の条件の範囲で）</td><td data-label="根拠">スウェーデン、米国、フィンランド、アラスカで、減少は穏やか、または見られなかった <sup id="fnref-3-6"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup><sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup><sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup></td></tr><tr><td data-label="主張">給付で仕事の質が上がるとは限らない</td><td data-label="区分">未確定の仮説</td><td data-label="根拠">米国の実験が改善なしと報告したが、単一の研究にとどまる <sup id="fnref-5-4"><a href="#ref-5">[5]</a></sup></td></tr><tr><td data-label="主張">高齢層ほど働く量が減る</td><td data-label="区分">未確定の仮説</td><td data-label="根拠">米国の研究は大きめ、スウェーデンの研究は差が小さいとし、割れている <sup id="fnref-3-7"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-4"><a href="#ref-4">[4]</a></sup></td></tr><tr><td data-label="主張">給付で幸福度が上がる</td><td data-label="区分">未確定の仮説</td><td data-label="根拠">フィンランドは満足度が高く、米国は初年度のみで戻った <sup id="fnref-5-5"><a href="#ref-5">[5]</a></sup><sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup></td></tr><tr><td data-label="主張">生涯・月 60 万円で、現役世代が実際にどれだけ辞めるか</td><td data-label="区分">投機的な理論</td><td data-label="根拠">本題の条件に合う観察がなく、既存研究からの外挿にとどまる</td></tr><tr><td data-label="主張">学生が社会人にならない、または進路を変える</td><td data-label="区分">投機的な理論</td><td data-label="根拠">直接の実証がなく、米国の実験の若年層の傾向は示唆にとどまる <sup id="fnref-5-6"><a href="#ref-5">[5]</a></sup></td></tr></tbody></table>
 <p>論じて見えたことは、三つある。一つ目は、給付や臨時収入で人が働くのをやめた例が、調べた研究のなかでは見当たらなかったことだ。二つ目は、どの研究も大きな崩れは報告しておらず、減少は小さいか、見られなかったことだ。三つ目は、どの研究も生涯・高額・少人数の抽出という本題の条件からは遠く、本題の答えは実証からは出ないことだ。</p>
 <p>論じきれなかったことも多い。当選が周囲に知られたとき、人間関係はどう変わるか。月 60 万円という水準に、人は時間とともに慣れるのか。米国の実験では、主観的な幸福度は初年度に上がったあと、対照群の水準に戻ったと報告されている <sup id="fnref-5-7"><a href="#ref-5">[5]</a></sup> 。日本の制度や雇用慣行のもとでは、結果は変わるのか。これらは、本稿の材料では答えられない。</p>
 <p>最後の問いは、自分に向けるしかない。月 60 万円が死ぬまで入ると知ったとき、あなたは明日、出勤するか。答えが「分からない」なら、それはこの思考実験が与える最も誠実な結論のひとつである。</p>

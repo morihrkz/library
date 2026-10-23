@@ -57,6 +57,26 @@ sup a:hover{text-decoration:underline;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1;}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -129,24 +149,24 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec1-1">1.1 一つの形式と複数の働き</h3>
 <p>本稿で「と思う」と呼ぶのは、動詞「思う」に引用の格助詞「と」が付いた形式、およびその活用形・接続形（「と思います」「と思って」「と思われる」など）の総称である。日本語のモダリティ研究では、話し手の判断や態度を示す形式の一つとして扱われてきた。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup><sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 文末の「と思う」には複数の形態と用法があることも、用例の記述研究で示されている。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
 <p>形式が一つであるのに対し、働きは一様ではない。次の五つの文は、いずれも「と思う」で終わっているが、していることが異なる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:32%">日本語</th><th style="width:16%">主たる働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>彼はもう出たと思う。</td><td>推量</td><td><em>I think he's already left.</em></td><td>保存型</td></tr>
-<tr><td>先に彼女と話したほうがいいと思う。</td><td>助言</td><td><em>You might want to talk to her first.</em></td><td>転移型</td></tr>
-<tr><td>来月、転職しようと思う。</td><td>意志</td><td><em>I'm thinking about changing jobs next month.</em></td><td>転移型</td></tr>
-<tr><td>私はそうは思わない。</td><td>反対</td><td><em>I don't see it that way.</em> / <em>I disagree.</em></td><td>転移型</td></tr>
-<tr><td>それでは始めたいと思います。</td><td>儀礼的な宣言</td><td><em>Let's get started.</em></td><td>消去型</td></tr>
+<tr><td data-label="日本語">彼はもう出たと思う。</td><td data-label="主たる働き">推量</td><td data-label="英訳の一例"><em>I think he's already left.</em></td><td data-label="英訳の型">保存型</td></tr>
+<tr><td data-label="日本語">先に彼女と話したほうがいいと思う。</td><td data-label="主たる働き">助言</td><td data-label="英訳の一例"><em>You might want to talk to her first.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">来月、転職しようと思う。</td><td data-label="主たる働き">意志</td><td data-label="英訳の一例"><em>I'm thinking about changing jobs next month.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">私はそうは思わない。</td><td data-label="主たる働き">反対</td><td data-label="英訳の一例"><em>I don't see it that way.</em> / <em>I disagree.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">それでは始めたいと思います。</td><td data-label="主たる働き">儀礼的な宣言</td><td data-label="英訳の一例"><em>Let's get started.</em></td><td data-label="英訳の型">消去型</td></tr>
 </table>
 <p>これらを同一の枠組みで説明できるのか、できないとすればどのような枠組みが必要になるのかが、本稿の問いである。論理学は「と思う」を命題態度の述語として、言語哲学・語用論は発話行為上の標識として、心理言語学は習得と使用における定型として、それぞれ捉える傾向がある。三つの観点は、同じ現象の異なる側面を照らしており、どれか一つが正解というものではない。本稿は、各観点がどの機能をよく説明し、どの機能を取りこぼすのかを検討する。</p>
 
 <h3 id="sec1-2">1.2 英訳を物差しとする方法</h3>
 <p>機能を区別する基準を、日本語の内部だけで立てることは難しい。同じ形式の働きの差は、その形式自身には現れにくいからである。そこで本稿は、各用法を英語に訳したときに、「思う」の担っていた働きが英語のどの要素に移るかを観察する。英語には、確信の度合いを副詞や法助動詞で、行為の種類を動詞や文型で、それぞれ別の形式に分けて表す手段が豊富にあり、本稿の例では機能の差が形に出やすい。英訳の形を、機能の差を探るための発見的な物差しとして用いる所以である。</p>
 <p>観察の便宜のため、英訳での現れ方を次の三つの型に分ける。</p>
-<table>
+<table class="cards">
 <tr><th style="width:16%">型</th><th style="width:42%">定義</th><th>例</th></tr>
-<tr><td><strong>保存型</strong></td><td>英訳でも <em>think</em> 、 <em>believe</em> のような心的動詞が補文をとる構造が保たれる。</td><td>彼はもう出たと思う。→ <em>I think he's already left.</em></td></tr>
-<tr><td><strong>転移型</strong></td><td>「思う」の働きが、副詞・法助動詞・時制・文型・別の動詞など、心的動詞以外の形式へ移る。</td><td>明日は雨だと思う。→ <em>It'll probably rain tomorrow.</em></td></tr>
-<tr><td><strong>消去型</strong></td><td>対応する要素が英訳に現れず、行為そのものを述べる文に置き換わる。</td><td>それでは始めたいと思います。→ <em>Let's get started.</em></td></tr>
+<tr><td data-label="型"><strong>保存型</strong></td><td data-label="定義">英訳でも <em>think</em> 、 <em>believe</em> のような心的動詞が補文をとる構造が保たれる。</td><td data-label="例">彼はもう出たと思う。→ <em>I think he's already left.</em></td></tr>
+<tr><td data-label="型"><strong>転移型</strong></td><td data-label="定義">「思う」の働きが、副詞・法助動詞・時制・文型・別の動詞など、心的動詞以外の形式へ移る。</td><td data-label="例">明日は雨だと思う。→ <em>It'll probably rain tomorrow.</em></td></tr>
+<tr><td data-label="型"><strong>消去型</strong></td><td data-label="定義">対応する要素が英訳に現れず、行為そのものを述べる文に置き換わる。</td><td data-label="例">それでは始めたいと思います。→ <em>Let's get started.</em></td></tr>
 </table>
 <p>この表は、「と思う」の機能の差が、英訳の形の割れ方に現れうることを示唆する。ただし、この型分けには、次の留保が付く。第一に、一つの日本語文に自然な英訳が複数あることは普通であり、型は文脈によって変わる。表では代表的な訳を一つ挙げて型を付すが、これは傾向を示すものであって、機能と型が一対一に対応するという主張ではない。第二に、英訳の形が分かれることは、日本語側の機能が分かれていることの傍証にとどまり、証明にはならない。英語の語彙の豊かさや慣用の偏りが、差を生んでいる可能性があるからである。第三に、例文は筆者が内省に基づいて作成したものであり、コーパスや母語話者の判断で確認したものではない。したがって、以下の型分けから言えるのは、本稿の例文と訳例においてそのような差が見える、という範囲にとどまる。日英一般についての頻度や傾向は、比較コーパスや訳者間の一致度などの証拠を別に要する。</p>
 <p>あわせて、本文の記述を三つに区別する。「〜とされる」「〜と論じられている」は出典の知見を、「本稿は〜と解釈する」は筆者による日本語への適用・類推を、「仮説である」は未検証の見立てを指す。英語についての理論や習得研究は、日本語の「と思う」を直接に調べたものではなく、比較・理論背景として用いる。文献が実在し主題が関連することは、隣接する日本語の主張を実証することとは同じではない。</p>
@@ -238,68 +258,68 @@ A 氏の考えをそのまま言っているので、正しい。</li>
 
 <h3 id="sec5-1">5.1 認識的機能</h3>
 <p>確からしさの調整に関わる群で、推量、記憶や知識の限定、否定的な推量が含まれる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>彼はもう出たと思う。</td><td>推量</td><td><em>I think he's already left.</em></td><td>保存型</td></tr>
-<tr><td>明日は雨だと思う。</td><td>推量</td><td><em>It'll probably rain tomorrow.</em></td><td>転移型</td></tr>
-<tr><td>たしか、会議は十時からだったと思う。</td><td>記憶</td><td><em>If I remember correctly, the meeting starts at ten.</em></td><td>転移型</td></tr>
-<tr><td>雨は降らないと思う。</td><td>否定的推量</td><td><em>I don't think it will rain.</em></td><td>保存型（否定辞上昇）</td></tr>
+<tr><td data-label="日本語">彼はもう出たと思う。</td><td data-label="下位の働き">推量</td><td data-label="英訳の一例"><em>I think he's already left.</em></td><td data-label="英訳の型">保存型</td></tr>
+<tr><td data-label="日本語">明日は雨だと思う。</td><td data-label="下位の働き">推量</td><td data-label="英訳の一例"><em>It'll probably rain tomorrow.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">たしか、会議は十時からだったと思う。</td><td data-label="下位の働き">記憶</td><td data-label="英訳の一例"><em>If I remember correctly, the meeting starts at ten.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">雨は降らないと思う。</td><td data-label="下位の働き">否定的推量</td><td data-label="英訳の一例"><em>I don't think it will rain.</em></td><td data-label="英訳の型">保存型（否定辞上昇）</td></tr>
 </table>
 <p>推量は、保存型と転移型の両方で訳せる。確信度の表示が、心的動詞でも副詞でも担えるからである（ 3.1 節）。記憶の「と思う」では、興味深いずれがある。「十時からだった」の過去形は、会議の時刻が過去であることを示すのではなく、記憶に基づく判断であることの標識として働いている。英訳では、時制が現在形の <em>starts</em> になり、記憶に基づくという情報は、 <em>If I remember correctly</em> という別の形式へ移る。時制という文法範疇が、認識的な標識として使われていることが、英訳との対照で見えてくる。否定的な推量は、 2.3 節で見たとおり、否定辞上昇を伴う。</p>
 
 <h3 id="sec5-2">5.2 評価的機能</h3>
 <p>話し手の見解や感想を述べる群で、意見、体験の感想、直感が含まれる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>最初の案のほうが安全だと思う。</td><td>意見</td><td><em>In my opinion, the first plan is safer.</em></td><td>転移型</td></tr>
-<tr><td>この映画は面白かったと思う。</td><td>感想</td><td><em>I really enjoyed this movie.</em></td><td>転移型</td></tr>
-<tr><td>まだ終わりではないと思う。</td><td>直感</td><td><em>Something tells me this isn't over.</em></td><td>転移型</td></tr>
+<tr><td data-label="日本語">最初の案のほうが安全だと思う。</td><td data-label="下位の働き">意見</td><td data-label="英訳の一例"><em>In my opinion, the first plan is safer.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">この映画は面白かったと思う。</td><td data-label="下位の働き">感想</td><td data-label="英訳の一例"><em>I really enjoyed this movie.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">まだ終わりではないと思う。</td><td data-label="下位の働き">直感</td><td data-label="英訳の一例"><em>Something tells me this isn't over.</em></td><td data-label="英訳の型">転移型</td></tr>
 </table>
 <p>この群では、保存型が少ない。意見は、視点を明示する句(<em>In my opinion</em> 、 <em>As I see it</em>)へ移り、感想は、経験を述べる述語(<em>I enjoyed</em> 、 <em>I found it ...</em>)へ移る。感想の場合、「面白かった」という評価述語が、すでに話し手の視点に相対化された判断を表す。個人的な好みや趣味を表す述語についての相対主義的な分析は、この性質を説明する枠組みとして知られる。 <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> 「と思う」は、その主観性を重ねて明示するが、英語は、経験の述語そのものにその主観性を担わせるため、心的動詞が不要になる。この枠組みは、評価文の視点性を考える手がかりにはなるが、「と思う」が冗長な緩和標識であることを直接示す研究ではない。ここでの「と思う」を、論理的には冗長だが、語用論的には断定の緩和として働いていると見るのは、仮説である。</p>
 
 <h3 id="sec5-3">5.3 対人的機能</h3>
 <p>相手との関係の調整に関わる群で、助言、同意、反対、理由の表明が含まれる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>先に彼女と話したほうがいいと思う。</td><td>助言</td><td><em>You might want to talk to her first.</em></td><td>転移型</td></tr>
-<tr><td>私もそう思う。</td><td>同意</td><td><em>I agree.</em> / <em>Same here.</em></td><td>転移型</td></tr>
-<tr><td>私はそうは思わない。</td><td>反対</td><td><em>I don't see it that way.</em> / <em>I disagree.</em></td><td>転移型</td></tr>
-<tr><td>喜ぶと思って、買ってきた。</td><td>理由</td><td><em>I thought you'd like it, so I bought it.</em></td><td>保存型</td></tr>
-<tr><td>ご迷惑かと思って、連絡しなかった。</td><td>理由・配慮</td><td><em>I didn't want to bother you, so I didn't call.</em></td><td>転移型</td></tr>
+<tr><td data-label="日本語">先に彼女と話したほうがいいと思う。</td><td data-label="下位の働き">助言</td><td data-label="英訳の一例"><em>You might want to talk to her first.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">私もそう思う。</td><td data-label="下位の働き">同意</td><td data-label="英訳の一例"><em>I agree.</em> / <em>Same here.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">私はそうは思わない。</td><td data-label="下位の働き">反対</td><td data-label="英訳の一例"><em>I don't see it that way.</em> / <em>I disagree.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">喜ぶと思って、買ってきた。</td><td data-label="下位の働き">理由</td><td data-label="英訳の一例"><em>I thought you'd like it, so I bought it.</em></td><td data-label="英訳の型">保存型</td></tr>
+<tr><td data-label="日本語">ご迷惑かと思って、連絡しなかった。</td><td data-label="下位の働き">理由・配慮</td><td data-label="英訳の一例"><em>I didn't want to bother you, so I didn't call.</em></td><td data-label="英訳の型">転移型</td></tr>
 </table>
 <p>助言は、 3.2 節で見た間接発話行為である。同意と反対は、英訳で <em>I agree</em> 、 <em>I disagree</em> のように、行為の種類を名指す動詞に移ることが多い。日本語の「そう思う」「そうは思わない」が、信念の有無の形で同意や反対を行うのに対して、英語は、同意や反対という行為を直接述べる傾向がある。これは、オースティンの言う明示的な遂行動詞への転移とも見られる。理由の「と思って」は、予想が動機になる場合（「喜ぶと思って」）は <em>I thought</em> で保存されるが、配慮が動機になる場合（「ご迷惑かと思って」）は、 <em>didn't want to</em> のような意志の表現へ移る。同じ「と思って」でも、働きが予想の記述か、配慮の表明かで、英訳の型が分かれる。</p>
 
 <h3 id="sec5-4">5.4 意志的機能</h3>
 <p>話し手の将来の行為についての群で、意志、予定、願望が含まれる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>来月、引っ越そうと思う。</td><td>決定済みの意志</td><td><em>I've decided to move next month.</em></td><td>転移型</td></tr>
-<tr><td>毎朝走ろうと思う。</td><td>心づもり</td><td><em>I'm going to start running every morning.</em></td><td>転移型</td></tr>
-<tr><td>転職しようかと思っている。</td><td>思案中</td><td><em>I'm thinking about changing jobs.</em></td><td>転移型</td></tr>
-<tr><td>パーティーに行こうかと思う。</td><td>未決定</td><td><em>I might go to the party.</em></td><td>転移型</td></tr>
+<tr><td data-label="日本語">来月、引っ越そうと思う。</td><td data-label="下位の働き">決定済みの意志</td><td data-label="英訳の一例"><em>I've decided to move next month.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">毎朝走ろうと思う。</td><td data-label="下位の働き">心づもり</td><td data-label="英訳の一例"><em>I'm going to start running every morning.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">転職しようかと思っている。</td><td data-label="下位の働き">思案中</td><td data-label="英訳の一例"><em>I'm thinking about changing jobs.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">パーティーに行こうかと思う。</td><td data-label="下位の働き">未決定</td><td data-label="英訳の一例"><em>I might go to the party.</em></td><td data-label="英訳の型">転移型</td></tr>
 </table>
 <p>この群はすべて転移型である。日本語は、「しようと思う」という一つの形式で、決定済みから未決定までを覆う一方、英語は、決意の度合いごとに別の形式を選ばせる。 3.4 節で述べた、日本語が決意の度合いを明示しないことが、英訳での形式選択の必要として現れる典型例である。意志の「と思う」が、信念の記述では説明できないことを、英訳の側から確かめることができる。</p>
 
 <h3 id="sec5-5">5.5 儀礼的・文体的機能</h3>
 <p>発話の内容よりも、場面や文体の調整に関わる群で、儀礼的な宣言、学術的な文体での客観化が含まれる。</p>
-<table>
+<table class="cards">
 <tr><th style="width:30%">日本語</th><th style="width:14%">下位の働き</th><th>英訳の一例</th><th style="width:12%">英訳の型</th></tr>
-<tr><td>それでは、始めたいと思います。</td><td>宣言</td><td><em>Let's get started.</em></td><td>消去型</td></tr>
-<tr><td>頑張りたいと思います。</td><td>決意表明</td><td><em>I'll do my best.</em></td><td>消去型</td></tr>
-<tr><td>効果は小さいと思われる。</td><td>客観化</td><td><em>It appears that the effect is small.</em></td><td>転移型</td></tr>
-<tr><td>結果から、睡眠が記憶に影響すると考えられる。</td><td>客観化</td><td><em>The results suggest that sleep affects memory.</em></td><td>転移型</td></tr>
+<tr><td data-label="日本語">それでは、始めたいと思います。</td><td data-label="下位の働き">宣言</td><td data-label="英訳の一例"><em>Let's get started.</em></td><td data-label="英訳の型">消去型</td></tr>
+<tr><td data-label="日本語">頑張りたいと思います。</td><td data-label="下位の働き">決意表明</td><td data-label="英訳の一例"><em>I'll do my best.</em></td><td data-label="英訳の型">消去型</td></tr>
+<tr><td data-label="日本語">効果は小さいと思われる。</td><td data-label="下位の働き">客観化</td><td data-label="英訳の一例"><em>It appears that the effect is small.</em></td><td data-label="英訳の型">転移型</td></tr>
+<tr><td data-label="日本語">結果から、睡眠が記憶に影響すると考えられる。</td><td data-label="下位の働き">客観化</td><td data-label="英訳の一例"><em>The results suggest that sleep affects memory.</em></td><td data-label="英訳の型">転移型</td></tr>
 </table>
 <p>宣言と決意表明では、「思う」に対応する要素が英訳から消える（消去型）。この観察は、この用法の「と思います」が、命題的な内容に乏しく、丁寧さと場面の儀礼性を示す標識としての性格が強いことと整合的だが、それを証明するものではない。学術的な文体の「と思われる」「と考えられる」は、「思う」の自発形・受身形であり、動作主が消える。英訳でも、 <em>it appears that</em> のような非人称構文や、 <em>the results suggest</em> のような無生物主語へ移り、判断の主体が話し手から、観察や証拠へと置き換わる。これは、主体を消すことで判断を客観化する文体上の技法が、英語にも並行的にあることを示す。</p>
 
 <h2 id="sec6">6. 観点と機能の対応</h2>
 <p>前節までの分析を、観点ごとの説明力の観点から整理して表にまとめる。「○」は、その観点が、機能の主要な側面を説明できること、「△」は一部の側面しか説明できないことを示す。この評価は、本稿の分析に基づく筆者の判断であり、定量的な基準によるものではない。</p>
-<table>
+<table class="cards">
 <tr><th style="width:18%">機能の群</th><th style="width:16%">論理学</th><th style="width:20%">言語哲学・語用論</th><th style="width:16%">心理言語学</th><th>英訳の型の傾向</th></tr>
-<tr><td>認識的機能</td><td>○ 命題態度・否定辞上昇</td><td>○ 括弧的用法・質の格率</td><td>○ 習得・定型化</td><td>保存型と転移型が併存</td></tr>
-<tr><td>評価的機能</td><td>△</td><td>○ 緩和・視点の明示</td><td>△</td><td>転移型が中心</td></tr>
-<tr><td>対人的機能</td><td>△</td><td>○ 間接発話行為・ポライトネス</td><td>△ 対人的用法の記述</td><td>転移型が中心、一部は保存型</td></tr>
-<tr><td>意志的機能</td><td>△</td><td>○ 意図の表明・約束</td><td>△</td><td>転移型</td></tr>
-<tr><td>儀礼的・文体的機能</td><td>△（反例として機能）</td><td>○ 遂行的発話・文体標識</td><td>○ 定型化</td><td>消去型と転移型</td></tr>
+<tr><td data-label="機能の群">認識的機能</td><td data-label="論理学">○ 命題態度・否定辞上昇</td><td data-label="言語哲学・語用論">○ 括弧的用法・質の格率</td><td data-label="心理言語学">○ 習得・定型化</td><td data-label="英訳の型の傾向">保存型と転移型が併存</td></tr>
+<tr><td data-label="機能の群">評価的機能</td><td data-label="論理学">△</td><td data-label="言語哲学・語用論">○ 緩和・視点の明示</td><td data-label="心理言語学">△</td><td data-label="英訳の型の傾向">転移型が中心</td></tr>
+<tr><td data-label="機能の群">対人的機能</td><td data-label="論理学">△</td><td data-label="言語哲学・語用論">○ 間接発話行為・ポライトネス</td><td data-label="心理言語学">△ 対人的用法の記述</td><td data-label="英訳の型の傾向">転移型が中心、一部は保存型</td></tr>
+<tr><td data-label="機能の群">意志的機能</td><td data-label="論理学">△</td><td data-label="言語哲学・語用論">○ 意図の表明・約束</td><td data-label="心理言語学">△</td><td data-label="英訳の型の傾向">転移型</td></tr>
+<tr><td data-label="機能の群">儀礼的・文体的機能</td><td data-label="論理学">△（反例として機能）</td><td data-label="言語哲学・語用論">○ 遂行的発話・文体標識</td><td data-label="心理言語学">○ 定型化</td><td data-label="英訳の型の傾向">消去型と転移型</td></tr>
 </table>
 <p>表から読み取れるのは、論理学的な分析が有効なのは認識的機能に限られ、他の機能では、言語哲学・語用論の道具立てが必要になることである。心理言語学の知見は、機能を直接分類するというよりも、機能の分離可能性や定型化という、機能の存在を支える背景を提供する。本稿の例と訳例の範囲では、英訳の型は、観点の有効範囲とおおむね対応している。保存型は認識的機能に偏り、転移型は評価・対人・意志に広がり、消去型は儀礼的機能に現れる。</p>
 

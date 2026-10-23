@@ -68,6 +68,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -144,7 +164,7 @@ pre code{background:none; padding:0;}
 あわせて、教義の比較および「五十六派という数字の由来」についても論じる。</p>
 <h2 id="sec2">2. 全体を俯瞰する――十三宗、ひと目でわかる表</h2>
 <p>まずは十三宗全体を、開かれた時代の古い順に見渡してみる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>宗名</th>
@@ -155,82 +175,82 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>法相宗</td>
-<td>道昭ら（奈良時代）</td>
-<td>興福寺・薬師寺</td>
-<td>認識のあり方を精密に考察する唯識を重視する</td>
+<td data-label="宗名">法相宗</td>
+<td data-label="開祖・開宗年">道昭ら（奈良時代）</td>
+<td data-label="本山">興福寺・薬師寺</td>
+<td data-label="ひとことで言うと">認識のあり方を精密に考察する唯識を重視する</td>
 </tr>
 <tr>
-<td>律宗</td>
-<td>鑑真（ 753 年来日）</td>
-<td>唐招提寺</td>
-<td>戒律を守り抜くことを実践の中心に</td>
+<td data-label="宗名">律宗</td>
+<td data-label="開祖・開宗年">鑑真（ 753 年来日）</td>
+<td data-label="本山">唐招提寺</td>
+<td data-label="ひとことで言うと">戒律を守り抜くことを実践の中心に</td>
 </tr>
 <tr>
-<td>華厳宗</td>
-<td>審祥ら（奈良時代）</td>
-<td>東大寺</td>
-<td>一即一切、あらゆるものが響き合う</td>
+<td data-label="宗名">華厳宗</td>
+<td data-label="開祖・開宗年">審祥ら（奈良時代）</td>
+<td data-label="本山">東大寺</td>
+<td data-label="ひとことで言うと">一即一切、あらゆるものが響き合う</td>
 </tr>
 <tr>
-<td>天台宗</td>
-<td>最澄（ 806 年）</td>
-<td>比叡山延暦寺</td>
-<td>法華経中心の総合仏教、鎌倉仏教の母山</td>
+<td data-label="宗名">天台宗</td>
+<td data-label="開祖・開宗年">最澄（ 806 年）</td>
+<td data-label="本山">比叡山延暦寺</td>
+<td data-label="ひとことで言うと">法華経中心の総合仏教、鎌倉仏教の母山</td>
 </tr>
 <tr>
-<td>真言宗</td>
-<td>空海（ 816 年）</td>
-<td>金剛峯寺・東寺</td>
-<td>密教の修法でこの身のまま仏になる</td>
+<td data-label="宗名">真言宗</td>
+<td data-label="開祖・開宗年">空海（ 816 年）</td>
+<td data-label="本山">金剛峯寺・東寺</td>
+<td data-label="ひとことで言うと">密教の修法でこの身のまま仏になる</td>
 </tr>
 <tr>
-<td>融通念仏宗</td>
-<td>良忍（ 1117 年）</td>
-<td>大念佛寺</td>
-<td>一人の念仏がみんなに融け通う</td>
+<td data-label="宗名">融通念仏宗</td>
+<td data-label="開祖・開宗年">良忍（ 1117 年）</td>
+<td data-label="本山">大念佛寺</td>
+<td data-label="ひとことで言うと">一人の念仏がみんなに融け通う</td>
 </tr>
 <tr>
-<td>浄土宗</td>
-<td>法然（ 1175 年）</td>
-<td>知恩院</td>
-<td>ひたすら念仏を称える専修念仏</td>
+<td data-label="宗名">浄土宗</td>
+<td data-label="開祖・開宗年">法然（ 1175 年）</td>
+<td data-label="本山">知恩院</td>
+<td data-label="ひとことで言うと">ひたすら念仏を称える専修念仏</td>
 </tr>
 <tr>
-<td>浄土真宗</td>
-<td>親鸞</td>
-<td>本願寺（西・東）</td>
-<td>阿弥陀仏にすべてを委ねる絶対他力</td>
+<td data-label="宗名">浄土真宗</td>
+<td data-label="開祖・開宗年">親鸞</td>
+<td data-label="本山">本願寺（西・東）</td>
+<td data-label="ひとことで言うと">阿弥陀仏にすべてを委ねる絶対他力</td>
 </tr>
 <tr>
-<td>臨済宗</td>
-<td>栄西（ 1191 年）</td>
-<td>建仁寺ほか</td>
-<td>公案と問答で悟りに向かう禅</td>
+<td data-label="宗名">臨済宗</td>
+<td data-label="開祖・開宗年">栄西（ 1191 年）</td>
+<td data-label="本山">建仁寺ほか</td>
+<td data-label="ひとことで言うと">公案と問答で悟りに向かう禅</td>
 </tr>
 <tr>
-<td>曹洞宗</td>
-<td>道元</td>
-<td>永平寺・總持寺</td>
-<td>ひたすら坐る、只管打坐の禅</td>
+<td data-label="宗名">曹洞宗</td>
+<td data-label="開祖・開宗年">道元</td>
+<td data-label="本山">永平寺・總持寺</td>
+<td data-label="ひとことで言うと">ひたすら坐る、只管打坐の禅</td>
 </tr>
 <tr>
-<td>時宗</td>
-<td>一遍（ 1276 年頃）</td>
-<td>清浄光寺（遊行寺）</td>
-<td>踊り念仏とともに諸国を遊行する</td>
+<td data-label="宗名">時宗</td>
+<td data-label="開祖・開宗年">一遍（ 1276 年頃）</td>
+<td data-label="本山">清浄光寺（遊行寺）</td>
+<td data-label="ひとことで言うと">踊り念仏とともに諸国を遊行する</td>
 </tr>
 <tr>
-<td>日蓮宗</td>
-<td>日蓮（ 1253 年）</td>
-<td>身延山久遠寺</td>
-<td>法華経こそ真の教え、南無妙法蓮華経</td>
+<td data-label="宗名">日蓮宗</td>
+<td data-label="開祖・開宗年">日蓮（ 1253 年）</td>
+<td data-label="本山">身延山久遠寺</td>
+<td data-label="ひとことで言うと">法華経こそ真の教え、南無妙法蓮華経</td>
 </tr>
 <tr>
-<td>黄檗宗</td>
-<td>隠元（ 1654 年来日）</td>
-<td>萬福寺</td>
-<td>中国明代の様式を伝える禅</td>
+<td data-label="宗名">黄檗宗</td>
+<td data-label="開祖・開宗年">隠元（ 1654 年来日）</td>
+<td data-label="本山">萬福寺</td>
+<td data-label="ひとことで言うと">中国明代の様式を伝える禅</td>
 </tr>
 </tbody>
 </table>
@@ -311,7 +331,7 @@ pre code{background:none; padding:0;}
 <p>なお創価学会や、同じく法華信仰に連なる立正佼成会・霊友会といった教団は、明治以降に成立した在家中心の新しい教団であり、伝統的な「十三宗五十六派」の数え方には含まれない。</p>
 <h2 id="sec9">9. 教義の比較</h2>
 <p>ここまで検討してきた宗ごとの違いを、「自力か他力か」「中心とする経典」「代表的な実践」という三つの軸で表に整理する。厳密な教学上の分類というより、大づかみに特徴を把握するための見取り図として位置づけられる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>宗</th>
@@ -322,82 +342,82 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>法相宗</td>
-<td>自力</td>
-<td>解深密経など唯識経典</td>
-<td>唯識観による瞑想</td>
+<td data-label="宗">法相宗</td>
+<td data-label="自力 / 他力">自力</td>
+<td data-label="中心的な経典">解深密経など唯識経典</td>
+<td data-label="代表的な実践">唯識観による瞑想</td>
 </tr>
 <tr>
-<td>華厳宗</td>
-<td>自力</td>
-<td>華厳経</td>
-<td>法界を観じる瞑想・教学研究</td>
+<td data-label="宗">華厳宗</td>
+<td data-label="自力 / 他力">自力</td>
+<td data-label="中心的な経典">華厳経</td>
+<td data-label="代表的な実践">法界を観じる瞑想・教学研究</td>
 </tr>
 <tr>
-<td>律宗</td>
-<td>自力</td>
-<td>四分律など戒律書</td>
-<td>戒律の厳格な実践</td>
+<td data-label="宗">律宗</td>
+<td data-label="自力 / 他力">自力</td>
+<td data-label="中心的な経典">四分律など戒律書</td>
+<td data-label="代表的な実践">戒律の厳格な実践</td>
 </tr>
 <tr>
-<td>天台宗</td>
-<td>自力（諸行を統合）</td>
-<td>法華経</td>
-<td>止観、念仏、密教など多様な実践</td>
+<td data-label="宗">天台宗</td>
+<td data-label="自力 / 他力">自力（諸行を統合）</td>
+<td data-label="中心的な経典">法華経</td>
+<td data-label="代表的な実践">止観、念仏、密教など多様な実践</td>
 </tr>
 <tr>
-<td>真言宗</td>
-<td>自力（即身成仏）</td>
-<td>大日経・金剛頂経</td>
-<td>三密加持（印・真言・観想）</td>
+<td data-label="宗">真言宗</td>
+<td data-label="自力 / 他力">自力（即身成仏）</td>
+<td data-label="中心的な経典">大日経・金剛頂経</td>
+<td data-label="代表的な実践">三密加持（印・真言・観想）</td>
 </tr>
 <tr>
-<td>融通念仏宗</td>
-<td>他力</td>
-<td>華厳経・法華経の融通念仏思想</td>
-<td>念仏の融通（勧進による勧化）</td>
+<td data-label="宗">融通念仏宗</td>
+<td data-label="自力 / 他力">他力</td>
+<td data-label="中心的な経典">華厳経・法華経の融通念仏思想</td>
+<td data-label="代表的な実践">念仏の融通（勧進による勧化）</td>
 </tr>
 <tr>
-<td>浄土宗</td>
-<td>他力</td>
-<td>浄土三部経</td>
-<td>称名念仏（専修念仏）</td>
+<td data-label="宗">浄土宗</td>
+<td data-label="自力 / 他力">他力</td>
+<td data-label="中心的な経典">浄土三部経</td>
+<td data-label="代表的な実践">称名念仏（専修念仏）</td>
 </tr>
 <tr>
-<td>浄土真宗</td>
-<td>絶対他力</td>
-<td>浄土三部経（特に無量寿経）</td>
-<td>信心をいただくこと、報恩の念仏</td>
+<td data-label="宗">浄土真宗</td>
+<td data-label="自力 / 他力">絶対他力</td>
+<td data-label="中心的な経典">浄土三部経（特に無量寿経）</td>
+<td data-label="代表的な実践">信心をいただくこと、報恩の念仏</td>
 </tr>
 <tr>
-<td>時宗</td>
-<td>他力</td>
-<td>浄土三部経</td>
-<td>賦算、踊り念仏</td>
+<td data-label="宗">時宗</td>
+<td data-label="自力 / 他力">他力</td>
+<td data-label="中心的な経典">浄土三部経</td>
+<td data-label="代表的な実践">賦算、踊り念仏</td>
 </tr>
 <tr>
-<td>臨済宗</td>
-<td>自力</td>
-<td>般若経典・禅の語録</td>
-<td>公案による問答</td>
+<td data-label="宗">臨済宗</td>
+<td data-label="自力 / 他力">自力</td>
+<td data-label="中心的な経典">般若経典・禅の語録</td>
+<td data-label="代表的な実践">公案による問答</td>
 </tr>
 <tr>
-<td>曹洞宗</td>
-<td>自力</td>
-<td>正法眼蔵・禅の語録</td>
-<td>只管打坐</td>
+<td data-label="宗">曹洞宗</td>
+<td data-label="自力 / 他力">自力</td>
+<td data-label="中心的な経典">正法眼蔵・禅の語録</td>
+<td data-label="代表的な実践">只管打坐</td>
 </tr>
 <tr>
-<td>黄檗宗</td>
-<td>自力 + 念仏的要素</td>
-<td>禅の語録</td>
-<td>念仏禅</td>
+<td data-label="宗">黄檗宗</td>
+<td data-label="自力 / 他力">自力 + 念仏的要素</td>
+<td data-label="中心的な経典">禅の語録</td>
+<td data-label="代表的な実践">念仏禅</td>
 </tr>
 <tr>
-<td>日蓮宗</td>
-<td>自力 + 題目の力</td>
-<td>法華経</td>
-<td>唱題（南無妙法蓮華経）</td>
+<td data-label="宗">日蓮宗</td>
+<td data-label="自力 / 他力">自力 + 題目の力</td>
+<td data-label="中心的な経典">法華経</td>
+<td data-label="代表的な実践">唱題（南無妙法蓮華経）</td>
 </tr>
 </tbody>
 </table>

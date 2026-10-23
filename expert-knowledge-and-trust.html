@@ -59,6 +59,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -150,12 +170,12 @@ sup a:hover{text-decoration:underline}
 <h3 id="sec3-3">3.3 少数意見の重みをどう評価するか</h3>
 <p>主流の見解に対する異論の存在は、それ自体ではどちらの側を支持する証拠にもならない。少数意見が後に正しいと判明し、支配的な理論を覆すことはある。しかし、異論を唱えたという事実と、異論を裏づける強い証拠が存在するという事実は別である。ここでもゴールドマンの指摘が再び効いてくる――ノヴィスは対立する主張の中身を直接検証できないがゆえに、実績・検証可能性・他の研究者による追試の有無・既知の証拠をどれだけ包括的に説明できるかという間接的な指標に頼らざるをえない <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。開かれた議論とは、すべての立場を同じ確からしさとして扱うことではなく、いずれの立場についても等しくこれらの指標を問うことである。</p>
 
-<table>
+<table class="cards">
 <tr><th>主張の型</th><th>典型的な問い</th><th>要求される検証</th></tr>
-<tr><td>観察</td><td>何が測定・記録されたか</td><td>測定方法の妥当性、再現性</td></tr>
-<tr><td>因果推論</td><td>何が何を引き起こしたか</td><td>比較対象の設計、交絡要因の統制</td></tr>
-<tr><td>予測</td><td>今後何が起こるか</td><td>モデルの検証履歴、不確実性の幅</td></tr>
-<tr><td>価値判断</td><td>何を優先すべきか</td><td>事実前提の吟味に加え、規範的な論拠</td></tr>
+<tr><td data-label="主張の型">観察</td><td data-label="典型的な問い">何が測定・記録されたか</td><td data-label="要求される検証">測定方法の妥当性、再現性</td></tr>
+<tr><td data-label="主張の型">因果推論</td><td data-label="典型的な問い">何が何を引き起こしたか</td><td data-label="要求される検証">比較対象の設計、交絡要因の統制</td></tr>
+<tr><td data-label="主張の型">予測</td><td data-label="典型的な問い">今後何が起こるか</td><td data-label="要求される検証">モデルの検証履歴、不確実性の幅</td></tr>
+<tr><td data-label="主張の型">価値判断</td><td data-label="典型的な問い">何を優先すべきか</td><td data-label="要求される検証">事実前提の吟味に加え、規範的な論拠</td></tr>
 </table>
 
 <h2 id="sec4">4. 信頼を調整する五つの指標</h2>

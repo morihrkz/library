@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -211,7 +231,7 @@ pre code{background:none; padding:0;}
 <p>ただし、ここまで述べた特徴は、あくまで LAC という類型に典型的に見られる傾向であり、すべての LAC が同一の姿をしているわけではない点には注意したい。都市部に立地し通学生が中心の LAC 、修士課程を併設する LAC 、全寮制を必須としない LAC なども現に存在しており、（三 -1 ）で見たカーネギー分類上の「 LAC 」という括り自体、学位構成に着目した統計上の分類であって、少人数・全寮制・学部生研究といった特徴の有無を直接の要件とするものではない。</p>
 <h3 id="sec4-3">4.3 代表的な大学とその沿革</h3>
 <p>米国を代表する LAC の多くは、独立戦争前後から南北戦争期にかけて設立された歴史の長い私立大学である。代表例として以下が挙げられる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>大学名</th>
@@ -221,24 +241,24 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>Williams College</td>
-<td>1793 年</td>
-<td>マサチューセッツ州で二番目に設立された大学。エフライム・ウィリアムズ大佐の遺産をもとに設立された（出典 : <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> ）。</td>
+<td data-label="大学名">Williams College</td>
+<td data-label="設立年">1793 年</td>
+<td data-label="沿革の概要">マサチューセッツ州で二番目に設立された大学。エフライム・ウィリアムズ大佐の遺産をもとに設立された（出典 : <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> ）。</td>
 </tr>
 <tr>
-<td>Amherst College</td>
-<td>1821 年</td>
-<td>Williams College の学長ゼファナイア・スウィフト・ムーアが学生 15 人とともに移り、マサチューセッツ州アマーストに創立（出典 : <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> ）。</td>
+<td data-label="大学名">Amherst College</td>
+<td data-label="設立年">1821 年</td>
+<td data-label="沿革の概要">Williams College の学長ゼファナイア・スウィフト・ムーアが学生 15 人とともに移り、マサチューセッツ州アマーストに創立（出典 : <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> ）。</td>
 </tr>
 <tr>
-<td>Swarthmore College</td>
-<td>1864 年</td>
-<td>クエーカー教徒（フレンド派）により設立。米国初期の男女共学カレッジの一つ（出典 : <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> ）。</td>
+<td data-label="大学名">Swarthmore College</td>
+<td data-label="設立年">1864 年</td>
+<td data-label="沿革の概要">クエーカー教徒（フレンド派）により設立。米国初期の男女共学カレッジの一つ（出典 : <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> ）。</td>
 </tr>
 <tr>
-<td>Reed College</td>
-<td>1909 年</td>
-<td>ポートランドの実業家サイモン・リードの遺志により設立された比較的新しい LAC （出典 : <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> ）。</td>
+<td data-label="大学名">Reed College</td>
+<td data-label="設立年">1909 年</td>
+<td data-label="沿革の概要">ポートランドの実業家サイモン・リードの遺志により設立された比較的新しい LAC （出典 : <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> ）。</td>
 </tr>
 </tbody>
 </table>
@@ -268,7 +288,7 @@ pre code{background:none; padding:0;}
 これは、学生が LAC で 3 年間リベラルアーツ教育を受けたのち、提携する工科大学等の研究型大学に編入して 2 年間専門教育を受け、 5 年間で二つの大学の学位（たとえば文学士と工学士）を取得する仕組みである。多くの LAC は工学部を持たないため、こうした提携プログラムを通じて、リベラルアーツの理念を保ちながら実務的な専門教育への接続を確保している。</p>
 <p>また、 LAC の卒業生が大学院段階で研究型大学に進学し、そこで初めて専門的な研究者としての訓練を受けるというキャリアパスも一般的である。すなわち米国の高等教育システム全体としては、学部段階（ LAC が得意とする幅広い知的基盤の形成）と大学院段階（研究型大学が得意とする高度な専門研究）とが、時間軸上で分業する構造になっていると整理できる。</p>
 <h3 id="sec5-4">5.4 比較表</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>観点</th>
@@ -278,44 +298,44 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>規模</td>
-<td>数百〜数千人程度の小規模校が中心</td>
-<td>数万人規模も珍しくない大規模校</td>
+<td data-label="観点">規模</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">数百〜数千人程度の小規模校が中心</td>
+<td data-label="研究型大学 (Research University)">数万人規模も珍しくない大規模校</td>
 </tr>
 <tr>
-<td>大学院</td>
-<td>基本的に持たない、または修士課程のみ</td>
-<td>博士課程を含む大学院が組織の中核</td>
+<td data-label="観点">大学院</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">基本的に持たない、または修士課程のみ</td>
+<td data-label="研究型大学 (Research University)">博士課程を含む大学院が組織の中核</td>
 </tr>
 <tr>
-<td>教育の主眼</td>
-<td>学部教育・全人的な教養形成</td>
-<td>大学院研究・専門知の生産</td>
+<td data-label="観点">教育の主眼</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">学部教育・全人的な教養形成</td>
+<td data-label="研究型大学 (Research University)">大学院研究・専門知の生産</td>
 </tr>
 <tr>
-<td>クラス規模</td>
-<td>平均 10 〜 20 人程度</td>
-<td>大規模講義 + TA によるセクション</td>
+<td data-label="観点">クラス規模</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">平均 10 〜 20 人程度</td>
+<td data-label="研究型大学 (Research University)">大規模講義 + TA によるセクション</td>
 </tr>
 <tr>
-<td>授業担当</td>
-<td>テニュア教員が直接担当することが多い</td>
-<td>教員に加え大学院生 TA が担当することも多い</td>
+<td data-label="観点">授業担当</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">テニュア教員が直接担当することが多い</td>
+<td data-label="研究型大学 (Research University)">教員に加え大学院生 TA が担当することも多い</td>
 </tr>
 <tr>
-<td>学生生活</td>
-<td>全寮制が基本、緊密な共同体</td>
-<td>通学・下宿を含め多様</td>
+<td data-label="観点">学生生活</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">全寮制が基本、緊密な共同体</td>
+<td data-label="研究型大学 (Research University)">通学・下宿を含め多様</td>
 </tr>
 <tr>
-<td>研究参加</td>
-<td>学部生自身が研究の主体になりやすい</td>
-<td>大学院生中心の研究に学部生が参加</td>
+<td data-label="観点">研究参加</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">学部生自身が研究の主体になりやすい</td>
+<td data-label="研究型大学 (Research University)">大学院生中心の研究に学部生が参加</td>
 </tr>
 <tr>
-<td>立地傾向</td>
-<td>地方・郊外の小規模タウンが多い</td>
-<td>都市部の大規模キャンパスが多い</td>
+<td data-label="観点">立地傾向</td>
+<td data-label="リベラル・アーツ・カレッジ (LAC)">地方・郊外の小規模タウンが多い</td>
+<td data-label="研究型大学 (Research University)">都市部の大規模キャンパスが多い</td>
 </tr>
 </tbody>
 </table>

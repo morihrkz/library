@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -109,14 +129,14 @@ pre code{background:none; padding:0;}
 
 <h2 id="sec3">3. 六つの基盤とその進化的根拠</h2>
 <p>ハイトはグラハムらとともに、この「あらかじめ準備された」道徳的直観の基盤を、当初五つに整理し、後年一つを追加した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。各基盤は、人類が祖先環境で繰り返し直面してきた固有の適応課題に対応し、それぞれ特徴的な引き金となる状況、特徴的な感情、そして関連する徳を伴う。</p>
-<table>
+<table class="cards">
 <tr><th>基盤</th><th>適応課題</th><th>引き金となる状況</th><th>特徴的な感情</th><th>関連する徳</th></tr>
-<tr><td>ケア / 危害</td><td>脆弱な子への養育</td><td>苦しみ・脆弱さの兆候</td><td>同情</td><td>思いやり</td></tr>
-<tr><td>公正 / 欺瞞</td><td>互恵的な協力関係の構築</td><td>不正な分配・裏切り</td><td>怒り、感謝、罪悪感</td><td>公正さ、正直さ</td></tr>
-<tr><td>忠誠 / 裏切り</td><td>連合を組んでの集団防衛</td><td>内集団への脅威</td><td>集団への誇り、裏切り者への怒り</td><td>忠誠心、愛国心</td></tr>
-<tr><td>権威 / 転覆</td><td>階層的な関係における秩序の維持</td><td>地位・伝統への挑戦</td><td>尊敬、恐れ</td><td>服従、敬意</td></tr>
-<tr><td>神聖 / 堕落</td><td>病原体・寄生体の回避</td><td>穢れ・不浄の兆候</td><td>嫌悪</td><td>清浄さ、節制</td></tr>
-<tr><td>自由 / 抑圧</td><td>支配的な個体による専制への抵抗</td><td>他者を支配しようとする兆候</td><td>反発、怒り</td><td>連帯、自主独立</td></tr>
+<tr><td data-label="基盤">ケア / 危害</td><td data-label="適応課題">脆弱な子への養育</td><td data-label="引き金となる状況">苦しみ・脆弱さの兆候</td><td data-label="特徴的な感情">同情</td><td data-label="関連する徳">思いやり</td></tr>
+<tr><td data-label="基盤">公正 / 欺瞞</td><td data-label="適応課題">互恵的な協力関係の構築</td><td data-label="引き金となる状況">不正な分配・裏切り</td><td data-label="特徴的な感情">怒り、感謝、罪悪感</td><td data-label="関連する徳">公正さ、正直さ</td></tr>
+<tr><td data-label="基盤">忠誠 / 裏切り</td><td data-label="適応課題">連合を組んでの集団防衛</td><td data-label="引き金となる状況">内集団への脅威</td><td data-label="特徴的な感情">集団への誇り、裏切り者への怒り</td><td data-label="関連する徳">忠誠心、愛国心</td></tr>
+<tr><td data-label="基盤">権威 / 転覆</td><td data-label="適応課題">階層的な関係における秩序の維持</td><td data-label="引き金となる状況">地位・伝統への挑戦</td><td data-label="特徴的な感情">尊敬、恐れ</td><td data-label="関連する徳">服従、敬意</td></tr>
+<tr><td data-label="基盤">神聖 / 堕落</td><td data-label="適応課題">病原体・寄生体の回避</td><td data-label="引き金となる状況">穢れ・不浄の兆候</td><td data-label="特徴的な感情">嫌悪</td><td data-label="関連する徳">清浄さ、節制</td></tr>
+<tr><td data-label="基盤">自由 / 抑圧</td><td data-label="適応課題">支配的な個体による専制への抵抗</td><td data-label="引き金となる状況">他者を支配しようとする兆候</td><td data-label="特徴的な感情">反発、怒り</td><td data-label="関連する徳">連帯、自主独立</td></tr>
 </table>
 <p>最初の五基盤のうち、ケア / 危害と公正 / 欺瞞は「個人化基盤 (individualizing foundations) 」、忠誠 / 裏切り・権威 / 転覆・神聖 / 堕落は「拘束基盤 (binding foundations) 」と呼ばれ、後にこの二区分が理論の因子構造をめぐる論争の焦点になる（第 6 章）。自由 / 抑圧の基盤は、当初の五基盤モデルでは十分に説明できない現象――支配・専制への反発――を説明するために、 2012 年前後に追加された、比較的新しい基盤である <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 。この枠組みでは、道徳の違いは、何を善しとするかの違いである以上に、どの基盤にどれだけの重みを置くかの違いとして捉えられる。</p>
 

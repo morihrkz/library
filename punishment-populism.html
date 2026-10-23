@@ -54,6 +54,26 @@ th{background:var(--box)}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -123,15 +143,15 @@ th{background:var(--box)}
 <p>立法が世論一色で動くとは限らない例もある。法務省は、平成 29 年の刑法改正法の附則に基づき「性犯罪に関する刑事法検討会」を置き、令和 2 年 6 月から令和 3 年 5 月まで 16 回の会議を開いた。構成員は、被害者心理・被害者支援等の関係者、刑事法研究者、実務家である。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 現行の刑法は、不同意性交等の罪（ 177 条）に 5 年以上の有期拘禁刑を科す。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> この検討会の報告書と現行規定との対応は、報告書本文を取得できなかったため確認していない。</p>
 <p><strong>筆者の解釈</strong><br>専門家を含む検討の段階を挟んだ立法の例があることは、世論に直結するだけの立法ばかりではないことを示唆する。ただし、一例にすぎず、日本の厳罰化立法の全体像を示すものではない。</p>
 <h3 id="sec5-4">5.4 主張ごとの確度</h3>
-<table>
+<table class="cards">
 <tr><th>主張</th><th>区分</th><th>主な根拠と条件</th></tr>
-<tr><td>認知件数は平成 14 年に約 285 万件で頂点に達し、その後減った。令和 3 年以降は増えている。</td><td>確立した事実</td><td>警察白書（統計として確定）。ただし警察が認知した件数である。</td></tr>
-<tr><td>捕まる確率は、刑の重さより強い抑止力をもつ。</td><td>確立した事実に近い（米国中心）</td><td>Nagin が複数のレビューの一致を報告。個々の研究は未確認。米国の制度が主な対象。</td></tr>
-<tr><td>日本でも、厳罰化の抑止効果は小さい。</td><td>未確定の仮説</td><td>日本の実証研究を確認できない。</td></tr>
-<tr><td>実感のずれが、厳罰志向を生んだ。</td><td>未確定の仮説</td><td>エリスの論考（要旨のみ確認）。単一の論者にとどまる。</td></tr>
-<tr><td>日本の個別の厳罰化立法は、世論に直結して決まった。</td><td>未確定の仮説</td><td>立法過程の一次資料を読めていない。</td></tr>
-<tr><td>刑が人々の正義の直観からずれると、法の信頼と統制力が落ちる。</td><td>未確定の仮説</td><td>総説の主張。日本での長期の検証は確認できない。</td></tr>
-<tr><td>厳罰化への賛意は、エリート不信から生じるポピュリズムの産物である。</td><td>投機的な理論</td><td>日本で観察や実験による裏付けを確認できない。</td></tr>
+<tr><td data-label="主張">認知件数は平成 14 年に約 285 万件で頂点に達し、その後減った。令和 3 年以降は増えている。</td><td data-label="区分">確立した事実</td><td data-label="主な根拠と条件">警察白書（統計として確定）。ただし警察が認知した件数である。</td></tr>
+<tr><td data-label="主張">捕まる確率は、刑の重さより強い抑止力をもつ。</td><td data-label="区分">確立した事実に近い（米国中心）</td><td data-label="主な根拠と条件">Nagin が複数のレビューの一致を報告。個々の研究は未確認。米国の制度が主な対象。</td></tr>
+<tr><td data-label="主張">日本でも、厳罰化の抑止効果は小さい。</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠と条件">日本の実証研究を確認できない。</td></tr>
+<tr><td data-label="主張">実感のずれが、厳罰志向を生んだ。</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠と条件">エリスの論考（要旨のみ確認）。単一の論者にとどまる。</td></tr>
+<tr><td data-label="主張">日本の個別の厳罰化立法は、世論に直結して決まった。</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠と条件">立法過程の一次資料を読めていない。</td></tr>
+<tr><td data-label="主張">刑が人々の正義の直観からずれると、法の信頼と統制力が落ちる。</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠と条件">総説の主張。日本での長期の検証は確認できない。</td></tr>
+<tr><td data-label="主張">厳罰化への賛意は、エリート不信から生じるポピュリズムの産物である。</td><td data-label="区分">投機的な理論</td><td data-label="主な根拠と条件">日本で観察や実験による裏付けを確認できない。</td></tr>
 </table>
 <h2 id="sec6">6. 結論</h2>
 <p>以上から、問いに三つの層で答える。</p>

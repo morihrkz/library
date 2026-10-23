@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -182,7 +202,7 @@ Steven Weinberg は 1987 年、宇宙定数に対するこの種の人間原理�
 <p>「マルチバース」という言葉が混乱を招く最大の理由の一つは、異なる種類のアイデアが同じ単語で呼ばれていることだ。
 Max Tegmark は、マルチバースについて四つのレベルを区別する分類を提示した。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup>
 これは「四種類の宇宙が観測された」という分類ではなく、異なる理論的アイデアを整理するための概念的な地図である。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>レベル</th>
@@ -192,24 +212,24 @@ Max Tegmark は、マルチバースについて四つのレベルを区別す�
 </thead>
 <tbody>
 <tr>
-<td>Level I</td>
-<td>観測可能な宇宙の外側に広がる、同じ物理法則の領域</td>
-<td>宇宙が十分に広大・平坦であるという仮定からの延長</td>
+<td data-label="レベル">Level I</td>
+<td data-label="何が違うのか">観測可能な宇宙の外側に広がる、同じ物理法則の領域</td>
+<td data-label="位置づけ">宇宙が十分に広大・平坦であるという仮定からの延長</td>
 </tr>
 <tr>
-<td>Level II</td>
-<td>異なる真空・物理定数を持ちうる泡宇宙</td>
-<td>永久インフレーション等と関連する理論的描像</td>
+<td data-label="レベル">Level II</td>
+<td data-label="何が違うのか">異なる真空・物理定数を持ちうる泡宇宙</td>
+<td data-label="位置づけ">永久インフレーション等と関連する理論的描像</td>
 </tr>
 <tr>
-<td>Level III</td>
-<td>量子力学の多世界解釈における分岐</td>
-<td>量子力学の解釈に関する問題</td>
+<td data-label="レベル">Level III</td>
+<td data-label="何が違うのか">量子力学の多世界解釈における分岐</td>
+<td data-label="位置づけ">量子力学の解釈に関する問題</td>
 </tr>
 <tr>
-<td>Level IV</td>
-<td>異なる数学的構造そのもの</td>
-<td>数学的宇宙仮説という非常に大胆な哲学的・物理的立場</td>
+<td data-label="レベル">Level IV</td>
+<td data-label="何が違うのか">異なる数学的構造そのもの</td>
+<td data-label="位置づけ">数学的宇宙仮説という非常に大胆な哲学的・物理的立場</td>
 </tr>
 </tbody>
 </table>

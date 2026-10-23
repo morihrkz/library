@@ -104,6 +104,26 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   border-radius:2px; vertical-align:middle; margin-left:8px;}
 .tag-fact{background:#dfe6e0; color:var(--accent);}
 .tag-claim{background:#f1e2d8; color:var(--accent2);}
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -285,7 +305,7 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 
 <h3 id="sec4-2">4.2 論証の妥当性と健全性</h3>
 <p>論理学の基本的な区別を用いるなら、ある論証は前提から結論が形式的に導出できるとき「妥当 (valid) 」であり、かつすべての前提が実際に真であるとき「健全 (sound) 」である。ベネターの論証は、命題 1 から 4 を前提として受け入れる限り、結論（生まれないことは生まれることより望ましい）を導く点では概ね妥当な構造を持つ <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。したがって批判の焦点は、論証の形式ではなく、前提そのもの――とりわけ命題 2 と命題 4 の非対称性を正当化する根拠――に向けられることになる。この点は次章で論理学的に、またその次の心理学的検討の章で検討する。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th></th>
@@ -295,14 +315,14 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 </thead>
 <tbody>
 <tr>
-<td>苦痛について</td>
-<td>苦痛が存在する（悪い）</td>
-<td>苦痛が存在しない（良い）</td>
+<td data-label="">苦痛について</td>
+<td data-label="その人が生まれた場合">苦痛が存在する（悪い）</td>
+<td data-label="その人が生まれなかった場合">苦痛が存在しない（良い）</td>
 </tr>
 <tr>
-<td>喜びについて</td>
-<td>喜びが存在する（良い）</td>
-<td>喜びが存在しない（悪くはない＝単に良さが欠けているだけ）</td>
+<td data-label="">喜びについて</td>
+<td data-label="その人が生まれた場合">喜びが存在する（良い）</td>
+<td data-label="その人が生まれなかった場合">喜びが存在しない（悪くはない＝単に良さが欠けているだけ）</td>
 </tr>
 </tbody>
 </table>

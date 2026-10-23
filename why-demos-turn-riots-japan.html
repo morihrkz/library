@@ -47,6 +47,26 @@ sup a:hover{text-decoration:underline}
 @media (max-width:480px){
 .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -137,11 +157,11 @@ sup a:hover{text-decoration:underline}
 
 <h3 id="sec2-4">2.4 本稿が使う三つの機序</h3>
 <p>以上から、本稿は、暴動への転換を読み解く機序を三つに整理する。三つは互いに排他的ではなく、同じ出来事の中で重なりうる。</p>
-<table>
+<table class="cards">
 <tr><th>機序</th><th>問い</th><th>主な理論</th><th>本稿での用い方</th></tr>
-<tr><td>集団境界の変化</td><td>誰が「われわれ」で、誰が「彼ら」と見なされるか</td><td>SIDE モデル、セント・ポールズ暴動の分析</td><td>警察との相互作用による境界の変化を読む（ 4 章）</td></tr>
-<tr><td>規範の創発</td><td>その場で、何が正当な行動と見なされるか</td><td>創発規範論、社会的アイデンティティ論</td><td>略奪が広がる条件と、攻撃対象の限定を読む（ 4 章、 6 章）</td></tr>
-<tr><td>権力感の増幅</td><td>行動が通用するという感覚は、どう強まるか</td><td>集合的エンパワーメント論</td><td>警察の対応と群衆の行動の循環を読む（ 4 章）</td></tr>
+<tr><td data-label="機序">集団境界の変化</td><td data-label="問い">誰が「われわれ」で、誰が「彼ら」と見なされるか</td><td data-label="主な理論">SIDE モデル、セント・ポールズ暴動の分析</td><td data-label="本稿での用い方">警察との相互作用による境界の変化を読む（ 4 章）</td></tr>
+<tr><td data-label="機序">規範の創発</td><td data-label="問い">その場で、何が正当な行動と見なされるか</td><td data-label="主な理論">創発規範論、社会的アイデンティティ論</td><td data-label="本稿での用い方">略奪が広がる条件と、攻撃対象の限定を読む（ 4 章、 6 章）</td></tr>
+<tr><td data-label="機序">権力感の増幅</td><td data-label="問い">行動が通用するという感覚は、どう強まるか</td><td data-label="主な理論">集合的エンパワーメント論</td><td data-label="本稿での用い方">警察の対応と群衆の行動の循環を読む（ 4 章）</td></tr>
 </table>
 <p>古典の感染・没個性化の見方を、全面的に退けるわけではない。ただし、本稿は、群衆の行動が規範に従うという見方を分析の軸に採る。この選択は、修正説の証拠が二次情報に依拠し、研究グループに偏っているという限界を伴う。</p>
 
@@ -237,14 +257,14 @@ sup a:hover{text-decoration:underline}
 
 <h2 id="sec7">7. 検討の小括</h2>
 <p>2 章から 6 章までの検討を、機序ごとに整理する。「分かっていること」は、本稿が参照した資料に書かれていることであり、原典を確認したという意味ではない。</p>
-<table>
+<table class="cards">
 <tr><th>機序・説明</th><th>分かっていること</th><th>分かっていないこと</th><th>区分</th></tr>
-<tr><td>古典の感染・没個性化</td><td>感染の説明は曖昧との批判がある。没個性化の研究を対象にしたメタ分析では、没個性化した人は、状況の規範に従う傾向が強かったとされる</td><td>原典は未確認。感情の高まりそのものの役割は検討していない</td><td>分析の軸に採らない（全面否定ではない）</td></tr>
-<tr><td>集団境界の変化</td><td>ハリンゲイとセント・ポールズで、警察への反感が「われわれ」の範囲を広げ、攻撃の対象や場所が限られたと報告されている。釜ヶ崎の発端は、三回とも警察の行為や不作為に関わる</td><td>参照した研究は同じ研究グループが中心で、独立の再現は未確認。釜ヶ崎で報道車両や建設業者の車が「彼ら」の側に入ったかは確かめられない。店舗放火の記述には出典がない</td><td>未確定の仮説</td></tr>
-<tr><td>規範の創発</td><td>セント・ポールズでは、警察への投石は広がり、バスへの投石は広がらなかった。英国 2011 年の関与者の語りでは、略奪の動機が最も多く、警察や政府への復讐も目立った。釜ヶ崎では、略奪の記述が見つからない</td><td>略奪を正当と見なす規範がどう形成されたか。機会主義説の定量的な検証の結果。釜ヶ崎で略奪がなかったことの確認</td><td>筆者の仮説</td></tr>
-<tr><td>権力感の増幅</td><td>反人頭税デモの研究で、権力感は集合行為の前提であり、結果でもあるとされる。ハリンゲイで、警察が対応できないという認識が行動を強める循環を生んだと報告されている</td><td>暴動の局面での循環の検証。ハリンゲイの研究が権力感の語で説明したかは確認できない。釜ヶ崎では経過の記述がない</td><td>未確定の仮説</td></tr>
-<tr><td>引き金</td><td>英国 2011 年で、警察への怒りが主要都市に共通して見られた。釜ヶ崎の発端は、三回とも警察の行為や不作為に関わる</td><td>各国の引き金の頻度の比較</td><td>未確定の仮説</td></tr>
-<tr><td>外部条件（社会構造、規範と文化、制度）</td><td>フランスの郊外暴動の研究者の主張、 33 か国の規範の研究で日本が「厳格な社会」の側にあること、条例による許可制がある</td><td>社会構造の論文の本文は未確認。規範の強さと暴動の関係は未検証。条件が機序にどう作用するかも未検証</td><td>未確定の仮説</td></tr>
+<tr><td data-label="機序・説明">古典の感染・没個性化</td><td data-label="分かっていること">感染の説明は曖昧との批判がある。没個性化の研究を対象にしたメタ分析では、没個性化した人は、状況の規範に従う傾向が強かったとされる</td><td data-label="分かっていないこと">原典は未確認。感情の高まりそのものの役割は検討していない</td><td data-label="区分">分析の軸に採らない（全面否定ではない）</td></tr>
+<tr><td data-label="機序・説明">集団境界の変化</td><td data-label="分かっていること">ハリンゲイとセント・ポールズで、警察への反感が「われわれ」の範囲を広げ、攻撃の対象や場所が限られたと報告されている。釜ヶ崎の発端は、三回とも警察の行為や不作為に関わる</td><td data-label="分かっていないこと">参照した研究は同じ研究グループが中心で、独立の再現は未確認。釜ヶ崎で報道車両や建設業者の車が「彼ら」の側に入ったかは確かめられない。店舗放火の記述には出典がない</td><td data-label="区分">未確定の仮説</td></tr>
+<tr><td data-label="機序・説明">規範の創発</td><td data-label="分かっていること">セント・ポールズでは、警察への投石は広がり、バスへの投石は広がらなかった。英国 2011 年の関与者の語りでは、略奪の動機が最も多く、警察や政府への復讐も目立った。釜ヶ崎では、略奪の記述が見つからない</td><td data-label="分かっていないこと">略奪を正当と見なす規範がどう形成されたか。機会主義説の定量的な検証の結果。釜ヶ崎で略奪がなかったことの確認</td><td data-label="区分">筆者の仮説</td></tr>
+<tr><td data-label="機序・説明">権力感の増幅</td><td data-label="分かっていること">反人頭税デモの研究で、権力感は集合行為の前提であり、結果でもあるとされる。ハリンゲイで、警察が対応できないという認識が行動を強める循環を生んだと報告されている</td><td data-label="分かっていないこと">暴動の局面での循環の検証。ハリンゲイの研究が権力感の語で説明したかは確認できない。釜ヶ崎では経過の記述がない</td><td data-label="区分">未確定の仮説</td></tr>
+<tr><td data-label="機序・説明">引き金</td><td data-label="分かっていること">英国 2011 年で、警察への怒りが主要都市に共通して見られた。釜ヶ崎の発端は、三回とも警察の行為や不作為に関わる</td><td data-label="分かっていないこと">各国の引き金の頻度の比較</td><td data-label="区分">未確定の仮説</td></tr>
+<tr><td data-label="機序・説明">外部条件（社会構造、規範と文化、制度）</td><td data-label="分かっていること">フランスの郊外暴動の研究者の主張、 33 か国の規範の研究で日本が「厳格な社会」の側にあること、条例による許可制がある</td><td data-label="分かっていないこと">社会構造の論文の本文は未確認。規範の強さと暴動の関係は未検証。条件が機序にどう作用するかも未検証</td><td data-label="区分">未確定の仮説</td></tr>
 </table>
 <p><strong>筆者の整理</strong><br>どの機序も未確定の仮説だが、材料の厚みは同じではない。集団境界の変化は、複数の事例で類似の記述が見つかり、釜ヶ崎の発端とも矛盾しない。規範の創発は、行為の選別という観察に支えられるが、略奪の規範の形成そのものを示す材料がない。権力感の増幅は、最も材料が薄く、要旨を確認したにとどまる。したがって、本稿の検討は、三つの機序を同じ強さで支持するものではない。</p>
 

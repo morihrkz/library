@@ -95,6 +95,26 @@ figcaption{font-size:.9375rem; color:var(--muted); margin-top:12px; text-align:c
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -218,7 +238,7 @@ figcaption{font-size:.9375rem; color:var(--muted); margin-top:12px; text-align:c
 特定の階級や信条に立脚した「大衆統合政党」に代わり、支持層を限定せず幅広い有権者に訴える政党類型。オットー・キルヒハイマーが 1960 年代に定式化した。イデオロギー的な純度を下げ、獲得できる票の幅を最大化する戦略であり、多数決型の選挙制度と親和性が高い。</div>
 <p>結果として、政党にとっては内部に多様性を抱え込むことが合理的になる。信条の違いは党内の調整で処理し、対外的には一枚の看板で戦う。分裂すれば両方が落選し、同居すれば片方は当選する。制度が課すこの計算の前では、思想の一貫性は高くつく贅沢になる。</p>
 <p>この増幅作用は、数字にはっきり表れる。直近四回の総選挙における自民党の得票率と、小選挙区での議席の関係を並べる。</p>
-<table>
+<table class="cards">
 <caption>自民党の得票率と小選挙区議席（第 48 〜 51 回衆院選、小選挙区定数 289 ）</caption>
 <thead>
 <tr>
@@ -231,32 +251,32 @@ figcaption{font-size:.9375rem; color:var(--muted); margin-top:12px; text-align:c
 </thead>
 <tbody>
 <tr>
-<td>2017 年（第 48 回）</td>
-<td class="num">33.28%</td>
-<td class="num">47.82%</td>
-<td class="num">218</td>
-<td><div class="barcell"><span class="minibar"><span style="width:75.4%"></span></span><span class="num">75.4%</span></div></td>
+<td data-label="総選挙">2017 年（第 48 回）</td>
+<td class="num" data-label="比例得票率">33.28%</td>
+<td class="num" data-label="小選挙区得票率">47.82%</td>
+<td class="num" data-label="小選挙区議席">218</td>
+<td data-label="議席率"><div class="barcell"><span class="minibar"><span style="width:75.4%"></span></span><span class="num">75.4%</span></div></td>
 </tr>
 <tr>
-<td>2021 年（第 49 回）</td>
-<td class="num">34.66%</td>
-<td class="num">48.08%</td>
-<td class="num">189</td>
-<td><div class="barcell"><span class="minibar"><span style="width:65.4%"></span></span><span class="num">65.4%</span></div></td>
+<td data-label="総選挙">2021 年（第 49 回）</td>
+<td class="num" data-label="比例得票率">34.66%</td>
+<td class="num" data-label="小選挙区得票率">48.08%</td>
+<td class="num" data-label="小選挙区議席">189</td>
+<td data-label="議席率"><div class="barcell"><span class="minibar"><span style="width:65.4%"></span></span><span class="num">65.4%</span></div></td>
 </tr>
 <tr>
-<td>2024 年（第 50 回）</td>
-<td class="num">26.73%</td>
-<td class="num">38.46%</td>
-<td class="num">132</td>
-<td><div class="barcell"><span class="minibar"><span style="width:45.7%"></span></span><span class="num">45.7%</span></div></td>
+<td data-label="総選挙">2024 年（第 50 回）</td>
+<td class="num" data-label="比例得票率">26.73%</td>
+<td class="num" data-label="小選挙区得票率">38.46%</td>
+<td class="num" data-label="小選挙区議席">132</td>
+<td data-label="議席率"><div class="barcell"><span class="minibar"><span style="width:45.7%"></span></span><span class="num">45.7%</span></div></td>
 </tr>
 <tr class="focus">
-<td>2026 年（第 51 回）</td>
-<td class="num">36.72%</td>
-<td class="num">49.23%</td>
-<td class="num">255</td>
-<td><div class="barcell"><span class="minibar"><span style="width:88.2%"></span></span><span class="num">88.2%</span></div></td>
+<td data-label="総選挙">2026 年（第 51 回）</td>
+<td class="num" data-label="比例得票率">36.72%</td>
+<td class="num" data-label="小選挙区得票率">49.23%</td>
+<td class="num" data-label="小選挙区議席">255</td>
+<td data-label="議席率"><div class="barcell"><span class="minibar"><span style="width:88.2%"></span></span><span class="num">88.2%</span></div></td>
 </tr>
 </tbody>
 </table>
@@ -274,7 +294,7 @@ figcaption{font-size:.9375rem; color:var(--muted); margin-top:12px; text-align:c
 <p>「野党が候補者を一本化すれば議席の配分は変わる」という主張は、しばしば処方箋として語られる。これは検証可能な命題である。日本は近年、対照的な二つの実例を持っている。</p>
 <p>2021 年の総選挙では、立憲民主党・共産党・れいわ新選組・社民党の 4 党が全 289 選挙区の 75% にあたる 217 選挙区で候補者を一本化し、およそ半数の 142 選挙区で与党候補との一騎打ちが実現した。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 2026 年の総選挙では、野党間の一本化や共闘はほとんど行われず、各党が独自の選挙戦を展開した。中道改革連合の結成は、選挙協力ではなく合流という別の形をとっている。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup></p>
 <h3 id="sec6-1">6.1 得票の変化と議席の変化を並べる</h3>
-<table>
+<table class="cards">
 <caption>自民党の小選挙区得票率と獲得議席：野党が一本化した 2021 年と、しなかった 2026 年</caption>
 <thead>
 <tr>
@@ -286,28 +306,28 @@ figcaption{font-size:.9375rem; color:var(--muted); margin-top:12px; text-align:c
 </thead>
 <tbody>
 <tr>
-<td>野党の候補一本化</td>
-<td class="num">217 選挙区</td>
-<td class="num">ほぼ無し</td>
-<td class="num">-</td>
+<td data-label="比較項目">野党の候補一本化</td>
+<td class="num" data-label="2021 年">217 選挙区</td>
+<td class="num" data-label="2026 年">ほぼ無し</td>
+<td class="num" data-label="差">-</td>
 </tr>
 <tr>
-<td>自民の小選挙区得票率</td>
-<td class="num">48.08%</td>
-<td class="num">49.23%</td>
-<td class="num">+1.15 pt</td>
+<td data-label="比較項目">自民の小選挙区得票率</td>
+<td class="num" data-label="2021 年">48.08%</td>
+<td class="num" data-label="2026 年">49.23%</td>
+<td class="num" data-label="差">+1.15 pt</td>
 </tr>
 <tr class="focus">
-<td>自民の小選挙区議席</td>
-<td class="num">189</td>
-<td class="num">255</td>
-<td class="num">+66</td>
+<td data-label="比較項目">自民の小選挙区議席</td>
+<td class="num" data-label="2021 年">189</td>
+<td class="num" data-label="2026 年">255</td>
+<td class="num" data-label="差">+66</td>
 </tr>
 <tr>
-<td>自民の総議席</td>
-<td class="num">261</td>
-<td class="num">316</td>
-<td class="num">+55</td>
+<td data-label="比較項目">自民の総議席</td>
+<td class="num" data-label="2021 年">261</td>
+<td class="num" data-label="2026 年">316</td>
+<td class="num" data-label="差">+55</td>
 </tr>
 </tbody>
 </table>

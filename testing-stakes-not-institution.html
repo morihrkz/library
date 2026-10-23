@@ -60,6 +60,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -175,12 +195,12 @@ sup a:hover{text-decoration:underline}
 <p>「利害の重い判定の総量を減らす」という方向性は分かりやすいが、それだけでは実施可能な提案にならない。総量をどう減らすか、複数の具体策を比較する必要がある。以下の比較は、経験的に検証された数値ではなく、 5 節の四つの軸に沿って予想される効果の方向性を整理したものである。</p>
 
 <h3 id="sec6-1">6.1 具体策の比較</h3>
-<table>
+<table class="cards">
 <tr><th>施策</th><th>試験準備に割く時間</th><th>未測定領域（協働・探究等）への授業時間</th><th>受験者の心理的負担</th><th>学校・家庭間の格差</th></tr>
-<tr><td>複数回受験・最高得点採用</td><td>一度の失敗への依存が下がる</td><td>変化は小さい</td><td>再受験の機会があることで下がる</td><td>受験料の設計次第で残る</td></tr>
-<tr><td>再受験の無料化</td><td>変化は小さい</td><td>変化は小さい</td><td>経済的な不安からくる負担を縮める</td><td>会場までの移動費・時間は残る</td></tr>
-<tr><td>形成的評価と選抜評価の用途分離</td><td>授業内の小テストへの負担が下がる</td><td>増える余地が生まれる</td><td>授業内評価への不安が下がる</td><td>学校ごとの運用差が残りうる</td></tr>
-<tr><td>結果の学校ランキング使用制限</td><td>変化は小さい</td><td>教師が対策以外に時間を割きやすくなる</td><td>変化は小さい</td><td>学校間の序列化圧力を弱める</td></tr>
+<tr><td data-label="施策">複数回受験・最高得点採用</td><td data-label="試験準備に割く時間">一度の失敗への依存が下がる</td><td data-label="未測定領域（協働・探究等）への授業時間">変化は小さい</td><td data-label="受験者の心理的負担">再受験の機会があることで下がる</td><td data-label="学校・家庭間の格差">受験料の設計次第で残る</td></tr>
+<tr><td data-label="施策">再受験の無料化</td><td data-label="試験準備に割く時間">変化は小さい</td><td data-label="未測定領域（協働・探究等）への授業時間">変化は小さい</td><td data-label="受験者の心理的負担">経済的な不安からくる負担を縮める</td><td data-label="学校・家庭間の格差">会場までの移動費・時間は残る</td></tr>
+<tr><td data-label="施策">形成的評価と選抜評価の用途分離</td><td data-label="試験準備に割く時間">授業内の小テストへの負担が下がる</td><td data-label="未測定領域（協働・探究等）への授業時間">増える余地が生まれる</td><td data-label="受験者の心理的負担">授業内評価への不安が下がる</td><td data-label="学校・家庭間の格差">学校ごとの運用差が残りうる</td></tr>
+<tr><td data-label="施策">結果の学校ランキング使用制限</td><td data-label="試験準備に割く時間">変化は小さい</td><td data-label="未測定領域（協働・探究等）への授業時間">教師が対策以外に時間を割きやすくなる</td><td data-label="受験者の心理的負担">変化は小さい</td><td data-label="学校・家庭間の格差">学校間の序列化圧力を弱める</td></tr>
 </table>
 
 <h3 id="sec6-2">6.2 成功・失敗を判定する指標</h3>

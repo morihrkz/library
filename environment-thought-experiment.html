@@ -54,6 +54,26 @@ sup a:hover{text-decoration:underline}
   .toc>ol{columns:1}
 }
 
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -112,14 +132,14 @@ sup a:hover{text-decoration:underline}
 <h3 id="sec2-1">2.1 環境の構成要素</h3>
 <p>「同じ環境で育てる」と言うとき、揃えるべきものは一つではない。次の表は、主な要素と揃えやすさの見立てを示す。この表は本稿による整理であり、研究の結果ではない。</p>
 <div class="tablewrap">
-<table>
+<table class="cards">
 <tr><th>要素</th><th>内容</th><th>揃えやすさ（本稿の見立て）</th></tr>
-<tr><td>食事・栄養</td><td>献立、量、衛生</td><td>高い。管理しやすい。</td></tr>
-<tr><td>教育</td><td>学習内容、教材、教員</td><td>内容は揃えられる。教員ごとの関わり方の違いは残る。</td></tr>
-<tr><td>言語</td><td>使用言語、語りかけの量と質</td><td>使用言語は揃えられる。養育者ごとの語りかけの違いは残る。</td></tr>
-<tr><td>人間関係</td><td>養育者、同年代の集団</td><td>低い。養育者との関係は、子どもごとに固有のものになる。</td></tr>
-<tr><td>偶然の出来事</td><td>病気、事故、出会い</td><td>揃えられない。</td></tr>
-<tr><td>胎内環境</td><td>出生前の栄養、母体の状態</td><td>政府が預かる前に決まっており、この思考実験の範囲外である。</td></tr>
+<tr><td data-label="要素">食事・栄養</td><td data-label="内容">献立、量、衛生</td><td data-label="揃えやすさ（本稿の見立て）">高い。管理しやすい。</td></tr>
+<tr><td data-label="要素">教育</td><td data-label="内容">学習内容、教材、教員</td><td data-label="揃えやすさ（本稿の見立て）">内容は揃えられる。教員ごとの関わり方の違いは残る。</td></tr>
+<tr><td data-label="要素">言語</td><td data-label="内容">使用言語、語りかけの量と質</td><td data-label="揃えやすさ（本稿の見立て）">使用言語は揃えられる。養育者ごとの語りかけの違いは残る。</td></tr>
+<tr><td data-label="要素">人間関係</td><td data-label="内容">養育者、同年代の集団</td><td data-label="揃えやすさ（本稿の見立て）">低い。養育者との関係は、子どもごとに固有のものになる。</td></tr>
+<tr><td data-label="要素">偶然の出来事</td><td data-label="内容">病気、事故、出会い</td><td data-label="揃えやすさ（本稿の見立て）">揃えられない。</td></tr>
+<tr><td data-label="要素">胎内環境</td><td data-label="内容">出生前の栄養、母体の状態</td><td data-label="揃えやすさ（本稿の見立て）">政府が預かる前に決まっており、この思考実験の範囲外である。</td></tr>
 </table>
 </div>
 <p>表が示すとおり、揃えられるのは物質的・制度的な条件が中心であり、関係と偶然は揃わない。完全な同一環境は原理的に作れない。本稿はこの不可能性を、考察の欠陥ではなく前提として扱う。理想化した極限を置き、現実がそこからどれだけ離れるかを考えるための、基準点とするのである。</p>
@@ -172,18 +192,18 @@ sup a:hover{text-decoration:underline}
 <h3 id="sec5-1">5.1 知見の区分</h3>
 <div class="box"><p>知見を三つに区分する。</p><ol><li><strong>確立した知見</strong><br>独立した複数の研究で再現され、査読を経たもの</li><li><strong>未確定の論点</strong><br>支持する研究と反証する研究が併存するもの、または本稿が確認した範囲で単一の研究にとどまるもの</li><li><strong>投機的な仮説</strong><br>現時点で検証する手段がない、または検証されていない推論</li></ol></div>
 <div class="tablewrap">
-<table>
+<table class="cards">
 <tr><th>主張</th><th>区分</th><th>根拠</th></tr>
-<tr><td>多くの特性で、個人差に遺伝的な違いが関与する。</td><td>確立した知見</td><td>双生児のメタ分析、別居双生児、養子研究が、異なる設計で一致している。</td></tr>
-<tr><td>IQ の個人差の約 70% が遺伝と関連する。</td><td>未確定の論点</td><td>別居双生児の推定値である。社会経済的地位による差が報告され、その再現は国により割れている。</td></tr>
-<tr><td>貧困下では遺伝率が低くなる。</td><td>未確定の論点</td><td>米国の研究は支持するが、米国以外のメタ分析は支持しない。</td></tr>
-<tr><td>極端な剥奪は発達に害を与える。</td><td>確立した知見</td><td>無作為化実験と自然実験が、別個の研究で同じ方向を示した。</td></tr>
-<tr><td>13 歳前の転居は成人後の成果を高める。</td><td>未確定の論点</td><td>大規模な無作為化実験の結果だが、本稿が確認した範囲では単一の実験である。</td></tr>
-<tr><td>共同就寝は愛着の安定を下げる。</td><td>未確定の論点</td><td>本稿が確認した範囲では、小規模な単一の研究にとどまる。</td></tr>
-<tr><td>遺伝的指数の関連の一部は、直接の効果ではない。</td><td>確立した知見</td><td>親の遺伝型を使う分析と同胞間の比較が、同じ方向を示した。その解釈は未確定である。</td></tr>
-<tr><td>遺伝的に同一の個体でも、同じ環境で個体差が生じる。</td><td>未確定の論点</td><td>マウスでの結果であり、人間にあてはまるかは検証されていない。</td></tr>
-<tr><td>同一環境で育てると、人生の差が縮む。</td><td>投機的な仮説</td><td>実施できず、検証する手段がない。</td></tr>
-<tr><td>同一環境では、個人差に占める遺伝の割合が上がる。</td><td>投機的な仮説</td><td>割合の性質からの推論であり、検証されていない。</td></tr>
+<tr><td data-label="主張">多くの特性で、個人差に遺伝的な違いが関与する。</td><td data-label="区分">確立した知見</td><td data-label="根拠">双生児のメタ分析、別居双生児、養子研究が、異なる設計で一致している。</td></tr>
+<tr><td data-label="主張">IQ の個人差の約 70% が遺伝と関連する。</td><td data-label="区分">未確定の論点</td><td data-label="根拠">別居双生児の推定値である。社会経済的地位による差が報告され、その再現は国により割れている。</td></tr>
+<tr><td data-label="主張">貧困下では遺伝率が低くなる。</td><td data-label="区分">未確定の論点</td><td data-label="根拠">米国の研究は支持するが、米国以外のメタ分析は支持しない。</td></tr>
+<tr><td data-label="主張">極端な剥奪は発達に害を与える。</td><td data-label="区分">確立した知見</td><td data-label="根拠">無作為化実験と自然実験が、別個の研究で同じ方向を示した。</td></tr>
+<tr><td data-label="主張">13 歳前の転居は成人後の成果を高める。</td><td data-label="区分">未確定の論点</td><td data-label="根拠">大規模な無作為化実験の結果だが、本稿が確認した範囲では単一の実験である。</td></tr>
+<tr><td data-label="主張">共同就寝は愛着の安定を下げる。</td><td data-label="区分">未確定の論点</td><td data-label="根拠">本稿が確認した範囲では、小規模な単一の研究にとどまる。</td></tr>
+<tr><td data-label="主張">遺伝的指数の関連の一部は、直接の効果ではない。</td><td data-label="区分">確立した知見</td><td data-label="根拠">親の遺伝型を使う分析と同胞間の比較が、同じ方向を示した。その解釈は未確定である。</td></tr>
+<tr><td data-label="主張">遺伝的に同一の個体でも、同じ環境で個体差が生じる。</td><td data-label="区分">未確定の論点</td><td data-label="根拠">マウスでの結果であり、人間にあてはまるかは検証されていない。</td></tr>
+<tr><td data-label="主張">同一環境で育てると、人生の差が縮む。</td><td data-label="区分">投機的な仮説</td><td data-label="根拠">実施できず、検証する手段がない。</td></tr>
+<tr><td data-label="主張">同一環境では、個人差に占める遺伝の割合が上がる。</td><td data-label="区分">投機的な仮説</td><td data-label="根拠">割合の性質からの推論であり、検証されていない。</td></tr>
 </table>
 </div>
 <h3 id="sec5-2">5.2 筆者の提案・仮説</h3>

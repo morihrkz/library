@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -114,12 +134,12 @@ pre code{background:none; padding:0;}
 <p>SIM が描くプロセスはこうである。ある行為や出来事に触れると、まず速く自動的な情動的反応（直観）が生じ、道徳判断はほぼ即座にこの直観によって形成される。理由づけは、その判断がすでに下された後で、自分自身や他者に対してその判断を説明し正当化するために動員される、いわば広報担当者のような働きをする。ハイトはこのモデルを支える六つの心理的経路――直観的判断経路、事後的推論経路、理由づけによる説得経路、社会的説得経路、理由づけによる判断経路、私的な熟慮経路――を提示しているが、後の二つ（個人が他者の関与なしに、推論だけによって判断を新たに形成する経路）は理論上は認めつつも、実際に生じる頻度は低いと位置づけている <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。</p>
 <p>「社会的」という形容語が示すように、 SIM は道徳判断を孤立した個人の内的な計算としてではなく、他者との会話や集団内の圧力を通じて形成・修正されるものとして捉える。道徳的推論の主要な機能は、抽象的な真理を発見することではなく、自分の直観を他者に納得させ、あるいは他者の直観に影響されることにある、というのがハイトの見立てである。</p>
 <div class="box"><strong>【合理主義モデルと社会的直観主義モデルの対比】</strong>両モデルの違いを整理すると、次のようになる。</div>
-<table>
+<table class="cards">
 <tr><th>特徴</th><th>合理主義モデル（コールバーグ・テュリエル）</th><th>社会的直観主義モデル（ハイト）</th></tr>
-<tr><td>判断の起源</td><td>意識的な推論の結果として判断が生じる</td><td>速く自動的な直観によってほぼ即座に判断が生じる</td></tr>
-<tr><td>理由づけの役割</td><td>判断を導く原因そのもの</td><td>すでに下された判断を正当化する事後的な作業</td></tr>
-<tr><td>発達の焦点</td><td>推論能力の段階的な高度化</td><td>直観の内容（何を道徳的に重要と感じるか）の文化的形成</td></tr>
-<tr><td>他者・社会の位置づけ</td><td>個人の内的な推論過程が主、社会は副次的</td><td>直観の形成・説得のいずれにも社会的な相互作用が不可欠</td></tr>
+<tr><td data-label="特徴">判断の起源</td><td data-label="合理主義モデル（コールバーグ・テュリエル）">意識的な推論の結果として判断が生じる</td><td data-label="社会的直観主義モデル（ハイト）">速く自動的な直観によってほぼ即座に判断が生じる</td></tr>
+<tr><td data-label="特徴">理由づけの役割</td><td data-label="合理主義モデル（コールバーグ・テュリエル）">判断を導く原因そのもの</td><td data-label="社会的直観主義モデル（ハイト）">すでに下された判断を正当化する事後的な作業</td></tr>
+<tr><td data-label="特徴">発達の焦点</td><td data-label="合理主義モデル（コールバーグ・テュリエル）">推論能力の段階的な高度化</td><td data-label="社会的直観主義モデル（ハイト）">直観の内容（何を道徳的に重要と感じるか）の文化的形成</td></tr>
+<tr><td data-label="特徴">他者・社会の位置づけ</td><td data-label="合理主義モデル（コールバーグ・テュリエル）">個人の内的な推論過程が主、社会は副次的</td><td data-label="社会的直観主義モデル（ハイト）">直観の形成・説得のいずれにも社会的な相互作用が不可欠</td></tr>
 </table>
 
 <h2 id="sec4">4. 実証研究 (1) ――道徳的当惑</h2>

@@ -51,6 +51,26 @@ sup a:hover{text-decoration:underline;}
 @media (max-width:480px){
   .toc>ol{columns:1;}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -177,17 +197,17 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec3-5">3.5 小括――名称は分野ごとに分散している</h3>
 <p>以上の検討から、課題 1 に対しては次のように答える。本稿の検索の範囲では、水準不満型反対を主題とする、学界で定着した単一の用語は見つからなかった。ただし、これは「無い」ことの断定ではなく、調査範囲内の結論である。分野ごとに近い概念が分散して存在すると言うのが正確である。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>用語</th><th>分野</th><th>内容</th><th>課題との距離</th></tr>
 </thead>
 <tbody>
-<tr><td>完璧は善の敵</td><td>格言・日常語</td><td>完全な解を求めて実現可能な改善を逃す事態。</td><td>最も近い。学術概念ではなく、動機の分析を含まない。</td></tr>
-<tr><td>ニルヴァーナ誤謬</td><td>経済学・制度分析</td><td>現実の案を理想像と比べて退ける推論の誤り。</td><td>近い。政党行動の理論ではなく、推論の類型である。</td></tr>
-<tr><td>純粋主義／腐った妥協</td><td>政治理論</td><td>いかなる妥協も原則の放棄とみなす立場、および受け入れてはならない妥協。</td><td>倫理面で近い。主題はより重い道徳的争点である。</td></tr>
-<tr><td>妥協の精神</td><td>政治理論</td><td>原則を調整し相手を尊重する心構え。</td><td>反対側から見た対概念。</td></tr>
-<tr><td>ポイズンピル／キラー修正案</td><td>立法過程論</td><td>多数に好まれる修正案が法案全体を潰す仕組み。</td><td>構造は近い。修正案の提出が前提である。</td></tr>
-<tr><td>スポイラー</td><td>国際関係論</td><td>部分的な和平合意を妨害する勢力。</td><td>類比として有用。暴力による妨害が前提である。</td></tr>
+<tr><td data-label="用語">完璧は善の敵</td><td data-label="分野">格言・日常語</td><td data-label="内容">完全な解を求めて実現可能な改善を逃す事態。</td><td data-label="課題との距離">最も近い。学術概念ではなく、動機の分析を含まない。</td></tr>
+<tr><td data-label="用語">ニルヴァーナ誤謬</td><td data-label="分野">経済学・制度分析</td><td data-label="内容">現実の案を理想像と比べて退ける推論の誤り。</td><td data-label="課題との距離">近い。政党行動の理論ではなく、推論の類型である。</td></tr>
+<tr><td data-label="用語">純粋主義／腐った妥協</td><td data-label="分野">政治理論</td><td data-label="内容">いかなる妥協も原則の放棄とみなす立場、および受け入れてはならない妥協。</td><td data-label="課題との距離">倫理面で近い。主題はより重い道徳的争点である。</td></tr>
+<tr><td data-label="用語">妥協の精神</td><td data-label="分野">政治理論</td><td data-label="内容">原則を調整し相手を尊重する心構え。</td><td data-label="課題との距離">反対側から見た対概念。</td></tr>
+<tr><td data-label="用語">ポイズンピル／キラー修正案</td><td data-label="分野">立法過程論</td><td data-label="内容">多数に好まれる修正案が法案全体を潰す仕組み。</td><td data-label="課題との距離">構造は近い。修正案の提出が前提である。</td></tr>
+<tr><td data-label="用語">スポイラー</td><td data-label="分野">国際関係論</td><td data-label="内容">部分的な和平合意を妨害する勢力。</td><td data-label="課題との距離">類比として有用。暴力による妨害が前提である。</td></tr>
 </tbody>
 </table>
 
@@ -255,15 +275,15 @@ sup a:hover{text-decoration:underline;}
 
 <h3 id="sec6-1">6.1 合理的な場合と不合理な場合</h3>
 <p>課題 3 に対して、論点ごとに整理すると次のようになる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr><th>論点</th><th>合理的と言える場合</th><th>不合理と言える場合</th></tr>
 </thead>
 <tbody>
-<tr><td>将来の見通し</td><td>交渉を続ければ、実際により良い案が通る見込みが高い。</td><td>見込みが根拠に乏しく、機会が戻らない。</td></tr>
-<tr><td>案の性質</td><td>弱い案が定着し、後の改革を妨げる。</td><td>弱い案が土台となり、後から上積みできる。</td></tr>
-<tr><td>反対の目的</td><td>政策の実現が目的で、反対が交渉上の圧力になる。</td><td>政策の実現より、相手に功績を与えないことが目的である。</td></tr>
-<tr><td>費用を負う者</td><td>拒否の費用を、反対した側も負担する。</td><td>費用を負うのが、支援を待つ困窮家庭だけである。</td></tr>
+<tr><td data-label="論点">将来の見通し</td><td data-label="合理的と言える場合">交渉を続ければ、実際により良い案が通る見込みが高い。</td><td data-label="不合理と言える場合">見込みが根拠に乏しく、機会が戻らない。</td></tr>
+<tr><td data-label="論点">案の性質</td><td data-label="合理的と言える場合">弱い案が定着し、後の改革を妨げる。</td><td data-label="不合理と言える場合">弱い案が土台となり、後から上積みできる。</td></tr>
+<tr><td data-label="論点">反対の目的</td><td data-label="合理的と言える場合">政策の実現が目的で、反対が交渉上の圧力になる。</td><td data-label="不合理と言える場合">政策の実現より、相手に功績を与えないことが目的である。</td></tr>
+<tr><td data-label="論点">費用を負う者</td><td data-label="合理的と言える場合">拒否の費用を、反対した側も負担する。</td><td data-label="不合理と言える場合">費用を負うのが、支援を待つ困窮家庭だけである。</td></tr>
 </tbody>
 </table>
 

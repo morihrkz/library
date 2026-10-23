@@ -128,6 +128,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -201,14 +221,14 @@ sup a:hover{text-decoration:underline}
 以下の要約は、各国の報道・政治学的研究でくり返し言及される主張の「型」を、本稿のために簡略化して一般化したものであり、特定の政治家・政党の発言をそのまま逐語的に引用したものではない。また、いずれかの政党・主張の政策的な当否を判定するものでもない。本稿冒頭の「方法と限界」に記したとおり、あくまで言説の構造を示す例示として扱ってほしい。
 </div>
 
-<table>
+<table class="cards">
 <tr><th>国・政党（運動）</th><th>言説に見られる典型的な型（簡略化した要約）</th><th>対応する学術的知見の言い方（ヘッジを伴う要約）</th></tr>
-<tr><td>フランス――国民連合 (RN)</td><td>移民の増加を治安悪化と直接結びつけ、「自国民を第一に (priorité nationale) 」という優先順位を掲げる。</td><td>移民と犯罪の関係を検証した実証研究は罪種・地域条件によって結果が分かれ、単純な正の相関は支持されないことが多いと報告されている <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</td></tr>
-<tr><td>ドイツ――ドイツのための選択肢 (AfD)</td><td>「再移民 (Remigration) 」という語で、既に定住した移民系住民までも送還の対象として語る枠組みが、 2024 年初頭の報道を機に社会的な議論を呼んだ。</td><td>対象範囲や法的根拠を厳密に定義すると、実際に該当しうる範囲は大きく限定され、政策として一般化しにくいという指摘がなされている。</td></tr>
-<tr><td>スウェーデン――スウェーデン民主党 (SD)</td><td>ギャング犯罪の増加を移民という属性と直接結びつけて語る。</td><td>犯罪研究では、居住地域の貧困率や教育機会といった社会経済的な背景を統制すると、移民という属性単独の説明力は大きく下がるとされる。</td></tr>
-<tr><td>オランダ――自由党 (PVV)</td><td>イスラームという宗教的背景を治安・文化的な脅威と結びつけ、「脱イスラーム化」を掲げる。</td><td>宗教的属性と特定の行動傾向を短絡的に結びつける主張は、個人差・世代差・地域差を無視した過度の一般化であるという批判が学術的には根強い。</td></tr>
-<tr><td>イタリア――同盟 / イタリアの同胞</td><td>「イタリア人第一 (prima gli italiani) 」を掲げ、移民の増加を雇用・治安双方への脅威として語る。</td><td>移民労働者が既存労働者の職を奪うという代替効果よりも、既存労働者が従事しない職種を担う補完効果のほうが優勢だとする実証研究が多いと報告されている。</td></tr>
-<tr><td>日本――参政党 / 日本保守党</td><td>「日本人ファースト」等のスローガンのもと、在留外国人の増加を治安・生活文化の急激な変化と結びつけて語る。</td><td>日本国内の刑法犯認知件数は在留外国人数が大きく増加した時期にもむしろ長期的な減少傾向を示しており、両者を単純な相関で説明することはできないと指摘される <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。</td></tr>
+<tr><td data-label="国・政党（運動）">フランス――国民連合 (RN)</td><td data-label="言説に見られる典型的な型（簡略化した要約）">移民の増加を治安悪化と直接結びつけ、「自国民を第一に (priorité nationale) 」という優先順位を掲げる。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">移民と犯罪の関係を検証した実証研究は罪種・地域条件によって結果が分かれ、単純な正の相関は支持されないことが多いと報告されている <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</td></tr>
+<tr><td data-label="国・政党（運動）">ドイツ――ドイツのための選択肢 (AfD)</td><td data-label="言説に見られる典型的な型（簡略化した要約）">「再移民 (Remigration) 」という語で、既に定住した移民系住民までも送還の対象として語る枠組みが、 2024 年初頭の報道を機に社会的な議論を呼んだ。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">対象範囲や法的根拠を厳密に定義すると、実際に該当しうる範囲は大きく限定され、政策として一般化しにくいという指摘がなされている。</td></tr>
+<tr><td data-label="国・政党（運動）">スウェーデン――スウェーデン民主党 (SD)</td><td data-label="言説に見られる典型的な型（簡略化した要約）">ギャング犯罪の増加を移民という属性と直接結びつけて語る。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">犯罪研究では、居住地域の貧困率や教育機会といった社会経済的な背景を統制すると、移民という属性単独の説明力は大きく下がるとされる。</td></tr>
+<tr><td data-label="国・政党（運動）">オランダ――自由党 (PVV)</td><td data-label="言説に見られる典型的な型（簡略化した要約）">イスラームという宗教的背景を治安・文化的な脅威と結びつけ、「脱イスラーム化」を掲げる。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">宗教的属性と特定の行動傾向を短絡的に結びつける主張は、個人差・世代差・地域差を無視した過度の一般化であるという批判が学術的には根強い。</td></tr>
+<tr><td data-label="国・政党（運動）">イタリア――同盟 / イタリアの同胞</td><td data-label="言説に見られる典型的な型（簡略化した要約）">「イタリア人第一 (prima gli italiani) 」を掲げ、移民の増加を雇用・治安双方への脅威として語る。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">移民労働者が既存労働者の職を奪うという代替効果よりも、既存労働者が従事しない職種を担う補完効果のほうが優勢だとする実証研究が多いと報告されている。</td></tr>
+<tr><td data-label="国・政党（運動）">日本――参政党 / 日本保守党</td><td data-label="言説に見られる典型的な型（簡略化した要約）">「日本人ファースト」等のスローガンのもと、在留外国人の増加を治安・生活文化の急激な変化と結びつけて語る。</td><td data-label="対応する学術的知見の言い方（ヘッジを伴う要約）">日本国内の刑法犯認知件数は在留外国人数が大きく増加した時期にもむしろ長期的な減少傾向を示しており、両者を単純な相関で説明することはできないと指摘される <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。</td></tr>
 </table>
 
 <p>この表から読み取れるのは、国も言語も異なるこれらの政党・運動が、しばしば同型の修辞――属性と現象を一足飛びに結びつける断定――を採用しているという事実である。断定は一つの「型」として、国境と言語を越えて反復されている。これに対し、対応する学術的知見はいずれも「条件を統制すると」「限定すれば」といった留保つきの言い方でしか語られない。この非対称性は、個々の政党の主張内容の当否とは独立に成り立つ構造的な現象であり、だからこそ一国・一言語圏の問題としてではなく、本稿が第 3 節・第 4 節で論じた認知的・社会的なメカニズムの帰結として理解する必要がある。</p>

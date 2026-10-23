@@ -74,6 +74,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -206,7 +226,7 @@ pre code{background:none; padding:0;}
 加えて、内部抵抗そのものが温度や劣化度によって変動するため、同じ充電状態でも測定条件によって電圧が変わり得ることも報告されている <sup><a id="fnref-8-3" href="#ref-8">[8]</a></sup> 。</p>
 <p>こうした限界を補う手法として広く使われているのが、電池に出入りする電流を継続的に積算して残量を追跡する「クーロンカウント法」である <sup><a id="fnref-11-1" href="#ref-11">[11]</a></sup><sup><a id="fnref-10-2" href="#ref-10">[10]</a></sup> 。この方式は電池管理システム (BMS) への実装が比較的容易である一方、電流センサーの誤差が時間とともに蓄積し、定期的な較正（多くは満充電・完全放電時の電圧を基準点として使う）を行わないと精度が落ちていくという弱点も指摘されている <sup><a id="fnref-11-2" href="#ref-11">[11]</a></sup> 。
 実務上は、電圧法とクーロンカウント法、さらにはカルマンフィルタなどを用いた統計的な補正を組み合わせることで、それぞれの弱点を補い合う設計が一般的とされる <sup><a id="fnref-10-3" href="#ref-10">[10]</a></sup> 。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>手法</th>
@@ -216,14 +236,14 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>電圧法（ OCV-SOC 対応）</td>
-<td>放電曲線に十分な傾きがある化学系、電池が休止状態にあるとき</td>
-<td>平坦な放電曲線の化学系では精度が出ない。 IR ドロップとの混同に注意が必要</td>
+<td data-label="手法">電圧法（ OCV-SOC 対応）</td>
+<td data-label="得意な条件">放電曲線に十分な傾きがある化学系、電池が休止状態にあるとき</td>
+<td data-label="弱点">平坦な放電曲線の化学系では精度が出ない。 IR ドロップとの混同に注意が必要</td>
 </tr>
 <tr>
-<td>クーロンカウント法</td>
-<td>連続的な残量追跡、実装コストの低さ</td>
-<td>電流センサーの誤差が蓄積する。定期的な較正が必要</td>
+<td data-label="手法">クーロンカウント法</td>
+<td data-label="得意な条件">連続的な残量追跡、実装コストの低さ</td>
+<td data-label="弱点">電流センサーの誤差が蓄積する。定期的な較正が必要</td>
 </tr>
 </tbody>
 </table>

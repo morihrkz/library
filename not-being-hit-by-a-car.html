@@ -54,6 +54,26 @@ a{color:var(--link)}
 .note{font-size:.9375rem;color:var(--muted);margin-top:20px}
 @media (max-width:480px){  h1{font-size:1.6875rem}
   .toc>ol{columns:1} }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -144,15 +164,15 @@ a{color:var(--link)}
 <p>この「原因の選び方」は、語用論的な考察によっても補強できる。ポール・グライスの会話の協調の原理、とりわけ関連性の格率に従えば、私たちが会話の中で特定の原因を挙げるのは、それが聞き手にとって情報として関連性を持つからである <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。「なぜ生きているのか」という問いに対して「運転手が発作を起こさなかったから」と答えることは、文脈上ほとんどの場合、聞き手が既に知っている（そして期待している）標準的な状態を繰り返すだけであり、会話の格率が要求する情報価値をほとんど持たない。これに対し、「あの瞬間に急に信号が変わって立ち止まったから」のような、実際に起きた異常な出来事を挙げる答えは、関連性の格率を満たす。この観点は、 3 節で見た異常条件焦点モデルと同じ結論を、言語運用の側面から支持するものである。</p>
 
 <h2 id="sec7">7. 対比表――各理論はこのシナリオにどう判定を下すか</h2>
-<table>
+<table class="cards">
 <thead><tr><th>理論</th><th>このシナリオへの判定</th><th>判定の根拠</th></tr></thead>
 <tbody>
-<tr><td>規則性説（ヒューム的懐疑）</td><td>判定を保留（理論の射程外）</td><td>一回限りの出来事であり、恒常的な連接という規則性説の基準をそもそも適用できない。</td></tr>
-<tr><td>反実仮想理論（ルイス）</td><td>「原因」と言える</td><td>字義通りには反実仮想的依存が成立し、因果的依存の連鎖としても記述できる。</td></tr>
-<tr><td>確率的因果論（スッピス）</td><td>「原因」と言えるが希薄</td><td>生存確率をわずかに引き上げるが、同種の要因が無数にあり、特別視する根拠に乏しい。</td></tr>
-<tr><td>介入主義（ウッドワード）</td><td>理論上は否定しないが実践的意義がない</td><td>歩行者にとって操作可能な変数ではなく、意思決定に資する情報を与えない。</td></tr>
-<tr><td>因果的選択（ハート &amp; オノレ、ヒッチコック &amp; ノウブ）</td><td>「原因」とは言えない</td><td>正常に機能している背景条件であり、異常性という選択基準を満たさない。</td></tr>
-<tr><td>共通原因の原理（ライヘンバッハ）</td><td>単なる偶然の非交差</td><td>二つの独立した因果系列の非交差であり、一方を他方の原因と見なす根拠がない。</td></tr>
+<tr><td data-label="理論">規則性説（ヒューム的懐疑）</td><td data-label="このシナリオへの判定">判定を保留（理論の射程外）</td><td data-label="判定の根拠">一回限りの出来事であり、恒常的な連接という規則性説の基準をそもそも適用できない。</td></tr>
+<tr><td data-label="理論">反実仮想理論（ルイス）</td><td data-label="このシナリオへの判定">「原因」と言える</td><td data-label="判定の根拠">字義通りには反実仮想的依存が成立し、因果的依存の連鎖としても記述できる。</td></tr>
+<tr><td data-label="理論">確率的因果論（スッピス）</td><td data-label="このシナリオへの判定">「原因」と言えるが希薄</td><td data-label="判定の根拠">生存確率をわずかに引き上げるが、同種の要因が無数にあり、特別視する根拠に乏しい。</td></tr>
+<tr><td data-label="理論">介入主義（ウッドワード）</td><td data-label="このシナリオへの判定">理論上は否定しないが実践的意義がない</td><td data-label="判定の根拠">歩行者にとって操作可能な変数ではなく、意思決定に資する情報を与えない。</td></tr>
+<tr><td data-label="理論">因果的選択（ハート &amp; オノレ、ヒッチコック &amp; ノウブ）</td><td data-label="このシナリオへの判定">「原因」とは言えない</td><td data-label="判定の根拠">正常に機能している背景条件であり、異常性という選択基準を満たさない。</td></tr>
+<tr><td data-label="理論">共通原因の原理（ライヘンバッハ）</td><td data-label="このシナリオへの判定">単なる偶然の非交差</td><td data-label="判定の根拠">二つの独立した因果系列の非交差であり、一方を他方の原因と見なす根拠がない。</td></tr>
 </tbody>
 </table>
 <p>この一覧が示すのは、判定の分岐が理論の優劣の問題ではなく、それぞれの理論がそもそも何を「原因」の資格として問うているかという問いの立て方の違いに由来する、という点である。反実仮想的依存の有無を問う理論（反実仮想理論・確率的因果論）は「イエス」寄りの判定を下し、原因の選択における規範性・実践性を問う理論（因果的選択・介入主義・語用論）は「ノー」寄りの判定を下す傾向にある。</p>

@@ -73,6 +73,26 @@ pre code{background:none; padding:0;}
   list-style: none;
   padding-left: 0;
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -283,7 +303,7 @@ pre code{background:none; padding:0;}
 <p><strong>注意点・乱用のリスク：</strong><br>見出しを凝りすぎて内容を表さない（いわゆる「うまい見出し」優先）にすると、スキャン読みする読者には逆に何の記事か伝わらなくなる。</p>
 <h2 id="sec9">9. 技法同士の関係を整理する</h2>
 <p>ここまで 18 の技法を並べたが、これらは決して同じレイヤーにある技法ではない。混同すると「なぜこの技法を使うのか」の説明がぶれてしまうので、いったん整理しておく。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>レイヤー</th>
@@ -293,39 +313,39 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>文の構文（レトリック）</td>
-<td>一文・一節の組み立て方</td>
-<td>列挙法・トライコロン・アンチテーゼ・エピストロフィ</td>
+<td data-label="レイヤー">文の構文（レトリック）</td>
+<td data-label="扱う対象">一文・一節の組み立て方</td>
+<td data-label="代表的な技法">列挙法・トライコロン・アンチテーゼ・エピストロフィ</td>
 </tr>
 <tr>
-<td>読者の心理メカニズム</td>
-<td>なぜ引き込まれるかの説明原理</td>
-<td>curiosity gap ・オープンループ</td>
+<td data-label="レイヤー">読者の心理メカニズム</td>
+<td data-label="扱う対象">なぜ引き込まれるかの説明原理</td>
+<td data-label="代表的な技法">curiosity gap ・オープンループ</td>
 </tr>
 <tr>
-<td>記事全体の設計図</td>
-<td>導入から結論までの流れ</td>
-<td>三幕構成・抽象具体の往復・チェーホフの銃</td>
+<td data-label="レイヤー">記事全体の設計図</td>
+<td data-label="扱う対象">導入から結論までの流れ</td>
+<td data-label="代表的な技法">三幕構成・抽象具体の往復・チェーホフの銃</td>
 </tr>
 <tr>
-<td>書き出しの型</td>
-<td>最初の数行の作り方</td>
-<td>逆三角形・アネクドートリード</td>
+<td data-label="レイヤー">書き出しの型</td>
+<td data-label="扱う対象">最初の数行の作り方</td>
+<td data-label="代表的な技法">逆三角形・アネクドートリード</td>
 </tr>
 <tr>
-<td>行動喚起の設計</td>
-<td>読者を最後まで運び、行動させる</td>
-<td>AIDA ・ PAS</td>
+<td data-label="レイヤー">行動喚起の設計</td>
+<td data-label="扱う対象">読者を最後まで運び、行動させる</td>
+<td data-label="代表的な技法">AIDA ・ PAS</td>
 </tr>
 <tr>
-<td>文そのものの質感</td>
-<td>読みやすさ・テンポの計量</td>
-<td>文長制御・可読性指標</td>
+<td data-label="レイヤー">文そのものの質感</td>
+<td data-label="扱う対象">読みやすさ・テンポの計量</td>
+<td data-label="代表的な技法">文長制御・可読性指標</td>
 </tr>
 <tr>
-<td>見せ方（レイアウト）</td>
-<td>文章とは別の視覚的工夫</td>
-<td>プルクオート・囲み記事・見出し設計</td>
+<td data-label="レイヤー">見せ方（レイアウト）</td>
+<td data-label="扱う対象">文章とは別の視覚的工夫</td>
+<td data-label="代表的な技法">プルクオート・囲み記事・見出し設計</td>
 </tr>
 </tbody>
 </table>

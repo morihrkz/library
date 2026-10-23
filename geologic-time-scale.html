@@ -85,6 +85,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -115,7 +135,7 @@ pre code{background:none; padding:0;}
 これらの区分は思いつきで並んでいるのではなく、長さの違う四段階の物差しが入れ子になった、階層構造を持つ体系である。国際層序委員会 (ICS) が定める国際年代層序表 <sup><a id="fnref-1-1" href="#ref-1">[1]</a></sup> と、米国地質調査所 (USGS) の解説 <sup><a id="fnref-2-1" href="#ref-2">[2]</a></sup> によれば、その階層は大きい方から次のように並ぶ。</p>
 <h3 id="sec1-1">1.1 累代・代・紀・世という四段階</h3>
 <p>もっとも大きな単位は「累代（ルイダイ、 eon ）」で、数億年から数十億年の幅を持つ。地球の歴史は冥王代・太古代・原生代・顕生代という四つの累代に分かれ、このうち「ジュラ紀」や「白亜紀」を含むのは、もっとも新しい顕生代（けんせいだい）である。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>単位</th>
@@ -126,28 +146,28 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>累代 (eon)</td>
-<td>るいだい</td>
-<td>数億〜数十億年</td>
-<td>太古代・原生代・顕生代</td>
+<td data-label="単位">累代 (eon)</td>
+<td data-label="読み">るいだい</td>
+<td data-label="目安の長さ">数億〜数十億年</td>
+<td data-label="具体例">太古代・原生代・顕生代</td>
 </tr>
 <tr>
-<td>代 (era)</td>
-<td>だい</td>
-<td>数千万〜数億年</td>
-<td>古生代・中生代・新生代</td>
+<td data-label="単位">代 (era)</td>
+<td data-label="読み">だい</td>
+<td data-label="目安の長さ">数千万〜数億年</td>
+<td data-label="具体例">古生代・中生代・新生代</td>
 </tr>
 <tr>
-<td>紀 (period)</td>
-<td>き</td>
-<td>数百万〜数千万年</td>
-<td>ジュラ紀・白亜紀・第四紀</td>
+<td data-label="単位">紀 (period)</td>
+<td data-label="読み">き</td>
+<td data-label="目安の長さ">数百万〜数千万年</td>
+<td data-label="具体例">ジュラ紀・白亜紀・第四紀</td>
 </tr>
 <tr>
-<td>世 (epoch)</td>
-<td>せい</td>
-<td>数百万年前後</td>
-<td>暁新世・完新世</td>
+<td data-label="単位">世 (epoch)</td>
+<td data-label="読み">せい</td>
+<td data-label="目安の長さ">数百万年前後</td>
+<td data-label="具体例">暁新世・完新世</td>
 </tr>
 </tbody>
 </table>

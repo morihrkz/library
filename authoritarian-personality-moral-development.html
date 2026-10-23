@@ -66,6 +66,26 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -173,7 +193,7 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <p>コールバーグは、架空の道徳的ジレンマ（重病の妻の薬を買う金がない男性が、薬局から薬を盗むべきか、という「ハインツのジレンマ」がよく知られる）への回答とその理由づけを、幅広い年齢層の被験者から聴き取る面接調査を通じて、この発達段階を実証的に裏づけようとした。この方法論は、その後 1969 年の理論的整理 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> を経て、心理学者アン・コルビーらによる 20 年にわたる縦断的追跡調査 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> によって、同一の被験者群を継続的に調べても段階が想定どおりの順序で進むことが確認され、理論としての実証的な基盤を固めていった。</p>
 <h3 id="sec4-2">4.2 三水準六段階の構造</h3>
 <p>コールバーグの理論は、道徳判断の発達を三つの水準・六つの段階に整理する。</p>
-<table>
+<div class="tblwrap"><table>
 <thead><tr><th>水準</th><th>段階</th><th>善悪の判断基準</th></tr></thead>
 <tbody>
 <tr><td rowspan="2">前慣習的水準</td><td>第 1 段階</td><td>罰を避けられるかどうか。</td></tr>
@@ -183,7 +203,7 @@ code{font-size:.88em; background:var(--box); padding:.1em .3em;}
 <tr><td rowspan="2">後慣習的水準</td><td>第 5 段階</td><td>社会契約として合意された、より一般的な権利・手続きに適っているかどうか。</td></tr>
 <tr><td>第 6 段階</td><td>集団の内外を問わない普遍的な倫理原則（正義・人権など）に適っているかどうか。</td></tr>
 </tbody>
-</table>
+</table></div>
 <p>この段階論全体を貫く軸は、判断の基準が、自己の利害（前慣習的水準）から、自分が属する集団や社会の期待（慣習的水準）を経て、集団の内外を問わない普遍的な原則（後慣習的水準）へと、徐々に外側へ広がっていくという点にある。本稿の関心にとって、とりわけ重要なのが中間に位置する慣習的水準である。次章で、この水準を詳しく検討する。</p>
 
 <h2 id="sec5">5. 慣習的水準――「仲間か否か」を道徳判断の基準にする段階</h2>

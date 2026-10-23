@@ -58,6 +58,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -227,16 +247,16 @@ sup a:hover{text-decoration:underline}
 <p>
 ここまでの議論を、証拠の性質によって層に分けて整理すると、次のようになる。
 </p>
-<table>
+<table class="cards">
 <thead><tr><th>層</th><th>主な理論・知見</th><th>性質</th></tr></thead>
 <tbody>
-<tr><td>物理的前提</td><td>決定論・因果的閉包性・ラプラスの悪魔</td><td>物理学的仮説（条件文として扱う）</td></tr>
-<tr><td>非両立論の論証</td><td>帰結論法・基本論証</td><td>哲学的主張</td></tr>
-<tr><td>両立論の応答</td><td>フランクファート事例・階層的欲求論・理由応答性</td><td>哲学的主張</td></tr>
-<tr><td>リバタリアニズムの試み</td><td>自己形成的行為・行為者因果説</td><td>哲学的主張（運の問題が未解決）</td></tr>
-<tr><td>神経科学の実験</td><td>準備電位・リベット実験</td><td>実証研究（解釈は係争中）</td></tr>
-<tr><td>実験の再検討</td><td>確率的蓄積モデルによる再解釈</td><td>実証研究・方法論的批判</td></tr>
-<tr><td>信念の効果</td><td>決定論信念と不正行為・実験哲学の調査</td><td>実証研究（心理学）</td></tr>
+<tr><td data-label="層">物理的前提</td><td data-label="主な理論・知見">決定論・因果的閉包性・ラプラスの悪魔</td><td data-label="性質">物理学的仮説（条件文として扱う）</td></tr>
+<tr><td data-label="層">非両立論の論証</td><td data-label="主な理論・知見">帰結論法・基本論証</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">両立論の応答</td><td data-label="主な理論・知見">フランクファート事例・階層的欲求論・理由応答性</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">リバタリアニズムの試み</td><td data-label="主な理論・知見">自己形成的行為・行為者因果説</td><td data-label="性質">哲学的主張（運の問題が未解決）</td></tr>
+<tr><td data-label="層">神経科学の実験</td><td data-label="主な理論・知見">準備電位・リベット実験</td><td data-label="性質">実証研究（解釈は係争中）</td></tr>
+<tr><td data-label="層">実験の再検討</td><td data-label="主な理論・知見">確率的蓄積モデルによる再解釈</td><td data-label="性質">実証研究・方法論的批判</td></tr>
+<tr><td data-label="層">信念の効果</td><td data-label="主な理論・知見">決定論信念と不正行為・実験哲学の調査</td><td data-label="性質">実証研究（心理学）</td></tr>
 </tbody>
 </table>
 <p>

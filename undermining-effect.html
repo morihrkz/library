@@ -57,6 +57,26 @@ sup a:hover{text-decoration:underline;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -149,15 +169,15 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec4-2">4.2 エンハンシング効果という対概念</h3>
 <p>この文脈で対になる概念が「エンハンシング効果 (enhancing effect) 」である。これは、言語的な報酬（称賛・肯定的フィードバック）によって、むしろ内発的動機づけが高まる現象を指す <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> 。同じ「報酬」という言葉で括られていても、物質的報酬が過剰正当化を招きやすいのに対し、有能感を伝える言語的報酬は動機づけを増幅させうる。両者を区別せずに「褒美」と一括りにしてしまうことが、多くの現場での失敗の出発点になっている。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>観点</th><th>アンダーマイニング効果を招きやすい設計</th><th>エンハンシング効果につながりやすい設計</th></tr>
 </thead>
 <tbody>
-<tr><td>報酬の種類</td><td>金銭・物品などの物質的報酬</td><td>言語的な称賛・承認</td></tr>
-<tr><td>評価の焦点</td><td>結果（成果の量・達成の有無）</td><td>過程（努力・工夫・戦略）</td></tr>
-<tr><td>提示のタイミング</td><td>事前に約束し、成果と機械的に連動</td><td>事後的・予期しない形で伝える</td></tr>
-<tr><td>行為者への影響</td><td>自己決定感・有能感の低下</td><td>有能感の補強</td></tr>
+<tr><td data-label="観点">報酬の種類</td><td data-label="アンダーマイニング効果を招きやすい設計">金銭・物品などの物質的報酬</td><td data-label="エンハンシング効果につながりやすい設計">言語的な称賛・承認</td></tr>
+<tr><td data-label="観点">評価の焦点</td><td data-label="アンダーマイニング効果を招きやすい設計">結果（成果の量・達成の有無）</td><td data-label="エンハンシング効果につながりやすい設計">過程（努力・工夫・戦略）</td></tr>
+<tr><td data-label="観点">提示のタイミング</td><td data-label="アンダーマイニング効果を招きやすい設計">事前に約束し、成果と機械的に連動</td><td data-label="エンハンシング効果につながりやすい設計">事後的・予期しない形で伝える</td></tr>
+<tr><td data-label="観点">行為者への影響</td><td data-label="アンダーマイニング効果を招きやすい設計">自己決定感・有能感の低下</td><td data-label="エンハンシング効果につながりやすい設計">有能感の補強</td></tr>
 </tbody>
 </table>
 <p class="note">※ 上表は典型的に起こりやすい傾向を単純化して図式化したものである。称賛の効果は受け手の年齢・統制的に感じられるかどうか・情報として伝わるかによって変わり、対象となる指標も報酬後の自由選択行動や自己報告の興味に限られる。</p>

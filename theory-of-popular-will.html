@@ -164,6 +164,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -282,14 +302,14 @@ sup a:hover{text-decoration:underline}
 
 <p>まず、本稿の冒頭で挙げた数字を正面から見よう。</p>
 
-<table>
+<table class="cards">
 <caption>得票率と議席占有率――第 51 回衆議院議員総選挙（ 2026 年 2 月 8 日）。同一の選挙、同一の有権者。上二段は小選挙区、下二段は比例代表。</caption>
 <thead><tr><th>区分</th><th>得票率</th><th>議席占有率</th></tr></thead>
 <tbody>
-<tr><td>自由民主党　小選挙区</td><td>49.2%</td><td>86.2%</td></tr>
-<tr><td>中道改革連合　小選挙区</td><td>21.6%</td><td>2.4%</td></tr>
-<tr><td>自由民主党　比例代表</td><td>36.7%</td><td>38.1%</td></tr>
-<tr><td>中道改革連合　比例代表</td><td>18.2%</td><td>23.9%</td></tr>
+<tr><td data-label="区分">自由民主党　小選挙区</td><td data-label="得票率">49.2%</td><td data-label="議席占有率">86.2%</td></tr>
+<tr><td data-label="区分">中道改革連合　小選挙区</td><td data-label="得票率">21.6%</td><td data-label="議席占有率">2.4%</td></tr>
+<tr><td data-label="区分">自由民主党　比例代表</td><td data-label="得票率">36.7%</td><td data-label="議席占有率">38.1%</td></tr>
+<tr><td data-label="区分">中道改革連合　比例代表</td><td data-label="得票率">18.2%</td><td data-label="議席占有率">23.9%</td></tr>
 </tbody>
 </table>
 <p class="table-note">出典 : 総務省確定結果にもとづく各種集計（小選挙区 289 議席、比例代表 176 議席）。小選挙区の投票率は 56.26% 。</p>
@@ -308,13 +328,13 @@ sup a:hover{text-decoration:underline}
 
 <p>この落差を、二年前の同じ選挙と比べてみる。</p>
 
-<table>
+<table class="cards">
 <caption>自由民主党の小選挙区における得票率と議席</caption>
 <thead><tr><th>選挙</th><th>得票率</th><th>獲得議席</th><th>議席占有率</th><th>優位比</th></tr></thead>
 <tbody>
-<tr><td>第 50 回（ 2024 年 10 月）</td><td>38.46%</td><td>132 / 289</td><td>45.7%</td><td>1.19</td></tr>
-<tr><td>第 51 回（ 2026 年 2 月）</td><td>49.23%</td><td>249 / 289</td><td>86.2%</td><td>1.75</td></tr>
-<tr><td>変化</td><td>+10.77pt</td><td>+117</td><td>+40.5pt</td><td>―</td></tr>
+<tr><td data-label="選挙">第 50 回（ 2024 年 10 月）</td><td data-label="得票率">38.46%</td><td data-label="獲得議席">132 / 289</td><td data-label="議席占有率">45.7%</td><td data-label="優位比">1.19</td></tr>
+<tr><td data-label="選挙">第 51 回（ 2026 年 2 月）</td><td data-label="得票率">49.23%</td><td data-label="獲得議席">249 / 289</td><td data-label="議席占有率">86.2%</td><td data-label="優位比">1.75</td></tr>
+<tr><td data-label="選挙">変化</td><td data-label="得票率">+10.77pt</td><td data-label="獲得議席">+117</td><td data-label="議席占有率">+40.5pt</td><td data-label="優位比">―</td></tr>
 </tbody>
 </table>
 
@@ -472,12 +492,12 @@ sup a:hover{text-decoration:underline}
 
 <p>三人の有権者がいる。選択肢は A 、 B 、 C の三つ。それぞれの選好順序はこうだとする。</p>
 
-<table>
+<table class="cards">
 <thead><tr><th>有権者</th><th>1 位</th><th>2 位</th><th>3 位</th></tr></thead>
 <tbody>
-<tr><td>甲</td><td>A</td><td>B</td><td>C</td></tr>
-<tr><td>乙</td><td>B</td><td>C</td><td>A</td></tr>
-<tr><td>丙</td><td>C</td><td>A</td><td>B</td></tr>
+<tr><td data-label="有権者">甲</td><td data-label="1 位">A</td><td data-label="2 位">B</td><td data-label="3 位">C</td></tr>
+<tr><td data-label="有権者">乙</td><td data-label="1 位">B</td><td data-label="2 位">C</td><td data-label="3 位">A</td></tr>
+<tr><td data-label="有権者">丙</td><td data-label="1 位">C</td><td data-label="2 位">A</td><td data-label="3 位">B</td></tr>
 </tbody>
 </table>
 
@@ -937,13 +957,13 @@ sup a:hover{text-decoration:underline}
 
 <p>可視化されたものを読むとき、四つの段階を区別する習慣を持つことが、決定的に重要である。</p>
 
-<table>
+<table class="cards">
 <thead><tr><th>段階</th><th>例</th><th>争いうる点</th></tr></thead>
 <tbody>
-<tr><td>データ</td><td>この議員は当該法案に賛成した</td><td>記録の正確さ（比較的争いにくい）</td></tr>
-<tr><td>指標</td><td>安全保障関連法案への賛成率 90%</td><td>どの法案を「安全保障関連」に含めるか</td></tr>
-<tr><td>解釈</td><td>この議員は「タカ派度 90 」</td><td>賛成率がタカ派度を測るという前提</td></tr>
-<tr><td>評価</td><td>タカ派であることは望ましくない</td><td>純粋な価値判断</td></tr>
+<tr><td data-label="段階">データ</td><td data-label="例">この議員は当該法案に賛成した</td><td data-label="争いうる点">記録の正確さ（比較的争いにくい）</td></tr>
+<tr><td data-label="段階">指標</td><td data-label="例">安全保障関連法案への賛成率 90%</td><td data-label="争いうる点">どの法案を「安全保障関連」に含めるか</td></tr>
+<tr><td data-label="段階">解釈</td><td data-label="例">この議員は「タカ派度 90 」</td><td data-label="争いうる点">賛成率がタカ派度を測るという前提</td></tr>
+<tr><td data-label="段階">評価</td><td data-label="例">タカ派であることは望ましくない</td><td data-label="争いうる点">純粋な価値判断</td></tr>
 </tbody>
 </table>
 

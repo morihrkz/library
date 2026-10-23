@@ -54,6 +54,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -153,18 +173,18 @@ sup a:hover{text-decoration:underline}
 
 <h3 id="sec5-5">5.5 整理――七つの比較軸</h3>
 <p>ここまでの似ている点と似ていない点を、七つの軸で並べておく。右端の列は、現時点で確認できる範囲での評価である。</p>
-<table>
+<table class="cards">
 <thead>
 <tr><th>比較軸</th><th>百年前の列強・日本</th><th>現在の中国</th><th>評価</th></tr>
 </thead>
 <tbody>
-<tr><td>足場の取り方</td><td>占領や砲艦を背景にした租借条約</td><td>相手国政府との協定、合弁、長期の借地。強制の証拠は確認できない</td><td>異なる</td></tr>
-<tr><td>港</td><td>旅順、威海衛、膠州湾など</td><td>ジブチの基地、リアム、チャウピュー</td><td>重なる</td></tr>
-<tr><td>鉄道</td><td>東清鉄道の南部支線、南満州鉄道</td><td>中国・ラオス鉄道</td><td>重なる</td></tr>
-<tr><td>軍</td><td>鉄道守備隊、租借地の駐留軍</td><td>ジブチの公式基地、ラオスの訓練センター</td><td>部分的に重なる。規模は小さい</td></tr>
-<tr><td>警察</td><td>租界の警察</td><td>南太平洋の警察協力、ミャンマーの警備要員</td><td>重なる。ただし後者は報道ベース</td></tr>
-<tr><td>統治と特権</td><td>総督府、治外法権、外国人社会</td><td>確認できない。協定の多くは未公表</td><td>異なる。ただし未確認</td></tr>
-<tr><td>呼び名</td><td>石炭補給所、租借</td><td>訓練センター、後方支援、警察協力</td><td>重なる</td></tr>
+<tr><td data-label="比較軸">足場の取り方</td><td data-label="百年前の列強・日本">占領や砲艦を背景にした租借条約</td><td data-label="現在の中国">相手国政府との協定、合弁、長期の借地。強制の証拠は確認できない</td><td data-label="評価">異なる</td></tr>
+<tr><td data-label="比較軸">港</td><td data-label="百年前の列強・日本">旅順、威海衛、膠州湾など</td><td data-label="現在の中国">ジブチの基地、リアム、チャウピュー</td><td data-label="評価">重なる</td></tr>
+<tr><td data-label="比較軸">鉄道</td><td data-label="百年前の列強・日本">東清鉄道の南部支線、南満州鉄道</td><td data-label="現在の中国">中国・ラオス鉄道</td><td data-label="評価">重なる</td></tr>
+<tr><td data-label="比較軸">軍</td><td data-label="百年前の列強・日本">鉄道守備隊、租借地の駐留軍</td><td data-label="現在の中国">ジブチの公式基地、ラオスの訓練センター</td><td data-label="評価">部分的に重なる。規模は小さい</td></tr>
+<tr><td data-label="比較軸">警察</td><td data-label="百年前の列強・日本">租界の警察</td><td data-label="現在の中国">南太平洋の警察協力、ミャンマーの警備要員</td><td data-label="評価">重なる。ただし後者は報道ベース</td></tr>
+<tr><td data-label="比較軸">統治と特権</td><td data-label="百年前の列強・日本">総督府、治外法権、外国人社会</td><td data-label="現在の中国">確認できない。協定の多くは未公表</td><td data-label="評価">異なる。ただし未確認</td></tr>
+<tr><td data-label="比較軸">呼び名</td><td data-label="百年前の列強・日本">石炭補給所、租借</td><td data-label="現在の中国">訓練センター、後方支援、警察協力</td><td data-label="評価">重なる</td></tr>
 </tbody>
 </table>
 <p>表から読み取れるのは、手段の重なりが大きく、強制と統治の重なりが小さい、という非対称である。次の章では、この非対称を説明する物差しを探す。</p>

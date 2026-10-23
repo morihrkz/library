@@ -40,6 +40,26 @@ li{margin-bottom:9px;}
 h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -272,7 +292,7 @@ h1{font-size:1.6875rem}
 <p>身体的には自立に近い状態だが、住まいを失った、家族の支援が得られない、費用の負担が重く有料老人ホームなどの契約型の住まいに入れないなど、生活上の困窮から自宅で暮らし続けられない人に向いている。自分で選んで契約するのではなく、市町村の福祉窓口への相談が入口になる。</p>
 
 <h2 id="sec9">9. 七類型の比較表</h2>
-<table>
+<table class="cardrow">
 <tr>
 <th>類型</th>
 <th>根拠法</th>
@@ -283,59 +303,59 @@ h1{font-size:1.6875rem}
 </tr>
 <tr>
 <th>介護付き有料老人ホーム（契約型）</th>
-<td>老人福祉法</td>
-<td>自立〜要介護 5 （施設による）</td>
-<td>施設スタッフが直接提供。特定施設入居者生活介護（定額）</td>
-<td>15 万〜 30 万円程度</td>
-<td>比較的対応しやすい施設が多い</td>
+<td data-label="根拠法">老人福祉法</td>
+<td data-label="対象の目安">自立〜要介護 5 （施設による）</td>
+<td data-label="介護の提供形態・介護保険の枠組み">施設スタッフが直接提供。特定施設入居者生活介護（定額）</td>
+<td data-label="費用の目安（月額）">15 万〜 30 万円程度</td>
+<td data-label="看取り・重度化対応">比較的対応しやすい施設が多い</td>
 </tr>
 <tr>
 <th>住宅型有料老人ホーム（契約型）</th>
-<td>老人福祉法</td>
-<td>自立〜要介護度の高い人まで（施設による）</td>
-<td>外部の訪問介護等を個別契約。区分支給限度基準額の範囲内</td>
-<td>10 万〜 25 万円程度 + 介護費</td>
-<td>施設・事業者の体制次第</td>
+<td data-label="根拠法">老人福祉法</td>
+<td data-label="対象の目安">自立〜要介護度の高い人まで（施設による）</td>
+<td data-label="介護の提供形態・介護保険の枠組み">外部の訪問介護等を個別契約。区分支給限度基準額の範囲内</td>
+<td data-label="費用の目安（月額）">10 万〜 25 万円程度 + 介護費</td>
+<td data-label="看取り・重度化対応">施設・事業者の体制次第</td>
 </tr>
 <tr>
 <th>サ高住・一般型（契約型）</th>
-<td>高齢者住まい法</td>
-<td>自立〜軽度の要介護</td>
-<td>外部の訪問介護等を個別契約。区分支給限度基準額の範囲内</td>
-<td>10 万〜 20 万円程度 + 介護費</td>
-<td>一般型は難しい場合がある</td>
+<td data-label="根拠法">高齢者住まい法</td>
+<td data-label="対象の目安">自立〜軽度の要介護</td>
+<td data-label="介護の提供形態・介護保険の枠組み">外部の訪問介護等を個別契約。区分支給限度基準額の範囲内</td>
+<td data-label="費用の目安（月額）">10 万〜 20 万円程度 + 介護費</td>
+<td data-label="看取り・重度化対応">一般型は難しい場合がある</td>
 </tr>
 <tr>
 <th>グループホーム（契約型・地域密着型）</th>
-<td>介護保険法</td>
-<td>要支援 2 以上、かつ認知症の診断あり</td>
-<td>ユニット内でスタッフとの共同生活。地域密着型サービス（定額）</td>
-<td>15 万〜 20 万円程度</td>
-<td>身体介護が重度化すると住み替えの可能性</td>
+<td data-label="根拠法">介護保険法</td>
+<td data-label="対象の目安">要支援 2 以上、かつ認知症の診断あり</td>
+<td data-label="介護の提供形態・介護保険の枠組み">ユニット内でスタッフとの共同生活。地域密着型サービス（定額）</td>
+<td data-label="費用の目安（月額）">15 万〜 20 万円程度</td>
+<td data-label="看取り・重度化対応">身体介護が重度化すると住み替えの可能性</td>
 </tr>
 <tr>
 <th>介護老人保健施設（老健・判定型）</th>
-<td>介護保険法</td>
-<td>要介護 1 以上。在宅復帰を目指す人</td>
-<td>リハビリ・看護・介護を一体で提供。施設サービス（定額）</td>
-<td>8 万〜 17 万円程度</td>
-<td>在宅復帰が前提で、長期入所向きではない</td>
+<td data-label="根拠法">介護保険法</td>
+<td data-label="対象の目安">要介護 1 以上。在宅復帰を目指す人</td>
+<td data-label="介護の提供形態・介護保険の枠組み">リハビリ・看護・介護を一体で提供。施設サービス（定額）</td>
+<td data-label="費用の目安（月額）">8 万〜 17 万円程度</td>
+<td data-label="看取り・重度化対応">在宅復帰が前提で、長期入所向きではない</td>
 </tr>
 <tr>
 <th>介護老人福祉施設（特養・判定型）</th>
-<td>老人福祉法（特別養護老人ホーム）・介護保険法（介護老人福祉施設）</td>
-<td>原則要介護 3 以上</td>
-<td>施設スタッフが直接提供。施設サービス（定額）</td>
-<td>6 万〜 15 万円程度</td>
-<td>終身利用が前提で、看取りに対応する施設も多い</td>
+<td data-label="根拠法">老人福祉法（特別養護老人ホーム）・介護保険法（介護老人福祉施設）</td>
+<td data-label="対象の目安">原則要介護 3 以上</td>
+<td data-label="介護の提供形態・介護保険の枠組み">施設スタッフが直接提供。施設サービス（定額）</td>
+<td data-label="費用の目安（月額）">6 万〜 15 万円程度</td>
+<td data-label="看取り・重度化対応">終身利用が前提で、看取りに対応する施設も多い</td>
 </tr>
 <tr>
 <th>養護老人ホーム（判定型・措置）</th>
-<td>老人福祉法</td>
-<td>65 歳以上で、環境上・経済的理由により在宅養護が困難な人</td>
-<td>外部サービス利用が基本（一般型）。介護サービス提供型は特定施設</td>
-<td>本人・扶養義務者の収入に応じて市町村が決定</td>
-<td>介護が重度化すると住み替えを検討する場合がある</td>
+<td data-label="根拠法">老人福祉法</td>
+<td data-label="対象の目安">65 歳以上で、環境上・経済的理由により在宅養護が困難な人</td>
+<td data-label="介護の提供形態・介護保険の枠組み">外部サービス利用が基本（一般型）。介護サービス提供型は特定施設</td>
+<td data-label="費用の目安（月額）">本人・扶養義務者の収入に応じて市町村が決定</td>
+<td data-label="看取り・重度化対応">介護が重度化すると住み替えを検討する場合がある</td>
 </tr>
 </table>
 <div class="box">

@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -182,7 +202,7 @@ pre code{background:none; padding:0;}
 <h3 id="sec2-2">2.2 トランジットとの違い</h3>
 <p><strong>トランジット (Transit)</strong> は、あるネットワーク（多くの場合、大規模プロバイダ）が、別のネットワーク（多くの場合、小規模プロバイダやエンドユーザーに近い事業者）に対して、インターネット全体への到達性を有償で提供するサービスである <sup><a id="fnref-1-2" href="#ref-1">[1]</a></sup> 。</p>
 <p>ピアリングとトランジットの違いを整理すると、以下のようになる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>項目</th>
@@ -192,24 +212,24 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>交換する経路情報</td>
-<td>自社および自社の顧客向けの経路のみ</td>
-<td>インターネット全体への経路</td>
+<td data-label="項目">交換する経路情報</td>
+<td data-label="ピアリング">自社および自社の顧客向けの経路のみ</td>
+<td data-label="トランジット">インターネット全体への経路</td>
 </tr>
 <tr>
-<td>料金</td>
-<td>無償の場合が多い（有償ピアリングもある）</td>
-<td>基本的に有償</td>
+<td data-label="項目">料金</td>
+<td data-label="ピアリング">無償の場合が多い（有償ピアリングもある）</td>
+<td data-label="トランジット">基本的に有償</td>
 </tr>
 <tr>
-<td>関係性</td>
-<td>対等な関係（ Peer = 対等者）</td>
-<td>提供者・被提供者の関係（顧客契約）</td>
+<td data-label="項目">関係性</td>
+<td data-label="ピアリング">対等な関係（ Peer = 対等者）</td>
+<td data-label="トランジット">提供者・被提供者の関係（顧客契約）</td>
 </tr>
 <tr>
-<td>到達範囲</td>
-<td>相手とその顧客まで</td>
-<td>インターネット全体</td>
+<td data-label="項目">到達範囲</td>
+<td data-label="ピアリング">相手とその顧客まで</td>
+<td data-label="トランジット">インターネット全体</td>
 </tr>
 </tbody>
 </table>
@@ -261,7 +281,7 @@ IX 事業者が「実際の相互接続点」を提供するのに対し、 JPNI
 <p>この階層構造により、末端の Tier3 事業者から、 Tier2, Tier1 へと段階的にトラフィックが集約されていく形でインターネット全体が構成されている。ただし実際のネットワーク構造はこれほど単純な階層ではなく、 Tier2 同士のピアリングや、 CDN ・クラウド事業者による「階層を飛び越えた」直接接続（ IX やプライベートピアリングを通じた、末端 ISP との直接接続）が進んでおり、伝統的な階層モデルの重要性は相対的に低下してきているとも指摘される。</p>
 <p>重要な点として、「 Tier1 」を公式に認定する中央機関は存在しない。この分類は、各ネットワークが自ら主張する場合もあれば、 CAIDA (Center for Applied Internet Data Analysis) のような第三者の研究機関が、公開されている BGP の経路データから事業者間の関係を推定して分類する場合もある、あくまで実態に基づく慣習的な呼称である。
 代表的な Tier1 ネットワークとされる事業者には、以下のような例がある（ AS 番号は各社の主要バックボーンのもの）<sup><a id="fnref-12-1" href="#ref-12">[12]</a></sup><sup><a id="fnref-13-1" href="#ref-13">[13]</a></sup> 。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>事業者</th>
@@ -271,39 +291,39 @@ IX 事業者が「実際の相互接続点」を提供するのに対し、 JPNI
 </thead>
 <tbody>
 <tr>
-<td>Lumen Technologies （旧 CenturyLink ）</td>
-<td>AS3356</td>
-<td>世界最大級のバックボーンの一つ、北米中心</td>
+<td data-label="事業者">Lumen Technologies （旧 CenturyLink ）</td>
+<td data-label="主要 AS 番号">AS3356</td>
+<td data-label="特徴">世界最大級のバックボーンの一つ、北米中心</td>
 </tr>
 <tr>
-<td>NTT コミュニケーションズ</td>
-<td>AS2914</td>
-<td>アジア太平洋・環太平洋路線に強み</td>
+<td data-label="事業者">NTT コミュニケーションズ</td>
+<td data-label="主要 AS 番号">AS2914</td>
+<td data-label="特徴">アジア太平洋・環太平洋路線に強み</td>
 </tr>
 <tr>
-<td>Arelion （旧 Telia Carrier ）</td>
-<td>AS1299</td>
-<td>北欧発、グローバルに展開</td>
+<td data-label="事業者">Arelion （旧 Telia Carrier ）</td>
+<td data-label="主要 AS 番号">AS1299</td>
+<td data-label="特徴">北欧発、グローバルに展開</td>
 </tr>
 <tr>
-<td>Zayo</td>
-<td>AS6461</td>
-<td>北米・欧州の広域ファイバー網</td>
+<td data-label="事業者">Zayo</td>
+<td data-label="主要 AS 番号">AS6461</td>
+<td data-label="特徴">北米・欧州の広域ファイバー網</td>
 </tr>
 <tr>
-<td>GTT Communications</td>
-<td>AS3257</td>
-<td>2010 年代の M&amp;A で拡大した欧州系バックボーン</td>
+<td data-label="事業者">GTT Communications</td>
+<td data-label="主要 AS 番号">AS3257</td>
+<td data-label="特徴">2010 年代の M&amp;A で拡大した欧州系バックボーン</td>
 </tr>
 <tr>
-<td>Deutsche Telekom</td>
-<td>AS3320</td>
-<td>欧州最大級、全 Tier1 と無償ピアリング</td>
+<td data-label="事業者">Deutsche Telekom</td>
+<td data-label="主要 AS 番号">AS3320</td>
+<td data-label="特徴">欧州最大級、全 Tier1 と無償ピアリング</td>
 </tr>
 <tr>
-<td>Cogent Communications</td>
-<td>AS174</td>
-<td>北米・欧州・一部アジアに展開する独立系</td>
+<td data-label="事業者">Cogent Communications</td>
+<td data-label="主要 AS 番号">AS174</td>
+<td data-label="特徴">北米・欧州・一部アジアに展開する独立系</td>
 </tr>
 </tbody>
 </table>
@@ -544,7 +564,7 @@ Meta CDN のネットワーク構成は、東西トラフィック（データ�
 <p>Netflix ・ Meta いずれの事例にも共通するのは、 <strong>CDN が単独の収益部門ではなく、本体事業（動画サブスクリプション収益、広告収益）を支える「配信品質への投資」として設計されている</strong>という点である。この構図は、指示書が一貫して重視する「 CDN は慈善事業ではなく、より大きなビジネスの中の戦略的投資である」という視点と直接つながっている。</p>
 <h3 id="sec5-5">5.5 4 パターンの比較</h3>
 <p>以上の 4 パターンを、収益源・ CDN のコスト位置づけ・戦略的役割という軸で整理すると、以下のようになる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>タイプ</th>
@@ -556,32 +576,32 @@ Meta CDN のネットワーク構成は、東西トラフィック（データ�
 </thead>
 <tbody>
 <tr>
-<td>CDN 専業型</td>
-<td>Akamai 、 Fastly</td>
-<td>CDN ・セキュリティ利用料の直接課金</td>
-<td>CDN 自体が主たる売上原価・売上そのもの</td>
-<td>CDN 機能そのものが商品。セキュリティ等への事業多角化で収益性を補強</td>
+<td data-label="タイプ">CDN 専業型</td>
+<td data-label="代表企業">Akamai 、 Fastly</td>
+<td data-label="CDN の直接収益源">CDN ・セキュリティ利用料の直接課金</td>
+<td data-label="CDN のコスト上の位置づけ">CDN 自体が主たる売上原価・売上そのもの</td>
+<td data-label="戦略的役割">CDN 機能そのものが商品。セキュリティ等への事業多角化で収益性を補強</td>
 </tr>
 <tr>
-<td>プラットフォーム付随型（フリーミアム）</td>
-<td>Cloudflare</td>
-<td>有料プラン課金（無料プランは非課金）</td>
-<td>無料プラン分はコスト（原価率を押し上げる要因）</td>
-<td>無料プランでネットワーク規模とブランドを獲得し、周辺製品（ Workers/R2/Zero Trust 等）へのアップセル導線とする</td>
+<td data-label="タイプ">プラットフォーム付随型（フリーミアム）</td>
+<td data-label="代表企業">Cloudflare</td>
+<td data-label="CDN の直接収益源">有料プラン課金（無料プランは非課金）</td>
+<td data-label="CDN のコスト上の位置づけ">無料プラン分はコスト（原価率を押し上げる要因）</td>
+<td data-label="戦略的役割">無料プランでネットワーク規模とブランドを獲得し、周辺製品（ Workers/R2/Zero Trust 等）へのアップセル導線とする</td>
 </tr>
 <tr>
-<td>プラットフォーム付随型（本体事業強化）</td>
-<td>Google 、 Amazon</td>
-<td>クラウドプラットフォーム利用料の一部として課金（ CDN 単体収益は非開示）</td>
-<td>クラウド事業のコストの一部。自社サービス（ YouTube 等）は広告収益等で吸収</td>
-<td>クラウドエコシステム全体の顧客誘引・自社大規模サービスの配信基盤</td>
+<td data-label="タイプ">プラットフォーム付随型（本体事業強化）</td>
+<td data-label="代表企業">Google 、 Amazon</td>
+<td data-label="CDN の直接収益源">クラウドプラットフォーム利用料の一部として課金（ CDN 単体収益は非開示）</td>
+<td data-label="CDN のコスト上の位置づけ">クラウド事業のコストの一部。自社サービス（ YouTube 等）は広告収益等で吸収</td>
+<td data-label="戦略的役割">クラウドエコシステム全体の顧客誘引・自社大規模サービスの配信基盤</td>
 </tr>
 <tr>
-<td>コンテンツ企業自前型</td>
-<td>Netflix 、 Meta</td>
-<td>外部への直接販売なし（自社利用のみ）</td>
-<td>本体事業（サブスク・広告）の売上原価・インフラコスト</td>
-<td>自社コンテンツの配信品質向上によるユーザー体験・顧客維持への投資</td>
+<td data-label="タイプ">コンテンツ企業自前型</td>
+<td data-label="代表企業">Netflix 、 Meta</td>
+<td data-label="CDN の直接収益源">外部への直接販売なし（自社利用のみ）</td>
+<td data-label="CDN のコスト上の位置づけ">本体事業（サブスク・広告）の売上原価・インフラコスト</td>
+<td data-label="戦略的役割">自社コンテンツの配信品質向上によるユーザー体験・顧客維持への投資</td>
 </tr>
 </tbody>
 </table>
@@ -604,7 +624,7 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 <h2 id="sec6">6. 財務データによる裏付け</h2>
 <p>前章で個別に触れた数字を、出典・時点とともに一覧化する。数字は各社の公表資料に基づくが、為替影響、会計基準 (GAAP ／非 GAAP) の違い、開示区分の変更等により、単純な社間比較には注意が必要である。</p>
 <h3 id="sec6-1">6.1 Akamai （ 2025 年 12 月期通期）</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>指標</th>
@@ -614,49 +634,49 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 </thead>
 <tbody>
 <tr>
-<td>総売上高</td>
-<td>42.08 億米ドル</td>
-<td>+5%</td>
+<td data-label="指標">総売上高</td>
+<td data-label="金額・値">42.08 億米ドル</td>
+<td data-label="前年比">+5%</td>
 </tr>
 <tr>
-<td>Security 収益</td>
-<td>22.43 億米ドル（構成比 53.3% ）</td>
-<td>+10% （為替調整後 +9% ）</td>
+<td data-label="指標">Security 収益</td>
+<td data-label="金額・値">22.43 億米ドル（構成比 53.3% ）</td>
+<td data-label="前年比">+10% （為替調整後 +9% ）</td>
 </tr>
 <tr>
-<td>Delivery 収益</td>
-<td>12.57 億米ドル（構成比 29.9% ）</td>
-<td>―</td>
+<td data-label="指標">Delivery 収益</td>
+<td data-label="金額・値">12.57 億米ドル（構成比 29.9% ）</td>
+<td data-label="前年比">―</td>
 </tr>
 <tr>
-<td>Compute 収益</td>
-<td>7.08 億米ドル（構成比 16.8% ）</td>
-<td>―</td>
+<td data-label="指標">Compute 収益</td>
+<td data-label="金額・値">7.08 億米ドル（構成比 16.8% ）</td>
+<td data-label="前年比">―</td>
 </tr>
 <tr>
-<td>営業利益</td>
-<td>5.669 億米ドル（売上高比 13% ）</td>
-<td>ほぼ横ばい</td>
+<td data-label="指標">営業利益</td>
+<td data-label="金額・値">5.669 億米ドル（売上高比 13% ）</td>
+<td data-label="前年比">ほぼ横ばい</td>
 </tr>
 <tr>
-<td>純利益</td>
-<td>4.520 億米ドル</td>
-<td>前年 5.049 億米ドルから減少（リストラ費用・株式報酬増加の影響）</td>
+<td data-label="指標">純利益</td>
+<td data-label="金額・値">4.520 億米ドル</td>
+<td data-label="前年比">前年 5.049 億米ドルから減少（リストラ費用・株式報酬増加の影響）</td>
 </tr>
 <tr>
-<td>粗利率 (GAAP)</td>
-<td>58.9%</td>
-<td>2021 年の 63.3% から緩やかに低下傾向 <sup id="fnref-59-1"><a href="#ref-59">[59]</a></sup></td>
+<td data-label="指標">粗利率 (GAAP)</td>
+<td data-label="金額・値">58.9%</td>
+<td data-label="前年比">2021 年の 63.3% から緩やかに低下傾向 <sup id="fnref-59-1"><a href="#ref-59">[59]</a></sup></td>
 </tr>
 <tr>
-<td>非 GAAP 営業利益率</td>
-<td>30%</td>
-<td>+1 ポイント</td>
+<td data-label="指標">非 GAAP 営業利益率</td>
+<td data-label="金額・値">30%</td>
+<td data-label="前年比">+1 ポイント</td>
 </tr>
 </tbody>
 </table>
 <h3 id="sec6-2">6.2 Fastly （ 2025 年 12 月期通期）</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>指標</th>
@@ -666,39 +686,39 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 </thead>
 <tbody>
 <tr>
-<td>総売上高</td>
-<td>6.240 億米ドル</td>
-<td>+15%</td>
+<td data-label="指標">総売上高</td>
+<td data-label="金額・値">6.240 億米ドル</td>
+<td data-label="前年比">+15%</td>
 </tr>
 <tr>
-<td>Network services 収益</td>
-<td>4.778 億米ドル</td>
-<td>+12%</td>
+<td data-label="指標">Network services 収益</td>
+<td data-label="金額・値">4.778 億米ドル</td>
+<td data-label="前年比">+12%</td>
 </tr>
 <tr>
-<td>Security 収益</td>
-<td>1.251 億米ドル</td>
-<td>+21%</td>
+<td data-label="指標">Security 収益</td>
+<td data-label="金額・値">1.251 億米ドル</td>
+<td data-label="前年比">+21%</td>
 </tr>
 <tr>
-<td>Q4 粗利率</td>
-<td>64% （過去最高）</td>
-<td>Q4 2024 の 57.5% から改善</td>
+<td data-label="指標">Q4 粗利率</td>
+<td data-label="金額・値">64% （過去最高）</td>
+<td data-label="前年比">Q4 2024 の 57.5% から改善</td>
 </tr>
 <tr>
-<td>通期純利益</td>
-<td>1,970 万米ドル</td>
-<td>通期初黒字化</td>
+<td data-label="指標">通期純利益</td>
+<td data-label="金額・値">1,970 万米ドル</td>
+<td data-label="前年比">通期初黒字化</td>
 </tr>
 <tr>
-<td>純収益維持率 (NRR)</td>
-<td>110%</td>
-<td>前四半期 106% から上昇</td>
+<td data-label="指標">純収益維持率 (NRR)</td>
+<td data-label="金額・値">110%</td>
+<td data-label="前年比">前四半期 106% から上昇</td>
 </tr>
 </tbody>
 </table>
 <h3 id="sec6-3">6.3 Cloudflare （ 2025 年 12 月期通期）</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>指標</th>
@@ -708,39 +728,39 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 </thead>
 <tbody>
 <tr>
-<td>総売上高</td>
-<td>21.679 億米ドル</td>
-<td>+29.8%</td>
+<td data-label="指標">総売上高</td>
+<td data-label="金額・値">21.679 億米ドル</td>
+<td data-label="前年比">+29.8%</td>
 </tr>
 <tr>
-<td>粗利率 (GAAP)</td>
-<td>74.5%</td>
-<td>2024 年の 77.3% から低下</td>
+<td data-label="指標">粗利率 (GAAP)</td>
+<td data-label="金額・値">74.5%</td>
+<td data-label="前年比">2024 年の 77.3% から低下</td>
 </tr>
 <tr>
-<td>粗利率（非 GAAP ）</td>
-<td>75.8%</td>
-<td>2024 年の 78.7% から低下</td>
+<td data-label="指標">粗利率（非 GAAP ）</td>
+<td data-label="金額・値">75.8%</td>
+<td data-label="前年比">2024 年の 78.7% から低下</td>
 </tr>
 <tr>
-<td>有料顧客数</td>
-<td>332,466 社</td>
-<td>―</td>
+<td data-label="指標">有料顧客数</td>
+<td data-label="金額・値">332,466 社</td>
+<td data-label="前年比">―</td>
 </tr>
 <tr>
-<td>大口顧客数（年間支出 10 万米ドル超）</td>
-<td>4,298 社</td>
-<td>―</td>
+<td data-label="指標">大口顧客数（年間支出 10 万米ドル超）</td>
+<td data-label="金額・値">4,298 社</td>
+<td data-label="前年比">―</td>
 </tr>
 <tr>
-<td>Q4 最大契約</td>
-<td>平均年間契約額 4,250 万米ドル</td>
-<td>同社史上最大</td>
+<td data-label="指標">Q4 最大契約</td>
+<td data-label="金額・値">平均年間契約額 4,250 万米ドル</td>
+<td data-label="前年比">同社史上最大</td>
 </tr>
 </tbody>
 </table>
 <h3 id="sec6-4">6.4 Google （ Alphabet 、 2025 年 12 月期）</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>指標</th>
@@ -750,29 +770,29 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 </thead>
 <tbody>
 <tr>
-<td>YouTube 収益（通期、広告 + サブスク）</td>
-<td>600 億米ドル超</td>
-<td>―</td>
+<td data-label="指標">YouTube 収益（通期、広告 + サブスク）</td>
+<td data-label="金額・値">600 億米ドル超</td>
+<td data-label="前年比">―</td>
 </tr>
 <tr>
-<td>YouTube 広告収益 (Q4)</td>
-<td>114 億米ドル</td>
-<td>+9%</td>
+<td data-label="指標">YouTube 広告収益 (Q4)</td>
+<td data-label="金額・値">114 億米ドル</td>
+<td data-label="前年比">+9%</td>
 </tr>
 <tr>
-<td>Google Cloud 収益（通期）</td>
-<td>587.1 億米ドル</td>
-<td>+35.8% （前年 432.3 億米ドル）</td>
+<td data-label="指標">Google Cloud 収益（通期）</td>
+<td data-label="金額・値">587.1 億米ドル</td>
+<td data-label="前年比">+35.8% （前年 432.3 億米ドル）</td>
 </tr>
 <tr>
-<td>Google Cloud 収益 (Q4)</td>
-<td>177 億米ドル</td>
-<td>+48%</td>
+<td data-label="指標">Google Cloud 収益 (Q4)</td>
+<td data-label="金額・値">177 億米ドル</td>
+<td data-label="前年比">+48%</td>
 </tr>
 </tbody>
 </table>
 <h3 id="sec6-5">6.5 Netflix （ 2025 年 12 月期）</h3>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>指標</th>
@@ -782,19 +802,19 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 </thead>
 <tbody>
 <tr>
-<td>通期売上高</td>
-<td>452 億米ドル前後</td>
-<td>各種報道に基づく概算</td>
+<td data-label="指標">通期売上高</td>
+<td data-label="金額・値">452 億米ドル前後</td>
+<td data-label="備考">各種報道に基づく概算</td>
 </tr>
 <tr>
-<td>コンテンツ償却費</td>
-<td>164 億米ドル</td>
-<td>売上高の 40% 未満</td>
+<td data-label="指標">コンテンツ償却費</td>
+<td data-label="金額・値">164 億米ドル</td>
+<td data-label="備考">売上高の 40% 未満</td>
 </tr>
 <tr>
-<td>2025 年コンテンツ現金支出計画</td>
-<td>180 億米ドル前後</td>
-<td>Open Connect 関連費用を含む「ストリーミング配信コスト」はコンテンツ費用等と合算開示のため、 CDN 単体の金額は非開示</td>
+<td data-label="指標">2025 年コンテンツ現金支出計画</td>
+<td data-label="金額・値">180 億米ドル前後</td>
+<td data-label="備考">Open Connect 関連費用を含む「ストリーミング配信コスト」はコンテンツ費用等と合算開示のため、 CDN 単体の金額は非開示</td>
 </tr>
 </tbody>
 </table>

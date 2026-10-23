@@ -65,6 +65,26 @@ strong{font-weight:bold;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -158,7 +178,7 @@ strong{font-weight:bold;}
 <p><strong>セロトニン</strong>は必須アミノ酸トリプトファンから合成され、セロトニン神経から分泌される。日光を浴びることや、規則的なリズム運動によって分泌が促されると考えられている <sup><a id="fnref-4-2" href="#ref-4">[4]</a></sup> 。脳の過剰な興奮を鎮め、精神を安定させる働きがあるとされ、これが「幸福感を高める」という理解、ひいては「幸せホルモン」という通称の根拠になっている。もっとも、この呼称そのものにも慎重な検討が必要である。</p>
 <p><strong>エンドルフィン（β- エンドルフィン）</strong>は、痛みやストレスへの反応として分泌される内因性オピオイドである。とりわけ持続的な有酸素運動の際に血中濃度が上昇することが複数の研究で示されている <sup><a id="fnref-11-1" href="#ref-11">[11]</a></sup> 。鎮痛作用に加え、笑い・恋愛・嗜好性の高い食事など幅広い快感・多幸感に関連するとされる。社会的な笑いが痛覚閾値を上げるという実験結果 <sup><a id="fnref-12-1" href="#ref-12">[12]</a></sup> は、エンドルフィンが運動時の鎮痛物質にとどまらず、集団の結束を支える社会的な機能も担っている可能性を示している。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>物質</th>
@@ -169,34 +189,34 @@ strong{font-weight:bold;}
 </thead>
 <tbody>
 <tr>
-<td>アドレナリン</td>
-<td>ストレス・恐怖・興奮・危険の察知</td>
-<td>戦闘態勢への切り替え、スリル</td>
-<td>生理学的解説が中心。快感との相関を測った査読研究は限定的</td>
+<td data-label="物質">アドレナリン</td>
+<td data-label="分泌のきっかけ">ストレス・恐怖・興奮・危険の察知</td>
+<td data-label="結びつく感情・作用">戦闘態勢への切り替え、スリル</td>
+<td data-label="裏付けの強さ">生理学的解説が中心。快感との相関を測った査読研究は限定的</td>
 </tr>
 <tr>
-<td>ドーパミン</td>
-<td>予測されない報酬・新奇性・達成の見込み</td>
-<td>「追い求める」意欲（単純な快感ではない）</td>
-<td>動機づけ・予測誤差の信号として確立（四の一を参照）</td>
+<td data-label="物質">ドーパミン</td>
+<td data-label="分泌のきっかけ">予測されない報酬・新奇性・達成の見込み</td>
+<td data-label="結びつく感情・作用">「追い求める」意欲（単純な快感ではない）</td>
+<td data-label="裏付けの強さ">動機づけ・予測誤差の信号として確立（四の一を参照）</td>
 </tr>
 <tr>
-<td>オキシトシン</td>
-<td>授乳・出産・スキンシップ・信頼関係の構築</td>
-<td>信頼・共感・絆・安心感</td>
-<td>相関研究は多いが、再現性・測定法に強い留保（四の二を参照）</td>
+<td data-label="物質">オキシトシン</td>
+<td data-label="分泌のきっかけ">授乳・出産・スキンシップ・信頼関係の構築</td>
+<td data-label="結びつく感情・作用">信頼・共感・絆・安心感</td>
+<td data-label="裏付けの強さ">相関研究は多いが、再現性・測定法に強い留保（四の二を参照）</td>
 </tr>
 <tr>
-<td>セロトニン</td>
-<td>日光浴・規則的なリズム運動</td>
-<td>精神の安定</td>
-<td>大枠は支持。うつ病との単純な因果関係は否定的（四の四を参照）</td>
+<td data-label="物質">セロトニン</td>
+<td data-label="分泌のきっかけ">日光浴・規則的なリズム運動</td>
+<td data-label="結びつく感情・作用">精神の安定</td>
+<td data-label="裏付けの強さ">大枠は支持。うつ病との単純な因果関係は否定的（四の四を参照）</td>
 </tr>
 <tr>
-<td>エンドルフィン</td>
-<td>持続的な有酸素運動・痛み・社会的な笑い</td>
-<td>鎮痛・多幸感・集団の結束</td>
-<td>運動時の血中濃度上昇は確立。脳内多幸感への直接寄与には留保（四の三を参照）</td>
+<td data-label="物質">エンドルフィン</td>
+<td data-label="分泌のきっかけ">持続的な有酸素運動・痛み・社会的な笑い</td>
+<td data-label="結びつく感情・作用">鎮痛・多幸感・集団の結束</td>
+<td data-label="裏付けの強さ">運動時の血中濃度上昇は確立。脳内多幸感への直接寄与には留保（四の三を参照）</td>
 </tr>
 </tbody>
 </table>

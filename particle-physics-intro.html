@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -282,7 +302,7 @@ pre code{background:none; padding:0;}
 クォークは前章までに見たとおり、強い力を受け、単独では取り出せない。レプトンは強い力を受けない粒子で、電子はその代表例である。</p>
 <p>クォークにもレプトンにも、それぞれ 3 世代（ 3 世代構造、あるいは 3 ファミリーとも呼ばれる）がある。日常の物質（原子）を構成するのは、いずれも第 1 世代の粒子、すなわちアップクォーク・ダウンクォーク・電子（および電子ニュートリノ）だけである。第 2 ・第 3 世代の粒子は、性質は第 1 世代と同じ種類の力を受けるが、質量がはるかに大きく、不安定であり、宇宙線や加速器実験、あるいは初期宇宙のような高エネルギー環境でしか作られない。
 以下の表に、確立しているクォーク 6 種・荷電レプトン 6 種（実際には荷電レプトン 3 種とニュートリノ 3 種）の質量をまとめる <sup><a id="fnref-12-1" href="#ref-12">[12]</a></sup> 。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>分類</th>
@@ -293,28 +313,28 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>クォーク（電荷 +2/3 ）</td>
-<td>アップ 約 2.16 MeV</td>
-<td>チャーム 約 1.27 GeV</td>
-<td>トップ 約 172.6 GeV</td>
+<td data-label="分類">クォーク（電荷 +2/3 ）</td>
+<td data-label="第 1 世代">アップ 約 2.16 MeV</td>
+<td data-label="第 2 世代">チャーム 約 1.27 GeV</td>
+<td data-label="第 3 世代">トップ 約 172.6 GeV</td>
 </tr>
 <tr>
-<td>クォーク（電荷 -1/3 ）</td>
-<td>ダウン 約 4.70 MeV</td>
-<td>ストレンジ 約 93.5 MeV</td>
-<td>ボトム 約 4.18 GeV</td>
+<td data-label="分類">クォーク（電荷 -1/3 ）</td>
+<td data-label="第 1 世代">ダウン 約 4.70 MeV</td>
+<td data-label="第 2 世代">ストレンジ 約 93.5 MeV</td>
+<td data-label="第 3 世代">ボトム 約 4.18 GeV</td>
 </tr>
 <tr>
-<td>荷電レプトン（電荷 -1 ）</td>
-<td>電子 約 0.511 MeV</td>
-<td>ミュー粒子 約 105.66 MeV</td>
-<td>タウ粒子 約 1776.9 MeV</td>
+<td data-label="分類">荷電レプトン（電荷 -1 ）</td>
+<td data-label="第 1 世代">電子 約 0.511 MeV</td>
+<td data-label="第 2 世代">ミュー粒子 約 105.66 MeV</td>
+<td data-label="第 3 世代">タウ粒子 約 1776.9 MeV</td>
 </tr>
 <tr>
-<td>ニュートリノ（電荷 0 ）</td>
-<td>電子ニュートリノ</td>
-<td>ミューニュートリノ</td>
-<td>タウニュートリノ</td>
+<td data-label="分類">ニュートリノ（電荷 0 ）</td>
+<td data-label="第 1 世代">電子ニュートリノ</td>
+<td data-label="第 2 世代">ミューニュートリノ</td>
+<td data-label="第 3 世代">タウニュートリノ</td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +465,7 @@ CERN の LHC （大型ハドロン衝突型加速器）は、この記事執筆�
 <p>現在の宇宙は膨張を続けており、観測によれば、この膨張とともに宇宙全体は冷えてきている。時間をさかのぼれば、宇宙はより小さく、より密度が高く、より高温であったことになる。
 ここでいう「温度が高い」とは、その時代の宇宙を満たしていた粒子が、平均としてより高い運動エネルギーを持っていたということにほかならない。つまり、初期宇宙の各時代は、その時代の平均的な粒子のエネルギーによって特徴づけることができ、このエネルギーが高いほど、より初期の（より小さい）宇宙に対応する。</p>
 <p>この対応関係を使うと、加速器実験で確認された物理法則を、対応するエネルギーの初期宇宙に当てはめて考えることができる。以下に、いくつかの節目となる時代を、対応するエネルギー・時刻とともに示す <sup><a id="fnref-28-1" href="#ref-28">[28]</a></sup> 。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>出来事</th>
@@ -455,24 +475,24 @@ CERN の LHC （大型ハドロン衝突型加速器）は、この記事執筆�
 </thead>
 <tbody>
 <tr>
-<td>電弱対称性の破れ</td>
-<td>100 〜 160 GeV 程度</td>
-<td>1 兆分の 1 秒程度</td>
+<td data-label="出来事">電弱対称性の破れ</td>
+<td data-label="おおよそのエネルギー">100 〜 160 GeV 程度</td>
+<td data-label="宇宙開闢からの時刻">1 兆分の 1 秒程度</td>
 </tr>
 <tr>
-<td>クォークがハドロンに閉じ込められる（ QCD 相転移）</td>
-<td>100 〜 300 MeV 程度</td>
-<td>10 万分の 1 秒程度</td>
+<td data-label="出来事">クォークがハドロンに閉じ込められる（ QCD 相転移）</td>
+<td data-label="おおよそのエネルギー">100 〜 300 MeV 程度</td>
+<td data-label="宇宙開闢からの時刻">10 万分の 1 秒程度</td>
 </tr>
 <tr>
-<td>軽元素の合成（ビッグバン元素合成）</td>
-<td>1 MeV 程度</td>
-<td>数分程度</td>
+<td data-label="出来事">軽元素の合成（ビッグバン元素合成）</td>
+<td data-label="おおよそのエネルギー">1 MeV 程度</td>
+<td data-label="宇宙開闢からの時刻">数分程度</td>
 </tr>
 <tr>
-<td>原子の形成（再結合、宇宙マイクロ波背景放射の起源）</td>
-<td>1 電子ボルト以下</td>
-<td>38 万年程度</td>
+<td data-label="出来事">原子の形成（再結合、宇宙マイクロ波背景放射の起源）</td>
+<td data-label="おおよそのエネルギー">1 電子ボルト以下</td>
+<td data-label="宇宙開闢からの時刻">38 万年程度</td>
 </tr>
 </tbody>
 </table>

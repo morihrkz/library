@@ -152,6 +152,26 @@ a{color:var(--accent)}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -199,11 +219,11 @@ a{color:var(--accent)}
 
 <h2 id="sec2">2. 自己不一致理論――比較対象としての「あるべき自分」</h2>
 <p>心理学において、この種の乖離を体系的に扱った枠組みとして、 E. トーリー・ヒギンズの自己不一致理論 (self-discrepancy theory) がある <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。この理論は、個人が抱く自己表象を単一のものとせず、少なくとも三種類に区分する。すなわち、自分が現に持っていると信じる属性の集合である現実自己 (actual self) 、自分が理想的には持ちたいと望む属性の集合である理想自己 (ideal self) 、そして自分が持つべきだと義務的に感じる属性の集合である当為自己 (ought self) である。</p>
-<table>
+<table class="cards">
 <tr><th>自己表象</th><th>性質</th><th>不一致が生む感情</th></tr>
-<tr><td>理想自己 (ideal self)</td><td>希望・願望の対象としての自己像</td><td>失望・落胆・悲哀</td></tr>
-<tr><td>当為自己 (ought self)</td><td>義務・責任の対象としての自己像</td><td>不安・罪悪感・恐れ</td></tr>
-<tr><td>現実自己 (actual self)</td><td>現に持つと知覚される属性の集合</td><td>（比較の基準点）</td></tr>
+<tr><td data-label="自己表象">理想自己 (ideal self)</td><td data-label="性質">希望・願望の対象としての自己像</td><td data-label="不一致が生む感情">失望・落胆・悲哀</td></tr>
+<tr><td data-label="自己表象">当為自己 (ought self)</td><td data-label="性質">義務・責任の対象としての自己像</td><td data-label="不一致が生む感情">不安・罪悪感・恐れ</td></tr>
+<tr><td data-label="自己表象">現実自己 (actual self)</td><td data-label="性質">現に持つと知覚される属性の集合</td><td data-label="不一致が生む感情">（比較の基準点）</td></tr>
 </table>
 <p>ヒギンズの理論の核心は、現実自己と理想自己の不一致が抑うつ関連感情（落胆、失望、悲哀）を生み、現実自己と当為自己の不一致が不安関連感情（緊張、恐れ、脅威の感覚）を生む、という感情の分化にある。先の歌詞が表しているのは明らかに前者、すなわち理想自己との不一致である。「カッコよかった」という理想への言及に不安や恐れの色調がなく、諦めに近い落胆の色調を帯びているのは、この理論の予測と整合的である。つまり理想自己との不一致は、恐れよりも、喪失に似た悲哀として経験される。</p>
 <p>さらにヒギンズ以降の研究は、この不一致が一時的な感情反応にとどまらず、放置されれば慢性的な気分状態、すなわち持続的な自己評価の低さへと転化しうることを指摘している。「相変わらず」という副詞が示す反復性は、この慢性化のプロセスを言い当てている。</p>

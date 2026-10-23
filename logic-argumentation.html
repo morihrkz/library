@@ -69,6 +69,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -210,7 +230,7 @@ pre code{background:none; padding:0;}
 <p>論理学というと「形さえ合っていればよい」と誤解されがちだが、逆である。形を点検し終えたら、次は前提が事実として真かを調べなければならない。ここからは<strong>事実の確認</strong>の作業になる。反対論の主要な前提を三つ、順に確認する。</p>
 <h3 id="sec4-1">4.1 前提①「夫婦同姓は日本の伝統である」</h3>
 <p>これは検証できる歴史上の事実命題である。実際の経緯はこうなっている。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>年</th>
@@ -220,24 +240,24 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>1875 年</td>
-<td>平民に苗字を称することが義務化される</td>
-<td>—</td>
+<td data-label="年">1875 年</td>
+<td data-label="できごと">平民に苗字を称することが義務化される</td>
+<td data-label="夫婦の氏">—</td>
 </tr>
 <tr>
-<td>1876 年</td>
-<td>太政官指令。妻は夫の家を相続しない限り「所生ノ氏」（実家の氏）を用いるべきとされる</td>
-<td>法令上は別氏</td>
+<td data-label="年">1876 年</td>
+<td data-label="できごと">太政官指令。妻は夫の家を相続しない限り「所生ノ氏」（実家の氏）を用いるべきとされる</td>
+<td data-label="夫婦の氏">法令上は別氏</td>
 </tr>
 <tr>
-<td>1898 年</td>
-<td>明治民法施行。妻は婚姻により夫の家に入り、その家の氏を称するとされる</td>
-<td>同氏</td>
+<td data-label="年">1898 年</td>
+<td data-label="できごと">明治民法施行。妻は婚姻により夫の家に入り、その家の氏を称するとされる</td>
+<td data-label="夫婦の氏">同氏</td>
 </tr>
 <tr>
-<td>1947 年</td>
-<td>民法改正。家制度は廃止されるが、 750 条により夫婦同氏は維持される</td>
-<td>同氏</td>
+<td data-label="年">1947 年</td>
+<td data-label="できごと">民法改正。家制度は廃止されるが、 750 条により夫婦同氏は維持される</td>
+<td data-label="夫婦の氏">同氏</td>
 </tr>
 </tbody>
 </table>
@@ -374,7 +394,7 @@ pre code{background:none; padding:0;}
 <h2 id="sec8">8. 数字は、そのままでは前提にならない</h2>
 <p><strong>道具 7――場合分けの設計。</strong>選択肢の切り方が変われば、集計の数字は変わる。数字を前提として使う前に、その数字がどんな場合分けのもとで作られたかを見る。</p>
 <p>この議論では、双方が世論調査の数字を使う。ところがそれが、まったく違う数字になる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>調査</th>
@@ -384,14 +404,14 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>内閣府 2017 年 12 月</td>
-<td>2 択（賛否を問う形）「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</td>
-<td>法改正してよい <strong>42.5%</strong> 改める必要はない 29.3% 通称使用の法制度でよい 24.4%</td>
+<td data-label="調査">内閣府 2017 年 12 月</td>
+<td data-label="設問の形">2 択（賛否を問う形）「現行制度と同じように夫婦が同じ名字（姓）を名乗ることのほか、夫婦が希望する場合には、同じ名字（姓）ではなく、それぞれの婚姻前の名字（姓）を名乗ることができるように法律を改めた方がよい」という意見について問う</td>
+<td data-label="結果">法改正してよい <strong>42.5%</strong> 改める必要はない 29.3% 通称使用の法制度でよい 24.4%</td>
 </tr>
 <tr>
-<td>内閣府 2021 年 12 月</td>
-<td>3 択（制度を三つ並べる形）</td>
-<td>選択的夫婦別姓を導入した方がよい <strong>28.9%</strong> 同姓維持のうえ旧姓の通称使用の法制度 42.2% 同姓維持 27.0%</td>
+<td data-label="調査">内閣府 2021 年 12 月</td>
+<td data-label="設問の形">3 択（制度を三つ並べる形）</td>
+<td data-label="結果">選択的夫婦別姓を導入した方がよい <strong>28.9%</strong> 同姓維持のうえ旧姓の通称使用の法制度 42.2% 同姓維持 27.0%</td>
 </tr>
 </tbody>
 </table>
@@ -455,7 +475,7 @@ pre code{background:none; padding:0;}
 <p>「同姓は日本の伝統である」「通称使用で不便は解消する」「別姓は家族の絆を弱める」「別姓は子どもに悪影響を及ぼす」。いずれも、真偽が調べられる形をしている。</p>
 <p><strong>判定。</strong>前提そのものを疑う章と、害の原因をたどる章で見たとおり、これらの前提は検証に耐えていない。制度としての夫婦同姓は 1898 年に始まったものである。通称使用については、当事者に近い層ほど限界を訴えている（女性役員の 88% 、不便を感じている人の 59.3% ）。「一体感を損なう」は、何が起きたらそう言えるのかが述べられておらず、草野裁判官の言う「検証可能なほどの具体性をもって主張されたことはない」状態にとどまっている。「子どもへの悪影響」は、内閣府調査の内訳を見る限り、その主要部分が制度ではなく周囲の反応に由来している。</p>
 <p>まとめ――三つの群と判定</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>群</th>
@@ -465,19 +485,19 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td><strong>A</strong> 利点があるから禁止せよ型</td>
-<td>立っていない（隠れた前提が支持されない）</td>
-<td>なし</td>
+<td data-label="群"><strong>A</strong> 利点があるから禁止せよ型</td>
+<td data-label="論証は立っているか">立っていない（隠れた前提が支持されない）</td>
+<td data-label="支えている結論">なし</td>
 </tr>
 <tr>
-<td><strong>B</strong> 外部性・制度設計型</td>
-<td>立っている</td>
-<td>「設計を詰める必要がある」まで</td>
+<td data-label="群"><strong>B</strong> 外部性・制度設計型</td>
+<td data-label="論証は立っているか">立っている</td>
+<td data-label="支えている結論">「設計を詰める必要がある」まで</td>
 </tr>
 <tr>
-<td><strong>C</strong> 事実命題型</td>
-<td>形は立つが、前提が真でない</td>
-<td>なし（健全でない）</td>
+<td data-label="群"><strong>C</strong> 事実命題型</td>
+<td data-label="論証は立っているか">形は立つが、前提が真でない</td>
+<td data-label="支えている結論">なし（健全でない）</td>
 </tr>
 </tbody>
 </table>

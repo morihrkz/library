@@ -13,6 +13,26 @@ h2{font-size:1.625rem;line-height:1.6;margin:52px 0 20px;padding-bottom:9px;bord
 figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}figure svg{display:block;width:100%;height:auto}figcaption{text-align:center;color:var(--muted);font-size:.9375rem;line-height:1.7;margin-top:10px}svg text{fill:var(--text);font-size:.875rem}svg .muted{fill:var(--muted)}svg .stroke{stroke:var(--accent)}svg .line{stroke:var(--line)}table{width:100%;border-collapse:collapse;margin:24px 0 28px;font-size:1rem;line-height:1.65}th,td{text-align:left;vertical-align:top;padding:10px 11px;border:1px solid var(--line)}th{background:var(--box)}
 .refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}.refs p{font-size:.9rem;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}.refs em{font-style:italic}.refs ol{margin:0 0 11px}.refs li{font-size:.9rem;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}.refs li>a:first-child{font-weight:700;text-decoration:none}.refs sup a{font-style:italic;font-weight:700}.refs li:target, sup:target{background:var(--box)}.refs .note{font-size:.9375rem;color:var(--muted);margin-top:20px}
 @media (max-width:480px){h1{font-size:1.6875rem}.toc>ol{columns:1}.toc{padding:18px}.box{padding:20px 18px}figure{padding-left:2px;padding-right:2px}svg text{font-size:.75rem}table{font-size:.875rem}}
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body><main>
@@ -59,12 +79,12 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <p>「 NTSC なら 525/59.94 、 PAL なら 625/50 」はよくある代表例だが、例外がある。ブラジルの PAL-M は PAL の色方式を使いながら、走査は 525 本・毎秒約 59.94 フィールドである。 PAL-N は PAL の色方式と 625 本・毎秒 50 フィールドを組み合わせる。つまり、色の表現方法、走査線数、フレームレートは関連していても、同一のものではない。</p>
 <p>方式名だけで映像の仕様を決めつけると、素材の再生や変換を誤る可能性がある。今の制作で必要なのは、フレームレート、走査方法、解像度、色の規格などを個別に確認することである。</p>
 <p>次の表は代表的な組合せを並べたものだ。副搬送波周波数は色信号を置く位置を示す値であり、現代のデジタル映像のフレームレートを直接決める値ではない。 <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup><sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></p>
-<table><thead><tr><th>系統</th><th>走査の代表値</th><th>色の送り方</th><th>補足</th></tr></thead><tbody>
-<tr><td>NTSC カラー</td><td>525 本、約 59.94 フィールド / 秒</td><td>約 3.579545 MHz の副搬送波で直交変調</td><td>色相を位相で表す</td></tr>
-<tr><td>PAL （代表例）</td><td>625 本、 50 フィールド / 秒</td><td>約 4.433619 MHz 、線ごとに一成分の位相を反転</td><td>色相誤差を彩度誤差へ移しやすい</td></tr>
-<tr><td>PAL-M</td><td>525 本、約 59.94 フィールド / 秒</td><td>約 3.576 MHz 、 PAL 方式</td><td>ブラジルの組合せ例</td></tr>
-<tr><td>PAL-N</td><td>625 本、 50 フィールド / 秒</td><td>約 3.582 MHz 、 PAL 方式</td><td>アルゼンチンなどの組合せ例</td></tr>
-<tr><td>SECAM （代表例）</td><td>625 本、 50 フィールド / 秒</td><td>約 4.25 MHz と 4.406 MHz の副搬送波を周波数変調し、線ごとに交互伝送</td><td>1 走査線分の遅延で色差を補う</td></tr>
+<table class="cards"><thead><tr><th>系統</th><th>走査の代表値</th><th>色の送り方</th><th>補足</th></tr></thead><tbody>
+<tr><td data-label="系統">NTSC カラー</td><td data-label="走査の代表値">525 本、約 59.94 フィールド / 秒</td><td data-label="色の送り方">約 3.579545 MHz の副搬送波で直交変調</td><td data-label="補足">色相を位相で表す</td></tr>
+<tr><td data-label="系統">PAL （代表例）</td><td data-label="走査の代表値">625 本、 50 フィールド / 秒</td><td data-label="色の送り方">約 4.433619 MHz 、線ごとに一成分の位相を反転</td><td data-label="補足">色相誤差を彩度誤差へ移しやすい</td></tr>
+<tr><td data-label="系統">PAL-M</td><td data-label="走査の代表値">525 本、約 59.94 フィールド / 秒</td><td data-label="色の送り方">約 3.576 MHz 、 PAL 方式</td><td data-label="補足">ブラジルの組合せ例</td></tr>
+<tr><td data-label="系統">PAL-N</td><td data-label="走査の代表値">625 本、 50 フィールド / 秒</td><td data-label="色の送り方">約 3.582 MHz 、 PAL 方式</td><td data-label="補足">アルゼンチンなどの組合せ例</td></tr>
+<tr><td data-label="系統">SECAM （代表例）</td><td data-label="走査の代表値">625 本、 50 フィールド / 秒</td><td data-label="色の送り方">約 4.25 MHz と 4.406 MHz の副搬送波を周波数変調し、線ごとに交互伝送</td><td data-label="補足">1 走査線分の遅延で色差を補う</td></tr>
 </tbody></table>
 </section>
 
@@ -77,12 +97,12 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <h3 id="sec3-1">3.1 電波にデータを載せる方式</h3>
 <p>地上デジタル放送には複数の伝送方式がある。北米の ATSC 1.0 は 8 値の残留側波帯変調 (8-VSB) を使い、 DVB-T/T2 や ISDB-T は、多数の搬送波にデータを分けて載せる OFDM を使う。 ISDB-T は日本で使われる方式で、放送波を複数のセグメントに分ける構成を持つ。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></p>
 <p>OFDM は、たくさんの搬送波にデータを分けて送る方法である。建物などで電波が反射しても受信しやすいよう設計でき、地形や送信所の配置に応じて複数の送信所を同じ周波数で運用する構成にも適する。 ATSC 3.0 は OFDM と IP ベースの伝送を採り入れた次世代規格で、従来の ATSC 方式とは互換性が限られる。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
-<table><thead><tr><th>方式</th><th>電波への載せ方の例</th><th>理解のための要点</th></tr></thead><tbody>
-<tr><td>ATSC 1.0</td><td>8-VSB</td><td>単一搬送波を使う北米の方式</td></tr>
-<tr><td>DVB-T / DVB-T2</td><td>OFDM</td><td>T2 は誤り訂正などを改良した後継世代</td></tr>
-<tr><td>ISDB-T</td><td>13 セグメントの BST-OFDM</td><td>異なる受信条件向けの階層伝送が可能</td></tr>
-<tr><td>DTMB</td><td>TDS-OFDM など</td><td>中国の国家規格に基づく方式</td></tr>
-<tr><td>ATSC 3.0</td><td>OFDM 、 IP ベースの伝送</td><td>ATSC 1.0 と互換性が限られる次世代方式</td></tr>
+<table class="cards"><thead><tr><th>方式</th><th>電波への載せ方の例</th><th>理解のための要点</th></tr></thead><tbody>
+<tr><td data-label="方式">ATSC 1.0</td><td data-label="電波への載せ方の例">8-VSB</td><td data-label="理解のための要点">単一搬送波を使う北米の方式</td></tr>
+<tr><td data-label="方式">DVB-T / DVB-T2</td><td data-label="電波への載せ方の例">OFDM</td><td data-label="理解のための要点">T2 は誤り訂正などを改良した後継世代</td></tr>
+<tr><td data-label="方式">ISDB-T</td><td data-label="電波への載せ方の例">13 セグメントの BST-OFDM</td><td data-label="理解のための要点">異なる受信条件向けの階層伝送が可能</td></tr>
+<tr><td data-label="方式">DTMB</td><td data-label="電波への載せ方の例">TDS-OFDM など</td><td data-label="理解のための要点">中国の国家規格に基づく方式</td></tr>
+<tr><td data-label="方式">ATSC 3.0</td><td data-label="電波への載せ方の例">OFDM 、 IP ベースの伝送</td><td data-label="理解のための要点">ATSC 1.0 と互換性が限られる次世代方式</td></tr>
 </tbody></table>
 <h3 id="sec3-2">3.2 地域と方式の選択</h3>
 <p>日本では ISDB-T 、欧州やアフリカなど多くの地域では DVB-T/T2 、北米では ATSC 、中国では DTMB が使われてきた。ただし、大陸ごとに一つの方式が使われているわけではない。方式の採用は、規格の性能だけでなく、既存設備、近隣国との技術協力、産業政策などにも左右される。</p>
@@ -97,10 +117,10 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <p>異なるフレームレートの素材を変換すると、動きの見え方や再生時間に影響が出ることがある。例えば、 24 fps の映画を 25 fps で再生すると再生時間が約 4 ％短くなる。 23.976 fps の素材を 59.94 フィールド系に変換する場合は、 1 コマを 2 フィールド、次のコマを 3 フィールドに配る 2:3 プルダウンが使われることがある。フレームを重複・間引きしたり、間の映像を計算で補ったりする方法もあるが、それぞれ動きの滑らかさや映像の見え方が変わる。</p>
 <p>29.97 fps の素材では、映像のフレーム番号と実時間を合わせるため、ドロップフレーム・タイムコードが使われる場合がある。「ドロップ」といっても映像のフレームを捨てるのではなく、時間表示上の番号を一部飛ばして、時計とのずれを補正する。</p>
 <p>具体的には、 29.97 fps のノンドロップ・タイムコードは、時計の 1 時間に比べておよそ 3.6 秒遅れる。ドロップフレーム方式では、 10 分ごとを除く各分の冒頭で番号 00 と 01 を飛ばし、このずれを補正する。映像のフレームは削除されず、表示する番号だけが調整される。</p>
-<table><thead><tr><th>素材から納品先への変換例</th><th>よく使う方法</th><th>起こりうる変化</th></tr></thead><tbody>
-<tr><td>23.976 fps → 59.94 フィールド / 秒</td><td>2:3 プルダウン</td><td>フィールド数は合うが、動きの周期にわずかな不均一さが生じる</td></tr>
-<tr><td>24 fps → 25 fps</td><td>速度を約 4% 上げる</td><td>尺が短くなる。音声補正をしない場合は音程も上がる</td></tr>
-<tr><td>25 fps ↔ 29.97 fps</td><td>フレームの重複・間引き、または動き補間</td><td>動きの滑らかさや補間画像の見え方が変わる</td></tr>
+<table class="cards"><thead><tr><th>素材から納品先への変換例</th><th>よく使う方法</th><th>起こりうる変化</th></tr></thead><tbody>
+<tr><td data-label="素材から納品先への変換例">23.976 fps → 59.94 フィールド / 秒</td><td data-label="よく使う方法">2:3 プルダウン</td><td data-label="起こりうる変化">フィールド数は合うが、動きの周期にわずかな不均一さが生じる</td></tr>
+<tr><td data-label="素材から納品先への変換例">24 fps → 25 fps</td><td data-label="よく使う方法">速度を約 4% 上げる</td><td data-label="起こりうる変化">尺が短くなる。音声補正をしない場合は音程も上がる</td></tr>
+<tr><td data-label="素材から納品先への変換例">25 fps ↔ 29.97 fps</td><td data-label="よく使う方法">フレームの重複・間引き、または動き補間</td><td data-label="起こりうる変化">動きの滑らかさや補間画像の見え方が変わる</td></tr>
 </tbody></table>
 <div class="box"><strong>納品前に確認する項目</strong><ul><li>解像度と縦横比</li><li>フレームレートと、プログレッシブ／インターレースの別</li><li>タイムコード、音声チャンネル、色域・ HDR 、字幕</li></ul><p>「 NTSC 系」「 PAL 系」という呼び方だけでは納品仕様は特定できない。発注書や技術仕様書の数値を確認する。</p></div>
 <h3 id="sec4-2">4.2 撮影地の照明とフリッカー</h3>
@@ -133,10 +153,10 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <h3 id="sec6-3">6.3 アナログ時代と、デジタル放送の現在</h3>
 <p>アナログ時代の PAL 放送では、この速度上げが標準的な処理だった。放送局にとっては設備の変更が不要で、尺が短くなった分だけ CM を入れやすいという利点もあった。上の掲示板の議論でも、多くの放送局は補正に手間をかけずに速度上げを受け入れたとされる。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 音程を元に戻す試みもあったが、 2000 年代の Channel 4 の例では音声に「揺らぎ」が残ったという投稿がある。同じ議論では、『 Torchwood: Miracle Day 』で補正が行われたことが、英国の視聴者に声の変化が気付かれやすいと考えられたためではないかと推測されている。ただしこれは掲示板の推測であり、放送局の公式説明ではない。</p>
 <p>デジタル放送になっても、この状況は自動的には解消しない。英国の地上デジタル放送も、本稿の 3 章と 4 章で見たとおり 25 fps ・ 50 系の時間形式を基準にしている。伝送方式がデジタルに変わっても、 24 fps の素材を 25 fps の番組として納める限り、速度上げをするか、音程を補正して尺だけ縮めるかという選択は残る。違いは、音程だけを戻すソフトウェアが普及し、補正という選択肢を取りやすくなった点にある。一方で、近年の DVD プレーヤーや PC には、 23.976 fps の素材を元のフレームレートのまま再生できるものがあり、速度上げが起きない経路も増えた。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup></p>
-<table><thead><tr><th>視聴の経路</th><th>24 fps 素材の扱い</th><th>声の高さ</th></tr></thead><tbody>
-<tr><td>アナログ PAL 放送</td><td>25 fps に速度上げするのが標準的</td><td>約 0.7 半音高い。補正は例外的</td></tr>
-<tr><td>デジタル放送（ 25 fps 系）</td><td>速度上げ、または音程補正つきの変換。番組や納品仕様による</td><td>補正の有無で変わる</td></tr>
-<tr><td>24 fps のまま再生できる経路</td><td>フレームレートを変えない</td><td>原音どおり</td></tr>
+<table class="cards"><thead><tr><th>視聴の経路</th><th>24 fps 素材の扱い</th><th>声の高さ</th></tr></thead><tbody>
+<tr><td data-label="視聴の経路">アナログ PAL 放送</td><td data-label="24 fps 素材の扱い">25 fps に速度上げするのが標準的</td><td data-label="声の高さ">約 0.7 半音高い。補正は例外的</td></tr>
+<tr><td data-label="視聴の経路">デジタル放送（ 25 fps 系）</td><td data-label="24 fps 素材の扱い">速度上げ、または音程補正つきの変換。番組や納品仕様による</td><td data-label="声の高さ">補正の有無で変わる</td></tr>
+<tr><td data-label="視聴の経路">24 fps のまま再生できる経路</td><td data-label="24 fps 素材の扱い">フレームレートを変えない</td><td data-label="声の高さ">原音どおり</td></tr>
 </tbody></table>
 <div class="box"><strong>自分の耳で確かめるには</strong><ul><li>放送された本編の尺を、米国版の尺と比べる。約 4 ％短ければ、速度上げが疑われる。</li><li>主題曲や劇伴の調を、原盤の音源と比べる。約 0.7 半音の差は、楽器で確かめられる。</li><li>音声の圧縮や音量処理など、別の要因も考えられるが、本稿では検証していない。</li></ul><p>デジタル放送の現在について、速度上げと補正がそれぞれどの程度の割合で行われているかを示す統計は、確認できていない。「今の放送でも必ず起きる」とも「もう起きない」とも言えず、番組ごとの納品仕様に依存する。</p></div>
 </section>

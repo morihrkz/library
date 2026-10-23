@@ -55,6 +55,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -286,16 +306,16 @@ DARVO は Jennifer Freyd によって提示され、その後の研究では、�
 <p>
 ここまでの研究を総合すると、性暴力被害者への非難は、次のような複数層のモデルとして捉えるのが最も妥当である。
 </p>
-<table>
+<table class="cards">
 <thead><tr><th>層</th><th>主な概念</th><th>働き方</th></tr></thead>
 <tbody>
-<tr><td>認知</td><td>公正世界信念</td><td>「理不尽な被害が誰にでも起こる」という不安を処理し、出来事に原因を見つけようとする。</td></tr>
-<tr><td>責任帰属</td><td>防衛的帰属</td><td>被害者と自分との類似性や事件の重大さなどに応じ、責任の帰属先が変化しうる。</td></tr>
-<tr><td>ジェンダー規範</td><td>両面価値的性差別</td><td>「望ましい女性像」を基準に、被害者の行動や性的主体性を評価する。</td></tr>
-<tr><td>社会秩序</td><td>システム正当化</td><td>既存の社会的配置を正当化する方向に認知が働く場合がある。</td></tr>
-<tr><td>文化的信念</td><td>レイプ神話</td><td>「典型的な被害者」「典型的な加害者」という誤ったイメージが判断を歪める。</td></tr>
-<tr><td>集団・政治</td><td>動機づけられた推論</td><td>告発を集団アイデンティティへの脅威として認識すると、評価が党派的になる可能性がある。</td></tr>
-<tr><td>相互作用</td><td>事件の文脈</td><td>被害者と加害者の関係、飲酒、既知・未知の関係などが、既存の信念と組み合わさる。</td></tr>
+<tr><td data-label="層">認知</td><td data-label="主な概念">公正世界信念</td><td data-label="働き方">「理不尽な被害が誰にでも起こる」という不安を処理し、出来事に原因を見つけようとする。</td></tr>
+<tr><td data-label="層">責任帰属</td><td data-label="主な概念">防衛的帰属</td><td data-label="働き方">被害者と自分との類似性や事件の重大さなどに応じ、責任の帰属先が変化しうる。</td></tr>
+<tr><td data-label="層">ジェンダー規範</td><td data-label="主な概念">両面価値的性差別</td><td data-label="働き方">「望ましい女性像」を基準に、被害者の行動や性的主体性を評価する。</td></tr>
+<tr><td data-label="層">社会秩序</td><td data-label="主な概念">システム正当化</td><td data-label="働き方">既存の社会的配置を正当化する方向に認知が働く場合がある。</td></tr>
+<tr><td data-label="層">文化的信念</td><td data-label="主な概念">レイプ神話</td><td data-label="働き方">「典型的な被害者」「典型的な加害者」という誤ったイメージが判断を歪める。</td></tr>
+<tr><td data-label="層">集団・政治</td><td data-label="主な概念">動機づけられた推論</td><td data-label="働き方">告発を集団アイデンティティへの脅威として認識すると、評価が党派的になる可能性がある。</td></tr>
+<tr><td data-label="層">相互作用</td><td data-label="主な概念">事件の文脈</td><td data-label="働き方">被害者と加害者の関係、飲酒、既知・未知の関係などが、既存の信念と組み合わさる。</td></tr>
 </tbody>
 </table>
 <h3 id="sec11-2">11.2 このモデルの意義</h3>

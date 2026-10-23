@@ -58,6 +58,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -158,11 +178,11 @@ sup a:hover{text-decoration:underline}
 <tr><td>4. 意思</td><td>本人の希望は、いつ・誰が・どう確かめるのか</td></tr>
 </table>
 <p>場所の違いは、この四層の釣り合いの違いとして整理できる。傾向を示すと、次のようになる。</p>
-<table>
+<table class="cards">
 <tr><th>場所</th><th>身体</th><th>担い手</th><th>制度</th><th>意思</th></tr>
-<tr><td>病院</td><td>医療的な対応が手厚い</td><td>医療職が中心。家族は付き添いが主</td><td>医療保険が中心</td><td>治療方針の選択を迫られる場面が多い</td></tr>
-<tr><td>自宅</td><td>訪問診療・訪問看護に依存</td><td>家族の負担が大きくなりやすい</td><td>医療保険と介護保険の組み合わせ</td><td>本人の希望を反映しやすいが、家族の事情に左右される</td></tr>
-<tr><td>施設</td><td>施設の体制によって差が大きい</td><td>介護職が中心。家族と施設の役割分担が問われる</td><td>介護保険が中心。看取りへの報酬上の評価がある</td><td>入所時の確認が重要になる</td></tr>
+<tr><td data-label="場所">病院</td><td data-label="身体">医療的な対応が手厚い</td><td data-label="担い手">医療職が中心。家族は付き添いが主</td><td data-label="制度">医療保険が中心</td><td data-label="意思">治療方針の選択を迫られる場面が多い</td></tr>
+<tr><td data-label="場所">自宅</td><td data-label="身体">訪問診療・訪問看護に依存</td><td data-label="担い手">家族の負担が大きくなりやすい</td><td data-label="制度">医療保険と介護保険の組み合わせ</td><td data-label="意思">本人の希望を反映しやすいが、家族の事情に左右される</td></tr>
+<tr><td data-label="場所">施設</td><td data-label="身体">施設の体制によって差が大きい</td><td data-label="担い手">介護職が中心。家族と施設の役割分担が問われる</td><td data-label="制度">介護保険が中心。看取りへの報酬上の評価がある</td><td data-label="意思">入所時の確認が重要になる</td></tr>
 </table>
 <p>この表は優劣を付けるものではない。どの場所でも、四層のどこかが薄くなる。大切なのは、場所の名前ではなく、四つの層がそれぞれ満たされているかを確かめることである。</p>
 

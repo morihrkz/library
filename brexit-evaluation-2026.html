@@ -53,6 +53,26 @@ sup a:hover{text-decoration:underline}
 h1{font-size:1.6875rem}
 .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -82,11 +102,11 @@ h1{font-size:1.6875rem}
 <p>英国が EU からの離脱を決めた国民投票は、 2016 年 6 月 23 日に行われた。結果は離脱 17,410,742 票、残留 16,141,241 票で、差は約 127 万票だった。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 欧州連合理事会（ EU の法律や決定を加盟国の閣僚が採択する機関）の公表によれば、離脱協定は 2020 年 1 月 31 日に発効して英国は EU を正式に離れ、 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> それまでの EU の規則を適用し続ける移行期間は同年 12 月 31 日までとされた。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 完全な離脱から、 2026 年 10 月で 5 年 9 か月になる。</p>
 <p>本稿の問いは二つである。一つ目は、英国の人々はいま、ブレグジットを肯定しているのか、否定しているのか。二つ目は、 EU 諸国の人々や指導者は、英国の離脱をどう受け止めているのか。どちらが優勢かは、調べる前から決めていない。</p>
 <p>「評価」といっても、測るものは一つではない。そこで、調査の質問を三つの層に分けて読む。第一は、あの投票は正しかったのかという「後悔」の層。第二は、離脱後の歩みは期待どおりかという「実績」の層。第三は、これから EU とどんな関係を築きたいかという「将来の選択」の層である。層の違う数字を足し合わせて「否定が何 % 」と言うことはしない。「優勢」の基準は、同じ層について、時期の近い複数の調査が同じ向きの過半数を示していることとする。一つの調査だけが示す結果や、過半数に届かない結果は、そのとおりに限定して書く。また、結論には確度を高い・中程度・低いの三段階で添える。独立した複数の調査が同じ向きなら高い、同じ向きでも調査が独立でない、または時期が限られるなら中程度、単一の出典や過半数に届かない結果なら低い、を目安とする。</p>
-<table>
+<table class="cards">
 <tr><th>層</th><th>尋ねていること</th><th>本稿で使う主な調査</th></tr>
-<tr><td>後悔</td><td>振り返って、離脱に投票したのは正しかったか</td><td>YouGov （ CER 経由）、 ECFR</td></tr>
-<tr><td>実績</td><td>離脱後の歩みは、期待より良いか悪いか</td><td>KCL ・イプソス、 ECFR</td></tr>
-<tr><td>将来の選択</td><td>EU とどんな関係を望むか、再加盟を望むか</td><td>イプソス、 KCL ・イプソス、 ECFR</td></tr>
+<tr><td data-label="層">後悔</td><td data-label="尋ねていること">振り返って、離脱に投票したのは正しかったか</td><td data-label="本稿で使う主な調査">YouGov （ CER 経由）、 ECFR</td></tr>
+<tr><td data-label="層">実績</td><td data-label="尋ねていること">離脱後の歩みは、期待より良いか悪いか</td><td data-label="本稿で使う主な調査">KCL ・イプソス、 ECFR</td></tr>
+<tr><td data-label="層">将来の選択</td><td data-label="尋ねていること">EU とどんな関係を望むか、再加盟を望むか</td><td data-label="本稿で使う主な調査">イプソス、 KCL ・イプソス、 ECFR</td></tr>
 </table>
 
 <h2 id="sec2">2. 英国内 (1) 投票の是非と、これまでの歩み</h2>

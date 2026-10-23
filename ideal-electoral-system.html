@@ -55,6 +55,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -206,18 +226,18 @@ sup a:hover{text-decoration:underline}
 <figcaption>図 2 ：比例性と個人選択の自由度から見た、七つの制度のおおまかな位置。位置は概念的な目安であり、選挙区の規模や阻止条項によって実際は変わる。</figcaption>
 </figure>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>国・地域</th><th>制度の骨格</th><th>主な強み</th><th>主なトレードオフ</th></tr>
 </thead>
 <tbody>
-<tr><td>ニュージーランド</td><td>混合型比例代表制、二票制、 5 % 条項</td><td>比例性と地元代表の両立</td><td>連立交渉の長期化</td></tr>
-<tr><td>アイルランド</td><td>中規模選挙区の単記移譲式</td><td>人物を選ぶ自由</td><td>同じ党内の競争、地元偏重</td></tr>
-<tr><td>オーストラリア</td><td>下院は優先順位つき投票、上院は比例</td><td>過半数の支持を得た議員、役割分担</td><td>制度の複雑さ、投票の強制</td></tr>
-<tr><td>ドイツ</td><td>小選挙区と比例の併用、定数 630</td><td>厳密な比例性と地元代表</td><td>仕組みの分かりにくさ、比例枠による選挙区当選者の制限</td></tr>
-<tr><td>マルタ</td><td>単記移譲式、五人区、憲法上の補正議席規定</td><td>有権者の順位づけの反映、逆転時の補正</td><td>二大政党化による小党の排除</td></tr>
-<tr><td>デンマーク・北欧</td><td>非拘束名簿式の比例代表、全国の調整議席</td><td>多様な民意の反映、高い比例性</td><td>責任の所在の見えにくさ</td></tr>
-<tr><td>スイス</td><td>州単位の比例、名簿の混合と票の累積、直接民主制</td><td>幅広い意見の反映、国民が政策を直接決める余地</td><td>意思決定の遅さ</td></tr>
+<tr><td data-label="国・地域">ニュージーランド</td><td data-label="制度の骨格">混合型比例代表制、二票制、 5 % 条項</td><td data-label="主な強み">比例性と地元代表の両立</td><td data-label="主なトレードオフ">連立交渉の長期化</td></tr>
+<tr><td data-label="国・地域">アイルランド</td><td data-label="制度の骨格">中規模選挙区の単記移譲式</td><td data-label="主な強み">人物を選ぶ自由</td><td data-label="主なトレードオフ">同じ党内の競争、地元偏重</td></tr>
+<tr><td data-label="国・地域">オーストラリア</td><td data-label="制度の骨格">下院は優先順位つき投票、上院は比例</td><td data-label="主な強み">過半数の支持を得た議員、役割分担</td><td data-label="主なトレードオフ">制度の複雑さ、投票の強制</td></tr>
+<tr><td data-label="国・地域">ドイツ</td><td data-label="制度の骨格">小選挙区と比例の併用、定数 630</td><td data-label="主な強み">厳密な比例性と地元代表</td><td data-label="主なトレードオフ">仕組みの分かりにくさ、比例枠による選挙区当選者の制限</td></tr>
+<tr><td data-label="国・地域">マルタ</td><td data-label="制度の骨格">単記移譲式、五人区、憲法上の補正議席規定</td><td data-label="主な強み">有権者の順位づけの反映、逆転時の補正</td><td data-label="主なトレードオフ">二大政党化による小党の排除</td></tr>
+<tr><td data-label="国・地域">デンマーク・北欧</td><td data-label="制度の骨格">非拘束名簿式の比例代表、全国の調整議席</td><td data-label="主な強み">多様な民意の反映、高い比例性</td><td data-label="主なトレードオフ">責任の所在の見えにくさ</td></tr>
+<tr><td data-label="国・地域">スイス</td><td data-label="制度の骨格">州単位の比例、名簿の混合と票の累積、直接民主制</td><td data-label="主な強み">幅広い意見の反映、国民が政策を直接決める余地</td><td data-label="主なトレードオフ">意思決定の遅さ</td></tr>
 </tbody>
 </table>
 
@@ -250,17 +270,17 @@ sup a:hover{text-decoration:underline}
 <h3 id="sec5-3">5.3 埋め込める装置の類型</h3>
 <p>最悪の事態への備えは、新しい発明ではない。多くの国が、それぞれの歴史的な経験をもとに、さまざまな装置を制度に組み込んできた。代表的な六つを、備える危険と限界とともに表にまとめる。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>装置</th><th>仕組みと実例</th><th>備える危険</th><th>限界</th></tr>
 </thead>
 <tbody>
-<tr><td>過半数要件（決選投票・順位つき投票）</td><td>過半数の支持がなければ当選できない。オーストラリア下院の優先順位つき投票が例である。 <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup></td><td>少数の支持で権力の座に就くこと</td><td>過半数が支持した場合は防げない。候補者選抜の段階には及ばない。</td></tr>
-<tr><td>議院内閣制の不信任</td><td>行政の長が議会の信任に依存し、信任を失えば交代する。ドイツでは、後任を選出して初めて首相を解任できる「建設的不信任」を採る。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></td><td>行政の長の居座り、任期の固定による硬直</td><td>与党が議会の多数を握っていれば、不信任は成立しにくい。</td></tr>
-<tr><td>権力の分散（合議制・直接民主制）</td><td>スイスは、七人の閣僚による合議制の連邦内閣と国民投票を組み合わせ、権力を一点に集中させない。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup></td><td>権力の一点集中</td><td>意思決定が遅くなり、責任の所在が見えにくくなる。</td></tr>
-<tr><td>比例代表制</td><td>単独過半数が得にくく、連立や少数派政権による合意形成が必要になる。ニュージーランドやデンマークが例である。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> <sup id="fnref-8-3"><a href="#ref-8">[8]</a></sup></td><td>一つの勢力による議会の独占</td><td>2020 年のニュージーランドのように単独過半数が出る例外がある。小党の乱立や、極端な勢力の連立入りも起こりうる。</td></tr>
-<tr><td>任期制限</td><td>同一人物の在任期間に上限を設ける。米国憲法修正第 22 条は、大統領に選ばれる回数を二回までに制限する。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></td><td>権力者の長期化</td><td>在任期間を区切るだけで、任期中の権力の使い方は制約しない。改正で変更される余地もある。</td></tr>
-<tr><td>闘う民主主義</td><td>民主制の否定を目的とする政党の禁止や、憲法の根幹の改正禁止を定める。ドイツ基本法 21 条と 79 条 3 項が代表例である。 <sup id="fnref-15-2"><a href="#ref-15">[15]</a></sup> 考え方は、カール・レーヴェンシュタインが 1937 年に唱えた。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup></td><td>民主的な手続きを使った、民主制の破壊</td><td>何が民主制への脅威かを誰が判定するのか、という問題が残る。判定権が濫用されれば、正当な反対派の排除にもなりうる。</td></tr>
+<tr><td data-label="装置">過半数要件（決選投票・順位つき投票）</td><td data-label="仕組みと実例">過半数の支持がなければ当選できない。オーストラリア下院の優先順位つき投票が例である。 <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup></td><td data-label="備える危険">少数の支持で権力の座に就くこと</td><td data-label="限界">過半数が支持した場合は防げない。候補者選抜の段階には及ばない。</td></tr>
+<tr><td data-label="装置">議院内閣制の不信任</td><td data-label="仕組みと実例">行政の長が議会の信任に依存し、信任を失えば交代する。ドイツでは、後任を選出して初めて首相を解任できる「建設的不信任」を採る。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></td><td data-label="備える危険">行政の長の居座り、任期の固定による硬直</td><td data-label="限界">与党が議会の多数を握っていれば、不信任は成立しにくい。</td></tr>
+<tr><td data-label="装置">権力の分散（合議制・直接民主制）</td><td data-label="仕組みと実例">スイスは、七人の閣僚による合議制の連邦内閣と国民投票を組み合わせ、権力を一点に集中させない。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup></td><td data-label="備える危険">権力の一点集中</td><td data-label="限界">意思決定が遅くなり、責任の所在が見えにくくなる。</td></tr>
+<tr><td data-label="装置">比例代表制</td><td data-label="仕組みと実例">単独過半数が得にくく、連立や少数派政権による合意形成が必要になる。ニュージーランドやデンマークが例である。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> <sup id="fnref-8-3"><a href="#ref-8">[8]</a></sup></td><td data-label="備える危険">一つの勢力による議会の独占</td><td data-label="限界">2020 年のニュージーランドのように単独過半数が出る例外がある。小党の乱立や、極端な勢力の連立入りも起こりうる。</td></tr>
+<tr><td data-label="装置">任期制限</td><td data-label="仕組みと実例">同一人物の在任期間に上限を設ける。米国憲法修正第 22 条は、大統領に選ばれる回数を二回までに制限する。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></td><td data-label="備える危険">権力者の長期化</td><td data-label="限界">在任期間を区切るだけで、任期中の権力の使い方は制約しない。改正で変更される余地もある。</td></tr>
+<tr><td data-label="装置">闘う民主主義</td><td data-label="仕組みと実例">民主制の否定を目的とする政党の禁止や、憲法の根幹の改正禁止を定める。ドイツ基本法 21 条と 79 条 3 項が代表例である。 <sup id="fnref-15-2"><a href="#ref-15">[15]</a></sup> 考え方は、カール・レーヴェンシュタインが 1937 年に唱えた。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup></td><td data-label="備える危険">民主的な手続きを使った、民主制の破壊</td><td data-label="限界">何が民主制への脅威かを誰が判定するのか、という問題が残る。判定権が濫用されれば、正当な反対派の排除にもなりうる。</td></tr>
 </tbody>
 </table>
 

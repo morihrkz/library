@@ -47,17 +47,16 @@ sup a:hover{text-decoration:underline}
 .endnote{font-size:.9rem;color:var(--muted)}
 table+.note{font-size:.9rem;color:var(--muted);margin:0 0 1.2rem}
 @media (max-width:640px){
-  table,tbody,tr,td{display:block;width:100%}
-  tr:first-child{display:none}
-  tr.grp{border:none;background:none;margin:1.4rem 0 .6rem}
-  tr.grp th{display:block;border:none;background:none;padding:0;color:var(--accent)}
-  tr{border:1px solid var(--line);margin:0 0 1rem;background:var(--bg)}
-  td{border:none;border-bottom:1px solid var(--line);padding:.5rem .7rem}
-  td:last-child{border-bottom:none}
-  td::before{content:attr(data-label);display:block;font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
-  td[data-label="媒体"]{background:var(--box);font-weight:700}
-  td.num{text-align:left}
+  table.cards,table.cards tbody,table.cards tr,table.cards td{display:block;width:100%}
+  table.cards tr:has(> th){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);border:0;margin:0;padding:0}
+  table.cards tr{border:1px solid var(--line);margin:0 0 1rem;background:var(--bg)}
+  table.cards td{border:none;border-bottom:1px solid var(--line);padding:.5rem .7rem}
+  table.cards td:last-child{border-bottom:none}
+  table.cards td::before{content:attr(data-label);display:block;font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
+  table.cards td:first-child{background:var(--box);font-weight:700}
 }
+.tblwrap{overflow-x:auto}
+.tblwrap table{min-width:36rem}
 @media (max-width:480px){
   .toc>ol{columns:1}
 }
@@ -118,6 +117,7 @@ table+.note{font-size:.9rem;color:var(--muted);margin:0 0 1.2rem}
 <p>ここで一つの問いが生じる。信頼が割れ、視聴者が分かれたのなら、市場に残る「中立」の居場所は誰が担うのか。本稿はこの問いを、 Fox の位置づけ、老舗の変質、そして MS NOW ・ Politico ・ Axios の三媒体という順で追う。</p>
 
 <h2 id="sec2">2. メディアの地図：新興と老舗</h2>
+<div class="tblwrap">
 <table>
 <tr><th>媒体</th><th>立ち位置</th><th>概要</th><th class="num">公式 YouTube チャンネルの登録者数（人）<sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></th></tr>
 <tr class="grp"><th colspan="4">新興・再編・独立系</th></tr>
@@ -145,6 +145,7 @@ table+.note{font-size:.9rem;color:var(--muted);margin:0 0 1.2rem}
 <tr><td data-label="媒体">NPR</td><td data-label="立ち位置">公共放送（ラジオ）</td><td data-label="概要">1970 年開始。連邦資金に一部依存してきた。 2025 年に公共放送向けの約 11 億ドルが取り消された。 8 章で述べる。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></td><td class="num" data-label="公式 YouTube 登録者数">90.8 万</td></tr>
 <tr><td data-label="媒体">PBS</td><td data-label="立ち位置">公共放送（テレビ）</td><td data-label="概要">1969 年開始。 NPR と同じく連邦資金に一部依存してきた。影響を最も受けるのは小規模な地方局である。</td><td class="num" data-label="公式 YouTube 登録者数">181 万</td></tr>
 </table>
+</div>
 <p class="note">※ 登録者数は、集計サービス vidIQ が 2026 年 10 月 17 日更新として表示した値で、表示桁数に丸められた概数である（出典は参考文献 [16] ）。 YouTube の公式ページを直接確認したものではなく、集計日や丸め方により公式の表示と異なりうる。「―」は、チャンネルを特定できず数字を確認できなかった媒体である（ Crooked Media は、傘下の番組チャンネルとは別に、同社自身のチャンネルを確認できなかった）。</p>
 <p>このほか注目すべき動きとして、 Substack など購読プラットフォーム上の個人ジャーナリスト群がある。 Substack は有料購読者が数百万規模に達したとされ、記者が組織を離れて独立する流れを後押ししている。</p>
 
@@ -218,7 +219,7 @@ table+.note{font-size:.9rem;color:var(--muted);margin:0 0 1.2rem}
 
 <h2 id="sec10">10. 補章：英独仏と日本の新興メディアの傾向</h2>
 <p>米国の動きは特殊ではない。 Reuters Institute の Digital News Report 2026 によれば、世界のニュースへの信頼度は 37% と調査開始以来の最低で、ソーシャルメディアや動画ネットワークでニュースに接する人 (54%) が、報道機関の自社サイトやアプリを使う人 (51%) を上回った。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> そのうえで、四か国の新興メディアの傾向を簡素に示す。</p>
-<table>
+<table class="cards">
 <tr><th>国</th><th>傾向</th><th>代表例</th><th>留意点</th></tr>
 <tr><td data-label="国">英国</td><td data-label="傾向">保守系の放送型新興と、左派の動画・購読型のネット媒体が並ぶ。</td><td data-label="代表例">GB News （保守系ニュース局）、 Novara Media （左派のネット媒体）</td><td data-label="留意点">GB News の週間到達率は成人の 11% で、 BBC や ITV を大きく下回る。信頼度の評価は調査により割れる。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup></td></tr>
 <tr><td data-label="国">ドイツ</td><td data-label="傾向">保守系の購読型ネット媒体が伸び、非営利の調査報道との対立が表面化している。</td><td data-label="代表例">Nius （元 Bild 編集長のユリアン・ライヒェルト氏が率いる）、 Apollo News 、 Correctiv （非営利の調査報道）</td><td data-label="留意点">2026 年 10 月、 Correctiv は Nius の内部データ約 9 GB の流出を報じた。 Nius は不正に得たデータの使用だと反発しており、入手経緯は争いがある。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup></td></tr>

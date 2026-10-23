@@ -103,6 +103,26 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
   border-radius:2px; vertical-align:middle; margin-left:8px;}
 .tag-fact{background:#dfe6e0; color:var(--accent);}
 .tag-claim{background:#f1e2d8; color:var(--accent2);}
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -218,12 +238,12 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <p>ユング心理学に対して最も繰り返されてきた批判は、「<strong>反証可能性</strong>」の問題である。科学哲学者カール・ポパーは、ある理論が科学的であるためには、それを覆しうる観察や実験が原理的に存在しなければならないと論じた。<strong>元型</strong>や<strong>集合的無意識</strong>は、夢や神話の中に「見出される」ものであって、直接観測したり実験で反証したりする方法がない、という批判は根強い。</p>
 <p>もっとも、この点をめぐる状況は 2020 年代に入ってやや複雑になっている。三つの領域について、旧来の評価とその後の展開を対比してみよう。</p>
 
-<table>
+<table class="cards">
 <thead><tr><th>領域</th><th>2000 年代までの標準的な評価</th><th>2020 年代の展開</th></tr></thead>
 <tbody>
-<tr><td>箱庭療法の効果</td><td>無作為化比較試験 (RCT) がきわめて少なく、事例研究が中心</td><td>RCT を含む量的研究が増加。近年のメタ分析では効果量が大きい（ Hedges' g = 1.10 前後）との報告が続く <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></td></tr>
-<tr><td>MBTI の信頼性</td><td>再検査で判定が変わりやすく、妥当性の裏付けが乏しいとされてきた</td><td>2025 年の 25 年分の文献総括では内的整合性は良好とされる一方、構造的妥当性・再検査信頼性を扱った研究は依然として乏しいと指摘される <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></td></tr>
-<tr><td>元型・集合的無意識</td><td>検証も反証もできない形而上学的な主張として扱われてきた</td><td>自由エネルギー原理や予測符号化理論を用い、元型を大脳深部の「固有振動（アイゲンモード）」として捉え直す 2025 年の神経科学的提案が登場 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。ただし実証的な支持は依然として限定的</td></tr>
+<tr><td data-label="領域">箱庭療法の効果</td><td data-label="2000 年代までの標準的な評価">無作為化比較試験 (RCT) がきわめて少なく、事例研究が中心</td><td data-label="2020 年代の展開">RCT を含む量的研究が増加。近年のメタ分析では効果量が大きい（ Hedges' g = 1.10 前後）との報告が続く <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></td></tr>
+<tr><td data-label="領域">MBTI の信頼性</td><td data-label="2000 年代までの標準的な評価">再検査で判定が変わりやすく、妥当性の裏付けが乏しいとされてきた</td><td data-label="2020 年代の展開">2025 年の 25 年分の文献総括では内的整合性は良好とされる一方、構造的妥当性・再検査信頼性を扱った研究は依然として乏しいと指摘される <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></td></tr>
+<tr><td data-label="領域">元型・集合的無意識</td><td data-label="2000 年代までの標準的な評価">検証も反証もできない形而上学的な主張として扱われてきた</td><td data-label="2020 年代の展開">自由エネルギー原理や予測符号化理論を用い、元型を大脳深部の「固有振動（アイゲンモード）」として捉え直す 2025 年の神経科学的提案が登場 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。ただし実証的な支持は依然として限定的</td></tr>
 </tbody>
 </table>
 <p class="note">評価が「好転した」というより、「検証しようとする試み自体が増えた」というのが実情に近い。エビデンスが厚くなった箱庭療法と、いまだ根本的な検証困難を抱える元型論とでは、状況が大きく異なる点に注意したい。</p>
@@ -302,11 +322,11 @@ figcaption .fig-label{color:var(--accent); font-weight:700; margin-right:.3em;}
 <p>ユングの概念は、学術の外側でも広く使われている。「<strong>元型</strong>」は、ブランディングやマーケティングの世界で「英雄」「賢者」「反逆者」といった性格類型としてすっかり定着した。近年ではさらに、心理学者ジョーダン・ピーターソンが講義や著作を通じてユングの元型論を大衆向けに広く再流通させたことも、この理論の可視性を大きく押し上げている。こうした広がりは分かりやすさの証である一方、臨床的な文脈から切り離され、当初の複雑さが単純化されすぎているという批判も招いている。</p>
 <p>他方で、前章までに見た『赤の書』の公開、箱庭療法のエビデンスの蓄積、そして元型を脳の「固有振動」として読み替えようとする神経科学的な試みは、ユング心理学が単に「懐かしい思想」として消費される段階から、検証と再解釈の対象として学術的に扱い直される段階に、部分的にせよ移りつつあることを示している。</p>
 
-<table>
+<table class="cards">
 <thead><tr><th></th><th>「科学」としての評価</th><th>意味を与える体系としての評価</th></tr></thead>
 <tbody>
-<tr><td>強み</td><td>箱庭療法など、検証可能な部分でエビデンスが蓄積しつつある</td><td>自分自身をどう眺めるかという、個人的な問いに向き合う言葉を与える</td></tr>
-<tr><td>弱み</td><td>元型・集合的無意識・共時性は、反証可能性の点で今も弱い</td><td>臨床的文脈を離れると、根拠のあいまいな流用に晒されやすい</td></tr>
+<tr><td data-label="">強み</td><td data-label="「科学」としての評価">箱庭療法など、検証可能な部分でエビデンスが蓄積しつつある</td><td data-label="意味を与える体系としての評価">自分自身をどう眺めるかという、個人的な問いに向き合う言葉を与える</td></tr>
+<tr><td data-label="">弱み</td><td data-label="「科学」としての評価">元型・集合的無意識・共時性は、反証可能性の点で今も弱い</td><td data-label="意味を与える体系としての評価">臨床的文脈を離れると、根拠のあいまいな流用に晒されやすい</td></tr>
 </tbody>
 </table>
 

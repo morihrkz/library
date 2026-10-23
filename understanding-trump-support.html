@@ -56,6 +56,26 @@ sup a:hover{text-decoration:underline;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -168,12 +188,12 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec5-3">5.3 不信と軽んじられた感覚</h3>
 <p>第三の候補は、政治や社会から見下され、公正に扱われていないという感覚である。アーリー・ラッセル・ホックシールド (Arlie Russell Hochschild) は、ルイジアナの Tea Party 支持者への長期の聞き取りから、列に並んで待つ自分たちの前に割り込む者がいるという感覚を「ディープ・ストーリー」として描いた。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup> キャサリン・ J ・クレイマー (Katherine J. Cramer) は、ウィスコンシンの農村住民が、都市の人々や政府から軽んじられているという「農村意識」を持ち、それが政治的態度を形づくると論じた。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 量的な研究では、オリバーとラーンが、トランプ支持者の特徴を、専門知への不信、反エリート意識、国家主義的な感情の独特な組み合わせとして示している。 <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> ただし二つの質的研究は、特定の地域や運動の参加者を対象としており、トランプ支持者全体に一般化できるとは限らない。</p>
 <h3 id="sec5-4">5.4 比較と重なり</h3>
-<table>
+<table class="cards">
 <thead><tr><th>説明候補</th><th>主な根拠</th><th>観測されたこと</th><th>留保</th></tr></thead>
 <tbody>
-<tr><td>経済的不安</td><td>マッツ、モーガン、オーターら、グリーンとマケルウィー、マルガリート</td><td>個人の経済変化の効果は割れる。地域の貿易ショックは、共和党への傾きと関連する</td><td>集団ごとに効き方が異なる。個人水準の因果は未決である</td></tr>
-<tr><td>地位・文化・移民</td><td>マッツ、ギドロンとホール、シャフナーら、サイズ、 PRRI 、エンズとジャーディナ</td><td>人種・移民への態度が、投票との結びつきを強めた</td><td>因果の向きが定まらない。測定は研究ごとに異なる</td></tr>
-<tr><td>不信・軽んじられた感覚</td><td>ホックシールド、クレイマー、オリバーとラーン</td><td>反エリート・反専門知の意識が支持者の特徴として示された</td><td>質的研究の対象が限られる</td></tr>
+<tr><td data-label="説明候補">経済的不安</td><td data-label="主な根拠">マッツ、モーガン、オーターら、グリーンとマケルウィー、マルガリート</td><td data-label="観測されたこと">個人の経済変化の効果は割れる。地域の貿易ショックは、共和党への傾きと関連する</td><td data-label="留保">集団ごとに効き方が異なる。個人水準の因果は未決である</td></tr>
+<tr><td data-label="説明候補">地位・文化・移民</td><td data-label="主な根拠">マッツ、ギドロンとホール、シャフナーら、サイズ、 PRRI 、エンズとジャーディナ</td><td data-label="観測されたこと">人種・移民への態度が、投票との結びつきを強めた</td><td data-label="留保">因果の向きが定まらない。測定は研究ごとに異なる</td></tr>
+<tr><td data-label="説明候補">不信・軽んじられた感覚</td><td data-label="主な根拠">ホックシールド、クレイマー、オリバーとラーン</td><td data-label="観測されたこと">反エリート・反専門知の意識が支持者の特徴として示された</td><td data-label="留保">質的研究の対象が限られる</td></tr>
 </tbody>
 </table>
 <p>三つの説明は、互いに排他的ではない。むしろ、重なり合って働く。ギドロンとホールは、経済と文化の変化が相互に作用して地位不安を生むと論じた。マルガリートも、社会的・文化的な変化への不満が経済的な不満と支持の双方を生むという、逆向きの経路を指摘する。 <sup id="fnref-18-2"><a href="#ref-18">[18]</a></sup> 説明の水準も異なる。経済的不安は個人や地域の状況に、地位や文化の認識は態度に、不信は世界観に関わる。どれが正しいかを競わせるよりも、どの水準の証拠が何を示しているかを区別するほうが、実りが多い。</p>

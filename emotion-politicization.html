@@ -56,6 +56,26 @@ sup a:hover{text-decoration:underline;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -223,13 +243,13 @@ sup a:hover{text-decoration:underline;}
 <h3 id="sec7-3">7.3 アテンション・エコノミーとの共振</h3>
 <p>この単純化の物語は、現代の情報環境と共振すると指摘される。「アテンション・エコノミー」は、ハーバート・サイモン (Herbert A. Simon) が 1971 年に提起した考え方で、情報が過剰にあふれる社会では、希少な資源は情報そのものではなく、それを処理する人間の注意力だとする。 <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup> この考え方に基づけば、利用者の関与を最大化するように設計された情報環境では、複雑で退屈な構造的説明よりも、怒りや恐怖を喚起する単純な物語のほうが拡散されやすい。この指摘は多くのメディア研究者が共有するが、それがポピュリズムの「原因」なのか、既存の傾向を「増幅する媒体」にすぎないのかについては、なお議論が続いている。本稿は、この論点を実証的には検討しない。</p>
 <h3 id="sec7-4">7.4 ここまでの整理</h3>
-<table>
+<table class="cards">
 <thead><tr><th>機構</th><th>説明すること</th><th>主な根拠</th><th>留保</th></tr></thead>
 <tbody>
-<tr><td>相対的剥奪・ゼロサム認知（第 3 章）</td><td>何を不当と感じるか</td><td>ランシマン、ガー、ノートンとサマーズ、マッツ</td><td>地位の脅威と経済的利害の相対的重要性は係争中</td></tr>
-<tr><td>集団帰属・道徳基盤（第 4 章）</td><td>不当さの知覚が分断線に沿う理由</td><td>タジフェルら、グレアムら</td><td>最小条件の実験であり、現実の分断の強さを直接には説明しない</td></tr>
-<tr><td>感情の非対称（第 5 章）</td><td>訴えが強い反応を生む理由</td><td>マーカスら、カーネマンとトヴェルスキー、ソロカら</td><td>票への効果を示した証拠ではない</td></tr>
-<tr><td>信念の固着（第 6 章）</td><td>反証でも変わりにくい理由</td><td>クンダ、カハン、ジョスト、アケンとバーテルズ</td><td>因果の向きは調査だけでは分けにくい</td></tr>
+<tr><td data-label="機構">相対的剥奪・ゼロサム認知（第 3 章）</td><td data-label="説明すること">何を不当と感じるか</td><td data-label="主な根拠">ランシマン、ガー、ノートンとサマーズ、マッツ</td><td data-label="留保">地位の脅威と経済的利害の相対的重要性は係争中</td></tr>
+<tr><td data-label="機構">集団帰属・道徳基盤（第 4 章）</td><td data-label="説明すること">不当さの知覚が分断線に沿う理由</td><td data-label="主な根拠">タジフェルら、グレアムら</td><td data-label="留保">最小条件の実験であり、現実の分断の強さを直接には説明しない</td></tr>
+<tr><td data-label="機構">感情の非対称（第 5 章）</td><td data-label="説明すること">訴えが強い反応を生む理由</td><td data-label="主な根拠">マーカスら、カーネマンとトヴェルスキー、ソロカら</td><td data-label="留保">票への効果を示した証拠ではない</td></tr>
+<tr><td data-label="機構">信念の固着（第 6 章）</td><td data-label="説明すること">反証でも変わりにくい理由</td><td data-label="主な根拠">クンダ、カハン、ジョスト、アケンとバーテルズ</td><td data-label="留保">因果の向きは調査だけでは分けにくい</td></tr>
 </tbody>
 </table>
 <p>これらは、互いに独立ではなく、積み重なって働く。比較による剥奪の知覚が、不当さの感覚をつくる。集団への帰属が、その感覚を分断線に沿って組織する。感情の非対称が、その感覚に強い力を与える。信念の固着が、その物語を反証から守る。そして、単純化と敵の名指しという技法が、この土壌の上で政治的に有効に働く。</p>

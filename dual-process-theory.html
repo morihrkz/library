@@ -67,6 +67,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -112,13 +132,13 @@ pre code{background:none; padding:0;}
 <p>『ファスト &amp; スロー』はさらに、 System1 が引き起こす判断の癖として、いくつかの現象に固有の名前を与えている。たとえば、目の前にある限られた情報だけで筋の通った物語を組み立て、手元にない情報の存在を考慮に入れないまま結論を出してしまう傾向（本書では "What You See Is All There Is" 、頭文字をとって WYSIATI と呼ばれる）や、ある対象の一つの側面（たとえば見た目の良さ）に対する印象が、その対象の無関係な側面（たとえば能力や誠実さ）の評価にまで影響してしまうハロー効果、将来の作業に要する時間や費用を実際より楽観的に見積もってしまう計画の誤謬などが、 System1 主導の判断の具体例として挙げられている。これらはいずれも、判断の速さと引き換えに、情報の不足や無関係な手がかりの混入に対して脆弱になるという、 System1 に共通する性質を示す例として位置づけられている。つまり System1 の答えは、出るのが速いだけでなく、疑われないまま採用されやすいため、 System2 による点検を必要とする。</p>
 <p>もう一つ広く知られる関連研究に、カーネマンとトヴェルスキーが 1979 年に発表したプロスペクト理論がある。これは、人間が利得と損失を対称に評価せず、同額の損失を同額の利得よりも強く嫌う（損失回避）ことなどを定式化したもので、期待効用理論では説明しきれない意思決定の癖を捉えた研究として、行動経済学の基礎の一つに数えられている <sup><a id="fnref-4-1" href="#ref-4">[4]</a></sup> 。この功績によりカーネマンは 2002 年にノーベル経済学賞を受賞した（トヴェルスキーは 1996 年に死去しており受賞対象外だった）。</p>
 <p>『ファスト &amp; スロー』が挙げる二つの思考様式の特徴を整理すると、次のようになる。</p>
-<table>
+<table class="cards">
 <tr><th>特徴</th><th>System1 （速い思考）</th><th>System2 （遅い思考）</th></tr>
-<tr><td>速度</td><td>速い、ほぼ瞬時</td><td>遅い、時間を要する</td></tr>
-<tr><td>努力</td><td>努力を要さない</td><td>努力を要し、疲労する</td></tr>
-<tr><td>制御</td><td>自動的、意図しなくても働く</td><td>意図的に発動させる必要がある</td></tr>
-<tr><td>働き方</td><td>連想・パターン認識・直感</td><td>規則の適用・比較検討・計算</td></tr>
-<tr><td>典型例</td><td>簡単な暗算、顔の表情の読み取り、慣れた道を歩く</td><td>複雑な暗算、初めての書類の記入、論理的な議論の検証</td></tr>
+<tr><td data-label="特徴">速度</td><td data-label="System1 （速い思考）">速い、ほぼ瞬時</td><td data-label="System2 （遅い思考）">遅い、時間を要する</td></tr>
+<tr><td data-label="特徴">努力</td><td data-label="System1 （速い思考）">努力を要さない</td><td data-label="System2 （遅い思考）">努力を要し、疲労する</td></tr>
+<tr><td data-label="特徴">制御</td><td data-label="System1 （速い思考）">自動的、意図しなくても働く</td><td data-label="System2 （遅い思考）">意図的に発動させる必要がある</td></tr>
+<tr><td data-label="特徴">働き方</td><td data-label="System1 （速い思考）">連想・パターン認識・直感</td><td data-label="System2 （遅い思考）">規則の適用・比較検討・計算</td></tr>
+<tr><td data-label="特徴">典型例</td><td data-label="System1 （速い思考）">簡単な暗算、顔の表情の読み取り、慣れた道を歩く</td><td data-label="System2 （遅い思考）">複雑な暗算、初めての書類の記入、論理的な議論の検証</td></tr>
 </table>
 <p>この表が示すように、両者の区別は多くの場合、単一の軸（作業記憶を要するかどうか、努力を要するかどうか等）に沿った程度差として記述できる。この点は、後述する批判的検討において重要な論点となる。まとめると、『独学大全』が参照する System1 ／ System2 という語彙の背後には、（a）ヒューリスティックとバイアスに関する実証研究の蓄積、（b）それを一般向けに「二つのシステム」という比喩で整理したカーネマンの著作、という二つの層がある。次節では、この比喩を独学という実践に当てはめることにどのような意味があるかを検討する。</p>
 

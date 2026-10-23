@@ -70,6 +70,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -161,12 +181,12 @@ sup a:hover{text-decoration:underline}
 
 <h3 id="sec3-1">3.1 四つの層</h3>
 <p>成果を、本人の関与の度合いが異なる四つの層に分けてみる。</p>
-<table>
+<table class="cards">
 <tr><th>層</th><th>内容</th><th>本人の関与</th></tr>
-<tr><td>1. 素質</td><td>遺伝的な傾向、生まれ持った条件</td><td>ほぼなし</td></tr>
-<tr><td>2. 環境</td><td>家庭の資源、学校、地域</td><td>乏しい</td></tr>
-<tr><td>3. 選択と努力</td><td>目標を決め、続けること</td><td>一部あり（ただし第 1 層・第 2 層の影響下）</td></tr>
-<tr><td>4. 市場の評価</td><td>その能力がたまたま高く値づけされる運</td><td>なし</td></tr>
+<tr><td data-label="層">1. 素質</td><td data-label="内容">遺伝的な傾向、生まれ持った条件</td><td data-label="本人の関与">ほぼなし</td></tr>
+<tr><td data-label="層">2. 環境</td><td data-label="内容">家庭の資源、学校、地域</td><td data-label="本人の関与">乏しい</td></tr>
+<tr><td data-label="層">3. 選択と努力</td><td data-label="内容">目標を決め、続けること</td><td data-label="本人の関与">一部あり（ただし第 1 層・第 2 層の影響下）</td></tr>
+<tr><td data-label="層">4. 市場の評価</td><td data-label="内容">その能力がたまたま高く値づけされる運</td><td data-label="本人の関与">なし</td></tr>
 </table>
 <p>この表は結論ではなく物差しである。第 3 層が第 1 層・第 2 層の影響を受けるとしても、そこに本人の選択が残るのかどうかが、後の議論の核心になる。したがって「四つの層のうち、本人の手柄は第 3 層だけだ」と言い切ることも、「本人の手柄はない」と言い切ることも、ここではしない。</p>
 

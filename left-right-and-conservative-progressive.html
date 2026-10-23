@@ -44,6 +44,26 @@ sup a:hover{text-decoration:underline}
 @media (max-width:480px){
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -118,16 +138,16 @@ sup a:hover{text-decoration:underline}
 
 <p>しかし、論理の上では二つの問いは別である。所得の再分配を政府がどこまで担うべきかという問いと、性道徳や移民の受け入れといった受け継がれてきた規範をどこまで維持すべきかという問いは、一方の答えから他方の答えを導けない。にもかかわらず、現実の政治では両者が連動して見える場面があるとされる。筆者は、右派と左派の特徴を五項目で比べた表を手がかりに、この点を考えてきた。項目は、経済政策、政府による統制、伝統・文化への姿勢、他国への態度、そして「北風と太陽」の比喩への当てはめである。筆者の疑問は、経済的な方針と伝統に対する態度は本来無関係であるはずなのに、なぜ多くの場合に連動的かつ固定的なのか、というものである。出発点とした表は次のとおりである。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>項目</th><th>右派</th><th>左派</th></tr>
 </thead>
 <tbody>
-<tr><td>経済政策</td><td>経済発展と財政健全化を優先する</td><td>分配を重視する</td></tr>
-<tr><td>政府による統制</td><td>いわゆる「小さな政府」志向</td><td>いわゆる「大きな政府」志向</td></tr>
-<tr><td>伝統・文化への姿勢</td><td>保守的、伝統を重視する</td><td>新しい規範・秩序を訴求する</td></tr>
-<tr><td>他国への態度</td><td>自国第一志向</td><td>多国間での協調志向</td></tr>
-<tr><td>「北風と太陽」に例えると</td><td>「北風」的。強さを志向する</td><td>「太陽」的。優しさを志向する</td></tr>
+<tr><td data-label="項目">経済政策</td><td data-label="右派">経済発展と財政健全化を優先する</td><td data-label="左派">分配を重視する</td></tr>
+<tr><td data-label="項目">政府による統制</td><td data-label="右派">いわゆる「小さな政府」志向</td><td data-label="左派">いわゆる「大きな政府」志向</td></tr>
+<tr><td data-label="項目">伝統・文化への姿勢</td><td data-label="右派">保守的、伝統を重視する</td><td data-label="左派">新しい規範・秩序を訴求する</td></tr>
+<tr><td data-label="項目">他国への態度</td><td data-label="右派">自国第一志向</td><td data-label="左派">多国間での協調志向</td></tr>
+<tr><td data-label="項目">「北風と太陽」に例えると</td><td data-label="右派">「北風」的。強さを志向する</td><td data-label="左派">「太陽」的。優しさを志向する</td></tr>
 </tbody>
 </table>
 
@@ -221,16 +241,16 @@ sup a:hover{text-decoration:underline}
 
 <p>以上を踏まえると、表の問題は個々の記述の正誤にとどまらない。五項目のうち、第一・第二の項目は経済の軸の記述であり、第三の項目は文化の軸の記述である。第四の項目は、 EU 統合に関する限り、文化の軸と結び付く。第五の項目は評価を含む比喩である。これらを「右派」「左派」の二つの欄にまとめると、経済の立場と文化の立場が結び付いているという後の前提が、定義の段階で先取りされる。この構造の問題は、第 4 節以降の検証で重要になる。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>項目</th><th>判定</th><th>主な根拠</th></tr>
 </thead>
 <tbody>
-<tr><td>経済政策</td><td>分配の重視は支持。経済発展と財政健全化は判断保留</td><td>経済の軸の定義。党派と赤字の関係は曖昧</td></tr>
-<tr><td>政府による統制</td><td>部分的に支持（ 1990 年代まで）</td><td>OECD 加盟国のパネル研究の整理</td></tr>
-<tr><td>伝統・文化への姿勢</td><td>文化の軸としては部分的に支持。経済の軸の特徴としては軸の取り違え</td><td>欧州の政党研究における文化の軸の定義</td></tr>
-<tr><td>他国への態度</td><td>経済の左右の特徴としては不支持（ EU 統合に限る）</td><td>EU 統合への態度と二つの軸の相関</td></tr>
-<tr><td>「北風と太陽」</td><td>評価を含む比喩。判断の対象外</td><td>寓話の教訓</td></tr>
+<tr><td data-label="項目">経済政策</td><td data-label="判定">分配の重視は支持。経済発展と財政健全化は判断保留</td><td data-label="主な根拠">経済の軸の定義。党派と赤字の関係は曖昧</td></tr>
+<tr><td data-label="項目">政府による統制</td><td data-label="判定">部分的に支持（ 1990 年代まで）</td><td data-label="主な根拠">OECD 加盟国のパネル研究の整理</td></tr>
+<tr><td data-label="項目">伝統・文化への姿勢</td><td data-label="判定">文化の軸としては部分的に支持。経済の軸の特徴としては軸の取り違え</td><td data-label="主な根拠">欧州の政党研究における文化の軸の定義</td></tr>
+<tr><td data-label="項目">他国への態度</td><td data-label="判定">経済の左右の特徴としては不支持（ EU 統合に限る）</td><td data-label="主な根拠">EU 統合への態度と二つの軸の相関</td></tr>
+<tr><td data-label="項目">「北風と太陽」</td><td data-label="判定">評価を含む比喩。判断の対象外</td><td data-label="主な根拠">寓話の教訓</td></tr>
 </tbody>
 </table>
 
@@ -278,16 +298,16 @@ sup a:hover{text-decoration:underline}
 
 <p>本節では、連動がどの水準で、どの地域・時代に見られるかを確かめる。扱う研究は、水準も時点も異なる。混同を避けるため、先に一覧を示す。表の第 1 列は、各研究の通称と、著者名・刊行年である。</p>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>研究</th><th>対象</th><th>水準</th><th>時点</th><th>地域</th></tr>
 </thead>
 <tbody>
-<tr><td>欧州の政党調査（マークスら、 2006 ）</td><td>専門家による政党の位置づけ</td><td>政党</td><td>2002 年</td><td>EU 加盟国など 23 か国</td></tr>
-<tr><td>米国連邦議会の研究（プールとローゼンタール、 2007 ）</td><td>点呼投票（議員の賛否を記録して行う採決）</td><td>議員</td><td>2007 年の論文の記述</td><td>米国連邦議会</td></tr>
-<tr><td>世界価値観調査の研究（マルカら、 2017 ）</td><td>WVS の質問</td><td>個人</td><td>1989 年から 2014 年</td><td>99 か国</td></tr>
-<tr><td>投票基盤の研究（ゲシンら、 2022 ）</td><td>選挙での投票の基盤</td><td>投票した有権者の集団</td><td>1948 年から 2020 年</td><td>西側の 21 の民主主義国</td></tr>
-<tr><td>日本の先行研究の整理（白崎、 2015 ）</td><td>世論調査の主成分分析（回答の共通パターンを抽出する統計手法）</td><td>個人</td><td>1960 年代から 1990 年代</td><td>日本</td></tr>
+<tr><td data-label="研究">欧州の政党調査（マークスら、 2006 ）</td><td data-label="対象">専門家による政党の位置づけ</td><td data-label="水準">政党</td><td data-label="時点">2002 年</td><td data-label="地域">EU 加盟国など 23 か国</td></tr>
+<tr><td data-label="研究">米国連邦議会の研究（プールとローゼンタール、 2007 ）</td><td data-label="対象">点呼投票（議員の賛否を記録して行う採決）</td><td data-label="水準">議員</td><td data-label="時点">2007 年の論文の記述</td><td data-label="地域">米国連邦議会</td></tr>
+<tr><td data-label="研究">世界価値観調査の研究（マルカら、 2017 ）</td><td data-label="対象">WVS の質問</td><td data-label="水準">個人</td><td data-label="時点">1989 年から 2014 年</td><td data-label="地域">99 か国</td></tr>
+<tr><td data-label="研究">投票基盤の研究（ゲシンら、 2022 ）</td><td data-label="対象">選挙での投票の基盤</td><td data-label="水準">投票した有権者の集団</td><td data-label="時点">1948 年から 2020 年</td><td data-label="地域">西側の 21 の民主主義国</td></tr>
+<tr><td data-label="研究">日本の先行研究の整理（白崎、 2015 ）</td><td data-label="対象">世論調査の主成分分析（回答の共通パターンを抽出する統計手法）</td><td data-label="水準">個人</td><td data-label="時点">1960 年代から 1990 年代</td><td data-label="地域">日本</td></tr>
 </tbody>
 </table>
 
@@ -397,18 +417,18 @@ sup a:hover{text-decoration:underline}
 
 <h3 id="sec6-8">6.8 区分の一覧</h3>
 
-<table>
+<table class="cards">
 <thead>
 <tr><th>説明</th><th>区分</th><th>主な根拠</th><th>主な弱点</th></tr>
 </thead>
 <tbody>
-<tr><td>歴史的な経緯</td><td>形の違いの記述も、因果も未確定の仮説</td><td>米国・日本・東欧の事例</td><td>組合せが選ばれた因果は未検証</td></tr>
-<tr><td>心理的な傾向</td><td>未確定の仮説</td><td>メタ分析と 51 か国の研究が対立</td><td>結論が分かれる</td></tr>
-<tr><td>利害と階層</td><td>未確定の仮説</td><td>東欧の分析。学歴と所得の乖離</td><td>因果の検証が限られる</td></tr>
-<tr><td>エリートによる束ね</td><td>未確定の仮説</td><td>関与が高いほど正の相関</td><td>追随の因果が未確認</td></tr>
-<tr><td>一次元の語による圧縮</td><td>投機的な理論</td><td>二次元の研究。日本の用語の混乱</td><td>筆者の整理。知覚への影響の検証がない</td></tr>
-<tr><td>水準・地域の混合</td><td>個人の記述は未確定の仮説。因果は投機的な理論</td><td>99 か国の個人データ（単一の研究）</td><td>筆者の整理。政党・議員では連動が実在</td></tr>
-<tr><td>概念上の結び付きと独立</td><td>区分の対象外（概念の議論）</td><td>複数の定義</td><td>データでは決着しない</td></tr>
+<tr><td data-label="説明">歴史的な経緯</td><td data-label="区分">形の違いの記述も、因果も未確定の仮説</td><td data-label="主な根拠">米国・日本・東欧の事例</td><td data-label="主な弱点">組合せが選ばれた因果は未検証</td></tr>
+<tr><td data-label="説明">心理的な傾向</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠">メタ分析と 51 か国の研究が対立</td><td data-label="主な弱点">結論が分かれる</td></tr>
+<tr><td data-label="説明">利害と階層</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠">東欧の分析。学歴と所得の乖離</td><td data-label="主な弱点">因果の検証が限られる</td></tr>
+<tr><td data-label="説明">エリートによる束ね</td><td data-label="区分">未確定の仮説</td><td data-label="主な根拠">関与が高いほど正の相関</td><td data-label="主な弱点">追随の因果が未確認</td></tr>
+<tr><td data-label="説明">一次元の語による圧縮</td><td data-label="区分">投機的な理論</td><td data-label="主な根拠">二次元の研究。日本の用語の混乱</td><td data-label="主な弱点">筆者の整理。知覚への影響の検証がない</td></tr>
+<tr><td data-label="説明">水準・地域の混合</td><td data-label="区分">個人の記述は未確定の仮説。因果は投機的な理論</td><td data-label="主な根拠">99 か国の個人データ（単一の研究）</td><td data-label="主な弱点">筆者の整理。政党・議員では連動が実在</td></tr>
+<tr><td data-label="説明">概念上の結び付きと独立</td><td data-label="区分">区分の対象外（概念の議論）</td><td data-label="主な根拠">複数の定義</td><td data-label="主な弱点">データでは決着しない</td></tr>
 </tbody>
 </table>
 

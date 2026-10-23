@@ -55,6 +55,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -262,17 +282,17 @@ sup a:hover{text-decoration:underline}
 ここまでの議論を総合すると、後悔という現象は、次のような複数層のモデルとして捉えるのが最も妥当である。
 </p>
 <h3 id="sec10-1">10.1 多層モデルの一覧</h3>
-<table>
+<table class="cards">
 <thead><tr><th>層</th><th>主な概念</th><th>性質</th></tr></thead>
 <tbody>
-<tr><td>比較の生成</td><td>反実仮想思考・規範理論</td><td>実証研究</td></tr>
-<tr><td>持続の機序</td><td>反応スタイル理論・皮肉過程理論</td><td>実証研究</td></tr>
-<tr><td>記憶の編集</td><td>ナラティブ・アイデンティティ・後知恵バイアス・物語的誤謬</td><td>実証研究・批評的主張</td></tr>
-<tr><td>比較対象の偏り</td><td>可能自己・感情予測の誤り・適応の力</td><td>実証研究</td></tr>
-<tr><td>存在論的基盤</td><td>被投性・自己欺瞞</td><td>哲学的主張</td></tr>
-<tr><td>他者への派生</td><td>根本的帰属の誤り・シャーデンフロイデの神経相関・ルサンチマン</td><td>実証研究・哲学的主張</td></tr>
-<tr><td>関係の解放</td><td>行為の不可逆性・赦し</td><td>哲学的主張</td></tr>
-<tr><td>引き受けの姿勢</td><td>不条理の受容・運命愛</td><td>哲学的主張</td></tr>
+<tr><td data-label="層">比較の生成</td><td data-label="主な概念">反実仮想思考・規範理論</td><td data-label="性質">実証研究</td></tr>
+<tr><td data-label="層">持続の機序</td><td data-label="主な概念">反応スタイル理論・皮肉過程理論</td><td data-label="性質">実証研究</td></tr>
+<tr><td data-label="層">記憶の編集</td><td data-label="主な概念">ナラティブ・アイデンティティ・後知恵バイアス・物語的誤謬</td><td data-label="性質">実証研究・批評的主張</td></tr>
+<tr><td data-label="層">比較対象の偏り</td><td data-label="主な概念">可能自己・感情予測の誤り・適応の力</td><td data-label="性質">実証研究</td></tr>
+<tr><td data-label="層">存在論的基盤</td><td data-label="主な概念">被投性・自己欺瞞</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">他者への派生</td><td data-label="主な概念">根本的帰属の誤り・シャーデンフロイデの神経相関・ルサンチマン</td><td data-label="性質">実証研究・哲学的主張</td></tr>
+<tr><td data-label="層">関係の解放</td><td data-label="主な概念">行為の不可逆性・赦し</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">引き受けの姿勢</td><td data-label="主な概念">不条理の受容・運命愛</td><td data-label="性質">哲学的主張</td></tr>
 </tbody>
 </table>
 <p>

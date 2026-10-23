@@ -54,6 +54,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -178,14 +198,14 @@ sup a:hover{text-decoration:underline}
 <p>制度の細部に入る前に、見取り図を示しておく。以下の三分類は、各国の制度を比べるための本稿の整理であり、現実の国はこの型を混ぜ合わせている。</p>
 
 <div class="tablewrap">
-<table>
+<table class="cards">
 <thead>
 <tr><th>型</th><th>基本の考え方</th><th>本稿で扱う代表例</th><th>強みと難しさ</th></tr>
 </thead>
 <tbody>
-<tr><td>属地型</td><td>言語を地域に結びつける。その地域では、原則として地域の言語で行政・教育が行われる。</td><td>スイスの州、ベルギー</td><td>地域内の言語が安定する。一方で、地域をまたぐ移動や少数話者への配慮が課題になる。</td></tr>
-<tr><td>属人型</td><td>どこに住んでいても、個人が選んだ公用語で国家に接する権利を保障する。</td><td>カナダの連邦機関</td><td>個人の権利が明確になる。一方で、窓口・通訳・翻訳の維持に費用がかかる。</td></tr>
-<tr><td>共通語併用型</td><td>多数の言語を認めつつ、全国規模では一つか二つの共通語に頼る。</td><td>インド、南アフリカ</td><td>言語の数が多くても国が回る。一方で、共通語に偏る実態が公式の平等と食い違いやすい。</td></tr>
+<tr><td data-label="型">属地型</td><td data-label="基本の考え方">言語を地域に結びつける。その地域では、原則として地域の言語で行政・教育が行われる。</td><td data-label="本稿で扱う代表例">スイスの州、ベルギー</td><td data-label="強みと難しさ">地域内の言語が安定する。一方で、地域をまたぐ移動や少数話者への配慮が課題になる。</td></tr>
+<tr><td data-label="型">属人型</td><td data-label="基本の考え方">どこに住んでいても、個人が選んだ公用語で国家に接する権利を保障する。</td><td data-label="本稿で扱う代表例">カナダの連邦機関</td><td data-label="強みと難しさ">個人の権利が明確になる。一方で、窓口・通訳・翻訳の維持に費用がかかる。</td></tr>
+<tr><td data-label="型">共通語併用型</td><td data-label="基本の考え方">多数の言語を認めつつ、全国規模では一つか二つの共通語に頼る。</td><td data-label="本稿で扱う代表例">インド、南アフリカ</td><td data-label="強みと難しさ">言語の数が多くても国が回る。一方で、共通語に偏る実態が公式の平等と食い違いやすい。</td></tr>
 </tbody>
 </table>
 </div>
@@ -210,15 +230,15 @@ sup a:hover{text-decoration:underline}
 <p>連邦行政は、言語の公平を数字で管理している。連邦政府の資料によれば、連邦職員は自分で選んだ公用語で働けなければならず、幹部職員には、第二の公用語についての良好な能動的知識と、第三の公用語についての受動的知識が求められる。 <sup id="fnref-4-5"><a href="#ref-4">[4]</a></sup> そのうえで、言語共同体ごとの職員構成の目標値が言語条例で定められている。</p>
 
 <div class="tablewrap">
-<table>
+<table class="cards">
 <thead>
 <tr><th>言語</th><th>目標値（ 2025 年末まで）</th><th>連邦行政の実績（ 2025 年）</th><th>目標値（ 2026 年から）</th></tr>
 </thead>
 <tbody>
-<tr><td>ドイツ語</td><td>68.5 〜 70.5%</td><td>69.1%</td><td>66.5 〜 68.5%</td></tr>
-<tr><td>フランス語</td><td>21.5 〜 23.5%</td><td>23.5%</td><td>22.5 〜 24.5%</td></tr>
-<tr><td>イタリア語</td><td>6.5 〜 8.5%</td><td>7.0%</td><td>7.5 〜 8.5%</td></tr>
-<tr><td>ロマンシュ語</td><td>0.5 〜 1.0%</td><td>0.5%</td><td>0.5 〜 1.0%</td></tr>
+<tr><td data-label="言語">ドイツ語</td><td data-label="目標値（ 2025 年末まで）">68.5 〜 70.5%</td><td data-label="連邦行政の実績（ 2025 年）">69.1%</td><td data-label="目標値（ 2026 年から）">66.5 〜 68.5%</td></tr>
+<tr><td data-label="言語">フランス語</td><td data-label="目標値（ 2025 年末まで）">21.5 〜 23.5%</td><td data-label="連邦行政の実績（ 2025 年）">23.5%</td><td data-label="目標値（ 2026 年から）">22.5 〜 24.5%</td></tr>
+<tr><td data-label="言語">イタリア語</td><td data-label="目標値（ 2025 年末まで）">6.5 〜 8.5%</td><td data-label="連邦行政の実績（ 2025 年）">7.0%</td><td data-label="目標値（ 2026 年から）">7.5 〜 8.5%</td></tr>
+<tr><td data-label="言語">ロマンシュ語</td><td data-label="目標値（ 2025 年末まで）">0.5 〜 1.0%</td><td data-label="連邦行政の実績（ 2025 年）">0.5%</td><td data-label="目標値（ 2026 年から）">0.5 〜 1.0%</td></tr>
 </tbody>
 </table>
 </div>
@@ -318,16 +338,16 @@ sup a:hover{text-decoration:underline}
 <p>ここまで見てきた議場の運用を、表にまとめておく。表中の記述は、本稿で参照した資料の範囲に限られ、各国の議会運営の全体像を示すものではない。</p>
 
 <div class="tablewrap">
-<table>
+<table class="cards">
 <thead>
 <tr><th>国</th><th>発言と通訳の扱い</th><th>目立つ制約・論点</th></tr>
 </thead>
 <tbody>
-<tr><td>スイス（国民議会）</td><td>三つの公用語への同時通訳を議事規則が定める。ブースはドイツ語・フランス語・イタリア語の三つ。</td><td>ロマンシュ語は事前依頼があるときのみ。</td></tr>
-<tr><td>ベルギー（上院）</td><td>フランス語かオランダ語で発言し、互いの言語へ同時通訳される。</td><td>ドイツ語の通訳は予定されない。ドイツ語共同体選出の議員は、オランダ語かフランス語で発言する。</td></tr>
-<tr><td>カナダ（下院）</td><td>英語かフランス語で審議に参加する権利を憲章が保障し、同時通訳は 1958 年に導入された。</td><td>公用語以外の言語で話すときは、公用語のどちらかで繰り返す必要がある。</td></tr>
-<tr><td>インド（下院）</td><td>報道によれば、第八附則の 22 言語で同時通訳が行われるようになった。</td><td>以前は、ヒンディー語と英語以外での発言に事前通知が必要だった。運用の実態は未確認。</td></tr>
-<tr><td>南アフリカ（国民議会）</td><td>多くの言語から英語への通訳に対応している。</td><td>2024 年の報道では、本会議に必要な通訳者 44 人に対して 27 人。英語から先住民の言語への通訳が弱い。</td></tr>
+<tr><td data-label="国">スイス（国民議会）</td><td data-label="発言と通訳の扱い">三つの公用語への同時通訳を議事規則が定める。ブースはドイツ語・フランス語・イタリア語の三つ。</td><td data-label="目立つ制約・論点">ロマンシュ語は事前依頼があるときのみ。</td></tr>
+<tr><td data-label="国">ベルギー（上院）</td><td data-label="発言と通訳の扱い">フランス語かオランダ語で発言し、互いの言語へ同時通訳される。</td><td data-label="目立つ制約・論点">ドイツ語の通訳は予定されない。ドイツ語共同体選出の議員は、オランダ語かフランス語で発言する。</td></tr>
+<tr><td data-label="国">カナダ（下院）</td><td data-label="発言と通訳の扱い">英語かフランス語で審議に参加する権利を憲章が保障し、同時通訳は 1958 年に導入された。</td><td data-label="目立つ制約・論点">公用語以外の言語で話すときは、公用語のどちらかで繰り返す必要がある。</td></tr>
+<tr><td data-label="国">インド（下院）</td><td data-label="発言と通訳の扱い">報道によれば、第八附則の 22 言語で同時通訳が行われるようになった。</td><td data-label="目立つ制約・論点">以前は、ヒンディー語と英語以外での発言に事前通知が必要だった。運用の実態は未確認。</td></tr>
+<tr><td data-label="国">南アフリカ（国民議会）</td><td data-label="発言と通訳の扱い">多くの言語から英語への通訳に対応している。</td><td data-label="目立つ制約・論点">2024 年の報道では、本会議に必要な通訳者 44 人に対して 27 人。英語から先住民の言語への通訳が弱い。</td></tr>
 </tbody>
 </table>
 </div>

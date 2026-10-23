@@ -66,6 +66,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -173,7 +193,7 @@ pre code{background:none; padding:0;}
 <p>「上下二段に分ける」という形式を採ったのには理由がある。
 世界史と日本史をそれぞれ別個に記述すると、同じ時期に地球の各地で何が起きていたかが見えにくくなる。たとえば、日本にペリーの艦隊が来航した 1853 年前後には、クリミア戦争、インド大反乱、アメリカの南北戦争、中国の太平天国の乱が並行して起きている。個別に語られがちなこれらの事象は、上下に並べた瞬間、一つのつながりとして立ち上がってくる。</p>
 <p>さらに、事象をその性格に応じて五つに分類し、次のように色分けして示す。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>色</th>
@@ -183,29 +203,29 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td><strong>赤</strong></td>
-<td>戦争・革命</td>
-<td>フランス革命、二つの世界大戦、戊辰戦争</td>
+<td data-label="色"><strong>赤</strong></td>
+<td data-label="意味">戦争・革命</td>
+<td data-label="その色で塗った事象の例">フランス革命、二つの世界大戦、戊辰戦争</td>
 </tr>
 <tr>
-<td><strong>青</strong></td>
-<td>技術・産業のかわりめ</td>
-<td>蒸気機関、鉄道、電気、コンピュータ、インターネット</td>
+<td data-label="色"><strong>青</strong></td>
+<td data-label="意味">技術・産業のかわりめ</td>
+<td data-label="その色で塗った事象の例">蒸気機関、鉄道、電気、コンピュータ、インターネット</td>
 </tr>
 <tr>
-<td><strong>緑</strong></td>
-<td>仕組み・制度のかわりめ</td>
-<td>憲法、選挙、学校制度、国際連合</td>
+<td data-label="色"><strong>緑</strong></td>
+<td data-label="意味">仕組み・制度のかわりめ</td>
+<td data-label="その色で塗った事象の例">憲法、選挙、学校制度、国際連合</td>
 </tr>
 <tr>
-<td><strong>黄</strong></td>
-<td>人やモノの移動</td>
-<td>大航海、移民、鉄道網、飛行機、コンテナ船</td>
+<td data-label="色"><strong>黄</strong></td>
+<td data-label="意味">人やモノの移動</td>
+<td data-label="その色で塗った事象の例">大航海、移民、鉄道網、飛行機、コンテナ船</td>
 </tr>
 <tr>
-<td><strong>紫</strong></td>
-<td>考え方の変わりめ</td>
-<td>宗教改革、啓蒙思想、進化論、人権の思想</td>
+<td data-label="色"><strong>紫</strong></td>
+<td data-label="意味">考え方の変わりめ</td>
+<td data-label="その色で塗った事象の例">宗教改革、啓蒙思想、進化論、人権の思想</td>
 </tr>
 </tbody>
 </table>
@@ -428,7 +448,7 @@ pre code{background:none; padding:0;}
 <p>結果は、想定していたよりも素朴な構造であった。中心にあるのは通常の銅線である。電気信号はこの銅線を通る。
 問題はその外側であった。海水は電気を通すため、銅線を十分に絶縁しなければ、信号が海水側へ漏れてしまう。加えて海底は水圧が高く、貝類や虫害の被害を受けることもある。
 ここで用いられたのが、<strong>グッタペルカ</strong>という、聞き慣れない名称の素材であった。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>層</th>
@@ -438,24 +458,24 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>いちばん内側</td>
-<td>銅線</td>
-<td>電気信号を通す道</td>
+<td data-label="層">いちばん内側</td>
+<td data-label="使われた素材">銅線</td>
+<td data-label="役目">電気信号を通す道</td>
 </tr>
 <tr>
-<td>その外側</td>
-<td><strong>グッタペルカ</strong>（天然樹脂）</td>
-<td>海水から電気をさえぎる絶縁</td>
+<td data-label="層">その外側</td>
+<td data-label="使われた素材"><strong>グッタペルカ</strong>（天然樹脂）</td>
+<td data-label="役目">海水から電気をさえぎる絶縁</td>
 </tr>
 <tr>
-<td>さらに外側</td>
-<td>タールをしみこませた麻ひも</td>
-<td>グッタペルカを保護するクッション</td>
+<td data-label="層">さらに外側</td>
+<td data-label="使われた素材">タールをしみこませた麻ひも</td>
+<td data-label="役目">グッタペルカを保護するクッション</td>
 </tr>
 <tr>
-<td>いちばん外側</td>
-<td>鉄線を編んだシース</td>
-<td>船のいかりや岩から守る鎧</td>
+<td data-label="層">いちばん外側</td>
+<td data-label="使われた素材">鉄線を編んだシース</td>
+<td data-label="役目">船のいかりや岩から守る鎧</td>
 </tr>
 </tbody>
 </table>
@@ -531,7 +551,7 @@ W ・ B ・イェイツ「再臨」より</p>
 <p>この戦争について、この記事では事象の網羅よりも、「なぜこの年が時代の画期とされるのか」を検討することに重点を置いた。</p>
 <h3 id="sec10-1">10.1 日本にとっての 1945 年</h3>
 <p>日本史の教科書や年表が、ほぼ例外なく 1945 年を「現代の始まり」とするのには、明確な理由がある。この年を境に、国家の制度が根本から入れ替わったためである。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th></th>
@@ -541,34 +561,34 @@ W ・ B ・イェイツ「再臨」より</p>
 </thead>
 <tbody>
 <tr>
-<td>主権</td>
-<td>天皇にあるとされた</td>
-<td>国民にある</td>
+<td data-label="">主権</td>
+<td data-label="1945 年より前">天皇にあるとされた</td>
+<td data-label="1945 年より後">国民にある</td>
 </tr>
 <tr>
-<td>軍隊</td>
-<td>陸軍・海軍を持つ</td>
-<td>戦争の放棄を憲法に書く</td>
+<td data-label="">軍隊</td>
+<td data-label="1945 年より前">陸軍・海軍を持つ</td>
+<td data-label="1945 年より後">戦争の放棄を憲法に書く</td>
 </tr>
 <tr>
-<td>選挙</td>
-<td>男性のみ（ 1925 年以降）</td>
-<td>女性もふくむ（ 1945 年末に実現）</td>
+<td data-label="">選挙</td>
+<td data-label="1945 年より前">男性のみ（ 1925 年以降）</td>
+<td data-label="1945 年より後">女性もふくむ（ 1945 年末に実現）</td>
 </tr>
 <tr>
-<td>土地</td>
-<td>地主と小作の関係が広く残る</td>
-<td>農地改革で自作農が中心に</td>
+<td data-label="">土地</td>
+<td data-label="1945 年より前">地主と小作の関係が広く残る</td>
+<td data-label="1945 年より後">農地改革で自作農が中心に</td>
 </tr>
 <tr>
-<td>教育</td>
-<td>国のためにつくす人を育てる</td>
-<td>個人の尊厳を重んじる</td>
+<td data-label="">教育</td>
+<td data-label="1945 年より前">国のためにつくす人を育てる</td>
+<td data-label="1945 年より後">個人の尊厳を重んじる</td>
 </tr>
 <tr>
-<td>領域</td>
-<td>植民地・占領地をふくむ</td>
-<td>本土のみ（沖縄は 1972 年まで施政権が米国下）</td>
+<td data-label="">領域</td>
+<td data-label="1945 年より前">植民地・占領地をふくむ</td>
+<td data-label="1945 年より後">本土のみ（沖縄は 1972 年まで施政権が米国下）</td>
 </tr>
 </tbody>
 </table>
@@ -693,7 +713,7 @@ W ・ B ・イェイツ「再臨」より</p>
 <p>第二章の色分けからは、技術変化、対立、制度調整という順に見える事例がある。
 ただし、これは普遍法則ではない。制度が先行する場合、対立が制度を変えない場合、地域ごとに順序が異なる場合も多い。
 ここでは、年表を比較するための仮説として扱う。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>技術・条件の変化</th>
@@ -703,29 +723,29 @@ W ・ B ・イェイツ「再臨」より</p>
 </thead>
 <tbody>
 <tr>
-<td>印刷術</td>
-<td>宗教戦争</td>
-<td>主権国家の体系（ 1648 年）</td>
+<td data-label="技術・条件の変化">印刷術</td>
+<td data-label="混乱・対立">宗教戦争</td>
+<td data-label="あとから来た制度">主権国家の体系（ 1648 年）</td>
 </tr>
 <tr>
-<td>蒸気機関・工場</td>
-<td>都市の貧困、労働争議</td>
-<td>工場法、労働組合、社会保険</td>
+<td data-label="技術・条件の変化">蒸気機関・工場</td>
+<td data-label="混乱・対立">都市の貧困、労働争議</td>
+<td data-label="あとから来た制度">工場法、労働組合、社会保険</td>
 </tr>
 <tr>
-<td>総力戦の技術</td>
-<td>二つの世界大戦</td>
-<td>国際連合、人権宣言、福祉国家</td>
+<td data-label="技術・条件の変化">総力戦の技術</td>
+<td data-label="混乱・対立">二つの世界大戦</td>
+<td data-label="あとから来た制度">国際連合、人権宣言、福祉国家</td>
 </tr>
 <tr>
-<td>金融の自由化・情報化</td>
-<td>金融危機、格差の拡大</td>
-<td>いま議論の途中</td>
+<td data-label="技術・条件の変化">金融の自由化・情報化</td>
+<td data-label="混乱・対立">金融危機、格差の拡大</td>
+<td data-label="あとから来た制度">いま議論の途中</td>
 </tr>
 <tr>
-<td>ネット・人工知能</td>
-<td>いま起きているところ</td>
-<td>これから決まる</td>
+<td data-label="技術・条件の変化">ネット・人工知能</td>
+<td data-label="混乱・対立">いま起きているところ</td>
+<td data-label="あとから来た制度">これから決まる</td>
 </tr>
 </tbody>
 </table>
@@ -734,7 +754,7 @@ W ・ B ・イェイツ「再臨」より</p>
 そこに、いくらかの希望があると考える。</p>
 <h3 id="sec14-5">14.5 まとめ⑤ 独自の時代区分を試みる</h3>
 <p>最後に、この記事の結論として、独自の時代区分を提示する。既存の学説の引用ではなく、ここまでの年表の検討をふまえた、筆者なりの試案である。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>試案の時代名</th>
@@ -744,29 +764,29 @@ W ・ B ・イェイツ「再臨」より</p>
 </thead>
 <tbody>
 <tr>
-<td><strong>つながりはじめた時代</strong></td>
-<td>1500 〜 1780 年ごろ</td>
-<td>海の道で世界が一つになる。ただし、つながり方はとても不公平だった。</td>
+<td data-label="試案の時代名"><strong>つながりはじめた時代</strong></td>
+<td data-label="時期">1500 〜 1780 年ごろ</td>
+<td data-label="その時代のとくちょう">海の道で世界が一つになる。ただし、つながり方はとても不公平だった。</td>
 </tr>
 <tr>
-<td><strong>ふえ続けた時代</strong></td>
-<td>1780 〜 1914 年ごろ</td>
-<td>石炭を掘り、機械を動かし、人口も生産も都市も、ひたすらふえていく。</td>
+<td data-label="試案の時代名"><strong>ふえ続けた時代</strong></td>
+<td data-label="時期">1780 〜 1914 年ごろ</td>
+<td data-label="その時代のとくちょう">石炭を掘り、機械を動かし、人口も生産も都市も、ひたすらふえていく。</td>
 </tr>
 <tr>
-<td><strong>けずりあった時代</strong></td>
-<td>1914 〜 1945 年</td>
-<td>ふえる力が、そのまま壊す力になる。二つの大戦と恐慌。</td>
+<td data-label="試案の時代名"><strong>けずりあった時代</strong></td>
+<td data-label="時期">1914 〜 1945 年</td>
+<td data-label="その時代のとくちょう">ふえる力が、そのまま壊す力になる。二つの大戦と恐慌。</td>
 </tr>
 <tr>
-<td><strong>つくり直した時代</strong></td>
-<td>1945 〜 1973 年</td>
-<td>国際的な仕組みと福祉と成長。冷戦の下での、不思議な安定。</td>
+<td data-label="試案の時代名"><strong>つくり直した時代</strong></td>
+<td data-label="時期">1945 〜 1973 年</td>
+<td data-label="その時代のとくちょう">国際的な仕組みと福祉と成長。冷戦の下での、不思議な安定。</td>
 </tr>
 <tr>
-<td><strong>ゆらいでいる時代</strong></td>
-<td>1973 年〜いま</td>
-<td>成長の限界、情報の革命、人口の減少。次の名前は、まだ決まっていない。</td>
+<td data-label="試案の時代名"><strong>ゆらいでいる時代</strong></td>
+<td data-label="時期">1973 年〜いま</td>
+<td data-label="その時代のとくちょう">成長の限界、情報の革命、人口の減少。次の名前は、まだ決まっていない。</td>
 </tr>
 </tbody>
 </table>
@@ -779,7 +799,7 @@ W ・ B ・イェイツ「再臨」より</p>
 年表の線は、いつでも自らの手で引き直してよい――これが、この記事を通じて得られた最大の収穫であった。</p>
 <h2 id="sec15">15. 対照年表――世界と日本を並べて読む年表</h2>
 <p>世界の事象と日本の事象を、同一の表にまとめた。横に見比べることで、同時期に何が起きていたかを把握できる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>年</th>
@@ -789,109 +809,109 @@ W ・ B ・イェイツ「再臨」より</p>
 </thead>
 <tbody>
 <tr>
-<td>1543</td>
-<td>コペルニクスの地動説</td>
-<td>鉄砲の伝来</td>
+<td data-label="年">1543</td>
+<td data-label="世界">コペルニクスの地動説</td>
+<td data-label="日本">鉄砲の伝来</td>
 </tr>
 <tr>
-<td>1600 年代</td>
-<td>三十年戦争とウェストファリア条約</td>
-<td>江戸幕府がひらかれる / 貿易を四つの口にしぼる</td>
+<td data-label="年">1600 年代</td>
+<td data-label="世界">三十年戦争とウェストファリア条約</td>
+<td data-label="日本">江戸幕府がひらかれる / 貿易を四つの口にしぼる</td>
 </tr>
 <tr>
-<td>1776</td>
-<td>アメリカ独立宣言</td>
-<td>田沼時代のなかば</td>
+<td data-label="年">1776</td>
+<td data-label="世界">アメリカ独立宣言</td>
+<td data-label="日本">田沼時代のなかば</td>
 </tr>
 <tr>
-<td>1789</td>
-<td>フランス革命</td>
-<td>寛政の改革</td>
+<td data-label="年">1789</td>
+<td data-label="世界">フランス革命</td>
+<td data-label="日本">寛政の改革</td>
 </tr>
 <tr>
-<td>1840</td>
-<td>阿片戦争</td>
-<td>天保の改革のころ</td>
+<td data-label="年">1840</td>
+<td data-label="世界">阿片戦争</td>
+<td data-label="日本">天保の改革のころ</td>
 </tr>
 <tr>
-<td>1853</td>
-<td>クリミア戦争のころ</td>
-<td>ペリー来航</td>
+<td data-label="年">1853</td>
+<td data-label="世界">クリミア戦争のころ</td>
+<td data-label="日本">ペリー来航</td>
 </tr>
 <tr>
-<td>1861</td>
-<td>アメリカ南北戦争</td>
-<td>幕末の動乱</td>
+<td data-label="年">1861</td>
+<td data-label="世界">アメリカ南北戦争</td>
+<td data-label="日本">幕末の動乱</td>
 </tr>
 <tr>
-<td>1868</td>
-<td>ヨーロッパで国民国家の形成が進む</td>
-<td>明治維新</td>
+<td data-label="年">1868</td>
+<td data-label="世界">ヨーロッパで国民国家の形成が進む</td>
+<td data-label="日本">明治維新</td>
 </tr>
 <tr>
-<td>1889</td>
-<td>第二インターナショナル結成</td>
-<td>大日本帝国憲法</td>
+<td data-label="年">1889</td>
+<td data-label="世界">第二インターナショナル結成</td>
+<td data-label="日本">大日本帝国憲法</td>
 </tr>
 <tr>
-<td>1914</td>
-<td>第一次世界大戦</td>
-<td>大戦景気</td>
+<td data-label="年">1914</td>
+<td data-label="世界">第一次世界大戦</td>
+<td data-label="日本">大戦景気</td>
 </tr>
 <tr>
-<td>1929</td>
-<td>世界恐慌</td>
-<td>昭和恐慌</td>
+<td data-label="年">1929</td>
+<td data-label="世界">世界恐慌</td>
+<td data-label="日本">昭和恐慌</td>
 </tr>
 <tr>
-<td>1939</td>
-<td>第二次世界大戦</td>
-<td>日中戦争の長期化</td>
+<td data-label="年">1939</td>
+<td data-label="世界">第二次世界大戦</td>
+<td data-label="日本">日中戦争の長期化</td>
 </tr>
 <tr>
-<td>1945</td>
-<td>国際連合の発足 / 核兵器の登場</td>
-<td>敗戦、占領の始まり</td>
+<td data-label="年">1945</td>
+<td data-label="世界">国際連合の発足 / 核兵器の登場</td>
+<td data-label="日本">敗戦、占領の始まり</td>
 </tr>
 <tr>
-<td>1947</td>
-<td>インド独立</td>
-<td>日本国憲法の施行</td>
+<td data-label="年">1947</td>
+<td data-label="世界">インド独立</td>
+<td data-label="日本">日本国憲法の施行</td>
 </tr>
 <tr>
-<td>1964</td>
-<td>公民権法（アメリカ）</td>
-<td>東京オリンピック、新幹線</td>
+<td data-label="年">1964</td>
+<td data-label="世界">公民権法（アメリカ）</td>
+<td data-label="日本">東京オリンピック、新幹線</td>
 </tr>
 <tr>
-<td>1973</td>
-<td>石油危機、変動相場制へ</td>
-<td>高度経済成長期の終わり</td>
+<td data-label="年">1973</td>
+<td data-label="世界">石油危機、変動相場制へ</td>
+<td data-label="日本">高度経済成長期の終わり</td>
 </tr>
 <tr>
-<td>1989</td>
-<td>ベルリンの壁の崩壊</td>
-<td>昭和が終わり平成へ</td>
+<td data-label="年">1989</td>
+<td data-label="世界">ベルリンの壁の崩壊</td>
+<td data-label="日本">昭和が終わり平成へ</td>
 </tr>
 <tr>
-<td>1995</td>
-<td>インターネットの普及がはじまる</td>
-<td>阪神・淡路大震災</td>
+<td data-label="年">1995</td>
+<td data-label="世界">インターネットの普及がはじまる</td>
+<td data-label="日本">阪神・淡路大震災</td>
 </tr>
 <tr>
-<td>2008</td>
-<td>世界金融危機</td>
-<td>人口が減りはじめる</td>
+<td data-label="年">2008</td>
+<td data-label="世界">世界金融危機</td>
+<td data-label="日本">人口が減りはじめる</td>
 </tr>
 <tr>
-<td>2011</td>
-<td>アラブの春</td>
-<td>東日本大震災</td>
+<td data-label="年">2011</td>
+<td data-label="世界">アラブの春</td>
+<td data-label="日本">東日本大震災</td>
 </tr>
 <tr>
-<td>2020</td>
-<td>感染症の世界的流行</td>
-<td>同上（オリンピックの延期）</td>
+<td data-label="年">2020</td>
+<td data-label="世界">感染症の世界的流行</td>
+<td data-label="日本">同上（オリンピックの延期）</td>
 </tr>
 </tbody>
 </table>

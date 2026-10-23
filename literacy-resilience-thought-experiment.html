@@ -48,6 +48,26 @@ sup:target{background:var(--box)}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -103,14 +123,14 @@ sup:target{background:var(--box)}
 
 <h2 id="sec3">3. 主張の連鎖を分解する</h2>
 <p>「義務教育に課程を新設すれば、ポピュリズムや陰謀論に傾く人が減る」という一文は、一つの主張に見えて、実際には三つの主張が連なっている。本稿の三つの仮定と、手元の資料の対応を、次の表に示す。</p>
-<table>
+<table class="cards">
 <thead>
 <tr><th>段階</th><th>主張</th><th>本稿の資料が届く範囲</th></tr>
 </thead>
 <tbody>
-<tr><td>第一段</td><td>課程によって、見分ける力が伸びる</td><td>米国とインドの介入研究が、見出しの判別力の向上を報告している。ただし対象は成人を含む標本で、短い介入である。子どもへの長期の課程は確認できない。</td></tr>
-<tr><td>第二段</td><td>見分ける力が伸びれば、ポピュリズムや陰謀論への傾斜が弱まる</td><td>判別力と政治的態度の結びつきを直接示した研究は、確認できていない。</td></tr>
-<tr><td>第三段</td><td>個人の変化が積み重なり、社会全体で目に見える差になる</td><td>模擬計算の研究が理論上の可能性を支持するにとどまる。現実の変化としては読めない。</td></tr>
+<tr><td data-label="段階">第一段</td><td data-label="主張">課程によって、見分ける力が伸びる</td><td data-label="本稿の資料が届く範囲">米国とインドの介入研究が、見出しの判別力の向上を報告している。ただし対象は成人を含む標本で、短い介入である。子どもへの長期の課程は確認できない。</td></tr>
+<tr><td data-label="段階">第二段</td><td data-label="主張">見分ける力が伸びれば、ポピュリズムや陰謀論への傾斜が弱まる</td><td data-label="本稿の資料が届く範囲">判別力と政治的態度の結びつきを直接示した研究は、確認できていない。</td></tr>
+<tr><td data-label="段階">第三段</td><td data-label="主張">個人の変化が積み重なり、社会全体で目に見える差になる</td><td data-label="本稿の資料が届く範囲">模擬計算の研究が理論上の可能性を支持するにとどまる。現実の変化としては読めない。</td></tr>
 </tbody>
 </table>
 <p>連鎖には、一つの性質がある。全体の主張が成り立つためには、すべての段が成り立たなければならない。したがって、全体の確からしさは、もっとも弱い段の確からしさを超えることがない。第一段にある程度の裏づけがあっても、第二段が空白であれば、全体としては空白の部分に引きずられる。</p>
@@ -152,16 +172,16 @@ sup:target{background:var(--box)}
 <h2 id="sec8">8. 何が分かれば判断できるか</h2>
 <p>ここまでの検討は、手元の資料で言えることの限界を示すものだった。思考実験を意味のある議論へ進めるには、どのような研究結果があれば結論が動くかを、先に言葉にしておく必要がある。結果を見てから解釈を決めるのではなく、結果の前に基準を置いておくためである。</p>
 <p>次の表は、本稿が確認できなかった五つの点について、肯定的な結果と否定的な結果が、それぞれ本稿の結論にどう響くかを整理したものである。</p>
-<table>
+<table class="cards">
 <thead>
 <tr><th>確かめたいこと</th><th>肯定的な結果なら</th><th>否定的な結果なら</th></tr>
 </thead>
 <tbody>
-<tr><td>学齢期の子どもを対象にした介入で、判別力が伸びるか</td><td>仮定一が支えられる。</td><td>仮定一が崩れ、課程の新設は出発点を失う。</td></tr>
-<tr><td>効果が年単位で続くか</td><td>義務教育という長い期間に置く意味が出る。</td><td>効果が短期で消えるなら、課程は一度きりの介入と変わらない。</td></tr>
-<tr><td>判別力が高い人ほど、ポピュリズムや陰謀論に傾きにくいか</td><td>仮定二が支えられ、目的に届く道筋が開く。</td><td>課程の効果は見出しの判別に限られ、問いの目的には届かない。</td></tr>
-<tr><td>独立教科と組み込み型で、効果に差があるか</td><td>どちらの設計を選ぶべきかの材料になる。</td><td>設計の違いより、内容や実施の質が重要だと示される。</td></tr>
-<tr><td>課程を受けた人の、主流ニュースへの信頼がどう変わるか</td><td>副作用が小さいと確かめられる。</td><td>信頼を基盤とする見解との緊張が、現実の問題になる。</td></tr>
+<tr><td data-label="確かめたいこと">学齢期の子どもを対象にした介入で、判別力が伸びるか</td><td data-label="肯定的な結果なら">仮定一が支えられる。</td><td data-label="否定的な結果なら">仮定一が崩れ、課程の新設は出発点を失う。</td></tr>
+<tr><td data-label="確かめたいこと">効果が年単位で続くか</td><td data-label="肯定的な結果なら">義務教育という長い期間に置く意味が出る。</td><td data-label="否定的な結果なら">効果が短期で消えるなら、課程は一度きりの介入と変わらない。</td></tr>
+<tr><td data-label="確かめたいこと">判別力が高い人ほど、ポピュリズムや陰謀論に傾きにくいか</td><td data-label="肯定的な結果なら">仮定二が支えられ、目的に届く道筋が開く。</td><td data-label="否定的な結果なら">課程の効果は見出しの判別に限られ、問いの目的には届かない。</td></tr>
+<tr><td data-label="確かめたいこと">独立教科と組み込み型で、効果に差があるか</td><td data-label="肯定的な結果なら">どちらの設計を選ぶべきかの材料になる。</td><td data-label="否定的な結果なら">設計の違いより、内容や実施の質が重要だと示される。</td></tr>
+<tr><td data-label="確かめたいこと">課程を受けた人の、主流ニュースへの信頼がどう変わるか</td><td data-label="肯定的な結果なら">副作用が小さいと確かめられる。</td><td data-label="否定的な結果なら">信頼を基盤とする見解との緊張が、現実の問題になる。</td></tr>
 </tbody>
 </table>
 <p><strong>筆者の整理</strong><br>この表のうち、結論に最も強く響くのは、第三の行である。第一と第二の行は、課程が機能するかどうかを左右するが、第三の行は、機能した課程が目的に届くかどうかを左右する。仮定二が支えられなければ、ほかの行がすべて肯定的でも、問いへの答えは「見出しを見分ける力は伸びる」までにとどまる。</p>

@@ -58,6 +58,26 @@ sup a:hover{text-decoration:underline}
   h1{font-size:1.6875rem}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -170,18 +190,18 @@ sup a:hover{text-decoration:underline}
 <p>
 ここまでの議論を総合すると、因果推論という営みは、次のような複数の層が積み重なった構造として捉えるのが最も妥当である。
 </p>
-<table>
+<table class="cards">
 <thead><tr><th>層</th><th>主な理論・概念</th><th>性質</th></tr></thead>
 <tbody>
-<tr><td>懐疑の出発点</td><td>規則性説・必然的結合への懐疑</td><td>哲学的主張</td></tr>
-<tr><td>反実仮想的な基準</td><td>反実仮想理論・可能世界意味論</td><td>哲学的主張</td></tr>
-<tr><td>理論の限界事例</td><td>先取り・過剰決定の思考実験</td><td>概念的検討</td></tr>
-<tr><td>確率的な定式化</td><td>確率的因果論</td><td>哲学的主張・方法論</td></tr>
-<tr><td>実践への転回</td><td>操作可能性理論・介入主義</td><td>哲学的主張</td></tr>
-<tr><td>統計的推定の基盤</td><td>潜在的結果モデル・ランダム化比較試験</td><td>統計的方法論</td></tr>
-<tr><td>構造の明示化</td><td>因果ダイアグラム・ドゥ演算子</td><td>統計的方法論</td></tr>
-<tr><td>実務上の陥穽</td><td>交絡・シンプソンのパラドックス</td><td>統計的事実</td></tr>
-<tr><td>方向性の起源</td><td>共通原因の原理・時間の矢</td><td>物理学的仮説</td></tr>
+<tr><td data-label="層">懐疑の出発点</td><td data-label="主な理論・概念">規則性説・必然的結合への懐疑</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">反実仮想的な基準</td><td data-label="主な理論・概念">反実仮想理論・可能世界意味論</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">理論の限界事例</td><td data-label="主な理論・概念">先取り・過剰決定の思考実験</td><td data-label="性質">概念的検討</td></tr>
+<tr><td data-label="層">確率的な定式化</td><td data-label="主な理論・概念">確率的因果論</td><td data-label="性質">哲学的主張・方法論</td></tr>
+<tr><td data-label="層">実践への転回</td><td data-label="主な理論・概念">操作可能性理論・介入主義</td><td data-label="性質">哲学的主張</td></tr>
+<tr><td data-label="層">統計的推定の基盤</td><td data-label="主な理論・概念">潜在的結果モデル・ランダム化比較試験</td><td data-label="性質">統計的方法論</td></tr>
+<tr><td data-label="層">構造の明示化</td><td data-label="主な理論・概念">因果ダイアグラム・ドゥ演算子</td><td data-label="性質">統計的方法論</td></tr>
+<tr><td data-label="層">実務上の陥穽</td><td data-label="主な理論・概念">交絡・シンプソンのパラドックス</td><td data-label="性質">統計的事実</td></tr>
+<tr><td data-label="層">方向性の起源</td><td data-label="主な理論・概念">共通原因の原理・時間の矢</td><td data-label="性質">物理学的仮説</td></tr>
 </tbody>
 </table>
 <p>

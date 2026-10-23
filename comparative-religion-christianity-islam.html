@@ -68,6 +68,26 @@ pre code{background:none; padding:0;}
   h1{font-size:1.6875rem;}
   .toc>ol{columns:1}
 }
+
+  .tblwrap { overflow-x: auto; }
+  .tblwrap table { min-width: 36rem; }
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td:first-child::before { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
+    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
 </style>
 </head>
 <body>
@@ -118,7 +138,7 @@ pre code{background:none; padding:0;}
 これらを日本仏教の分岐図と並べて眺めることで、教義的な対立・政治権力との関係・地理的な距離という、宗派分岐に共通する要因の型が見えてくる。あわせて、西洋の教養教育（リベラルアーツ）の淵源にキリスト教的な知の制度があったという、本ライブラリの<a href="liberal-arts-history.html">教養教育の理念史</a>で触れた論点にも接続し、「西洋対日本」という比較軸を持ち込む。</p>
 <h2 id="sec2">2. 全体を俯瞰する――主要な分岐点、ひと目でわかる表</h2>
 <p>まず、二つの一神教それぞれの主要な分岐点を、時代順に一覧しておく。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>伝統</th>
@@ -129,52 +149,52 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>キリスト教</td>
-<td>325 年</td>
-<td>ニカイア公会議</td>
-<td>アリウス派を異端と断定（教義の統一）</td>
+<td data-label="伝統">キリスト教</td>
+<td data-label="時期">325 年</td>
+<td data-label="出来事">ニカイア公会議</td>
+<td data-label="生じた分岐">アリウス派を異端と断定（教義の統一）</td>
 </tr>
 <tr>
-<td>キリスト教</td>
-<td>451 年</td>
-<td>カルケドン公会議</td>
-<td>非カルケドン派（オリエント正教会）の離脱</td>
+<td data-label="伝統">キリスト教</td>
+<td data-label="時期">451 年</td>
+<td data-label="出来事">カルケドン公会議</td>
+<td data-label="生じた分岐">非カルケドン派（オリエント正教会）の離脱</td>
 </tr>
 <tr>
-<td>キリスト教</td>
-<td>1054 年</td>
-<td>東西教会の相互破門</td>
-<td>カトリック教会と正教会の分裂</td>
+<td data-label="伝統">キリスト教</td>
+<td data-label="時期">1054 年</td>
+<td data-label="出来事">東西教会の相互破門</td>
+<td data-label="生じた分岐">カトリック教会と正教会の分裂</td>
 </tr>
 <tr>
-<td>キリスト教</td>
-<td>1517 年〜</td>
-<td>宗教改革</td>
-<td>ルター派・改革派・英国国教会などプロテスタント諸派の成立</td>
+<td data-label="伝統">キリスト教</td>
+<td data-label="時期">1517 年〜</td>
+<td data-label="出来事">宗教改革</td>
+<td data-label="生じた分岐">ルター派・改革派・英国国教会などプロテスタント諸派の成立</td>
 </tr>
 <tr>
-<td>イスラーム</td>
-<td>632 年〜</td>
-<td>ムハンマド没後の継承危機</td>
-<td>スンニとシーアの潮流の起点</td>
+<td data-label="伝統">イスラーム</td>
+<td data-label="時期">632 年〜</td>
+<td data-label="出来事">ムハンマド没後の継承危機</td>
+<td data-label="生じた分岐">スンニとシーアの潮流の起点</td>
 </tr>
 <tr>
-<td>イスラーム</td>
-<td>680 年</td>
-<td>カルバラーの戦い</td>
-<td>シーア派としての集団的記憶の確立</td>
+<td data-label="伝統">イスラーム</td>
+<td data-label="時期">680 年</td>
+<td data-label="出来事">カルバラーの戦い</td>
+<td data-label="生じた分岐">シーア派としての集団的記憶の確立</td>
 </tr>
 <tr>
-<td>イスラーム</td>
-<td>7 〜 9 世紀</td>
-<td>法学派の形成</td>
-<td>スンニ四法学派（ハナフィー・マーリク・シャーフィイー・ハンバリー）の確立</td>
+<td data-label="伝統">イスラーム</td>
+<td data-label="時期">7 〜 9 世紀</td>
+<td data-label="出来事">法学派の形成</td>
+<td data-label="生じた分岐">スンニ四法学派（ハナフィー・マーリク・シャーフィイー・ハンバリー）の確立</td>
 </tr>
 <tr>
-<td>イスラーム</td>
-<td>765 年以降</td>
-<td>イマーム継承をめぐる対立</td>
-<td>十二イマーム派・イスマーイール派・ザイド派の分岐</td>
+<td data-label="伝統">イスラーム</td>
+<td data-label="時期">765 年以降</td>
+<td data-label="出来事">イマーム継承をめぐる対立</td>
+<td data-label="生じた分岐">十二イマーム派・イスマーイール派・ザイド派の分岐</td>
 </tr>
 </tbody>
 </table>
@@ -219,7 +239,7 @@ pre code{background:none; padding:0;}
 <p>スンニ・シーアという区分とは別の軸として、内面的な神への接近を重んじる神秘主義・修行的伝統である<strong>スーフィズム</strong>がある。スーフィー教団の多くはスンニ派の枠内で発展したが、シーア派とも接点を持つ流れがあり、法学派やイマーム継承をめぐる分岐とは異なる次元で、イスラーム世界全体に広がってきた。宗派という制度的な分岐と、内面的な信仰実践の系譜が、必ずしも一致しない例として理解できる。</p>
 <h2 id="sec8">8. 分岐の比較軸――何が宗教を分けるのか</h2>
 <p>ここまで見てきたキリスト教・イスラームの分岐を、日本仏教の分岐（前掲記事第 11 章で整理した「教義的要因・政治的要因・地理的要因・師弟関係の系譜」という四つの軸）と重ねると、三つの伝統に共通する型が浮かび上がる。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>要因</th>
@@ -230,28 +250,28 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>教義的要因</td>
-<td>自力か他力か（浄土系と禅系の違い）</td>
-<td>キリストの本性理解（ニカイア・カルケドン）、信仰義認論（宗教改革）</td>
-<td>法解釈の方法論（スンニ四法学派）</td>
+<td data-label="要因">教義的要因</td>
+<td data-label="日本仏教の例">自力か他力か（浄土系と禅系の違い）</td>
+<td data-label="キリスト教の例">キリストの本性理解（ニカイア・カルケドン）、信仰義認論（宗教改革）</td>
+<td data-label="イスラームの例">法解釈の方法論（スンニ四法学派）</td>
 </tr>
 <tr>
-<td>政治的要因</td>
-<td>本願寺の東西分裂（秀吉・家康の介入）</td>
-<td>ローマ教皇と皇帝・国王の権威争い、ヘンリー八世の離婚問題</td>
-<td>ウマイヤ朝カリフとフサインの対立</td>
+<td data-label="要因">政治的要因</td>
+<td data-label="日本仏教の例">本願寺の東西分裂（秀吉・家康の介入）</td>
+<td data-label="キリスト教の例">ローマ教皇と皇帝・国王の権威争い、ヘンリー八世の離婚問題</td>
+<td data-label="イスラームの例">ウマイヤ朝カリフとフサインの対立</td>
 </tr>
 <tr>
-<td>地理的・文化的要因</td>
-<td>各地の有力寺院が独自の本山を確立</td>
-<td>ラテン語圏ローマとギリシア語圏コンスタンティノープルの分離</td>
-<td>シーア派人口のイラン・イラク等への集中</td>
+<td data-label="要因">地理的・文化的要因</td>
+<td data-label="日本仏教の例">各地の有力寺院が独自の本山を確立</td>
+<td data-label="キリスト教の例">ラテン語圏ローマとギリシア語圏コンスタンティノープルの分離</td>
+<td data-label="イスラームの例">シーア派人口のイラン・イラク等への集中</td>
 </tr>
 <tr>
-<td>継承・系譜の要因</td>
-<td>師弟関係の系譜の違い（真宗十派など）</td>
-<td>使徒継承の理解の違い</td>
-<td>イマーム継承をめぐる対立（十二イマーム派・イスマーイール派・ザイド派）</td>
+<td data-label="要因">継承・系譜の要因</td>
+<td data-label="日本仏教の例">師弟関係の系譜の違い（真宗十派など）</td>
+<td data-label="キリスト教の例">使徒継承の理解の違い</td>
+<td data-label="イスラームの例">イマーム継承をめぐる対立（十二イマーム派・イスマーイール派・ザイド派）</td>
 </tr>
 </tbody>
 </table>
