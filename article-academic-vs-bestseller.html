@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学術論文と書籍――確かめ方と届き方の違い</title>
+<style>
+:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--link:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1d1a;--text:#e6e8e2;--muted:#a3a89c;--accent:#8fb3a6;--link:#8fb3a6;--line:#3a3e37;--box:#262925}}
+:root[data-theme="dark"]{--bg:#1b1d1a;--text:#e6e8e2;--muted:#a3a89c;--accent:#8fb3a6;--link:#8fb3a6;--line:#3a3e37;--box:#262925}
+body{font-size:1.1875rem;line-height:1.85;background:var(--bg);color:var(--text);margin:0}
+main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
+.kicker{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .4rem}
+h1{font-size:2rem;color:var(--text);line-height:1.5;margin:0 0 .5rem}
+.subtitle{color:var(--muted);margin:0 0 1rem}
+.lede{border-left:4px solid var(--accent);padding-left:1rem;margin:1rem 0}
+.lede p{margin:0 0 20px}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin:0 0 2.5rem;color:var(--muted);font-size:.9rem;line-height:1.9}
+.toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+.toc>ol{columns:2;column-gap:2rem;margin:0;padding-left:1.4em}
+.toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+.toc li{margin-bottom:.3rem;break-inside:avoid}
+.toc li li{color:var(--muted)}
+.toc a{color:var(--text);text-decoration:none}
+.toc a:hover{color:var(--accent);text-decoration:underline}
+h2{font-size:1.6rem;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:.35rem;margin-top:2.6rem}
+h3{font-size:1.25rem;color:var(--text);margin-top:1.8rem}
+p{margin:0 0 20px}
+ul,ol{margin:0 0 1.2rem;padding-left:1.4em}
+a{color:var(--link)}
+sup{font-size:.72em}
+sup a{color:var(--link);text-decoration:none}
+sup a:hover{text-decoration:underline}
+sup:target{background:var(--box)}
+.box{background:var(--box);border:1px solid var(--line);padding:1rem 1.2rem;margin:0 0 1.4rem}
+.box strong{color:var(--accent)}
+.refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}
+.refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+.refs em{font-style:italic}
+.refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+.refs li>a:first-child{font-weight:700;text-decoration:none}
+.refs sup a{font-style:italic;font-weight:700}
+.refs li:target,sup:target{background:var(--box)}
+.endnote{font-size:.9rem;color:var(--muted)}
+@media (max-width:480px){
+  .toc>ol{columns:1}
+}
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">科学コミュニケーション・出版の仕組み</p>
+<h1>学術論文と書籍――確かめ方と届き方の違い</h1>
+<p class="subtitle">How Academic Papers and Books Are Verified and Reach Readers</p>
+
+<div class="lede">
+<p>学術論文と書籍は、どちらも研究の成果を読者に伝える媒体である。しかし、内容の確かさを保つ仕組みも、読者に届く仕組みも異なる。本稿は、その違いを確認できた範囲で整理し、一般の読者が学術論文に触れる機会がどのような仕組みに左右されるかを検討する。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong>本稿は、検索で得た要約と公開資料に基づく。一次文献の本文を読めなかったものが多く、確認できた事実だけを本文に書く。確認できなかった論点は、本文では扱わず、末尾の限界に集める。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">比べるものを定める</a></li>
+<li><a href="#sec2">確かさを保つ仕組み（論文）</a></li>
+<li><a href="#sec3">読者に届く仕組みとお金の流れ</a>
+<ol>
+<li><a href="#sec3-1">論文の届き方</a></li>
+<li><a href="#sec3-2">書籍の届き方</a></li>
+</ol>
+</li>
+<li><a href="#sec4">一般の読者が論文を探して読む手順</a>
+<ol>
+<li><a href="#sec4-1">検索の場所を選ぶ</a></li>
+<li><a href="#sec4-2">結果を絞り込む</a></li>
+<li><a href="#sec4-3">本文を入手する</a></li>
+<li><a href="#sec4-4">読む前に確かめること</a></li>
+<li><a href="#sec4-5">科学書という経路</a></li>
+</ol>
+</li>
+<li><a href="#sec5">反対の立場の検討</a></li>
+<li><a href="#sec6">結論と限界</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 比べるものを定める</h2>
+<p>本稿での用法を示す。学術論文とは、研究者が研究の結果を学術誌に投稿し、審査を経て掲載される文章である。学術誌とは、論文を定期的に掲載する雑誌を指す。ここでいう査読とは、掲載の前に同じ分野の研究者が内容を評価する仕組みである。</p>
+<p>書籍とは、出版社が刊行する本を指し、紙の本と電子書籍の両方を含む。本稿では、一般向けの科学書を中心に扱う。</p>
+<p>比較の軸は三つとする。内容の確かさを保つ仕組み、読者に届く仕組み、お金の流れである。資料の量には偏りがあり、論文側には批判的な材料が多く、書籍側の確認できた材料は少ない。この非対称は資料の偏りによるものであり、どちらかの媒体の優劣を示すものではない。</p>
+
+<h2 id="sec2">2. 確かさを保つ仕組み（論文）</h2>
+<p>査読は、論文の内容が分野の基準を満たすかを、掲載の前に確かめる仕組みである。投稿者とは別の専門家が、誤りや根拠の不足を指摘し、掲載の可否に反映させる。筆者は、これが論文の確かさを支える中心的な仕組みだと考える。</p>
+<p>しかし、査読には限界も報告されている。ある編集者の経験として、論文の査読を依頼しても、 10 人以上の候補者に断られることがあるとされる <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。査読者が不足すると、投稿者が自ら査読者を推薦する状況が生じ、不適切な関係を招く可能性が指摘されている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>査読は無報酬で行われることが多い。査読者による不正も指摘されている <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
+<div class="box"><strong>区分 : (b) 未確定の仮説</strong><br>査読者の確保と倫理が、査読の働きを左右すると筆者は考える。査読の効果を量的に示す研究については、後述の限界で触れる。</div>
+
+<h2 id="sec3">3. 読者に届く仕組みとお金の流れ</h2>
+<h3 id="sec3-1">3.1 論文の届き方</h3>
+<p>学術出版の市場は高度に集中しており、出版社の利益率が高いことが指摘されている <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。論文の読者は、学術誌の購読を通じて論文に届く形が中心だと、今回の資料からは読める。掲載料を著者側が払い、無料で公開する形も存在するが、その割合と条件は今回確認していない。</p>
+<h3 id="sec3-2">3.2 書籍の届き方</h3>
+<p>書籍は、販売を通じて読者に届き、著者には契約に応じて印税が支払われる。印税の水準や計算の基準は、契約によって異なる。今回確認した資料は二次情報であり、日本の契約条件に当てはまるかは確かめていない。そのため、印税の数値は本稿では示さない。</p>
+<p>論文と書籍では、費用を負担する主体と収入を得る主体が異なる。ただし、両者の実際の負担割合は、今回の資料では確認していない。</p>
+
+<h2 id="sec4">4. 一般の読者が論文を探して読む手順</h2>
+<p>ある一般の読者が、特定のテーマについて書かれた論文を探したいとする。研究に携わらない人が取りうる行動は、おおむね、検索の場所を選ぶ、結果を絞り込む、本文を入手する、読む前に確かめる、の四段階に分けられる。以下では、それぞれの段階で使える手段と、その注意点を示す。</p>
+<p>ここで示す手段の多くは、大学図書館や一般向けの解説に基づく。サービスの仕様は変わることがあるため、利用の前に各サービスの公式ページで確かめる必要がある。</p>
+
+<h3 id="sec4-1">4.1 検索の場所を選ぶ</h3>
+<p>最初の入口として、無料で使える検索サービスが挙げられる。国際的な論文を横断的に探すには、 Google Scholar を使う方法がある <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。 Google Scholar は、日本語と英語の文献をまとめて検索でき、本文中の語でもヒットする。その反面、検索結果にはノイズが多くなりやすく、古い文献も混ざるため、発表年を確かめる必要がある。</p>
+<p>国内の文献を探すなら、国立情報学研究所が提供する CiNii Research が使える <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。論文のほか、図書や博士論文も横断的に探せる。詳細検索では著者名や刊行物名で絞り込める。 2022 年に旧 CiNii Articles は CiNii Research に統合されたと、大学図書館の資料は説明している。</p>
+<p>国内の学会誌を探すなら、 J-STAGE も役立つ。 J-STAGE は、国内の学協会が発行する学術誌を電子化して公開するプラットフォームで、科学技術振興機構が運営している <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。学会によって無料で読める時期や条件は異なるため、個別に確かめる必要がある。</p>
+
+<h3 id="sec4-2">4.2 結果を絞り込む</h3>
+<p>検索語は、日本語と英語の両方で試すと見つかりやすい。たとえば、テーマの一般的な言葉に加えて、専門用語の英語表記を組み合わせる。英語の論文を探す場合は、英語の専門用語で検索すると結果が増えることがある。</p>
+<p>結果を絞るには、発表年、著者名、掲載誌の種類を使う。特定の研究者の業績を追うなら、その著者名で検索し、同じテーマの論文を並べて読むとよい。発表年は、分野によって意味が変わるため、直近の論文と古典的な論文を区別して扱う。</p>
+
+<h3 id="sec4-3">4.3 本文を入手する</h3>
+<p>検索結果に「 PDF 」や「本文リンク」の表示があれば、そこから無料で本文を読める。表示がない場合は、いくつかの手段がある。</p>
+<ul>
+<li><strong>ブラウザの拡張機能</strong> : Unpaywall は、論文の識別子 (DOI) をもとに、著者や機関が公開した合法的な無料版を探す拡張機能である <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。 DOI を持たない文献は見つからないことがある。初期の報道では取得率が約 50% とされたが、現在の数値は確認していない。</li>
+<li><strong>著者の公開ページ</strong> : 著者の所属機関のページや研究者の業績ページに、全文が公開されている場合がある。</li>
+<li><strong>図書館</strong> : 大学図書館や公共図書館で、所蔵資料と契約しているデータベースを確かめる。利用できる範囲は図書館によって異なる。</li>
+<li><strong>国立国会図書館の遠隔複写</strong> : 国立国会図書館の所蔵資料を、コピーの郵送で受け取る仕組みがある。利用には利用者登録が必要で、簡易登録は満 18 歳以上が対象とされる。使用目的が「調査研究」であることが条件の一つであり、電子資料は対象外である <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。</li>
+</ul>
+
+<h3 id="sec4-4">4.4 読む前に確かめること</h3>
+<p>論文を読む前に、掲載誌が査読を経ているかを確かめる。学会の公式サイトに、投稿規程や審査の方針が載っている場合がある。査読の仕組みが分からない場合は、その論文を一つの材料として扱い、結論を急がない。</p>
+<p>次に、研究の種類を確かめる。実験、調査、総説、解説記事では、言えることの範囲が異なる。要旨を読み、本文の方法と対象が、自分の関心に合っているかを確かめる。</p>
+<p>最後に、一本の論文で結論を決めない。同じテーマの複数の研究を読み比べると、研究全体の傾向が見えやすくなる。この点は、 5 節で論じる反対の立場の検討とも関わる。</p>
+<div class="box"><strong>筆者の見立て</strong><br>専門用語と英語の本文は、一般の読者にとって読みこなす負担になり得る。この負担が、論文に直接触れる機会をどの程度減らすかは、今回の資料では確認していない。</div>
+
+<h3 id="sec4-5">4.5 科学書という経路</h3>
+<p>論文に直接触れる以外に、科学書を介して研究の内容に触れる経路がある。科学書の役割については、学術的な議論がある。ある出版物は、科学の権威が一般の懸念を退けることがあると論じ、一般向けの科学書が公共の議論を促す役割を十分に果たしていないとする <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。ただし、この主張は紹介文に基づくもので、本稿では読者の知識に与える効果を確認していない。</p>
+
+<h2 id="sec5">5. 反対の立場の検討</h2>
+<p>「一般の読者は論文に直接触れるべきだ」という立場は、一次情報に当たることで、報道や解説の誇張を避けられると主張しうる。筆者はこれを有力な論拠と見る。一方、「書籍や解説を通すべきだ」という立場は、単独の研究の読み違えを避け、研究全体の文脈を得られると主張しうる。筆者はこれも有力な論拠と見る。</p>
+<p>本稿は、どちらの立場が正しいかを判定しない。判定には、論文に触れた読者の理解を比べる調査が必要であり、今回は確認できなかった。</p>
+
+<h2 id="sec6">6. 結論と限界</h2>
+<p>確認できた範囲で言えることは次のとおりである。論文の確かさは査読という仕組みに依存し、その仕組みは査読者の確保と倫理に限界があると報告されている <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup><sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup><sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。学術出版の市場は集中しており、その利益率が論じられている <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 。一般の読者が論文を探す手段は、無料の検索サービスと公開されている本文を組み合わせれば、一定の範囲で存在する <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup><sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup><sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup><sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 。科学書の役割については、肯定と否定の両方の議論があるが、どちらが妥当かは判断できない。</p>
+<p>本稿の限界は次のとおりである。</p>
+<ul>
+<li>一次文献の本文を読めなかったものが多い。査読の効果に否定的な医学分野のレビューについては要約を得たが、原文を確認できていないため本文では扱わない。</li>
+<li>書籍の確認工程、学術書の査読の有無、誤りの訂正の仕組みについて、資料を確認できなかった。そのため、書籍の確かさを保つ仕組みは比較できない。</li>
+<li>印税の水準と計算の基準について、二次情報しか確認できなかった。日本の契約条件には当てはまるかを確かめていない。</li>
+<li>一般の読者が論文にどの経路で触れているかの実態、科学書が読者の知識に与える効果について、実証的な資料を確認できなかった。</li>
+<li>4 節の検索手順は、解説と大学図書館の資料に基づく。各サービスの現在の仕様と無料公開の割合は確認していない。</li>
+</ul>
+<p>今後の検討には、書籍の確認工程と、論文に触れた読者の理解に関する一次資料が必要である。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> 日本学術会議 査読に関する議事要旨（会議の日付は要確認）。 <a href="https://www.scj.go.jp/ja/member/iinkai/gakutai/pdf/sadoku_kentou-youshi2503.pdf">日本学術会議 議事要旨 PDF</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> ニュースイッチ「査読をめぐる報道」（記事の見出しと公開日は要確認）。 <a href="https://newswitch.jp/p/38821">ニュースイッチ</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> 国立国会図書館 カレントアウェアネス CA1829 「査読をめぐる新たな問題」（佐藤翔）。 <a href="https://current.ndl.go.jp/ca1829">カレントアウェアネス</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> "The Political Economy of Academic Publishing: On the Commodification of a Public Good" 。 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8211248/">PubMed Central 掲載論文</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> Google Scholar の使い方を解説する一般向けの記事（本文中の検索とノイズの注意点はこの解説に基づく）。 <a href="https://serai.jp/living/1156465">一般向け解説記事</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> <sup><a href="#fnref-6-2">b</a></sup> 科学技術振興機構 (JST) 「 J-STAGE 」の案内パンフレット。 <a href="https://www.jst.go.jp/pdf/pamph_jstage.pdf">JST パンフレット PDF</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> 大学図書館が作成した CiNii Research の利用案内（ 2022 年）。 <a href="https://lib.nuhw.ac.jp/wp-content/uploads/2022/11/2022Librarysupport_CiNiiResearch.pdf">CiNii Research 利用案内 PDF</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Unpaywall の仕組みを紹介する記事（ 2017 年の公開時の報道。現在の仕様は未確認）。 <a href="https://archive.techdirt.com/articles/20170319/02251236949/unpaywall-browser-add-on-that-finds-legal-free-copies-academic-papers-you-see-as-you-browse-web.shtml">Techdirt 記事</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> 国立国会図書館「遠隔複写サービス」の案内。 <a href="https://www.ndl.go.jp/jp/service/copy3.html">国立国会図書館 遠隔複写</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> <em>Communicating Popular Science</em>, Palgrave Macmillan, 2013 （科学の大衆化の役割を論じた書籍。紹介ページの要約に基づく）。 <a href="https://link.springer.com/book/10.1057/9781137017581">Springer 書誌ページ</a></li>
+</ol>
+</div>
+
+<p class="endnote">※ 本稿は、検索で得た要約と公開資料に基づく。一次文献の本文を確認していない論点は、確定した事実として扱わない。</p>
+
+</main>
+</body>
+</html>
