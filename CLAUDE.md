@@ -65,7 +65,7 @@ Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠�
   - ファイル名の変更は GitHub Pages の公開 URL を変えるので、リネームの可否は実行前に必ず確認する。
 - 新しいファイル名の指定に拡張子が無いときは、ディレクトリの慣例（このリポジトリでは `.html` ）を補って進めてよい。質問で止まらない。拡張子が混在している場合は質問する。
 - 新しいファイル名は、小文字の英数字とハイフン（ kebab-case ）で、主題を表す語にする（例 : `undermining-effect.html` ）。連作は `regime-01-concept-and-history.html` のように連番を、書評は `review-` を頭に付ける。
-  - 古い記事に、アンダースコア区切りの `japan_industrial_products_strength.html` と `swiss_neutrality_and_direct_democracy.html` が残る。新規の手本にしない。リネームは公開 URL を変えるので、ユーザーの承認なしに行わない。
+  - 以前あったアンダースコア区切りの 2 本（ `japan_industrial_products_strength.html` と `swiss_neutrality_and_direct_democracy.html` ）は、ハイフン区切りに改名済みである。リネームは公開 URL を変えるので、ユーザーの承認なしに行わない。
 
 ## index.html の構造
 `index.html` はポータルで、記事とは別の意匠の 1 枚物である（ `<style>` 内蔵、 JavaScript なし）。記事を 11 のテーマに分け、各テーマの下を小見出しごとのカード群に分ける。折りたたみ（アコーディオン）、検索、トグルは無い。全テーマは常に展開されている。
