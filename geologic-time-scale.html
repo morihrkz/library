@@ -5,106 +5,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>地質時代入門―― 100 億年を四段階のスケールでたどる</title>
 <style>
-:root{
-  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
-}
-*{box-sizing:border-box;}
-body{
-  background:var(--bg); color:var(--text); margin:0;
-  line-height:2;font-size:1.1875rem}
-main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
-.kicker{font-size:.9375rem; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
-h1{font-size:2rem; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
-.subtitle{ color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
-  font-size:.9rem; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{ margin:0 0 14px;}
-.lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
-.toc>ol{columns:2;column-gap:32px}
-.toc-title{font-size:.9375rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
-.toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:1.03125rem;break-inside:avoid}
-.toc a{color:var(--text);text-decoration:none}
-.toc a:hover{color:var(--accent);text-decoration:underline}
-.toc li ol{margin-top:7px;margin-bottom:11px}
-.toc li li{font-size:.96875rem;color:var(--muted);margin-bottom:5px}
-h2{font-size:1.625rem; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
-h3{font-size:1.25rem; margin:32px 0 12px;}
-h4,h5{font-size:1.125rem; margin:24px 0 10px;}
-p{ margin:0 0 20px;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
-.box strong{color:var(--accent);}
-table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:1rem;}
-th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
-th{background:var(--box);}
-ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
-a{color:var(--link);}
-sup{font-size:.72em;}
-sup a{color:var(--link); text-decoration:none;}
-sup a:hover{text-decoration:underline;}
-.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
-.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs p{font-size:.9rem; line-height:1.65; margin:0 0 11px;}
-.refs ol{margin:0 0 11px;}
-.refs li{font-size:.9rem; line-height:1.65; margin:0 0 11px;}
-.refs li>a:first-child{font-weight:700; text-decoration:none;}
-.refs sup a{font-style:italic; font-weight:700;}
-.refs li:target, sup:target{background:var(--box);}
-.refs em{font-style:italic;}
-.note{font-size:.9375rem; color:var(--muted); margin-top:20px;}
-.diagram-figure{margin:0 0 30px;}
-.diagram-figure svg{width:100%; height:auto; display:block;}
-.diagram-figure figcaption{font-size:.9375rem; color:var(--muted); margin-top:10px; line-height:1.7;}
-.diagram-band-label{font-size:.9375rem; fill:#fff;}
-.diagram-band-label.dark{fill:var(--text);}
-.diagram-leader-label{font-size:.90625rem; fill:var(--text); text-anchor:middle;}
-.diagram-leader-line{stroke:var(--muted); stroke-width:1;}
-.diagram-axis-line{stroke:var(--line); stroke-width:1;}
-.diagram-axis-tick{stroke:var(--line); stroke-width:1;}
-.diagram-axis-text{font-size:.875rem; fill:var(--muted); text-anchor:middle;}
-.diagram-event circle{fill:var(--bg); stroke:var(--accent); stroke-width:1.6;}
-.diagram-event text{font-size:.875rem; fill:var(--accent); text-anchor:middle; font-weight:bold;}
-.diagram-event-line{stroke:var(--accent); stroke-width:1; stroke-dasharray:2 2;}
-.diagram-zoom-box{fill:none; stroke:var(--accent); stroke-width:1.4; stroke-dasharray:5 4;}
-.diagram-group-label{font-size:.90625rem; fill:var(--muted); text-anchor:middle;}
-.diagram-group-line{stroke:var(--muted); stroke-width:1;}
-strong{font-weight:bold;}
-blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
-blockquote p{margin-bottom:10px;}
-blockquote p:last-child{margin-bottom:0;}
-hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
-code{font-size:.88em; background:var(--box); padding:.1em .3em;}
-pre{font-size:1rem; background:var(--box); border:1px solid var(--line);
-  padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
-pre code{background:none; padding:0;}
-@media (max-width:480px){
-  h1{font-size:1.6875rem;}
-  .toc>ol{columns:1}
-}
-
-  .tblwrap { overflow-x: auto; }
-  .tblwrap table { min-width: 36rem; }
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { padding-left: 1.8rem; position: relative; margin: .4rem 0; }
+  ul.check li::before { content: "\2610"; position: absolute; left: 0; font-size: 1.1rem; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 図(figure.diagram。マークアップは SKILL.md の「図」) */
+  figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
+  figure.diagram svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
+  figcaption .fig-label { color: var(--accent); font-weight: 700; margin-right: .3em; }
+  @media (max-width: 40rem) {
+    figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
+    figure.diagram svg { max-width: none; }
+    figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
+  }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
   @media (max-width: 40rem) {
     table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
     table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cards td:last-child { border-bottom: 0; }
-    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
     table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
     table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
     table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cardrow td:last-child { border-bottom: 0; }
-    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
   }
+  /* 記事固有 */
+  .diagram-figure { margin:0 0 30px; }
+  .diagram-figure svg { width:100%; height:auto; display:block; }
+  .diagram-figure figcaption { font-size:.9375rem; color:var(--muted); margin-top:10px; line-height:1.7; }
+  .diagram-band-label { font-size:.9375rem; fill:#fff; }
+  .diagram-band-label.dark { fill:var(--text); }
+  .diagram-leader-label { font-size:.90625rem; fill:var(--text); text-anchor:middle; }
+  .diagram-leader-line { stroke:var(--muted); stroke-width:1; }
+  .diagram-axis-line { stroke:var(--line); stroke-width:1; }
+  .diagram-axis-tick { stroke:var(--line); stroke-width:1; }
+  .diagram-axis-text { font-size:.875rem; fill:var(--muted); text-anchor:middle; }
+  .diagram-event circle { fill:var(--bg); stroke:var(--accent); stroke-width:1.6; }
+  .diagram-event text { font-size:.875rem; fill:var(--accent); text-anchor:middle; font-weight:bold; }
+  .diagram-event-line { stroke:var(--accent); stroke-width:1; stroke-dasharray:2 2; }
+  .diagram-zoom-box { fill:none; stroke:var(--accent); stroke-width:1.4; stroke-dasharray:5 4; }
+  .diagram-group-label { font-size:.90625rem; fill:var(--muted); text-anchor:middle; }
+  .diagram-group-line { stroke:var(--muted); stroke-width:1; }
 </style>
 </head>
 <body>
@@ -392,7 +401,7 @@ pre code{background:none; padding:0;}
 <p>なお、農耕の開始など人類の文明にかかわる出来事は、この図が表す完新世（約 1 万 1700 年前〜現在）の中に収まる。しかし完新世そのものが、この図の縮尺ではおよそ 1 ピクセルの線にしかならない。人類の文明の細部を見るには、この図解 4 のさらに数百倍拡大する必要がある、というのが率直な感覚である。</p>
 <h2 id="sec6">6. 「ジュラ紀」「白亜紀」は何にちなむ名前か</h2>
 <p>紀の名前の多くは、その時代の地層が最初に研究された土地の名前（地名）にちなむ。 19 世紀のヨーロッパ、とりわけ英国で地質学が確立したため、英国やその周辺の地名が目立つ <sup><a id="fnref-9-1" href="#ref-9">[9]</a></sup> 。</p>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>紀</th>
@@ -401,40 +410,40 @@ pre code{background:none; padding:0;}
 </thead>
 <tbody>
 <tr>
-<td>カンブリア紀</td>
-<td>ウェールズのラテン語名「カンブリア」</td>
+<td data-label="紀">カンブリア紀</td>
+<td data-label="由来">ウェールズのラテン語名「カンブリア」</td>
 </tr>
 <tr>
-<td>オルドビス紀</td>
-<td>北ウェールズに住んだケルト系部族「オルドウィケス族」</td>
+<td data-label="紀">オルドビス紀</td>
+<td data-label="由来">北ウェールズに住んだケルト系部族「オルドウィケス族」</td>
 </tr>
 <tr>
-<td>シルル紀</td>
-<td>南東ウェールズに住んだケルト系部族「シルレス族」</td>
+<td data-label="紀">シルル紀</td>
+<td data-label="由来">南東ウェールズに住んだケルト系部族「シルレス族」</td>
 </tr>
 <tr>
-<td>デボン紀</td>
-<td>英国イングランド南西部のデボン州</td>
+<td data-label="紀">デボン紀</td>
+<td data-label="由来">英国イングランド南西部のデボン州</td>
 </tr>
 <tr>
-<td>石炭紀</td>
-<td>この時代の地層から石炭が多く産出することにちなむ（地名ではない）</td>
+<td data-label="紀">石炭紀</td>
+<td data-label="由来">この時代の地層から石炭が多く産出することにちなむ（地名ではない）</td>
 </tr>
 <tr>
-<td>ペルム紀</td>
-<td>ロシア・ウラル山脈地方の旧ペルム州</td>
+<td data-label="紀">ペルム紀</td>
+<td data-label="由来">ロシア・ウラル山脈地方の旧ペルム州</td>
 </tr>
 <tr>
-<td>三畳紀</td>
-<td>ドイツで見られる三層構造の地層（ラテン語で「三」）</td>
+<td data-label="紀">三畳紀</td>
+<td data-label="由来">ドイツで見られる三層構造の地層（ラテン語で「三」）</td>
 </tr>
 <tr>
-<td>ジュラ紀</td>
-<td>フランスとスイスの国境をなすジュラ山脈</td>
+<td data-label="紀">ジュラ紀</td>
+<td data-label="由来">フランスとスイスの国境をなすジュラ山脈</td>
 </tr>
 <tr>
-<td>白亜紀</td>
-<td>「白亜（チョーク）」を意味するラテン語 creta 。地層に含まれる白い石灰質の層にちなむ</td>
+<td data-label="紀">白亜紀</td>
+<td data-label="由来">「白亜（チョーク）」を意味するラテン語 creta 。地層に含まれる白い石灰質の層にちなむ</td>
 </tr>
 </tbody>
 </table>

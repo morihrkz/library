@@ -5,89 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>インターネット相互接続論――ピアリング・トランジット・ CDN 事業モデル</title>
 <style>
-:root{
-  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52;
-}
-*{box-sizing:border-box;}
-body{
-  background:var(--bg); color:var(--text); margin:0;
-  line-height:2;font-size:1.1875rem}
-main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
-.kicker{font-size:.9375rem; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
-h1{font-size:2rem; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
-.subtitle{ color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.meta{border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted);
-  font-size:.9rem; line-height:1.9; padding:16px 0; margin:0 0 40px;}
-.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{ margin:0 0 14px;}
-.lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
-.toc>ol{columns:2;column-gap:32px}
-.toc-title{font-size:.9375rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
-.toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:1.03125rem;break-inside:avoid}
-.toc li ol{margin-top:7px;margin-bottom:11px}
-.toc li li{font-size:.96875rem;color:var(--muted);margin-bottom:5px}
-.toc a{color:var(--text);text-decoration:none}
-.toc a:hover{color:var(--accent);text-decoration:underline}
-h2{font-size:1.625rem; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
-h3{font-size:1.25rem; margin:32px 0 12px;}
-h4,h5{font-size:1.125rem; margin:24px 0 10px;}
-p{ margin:0 0 20px;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
-.box strong{color:var(--accent);}
-table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:1rem;}
-th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
-th{background:var(--box);}
-ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
-a{color:var(--link);}
-sup{font-size:.72em;}
-sup a{color:var(--link); text-decoration:none;}
-sup a:hover{text-decoration:underline;}
-.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
-.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs p{font-size:.9rem; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
-.refs ol{margin:0 0 11px;}
-.refs li{font-size:.9rem; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
-.refs li>a:first-child{font-weight:700; text-decoration:none;}
-.refs sup a{font-style:italic; font-weight:700;}
-.refs li:target, sup:target{background:var(--box);}
-.refs em{font-style:italic;}
-.note{font-size:.9375rem; color:var(--muted); margin-top:20px;}
-strong{font-weight:bold;}
-blockquote{border-left:3px solid var(--line); color:var(--muted); margin:0 0 20px; padding-left:18px; font-style:italic;}
-blockquote p{margin-bottom:10px;}
-blockquote p:last-child{margin-bottom:0;}
-hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
-code{font-size:.88em; background:var(--box); padding:.1em .3em;}
-pre{font-size:1rem; background:var(--box); border:1px solid var(--line);
-  padding:16px 18px; margin:0 0 20px; overflow-x:auto; line-height:1.6;}
-pre code{background:none; padding:0;}
-@media (max-width:480px){
-  h1{font-size:1.6875rem;}
-  .toc>ol{columns:1}
-}
-
-  .tblwrap { overflow-x: auto; }
-  .tblwrap table { min-width: 36rem; }
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { padding-left: 1.8rem; position: relative; margin: .4rem 0; }
+  ul.check li::before { content: "\2610"; position: absolute; left: 0; font-size: 1.1rem; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 図(figure.diagram。マークアップは SKILL.md の「図」) */
+  figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
+  figure.diagram svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
+  figcaption .fig-label { color: var(--accent); font-weight: 700; margin-right: .3em; }
+  @media (max-width: 40rem) {
+    figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
+    figure.diagram svg { max-width: none; }
+    figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
+  }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
   @media (max-width: 40rem) {
     table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
     table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cards td:last-child { border-bottom: 0; }
-    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
     table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
     table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
     table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cardrow td:last-child { border-bottom: 0; }
-    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
   }
 </style>
 </head>
@@ -836,7 +844,7 @@ Cloudflare ・ Fastly ・ Akamai など各社が、 AI 関連トラフィック�
 Edgio の破綻に見られるように、専業型 CDN 市場は特に価格競争とコモディティ化の圧力にさらされ続けている。一方で、 AI 関連トラフィックの急増やエッジコンピューティング需要の高まりなど、 CDN インフラに対する新たな需要も生まれつつある。
 本文書で示した「物理構造→お金の流れ→企業タイプ別分析」という枠組みは、今後業界地図が変化した場合にも、新しい事例を理解するための土台として活用できるはずである。</p>
 <h2 id="sec8">8. 用語集</h2>
-<table>
+<table class="cards">
 <thead>
 <tr>
 <th>用語</th>
@@ -845,76 +853,76 @@ Edgio の破綻に見られるように、専業型 CDN 市場は特に価格競
 </thead>
 <tbody>
 <tr>
-<td>AS （自律システム）</td>
-<td>インターネット上で独立した経路制御ポリシーを持つネットワークの単位。固有の AS 番号を持つ</td>
+<td data-label="用語">AS （自律システム）</td>
+<td data-label="定義">インターネット上で独立した経路制御ポリシーを持つネットワークの単位。固有の AS 番号を持つ</td>
 </tr>
 <tr>
-<td>ピアリング (Peering)</td>
-<td>二つの AS が、自社および顧客向けの経路情報のみを直接交換する接続形態。無償 (Settlement-free) と有償 (Paid) がある</td>
+<td data-label="用語">ピアリング (Peering)</td>
+<td data-label="定義">二つの AS が、自社および顧客向けの経路情報のみを直接交換する接続形態。無償 (Settlement-free) と有償 (Paid) がある</td>
 </tr>
 <tr>
-<td>トランジット (Transit)</td>
-<td>ネットワークがインターネット全体への到達性を有償で提供するサービス</td>
+<td data-label="用語">トランジット (Transit)</td>
+<td data-label="定義">ネットワークがインターネット全体への到達性を有償で提供するサービス</td>
 </tr>
 <tr>
-<td>IX (Internet Exchange)</td>
-<td>複数のネットワークが集まり相互にトラフィックを交換する接続拠点</td>
+<td data-label="用語">IX (Internet Exchange)</td>
+<td data-label="定義">複数のネットワークが集まり相互にトラフィックを交換する接続拠点</td>
 </tr>
 <tr>
-<td>Tier1/2/3</td>
-<td>ネットワークの階層を示す慣習的分類。 Tier1 は Settlement-free peering のみでインターネット全体に到達できる最上位層</td>
+<td data-label="用語">Tier1/2/3</td>
+<td data-label="定義">ネットワークの階層を示す慣習的分類。 Tier1 は Settlement-free peering のみでインターネット全体に到達できる最上位層</td>
 </tr>
 <tr>
-<td>Anycast</td>
-<td>同一 IP アドレスを複数拠点から広告し、 BGP 経路選択により最適な拠点にルーティングする技術</td>
+<td data-label="用語">Anycast</td>
+<td data-label="定義">同一 IP アドレスを複数拠点から広告し、 BGP 経路選択により最適な拠点にルーティングする技術</td>
 </tr>
 <tr>
-<td>PoP (Point of Presence)</td>
-<td>CDN 事業者がネットワーク機器（エッジサーバー等）を設置する拠点</td>
+<td data-label="用語">PoP (Point of Presence)</td>
+<td data-label="定義">CDN 事業者がネットワーク機器（エッジサーバー等）を設置する拠点</td>
 </tr>
 <tr>
-<td>エッジサーバー</td>
-<td>PoP に配置され、エンドユーザーに直接コンテンツを配信するキャッシュサーバー</td>
+<td data-label="用語">エッジサーバー</td>
+<td data-label="定義">PoP に配置され、エンドユーザーに直接コンテンツを配信するキャッシュサーバー</td>
 </tr>
 <tr>
-<td>オリジンサーバー</td>
-<td>コンテンツの原本を保持する、 CDN 利用企業自身のサーバー</td>
+<td data-label="用語">オリジンサーバー</td>
+<td data-label="定義">コンテンツの原本を保持する、 CDN 利用企業自身のサーバー</td>
 </tr>
 <tr>
-<td>キャッシュヒット率</td>
-<td>全リクエストのうち、オリジンサーバーへの問い合わせなしにキャッシュから直接応答できた割合</td>
+<td data-label="用語">キャッシュヒット率</td>
+<td data-label="定義">全リクエストのうち、オリジンサーバーへの問い合わせなしにキャッシュから直接応答できた割合</td>
 </tr>
 <tr>
-<td>TTL (Time To Live)</td>
-<td>キャッシュされたコンテンツが有効とみなされる期限</td>
+<td data-label="用語">TTL (Time To Live)</td>
+<td data-label="定義">キャッシュされたコンテンツが有効とみなされる期限</td>
 </tr>
 <tr>
-<td>キャッシュパージ／無効化</td>
-<td>TTL 満了を待たず、明示的にキャッシュを削除・更新する操作</td>
+<td data-label="用語">キャッシュパージ／無効化</td>
+<td data-label="定義">TTL 満了を待たず、明示的にキャッシュを削除・更新する操作</td>
 </tr>
 <tr>
-<td>コロケーション</td>
-<td>自社機器を他社データセンター内のラックスペースに設置すること</td>
+<td data-label="用語">コロケーション</td>
+<td data-label="定義">自社機器を他社データセンター内のラックスペースに設置すること</td>
 </tr>
 <tr>
-<td>クロスコネクト</td>
-<td>データセンター内で異なる事業者のネットワーク同士を物理的に接続する配線・契約</td>
+<td data-label="用語">クロスコネクト</td>
+<td data-label="定義">データセンター内で異なる事業者のネットワーク同士を物理的に接続する配線・契約</td>
 </tr>
 <tr>
-<td>OCA (Open Connect Appliance)</td>
-<td>Netflix が開発・提供する、自社コンテンツ配信専用のキャッシュサーバー機器</td>
+<td data-label="用語">OCA (Open Connect Appliance)</td>
+<td data-label="定義">Netflix が開発・提供する、自社コンテンツ配信専用のキャッシュサーバー機器</td>
 </tr>
 <tr>
-<td>SFI (Settlement-free Interconnection)</td>
-<td>対価の授受を伴わない相互接続。 Netflix Open Connect の接続方式の一つ</td>
+<td data-label="用語">SFI (Settlement-free Interconnection)</td>
+<td data-label="定義">対価の授受を伴わない相互接続。 Netflix Open Connect の接続方式の一つ</td>
 </tr>
 <tr>
-<td>FNA (Facebook Network Appliance)</td>
-<td>Meta が自社・ ISP パートナーのネットワーク内に設置する配信用機器</td>
+<td data-label="用語">FNA (Facebook Network Appliance)</td>
+<td data-label="定義">Meta が自社・ ISP パートナーのネットワーク内に設置する配信用機器</td>
 </tr>
 <tr>
-<td>ACV (Annual Contract Value)</td>
-<td>年間契約金額。エンタープライズ向け SaaS ・クラウド契約の規模を示す指標</td>
+<td data-label="用語">ACV (Annual Contract Value)</td>
+<td data-label="定義">年間契約金額。エンタープライズ向け SaaS ・クラウド契約の規模を示す指標</td>
 </tr>
 </tbody>
 </table>

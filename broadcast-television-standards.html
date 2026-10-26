@@ -5,33 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>テレビ放送方式の系譜―― 29.97 はなぜデジタル時代にも残ったのか</title>
 <style>
-:root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-size:1.1875rem;line-height:2}main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
-header{margin-bottom:40px}.kicker{font-size:.9375rem;letter-spacing:.14em;font-weight:bold;color:var(--accent);margin:0 0 14px}h1{font-size:2rem;line-height:1.6;margin:0 0 10px;font-weight:600}.subtitle{line-height:1.8;color:var(--muted);margin:0 0 28px}.lede{border-left:3px solid var(--accent);padding-left:18px;margin:0 0 40px}.lede p{color:var(--muted);margin:0 0 14px}.lede p:last-child{margin-bottom:0}.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:0 0 40px;font-size:.9rem;color:var(--muted);line-height:1.9}.keywords{font-size:.9375rem;color:var(--muted);margin:0}
-.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}.toc>ol{columns:2;column-gap:32px;margin:0}.toc-title{font-size:.9375rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}.toc li{margin-bottom:7px;font-size:1.03125rem;break-inside:avoid}.toc li ol{margin-top:7px;margin-bottom:11px}.toc li li{font-size:.96875rem;color:var(--muted);margin-bottom:5px}.toc a{color:var(--text);text-decoration:none}.toc a:hover{color:var(--accent);text-decoration:underline}
-h2{font-size:1.625rem;line-height:1.6;margin:52px 0 20px;padding-bottom:9px;border-bottom:1px solid var(--line);font-weight:600}h3{font-size:1.25rem;line-height:1.6;margin:32px 0 12px;font-weight:600}p{margin:0 0 20px}ul,ol{padding-left:1.4em;margin:0 0 20px}li{line-height:2;margin-bottom:9px}a{color:var(--accent)}sup{font-size:.72em;line-height:0}sup a{text-decoration:none}sup a:hover{text-decoration:underline}.box{background:var(--box);border:1px solid var(--line);padding:22px 24px;margin:0 0 28px;}.box strong{color:var(--accent)}.box ul{margin:10px 0 0}
-figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}figure svg{display:block;width:100%;height:auto}figcaption{text-align:center;color:var(--muted);font-size:.9375rem;line-height:1.7;margin-top:10px}svg text{fill:var(--text);font-size:.875rem}svg .muted{fill:var(--muted)}svg .stroke{stroke:var(--accent)}svg .line{stroke:var(--line)}table{width:100%;border-collapse:collapse;margin:24px 0 28px;font-size:1rem;line-height:1.65}th,td{text-align:left;vertical-align:top;padding:10px 11px;border:1px solid var(--line)}th{background:var(--box)}
-.refs{border-top:1px solid var(--line);margin-top:58px;padding-top:25px}.refs h2{border-bottom:none;margin-top:0;padding-bottom:0}.refs p{font-size:.9rem;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}.refs em{font-style:italic}.refs ol{margin:0 0 11px}.refs li{font-size:.9rem;line-height:1.65;margin:0 0 11px;overflow-wrap:anywhere;word-break:break-word}.refs li>a:first-child{font-weight:700;text-decoration:none}.refs sup a{font-style:italic;font-weight:700}.refs li:target, sup:target{background:var(--box)}.refs .note{font-size:.9375rem;color:var(--muted);margin-top:20px}
-@media (max-width:480px){h1{font-size:1.6875rem}.toc>ol{columns:1}.toc{padding:18px}.box{padding:20px 18px}figure{padding-left:2px;padding-right:2px}svg text{font-size:.75rem}table{font-size:.875rem}}
-
-  .tblwrap { overflow-x: auto; }
-  .tblwrap table { min-width: 36rem; }
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { padding-left: 1.8rem; position: relative; margin: .4rem 0; }
+  ul.check li::before { content: "\2610"; position: absolute; left: 0; font-size: 1.1rem; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 図(figure.diagram。マークアップは SKILL.md の「図」) */
+  figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
+  figure.diagram svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
+  figcaption .fig-label { color: var(--accent); font-weight: 700; margin-right: .3em; }
+  @media (max-width: 40rem) {
+    figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
+    figure.diagram svg { max-width: none; }
+    figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
+  }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
   @media (max-width: 40rem) {
     table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
     table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cards tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cards td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cards td:last-child { border-bottom: 0; }
-    table.cards td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cards td:first-child { background: #e6edf3; font-weight: bold; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
     table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
     table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
     table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
-    table.cardrow tr { border: 1px solid #bbb; margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
-    table.cardrow td { border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
     table.cardrow td:last-child { border-bottom: 0; }
-    table.cardrow td::before { content: attr(data-label); display: block; font-weight: bold; color: #2a4d69; }
-    table.cardrow th { background: #e6edf3; border: 0; border-bottom: 1px solid #e3e3e3; padding: .45rem .7rem; white-space: normal; text-align: left; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+  /* 記事固有 */
+  .keywords { font-size:.9375rem;color:var(--muted);margin:0 }
+  svg text { fill:var(--text);font-size:.875rem }
+  svg .muted { fill:var(--muted) }
+  @media (max-width:480px) {
+    svg text { font-size:.75rem }
   }
 </style>
 </head>
@@ -65,7 +136,7 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <p>NTSC は米国の方式委員会の名前で、後には同委員会がまとめたカラー映像方式を指す呼び名になった。映像の明るさを表す輝度信号は従来の白黒方式に近い形で送り、色の差を表す信号を色副搬送波に載せて重ねる。二つの色差信号を、位相が直角にずれた二つの波に割り当てる方式を直交振幅変調 (QAM) と呼ぶ。明るさの信号を保ちつつ、色の情報を既存のテレビチャンネルに収める工夫であった。</p>
 <p>ただし、色を重ねるだけでは白黒受像機との互換性や画面の見やすさを保てない。 1953 年の米連邦通信委員会 (FCC) の決定は、既存の音声搬送波との関係を含め、走査と色副搬送波の周波数を細かく定めている。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></p>
 <div class="box"><strong>29.97 fps はどう出てくる？</strong><p>白黒放送では 1 秒に 30 枚の画面を送っていた。カラー化では、映像搬送波と音声搬送波の間隔 4.5 MHz を 286 で割った値に水平走査周波数を合わせた。 1 画面を構成する走査線は 525 本なので、 525 本分を送る回数は約 29.97 回 / 秒、交互に送るフィールドは約 59.94 回 / 秒となる。</p><p>したがって 29.97 は、電源周波数から直接決めた数字ではない。白黒受像機との互換性を保ち、色信号と音声信号の干渉を抑える周波数設計から生まれた。 30 を 1.001 で割った値に近いため、制作現場では「 30÷1.001 」として扱われる。</p></div>
-<figure><svg viewBox="0 0 760 190" role="img" aria-label="4.5メガヘルツを286で割って水平走査周波数を求め、525本で割ってフレーム周波数を求める"><title>NTSC カラーの周波数計算</title><desc>4.5 MHz ÷ 286 は約 15,734.26 Hz 。水平走査周波数を 525 本で割ると約 29.97 フレーム毎秒となる。 2 倍の約 59.94 フィールド毎秒でインターレース走査する。</desc>
+<figure class="diagram"><svg viewBox="0 0 760 190" role="img" aria-label="4.5メガヘルツを286で割って水平走査周波数を求め、525本で割ってフレーム周波数を求める"><title>NTSC カラーの周波数計算</title><desc>4.5 MHz ÷ 286 は約 15,734.26 Hz 。水平走査周波数を 525 本で割ると約 29.97 フレーム毎秒となる。 2 倍の約 59.94 フィールド毎秒でインターレース走査する。</desc>
 <rect x="18" y="28" width="204" height="102" fill="#eceee7" stroke="#d7dcd2"/><rect x="278" y="28" width="204" height="102" fill="#eceee7" stroke="#d7dcd2"/><rect x="538" y="28" width="204" height="102" fill="#eceee7" stroke="#d7dcd2"/>
 <text x="120" y="58" text-anchor="middle">音声との間隔</text><text x="120" y="91" text-anchor="middle">4.5 MHz</text>
 <text x="380" y="58" text-anchor="middle">水平走査周波数</text><text x="380" y="91" text-anchor="middle">4.5 MHz ÷ 286</text><text x="380" y="116" text-anchor="middle" class="muted">約 15,734.26 Hz</text>
@@ -90,7 +161,7 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 
 <section><h2 id="sec3">3. デジタル化で変わったもの</h2>
 <p>デジタル放送では、映像と音声を数値データとして圧縮し、複数の番組や情報をまとめ、誤り訂正を加えて電波に載せる。受信機は電波からデータを取り出し、誤りを直して映像と音声を再生する。色は画素ごとの値として記録されるため、 NTSC ・ PAL ・ SECAM の色副搬送波は使わない。デジタル化で主に置き換わったのは、色を電波に重ねる方法と、電波でデータを送る仕組みである。</p>
-<figure><svg viewBox="0 0 760 180" role="img" aria-label="映像と音声を圧縮・多重化・誤り訂正して変調し、受信側で復元する流れ"><title>デジタル地上放送の信号の流れ</title><desc>映像・音声を圧縮し、番組データとして多重化する。誤り訂正符号を加え、変調して電波で送る。受信側で逆の処理を行う。</desc>
+<figure class="diagram"><svg viewBox="0 0 760 180" role="img" aria-label="映像と音声を圧縮・多重化・誤り訂正して変調し、受信側で復元する流れ"><title>デジタル地上放送の信号の流れ</title><desc>映像・音声を圧縮し、番組データとして多重化する。誤り訂正符号を加え、変調して電波で送る。受信側で逆の処理を行う。</desc>
 <rect x="8" y="35" width="112" height="76" fill="#eceee7" stroke="#d7dcd2"/><rect x="164" y="35" width="112" height="76" fill="#eceee7" stroke="#d7dcd2"/><rect x="320" y="35" width="112" height="76" fill="#eceee7" stroke="#d7dcd2"/><rect x="476" y="35" width="112" height="76" fill="#eceee7" stroke="#d7dcd2"/><rect x="632" y="35" width="120" height="76" fill="#eceee7" stroke="#d7dcd2"/>
 <text x="64" y="65" text-anchor="middle">映像・音声</text><text x="64" y="91" text-anchor="middle" class="muted">素材</text><text x="220" y="65" text-anchor="middle">圧縮・多重化</text><text x="220" y="91" text-anchor="middle" class="muted">番組データ</text><text x="376" y="65" text-anchor="middle">誤り訂正</text><text x="376" y="91" text-anchor="middle" class="muted">受信に備える</text><text x="532" y="65" text-anchor="middle">変調</text><text x="532" y="91" text-anchor="middle" class="muted">電波に載せる</text><text x="692" y="65" text-anchor="middle">受信・復号</text><text x="692" y="91" text-anchor="middle" class="muted">映像・音声</text>
 <path d="M124 73h34m-8-7 8 7-8 7M280 73h34m-8-7 8 7-8 7M436 73h34m-8-7 8 7-8 7M592 73h34m-8-7 8 7-8 7" fill="none" stroke="#3d5a52" stroke-width="2"/><text x="380" y="151" text-anchor="middle" class="muted">実際の規格では、同期・信号情報・多重方式なども組み合わせる</text></svg><figcaption>図 2 : デジタル地上放送の概略。方式ごとに符号化や変調の具体的な仕様は異なる。</figcaption></figure>
@@ -127,7 +198,7 @@ figure{margin:28px 0 30px;padding:16px 14px 12px;border-top:1px solid var(--line
 <p>撮影時のちらつき（フリッカー）は、映像の納品先のフレームレートだけでは決まらない。照明の明るさが周期的に変化しているとき、カメラの露光とその変化が合わないと、画面に明滅や横縞が現れることがある。電源に同期する照明では、 50 Hz 地域で 100 Hz 、 60 Hz 地域で 120 Hz の明滅成分が生じる場合がある。</p>
 <p>そのような照明なら、露光時間を明滅周期に合わせるとちらつきを抑えやすくなる。目安は 50 Hz 地域で 1/100 秒や 1/50 秒、 60 Hz 地域で 1/120 秒や 1/60 秒である。ただし LED 照明は、調光回路や PWM （電流を高速でオン・オフして明るさを調整する方法）によって異なる周期で明滅することがある。撮影場所の照明で試し撮りし、シャッター速度を調整する必要がある。</p>
 <p>たとえば、 29.97 fps の番組でも、撮影現場が 50 Hz 地域なら、照明に合わせて 1/100 秒の露光が適することがある。映像のフレームレートと撮影地の照明条件は、別々に確認する必要がある。</p>
-<figure><svg viewBox="0 0 760 190" role="img" aria-label="50ヘルツ地域と60ヘルツ地域における照明の明滅周波数と露光時間の目安"><title>電源周波数とフリッカー対策</title><desc>50 Hz 地域では照明の明滅成分が 100 Hz になる場合があり、露光時間 1/100 秒または 1/50 秒が目安となる。 60 Hz 地域では 120 Hz 成分に対して 1/120 秒または 1/60 秒が目安である。 LED 照明では個別確認が必要。</desc>
+<figure class="diagram"><svg viewBox="0 0 760 190" role="img" aria-label="50ヘルツ地域と60ヘルツ地域における照明の明滅周波数と露光時間の目安"><title>電源周波数とフリッカー対策</title><desc>50 Hz 地域では照明の明滅成分が 100 Hz になる場合があり、露光時間 1/100 秒または 1/50 秒が目安となる。 60 Hz 地域では 120 Hz 成分に対して 1/120 秒または 1/60 秒が目安である。 LED 照明では個別確認が必要。</desc>
 <rect x="24" y="26" width="330" height="115" fill="#eceee7" stroke="#d7dcd2"/><rect x="406" y="26" width="330" height="115" fill="#eceee7" stroke="#d7dcd2"/>
 <text x="189" y="55" text-anchor="middle">電源 50 Hz の地域</text><text x="189" y="83" text-anchor="middle">明滅成分： 100 Hz の場合</text><text x="189" y="113" text-anchor="middle" class="muted">露光の目安： 1/100 秒・ 1/50 秒</text>
 <text x="571" y="55" text-anchor="middle">電源 60 Hz の地域</text><text x="571" y="83" text-anchor="middle">明滅成分： 120 Hz の場合</text><text x="571" y="113" text-anchor="middle" class="muted">露光の目安： 1/120 秒・ 1/60 秒</text>

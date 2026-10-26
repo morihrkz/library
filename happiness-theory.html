@@ -5,62 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>比較の中の幸福――関係・卓越・運を貫く一つの理論</title>
 <style>
-:root{
-  --bg:#f7f8f6; --text:#242522; --muted:#65695f; --accent:#3d5a52;
-  --line:#d7dcd2; --box:#eceee7; --link:#3d5a52; --accent2:#93583c;
-}
-*{box-sizing:border-box;}
-body{
-  background:var(--bg); color:var(--text); margin:0;
-  line-height:2;font-size:1.1875rem}
-main{padding:2.5rem clamp(1rem,4vw,4rem) 4rem;max-width:none;margin:0}
-.kicker{font-size:.9375rem; letter-spacing:.14em; color:var(--accent); font-weight:bold; margin-bottom:14px;}
-h1{font-size:2rem; line-height:1.6; color:var(--text); margin:0 0 14px; font-weight:bold;}
-.subtitle{ color:var(--muted); margin:0 0 28px; line-height:1.8;}
-.meta{color:var(--muted); font-size:.9rem; line-height:1.9; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0; margin:0 0 40px;}
-.lede{color:var(--muted); border-left:3px solid var(--accent); padding-left:18px; margin:0 0 40px;}
-.lede p{ margin:0 0 14px;}
-.lede p:last-child{margin-bottom:0;}
-.toc{background:var(--box);border:1px solid var(--line);padding:22px 26px;margin:0 0 46px}
-.toc>ol{columns:2;column-gap:32px}
-.toc-title{font-size:.9375rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 14px}
-.toc ol{margin:0;padding-left:1.3em}
-.toc li{margin-bottom:7px;font-size:1.03125rem;break-inside:avoid}
-.toc li ol{margin-top:7px;margin-bottom:11px}
-.toc li li{font-size:.96875rem;color:var(--muted);margin-bottom:5px}
-.toc a{color:var(--text);text-decoration:none}
-.toc a:hover{color:var(--accent);text-decoration:underline}
-h2{font-size:1.625rem; line-height:1.5; border-bottom:1px solid var(--line); padding-bottom:9px; margin:52px 0 24px;}
-h3{font-size:1.25rem; margin:32px 0 12px;}
-p{ margin:0 0 20px;}
-.box{background:var(--box); border:1px solid var(--line); padding:22px 24px; margin:0 0 28px;}
-.box strong{color:var(--accent);}
-table{width:100%; border-collapse:collapse; margin:0 0 28px; font-size:1rem;}
-th,td{border:1px solid var(--line); padding:10px 11px; vertical-align:top; text-align:left;}
-th{background:var(--box);}
-ul,ol{padding-left:1.4em; margin:0 0 20px;}
-li{margin-bottom:9px;}
-a{color:var(--link);}
-sup{font-size:.72em;}
-sup a{color:var(--link); text-decoration:none;}
-sup a:hover{text-decoration:underline;}
-.refs{border-top:1px solid var(--line); margin-top:58px; padding-top:25px;}
-.refs h2{border-bottom:none; margin-top:0; padding-bottom:0;}
-.refs p{font-size:.9rem; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
-.refs ol{margin:0 0 11px;}
-.refs li{font-size:.9rem; line-height:1.65; margin:0 0 11px; overflow-wrap:anywhere; word-break:break-word;}
-.refs li>a:first-child{font-weight:700; text-decoration:none;}
-.refs sup a{font-style:italic; font-weight:700;}
-.refs li:target, sup:target{background:var(--box);}
-.refs em{font-style:italic;}
-.note{font-size:.9375rem; color:var(--muted); margin-top:20px;}
-strong{font-weight:bold;}
-.figure{margin:0 0 32px;}
-.figcaption{font-size:.84375rem; color:var(--muted); text-align:center; margin-top:10px;}
-@media (max-width:480px){
-  h1{font-size:1.6875rem;}
-  .toc>ol{columns:1}
-}
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  ul.check { list-style: none; padding-left: 0; }
+  ul.check li { padding-left: 1.8rem; position: relative; margin: .4rem 0; }
+  ul.check li::before { content: "\2610"; position: absolute; left: 0; font-size: 1.1rem; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 図(figure.diagram。マークアップは SKILL.md の「図」) */
+  figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
+  figure.diagram svg { display: block; width: 100%; height: auto; max-width: 100%; }
+  figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
+  figcaption .fig-label { color: var(--accent); font-weight: 700; margin-right: .3em; }
+  @media (max-width: 40rem) {
+    figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
+    figure.diagram svg { max-width: none; }
+    figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
+  }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+  /* 記事固有 */
+  .figure { margin:0 0 32px; }
+  .figcaption { font-size:.84375rem; color:var(--muted); text-align:center; margin-top:10px; }
 </style>
 </head>
 <body>
