@@ -1,6 +1,6 @@
 # library リポジトリの作業指示
 
-「余白の書庫」（ GitHub Pages で公開する静的サイト）のリポジトリである。構成は、ポータルの `index.html` 1 枚、記事の `*.html` （ 89 本）、 `README.md` 、 `future-article-themes.md` （次に書く記事の計画）。 JavaScript 、ビルド工程、外部ライブラリは使わない。
+「余白の書庫」（ GitHub Pages で公開する静的サイト）のリポジトリである。構成は、ポータルの `index.html` 1 枚、記事の `*.html` （ 89 本）、 `README.md` 、 `future-article-themes.md` （次に書く記事の計画）。 ビルド工程と外部ライブラリは使わない。 JavaScript は、 `index.html` の本文検索（後述）にだけ使い、記事には使わない。
 
 ## HTML 記事の意匠
 Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠修正・検証には、必ずローカルスキル `library-html-style`(`~/.claude/skills/library-html-style/SKILL.md`)を使う。
@@ -68,7 +68,17 @@ Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠�
   - 以前あったアンダースコア区切りの 2 本（ `japan_industrial_products_strength.html` と `swiss_neutrality_and_direct_democracy.html` ）は、ハイフン区切りに改名済みである。リネームは公開 URL を変えるので、ユーザーの承認なしに行わない。
 
 ## index.html の構造
-`index.html` はポータルで、記事とは別の意匠の 1 枚物である（ `<style>` 内蔵、 JavaScript なし）。記事を 11 のテーマに分け、各テーマの下を小見出しごとのカード群に分ける。折りたたみ（アコーディオン）、検索、トグルは無い。全テーマは常に展開されている。
+`index.html` はポータルで、記事とは別の意匠の 1 枚物である（ `<style>` 内蔵、 JavaScript は本文検索の 1 本だけ）。記事を 11 のテーマに分け、各テーマの下を小見出しごとのカード群に分ける。折りたたみ（アコーディオン）、トグルは無い。全テーマは、検索していないときは常に展開されている。
+
+### 本文検索
+ヘッダー内の `nav.indexbar` の直後に、検索窓（ `form.search` ）がある。末尾の `<script>` が、入力欄へのフォーカス時に全カードのリンク先を `fetch` し、本文を集めて検索する（実行時に取得する方式）。
+
+- 記事を足しても、検索の対象は自動で増える。索引ファイルやビルド工程は無い。カードは `a.card` で、リンク先は同じディレクトリの `*.html` に限る。
+- 空白区切りの語をすべて含む記事に絞り、一致箇所の抜粋（ `span.card-snippet` ）を `<mark>` 付きで出す。語の間の空白は無視する。 Esc で入力を消す。
+- 絞り込みは `hidden` 属性で行う。 `.card` や `.cards` は `display` を指定しているので、 `[hidden] { display: none !important; }` が必要である。
+- 検索中は `body.searching` が付き、カードは 1 列表示になる（ 3 列のままだと、行が埋まらず罫線色の灰色の空きマスが残るため）。テーマ一覧（ `nav.indexbar` ）は、リンク先の節が隠れるので、検索中は隠す。
+- `file://` で直接開くと `fetch` が失敗する。ウェブサーバー経由（公開 URL や `python -m http.server` ）で開く。
+- `portal.html` は別プロジェクトのファイルで、このリポジトリの管理対象ではない。同じ方式の検索窓があるが、触れない。
 
 ### 階層とマークアップ
 ```

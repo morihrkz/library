@@ -53,6 +53,16 @@
     .group-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
     .group-label:first-of-type { margin-top: 0; }
     .group-note { color: var(--muted); font-size: 11px; font-weight: 400; letter-spacing: .06em; }
+    [hidden] { display: none !important; }
+    .search { padding: 22px 0 6px; }
+    .search label { display: block; margin-bottom: 8px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .08em; }
+    .search input { width: 100%; max-width: 560px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 99px; background: #fff; color: var(--ink); font: inherit; font-size: 15px; }
+    .search input:focus { border-color: var(--accent); outline: 2px solid var(--accent-soft); outline-offset: 1px; }
+    .search-status { min-height: 1.7em; margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    .searching .cards, .searching .cards.quad { grid-template-columns: 1fr; }
+    .searching .card:last-child:nth-child(n) { grid-column: auto; }
+    .card-snippet { display: block; margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .card mark { background: #ffe27a; color: inherit; padding: 0 .1em; }
     footer { padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; display: flex; justify-content: space-between; }
     @media (max-width: 760px) {
       .hero { grid-template-columns: 1fr; gap: 28px; padding: 64px 0 52px; }
@@ -91,6 +101,11 @@
       <nav class="indexbar" aria-label="テーマから選ぶ">
         <a href="#logic">論理と言葉</a><a href="#trust">知識と信頼</a><a href="#learning">学びと教育</a><a href="#self">自己と生き方</a><a href="#mind">心理と道徳</a><a href="#institutions">制度と公正</a><a href="#power">体制と権力</a><a href="#history">歴史と宗教</a><a href="#technology">技術と産業</a><a href="#science">自然科学</a><a href="#care">からだとケア</a>
       </nav>
+      <form class="search" role="search" onsubmit="return false">
+        <label for="q">記事の本文を検索</label>
+        <input id="q" type="search" placeholder="語句を入力（空白で区切ると、すべてを含む記事に絞る）" autocomplete="off">
+        <p class="search-status" id="qstatus" aria-live="polite"></p>
+      </form>
     </header>
 
     <main>
@@ -312,5 +327,103 @@
     </main>
     <footer><span>余白の書庫</span><span>問いを起点に、読み進める。</span></footer>
   </div>
+  <script>
+  (function () {
+    var input = document.getElementById('q');
+    var status = document.getElementById('qstatus');
+    var nav = document.querySelector('.indexbar');
+    var cards = Array.prototype.map.call(document.querySelectorAll('a.card'), function (a) {
+      return { a: a, url: a.getAttribute('href'), text: a.textContent, base: a.textContent.length };
+    });
+    var clusters = Array.prototype.map.call(document.querySelectorAll('section.cluster'), function (sec) {
+      return { sec: sec, cards: cards.filter(function (c) { return sec.contains(c.a); }) };
+    });
+    var groups = Array.prototype.map.call(document.querySelectorAll('h3.group-label'), function (h3) {
+      var box = h3.nextElementSibling;
+      return { h3: h3, box: box, cards: cards.filter(function (c) { return box && box.contains(c.a); }) };
+    });
+    var loaded = 0, failed = 0, started = false, total = cards.length;
+
+    function load() {
+      if (started) return;
+      started = true;
+      status.textContent = '検索用に記事を読み込んでいます…';
+      cards.forEach(function (c) {
+        fetch(c.url).then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          return r.text();
+        }).then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          doc.querySelectorAll('script,style').forEach(function (e) { e.remove(); });
+          c.text += ' ' + doc.body.textContent;
+        }).catch(function () { failed++; }).then(function () {
+          loaded++;
+          if (loaded === total) {
+            if (failed === total) status.textContent = '記事を読み込めませんでした。ローカルのファイルを直接開いている場合は、ウェブサーバー経由（公開先の URL など）で開いてください。';
+            run();
+          }
+        });
+      });
+    }
+
+    function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+    // 文字の間の空白を許す（本文の「 Adabas とは」を「Adabasとは」でも探せる）
+    function pattern(term) {
+      return new RegExp(Array.prototype.map.call(term, esc).join('\\s*'), 'i');
+    }
+    function plain(s) { return s.replace(/\s+/g, ' '); }
+    function escHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    function snippet(text, pats) {
+      var t = plain(text), m = pats[0].exec(t);
+      if (!m) return '';
+      var from = Math.max(0, m.index - 40), to = Math.min(t.length, m.index + m[0].length + 80);
+      var html = escHtml(t.slice(from, to));
+      pats.forEach(function (p) {
+        html = html.replace(new RegExp(p.source, 'gi'), function (x) { return '<mark>' + x + '</mark>'; });
+      });
+      return (from > 0 ? '…' : '') + html + (to < t.length ? '…' : '');
+    }
+
+    function run() {
+      var terms = input.value.trim().split(/\s+/).filter(Boolean);
+      var pats = terms.map(pattern), hits = 0;
+      cards.forEach(function (c) {
+        var old = c.a.querySelector('.card-snippet');
+        if (old) old.remove();
+        var ok = pats.every(function (p) { return p.test(c.text); });
+        c.a.hidden = !ok;
+        if (ok && pats.length) {
+          var html = snippet(c.text.slice(c.base), pats);
+          if (html) {
+            var s = document.createElement('span');
+            s.className = 'card-snippet';
+            s.innerHTML = html;
+            c.a.appendChild(s);
+          }
+        }
+        if (ok) hits++;
+      });
+      groups.forEach(function (g) {
+        var any = g.cards.some(function (c) { return !c.a.hidden; });
+        g.h3.hidden = !any;
+        if (g.box) g.box.hidden = !any;
+      });
+      clusters.forEach(function (cl) {
+        cl.sec.hidden = !cl.cards.some(function (c) { return !c.a.hidden; });
+      });
+      nav.hidden = !!terms.length;
+      document.body.classList.toggle('searching', !!terms.length);
+      if (loaded < total) status.textContent = '読み込み中（' + loaded + ' / ' + total + '）。読み込み済みの記事だけを検索しています。';
+      else if (failed === total) return;
+      else status.textContent = terms.length ? hits + ' 本の記事が見つかりました。' + (failed ? '（' + failed + ' 本は読み込めず、検索できていません。）' : '') : '';
+    }
+
+    var timer;
+    input.addEventListener('focus', load);
+    input.addEventListener('input', function () { load(); clearTimeout(timer); timer = setTimeout(run, 150); });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape') { input.value = ''; run(); } });
+  })();
+  </script>
 </body>
 </html>
