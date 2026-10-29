@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「悪の枢軸」と民主主義指数</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">国際政治・比較政治の検討</p>
+<h1>「悪の枢軸」と民主主義指数<br>――ロシアの事例から</h1>
+<p class="subtitle">Democracy Indices and the Label of an "Axis of Evil": Regime Type, External Conduct and Attribution of Responsibility in China, Russia, North Korea and Iran</p>
+
+<div class="lede">
+<p>中国、ロシア、北朝鮮、イラン。この四か国を並べて「悪の枢軸」と呼ぶ感覚がある。その感覚は、三つの主張が混ざった形で成り立っていると整理できる。第一に、四か国は民主的でない。第二に、四か国は他国を威圧している。第三に、四か国は互いに結びついた陣営をなしている。本稿は、民主主義指数の低さが「悪」という評価の根拠になりうるかを問う。検証例として、ロシアの指数の低さを取り上げる。結論は、資料を検討したうえで示す。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong>民主主義の水準は、 EIU (Economist Intelligence Unit) と Freedom House の指数で測る。ただし、四か国すべてについて両方の指数を確認したわけではない。威圧の事例は、確認できた出来事に限る。本稿の数値の多くは、原典を開いて照合したものではなく、要約によって確認したものである。評価の時点は 2026 年 10 月 29 日である。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">問いの所在と概念の整理</a>
+<ol>
+<li><a href="#sec1-1">「悪の枢軸」という感覚</a></li>
+<li><a href="#sec1-2">民主主義指数の読み方</a></li>
+</ol>
+</li>
+<li><a href="#sec2">四か国の数値</a>
+<ol>
+<li><a href="#sec2-1">指数で見る四か国</a></li>
+<li><a href="#sec2-2">指数が言えないこと</a></li>
+</ol>
+</li>
+<li><a href="#sec3">低さは「陣営」と「威圧」を説明するか</a>
+<ol>
+<li><a href="#sec3-1">陣営は成立しているか</a></li>
+<li><a href="#sec3-2">対外行動の内容は一括できるか</a></li>
+</ol>
+</li>
+<li><a href="#sec4">ロシアの指数の低さの中身</a>
+<ol>
+<li><a href="#sec4-1">部門ごとの値</a></li>
+<li><a href="#sec4-2">訴追と拘禁の数</a></li>
+</ol>
+</li>
+<li><a href="#sec5">「選択」か、他の説明か</a>
+<ol>
+<li><a href="#sec5-1">政権側の論理を最も強い形で</a></li>
+<li><a href="#sec5-2">説明の比較</a></li>
+</ol>
+</li>
+<li><a href="#sec6">評価</a>
+<ol>
+<li><a href="#sec6-1">副問い：ロシアの低い水準は政権の選択か</a></li>
+<li><a href="#sec6-2">主問い：低さは「悪」の根拠か</a></li>
+</ol>
+</li>
+<li><a href="#sec7">確認の限界</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 問いの所在と概念の整理</h2>
+
+<h3 id="sec1-1">1.1 「悪の枢軸」という感覚</h3>
+<p>「悪の枢軸」は、 2002 年の米国大統領の一般教書演説で、イラク、イラン、北朝鮮を指して使われた語とされる。今回の確認では、演説の原文は開いていない（確認の限界を参照）。本稿は、この語を中国とロシアを含む現在の四か国に当てはめる感覚が成り立つかを問う。</p>
+<p>この感覚が「悪」と呼ぶ根拠は、三つに分けられる。第一は、政治体制が民主的でないこと。第二は、他国を武力や経済的圧力で威圧していること。第三は、四か国が互いに結びついた陣営をなしていること。本稿は、第一の主張が第二と第三を説明できるかを吟味する。</p>
+<p>本稿の主問いは、民主主義指数の低さは四か国を「悪」と呼ぶ根拠になりうるか、である。副問いは、ロシアの低い水準は政権の選択の結果か、である。「悪」という評価は行為者の選択を前提にするため、副問いへの答えは、主問いを試す検証例になる。</p>
+
+<h3 id="sec1-2">1.2 民主主義指数の読み方</h3>
+<p>EIU （英エコノミスト誌系の調査機関）の Democracy Index は、国を総合点で評価する指数である。本稿で用いたのは、同指数の 2024 年版の表である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。 Freedom House の Freedom in the World も、国を点数で評価する指数である <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。採点の方法の詳細は、本稿では確認していない（確認の限界を参照）。</p>
+
+<h2 id="sec2">2. 四か国の数値</h2>
+
+<h3 id="sec2-1">2.1 指数で見る四か国</h3>
+<p>Freedom House の 2026 年版では、中国は 9 点、ロシアは 12 点、イランは 10 点、北朝鮮は 3 点である <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>EIU の 2024 年版では、ロシアの総合点は 2.03 、順位は 150 位タイである。前年から 6 順位下がった <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。中国、イラン、北朝鮮については、今回の確認で EIU の最新版の値を照合できなかった。そのため、四か国の比較は Freedom House を軸とし、 EIU はロシアの検証に限って用いる。この非対称は、本稿の限界として扱う。</p>
+
+<h3 id="sec2-2">2.2 指数が言えないこと</h3>
+<p>指数が測るのは国内の政治体制である。対外的な行動は測らない。したがって、民主主義の水準が低いことは、他国を威圧する理由の証拠にはならない。指数の低さと対外行動の関係は、別に確かめる必要がある。このほかに、体制の型と紛争の関係を論じる立場もあるが、本稿はその文献を確認していない。</p>
+<div class="must">指数の低さだけでは、対外的な威圧や陣営の形成の直接の証拠にはならない。両者の関係を論じる研究はあるが、本稿は検討していない。第二と第三の主張は、対外行動の資料によって検討しなければならない。</div>
+
+<h2 id="sec3">3. 低さは「陣営」と「威圧」を説明するか</h2>
+
+<h3 id="sec3-1">3.1 陣営は成立しているか</h3>
+<p>2022 年 3 月 2 日、国連総会は緊急特別会合で決議 ES-11/1 を採択し、ウクライナに対する侵略を扱った決議である。賛成は 141 、反対は 5 、棄権は 35 だった <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。反対したのはロシア、ベラルーシ、北朝鮮、エリトリア、シリアで、中国とイランは棄権した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>二国間の結びつきも確認できる。露イラン包括的戦略パートナーシップ条約は、 2025 年 1 月 17 日に署名され、有効期間は 20 年である。イラン側の発表によれば、同条約には相互防衛条項が含まれない <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。分析も、同じ点を指摘している <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。露朝の間の条約については、本稿では条文を確認していない。四か国が陣営をなすという主張の最も強い論拠は、兵器や兵員の供与などの具体的な物的支援である。今回は、その資料を確認していない。</p>
+<p>以上から、四か国の間に、全体を貫く同盟は確認できない。二国間の結びつきは存在するが、露イラン以外の組み合わせは、本稿では確認していない。低い民主主義水準が、四か国を一つの陣営にまとめる根拠になるとは言えない。</p>
+
+<h3 id="sec3-2">3.2 対外行動の内容は一括できるか</h3>
+<p>中国は、 2023 年 8 月に日本の水産物の輸入を全面的に止めた。この停止は、 2026 年 8 月時点でも継続していると報じられている（要約による確認）<sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。 2025 年 11 月には、台湾をめぐる日中の対立を背景に、新たな停止が報じられた <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。報道の間の関係、とりわけ一部の再開の有無は、本稿では確認できていない。本稿で確認した中国の事例は、いずれも貿易の制限である。中国側の説明は、今回は確認していない。</p>
+<p>ロシアは、ウクライナに対して大規模な武力行使を行った。その行使は、決議 ES-11/1 の対象である <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> 。武力による威圧と、貿易による威圧は、手段も説明も異なる。同じ「威圧」の語で一括すると、この違いが見えなくなる。</p>
+
+<h2 id="sec4">4. ロシアの指数の低さの中身</h2>
+
+<h3 id="sec4-1">4.1 部門ごとの値</h3>
+<p>EIU の 2024 年版でのロシアの部門値は、選挙過程と多元性が 0.00 、政府の機能が 2.14 、政治参加が 2.22 、政治文化が 3.75 、市民的自由が 2.06 である <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。</p>
+<p>部門の意味は、政権の行為との結びつきによって異なると考えられる。選挙過程と市民的自由は、法律と運用という政権の行為で説明しやすいと考えられる。一方、政治文化は社会の側の態度も映すと考えられるため、政権の選択だけには帰せない。</p>
+<p>2006 年以降の年別の得点は、今回は原典で照合していない。そのため本稿では、年ごとの推移を論じない。</p>
+
+<h3 id="sec4-2">4.2 訴追と拘禁の数</h3>
+<p>国連人権高等弁務官事務所 (OHCHR) の発表によれば、国連の特別報告者（独立の専門家）は、 2026 年 9 月時点で政治的動機による訴追を受けた人が 4,968 人、うち 2,178 人が拘禁中だと述べている。平均刑期は、 2021 年の 7 年未満から約 11 年に延びた。反逆罪とスパイ罪の有罪判決は、 2025 年に 468 件で、前年から 30% 増えた。欠席判決（被告不在のまま下す判決）は、 2022 年の 4 件から、 2025 年には 157 件に増えた <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。これは国連特別報告者による集計であり、ロシア政府の統計ではない。</p>
+<p>人権団体の数字は、別の数え方による。ヒューマン・ライツ・ウォッチ (HRW) は、 2026 年 8 月の報告で、侵攻以降「虚偽情報」または軍の「信用失墜」を理由に訴追された人を 741 人とする <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。同じ報告は、ロシアの人権団体 OVD-Info の集計として、反戦関連の訴追を 1,306 人とする <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> 。 372 人が収監中とされるが、この数がどの集計に含まれるかは、原文を確認していない。数え方は資料ごとに異なるため、これらの数字は直接比べない。</p>
+
+<h2 id="sec5">5. 「選択」か、他の説明か</h2>
+
+<h3 id="sec5-1">5.1 政権側の論理を最も強い形で</h3>
+<p>ロシア政府と支持者は、次の論理で低い水準を説明しうる。第一に、戦時の言論規制は安全保障上の非常措置である。第二に、外国からの資金を受けた団体を規制するのは、他国にも例のある措置である。第三に、選挙での得票と支持は、体制の正統性を示している。第四に、指数そのものは西側の専門家の評価であり、「悪」というラベルも選択的に使われている。最後の点は、民主主義の水準が低い友好国を「悪」と呼ばないという、二重基準の批判に連なる。</p>
+<div class="note">本稿は、政府側の一次資料を今回確認していない。上の四点は、論理として最も強い形に再構成したものであり、政府の発言の引用ではない。</div>
+
+<h3 id="sec5-2">5.2 説明の比較</h3>
+<p>低い水準の説明は、互いに排他的ではない。第一の説明は、政権が訴追の運用を選んだというものである（立法については本稿では確認していない）。これは「選択」の一つの意味で、訴追の運用は行為として確認できる。第二の説明は、政権が指数を下げることを意図していたというものである。これには、今回の確認で証拠を見つけていない。第三の説明は、社会経済的な条件や戦争という環境が、体制の変化を後押ししたというものである。本稿はこれを検証していない。第四の説明は、指数の測定そのものが変わったというものである。</p>
+<p>「もしこの説明が正しければ、何が観察されるはずか」という形で比べると、第一の説明は、法の改正と訴追の増加を予測する。訴追の増加は今回確認したが、法の改正は確認していない。第二の説明は、指数を下げるために行為が選ばれたことを示す証拠を予測するが、それは確認できなかった。</p>
+
+<h2 id="sec6">6. 評価</h2>
+
+<h3 id="sec6-1">6.1 副問い：ロシアの低い水準は政権の選択か</h3>
+<p>ロシアの指数の低い水準は、政権の行為によって説明できる部分があると考えられる。欠席判決と、反逆罪・スパイ罪の有罪判決の増加は確認できた。その背後にある法の整備は、本稿では確認していない。一方、政治文化の部門は社会の側の態度も映すと考えられる。したがって、低い水準のすべてを政権の選択に帰することはできない。政権の選択に帰せられる部分の大きさは、本稿の資料では測れない。</p>
+
+<h3 id="sec6-2">6.2 主問い：低さは「悪」の根拠か</h3>
+<p>民主主義の低さは、四か国を警戒する理由として一定の意味をもつという見方もありうる。今回確認できたのは、中国の貿易の制限と、ロシアの武力行使である。前者を威圧とみなすかは解釈による。しかし、それが「悪の枢軸」というラベルの十分な根拠になるかは、別の問題である。陣営の一体性は確認できず、威圧の内容は国ごとに異なる。さらに、民主主義の水準だけを基準にするなら、他の低い国との比較が必要になる。本稿は、その比較を十分に行っていない。</p>
+<p>したがって、「悪の枢軸」という感覚は、民主主義の低さだけでは根拠づけられないと考えられる。感覚が正当化されるには、対外行動の具体的な検討と、比較対照の提示が必要である。この二つは、本稿の資料の範囲を超える。</p>
+
+<h2 id="sec7">7. 確認の限界</h2>
+<ul>
+<li>EIU 2025 年版の得点と順位は確認していない。統計集計サイトの Statbase は 2024 年版と同じ 2.03 に別の順位（ 141 位）を載せており、 EIU の表と食い違う。本稿は EIU 2024 年版の表を採用した。</li>
+<li>中国、イラン、北朝鮮の EIU の値は、今回照合していない。</li>
+<li>2006 年から 2023 年までのロシアの年別の得点は、二次資料の集計にとどまり、本稿では用いない。</li>
+<li>2002 年の一般教書演説の原文と、露朝条約の条文は確認していない。</li>
+<li>国連特別報告者と HRW の数字は、要約によって確認した。原文の照合は残っている。</li>
+<li>中国の水産物輸入停止は、 2026 年 8 月時点で継続との報道にもとづく。 2025 年 11 月に伝えられた新たな停止との関係、再開の合意の有無は、報道の間で解消できていない。ロシアの低い水準の時間的な推移も、今回確認していない。</li>
+<li>ロシア政府の一次資料（政府発言、立法の正当化）は確認していない。</li>
+</ul>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> The Economist Intelligence Unit, <em>Democracy Index 2024</em> （ 2025 年公表）。ロシアの総合点・順位・部門別得点の表。 <a href="https://d1qqtien6gys07.cloudfront.net/wp-content/uploads/2025/03/Democracy_INDEX_2024.pdf">EIU 報告書 PDF</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Freedom House, <em>Freedom in the World 2026: The Growing Shadow of Autocracy</em> 。四か国の国別の点数。 <a href="https://freedomhouse.org/country/china/freedom-world/2026">Freedom House 中国ページ</a>、<a href="https://freedomhouse.org/report/freedom-world/2026/growing-shadow-autocracy">報告書</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> 国連総会決議 ES-11/1 「 Aggression against Ukraine 」（ 2022 年 3 月 2 日採択）。投票結果の集計。 <a href="https://en.wikipedia.org/wiki/United_Nations_General_Assembly_Resolution_ES-11/1">Wikipedia 英語版（決議 ES-11/1 ）</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 「 UN General Assembly, including Israel, votes overwhelmingly to condemn Russia 」、 <em>The Times of Israel</em> （ 2022 年 3 月）。投票の内訳の報道。 <a href="https://www.timesofisrael.com/un-general-assembly-including-israel-votes-overwhelmingly-to-condemn-russia/">報道記事</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 「 Iran-Russia agreement excludes mutual defense clause, Tehran says 」、 <em>Iran International</em> （ 2025 年 1 月）。イラン側の発表の報道。 <a href="https://www.iranintl.com/en/202501166749">報道記事</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Foundation for Defense of Democracies, flash brief （ 2025 年 5 月 21 日）。露イラン条約の内容の分析。 <a href="https://www.fdd.org/analysis/flash-briefs/2025/05/21/iranian-parliament-approves-20-year-strategic-pact-with-russia-as-nuclear-negotiations-with-u-s-flounder/">FDD 分析</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> 『読売新聞』（ 2026 年 8 月 28 日）。中国による日本産水産物の輸入停止の継続。 <a href="https://www.pressreader.com/japan/the-japan-news-by-the-yomiuri-shimbun/20260828/281582362485021">PressReader （読売）</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> 「 China to halt Japan seafood imports amid Taiwan spat 」、 <em>Hong Kong Free Press</em> （ 2025 年 11 月 19 日）。報道。 <a href="https://hongkongfp.com/2025/11/19/china-to-halt-japan-seafood-imports-amid-taiwan-spat-media-reports/">報道記事</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> Human Rights Watch, <em>Briefing Paper on the Human Rights Situation in the Russian Federation</em> （ 2026 年 8 月 24 日）。要約による確認。 <a href="https://www.hrw.org/news/2026/08/24/briefing-paper-on-the-human-rights-situation-in-the-russian-federation">HRW 報告</a></li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> 国連人権高等弁務官事務所 (OHCHR) 、特別報告者の声明（ 2026 年 10 月）。要約による確認。 <a href="https://www.ohchr.org/en/press-releases/2026/10/russia-must-stop-punishing-critics-traitors-motherland-home-and-abroad">OHCHR 声明</a></li>
+</ol>
+<p class="endnote">※ 本稿の評価は、 2026 年 10 月 29 日時点の公開情報にもとづく暫定的なものであり、情勢の変化によって改まりうる。</p>
+</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「米国南部には白人による人種差別が根強く残る」という言説の検証</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">米国社会・人種問題の検証</p>
+<h1>「米国南部には白人による人種差別が根強く残る」という言説の検証<br>――主体、対象、持続性、量、範囲の五つの観点から</h1>
+<p class="subtitle">Testing a Claim about Persistent Racial Discrimination by White Americans in the American South: Subject, Object, Persistence, Magnitude, and Scope</p>
+<div class="lede">
+<p>「米国南部では、白人による他人種への差別が根強く残っている」という言説は、報道や日常の会話で繰り返し聞かれる。本稿は、この言説を五つの要素に分けて検証する。五つの要素とは、主体（誰が差別するのか）、対象（誰が差別されるのか）、持続性（今も続いているのか）、量（どの程度なのか）、範囲（南部に特有なのか）である。要素ごとに、言えることと言えないことを分け、証拠の強さを示す。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>本稿の数値の多くは、報道、要約、二次資料に拠る。判決文や論文の本文を直接確認できたものは一部にとどまる。確認の程度は、本文または参考文献欄に示した。国勢調査の州別の表は、公式の表との照合ができていない。心理学の知見は、研究の対象の集団が分かる範囲で示す。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">言説の分解と方法</a>
+<ol>
+<li><a href="#sec1-1">言説の五つの要素</a></li>
+<li><a href="#sec1-2">「南部」の範囲</a></li>
+<li><a href="#sec1-3">測定の水準と判定の基準</a></li>
+</ol>
+</li>
+<li><a href="#sec2">評判と実態の区別</a>
+<ol>
+<li><a href="#sec2-1">評判の背景</a></li>
+<li><a href="#sec2-2">検索行動と州ごとの推計</a></li>
+<li><a href="#sec2-3">認識と実態の区別</a></li>
+</ol>
+</li>
+<li><a href="#sec3">主体――誰が差別するのか</a>
+<ol>
+<li><a href="#sec3-1">州ごとの人種・民族の構成</a></li>
+<li><a href="#sec3-2">白人の比率は差別の比率ではない</a></li>
+<li><a href="#sec3-3">行為者の人種を示す証拠</a></li>
+</ol>
+</li>
+<li><a href="#sec4">対象――誰が差別されるのか</a>
+<ol>
+<li><a href="#sec4-1">黒人</a></li>
+<li><a href="#sec4-2">ヒスパニック</a></li>
+<li><a href="#sec4-3">アジア系と先住民</a></li>
+<li><a href="#sec4-4">対象の要素の判定</a></li>
+</ol>
+</li>
+<li><a href="#sec5">持続性と量――態度、潜在的な偏見、行動</a>
+<ol>
+<li><a href="#sec5-1">態度の地域差</a></li>
+<li><a href="#sec5-2">潜在的な偏見</a></li>
+<li><a href="#sec5-3">行動の測定</a></li>
+<li><a href="#sec5-4">量の判定</a></li>
+<li><a href="#sec5-5">持続性の判定</a></li>
+</ol>
+</li>
+<li><a href="#sec6">制度の場の事例――陪審員裁判</a>
+<ol>
+<li><a href="#sec6-1">死刑判決と被害者の人種</a></li>
+<li><a href="#sec6-2">陪審員の選任――Batson 判決から Flowers 判決まで</a></li>
+<li><a href="#sec6-3">小括</a></li>
+</ol>
+</li>
+<li><a href="#sec7">範囲――南部に特有か</a>
+<ol>
+<li><a href="#sec7-1">南部例外論とその批判</a></li>
+<li><a href="#sec7-2">他地域の事例</a></li>
+<li><a href="#sec7-3">範囲の判定</a></li>
+</ol>
+</li>
+<li><a href="#sec8">差別を生む心理過程</a>
+<ol>
+<li><a href="#sec8-1">この章の限定</a></li>
+<li><a href="#sec8-2">集団的地位と脅威の説</a></li>
+<li><a href="#sec8-3">象徴的人種主義と人種的反感の測定</a></li>
+<li><a href="#sec8-4">集団の地位と「ゼロサム」の認識</a></li>
+<li><a href="#sec8-5">個人差と状況の説</a></li>
+<li><a href="#sec8-6">潜在的な偏見の意味</a></li>
+<li><a href="#sec8-7">接触と偏見の減少</a></li>
+<li><a href="#sec8-8">本質化を避けるための整理</a></li>
+<li><a href="#sec8-9">この章の判定</a></li>
+</ol>
+</li>
+<li><a href="#sec9">結論</a>
+</li>
+</ol>
+</nav>
+
+
+<h2 id="sec1">1. 言説の分解と方法</h2>
+<h3 id="sec1-1">1.1 言説の五つの要素</h3>
+<p>言説は、一文の中に複数の主張を含んでいる。「白人による」は主体、「他人種への差別」は対象、「根強く残っている」は持続性と量、「南部では」は範囲に当たる。ひとまとまりの主張として評価すると、どの部分が支えられ、どの部分が支えられないかが見えなくなる。そこで本稿は、次の五つに分けて検証する。</p>
+<ul>
+<li><strong>主体</strong><br>差別を行うのは、非ヒスパニック系の白人だとされる。</li>
+<li><strong>対象</strong><br>差別されるのは、黒人、ヒスパニック、アジア系、先住民などの、白人以外の人々だとされる。</li>
+<li><strong>持続性</strong><br>差別は過去から続き、今も無視できない程度に残っているとされる。</li>
+<li><strong>量</strong><br>差別が「根強い」と言える水準は、何と比べて判断されるのかが問題になる。</li>
+<li><strong>範囲</strong><br>差別が南部に特有であるか、他地域と比べてどうかが問題になる。</li>
+</ul>
+<p>量と範囲は混同されやすい。本稿では、量を南部の内部での水準とし、範囲を他地域との相対的な差とする。量が高くても、他地域との差がなければ、南部に特有の現象とはいえない。</p>
+<h3 id="sec1-2">1.2 「南部」の範囲</h3>
+<p>「南部」の範囲は、使う人によって異なる。米国国勢調査局の地域区分は、複数の州と首都ワシントン (DC) からなる広い区分である。一方、この言説で想定される南部は、旧南部連合の州、とくに奴隷制と人種隔離の歴史が濃いとされる「深南部」を指すことが多いと考えられる。両者は範囲が一致しない。本稿は、両者の違いを確認するにとどめ、以降の判定は資料が対象とした範囲に従う。州の数や一覧は、本稿の照合の範囲では確認を終えていないため、本文では示さない。</p>
+<h3 id="sec1-3">1.3 測定の水準と判定の基準</h3>
+<p>差別的な考えを測る方法は、大きく三つある。第一は、態度の調査である。質問への回答を集めるが、回答者が本音を隠す可能性がある。第二は、潜在的な偏見の測定である。潜在連合テストなどの反応時間を用いるが、その結果の解釈には論争があると指摘されているが、本稿では一次資料で確かめていない。第三は、制度や行動の結果を見る方法である。住宅、雇用、裁判などの結果から、差別の有無を推定する。</p>
+<p>態度の調査は、差別の代理指標にとどまる。態度に地域差があっても、行動に同じ差があるとは限らない。本稿は、態度の結果を差別そのものとは扱わない。</p>
+<p>「根強く残っている」の判定には、二つの基準を分けて用いる。一つは、水準が今も高いかどうかである。もう一つは、他地域との差が時間とともに縮まらず、持続しているかどうかである。二つの基準は別の問いに答えるため、一方の証拠で他方を裏付けたことにはしない。</p>
+<h2 id="sec2">2. 評判と実態の区別</h2>
+<h3 id="sec2-1">2.1 評判の背景</h3>
+<p>南部が人種差別の象徴として語られる背景には、歴史の記憶があると考えられる。奴隷制、人種隔離、公民権運動の主要な舞台の多くが南部だったことが、「南部＝人種差別」という連想を作ってきたと考えられる。本稿の調査の範囲では、地域の人種差別の程度を直接尋ねた全国的な世論調査は見つからなかった。評判の広がりは、割合として示すことができない。</p>
+<h3 id="sec2-2">2.2 検索行動と州ごとの推計</h3>
+<p>評判の根拠としてよく引かれるのは、検索行動の分析である。研究者 Seth Stephens-Davidowitz は、 2004 年から 2007 年にかけて、差別語を含む Google 検索の割合を地域別に比べた。報道によれば、最も割合が高かったのは西バージニア州であり、西ペンシルベニア、オハイオ州東部、ニューヨーク州北部、ミシシッピ州南部も上位に挙がった <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。ただし、報道によって順位は食い違う。検索は偏見の代理指標にすぎない。差別語を検索する人がみな差別的だとは限らないし、差別的な人がみな検索するわけでもない。</p>
+<p>州ごとの偏見を推計した研究もある。 Elmendorf と Spencer は、投票権法で連邦の事前審査を受けてきた州（主に南部）が、偏見の推定が高い上位 7 州のうち 6 州を占めると報告した。ただし、著者たちはこの結果を初期のものと述べている <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>反対の見方もある。歴史家 James Loewen は、黒人を排除する町 (sundown towns) が全米に多数あったと論じた。著者の数え方では、イリノイ州だけで 472 の例がある。著者は全米で約 1 万の町があったと推定しているが、この数値を独立に確かめた資料は見つからなかった。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
+<h3 id="sec2-3">2.3 認識と実態の区別</h3>
+<p>本節の資料から言えるのは、測定できる差が一部に存在することである。評判の大きさは、実態の大きさを示さない。本稿は、評判を実態の証拠として扱わない。評判が歴史の記憶と報道によって形作られてきたという点は、筆者の見立てである。</p>
+<h2 id="sec3">3. 主体――誰が差別するのか</h2>
+<h3 id="sec3-1">3.1 州ごとの人種・民族の構成</h3>
+<p>次の表は、 2020 年国勢調査の人種・民族別の人口比率である。ヒスパニックは別の区分で、白人・黒人・アジア系の比率は、非ヒスパニックのみの数値とされる <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。表は二次資料に拠り、公式の表との照合は未了である。とくに、ミシシッピ州の白人の比率は、別の資料の「白人のみ」（ヒスパニックを含む）の数値と一致する。非ヒスパニックのラベルの扱いは、なお確認が必要である。</p>
+<table class="cards">
+<thead>
+<tr><th>州</th><th>非ヒスパニック白人</th><th>黒人</th><th>ヒスパニック</th><th>アジア系</th></tr>
+</thead>
+<tbody>
+<tr><td>全米</td><td data-label="非ヒスパニック白人">57.84%</td><td data-label="黒人">12.05%</td><td data-label="ヒスパニック">18.73%</td><td data-label="アジア系">5.92%</td></tr>
+<tr><td>ミシシッピ</td><td data-label="非ヒスパニック白人">55.35%</td><td data-label="黒人">36.44%</td><td data-label="ヒスパニック">3.55%</td><td data-label="アジア系">1.09%</td></tr>
+<tr><td>ルイジアナ</td><td data-label="非ヒスパニック白人">55.75%</td><td data-label="黒人">31.18%</td><td data-label="ヒスパニック">6.92%</td><td data-label="アジア系">1.83%</td></tr>
+<tr><td>ジョージア</td><td data-label="非ヒスパニック白人">50.06%</td><td data-label="黒人">30.60%</td><td data-label="ヒスパニック">10.49%</td><td data-label="アジア系">4.44%</td></tr>
+<tr><td>アラバマ</td><td data-label="非ヒスパニック白人">63.12%</td><td data-label="黒人">25.64%</td><td data-label="ヒスパニック">5.26%</td><td data-label="アジア系">1.51%</td></tr>
+<tr><td>サウスカロライナ</td><td data-label="非ヒスパニック白人">62.10%</td><td data-label="黒人">24.79%</td><td data-label="ヒスパニック">6.89%</td><td data-label="アジア系">1.75%</td></tr>
+<tr><td>ノースカロライナ</td><td data-label="非ヒスパニック白人">60.46%</td><td data-label="黒人">20.19%</td><td data-label="ヒスパニック">10.72%</td><td data-label="アジア系">3.26%</td></tr>
+<tr><td>バージニア</td><td data-label="非ヒスパニック白人">58.60%</td><td data-label="黒人">18.28%</td><td data-label="ヒスパニック">10.53%</td><td data-label="アジア系">7.07%</td></tr>
+<tr><td>テネシー</td><td data-label="非ヒスパニック白人">70.91%</td><td data-label="黒人">15.68%</td><td data-label="ヒスパニック">6.93%</td><td data-label="アジア系">1.94%</td></tr>
+<tr><td>アーカンソー</td><td data-label="非ヒスパニック白人">68.52%</td><td data-label="黒人">14.94%</td><td data-label="ヒスパニック">8.53%</td><td data-label="アジア系">1.70%</td></tr>
+<tr><td>フロリダ</td><td data-label="非ヒスパニック白人">51.54%</td><td data-label="黒人">14.52%</td><td data-label="ヒスパニック">26.45%</td><td data-label="アジア系">2.92%</td></tr>
+<tr><td>テキサス</td><td data-label="非ヒスパニック白人">39.75%</td><td data-label="黒人">11.82%</td><td data-label="ヒスパニック">39.26%</td><td data-label="アジア系">5.36%</td></tr>
+<tr><td>ケンタッキー</td><td data-label="非ヒスパニック白人">81.33%</td><td data-label="黒人">7.94%</td><td data-label="ヒスパニック">4.61%</td><td data-label="アジア系">1.64%</td></tr>
+<tr><td>オクラホマ</td><td data-label="非ヒスパニック白人">60.80%</td><td data-label="黒人">7.15%</td><td data-label="ヒスパニック">11.92%</td><td data-label="アジア系">2.26%</td></tr>
+<tr><td>ウェストバージニア</td><td data-label="非ヒスパニック白人">89.14%</td><td data-label="黒人">3.61%</td><td data-label="ヒスパニック">1.94%</td><td data-label="アジア系">0.83%</td></tr>
+<tr><td>バーモント（南部以外）</td><td data-label="非ヒスパニック白人">89.13%</td><td data-label="黒人">1.34%</td><td data-label="ヒスパニック">2.41%</td><td data-label="アジア系">1.78%</td></tr>
+<tr><td>メーン（南部以外）</td><td data-label="非ヒスパニック白人">90.16%</td><td data-label="黒人">1.84%</td><td data-label="ヒスパニック">1.95%</td><td data-label="アジア系">1.22%</td></tr>
+<tr><td>ニューヨーク（南部以外）</td><td data-label="非ヒスパニック白人">52.47%</td><td data-label="黒人">13.66%</td><td data-label="ヒスパニック">19.54%</td><td data-label="アジア系">9.49%</td></tr>
+<tr><td>カリフォルニア（南部以外）</td><td data-label="非ヒスパニック白人">34.69%</td><td data-label="黒人">5.36%</td><td data-label="ヒスパニック">39.40%</td><td data-label="アジア系">15.12%</td></tr>
+</tbody>
+</table>
+<p>表に挙げた南部の州のうち、全米平均（非ヒスパニック白人 57.84% ）を下回るのは、ミシシッピ、ルイジアナ、ジョージア、フロリダ、テキサスの五つである。ただし、ミシシッピ州の数値はラベルが未照合であり、この比較が成り立たない可能性がある。一方、ウェストバージニアとケンタッキーは、全米平均を大きく上回る。白人の比率の高さでは、南部以外のバーモントとメーンも、ウェストバージニアと近い。南部の白人比率は一様ではない。</p>
+<h3 id="sec3-2">3.2 白人の比率は差別の比率ではない</h3>
+<p>白人が多数を占める地域でも、差別の行為者が白人だとは限らない。逆に、白人が多数を占めない州でも、白人による差別が強く見られる可能性はある。人口比率は、行為者の比率を示さない。州の白人比率と州の差別の程度を結びつけるのは、集団の平均から個人の性質を推し量る誤り（生態学的誤謬）に当たりうる。</p>
+<h3 id="sec3-3">3.3 行為者の人種を示す証拠</h3>
+<p>本稿の調査の範囲では、州ごとに加害者の人種を示す差別の統計は見つからなかった。ヘイトクライムの統計で、加害者の人種がどこまで集計されているかも、本稿では確認していない。ヘイトクライムの統計は、被害者の人種を基準として分類されることが多いとは、本稿では断定しない。死刑判決の研究（第 6 章で扱う）は、被害者の人種による差を報告している。主体の要素は、直接の証拠がなお不足している。</p>
+<h2 id="sec4">4. 対象――誰が差別されるのか</h2>
+<h3 id="sec4-1">4.1 黒人</h3>
+<p>2023 年の FBI のヘイトクライム統計では、人種・民族・出身に基づく事件 5,900 件のうち、黒人を標的とした事件は 3,027 件で、 51.3% を占めた <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この比率は全米の数値であり、州別の内訳は本稿では取得していない。統計は、報告に参加する機関の数に左右される点にも注意が必要である。</p>
+<p>経験の調査では、黒人の多くが差別を経験したと答えている。 Pew Research Center の 2024 年の調査では、黒人の成人の 75% が人種による差別を経験したと答えた <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。地域別では、西部 81% 、中西部 78% 、南部 74% 、北東部 72% と報告されている。ただし、この地域別の数値は転載された資料でのみ確認しており、原典の表は未照合である。転載された数値が正しければ、地域の差は小さく、南部が最も高いわけではない。</p>
+<p>南部の調査では、 Winthrop 大学の世論調査が、 2018 年 12 月に南部 11 州で行った結果を報告している。黒人の回答者の半数を超える 52% が、人種または民族を理由とする差別を受けたと答えた。白人では 18% だった <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。この結果は、黒人が差別を経験していることを示す。ただし、加害者の人種は示さない。したがって、主体の要素を直接支持するものではない。</p>
+<h3 id="sec4-2">4.2 ヒスパニック</h3>
+<p>テキサス州では、非ヒスパニック白人とヒスパニックがほぼ同数である。フロリダ州でも、ヒスパニックが人口の一定割合を占める。非白人全般が対象なのかを検討するとき、ヒスパニックは重要な比較対象になる。</p>
+<p>住宅市場の調査では、 HUD （住宅都市開発省）の 2012 年の報告書が、少数派の住宅探しの経験を、全米で比べた。報告の要約によれば、少数派の人々は、紹介される物件が少ない傾向にある。明白な差別は減少している一方で、より目立たない形の差別は残っているという <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この報告は全米の調査であり、南部だけの結果ではない。ヒスパニックに固有の数値を、本稿では確認していない。本稿の調査では、南部の結果を南部以外と比べた資料も見つからなかった。</p>
+<h3 id="sec4-3">4.3 アジア系と先住民</h3>
+<p>本稿の調査では、アジア系と先住民が南部でどのような差別を受けているかを、南部以外と比べた資料は見つからなかった。この集団については、南部で特に強いとも、そうではないとも判断できない。判断保留とする。</p>
+<h3 id="sec4-4">4.4 対象の要素の判定</h3>
+<p>黒人が、南部の差別の歴史と全国の統計の両方で主要な対象の一つであることは、資料から言える。ヒスパニックを含む少数派全般への不利な扱いも、住宅の調査で示されている。ただし、それが南部に固有かは確認できていない。アジア系と先住民については、資料が不足している。「非白人全般が対象だ」と言うには、本稿の範囲では証拠が足りない。</p>
+<h2 id="sec5">5. 持続性と量――態度、潜在的な偏見、行動</h2>
+<h3 id="sec5-1">5.1 態度の地域差</h3>
+<p>Pew Research Center の 2003 年の調査では、異人種間の交際を許容する白人は、南部で約 6 割、他地域で 78% だった <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。態度は両地域で同じ方向に変化した。</p>
+<p>Rice 、 McLean 、 Larsen は、 1972 年から 2000 年までの総合的社会調査 (GSS) の 75 以上の項目を分析した。南部の白人は、他地域より保守的な回答を続けていた。収束の証拠は乏しいと結論された。地域の差は、構造的な要因で一部説明されるが、一部は残った <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。この研究は 2000 年までのデータに基づくため、それ以降の変化は確認できない。</p>
+<h3 id="sec5-2">5.2 潜在的な偏見</h3>
+<p> Vuletich 、 Sommet 、 Payne の 2023 年の研究は、 160 万件を超える潜在連合テストの結果を、北部と西部の 37 州、 1,981 郡で分析した。 20 世紀前半の大移動の時期に黒人の割合が高かった郡ほど、今日の白人住民の潜在的な偏見が強かった <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。この研究は南部を対象にしていない。したがって、南部の量を直接示すものではない。地域の歴史が現在の偏見と結びつくという仮説の証拠として、第 8 章で扱う。</p>
+<h3 id="sec5-3">5.3 行動の測定</h3>
+<p>雇用や住宅の差別を、実験的な方法で測った研究は、本稿では南部の結果を十分に示せなかった。 4.2 節で扱った HUD の報告は、全米の傾向を示すにとどまる。行動の水準を、南部と他地域で比べる資料は、本稿の調査では揃わなかった。</p>
+<h3 id="sec5-4">5.4 量の判定</h3>
+<p>「根強い」かどうかを判定するには、基準となる水準が必要である。本稿は、南部の内部の水準を、全国の水準や過去の水準と比べる資料を揃えられなかった。量の要素は判断保留とする。態度の地域差が示す大きさは、「根強い」と呼ぶに足るかを判断する基準を、本稿は定められなかった。</p>
+<h3 id="sec5-5">5.5 持続性の判定</h3>
+<p>持続性は、態度と行動を分けて判定する。態度については、 2000 年代初めまで、南部の白人が他地域より保守的な回答を続けていたことが、複数の調査で示されている。ただし、その後の動向は、本稿では確認していない。行動と制度については、時系列で比べられる資料が不足している。第 6 章の陪審員裁判の事例は、行動の持続性の例として扱うが、一地域の事例にとどまる。</p>
+<h2 id="sec6">6. 制度の場の事例――陪審員裁判</h2>
+<p>本章は、主に行動と制度の水準で、主体と持続性の要素を検討する。</p>
+<h3 id="sec6-1">6.1 死刑判決と被害者の人種</h3>
+<p>最もよく知られた研究は、 David Baldus らによるジョージア州の調査である。 1973 年から 1979 年にかけての殺人事件 約 2,500 件を分析した。死刑の言い渡しは、被害者が白人の事件で 11% 、黒人の事件で 1% だった。 39 の非人種的な要因を統制したモデルでは、被害者が白人の事件は、黒人の事件に比べて死刑になる見込み（オッズ）が 4.3 倍だった <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。</p>
+<p>連邦最高裁は、 1987 年の McCleskey 対 Kemp 判決で、この研究を前提としても、死刑を違憲とはできないと判断した。多数意見は Powell 判事が書いた。判決は、統計だけでは、個々の事件で意思決定者が差別の意図を持っていたことの証明にならないとした。反対意見も示された。</p>
+<p>この判決の要点は、統計による人種の影響が否定されたことではない。統計があっても、それだけでは違憲とならないと判断されたことである。</p>
+<h3 id="sec6-2">6.2 陪審員の選任――Batson 判決から Flowers 判決まで</h3>
+<p>検察官と弁護人は、理由を示さずに陪審員候補を排除できる「専断的忌避」を持つ。 1986 年の Batson 対 Kentucky 判決は、この権限を人種を理由に使うことを禁じた <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。</p>
+<p>非営利の法律団体 Equal Justice Initiative (EJI) は、 2010 年の報告書で、南部の一部の地域での排除を報告した。報告の要約によれば、アラバマ州ヒューストン郡では、死刑事件で検察官が、資格のある黒人の候補の約 8 割を排除していた <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。報告の期間や、排除の理由の具体的な内容は、報告書の本体を確認していないため記述しない。</p>
+<p>この問題を最も鮮明に示す事件が、ミシシッピ州の Curtis Flowers 事件である。 Flowers は、殺人事件の被告として、同じ検察官 (Doug Evans) によって 6 回裁かれた。報告によれば、検察官は 6 回の公判を通じて、排除できた黒人の候補 42 人のうち 41 人を、専断的忌避で排除した。 6 回目の公判では、黒人の候補 6 人のうち 5 人を排除した。陪審は、白人 11 人と黒人 1 人で構成された。連邦最高裁は、 2019 年の Flowers 対 Mississippi 判決で、 7 対 2 で有罪判決を破棄した。法廷意見は Kavanaugh 判事が書き、 Thomas 判事が反対意見を書いた <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。州の最高裁は、 2017 年 11 月に有罪判決を再確認していたと、二次資料は伝える <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 。</p>
+<h3 id="sec6-3">6.3 小括</h3>
+<p>陪審員裁判は、制度の水準で最も強い証拠を示す領域である。ただし、ここで示された行為者は、白人の住民ではなく、検察官という制度上の行為者である。検察官の人種は、本稿では確認していない。また、事例は一人の検察官や特定の地域のものであり、南部の陪審員や検察官の全体を示すものではない。持続性の証拠としては、 Batson 判決の後の公判でも排除が繰り返され、その経過が 2019 年に違憲と判断されたという時間的な連続が注目される。</p>
+<h2 id="sec7">7. 範囲――南部に特有か</h2>
+<h3 id="sec7-1">7.1 南部例外論とその批判</h3>
+<p>南部例外論の支持側は、態度の地域差（第 5 章）と、州ごとの偏見の推計（第 2 章）を根拠とする。本稿の資料のうち、南部の特異性を示す方向の証拠は、態度の地域差（第 5 章）と、州ごとの偏見の推計（第 2 章）である。示さない方向の証拠は、南部以外の事例、すなわち Loewen の研究、北部と西部の潜在的な偏見の分析（第 5 章）、フィラデルフィアの事例（ 7.2 節）である。</p>
+<p>両者の証拠を比べると、次の区別が必要になる。南部以外にも同種の差別があることは、南部だけの現象ではないことを示す。しかし、それは南部が他地域と同程度であることを示すものではない。同程度かどうかを示すには、同じ指標で比べた資料が必要である。態度の水準については、そうした比較の資料がある（ただし古い、または予備的な結果である）。行動と制度の水準については、比較の資料が揃っていない。</p>
+<h3 id="sec7-2">7.2 他地域の事例</h3>
+<p>フィラデルフィアの死刑判決を調べた Baldus らの研究（ 1998 年）は、南部以外の都市で、人種による差を報告している <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 。この論文の本文は未確認である。差の大きさの数値は、本稿では記述しない。</p>
+<p>報道では、フィラデルフィア地区検察局の研修ビデオで、若手の検察官に、黒人の陪審員を排除する方法が教えられていたとされる。このビデオは 1987 年に作られ、 1997 年に公表されたと報じられている <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> 。</p>
+<h3 id="sec7-3">7.3 範囲の判定</h3>
+<p>態度の水準では、南部の白人がより保守的であるという証拠がある。ただし、それは古い調査か、予備的な結果に拠る。行動と制度の水準では、南部の事例には強い証拠があるが、同種の問題は南部以外でも指摘されている。このため、行動と制度の水準で南部に特有かどうかは判断保留とする。</p>
+<h2 id="sec8">8. 差別を生む心理過程</h2>
+<h3 id="sec8-1">8.1 この章の限定</h3>
+<p>この章は、差別する側の心理を説明する。説明と是認は別である。本章は、差別を正当化しない。特定の集団を悪魔化することもしない。本章は、偏見と差別がなぜ生じ、なぜ続くのかについての諸説を、証拠の強さとともに示す。本章で扱う説の多くは、南部に固有の説明として提示されたものではない。優位な位置にある集団一般について述べられた説である。</p>
+<p>差別には、三つの水準がある。個人の態度（偏見）、物事を分類する認知の枠組み（ステレオタイプ）、そして不利益を与える行動である。偏見がなくても、制度や慣行が特定の集団に不利な結果を生むことがある。偏見と行動は、結びつくこともあれば、結びつかないこともある。以下の諸説は、この区別を前提とする。</p>
+<h3 id="sec8-2">8.2 集団的地位と脅威の説</h3>
+<p>Blumer は 1958 年に、人種偏見は個人の感情だけから生じるのではなく、集団の相対的な地位の感覚から生じると論じた <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 。この考え方は、後に集団脅威の説として発展したと一般に紹介される。その要点は、少数派の比率が高まると、多数派が自分たちの地位への脅威を感じ、敵意が強まるという仮説である。</p>
+<p> Vuletich らの研究（第 5 章）は、著者自身の枠組みとして、構造的な不平等が偏見を説明するという「群衆の偏見」 (Bias of Crowds) の説を示している。その結果は、集団脅威の説とも整合しうるというのが、筆者の見解である。ただし、その研究の対象は北部と西部であり、郡の単位の関連である。郡の傾向から個人の偏見を推し量ることは、生態学的誤謬に当たる。また、誰が移住し、誰が残ったかという選択の偏りも、結果に影響しうる。</p>
+<h3 id="sec8-3">8.3 象徴的人種主義と人種的反感の測定</h3>
+<p>象徴的人種主義 (symbolic racism) とは、露骨な人種的な敵意ではなく、個人主義や努力への信念と結びついた、間接的な人種的反感を指す。 Sears と Henry は、 2005 年の論文で、この尺度を擁護した。擁護の論旨は、個人主義や公正といった非人種的な価値と、人種不平等の原因についての信念を測るというものである <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> 。一方で、この尺度への批判も紹介されている。 Sniderman と Tetlock （ 1986 年）は、この尺度が非人種的な価値との混同を含むと批判し、 Feldman と Huddy （ 2005 年）は、尺度が主に政府の施策への反対を測るにすぎないと論じた <sup id="fnref-20-2"><a href="#ref-20">[20]</a></sup> 。両者の原論文は、本稿では確認していない。</p>
+<p>この論争は、本稿では決着を確認できていない。重要なのは、尺度の論争が、地域の保守性の説明にも関わることである。第 5 章の Rice らの研究は、地域の差が構造的な要因で一部説明されることを示した。このことは、地域差のすべてを人種的な態度に帰せないことを意味する。</p>
+<h3 id="sec8-4">8.4 集団の地位と「ゼロサム」の認識</h3>
+<p>Norton と Sommers は 2011 年に、白人のアメリカ人が、反白人的な偏見を、反黒人的な偏見より重大な問題とみなすようになったことを報告した。この研究は、白人のアメリカ人を対象とした知見として報じられている <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> 。 2022 年の追試でも、白人の回答者で、保守、中道、リベラルを問わず同じ傾向が見られたと報じられている <sup id="fnref-21-2"><a href="#ref-21">[21]</a></sup> 。</p>
+<p>筆者の解釈では、この知見は、集団の利害の認識が人種への態度と整合的であることを示す。ただし、この知見が南部の白人に固有のものかは、本稿では確認していない。</p>
+<h3 id="sec8-5">8.5 個人差と状況の説</h3>
+<p>差別の心理は、個人の性格によって説明されることもあれば、状況や規範によって説明されることもある。前者は、個人の支配志向や権威主義の尺度を用いて、偏見の強さを個人の特性として捉える。後者は、地域の規範や制度の影響を重く見る。本稿では、これらの研究の文献を確認していないため、具体的な知見は示さない。</p>
+<p>地域の差を論じるときには、分布の重なりを考慮することが望ましい。南部の白人の中にも、都市と農村、世代、学歴、宗教によって、違いがありうる。地域の平均の差は、個人の差よりも小さいかもしれない。この点は、本稿の資料では数値を示せないため、留保として残す。</p>
+<h3 id="sec8-6">8.6 潜在的な偏見の意味</h3>
+<p>潜在的な偏見の研究は、本人が意識していない反応を測るという点で、態度の調査と性質が異なる。 Vuletich らの研究は、潜在的な偏見が、大移動の歴史と結びつくことを示した <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 。この結果は、大移動の影響が白人の住民の側に偏って現れていることを示唆する。ただし、この結果も報道資料に拠るため、原論文の確認を経てから解釈の強さを決めるべきである。</p>
+<p>潜在的な偏見の結果を解釈するときには、郡という単位の限界にも注意が必要である。郡の平均は、その中の住民の多様性を隠す。また、郡の中で人々がどこに住むかは、移住や経済的な事情によっても決まる。地域の歴史が偏見と結びつくという結果は、偏見が地域に根づくという仮説と整合的である。しかし、同じ結果は、偏見を持つ人々がそこに残ったという選択の説明とも整合的でありうる。二つの説明を区別する資料は、本稿では見つからなかった。</p>
+<p>さらに、潜在的な偏見が現実の行動をどの程度予測するかには論争があると指摘されているが、本稿では、その一次資料を確かめていない。したがって、潜在的な偏見の結果を、差別の行動の証拠として扱わない。</p>
+<h3 id="sec8-7">8.7 接触と偏見の減少</h3>
+<p>接触による偏見の減少については、 Pettigrew と Tropp の 2006 年のメタ分析が、 515 の研究と 713 の標本を集めて、接触が偏見を平均的に減らすことを示した <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> 。この知見は、差別の心理が固定的ではなく、環境によって変わりうることを示す。</p>
+<p>同じ分析では、実験的な研究の効果は、全体の平均より大きいと報告されている。要約によれば、相関係数で言えば、平均は約 −.21 、実験研究は約 −.33 である。これらの数値は二次資料の要約に拠る。接触が偏見を減らす効果は、どの研究でも同じ大きさとは限らない。接触の質などの条件が結果を左右すると、筆者は考える。この説は、 8.2 節の集団脅威の説と、人口構成の変化について逆の予測を立てる点で緊張関係にある。</p>
+<p>この点は、南部の歴史に照らすと重要である。地域の人口構成が変わり、人々が接触の機会を持つようになった地域では、偏見の水準が変わりうる。しかし、接触の機会がどの程度増えたかを、南部と他地域で比べた資料は、本稿の調査では見つからなかった。したがって、接触の説が南部の現状をどう説明するかは、判断を保留する。</p>
+<h3 id="sec8-8">8.8 本質化を避けるための整理</h3>
+<p>この章の説明が、南部の人々への本質化に転じないよう、次の三点を守る。第一に、集団の平均と個人を混同しない。第二に、地域を人々の「性質」ではなく、歴史や制度という「文脈」として扱う。第三に、同じ仕組みは、他の優位な集団にも当てはまりうると考える。</p>
+<p>この三点は、南部の説明を、南部の人々の性質の説明にしないための条件である。 2000 年代初めまでの調査で示された差も、平均の差であり、個人の判断を決めるものではない。また、同じ仕組みが他の集団の間にも働くかどうかは、本稿の範囲では確認していない。したがって、この点は留保付きで述べるにとどめる。</p>
+<h3 id="sec8-9">8.9 この章の判定</h3>
+<p>差別を生む心理過程については、証拠の強さに差がある。集団の地位への脅威の説は、本稿で検討した理論の一つである。ただし、本稿で示せた実証は限られる。接触による偏見の減少は、メタ分析による一定の裏付けがある。一方で、象徴的人種主義の尺度の妥当性や、潜在的な偏見と行動の関係は、論争があると指摘されている。南部に固有の心理過程を示す証拠は、本稿では見つからなかった。</p>
+<h2 id="sec9">9. 結論</h2>
+<p>本稿は、「米国南部には白人による人種差別が根強く残る」という言説を、五つの要素に分けて検証した。判定は次の表のとおりである。</p>
+<table class="cards">
+<thead>
+<tr><th>言説の要素</th><th>本稿の判断</th><th>根拠の強さ</th></tr>
+</thead>
+<tbody>
+<tr><td>主体</td><td data-label="本稿の判断">態度の水準では、南部の白人の回答に関する間接的な証拠がある。行為の水準を示す直接の証拠は見つからなかった。検察官の事例は示されたが、検察官の人種は未確認である。</td><td data-label="根拠の強さ">態度は中。行為は弱。判断保留。</td></tr>
+<tr><td>対象</td><td data-label="本稿の判断">黒人が主要な対象の一つであることは、統計と歴史的事例から言える。ヒスパニックへの不利な扱いは示されるが、南部に固有かは未確認である。アジア系と先住民は判断保留。</td><td data-label="根拠の強さ">黒人は中。その他は弱。</td></tr>
+<tr><td>持続性</td><td data-label="本稿の判断">態度の地域差は、 2000 年代初めまで続いていたことが複数の調査で示される。その後の動向は確認していない。行動と制度の時系列は、資料が不足している。</td><td data-label="根拠の強さ">態度は中。行動は判断保留。</td></tr>
+<tr><td>量</td><td data-label="本稿の判断">南部の内部の水準を、全国や過去と比べる基準が揃わなかった。「根強い」と呼ぶに足る量かは判断できない。</td><td data-label="根拠の強さ">判断保留。</td></tr>
+<tr><td>範囲</td><td data-label="本稿の判断">態度の水準では、南部がより保守的であるという証拠がある（古い、または予備的）。行動と制度の水準では、南部に特有とは言えない。南部が際立つかは、比較の資料が揃わず判断できない。</td><td data-label="根拠の強さ">態度は中。行動と制度は、特有でないことが中、強さの比較は弱。</td></tr>
+</tbody>
+</table>
+<p>この言説のうち、南部の白人の態度に地域差が 2000 年代初めまで続いていたという部分は、複数の調査で支えられる。ただし、その差が「根強い」と言える量なのかは判断できない。主体の要素については、態度の水準では間接的な証拠があるが、行為の水準を示す直接の証拠は、本稿の調査では見つからなかった。対象については、黒人が主要な対象の一つであることは資料から言える。範囲については、態度の水準では南部がより保守的だとする証拠がある一方、行動と制度の水準では判断を保留する。</p>
+<p>この言説の要素のどこが強く、どこが弱いかは、一括して語れない。本稿は、「南部は特別に悪い」とも、「南部も他と同じだ」とも決めつけない。何が、どの範囲で、どの資料によって言えるのかを、要素ごとに確かめた。</p>
+<p>心理の説明については、差別がなぜ生じ、なぜ続くのかについての諸説は、一定の裏付けを持つものと、論争が続くものがある。しかし、それらが南部に固有の説明であることは示されていない。</p>
+<p>本稿の限界は、原典の本文を十分に確認できていない点にある。判決文と論文の多くは、要約によって確認した。数値の一部は、二次資料に依存している。今後、原典の確認が進めば、第 3 章から第 8 章の判定は更新されうる。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Seth Stephens-Davidowitz による Google 検索の分析を伝える報道（ 2012 年）。報道の要約で確認した。原論文は未確認。 <a href="https://www.ebony.com/which-states-did-obama-lose-to-racism-in-2008/">Ebony の記事</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Christopher Elmendorf and Douglas Spencer, "Are the Covered States ‘More Racist’ than Other States?" （ 2013 年 3 月 4 日）。ブログ記事の要約で確認した。 <a href="https://electionlawblog.org/?p=48009">Election Law Blog</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> James W. Loewen, <em>Sundown Towns: A Hidden Dimension of American Racism</em> 。書評と著者の発言で確認した。著者による全国の推定は、独立には確認していない。 <a href="https://www.christiancentury.org/reviews/2008-02/sundown-towns">Christian Century の書評</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 2020 年国勢調査の表 P2 を転記した州別の一覧。二次資料であり、国勢調査局の公式表との照合は未了。 <a href="https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_race_and_ethnicity">Wikipedia の一覧</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> FBI, <em>2023 Hate Crime Statistics</em>. 司法省の公開ページで確認した。 <a href="https://www.justice.gov/crs/news/2023-hate-crime-statistics">司法省の公開ページ</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Pew Research Center, <em>Racial Discrimination Shapes How Black Americans View Their Progress and U.S. Institutions</em> （ 2024 年）。全体の数値は要約で確認した。地域別の数値は、転載された資料でのみ確認しており、原典の表は未照合。 <a href="https://www.pewresearch.org/race-and-ethnicity/2024/06/15/racial-discrimination-shapes-how-black-americans-view-their-progress-and-u-s-institutions-2/">Pew Research Center</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Winthrop Poll, Southern Focus Survey （ 2018 年 12 月、南部 11 州、 969 人）。大学の発表で確認した。 <a href="https://www.winthrop.edu/news-events/winthrop-poll-southern-focus-survey-reveals-black-and-white-divide.aspx">Winthrop 大学の発表</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> HUD, <em>Housing Discrimination Against Racial and Ethnic Minorities 2012</em>. 要約で確認した。報告書本体は未確認。 <a href="https://www.huduser.gov/portal/publications/fairhsg/hsg_discrimination_2012.html">HUD User の報告書ページ</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Pew Research Center, <em>Part 5: Social and Political Attitudes about Race</em> （ 2003 年）。異人種間の交際への態度の地域差。検索で得た原典ページの要約で確認した。 <a href="https://www.pewresearch.org/politics/2003/11/05/part-5-social-and-political-attitudes-about-race/">Pew Research Center</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Rice, Tom W., William P. McLean, and Amy J. Larsen, "Southern Distinctiveness over Time, 1972–2000," <em>The American Review of Politics</em> 23 （ 2002 年）、 193–220 頁。論文の要約で確認した。 <a href="https://journals.shareok.org/arp/article/view/525">論文ページ</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> Vuletich, Sommet, and Payne, "The Great Migration and Implicit Bias in the Northern United States," <em>Social Psychological and Personality Science</em> （ 2023 年）。報道資料で確認した。原論文は未確認。 <a href="https://phys.org/news/2023-07-reveals-historic-migration-link-present-day.pdf">Phys.org の記事 (PDF)</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> <em>McCleskey v. Kemp</em>, 481 U.S. 279 （ 1987 年）。判決の要旨と、判決中の研究の引用で確認した。判決原文の全文は未確認。 <a href="https://www.law.cornell.edu/supremecourt/text/481/279">Cornell LII の判決原文</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> <em>Batson v. Kentucky</em>, 476 U.S. 79 （ 1986 年）。書誌は確認した。本文は未照合。 <a href="https://www.law.cornell.edu/supremecourt/text/476/79">Cornell LII の判決原文</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Equal Justice Initiative, <em>Illegal Racial Discrimination in Jury Selection: A Continuing Legacy</em> （ 2010 年）。報告書の要約で確認した。報告書本体は未確認。 <a href="https://eji.org/reports/illegal-racial-discrimination-in-jury-selection">EJI の報告書ページ</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> <em>Flowers v. Mississippi</em>, No. 17-9572 （ 2019 年）。判決の要約と報道で確認した。判決原文は未確認。 <a href="https://www.law.cornell.edu/supremecourt/text/17-9572">Cornell LII の判決ページ</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Curtis Flowers の項目 (Wikipedia) 。二次資料。 2017 年 11 月の州最高裁の再確認は、この項目に拠る。 <a href="https://en.wikipedia.org/wiki/Curtis_Flowers">Wikipedia の項目</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> David C. Baldus, George Woodworth, David Zuckerman, and Neil Alan Weiner, "Racial Discrimination and the Death Penalty in the Post-Furman Era," <em>Cornell Law Review</em> 83 （ 1998 年）。書誌は確認した。本文は未確認。 <a href="https://scholarship.law.cornell.edu/clr/vol83/iss6/6">Cornell Law Review のページ</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> The Marshall Project, "Asking the Right Questions about the Death Penalty" （ 2015 年）。研修ビデオへの言及を確認した。 <a href="https://www.themarshallproject.org/2015/03/13/asking-the-right-questions-about-the-death-penalty">The Marshall Project の記事</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Herbert Blumer, "Race Prejudice as a Sense of Group Position," <em>Pacific Sociological Review</em> 1 （ 1958 年）。書誌と概要を確認した。 <a href="https://perception.org/other-publications/race-prejudice-as-a-sense-of-group-position">要旨のページ</a></li>
+<li id="ref-20">^ <sup><a href="#fnref-20-1">a</a></sup> <sup><a href="#fnref-20-2">b</a></sup> David O. Sears and P. J. Henry, "Over Thirty Years Later: A Contemporary Look at Symbolic Racism," <em>Advances in Experimental Social Psychology</em> 37 （ 2005 年）。要約で確認した。本文は未確認。 <a href="https://doi.org/10.1016/S0065-2601(05)37002-X">DOI のページ</a></li>
+<li id="ref-21">^ <sup><a href="#fnref-21-1">a</a></sup> <sup><a href="#fnref-21-2">b</a></sup> Michael I. Norton and Samuel R. Sommers, "Whites See Racism as a Zero-Sum Game That They Are Now Losing," <em>Perspectives on Psychological Science</em> 6 (3)（ 2011 年）。報道で確認した。 2022 年の追試は、報道で確認した。 <a href="https://sciencedaily.com/releases/2011/05/110523124220.htm">ScienceDaily の記事</a></li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> Pettigrew, Thomas F., and Linda R. Tropp, "A Meta-Analytic Test of Intergroup Contact Theory," <em>Journal of Personality and Social Psychology</em> （ 2006 年）。要旨で、 515 研究と 713 標本を確認した。 <a href="https://pubmed.ncbi.nlm.nih.gov/16737372/">PubMed の要旨</a></li>
+</ol>
+</div>
+</main>
+</body>
+</html>
