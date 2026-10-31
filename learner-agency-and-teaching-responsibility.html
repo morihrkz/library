@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「受け身の人は習得できない」という言明の検討</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力の表示」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">教育心理学・教育哲学的検討</p>
+<h1>「受け身の人は習得できない」という言明の検討<br>――学習者の能動性と教える側の責任の配分</h1>
+<p class="subtitle">An Examination of the Claim That Passive Learners Cannot Master a Skill: The Allocation of Responsibility between Learner Agency and Teaching</p>
+
+<div class="lede">
+<p>「受け身の人は習得できない。自ら積極的に学び取る人だけが身に着けられる」という言明が、教える側からなされうる。この言明は、学習が学習者自身の処理を要するという点では疑いにくい。しかし同じ言明は、習得できなかった原因を学習者に置く含意を伴いうる。本稿は、この二つの含意を分け、心理学・学習科学・哲学の文献を手がかりに、言明が責任の配分についてどこまで妥当かを検討する。</p>
+</div>
+
+<div class="meta">
+<strong>【方法と限界】</strong>文献に基づく概念的検討であり、新たな調査を含まない。出典つきの用例を確認できなかったため、存在しうる言明として論じる。
+</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">序論</a>
+<ol>
+<li><a href="#sec1-1">問題の所在</a></li>
+<li><a href="#sec1-2">問いと仮説</a></li>
+</ol>
+</li>
+<li><a href="#sec2">方法と範囲</a></li>
+<li><a href="#sec3">言明の分析と概念の定義</a>
+<ol>
+<li><a href="#sec3-1">S の読み方</a></li>
+<li><a href="#sec3-2">三つの語の定義</a></li>
+</ol>
+</li>
+<li><a href="#sec4">言明を擁護する最も強い形</a>
+<ol>
+<li><a href="#sec4-1">動機づけの観点</a></li>
+<li><a href="#sec4-2">認知の観点</a></li>
+<li><a href="#sec4-3">実践上の観点</a></li>
+<li><a href="#sec4-4">教育哲学の観点</a></li>
+<li><a href="#sec4-5">争点の読みの最も強い形</a></li>
+</ol>
+</li>
+<li><a href="#sec5">教える側の寄与</a>
+<ol>
+<li><a href="#sec5-1">指導の程度をめぐる論争</a></li>
+<li><a href="#sec5-2">伝達の困難</a></li>
+<li><a href="#sec5-3">能動性は教える側の設計から独立か</a></li>
+</ol>
+</li>
+<li><a href="#sec6">言明の論理構造</a>
+<ol>
+<li><a href="#sec6-1">反証可能性</a></li>
+<li><a href="#sec6-2">原因の帰属</a></li>
+</ol>
+</li>
+<li><a href="#sec7">責任の範囲</a></li>
+<li><a href="#sec8">分担の整理と仮説の評価</a>
+<ol>
+<li><a href="#sec8-1">努力の分担</a></li>
+<li><a href="#sec8-2">仮説の評価</a></li>
+</ol>
+</li>
+<li><a href="#sec9">結論</a></li>
+<li><a href="#sec10">限界</a></li>
+</ol>
+</nav>
+
+<div class="box">
+<strong>要旨</strong><br>
+「受け身の人は習得できない。自ら積極的に学び取る人だけが身に着けられる」という趣旨の言明（以下、言明 S ）は、教育や指導の場でなされうる。本稿は、これを存在しうる言明として扱い、 S が習得の成否の責任を教える側と学ぶ側にどう振り分けているかを、心理学・学習科学・哲学の文献に照らして検討する。「学習者の側の処理がなければ習得は起きない」という必要条件の読みは、検討した文献と整合する。他方、「能動的な者だけが」という排他の読みと、失敗の原因を学習者にだけ置く読みは、支持の範囲が限られる。学習者の能動性の感じ方が、教える側の設計や説明に左右されうることを示唆する研究があるためである。検討の出発点となる仮説 H （ S は教える側の責任を過小にする機能を持つ）は、機能の可能性 (H1) 、不誠実という評価 (H2) 、対立仮説（ H′:S は学習者の主体性を守る）に分けて評価する。 H1 と H′ は論理的に成り立ちうるが、 S の用例のデータがないため、支持の程度は判定できない。 H2 は、本稿が定義する要件を満たす使い方についてだけ、条件つきで成り立つ。 S の実際の用例と頻度は確認できなかったため、本稿の結論は、言明の論理構造と機能の可能性に限る。<br>
+<strong>キーワード</strong><br>能動的学習、足場かけ、知識の呪い、役割責任、反証可能性、帰属
+</div>
+
+<h2 id="sec1">1. 序論</h2>
+<h3 id="sec1-1">1.1 問題の所在</h3>
+<p>次のような場面を想定する。これは論点を示すための仮想例であり、実在の発言ではない。ある講習会で、受講者の一人が内容を理解できなかったと述べる。講師は、「受け身の人は習得できない。自ら積極的に学び取る人だけが身に着けられる」と応じる。</p>
+<p>この言明 S には、少なくとも二つの含意がありうる。一つは、学習が学習者自身の処理を要するという、おおむね疑いにくい含意である。もう一つは、習得できなかった原因が学習者の側にあるという含意である。前者は学習についての主張であり、後者は責任の配分についての主張である。両者は論理的に別であり、前者が正しくても後者が正しいとは限らない。本稿はこの区別を出発点に置く。</p>
+<h3 id="sec1-2">1.2 問いと仮説</h3>
+<p>本稿の主問は、 S が習得の成否の責任を教える側と学ぶ側にどう振り分けているか、その振り分けが心理学・学習科学・哲学の知見に照らしてどこまで妥当か、である。これを次の五つの副問に分ける。</p>
+<ul>
+<li><strong>Q1</strong><br>S はどのような読みを許し、それぞれの読みはどの意味で正しいか。</li>
+<li><strong>Q2</strong><br>実証研究は、学習者の能動性と教える側の伝え方の寄与をどう位置づけているか。</li>
+<li><strong>Q3</strong><br>教える役割を引き受けた者の責任は、どこまで及ぶか。</li>
+<li><strong>Q4</strong><br>S は反証できる形で述べられているか。失敗の原因を一方にだけ帰属させる構造を持つか。</li>
+<li><strong>Q5</strong><br>教える側と学ぶ側の努力の分担をどう整理できるか。仮説 H はどこまで支持されるか。</li>
+</ul>
+<p>検討の出発点となる仮説 H （ S は教える側の責任を過小にする機能を持つ。教える側が「わかりやすく伝える」努力を怠る理由づけとして S を用いるなら、それは不誠実と評価できる）を、次の二つに分ける。 <span class="tag">H1</span>S は、使われる文脈によっては、教える側の責任を小さく見せる働きを持ちうる。 <span class="tag">H2</span> 教える側が「わかりやすく伝える」努力を怠る理由づけとして S を用いるなら、それは不誠実と評価できる。また、対立する仮説として、 <span class="tag">H′</span>S は、学習者の主体性を守り、教える側への過度の依存を防ぐ働きを持ちうる、を置く。 H だけを検証対象にすると、論の枠組みが H に寄るためである。なお H1 は、 H が「持つ」と述べる機能を「持ちうる」という可能性の形に弱めたものであり、その評価は、用例の調査なしには支持か不支持かを決められない水準にとどまる。</p>
+
+<h2 id="sec2">2. 方法と範囲</h2>
+<p>本稿は文献に基づく概念的検討であり、新たな調査や実験を含まない。 S のような言明が実際になされていることを示す出典つきの用例は、日本語と英語で検索したが確認できなかった。そこで本稿は、 S が存在しうる言明として、その論理構造と機能を論じる。 S がどれだけの頻度で、どのような意図で用いられているかについては、何も主張しない。</p>
+<p>文献は、書誌データと抄録または要約で内容を確認した。全文を通読していないものを含み、そのような文献からは、確認した範囲の記述だけを用いる。論じる主張は、次の三つの区分を文末で書き分ける。</p>
+<table class="cards">
+<thead><tr><th>区分</th><th>基準</th><th>本文での書き方</th></tr></thead>
+<tbody>
+<tr><td data-label="区分">確立した事実</td><td data-label="基準">複数の研究・資料で支持され、分野内で大きな異論がない。</td><td data-label="本文での書き方">「〜である」</td></tr>
+<tr><td data-label="区分">未確定の仮説</td><td data-label="基準">一定の経験的な支持があるが、結果が割れている、条件に依存する、再現が不十分である、のいずれかを含む。</td><td data-label="本文での書き方">「〜と考えられる」「〜という報告がある」</td></tr>
+<tr><td data-label="区分">投機的な理論</td><td data-label="基準">経験的な検証が乏しい、または検証が難しい。哲学的な議論と筆者の解釈を含む。</td><td data-label="本文での書き方">「〜の可能性がある」</td></tr>
+</tbody>
+</table>
+
+<h2 id="sec3">3. 言明の分析と概念の定義</h2>
+<h3 id="sec3-1">3.1 S の読み方</h3>
+<p>S は、少なくとも次の四つの読みを許す。必要条件の読みは S の最も穏当な形であり、争点は、排他の読みと原因の置き場所の読みにあると見込まれる。この絞り込みを先に行うのは、後の検討が、 S の弱い形だけを退ける議論にならないようにするためである。</p>
+<table class="cards">
+<thead><tr><th>読み</th><th>内容</th><th>検討する節</th></tr></thead>
+<tbody>
+<tr><td data-label="読み">必要条件</td><td data-label="内容">学習者の側の処理（注意、統合、練習）なしに、習得は起きない。</td><td data-label="検討する節">4 節で検討する。</td></tr>
+<tr><td data-label="読み">排他</td><td data-label="内容">能動的な者だけが習得し、受け身の者は習得しない。</td><td data-label="検討する節">4.5 、 5 節、 6 節で検討する。</td></tr>
+<tr><td data-label="読み">原因の帰属</td><td data-label="内容">習得できなかった原因は、学習者の受け身な態度にある。</td><td data-label="検討する節">4.5 、 5 節、 6 節、 7 節で検討する。</td></tr>
+<tr><td data-label="読み">励まし</td><td data-label="内容">取り組みを促すための動機づけの発話であり、事実の主張ではない。</td><td data-label="検討する節">4.5 と 6 節で扱う。</td></tr>
+</tbody>
+</table>
+<h3 id="sec3-2">3.2 三つの語の定義</h3>
+<p>以下、三つの語を次のように定義して用いる。これらは筆者の定義であり、文献の定義そのものではない。</p>
+<ul>
+<li><strong>受け身</strong><br>三つの水準を区別する。 (i) 外から観察できる関与の様式を指す。心理学者の Chi と Wylie の ICAP の枠組み（学習者の関与の様式を四つに分け、学習の程度との関係を論じる枠組み）では、情報を受け取るが、それ以上は外見上関与しない様式を passive と呼ぶ。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup>(ii) 動機づけの態度。与えられるのを待つ構えである。 (iii) 意志の欠如という性格的な特性。 S が (iii) を意味するなら、人の性格の断定になる。本稿は、特に断らない限り (i) と (ii) の意味で用いる。</li>
+<li><strong>習得</strong><br>一定の期間と条件のもとで、課題を定められた水準で遂行できるようになること。習得の有無は、受け身であったかどうかとは独立に、課題の遂行で判定する。習得できなかった者を後から「受け身だった」と認定する定義（循環した定義）は、本稿では用いない。</li>
+<li><strong>わかりやすく伝える</strong><br>課題の遂行に必要な情報が、学習者の既有知識のもとで、利用可能な形で提示されること。哲学者 Grice が会話の公理（会話が成り立つために話し手が守るとされる規範）として挙げた、明瞭であれという様態の公理の考え方を足場にする。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup>Grice の議論は会話一般についてのもので、教育への適用は筆者の援用である。</li>
+</ul>
+
+<h2 id="sec4">4. 言明を擁護する最も強い形</h2>
+<p>S を擁護する立場は、四つの観点から、それぞれ別の形で組み立てられる。この節では、各観点の最も強い形と、その確度を示す。</p>
+<h3 id="sec4-1">4.1 動機づけの観点</h3>
+<p>心理学者の Ryan と Deci の自己決定理論（人の動機づけを、生得的な心理的欲求の充足から説明する理論）は、有能感、自律性、関係性という三つの生得的な欲求が満たされることが、自己動機づけと幸福感の高さと結びつくと論じる。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 習得が長期の取り組みを要するなら、その取り組みの源泉は最終的に学習者の内にある。教える側は、外から条件を整えることはできても、学習者に代わって動機づけを維持することはできない。この論理は、実証で完全に検証されたものではなく、筆者による整理である。</p>
+<h3 id="sec4-2">4.2 認知の観点</h3>
+<p>Chi と Wylie は、学習活動を passive 、 active 、 constructive 、 interactive の四つの様式に分け、学習がこの順に高まると予測する（ ICAP 仮説）。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> この順序は、課題や学習者の条件に依存しうる未確定の仮説である。ただし、学習が学習者の側の処理に依存するという主張の、体系的な形として参照できる。学部 STEM （科学・技術・工学・数学）の授業を対象とした 225 研究のメタ分析（複数の研究の結果を統計的に統合する分析）のうち、試験と概念テストを扱った 158 研究では、能動的学習の授業は、伝統的な講義より、得点が平均で約 0.47 標準偏差（得点のばらつきの大きさを単位とした差）高かった。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> ただし、ここでの能動的学習は教員が設計した授業方式を含み、 S の言う学習者の自発性と同じではない。この研究が支えるのは、学習者の側の処理が成績を左右するという点までである。さらに哲学者の Polanyi は、人は語れる以上のことを知りうると述べ、知識に言語化できない側面があることを論じた。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 技能の習得に言葉で伝えきれない部分があるなら、その部分は学習者の側の探索と練習を通じて獲得される比重が大きいと考えられる。ただし同じ議論は、教える側が示範や修正で補う余地があるという読みも許す。 Polanyi の議論は哲学的な主張であり、本稿は投機的な理論の区分に置く。</p>
+<p>長期の努力を重視する立場もある。 Ericsson らは、熟達者の成績の個人差が、評価された意図的練習（熟達を目指して継続する練習）の量と密接に関連すると論じた。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> この主張には批判と反論がある。 Macnamara と Maitra は、意図的練習の定義が Ericsson らの著作で一貫しないことや、ヴァイオリンの追試で、教師が設計した練習が独りでの練習より上達に関連が薄いと受け止められたことを指摘した。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 他方、 Ericsson 側は、元の定義に合う研究に限れば、練習の説明力は大きいと反論している（ Frontiers in Psychology 、 2019 年。書誌は未確認のため、参考文献には挙げない）。この論点は未確定の仮説である。</p>
+<h3 id="sec4-3">4.3 実践上の観点</h3>
+<p>教える側の時間、担当する人数、資源には限りがある。すべての学習者に個別に調整することはできず、学習者の側が不明点を自ら探して補うことが、現実の教育を成り立たせている面がある。この点を裏付ける実証資料は収集していない。本稿は、論理的な指摘にとどめる。</p>
+<h3 id="sec4-4">4.4 教育哲学の観点</h3>
+<p>哲学者の Rancière は、教師ジャコトの実践を題材に、すべての人の知性は等しいという前提から出発し、教師による説明が不平等を前提とし、学習者を教師への依存に置くと論じた。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> この立場からは、教える側が説明を重ねるほど学習者の自立を損なうおそれがある。学習者の自立を重んじる限り、 S はこの議論と親和的に読める。ただし、本稿が参照した Rancière の内容は二次情報に基づく要約であり、解釈は暫定的である。</p>
+<p>以上を合わせると、必要条件の読みの最も強い形は次のようになる。習得の成否を分ける最後の一歩は学習者の内側の処理であり、教える側はそれを代行できない。それゆえ、学習者の取り組みを欠いた習得は起きない。</p>
+<h3 id="sec4-5">4.5 争点の読みの最も強い形</h3>
+<p>必要条件の読みは S の最も穏当な形である。擁護側は、より強い読みも次のように組み立てられる。同じ指導条件のもとで成果に差が出るなら、その差の一部は学習者の側の要因で説明される。 4.3 の資源の制約のもとでは、学習者が不明点を表明し、自分で補う行動が、実際に成果を左右する変数になる。さらに、 S を事前の励ましや規範の発話として用いるなら、それは学習者に取り組みの責任を引き受けさせる働きかけとして、教育上の意味を持つ。この論理は、自己調整学習（学習者が自ら目標を立て、進め方を調整する学習）の文献につなげうるが、その文献は本稿で確認していないため、論理の水準にとどめる。これらの形は、 5 節以降で、教える側の寄与と論理構造に照らして吟味する。</p>
+
+<h2 id="sec5">5. 教える側の寄与</h2>
+<h3 id="sec5-1">5.1 指導の程度をめぐる論争</h3>
+<p>Kirschner 、 Sweller 、 Clark は、発見学習（学習者が自力で規則を見つけるよう促す方式）や問題基盤学習（複雑な問題への取り組みを通じて学ぶ方式）など、指導を最小限にとどめる方式が、学習の認知処理を支えるよう設計された指導より、効果と効率で劣ると論じた。根拠は、人間の認知の構造、専門家と初心者の差、認知負荷（一度に処理できる情報量には限りがあるという考えに基づく概念）である。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> これに対して Hmelo-Silver らは、問題基盤学習や探究学習は発見学習と同一ではなく、足場かけ（学習者が自力でできない部分を、他者が必要に応じて支える支援）に大きく依存していると反論した。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup>Sweller らは、無作為化対照実験（参加者を無作為に群へ割り当てて比べる実験）による検証の重要性を再び強調し、関連情報の提示を減らして情報の探し方を教えることには反対した。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 教育研究者の Rosenshine は、認知科学の研究、熟達した教師の研究、認知的支援の研究から、新しい内容を小さな手順で示す、理解を頻繁に確認する、といった指導の原則を導いた。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup></p>
+<p>この論争は、どの程度の手引きが必要かについて、研究者の間で結果が割れていることを示す。したがって、必要な指導の程度は未確定の仮説である。ただし、論争の両側が、学習者を導く支えの存在を前提にしている点では重なっている（筆者の整理）。</p>
+<h3 id="sec5-2">5.2 伝達の困難</h3>
+<p>次の研究からは、教える側の説明の不備が、悪意や怠慢がなくても生じうると考えられる（筆者の解釈）。 Camerer らは、情報を多く持つ側が、持たない側の判断を予測するときに、自分の持つ情報を切り離せない偏りを「知識の呪い」として実験的に示した。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup>Hinds は、新しい携帯機器の操作を題材に、専門家が初心者の誤りと所要時間を過小に見積もること、自分が初心者だったときを思い出す方法では改善しなかったことを報告した（二次情報による）。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup>Wood らは、幼児が積み木のピラミッドを組む課題で、大人が必要なときだけ介入する支援を観察し、これを足場かけと呼んだ（二次情報による）。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></p>
+<p>これらの研究は、実験場面や特定の課題、幼児を対象としている。学校、講習会、スポーツ指導に広げられるかは、検証されていない。ここから言えるのは、専門家が初心者の困難を過小に見積もる傾向が、条件によっては生じうるという範囲にとどまる。個々の教える側がそうであると言うことはできない。</p>
+<h3 id="sec5-3">5.3 能動性は教える側の設計から独立か</h3>
+<p>Deslauriers らは、大規模な大学の入門物理で、学生を無作為に割り当て、内容と配布資料を同じにして、能動的な授業と、経験豊富で評価の高い教員による受動的な講義を比較した。能動的な授業の学生の得点は高かったが、学習したという実感は低かった。著者らは、能動的学習で増える努力を、学習が進んでいない兆しと誤って読むことが原因の一部であると述べ、学期の序盤は学習が損なわれうること、教員が早期に対処する方略を取りうることを論じた。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></p>
+<p>この結果は、二つの方向に読める（以下は筆者の解釈である）。第一に、学習者が自らの努力をどう意味づけるかは、教える側の説明に左右される可能性がある。 Deslauriers らは対処の方略を提案したが、その効果は、本稿が確認した範囲では検証されていない。有能感を重視する Ryan と Deci の議論も、学習者が自分にできるという感覚を持てるよう、教える側が課題を設計する余地を示唆する。これは H を一部支える。第二に、経験豊富で評価の高い教員による講義でも、能動的な授業に及ばなかった。講義の質が高くても結果が劣りうるなら、教える側の責任は、説明の明瞭さだけでなく、学習者の処理を引き出す設計にも及ぶ可能性がある。これは、「わかりやすく伝える」という H の枠組みが、教える側の寄与を狭く捉えている可能性を示唆する。 Freeman らの言う能動的学習にも、教員が設計した活動が含まれる。授業の形式が成績と学習の実感の両方を変えうるという範囲では、実証が支持している。しかし、そこから、学習者の能動性は学習者の特性と教える側の設計が共同で生み出すものだと推論するのは、飛躍を含み、投機的な理論にとどまる。</p>
+<p>一方で、この結果を、学習者の能動性が教える側しだいだと読むのは言い過ぎである。言えるのは、設計と説明に左右されうるという範囲までである。</p>
+
+<h2 id="sec6">6. 言明の論理構造</h2>
+<h3 id="sec6-1">6.1 反証可能性</h3>
+<p>科学哲学者の Popper は、科学と非科学を分ける基準として反証可能性を挙げ、反証を避けるための場当たり的な仮説の追加を認めなかった。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup>S が、習得の予測や説明として用いられる場合を考える。習得できた者を「能動的だった」とし、できなかった者を「受け身だった」と後から認定するなら、どのような結果も S と矛盾しない。この場合、 S は反証できない。 3.2 で、受け身の有無を習得の結果と独立に定める定義を置いたのは、このためである。</p>
+<p>これに対して、擁護側から強い再反論が成り立つ。 S を励ましや規範の発話として用いる場合、 S は科学的な主張ではなく、取り組みを促す働きかけである。そのような発話に反証可能性を求めるのは適切でない。したがって、反証可能性が問題になるのは、 S が予測や説明として用いられる場合に限られる、と結論するのが妥当である。</p>
+<h3 id="sec6-2">6.2 原因の帰属</h3>
+<p>社会心理学者の Ross は、他者の行動を、状況の要請が妥当な場合でも、個人の特性や態度に帰属させる傾向を「根本的な帰属の誤り」と呼んだ。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> この傾向は、一般的な傾向であり、特定の教える側に当てはめることはできない。また、この傾向は教える側にだけ働くわけではない。 Ross の言う傾向が一般的なものなら、学ぶ側が、教える側の説明の不備を、その人の性格や怠慢のせいにする可能性もある。 S が失敗の原因を学習者の特性に置く構造を持つ場合は、この傾向と整合する。同時に、教える側への一括りの非難も、同じ傾向の現れでありうる。本稿は、双方に同じ注意を向ける。</p>
+
+<h2 id="sec7">7. 責任の範囲</h2>
+<p>法哲学者の Hart は、責任の語の意味を区別し、そのうち役割責任を、社会組織で特定の地位や職にある者に、特定の義務が付随することと説明した。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 教える役割を引き受けた者は、この意味で責任を負う。何が義務に含まれるかは、役割の定義に依存する（筆者の解釈）。</p>
+<p>ここで、結果の責任と手段の責任を区別する。結果の責任は、学習者を習得させることを義務とする。手段の責任は、習得できる条件を整えることを義務とする。この区別は筆者の整理であり、出典を確認できていない。前者を教える側に課すと、学習者の側の処理を無視することになり、擁護側の必要条件の読みと衝突する。後者なら、必要条件の読みと両立する。条件には、 5 節に見た、困難の予測、足場かけ、理解の確認などが含まれうる。</p>
+<p>この観点から、 4.4 の Rancière を読み直す。説明を控える教師にも、学習者の意志を問い、注意を向けさせる責任は残ると読める余地がある。したがって、 Rancière の立場は、教える側の責任が軽いという主張と同じではない。ただし、これは筆者の解釈であり、投機的な理論にとどまる。</p>
+
+<h2 id="sec8">8. 分担の整理と仮説の評価</h2>
+<h3 id="sec8-1">8.1 努力の分担</h3>
+<p>責任の分担を、ゼロサムの前提を置かずに整理する。教える側の責任が大きい分だけ、学ぶ側の責任が小さくなるとは限らない。条件が整っても、処理は学習者にしか実行できず、学習者の努力だけでは、条件の欠如を補いきれない場合があるためである。次の表は、筆者の整理である。</p>
+<table class="cards">
+<thead><tr><th>主体</th><th>担えること</th><th>代わりに担えないこと</th></tr></thead>
+<tbody>
+<tr><td data-label="主体">教える側</td><td data-label="担えること">課題の整理、説明の明瞭さ、足場かけ、理解の確認、学習者の困難の予測、努力の意味づけの説明</td><td data-label="代わりに担えないこと">学習者の内側の処理、練習の実行</td></tr>
+<tr><td data-label="主体">学ぶ側</td><td data-label="担えること">注意の持続、処理の実行、練習、不明点の表明、助けを求める行動</td><td data-label="代わりに担えないこと">教える側が持つ情報や設計の不足の補完（補いうる程度には限りがある）</td></tr>
+<tr><td data-label="主体">共同</td><td data-label="担えること">動機づけと、努力の意味づけ（努力を学習の兆しと読むか、不調の兆しと読むか）</td><td data-label="代わりに担えないこと">どちらか一方だけでは成立しない</td></tr>
+</tbody>
+</table>
+<h3 id="sec8-2">8.2 仮説の評価</h3>
+<p>H2 は「怠る」「言い訳として」という内心に関わる語を含むため、そのままでは判定できない。個々の教える側の内心は、外から確かめられない。そこで、「不誠実」を観察できる要件で定義する。本稿は、理解を確かめる手段や設計を改善する手段を持ちながら、失敗の後の説明として S だけを示し、それらを用いない使い方を、不誠実と評価されうる使い方の要件とする（筆者の定義）。この要件は、個々の人の内心ではなく、使い方の型を指す。評価の指標は次の三つである。 (i) S が、失敗の後の説明として用いられているか、事前の励ましとして用いられているか。 (ii) 設計を改善する試みと併せて用いられているか。 (iii) 学習者が理解したかを確かめる手段を持っているか。個々の事例がこの要件を満たすかは、本稿の範囲外である。また、 S の用例のデータを持たないため、以下の評価は、いずれも論理的に成り立つかどうかの水準にとどまる。</p>
+<ul>
+<li><strong>H1 （責任を小さく見せる機能）</strong><br>論理的に成り立ちうる（投機的な理論）。 S を失敗の後の説明として用い、かつ設計の改善や理解の確認を伴わない場合に限り、教える側の寄与を見えにくくする構造を持つと考えられる（筆者の整理）。事前の励ましとして用い、改善の試みを伴う場合は、この機能は認められない。 H1 は可能性の形で述べており、用例の頻度の調査なしに、支持か不支持かは判定できない。</li>
+<li><strong>H2 （不誠実という評価）</strong><br>上の要件を満たす使い方なら、不誠実と評価されうる。これは定義から導かれる条件つきの評価であり、個々の事例が要件を満たすかは判定しない。</li>
+<li><strong>H′（主体性を守る機能）</strong><br>論理的に成り立ちうる（投機的な理論）。必要条件の読みと、学習者の自立を重んじる Rancière の議論に支えられる。観察できる指標は、 (i) S が事前の励ましとして用いられているか、 (ii) 学習者の自立を損なわない形で支援が用意されているか、である。 S が失敗の後にだけ、支援を伴わずに用いられていれば、 H′ の機能は認められない。 H′ も、用例の調査なしに、支持か不支持かは判定できない。</li>
+</ul>
+<p>H1 を反証する条件は、可能性の主張の形に合わせて示す。 S の使い方として、失敗の後の説明として、設計の改善や理解の確認を伴わずに用いられる型が、調査しても観察されなければ、 H1 の言う機能は現実には成立していないことになる。逆に、この型が観察されれば、 H1 は実際に起きていることとして支持される。</p>
+
+<h2 id="sec9">9. 結論</h2>
+<p>Q1 から Q5 に、一つずつ答える。</p>
+<ul>
+<li><strong>Q1</strong><br>必要条件の読みは、 4 節の材料から支持される。排他の読みと原因の帰属の読みは、「受け身」の定義と教える側の寄与の考慮に依存する。励ましの読みは、反証可能性を求める対象としては適切でない。</li>
+<li><strong>Q2</strong><br>学習者の側の処理は習得に不可欠であり、能動的学習の効果は、学部 STEM を対象とした 1 件のメタ分析の範囲で確認されている（対象の限定に注意）。同時に、必要な指導の程度は未確定である。学習者の能動性は、教える側の設計に左右されうる（未確定の仮説）。</li>
+<li><strong>Q3</strong><br>教える役割の責任は、結果の責任としてではなく、習得できる条件を整える手段の責任として画定するのが整合的である（筆者の整理）。</li>
+<li><strong>Q4</strong><br>S は、受け身を結果から事後的に定義するなら、反証できない。励ましとして使うなら、この批判は当たらない。失敗の原因を学習者にだけ置く構造は、帰属の偏りと整合するが、その偏りは教える側と学ぶ側の双方に働く。</li>
+<li><strong>Q5</strong><br>分担はゼロサムでない。 H1 と H′ は、いずれも論理的に成り立ちうるが、用例のデータがないため、支持の程度は判定できない。 H2 は、定義した要件を満たす使い方についてだけ、条件つきの評価として成り立つ。 H は、 S 自体の欠陥ではなく、 S の使われ方の問題として整理するのが適切である。</li>
+</ul>
+
+<h2 id="sec10">10. 限界</h2>
+<ul>
+<li>S の出典つきの用例を確認できなかった。 S の実在、頻度、意図は、本稿の検討の外にある。</li>
+<li>H1 と H′ の評価は、 S の用例の調査を欠くため、論理的に成り立つかどうかの水準にとどまる。</li>
+<li>多くの文献を、抄録と要約で確認した。全文を通読していないものがあり、 Freeman らのメタ分析の細部、 Camerer らや Hinds の細部、 Rosenshine の本文は、一次資料での再確認が必要である。</li>
+<li>実験室や特定の教科、年齢で得た結果を、学校、講習会、スポーツ指導一般に広げる根拠はない。</li>
+<li>「受け身」「習得」「わかりやすく伝える」の定義、結果の責任と手段の責任の区別、努力の分担の表は、筆者の整理である。</li>
+<li>調査の範囲の制約から、次の材料を用いていない。教師の説明の明瞭さと学習成果の直接の研究、指導の効果が学習者の熟達度によって変わるという知見、先に試行錯誤させる設計の研究、教師と学習者の帰属の研究、「教える」という語の哲学的分析、学級規模などの実務のデータ。これらを加えれば、本稿の結論、特に Q2 と Q5 は変わりうる。</li>
+</ul>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Chi, M. T. H., & Wylie, R. (2014). The ICAP framework: Linking cognitive engagement to active learning outcomes. <em>Educational Psychologist</em>, 49(4), 219–243. <a href="https://doi.org/10.1080/00461520.2014.965823">DOI</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Grice, H. P. (1975). Logic and conversation. In P. Cole & J. L. Morgan (Eds.), <em>Syntax and semantics, Vol. 3: Speech acts</em> (pp. 41–58). Academic Press.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist</em>, 55(1), 68–78. <a href="https://pubmed.ncbi.nlm.nih.gov/11392867/">PubMed</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Freeman, S., Eddy, S. L., McDonough, M., Smith, M. K., Okoroafor, N., Jordt, H., & Wenderoth, M. P. (2014). Active learning increases student performance in science, engineering, and mathematics. <em>Proceedings of the National Academy of Sciences</em>, 111(23), 8410–8415. <a href="https://doi.org/10.1073/pnas.1319030111">DOI</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Polanyi, M. (1966). <em>The tacit dimension</em>. Doubleday.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Ericsson, K. A., Krampe, R. T., & Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. <em>Psychological Review</em>, 100(3), 363–406.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Macnamara, B. N., & Maitra, M. (2019). The role of deliberate practice in expert performance: Revisiting Ericsson, Krampe &amp; Tesch-Römer (1993). <em>Royal Society Open Science</em>, 6, 190327. <a href="https://doi.org/10.1098/rsos.190327">DOI</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Rancière, J. (1991). <em>The ignorant schoolmaster: Five lessons in intellectual emancipation</em> (K. Ross, Trans.). Stanford University Press. （原著 1987 ）</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work: An analysis of the failure of constructivist, discovery, problem-based, experiential, and inquiry-based teaching. <em>Educational Psychologist</em>, 41(2), 75–86. <a href="https://doi.org/10.1207/s15326985ep4102_1">DOI</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Hmelo-Silver, C. E., Duncan, R. G., & Chinn, C. A. (2007). Scaffolding and achievement in problem-based and inquiry learning: A response to Kirschner, Sweller, and Clark (2006). <em>Educational Psychologist</em>, 42(2), 99–107. <a href="https://doi.org/10.1080/00461520701263368">DOI</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Sweller, J., Kirschner, P. A., & Clark, R. E. (2007). Why minimally guided teaching techniques do not work: A reply to commentaries. <em>Educational Psychologist</em>, 42(2), 115–121. <a href="https://doi.org/10.1080/00461520701263426">DOI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Rosenshine, B. (2012). Principles of instruction: Research-based strategies that all teachers should know. <em>American Educator</em>, 36(1), 12–19. <a href="https://files.eric.ed.gov/fulltext/EJ971753.pdf">ERIC (PDF)</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Camerer, C., Loewenstein, G., & Weber, M. (1989). The curse of knowledge in economic settings: An experimental analysis. <em>Journal of Political Economy</em>, 97(5), 1232–1254. <a href="https://doi.org/10.1086/261651">DOI</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Hinds, P. J. (1999). The curse of expertise: The effects of expertise and debiasing methods on prediction of novice performance. <em>Journal of Experimental Psychology: Applied</em>, 5(2), 205–221. <a href="https://doi.org/10.1037/1076-898X.5.2.205">DOI</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Wood, D., Bruner, J. S., & Ross, G. (1976). The role of tutoring in problem solving. <em>Journal of Child Psychology and Psychiatry</em>, 17(2), 89–100. <a href="https://pubmed.ncbi.nlm.nih.gov/932126/">PubMed</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Deslauriers, L., McCarty, L. S., Miller, K., Callaghan, K., & Kestin, G. (2019). Measuring actual learning versus feeling of learning in response to being actively engaged in the classroom. <em>Proceedings of the National Academy of Sciences</em>, 116(39), 19251–19257. <a href="https://doi.org/10.1073/pnas.1821936116">DOI</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Popper, K. R. (1959). <em>The logic of scientific discovery</em>. Hutchinson. （原著 1934 ）</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Ross, L. (1977). The intuitive psychologist and his shortcomings: Distortions in the attribution process. In L. Berkowitz (Ed.), <em>Advances in experimental social psychology</em> (Vol. 10, pp. 173–220). Academic Press.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Hart, H. L. A. (1968). <em>Punishment and responsibility: Essays in the philosophy of law</em>. Clarendon Press.</li>
+</ol>
+</div>
+
+<p class="endnote">本稿は、実証研究の知見と哲学的な主張を、確立した事実・未確定の仮説・投機的な理論に分けて扱った。後二者は、新たな証拠や別の解釈によって修正されうる。</p>
+
+</main>
+</body>
+</html>
