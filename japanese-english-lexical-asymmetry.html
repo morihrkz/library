@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本語では一語、英語では呼び分ける――動物名にみる語彙の切り分けの非対称性</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力の表示」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">語彙意味論・認知言語学・民俗分類</p>
+<h1>日本語では一語、英語では呼び分ける<br>――動物名にみる語彙の切り分けの非対称性</h1>
+<p class="subtitle">Asymmetries in Lexical Partitioning: A Comparative Study of Japanese and English Animal Terms</p>
+<div class="lede">
+<p>日本語では一語で呼ぶ動物を、英語は大きさや生息環境などの違いによって複数の語に呼び分けることがある。本稿は、鼠・猿・兎・鳩・亀・鰐・蛙・蝦の八組を事例に、語彙意味論、認知心理学、民俗分類学の知見を借りて、この非対称性を、区別の軸、生物学的分類との関係、日本語側の補完手段、語に伴う含意の四つの面から整理する。</p>
+<p>結論として、非対称性は「語があるか、ないか」の差ではなく、日常語として最も基本的な水準（基礎レベル）をどこに置くかの差と考えるのが適切である。また、この非対称性は一方向のものではない。日本語が細かく呼び分け、英語が一語で済ませる例も多い。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>英語の語義は、一般的な辞書の記述にみられる説明の要約であり、特定の辞書からの引用ではない。語義の細部（特にイギリス英語とアメリカ英語の差）や俗語の用法は、辞書によって異なる。成句に伴う含意は、慣用句や用例から読み取れる傾向であり、話者や場面によって変わる。先行研究は代表的な文献を挙げるにとどめ、本稿自体は事例の整理である。話者を対象にした実験やコーパス調査は行っていない。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">はじめに――問題の所在</a></li>
+<li><a href="#sec2">理論的枠組み</a>
+<ol>
+<li><a href="#sec2-1">語彙の分節と価値</a></li>
+<li><a href="#sec2-2">基礎レベルと民俗分類</a></li>
+<li><a href="#sec2-3">言語相対性をめぐる論点</a></li>
+</ol>
+</li>
+<li><a href="#sec3">資料と方法</a></li>
+<li><a href="#sec4">事例の分析</a>
+<ol>
+<li><a href="#sec4-1">対応関係の概観</a></li>
+<li><a href="#sec4-2">区別の軸</a></li>
+<li><a href="#sec4-3">民俗分類と科学分類のずれ</a></li>
+<li><a href="#sec4-4">日本語側の補完手段</a></li>
+<li><a href="#sec4-5">含意と比喩</a></li>
+</ol>
+</li>
+<li><a href="#sec5">考察</a>
+<ol>
+<li><a href="#sec5-1">「一語か、二語か」から「基礎レベルの位置」へ</a></li>
+<li><a href="#sec5-2">非対称性の双方向性</a></li>
+<li><a href="#sec5-3">限界と今後の課題</a></li>
+</ol>
+</li>
+<li><a href="#sec6">コーヒーブレイク――鯉の carp</a>
+<ol>
+<li><a href="#sec6-1">英語の carp は「役立たずの魚」か</a></li>
+<li><a href="#sec6-2">「カープ」はどう選ばれたか</a></li>
+<li><a href="#sec6-3">英語話者はどう受け取るか</a></li>
+<li><a href="#sec6-4">同じ綴りの別語――動詞の carp</a></li>
+<li><a href="#sec6-5">まとめ</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. はじめに――問題の所在</h2>
+<p>日本語では一語で済ませるものを、英語では複数の語に呼び分けることがある。時計 (clock と watch) や、牛 (cow 、 ox 、 steer 、 calf) がその例である。逆に、英語が一語で済ませるものを日本語が呼び分ける例もある。 water に対する水と湯がよく知られている <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。言葉による世界の切り分けは、言語どうしで対称ではない。</p>
+<p>本稿は、この非対称性を動物の名前で検討する。動物は、生物学が分類の体系を持つ一方で、日常の言語は別の基準で語を分けているため、「言語による切り分け」と「科学による切り分け」の差を見るのに向いている。取り上げるのは、日本語で一語（または同じ語幹の語）で通じるのに、英語では語が分かれる八組である。</p>
+<p>問いは三つある。</p>
+<ul>
+<li>「日本語では一語」という記述は、どの水準で成り立つのか。</li>
+<li>英語の呼び分けは、どのような軸に基づくのか。その軸は、生物学の分類と一致するのか。</li>
+<li>語に伴う含意（好ましさ・嫌悪など）は、語の切り分けとどう関わるのか。</li>
+</ul>
+<p>以下、 2 章で理論的な枠組みを確認し、 3 章で資料と方法を述べ、 4 章で事例を分析し、 5 章で考察する。 6 章は、同じ語でも土地によって含意が変わる例として、鯉を意味する carp をめぐる補論（コーヒーブレイク）を置く。</p>
+
+<h2 id="sec2">2. 理論的枠組み</h2>
+<h3 id="sec2-1">2.1 語彙の分節と価値</h3>
+<p>言語が連続した現実を言語ごとに切り分けるという見方は、ソシュールの「価値」の考え方にさかのぼる。ソシュールは、フランス語の mouton と英語の sheep は、同じ動物を指していても価値が同じではないと述べた。英語には、料理された羊肉を指す mutton があり、 sheep はこの語との対立のなかで意味が決まるからである <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。語の意味は、語が指すものだけでなく、同じ体系のなかの隣の語との関係で決まる。</p>
+<p>この見方は、色名の研究で経験的に検討されてきた。バーリンとケイは、世界の言語の基本色彩語が、どの言語でも限られた順序で現れることを示した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。後続の研究は、言語ごとの色の分割が、色空間を効率よく分ける範囲のなかにおさまることを報告している <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。日用品の領域でも、容器の命名が英語・中国語・スペイン語で違う一方、容器どうしの類似の判断は話者のあいだで近いことが示された <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。これらを合わせると、切り分けは言語ごとに違うが、自由気ままなものではなく、知覚や用途による制約を受けていると言える。</p>
+<p>語どうしの関係には、意味が包含する関係（上位語・下位語、たとえば「動物」と「ネズミ」）がある <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。本稿で「一語」「二語」と言うときは、この階層のどこに日常語が置かれているかが問題になる。</p>
+
+<h3 id="sec2-2">2.2 基礎レベルと民俗分類</h3>
+<p>ロッシュらは、概念の階層（上位・基礎・下位）のうち、基礎レベルがもっとも基本的であることを示した。基礎レベルの語は、短く、よく使われ、子どもが早く覚え、人がその事物を最初に名づけるときに選ぶ水準である <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。「動物」（上位）、「犬」（基礎）、「柴犬」（下位）の三段のうち、日常でまず口にするのは「犬」である。</p>
+<p>動植物の民俗分類を比較したバーリンは、伝統社会の動植物の分類にも階層があり、中核となる水準 (generic) の語は、生物学の属や種に近いことが多いと整理した <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。ただし、基礎レベルがどこにあるかは固定されていない。鳥や犬の専門家では、下位の水準の語が基礎レベルの語と同じくらい自然に使われる <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。基礎レベルは、対象への習熟や関わり方によって動く。</p>
+<p>この知見を使うと、「日本語では一語」という記述は、日本語話者の日常語では、基礎レベルが「ネズミ」の水準にある、という主張として読み直せる。日本語に「ドブネズミ」「ハツカネズミ」の語がないわけではないからである。</p>
+
+<h3 id="sec2-3">2.3 言語相対性をめぐる論点</h3>
+<p>語彙の違いが思考の違いを生むかという問いは、言語相対性の議論として長く続いてきた。言語が思考を決定するという強い主張は支持されておらず、言語が注意や記憶の向け方に影響するという弱い主張が、実験で検討されている <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup><sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。本稿は、語彙の記述と整理にとどまり、英語話者と日本語話者の認知に差があるかどうかには踏み込まない。</p>
+
+<h2 id="sec3">3. 資料と方法</h2>
+<p>対象は、鼠・猿・兎・鳩・亀・鰐・蛙・蝦の八組である。選択の基準は、日本語で一語（または同じ語幹の語）で言え、英語では複数の語に分かれることである。網羅的に選んだものではなく、この基準に合う代表例を便宜的に集めたもので、日本語側が一語になる例に偏っている。逆方向（日本語が細かく分ける例）は 5.2 で補う。</p>
+<p>手順は次のとおりである。</p>
+<ul>
+<li>英語の語の区別を、辞書にみられる説明から要約する。</li>
+<li>区別を、体の大きさ、生息環境、形態、人との距離の軸に分ける。</li>
+<li>それぞれが生物学上の分類とどう対応するかを確かめる。</li>
+<li>日本語側に、区別を補う語（複合語、借用語）があるかを確かめる。</li>
+<li>成句や比喩から、語に伴う含意を読み取る。</li>
+</ul>
+<div class="note">生物学上の分類（科・属など）への言及は、一般的な図鑑や分類の概説にみられる整理に基づく。分類は研究の進展で改められることがあり、細部は個別の文献で確かめる必要がある。</div>
+
+<h2 id="sec4">4. 事例の分析</h2>
+<h3 id="sec4-1">4.1 対応関係の概観</h3>
+<p>表 1 は、八組の対応関係を示す。</p>
+<table class="cards">
+<caption>表 1 　日本語の一語と英語の語の対応</caption>
+<thead><tr><th>日本語の語</th><th>英語の語</th><th>区別の主な軸</th><th>生物学上の位置づけ</th><th>日本語側の補完</th></tr></thead>
+<tbody>
+<tr><td>ネズミ（鼠）</td><td data-label="英語の語">rat / mouse</td><td data-label="区別の主な軸">体の大きさ</td><td data-label="生物学上の位置づけ">rat は主にクマネズミ属など、 mouse は主にハツカネズミ属を指すが、どちらも他の属の齧歯類にも使う。厳密な分類群ではない。</td><td data-label="日本語側の補完">ドブネズミ、クマネズミ、ハツカネズミ（複合語）。実験動物としてラット、マウス（借用語）</td></tr>
+<tr><td>サル（猿）</td><td data-label="英語の語">ape / monkey</td><td data-label="区別の主な軸">尾の有無、体の大きさ</td><td data-label="生物学上の位置づけ">ape はヒト上科のうちヒトを除く類人猿。 monkey は旧世界ザルと新世界ザルを含み、系統上はまとまりのない（側系統の）呼称である。</td><td data-label="日本語側の補完">類人猿（複合語）、ニホンザルなどの種名</td></tr>
+<tr><td>ウサギ（兎）</td><td data-label="英語の語">hare / rabbit</td><td data-label="区別の主な軸">野生か飼育か、巣穴、幼体の状態</td><td data-label="生物学上の位置づけ">同じウサギ科だが、 hare はノウサギ属、 rabbit は主にアナウサギ（およびその飼育品種）で、別の属である。</td><td data-label="日本語側の補完">ノウサギ、アナウサギ、カイウサギ（複合語）</td></tr>
+<tr><td>ハト（鳩）</td><td data-label="英語の語">pigeon / dove</td><td data-label="区別の主な軸">体の大きさ、場面（街か象徴か）</td><td data-label="生物学上の位置づけ">どちらもハト科で、分類上の線引きはない。慣用的な大小の区別である。</td><td data-label="日本語側の補完">ドバト、キジバト（種名）。象徴としては「平和の鳩」</td></tr>
+<tr><td>カメ（亀）</td><td data-label="英語の語">tortoise / turtle （英では terrapin も）</td><td data-label="区別の主な軸">生息環境（陸・水）</td><td data-label="生物学上の位置づけ">tortoise はリクガメ科に対応する。 turtle はカメ類全般の総称にもなる（特にアメリカ英語）。</td><td data-label="日本語側の補完">リクガメ、ウミガメ、イシガメ（複合語）。スッポンも「カメ」の一種として扱われる</td></tr>
+<tr><td>ワニ（鰐）</td><td data-label="英語の語">alligator / crocodile</td><td data-label="区別の主な軸">口の形、歯の見え方、分布</td><td data-label="生物学上の位置づけ">アリゲーター科とクロコダイル科で、どちらもワニ目に属する。科の違いに対応した区別である。</td><td data-label="日本語側の補完">アリゲーター、クロコダイル（借用語）</td></tr>
+<tr><td>カエル（蛙）</td><td data-label="英語の語">toad / frog</td><td data-label="区別の主な軸">皮膚の質、体形、陸か水辺か</td><td data-label="生物学上の位置づけ">toad はヒキガエル科を中心に、皮膚がイボ状の陸生のカエルを指す俗称。どちらもカエル目（無尾目）の中にあり、系統的なまとまりを正確には表さない。</td><td data-label="日本語側の補完">ヒキガエル（ガマ）、アマガエルなどの種名</td></tr>
+<tr><td>エビ（蝦）</td><td data-label="英語の語">lobster / prawn / shrimp</td><td data-label="区別の主な軸">ハサミの有無、大きさ、地域差</td><td data-label="生物学上の位置づけ">lobster はハサミを持つ大型種に対応する。 prawn と shrimp は、分類群と必ずしも一致しない。</td><td data-label="日本語側の補完">イセエビ、クルマエビ、オマールエビ（種名）。ロブスター（借用語）</td></tr>
+</tbody>
+</table>
+<p>日本語の側に目を向けると、表の右端の列のように、日本語にも区別の手段が備わっている。次節以降で、この点を含めて分析する。</p>
+
+<h3 id="sec4-2">4.2 区別の軸</h3>
+<p>英語の区別の軸は、大きく四つに分けられる。</p>
+<ul>
+<li><strong>体の大きさ</strong><br>rat と mouse 、 pigeon と dove 、 lobster と shrimp のように、大きいものと小さいものを別の語にする。</li>
+<li><strong>生息環境</strong><br>tortoise と turtle （陸と水）、 toad と frog （乾いた陸と水辺）、 alligator と crocodile （淡水と塩水を含む分布の違い）は、すむ場所が軸になる。</li>
+<li><strong>形態の特徴</strong><br>ape と monkey は尾の有無、 alligator と crocodile は口の形、 lobster は大きなハサミが目印になる。</li>
+<li><strong>人との距離</strong><br>hare と rabbit （野山の獣と、飼育・愛玩のもの）、 pigeon と dove （街の鳥と、平和の象徴）のように、人の暮らしとの関係で語が分かれる。</li>
+</ul>
+<p>軸は一つに定まらないことが多い。 hare と rabbit は、大きさ、巣穴、幼体の状態（ hare の子は毛が生え目が開いた状態で生まれ、 rabbit の子は毛がなく目が閉じた状態で生まれる）、飼育の有無が重なっている。また、英語のなかでも区別は一様でない。 tortoise 、 turtle 、 terrapin の三分は主にイギリス英語のもので、アメリカ英語では turtle が総称になることが多い。 prawn と shrimp も、イギリスでは大きさで分け、アメリカでは shrimp を総称とする傾向がある。「英語では呼び分ける」という言い方は、英語の変種ごとの差を捨象した言い方である。</p>
+
+<h3 id="sec4-3">4.3 民俗分類と科学分類のずれ</h3>
+<p>英語の区別は、科学の分類を写したものではない。 monkey は、旧世界ザルと新世界ザルをまとめた呼称で、系統樹の上では、旧世界ザルが ape により近いために、 monkey だけで一つのまとまりにはならない。 pigeon と dove は、同じハト科のなかの慣用的な区別で、生物学上の線は引かれていない。 toad と frog も、見た目と暮らし方による区別である。 prawn と shrimp は、生物学上の分類群の区別があるが、日常の語の使い分けとは一致しない。</p>
+<p>一方で、 alligator と crocodile は、科の違いに対応している。 rat と mouse のように属の違いにおおよそ対応する語もある。つまり、英語の区別は、科学の分類と重なることもあれば、ずれることもある。ここで重要なのは、日本語の「ウサギ」「カエル」などの語も同じ性質のもので、科学の分類によらない民俗分類である点である。英語の側の区別だけが「非科学的」なわけではない。両言語の語は、どちらも人間の暮らしを基準に整えられた分類である <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 。</p>
+
+<h3 id="sec4-4">4.4 日本語側の補完手段</h3>
+<p>日本語は、区別が必要な場面では、次の二つの手段で補っている。</p>
+<ul>
+<li><strong>複合語</strong><br>ドブネズミ、ハツカネズミ、ノウサギ、カイウサギ、類人猿、リクガメ、ウミガメ、ヒキガエルなど。上位の語（ネズミ、ウサギ）を軸に、前に修飾語を付けて下位を示す。</li>
+<li><strong>借用語</strong><br>ラット、マウス、アリゲーター、クロコダイル、ロブスターなど。英語の区別をそのまま取り入れる。ラットとマウスは実験動物の場面で、アリゲーターとクロコダイルは爬虫類の解説の場面で、よく使い分けられる。</li>
+</ul>
+<p>これらの語があるため、「日本語は区別できない」とは言えない。英語の mouse と rat も、 house mouse 、 brown rat のように複合語で下位を示す場合がある。違いは、日常で区別なしに使う最初の語（基礎レベル）が、どの水準にあるかである。日本語では「ネズミ」「ウサギ」「ワニ」の水準にあり、区別は、必要になったときに複合語や借用語で足される。英語では、 rat と mouse 、 hare と rabbit が、それぞれ最初から別の語である。</p>
+
+<h3 id="sec4-5">4.5 含意と比喩</h3>
+<p>語の区別は、語に伴う含意の区別にもつながる。表 2 は、英語の各語の主な成句や比喩と、そこから読み取れる含みを示す。</p>
+<table class="cards">
+<caption>表 2 　英語の語の成句・比喩にみる含み</caption>
+<thead><tr><th>英語の語</th><th>区別の軸</th><th>成句・比喩と含み</th></tr></thead>
+<tbody>
+<tr><td>rat</td><td data-label="区別の軸">大型</td><td data-label="成句・比喩と含み">不潔、害獣。裏切り者・密告者(<code>rat on</code>)。 <code>smell a rat</code> は「怪しいと感じる」、 <code>rat race</code> は「過酷な出世競争」。</td></tr>
+<tr><td>mouse</td><td data-label="区別の軸">小型</td><td data-label="成句・比喩と含み">小さい、おとなしい、内気(<code>quiet as a mouse</code>)。人に使うと「臆病で目立たない人」。コンピュータのマウスも同じ語。</td></tr>
+<tr><td>ape</td><td data-label="区別の軸">尾なし・大型</td><td data-label="成句・比喩と含み">粗暴、力任せ（ <code>go ape</code> は「逆上する」）。動詞の <code>ape</code> は「まねる」。人を ape になぞらえる言い方は、人種差別的な侮辱に使われた歴史がある。</td></tr>
+<tr><td>monkey</td><td data-label="区別の軸">尾あり・小型</td><td data-label="成句・比喩と含み">いたずら好き、愛嬌。 <code>monkey business</code> は「不正・いたずら」、 <code>make a monkey of</code> は「笑いものにする」。</td></tr>
+<tr><td>hare</td><td data-label="区別の軸">野生・大型</td><td data-label="成句・比喩と含み">足の速さ。 <code>mad as a March hare</code> は「ひどく気がふれた」、 <code>hare-brained</code> は「無鉄砲な」。</td></tr>
+<tr><td>rabbit</td><td data-label="区別の軸">飼育・巣穴</td><td data-label="成句・比喩と含み">かわいい、無垢（ピーターラビット）。繁殖力を皮肉る <code>breed like rabbits</code> 。イギリス英語の動詞 <code>rabbit</code> は「だらだらしゃべる」。</td></tr>
+<tr><td>pigeon</td><td data-label="区別の軸">街・大型</td><td data-label="成句・比喩と含み">伝書鳩の忠実さ。都市の害鳥のイメージ。人に使うと「だまされやすい人」、 <code>stool pigeon</code> は「密告者」。</td></tr>
+<tr><td>dove</td><td data-label="区別の軸">象徴・小型</td><td data-label="成句・比喩と含み">平和、優しさ。政治では穏健派を <code>dove</code> と呼ぶ（対義語は <code>hawk</code> ）。</td></tr>
+<tr><td>tortoise</td><td data-label="区別の軸">陸</td><td data-label="成句・比喩と含み">のろいが着実、長寿、頑固。イソップの「ウサギとカメ」の勝者。</td></tr>
+<tr><td>turtle</td><td data-label="区別の軸">水</td><td data-label="成句・比喩と含み">穏やか、自然保護の象徴。 <code>turn turtle</code> は「ひっくり返る」。</td></tr>
+<tr><td>alligator</td><td data-label="区別の軸">口が U 字</td><td data-label="成句・比喩と含み">アメリカ南部の風物。 <code>See you later, alligator.</code> は軽妙な別れの挨拶。</td></tr>
+<tr><td>crocodile</td><td data-label="区別の軸">口が V 字</td><td data-label="成句・比喩と含み">残忍。 <code>crocodile tears</code> は「うそ泣き」で、偽善の象徴。</td></tr>
+<tr><td>toad</td><td data-label="区別の軸">乾いた皮膚・陸</td><td data-label="成句・比喩と含み">醜い、不気味、有毒。人への侮辱語で「いやなやつ」。ただし『たのしい川べ』の Mr. Toad のように、愛すべき尊大な道楽者の例もある。</td></tr>
+<tr><td>frog</td><td data-label="区別の軸">湿った皮膚・水辺</td><td data-label="成句・比喩と含み">かわいい、春や雨の象徴。「カエルの王子さま」。 <code>a frog in the throat</code> は「声がかすれる」。俗語でフランス人への蔑称として使われた歴史がある。</td></tr>
+<tr><td>lobster</td><td data-label="区別の軸">ハサミ・大型</td><td data-label="成句・比喩と含み">高級食材、ごちそう。ゆでると赤くなることから、日焼けした人を <code>red as a lobster</code> とからかう。</td></tr>
+<tr><td>prawn</td><td data-label="区別の軸">イギリスでは中・大型</td><td data-label="成句・比喩と含み"><code>prawn cocktail</code> はイギリスの定番料理。オーストラリア英語の <code>come the raw prawn</code> は「だまそうとする」。</td></tr>
+<tr><td>shrimp</td><td data-label="区別の軸">小型、アメリカでは総称</td><td data-label="成句・比喩と含み">小さくて愛らしい。人に使うと「ちびで取るに足りない人」。</td></tr>
+</tbody>
+</table>
+<p>表からは、大きいものや街になじむものが不快・卑劣の含みを帯び (rat 、 pigeon 、 crocodile) 、小さいものや象徴的なものが好意的な含みを帯びる (mouse 、 dove 、 frog) 傾向が読み取れる。ただし、これは傾向であって規則ではない。大型の lobster は高級食材として好意的に受け取られ、 hare は大型でも「かわいい」より「奇行」を連想させる。含みは、大きさだけでなく、その動物と人間の暮らしの関係に左右される。</p>
+<p>動物の語がこのように人間の社会的な評価を帯びる現象は、人類学が早くから指摘してきた。リーチは、英語では動物が人との距離（ペット、家畜、野の獣、遠い野生動物）によって分類され、その距離が、食べてよいかどうかの禁忌や、罵りの言葉に使われるかどうかを左右すると論じた <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。レヴィ＝ストロースは、動物が、食べるのに適しているからでなく、「考えるのに適している」ために選ばれると述べた <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。 rat や pigeon が人の悪い面を指す語に転じ、 dove が平和を象徴するのは、この考え方でうまく説明できる。</p>
+<p>日本語の一語にも、独自の含意は積み重なっている。「窮鼠猫を噛む」「猿真似」「猿知恵」「鳩に豆鉄砲」「鶴は千年、亀は万年」「井の中の蛙」「二兎を追う者は一兎をも得ず」などである。日本語の「ネズミ」には、英語の rat にあたる害獣の含意も、 mouse にあたるかわいさも、一語のなかに混ざって存在する。英語の区別は、そうした含意を、語の側で整理して振り分けているとも言える。</p>
+<div class="note">ape や monkey を人になぞらえる言い方は、人種差別的な侮辱として使われてきた経緯がある。本稿は、この用法を語義の記述として挙げたもので、こうした用法を肯定するものではない。</div>
+
+<h2 id="sec5">5. 考察</h2>
+<h3 id="sec5-1">5.1 「一語か、二語か」から「基礎レベルの位置」へ</h3>
+<p>以上の分析から、「日本語は一語、英語は二語」という言い方は、二重の意味で不正確と言える。第一に、日本語にも、複合語や借用語によって区別を表す手段がある。第二に、英語にも、 house mouse のように複合語で下位を示す手段がある。双方に区別の手段はあり、異なるのは、日常で区別をつけずに使う語が、どの水準に置かれるかである。</p>
+<p>基礎レベルの理論の言葉で言い直すと、日本語では、「ネズミ」「ウサギ」「カエル」などの語が基礎レベルにあり、英語では、 rat と mouse 、 hare と rabbit 、 toad と frog が、それぞれ基礎レベルにある。基礎レベルは、暮らしのなかでどの区別が重要かに応じて決まる <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup><sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> 。英語圏の暮らしでは、家庭に出る小型の mouse と、下水や港にいる大型の rat は、対処の仕方が違う。野山の hare と、飼育される rabbit は、人との関わり方が違う。そうした事情が、語の区別に反映していると考えられる。ただし、これは本稿の仮説にとどまり、検証には別の調査が必要である。</p>
+
+<h3 id="sec5-2">5.2 非対称性の双方向性</h3>
+<p>本稿の事例は、日本語が一語になるものに偏って選んである。逆方向の例も同じくらい多い。 water に対する水と湯は、その代表である <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。英語の rice に対し、日本語は、稲、米、ご飯（飯）と、植物の状態、穀物の状態、調理後の状態で語を分けている。魚の「ブリ」は、成長の段階に応じて、地域によって「ワカシ」「イナダ」「ワラサ」などと名を変える（いわゆる出世魚）。英語の側は、これらをまとめて yellowtail などと呼ぶことが多い。英語の brother に対する、日本語の兄と弟も同様である。</p>
+<p>つまり、言語は、自分の暮らしで重要な領域ほど細かく分け、そうでない領域は粗く分ける。日本語は稲作や魚食の領域を細かく、英語は牧畜や狩猟の領域を細かく分けてきたと言える。どちらの言語も「呼び分ける言語」であり、どの領域で呼び分けるかが異なる。この意味で、非対称性は一方向でなく、領域ごとに入れ替わる。</p>
+
+<h3 id="sec5-3">5.3 限界と今後の課題</h3>
+<p>本稿の限界は三つある。第一に、英語側の記述を辞書の説明に頼っており、実際の使用頻度や、話者が両語をどう使い分けているかは確かめていない。コーパスを用いた使用頻度の調査が必要である。第二に、基礎レベルの位置が暮らしによって決まるという説明は、仮説である。日本語話者と英語話者に動物の写真を見せて命名させ、類似を判断させる課題 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> で、語の差が認知の差につながるかを検討できる。第三に、日本語と英語の二言語の比較にとどまっている。他の言語を含めて比べれば、非対称性が、言語に固有のものか、より一般的な傾向かが見えてくる。</p>
+
+<h2 id="sec6">6. コーヒーブレイク――鯉の carp</h2>
+<h3 id="sec6-1">6.1 英語の carp は「役立たずの魚」か</h3>
+<p>英語の carp は、北米に限れば、「沼に棲む役立たずの魚」という悪い語感を持つ。アメリカのアウトドア解説は、鯉が一般に「 trash fish 」と見なされていると述べる。嫌われる理由として挙がるのは、汚れた水に耐えること、底の餌をあさること、よく増えることで、「食用には向かない」という声まで紹介されている <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。役立たずの魚という印象は、この北米の語感を的確に言い当てている。</p>
+<p>ところが、話はここで終わらない。同じ解説は、アメリカ以外のほぼ全域で鯉が最高級の釣りの対象であること、ヨーロッパとアジアでは 4,000 年以上にわたって珍重され、古代ローマ人も上品な食材と見ていたことを書いている <sup id="fnref-14-2"><a href="#ref-14">[14]</a></sup> 。ポーランドでは、クリスマス・イヴの晩餐で主役になる魚が、通常は鯉である <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。同じ魚が、ある土地では雑魚の代名詞になり、別の土地では聖夜の食卓を飾る。</p>
+<p>皮肉なのは、アメリカの鯉が、もともとは「ありがたい魚」として持ち込まれたことだ。 1870 年代、在来の魚が減るなかで、 1871 年に設けられた連邦の機関が、鯉を在来魚に代わる食材になると考えて輸入し、各地に配った <sup id="fnref-14-3"><a href="#ref-14">[14]</a></sup> 。期待された食材が、やがて嫌われ者に転じたわけである。</p>
+<h3 id="sec6-2">6.2 「カープ」はどう選ばれたか</h3>
+<p>日本のプロ野球球団「広島東洋カープ」の名称の由来は、確認できた資料の間で一致している。広島城は別名を「鯉城」（りじょう）といい、球団名はこれにちなむ <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup><sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 。さらに、戦災からの復興への願いや、滝を登る鯉の出世のイメージが重ねられたとも説明される <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> 。魚としての鯉は広島の街の象徴として選ばれたのである。</p>
+<p>英語版ウィキペディアによれば、名を挙げたのは、広島の球団誘致の顔だった政治家の谷川昇で、影響力が大きく最終的な判断も下したという。他の候補には Greens, Bears, Rainbows, Doves, Atoms があった <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> 。「東洋」の二字は後からついたもので、 1968 年に東洋工業（のちのマツダ）が主要なスポンサーになったときに加わった <sup id="fnref-18-2"><a href="#ref-18">[18]</a></sup> 。</p>
+<p>命名の出発点は日本語の「鯉」であり、英語の carp は、その訳語として結果的についてきたものと考えられる。確認した資料には、命名の際に英語話者の語感を吟味した形跡はなかった。</p>
+<h3 id="sec6-3">6.3 英語話者はどう受け取るか</h3>
+<p>北米の語感を持つ人にとって、役立たずの魚を名乗るチームは、奇妙に映るだろう。一方で、釣りが盛んなイギリスのように、鯉を強く引く魚として尊ぶ文化圏の人なら、反応は違うかもしれない。さらに、観賞魚の「 koi 」は英語でも好意的に受け取られる語である。同じ魚でも「 carp 」と呼ぶか「 koi 」と呼ぶかで印象が変わる。</p>
+<h3 id="sec6-4">6.4 同じ綴りの別語――動詞の carp</h3>
+<p>もう一つ、英語の carp を悪い語に感じさせる要因がある。動詞の carp には「不平を言う、あら探しをする」という意味があるのだ。しかし、これは魚の carp とは別の語である。魚の carp は古フランス語の carpe に由来し、さらにさかのぼるとゲルマン系の語に行き着く。動詞の carp は、 13 世紀初めに古ノルド語の karpa （＝自慢する）から入った語で、「あら探し」の意味は 14 世紀後半に生じたとされる <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 。偶然の同綴りであり、魚の悪名とは無関係である。ただ、耳にした人の連想のなかで、二つの語が混ざる可能性はある。</p>
+<h3 id="sec6-5">6.5 まとめ</h3>
+<p>carp が役立たずの魚という語感を持つのは、主に北米の話で、英語圏全体には広げられない。カープという名は、広島城の別名「鯉城」と復興への願いに根ざしており、魚の悪名とは関係なく選ばれた。おもしろいのは、この一件が、動物の名のイメージがいかに土地と文化に縛られているかを示している点である。本稿の本論でまとめた rat と mouse 、 toad と frog の差も、同じ線上にある。語の意味は辞書に載るが、語感は暮らしのなかにしかない。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> 鈴木孝夫『ことばと文化』岩波書店（岩波新書）、 1973 年。</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Saussure, F. de. <em>Cours de linguistique générale</em>. Paris: Payot, 1916. 邦訳に、小林英夫訳『一般言語学講義』岩波書店。</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Berlin, B., &amp; Kay, P. <em>Basic Color Terms: Their Universality and Evolution</em>. Berkeley: University of California Press, 1969.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Regier, T., Kay, P., &amp; Khetarpal, N. “Color naming reflects optimal partitions of color space.” <em>Proceedings of the National Academy of Sciences</em>, 104 (4) , 2007, pp. 1436–1441.</li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> Malt, B. C., Sloman, S. A., Gennari, S., Shi, M., &amp; Wang, Y. “Knowing versus naming: Similarity and the linguistic categorization of artifacts.” <em>Journal of Memory and Language</em>, 40 (2) , 1999, pp. 230–262.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Cruse, D. A. <em>Lexical Semantics</em>. Cambridge: Cambridge University Press, 1986.</li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> Rosch, E., Mervis, C. B., Gray, W. D., Johnson, D. M., &amp; Boyes-Braem, P. “Basic objects in natural categories.” <em>Cognitive Psychology</em>, 8 (3) , 1976, pp. 382–439.</li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Berlin, B. <em>Ethnobiological Classification: Principles of Categorization of Plants and Animals in Traditional Societies</em>. Princeton: Princeton University Press, 1992.</li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> Tanaka, J. W., &amp; Taylor, M. “Object categories and expertise: Is the basic level in the eye of the beholder?” <em>Cognitive Psychology</em>, 23 (3) , 1991, pp. 457–482.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Gumperz, J. J., &amp; Levinson, S. C. (Eds.) . <em>Rethinking Linguistic Relativity</em>. Cambridge: Cambridge University Press, 1996.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Lucy, J. A. <em>Language Diversity and Thought: A Reformulation of the Linguistic Relativity Hypothesis</em>. Cambridge: Cambridge University Press, 1992.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Leach, E. “Anthropological aspects of language: Animal categories and verbal abuse.” In E. H. Lenneberg (Ed.) , <em>New Directions in the Study of Language</em>. Cambridge, MA: MIT Press, 1964, pp. 23–63.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Lévi-Strauss, C. <em>Le totémisme aujourd’hui</em>. Paris: Presses Universitaires de France, 1962.</li>
+<li id="ref-14">^ <sup><a href="#fnref-14-1">a</a></sup> <sup><a href="#fnref-14-2">b</a></sup> <sup><a href="#fnref-14-3">c</a></sup> MeatEater, “MeatEater’s Guide to Carp, Part One: An Unlikely Fish.” <a href="https://www.themeateater.com/fish/carp/meateaters-guide-to-carp-part-one-an-unlikely-fish">MeatEater</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> “Christmas in Poland.” <em>Wikipedia</em>（英語版）。 <a href="https://en.wikipedia.org/wiki/Christmas_in_Poland">Wikipedia</a></li>
+<li id="ref-16">^ <sup><a href="#fnref-16-1">a</a></sup> <sup><a href="#fnref-16-2">b</a></sup> DIVE HIROSHIMA 「カープの歴史」。 <a href="https://dive-hiroshima.com/feature/carp-history/">DIVE HIROSHIMA</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> “Your guide to adopting an NPB team, part 2: Hiroshima Toyo Carp.” <em>Graveyard Baseball</em> 、 2015 年。 <a href="http://graveyardbaseball.blogspot.com/2015/12/your-guide-to-adopting-npb-team-part-2.html">Graveyard Baseball</a></li>
+<li id="ref-18">^ <sup><a href="#fnref-18-1">a</a></sup> <sup><a href="#fnref-18-2">b</a></sup> “Hiroshima Toyo Carp.” <em>Wikipedia</em>（英語版）。 <a href="https://en.wikipedia.org/wiki/Hiroshima_Toyo_Carp">Wikipedia</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> “carp.” <em>Online Etymology Dictionary</em> 。検索結果の要約で確認し、ページ本体は取得できなかった。 <a href="https://www.etymonline.com/word/carp">Etymonline</a></li>
+</ol>
+<p class="endnote">本稿は、言語学・認知科学・人類学の代表的な文献に拠りながら、動物名の事例を整理した小論である。英語の語義と含意は辞書的な記述にみられる傾向の要約であり、実証的な言語使用の調査に基づく結論ではない。基礎レベルの位置が暮らしの重要度で決まるという説明は仮説の提示にとどまる。 6 章の carp の記述は、ウェブ上の資料に基づく補論で、一次資料での確認は済んでいない。</p>
+</div>
+</main>
+</body>
+</html>
