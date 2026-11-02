@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「自己肯定感」と「自己効力感」――二つの語はどこで重なり、どこで分かれるのか</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力の表示」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">心理学・精神医学・哲学的検討</p>
+<h1>「自己肯定感」と「自己効力感」<br>――二つの語はどこで重なり、どこで分かれるのか</h1>
+<p class="subtitle">Self-Esteem and Self-Efficacy: A Conceptual and Empirical Examination of Two Constructs of the Evaluative Self</p>
+<div class="lede">
+<p>2026 年 11 月 1 日放送のテレビ番組で、弁護士の山口真由氏は、「自己肯定感」という語を「自己効力感の間違い」だと断じ、「ありのまま」を絶賛する風潮を批判した。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> この発言は、二つの語の関係をあらためて問い直す好機である。</p>
+<p>結論を先に述べる。両者は別の概念であり、答えている問いが異なる。自己効力感は「これができる」という見込みを、自己肯定感は「自分には価値がある」という感覚を指す。ただし両者は無関係ではなく、因果は双方向に働く。山口氏の主張のうち、効力感を小さな成功の積み重ねで育てるという部分は、心理学の知見とよく合う。一方、肯定感を「間違い」と退ける部分や、「マーケット上の理由」で肥大化したという部分には、留保が要る。本稿は、心理学を軸に、精神医学と哲学の知見を補って、その理由を整理する。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>山口氏の発言は、ニュース記事に要約された範囲でしか確認できていない。放送全体の文脈は未確認であり、記事中の引用も、番組内の応酬（笑いを含む）の一部にすぎない。本稿は主要な先行研究に基づく概念整理であり、系統的レビューではない。参考文献は書誌情報のみを示す。研究の細部（効果の大きさや対象集団）は、原典で確認されたい。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">発端――テレビでの一言を整理する</a></li>
+<li><a href="#sec2">二つの概念の定義</a>
+<ol>
+<li><a href="#sec2-1">自己効力感――「できる」という見込み</a></li>
+<li><a href="#sec2-2">自己肯定感――「いてよい」という感覚</a></li>
+<li><a href="#sec2-3">ジェームズの分数式――二つを結ぶ最初の補助線</a></li>
+</ol>
+</li>
+<li><a href="#sec3">「間違い」と言えるか――重なりと区別</a>
+<ol>
+<li><a href="#sec3-1">学術上の近さと遠さ</a></li>
+<li><a href="#sec3-2">日本語の事情――一語が多くを吸収している</a></li>
+</ol>
+</li>
+<li><a href="#sec4">因果の向きをめぐる実証研究</a></li>
+<li><a href="#sec5">小さな成功の積み重ね――効力感の形成と臨床</a>
+<ol>
+<li><a href="#sec5-1">臨床にみる「行動が先」という原則</a></li>
+<li><a href="#sec5-2">刻み方の条件――「小さい」ことが肝である</a></li>
+</ol>
+</li>
+<li><a href="#sec6">失敗のあとに必要なもの――安全網としての肯定</a>
+<ol>
+<li><a href="#sec6-1">価値が条件付きのとき</a></li>
+<li><a href="#sec6-2">セルフ・コンパッションの知見</a></li>
+<li><a href="#sec6-3">精神療法における「受容と変化」</a></li>
+</ol>
+</li>
+<li><a href="#sec7">「ありのまま」の哲学――尊厳・受容・是認</a>
+<ol>
+<li><a href="#sec7-1">「ありのまま」の三つの意味</a></li>
+<li><a href="#sec7-2">尊厳と価格――無条件の価値という発想</a></li>
+<li><a href="#sec7-3">自己尊重の二面と、承認の社会性</a></li>
+</ol>
+</li>
+<li><a href="#sec8">肥大化は市場の都合か――称賛・文化・承認</a>
+<ol>
+<li><a href="#sec8-1">称賛の質――肯定と絶賛は別物である</a></li>
+<li><a href="#sec8-2">文化差――「引き上げるべき数値」とは限らない</a></li>
+<li><a href="#sec8-3">「かわいい自分を見て」の問いかけ</a></li>
+</ol>
+</li>
+<li><a href="#sec9">結び――二つの語をどう使い分けるか</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 発端――テレビでの一言を整理する</h2>
+<p>番組で山口氏は、「これからの日本で変えてほしいもの」として、「自己肯定感礼賛文化　ありのまま絶賛文化」を挙げた。記事から読み取れる主張は、次の三点に整理できる。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></p>
+<ul>
+<li>自己効力感とは、挑戦し、成功し、小さな段階（スモールステップ）を積み重ねることで、自分自身を信頼できるようになることだ。これが基本である。</li>
+<li>挑戦して失敗した人のための安全網として、「大丈夫」と言う自己肯定感があった。しかし、いつからか「マーケット上の理由」でこの部分が肥大化した。</li>
+<li>「ありのままの自分の半分はしょうもない」。穴の開いていない靴下を探して 3 時間もタンスを探る自分を、肯定してどうするのか。</li>
+</ul>
+<p>見出しは「猛批判」だが、中身をよく読むと、山口氏は自己肯定感を全否定してはいない。「セーフティネットとしての自己肯定感」の存在は認めており、批判の標的は、その肥大化と、「ありのまま」の絶賛である。冒頭の「自己効力感の間違い」という言い方も、語の定義の誤りを指摘したというより、本来は効力感を育てるべき場面で肯定感ばかりが語られている、という趣旨だと読める。</p>
+<p>この読みを前提に、本稿は三つの問いを立てる。第一に、二つの語は学術的にどう定義され、どこまで区別できるのか。第二に、成功が先か、肯定が先か。実証研究は何を示すのか。第三に、「ありのまま」を肯定するとは、哲学的に何を意味し、何を意味しないのか。</p>
+<h2 id="sec2">2. 二つの概念の定義</h2>
+<p>議論の出発点は定義である。「自己肯定感」は日常語として広く使われるが、「自己効力感」は心理学の術語である。まず、それぞれの来歴と意味を確かめる。</p>
+<h3 id="sec2-1">2.1 自己効力感――「できる」という見込み</h3>
+<p>自己効力感 (self-efficacy) は、アルバート・バンデューラが 1977 年に提唱した概念である。ある結果を得るために必要な行動を、自分がうまく遂行できるという確信を指す。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> この確信は、課題や状況ごとに異なる（領域特異的である）。人は、英語の試験には自信があっても、人前での講演には自信がない、ということがありうる。</p>
+<p>効力感は、行動の選択、投じる努力の量、困難に直面したときの持続を左右する。バンデューラは、効力感の源泉を四つに整理した。すなわち、成功体験（遂行の達成）、代理経験（他者の成功の観察）、言語的説得（励まし）、生理的・情動的な状態である。なかでも成功体験は、自分自身の実績に基づくため、最も強い源泉とされる。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup></p>
+<p>山口氏の言う「挑戦して、成功して、スモールステップを積み重ねる」は、この第一の源泉をほぼそのまま述べたものである。この点で、氏の説明は心理学の標準的な理解に忠実だといえる。</p>
+<h3 id="sec2-2">2.2 自己肯定感――「いてよい」という感覚</h3>
+<p>日本語の「自己肯定感」は、英語の self-esteem （日本の心理学では「自尊感情」「自尊心」と訳されることが多い）に重ねて使われることが多い。ただし、一対一に対応する術語ではない。ローゼンバーグは、 self-esteem を、自己に対する全般的な肯定的または否定的な態度と定義し、 10 項目の尺度を作った。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 項目は「自分は価値のある人間だと思う」といった、自己の価値への全般的な評価である。</p>
+<p>効力感が「何ができるか」を問うのに対し、肯定感（自尊感情）は「自分はどういう存在か」を問う。この問いの違いが、両者を分ける最も基本的な線である。</p>
+<div class="box">
+<strong>取り違えやすい近い語</strong><br>
+<ul>
+<li>自尊感情 (self-esteem) ：自己の価値への全般的な評価。「自己肯定感」の最も近い学術語である。</li>
+<li>自己受容 (self-acceptance) ：長所も短所も含めて、自分をそのまま認める態度。</li>
+<li>セルフ・コンパッション (self-compassion) ：失敗や苦痛の場面で、自分に向ける思いやり。第 6 章で扱う。</li>
+<li>自己確認 (self-affirmation) ：スティールが提唱した概念で、自己の全体的な価値や一貫性を確かめることで、脅威への防衛を弱める過程を指す。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 字面は「自己肯定」に近いが、別の理論である。</li>
+<li>自己有用感：教育行政の文脈で用いられる語で、他者の役に立っているという感覚を指す。</li>
+</ul>
+</div>
+<h3 id="sec2-3">2.3 ジェームズの分数式――二つを結ぶ最初の補助線</h3>
+<p>両者の関係を考えるとき、 19 世紀の心理学者ウィリアム・ジェームズの定式が役に立つ。ジェームズは、自尊心を「成功を、願望（要求水準）で割ったもの」と表した。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> この式では、自尊心を上げる道が二つある。分子の成功を増やすか、分母の要求水準を下げるかである。</p>
+<p>山口氏の言う「成功の積み重ね」は分子を増やす道であり、「ありのまま」は、見方によっては分母を調整する道だと読める。ジェームズ自身も、自分が賭けていない領域の失敗には傷つかない、と書いた。心理学者であろうとする自分は他人のほうが心理学に詳しいと悔しいが、ギリシア語の無知には平気だ、という例である。 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup> つまり、自尊心は能力の総量ではなく、「何に賭けているか」との比で決まる。この着想は、次章の区別につながる。</p>
+<h2 id="sec3">3. 「間違い」と言えるか――重なりと区別</h2>
+
+<h3 id="sec3-1">3.1 学術上の近さと遠さ</h3>
+<p>バンデューラ自身は、二つを明確に区別した。自尊心は自己の価値についての判断であり、効力感は自己の能力についての判断である。両者の間に固定的な関係はない。自分がある領域で無能だと判断しても、その領域に価値を置かなければ、自己の価値は傷つかないからである。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> これはジェームズの例と同型である。</p>
+<p>他方で、重なりを重くみる立場も古くからある。ブランデンは、自尊心を、自己効力と自己尊重という二つの要素からなるものと定義した。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> タファロディとスワンも、自尊心を「自己有能感」と「自己愛好 (self-liking) 」の二次元で捉えた。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> さらに、ジャッジとボノのメタ分析は、自尊感情、全般的な自己効力感、統制の所在、情緒安定性の四つが、いずれも職務満足や職務成績と関連することを示した。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> ジャッジらは別の研究で、この四つが互いに強く関連し、「中核的自己評価」という一つの高次の因子にまとまることを示している。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
+<p>以上を踏まえると、二つの語は「同じもの」ではないが、「近い親戚」である。したがって、「自己肯定感は自己効力感の間違い」という断定は強すぎる。他方、区別を意識せよという提案は有効である。</p>
+<h3 id="sec3-2">3.2 日本語の事情――一語が多くを吸収している</h3>
+<p>山口氏の苛立ちには、日本語に固有の事情が関係していると考えられる。「自己肯定感」は、育児、教育、職場、自己啓発の各領域で、「高めるべきもの」として頻繁に語られる。その過程で、自信、自尊心、自己受容、自己効力感、さらには単なる前向きさまでが、この一語に吸収されてきた。日本の若者の自己評価が国際比較で低いという調査結果が繰り返し報じられてきたことも、関心を押し上げた背景だろう。</p>
+<p>吸収が進むと、何を高めたいのかが曖昧になる。挑戦への見込みを高めたい場面でも、「自己肯定感を高めよう」と言われる。山口氏の「あれは『自己効力感』の間違いなんですよ」は、この曖昧さへの異議申し立てとして読めば、的を射ている。</p>
+<table class="cards">
+<caption>表 1 　自己効力感と自己肯定感（自尊感情）の比較</caption>
+<thead>
+<tr><th>観点</th><th>自己効力感</th><th>自己肯定感（自尊感情）</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="観点">答えている問い</td><td data-label="自己効力感">「この課題を自分はやれるか」</td><td data-label="自己肯定感（自尊感情）">「自分は価値のある存在か」</td></tr>
+<tr><td data-label="観点">範囲</td><td data-label="自己効力感">課題・領域ごと（領域特異的）</td><td data-label="自己肯定感（自尊感情）">全般的（ただし領域別の側面もある）</td></tr>
+<tr><td data-label="観点">時間の向き</td><td data-label="自己効力感">未来（これから遂行できるか）</td><td data-label="自己肯定感（自尊感情）">過去・現在を含む自己全体への態度</td></tr>
+<tr><td data-label="観点">主な形成源</td><td data-label="自己効力感">成功体験、代理経験、励まし、身体・情動の状態</td><td data-label="自己肯定感（自尊感情）">他者からの受容、達成、自分との付き合い方</td></tr>
+<tr><td data-label="観点">失敗の影響</td><td data-label="自己効力感">当該の領域で下がりやすい</td><td data-label="自己肯定感（自尊感情）">価値が条件付きなら大きく揺れ、無条件なら比較的保たれる</td></tr>
+<tr><td data-label="観点">過大・脆い場合の懸念</td><td data-label="自己効力感">現実との乖離が大きいと、無謀な挑戦や失敗後の落胆を招きうる</td><td data-label="自己肯定感（自尊感情）">不安定で防衛的な高さは、攻撃性や自己愛と結び付きうる</td></tr>
+<tr><td data-label="観点">代表的な尺度</td><td data-label="自己効力感">課題ごとに作る効力感尺度。全般的な傾向を測るものに、一般性セルフ・エフィカシー尺度がある</td><td data-label="自己肯定感（自尊感情）">ローゼンバーグ自尊感情尺度（ 10 項目）</td></tr>
+</tbody>
+</table>
+<h2 id="sec4">4. 因果の向きをめぐる実証研究</h2>
+<p>成功が先か、肯定が先か。この問いに、実証研究は単純な答えを与えていない。ただし、大づかみな傾向は読み取れる。</p>
+<p>バウマイスターらの総説は、高い自尊心が成績を引き上げるという通俗的な前提を支持しなかった。自尊心と成績には相関があるが弱く、因果の向きはむしろ、成績が自尊心を押し上げる側に目立つ。一方で、高い自尊心は、主導性や快い感情の増加に結び付いていた。著者らは、 1980 年代の米国で広がった自尊心向上の取り組みにも懐疑的で、自尊心を無差別に持ち上げるのではなく、努力と達成に結び付けて称賛するよう提案した。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> これは山口氏の主張に近い。</p>
+<p>マーシュとクレイヴンの総説も、学業の領域では、自己概念（領域特異的な自己評価）と成績が互いを押し上げる相互効果を示した。しかも、成績との結び付きは、全般的な自尊心よりも、領域特異的な自己概念のほうが強い。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 効力感に近い、領域に密着した自己評価のほうが、成果に近いということである。</p>
+<p>反対側の証拠もある。オルスらの縦断研究は、自尊心が、その後の人間関係の満足、仕事の満足、健康、抑うつの低さを予測することを示した。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> ソウィスロとオルスのメタ分析は、低い自尊心が、その後の抑うつや不安を予測することを示した。ただし、向きの強さは、抑うつと不安で異なる。抑うつでは、低い自尊心が後の抑うつを予測する効果（脆弱性効果）が、抑うつが後の自尊心を下げる効果（傷跡効果）より明らかに大きかった。不安では、両方向の効果がほぼ同程度だった。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 少なくとも抑うつについては、自尊心が脆弱性の要因として働く側面を無視できない。</p>
+<p>以上を整理すると、全体像は二本立てである。成果の領域では「成果が自己評価を押し上げる」向きが目立ち、心の健康の領域では「自己の価値の感覚が、後の不調を左右する」向きが確認される。言い換えれば、効力感は成果と、肯定感は心の健康と、それぞれ結び付きが強い。山口氏の「効力感が挑戦の基本、肯定感は安全網」という役割分担は、この大づかみな傾向と整合する。ただし、これらの効果の大きさは、いずれも中程度以下にとどまる。</p>
+<p>では、その安全網は、失敗のあとの再挑戦を、実際に支えるのか。この問いは第 6 章で扱う。先に、効力感の側、つまり「小さな成功の積み重ね」を検討する。</p>
+<h2 id="sec5">5. 小さな成功の積み重ね――効力感の形成と臨床</h2>
+
+<h3 id="sec5-1">5.1 臨床にみる「行動が先」という原則</h3>
+<p>精神医学・臨床心理学には、スモールステップの考え方を、治療の中心に据えた技法がある。行動活性化である。抑うつ状態の人は、気分が上向くのを待つと、いつまでも動けない。そこで、ごく小さな活動の課題（起きて顔を洗う、 10 分だけ散歩する）から始め、達成と快の経験を積み、気分と自己評価の改善につなげる。ジェイコブソンらの研究では、行動活性化だけの条件が、認知的な技法を加えた条件とほぼ同等の成績を示した。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></p>
+<p>バンデューラが 1977 年の論文で扱った恐怖症の治療も、同じ構造である。恐怖の対象に、易しい段階から順に近づく（段階的な曝露）と、遂行の成功体験が積み上がり、効力感が高まる。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 山口氏の言うスモールステップは、こうした臨床技法の、日常語での言い換えだといえる。</p>
+<h3 id="sec5-2">5.2 刻み方の条件――「小さい」ことが肝である</h3>
+<p>ただし、スモールステップは、「小さい」ことに意味がある。セリグマンとマイヤーの古典的な実験は、避けられない電撃を経験した動物が、のちに避けられる状況でも逃げようとしなくなることを示した（学習性無力感）。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 人間への適用には慎重さが要るが、「何をしても結果が変わらない」という経験が、効力感を損なうという骨子は、臨床でも広く参照されている。</p>
+<p>したがって、効力感を育てる支援では、課題を、確実に達成できる大きさに刻む設計が要る。精神医学の臨床では、症状が重い時期には休養と安全の確保を優先し、回復に合わせて活動を広げるのが一般的である。重い抑うつの人に「挑戦せよ」とだけ伝えることは、逆効果になりうる。「いまのままで、まず休んでよい」という受容が、小さな挑戦の入り口になる場面は多い。この点は、次章に続く。</p>
+<h2 id="sec6">6. 失敗のあとに必要なもの――安全網としての肯定</h2>
+<p>山口氏の安全網論の要点は、「挑戦しなきゃよかった」と思う人のために、肯定感がある、ということだった。心理学の問いに直せば、失敗のあとの再挑戦を可能にする資源は何か、になる。</p>
+<h3 id="sec6-1">6.1 価値が条件付きのとき</h3>
+<p>クロッカーとウルフは、自己の価値が特定の領域（成績、外見、他者の承認など）の成否に条件付けられている場合（随伴的自己価値）、成功では高揚し、失敗では急落し、学習や人間関係に代償が生じることを論じた。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> カーニスは、望ましい自尊心を「高く、安定していて、脆くないもの」と概念化した。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></p>
+<p>この知見が示すのは、効力感の積み上げだけでは、安全網にならないということである。成功体験で価値を得る仕組みは、失敗体験で価値を失う仕組みと表裏だからだ。失敗の痛みを吸収する役割は、効力感ではなく、成果に条件付けられない別の資源が担う必要がある。</p>
+<h3 id="sec6-2">6.2 セルフ・コンパッションの知見</h3>
+<p>ネフは、自分への思いやり（セルフ・コンパッション）を、自分への優しさ、人間としての共通性の認識、マインドフルネスの三つからなるものと整理した。自尊心と異なり、他者との比較や外的な評価に依存しない点が特徴である。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> ブリーンズとチェンの実験は、自分への思いやりを促すと、失敗や弱点に直面した後に、むしろ自己改善への動機が高まることを示した。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup></p>
+<p>これは、「大丈夫」が再挑戦を妨げず、支えうることの実証的な根拠である。ただし条件がある。「大丈夫」の中身が、「何もしなくてよい」ではなく、「失敗しても自分は見捨てない」であることだ。前者は現状の追認であり、後者は改善の土台である。</p>
+<h3 id="sec6-3">6.3 精神療法における「受容と変化」</h3>
+<p>臨床の側にも、同型の考え方がある。リネハンの弁証法的行動療法は、受容と変化を、対立させずに両立させることを、治療の中核に置く。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> ヘイズらの ACT （アクセプタンス＆コミットメント・セラピー）も、苦痛な思考や感情を取り除こうとせず受け入れたうえで、自分の価値に沿った行動を取ることを促す。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> ロジャーズの「無条件の肯定的関心」は、相手を評価や条件で裁かずに受け止めることが、成長の条件だとする。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup></p>
+<p>これらに共通するのは、受容が、行動の是認ではなく、変化の前提だという理解である。山口氏の二分、すなわち挑戦の局面では効力感、失敗の局面では肯定感、という整理は、臨床の「受容と変化」の組み合わせと、構造が似ている。</p>
+<h2 id="sec7">7. 「ありのまま」の哲学――尊厳・受容・是認</h2>
+
+<h3 id="sec7-1">7.1 「ありのまま」の三つの意味</h3>
+<p>「ありのまま」という語は、少なくとも三つの意味で使われる。</p>
+<ul>
+<li>事実の認識：欠点も含め、現実の自分を正確に見ること。</li>
+<li>受容：評価で裁かず、自分の存在をそのまま認めること。</li>
+<li>現状の是認：いまの自分は変わる必要がないと考えること。</li>
+</ul>
+<p>山口氏が「あれは絶対に間違っている」と退けるのは、主に第三の意味、つまり、靴下を探して 3 時間もタンスを探る自分を追認することだと読める。第一と第二は、むしろ効力感の土台である。現実の自分を正確に見ることなしに、達成可能な課題は設定できない。受容がなければ、失敗の事実を直視する余裕が生まれない。</p>
+<p>靴下の例に、この区別を当てはめてみる。「 3 時間探してしまう自分にも、価値がある」という受容と、「靴下の置き場所を決めよう」という改善は、両立する。むしろ、前者があるから、後者に取り組める。後者の小さな実行こそが、効力感を積む一歩になる。</p>
+<h3 id="sec7-2">7.2 尊厳と価格――無条件の価値という発想</h3>
+<p>哲学には、人格の価値は能力や成果で決まらない、という古い系譜がある。カントは、あらゆるものには「価格」か「尊厳」のどちらかがあると述べた。価格は等価な他のものと取り替えられるが、尊厳はいかなる等価物も許さない。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 人格は後者にあたる。「ありのまま」の肯定が守ろうとしているものは、ここにある。靴下探しが下手でも、人の価値は減らない。</p>
+<p>ただし、カントは同時に、自己に対する義務として、自分の才能を伸ばすことを挙げた（不完全義務）。 <sup id="fnref-24-2"><a href="#ref-24">[24]</a></sup> 価値が無条件であることと、伸ばす責任がないこととは、別の話である。「ありのまま」を、現状の是認へ滑らせないための歯止めは、哲学の内部にもある。</p>
+<h3 id="sec7-3">7.3 自己尊重の二面と、承認の社会性</h3>
+<p>ロールズは、自尊 (self-respect) を、おそらく最も重要な基本財とみなし、その内容を二つの側面で説明した。自分の価値についての感覚と、自分の意図を実現する能力への確信である。 <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup> 前者は肯定感に、後者は効力感に対応する。つまり政治哲学では、二つの語が、一つの自尊の二面として、最初から組み合わされている。</p>
+<p>ホネットは、承認の三つの形態を区別した。愛の承認は自己信頼を、法的な承認は自己尊重を、連帯による評価は自己評価を、それぞれ支える。 <sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup> ここから導かれるのは、肯定感の根が、本質的には他者との関係にあるということである。効力感も、代理経験や励ましという形で、他者から養分を得る (2.1) 。それでも、本人の挑戦と成功を主な源泉とする効力感に比べ、肯定感は、他者に受け止められた経験に負うところがはるかに大きい。「自分のことは自分で信頼せよ」という自助のモデルには、社会的な補足が要る。</p>
+<h2 id="sec8">8. 肥大化は市場の都合か――称賛・文化・承認</h2>
+
+<h3 id="sec8-1">8.1 称賛の質――肯定と絶賛は別物である</h3>
+<p>山口氏は、肯定感が「肥大化」したと述べた。その懸念に近い知見がある。ブラマンらの縦断研究は、親が子を過大に評価することが、子のナルシシズムを予測し、親の温かさが、子の自尊心を予測することを示した。 <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup> つまり、温かい受容と、誇大な賛美は、別の効果を持つ。前者は肯定感を育て、後者は自己愛を育てる傾向がある。</p>
+<p>称賛の中身についても、ミューラーとドゥエックの実験は、知能を褒めると、失敗後の粘りと成績が低下し、努力や過程を褒めると、それが保たれることを示した。 <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup> 前述のバウマイスターらの総説も、米国の自尊心向上の取り組みに、効果の乏しさを指摘していた。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 山口氏の懸念は、こうした海外の経験と重なる。</p>
+<p>ただし、「肥大化の原因がマーケット上の理由にある」という因果は、これらの研究では検証されていない。育児や自己啓発の領域で同語が頻繁に使われていることは確かだが、市場が原因かどうかは、本稿では判断できない。</p>
+<h3 id="sec8-2">8.2 文化差――「引き上げるべき数値」とは限らない</h3>
+<p>ハイネらは、北米では、自己を肯定的にみる動機（自己高揚）が強い一方、日本では、自己を批判的にみて、改善を目指す傾向が強いことを論じ、自尊心への欲求が普遍的だという前提に疑問を投げかけた。 <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup> この見方に立つと、日本で自己肯定感が低いとされる現象の一部は、測定の枠組みの文化差であり、単純に「引き上げるべき数値」とは言えない。</p>
+<p>自己批判と改善の志向は、効力感を育てる営みと親和的である。他方で、失敗した後の脆さにもつながりうる。ここに、効力感に偏った社会が、安全網を必要とする理由の一端がある。山口氏の指摘する「挑戦を重んじる文化」と「大丈夫と言える文化」は、片方だけでは足りない。</p>
+<h3 id="sec8-3">8.3 「かわいい自分を見て」の問いかけ</h3>
+<p>番組では、ぺこぱの松陰寺太勇氏が、「かわいい自分を見て！」と訴えるグループへの意見を求め、山口氏は「バカなんじゃない？」と即答した。 <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> これはバラエティー番組での応酬であり、学術的な判断として読むべきではない。アイドル文化そのものの評価も、本稿の射程の外にある。</p>
+<p>とはいえ、問いは残る。他者に見てもらうことで得る肯定は、どう位置づければよいのか。クロッカーらの理論では、外見や他者の承認に条件付けられた自己価値は、不安定になりやすい。 <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup> 他方、ホネットの理論では、他者からの承認は、自己関係の成立に欠かせない。 <sup id="fnref-26-2"><a href="#ref-26">[26]</a></sup> 両義的である。承認を求めること自体は、病理ではない。問題は、承認の条件が、外見や反応の数のような、外的な指標に固定されることにある。</p>
+<h2 id="sec9">9. 結び――二つの語をどう使い分けるか</h2>
+<p>本稿の検討を、四点にまとめる。</p>
+<ul>
+<li>区別：自己効力感は「できる」という見込み、自己肯定感は「いてよい」という感覚である。問いが違うので、混同すれば、処方も違ってくる。</li>
+<li>順序：効力感は行動から育ち、肯定感は失敗しても取り消されない土台として働く。順序は一方向ではなく、循環している。</li>
+<li>役割：山口氏の「挑戦の基本は効力感、失敗後の安全網は肯定感」という整理は、実証研究と臨床の両方に、おおむね支えられる。ただし、肯定感が働くのは失敗の後だけではない。受容は、挑戦に踏み出す前の足場にもなる (5.2 、 6.3) 。「間違い」という断定と、マーケットに原因を求める部分は、留保付きで受け取るのが妥当である。</li>
+<li>歯止め：肯定が絶賛に、受容が現状の是認に滑ると、安全網は、前進を止める網に変わる。</li>
+</ul>
+<p>山口氏の言う、穴の開いていない靴下を探して 3 時間という自分は、責めても解決せず、ただ肯定しても靴下は見つからない。「そういう自分もいる」と受け止めたうえで、靴下の置き場所を決める。この二段構えが、二つの語を正しく使い分けた姿である。</p>
+<p>最後に、読者が自分に向けられる、三つの問いを挙げる。</p>
+<div class="box">
+<strong>「自己肯定感を高めたい」と思ったときの三つの問い</strong><br>
+<ul>
+<li>いま足りないのは、「やれる」という見込みか。それとも、「失敗しても大丈夫」という持ちこたえか。</li>
+<li>前者なら、いま確実にできる、最も小さな課題は何か。</li>
+<li>後者なら、失敗した自分に、他人にかけるのと同じ言葉をかけているか。</li>
+</ul>
+</div>
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> 東スポ WEB 「山口真由氏〝自己肯定感礼賛〟ムードを猛批判…昨今のアイドル文化にも毒舌「バカなんじゃない？」」 2026 年 11 月 1 日。 <a href="https://www.tokyo-sports.co.jp/articles/-/408493">東スポ WEB</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> Bandura, A. (1977) . Self-efficacy: Toward a unifying theory of behavioral change. <em>Psychological Review</em>, 84 (2) , 191–215.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Rosenberg, M. (1965) . <em>Society and the Adolescent Self-Image</em>. Princeton, NJ: Princeton University Press.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Steele, C. M. (1988) . The psychology of self-affirmation: Sustaining the integrity of the self. In L. Berkowitz (Ed.) , <em>Advances in Experimental Social Psychology</em>, Vol. 21 (pp. 261–302) . San Diego, CA: Academic Press.</li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> James, W. (1890) . <em>The Principles of Psychology</em>, Vol. 1, Ch. 10. New York: Henry Holt.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Bandura, A. (1997) . <em>Self-Efficacy: The Exercise of Control</em>. New York: W. H. Freeman.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Branden, N. (1994) . <em>The Six Pillars of Self-Esteem</em>. New York: Bantam Books.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Tafarodi, R. W., &amp; Swann, W. B., Jr. (2001) . Two-dimensional self-esteem: Theory and measurement. <em>Personality and Individual Differences</em>, 31 (5) , 653–673.</li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Judge, T. A., &amp; Bono, J. E. (2001) . Relationship of core self-evaluations traits—self-esteem, generalized self-efficacy, locus of control, and emotional stability—with job satisfaction and job performance: A meta-analysis. <em>Journal of Applied Psychology</em>, 86 (1) , 80–92.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Judge, T. A., Erez, A., Bono, J. E., &amp; Thoresen, C. J. (2002) . Are measures of self-esteem, neuroticism, locus of control, and generalized self-efficacy indicators of a common core construct? <em>Journal of Personality and Social Psychology</em>, 83 (3) , 693–710.</li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> Baumeister, R. F., Campbell, J. D., Krueger, J. I., &amp; Vohs, K. D. (2003) . Does high self-esteem cause better performance, interpersonal success, happiness, or healthier lifestyles? <em>Psychological Science in the Public Interest</em>, 4 (1) , 1–44.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Marsh, H. W., &amp; Craven, R. G. (2006) . Reciprocal effects of self-concept and performance from a multidimensional perspective: Beyond seductive pleasure and unidimensional perspectives. <em>Perspectives on Psychological Science</em>, 1 (2) , 133–163.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Orth, U., Robins, R. W., &amp; Widaman, K. F. (2012) . Life-span development of self-esteem and its effects on important life outcomes. <em>Journal of Personality and Social Psychology</em>, 102 (6) , 1271–1288.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Sowislo, J. F., &amp; Orth, U. (2013) . Does low self-esteem predict depression and anxiety? A meta-analysis of longitudinal studies. <em>Psychological Bulletin</em>, 139 (1) , 213–240.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Jacobson, N. S., et al. (1996) . A component analysis of cognitive-behavioral treatment for depression. <em>Journal of Consulting and Clinical Psychology</em>, 64 (2) , 295–304.</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Seligman, M. E. P., &amp; Maier, S. F. (1967) . Failure to escape traumatic shock. <em>Journal of Experimental Psychology</em>, 74 (1) , 1–9.</li>
+<li id="ref-17">^ <sup><a href="#fnref-17-1">a</a></sup> <sup><a href="#fnref-17-2">b</a></sup> Crocker, J., &amp; Wolfe, C. T. (2001) . Contingencies of self-worth. <em>Psychological Review</em>, 108 (3) , 593–623.</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Kernis, M. H. (2003) . Toward a conceptualization of optimal self-esteem. <em>Psychological Inquiry</em>, 14 (1) , 1–26.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Neff, K. D. (2003) . Self-compassion: An alternative conceptualization of a healthy attitude toward oneself. <em>Self and Identity</em>, 2 (2) , 85–101.</li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Breines, J. G., &amp; Chen, S. (2012) . Self-compassion increases self-improvement motivation. <em>Personality and Social Psychology Bulletin</em>, 38 (9) , 1133–1143.</li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> Linehan, M. M. (1993) . <em>Cognitive-Behavioral Treatment of Borderline Personality Disorder</em>. New York: Guilford Press.</li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> Hayes, S. C., Strosahl, K. D., &amp; Wilson, K. G. (1999) . <em>Acceptance and Commitment Therapy: An Experiential Approach to Behavior Change</em>. New York: Guilford Press.</li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Rogers, C. R. (1961) . <em>On Becoming a Person: A Therapist's View of Psychotherapy</em>. Boston: Houghton Mifflin.</li>
+<li id="ref-24">^ <sup><a href="#fnref-24-1">a</a></sup> <sup><a href="#fnref-24-2">b</a></sup> Kant, I. (1785) . <em>Grundlegung zur Metaphysik der Sitten</em>（『道徳形而上学の基礎づけ』） . Riga: Hartknoch.</li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> Rawls, J. (1971) . <em>A Theory of Justice</em>, §67. Cambridge, MA: Harvard University Press.</li>
+<li id="ref-26">^ <sup><a href="#fnref-26-1">a</a></sup> <sup><a href="#fnref-26-2">b</a></sup> Honneth, A. (1992) . <em>Kampf um Anerkennung</em>. Frankfurt am Main: Suhrkamp. （英訳 <em>The Struggle for Recognition</em>, Cambridge: Polity Press, 1995. ）</li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> Brummelman, E., Thomaes, S., Nelemans, S. A., de Castro, B. O., Overbeek, G., &amp; Bushman, B. J. (2015) . Origins of narcissism in children. <em>Proceedings of the National Academy of Sciences</em>, 112 (12) , 3659–3662.</li>
+<li id="ref-28"><a href="#fnref-28-1">^</a> Mueller, C. M., &amp; Dweck, C. S. (1998) . Praise for intelligence can undermine children's motivation and performance. <em>Journal of Personality and Social Psychology</em>, 75 (1) , 33–52.</li>
+<li id="ref-29"><a href="#fnref-29-1">^</a> Heine, S. J., Lehman, D. R., Markus, H. R., &amp; Kitayama, S. (1999) . Is there a universal need for positive self-regard? <em>Psychological Review</em>, 106 (4) , 766–794.</li>
+</ol>
+</div>
+<p class="endnote">本稿が引く実証研究の知見は、集団の平均的な傾向であり、個々の人に当てはまるとは限らない。哲学上の主張は、経験的に検証される性質のものではなく、解釈の一つである。臨床の記述は一般的な説明にとどまり、個別の診断や治療の代わりにはならない。心身の不調が続く場合は、医療・相談機関に相談されたい。参考文献は書誌情報を中心に掲げ、リンクは確認できたものに限った。</p>
+</main>
+</body>
+</html>
