@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「自分探し」の概念分析――発見・構築・物語の三つのモデルをめぐる心理学的・哲学的検討</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力の表示」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">自己の心理学・哲学</p>
+<h1>「自分探し」の概念分析<br>――発見・構築・物語の三つのモデルをめぐる心理学的・哲学的検討</h1>
+<p class="subtitle">Discovery, Construction, and Narration: A Conceptual Analysis of the "True Self" in Psychological and Philosophical Accounts</p>
+<div class="lede">
+<p><strong>要旨</strong><br>「今の自分は本当の自分ではない」という感覚は、広く経験される一方で、その認識上の身分が十分に吟味されてこなかった。本稿は、この感覚が何の証拠となるかを、発達心理学・社会心理学・哲学の先行研究に基づく概念分析によって検討する。検討の結果、次の三点が示される。第一に、この感覚は、現実自己と理想自己・義務自己とのあいだのずれ、あるいは人生の物語の破綻として記述でき、情報を持つ。第二に、実験研究は、人が「本当の自分」として探しているものが、中立的な核ではなく、価値評価を含んだ自己像であることを示唆する。第三に、哲学的議論は、探索の対象となる隠れた核の存在を疑わせる一方、自己を課題・責任・物語として捉える道を開く。以上から本稿は、「自分探し」を、発見・構築・物語の三つのモデルに整理し、探索の目標を発見よりも統合に置くことを提案する。</p>
+<p><strong>キーワード</strong><br>自分探し、真正性、アイデンティティ、自己不一致、物語的アイデンティティ、本当の自己</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>本稿は、よく知られた理論と実証論文を概念的に整理したものであり、体系的なレビューではない。文献の選択は筆者の記憶に基づく。引用は原典を挙げているが、本稿のために原文と照合し直してはいない。細部に依拠する前に、原典を確かめる必要がある。哲学上の立場は、一つの立場につき数行で要約したため、ニュアンスが失われている。臨床上の助言を意図しない。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">序論</a>
+<ol>
+<li><a href="#sec1-1">問題の所在</a></li>
+<li><a href="#sec1-2">「自分探し」に含まれる三つの前提</a></li>
+<li><a href="#sec1-3">目的と構成</a></li>
+</ol>
+</li>
+<li><a href="#sec2">発達心理学における探索の位置づけ</a>
+<ol>
+<li><a href="#sec2-1">アイデンティティの危機と四つの地位</a></li>
+<li><a href="#sec2-2">成人形成期と探索の長期化</a></li>
+</ol>
+</li>
+<li><a href="#sec3">心理学的説明――自己のあいだのずれ</a>
+<ol>
+<li><a href="#sec3-1">現実自己・理想自己・義務自己</a></li>
+<li><a href="#sec3-2">一致と偽りの自己</a></li>
+<li><a href="#sec3-3">真正性の多成分モデル</a></li>
+<li><a href="#sec3-4">人生の物語としてのアイデンティティ</a></li>
+<li><a href="#sec3-5">「本当の自分」の素朴理論</a></li>
+</ol>
+</li>
+<li><a href="#sec4">哲学的検討――探索の対象は存在するか</a>
+<ol>
+<li><a href="#sec4-1">ヒュームとパーフィット――隠れた核の否定</a></li>
+<li><a href="#sec4-2">キルケゴールとサルトル――課題としての自己</a></li>
+<li><a href="#sec4-3">ハイデガーとテイラー――恣意的でない真正性</a></li>
+<li><a href="#sec4-4">リクール――同一性と自己性</a></li>
+</ol>
+</li>
+<li><a href="#sec5">社会的次元――演技・観客・自己の多重化</a></li>
+<li><a href="#sec6">考察</a>
+<ol>
+<li><a href="#sec6-1">探索の三つのモデル</a></li>
+<li><a href="#sec6-2">感覚の情報価値</a></li>
+<li><a href="#sec6-3">探索の目標</a></li>
+</ol>
+</li>
+<li><a href="#sec7">結論</a>
+<ol>
+<li><a href="#sec7-1">実践的含意</a></li>
+<li><a href="#sec7-2">限界と今後の課題</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 序論</h2>
+<h3 id="sec1-1">1.1 問題の所在</h3>
+<p>次のような場面を想定する。ある人が、職場で一日を終え、帰宅の電車に乗っている。その日の振る舞いは、第三者が記録すれば上々であった。メールには温かく手際のよい文面で返信し、会議では適切な瞬間に冗談を言い、発表では同意を得た。しかし、仕事を離れたいま、この人には小さく明確な違和感が残っている。「あれは私ではなかった」という感覚である。</p>
+<p>この感覚は、愛想よく振る舞い続けた日の終わりや、進路の岐路に限らず、明確な契機のない場面でも生じる。しかも、それは推論の結論としてよりも、知覚に近い仕方で経験される。本物の自己を一瞬見かけて、すぐに見失ったかのような感覚である。本稿が問うのは、この感覚が何の証拠となるのか、すなわち、感覚が報告している内容とその身分である。</p>
+
+<h3 id="sec1-2">1.2 「自分探し」に含まれる三つの前提</h3>
+<p>この感覚への対応として、多くの言語に呼び名がある行為がある。英語では「 finding yourself 」（自分を見つける）、日本語では「自分探し」である。この表現は、耳慣れているために文法が吟味されることが少ないが、少なくとも次の三つの前提を含んでいる。</p>
+<ul>
+<li>（前提 1 ）どこかに、見つけられる自己が存在する。</li>
+<li>（前提 2 ）いまの自分は、その自己ではない。</li>
+<li>（前提 3 ）旅、内省、転職などの探索によって、その自己に到達できる。</li>
+</ul>
+<p>心理学と哲学は、 1 世紀以上にわたってこれらの前提を検討してきたが、その向きは同じではない。心理学は主に、この感覚の発生源と機能を問う。哲学は主に、探索の対象がそもそも存在するのかを問う。</p>
+
+<h3 id="sec1-3">1.3 目的と構成</h3>
+<p>本稿の目的は、「自分探し」の概念を、上記の前提に即して分析することである。具体的な課題は、次の三つである。</p>
+<ul>
+<li>（課題 1 ）「本当の自分ではない」という感覚の源泉と機能を、心理学の知見から整理する。</li>
+<li>（課題 2 ）探索の対象（前提 1 ）の身分を、哲学的議論に基づいて検討する。</li>
+<li>（課題 3 ）両者を踏まえ、探索の意味についての競合する読み方を比較し、探索の目標を定式化する。</li>
+</ul>
+<p>以下、第 2 節で発達心理学の枠組みを、第 3 節で自己のずれと真正性をめぐる心理学的説明を、第 4 節で哲学的議論を、第 5 節で社会的次元を扱う。第 6 節で三つの課題を総合し、第 7 節で結論と限界を述べる。なお、前提 1 は探索の進め方を最も強く左右するため、検討の順序としては最後に置く。</p>
+
+<h2 id="sec2">2. 発達心理学における探索の位置づけ</h2>
+<h3 id="sec2-1">2.1 アイデンティティの危機と四つの地位</h3>
+<p>探索をめぐる現代の語彙は、エリク・エリクソンに由来する。エリクソンは、青年期を「アイデンティティ対役割の混乱」の時期と位置づけ、「アイデンティティの危機」という概念を導入した。彼によれば、青年には心理社会的モラトリアム、すなわち役割に身を固める前に、さまざまな役割を試すための保護された期間が必要である。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> この理論において、危機は故障ではなく、発達上の作業そのものである。</p>
+<p>ジェームズ・マーシャは、この考えを経験的に検証可能な形にした。面接法を用いて、人を探索（代わりの選択肢を真剣に検討したか）とコミットメント（価値観、職業、世界観を定めたか）の二次元に沿って分類し、四つのアイデンティティ地位を導いた。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 表 1 は、その要点を、各地位の内側からの感じ方とともに整理したものである。</p>
+<table class="cards">
+<caption>表 1 マーシャによる四つのアイデンティティ地位</caption>
+<thead>
+<tr><th>地位</th><th>探索</th><th>コミットメント</th><th>内側からの感じ方</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="地位">拡散</td><td data-label="探索">ほとんど、またはまったくない</td><td data-label="コミットメント">ない</td><td data-label="内側からの感じ方">漂流。何一つ自分のものに思えない。</td></tr>
+<tr><td data-label="地位">早期完了</td><td data-label="探索">ない</td><td data-label="コミットメント">固いが、受け継いだもの</td><td data-label="内側からの感じ方">危機が来るまでは安定しているが、その後は妙に空虚になる。</td></tr>
+<tr><td data-label="地位">モラトリアム</td><td data-label="探索">活発</td><td data-label="コミットメント">まだない</td><td data-label="内側からの感じ方">落ち着かず、不安で、可能性に満ちている。</td></tr>
+<tr><td data-label="地位">達成</td><td data-label="探索">終えており、穏やかな形で続いている</td><td data-label="コミットメント">固く、自ら選んだもの</td><td data-label="内側からの感じ方">落ち着いているが、完成することはない。</td></tr>
+</tbody>
+</table>
+<p>表 1 は、直感に反する含意を持つ。迷いを経験しているモラトリアムの状態は、発達上、健全な作業に従事している状態である。一方、迷いを経験したことのない状態は、早期完了、すなわち吟味を経ずに手渡された確信的なアイデンティティを保持している状態でありうる。したがって、「これは本当の自分ではない」という感覚は、アイデンティティが自分のものになり始めた最初の徴候でありうる。</p>
+
+<h3 id="sec2-2">2.2 成人形成期と探索の長期化</h3>
+<p>エリクソンは危機を青年期に位置づけた。これに対してジェフリー・アーネットは、教育期間が長期化し、結婚や安定した就業が遅れる先進工業社会では、アイデンティティの探索が 20 代の半ばを過ぎても続くと論じ、不安定さと「どっちつかず」の感覚を特徴とする独立した時期として「成人形成期」 (emerging adulthood) を提案した。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
+<p>この指摘は、探索が社会によるコミットメントの猶予の産物でもあることを示す。そうであれば、未完成であるという感覚は、一個人の心に関する私的な事実にとどまらず、時代と社会に関する事実でもある。</p>
+
+<h2 id="sec3">3. 心理学的説明――自己のあいだのずれ</h2>
+<h3 id="sec3-1">3.1 現実自己・理想自己・義務自己</h3>
+<p>トーリー・ヒギンズの自己不一致理論は、「本当の自分ではない」という訴えを最も直接的に翻訳する枠組みである。この理論は、人が複数の自己表象を持つとする。現実自己（自分がこうだと信じる自分）、理想自己（自分または重要な他者が、こうなってほしいと望む自分）、義務自己（義務と責任に照らして、こうあるべきだと信じる自分）である。これらのあいだの食い違いは、異なる感情に結びつく。現実と理想のずれは、悲しみや失望のような落胆に関する感情を、現実と義務のずれは、不安や罪悪感のような動揺に関する感情を生じさせる傾向がある。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></p>
+<p>この枠組みに従えば、「私は本当の自分ではない」という言明は、多くの場合、「私は理想の自分ではない」または「私はそうあるべき自分ではない」の略記として読める。このとき、検討すべき問いは、そのどちらのずれか、およびどの他者の声が基準を与えているか、である。ヘイゼル・マーカスとポーラ・ヌリウスの「可能自己」の研究も、これに近い。可能自己は、人が望み、予期し、恐れる自己であり、現在の行動に方向と痛みを与える。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+
+<h3 id="sec3-2">3.2 一致と偽りの自己</h3>
+<p>カール・ロジャーズは、心理的苦悩の所在を不一致、すなわち自己概念と、人が実際に経験していることとのずれに求めた。彼によれば、そのずれは、愛情や承認が条件付きで与えられるときに生じる。人は、肯定的な評価が得られる経験の部分だけを受け入れるようになるからである。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> この見方では、セラピーの役割は、自分の経験の全体を歪めずに象徴化する能力の回復である。</p>
+<p>ドナルド・ウィニコットは、精神分析の伝統のなかで、本当の自己と偽りの自己という対を提示した。本当の自己は自発性と生きている感覚に結びつく。偽りの自己は、適応を過度に求める環境から本当の自己を守るために築かれる従順の構造である。ここで重要なのは、ウィニコットが偽りの自己を一律に病的とは見なさなかった点である。穏やかで礼儀正しい形の偽りの自己は、健全な社会生活の一部であり、折り合いをつける能力である。病的となるのは、従順が全体を支配し、本人が現実感を持てなくなった場合である。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+<p>この区別を 1.1 の事例に適用すると、職場で愛想よく振る舞うこと自体は、ウィニコットの意味での偽りの自己の証拠とはならない。懸念すべき徴候は、仕事の内でも外でも、自発性が可能な場がなくなることだと解される。</p>
+
+<h3 id="sec3-3">3.3 真正性の多成分モデル</h3>
+<p>マイケル・カーニスとブライアン・ゴールドマンは、真正性を四つの成分に分解した。自分の動機や感情への気づき、自己に関わる情報の偏りのない処理、価値観と一貫した行動、および本物の親密さを許す関係的志向である。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> この分解の利点は、本物か偽物かという二分法を、独立に変動しうる四つの次元に置き換える点にある。たとえば、気づきは強いが行動は弱い、という状態が生じうる。自分が何を大切にしているかを知りながら、それに沿って行動できないという経験が、これに当たる。</p>
+
+<h3 id="sec3-4">3.4 人生の物語としてのアイデンティティ</h3>
+<p>ダン・マクアダムスは、青年期後期以降のアイデンティティが、内面化され、発展し続ける人生の物語の形をとり、人生に統一と目的を与えると提案した。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> この見方では、自己は固定された対象でも役割の束でもなく、絶えず改訂される物語に近い。したがって疎外感には、次の読み方が生じる。すなわち、現在の章が、これまで語ってきた筋書きに合わなくなった、という読み方である。このとき取るべき対応は、隠れた登場人物を掘り出すことではなく、過去・現在・望ましい未来が整合するのはどのような物語かを問うことになる。</p>
+
+<h3 id="sec3-5">3.5 「本当の自分」の素朴理論</h3>
+<p>では、一般の人々が他者の「本当の自分」を語るとき、何を意味しているのか。これを扱う一連の実験研究の結果は、この概念にとって芳しいものではない。ニューマン、ブルーム、ノーブは、複数の研究を通じて、人が本当の自分を、観察者が良いと考えるものと一致する部分として見る傾向があることを見いだした。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> ストロミンガー、ノーブ、ニューマンのレビューは、「本当の自分」が自己そのものとは区別される心理学的概念であり、道徳的・評価的な偏りが組み込まれていると論じた。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> これは、道徳的な特性が、記憶やその他の特性よりも、その人のアイデンティティの中心にあると判断されるという別の知見とも整合する。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup></p>
+<p>これらの知見が示唆するのは、探索者が探している「本当の自分」が、最も深層にある自分ではなく、最も称賛したい自分であることが多い、という点である。この点は、その信念が無価値であることを意味しない。信念は、その人が何を大切にしているかの徴候だからである。ただし、あらかじめ存在する何かの地図としては、信頼性が低い。</p>
+<p>他方、この信念には効用もあるらしい。シュレーゲルらは、本当の自分の感覚にすぐアクセスできる人ほど、人生の意味の感覚が大きいと報告した。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> また、これと逆向きの留意点として、クォイドバック、ギルバート、ウィルソンは、 19,000 人以上の成人を対象とした研究で、あらゆる年齢の人が、過去 10 年間に自分が変わったことを認めながら、今後 10 年間はほとんど変わらないと予想することを見いだした（「歴史の終わり錯覚」）。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 自分を見つけたと感じる瞬間の発見は、暫定的なものでありうる。</p>
+
+<h2 id="sec4">4. 哲学的検討――探索の対象は存在するか</h2>
+<h3 id="sec4-1">4.1 ヒュームとパーフィット――隠れた核の否定</h3>
+<p>デイヴィッド・ヒュームは、自己を求めて内面を覗き込むと、常に熱さや冷たさ、快や苦といった特定の知覚に行き当たるだけであり、知覚を離れた「私自身」を捉えたことは一度もないと述べた。彼は、自己を、絶え間ない流れのなかにある知覚の束と結論した。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></p>
+<p>デレク・パーフィットは、この見解の現代版を提示した。彼によれば、生存において重要なのは、深く独立した自己という追加の事実ではなく、心理的な連続性と連結性、すなわち記憶、意図、性格が重なり合う連鎖である。これらの結びつきには程度があり、時間とともに弱まりうる。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 両者のいずれが正しいとしても、本当の自分は、発見を待つ隠された対象ではありえない。隠れるべきそのような対象が存在しないからである。この場合、探索は誤って記述されていることになるが、無意味になるとは限らない。</p>
+
+<h3 id="sec4-2">4.2 キルケゴールとサルトル――課題としての自己</h3>
+<p>第二の伝統は、出来合いの核がないという点では同意し、その事態を責任の出発点として扱う。セーレン・キルケゴールは、自己を自己自身に関係する関係と定義し、絶望をその関係の失敗、すなわち自分自身であることを望まないか、反抗して自分で考案した自己になろうと望むことだと述べた。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup></p>
+<p>ジャン＝ポール・サルトルの標語「実存は本質に先立つ」は、人間がまず存在し、その後に選択を通じて自分が何であるかを規定する、という意味である。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> 彼の「自己欺瞞」の説明は、両面を持つ。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 「自分はそういう人間ではない」と宣言することは、自分を出来上がったものとして扱うことである。他方、過去や身体や状況に左右されない純粋な自由であるかのように装うことも、同じく逃避である。したがって、サルトルの枠組みでは、本当の自分の探索そのものが隠れ場所になりうる。自分を自己にするはずの選択を、先送りにするからである。</p>
+
+<h3 id="sec4-3">4.3 ハイデガーとテイラー――恣意的でない真正性</h3>
+<p>マルティン・ハイデガーは、真正な実存を、 <em>das Man</em> 、すなわち「ひと」（世人）への埋没と対比した。「ひと」とは、人がすること、考えることの匿名の平均である。真正であるとは、自分の実存を群衆に決めさせず、自分のものとして引き受けることを意味する。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> ただし、これは私的な奇行への逃避を意味しない。</p>
+<p>チャールズ・テイラーは、この点を明確にする。テイラーによれば、自分自身に忠実であれという現代の理想は妥当であるが、何を選んでもよいという許可と誤読されやすい。すべての選択肢が等しく恣意的であれば、どれも重要になりえないからである。アイデンティティは、他者との対話のなかで、また本人が選ぶかどうかとは無関係に重要である事柄を背景として形作られる。テイラーはこれを意味の地平と呼ぶ。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> したがって、真正な自己とは、他者から最も切り離された自己ではなく、何が重要かについて立場を取る自己である。</p>
+
+<h3 id="sec4-4">4.4 リクール――同一性と自己性</h3>
+<p>ポール・リクールは、アイデンティティの二つの意味を区別した。<em>イデム</em>(idem) の同一性は、同じ特性、同じ習慣、時間を通じて同じ性格という、同一性 (sameness) である。<em>イプセ</em>(ipse) の同一性は自己性 (selfhood) 、すなわち「ここにいます」と言い、他のすべてが変わった後でも約束を守ることのできる自己である。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> この区別は、本稿の問題の一部を解消する。自分の特性が見る影もなく変わったと感じていても、コミットメントとそれについて語る物語が引き継がれ、その責任が引き受けられていれば、その人は重要な意味で同じ自己でありうる。</p>
+
+<h2 id="sec5">5. 社会的次元――演技・観客・自己の多重化</h2>
+<p>アーヴィング・ゴフマンは、日常生活を、人々が印象を管理する演技として記述し、観客に向けた「表局域」と、演技をやめられる「裏局域」を区別した。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup> この比喩は、裏局域に本当の自己があり、表局域は仮面であるという誤解を招きうる。しかし、家で疲れ、苛立ち、無防備である人が、職場で気配りのできる人より本物であるとは限らない。両者は、異なる要求のもとにある同一の人である。</p>
+<p>ケネス・ガーゲンは、現代に固有の複雑さを指摘した。絶え間ない社会的接触のある世界では、人は無数の他者の声と期待で満たされ、多数の潜在的な自己を獲得すると彼は論じ、この状態を「多重人格的状態」 (multiphrenia) と呼んだ。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> この診断の是非にかかわらず、断片化の感覚が強まっているように見える理由は説明できる。一つの自己像が応えられる数より、観客のほうが多いのである。</p>
+<p>実践的な含意は限定的だが有用である。適切な問いは、「私のどの自己が本物か」であることは少ない。それは、「私のどの自己の後ろ盾になれるか、そしてそれらはどこで衝突しているか」である。</p>
+
+<h2 id="sec6">6. 考察</h2>
+<h3 id="sec6-1">6.1 探索の三つのモデル</h3>
+<p>以上の検討から、「自分探し」が何をしているのかを理解する、一貫した読み方が三つ抽出できる。これらは、 1.2 で挙げた前提 1 について、まさに食い違っている。表 2 は、三つのモデルを比較したものである。</p>
+<table class="cards">
+<caption>表 2 「自分探し」の三つのモデル</caption>
+<thead>
+<tr><th>モデル</th><th>自己とは…</th><th>「探す」とは…</th><th>主なリスク</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="モデル">発見</td><td data-label="自己とは…">特性と価値観からなる既存の核で、社会的圧力に部分的に隠されている</td><td data-label="「探す」とは…">歪みを取り除き、そこにあったものを明らかにすること</td><td data-label="主なリスク">来ない啓示を待ち続ける。理想化された自己を、実在の自己と取り違える</td></tr>
+<tr><td data-label="モデル">構築</td><td data-label="自己とは…">選択とコミットメントを通じて作られるもの</td><td data-label="「探す」とは…">試し、選び、コミットすること</td><td data-label="主なリスク">すべてを恣意的に扱う。自分の状況からの逃避として選ぶ</td></tr>
+<tr><td data-label="モデル">物語</td><td data-label="自己とは…">過去・現在・未来をつなぐ、発展し続ける物語</td><td data-label="「探す」とは…">いま大切にしているものに合うよう物語を改訂すること</td><td data-label="主なリスク">合わないものを隠す、整いすぎた物語</td></tr>
+</tbody>
+</table>
+<p>三つのモデルは、排他的というより、強調点の違いである。ロジャーズとウィニコットの議論は発見モデルに、サルトルとキルケゴールの議論は構築モデルに、マクアダムスとリクールの議論は物語モデルに傾く。 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup><sup id="fnref-22-2"><a href="#ref-22">[22]</a></sup> 実証的知見が加えるのは、発見モデルへの是正である。感じ取られた「本当の自分」は、人が大切にするものと、そうありたいと願うものによって形作られているため (3.5) 、固定されたものの地図として用いることはできない。</p>
+
+<h3 id="sec6-2">6.2 感覚の情報価値</h3>
+<p>課題 1 と課題 2 の検討を総合すると、次の命題が導かれる。「いまの自分は本当の自分ではない」という感覚は、実在し、情報を持つ。ただし、その感覚が報告しているのは、埋もれた原本の所在ではない。報告されているのは、いま演じている自分と、大切にし、予期し、恐れ、物語っている自分とのずれである。したがって、感覚の情報としての中身は、ずれそのものにある。具体的には、どの価値観が満たされていないのか、どの役割が吟味なしに受け継がれたのか、物語のどの章が意味をなさなくなったのか、という点である。</p>
+
+<h3 id="sec6-3">6.3 探索の目標</h3>
+<p>この命題から、探索の目標は、発見よりも統合に近いと言える。持つに値する自己とは、役割と価値観と物語が整合的にまとまり、その持ち主が過大な無理をせずに、<em>そう、あれは私だった</em>と言える自己である。この定式は、探索に目標がないことを意味しない。目標の達成条件が、隠れた対象への到達から、ずれの吟味と部分的な修復へと移ることを意味する。</p>
+
+<h2 id="sec7">7. 結論</h2>
+<h3 id="sec7-1">7.1 実践的含意</h3>
+<p>以上の議論は、特定の方法を処方するものではなく、プログラムとして読むべきでもない。ただし、「私は本当は誰なのか」という問いよりも生産的な問いの候補は、次のように示される。</p>
+<div class="box">
+<ul>
+<li>どのずれか。現実と理想か、現実と義務か。「べき」と言っているのは誰の声か。</li>
+<li>どこにいるときが、最も気を張らずにいられるか。そこで自分は何をしがちか。</li>
+<li>誰にも気づかれなくても守り続けたいコミットメントは、どれか。</li>
+<li>過去 5 年を物語として語るなら、筋書きが嘘くさくなるのはどこか。</li>
+<li>何に合うのかという推測を試せる、小さな実験は何か。会話でも、試験的な企画でも、習慣の変更でもよい。</li>
+</ul>
+</div>
+
+<h3 id="sec7-2">7.2 限界と今後の課題</h3>
+<p>本稿には、次の限界がある。第一に、文献は記憶に基づいて選択され、体系的な検索を経ていない。第二に、実証研究の知見の多くは特定の文化圏の標本に基づいており、その一般化可能性は吟味されていない。第三に、三つのモデルの区別は概念的な整理であり、どのモデルが、どのような人に、どのような条件で有効かは、経験的に検証されていない。今後の課題は、原典との照合、文化比較を含む文献の拡充、およびモデルごとの効果の実証的検討である。</p>
+<div class="note">本稿は臨床上の助言を意図しない。非現実感が持続し重い場合、たとえば自分の体や思考から切り離されている感覚が続く場合や、深い絶望感を伴う場合には、内省を重ねるのではなく、臨床家への相談が望ましい。このような感覚は、多くの人が短い間は経験するが、持続するパターンは、専門家に相談する価値がある。</div>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> Erikson, E. H. (1968). <em>Identity: Youth and Crisis</em>. New York: W. W. Norton.</li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> Marcia, J. E. (1966). Development and validation of ego-identity status. <em>Journal of Personality and Social Psychology</em>, 3(5), 551–558.</li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Arnett, J. J. (2000). Emerging adulthood: A theory of development from the late teens through the twenties. <em>American Psychologist</em>, 55(5), 469–480.</li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Higgins, E. T. (1987). Self-discrepancy: A theory relating self and affect. <em>Psychological Review</em>, 94(3), 319–340.</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Markus, H., &amp; Nurius, P. (1986). Possible selves. <em>American Psychologist</em>, 41(9), 954–969.</li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Rogers, C. R. (1961). <em>On Becoming a Person: A Therapist's View of Psychotherapy</em>. Boston: Houghton Mifflin.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Winnicott, D. W. (1960). Ego distortion in terms of true and false self. In <em>The Maturational Processes and the Facilitating Environment</em> (1965), pp. 140–152. New York: International Universities Press.</li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Kernis, M. H., &amp; Goldman, B. M. (2006). A multicomponent conceptualization of authenticity: Theory and research. <em>Advances in Experimental Social Psychology</em>, 38, 283–357.</li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> McAdams, D. P. (2001). The psychology of life stories. <em>Review of General Psychology</em>, 5(2), 100–122.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Newman, G. E., Bloom, P., &amp; Knobe, J. (2014). Value judgments and the true self. <em>Personality and Social Psychology Bulletin</em>, 40(2), 203–216.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Strohminger, N., Knobe, J., &amp; Newman, G. (2017). The true self: A psychological concept distinct from the self. <em>Perspectives on Psychological Science</em>, 12(4), 551–560.</li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Strohminger, N., &amp; Nichols, S. (2014). The essential moral self. <em>Cognition</em>, 131(1), 159–171.</li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Schlegel, R. J., Hicks, J. A., Arndt, J., &amp; King, L. A. (2009). Thine own self: True self-concept accessibility and meaning in life. <em>Journal of Personality and Social Psychology</em>, 96(2), 473–490.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Quoidbach, J., Gilbert, D. T., &amp; Wilson, T. D. (2013). The end of history illusion. <em>Science</em>, 339(6115), 96–98.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Hume, D. (1739–40). <em>A Treatise of Human Nature</em>, Book 1, Part 4, Section 6, "Of personal identity."</li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Parfit, D. (1984). <em>Reasons and Persons</em>. Oxford: Oxford University Press.</li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Kierkegaard, S. (1849). <em>The Sickness Unto Death</em>. Trans. H. V. Hong &amp; E. H. Hong (1980). Princeton: Princeton University Press.</li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Sartre, J.-P. (1946). <em>Existentialism Is a Humanism</em> (originally a lecture, "L'existentialisme est un humanisme"). Trans. C. Macomber (2007). New Haven: Yale University Press.</li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Sartre, J.-P. (1943). <em>Being and Nothingness</em>. Trans. H. E. Barnes (1956). New York: Philosophical Library.</li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Heidegger, M. (1927). <em>Being and Time</em>. Trans. J. Macquarrie &amp; E. Robinson (1962). New York: Harper &amp; Row.</li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> Taylor, C. (1991). <em>The Ethics of Authenticity</em>. Cambridge, MA: Harvard University Press.</li>
+<li id="ref-22">^ <sup><a href="#fnref-22-1">a</a></sup> <sup><a href="#fnref-22-2">b</a></sup> Ricoeur, P. (1992). <em>Oneself as Another</em>. Trans. K. Blamey. Chicago: University of Chicago Press.</li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Goffman, E. (1959). <em>The Presentation of Self in Everyday Life</em>. New York: Doubleday.</li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> Gergen, K. J. (1991). <em>The Saturated Self: Dilemmas of Identity in Contemporary Life</em>. New York: Basic Books.</li>
+</ol>
+</div>
+<p class="endnote">本稿は、実証心理学（ヒギンズ、マーシャ、クォイドバックらなど）と哲学的議論（パーフィット、サルトル、テイラー、リクール）を組み合わせている。前者の主張は検証可能であり、後続の研究で改められることがある。後者の主張は議論の問題であり、思慮深い論者のあいだでも見解は分かれる。本稿は、これらの議論への手引きとして読まれるべきであり、自己とは何かについての確定した結論として読まれるべきではない。</p>
+</main>
+</body>
+</html>
