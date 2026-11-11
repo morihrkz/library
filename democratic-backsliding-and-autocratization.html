@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>民主主義はどのように権威主義へ傾くのか――後退の過程と、英国・ドイツ・日本への当てはめ</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力の表示」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">比較政治学・民主主義の後退論</p>
+<h1>民主主義はどのように権威主義へ傾くのか<br>――後退の過程と、英国・ドイツ・日本への当てはめ</h1>
+<p class="subtitle">Processes of Democratic Backsliding and Conditions for Autocratization, with Applications to the United Kingdom, Germany, and Japan</p>
+<div class="lede">
+<p>民主主義の国が権威主義の国へ変わるとき、多くの場合、軍隊は動かない。選挙で選ばれた政権が、法の手続きを使って、裁判所・選挙管理・報道・野党の力を少しずつ削る。本稿は、その過程を先行研究と事例から整理し、英国・ドイツ・日本のような国にも起こりうるか、起こるとすればどんな条件がそろったときかを考える。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong> 比較政治学の代表的な研究（レビツキーとジブラット、ベルメオ、スヴォリク、レビツキーとウェイなど）と、 V-Dem 研究所の 2026 年版報告書の公表資料を読み、事例を整理した。ハンガリー・トルコ・ベネズエラ・ロシア・ポーランド・ワイマール共和国と、日本・英国・ドイツの制度に関する事実は、広く知られた内容を記憶に基づいて書いており、一次資料での再確認は済んでいない。英国・ドイツの直近の政党支持率や裁判の進行は確かめきれなかったため、数字を載せない。「筆者の見立て」「筆者の整理」と記した箇所は、それらを踏まえた筆者の解釈であり、検証済みの事実ではない。ロシアの事例は、フリーダム・ハウスと CPJ の報告、マクフォールとトライスマンの議論を伝える資料によった。三か国についての評価は、確率の予測ではない。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">結論</a></li>
+<li><a href="#sec2">後退の見取り図</a>
+<ol>
+<li><a href="#sec2-1">崩れ方の変化</a></li>
+<li><a href="#sec2-2">数字で見る現在地</a></li>
+</ol>
+</li>
+<li><a href="#sec3">後退の標準的な過程</a>
+<ol>
+<li><a href="#sec3-1">前提――危機と分極</a></li>
+<li><a href="#sec3-2">入口――門番の失敗</a></li>
+<li><a href="#sec3-3">審判の掌握</a></li>
+<li><a href="#sec3-4">競争の傾斜</a></li>
+<li><a href="#sec3-5">固定化と出口の閉鎖</a></li>
+</ol>
+</li>
+<li><a href="#sec4">事例で見る、過程の違い</a></li>
+<li><a href="#sec5">英国・ドイツ・日本に起こりうるか</a>
+<ol>
+<li><a href="#sec5-1">「なる」とは何を指すのか</a></li>
+<li><a href="#sec5-2">六つの条件</a></li>
+<li><a href="#sec5-3">英国</a></li>
+<li><a href="#sec5-4">ドイツ</a></li>
+<li><a href="#sec5-5">日本</a></li>
+<li><a href="#sec5-6">三か国の比較</a></li>
+</ol>
+</li>
+<li><a href="#sec6">警戒すべき兆候</a></li>
+<li><a href="#sec7">限界と反論</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 結論</h2>
+<p>問いは二つある。民主主義はどのように権威主義へ傾くのか。そして、英国・ドイツ・日本のような国にも起こりうるのか。筆者の見立ては、次のとおりである。</p>
+<ul>
+<li><strong>過程</strong><br>現代の後退は、選挙で選ばれた政権が、合法の手続きを使って、審判（裁判所・選挙管理・検察・報道）と競争の条件を作り替える形で進む。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 一つひとつの措置は合法の外見をもつため、「ここからが独裁だ」という線を、途中で引きにくい。</li>
+<li><strong>可能性</strong><br>三か国とも、権威主義化が原理的にありえない国ではない。ただし、全面的な転落が近く起きると見る根拠は、本稿が集めた範囲にはない。現実的に警戒すべきなのは、全面的な独裁ではなく、政権交代が起こりにくくなった「選挙権威主義」への、十年単位の侵食である。</li>
+<li><strong>条件</strong><br>鍵になるのは、 (1) 大きな危機、 (2) 民主的な規則を守る気のない勢力、 (3) 少ない得票で強い権力を渡す制度、 (4) 審判を人事で掌握できること、 (5) 既存の有力者が、その勢力との協力を拒まなくなること、 (6) 外部の歯止めが効かないこと、の六つが重なるかどうかである。三か国は、満たしにくい条件がそれぞれ違う。</li>
+</ul>
+
+<h2 id="sec2">2. 後退の見取り図</h2>
+<h3 id="sec2-1">2.1 崩れ方の変化</h3>
+<p>民主主義の崩壊というと、軍のクーデターを思い浮かべやすい。ナンシー・ベルメオは、近年の後退を、いくつかの型に分けて整理した。軍が実力で政権を倒す古典的なクーデターは減り、代わりに、選挙で選ばれた指導者が自ら権力を広げる型が増えたという。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></p>
+<ul>
+<li><strong>行政府の肥大化</strong><br>選挙で選ばれた政権が、合法的な手続きで制度を作り替え、反対派が政権を取り替える力を、段階的に削る。ハンガリーやベネズエラが典型とされる。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></li>
+<li><strong>選挙の操作</strong><br>投票日の不正よりも、選挙の前の条件（報道、資金、区割り、立候補の資格）を傾ける。選挙は行われるが、勝敗がほぼ決まっている。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></li>
+<li><strong>執行権のクーデター</strong><br>選ばれた指導者が、危機を理由に憲法や議会の機能を止める。</li>
+</ul>
+<p>アンナ・リュールマンとスタファン・リンドバーグは、この種の後退が 1990 年代半ばから広がり、いまは「第三の波」にあると論じた。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 特徴は、民主主義の外観が最後まで残ることにある。</p>
+
+<h3 id="sec2-2">2.2 数字で見る現在地</h3>
+<p>V-Dem 研究所の 2026 年版報告書の公表資料は、世界のおよそ 4 分の 1 の国が、 2025 年に民主主義の後退の過程にあるとした。新たに加わった 10 か国のうち 6 か国が欧州と北米にあり、イタリア・英国・米国が、規模の大きい国として挙げられている。米国の自由民主主義指数は 1 年で 24% 下がり、順位は 179 か国中 20 位から 51 位に落ちたという。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> この公表資料は、ドイツと日本には触れていない。</p>
+<div class="note">この数字は、専門家の評価を指数にまとめたものである。指数が下がることと、体制の分類が変わることは別である。「後退中」と名指しされた国が、すでに権威主義の国になったという意味ではない。</div>
+
+<h2 id="sec3">3. 後退の標準的な過程</h2>
+<p>以下は、先行研究と事例から筆者が整理した標準形である。順序は事例によって入れ替わり、すべての段階を通る国ばかりではない。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+
+<h3 id="sec3-1">3.1 前提――危機と分極</h3>
+<p>出発点には、たいてい、既存の政党や制度への深い不信がある。経済の長い停滞、金融危機、移民や治安をめぐる対立、パンデミックなどが引き金になる。ミラン・スヴォリクは、有権者が自分の党派の政治家を支持するために、民主的な原則を進んで犠牲にすることを示した。対立が深いほど、「相手側を勝たせるよりは、自分側の越権を許す」選択が増える。 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup></p>
+<p>筆者の見立てでは、ここで重要なのは、有権者の大半が反民主的になる必要はない点である。党派への忠誠が、民主的原則への忠誠に勝つ人が、一定数いれば足りる。</p>
+
+<h3 id="sec3-2">3.2 入口――門番の失敗</h3>
+<p>スティーブン・レビツキーとダニエル・ジブラットは、反民主的な指導者が政権に近づく局面で、既存の政党と有力者が「門番」の役割を果たせるかどうかが分かれ目になると論じた。見分ける目安は、 (1) 民主的な規則を言葉の上で拒否する、 (2) 対立相手の正統性を否定する、 (3) 暴力を容認または助長する、 (4) 批判者の自由を制限する意思を示す、の四つである。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 一つでも当てはまる人物には、同じ陣営からも協力を拒む必要がある。</p>
+<p>反例は、ワイマール共和国である。 1933 年 1 月、保守派の有力者は、ヒトラーを首相に据えれば抑え込めると考えて、政権に迎え入れた。ナチ党は、自由な選挙で過半数を得たことはなかった。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> フアン・リンスが「半忠誠的」と呼んだ勢力、つまり、民主主義を公然とは否定しないが、守る気もない勢力が、この入口を開ける。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> ロシアの例では、 1990 年代にエリツィンが後継にプーチンを選んだ。マイケル・マクフォールは、ロシアの独裁を歴史や文化の必然ではなく、 1993 年憲法の強い大統領権限や、秘密警察の機構の再利用を含む、エリートの選択の結果と論じる。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></p>
+
+<h3 id="sec3-3">3.3 審判の掌握</h3>
+<p>政権を握った勢力が最初に手を付けるのは、たいてい、自分を縛る審判である。裁判所（人事と権限）、検察、選挙管理機関、会計検査や統計の機関、中央銀行、公共放送が、その対象になる。裁判官の定数を増やして新任で埋める、定年を下げて入れ替える、といった手法が使われる。個々の措置は、法の手続きを踏むので、「制度改革」と区別しにくい。キム・レーン・シェッペレはこれを「独裁的合法主義」と呼んだ。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup></p>
+
+<h3 id="sec3-4">3.4 競争の傾斜</h3>
+<p>審判を押さえると、次は競争の条件が傾けられる。政府に近い者へ公共放送の枠や広告・補助金が流れ、批判的な報道には税務調査や名誉毀損訴訟が向かう。区割りや選挙制度は与党に有利に変わり、反対派の資金源や市民団体は「外国の手先」として規制される。ロシアでは、これらの道具が最も徹底して使われた。報道機関や団体を「外国のエージェント」に指定する制度は、 2012 年の NGO 向けの法に始まり、 2017 年から報道機関にも広がった。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> CPJ によれば、 2026 年 2 月の時点で、指定された記者・報道機関は 355 に及ぶ。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 独立系紙ノーバヤ・ガゼータも、指定、資金の遮断、事務所からの退去の通告を経て、 2026 年 10 月に閉鎖を発表した。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 結果として、選挙は残るが、野党が勝てる見込みが小さくなる。レビツキーとウェイが「競争的権威主義」と呼んだ状態である。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></p>
+
+<h3 id="sec3-5">3.5 固定化と出口の閉鎖</h3>
+<p>最後の段階では、傾いた競争の条件が、憲法の改正や緊急事態の宣言で固定される。非常事態が名目に使われると、批判は「敵への加担」として扱いやすくなる。ロシアでは、 2022 年の全面侵攻のあと、軍の「信用失墜」や「虚偽情報」を罰する法律ができ、最長 15 年の刑が定められた。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup> ダニエル・トライスマンは、この体制が、宣伝と操作に頼る「スピン独裁」から、力に頼る「恐怖の独裁」へ移ったと見る。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 選挙で政権を取り替える道が閉じた時点で、体制は権威主義と呼ぶほうが正確になる。ただし、この段階に至っても、後述のポーランドのように、市民社会と選挙が機能していれば逆転は起こりうる。</p>
+
+<h2 id="sec4">4. 事例で見る、過程の違い</h2>
+<p>六つの事例を表にまとめる。結末の違いに注目されたい。</p>
+<table class="cardrow">
+<caption>後退の事例（筆者の整理。事実関係は記憶に基づく）</caption>
+<thead><tr><th>事例</th><th>権力の獲得</th><th>主な手口</th><th>結末</th></tr></thead>
+<tbody>
+<tr><th>ハンガリー</th><td data-label="権力の獲得">2010 年の総選挙で、フィデス党が議席の約 3 分の 2 を得た</td><td data-label="主な手口">新憲法（ 2011 年）、憲法裁判所の権限縮小と人事、メディア規制、選挙制度の改編</td><td data-label="結末">2022 年まで 4 回連続で勝利。選挙は続くが、競争の場が傾いたと評価され、 V-Dem などは EU 加盟国で初めて選挙権威主義に分類した</td></tr>
+<tr><th>トルコ</th><td data-label="権力の獲得">2002 年から、公正発展党が選挙で連続して勝利</td><td data-label="主な手口">司法・警察・報道への介入。 2016 年のクーデター未遂後、非常事態のもとで大量の粛清</td><td data-label="結末">2017 年の国民投票で大統領制に移行。多くの指標で選挙権威主義に分類される</td></tr>
+<tr><th>ベネズエラ</th><td data-label="権力の獲得">1998 年にチャベスが大統領選で勝利</td><td data-label="主な手口">制憲議会と新憲法（ 1999 年）、最高裁判事の増員、野党が多数の議会の権限剥奪</td><td data-label="結末">選挙は残るが、政権交代の見込みがない体制へ。経済の崩壊と大量の国外流出を伴う</td></tr>
+<tr><th>ロシア</th><td data-label="権力の獲得">2000 年の大統領選で、エリツィンの後継として当選した</td><td data-label="主な手口">強い大統領権限の 1993 年憲法、独立系テレビ局の接収、知事の任命制、「外国のエージェント」の指定、 2022 年以降の戦時の刑罰</td><td data-label="結末">フリーダム・ハウスの 2026 年版で、 100 点中 12 点の「不自由」。選挙は続くが、競争は事実上なくなった <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></td></tr>
+<tr><th>ポーランド</th><td data-label="権力の獲得">2015 年に「法と正義」が単独過半数を得た</td><td data-label="主な手口">憲法裁判所の人事、司法制度の改編、公共放送の掌握</td><td data-label="結末">独立した報道・市民社会・ EU の圧力が残り、 2023 年の選挙で政権交代。ただし、司法の修復は大統領の拒否権などで難航している</td></tr>
+<tr><th>ワイマール共和国</th><td data-label="権力の獲得">1933 年、保守派の有力者が、ヒトラーを首相に任命した</td><td data-label="主な手口">国会議事堂放火後の緊急令、全権委任法（議会が立法権を政府に譲った）</td><td data-label="結末">数か月で一党支配に至り、自由な選挙は終わった</td></tr>
+</tbody>
+</table>
+<p>ここから分かるのは、まず、後退が最後まで進めば、ロシアのように競争がほぼ消えた状態に至ることである。同時に、後退が一方向に進むとは限らない。ポーランドは、民主主義が戻る余地が、後退の途中にはありうることを示す。他方でワイマールは、当時最も進んだ憲法をもつ国でさえ、門番が機能しなければ短期間で崩れることを示す。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup></p>
+
+<h2 id="sec5">5. 英国・ドイツ・日本に起こりうるか</h2>
+<h3 id="sec5-1">5.1 「なる」とは何を指すのか</h3>
+<p>最初に、問いの意味をそろえる。「権威主義国家になる」には、少なくとも二つの水準がある。一つは、複数政党の選挙そのものが消える完全な独裁である。もう一つは、選挙は行われるが、競争の条件が傾いて、政権交代がほぼ起こらなくなった状態（選挙権威主義）である。本稿が現実的に検討するのは、後者である。</p>
+<p>この意味での後退は、豊かで制度の整った国でも起こりうる。ハンガリーとポーランドは、 EU 加盟国であり、一人当たり所得も、先進国に近い水準だった。かつて、アダム・プシェヴォルスキらは、一人当たり所得がある水準を超えた民主主義は、一度も崩壊していないと示した。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 筆者の見立てでは、この経験則は、軍のクーデターのような明確な断絶を「崩壊」と見ていた時代のものであり、漸進的な侵食を排除する根拠にはならない。</p>
+<p>先に答えを述べると、英国・ドイツ・日本のいずれについても、「権威主義化の可能性はある」と答えるのが、誠実である。ただし、可能性があることと、近い将来に起こると見ることは違う。以下では、条件を整理して、各国で満たされにくい条件と、満たされやすい条件を示す。</p>
+
+<h3 id="sec5-2">5.2 六つの条件</h3>
+<p>3 節の過程と、先行研究から、筆者が条件を六つに整理した。これは検証された予測モデルではなく、検討のための道具である。</p>
+<ul>
+<li><strong>A 危機と不信</strong><br>経済・安全保障・社会の危機が深まり、既存の政党と制度への信頼が崩れていること。</li>
+<li><strong>B 規範を守らない勢力</strong><br>民主的な規則（結果の受容、相手の正統性、暴力の拒否、自由の尊重）を守る気のない有力な勢力が、選挙で票を集められること。</li>
+<li><strong>C 集中を許す制度</strong><br>少ない得票で議会の過半数や強い権力を得られること。憲法の改正が容易で、権力の分立が慣行に頼っていること。</li>
+<li><strong>D 審判を掌握できること</strong><br>裁判所・検察・選挙管理・報道などの人事や権限を、多数派の判断で変えられること。緊急事態の権限が広いこと。</li>
+<li><strong>E 門番の放棄</strong><br>既存の政党や有力者が、 B の勢力との協力を拒まなくなること。支持者が、越権に目をつむること。</li>
+<li><strong>F 外部の歯止めの弱さ</strong><br>連合・同盟・国際条約などの外部の枠組みが、越権を止める力をもたないこと。</li>
+</ul>
+<p>六つが同時にそろう必要はないが、 B が欠けると、後退は始まらない。民主的な規則を守る政党しかない国では、制度が弱くても、後退は起こりにくい。逆に、 B があっても、 C から F が強ければ、後退は難しい。</p>
+
+<h3 id="sec5-3">5.3 英国</h3>
+<p>英国は、 C と D に弱点をもつ。成文の硬性憲法がなく、議会主権のもとでは、通常の法律で選挙制度、司法審査、議会の解散のルールまで変えられる。小選挙区制は、少ない得票から大きな議席差を生む。 2024 年の総選挙では、労働党が約 34% の得票で、庶民院の議席の約 63% を得た。歯止めは、法律よりも慣行に多くを頼っている。</p>
+<p>他方で、慣行を裁判所が補強した例もある。 2019 年に、首相が議会を閉会（プロローグ）した措置を、最高裁は全員一致で違法とした。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> また、 2022 年の選挙法で、投票時の身分証明が義務づけられ、選挙管理委員会に対する政府の関与が強まった。これは、独立性を損なうものとして批判された。筆者の見立てでは、英国で欠けているのは、 B を満たす有力な勢力であり、制度の側が B の登場を前提に設計されていない点が弱みである。現在の主要政党の綱領が、民主的規範の枠を出ているかどうかについては、本稿は判断しない。</p>
+
+<h3 id="sec5-4">5.4 ドイツ</h3>
+<p>ドイツは、ワイマールの経験から、「戦う民主主義」を制度に組み込んだ。基本法 79 条 3 項は、連邦制や人間の尊厳などの根幹を、改正の対象から外している。 21 条 2 項は、民主的秩序を除こうとする政党の禁止を、連邦憲法裁判所に認めている。比例代表制と連立が常態であり、単独過半数は出にくい。連邦憲法裁判所の判事の選出は、議会の 3 分の 2 を要する。 C と D は、三か国の中で最も固い。</p>
+<p>弱点は、 B と E の組み合わせにある。ドイツのための選択肢 (AfD) は、 2025 年の連邦議会選挙で約 20.8% を得て、第 2 党になった。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 同党の一部には、民主的秩序への敵対が疑われ、治安機関の監視対象となっている。この扱いの法的な妥当性は、裁判で争われている。連邦議会では、同党単独で憲法改正を阻む 3 分の 1 には届かない。しかし、州では事情が異なる。チューリンゲン州では、 2024 年の選挙で同党が 88 議席中 32 議席を得て、 3 分の 2 の特別多数を要する人事（憲法裁判所の判事など）を阻める位置に立った。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></p>
+<p>筆者の見立てでは、ドイツの焦点は、連邦レベルでの全面的な転落ではなく、州レベルでの審判の掌握と、他党が「防火壁」（ AfD との協力を拒む合意）を保てるかである。 2020 年には、チューリンゲン州の首相選出で、 AfD の票を受けた候補が選ばれ、選出直後に辞任へ追い込まれた。 E の条件が試された例である。 F については、 EU 法と加盟国の相互監視が働くため、三か国の中で最も強い。</p>
+
+<h3 id="sec5-5">5.5 日本</h3>
+<p>日本は、自由な選挙が戦後続き、有力政党が民主的な規則そのものを拒む構図も目立たない。憲法の改正には、衆参各院の 3 分の 2 の賛成と国民投票の過半数が必要で、 C の一部である改正の容易さは、低い。</p>
+<p>筆者の見立てでは、日本の弱点は、劇的な独裁ではなく、慣行の侵食という形で現れる。次の五点を挙げる。</p>
+<ul>
+<li><strong>一党優位</strong><br>自由民主党は、戦後のほとんどの期間で政権にあった。野党が分裂しがちで、政権交代の抑止力が弱い。競争が傾く前から、交代可能性が低い。</li>
+<li><strong>行政内部の審判</strong><br>2014 年に、内閣人事局が幹部人事を一元化し、同年の閣議決定で、内閣法制局が従来示してきた憲法解釈（集団的自衛権）が変更された。審判役の機関が政権に従う前例がある。</li>
+<li><strong>司法の謙抑性</strong><br>最高裁が法令を違憲とした例は、戦後きわめて少ない。多数派の越権を止める役割は、小さい。</li>
+<li><strong>緊急事態条項</strong><br>自由民主党の 2012 年の憲法改正草案は、緊急事態に内閣へ権限を集中させる規定を含む。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 非常時の権限の範囲は、 D の条件に直結する。</li>
+<li><strong>報道の構造</strong><br>記者クラブなど、取材先と報道機関の距離が近い慣行が、批判の力を弱めるという指摘がある。</li>
+</ul>
+<p>他方で、歯止めが働いた例もある。 2020 年には、検事長の定年延長をめぐる検察庁法の改正案が、世論の強い反対で撤回された。同年の日本学術会議の会員候補 6 人の任命拒否は、慣行を超える人事介入として論争になった。 F については、 EU に当たる地域の枠組みがなく、外部の歯止めは弱い。</p>
+<p>分極が弱いことは、安全だという意味ではない。筆者の見立てでは、スヴォリクの示した分極の危険は、日本では目立たない。むしろ、強い反対の声が起こらないままの、人事と解釈による静かな変化が、現実的な経路である。安全保障環境が悪化し、非常時を理由にした権限集中を受け入れる空気が強まった場合に、 A と D が結びつく。</p>
+
+<h3 id="sec5-6">5.6 三か国の比較</h3>
+<p>以上を、六つの条件で比べる。数値や確率ではなく、各国で満たされやすいかどうかの目安である。</p>
+<table class="cardrow">
+<caption>六つの条件の比較（筆者の見立て。「高」は条件が満たされやすいことを指す）</caption>
+<thead><tr><th>条件</th><th>英国</th><th>ドイツ</th><th>日本</th></tr></thead>
+<tbody>
+<tr><th>A 危機と不信</th><td data-label="英国">中〜高。長い低成長と、二大政党離れが続く</td><td data-label="ドイツ">中。産業の不振と、移民をめぐる対立がある</td><td data-label="日本">中。人口減少と低成長はあるが、不信が特定の勢力へ向かいにくい</td></tr>
+<tr><th>B 規範を守らない勢力</th><td data-label="英国">低〜中。主要政党は枠内にある。司法や人権条約への敵対的な言説はある</td><td data-label="ドイツ">中〜高。第 2 党の一部が、民主的秩序への敵対を疑われている</td><td data-label="日本">低〜中。規則そのものを拒む有力勢力は目立たない</td></tr>
+<tr><th>C 集中を許す制度</th><td data-label="英国">高。硬性憲法がなく、小選挙区制で少数の得票から過半数が出る</td><td data-label="ドイツ">低。比例代表と連立、改正禁止条項、 3 分の 2 の要件がある</td><td data-label="日本">中。改憲は難しいが、一党優位と小選挙区が重なる</td></tr>
+<tr><th>D 審判の掌握</th><td data-label="英国">中。独立性は強いが、法律で変えられる部分が大きい</td><td data-label="ドイツ">連邦で低、州で中。州の人事は特別多数に左右される</td><td data-label="日本">中〜高。人事一元化と解釈変更の前例があり、司法審査は謙抑的</td></tr>
+<tr><th>E 門番の放棄</th><td data-label="英国">中。右派内の協力の線引きが分かれ目</td><td data-label="ドイツ">中。「防火壁」が保たれるかが焦点</td><td data-label="日本">中。連立の組み方次第で、与党内の抑制が変わりうる</td></tr>
+<tr><th>F 外部の歯止め</th><td data-label="英国">中。 EU を離れ、欧州人権条約が主な歯止め</td><td data-label="ドイツ">低。 EU 法と加盟国の監視がある</td><td data-label="日本">高。地域の枠組みがなく、同盟関係が主な外部要因</td></tr>
+</tbody>
+</table>
+<p>この表を読むと、国ごとに、起こりうる道筋が異なることが分かる。英国は、制度の側の弱さ (C) が、 B の登場を待っている形である。ドイツは、 B が現に存在するが、制度 (C ・ D ・ F) が固く、門番 (E) の持続が焦点になる。日本は、 B が見えにくいが、制度と慣行 (C ・ D ・ F) が緩やかな侵食を許す余地をもつ。</p>
+
+<h2 id="sec6">6. 警戒すべき兆候</h2>
+<p>全面的な転落は、事後にしか確かめられない。確かめるべきは、過程の途中にある兆候である。次の項目は、 3 節と 5 節から、筆者がまとめた点検の観点である。</p>
+<ul>
+<li><strong>審判の人事</strong><br>裁判所・検察・選挙管理・統計・公共放送の人事や定員、権限が、政権の都合で変えられていないか。</li>
+<li><strong>競争の条件</strong><br>区割り、選挙制度、投票のルール、政治資金、報道の枠が、与党に有利な方向に変わっていないか。</li>
+<li><strong>批判者への圧力</strong><br>記者・研究者・市民団体・野党に、資金面、税務、訴訟、「外国の手先」という指定などの圧力がかかっていないか。</li>
+<li><strong>非常時の権限</strong><br>緊急事態の宣言や、特別な権限が、常態化または拡大していないか。</li>
+<li><strong>言葉と暴力</strong><br>対立相手を「敵」「国民ではない者」と呼ぶ言説や、政治的暴力への黙認が広がっていないか。</li>
+<li><strong>門番の沈黙</strong><br>与党内、連立相手、有力者が、越権に抗議しなくなっていないか。</li>
+</ul>
+<div class="note">一つの項目が当てはまっても、後退の証拠にはならない。同じ方向の変化が、複数の項目で、数年にわたって続くかどうかを見る。</div>
+
+<h2 id="sec7">7. 限界と反論</h2>
+<ul>
+<li><strong>枠組みの検証の弱さ</strong><br>六つの条件は、少数の事例から筆者が整理したものである。後退しなかった国まで含めた比較で検証したものではなく、生存者バイアス（後退した国だけを見る偏り）を免れない。</li>
+<li><strong>定義と測定</strong><br>「後退」や「権威主義」の線引きは、研究者によって異なる。 V-Dem の指数は専門家の評価に基づくため、評価者の見方に左右される。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup></li>
+<li><strong>「先進国では起こらない」という反論</strong><br>制度が整った豊かな国では、軍の介入のような断絶は起こりにくい。この点は正しい。ただし、本稿が扱うのは断絶ではなく、漸進的な侵食であり、反論は届いていない。</li>
+<li><strong>「脅威は誇張だ」という反論</strong><br>三か国では、政権交代が繰り返し起きている。ポーランドでは、後退の途中で政権が替わった。後退を恐れすぎることは、通常の政治の対立を「危機」と呼ぶ誤りにつながる。この反論は、半分は正しい。本稿は、確率を述べたのではなく、条件を整理した。</li>
+<li><strong>資料の偏り</strong><br>本稿は、主に英語圏の研究に依拠した。日本の制度と政治に関する記述は、日本語の一次資料と専門家の研究で、確かめ直す必要がある。</li>
+</ul>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Bermeo, N. (2016). On democratic backsliding. <em>Journal of Democracy</em>, 27(1), 5–19. <a href="https://doi.org/10.1353/jod.2016.0012">Journal of Democracy (DOI)</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> Levitsky, S., &amp; Ziblatt, D. (2018). <em>How Democracies Die</em>. New York: Crown. <a href="https://en.wikipedia.org/wiki/How_Democracies_Die">Wikipedia</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Scheppele, K. L. (2018). Autocratic legalism. <em>University of Chicago Law Review</em>, 85(2), 545–583. <a href="https://chicagounbound.uchicago.edu/uclrev/vol85/iss2/6/">Chicago Unbound</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> Levitsky, S., &amp; Way, L. A. (2010). <em>Competitive Authoritarianism: Hybrid Regimes after the Cold War</em>. Cambridge: Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511781353">Cambridge University Press (DOI)</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Lührmann, A., &amp; Lindberg, S. I. (2019). A third wave of autocratization is here: What is new about it? <em>Democratization</em>, 26(7), 1095–1113. <a href="https://doi.org/10.1080/13510347.2019.1582029">Democratization (DOI)</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> V-Dem 研究所の「 Democracy Report 2026 」（ 2026 年版報告書）の公表資料。 <a href="https://idw-online.de/en/news867642">idw （ V-Dem 公表資料）</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> Svolik, M. W. (2019). Polarization versus democracy. <em>Journal of Democracy</em>, 30(3), 20–32. <a href="https://doi.org/10.1353/jod.2019.0039">Journal of Democracy (DOI)</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Evans, R. J. (2003). <em>The Coming of the Third Reich</em>. London: Allen Lane. <a href="https://en.wikipedia.org/wiki/The_Coming_of_the_Third_Reich">Wikipedia</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Linz, J. J. (1978). <em>The Breakdown of Democratic Regimes: Crisis, Breakdown, and Reequilibration</em>. Baltimore: Johns Hopkins University Press. <a href="https://en.wikipedia.org/wiki/Juan_Linz">Wikipedia (J. Linz)</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> マイケル・マクフォールの議論を紹介する <em>JSTOR Daily</em> の記事「 Was Russia Destined to Be an Autocracy? 」。 <a href="https://daily.jstor.org/was-russia-destined-to-be-an-autocracy/">JSTOR Daily</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> CPJ （ジャーナリスト保護委員会）の報告「 Russia's repression record 」（ 2026 年 2 月 17 日更新）。 <a href="https://cpj.org/2026/02/russias-repression-record/">CPJ</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> アルジャジーラの報道（ 2026 年 11 月 9 日付）。ノーバヤ・ガゼータの閉鎖を伝える。 <a href="https://www.aljazeera.com/news/2026/11/9/russian-investigative-newspaper-novaya-gazeta-closes-citing-govt-clampdown">Al Jazeera</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> ダニエル・トライスマンへのインタビュー「 Putin's fear dictatorship 」、 <em>Meduza</em> 、 2023 年 7 月 24 日。 <a href="https://meduza.io/en/feature/2023/07/24/putin-s-fear-dictatorship">Meduza</a></li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> フリーダム・ハウス「 Freedom in the World 2026 」のロシア報告。 <a href="https://freedomhouse.org/country/russia/freedom-world/2026">Freedom House</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Przeworski, A., Alvarez, M. E., Cheibub, J. A., &amp; Limongi, F. (2000). <em>Democracy and Development: Political Institutions and Well-Being in the World, 1950–1990</em>. Cambridge: Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511804946">Cambridge University Press (DOI)</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> <em>R (Miller) v The Prime Minister</em> and <em>Cherry v Advocate General for Scotland</em> [2019] UKSC 41 （英国最高裁判所判決、 2019 年 9 月 24 日）。 <a href="https://www.supremecourt.uk/cases/uksc-2019-0192">UK Supreme Court</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> 2025 年ドイツ連邦議会選挙の結果の解説。 <a href="https://en.wikipedia.org/wiki/2025_German_federal_election">Wikipedia</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> チューリンゲン州議会選挙（ 2024 年）の公式結果の公開ページ。 <a href="https://wahlen.thueringen.de/">チューリンゲン州選挙管理</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> 自由民主党「日本国憲法改正草案」（ 2012 年 4 月 27 日決定）。 <a href="https://www.jimin.jp/">自由民主党</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Waldner, D., &amp; Lust, E. (2018). Unwelcome change: Coming to terms with democratic backsliding. <em>Annual Review of Political Science</em>, 21, 93–113. <a href="https://doi.org/10.1146/annurev-polisci-050517-114628">Annual Reviews (DOI)</a></li>
+</ol>
+<p class="endnote">本稿の整理は、各出典の主張と、筆者の見立てを区別して書いた。事例と制度の記述は記憶に基づく部分があり、断定の強さは本文で断った。特定の国や政党が権威主義化すると予言するものではない。</p>
+</div>
+</main>
+</body>
+</html>
