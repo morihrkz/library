@@ -338,7 +338,7 @@
 | 罰は何のためにあるのか（応報、抑止、更生、修復） | 06 制度と公正 | `punishment-populism.html` が、応報と抑止を厳罰化の論拠として検討済み。応報は `free-will-and-determinism.html` と `meritocracy-and-effort-justice.html` にも現れる。 06 はすでに厚い | 修復的司法や被害者の回復など、既存記事にない論点で一本の記事が立つことを確かめる |
 | ジェンダーをめぐる「差」の読み方 | 05 心理と道徳、または 06 制度と公正 | 主題とする記事はないが、夫婦別姓（ `logic-argumentation.html` ）、性差別の心理（ `victim-blaming-psychology.html` ）、無償のケア労働（ `independence-norm-and-invisibility.html` ）、ギリガンの批判（ `authoritarian-personality-moral-development.html` ）で扱いが分散している。範囲が広すぎる | 6.1 節の記事を書いた後、賃金や家事時間など、一つの差に範囲を絞る |
 | 人口が減ると、何が困るのか | 06 制度と公正 | 出生率（ `france-japan-fertility-policy.html` ）、人口移動（ `australia-nz-economic-divergence.html` ）と近い。 06 はすでに厚い | 総数の減少と、一人あたりの指標の問題を分け、既存記事との分担を書けるようにする |
-| わかりあえなさと熟議 | 01 論理と言葉、または 06 制度と公正 | 熟議民主主義は `emotion-politicization.html`（ 8.2 節）と `theory-of-popular-will.html`（ 5.4 節）が扱い済み | 両記事にない論点（たとえば一対一の対話）で、新しさを示せるか確かめる |
+| わかりあえなさと熟議 | 01 論理と言葉、または 06 制度と公正 | 熟議民主主義は `theory-of-popular-will.html`（ 5.4 節）が扱い済み（ `emotion-politicization.html` の 8.2 節も扱っていたが、同稿は 2026 年 11 月に `grievance-and-the-white-poor.html` へ統合して削除し、熟議の節は引き継いでいない） | 両記事にない論点（たとえば一対一の対話）で、新しさを示せるか確かめる |
 | 言語と思考（言語相対性） | 01 論理と言葉 | 「言語相対」「サピア」の語は、どの記事にも現れない。ただし、 `philosophy-psycholinguistics.html` と `omou-functional-analysis.html`（英訳を物差しにした機能分析）と隣り合う | 二本との論点の分担を書く |
 | 休む技術 | 11 からだとケア | 「睡眠」は三本で、いずれも副次的。休養に関する研究には、再現性に問題のあるものが多い | 6.7 節の記事の方法で、確度の区別を先に作る |
 | 道具と身体 | 04 自己と生き方 | 出発点の感覚（ AI の文章への違和感）が、読者に共有されるか分からない | その感覚を、読者が自分の経験で確かめられる問いに立て直す |

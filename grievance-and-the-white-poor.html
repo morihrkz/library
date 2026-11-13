@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>米国の低所得白人層は「目覚めた」のか――オバマ政権から 2026 年中間選挙まで</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">政治社会学・アメリカ政治</p>
+<h1>米国の低所得白人層は「目覚めた」のか<br>――オバマ政権から 2026 年中間選挙まで</h1>
+<p class="subtitle">The Politics of Grievance among Low-Income White Americans from the Obama Years to the 2026 Midterms</p>
+<div class="lede">
+<p>2026 年 11 月の中間選挙で、大学を卒業していない白人の多数派は、なお共和党に投票した。出口調査では、共和党の下院候補が 59% 、民主党の候補が 39% である。ただし、共和党の優位は、 2024 年より縮んだと報じられている。「目が覚めた」という言い方が含意する集団全体の転向は、現時点のデータからは確認できない。確認できるのは、土台が大きくは崩れず、縁辺が動いたという姿である。</p>
+<p>本稿は、党派という票の土台と、その縁辺で働く訴えと受け止めを区別する枠組みを用い、四つの視点から、この結論に至る道筋を示す。オバマ政権期に心情がどう形づくられたか。『ヒルビリー・エレジー』が、その心情にどんな言葉を与えたか。 Turning Point USA が、どんな主張で若い世代を組織したか。そして 2026 年の選挙で、何が動き、何が動かなかったか。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>本稿は、選挙調査、報道、団体の公表資料、書評と批評を突き合わせる文献レビューであり、新たなデータの分析は行わない。 2026 年の数字は、選挙から 11 日後（ 2026 年 11 月 14 日）時点の出口調査と速報であり、確定値でも、投票記録と照合した分析でもない。『ヒルビリー・エレジー』は、書評と解説を通じて検討しており、原文との照合は十分でない。調査で観測された事実、研究者や報道の解釈、本稿の仮説は、本文中で区別して記す。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">導入――結論と、問いの置き直し</a></li>
+<li><a href="#sec2">分析の枠組み――土台は党派、動くのは縁辺</a></li>
+<li><a href="#sec3">オバマ政権期の心情――「見下されている」という感覚の起点</a>
+<ol>
+<li><a href="#sec3-1">票が示す、長い傾き</a></li>
+<li><a href="#sec3-2">暮らしの悪化は、政権より前に始まっていた</a></li>
+<li><a href="#sec3-3">語られた心情</a></li>
+<li><a href="#sec3-4">人種と移民という争点</a></li>
+</ol>
+</li>
+<li><a href="#sec4">『ヒルビリー・エレジー』の趣旨</a>
+<ol>
+<li><a href="#sec4-1">一冊の骨格</a></li>
+<li><a href="#sec4-2">本書の主張</a></li>
+<li><a href="#sec4-3">批判と、その射程</a></li>
+<li><a href="#sec4-4">本稿での位置づけ</a></li>
+</ol>
+</li>
+<li><a href="#sec5">Turning Point USA の主義・主張</a>
+<ol>
+<li><a href="#sec5-1">創設と構造</a></li>
+<li><a href="#sec5-2">主張の三つの層</a></li>
+<li><a href="#sec5-3">低所得白人層との接点とずれ</a></li>
+</ol>
+</li>
+<li><a href="#sec6">中間選挙（ 2026 年 11 月）――目は覚めたのか</a>
+<ol>
+<li><a href="#sec6-1">選挙の全体像</a></li>
+<li><a href="#sec6-2">非大卒の白人は、どう投票したか</a></li>
+<li><a href="#sec6-3">動いたもの、動かなかったもの</a></li>
+<li><a href="#sec6-4">「目が覚めた」という語をどう扱うか</a></li>
+</ol>
+</li>
+<li><a href="#sec7">四つの視点をつなぐ――二つの物語と、一つの試験</a>
+<ol>
+<li><a href="#sec7-1">内向きの物語と、外向きの物語</a></li>
+<li><a href="#sec7-2">「公正」の二義性――道徳基盤と DEI 論争</a></li>
+<li><a href="#sec7-3">物語の試験としての 2026 年</a></li>
+</ol>
+</li>
+<li><a href="#sec8">限界と結論</a>
+<ol>
+<li><a href="#sec8-1">限界</a></li>
+<li><a href="#sec8-2">結論</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 導入――結論と、問いの置き直し</h2>
+<p>結論を先に述べる。 2026 年 11 月 3 日の中間選挙で、米国の低所得白人層の多数派は、なお共和党に投票した。 NBC ニュースの出口調査（投票所を出た人への聞き取りに、郵便・電話・オンラインの回答を合わせた調査）では、大学を卒業していない白人の 59% が共和党の下院候補に、 39% が民主党の候補に投票した。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup></p>
+<p>第 2 章で示す枠組みに照らせば、これは意外な姿ではない。党派帰属が票の土台をつくり、訴えと受け止めはその縁辺で働く、というのが本稿の作業仮説である。 2026 年の結果は、土台が保たれ、縁辺が動いたことと整合する。ただし、整合することは、仮説が検証されたことを意味しない。</p>
+<p>「目が覚めた」という問い方には、二つの問題がある。第一に、「眠っていた」という前提を含む。 2016 年や 2024 年に共和党へ投票した人々を、眠っていた人々、あるいは欺かれていた人々として描くことは、根拠のない侮蔑や、心理的な診断になりかねない。異なる人々が、異なる経路で、同じ選択に至ったという事実は、そうした一括の判定を許さない。第二に、目覚めの行き先を、あらかじめ一つに決めている。本稿は、この問いを、「何が、誰を、どれだけ動かしたのか」に置き直す。</p>
+<p>対象の定義を断っておく。「低所得白人層」には、標準的な調査変数がない。近い概念の「白人労働者階級」でさえ、研究者が学歴、所得、職業、人種を組み合わせて、研究ごとに定義している。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 本稿は、大学を卒業していない白人（以下、非大卒の白人）を、主な代理指標とする。出口調査には、年収 5 万ドル未満という区分もあるが、人種を問わない集団である。どちらも、低所得の白人そのものを測ったものではない。</p>
+<p>構成は次のとおりである。第 2 章で分析の枠組みを示す。第 3 章でオバマ政権期の心情を、第 4 章で『ヒルビリー・エレジー』を、第 5 章で Turning Point USA を検討する。第 6 章で 2026 年の中間選挙を見て、第 7 章で四つの視点をつなぎ、第 8 章で限界と結論を述べる。</p>
+
+<h2 id="sec2">2. 分析の枠組み――土台は党派、動くのは縁辺</h2>
+<p>本稿は、ある集団の政治的な動きを、三つの層に分けて捉える。第一に、票の土台となる政治的条件、つまり党派帰属と対立候補への評価である。第二に、候補者や運動が発する訴え（訴求）である。第三に、聞き手がそれをどう受け取ったか（受け止め）である。この三つを区別しなければ、候補者の魅力を、過大にも過小にも見積もることになる。</p>
+<p>土台の重さは、 2016 年の数字に表れている。 Pew Research Center が調査回答を投票記録と照合した分析では、共和党支持の有権者の 92% がトランプに投票した。大学を卒業していない白人では、 64% がトランプに、 28% がクリントンに投票した。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 同じ回答者を追った調査では、約 83% が 2012 年と 2016 年に同じ政党へ投票した「一貫した党派」であり、オバマに投票した 2012 年の投票者のうち、 2016 年にトランプへ投票したのは約 9% だった。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 有権者が、自分の党への愛着より、相手の党への嫌悪で動く度合いを強めているという「消極的党派性」の議論も、この土台の固さを説明する。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 大半は党派の継続であり、乗り換えは少数だった。</p>
+<p>訴求の側では、トランプは 2016 年 7 月の指名受諾演説で、見捨てられてきた人々に向けて「私があなた方の声だ (I am your voice) 」と述べ、強力な特殊利益が政治と経済の仕組みを不正に操作してきたと語った。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 社会を「純粋な人民」と「腐敗したエリート」に分けて捉える、ポピュリズムの型によく当てはまる語りである。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> ミシェル・ラモント (Michèle Lamont) らは、トランプの演説が、白人労働者階級を、勤勉なアメリカ人、グローバル化の被害者として描き、その道徳的な地位を高めたと分析した。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></p>
+<p>受け止めの側には、三つの説明の候補がある。経済的不安は、個人の水準では証拠が割れている。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 地位や文化、移民をめぐる認識は、投票との結びつきが強いが、因果の向きが定まらない。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 軽んじられたという感覚は、質的研究が描いている。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 2024 年の支持連合の変化は、乗り換えというより、誰が投票したかの違いに主に由来した。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></p>
+<p>受け止めが票に変わる回路については、心理学が四つの機構を示している。人は、絶対的な水準より、他者や過去の自分との比較で不満を抱く（相対的剥奪）。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 恣意的に分けられた集団であっても、人は自分の集団を優遇する。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup> 同じ大きさなら、損失は利得より重く感じられる（損失回避）。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> 人は、望む結論に向かうように、情報を選んで評価する（動機づけられた推論）。 <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup> いずれも、個人の一般的な傾向についての知見であり、特定の選挙の票を説明するものではない。</p>
+<table class="cardrow">
+<caption>表 1 本稿の分析の枠組み</caption>
+<thead><tr><th>層</th><th>本稿の見方</th><th>主に扱う章</th></tr></thead>
+<tbody>
+<tr><th>土台</th><td data-label="本稿の見方">党派帰属と対立候補への評価が、票の大半を決める。乗り換えは少数である</td><td data-label="主に扱う章">第 6 章。 2026 年に、土台はどれだけ保たれたか</td></tr>
+<tr><th>訴求</th><td data-label="本稿の見方">反エリートの語りと、地位や尊厳の回復の約束</td><td data-label="主に扱う章">第 4 章と第 5 章。内向きの物語（ヴァンス）と、組織化 (Turning Point USA)</td></tr>
+<tr><th>受け止め</th><td data-label="本稿の見方">経済的不安、地位や文化の不安、軽んじられた感覚が重なる</td><td data-label="主に扱う章">第 3 章。オバマ政権期に、その感覚がどう形づくられたか</td></tr>
+<tr><th>感情と認知</th><td data-label="本稿の見方">比較、集団への帰属、損失の重さ、望む結論への推論が、不満を票へ導く</td><td data-label="主に扱う章">第 7 章。物語が現実の試験を受ける場面</td></tr>
+</tbody>
+</table>
+<p>本稿の作業仮説は、次のとおりである。票の大部分は党派の継続で説明され、候補者や運動の訴えは、その縁辺、つまり乗り換える少数や、投票するか迷う人々に働く。この仮説は、候補者固有の効果を党派要因から分離して測った研究には基づいていない。</p>
+<p>選挙ごとの分析は、投票の瞬間を切り取る。しかし、縁辺の人々の心情は、選挙と選挙の間の時間に形づくられる。この人々は、いつ、どのような経験を経て縁辺になったのか。</p>
+
+<h2 id="sec3">3. オバマ政権期の心情――「見下されている」という感覚の起点</h2>
+<p>オバマ政権期（ 2009 年から 2017 年）の低所得白人層の心情を、直接に測った全国調査は、本稿の調べた範囲にない。手がかりは、投票の記録、暮らしの統計、聞き取りの研究という、間接的な三つである。三つを順に見る。</p>
+<h3 id="sec3-1">3.1 票が示す、長い傾き</h3>
+<p>非大卒の白人は、オバマの二度の選挙で、すでに多数が共和党に投票していた。 Pew Research Center が出口調査を分析した結果では、 2008 年に 58% 対 40% で共和党のマケインが、 2012 年に 61% 対 36% で共和党のロムニーが、オバマを上回った。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 他方、この集団の 40% （ 2008 年）と 36% （ 2012 年）は、オバマに投票している。オバマ期の非大卒の白人は、一枚岩で離反したのではない。</p>
+<p>カーンズとルプも、白人労働者階級の共和党候補への投票が高まる傾向は、 2016 年より前から続いていたと論じた。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> 離反が 2016 年に突然起きたという見方は、数字と合わない。オバマ期は、長い傾きの途中にあった。</p>
+<h3 id="sec3-2">3.2 暮らしの悪化は、政権より前に始まっていた</h3>
+<p>暮らしの側から見ると、傾きの背景が見える。アン・ケース (Anne Case) とアンガス・ディートン (Angus Deaton) は 2015 年の論文で、 1999 年から 2013 年にかけて、中年の非ヒスパニック系白人の死亡率が上昇したと報告した。上昇は高校卒業以下の層で深刻で、死因は薬物、アルコール、自殺が目立つ。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> 後の分析によれば、高校卒業以下の 50 〜 54 歳の白人の死亡率は、 1999 年には同じ学歴の黒人より 30% 低かったが、 2015 年には 30% 高かった。 <sup id="fnref-21-2"><a href="#ref-21">[21]</a></sup></p>
+<p>この変化の起点は 1999 年であり、オバマ政権の責任を示すものではない。注目すべきは、悪化が、政権期に数字として公に示されたことである。心情は、先に進んでいた暮らしの悪化の上に、その可視化を重ねて形づくられたと考えられる。これは本稿の仮説であり、検証はしていない。</p>
+<h3 id="sec3-3">3.3 語られた心情</h3>
+<p>政権発足前の 2008 年 4 月、オバマは、サンフランシスコでの資金集めの会合で、職が失われて久しい小さな町の人々が苦々しさを抱き、銃や宗教、自分たちと異なる人々への反感にすがる、という趣旨を述べた。対立陣営は、この発言を、見下した傲慢なものだと攻撃した。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> 発言の意図が苦境の説明にあったとしても、受け取る側が見下されたと感じうることを、この出来事は示している。</p>
+<p>政権期の聞き取り研究は、この感覚を詳しく描いた。ホックシールドは、ルイジアナの Tea Party 支持者に、列に並んで待つ自分たちの前に割り込む者がいるという「ディープ・ストーリー」を見いだした。クレイマーは、ウィスコンシンの農村住民が、都市の人々や政府から軽んじられているという「農村意識」を持つと論じた。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> <sup id="fnref-13-2"><a href="#ref-13">[13]</a></sup> 政治を動かすのは、利害だけではない。自分が尊重されているか、列のどこに自分がいるかという感覚も、政治を動かす。ただし、二つの研究は、特定の地域と運動を対象としており、低所得白人層全体に一般化できるとは限らない。</p>
+<h3 id="sec3-4">3.4 人種と移民という争点</h3>
+<p>見下されているという感覚を、階級の言葉だけで語れるかについては、疑問を投げかける知見がある。政治学者のジョン・サイズ (John Sides) が、同じ回答者を 2012 年と 2016 年に追ったパネル調査を分析した結果では、移民、黒人、イスラム教徒に対する態度が、 2012 年より 2016 年の投票先を強く予測するようになった。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 他方、エンズとジャーディナは、支持した結果として態度が寄ったという向きの変化も示した。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> 感情の中身には、階級の不安と、人種や移民をめぐる認識が絡み合っており、どちらが主かは確定していない。</p>
+<p>では、この感覚に、誰が、どんな言葉を与えたのか。最初の答えの一つが、 2016 年に出た一冊の回想録である。</p>
+
+<h2 id="sec4">4. 『ヒルビリー・エレジー』の趣旨</h2>
+<h3 id="sec4-1">4.1 一冊の骨格</h3>
+<p>『ヒルビリー・エレジー――家族と文化の危機の回想』(<em>Hillbilly Elegy: A Memoir of a Family and Culture in Crisis</em>)は、 J. D. ヴァンス (J. D. Vance) が 2016 年に刊行した回想録である。著者は現在、米国の副大統領である。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup></p>
+<p>舞台は二つある。一つは、アパラチア地方のケンタッキー州ジャクソン。もう一つは、祖父母が製鉄所の職を求めて移り住んだ、オハイオ州ミドルタウンである。ヴァンスはミドルタウンで育った。母は薬物依存に苦しみ、家庭は不安定だった。祖母の支えのもと、海兵隊、オハイオ州立大学、イェール大学ロースクールへと進んだ。 <sup id="fnref-23-2"><a href="#ref-23">[23]</a></sup> <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup></p>
+<h3 id="sec4-2">4.2 本書の主張</h3>
+<p>書評の整理によれば、本書の趣旨は、次の四点にまとめられる。</p>
+<ul>
+<li><strong>文化と主体性</strong><br>失業、依存、家庭の崩壊の責任を、当事者の態度に重く置く。グローバル化や自動化の影響は認めるが、それは宿命論的な被害者意識の言い訳にならない、と論じる。若い同僚の欠勤と遅刻、そのあとの解雇、「早起きにうんざりした」という知人の退職が、具体例として挙がる。</li>
+<li><strong>政府への懐疑</strong><br>人々が求めているのは、魔法のような政策や、革新的な政府の事業だ、という見方を退ける。</li>
+<li><strong>悲観と、「不正に操作されている」という感覚</strong><br>社会も政府も経済も、自分たちに不利に仕組まれているという感覚が、深く、行動を鈍らせる悲観を生む、と描く。</li>
+<li><strong>出口</strong><br>身近な支えと、環境からの離脱である。成功した友人たちは、ミドルタウンから出ていった。 <sup id="fnref-24-2"><a href="#ref-24">[24]</a></sup> <sup id="fnref-23-3"><a href="#ref-23">[23]</a></sup></li>
+</ul>
+<p>オバマへの反発についての扱いは、書評の間で解釈が分かれる。 CNN の分析は、ヴァンスがラスト・ベルトの白人のオバマ拒否に、人種差別ではなく、反エリート意識を見ていると整理している。 <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup> 学歴が高く、自分たちの暮らしから遠い人物という像が、その根拠として挙げられることがある。本稿は、この分析の本文を確認できておらず、原文との照合を要する。</p>
+<p>Reason 誌の書評は、ヴァンスが同胞に向けて「私たちヒルビリーは、いいかげんに目を覚まさなければならない」と結論づけた、と要約している。 <sup id="fnref-24-3"><a href="#ref-24">[24]</a></sup> 同じ「目覚め」という語が、 2026 年の問いでは、別の意味で使われている。ヴァンスの語は、自分たちの習慣や態度への呼びかけだった。本稿の冒頭の問いは、政治的な選択についての問いである。この差は、第 6 章で回収する。</p>
+<h3 id="sec4-3">4.3 批判と、その射程</h3>
+<p>批判は、三つに整理できる。</p>
+<p>第一に、一家の回想を、地域や階層の一般論へ広げたという批判である。 2019 年の論集 <em>Appalachian Reckoning</em> は、アパラチアの側から、本書への応答をまとめた。 <sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup> 歴史家のエリザベス・キャティ (Elizabeth Catte) は、本書と、その受け止め方が、 1960 年代の貧困との戦いの時期にメディアが描いたアパラチア像と重なる、と論じたとされる。ヴァンス自身は、本書が学術研究ではないと断っている。</p>
+<p>第二に、文化への重みづけが、構造的な要因を軽く扱うという批判である。第 3 章 3.2 で見た死亡率の上昇のように、薬物や自殺の増加には、産業と医療をめぐる構造の問題が絡む。本書は構造の影響を認めたうえで、それを言い訳にしないと述べるが、その配分が妥当かどうかは、読み手によって評価が分かれる。</p>
+<p>第三に、対象の範囲である。本書は、アパラチアから移住した一家の物語であり、低所得白人層一般の記述ではない。「白人労働者階級」の範囲は研究ごとに異なる。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 「大卒でなく、世帯所得が中央値未満の非ヒスパニック系白人」と定義したカーンズとルプの再検討では、トランプ投票者に占めるこの層は 31% にとどまり、 2012 年のロムニーとほぼ同じ水準だった。 <sup id="fnref-20-2"><a href="#ref-20">[20]</a></sup></p>
+<p>一人称の証言には、統計が拾えない暮らしの感じ方を伝える価値がある。しかし、その感じ方を、集団全体の事実として読むことはできない。</p>
+<h3 id="sec4-4">4.4 本稿での位置づけ</h3>
+<p>本稿は、本書を二通りに読む。一つは、データとしての読みである。 2016 年に、内側の人間が、自分たちの暮らしと悲観を、どう語ったかの証言である。もう一つは、理論としての読みで、文化と自己責任による説明は、検証すべき主張として扱う。</p>
+<p>対照は鮮やかである。ホックシールドとクレイマーは、見下され感を、外部との関係のなかの感覚として描いた。ヴァンスは、内側の習慣と態度から説明する。この対照は、第 7 章で使う。</p>
+<p>ところで、内向きの物語を語った人物は、いまや副大統領として、外向きの語りを含む運動と並んで登壇している。 Turning Point USA のキャンパスの催しで、ヴァンスが基調講演者を務めたと報じられている。 <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup> その運動は、何を語るのか。</p>
+
+<h2 id="sec5">5. Turning Point USA の主義・主張</h2>
+<h3 id="sec5-1">5.1 創設と構造</h3>
+<p>Turning Point USA （以下、 TPUSA ）は、チャーリー・カーク (Charlie Kirk) が、 2012 年に 18 歳で創設した保守系の青年組織である。カークは 2025 年 9 月 10 日、ユタ州の大学での催しで殺害された。妻のエリカ・カーク (Erika Kirk) が、組織の CEO に就いた。 <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup> <sup id="fnref-27-2"><a href="#ref-27">[27]</a></sup></p>
+<p>公式の使命は、「学生を見いだし、教育し、訓練し、組織して、自由、自由市場、限定的な政府の原則を広める」ことである。 <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup> 事業は、大学と高校の支部網、指導者の訓練大会、動画などの発信、少数派の地域社会に向けた事業 (RISE) 、信仰に基づく事業 (TPUSA Faith) 、教育事業と、多岐にわたる。 <sup id="fnref-29-2"><a href="#ref-29">[29]</a></sup> 団体の資料によれば、 2025 〜 2026 年度に、高校の支部が 3,500 、大学の支部が 1,500 、関与する学生が 100 万人を超える。これは団体自身の数字である。 <sup id="fnref-27-3"><a href="#ref-27">[27]</a></sup></p>
+<p>選挙の動員は、別組織の Turning Point Action が担ったと伝えられる。 2024 年には、投票の習慣が薄い共和党寄りの有権者を投票所へ促す活動が行われたとされる。ただし、効果は独立に検証されたものではなく、団体自身の説明に依る部分が大きい。 <sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup></p>
+<h3 id="sec5-2">5.2 主張の三つの層</h3>
+<p>TPUSA の主張は、使命文だけでは捉えきれない。使命文、創設者の発言、報道を重ねると、三つの層が見える。</p>
+<ul>
+<li><strong>経済と政府</strong><br>自由市場と小さな政府である。 NPR によれば、カークは、財政赤字、肥大した政府、世界市場での中国の影響への危惧から出発した。 <sup id="fnref-28-2"><a href="#ref-28">[28]</a></sup></li>
+<li><strong>文化と信仰</strong><br>その後、カークは文化戦争の担い手へ変わったと報じられている。 TPUSA Faith は、「米国の説教壇から『ウォーク』主義を一掃する」ことを使命とする。カークは 2024 年に、キリスト教徒の人口がなければ自由はない、と述べた。批判者は、これをキリスト教ナショナリズムと呼ぶ。 <sup id="fnref-28-3"><a href="#ref-28">[28]</a></sup></li>
+<li><strong>大学への対抗</strong><br>2016 年に始まった「 Professor Watchlist 」は、左派的とみなす教授の名前を、 300 人超、「テロ支援者」「 LGBTQ 」「アンティファ」「社会主義」といった分類で挙げる。カークは、これを「啓発の道具」と呼び、解雇を求めてはいないと述べた。米国大学教授協会 (AAUP) は、教員が攻撃される土壌をつくったと批判する。 NBC が取材した 6 人の掲載教員のうち 2 人は、掲載が殺害予告に発展したと語った。 <sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup></li>
+</ul>
+<p>NPR は、カークのポッドキャストでの、トランスジェンダーの人々、ワクチン、 2020 年の選挙などをめぐる発言を、論争的なものとして伝えている。 <sup id="fnref-28-4"><a href="#ref-28">[28]</a></sup></p>
+<div class="note">使命文の三語（自由、自由市場、限定的な政府）は、経済の原則を示す。しかし、報道が伝える運動の重心は、経済から、文化と信仰へ移っている。どの層を TPUSA の主張とみなすかで、低所得白人層との距離の測り方が変わる。</div>
+<h3 id="sec5-3">5.3 低所得白人層との接点とずれ</h3>
+<p>接点として考えられるのは、次の三つである。第一に、反エリートの姿勢である。大学と教授への対抗は、第 3 章で見た、見下されているという感覚と重なる。第二に、信仰と家族という価値である。第三に、 2024 年の動員である。カークは、トランプの若者での伸びを、いち早く強調したと NPR は伝える。 <sup id="fnref-28-5"><a href="#ref-28">[28]</a></sup> 第 2 章で見たとおり、 2024 年の変化は、誰が投票したかの違いに主に由来した。 <sup id="fnref-14-2"><a href="#ref-14">[14]</a></sup> 投票の習慣が薄い人々の動員は、この変化と方向が合う。ただし、 TPUSA の活動が、その変化の原因だったことを示す証拠はない。</p>
+<p>ずれもある。組織の主な接点は、高校と大学である。大学に在籍しない低所得の若者に、どこまで届くかは、本稿では確かめられない。また、自由市場と小さな政府という使命が、低所得層の生活保障への需要と、どう折り合うかも、検証されていない問いである。</p>
+<p>2026 年の組織の足元は、揺らいで見える。 OPB の報道によれば、 Pew の調査で、 35 歳未満の有権者のトランプへの支持（仕事ぶりの評価）は、 2025 年の就任後間もない時期の 92% から、 2026 年 4 月下旬の 57% に下がった。 92% という水準から、母集団は共和党支持層に限られると考えられるが、記事の要約からは確認できない。学生の指導者は、イランでの戦争とイスラエルをめぐる政権の立場に、緊張があると語る。支部を離れて別の団体を立ち上げた学生もいる。 <sup id="fnref-27-4"><a href="#ref-27">[27]</a></sup></p>
+<p>選挙後の速報も、同じ方向を示す。 Tufts 大学の CIRCLE が NORC の調査で示した 2026 年の下院選では、若い男性の 59% が民主党に投票した。 2024 年は、若い男性の 56% がトランプを支持していた (AP VoteCast) 。大学経験のない若者は 60% 対 35% 、白人の若者は 61% 対 35% で民主党が上回った。農村の若者は、 2024 年の 60% 対 38% （トランプ優位）から、 50% 対 44% （共和党優位）へと差が縮んだ。 <sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> 調査も選挙の種類も異なり、速報値であるため、厳密な比較にはならない。</p>
+<p>ここから言えるのは、 TPUSA が主に働きかけてきた層で、民主党への傾きが報じられた、というところまでである。それが TPUSA の影響力の低下を意味するのか、 TPUSA と無関係な全国的な潮流なのかは、本稿の資料では分けられない。組織化の力は、語られた物語が現実に追い越されたとき、どこまで持つのか。この問いが、中間選挙の検討につながる。</p>
+
+<h2 id="sec6">6. 中間選挙（ 2026 年 11 月）――目は覚めたのか</h2>
+<h3 id="sec6-1">6.1 選挙の全体像</h3>
+<p>民主党は、上下両院を制した。 NPR は、 AP の当選確実の判定に基づいて、民主党が、 2023 年に下院を失って以来、初めて上下両院を支配することが確実になったと報じた。上院では、共和党の現職が議席を守れなかった州が七つある。ノースカロライナ、サウスカロライナ、オハイオ、テキサス、カンザス、アイオワ、メーンである。 <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup> 下院は、 NBC の推計（ 11 月 12 日更新とされる）で、民主党 259 、共和党 176 である。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 未確定の議席があり、数字は更新されうる。</p>
+<p>全国の下院得票の差は、民主党が約 13 ポイント優位と推計され（ Ballotpedia の推計を CFR が引用）、 1942 年以降の中間選挙で、 1974 年に次ぐ大きさだという。投票率は 49.1% で、 1914 年以降の中間選挙で 2018 年に次いで高い。 <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> 要因として報じられているのは、生活費への不満、公職者の腐敗への認識、トランプの支持率の 4 割割れ、イランでの戦争と物価高である。 <sup id="fnref-33-2"><a href="#ref-33">[33]</a></sup> <sup id="fnref-35-1"><a href="#ref-35">[35]</a></sup> これらは、報道による説明であり、有権者個人の動機を測った証拠ではない。</p>
+<h3 id="sec6-2">6.2 非大卒の白人は、どう投票したか</h3>
+<table class="cardrow">
+<caption>表 2 2026 年の下院選の投票先（ NBC ニュース／ SSRS の全国出口調査。速報であり、投票結果そのものではない）</caption>
+<thead><tr><th>集団</th><th>有権者に占める割合</th><th>民主党</th><th>共和党</th></tr></thead>
+<tbody>
+<tr><th>白人・非大卒</th><td data-label="有権者に占める割合">37%</td><td data-label="民主党">39%</td><td data-label="共和党">59%</td></tr>
+<tr><th>白人・大卒</th><td data-label="有権者に占める割合">35%</td><td data-label="民主党">61%</td><td data-label="共和党">38%</td></tr>
+<tr><th>年収 5 万ドル未満（全人種）</th><td data-label="有権者に占める割合">27%</td><td data-label="民主党">58%</td><td data-label="共和党">40%</td></tr>
+<tr><th>小さな町・農村（全人種）</th><td data-label="有権者に占める割合">35%</td><td data-label="民主党">42%</td><td data-label="共和党">56%</td></tr>
+</tbody>
+</table>
+<p>この表には、低所得の白人は直接には現れない。非大卒の白人は共和党が約 20 ポイント上回り、年収 5 万ドル未満の有権者全体は民主党が 18 ポイント上回る。二つの集団の重なりは、この調査からは読み取れない。 CFR は、民主党が主要な集団のうち、非大卒の白人だけで勝てなかったと整理する。 <sup id="fnref-34-2"><a href="#ref-34">[34]</a></sup> New York Times の出口調査の分析を紹介する記事は、この集団で共和党が 59% 、民主党が 40% であり、共和党の差は、 2024 年のトランプの差より 14 ポイント縮んだと伝える。 <sup id="fnref-36-1"><a href="#ref-36">[36]</a></sup> 本稿は、この記事の本文を確認できていない。</p>
+<p>過去との位置づけを、次の表に並べる。</p>
+<table class="cardrow">
+<caption>表 3 非大卒の白人の投票先の推移（ 2008 年と 2012 年は Pew の出口調査分析、 2016 年は Pew の照合分析、 2026 年は NBC の出口調査。差は本稿の計算）</caption>
+<thead><tr><th>年・調査</th><th>共和党</th><th>民主党</th><th>差（共和党 − 民主党）</th></tr></thead>
+<tbody>
+<tr><th>2008 年・大統領選・出口調査</th><td data-label="共和党">58%</td><td data-label="民主党">40%</td><td data-label="差（共和党 − 民主党）">18 ポイント</td></tr>
+<tr><th>2012 年・大統領選・出口調査</th><td data-label="共和党">61%</td><td data-label="民主党">36%</td><td data-label="差（共和党 − 民主党）">25 ポイント</td></tr>
+<tr><th>2016 年・大統領選・投票記録と照合</th><td data-label="共和党">64%</td><td data-label="民主党">28%</td><td data-label="差（共和党 − 民主党）">36 ポイント</td></tr>
+<tr><th>2026 年・下院選・出口調査</th><td data-label="共和党">59%</td><td data-label="民主党">39%</td><td data-label="差（共和党 − 民主党）">20 ポイント</td></tr>
+</tbody>
+</table>
+<div class="note">この表は、調査の方法も選挙の種類も異なる数字を並べたものであり、厳密な比較ではない。 2016 年は投票記録と照合した分析、他は出口調査であり、 2026 年は大統領選ではなく下院選である。傾向を読む目安にとどめる。</div>
+<h3 id="sec6-3">6.3 動いたもの、動かなかったもの</h3>
+<p>動かなかったものから述べる。非大卒の白人の多数派は、共和党に投票した。前述の CFR の整理では、主要な集団のなかで、民主党が勝てなかったのは、この集団だけである。第 2 章の作業仮説の「党派の土台」は、全体として保たれた。</p>
+<p>動いたものもある。差は、上の表のとおり、 2016 年の水準から大きく縮んだ。民主党の得票は 39% で、 2008 年と 2012 年の水準 (40% 、 36%) に近い。農村の有権者への民主党の支持は、 2024 年より 16 ポイント、白人全体では 17 ポイント上がったと、 NPR の分析を引いて CFR は伝える。 <sup id="fnref-34-3"><a href="#ref-34">[34]</a></sup> トランプが 2024 年に 57% を得た、ケンタッキー州レキシントン周辺の選挙区も、民主党が取った。 <sup id="fnref-33-3"><a href="#ref-33">[33]</a></sup></p>
+<p>ここから、一つの仮説が出る。 2026 年の姿は、トランプ期に開いた差が、オバマ期の水準へ戻りつつあることを示すのかもしれない。ただし、前の表のとおり、数字の方法が違う。仮説にとどめる。</p>
+<h3 id="sec6-4">6.4 「目が覚めた」という語をどう扱うか</h3>
+<p>「目が覚めた」と言うには、少なくとも三つの内容を区別しなければならない。ある人が、共和党から民主党へ乗り換えた。ある人が、投票に行かなくなった。ある人が、見方や態度を変えた。出口調査は、投票所に来た人の自己申告であり、この三つを分けられない。</p>
+<p>分けるには、同じ人を追った、投票記録と照合した分析が要る。参考までに、 Pew の照合分析が出たのは、 2016 年分が選挙の約 21 か月後（ 2018 年 8 月）、 2024 年分が約 7 か月後（ 2025 年 6 月）だった。 2026 年分の結論が出るのは、早くても、 2027 年の半ば以降と見るべきである。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> <sup id="fnref-14-3"><a href="#ref-14">[14]</a></sup></p>
+<p>それまでの暫定的な答えは、次のとおりである。非大卒の白人の多数は、動いていない。動いた一部が、どういう人々で、何に動かされたのかは、まだ分からない。そして、動いたことは、目覚めを意味しない。動かなかったことは、眠りを意味しない。生活費の高騰への反応として票が動いた人は、目覚めたのではなく、自分の暮らしに照らして判断を変えたのである。変えなかった人は、眠っていたのではなく、別の理由で、同じ判断を保ったのである。</p>
+<p>ヴァンスの「目を覚ませ」は、自分たちの習慣への呼びかけだった。 2026 年の「目が覚めたか」は、他者が、ある集団の政治的な選択を採点する語である。前者は内側から、後者は外側から発される。同じ語でありながら、向きが逆である。外側から発される「目覚め」の語が、第 3 章で見た「見下されている」という感覚を、再び呼び起こす危険は小さくない。</p>
+
+<h2 id="sec7">7. 四つの視点をつなぐ――二つの物語と、一つの試験</h2>
+<h3 id="sec7-1">7.1 内向きの物語と、外向きの物語</h3>
+<p>四つの視点は、一つの時間の流れの上に並ぶ。オバマ政権期に、暮らしの悪化と、見下されているという感覚が積み重なった。 2016 年に、それに言葉を与える物語が、二つ語られた。ヴァンスの内向きの物語と、トランプの外向きの物語である。 TPUSA は、その外側で、若い世代を組織した。 2026 年の選挙は、その物語が現実と照らされる場になった。次の表は、本稿の整理である。解釈を含む。</p>
+<table class="cardrow">
+<caption>表 4 三つの物語の比較（本稿の整理。トランプの訴えの要約は、第 2 章で引いた 2016 年 7 月の指名受諾演説と、ラモントらの演説分析による）</caption>
+<thead><tr><th>物語</th><th>原因の置き場</th><th>処方</th><th>検証されていない点</th></tr></thead>
+<tbody>
+<tr><th>内向きの物語（ヴァンス）</th><td data-label="原因の置き場">家族と地域の文化、宿命論、本人の習慣。外部の要因は認めるが、言い訳にしない</td><td data-label="処方">本人の努力、身近な支え、必要なら環境からの離脱。政府の魔法の解決策は期待しない</td><td data-label="検証されていない点">一家の回想の一般化。構造的な要因を軽く扱うという批判</td></tr>
+<tr><th>外向きの物語（トランプの訴え）</th><td data-label="原因の置き場">政治と経済の仕組みを不正に操作する強力な利害。「上の人々」。道徳的な境界の外に置かれた人々</td><td data-label="処方">「私があなた方の声だ」。仕組みを知り尽くした自分が直す</td><td data-label="検証されていない点">生活の改善が実際に届いたか。党派要因との分離</td></tr>
+<tr><th>組織化の枠組み (TPUSA)</th><td data-label="原因の置き場">大学と「ウォーク」主義、文化の衰退（団体の言説から読み取れる範囲）</td><td data-label="処方">自由市場、小さな政府、信仰、若い世代の組織化</td><td data-label="検証されていない点">低所得層への到達。生活保障との関係。 2026 年の若者の動き</td></tr>
+</tbody>
+</table>
+<p>内向きの物語は、原因を自分たちの側に置く。外向きの物語は、原因を外に置く。聞き手にとって、後者のほうが受け入れやすい可能性がある。第 2 章で見た損失回避は、「奪われた」という喪失の物語に、強い反応を生む方向を示す。また、人は自分が生きる社会の仕組みを、公正で正当なものと見なしたいという動機を持つとされる（システム正当化）。 <sup id="fnref-37-1"><a href="#ref-37">[37]</a></sup> この動機は、仕組みそのものを問う物語より、「誰が本来の秩序を壊したか」という物語を受け入れやすくする可能性がある。いずれも、外向きの物語が、自分に責任を問う物語より強く働く方向を示唆する。ただし、これは理論からの推論であり、どちらの物語が、どれだけ票を動かしたかは、示されていない。</p>
+<h3 id="sec7-2">7.2 「公正」の二義性――道徳基盤と DEI 論争</h3>
+<p>外向きの物語が「割り込み」や「奪われた」を語るとき、持ち出されるのは「公正」という語である。ただし、何を公正とみなすかは、聞き手によって異なる。ジョナサン・ハイト (Jonathan Haidt) らの道徳基盤理論は、人間の道徳的直観を、複数の基盤から成るものとして捉える。ジェシー・グレアム (Jesse Graham) らの調査によれば、リベラル層は「ケア」と「公正」の二つの基盤を特に重視する。保守層は、この二つに加えて、「忠誠」「権威」「神聖」といった、集団の結束や秩序にかかわる基盤も、比較的同程度に重視する。 <sup id="fnref-38-1"><a href="#ref-38">[38]</a></sup> 理論の生成史、測定法、「基盤は政治的立場の代理変数にすぎないのではないか」という批判は、<a href="moral-foundations-theory.html">理論そのものを主題とした別稿</a>で検討した。</p>
+<p>「公正」という語が、異なる主張を支える例が、多様性・公正・包摂 (DEI) をめぐる論争である。属性（白人であること、男性であること）だけを理由に、採用や昇進、大学入学で不利に扱われていると感じ、これを「逆差別」と呼ぶ人々がいる。この主張が事実として立証されているかは、論争の対象である。他方、そう感じること自体は、第 3 章 3.3 で見た「列に割り込まれる」という感覚と、形が重なる。 2023 年 6 月 29 日、米連邦最高裁判所は、ハーバード大学とノースカロライナ大学の入学選考で人種を考慮する措置を、違憲・違法と判断した。 <sup id="fnref-39-1"><a href="#ref-39">[39]</a></sup> その後、 S&amp;P 500 企業の年次報告書で「 DEI 」に言及する平均の回数は、 2022 年の 12.5 回から 2024 年の 4 回へ減った。 <sup id="fnref-40-1"><a href="#ref-40">[40]</a></sup> ただし、これは開示上の言及の減少であり、施策の廃止を意味するとは限らない。大企業は DEI をやめるのではなく、表現や位置づけを変えている、という報告もある。 <sup id="fnref-41-1"><a href="#ref-41">[41]</a></sup></p>
+<p>擁護派は、採用時の無意識のバイアスや人的ネットワークの偏りといった、過去から続く構造的な障壁を補正するために、積極的な措置が要ると主張する。批判派は、属性に基づく優遇は能力主義の原則に反し、それ自体が不公正だと主張する。道徳基盤理論に沿って整理すれば、擁護派は主に「ケア」と結果の「公正」に、批判派は個人の能力に基づく手続きの「公正」に、しばしば集団の一体性という「忠誠」にも依拠している。両者はいずれも「公正」を掲げながら、その中身が異なる。この整理に立てば、外向きの物語の「奪われた」は、聞き手の一部には、手続きの公正が破られたという訴えとして届く。ただし、これは理論に基づく整理であり、個々の論者や有権者がどの基盤に依拠しているかを実証した結果ではない。</p>
+<h3 id="sec7-3">7.3 物語の試験としての 2026 年</h3>
+<p>外向きの物語には、弱点がある。原因を外に置けば、外の原因を取り除いたあとの暮らしの改善が、約束に含まれる。改善が届かなければ、物語は、現実の試験を受ける。 2026 年の選挙で報じられた要因が、生活費、物価高、公職者の腐敗の認識だったことは、この読みと整合する。ただし、報じられた要因は、有権者の動機の測定ではない。この読みは、仮説である。</p>
+<p>皮肉な点もある。本書は、魔法のような政策を求める姿勢を退ける。その著者は、政策の成果で評価される政権の副大統領である。内向きの物語を語った人物が、外向きの約束の成否を、自らの責任として問われる位置にいる。この構図は、本稿の解釈であり、ヴァンス自身の見解を示すものではない。</p>
+<p>第 2 章の作業仮説は、更新できる。党派の土台は、 2026 年にも大きくは崩れなかった。ただし、縁辺は、小さくなかった。非大卒の白人の差が、 2024 年から 14 ポイント縮んだという報道が正しければ、縁辺は、「乗り換えは少数」という当初の想定よりも大きい可能性がある。</p>
+
+<h2 id="sec8">8. 限界と結論</h2>
+<h3 id="sec8-1">8.1 限界</h3>
+<ul>
+<li><strong>データの性質</strong><br>2026 年の数字は、選挙後 11 日の出口調査と速報であり、確定値ではない。非大卒の白人の「 14 ポイント縮小」は、報道を紹介した記事の要約に依拠しており、一次の分析を確認していない。</li>
+<li><strong>対象の代理</strong><br>低所得白人層を、非大卒の白人で代理している。所得と学歴は一致しない。年収 5 万ドル未満の区分は、全人種の集団である。</li>
+<li><strong>選挙の違い</strong><br>2026 年は中間選挙の下院選であり、過去の大統領選との比較は、厳密ではない。中間選挙は、一般に、投票者の構成が大統領選と異なる。</li>
+<li><strong>書物と団体の読み</strong><br>『ヒルビリー・エレジー』は、書評と解説を通じて検討した。オバマに関する記述は、原文との照合を要する。 TPUSA は、団体の公表資料、創設者についての報道、批判的な立場の資料を重ねた。 2026 年の若者の動きを、 TPUSA の影響と結びつける証拠はない。</li>
+<li><strong>心情の測定</strong><br>オバマ政権期の心情は、投票、統計、少数の質的研究という間接的な手がかりでしか捉えていない。</li>
+</ul>
+<h3 id="sec8-2">8.2 結論</h3>
+<p>冒頭の問いに答える。米国の低所得白人層は、 2026 年に、集団として「目覚めた」とは言えない。見えているのは、三つである。第一に、土台は保たれた。非大卒の白人の多数は、共和党に投票した。第二に、縁辺は動いた。民主党の得票は、 2016 年より高く、オバマ期の水準に近い。第三に、動いた理由は、まだ測れない。乗り換えか、投票参加の変化か、見方の変化かは、投票記録と照合した分析を待たなければならない。</p>
+<p>四つの視点は、この結論に、時間の奥行きを与える。オバマ政権期に、暮らしの悪化と、見下されているという感覚が積み重なった。 2016 年の回想録は、その悲観を内側から語り、自己への呼びかけで応えた。同じ時期に、外側へ原因を置く語りが、票を集めた。 TPUSA は、その語りを、若い世代の組織へ育てた。 2026 年の選挙は、第二次トランプ政権のもとで初めての全国選挙であり、その物語が、生活費という現実に照らされる機会になった。</p>
+<p>動いたことは、目覚めを意味しない。動かなかったことは、眠りを意味しない。「目が覚めた」という語に出会ったときは、四つを問うべきである。誰が、何から、何へ、どれだけ動いたのか。この問いに答えられない言明は、観測ではなく、採点である。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> NBC News, “National Exit Polls: Election 2026 Results.” NBC News/SSRS の全国出口調査と、下院の議席推計。出口調査は投票結果そのものではない。 <a href="https://www.nbcnews.com/politics/2026-elections/exit-polls">NBC ニュース</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Jack Thompson, “A Review of the Popular and Scholarly Accounts of Donald Trump’s White Working-Class Support in the 2016 US Presidential Election,” <em>Societies</em>, 9 (2) , 2019, Article 36. <a href="https://doi.org/10.3390/soc9020036">論文情報・本文</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> Pew Research Center, “An Examination of the 2016 Electorate, Based on Validated Voters,” August 9, 2018. 2016 年 11 月 29 日〜 12 月 12 日の調査回答を投票記録と照合した分析。 <a href="https://www.pewresearch.org/politics/2018/08/09/an-examination-of-the-2016-electorate-based-on-validated-voters/">Pew 報告書</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> John Sides, “Race, Religion, and Immigration in 2016,” Democracy Fund Voter Study Group, June 2017. 2011 〜 2012 年と 2016 年 12 月に同一回答者を調べたパネル調査（約 8,000 人）。 <a href="https://www.voterstudygroup.org/publication/race-religion-immigration-2016">報告書</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Alan I. Abramowitz and Steven W. Webster, “Negative Partisanship: Why Americans Dislike Parties But Behave Like Rabid Partisans,” <em>Political Psychology</em>, 39 (S1) , 2018, pp. 119–135. <a href="https://doi.org/10.1111/pops.12479">Wiley Online Library</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Donald J. Trump, “Address Accepting the Presidential Nomination at the Republican National Convention in Cleveland, Ohio,” July 21, 2016. 演説の公式記録。 <a href="https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-republican-national-convention-cleveland">American Presidency Project</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Cas Mudde and Cristóbal Rovira Kaltwasser, <em>Populism: A Very Short Introduction</em>, Oxford University Press, 2017. <a href="https://doi.org/10.1093/actrade/9780190234874.001.0001">Oxford Academic</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Michèle Lamont, Bo Yun Park, and Elena Ayala-Hurtado, “Trump’s Electoral Speeches and His Appeal to the American White Working Class,” <em>The British Journal of Sociology</em>, 68 (S1) , 2017, S153–S180. <a href="https://doi.org/10.1111/1468-4446.12315">Wiley Online Library</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Diana C. Mutz, “Status Threat, Not Economic Hardship, Explains the 2016 Presidential Vote,” <em>Proceedings of the National Academy of Sciences</em>, 115 (19) , 2018, E4330–E4339. <a href="https://doi.org/10.1073/pnas.1718155115">PNAS</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Stephen L. Morgan, “Status Threat, Material Interests, and the 2016 Presidential Vote,” <em>Socius</em>, 4, 2018, Article 2378023118788217. マッツ論文の再分析。 <a href="https://doi.org/10.1177/2378023118788217">SAGE Journals</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> Peter K. Enns and Ashley Jardina, “Complicating the Role of White Racial Attitudes and Anti-Immigrant Sentiment in the 2016 US Presidential Election,” <em>Public Opinion Quarterly</em>, 85 (2) , 2021, pp. 539–570. <a href="https://doi.org/10.1093/poq/nfab040">Oxford Academic</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> Arlie Russell Hochschild, <em>Strangers in Their Own Land: Anger and Mourning on the American Right</em>, The New Press, 2016. <a href="https://thenewpress.org/books/strangers-in-their-own-land/">出版社の書籍情報</a></li>
+<li id="ref-13">^ <sup><a href="#fnref-13-1">a</a></sup> <sup><a href="#fnref-13-2">b</a></sup> Katherine J. Cramer, <em>The Politics of Resentment: Rural Consciousness in Wisconsin and the Rise of Scott Walker</em>, University of Chicago Press, 2016. <a href="https://press.uchicago.edu/ucp/books/book/chicago/P/bo22879533.html">出版社の書籍情報</a></li>
+<li id="ref-14">^ <sup><a href="#fnref-14-1">a</a></sup> <sup><a href="#fnref-14-2">b</a></sup> <sup><a href="#fnref-14-3">c</a></sup> Pew Research Center, “Behind Trump’s 2024 Victory, a More Racially and Ethnically Diverse Voter Coalition,” June 26, 2025. American Trends Panel （回答者 1 万人近く）の回答を、三つの商用有権者名簿で投票記録と照合した分析。 <a href="https://www.pewresearch.org/politics/2025/06/26/behind-trumps-2024-victory-a-more-racially-and-ethnically-diverse-voter-coalition/">Pew 報告書</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> W. G. Runciman, <em>Relative Deprivation and Social Justice: A Study of Attitudes to Social Inequality in Twentieth-Century England</em>, Routledge &amp; Kegan Paul, 1966. <a href="https://openlibrary.org/books/OL23128359M/Relative_deprivation_and_social_justice">書誌情報</a></li>
+<li id="ref-16"><a href="#fnref-16-1">^</a> Henri Tajfel, M. G. Billig, R. P. Bundy, and Claude Flament, “Social Categorization and Intergroup Behaviour,” <em>European Journal of Social Psychology</em>, 1 (2) , 1971, pp. 149–178. 最小条件集団の実験。 <a href="https://doi.org/10.1002/ejsp.2420010202">Wiley Online Library</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> Daniel Kahneman and Amos Tversky, “Prospect Theory: An Analysis of Decision under Risk,” <em>Econometrica</em>, 47 (2) , 1979, pp. 263–291. <a href="https://doi.org/10.2307/1914185">JSTOR</a></li>
+<li id="ref-18"><a href="#fnref-18-1">^</a> Ziva Kunda, “The Case for Motivated Reasoning,” <em>Psychological Bulletin</em>, 108 (3) , 1990, pp. 480–498. <a href="https://doi.org/10.1037/0033-2909.108.3.480">APA PsycNet</a></li>
+<li id="ref-19"><a href="#fnref-19-1">^</a> Pew Research Center, “Behind Trump’s Victory: Divisions by Race, Gender, Education,” November 9, 2016. 出口調査の分析。非大卒の白人は、 2012 年に 61% 対 36% 、 2008 年に 58% 対 40% で、共和党候補が上回った。 <a href="https://www.pewresearch.org/short-reads/2016/11/09/behind-trumps-victory-divisions-by-race-gender-education/">Pew 報告書</a></li>
+<li id="ref-20">^ <sup><a href="#fnref-20-1">a</a></sup> <sup><a href="#fnref-20-2">b</a></sup> Nicholas Carnes and Noam Lupu, “The White Working Class and the 2016 Election,” <em>Perspectives on Politics</em>, 19 (1) , 2021, pp. 55–72. <a href="https://doi.org/10.1017/S1537592720001267">Cambridge Core</a></li>
+<li id="ref-21">^ <sup><a href="#fnref-21-1">a</a></sup> <sup><a href="#fnref-21-2">b</a></sup> Anne Case and Angus Deaton, “Rising Morbidity and Mortality in Midlife among White Non-Hispanic Americans in the 21st Century,” <em>PNAS</em>, 112 (49) , 2015, pp. 15078–15083 ; Anne Case and Angus Deaton, “Mortality and Morbidity in the 21st Century,” <em>Brookings Papers on Economic Activity</em>, Spring 2017. 学歴別の死亡率の比較（ 50 〜 54 歳）は、 Brookings の解説記事による。 <a href="https://doi.org/10.1073/pnas.1518393112">PNAS</a> <a href="https://www.brookings.edu/articles/mortality-and-morbidity-in-the-21st-century/">Brookings の論文</a> <a href="https://www.brookings.edu/articles/working-class-white-americans-are-now-dying-in-middle-age-at-faster-rates-than-minority-groups/">Brookings の解説</a></li>
+<li id="ref-22"><a href="#fnref-22-1">^</a> NPR, “Obama’s Political Gaffe in San Francisco,” April 14, 2008. 2008 年 4 月の資金集めの会合での発言と、その反応を報じる。 <a href="https://www.npr.org/2008/04/14/89612947/obamas-political-gaffe-in-san-francisco">NPR</a></li>
+<li id="ref-23">^ <sup><a href="#fnref-23-1">a</a></sup> <sup><a href="#fnref-23-2">b</a></sup> <sup><a href="#fnref-23-3">c</a></sup> J. D. Vance, <em>Hillbilly Elegy: A Memoir of a Family and Culture in Crisis</em>, Harper, 2016. <a href="https://openlibrary.org/search?q=Hillbilly+Elegy+Vance">Open Library の書誌情報</a></li>
+<li id="ref-24">^ <sup><a href="#fnref-24-1">a</a></sup> <sup><a href="#fnref-24-2">b</a></sup> <sup><a href="#fnref-24-3">c</a></sup> “We Hillbillies Have Got to Wake the Hell Up,” <em>Reason</em>, July 29, 2016. 『ヒルビリー・エレジー』の書評。 <a href="https://reason.com/2016/07/29/we-hillbillies-have-got-to-wake-the-hell/">Reason</a></li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> CNN, “Analysis: JD Vance’s version of politics, according to Hillbilly Elegy,” July 18, 2024. 本文の取得に失敗し、検索結果の要約に依拠した。 <a href="https://www.cnn.com/2024/07/18/politics/the-politics-of-jd-vance-as-told-in-hillbilly-elegy">CNN</a></li>
+<li id="ref-26"><a href="#fnref-26-1">^</a> Meredith McCarroll and Anthony Harkins (eds.) , <em>Appalachian Reckoning: A Region Responds to Hillbilly Elegy</em>, West Virginia University Press, 2019. <a href="https://openlibrary.org/search?q=Appalachian+Reckoning">Open Library の書誌情報</a></li>
+<li id="ref-27">^ <sup><a href="#fnref-27-1">a</a></sup> <sup><a href="#fnref-27-2">b</a></sup> <sup><a href="#fnref-27-3">c</a></sup> <sup><a href="#fnref-27-4">d</a></sup> OPB, “One year after Charlie Kirk’s death, Turning Point USA faces an uncertain future,” September 10, 2026. <a href="https://www.opb.org/article/2026/09/10/the-state-of-charlie-kirks-movement-a-year-after-his-death/">OPB</a></li>
+<li id="ref-28">^ <sup><a href="#fnref-28-1">a</a></sup> <sup><a href="#fnref-28-2">b</a></sup> <sup><a href="#fnref-28-3">c</a></sup> <sup><a href="#fnref-28-4">d</a></sup> <sup><a href="#fnref-28-5">e</a></sup> NPR, “A look at the right-wing youth movement that Charlie Kirk built,” September 11, 2025 ; NPR, “How religion shaped Charlie Kirk’s politics and his legacy,” September 21, 2025. 検索結果の要約に依拠した。 <a href="https://www.npr.org/2025/09/11/nx-s1-5537142/a-look-at-the-right-wing-youth-movement-that-charlie-kirk-built">NPR （運動の解説）</a> <a href="https://www.npr.org/2025/09/21/nx-s1-5545640/how-religion-shaped-charlie-kirks-politics-and-his-legacy">NPR （信仰と政治）</a></li>
+<li id="ref-29">^ <sup><a href="#fnref-29-1">a</a></sup> <sup><a href="#fnref-29-2">b</a></sup> Candid (GuideStar) , Turning Point USA の団体情報。使命文と事業の説明は、団体の自己申告による。 <a href="https://www.guidestar.org/profile/80-0835023">GuideStar</a></li>
+<li id="ref-30"><a href="#fnref-30-1">^</a> SourceWatch, “Turning Point USA.” 運動に批判的な立場の資料。 Turning Point Action の別組織としての位置づけと、 2024 年の有権者動員に関する記述に依拠した。検索結果の要約に基づき、原資料との照合は十分でない。 <a href="https://sourcewatch.org/index.php/Turning_Point_USA">SourceWatch</a></li>
+<li id="ref-31"><a href="#fnref-31-1">^</a> NBC News, Charlie Kirk の Professor Watchlist と大学の言論をめぐる報道。 Kirk の死後に出た記事で、掲載日は確認していない。 <a href="https://www.nbcnews.com/news/us-news/charlie-kirk-professor-watchlist-free-speech-college-campus-rcna231448">NBC News</a></li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> Tufts CIRCLE, “In Shift From 2024, Young Men, White Youth, and Non-College Youth Vote Democratic in 2026,” November 4, 2026. NORC の調査に基づく速報値。 2024 年の比較値は AP VoteCast であり、直接には比べられない。 <a href="https://circle.tufts.edu/youth-vote-choice-demographics-2026-midterms">CIRCLE</a></li>
+<li id="ref-33">^ <sup><a href="#fnref-33-1">a</a></sup> <sup><a href="#fnref-33-2">b</a></sup> <sup><a href="#fnref-33-3">c</a></sup> OPB/NPR, “Democrats win full control of Congress, ushering in a new era of divided government,” November 4, 2026. AP の当選確実の判定に基づく。 <a href="https://www.opb.org/article/2026/11/04/2026-midterms-democrats-win-the-senate/">OPB</a></li>
+<li id="ref-34">^ <sup><a href="#fnref-34-1">a</a></sup> <sup><a href="#fnref-34-2">b</a></sup> <sup><a href="#fnref-34-3">c</a></sup> James M. Lindsay, “The 2026 Election by the Numbers,” Council on Foreign Relations, 2026. 出口調査と Ballotpedia 、 NPR の分析の引用を含む。 <a href="https://www.cfr.org/articles/2026-election-by-the-numbers">CFR</a></li>
+<li id="ref-35"><a href="#fnref-35-1">^</a> Washington Examiner, “Takeaways from the 2026 midterm elections.” 記事の取得は要約のみ。 <a href="https://www.washingtonexaminer.com/news/campaigns/4791815/takeaways-2026-midterm-elections/">Washington Examiner</a></li>
+<li id="ref-36"><a href="#fnref-36-1">^</a> Quartz, “White non-college voters shift toward Democrats in midterms.” New York Times の出口調査の分析を紹介する記事。本文の取得に失敗し、検索結果の要約に依拠した。 <a href="https://qz.com/white-voters-without-college-degree-shifted-democrats-midterms-110726">Quartz</a></li>
+<li id="ref-37"><a href="#fnref-37-1">^</a> John T. Jost and Mahzarin R. Banaji, “The Role of Stereotyping in System-Justification and the Production of False Consciousness,” <em>British Journal of Social Psychology</em>, 33 (1) , 1994, pp. 1–27 ; John T. Jost, <em>A Theory of System Justification</em>, Harvard University Press, 2020. <a href="https://doi.org/10.1111/j.2044-8309.1994.tb01008.x">Wiley Online Library</a></li>
+<li id="ref-38"><a href="#fnref-38-1">^</a> Jesse Graham, Jonathan Haidt, and Brian A. Nosek, “Liberals and Conservatives Rely on Different Sets of Moral Foundations,” <em>Journal of Personality and Social Psychology</em>, 96 (5) , 2009, pp. 1029–1046. <a href="https://doi.org/10.1037/a0015141">APA PsycNet</a></li>
+<li id="ref-39"><a href="#fnref-39-1">^</a> <em>Students for Fair Admissions, Inc. v. President and Fellows of Harvard College</em>, 600 U.S. 181 (2023) . 2023 年 6 月 29 日判決。ノースカロライナ大学を相手取った訴訟と併せて判断された。 <a href="https://www.law.cornell.edu/supremecourt/text/20-1199">Cornell LII</a></li>
+<li id="ref-40"><a href="#fnref-40-1">^</a> Washington Post, “‘DEI’ vanishing from corporate filings, mirroring business world’s retreat,” 2025. S&amp;P 500 企業の年次報告書 (10-K) における「 DEI 」の言及回数の分析。 <a href="https://www.washingtonpost.com/business/interactive/2025/dei-companies-sec-filings/">Washington Post</a></li>
+<li id="ref-41"><a href="#fnref-41-1">^</a> ESG Dive, “Major companies reframing, not abandoning, DEI: report,” 2025. Conference Board の報告を紹介する記事。 <a href="https://www.esgdive.com/news/major-companies-reframing-not-abandoning-dei-2025-report-the-conference-board-trump/757419/">ESG Dive</a></li>
+</ol>
+<p class="endnote">注記 : 本稿は、既存の研究文献、調査報告、報道を用いて論旨を再構成した文献レビューである。 2026 年の数字は速報であり、確定値で置き換えられる可能性がある。 CNN の分析、 Quartz の記事、 NPR の TPUSA 関連の記事、 SourceWatch は、本文の取得ができない、または検索結果の要約に依拠した部分がある。エリザベス・キャティの論旨と、ヴァンス自身が本書を学術研究でないと断っているという点も、検索結果の要約に依拠しており、出典の欄に個別の資料を掲げていない。引用の前に、原文で確認することを勧める。因果の推定には、各章で述べた限界が伴う。</p>
+</div>
+</main>
+</body>
+</html>
