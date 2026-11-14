@@ -26,13 +26,29 @@
   th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
   th { background: var(--box); white-space: nowrap; }
   code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
   /* 情報ボックス・注記・必須・ラベル・チェックリスト */
   .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
   .box strong { color: var(--accent); }
   .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
   .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
   .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
-  /* 目次(nav.toc。マークアップは SKILL.md の「目次のマークアップ」) */
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
   .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
   .toc>ol{columns:2;column-gap:2rem;margin:0}
   .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
@@ -58,19 +74,10 @@
   .refs li:target,sup:target{background:var(--box)}
   /* 末尾の注記 */
   .endnote { font-size: .9rem; color: var(--muted); }
-  /* 図(figure.diagram。マークアップは SKILL.md の「図」) */
-  figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
-  figure.diagram svg { display: block; width: 100%; height: auto; max-width: 100%; }
-  figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
-  figcaption .fig-label { color: var(--accent); font-weight: 700; margin-right: .3em; }
-  @media (max-width: 40rem) {
-    figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
-    figure.diagram svg { max-width: none; }
-    figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
-  }
   /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
   @media (max-width: 40rem) {
     table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
     table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
     table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
     table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
@@ -94,9 +101,13 @@
     table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
     table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
   }
-  /* 記事固有 */
-  .figure { margin:0 0 32px; }
-  .figcaption { font-size:.84375rem; color:var(--muted); text-align:center; margin-top:10px; }
+/* 記事固有 */
+.figure { margin:0 0 32px; }
+.figcaption { font-size:.84375rem; color:var(--muted); text-align:center; margin-top:10px; }
+.steplabel { font-size:.8125rem; fill:#242522; font-weight:bold; }
+.stepsub { font-size:.71875rem; fill:#65695f; }
+.spectlabel { font-size:.78125rem; fill:#242522; }
+.spectsub { font-size:.6875rem; fill:#65695f; }
 </style>
 </head>
 <body>
@@ -152,7 +163,7 @@
 <p>公認心理師は名称独占資格であり、業務独占資格ではない。公認心理師法第 44 条は「公認心理師でない者は、公認心理師という名称を使用してはならない」と定めるにとどまり、心理相談業務そのものを公認心理師以外が行うことを禁じているわけではない <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。加えて同法第 42 条第 2 項は、支援対象者に主治医がいる場合、公認心理師はその指示を受けなければならないと定めており、医師との関係において公認心理師の独立性は制度上限定的である <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup><sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
 <p>一方、臨床心理士は公益財団法人日本臨床心理士資格認定協会が認定する民間資格であり、国家資格ではない。 1988 年に資格制度が発足し、 5 年ごとの資格更新が義務づけられている点が公認心理師（更新制度なし）との制度的な違いである <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。医療機関や教育機関では、公認心理師と臨床心理士の両方を保有する者も多く、両資格は排他的ではないが、法的な位置づけとしては「国家資格に基づく名称独占」と「民間団体による認定」という別種のものである。</p>
 <h3 id="sec2-2">2.2 精神科医の職務範囲</h3>
-<p>精神科医は医師免許を前提とする以上、医師法上の医療行為――診断・処方・手術等――を行うことができる。これに加えて、精神保健福祉法は「精神保健指定医」という追加的な資格を設けており、これを持つ医師のみが行いうる職務がある。具体的には、本人の同意によらない入院形態である医療保護入院・措置入院に際しての診察・判定、措置入院解除の判定、一定の行動制限の判定、定期病状報告に係る診察等である <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。医療保護入院には指定医 1 名の診断が、自傷他害のおそれを要件とする措置入院にはより厳格な指定医 2 名の診断が求められる <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
+<p>精神科医は医師免許を前提とする以上、医師法上の医療行為――診断・処方・手術等――を行うことができる。これに加えて、精神保健福祉法は「精神保健指定医」という追加的な資格を設けておef="#ref-4">[4]</a></sup> 。医療保護入院には指定医 1 名の診断が、自傷他害のおそれを要件とする措置入院にはより厳格な指定医 2 名の診断が求められる <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。</p>
 <p>つまり、精神科医（特に精神保健指定医）は、診断・処方という医療行為に加えて、本人の意に反した入院という、人身の自由に関わる強い権限を行使しうる立場にある。これは心理カウンセラーには制度上認められていない権限である。</p>
 
 <div class="box">
@@ -202,7 +213,7 @@
 <p>まず確認しておきたいのは、「過去の嫌な思い出を思い出し、気持ちがふさぎ込んでしまう」という訴えそのものが、臨床的にどのように評価されうるかである。ここで強調しておきたいのは、この訴え単体から「これは疾患である」あるいは「これは正常範囲の悩みである」と断定することは、本稿の目的ではないし、そもそも臨床的にも適切ではないという点である。あくまで、臨床家がどのような評価軸を用いてこの種の訴えを検討するか、その考え方の枠組みを示すにとどめる。</p>
 <p>一つの手がかりは、正常な悲哀反応（グリーフ）とうつ病エピソードの鑑別という、精神医学において蓄積のある論点である。 DSM （精神疾患の診断・統計マニュアル）の旧版である DSM-IV-TR には「死別除外 (bereavement exclusion) 」という規定があり、大切な人を亡くしてから一定期間内の抑うつ症状は、原則としてうつ病エピソードの診断対象から除外されていた。 DSM-5 ではこの除外規定が撤廃され、死別後であってもうつ病エピソードの基準を満たせば診断されうることになった <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。この改訂は、「正常な悲哀に医療のラベルを貼りすぎているのではないか」という懸念から、当時大きな論争を呼んだ <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。</p>
 <p>臨床的には、正常な悲哀反応とうつ病エピソードは、いくつかの特徴によって区別されると説明されることが多い。正常な悲哀では、故人を思い出す際に悲しみと同時に、温かい記憶などの穏やかな感情も混在して経験されることが多く、自尊心は基本的に保たれる。これに対しうつ病エピソードでは、無価値感や自己嫌悪といった、より侵食的な感覚が特徴的とされる <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup><sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。もっとも、これらはあくまで臨床的な傾向としての目安であり、個別の事例に機械的に適用できる境界線ではない。</p>
-<p>もう一つの手がかりは、 PTSD （心的外傷後ストレス障害）との鑑別である。 DSM-5 の PTSD 診断基準における基準 A （外傷的出来事への曝露）は、「死亡、死の脅威、実際のまたは脅された重篤な負傷、実際のまたは脅された性的暴力」への曝露に限定されている <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。つまり、単に「嫌な思い出」というだけでは、この基準 A を満たすとは限らない。また、 PTSD における侵入記憶は、それが不随意的に生じ、あたかも出来事が現在再び起きているかのような感覚を伴う点で、うつ病における反芻思考（ voluntary に近い、繰り返し思考をめぐらせる過程）とは質的に異なるとされる <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。</p>
+<p>もう一つの手がかりは、 PTSD （心的外傷後ストレス障害）との鑑別である。 DSM-5 の PTSD 診断基準における基準 A （外傷的出来事への曝露）は、「死亡、死の脅威、実際のまたは脅された重篤な負傷、実際のまたは脅された性的暴力」への曝露に限定されている <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。つまり、単に「嫌な思い出」というだけでは、こらせる過程）とは質的に異なるとされる <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。</p>
 <p>これらを踏まえると、「過去の嫌な思い出を思い出し気持ちがふさぎ込む」という訴えは、それだけでは PTSD の診断基準（基準 A ）を厳密には満たさない可能性が高く、むしろ正常範囲の反芻思考・一過性の悲哀反応から、うつ病エピソードに至るまでのスペクトラム上のどこかに位置づけて評価されるべき事例である可能性が高い。ただし、これは一般論としての評価軸の説明であり、実際にどこに位置づけられるかは、期間・重症度・機能障害の程度など、個別の臨床情報を踏まえた専門家の評価を要する。</p>
 
 <div class="box">
