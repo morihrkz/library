@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「好き」に理由はあるのか――好みの三つの層と、 AI が描いた絵の評価の揺れ</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">心理学・社会学・美学</p>
+<h1>「好き」に理由はあるのか<br>――好みの三つの層と、 AI が描いた絵の評価の揺れ</h1>
+<p class="subtitle">Reasons for Liking: Perceptual, Social, and Normative Layers of Taste, and the Case of Evaluations of AI-Generated Art</p>
+<div class="lede">
+<p>同じ絵が、「 AI が描いた」と知らされた途端に、見え方が変わる。この揺れは、絵の側の性質の話か、見る側の好みの話か、それとも作者についての知識の話か。本稿は、この問いを入口に、「好き」に理由はあるのかを考える。好みを、知覚と心理、社会、規範の三つの層に分け、各層で確かめられていること、論争が残っていること、答えが出ていないことを区別したうえで、 AI の作品への評価の揺れが、どの層の問題として読めるかを仕分ける。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>本稿は、心理学・社会学の実証研究の知見と、哲学の古典（ヒューム、カント、ウォルトン）の主張と、筆者の整理を区別して記述する。単純接触効果の効果量は二次資料による。 AI ラベルの研究（ Bellaiche らと Millet ら）は、書誌と要旨、および報道による紹介に基づき、論文本文の詳細（効果量、刺激の作り方）は確認していない。好みの三つの層（知覚と心理、社会、規範）は、筆者が問いを整理するために立てたもので、既存の理論の分類ではない。美的な判断に万人に通じる基準があるかは未決の哲学上の問いであり、本稿は答えを出さない。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">入口――同じ絵に付いた二つのラベル</a>
+<ol>
+<li><a href="#sec1-1">「 AI が描いた」と知らされると、評価が下がる</a></li>
+<li><a href="#sec1-2">「理由」の二つの意味</a></li></ol>
+</li><li><a href="#sec2">第一の層――知覚と心理</a>
+<ol>
+<li><a href="#sec2-1">繰り返し見たものを好む</a></li>
+<li><a href="#sec2-2">処理のしやすさ</a></li>
+<li><a href="#sec2-3">「好き」と「欲しい」は別のものである</a></li>
+<li><a href="#sec2-4">この層は何を説明し、何を説明しないか</a></li></ol>
+</li><li><a href="#sec3">第二の層――社会</a>
+<ol>
+<li><a href="#sec3-1">趣味は地位の目印か</a></li>
+<li><a href="#sec3-2">流行と帰属</a></li></ol>
+</li><li><a href="#sec4">第三の層――規範</a>
+<ol>
+<li><a href="#sec4-1">「好みは人それぞれ」と「趣味の基準」――ヒューム</a></li>
+<li><a href="#sec4-2">主観的でありながら普遍を求める――カント</a></li>
+<li><a href="#sec4-3">報告か、要求か</a></li></ol>
+</li><li><a href="#sec5">AI が描いた絵の評価の揺れを仕分ける</a>
+<ol>
+<li><a href="#sec5-1">三つの層からの読み</a></li>
+<li><a href="#sec5-2">実験が答えていないこと</a></li></ol>
+</li><li><a href="#sec6">結び――「理由」の二つの意味に戻る</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 入口――同じ絵に付いた二つのラベル</h2>
+<h3 id="sec1-1">1.1 「 AI が描いた」と知らされると、評価が下がる</h3>
+<p>近年の実験は、同じ作品に「人間が描いた」「 AI が描いた」という二通りのラベルを付け、評価がどう変わるかを調べている。 Bellaiche らは、 30 点の絵画をすべて AI が生成したものにそろえ、ラベルだけを無作為に人間製と AI 製に振り分けて、好ましさ・美しさ・深み・価値を評価させた。参加者はオンライン調査の 149 人（実験 1 ）と 148 人（実験 2 ）である。結果は、人間製のラベルを付けた絵の方が、どの評価項目でも高かった。実験 2 では、作品の物語性と、制作に費やされた労力の見積もりが、ラベルの効果の大きさを左右していた。ただし、これが当てはまったのは好ましさと美しさのような感覚的な判断に限られ、深みと価値のような意味にかかわる判断では、 AI に対する本人の態度の方が効いていた <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。</p>
+<p>Millet らは、四つの実験（合計 1,708 人）で、同じ作品が AI 製と示されると評価が下がることを確かめた。経路は、 AI 製と知らされた作品が創造的でないと見なされ、その結果として畏敬の念が弱まる、というものである。この傾向は、創造性は人間に固有のものだと信じている人ほど強かった <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+<p>この二つの研究が確かめたのは、ラベルによって、報告された評価が動くことである。同じ絵が違って見えたのか、見え方は同じで評価の言葉だけが変わったのかは、区別されていない。また、参加者は欧米の限られた集団で、 Bellaiche らの刺激は 30 点の絵にとどまる。他の文化や作品の種類に広げてよいかは、確かめられていない。</p>
+
+<h3 id="sec1-2">1.2 「理由」の二つの意味</h3>
+<p>「好きに理由はあるのか」という問いは、二つの問いが重なったものである。一つは、なぜその人がそれを好むようになったのかという、原因の問いである。もう一つは、その好みは適切なのか、他人にも勧めてよいのかという、正当化の問いである。日常では、どちらも「理由」の一語で呼ぶが、答え方は違う。原因の問いは、心理学や社会学が経験的に調べられる。正当化の問いは、他人に同意を求めるときに初めて必要になり、哲学が長く扱ってきた。</p>
+<p>本稿は、好みを三つの層に分けて考える。第一は、知覚と心理の層（第 2 章）。第二は、趣味が地位や帰属の目印として働く社会の層（第 3 章）。第三は、「美しい」と言うときに他人の同意を求める規範の層（第 4 章）である。第 2 章と第 3 章は原因の問いに、第 4 章は正当化の問いに対応する。第 5 章で、冒頭の AI の絵の評価の揺れが、どの層の問題として読めるかを仕分ける。</p>
+
+<h2 id="sec2">2. 第一の層――知覚と心理</h2>
+<h3 id="sec2-1">2.1 繰り返し見たものを好む</h3>
+<p>最も古くから知られた規則性は、単純接触効果である。 Zajonc は、無意味な語や漢字に似た図形を繰り返し見せるだけで、それらへの好意が上がることを示した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。 1968 年から 1987 年の研究をまとめた Bornstein のメタ分析は、効果が 200 件あまりの実験にわたって現れ、その大きさは相関係数にして 0.26 前後の中程度だと報告している。効果の大きさは、刺激の種類、複雑さ、提示の回数や時間などで変わる <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>この効果は、絵画でも調べられた。 Cutting は、印象派の絵画について、それぞれの作品が文化のなかで人目に触れる確率を指標にし、その確率が、実験室での提示回数と予想どおりに相互作用することを示した。そのうえで、繰り返しの接触が芸術の正典（キャノン）の維持に寄与していると論じた <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。ところが Meskin らは、芸術的価値が低いと見なされた画家の作品では、繰り返し見るほど好意がむしろ下がることを報告し、接触の効果は作品の質と無関係には働かない可能性を示した <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。したがって、単純接触効果は「確立に近い」が、効果の大きさと現れる条件には幅がある、というのが妥当な整理である。</p>
+
+<h3 id="sec2-2">2.2 処理のしやすさ</h3>
+<p>第二の規則性は、処理の流暢性である。 Reber らは、対称性、プロトタイプらしさ（その種類の典型に近いこと）、繰り返し、図と地のコントラストなどが、見る側の処理を楽にし、その楽さ自体が快く経験されることで、美的な好ましさの判断につながると論じた <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。 Belke らの実験では、絵を見せる前に、内容に合った題名を示すと評価が上がり、合わない題名を示すと下がった。この効果は、具象画で特に目立った <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。作品についての情報が、処理のしやすさを通じて好みに入り込むことを示す例である。</p>
+<p>ただし、処理のしやすさだけでは、見る者に手間を強いる作品が高く評価される場合を説明しにくい。この説明は、有力ではあるが、好みの全体を覆うものではない。</p>
+
+<h3 id="sec2-3">2.3 「好き」と「欲しい」は別のものである</h3>
+<p>第三に、「好き」の中身を分ける必要がある。 Berridge と Kringelbach らの神経科学の研究は、脳内の快そのもの (liking) と、報酬に向かう動機づけ (wanting) が、別の神経基盤に依存している可能性を示している。ドーパミンの操作が変えるのは、主として後者だとされる <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。ある絵の前から離れられないことと、その絵を見て快いと感じることは、別の事態でありうる。好みの理由を問うときには、どちらを指して「好き」と言っているのかを、まず確かめなければならない。なお、この知見は主に報酬一般についてのもので、美的な好みへの適用は、解釈の域を出ない。</p>
+
+<h3 id="sec2-4">2.4 この層は何を説明し、何を説明しないか</h3>
+<p>第一の層は、原因の問いに答える。何を何度も見てきたか、どれだけ処理しやすいか、どんな情報とともに出会ったかは、好みの形成を部分的に説明する。しかし、これらは正当化にならない。「何度も見たから好きだ」は、その絵が良いことの理由ではない。 Cutting の研究が正典の維持に触れているように、よく見られていることと、見られるに値することとは、この層の説明だけでは切り分けられない。</p>
+
+<h2 id="sec3">3. 第二の層――社会</h2>
+<h3 id="sec3-1">3.1 趣味は地位の目印か</h3>
+<p>社会学者ブルデューは、『ディスタンクシオン』（ 1979 年）で、芸術や食の好みが、人の階級上の位置を示し、同時にそれを再生産する働きをもつと論じた <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 。文化資本論の詳細には立ち入らないが、趣味が地位の目印として働くという主張は、この層の中心にある。</p>
+<p>ただし、この主張は論争の的である。 Peterson と Kern は、米国の音楽の好みの調査（ 1982 年と 1992 年）で、高い地位の人のあいだで、幅広いジャンルを聴く「なんでも聴く（オムニボア）」型が 10 年のうちに増えていたことを示し、排他的な趣味が地位を示すという図式が、時代によって変わることを指摘した <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 。この調査は米国の音楽についてのもので、他の国や他の分野にそのまま当てはまるかは別の問題である。地位の目印として何が働くかは、固定された規則ではなく、時代や社会によって変わりうる。</p>
+
+<h3 id="sec3-2">3.2 流行と帰属</h3>
+<p>好みは、集団への帰属の旗印にもなる。 Tajfel らの最小条件集団の実験では、英国の少年たちに、クレーとカンディンスキーの絵のどちらを好むかによって二つの集団に分けると告げた（実際の割り振りは無作為だった）。すると、少年たちは、面識のない相手に点数を配分する場面で、自分と同じ集団の相手を優遇した <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 。この実験が示すのは、絵の好みが集団を作るということではなく、些細な基準でも帰属の感覚が生まれ、行動を変えるということである。ここから、好みの表明が帰属の表明として働きうる、という解釈が成り立つ。流行は、この動きが時間の中で広がったものと読める。ただし、この読みは筆者の整理であり、実験が直接示したものではない。</p>
+<p>第一の層と同じく、第二の層も原因の問いに答えるにとどまる。地位や帰属が好みを方向づけるとしても、それは、その好みが適切だという根拠にはならない。</p>
+
+<h2 id="sec4">4. 第三の層――規範</h2>
+<h3 id="sec4-1">4.1 「好みは人それぞれ」と「趣味の基準」――ヒューム</h3>
+<p>ヒュームは、 1757 年の論文「趣味の基準について」で、二つの常識の板挟みを出発点にした。一つは、好みは人それぞれで、争っても仕方がないという常識である。もう一つは、凡庸な詩人オギルビーとミルトンを同列に論じる者は、モグラ塚を山と呼ぶのと同じくらい誤っている、という常識である。ヒュームは、基準は「真の批評家」の合意された判断にあると答えた。真の批評家とは、感受性が繊細で、経験を積み、作品を比べ、偏見をもたず、良識を備えた人である <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 。ただし、誰が真の批評家かを決める基準が、結局は批評家の判断に頼っているのではないか、という循環の批判が、古くから向けられている。</p>
+
+<h3 id="sec4-2">4.2 主観的でありながら普遍を求める――カント</h3>
+<p>カントは、『判断力批判』（ 1790 年）で、趣味判断を、快・不快の感情に基づく点で主観的でありながら、すべての人の同意を求める点で普遍性を主張するものとして説明した。これを「主観的普遍性」と呼ぶ。カントは、単に快適なもの（例として、カナリア産のワインが挙げられる）と、美しいものを区別した。前者については、各人が自分の趣味をもてばよい。後者については、そう言う者は、他人にも同じ判断を求めている <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> 。ただし、カントも、この判断を概念によって証明することはできないとした。</p>
+
+<h3 id="sec4-3">4.3 報告か、要求か</h3>
+<p>二人の古典から取り出せる区別は、次のとおりである。</p>
+<p>「これが好きだ」と言うとき、人は自分の状態を報告している。報告には、理由を挙げる義務がない。「これは美しい」と言うとき、人は他人にも同意を求めている。要求には、理由を挙げることが期待される。理由は、証明にはならなくても、相手が作品を見る手がかりになる。</p>
+<p>では、美的な判断に万人に通じる基準はあるのか。これは、哲学上の問いとして未決であり、本稿は答えを出さない。「好みは人それぞれ」という相対主義で終えることも、「本物の美がある」と権威づけることも、この問いの輪郭をたどったことにはならないからである。</p>
+
+<h2 id="sec5">5. AI が描いた絵の評価の揺れを仕分ける</h2>
+<h3 id="sec5-1">5.1 三つの層からの読み</h3>
+<p>以上を踏まえ、 AI ラベルによる評価の揺れを、三つの層に割り振る。表の「確度」は、実験が示したことと、筆者の解釈を区別するための欄である。</p>
+<table class="cardrow">
+<thead>
+<tr><th>層</th><th>この層からの読み</th><th>手がかりになる研究</th><th>確度</th></tr>
+</thead>
+<tbody>
+<tr><th>知覚と心理</th><td data-label="この層からの読み">作品についての情報が、物語の見え方や処理のしやすさを変え、感覚的な好ましさまで動かす。</td><td data-label="手がかりになる研究">物語性と労力が好ましさ・美しさに効く（ Bellaiche ら）。題名で評価が動く（ Belke ら）。</td><td data-label="確度">方向は確認されている。経路は仮説である。</td></tr>
+<tr><th>社会</th><td data-label="この層からの読み">AI 製の作品を高く評価することが、人間に固有の創造性という信念を手放す側への帰属の表明に読める。</td><td data-label="手がかりになる研究">創造性は人間に固有だと信じる人ほど、ラベルの効果が強い（ Millet ら）。</td><td data-label="確度">信念との関連までは確認されている。帰属の表明という読みは解釈である。</td></tr>
+<tr><th>規範</th><td data-label="この層からの読み">作品の評価に、作者についての知識を入れてよいのかという問いである。</td><td data-label="手がかりになる研究">実験は、この問いに答えない。</td><td data-label="確度">未決である。</td></tr>
+</tbody>
+</table>
+<p>規範の層には、一つだけ古典を足しておく。ウォルトンは、作品はどの範疇（絵画、彫刻、写真など）に属するものとして知覚されるかによって、そこに見える美的な性質が変わると論じた <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> 。この考えに立てば、作者や制作の過程についての知識が評価を変えるのは、不合理とは限らない。一方、評価は作品そのものだけに基づくべきだと考える立場からは、同じ事実が偏見に見える。どちらの立場をとるかは、第 4 章で見た意味での「理由」の問題であり、実験で決まることではない。</p>
+
+<h3 id="sec5-2">5.2 実験が答えていないこと</h3>
+<p>仕分けから見えてくるのは、三つの層が、きれいには分かれないことである。 Bellaiche らの結果では、制作の物語や労力についての知識が、好ましさや美しさという感覚的な判断にまで入り込んでいた <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。 Belke らの題名の実験も、情報が処理のしやすさに入り込む経路を示していた <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> 。社会の層に属すると読んだ信念 (Millet ら <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup>) が、第一の層の「見え方」にまで及んでいる可能性もある。三つの層は、問いを整理するための道具であり、現実の好みの中で別々に働いているわけではない。</p>
+<p>もう一つ、 Bellaiche らのラベルは無作為に割り振られているので、人間製と AI 製のラベルの間に絵の質の差はない。揺れの原因は、絵の側にはなく、見る側が受け取った情報にある。したがって、「 AI の絵は劣っている」という結論も、「 AI の絵に差はない」という結論も、この実験からは出てこない。出てくるのは、作者についての知識が、好みの報告を動かすという事実である。</p>
+
+<h2 id="sec6">6. 結び――「理由」の二つの意味に戻る</h2>
+<p>「好き」に理由はあるのか。原因としての理由は、ある。繰り返しの接触、処理のしやすさ、地位や帰属が、好みを部分的に説明する。ただし、確立に近いものと、論争のあるものが混ざっており、どれも好みの全体を説明しきるものではない。正当化としての理由は、「好き」と言うだけなら要らない。「美しい」と言って他人に同意を求める段になって、初めて必要になる。そして、その理由が万人に通じるかどうかは、なお未決である。</p>
+<p>AI が描いた絵の評価の揺れは、絵の性質、見る側の好み、作者についての知識のいずれか一つには還元できない。三つの層にまたがって起きている。だからこそ、自分の「好き」を点検するときには、層ごとに問いを分けておくとよい。</p>
+<ul>
+<li>この好みは、何をどれだけ見聞きして育ったものか（第一の層）。</li>
+<li>この好みを口にするとき、誰に、何を示そうとしているのか（第二の層）。</li>
+<li>人に勧めるなら、作品のどこを根拠に挙げるのか（第三の層）。</li>
+</ul>
+<p>三つの問いに答えられなくても、好みが無効になるわけではない。ただ、答えを探すあいだに、「好き」という一語に畳まれていたものが、少しほどけて見えてくる。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Bellaiche, L., Shahi, R., Turpin, M. H., Ragnhildstveit, A., Sprockett, S., Barr, N., Christensen, A., &amp; Seli, P. (2023). Humans versus AI: Whether and why we prefer human-created compared to AI-created artwork. <em>Cognitive Research: Principles and Implications</em>, 8, Article 42. <a href="https://doi.org/10.1186/s41235-023-00499-6">DOI</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> Millet, K., Buehler, F., Du, G., &amp; Kokkoris, M. D. (2023). Defending humankind: Anthropocentric bias in the appreciation of AI art. <em>Computers in Human Behavior</em>, 143, 107707. <a href="https://doi.org/10.1016/j.chb.2023.107707">DOI</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Zajonc, R. B. (1968). Attitudinal effects of mere exposure. <em>Journal of Personality and Social Psychology</em>, 9 (2, Pt. 2), 1–27. <a href="https://doi.org/10.1037/h0025848">DOI</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Bornstein, R. F. (1989). Exposure and affect: Overview and meta-analysis of research, 1968–1987. <em>Psychological Bulletin</em>, 106 (2), 265–289. <a href="https://doi.org/10.1037/0033-2909.106.2.265">DOI</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Cutting, J. E. (2003). Gustave Caillebotte, French Impressionism, and mere exposure. <em>Psychonomic Bulletin &amp; Review</em>, 10 (2), 319–343. <a href="https://link.springer.com/article/10.3758/BF03196493">Springer</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Meskin, A., Phelan, M., Moore, M., &amp; Kieran, M. (2013). Mere exposure to bad art. <em>British Journal of Aesthetics</em>, 53 (2), 139–164.</li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Reber, R., Schwarz, N., &amp; Winkielman, P. (2004). Processing fluency and aesthetic pleasure: Is beauty in the perceiver's processing experience? <em>Personality and Social Psychology Review</em>, 8 (4), 364–382. <a href="https://pages.ucsd.edu/~pwinkielman/reber-schwarz-winkielman-beauty-PSPR-2004.pdf">著者公開 PDF</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> Belke, B., Leder, H., Strobach, T., &amp; Carbon, C.-C. (2010). Cognitive fluency: High-level processing dynamics in art appreciation. <em>Psychology of Aesthetics, Creativity, and the Arts</em>, 4 (4), 214–222. <a href="https://doi.org/10.1037/a0019648">DOI</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Berridge, K. C., &amp; Kringelbach, M. L. (2008). Affective neuroscience of pleasure: Reward in humans and animals. <em>Psychopharmacology</em>, 199 (3), 457–480.</li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> Bourdieu, P. (1979). <em>La distinction: Critique sociale du jugement</em>. Éditions de Minuit.</li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> Peterson, R. A., &amp; Kern, R. M. (1996). Changing highbrow taste: From snob to omnivore. <em>American Sociological Review</em>, 61 (5), 900–907. <a href="https://doi.org/10.2307/2096460">DOI</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> Tajfel, H., Billig, M. G., Bundy, R. P., &amp; Flament, C. (1971). Social categorization and intergroup behaviour. <em>European Journal of Social Psychology</em>, 1 (2), 149–178. <a href="https://doi.org/10.1002/ejsp.2420010202">DOI</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> Hume, D. (1757). Of the standard of taste. In <em>Four Dissertations</em>. London: A. Millar.</li>
+<li id="ref-14"><a href="#fnref-14-1">^</a> Kant, I. (1790). <em>Kritik der Urteilskraft</em>. Berlin und Libau: Lagarde und Friederich.</li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> Walton, K. L. (1970). Categories of art. <em>The Philosophical Review</em>, 79 (3), 334–367.</li>
+</ol>
+<p class="endnote">本稿は学術論文ではなく、好みの成り立ちについての知見を整理した一般向けの読み物である。実験研究の数値は、集団レベルの傾向を示すものである。</p>
+</div>
+</main>
+</body>
+</html>
