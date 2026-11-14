@@ -174,7 +174,7 @@
 <h2 id="sec2">2. 「人間の関与」の実質</h2>
 
 <h3 id="sec2-1">2.1 州対ルーミス事件の構図</h3>
-<p>人間が最終的な決定権を持つという形式が、実質を伴うとは限らない。この点を象徴するのが、米国ウィスコンシン州最高裁判所が 2016 年に判断した州対ルーミス事件(<em>State v. Loomis</em>)である。被告人は、量刑判断の資料として用いられた再犯リスク評価ソフトウェア COMPAS の算出方法が営業秘密として非開示であったため、その根拠を争う機会が実質的に与えられなかったとして、適正手続の侵害を主張した <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。</p>
+<p>人間が最終的な決定権を持つという形式が、実質を伴うとは限らない。この点を象徴するのが、米国ウィスコンシン州最高裁判所が 2016 年に判断した州対ルーミス事件(<em>State v. Loomis</em>)である。被告人は、量刑判断の資料として用いられた再犯リスク評価ソフトウェア COMPAS の算出方法が営業秘密として非開示であったため、その根拠を争う機会が実質的に与えられなかったとして、適正手続の侵害を主張した <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
 <p>州最高裁は被告人の適正手続の主張そのものは退けた一方で、 COMPAS のスコアを量刑の唯一の、あるいは決定的な根拠として用いてはならないこと、判決に（集団データに基づく点、個々の被告人について個別に検証されたものではない点などの）限界を説明する注意書きを付すことを、量刑裁判所に義務づけた。この判断は、アルゴリズムの算定根拠そのものを被告人が検証できるようにするところまでは踏み込んでおらず、「人間の裁判官が最終的に決定を下している」という事実と、その裁判官が根拠を実質的に吟味できたかという問いとの間に、なお隔たりを残した。</p>
 
 <h3 id="sec2-2">2.2 名目的な人間関与という問題</h3>
@@ -183,10 +183,10 @@
 <h2 id="sec3">3. 公平性指標は一つに収束しない</h2>
 
 <h3 id="sec3-1">3.1 ProPublica の指摘と開発企業の反論</h3>
-<p>2016 年、調査報道機関 ProPublica は、フロリダ州ブロワード郡の記録を用いて、 COMPAS のスコアと実際の再逮捕（以下、再犯の代理指標として扱う）との関係を検証した。分析によれば、実際には再逮捕されなかった被告人のうち、黒人の被告人が将来「高リスク」と誤って分類される割合は、白人の被告人に比べて有意に高かった <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。開発企業ノースポイント社（現 Equivant ）は、較正の点――同じスコアを与えられた被告人であれば人種を問わず同程度の確率で実際に再逮捕されている――でモデルは公平であると反論し、 ProPublica の分析手法や解釈にも異議を唱えた。この論争は、単に異なる公平性の定義を選んだという以上に、対象とするデータ、分類のしきい値、アウトカムの扱い、各指標が実務上何を意味するかをめぐる実証的・方法論的な争いでもあった。</p>
+<p>2016 年、調査報道機関 ProPublica は、フロリダ州ブロワード郡の記録を用いて、 COMPAS のスコアと実際の再逮捕（以下、再犯の代理指標として扱う）との関係を検証した。分析によれば、実際には再逮捕されなかった被告人のうち、黒人の被告人が将来「高リスク」と誤って分類される割合は、白人の被告人に比べて有意に高かった <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。開発企業ノースポイント社（現 Equivant ）は、較正の点――同じスコアを与えられた被告人であれば人種を問わず同程度の確率で実際に再逮捕されている――でモデルは公平であると反論し、 ProPublica の分析手法や解釈にも異議を唱えた。この論争は、単に異なる公平性の定義を選んだという以上に、対象とするデータ、分類のしきい値、アウトカムの扱い、各指標が実務上何を意味するかをめぐる実証的・方法論的な争いでもあった。</p>
 
 <h3 id="sec3-2">3.2 数理的トレードオフとしての公平性</h3>
-<p>両者の対立は、指標の選び方の違いだけに還元できない。もっとも、集団間で実際の基準率（ここでは再逮捕率）が異なる場合、較正の一致と誤り率の均等性という二つの公平性基準を一定の条件のもとで同時に満たすことはできないという不可能性が、統計学者アレクサンドラ・チョウデチョバによって示されている <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この結果は COMPAS の当該データに固有のものではなく、基準率に集団間の差がある限り一般に成り立つ数理的な制約である。この事実は、「精度が何パーセントか」という単一の指標だけでモデルの公平性を語ることの限界を示している。どの誤りをより重く見るか、どの集団間の格差を優先的に是正するかという選択には、統計学だけでは答えの出ない規範的な判断が伴う。</p>
+<p>両者の対立は、指標の選び方の違いだけに還元できない。もっとも、集団間で実際の基準率（ここでは再逮捕率）が異なる場合、較正の一致と誤り率の均等性という二つの公平性基準を一定の条件のもとで同時に満たすことはできないという不可能性が、統計学者アレクサンドラ・チョウデチョバによって示されている <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この結果は COMPAS の当該データに固有のものではなく、基準率に集団間の差がある限り一般に成り立つ数理的な制約である。この事実は、「精度が何パーセントか」という単一の指標だけでモデルの公平性を語ることの限界を示している。どの誤りをより重く見るか、どの集団間の格差を優先的に是正するかという選択には、統計学だけでは答えの出ない規範的な判断が伴う。</p>
 
 <div class="box">
 <strong>四つの誤りの非対称性</strong><br>
@@ -196,17 +196,17 @@
 <h2 id="sec4">4. データの偏りは制度の履歴を運ぶ</h2>
 
 <h3 id="sec4-1">4.1 フィードバックループとしての予測</h3>
-<p>データ数学者キャシー・オニールは、著書『 Weapons of Math Destruction 』において、予測的警察活動の事例を取り上げ、過去の検挙記録を学習したモデルが特定の地域への警察配置を強め、その結果その地域でさらに検挙が増えるというフィードバックループを指摘した <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup> 。この構造のもとでは、モデルの予測精度が検証されるたびに、モデル自身が作り出したパターンが「実証済みの傾向」として追認されてしまう。</p>
-<p>政治学者ヴァージニア・ユーバンクスも『 Automating Inequality 』において、米国の公的扶助や児童保護の現場に導入された自動判定システムが、貧困世帯や黒人世帯に対する監視をすでに歴史的に強めてきた制度の延長線上で運用され、既存の格差を数値の装いのもとで再生産する過程を記述している <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。</p>
+<p>データ数学者キャシー・オニールは、著書『 Weapons of Math Destruction 』において、予測的警察活動の事例を取り上げ、過去の検挙記録を学習したモデルが特定の地域への警察配置を強め、その結果その地域でさらに検挙が増えるというフィードバックループを指摘した <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 。この構造のもとでは、モデルの予測精度が検証されるたびに、モデル自身が作り出したパターンが「実証済みの傾向」として追認されてしまう。</p>
+<p>政治学者ヴァージニア・ユーバンクスも『 Automating Inequality 』において、米国の公的扶助や児童保護の現場に導入された自動判定システムが、貧困世帯や黒人世帯に対する監視をすでに歴史的に強めてきた制度の延長線上で運用され、既存の格差を数値の装いのもとで再生産する過程を記述している <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。</p>
 
 <h3 id="sec4-2">4.2 児童手当スキャンダルの教訓</h3>
-<p>この論点を裏づける具体例として、オランダの税務当局が児童手当の不正受給を検知するために用いた、国籍・二重国籍をリスク要因の一つとして扱う自己学習型のリスク分類システムがある。 2020 年に公表された議会調査報告『 Ongekend onrecht （前例のない不正義）』は、このリスク選別だけでなく、複雑な現金給付制度が就労状況や収入のわずかな変化に敏感であったこと、不正対策のために設けられた厳格な法制度が税務当局によって過剰に執行されたこと、行政・政治・司法のいずれもがこれを長期にわたり是正できなかったことを、一体の構造的失敗として指摘した <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 。数万世帯が誤って不正受給者と認定され、一括返還を求められて破産に追い込まれるという被害は、リスク選別モデル単独の結果ではなく、これらの制度的失敗が重なって生じたものであり、 2021 年の内閣総辞職はその政治的帰結であった。</p>
+<p>この論点を裏づける具体例として、オランダの税務当局が児童手当の不正受給を検知するために用いた、国籍・二重国籍をリスク要因の一つとして扱う自己学習型のリスク分類システムがある。 2020 年に公表された議会調査報告『 Ongekend onrecht （前例のない不正義）』は、このリスク選別だけでなく、複雑な現金給付制度が就労状況や収入のわずかな変化に敏感であったこと、不正対策のために設けられた厳格な法制度が税務当局によって過剰に執行されたこと、行政・政治・司法のいずれもがこれを長期にわたり是正できなかったことを、一体の構造的失敗として指摘した <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。数万世帯が誤って不正受給者と認定され、一括返還を求められて破産に追い込まれるという被害は、リスク選別モデル単独の結果ではなく、これらの制度的失敗が重なって生じたものであり、 2021 年の内閣総辞職はその政治的帰結であった。</p>
 <p>この事例が示すのは、アルゴリズムによるリスク選別そのものの技術的な巧拙以前に、異議申立ての窓口が実質的に機能せず、行政内部でも司法審査でも是正の機会が長期にわたり働かなかったという制度上の欠落である。誤りが明るみに出たのは、モデルの内部監査によってではなく、調査報道と議会調査によってであった。</p>
 
 <h2 id="sec5">5. 責任の分配と異議申立ての制度設計</h2>
 
 <h3 id="sec5-1">5.1 説明責任の四つの位相</h3>
-<p>法学者フランク・パスクアーレは『 The Black Box Society 』において、アルゴリズムによる意思決定の不透明性が、金融や検索エンジンといった分野で説明責任を回避する手段として機能してきたことを論じた <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 。この議論を踏まえ、本稿では責任の所在を、少なくとも次の四つの位相に分けて整理する（これは Pasquale 自身の分類ではなく、本稿独自の分析上の整理である）。第一に、誰が結果について説明する義務を負うか。第二に、誰が事前に予防策を取る権限を持っていたか。第三に、損害が生じた場合、誰が救済や補償を行うか。第四に、同じ不利益を繰り返さないために、誰が運用を変更する権限を持つか。</p>
+<p>法学者フランク・パスクアーレは『 The Black Box Society 』において、アルゴリズムによる意思決定の不透明性が、金融や検索エンジンといった分野で説明責任を回避する手段として機能してきたことを論じた <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 。この議論を踏まえ、本稿では責任の所在を、少なくとも次の四つの位相に分けて整理する（これは Pasquale 自身の分類ではなく、本稿独自の分析上の整理である）。第一に、誰が結果について説明する義務を負うか。第二に、誰が事前に予防策を取る権限を持っていたか。第三に、損害が生じた場合、誰が救済や補償を行うか。第四に、同じ不利益を繰り返さないために、誰が運用を変更する権限を持つか。</p>
 <p>これら四つは同一の主体に集中するとは限らない。モデルの開発者は仕様と既知の限界を説明する義務を負い、導入組織は利用目的と適用範囲を決定する権限を持ち、現場の担当者は例外を報告する立場にあり、独立した監督機関が運用の停止や是正を命じる権限を持つ、という分業も成り立ちうる。重要なのは、この分業が機能するための記録・連絡経路・是正権限が明文化されているかどうかであり、分業そのものを「誰の責任でもない」という状態の言い訳にしないことである。</p>
 
 <h3 id="sec5-2">5.2 再審査に実質を与える条件</h3>
@@ -222,13 +222,13 @@
 <ol>
 <li id="ref-1"><a href="#fnref-1-1">^</a> General Data Protection Regulation (Regulation (EU) 2016/679), Article 22 ― Automated individual decision-making, including profiling. 条文全文は <a href="https://gdpr-info.eu/art-22-gdpr/">GDPR-info.eu 第 22 条</a>を参照。</li>
 <li id="ref-2"><a href="#fnref-2-1">^</a> Artificial Intelligence Act (Regulation (EU) 2024/1689) 。附属書 III の高リスク用途分類、および適用時期の改正を含む実施スケジュールについては <a href="https://artificialintelligenceact.eu/implementation-timeline/">EU Artificial Intelligence Act: Implementation Timeline</a> を参照。</li>
-<li id="ref-3"><a href="#fnref-3-1">^</a> Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner, "Machine Bias," <em>ProPublica</em>, May 23, 2016. <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">ProPublica 掲載記事</a>。開発企業側の反論に対する回答は <a href="https://www.propublica.org/article/propublica-responds-to-companys-critique-of-machine-bias-story">ProPublica による Northpointe への回答記事</a>を参照。</li>
-<li id="ref-4"><a href="#fnref-4-1">^</a> <em>State v. Loomis</em>, 881 N.W.2d 749 (Wis. 2016) 。再犯リスク評価ソフトウェア COMPAS の量刑手続における使用が争われた事件。 <a href="https://www.wicourts.gov/sc/opinion/DisplayDocument.pdf?content=pdf&seqNo=171690">Wisconsin 州最高裁判決原文 (PDF)</a></li>
-<li id="ref-5"><a href="#fnref-5-1">^</a> Cathy O'Neil, <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>, Crown, 2016. <a href="https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction">Wikipedia: Weapons of Math Destruction</a></li>
-<li id="ref-6"><a href="#fnref-6-1">^</a> Virginia Eubanks, <em>Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor</em>, St. Martin's Press, 2018. <a href="https://en.wikipedia.org/wiki/Virginia_Eubanks">Wikipedia: Virginia Eubanks （著者項目）</a></li>
-<li id="ref-7"><a href="#fnref-7-1">^</a> オランダ下院児童手当調査委員会『 Ongekend onrecht （前例のない不正義）』 2020 年 12 月 17 日公表。 <a href="https://www.houseofrepresentatives.nl/sites/default/files/atoms/files/verslag_pok_definitief-en-gb.docx.pdf">Dutch House of Representatives, "Unprecedented Injustice" (PDF)</a></li>
-<li id="ref-8"><a href="#fnref-8-1">^</a> Frank Pasquale, <em>The Black Box Society: The Secret Algorithms That Control Money and Information</em>, Harvard University Press, 2015. <a href="https://en.wikipedia.org/wiki/Frank_Pasquale">Wikipedia: Frank Pasquale （著者項目）</a></li>
-<li id="ref-9"><a href="#fnref-9-1">^</a> Alexandra Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2 (2017), pp. 153–163. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> <em>State v. Loomis</em>, 881 N.W.2d 749 (Wis. 2016) 。再犯リスク評価ソフトウェア COMPAS の量刑手続における使用が争われた事件。 <a href="https://www.wicourts.gov/sc/opinion/DisplayDocument.pdf?content=pdf&seqNo=171690">Wisconsin 州最高裁判決原文 (PDF)</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner, "Machine Bias," <em>ProPublica</em>, May 23, 2016. <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">ProPublica 掲載記事</a>。開発企業側の反論に対する回答は <a href="https://www.propublica.org/article/propublica-responds-to-companys-critique-of-machine-bias-story">ProPublica による Northpointe への回答記事</a>を参照。</li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Alexandra Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2 (2017), pp. 153–163. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Cathy O'Neil, <em>Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy</em>, Crown, 2016. <a href="https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction">Wikipedia: Weapons of Math Destruction</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> Virginia Eubanks, <em>Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor</em>, St. Martin's Press, 2018. <a href="https://en.wikipedia.org/wiki/Virginia_Eubanks">Wikipedia: Virginia Eubanks （著者項目）</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> オランダ下院児童手当調査委員会『 Ongekend onrecht （前例のない不正義）』 2020 年 12 月 17 日公表。 <a href="https://www.houseofrepresentatives.nl/sites/default/files/atoms/files/verslag_pok_definitief-en-gb.docx.pdf">Dutch House of Representatives, "Unprecedented Injustice" (PDF)</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Frank Pasquale, <em>The Black Box Society: The Secret Algorithms That Control Money and Information</em>, Harvard University Press, 2015. <a href="https://en.wikipedia.org/wiki/Frank_Pasquale">Wikipedia: Frank Pasquale （著者項目）</a></li>
 </ol>
 </div>
 

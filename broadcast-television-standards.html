@@ -124,17 +124,42 @@ svg .muted { fill:var(--muted); }
 <h1>テレビ放送方式の系譜<br>―― 29.97 はなぜデジタル時代にも残ったのか</h1>
 <p class="subtitle">From Analog Colour Encoding to Digital Transmission: Why 1.001 Frame Rates Persist</p>
 <div class="lede"><p>アナログ放送が終わっても、映像制作では「 29.97 fps 」という数値が使われ続けている。色を送るための副搬送波はデジタル放送から消えたのに、なぜ時間の刻みは残ったのだろうか。</p><p>その答えをたどると、白黒テレビと互換性を保つ工夫、放送設備の更新、そして撮影時の照明という、異なる時代の技術が一本の線でつながる。</p></div>
-<p class="keywords"><strong>キーワード：</strong> NTSC 、 PAL 、 SECAM 、色副搬送波、フレームレート、地上デジタル放送</p>
+<p class="keywords"><strong>キーワード</strong><br>NTSC 、 PAL 、 SECAM 、色副搬送波、フレームレート、地上デジタル放送</p>
 </header>
 <div class="meta">【読み方と限界】第 1 ・ 2 章ではアナログ方式の違いと 29.97 fps の由来を説明する。第 3 章ではデジタル放送方式を概観し、第 4 章で制作・撮影への影響を扱う。規格値は ITU-R 、 FCC 、 ARIB 、 ETSI 、 ATSC などの資料に基づく。各国の採用状況は資料の集計時点・定義が異なるため、代表例として示す。第 5 章の将来展望は技術的事実からの考察である。</div>
-<nav class="toc" aria-label="目次"><p class="toc-title">目次</p><ol>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
 <li><a href="#sec1">テレビの「方式」は何を決めるのか</a></li>
-<li><a href="#sec2">アナログ方式が色を送るしくみ</a><ol><li><a href="#sec2-1">NTSC と 29.97 fps</a></li><li><a href="#sec2-2">PAL と SECAM</a></li><li><a href="#sec2-3">方式名だけでは決まらない</a></li></ol></li>
-<li><a href="#sec3">デジタル化で変わったもの</a><ol><li><a href="#sec3-1">電波にデータを載せる方式</a></li><li><a href="#sec3-2">地域と方式の選択</a></li></ol></li>
-<li><a href="#sec4">制作現場に残る時間形式</a><ol><li><a href="#sec4-1">フレームレートと変換</a></li><li><a href="#sec4-2">撮影地の照明とフリッカー</a></li></ol></li>
+<li><a href="#sec2">アナログ方式が色を送るしくみ</a>
+<ol>
+<li><a href="#sec2-1">NTSC と 29.97 fps</a></li>
+<li><a href="#sec2-2">PAL と SECAM</a></li>
+<li><a href="#sec2-3">方式名だけでは決まらない</a></li>
+</ol>
+</li>
+<li><a href="#sec3">デジタル化で変わったもの</a>
+<ol>
+<li><a href="#sec3-1">電波にデータを載せる方式</a></li>
+<li><a href="#sec3-2">地域と方式の選択</a></li>
+</ol>
+</li>
+<li><a href="#sec4">制作現場に残る時間形式</a>
+<ol>
+<li><a href="#sec4-1">フレームレートと変換</a></li>
+<li><a href="#sec4-2">撮影地の照明とフリッカー</a></li>
+</ol>
+</li>
 <li><a href="#sec5">考察――技術は設備と慣行に残る</a></li>
-<li><a href="#sec6">コラム――英国で聞く米国ドラマの「声」</a><ol><li><a href="#sec6-1">「声が違う」という体験</a></li><li><a href="#sec6-2">原因は 24 fps から 25 fps への変換</a></li><li><a href="#sec6-3">アナログ時代と、デジタル放送の現在</a></li></ol></li>
-</ol></nav>
+<li><a href="#sec6">コラム――英国で聞く米国ドラマの「声」</a>
+<ol>
+<li><a href="#sec6-1">「声が違う」という体験</a></li>
+<li><a href="#sec6-2">原因は 24 fps から 25 fps への変換</a></li>
+<li><a href="#sec6-3">アナログ時代と、デジタル放送の現在</a></li>
+</ol>
+</li>
+</ol>
+</nav>
 
 <section><h2 id="sec1">1. テレビの「方式」は何を決めるのか</h2>
 <p>「テレビ方式」という言葉は、二つの異なる仕組みを指す。一つは、画面をどう走査し、色をどう表すかを決める映像信号の方式である。アナログ時代の NTSC 、 PAL 、 SECAM がこれに当たる。もう一つは、映像や音声をデータにして、誤りに備えながら電波で送る伝送方式である。 ISDB-T 、 DVB-T2 、 ATSC などがその例である。</p>
@@ -161,7 +186,7 @@ svg .muted { fill:var(--muted); }
 <h3 id="sec2-3">2.3 方式名だけでは決まらない</h3>
 <p>「 NTSC なら 525/59.94 、 PAL なら 625/50 」はよくある代表例だが、例外がある。ブラジルの PAL-M は PAL の色方式を使いながら、走査は 525 本・毎秒約 59.94 フィールドである。 PAL-N は PAL の色方式と 625 本・毎秒 50 フィールドを組み合わせる。つまり、色の表現方法、走査線数、フレームレートは関連していても、同一のものではない。</p>
 <p>方式名だけで映像の仕様を決めつけると、素材の再生や変換を誤る可能性がある。今の制作で必要なのは、フレームレート、走査方法、解像度、色の規格などを個別に確認することである。</p>
-<p>次の表は代表的な組合せを並べたものだ。副搬送波周波数は色信号を置く位置を示す値であり、現代のデジタル映像のフレームレートを直接決める値ではない。 <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup><sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></p>
+<p>次の表は代表的な組合せを並べたものだ。副搬送波周波数は色信号を置く位置を示す値であり、現代のデジタル映像のフレームレートを直接決める値ではない。 <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup><sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
 <table class="cards"><thead><tr><th>系統</th><th>走査の代表値</th><th>色の送り方</th><th>補足</th></tr></thead><tbody>
 <tr><td data-label="系統">NTSC カラー</td><td data-label="走査の代表値">525 本、約 59.94 フィールド / 秒</td><td data-label="色の送り方">約 3.579545 MHz の副搬送波で直交変調</td><td data-label="補足">色相を位相で表す</td></tr>
 <tr><td data-label="系統">PAL （代表例）</td><td data-label="走査の代表値">625 本、 50 フィールド / 秒</td><td data-label="色の送り方">約 4.433619 MHz 、線ごとに一成分の位相を反転</td><td data-label="補足">色相誤差を彩度誤差へ移しやすい</td></tr>
@@ -178,8 +203,8 @@ svg .muted { fill:var(--muted); }
 <text x="64" y="65" text-anchor="middle">映像・音声</text><text x="64" y="91" text-anchor="middle" class="muted">素材</text><text x="220" y="65" text-anchor="middle">圧縮・多重化</text><text x="220" y="91" text-anchor="middle" class="muted">番組データ</text><text x="376" y="65" text-anchor="middle">誤り訂正</text><text x="376" y="91" text-anchor="middle" class="muted">受信に備える</text><text x="532" y="65" text-anchor="middle">変調</text><text x="532" y="91" text-anchor="middle" class="muted">電波に載せる</text><text x="692" y="65" text-anchor="middle">受信・復号</text><text x="692" y="91" text-anchor="middle" class="muted">映像・音声</text>
 <path d="M124 73h34m-8-7 8 7-8 7M280 73h34m-8-7 8 7-8 7M436 73h34m-8-7 8 7-8 7M592 73h34m-8-7 8 7-8 7" fill="none" stroke="#3d5a52" stroke-width="2"/><text x="380" y="151" text-anchor="middle" class="muted">実際の規格では、同期・信号情報・多重方式なども組み合わせる</text></svg><figcaption>図 2 : デジタル地上放送の概略。方式ごとに符号化や変調の具体的な仕様は異なる。</figcaption></figure>
 <h3 id="sec3-1">3.1 電波にデータを載せる方式</h3>
-<p>地上デジタル放送には複数の伝送方式がある。北米の ATSC 1.0 は 8 値の残留側波帯変調 (8-VSB) を使い、 DVB-T/T2 や ISDB-T は、多数の搬送波にデータを分けて載せる OFDM を使う。 ISDB-T は日本で使われる方式で、放送波を複数のセグメントに分ける構成を持つ。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup><sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></p>
-<p>OFDM は、たくさんの搬送波にデータを分けて送る方法である。建物などで電波が反射しても受信しやすいよう設計でき、地形や送信所の配置に応じて複数の送信所を同じ周波数で運用する構成にも適する。 ATSC 3.0 は OFDM と IP ベースの伝送を採り入れた次世代規格で、従来の ATSC 方式とは互換性が限られる。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<p>地上デジタル放送には複数の伝送方式がある。北米の ATSC 1.0 は 8 値の残留側波帯変調 (8-VSB) を使い、 DVB-T/T2 や ISDB-T は、多数の搬送波にデータを分けて載せる OFDM を使う。 ISDB-T は日本で使われる方式で、放送波を複数のセグメントに分ける構成を持つ。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup><sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<p>OFDM は、たくさんの搬送波にデータを分けて送る方法である。建物などで電波が反射しても受信しやすいよう設計でき、地形や送信所の配置に応じて複数の送信所を同じ周波数で運用する構成にも適する。 ATSC 3.0 は OFDM と IP ベースの伝送を採り入れた次世代規格で、従来の ATSC 方式とは互換性が限られる。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup></p>
 <table class="cards"><thead><tr><th>方式</th><th>電波への載せ方の例</th><th>理解のための要点</th></tr></thead><tbody>
 <tr><td data-label="方式">ATSC 1.0</td><td data-label="電波への載せ方の例">8-VSB</td><td data-label="理解のための要点">単一搬送波を使う北米の方式</td></tr>
 <tr><td data-label="方式">DVB-T / DVB-T2</td><td data-label="電波への載せ方の例">OFDM</td><td data-label="理解のための要点">T2 は誤り訂正などを改良した後継世代</td></tr>
@@ -189,7 +214,7 @@ svg .muted { fill:var(--muted); }
 </tbody></table>
 <h3 id="sec3-2">3.2 地域と方式の選択</h3>
 <p>日本では ISDB-T 、欧州やアフリカなど多くの地域では DVB-T/T2 、北米では ATSC 、中国では DTMB が使われてきた。ただし、大陸ごとに一つの方式が使われているわけではない。方式の採用は、規格の性能だけでなく、既存設備、近隣国との技術協力、産業政策などにも左右される。</p>
-<p>DVB の 2023 年 11 月時点の集計では、 DVB-T または DVB-T2 を導入・採用した国は 147 か国とされる。ただし「採用」には放送開始前の決定も含まれ、実際にサービスが放送中の国数とは異なる。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> また、ブラジルは従来 ISDB-T を採用していたが、次世代の TV 3.0 (DTV+) では ATSC 3.0 の技術を取り入れた。地域別の方式を固定した分類だけでは、こうした新しい選択を説明しきれない。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></p>
+<p>DVB の 2023 年 11 月時点の集計では、 DVB-T または DVB-T2 を導入・採用した国は 147 か国とされる。ただし「採用」には放送開始前の決定も含まれ、実際にサービスが放送中の国数とは異なる。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> また、ブラジルは従来 ISDB-T を採用していたが、次世代の TV 3.0 (DTV+) では ATSC 3.0 の技術を取り入れた。地域別の方式を固定した分類だけでは、こうした新しい選択を説明しきれない。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></p>
 </section>
 
 <section><h2 id="sec4">4. 制作現場に残る時間形式</h2>
@@ -228,14 +253,14 @@ svg .muted { fill:var(--muted); }
 <section><h2 id="sec6">6. コラム――英国で聞く米国ドラマの「声」</h2>
 <h3 id="sec6-1">6.1 「声が違う」という体験</h3>
 <p>米国で制作されたテレビドラマを、英国の放送で見た米国人が「俳優の声が、米国で聞き慣れたものと少し違う気がする」と感じる。この種の感想は、海外の放送や DVD で作品を見た人の間で語られてきた。ただし本コラムは、特定の個人の証言を記録したものではない。こうした報告に共通する典型的な体験として場面を再構成し、その原因を技術の面から検討する。</p>
-<p>似た体験は、実際に記録されている。オーストラリアの技術者 James Bunton は、 PAL 圏向けの DVD で映画を見たとき、俳優の声がインタビューで聞く声より高いことに気付いた。彼はその原因を突き止め、補正のためのスクリプトを公開している。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 気のせいと片付けず、原因を数字で確かめられるところが、この話の要点である。</p>
+<p>似た体験は、実際に記録されている。オーストラリアの技術者 James Bunton は、 PAL 圏向けの DVD で映画を見たとき、俳優の声がインタビューで聞く声より高いことに気付いた。彼はその原因を突き止め、補正のためのスクリプトを公開している。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> 気のせいと片付けず、原因を数字で確かめられるところが、この話の要点である。</p>
 <h3 id="sec6-2">6.2 原因は 24 fps から 25 fps への変換</h3>
-<p>米国のドラマの多くは、映画と同じ毎秒 24 コマ（運用上は 23.976 fps ）で撮影される。 NTSC 系では、 4.1 節で触れた 2:3 プルダウンで 59.94 フィールドに収めるため、再生速度は実質的に変わらない。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> これに対して 25 fps を基準とする PAL 系では、 24 コマの素材をそのまま 25 コマとして再生する方法が最も単純で、広く使われてきた。この方法は「 PAL スピードアップ」と呼ばれる。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></p>
-<p>速度の比は 25 ÷ 24 ≒ 1.0417 で、映像も音声も約 4.2 ％速く進む。音の高さは周波数の比で決まるので、上がる幅は 12 × log<sub>2</sub>(25/24) ≒ 0.707 半音、すなわち 71 セント弱である。 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> たとえば基本周波数 120 Hz の男声は、約 125 Hz になる。尺も縮み、 42 分の本編は約 40 分 19 秒、つまり約 1 分 41 秒短くなる。</p>
+<p>米国のドラマの多くは、映画と同じ毎秒 24 コマ（運用上は 23.976 fps ）で撮影される。 NTSC 系では、 4.1 節で触れた 2:3 プルダウンで 59.94 フィールドに収めるため、再生速度は実質的に変わらない。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> これに対して 25 fps を基準とする PAL 系では、 24 コマの素材をそのまま 25 コマとして再生する方法が最も単純で、広く使われてきた。この方法は「 PAL スピードアップ」と呼ばれる。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></p>
+<p>速度の比は 25 ÷ 24 ≒ 1.0417 で、映像も音声も約 4.2 ％速く進む。音の高さは周波数の比で決まるので、上がる幅は 12 × log<sub>2</sub>(25/24) ≒ 0.707 半音、すなわち 71 セント弱である。 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> たとえば基本周波数 120 Hz の男声は、約 125 Hz になる。尺も縮み、 42 分の本編は約 40 分 19 秒、つまり約 1 分 41 秒短くなる。</p>
 <p>半音に満たない差であっても、聞き慣れた声には手がかりが残ることがある。単純な速度変更は、音声のすべての周波数を同じ比率で動かす。そのため声の高さだけでなく、声道の共鳴（フォルマント）の位置や話す速さも同時に変わる。この結果、声は「少し小柄な人が、少し早口で話している」ような響きに近づくと考えられる。 24p の解説には、この程度の変化は「通常は気付かれない」と書かれている。 <sup id="fnref-10-3"><a href="#ref-10">[10]</a></sup> 一方、英国のテレビ掲示板では、聞き慣れた主題曲の調が変わることを「気が散る」と述べる投稿がある。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> 何十時間も同じ俳優の声を聞いてきた視聴者は、耳の中に比較の基準を持っている。その基準とのずれが、「違う気がする」という感覚になったと考えるのは自然である。ただしこれは、上の物理的な事実から導いた解釈であり、個々の体験を検証したものではない。</p>
 <h3 id="sec6-3">6.3 アナログ時代と、デジタル放送の現在</h3>
 <p>アナログ時代の PAL 放送では、この速度上げが標準的な処理だった。放送局にとっては設備の変更が不要で、尺が短くなった分だけ CM を入れやすいという利点もあった。上の掲示板の議論でも、多くの放送局は補正に手間をかけずに速度上げを受け入れたとされる。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 音程を元に戻す試みもあったが、 2000 年代の Channel 4 の例では音声に「揺らぎ」が残ったという投稿がある。同じ議論では、『 Torchwood: Miracle Day 』で補正が行われたことが、英国の視聴者に声の変化が気付かれやすいと考えられたためではないかと推測されている。ただしこれは掲示板の推測であり、放送局の公式説明ではない。</p>
-<p>デジタル放送になっても、この状況は自動的には解消しない。英国の地上デジタル放送も、本稿の 3 章と 4 章で見たとおり 25 fps ・ 50 系の時間形式を基準にしている。伝送方式がデジタルに変わっても、 24 fps の素材を 25 fps の番組として納める限り、速度上げをするか、音程を補正して尺だけ縮めるかという選択は残る。違いは、音程だけを戻すソフトウェアが普及し、補正という選択肢を取りやすくなった点にある。一方で、近年の DVD プレーヤーや PC には、 23.976 fps の素材を元のフレームレートのまま再生できるものがあり、速度上げが起きない経路も増えた。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup></p>
+<p>デジタル放送になっても、この状況は自動的には解消しない。英国の地上デジタル放送も、本稿の 3 章と 4 章で見たとおり 25 fps ・ 50 系の時間形式を基準にしている。伝送方式がデジタルに変わっても、 24 fps の素材を 25 fps の番組として納める限り、速度上げをするか、音程を補正して尺だけ縮めるかという選択は残る。違いは、音程だけを戻すソフトウェアが普及し、補正という選択肢を取りやすくなった点にある。一方で、近年の DVD プレーヤーや PC には、 23.976 fps の素材を元のフレームレートのまま再生できるものがあり、速度上げが起きない経路も増えた。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup></p>
 <table class="cards"><thead><tr><th>視聴の経路</th><th>24 fps 素材の扱い</th><th>声の高さ</th></tr></thead><tbody>
 <tr><td data-label="視聴の経路">アナログ PAL 放送</td><td data-label="24 fps 素材の扱い">25 fps に速度上げするのが標準的</td><td data-label="声の高さ">約 0.7 半音高い。補正は例外的</td></tr>
 <tr><td data-label="視聴の経路">デジタル放送（ 25 fps 系）</td><td data-label="24 fps 素材の扱い">速度上げ、または音程補正つきの変換。番組や納品仕様による</td><td data-label="声の高さ">補正の有無で変わる</td></tr>
@@ -249,15 +274,15 @@ svg .muted { fill:var(--muted); }
 <ol>
 <li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> International Telecommunication Union, <em>Recommendation ITU-R BT.470-7: Conventional analogue television systems</em>, 2005. <a href="https://www.itu.int/rec/R-REC-BT.470-7-200502-I/en">ITU 勧告</a></li>
 <li id="ref-2"><a href="#fnref-2-1">^</a> Federal Communications Commission, “Color Television Transmissions,” <em>Federal Register</em>, Vol. 18, No. 247, 23 December 1953, pp. 8649 ff. <a href="https://www.govinfo.gov/content/pkg/FR-1953-12-23/pdf/FR-1953-12-23.pdf">官報公開 PDF</a></li>
-<li id="ref-3"><a href="#fnref-3-1">^</a> Advanced Television Systems Committee, <em>A/53 Part 2:2011, RF/Transmission System Characteristics</em>, 2011. <a href="https://www.atsc.org/wp-content/uploads/2015/03/a_53-Part-2-2011.pdf">ATSC 規格 PDF</a></li>
-<li id="ref-4"><a href="#fnref-4-1">^</a> Association of Radio Industries and Businesses, <em>ARIB STD-B31: Transmission System for Terrestrial Digital Television Broadcasting</em>. <a href="https://www.arib.or.jp/english/html/overview/doc/6-STD-B31v1_6-E2.pdf">ARIB 規格 PDF</a></li>
-<li id="ref-5"><a href="#fnref-5-1">^</a> Advanced Television Systems Committee, <em>A/300:2026-04, ATSC 3.0 System</em>, approved 14 April 2026. <a href="https://www.atsc.org/atsc-documents/a3002019-atsc-3-0-system/">ATSC 規格ページ</a></li>
-<li id="ref-6"><a href="#fnref-6-1">^</a> DVB Project, “DTT Deployment Data,” DVB/EBU/BNE database snapshot, November 2023. <a href="https://dvb.org/solutions/dtt-deployment-data/">DVB 導入状況</a></li>
-<li id="ref-7"><a href="#fnref-7-1">^</a> Advanced Television Systems Committee, “Brazil Officially Adopts ATSC 3.0 Technologies for Its Next-Generation Television System,” 27 August 2025. <a href="https://www.atsc.org/news/brazil-officially-adopts-atsc-3-0-technologies-for-its-next-generation-television-system/">ATSC 発表</a></li>
-<li id="ref-8"><a href="#fnref-8-1">^</a> International Telecommunication Union, <em>Report ITU-R BT.624-4: Characteristics of television systems</em>, 1990. <a href="https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.624-4-1990-PDF-E.pdf">ITU 公開 PDF</a></li>
-<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> <sup><a href="#fnref-9-3">c</a></sup> Wikipedia contributors, “576i,” <em>Wikipedia</em>, PAL speed-up の節。 <a href="https://en.wikipedia.org/wiki/576i">Wikipedia</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> International Telecommunication Union, <em>Report ITU-R BT.624-4: Characteristics of television systems</em>, 1990. <a href="https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.624-4-1990-PDF-E.pdf">ITU 公開 PDF</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> Advanced Television Systems Committee, <em>A/53 Part 2:2011, RF/Transmission System Characteristics</em>, 2011. <a href="https://www.atsc.org/wp-content/uploads/2015/03/a_53-Part-2-2011.pdf">ATSC 規格 PDF</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> Association of Radio Industries and Businesses, <em>ARIB STD-B31: Transmission System for Terrestrial Digital Television Broadcasting</em>. <a href="https://www.arib.or.jp/english/html/overview/doc/6-STD-B31v1_6-E2.pdf">ARIB 規格 PDF</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> Advanced Television Systems Committee, <em>A/300:2026-04, ATSC 3.0 System</em>, approved 14 April 2026. <a href="https://www.atsc.org/atsc-documents/a3002019-atsc-3-0-system/">ATSC 規格ページ</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> DVB Project, “DTT Deployment Data,” DVB/EBU/BNE database snapshot, November 2023. <a href="https://dvb.org/solutions/dtt-deployment-data/">DVB 導入状況</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> Advanced Television Systems Committee, “Brazil Officially Adopts ATSC 3.0 Technologies for Its Next-Generation Television System,” 27 August 2025. <a href="https://www.atsc.org/news/brazil-officially-adopts-atsc-3-0-technologies-for-its-next-generation-television-system/">ATSC 発表</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> James Bunton, “Fixing PAL speedup and how film and video work,” 2016 年 5 月 1 日（個人ブログ。体験談と補正手順の記述であり、査読を経た資料ではない）。 <a href="https://blog.delx.au/2016/05/fixing-pal-speedup-and-how-film-and-video-work/">個人ブログ</a></li>
 <li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> <sup><a href="#fnref-10-3">c</a></sup> Wikipedia contributors, “24p,” <em>Wikipedia</em>, PAL 変換と 2:3 プルダウンの節。 <a href="https://en.wikipedia.org/wiki/24p">Wikipedia</a></li>
-<li id="ref-11"><a href="#fnref-11-1">^</a> James Bunton, “Fixing PAL speedup and how film and video work,” 2016 年 5 月 1 日（個人ブログ。体験談と補正手順の記述であり、査読を経た資料ではない）。 <a href="https://blog.delx.au/2016/05/fixing-pal-speedup-and-how-film-and-video-work/">個人ブログ</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> Wikipedia contributors, “576i,” <em>Wikipedia</em>, PAL speed-up の節。 <a href="https://en.wikipedia.org/wiki/576i">Wikipedia</a></li>
 <li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> “Correcting the speed of American programmes,” <em>TV Forum</em> スレッド（一般投稿者の発言であり、記述は個人の見解・推測を含む。 2026 年 9 月 30 日閲覧）。 <a href="https://www.tvforum.co.uk/tvhome/correcting-speed-american-programmes-46526">TV Forum 掲示板</a></li>
 </ol>
 <p class="note">方式の採用状況や規格は更新される。本稿は 2026 年 9 月 30 日時点に確認できる資料をもとに、代表的な技術と制作上の考え方を説明する。</p>
