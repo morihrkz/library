@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>称賛の陰で眉をひそめられる国――外国人が日本に抱く違和感の二層構造</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">国際比較・社会文化論考</p>
+<h1>称賛の陰で眉をひそめられる国<br>――外国人が日本に抱く違和感の二層構造</h1>
+<p class="subtitle">Beneath the Praise: Two Layers of Foreign Discomfort with Japan, from Etiquette Mismatch to Structural Critique</p>
+
+<div class="lede">
+<p>日本を称賛する外国人の声は、国内の記事でたびたび紹介される。その裏側にある「眉をひそめる声」は、鼻をすする所作のような些細な作法から、ジェンダーや働き方のような社会の仕組みまで、一括りに語られがちである。本稿は、この違和感を「作法の層」と「構造の層」に分けて検討する。前者は互いさまの違いにとどまり、後者は日本社会の内側にある不満と地続きである、というのが本稿の見立てである。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong>主な素材は、 2026 年 11 月 12 日に PHP オンラインで公開された記事（著書からの抜粋）であり、公的統計で確かめられる項目だけを補った。この記事の根拠は個別の体験談と有識者の発言が中心で、「外国人」を一つの集団として扱う限界がある。鼻をすする所作への評価と、麺をすする音への評価は、筆者が一次資料で確かめていない伝聞の水準である。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">称賛の記事と、その陰</a></li>
+<li><a href="#sec2">第一の層――作法の食い違い</a></li>
+<li><a href="#sec3">第二の層――構造への批判</a>
+<ol>
+<li><a href="#sec3-1">七つの弱点</a></li>
+<li><a href="#sec3-2">数字で確かめられるもの</a></li>
+<li><a href="#sec3-3">体験談にとどまるもの</a></li>
+</ol>
+</li>
+<li><a href="#sec4">表裏一体――長所が短所に転じる点</a></li>
+<li><a href="#sec5">反対説の検討</a>
+<ol>
+<li><a href="#sec5-1">「外国人の無理解」という反論</a></li>
+<li><a href="#sec5-2">「どの国にもある」という反論</a></li>
+<li><a href="#sec5-3">資料の偏り</a></li>
+</ol>
+</li>
+<li><a href="#sec6">結論――「悪いところ」を見分ける基準</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 称賛の記事と、その陰</h2>
+
+<p>冬の通勤電車では、鼻をすする音が途切れない。日本の車内で、この音が話題になることはほとんどない。ところが欧米では、鼻水をすすり上げる所作が不衛生で不快なものと受け取られる、と聞く。人前で音を立てて鼻をかむことをためらう日本人は少なくないが、その感覚は海を越えると通用しない。</p>
+
+<p>では、外国人が眉をひそめる点は、すべて同じ重さで「日本の悪いところ」と呼べるのか。この問いが、本稿の出発点である。</p>
+
+<p>日本を称賛する記事は多い。アニメ、食、工芸、治安といった長所が、外国人の口を借りて繰り返し語られる。その対極にあるのが、 PHP オンラインに載った佐宗邦威氏の記事である <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 。同記事は、クールジャパンの広がりの陰にある外国人の違和感を七つのキーワードに整理し、それを「外国人の無理解」として退けず、日本の魅力と表裏一体のものとして受け止めるべきだと説く。根拠は、経済産業省クールジャパン政策課と協働した「 Japan Brand Image Research 」と、そこで集めた海外の有識者・ユーザーの声である。この調査は、ロンドン、ベルリンとパリ、ニューヨーク、シンガポールの 5 都市を対象に、 2023 年 1 月から 3 月にかけて実施された <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 。</p>
+
+<p>この記事の七つの弱点を、鼻水の話と同じ棚に並べてよいのか。次の節からは、両者を分けて検討する。</p>
+
+<h2 id="sec2">2. 第一の層――作法の食い違い</h2>
+
+<p>鼻をすする所作は、この層の典型である。この所作が不快とされる理由は、音そのものよりも、鼻水を体内へ戻す行為が不衛生と受け取られる点にあるとされる。一方、日本には、人前でティッシュを使う方がかえって周囲に気を遣わせる、と感じる人もいる。同じ行為が、一方では清潔さへの配慮の欠如に見え、他方では周囲への配慮に見える。</p>
+
+<p>同じ構図は、向きを逆にしても成り立つ。麺をすする音は、日本では食事の一部として受け入れられているが、音を立てて食べないことを厳しくしつけられた文化圏では、敬遠されやすいとよくいわれる。土足のまま室内に上がることへの日本人の抵抗も、外から見れば同じ類の違和感である。</p>
+
+<p>この層には、三つの特徴がある。</p>
+
+<ul>
+<li><strong>対称的である。</strong>評価の向きは、見る側の習慣で入れ替わる。</li>
+<li><strong>害が当事者に及ばない。</strong>鼻をすする本人も、隣に座る人も、実害を受けない。</li>
+<li><strong>知れば調整できる。</strong>相手の習慣を知っていれば、場面に応じて控えることができる。</li>
+</ul>
+
+<p>したがって、この層の違和感は「悪いところ」というより「違うところ」と呼ぶ方が正確である。しかし、七つの弱点に並ぶ項目の多くは、鼻水や麺とは性質が異なる。それらはどの層に属するのか。</p>
+
+<h2 id="sec3">3. 第二の層――構造への批判</h2>
+
+<h3 id="sec3-1">3.1 七つの弱点</h3>
+
+<p>PHP オンラインの記事は、外国人の違和感を次の七つに整理している <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 。表の「記事が挙げる例」は、記事の記述を要約したものである。</p>
+
+<table class="cards">
+<thead>
+<tr><th>キーワード</th><th>指摘の内容</th><th>記事が挙げる例</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="キーワード">同質的</td><td data-label="指摘の内容">差別への感度が低い社会</td><td data-label="記事が挙げる例">電車内での不躾な視線、飲食店やクラブでの入店拒否、在日外国人へのいじめの話</td></tr>
+<tr><td data-label="キーワード">男性優位</td><td data-label="指摘の内容">女性が活躍しにくい社会</td><td data-label="記事が挙げる例">女性が男性から執拗に声をかけられる場面の目撃</td></tr>
+<tr><td data-label="キーワード">硬直的</td><td data-label="指摘の内容">融通が利かず、マニュアル外の対応ができない</td><td data-label="記事が挙げる例">英語が通じない、 Wi-Fi やライドシェアが使えない、海外から日本の商品を買いにくい</td></tr>
+<tr><td data-label="キーワード">階層的</td><td data-label="指摘の内容">上下関係が強く、挑戦しない社会</td><td data-label="記事が挙げる例">日系企業で働いた外国人が、製品がいつまでも発売されないことに苛立った</td></tr>
+<tr><td data-label="キーワード">官僚的</td><td data-label="指摘の内容">意思決定が遅い</td><td data-label="記事が挙げる例">企業にも国にも見られる、新技術・新しい働き方・人材政策への反応の鈍さ</td></tr>
+<tr><td data-label="キーワード">働きすぎ</td><td data-label="指摘の内容">健全さを失った労働社会</td><td data-label="記事が挙げる例">スーツ姿で深夜のカラオケで騒ぐ人々、酔って寝込む人の写真の拡散</td></tr>
+<tr><td data-label="キーワード">持続可能性に欠ける</td><td data-label="指摘の内容">過剰包装と脱炭素戦略の曖昧さ</td><td data-label="記事が挙げる例">商品の過剰包装、イギリスの識者による中国との比較</td></tr>
+</tbody>
+</table>
+
+<p>どの項目も、鼻をすする所作とは異なり、個人の癖ではなく、組織や制度のふるまいを指している。しかも、その確かさには差がある。数字で確かめられるものと、体験談にとどまるものを分けて見る。</p>
+
+<h3 id="sec3-2">3.2 数字で確かめられるもの</h3>
+
+<p>男性優位の指摘は、国際指標で裏づけられる。世界経済フォーラムの「ジェンダー・ギャップ指数」 2025 年版で、日本は 148 か国中 118 位であり、前年と同じ順位で G7 の中では最下位であった。分野別では、政治参画が 125 位、経済参画が 112 位と低い。教育と健康の分野では高い水準にある <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 。</p>
+
+<p>働きすぎの指摘にも、公的な数字がある。厚生労働省の発表によれば、 2025 年度の労災補償で、脳・心臓疾患の支給決定は 217 件、精神障害の支給決定は 1,082 件であった <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 。これは労災と認められた件数であり、請求に至らなかった事例は含まない。実態は、この数字より大きいと考えるのが自然である。</p>
+
+<p>注目すべきは、この二つの項目で、外から見える像と内側の統計が一致している点である。深夜のカラオケで酔いつぶれた会社員の写真は、外国人にとっては一場面にすぎない。だが、その場面の背後には、国内の公的統計に現れる実害がある。</p>
+
+<h3 id="sec3-3">3.3 体験談にとどまるもの</h3>
+
+<p>残りの項目は、記事の中では体験談や有識者の発言として示されており、代表性を判断する材料は少ない。入店を断られた、英語が通じなかった、製品の発売が遅れた、といった事例は、起きたことの記録としては重い。しかし、日本全体の傾向を示すかどうかは、これだけでは決められない。</p>
+
+<p>ただし、硬直的、官僚的といった項目には、外国人だけの不便ではない可能性がある。マニュアル外の対応を受けられない不便や、意思決定の遅さによる不便は、国内の利用者や従業員も受けていると考えられる。この推測が当たっているなら、外国人の違和感は、内側の不満を外から言い当てたものである。</p>
+
+<p>この層に共通するのは、違和感の源が、個人の習慣ではなく社会の仕組みにある点である。ところで、こうした弱点は、日本が誇ってきた長所と無関係なのか。</p>
+
+<h2 id="sec4">4. 表裏一体――長所が短所に転じる点</h2>
+
+<p>PHP オンラインの記事は、日本の長所として調和、礼節、組織への忠誠、職人気質、勤勉、安定を挙げ、それらがそのまま短所に転じると分析している <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 。次の表は、この分析を、七つの弱点に対応させて筆者が整理したものである。</p>
+
+<table class="cards">
+<thead>
+<tr><th>日本の長所</th><th>転じた姿</th><th>対応する弱点</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="日本の長所">調和（空気を乱さない）</td><td data-label="転じた姿">異質なものへの視線、見えない線引き</td><td data-label="対応する弱点">同質的</td></tr>
+<tr><td data-label="日本の長所">礼節（手順の整備）</td><td data-label="転じた姿">手順の外に出られない対応</td><td data-label="対応する弱点">硬直的</td></tr>
+<tr><td data-label="日本の長所">組織への忠誠</td><td data-label="転じた姿">上下関係と前例の重視、決定の遅さ</td><td data-label="対応する弱点">階層的、官僚的</td></tr>
+<tr><td data-label="日本の長所">勤勉</td><td data-label="転じた姿">限度を超えた長時間労働</td><td data-label="対応する弱点">働きすぎ</td></tr>
+</tbody>
+</table>
+
+<p>職人気質と安定は、対応する弱点が一つに定まらないため、表から外した。男性優位と持続可能性の欠如も、長所からの転化として説明できるかどうかは、この整理だけでは決められない。</p>
+
+<p>この対応づけが正しければ、帰結は二つある。一つは、短所だけを取り除こうとすると、長所も損なうおそれがあることである。もう一つは、短所をすべて直す必要はなく、害が出ている部分に直す対象を絞れることである。後者を考えるうえで、次の反論を検討する必要がある。</p>
+
+<h2 id="sec5">5. 反対説の検討</h2>
+
+<h3 id="sec5-1">5.1 「外国人の無理解」という反論</h3>
+
+<p>この反論は、作法の層には当たる。鼻をすする所作への違和感は、まさに相手の習慣への無理解から生じる。しかし、構造の層には当たらない。ジェンダー・ギャップ指数が測るのは、評価者の好みではなく、政治・経済への参画の男女差という、国内でも確かめられる量である。労災の件数も同じである。外国人の基準で測ったから悪く見えるのではなく、日本の内側で数えても同じ数字が出る。</p>
+
+<h3 id="sec5-2">5.2 「どの国にもある」という反論</h3>
+
+<p>どの国にも固有の影があり、七つの弱点が日本だけの特異な性質だとは限らない。国際比較で順位が確かめられるのも、ジェンダー・ギャップ指数のような一部の項目にすぎず、同質性や硬直性のような項目は、他国との優劣を数字で示せない。この指摘は正しい。ただし、本稿が問うているのは日本の順位ではない。他国にも影があることは、日本の影を消さない。</p>
+
+<h3 id="sec5-3">5.3 資料の偏り</h3>
+
+<p>最も慎重に扱うべきは、資料の性質である。第一に、記事の根拠になった調査は、富裕層の市場が大きく、日本文化への需要の伸びしろがあるとされる地域の、日本文化に関心の高い層を対象としている <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> 。この層の指摘は、悪意ある誇張とは考えにくい。一方、日本に関心のない人や、日本を訪れたくない人の評価は含まれない。第二に、記事の著者は、調査を実施した BIOTOPE の創業者である <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup> 。調査主体と記事の著者が同じであり、独立した検証を経た結果とは言えない。これらは、七つの弱点の有無を否定する理由にはならないが、一つひとつの重さを同じと見なさない理由にはなる。</p>
+
+<h2 id="sec6">6. 結論――「悪いところ」を見分ける基準</h2>
+
+<p>冒頭の問いに答える。外国人が眉をひそめる点は、同じ重さではない。</p>
+
+<p>作法の層の違和感は、「悪いところ」ではなく「違うところ」である。害は当事者に及ばず、評価は見る側の習慣で入れ替わる。知っていれば、場面に応じて鼻をすする所作を控えれば足りる。</p>
+
+<p>構造の層の違和感は、外から見える像が、内側の統計や不満と一致するときに限って、「悪いところ」と呼べる。ここで基準になるのは、外国人が不快に思うかどうかではなく、日本の内側にいる当事者が不利益を受けているかどうかである。この基準に照らすと、数字で確かめられたジェンダーと過重労働は、「悪いところ」に当たる。体験談にとどまる項目は、当事者の不利益が確かめられるまで、保留とするのが妥当である。</p>
+
+<p>外からの視線は、内側からは見えにくい不具合を映す、外部の指標として使える。作法は知り、構造は測り、長所は手放さない。称賛の記事を読むときは、同じ熱量で、その陰の記事も読む必要がある。</p>
+
+<p>本稿の限界は、資料の偏りにある。体験談の代表性を確かめるには、対象を広げた調査が要る。また、鼻をすする所作や麺をすする音への評価についても、一次資料による確認が残っている。</p>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> 佐宗邦威「“日本人気”の裏で外国人が抱く違和感 ... 知っておくべき「 7 つの弱点」とは？」『 PHP オンライン』 PHP 研究所、 2026 年 11 月 12 日公開。著書『ジャパン・アズ・オンリーワン 文化立国としての日本』（ PHP 研究所）の一部抜粋・編集。 <a href="https://shuchi.php.co.jp/article/15281">PHP オンライン</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> BIOTOPE ・経済産業省クールジャパン政策課「 Japan Brand Image Research 」 2023 年 3 月公表。 <a href="https://www.meti.go.jp/policy/mono_info_service/mono/creative/file/research_of_japan_brand_image.eng.pdf">経済産業省 公開 PDF</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> World Economic Forum, <em>Global Gender Gap Report 2025</em>, 2025. 国内の解説は、 nippon.com 「 No Improvement for Japan in 2025 Gender Gap Ranking 」。 <a href="https://www.weforum.org/publications/global-gender-gap-report-2025-jp">世界経済フォーラム</a> <a href="https://www.nippon.com/en/japan-data/h02444/">nippon.com</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> 厚生労働省「令和 7 年度『過労死等の労災補償状況』を公表します」 2026 年 7 月 15 日。 <a href="https://www.mhlw.go.jp/stf/newpage_74476.html">厚生労働省</a></li>
+</ol>
+<p class="endnote">本稿は、上記の資料と筆者の整理に基づく論考であり、外国人一般の意見を代表するものではない。</p>
+</div>
+
+</main>
+</body>
+</html>
