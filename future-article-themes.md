@@ -2,7 +2,7 @@
 
 **文書名** : `future-article-themes.md`
 **基準日** : 2026 年 11 月 21 日（前回の基準日は 11 月 19 日で、記事は 100 本だった。その後に、 02 知識と信頼へ `humanities-standards-of-validity.html` を 1 本足して 101 本になり、 11 月 21 日に、学術論文の体裁になじまない記事 9 本を `reading` リポジトリへ移して 92 本になった。 92 本に合わせて、本数、平均字数、語の出現数、空白、順位、置き場所を書き直した。同じ日に、 `four-thousand-dollars-a-month.html` を、題（月 60 万円）との食い違いを直すため、 `lifetime-cash-thought-experiment.html` へ改名してもいる）
-**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
+**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。さらに 11 月 23 日に、同じ 07 へ `crink-concept-and-eritrea.html` を 1 本足して 94 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
 **注記** : 11 月 21 日に `reading` リポジトリへ移した 9 本（ `modern-contemporary-periods.html` ・ `elder-housing.html` ・ `japan-industrial-products-strength.html` ・ `if-adopted-at-one.html` ・ `review-jibun-toka-nai-kara.html` ・ `strawman-fallacy.html` ・ `logic-argumentation.html` ・ `writing-techniques.html` ・ `falsifiability-introduction.html` ）は、この文書の対象に含めない。これらの記事への言及は、書庫の記事としては数えず、該当の箇所に、移した旨を書いた。
 **役割** : 書庫の現状を診断し、次に書く記事を優先順に提案する。候補ごとに、執筆の前に決めておくこと（置き場所、入口、論点の分担、確度の見通し、接続先）を示す。
 
