@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRINK の全体像――中国・ロシア・イラン・北朝鮮の連携の成立・実態・限界</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<p class="kicker">国際政治・安全保障の検討</p>
+<h1>CRINK の全体像<br>――中国・ロシア・イラン・北朝鮮の連携の成立・実態・限界</h1>
+<p class="subtitle">The CRINK Alignment: Origins, Substance and Limits of Cooperation among China, Russia, Iran and North Korea</p>
+
+<div class="lede">
+<p>CRINK は、中国 (China) 、ロシア (Russia) 、イラン (Iran) 、北朝鮮 (North Korea) の頭文字から 2023 年に生まれた造語である。ウクライナ侵攻以降、この四か国の間では、砲弾、兵力、原油、部品、外交上の庇護が、国境を越えて動いた。しかし、その動きを精査しても、四か国が一つの陣営として動く姿は見えてこない。見えるのは、六組の二国間関係が、濃さの違う糸として束ねられた姿である。糸の中心には中国とロシアがあり、最も太い糸はロシアと北朝鮮の間に、最も細い糸は北朝鮮とイランの間にある。本稿は、語の成立、前史、六つの二国間関係、軍事・経済・外交の三分野、イランをめぐる二度の戦争での試され方、連携の限界、評価をめぐる論争、米国と日本の受け止めを、一つの見取り図にまとめる。</p>
+</div>
+
+<div class="meta"><strong>【方法と限界】</strong>語の成立と各国の関係は、米国・欧州・豪州のシンクタンクの分析（特に CSIS の 2025 年の連作）、米欧の報道、日本国際問題研究所の報告書で確かめた。評価の時点は 2026 年 11 月 23 日である。数字は出典によって食い違うことがあり、その場合は幅で示した。軍事や貿易の統計には、ロシア、イラン、北朝鮮が公表しないものが多く、推計を含む。 2026 年のイラン戦争は進行中の出来事で、記述の一部は、英語版 Wikipedia と、匿名の情報源に基づく報道による。主要紙・通信社の記事は、筆者の検索環境では閲覧できないものが多く、本文を確認できなかった。確認の限界は、末尾にまとめた。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">語と問い――標語から分析概念へ</a>
+<ol>
+<li><a href="#sec1-1">ハリファクスの標語と、近い用語</a></li>
+<li><a href="#sec1-2">連携を測る四つの物差し</a></li>
+</ol>
+</li>
+<li><a href="#sec2">前史――二国間の記憶と、 2022 年の転換</a>
+<ol>
+<li><a href="#sec2-1">冷戦期から続く不信と依存</a></li>
+<li><a href="#sec2-2">転換点としての 2022 年</a></li>
+</ol>
+</li>
+<li><a href="#sec3">六つの二国間関係</a>
+<ol>
+<li><a href="#sec3-1">中国とロシア</a></li>
+<li><a href="#sec3-2">ロシアと北朝鮮</a></li>
+<li><a href="#sec3-3">ロシアとイラン</a></li>
+<li><a href="#sec3-4">中国とイラン</a></li>
+<li><a href="#sec3-5">中国と北朝鮮</a></li>
+<li><a href="#sec3-6">北朝鮮とイラン</a></li>
+</ol>
+</li>
+<li><a href="#sec4">三つの分野での連携</a>
+<ol>
+<li><a href="#sec4-1">軍事・安全保障</a></li>
+<li><a href="#sec4-2">経済・金融</a></li>
+<li><a href="#sec4-3">外交</a></li>
+</ol>
+</li>
+<li><a href="#sec5">イランをめぐる二度の戦争での試され方</a>
+<ol>
+<li><a href="#sec5-1">イスラエル・米国との 12 日間戦争（ 2025 年 6 月）</a></li>
+<li><a href="#sec5-2">イラン戦争（ 2026 年）</a></li>
+</ol>
+</li>
+<li><a href="#sec6">連携を阻むもの</a></li>
+<li><a href="#sec7">評価をめぐる論争</a>
+<ol>
+<li><a href="#sec7-1">「枢軸」か、「収斂」か、「幻」か</a></li>
+<li><a href="#sec7-2">概念そのものへの批判</a></li>
+</ol>
+</li>
+<li><a href="#sec8">米国と日本の受け止め</a>
+<ol>
+<li><a href="#sec8-1">米国の認識と政策</a></li>
+<li><a href="#sec8-2">日本への含意</a></li>
+</ol>
+</li>
+<li><a href="#sec9">周縁の国々――エリトリアを例に</a></li>
+<li><a href="#sec10">結論と確認の限界</a>
+<ol>
+<li><a href="#sec10-1">結論</a></li>
+<li><a href="#sec10-2">確認の限界</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+
+<h2 id="sec1">1. 語と問い――標語から分析概念へ</h2>
+
+<h3 id="sec1-1">1.1 ハリファクスの標語と、近い用語</h3>
+
+<p>CRINK は、研究者の定義から生まれた語ではない。 2023 年 11 月 17 日、カナダのハリファクスで開かれた国際安全保障フォーラムの開会の挨拶で、会長のピーター・ヴァン・プラーグ (Peter Van Praagh) が使い、広まった。英語版 Wikipedia によれば、彼の趣旨は次のとおりである。ロシアを国際社会から孤立させたことが、ほかの権威主義国をプーチン大統領の支援へ向かわせた。いま、中国、ロシア、イラン、北朝鮮は、世界秩序を解体しようとしている。彼はこの四か国を CRINKs と呼んだ。フォーラムの全体会合の題も、「ウクライナでの勝利＝ CRINK へのメッセージ」と、「 BRICS はさておき、 CRINK だ」だった。後者は、 1977 年のロックのアルバム題のもじりとみられる。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 米国の外交専門誌 Foreign Policy は、フォーラム直後の 2023 年 11 月 29 日付の記事で、この語がフォーラムで使われ始め、 BRICS をもじったものだと伝え、四か国の結びつきを「便宜の同盟」とし、相互の疑念に満ちていると評した。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></p>
+
+<p>語は先にあり、定義はあとから追いついた。そのため、輪郭は定義よりも用法で決まり、用法が広がれば輪郭も動く。四か国をまとめて呼ぶ語は、ほかにも複数ある。</p>
+
+<table class="cards">
+<thead>
+<tr><th>用語</th><th>提唱の時期と主体</th><th>指す国</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="用語">悪の枢軸</td><td data-label="提唱の時期と主体">2002 年、ジョージ・ W ・ブッシュ米大統領</td><td data-label="指す国">イラク、イラン、北朝鮮</td></tr>
+<tr><td data-label="用語">新権威主義ブロック (Neo-Authoritarian Bloc)</td><td data-label="提唱の時期と主体">2022 年 11 月、ジェラルド・マクダーモット（ 2023 年 4 月に定義を詳述）</td><td data-label="指す国">四か国に、ベネズエラ、ベラルーシ、ミャンマーを加えた七か国</td></tr>
+<tr><td data-label="用語">CRINK</td><td data-label="提唱の時期と主体">2023 年 11 月、ハリファクス国際安全保障フォーラム</td><td data-label="指す国">四か国</td></tr>
+<tr><td data-label="用語">動乱の枢軸 (Axis of Upheaval)</td><td data-label="提唱の時期と主体">2024 年 4 月、リチャード・フォンテインとアンドレア・ケンドール＝テイラー（新アメリカ安全保障センター、 CNAS ）</td><td data-label="指す国">四か国</td></tr>
+<tr><td data-label="用語">戦略的収斂</td><td data-label="提唱の時期と主体">NATO の政策企画部長ベネデッタ・ベルティが、「枢軸」より中立な語として選好</td><td data-label="指す国">四か国のような敵対国の連合</td></tr>
+<tr><td data-label="用語">敵対的協商 (Adversary Entente)</td><td data-label="提唱の時期と主体">2025 年 6 月、戦争研究所</td><td data-label="指す国">四か国</td></tr>
+</tbody>
+</table>
+
+<p>この表は、語の選び方が、連携の強さについての立場の表明になっていることを示している。「枢軸」は一体性を、「収斂」は偶然の重なりを含意する。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 日本では、「混沌の四重奏」や「ダーク QUAD 」といった呼称も使われた。日本国際問題研究所の報告書によれば、バイデン政権もトランプ政権も、 CRINK という語を公式には使っていない。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 語を選ぶ段階で、すでに答えの一部が決まっている。では、何をもって連携の強さと呼ぶのか。</p>
+
+<h3 id="sec1-2">1.2 連携を測る四つの物差し</h3>
+
+<p>本稿は、連携を測る物差しを四つ用意する。</p>
+
+<ul>
+<li>第一は、条約上の義務である。文言が、相手の戦争への参加や援助を求めているか。</li>
+<li>第二は、実際の移転である。兵器、兵力、部品、資金、情報が、言葉ではなく物として動いたか。</li>
+<li>第三は、経済の相互依存である。貿易と金融は、どの二国間に偏っているか。</li>
+<li>第四は、外交上の同調である。国連などの場で、投票と庇護が一致するか。</li>
+</ul>
+
+<p>どの物差しも、単独では連携の強さを測れない。条約があっても物が動かない関係があり、物が動いても条約のない関係がある。本稿は、四か国の六組の関係を、この四つの物差しで一つずつ測る。そのうえで、四つを重ねたときに、何が見えるかを問う。</p>
+
+<h2 id="sec2">2. 前史――二国間の記憶と、 2022 年の転換</h2>
+
+<h3 id="sec2-1">2.1 冷戦期から続く不信と依存</h3>
+
+<p>四か国の連携を語るとき、 2022 年以降の出来事だけを見ると、関係の底にある不信を見落とす。中国とロシアの前身であるソ連は、 1960 年代に対立し、 1969 年には国境で衝突した。両国の関係が再び温まったのは 2013 年ごろからだとされる。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> ソ連軍は 1941 年にイランに侵攻した。中ロの国境紛争が最終的に決着したのは 2004 年である。 <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup> 中国と北朝鮮は、 1961 年に相互援助の条約を結んだ。しかし、中国軍が北朝鮮から撤収したのは 1958 年であり、北朝鮮の指導部は、外部の影響が政権を脅かすことに警戒を解いてこなかったと指摘される。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+
+<p>この不信は、武器の流れにも表れていた。ストックホルム国際平和研究所 (SIPRI) の統計によれば、 1980 年から 2021 年の間、ロシア（ソ連を含む）は、中国の武器輸入の約 78% 、北朝鮮の約 73% 、イランの約 40% を供給していた。イランと北朝鮮は、 2010 年代にはロシア製兵器から離れた。中国は、 1990 年から 2005 年に、スホイ 27 とスホイ 30 の戦闘機を約 270 機、約 100 億〜 110 億ドルで買い、キロ級潜水艦 8 隻なども導入した。一方、 1980 年代の中国は、イランに約 48 億ドルの武器を、第三国を介して売っていた。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> 武器の流れは、ロシアから中国へ、中国からイランへと、一方向に近かった。イランのシャハブ系の弾道ミサイルが、北朝鮮のミサイルに似ているという指摘もある。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 四か国の間には、連携の下地と同時に、利害の食い違いと不信の蓄積があった。</p>
+
+<h3 id="sec2-2">2.2 転換点としての 2022 年</h3>
+
+<p>転機は、 2022 年 2 月のロシアによるウクライナ侵攻である。侵攻の直前、中国とロシアは「限界のない」パートナーシップを掲げた。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 西側諸国は、ロシアに制裁を科し、ウクライナに軍事援助を行った。ロシアは、孤立のなかで、兵器と部品の調達先を求めた。 CSIS の分析は、侵攻後、ロシアがそれまでの武器の供給国から、イランや北朝鮮の兵器の輸入国に転じたと指摘する。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> かつて武器を売っていた国が、買い手に回った。この逆転が、四か国の関係の質を変えた。</p>
+
+<p>四か国の間の貿易は、 2023 年に 2,550 億ドルを超え、 2021 年から約 49% 増えた。 <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup> ロシアは 2024 年に、北朝鮮への国連制裁を守る姿勢を捨て、同年、北朝鮮の制裁を監視する専門家パネルの任期更新に拒否権を行使した。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 侵攻が、四か国を結びつける触媒になったことは、ほとんどの分析が共有している。問題は、結びつきが、どこまで深く、どこまで広いかである。</p>
+
+<h2 id="sec3">3. 六つの二国間関係</h2>
+
+<p>四か国の連携は、六組の二国間関係の集合として、整理できる。最初に、全体の見取り図を示す。</p>
+
+<table class="cards">
+<thead>
+<tr><th>二国間</th><th>公式の枠組み</th><th>動いているもの</th><th>濃さの見立て</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="二国間">中国とロシア</td><td data-label="公式の枠組み">2022 年 2 月の「限界のない」パートナーシップ。相互防衛条項はない</td><td data-label="動いているもの">部品、工作機械、エネルギー、外交上の庇護</td><td data-label="濃さの見立て">最も厚い。ただし、致死性の兵器と兵力は動いていない</td></tr>
+<tr><td data-label="二国間">ロシアと北朝鮮</td><td data-label="公式の枠組み">2024 年 6 月の包括的戦略的パートナーシップ条約。相互援助の条項を含む</td><td data-label="動いているもの">砲弾、ミサイル、兵力、労働者。見返りの資金と技術</td><td data-label="濃さの見立て">最も軍事的。条約の文言も最も強い</td></tr>
+<tr><td data-label="二国間">ロシアとイラン</td><td data-label="公式の枠組み">2025 年 1 月の包括的戦略的パートナーシップ条約。相互防衛条項はない</td><td data-label="動いているもの">ドローン、ミサイル。戦闘機と防空システムの契約</td><td data-label="濃さの見立て">ドローンが流れた 2022 年が頂点で、その後は冷めた</td></tr>
+<tr><td data-label="二国間">中国とイラン</td><td data-label="公式の枠組み">2021 年の 25 年の戦略的パートナーシップ</td><td data-label="動いているもの">原油の購入。軍民両用品</td><td data-label="濃さの見立て">経済は一方向。軍事は限定的</td></tr>
+<tr><td data-label="二国間">中国と北朝鮮</td><td data-label="公式の枠組み">1961 年の相互援助条約（ 2021 年に 20 年更新）</td><td data-label="動いているもの">対外貿易のほぼ全て。外交上の庇護</td><td data-label="濃さの見立て">条約はあるが、共同の作戦計画も演習もない</td></tr>
+<tr><td data-label="二国間">北朝鮮とイラン</td><td data-label="公式の枠組み">2012 年の科学協力の合意など</td><td data-label="動いているもの">過去のミサイル技術の協力</td><td data-label="濃さの見立て">最も細い</td></tr>
+</tbody>
+</table>
+
+<p>この表の根拠を、六組それぞれについて確かめる。</p>
+
+<h3 id="sec3-1">3.1 中国とロシア</h3>
+
+<p>四か国の連携の中心は、中国とロシアである。 CSIS の分析は、この二国が安全保障の協力の軸を成し、 CRINK の演習の 83% を占めると整理する。 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup> 貿易の規模でも、二国の関係は突出している。中ロの貿易額は、 2023 年に約 2,400 億ドル、 2024 年に 2,450 億ドルを超えた。四か国の貿易の増加分の約 9 割は、中ロの貿易である。 <sup id="fnref-8-3"><a href="#ref-8">[8]</a></sup><sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></p>
+
+<p>中国がロシアに供給しているのは、致死性の兵器ではなく、戦争を支える部品と素材である。中国は兵力も送っていない。 CSIS は、軍民両用の「優先度の高い」品目 50 種を挙げ、そのうち工作機械や精密部品に当たる区分の対ロ輸出が、 2021 年 1 月に比べて 3,000% 以上増えたと指摘する。ロシアの工作機械部品の輸入に占める中国の割合は、 32% から 80% 以上に上がった。ボールベアリングの対ロ輸出は、 2021 年比で 345% 増えた。 <sup id="fnref-8-4"><a href="#ref-8">[8]</a></sup><sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> ロシアの電子部品の約 9 割を中国が供給するという推計もある。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup> ロシアは、中国に、原油と天然ガスを売る。中国のパイプライン経由のガス輸入に占めるロシアの割合は、 2021 年の 13% から 2024 年の 38% に上がった。 <sup id="fnref-8-5"><a href="#ref-8">[8]</a></sup></p>
+
+<p>ただし、この関係は対等ではない。 2023 年に、ロシアの輸出の 32.7% が中国向けだったのに対し、中国の輸入に占めるロシアの割合は 6.1% にとどまった。 <sup id="fnref-8-6"><a href="#ref-8">[8]</a></sup> 中国の経済規模はロシアの約 9 倍であり、ロシアは「格下の相手」になっているとの指摘もある。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup><sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup> 貿易の伸びも、 2024 年は 1.9% と、コロナ禍以降で最も低く、 2025 年上半期は前年同期比で 9.1% 減った。 <sup id="fnref-8-7"><a href="#ref-8">[8]</a></sup> 価格で折り合わない大型事業もある。ガスプロムは、新しいパイプライン「シベリアの力 2 」について、 2025 年 8 月末から 9 月初めの上海協力機構 (SCO) の首脳会議のあと、法的拘束力のある覚書に署名したと発表したが、価格は決まっていないと報じられた。 <sup id="fnref-8-8"><a href="#ref-8">[8]</a></sup></p>
+
+<p>軍事面では、二国は、戦略爆撃機の共同飛行を重ねてきた。 2019 年、 2022 年、 2024 年 7 月には、アラスカ沖の防空識別圏の近くまで飛んでいる。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup> 一方、ロシアから中国へは、潜水艦の静粛化と推進の技術が渡った可能性が指摘され、中国から一部のロシア軍に、契約兵として最大 150 人が加わったとも報じられている。ただし、これらは、報じられた段階の情報で、確認されていない。 <sup id="fnref-6-3"><a href="#ref-6">[6]</a></sup><sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup></p>
+
+<h3 id="sec3-2">3.2 ロシアと北朝鮮</h3>
+
+<p>最も軍事的な糸は、ロシアと北朝鮮の間にある。 2024 年 6 月の包括的戦略的パートナーシップ条約は、どちらかが武力侵攻を受けて戦争状態に入ったとき、他方が、国連憲章 51 条に基づき、あらゆる手段で軍事その他の援助を直ちに行うと定める。カーネギー国際平和財団の報告書は、「軍事その他の援助」という文言が曖昧で、意図的に曖昧にされた可能性があると指摘する。 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> この曖昧さが、実際の運用でどう解釈されるかは、まだ試されていない。</p>
+
+<p>実際の移転は、条約より先に、またそれを超えて進んだ。北朝鮮からロシアへ渡った砲弾の数は、推計によって幅がある。カーネギー国際平和財団の 2024 年 10 月の報告書は、 2023 年 9 月以降、最大 500 万発と報じられていると書く。 <sup id="fnref-7-3"><a href="#ref-7">[7]</a></sup> 2025 年 11 月の CSIS の論考は、 1,200 万発を超えるとし、あわせて KN-23 と KN-24 の短距離弾道ミサイルが最大 300 発に上るとする。 <sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup> 兵力は、 2024 年秋に約 1 万 1,000 〜 1 万 2,000 人が派遣され、 2025 年初めにさらに増派された。 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup> CSIS は、北朝鮮が最大 1 万 5,000 人の兵力に加え、約 1,000 人の工兵と約 5,000 人の建設労働者を送ったと整理する。 <sup id="fnref-9-3"><a href="#ref-9">[9]</a></sup> 金正恩氏は、 2025 年 4 月に派遣を公式に認め、同年 8 月には、戦死者の追悼式で、損失を異例の形で認めた。 <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup> ロシアのショイグ安全保障会議書記は、 2025 年 6 月に、北朝鮮が地雷除去の専門家 1,000 人と軍の工兵 5,000 人を、クルスク州に送ると述べた。約 5,000 人の北朝鮮の労働者が、ロシアの工場で、ドローン「ゲラン 2 」の生産に当たっているとも報じられている。 <sup id="fnref-12-3"><a href="#ref-12">[12]</a></sup></p>
+
+<p>北朝鮮が得たものは大きい。 CSIS の韓国チェアは、北朝鮮が、ロシアへの装備の提供で、 96 億〜 123 億ドルを得たと推計する。これは、北朝鮮の 2024 年の貿易総額（約 27 億ドル）の数倍に当たる。 <sup id="fnref-6-4"><a href="#ref-6">[6]</a></sup> 見返りには、食料、資金のほか、ドローン技術、防空、電子戦の技術が含まれるとみられるが、確認された情報は少ない。 <sup id="fnref-6-5"><a href="#ref-6">[6]</a></sup> 外交面でも、ロシアと北朝鮮の首脳級・閣僚級の往来は、 2022 年はゼロ、 2023 年は 1 回だったが、 2024 年は 6 回、 2025 年は執筆時点で 10 回に増えたと整理されている。 <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> ハーバード大学のイ・ソンヒョン氏は、金正恩氏が、援助の受け手から、重要な軍事資産の提供者に変わったと分析する。 <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></p>
+
+<h3 id="sec3-3">3.3 ロシアとイラン</h3>
+
+<p>ロシアとイランの関係は、 2022 年に、イランからロシアへ、ドローンが流れたことで劇的に変わった。 CSIS の整理では、イランは、シャヘド 131 とシャヘド 136 の自爆型ドローンを数千機、ファテフ 110 短距離弾道ミサイルを約 400 発（報道）、ロシアに渡した。イラン革命防衛隊のドローン教官が、クリミアに送られたとも報じられている。ロシア国内には、イランの許諾でドローンを生産する工場があり、年間最大 6,000 機を生産できるとされる。 <sup id="fnref-6-6"><a href="#ref-6">[6]</a></sup> ロシアは、のちに自国での生産に移った。 <sup id="fnref-7-4"><a href="#ref-7">[7]</a></sup></p>
+
+<p>逆方向の流れは、細い。ロシアは、イランに、スホイ 35 戦闘機、攻撃ヘリコプター、レーダー、 Yak-130 練習機、 S-400 防空システムを売る契約を、複数結んできたと報じられている。 48 機のスホイ 35 を約 65 億ドルで売る契約は、 2022 年以降のロシア最大の武器移転だとされる。 <sup id="fnref-6-7"><a href="#ref-6">[6]</a></sup><sup id="fnref-9-4"><a href="#ref-9">[9]</a></sup> しかし、納入はロシア自身の戦争の需要に阻まれ、限られているとされる。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> 2025 年 1 月に結ばれた 20 年間の包括的戦略的パートナーシップ条約には、相互防衛の条項がない。 <sup id="fnref-8-9"><a href="#ref-8">[8]</a></sup><sup id="fnref-14-2"><a href="#ref-14">[14]</a></sup> 貿易も細く、 2023 年の二国間貿易は約 50 億ドルで、ロシアの貿易の 1% 未満である。 <sup id="fnref-7-5"><a href="#ref-7">[7]</a></sup> 首脳級・閣僚級の往来は、 2022 年の 12 回から、 2023 年の 7 回、 2024 年の 8 回と減り、 2025 年は、 6 月の戦争の前に 3 回だった。 CSIS の外交分析は、ドローン技術へのロシアの需要が薄れたことで、関係が冷めたと見る。 <sup id="fnref-10-3"><a href="#ref-10">[10]</a></sup></p>
+
+<h3 id="sec3-4">3.4 中国とイラン</h3>
+
+<p>中国とイランの関係は、経済、とりわけ原油に偏っている。 2021 年の 25 年間の戦略的パートナーシップは、中国の投資の可能性として、約 4,000 億ドルを挙げた。しかし、実際に中国から入ったとされる資金は、約 1 億 8,500 万ドルにとどまる。 <sup id="fnref-7-6"><a href="#ref-7">[7]</a></sup> 原油の輸入は、 2020 年の日量約 34 万バレルから、 2025 年上半期の約 170 万バレルへ、約 4 倍に増えた。 <sup id="fnref-8-10"><a href="#ref-8">[8]</a></sup> 米国の制裁下にあり、公式の統計に出ない、約 290 億ドル規模の原油が、第三国を介して中国に流れているという推計もある。 <sup id="fnref-11-4"><a href="#ref-11">[11]</a></sup></p>
+
+<p>それでも、中国はイランのために、他の取引を犠牲にはしない。 2024 年の中国との貿易額は、サウジアラビアが約 1,075 億ドル、イスラエルが約 220 億ドルであるのに対し、イランは約 134 億ドルである。 <sup id="fnref-10-4"><a href="#ref-10">[10]</a></sup> 中国は、イランに、新たな武器を売っていない。 2020 年の国連の武器禁輸が終わったあとも、売却の確認はないという。 <sup id="fnref-7-7"><a href="#ref-7">[7]</a></sup> 軍民両用品をめぐる報道もある。 2025 年には、ミサイル燃料の原料となる過塩素酸ナトリウムを、中国がイランに送ったと報じられたが、これも「報じられた」段階の情報である。 HQ-9B 防空システムの移転は、 CSIS が、裏づけがないとする。 <sup id="fnref-6-8"><a href="#ref-6">[6]</a></sup> 首脳外交でも、習近平国家主席が会ったイランの大統領は、 2023 年 2 月のライシ大統領が唯一とされる。 <sup id="fnref-10-5"><a href="#ref-10">[10]</a></sup> イランは、 2023 年に SCO に、 2024 年 1 月に BRICS に加わった。 <sup id="fnref-10-6"><a href="#ref-10">[10]</a></sup></p>
+
+<h3 id="sec3-5">3.5 中国と北朝鮮</h3>
+
+<p>条約は最も古いが、実質は薄い。 1961 年の相互援助条約は、 2021 年に 20 年間更新された。 <sup id="fnref-9-5"><a href="#ref-9">[9]</a></sup> しかし、両国には、共同の作戦計画も、共同の軍事演習もないとされる。 <sup id="fnref-13-2"><a href="#ref-13">[13]</a></sup> 一方、経済では、北朝鮮の公式の対外貿易の約 98% を、中国が占める（ 2024 年）。 <sup id="fnref-8-11"><a href="#ref-8">[8]</a></sup> 国連の場でも、中国はロシアとともに、 2022 年 5 月の北朝鮮制裁案に拒否権を行使した。ただし、 2024 年のロシアによる専門家パネル更新への拒否権には、中国は棄権した。 <sup id="fnref-10-7"><a href="#ref-10">[10]</a></sup></p>
+
+<p>2026 年には、関係の再調整が進んだ。 3 月に、北京と平壌の間の旅客列車と航空便が、 6 年ぶりに再開された。 6 月 8 日から 2 日間、習近平国家主席が、 2019 年以来初めて平壌を訪れ、新華社は、金正恩氏と「重要な共通認識」に達したと報じた。両国は、外交、法執行、軍事、経済の交流を強めることで一致したとされる。公式発表は、核開発が議論されたかどうかに触れていない。北朝鮮は、台湾問題での「一つの中国」の原則を支持すると表明した。 <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> 米国は、 5 月の米中首脳会談で、北朝鮮の非核化が共通の目標だと確認したと説明していた。韓国の研究者は、平壌での首脳会談が、中国による北朝鮮の核保有の黙認と受け取れる場だったと分析した。 <sup id="fnref-16-3"><a href="#ref-16">[16]</a></sup></p>
+
+<p>この訪問は、中国が北朝鮮との関係を管理し直す動きと読める。北朝鮮が、ロシアという第二の大国の後ろ盾を得たからである。中国は、北朝鮮を監視しつつ、経済的な誘因を与えることで、北朝鮮が中国の利益に反して動かないようにしているという分析がある。 <sup id="fnref-16-4"><a href="#ref-16">[16]</a></sup> 両国の不信は残る。北朝鮮の国営メディアが、習氏の軍事交流の呼びかけに触れなかったことが指摘されている。 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup></p>
+
+<h3 id="sec3-6">3.6 北朝鮮とイラン</h3>
+
+<p>最も細い糸は、北朝鮮とイランの間にある。両国は、約 4,000 マイル（約 6,400 キロ）離れ、ともに制裁下にある。 CSIS の整理では、 2012 年の科学協力の合意があり、公式の貿易統計には、 2018 年にイランから北朝鮮へ、約 2 万 1,200 ドルの菓子類が輸出されたという数字がある程度である。 <sup id="fnref-8-12"><a href="#ref-8">[8]</a></sup> ミサイル技術の協力は、以前から指摘されてきた。 2023 年 10 月のハマスの攻撃では、北朝鮮製の擲弾発射器が使われたとの指摘があり、北朝鮮は、イエメンのフーシ派にも、ミサイルを売ろうとしたとされる。 <sup id="fnref-7-8"><a href="#ref-7">[7]</a></sup> しかし、 2026 年のイラン戦争では、韓国の国家情報院は、北朝鮮が、イランに武器も再建の支援も提供しなかったと述べたと、英語版 Wikipedia は記す。 <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup> 六組のうち、最も実質の薄い組が、この北朝鮮とイランである。</p>
+
+<h2 id="sec4">4. 三つの分野での連携</h2>
+
+<p>二国間の整理を、分野で組み替えると、別の見え方になる。 CSIS は、 2025 年の連作で、安全保障、経済、外交の三分野について、四か国の連携を点検した。三分野の結論は、ほぼ同じである。連携は 2022 年以降に強まったが、四か国が一体として動く場面は少なく、二国間の関係が中心である。 <sup id="fnref-6-9"><a href="#ref-6">[6]</a></sup><sup id="fnref-8-13"><a href="#ref-8">[8]</a></sup><sup id="fnref-10-8"><a href="#ref-10">[10]</a></sup></p>
+
+<h3 id="sec4-1">4.1 軍事・安全保障</h3>
+
+<p>合同演習は、連携の最も見えやすい指標である。 CSIS の整理では、 2003 年から 2021 年の 19 年間に 61 回（年平均約 3.2 回）だった CRINK の合同演習は、 2022 年から 2025 年 8 月までに 35 回（年平均約 9.5 回）に増えた。別の集計は、 2022 年以降を 37 回とする。 <sup id="fnref-6-10"><a href="#ref-6">[6]</a></sup><sup id="fnref-11-5"><a href="#ref-11">[11]</a></sup> 演習の大半は、二国間である。中国、ロシア、イランの三か国の演習は、 2022 年以降、毎年行われている。 2026 年 1 月には、中国、ロシア、イランに南アフリカとアラブ首長国連邦が加わった海上演習が行われた。四か国が揃った演習はなく、北朝鮮は、 2024 年のロシアの演習「オケアン 2024 」に、オブザーバーとして加わったにとどまる。 <sup id="fnref-6-11"><a href="#ref-6">[6]</a></sup><sup id="fnref-13-3"><a href="#ref-13">[13]</a></sup> 米国の同盟国のような、相互運用性や統合された指揮系統の水準には、遠く及ばない。 <sup id="fnref-9-6"><a href="#ref-9">[9]</a></sup></p>
+
+<p>兵器と兵力の移転は、前章で見たとおり、一方向に偏っている。ロシアが受け取る側に回り、北朝鮮が最大の供給者の一つになった。 CSIS は、ロシアが、中国、イラン、北朝鮮の兵器の純輸入国になったが、世界全体の輸出を含めれば、なお純輸出国だと注記する。 <sup id="fnref-11-6"><a href="#ref-11">[11]</a></sup> 核兵器では、ロシア、中国、北朝鮮の三か国が、世界の核弾頭の半数以上を持つ。ロシアは、イランと北朝鮮に、核の重要な技術を渡すことを避けてきたとされるが、状況次第で変わりうるとの見方もある。 <sup id="fnref-11-7"><a href="#ref-11">[11]</a></sup><sup id="fnref-7-9"><a href="#ref-7">[7]</a></sup></p>
+
+<h3 id="sec4-2">4.2 経済・金融</h3>
+
+<p>経済では、四か国の格差が際立つ。 CSIS の整理では、 CRINK の四か国は、世界人口の 5 分の 1 以上、世界の GDP の 4 分の 1 を占める。しかし、中国の経済規模は、ロシアの約 9 倍、イランの約 43 倍、北朝鮮の約 1,100 倍である。 <sup id="fnref-11-8"><a href="#ref-11">[11]</a></sup> 四か国の貿易の中心は、中国とロシアの間にある。</p>
+
+<p>金融では、制裁を回避する仕組みが整えられつつある。ロシアの貿易の約 3 分の 1 が、 2023 年 12 月までに人民元で決済されたとされる。ロシアでは、中国の銀聯カードと、中国の国際銀行間決済システム (CIPS) が使えるようになった。イランの決済網とロシアの決済網をつなぐ動きや、国境をまたぐ送金を使わない「鏡」の決済方式もある。 <sup id="fnref-8-14"><a href="#ref-8">[8]</a></sup> 北朝鮮は、ロシアと南オセチアの代理銀行を通じて、ルーブルとドルの取引を行ったとされる。 <sup id="fnref-8-15"><a href="#ref-8">[8]</a></sup></p>
+
+<p>しかし、この領域には限界がある。中国の対ロ直接投資は 2020 年以降、停滞している。中央銀行デジタル通貨の広範な利用は、まだ遠いとされる。人民元は、完全には交換できず、ドルに挑戦できる水準にはない。中国は、二次制裁を警戒している。 <sup id="fnref-8-16"><a href="#ref-8">[8]</a></sup> 統計の穴もある。ロシアは、 2022 年以降、イランや北朝鮮との貿易統計を公表しなくなった。 CSIS は、ロシアの 2024 年の輸入統計が、中国の輸出統計に比べて、軍民両用の機微品目を過少に報告している可能性を、「示唆される」と慎重に書く。 <sup id="fnref-8-17"><a href="#ref-8">[8]</a></sup> 数字の読み方には、注意が要る。</p>
+
+<h3 id="sec4-3">4.3 外交</h3>
+
+<p>外交では、最も一致が見えやすい場が、国連である。 CSIS の外交分析は、 2022 年以降に採択された安全保障理事会の決議 181 本と、否決された 17 本を調べた。ウクライナ侵攻を非難する国連総会の決議 10 本には、北朝鮮はすべて反対し、中国とイランは、 4 本に反対、 6 本に棄権した。 <sup id="fnref-10-9"><a href="#ref-10">[10]</a></sup> 2025 年 9 月には、イランの核合意を 6 か月延長する安保理の案に、賛成したのは、中国、ロシア、アルジェリア、パキスタンの 4 か国だけだった。 <sup id="fnref-10-10"><a href="#ref-10">[10]</a></sup> 一方、中ロの投票が逆に分かれたことが、 2024 年 11 月に、 20 年以上ぶりに起きたとも指摘されている。 <sup id="fnref-11-9"><a href="#ref-11">[11]</a></sup></p>
+
+<p>首脳外交の象徴は、 2025 年 9 月 3 日の北京の軍事パレードである。習近平、プーチン、金正恩の三氏が、初めて、そろって公の場に立った。 26 人の首脳が参加し、西側からは、スロバキアのフィツォ首相とセルビアのブチッチ大統領の二人だけだった。トランプ米大統領は、プーチン、金の両氏が米国に対して陰謀を企てていると、投稿で非難した。 <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup> しかし、三氏の間で、三者会談は開かれず、会談は、二者ずつ別々に行われた。 <sup id="fnref-12-4"><a href="#ref-12">[12]</a></sup> 四か国の首脳が一堂に会した例は、確認できない。中国、ロシア、イランの三か国による協議は、次官級を含め、 2025 年に 3 回あったが、四か国の会議はなかった。 <sup id="fnref-10-11"><a href="#ref-10">[10]</a></sup></p>
+
+<p>外交の場には、もう一つの側面がある。 CSIS の外交分析は、中国とロシアに、アルジェリア、インド、モザンビーク、パキスタンなどが、安保理の議論で同調することを指摘し、その意味で、 CRINK の外交が、グローバル・サウスの国々へ広がっているとみる。 <sup id="fnref-10-12"><a href="#ref-10">[10]</a></sup> 四か国だけを見ていては、外交の力学の半分しか見えない。</p>
+
+<h2 id="sec5">5. イランをめぐる二度の戦争での試され方</h2>
+
+<p>連携の強さは、平時の取引より、同盟国が攻撃されたときに最も明確に試される。イランは、 2025 年と 2026 年に、続けて、米国とイスラエルの攻撃を受けた。</p>
+
+<h3 id="sec5-1">5.1 イスラエル・米国との 12 日間戦争（ 2025 年 6 月）</h3>
+
+<p>2025 年 6 月、イスラエルと米国は、イランの核施設などを攻撃した。 CSIS の分析によれば、中国、ロシア、北朝鮮は、イランに、言葉による支持を示しただけで、軍事要員も送らなかった。 <sup id="fnref-6-12"><a href="#ref-6">[6]</a></sup><sup id="fnref-12-5"><a href="#ref-12">[12]</a></sup> ロシアは、 2024 年 12 月にシリアのアサド政権が崩れたときも、動かなかった。 <sup id="fnref-14-3"><a href="#ref-14">[14]</a></sup> イランは、支援を期待した相手から、期待したものを得られなかった。この経験が、 CRINK は「連合ではない」という議論の最も強い根拠になった。 <sup id="fnref-14-4"><a href="#ref-14">[14]</a></sup><sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></p>
+
+<h3 id="sec5-2">5.2 イラン戦争（ 2026 年）</h3>
+
+<p>2026 年のイラン戦争は、様相が異なる。英語版 Wikipedia によれば、戦争は 2 月 28 日に、米国とイスラエルによる攻撃で始まり、ハーメネイー最高指導者らが殺害され、 3 月にモジタバ・ハーメネイー氏が後任になった。イランはホルムズ海峡を封鎖した。 4 月に停戦、 6 月に覚書の署名があったが、 7 月 8 日にイランが商船を攻撃し、停戦は崩れた。同記事は、 11 月の時点で、紛争が続いていると記す。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup></p>
+
+<p>この戦争での四か国の関与は、非対称で、かつ偽装されている。 CNN は、 2026 年 9 月 25 日、 4 人の情報源に基づき、中国の企業や団体が提供した画像情報が、イランによる米軍基地とホルムズ海峡の船舶への攻撃の精度を高めていると報じた。中国外務省は否定した。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup> フランス国際関係研究所は、中国の商用衛星が、攻撃の前後に米軍基地を撮影したとみられると指摘する。 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup> CNAS のケンドール＝テイラー氏は、ロシアが、イランに、政治的な支持を与え、情報とドローンの戦術を共有し、改良型のドローンを提供したと報じられたが、直接参戦は避けたと整理する。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> 北朝鮮の支援は、確認できなかった。 <sup id="fnref-1-5"><a href="#ref-1">[1]</a></sup> 一方、英語版 Wikipedia は、中国が、 3 月中旬のトランプ大統領によるホルムズ海峡の再開への支援要請を、欧州の NATO 諸国とともに断ったとし、ロシアは、イランのブシェール原子力発電所の建設を止めて、要員を退避させたと記す。 <sup id="fnref-19-2"><a href="#ref-19">[19]</a></sup></p>
+
+<p>四つの物差しで測ると、この戦争では、条約の義務はなく、移転は画像、情報、部品に限られ、外交上の庇護は保たれた。 CNAS のケンドール＝テイラー氏は、ロシアが、ウクライナ戦争のあと、イランより、中国や北朝鮮のために動くだろうと予測する。 <sup id="fnref-22-2"><a href="#ref-22">[22]</a></sup> 豪州の米国研究センターのラヴィーナ・リー氏は、停戦があっても、中国、ロシア、北朝鮮は、イランのミサイルとドローンの再建を助けるだろうと述べた。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup> この予測は、まだ確かめられていない。確かなのは、四か国のうち、イランの戦争に部隊や兵器を送ったと確認できる国が、現時点で一つもないことである。画像や情報の提供は報じられているが、当事国が認めたものではない。</p>
+
+<h2 id="sec6">6. 連携を阻むもの</h2>
+
+<p>連携が深まらない理由を、 CSIS は、六つの要因に整理している。取引的な性格と力の非対称、地理的な距離、紛争の同時性と戦争疲れ、米国の関与、利害の食い違い、不信である。 <sup id="fnref-6-13"><a href="#ref-6">[6]</a></sup> 六つを、四か国の具体的な事例に当てはめる。</p>
+
+<p>第一は、取引性と非対称である。中国は、ロシアの約 9 倍の経済を持ちながら、ロシアに致死性の兵器を送らない。二次制裁を恐れ、対ロ投資も控える。 <sup id="fnref-8-18"><a href="#ref-8">[8]</a></sup> 第二は、距離である。北朝鮮とイランの間の約 6,400 キロは、実質的な協力を阻む。第三は、同時性の欠如である。ローウィー研究所の研究者ヴー氏は、中国と北朝鮮が、ロシアとイランの戦争から利益を得ようとするものの、自ら戦争を始めようとはしていないと指摘し、四か国が同時に動くという前提が、実際には観察されないと論じる。 <sup id="fnref-18-2"><a href="#ref-18">[18]</a></sup> 第四は、米国の関与である。米国の政策は、四か国を結びつける誘因にも、引き離す手段にもなりうる。 CSIS は、これを要因の一つに数える。 <sup id="fnref-6-14"><a href="#ref-6">[6]</a></sup></p>
+
+<p>第五は、利害の食い違いである。中国と北朝鮮は、自国周辺の現状維持の評価で、ロシアやイランと異なる。 <sup id="fnref-18-3"><a href="#ref-18">[18]</a></sup> 中国は、ロシアの対欧州の攻撃的な姿勢が、中国の最大の輸出市場である EU との関係を損ない、イランの不安定化が、中国のエネルギー供給を脅かすと考えている。ジョナサン・フルトン氏は、中国にとって CRINK への関与が、利益より不利益になっている可能性を指摘する。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 第六は、不信である。四か国の関係には、前章で述べた歴史の記憶がある。 UC 国際紛争・協力研究所 (IGCC) のクォン氏は、中朝ロの軍事統合が、不信と歴史に阻まれていると論じ、基地の共用も、統合指揮も、統合演習も、核の調整もないと指摘する。 <sup id="fnref-5-3"><a href="#ref-5">[5]</a></sup></p>
+
+<p>この六つの要因は、互いに独立ではない。たとえば、利害の食い違いは、距離と非対称が生み出す。連携が深まらないのは、一つの要因ではなく、重なりの結果である。それでも、四か国は、制裁を逃れる必要や、米国への反発という共通の動機で、連携を続ける。連携の限界と動機が同時に存在することが、 CRINK をめぐる評価を分ける。</p>
+
+<h2 id="sec7">7. 評価をめぐる論争</h2>
+
+<h3 id="sec7-1">7.1 「枢軸」か、「収斂」か、「幻」か</h3>
+
+<p>論者の立場は、連携を重く見るか、限定的とみるか、懐疑的に見るかで、三つに分かれる。</p>
+
+<table class="cards">
+<thead>
+<tr><th>立場</th><th>主な論者・資料</th><th>主張の要点</th></tr>
+</thead>
+<tbody>
+<tr><td data-label="立場">連携を重く見る</td><td data-label="主な論者・資料">ケンドール＝テイラーとフォンテイン、フィリップ・ゼリコウ、ハル・ブランズ（英語版 Wikipedia が紹介）。ブッシュ・センター</td><td data-label="主張の要点">四か国は、米国が直面する「目的を持つ強力な敵対者」の組であり、歴史上の「最も破壊的な同盟」に似る。米国の戦略は、四か国を連結したものとして扱うべきである。 <sup id="fnref-1-6"><a href="#ref-1">[1]</a></sup><sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup></td></tr>
+<tr><td data-label="立場">限定的な収斂とみる</td><td data-label="主な論者・資料">CSIS (Lin ら、 Howell) 、カーネギー (Chivvis と Keating) 、 Atlantic Council (Stent)</td><td data-label="主張の要点">中ロが軸で、他の二国は弱い寄与者である。二国間の集合であり、「多国間の中の二国間主義」と言える。同盟でもなく、連合でもないが、無視できない。 <sup id="fnref-12-6"><a href="#ref-12">[12]</a></sup><sup id="fnref-7-10"><a href="#ref-7">[7]</a></sup><sup id="fnref-4-4"><a href="#ref-4">[4]</a></sup></td></tr>
+<tr><td data-label="立場">懐疑的に見る</td><td data-label="主な論者・資料">ケリー・グリエコ、アンドレイ・ランコフ（英語版 Wikipedia が紹介）。ローウィー研究所 (Vu) 、 Oxus Society (Fulton) 、 IGCC (Kwon)</td><td data-label="主張の要点">共通の敵はいるが、利害の共有は限られる。連携を過大に評価することは、誤算と、自己成就する予言を生む。 <sup id="fnref-1-7"><a href="#ref-1">[1]</a></sup><sup id="fnref-18-4"><a href="#ref-18">[18]</a></sup><sup id="fnref-24-2"><a href="#ref-24">[24]</a></sup><sup id="fnref-5-4"><a href="#ref-5">[5]</a></sup></td></tr>
+</tbody>
+</table>
+
+<p>この三つは、証拠の読み方で分かれる。重く見る側は、 2022 年以降の移転の規模と、 2025 年の首脳の同席を重視する。 RFE/RL は、マーク・モンゴメリー氏が、四か国の相互協力の事例を 600 件以上記録していると述べたことを伝える。これは、同氏自身の主張である。 <sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup> 限定的とみる側は、移転が二国間で、四か国全体の調整がないことを重視する。懐疑的な側は、 2025 年の 12 日間戦争で、イランが助けを得られなかった事実を挙げる。 <sup id="fnref-14-5"><a href="#ref-14">[14]</a></sup></p>
+
+<p>本稿の整理では、三つの立場は、異なる問いに答えている。重く見る立場は、「移転の規模と、その影響」に答える。限定的とみる立場は、「連携の構造」に答える。懐疑的な立場は、「連携が、四か国の将来の行動を保証するか」に答える。三つの問いのどれも、事実の面では、他の二つと矛盾しない。</p>
+
+<h3 id="sec7-2">7.2 概念そのものへの批判</h3>
+
+<p>より根本的な批判は、 CRINK という語そのものに向けられる。第一は、自己成就する予言の危険である。 CSIS のイベントで、中東プログラムのヤコビアン氏は、枠組みが現実を作る危険を警告した。カーネギーの報告書は、米国が、四か国を一つの陣営として扱うことを避け、予測が自己成就することを避けるよう勧める。 IGCC のクォン氏は、枠組みが「修辞的に便利」である一方、三か国を、実際以上に、中央集権的で、計画的で、調整されたものとみなす危険があると警告する。 <sup id="fnref-9-7"><a href="#ref-9">[9]</a></sup><sup id="fnref-7-11"><a href="#ref-7">[7]</a></sup><sup id="fnref-5-5"><a href="#ref-5">[5]</a></sup></p>
+
+<p>第二は、語が、四か国に、実在しない結束を与える点である。ローウィー研究所のヴー氏の論考は、副題で、この略語が、米国の敵対者に、持たない統一を与えて「持ち上げている」と論じ、略語が、すべての構成国に攻撃的な意図があると誤って帰属させると指摘する。 <sup id="fnref-18-5"><a href="#ref-18">[18]</a></sup> 第三は、線引きの恣意性である。 Foreign Policy の記事は、コンフォート・エロ氏が、この語を「便利な略称」だが政策には便利でないと評したと伝える。同記事には、インドや南アフリカのような、中国やロシアと深い関係を持つ国が、枠の外に置かれることへの指摘もある。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup> スティープトゥーの分析は、四か国の同盟より、「西側対それ以外」という枠組みのほうが、長続きするとみる。 <sup id="fnref-14-6"><a href="#ref-14">[14]</a></sup></p>
+
+<p>これらの批判は、概念を捨てるべきだという主張ではない。語を使うなら、何を指すのかを明確にし、四か国の連携の強さを、証拠で確かめながら語るべきだという要請である。本稿も、 CRINK という語を、六組の二国間関係の束を指す便宜的な名として使っている。</p>
+
+<h2 id="sec8">8. 米国と日本の受け止め</h2>
+
+<h3 id="sec8-1">8.1 米国の認識と政策</h3>
+
+<p>米国政府の認識は、政権によって揺れた。日本国際問題研究所の報告書（防衛研究所の相澤李帆氏）によれば、バイデン政権は、四か国が「一つのブロック」でも「正式な同盟」でもないと認めつつ、懸念を示した。情報機関の懸念は、ロシアが北朝鮮とイランの兵器需要に応じて抑制を捨て、核不拡散の規範が損なわれること、四か国の相互支援で制裁の効果が下がること、中ロの台湾関連の軍事協力が進むことの三つとされる。 2024 年 12 月には、同盟国との情報共有や制裁の調整、同時発生の危機への備えを含むとされる国家安全保障覚書が承認された。ただし、その内容は公表されていない。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup></p>
+
+<p>トランプ政権は、ウクライナ戦争の終結交渉を優先し、ロシアとの対話を重視した。大統領自身は、四か国の連携に強い懸念を示さなかったが、国務長官や CIA 長官らは、警戒を示した。同報告書は、トランプ政権が、戦略的には四か国を一体化させないことを狙っていると推測する。 <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup> 2026 年 1 月 23 日に公表された国家防衛戦略は、中国、ロシア、イラン、北朝鮮の四か国を脅威として挙げ、国土と西半球を第一に、次に中国、ロシアは「持続的だが管理可能」な脅威とする（報道による要約）。北朝鮮は、韓国と日本への直接的な軍事的脅威とされ、韓国が抑止の主たる責任を担うとされる。 <sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup> 同戦略は、敵対国が協調的、または日和見的に動く可能性にも触れているという。 <sup id="fnref-13-4"><a href="#ref-13">[13]</a></sup></p>
+
+<h3 id="sec8-2">8.2 日本への含意</h3>
+
+<p>日本にとって、四か国は、すべて隣国か、重要な資源の供給元である。 CSIS の Strategic Japan シリーズの論考は、中ロの戦略爆撃機の共同飛行、日本の中東依存、そして日中関係の緊張を挙げる。日本は、石油の約 95% を中東から輸入している。ホルムズ海峡の封鎖は、日本のエネルギー安全保障を直撃する。 <sup id="fnref-13-5"><a href="#ref-13">[13]</a></sup> ローウィー研究所は、 2026 年 8 月の北朝鮮の短距離弾道ミサイルの発射（日本海上）、中国による日本の台湾有事に関する発言への非難、プーチン大統領の択捉島訪問を挙げて、日本が、四か国の動きの影響を、直接受ける位置にあると論じる。 <sup id="fnref-18-6"><a href="#ref-18">[18]</a></sup></p>
+
+<p>同論考の著者は、日本と米国が、四か国を一つの陣営として扱うことを避け、国別の戦略を立てるべきだと主張する。対中関係を二国間で安定させ、軍事的な抑止と経済的な関与を組み合わせる「リベラル抑止」を再検討するよう、勧めている。 <sup id="fnref-13-6"><a href="#ref-13">[13]</a></sup> この提言は、カーネギーの報告書が米国に勧める、「中国を他の三か国から切り離す」方向と重なる。 <sup id="fnref-7-12"><a href="#ref-7">[7]</a></sup> 日本の読者にとっての含意は、 CRINK の報道に接するとき、四か国の一体性を前提にせず、日本に直接かかわる二国間の糸――中ロの共同飛行、北朝鮮のミサイルとロシアの技術、中国の対日姿勢――を、個別に見る姿勢である。</p>
+
+<h2 id="sec9">9. 周縁の国々――エリトリアを例に</h2>
+
+<p>CRINK の輪郭を確かめるために、枠の外縁にある国々も見ておく。新権威主義ブロックは、四か国にベネズエラ、ベラルーシ、ミャンマーを加える。 <sup id="fnref-1-8"><a href="#ref-1">[1]</a></sup> Foreign Policy の記事が引くウクライナのポロシェンコ元大統領の発言は、ロシア、イラン、北朝鮮に、「おそらくベラルーシ」を加え、中国を除く。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> ブッシュ・センターの論考は、ロシアのキューバ、ニカラグア、ベネズエラとの関係や、アフリカでの活動を、 CRINK の競争の舞台として扱う。 <sup id="fnref-25-2"><a href="#ref-25">[25]</a></sup> これに対し、 RFE/RL の記事は、 CRINK の構成国を四か国だけとし、ほかの国名を挙げない。 <sup id="fnref-26-2"><a href="#ref-26">[26]</a></sup></p>
+
+<p>日本語版 Wikipedia は、四か国に加えて、枢軸に「合流しているとされる小国」として、ベラルーシ、キューバ、ニカラグア、エリトリア、ジンバブエ、ミャンマーなどを挙げる。この記述には出典の注がない。版履歴では、項目が新設された 2026 年 4 月 30 日の、同日の 2 回目の編集で、ニカラグア、エリトリア、ジンバブエが加わった。 9 月には、シリアとベネズエラが外された。 <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup><sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup> 英語版は、 CRINK を四か国に限り、周縁の国を別の語で扱うため、エリトリアに触れていない。 <sup id="fnref-1-9"><a href="#ref-1">[1]</a></sup></p>
+
+<p>エリトリアの実像は、ロシアとの関係を軸にしている。 2022 年 3 月の国連総会のロシア非難決議に反対した五か国（ロシア、ベラルーシ、北朝鮮、エリトリア、シリア）の一つで、ロシアのラブロフ外相は、 2023 年 1 月にアスマラを訪れ、マッサワ港と空港の物流の共同調査で一致した。 <sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup><sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup><sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> 中国とは、 2023 年 5 月に、アフェウェルキ大統領が国賓として訪中したが、協議の中心は、インフラや農業などの協力であり、軍事の合意は報じられていない。 <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup> 北朝鮮とは、国連が 2016 年に、軍用無線機の輸入を報告したが、制裁が解除された 2018 年以降の関係は、確認できない。 <sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup><sup id="fnref-35-1"><a href="#ref-35">[35]</a></sup> ロシアの基地についても、ワシントン近東政策研究所の論考は、アフェウェルキ大統領が 2021 年にアッサブの基地を申し出たが、プーチン大統領は、ポートスーダンを選んだと述べる。これは、研究者の立場から制裁緩和を訴える性格の論考であり、割り引いて読む必要がある。 <sup id="fnref-36-1"><a href="#ref-36">[36]</a></sup> エリトリアは、四か国の「構成国」というより、ロシアとの関係を軸に、中国や北朝鮮と別々の糸でつながる周縁の国である。この周縁を広げていくと、 CRINK の定義は、「米国と対立する国」と同義になり、概念が検証できなくなる。</p>
+
+<h2 id="sec10">10. 結論と確認の限界</h2>
+
+<h3 id="sec10-1">10.1 結論</h3>
+
+<p>結論は三つある。第一に、 CRINK は、六組の二国間関係が、濃さの違う糸として束ねられた状態である。中国とロシアが軸であり、ロシアと北朝鮮の間の糸が最も軍事的で、北朝鮮とイランの間の糸が最も細い。四か国が共通の条約や統合された指揮系統を持つ証拠はない。第二に、連携は 2022 年以降の戦争で試され、実体のある軍事的な支援は、ウクライナ戦争でロシアに向けて流れた。イランの二度の戦争では、言葉による支持と、画像や情報、部品の提供にとどまった。第三に、この束は、脆いが、無視できない。制裁を逃れる必要と米国への反発という動機は、連携を続けさせる。一方、距離、不信、利害の食い違いは、連携を深めさせない。</p>
+
+<p>この結論から、 CRINK の報道に接するときの、三つの問いが導かれる。</p>
+
+<ul>
+<li>誰と誰の糸の話か。四か国全体の話か、特定の二国間の話か。</li>
+<li>言葉か、物か。声明や会談の話か、砲弾、部品、兵力、情報が動いた話か。</li>
+<li>条約の文言は、義務を定めているか。「パートナーシップ」と「相互援助」は、別のものである。</li>
+</ul>
+
+<p>この三つの問いを通せば、「四か国が結束した」という見出しと、「二国間の取引が積み重なった」という実態の間にある距離を、自分で測ることができる。</p>
+
+<h3 id="sec10-2">10.2 確認の限界</h3>
+
+<ul>
+<li>主要紙・通信社の記事は、閲覧できないものが多く、確認できていない。 Reuters 、 AP 、ニューヨーク・タイムズ、ガーディアン、 BBC 、フィナンシャル・タイムズ、ル・モンド、シュピーゲルなどの記事を、直接は読んでいない。米国・欧州の報道は、 CNN 、 France 24 （ AFP 配信）、 Euronews （ Reuters 配信）、 Foreign Policy 、 VOA 、 RFE/RL で確かめた範囲にとどまる。日本の新聞の記事は、確認できていない。</li>
+<li>多くのシンクタンクの記述は、要約を介して確認した部分を含む。 2025 年の CSIS の連作と、 Atlantic Council の論考は、後半を要約に頼った部分がある。 CNAS の 2025 年 7 月の報告書は、本文を読めなかった。</li>
+<li>数字は、出典によって食い違う。砲弾の数、演習の回数、首脳級の往来の回数、イラン産原油の対中比率は、幅を持つ。本稿は、幅を示すか、出典を併記した。</li>
+<li>2026 年のイラン戦争の経過は、英語版 Wikipedia の要約と、匿名の情報源に基づく報道による。戦況は進行中であり、記述は 2026 年 11 月 23 日時点のものである。</li>
+<li>北朝鮮、イラン、ロシアの内情は、外部から検証しにくい。確認できなかった事柄は、存在しないことの証明ではない。</li>
+</ul>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> <sup><a href="#fnref-1-5">e</a></sup> <sup><a href="#fnref-1-6">f</a></sup> <sup><a href="#fnref-1-7">g</a></sup> <sup><a href="#fnref-1-8">h</a></sup> <sup><a href="#fnref-1-9">i</a></sup> 「 CRINK 」『 Wikipedia 』英語版。 2026 年 11 月 23 日閲覧。 <a href="https://en.wikipedia.org/wiki/CRINK">Wikipedia （英語版）</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> Robbie Gramer, &quot;Looks Like 'Axis of Evil' Is Back on the Menu,&quot; <em>Foreign Policy</em>, 2023 年 11 月 29 日。 <a href="https://foreignpolicy.com/2023/11/29/axis-of-evil-russia-china-iran-north-korea-bush-era/">Foreign Policy</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> <sup><a href="#fnref-3-3">c</a></sup> 相澤李帆「中国・ロシア・イラン・北朝鮮による新たな枢軸？ ――対抗勢力間の連携をめぐる米国政府の認識と政策議論」日本国際問題研究所『研究レポート』 FY2024-6 、 2025 年 3 月 31 日。 <a href="https://www.jiia.or.jp/jpn/report/2025/03/research-report/security-fy2024-06.html">日本国際問題研究所</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> <sup><a href="#fnref-4-4">d</a></sup> Angela Stent, &quot;The CRINK: Inside the new bloc supporting Russia's war against Ukraine,&quot; Atlantic Council, 2025 年 10 月 23 日。 <a href="https://www.atlanticcouncil.org/content-series/russia-tomorrow/the-crink-inside-the-new-bloc-supporting-russias-war-against-ukraine/">Atlantic Council</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> <sup><a href="#fnref-5-3">c</a></sup> <sup><a href="#fnref-5-4">d</a></sup> <sup><a href="#fnref-5-5">e</a></sup> Jung Jae Kwon, &quot;China, Russia, and North Korea's 'Axis of Upheaval',&quot; UC Institute on Global Conflict and Cooperation, 2026 年 6 月 29 日。 <a href="https://ucigcc.org/blog/china-russia-and-north-koreas-axis-of-upheaval/">IGCC</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> <sup><a href="#fnref-6-3">c</a></sup> <sup><a href="#fnref-6-4">d</a></sup> <sup><a href="#fnref-6-5">e</a></sup> <sup><a href="#fnref-6-6">f</a></sup> <sup><a href="#fnref-6-7">g</a></sup> <sup><a href="#fnref-6-8">h</a></sup> <sup><a href="#fnref-6-9">i</a></sup> <sup><a href="#fnref-6-10">j</a></sup> <sup><a href="#fnref-6-11">k</a></sup> <sup><a href="#fnref-6-12">l</a></sup> <sup><a href="#fnref-6-13">m</a></sup> <sup><a href="#fnref-6-14">n</a></sup> Bonny Lin, Brian Hart, Leon Li, Hugh Grant-Chapman, Truly Tinsley and Feifei Hung, &quot;CRINK Security Ties: Growing Cooperation, Anchored by China and Russia,&quot; CSIS Brief, 2025 年 9 月 30 日。 <a href="https://www.csis.org/analysis/crink-security-ties-growing-cooperation-anchored-china-and-russia">CSIS</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> <sup><a href="#fnref-7-3">c</a></sup> <sup><a href="#fnref-7-4">d</a></sup> <sup><a href="#fnref-7-5">e</a></sup> <sup><a href="#fnref-7-6">f</a></sup> <sup><a href="#fnref-7-7">g</a></sup> <sup><a href="#fnref-7-8">h</a></sup> <sup><a href="#fnref-7-9">i</a></sup> <sup><a href="#fnref-7-10">j</a></sup> <sup><a href="#fnref-7-11">k</a></sup> <sup><a href="#fnref-7-12">l</a></sup> Christopher S. Chivvis and Jack Keating, <em>Cooperation Between China, Iran, North Korea, and Russia: Current and Potential Future Threats to America</em>, Carnegie Endowment for International Peace, 2024 年 10 月 8 日。 <a href="https://carnegieendowment.org/research/2024/10/cooperation-between-china-iran-north-korea-and-russia-current-and-potential-future-threats-to-america">カーネギー国際平和財団</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> <sup><a href="#fnref-8-3">c</a></sup> <sup><a href="#fnref-8-4">d</a></sup> <sup><a href="#fnref-8-5">e</a></sup> <sup><a href="#fnref-8-6">f</a></sup> <sup><a href="#fnref-8-7">g</a></sup> <sup><a href="#fnref-8-8">h</a></sup> <sup><a href="#fnref-8-9">i</a></sup> <sup><a href="#fnref-8-10">j</a></sup> <sup><a href="#fnref-8-11">k</a></sup> <sup><a href="#fnref-8-12">l</a></sup> <sup><a href="#fnref-8-13">m</a></sup> <sup><a href="#fnref-8-14">n</a></sup> <sup><a href="#fnref-8-15">o</a></sup> <sup><a href="#fnref-8-16">p</a></sup> <sup><a href="#fnref-8-17">q</a></sup> <sup><a href="#fnref-8-18">r</a></sup> Maria Snegovaya, Nicholas Fenton and Tina Dolbaia, &quot;CRINK Economic Ties: Uneven Patterns of Collaboration,&quot; CSIS Brief, 2025 年 9 月 4 日。 <a href="https://www.csis.org/analysis/crink-economic-ties-uneven-patterns-collaboration">CSIS</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> <sup><a href="#fnref-9-3">c</a></sup> <sup><a href="#fnref-9-4">d</a></sup> <sup><a href="#fnref-9-5">e</a></sup> <sup><a href="#fnref-9-6">f</a></sup> <sup><a href="#fnref-9-7">g</a></sup> &quot;Unpacking the CRINK Axis,&quot; CSIS のイベント記録（登壇者 Bonny Lin, Maria Snegovaya, Mona Yacoubian ほか）、 2025 年 10 月 28 日。 <a href="https://www.csis.org/analysis/unpacking-crink-axis">CSIS</a></li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> <sup><a href="#fnref-10-3">c</a></sup> <sup><a href="#fnref-10-4">d</a></sup> <sup><a href="#fnref-10-5">e</a></sup> <sup><a href="#fnref-10-6">f</a></sup> <sup><a href="#fnref-10-7">g</a></sup> <sup><a href="#fnref-10-8">h</a></sup> <sup><a href="#fnref-10-9">i</a></sup> <sup><a href="#fnref-10-10">j</a></sup> <sup><a href="#fnref-10-11">k</a></sup> <sup><a href="#fnref-10-12">l</a></sup> Mona Yacoubian and Briana Winslow, &quot;CRINK Diplomatic Ties: A Broader Tilt Toward the Global South,&quot; CSIS Brief, 2025 年 9 月 26 日（同年 11 月 14 日更新）。 <a href="https://www.csis.org/analysis/crink-diplomatic-ties-broader-tilt-toward-global-south">CSIS</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> <sup><a href="#fnref-11-4">d</a></sup> <sup><a href="#fnref-11-5">e</a></sup> <sup><a href="#fnref-11-6">f</a></sup> <sup><a href="#fnref-11-7">g</a></sup> <sup><a href="#fnref-11-8">h</a></sup> <sup><a href="#fnref-11-9">i</a></sup> Brian Hart, Bonny Lin, Maria Snegovaya and Mona Yacoubian, &quot;CRINK in 10 Charts,&quot; CSIS, 2025 年 11 月 24 日。 <a href="https://www.csis.org/analysis/crink-10-charts">CSIS</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> <sup><a href="#fnref-12-3">c</a></sup> <sup><a href="#fnref-12-4">d</a></sup> <sup><a href="#fnref-12-5">e</a></sup> <sup><a href="#fnref-12-6">f</a></sup> Edward Howell, &quot;Whilst Not a Strategic Alliance, the CRINK Axis Remains a Big Deal,&quot; CSIS Korea Chair Platform, 2025 年 11 月 24 日。 <a href="https://www.csis.org/analysis/whilst-not-strategic-alliance-crink-axis-remains-big-deal">CSIS</a></li>
+<li id="ref-13">^ <sup><a href="#fnref-13-1">a</a></sup> <sup><a href="#fnref-13-2">b</a></sup> <sup><a href="#fnref-13-3">c</a></sup> <sup><a href="#fnref-13-4">d</a></sup> <sup><a href="#fnref-13-5">e</a></sup> <sup><a href="#fnref-13-6">f</a></sup> Chikako Kawakatsu Ueki, &quot;China and CRINK: Implications for Japan and the United States,&quot; CSIS Strategic Japan, 2026 年 7 月 21 日。 <a href="https://www.csis.org/analysis/china-and-crink-implications-japan-and-united-states">CSIS</a></li>
+<li id="ref-14">^ <sup><a href="#fnref-14-1">a</a></sup> <sup><a href="#fnref-14-2">b</a></sup> <sup><a href="#fnref-14-3">c</a></sup> <sup><a href="#fnref-14-4">d</a></sup> <sup><a href="#fnref-14-5">e</a></sup> <sup><a href="#fnref-14-6">f</a></sup> Anni Coonan, &quot;CRINK: The Strategic Limits of the New 'Axis of Upheaval',&quot; Steptoe, Stepwise Risk Outlook, 2025 年 7 月 18 日。 <a href="https://www.steptoe.com/en/news-publications/stepwise-risk-outlook/crink-the-strategic-limits-of-the-new-axis-of-upheaval.html">Steptoe</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> &quot;Kim Jong Un says his 'heart aches' over North Korean soldiers killed fighting for Russia, in rare admission of losses,&quot; CNN, 2025 年 8 月 21 日。 <a href="https://www.cnn.com/2025/08/21/asia/kim-jong-un-north-korea-soldiers-russia-ukraine-intl-hnk">CNN</a></li>
+<li id="ref-16">^ <sup><a href="#fnref-16-1">a</a></sup> <sup><a href="#fnref-16-2">b</a></sup> <sup><a href="#fnref-16-3">c</a></sup> <sup><a href="#fnref-16-4">d</a></sup> &quot;What we know about Xi's visit to North Korea,&quot; AFP 配信、 France 24 掲載、 2026 年 6 月 9 日。 <a href="https://www.france24.com/en/live-news/20260609-what-we-know-about-xi-s-visit-to-north-korea">France 24</a></li>
+<li id="ref-17"><a href="#fnref-17-1">^</a> &quot;Xi, Putin and Kim stand united at Beijing military parade in historic show of authoritarian strength,&quot; CNN, 2025 年 9 月 3 日。 <a href="https://www.cnn.com/2025/09/03/china/china-military-parade-authoritarian-leaders-intl-hnk">CNN</a></li>
+<li id="ref-18">^ <sup><a href="#fnref-18-1">a</a></sup> <sup><a href="#fnref-18-2">b</a></sup> <sup><a href="#fnref-18-3">c</a></sup> <sup><a href="#fnref-18-4">d</a></sup> <sup><a href="#fnref-18-5">e</a></sup> <sup><a href="#fnref-18-6">f</a></sup> Khang Vu, &quot;CRINK: the coalition that isn't,&quot; Lowy Institute, The Interpreter, 2026 年 9 月 4 日。 <a href="https://www.lowyinstitute.org/the-interpreter/crink-the-coalition-that-isn-t">Lowy Institute</a></li>
+<li id="ref-19">^ <sup><a href="#fnref-19-1">a</a></sup> <sup><a href="#fnref-19-2">b</a></sup> 「 2026 Iran war 」『 Wikipedia 』英語版。 2026 年 11 月 23 日閲覧。 <a href="https://en.wikipedia.org/wiki/2026_Iran_war">Wikipedia （英語版）</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> &quot;Intelligence from Chinese groups aiding in Iran's increasingly effective targeting of US sites, sources say,&quot; CNN, 2026 年 9 月 25 日。 <a href="https://www.cnn.com/2026/09/25/politics/china-intelligence-iran-targeting-hormuz">CNN</a></li>
+<li id="ref-21"><a href="#fnref-21-1">^</a> &quot;Space-Based Intelligence: Iran's Strikes in 2026,&quot; IFRI （フランス国際関係研究所）のメモ。 <a href="https://www.ifri.org/en/memos/toward-space-based-intelligence-all-case-spring-2026-iranian-strikes">IFRI</a></li>
+<li id="ref-22">^ <sup><a href="#fnref-22-1">a</a></sup> <sup><a href="#fnref-22-2">b</a></sup> Andrea Kendall-Taylor, &quot;Forecasting the Future of the Axis of Upheaval: The View from Moscow,&quot; CNAS, 2026 年 7 月 14 日。 <a href="https://www.cnas.org/publications/reports/forecasting-the-future-of-the-axis-of-upheaval">CNAS</a></li>
+<li id="ref-23"><a href="#fnref-23-1">^</a> Lavina Lee, &quot;Trump's unpredictable foreign policy risks emboldening 'axis of upheaval',&quot; United States Studies Centre, 2026 年 4 月 21 日（シドニー・モーニング・ヘラルド紙のインタビューの紹介）。 <a href="https://www.ussc.edu.au/trump-s-unpredictable-foreign-policy-risks-emboldening-axis-of-upheaval">United States Studies Centre</a></li>
+<li id="ref-24">^ <sup><a href="#fnref-24-1">a</a></sup> <sup><a href="#fnref-24-2">b</a></sup> Jonathan Fulton, <em>Coordination without Commitment: China and the CRINKs</em>, Oxus Society for Central Asian Affairs, 2026 年 3 月 30 日。 <a href="https://oxussociety.org/publications/fault-lines-china-coordination-without-commitment">Oxus Society</a></li>
+<li id="ref-25">^ <sup><a href="#fnref-25-1">a</a></sup> <sup><a href="#fnref-25-2">b</a></sup> George W. Bush Presidential Center, &quot;CRINK countries increasingly cooperate around the world. U.S. policy must reflect this new dynamic.&quot; 日付と著者名は、確認した版では表示されていない。 <a href="http://www.bushcenter.org/publications/crink-countries-increasingly-cooperate-around-the-world-u-s-policy-must-reflect-this-new-dynamic">Bush Center</a></li>
+<li id="ref-26">^ <sup><a href="#fnref-26-1">a</a></sup> <sup><a href="#fnref-26-2">b</a></sup> Alex Raufoglu, &quot;Cooperating Autocrats Form A 'CRINK' In The Road For The US, Western Democracies,&quot; Radio Free Europe/Radio Liberty, 2026 年 8 月 12 日。 <a href="https://www.rferl.org/a/crinks-alignment-challenge-west-china-us-russia-iran-ukraine/33827576.html">RFE/RL</a></li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> &quot;Department of War Releases National Defense Strategy,&quot; Military.com, 2026 年 1 月 23 日。 <a href="https://www.military.com/feature/2026/01/23/department-of-war-releases-national-defense-strategy-homeland-forefront.html">Military.com</a></li>
+<li id="ref-28"><a href="#fnref-28-1">^</a> 「 CRINK 」『 Wikipedia 』日本語版。 2026 年 11 月 23 日閲覧。 <a href="https://ja.wikipedia.org/wiki/CRINK">Wikipedia （日本語版）</a></li>
+<li id="ref-29"><a href="#fnref-29-1">^</a> 「 CRINK 」『 Wikipedia 』日本語版、版の履歴。 2026 年 11 月 23 日閲覧。 <a href="https://ja.wikipedia.org/w/index.php?title=CRINK&amp;action=history">Wikipedia （版の履歴）</a></li>
+<li id="ref-30"><a href="#fnref-30-1">^</a> United Nations General Assembly, <em>Aggression against Ukraine</em>, resolution ES-11/1, adopted 2 March 2022 。 <a href="https://digitallibrary.un.org/record/3965290?ln=en">国連デジタル図書館</a></li>
+<li id="ref-31"><a href="#fnref-31-1">^</a> Ebenezer Obadare, &quot;Russia's Invasion of Ukraine May Drive a Wedge Between the West and Africa,&quot; Council on Foreign Relations, 2022 年 3 月 22 日。 <a href="https://www.cfr.org/articles/russias-invasion-ukraine-may-drive-wedge-between-west-and-africa">外交問題評議会</a></li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> Duncan Miriri, &quot;Lavrov shores up Eritrean support for Russia over Ukraine conflict,&quot; Reuters 配信、 Euronews 掲載、 2023 年 1 月 28 日。 <a href="https://www.euronews.com/2023/01/28/ukraine-crisis-russia-eritrea">Euronews</a></li>
+<li id="ref-33"><a href="#fnref-33-1">^</a> Salem Solomon, &quot;In State Visit, Eritrea and China Signal Deeper Partnership,&quot; Voice of America, 2023 年 5 月 22 日。 <a href="https://www.voanews.com/a/in-state-visit-eritrea-and-china-signal-deeper-partnership-/7104234.html">VOA News</a></li>
+<li id="ref-34"><a href="#fnref-34-1">^</a> Voice of America, &quot;US sanctions Eritrea navy over North Korea links.&quot; <a href="https://www.voanews.com/a/us-sanctions-eritrea-navy-over-north-korea-links/3802651.html">VOA News</a></li>
+<li id="ref-35"><a href="#fnref-35-1">^</a> United Nations Security Council, <em>Resolution 2444 (2018)</em>, adopted 14 November 2018 。 <a href="https://digitallibrary.un.org/record/1652454">国連デジタル図書館</a></li>
+<li id="ref-36"><a href="#fnref-36-1">^</a> Habtom Ghebrezghiabher and Tesfazion Gerhelase, &quot;Eritrea: Supporting Russia to Stay in Power,&quot; Washington Institute for Near East Policy (Fikra Forum) , 2022 年 4 月 13 日。 <a href="https://www.washingtoninstitute.org/policy-analysis/eritrea-supporting-russia-stay-power">ワシントン近東政策研究所</a></li>
+</ol>
+<p class="endnote">本稿は、公開されている分析と報道に基づく整理であり、四か国の軍事・外交の内情を独自に調査したものではない。確認できなかった事項は、存在しないことの証明ではない。</p>
+</div>
+
+</main>
+</body>
+</html>
