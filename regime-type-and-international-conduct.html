@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>独裁国家は束になるのか――体制の型と、同盟・戦争・平和</title>
+<style>
+  /* 配色(薄い緑の基調)。色はここだけで決め、以降は var() で参照する */
+  :root{--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#d7dcd2;--box:#eceee7}
+  body { font-size: 1.05rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: .9rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.4rem; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+  /* 見出し */
+  h2 { font-size: 1.05rem; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  /* 表 */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--box); white-space: nowrap; }
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: .92em; }
+  pre { overflow-x: auto; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字(SKILL.md の「ターミナル入力」) */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・必須・ラベル・チェックリスト */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: #fff6d6; border-left: 5px solid #d9a400; padding: .7rem 1rem; margin: 1rem 0; }
+  .must { background: #fde8e6; border-left: 5px solid #c0392b; padding: .7rem 1rem; margin: 1rem 0; }
+  .tag { display: inline-block; font-size: .8rem; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* チェックリスト(div.checklist。マークアップは SKILL.md の「チェックリスト」) */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin-bottom: .6rem; }
+  .checklist .cl-title::before { content: "✅ "; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .7rem; width: 1.25rem; height: 1.25rem; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  .save-note { font-size: .8125rem; color: var(--muted); text-align: center; margin: .5rem 0 0; }
+  /* 目次(nav.toc。マークアップは SKILL.md の「見出し番号と目次」) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:.9rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:.9rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:40rem){
+    .toc>ol{columns:1}
+  }
+  /* 脚注の参照番号(マークアップは SKILL.md の「脚注と参考文献」) */
+  sup{font-size:.72em}
+  sup a{color:var(--accent);text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:.9rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--box)}
+  /* 末尾の注記 */
+  .endnote { font-size: .9rem; color: var(--muted); }
+  /* 表のカード化(幅 40rem 以下)。table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 40rem) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; box-sizing: border-box; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; box-sizing: border-box; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; box-sizing: border-box; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: .95rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; white-space: normal; text-align: left; }
+  }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">国際政治・比較政治</p>
+<h1>独裁国家は束になるのか<br>――体制の型と、同盟・戦争・平和</h1>
+<p class="subtitle">Regime Type and International Conduct: The CRINK Alignment, the Causes of War, and the Limits of Democratic Peace</p>
+<div class="lede"><p>結論を先に述べる。第一に、中国、ロシア、イラン、北朝鮮は、一つの陣営ではない。六組の二国間関係が、濃さの違う糸として束ねられたものであり、糸を結んだのは体制の共通性よりも、制裁と戦争の需要である。第二に、民主主義の水準の低さは、その国が他国に何をするかを、単独では説明しない。 2026 年に相次いだ大きな軍事行動のうち、二つを始めたのは選挙で選ばれた政府だった。第三に、成熟した民主主義どうしが戦争をしにくいという経験則は頑健だが、だから独裁を倒せば平和になる、という結論は導けない。体制の型は、結末を決める原因ではなく、誤算を止める仕組みの有無として効いてくる。</p></div>
+<div class="meta"><strong>【方法と限界】</strong> 本稿は、「悪の枢軸」という語と民主主義指数の関係、 CRINK （中国・ロシア・イラン・北朝鮮）の連携、民主的平和論と体制転換、東アジアの民主化をめぐる思考実験を別々に論じた複数の記事を解体し、「体制の型は対外行動を説明するか」という一つの問いのもとに組み直したものである。評価の時点は 2026 年 11 月 24 日である。貿易・兵器・兵力の数値には推計が多く、ロシア、イラン、北朝鮮は多くを公表していない。戦略国際問題研究所 (CSIS) の連作と OHCHR の発表は、今回は原文を閲覧できず、 CSIS の一部の数値は要約で、残りは解体前の記事の確認結果に依拠した。 2026 年のイラン戦争とウクライナの交渉は進行中で、英語版 Wikipedia と、匿名の情報源による報道への依存が大きい。当事国が認めていない事柄は、そう明記した。</div>
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">「悪の枢軸」から「 CRINK 」へ――名づけは結論を先取りする</a>
+<ol>
+<li><a href="#sec1-1">大統領の演説と、会議場の造語</a></li>
+<li><a href="#sec1-2">一つの形容詞に、三つの主張</a></li>
+</ol>
+</li>
+<li><a href="#sec2">指数は何を言い、何を言わないか</a>
+<ol>
+<li><a href="#sec2-1">四か国だけを見ない</a></li>
+<li><a href="#sec2-2">ロシアの低さは、誰の仕業か</a></li>
+<li><a href="#sec2-3">投票が語ること</a></li>
+</ol>
+</li>
+<li><a href="#sec3">六本の糸――連携の実際</a>
+<ol>
+<li><a href="#sec3-1">四つの物差し</a></li>
+<li><a href="#sec3-2">太い糸――中ロと、ロ朝</a></li>
+<li><a href="#sec3-3">管理される糸――中朝</a></li>
+<li><a href="#sec3-4">細い糸と、面の不在</a></li>
+</ol>
+</li>
+<li><a href="#sec4">三度の試験――攻撃されたとき、仲間は動いたか</a>
+<ol>
+<li><a href="#sec4-1">言葉だけの支持――2025 年 6 月</a></li>
+<li><a href="#sec4-2">連れ去られた大統領――2026 年 1 月のベネズエラ</a></li>
+<li><a href="#sec4-3">偽装された補給――2026 年のイラン戦争</a></li>
+</ol>
+</li>
+<li><a href="#sec5">なぜ深まらず、なぜ解けないのか</a>
+<ol>
+<li><a href="#sec5-1">六つの摩擦</a></li>
+<li><a href="#sec5-2">重く見る側と、軽く見る側は、違う問いに答えている</a></li>
+</ol>
+</li>
+<li><a href="#sec6">独裁は戦争を好むのか</a>
+<ol>
+<li><a href="#sec6-1">観客に叱られる指導者</a></li>
+<li><a href="#sec6-2">止める者のいない戦争――三つの経路</a></li>
+</ol>
+</li>
+<li><a href="#sec7">民主主義は平和をもたらすのか</a>
+<ol>
+<li><a href="#sec7-1">頑健な経験則と、その限定</a></li>
+<li><a href="#sec7-2">民主化すると、かえって戦争が増えるのか</a></li>
+<li><a href="#sec7-3">外から持ち込めるのか</a></li>
+</ol>
+</li>
+<li><a href="#sec8">思考実験――もし中国、ロシア、北朝鮮が民主化したら</a>
+<ol>
+<li><a href="#sec8-1">楽観の論拠</a></li>
+<li><a href="#sec8-2">三つの検証</a></li>
+</ol>
+</li>
+<li><a href="#sec9">日本から見る――糸を一本ずつ</a>
+<ol>
+<li><a href="#sec9-1">四か国は、日本の隣で交わる</a></li>
+<li><a href="#sec9-2">報道を読むための三つの問い</a></li>
+</ol>
+</li>
+<li><a href="#sec10">結論と、その限界</a>
+<ol>
+<li><a href="#sec10-1">三つの主張への答え</a></li>
+<li><a href="#sec10-2">確認の限界</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+<h2 id="sec1">1. 「悪の枢軸」から「 CRINK 」へ――名づけは結論を先取りする</h2>
+<h3 id="sec1-1">1.1 大統領の演説と、会議場の造語</h3>
+<p>2002 年 1 月 29 日、ジョージ・ W ・ブッシュ米大統領は、就任後初の一般教書演説で、北朝鮮、イラン、イラクを挙げ、「悪の枢軸」と呼んだ。理由として並べたのは、大量破壊兵器の追求とテロの支援である。北朝鮮については国民を飢えさせていること、イランについては選挙によらない少数者が自由への希望を抑えていることも語られた。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> この時点ですでに、国内の抑圧と国外の脅威は、一つの形容詞のなかで溶け合っている。</p>
+<p>20 年あまりのちに、別の頭文字が現れる。 2023 年 11 月 17 日、カナダのハリファクスで開かれた国際安全保障フォーラムで、会長のピーター・ヴァン・プラーグが、中国、ロシア、イラン、北朝鮮を CRINK と呼んだ。研究から生まれた概念ではなく、開会の挨拶から生まれた標語である。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup><sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> 以後、同じ対象に、論者の数だけ名前が付いた。</p>
+<table class="cards">
+<thead><tr><th>呼び名</th><th>提唱</th><th>含意</th></tr></thead>
+<tbody>
+<tr><td data-label="呼び名">悪の枢軸</td><td data-label="提唱">2002 年、ブッシュ大統領。イラク、イラン、北朝鮮</td><td data-label="含意">道徳的な断罪と、一体性</td></tr>
+<tr><td data-label="呼び名">CRINK</td><td data-label="提唱">2023 年、ハリファクス国際安全保障フォーラム</td><td data-label="含意">略称。一体性を暗示するが、定義はない</td></tr>
+<tr><td data-label="呼び名">動乱の枢軸 (Axis of Upheaval)</td><td data-label="提唱">2024 年、ケンドール＝テイラーとフォンテイン (CNAS)</td><td data-label="含意">現状を壊す意図の共有</td></tr>
+<tr><td data-label="呼び名">戦略的収斂</td><td data-label="提唱">NATO の政策企画部門の用法</td><td data-label="含意">意図ではなく、利害の重なり</td></tr>
+<tr><td data-label="呼び名">適応的なネットワーク</td><td data-label="提唱">2026 年、ケンドール＝テイラー</td><td data-label="含意">同盟ではなく、状況に応じた組み替え <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup></td></tr>
+</tbody>
+</table>
+<p>最後の行が示唆に富む。「枢軸」の語を広めた当人が、 2026 年 7 月の報告書では、正式な同盟ではなく適応的なネットワークだ、と言い直している。バイデン政権もトランプ政権も、 CRINK という語を公式には使っていない。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<h3 id="sec1-2">1.2 一つの形容詞に、三つの主張</h3>
+<p>四か国を「悪」と感じる感覚は、三つの主張に分けられる。四か国は民主的でない。四か国は他国を威圧している。四か国は一つの陣営をなしている。三つは独立に真偽を問える。しかも、一つ目が二つ目と三つ目の原因だという暗黙の推論が、あいだを接着している。国内で人々を抑えつける国は、国外でも乱暴であり、似た者どうしで群れるはずだ、という推論である。</p>
+<p>この接着剤が本物かどうかを、本稿は確かめる。 2 章で指数を、 3 章から 5 章で陣営を、 6 章から 8 章で戦争と平和を扱う。</p>
+
+<h2 id="sec2">2. 指数は何を言い、何を言わないか</h2>
+<h3 id="sec2-1">2.1 四か国だけを見ない</h3>
+<p>フリーダム・ハウスの 2026 年版は、 100 点満点で、中国 9 、ロシア 12 、イラン 10 、北朝鮮 3 を付けた。いずれも「不自由」である。一つ目の主張は、正しい。しかし、並べる相手を変えると、景色が変わる。</p>
+<table class="cards">
+<thead><tr><th>国</th><th>点数</th><th>国際政治での位置</th></tr></thead>
+<tbody>
+<tr><td data-label="国">南スーダン</td><td data-label="点数">0</td><td data-label="国際政治での位置">内戦と貧困。大国間の対立の主役ではない</td></tr>
+<tr><td data-label="国">トルクメニスタン</td><td data-label="点数">1</td><td data-label="国際政治での位置">永世中立を掲げる</td></tr>
+<tr><td data-label="国">北朝鮮</td><td data-label="点数">3</td><td data-label="国際政治での位置">CRINK</td></tr>
+<tr><td data-label="国">エリトリア</td><td data-label="点数">3</td><td data-label="国際政治での位置">ロシアのウクライナ侵攻を非難する国連決議に反対した 5 か国の一つ</td></tr>
+<tr><td data-label="国">ミャンマー</td><td data-label="点数">4</td><td data-label="国際政治での位置">中国・ロシアと近い軍主導の政権</td></tr>
+<tr><td data-label="国">ベラルーシ</td><td data-label="点数">7</td><td data-label="国際政治での位置">ロシアの同盟国</td></tr>
+<tr><td data-label="国">中国</td><td data-label="点数">9</td><td data-label="国際政治での位置">CRINK</td></tr>
+<tr><td data-label="国">サウジアラビア</td><td data-label="点数">9</td><td data-label="国際政治での位置">米国の長年の安全保障上の協力国</td></tr>
+<tr><td data-label="国">イラン</td><td data-label="点数">10</td><td data-label="国際政治での位置">CRINK</td></tr>
+<tr><td data-label="国">ロシア</td><td data-label="点数">12</td><td data-label="国際政治での位置">CRINK</td></tr>
+<tr><td data-label="国">ベネズエラ</td><td data-label="点数">13</td><td data-label="国際政治での位置">2026 年 1 月に米軍が大統領を拘束</td></tr>
+</tbody>
+</table>
+<p>点数は、同機関の国別のページによる。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> サウジアラビアと中国は同点で、イランはそれより高い。イランが、サウジアラビアより「悪」の名に値するとすれば、その理由は国内の自由の乏しさではありえない。点数だけで枢軸を選べば、南スーダンとトルクメニスタンが先頭に立つ。指数は、国内の体制を測る道具であり、隣国への態度を測る道具ではない。</p>
+<h3 id="sec2-2">2.2 ロシアの低さは、誰の仕業か</h3>
+<p>では、低さを「悪」と呼べるのか。「悪」という語は、選んだ者がいることを前提にする。 EIU の 2024 年版は、ロシアの総合点を 2.03 とし、内訳を、選挙過程 0.00 、政府の機能 2.14 、政治参加 2.22 、政治文化 3.75 、市民的自由 2.06 とした。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup> 最も低い選挙過程と、法律や訴追によって直接に左右される市民的自由は、政権の行為で説明しやすい。最も高い政治文化は、社会の側の態度も映しており、政権だけの仕業とは言いにくい。</p>
+<p>行為の証拠は積み上がっている。国連の特別報告者の集計として報じられたところでは、 2026 年 9 月の時点で、政治的な動機による訴追の対象は 4,968 人、うち 2,178 人が拘禁されている。平均の刑期は、 2021 年の 7 年未満から 11 年に延び、反逆罪とスパイ罪の有罪は 2025 年に 468 件で、前年から 3 割増えた。無罪はない。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup> 数え方の違うヒューマン・ライツ・ウォッチの集計とは、直接には比べられない。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup> それでも、増加の方向は一致している。政権の選択に帰せられる部分は、確かにある。ただし、その選択は、自国民に対するものである。国外の行動は、別に確かめなければならない。</p>
+<h3 id="sec2-3">2.3 投票が語ること</h3>
+<p>国連総会の投票は、対外的な立場をそろえて比べられる数少ない場である。 2022 年 3 月 2 日の決議 ES-11/1 （ウクライナへの侵略）は、賛成 141 、反対 5 、棄権 35 で採択された。反対は、ロシア、ベラルーシ、北朝鮮、エリトリア、シリアである。中国とイランは棄権した。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup> 四か国は、最も大きな踏み絵の前で、すでに二つに割れていた。</p>
+<p>割れ方を、もう少し細かく見る必要がある。陣営とは、似ていることではなく、動くことだからである。</p>
+
+<h2 id="sec3">3. 六本の糸――連携の実際</h2>
+<h3 id="sec3-1">3.1 四つの物差し</h3>
+<p>連携の強さを、四つの物差しで測る。条約上の義務。兵器、兵力、部品、資金の実際の移転。経済の相互依存。国連などでの同調である。条約があっても物が動かない関係があり、条約がなくても物が動く関係がある。一つだけでは測れない。</p>
+<div style="overflow-x:auto;margin:1.2rem 0">
+<svg width="640" height="400" viewBox="0 0 640 400" role="img" aria-label="中国、ロシア、イラン、北朝鮮の六組の二国間関係を線の太さで示す図。中国とロシア、ロシアと北朝鮮が太く、中国と北朝鮮、中国とイラン、ロシアとイランが中くらい、北朝鮮とイランが細い点線である">
+<g stroke="#3d5a52" fill="none">
+<line x1="150" y1="90" x2="490" y2="90" stroke-width="12"/>
+<line x1="490" y1="90" x2="490" y2="310" stroke-width="9"/>
+<line x1="150" y1="90" x2="150" y2="310" stroke-width="5"/>
+<line x1="150" y1="90" x2="490" y2="310" stroke-width="5"/>
+<line x1="490" y1="90" x2="150" y2="310" stroke-width="5"/>
+<line x1="150" y1="310" x2="490" y2="310" stroke-width="1.5" stroke-dasharray="5 6"/>
+</g>
+<g fill="#f7f8f6" stroke="#242522" stroke-width="1.5"><circle cx="150" cy="90" r="46"/><circle cx="490" cy="90" r="46"/><circle cx="150" cy="310" r="46"/><circle cx="490" cy="310" r="46"/></g>
+<g font-size="17" font-weight="700" fill="#242522" text-anchor="middle"><text x="150" y="96">中国</text><text x="490" y="96">ロシア</text><text x="150" y="316">イラン</text><text x="490" y="316">北朝鮮</text></g>
+<g font-size="13" fill="#242522" text-anchor="middle"><text x="320" y="72">部品・エネルギー・外交</text><text x="320" y="332">ほぼ動かない</text><text x="62" y="196">原油</text><text x="62" y="214">（一方向）</text><text x="580" y="196">砲弾・兵力</text><text x="580" y="214">（条約あり）</text></g>
+<text x="320" y="385" font-size="13" fill="#65695f" text-anchor="middle">線の太さは筆者の見立て。四か国すべてを結ぶ面は、存在しない</text>
+</svg>
+</div>
+<table class="cards">
+<thead><tr><th>二国間</th><th>条約上の義務</th><th>動いたもの</th><th>限界</th></tr></thead>
+<tbody>
+<tr><td data-label="二国間">中国・ロシア</td><td data-label="条約上の義務">2022 年 2 月の「限界のない」パートナーシップ。相互防衛の義務はない</td><td data-label="動いたもの">工作機械、電子部品、エネルギー。 2024 年の貿易は 2,450 億ドル超で、他の五組を圧倒 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup></td><td data-label="限界">致死性の兵器と部隊は動いていない。ロシアは輸出の 32.7% を中国に頼り、中国の輸入に占めるロシアは 6.1% （ 2023 年） <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup></td></tr>
+<tr><td data-label="二国間">ロシア・北朝鮮</td><td data-label="条約上の義務">2024 年 6 月 19 日署名の包括的戦略的パートナーシップ条約。第 4 条が、武力攻撃を受けた側への遅滞のない軍事的その他の援助を定める <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup></td><td data-label="動いたもの">砲弾、弾道ミサイル、兵力。 2026 年初めにもクルスクに約 1 万 1,000 人 <sup id="fnref-14-1"><a href="#ref-14">[14]</a></sup></td><td data-label="限界">見返りの技術移転の中身は見えない。ロシアの需要に依存</td></tr>
+<tr><td data-label="二国間">ロシア・イラン</td><td data-label="条約上の義務">2025 年 1 月の条約。相互防衛条項はない <sup id="fnref-15-1"><a href="#ref-15">[15]</a></sup></td><td data-label="動いたもの">2022 年にはイランからドローン。 2026 年の戦争では、ロシアから情報、ドローン、ミサイルの補充が報じられた</td><td data-label="限界">ロシアは直接の参戦を避けた</td></tr>
+<tr><td data-label="二国間">中国・イラン</td><td data-label="条約上の義務">2021 年の 25 年協定</td><td data-label="動いたもの">原油の購入。軍民両用の部品、衛星画像（企業によるものを含む報道）</td><td data-label="限界">中国はサウジアラビアなど湾岸諸国との取引のほうが大きい <sup id="fnref-16-1"><a href="#ref-16">[16]</a></sup></td></tr>
+<tr><td data-label="二国間">中国・北朝鮮</td><td data-label="条約上の義務">1961 年の相互援助条約（ 2021 年に 20 年更新）</td><td data-label="動いたもの">北朝鮮の公式の貿易の約 98%<sup id="fnref-12-2"><a href="#ref-12">[12]</a></sup></td><td data-label="限界">共同の作戦計画も演習もない <sup id="fnref-17-1"><a href="#ref-17">[17]</a></sup></td></tr>
+<tr><td data-label="二国間">北朝鮮・イラン</td><td data-label="条約上の義務">2012 年の科学協力の合意など</td><td data-label="動いたもの">過去のミサイル技術</td><td data-label="限界">2026 年の戦争で、北朝鮮からの支援は確認されていない <sup id="fnref-18-1"><a href="#ref-18">[18]</a></sup></td></tr>
+</tbody>
+</table>
+<h3 id="sec3-2">3.2 太い糸――中ロと、ロ朝</h3>
+<p>軸は中国とロシアである。二か国以上の CRINK が加わった合同演習は、 2022 年の侵攻以前の年平均 3 回余りから、以後は 10 回近くに増えて 37 回を数えたが、 <sup id="fnref-11-2"><a href="#ref-11">[11]</a></sup> その大半は中ロの組み合わせで、四か国がそろった演習は一度もない。 <sup id="fnref-19-1"><a href="#ref-19">[19]</a></sup> 中国はロシアの工作機械部品の輸入の 8 割以上を占めるようになった一方、二次制裁を警戒して直接の投資は控えている。 <sup id="fnref-12-3"><a href="#ref-12">[12]</a></sup> ロシアは、中国にとって有用な格下の相手である。 <sup id="fnref-20-1"><a href="#ref-20">[20]</a></sup></p>
+<p>最も軍事的な糸は、ロシアと北朝鮮の間にある。北朝鮮が送った砲弾は、 2024 年秋の報告書では最大 500 万発、 <sup id="fnref-21-1"><a href="#ref-21">[21]</a></sup>2025 年秋の論考では 1,200 万発超とされ、推計の幅は大きい。 <sup id="fnref-22-1"><a href="#ref-22">[22]</a></sup> 北朝鮮軍の死傷者について、韓国の国家情報院は、 2025 年 9 月の約 4,700 人（戦死約 2,000 人）から、 2026 年 2 月には約 6,000 人へ推計を引き上げた。 <sup id="fnref-14-2"><a href="#ref-14">[14]</a></sup> 北朝鮮が得た対価は、 2024 年の貿易総額の数倍に当たる 96 億〜 123 億ドルという推計がある。 <sup id="fnref-19-2"><a href="#ref-19">[19]</a></sup> 金正恩は、援助の受け手から、替えの利かない供給者になった。</p>
+<p>条約の文言にも目を留めたい。第 4 条は、国連憲章 51 条に加えて、両国の国内法に従うという留保を含む。 1961 年のソ連と北朝鮮の条約とほぼ同じ文面で、主な違いは、この留保である。 <sup id="fnref-13-2"><a href="#ref-13">[13]</a></sup> 義務の形をした裁量、と言ってよい。</p>
+<h3 id="sec3-3">3.3 管理される糸――中朝</h3>
+<p>北朝鮮がロシアという第二の後ろ盾を得たことに、中国は黙っていなかった。 2026 年 6 月 8 日と 9 日、習近平は 7 年ぶりに平壌を訪れた。目立ったのは、語られなかったことのほうである。 2019 年の訪問で使われた「非核化」の語は、どちらの発表からも消えた。 <sup id="fnref-23-1"><a href="#ref-23">[23]</a></sup> 直前の米中首脳会談について、米国は、北朝鮮の非核化を共通の目標として確認したと発表したが、中国は公には繰り返さず、金与正はこれを偽りだと退けている。 <sup id="fnref-23-2"><a href="#ref-23">[23]</a></sup> 核保有の黙認と読む分析も、白紙委任ではないとする分析もある。はっきりしているのは、中国が北朝鮮をロシアから引き離すために、代価を払い始めたことである。束の内側で、束ねる者どうしが競っている。</p>
+<h3 id="sec3-4">3.4 細い糸と、面の不在</h3>
+<p>2025 年 9 月 3 日、北京の軍事パレードで、習近平、プーチン、金正恩が初めてそろって姿を見せた。 <sup id="fnref-24-1"><a href="#ref-24">[24]</a></sup> 写真は陣営に見えた。しかし、三者の会談は開かれず、首脳たちは二人ずつ部屋に入った。四か国の首脳が一堂に会した例は確認できない。国連でも、ウクライナをめぐる総会決議 10 本のすべてに反対したのは北朝鮮だけで、中国とイランは 4 本に反対し、 6 本は棄権した。 <sup id="fnref-16-2"><a href="#ref-16">[16]</a></sup> 線は六本ある。面は、ない。</p>
+<p>周縁の国に目を移しても、事情は同じである。たとえばエリトリアは、総会の非難決議に反対し、ロシアの外相を迎え、中国とも国賓の往来をもつため、枢軸の「小国」に数えられることがある。 <sup id="fnref-25-1"><a href="#ref-25">[25]</a></sup><sup id="fnref-26-1"><a href="#ref-26">[26]</a></sup> だが、それぞれは別々の取引であり、北朝鮮との軍事取引は、制裁が解かれた 2018 年以後、確認できない。枠を広げていけば、定義は「米国と対立する国」に溶けて、何も予測しない語になる。</p>
+
+<h2 id="sec4">4. 三度の試験――攻撃されたとき、仲間は動いたか</h2>
+<h3 id="sec4-1">4.1 言葉だけの支持――2025 年 6 月</h3>
+<p>同盟の強さは、平時の取引より、仲間が攻撃されたときに測れる。 2025 年 6 月、イスラエルと米国はイランの核施設などを攻撃した。中国、ロシア、北朝鮮が与えたのは、言葉による支持だけだった。 <sup id="fnref-19-3"><a href="#ref-19">[19]</a></sup><sup id="fnref-27-1"><a href="#ref-27">[27]</a></sup> 前年 12 月にシリアのアサド政権が崩れたときも、ロシアは救わなかった。</p>
+<h3 id="sec4-2">4.2 連れ去られた大統領――2026 年 1 月のベネズエラ</h3>
+<p>2026 年 1 月 3 日、米軍はベネズエラを攻撃し、マドゥロ大統領を拘束した。四か国の外にあるとはいえ、ロシアの長年の友好国で、中国が巨額の資金を投じてきた国である。ロシアは武力侵略だと非難し、中国は国際法違反と述べ、イランも強く非難した。 <sup id="fnref-28-1"><a href="#ref-28">[28]</a></sup> 軍を動かした国はなかった。</p>
+<h3 id="sec4-3">4.3 偽装された補給――2026 年のイラン戦争</h3>
+<p>2 月 28 日、米国とイスラエルはイランへの大規模な攻撃を始め、最高指導者ハメネイ師らを殺害した。 3 月 8 日、息子のモジタバ師が後を継ぐ。 4 月に停戦、 6 月 17 日に覚書の署名があり、その後に停戦は破れた。崩れた時期について、英語版 Wikipedia は 7 月 8 日とし、国連ニュースは 60 日間の停戦が 8 月に和平合意なしに失効したと書いており、食い違いは解消できない。 11 月 13 日の国連ニュースは、ホルムズ海峡がほぼ閉ざされ、通航は紛争前より約 65% 少なく、本格的な戦闘への逆戻りを防ぐ取り決めはまだできていない、と伝えた。 <sup id="fnref-29-1"><a href="#ref-29">[29]</a></sup><sup id="fnref-30-1"><a href="#ref-30">[30]</a></sup><sup id="fnref-31-1"><a href="#ref-31">[31]</a></sup></p>
+<p>この試験の結果は、 2025 年とは違った。部隊を送った国は、やはりない。しかし、補給は動いたと報じられている。ロシアについては、米軍の艦船や航空機の位置を含む情報の提供に加え、改良型ドローンの供与、そして停戦中に戦争前の 4 分の 3 ほどの水準まで在庫を戻すだけのミサイルの補充が、西側の情報機関の評価として伝えられた。 <sup id="fnref-32-1"><a href="#ref-32">[32]</a></sup> 中国については、企業を通じた衛星画像や軍民両用の部品、携行式の防空ミサイルの取引が報じられ、米国は 5 月に中国の衛星企業 3 社を制裁した。中国政府は否定している。 <sup id="fnref-33-1"><a href="#ref-33">[33]</a></sup><sup id="fnref-34-1"><a href="#ref-34">[34]</a></sup> 英語版 Wikipedia 自身が、その多くは匿名の情報源による未確認の情報だと注記する。 <sup id="fnref-33-2"><a href="#ref-33">[33]</a></sup></p>
+<p>北朝鮮の態度は、さらに雄弁である。韓国の国家情報院は、開戦後に武器や物資がイランへ渡った形跡はないと報告した。北朝鮮は最高指導者の死に公の弔意を示さず、後継者への祝電も打たなかった。 <sup id="fnref-18-2"><a href="#ref-18">[18]</a></sup> 金正恩がこの戦争から引き出した教訓は、仲間を助けることではなく、核を手放さないことの正しさだった。 <sup id="fnref-35-1"><a href="#ref-35">[35]</a></sup></p>
+<p>国連では、 3 月 11 日、湾岸諸国へのイランの攻撃を非難する安保理決議 2817 が、賛成 13 、反対なしで採択された。拒否権を持つ中国とロシアは、棄権した。 <sup id="fnref-36-1"><a href="#ref-36">[36]</a></sup> ところが 4 月 7 日には、ホルムズ海峡の航行をめぐるバーレーンの決議案（賛成 11 ）を、両国はそろって拒否権で葬った。文面はすでに弱められ、武力行使の承認は落とされていたにもかかわらず、である。 <sup id="fnref-37-1"><a href="#ref-37">[37]</a></sup> 庇護は与えられた。ただし、隣国を攻撃したことへの非難からは守らず、米国の行動に根拠を与えうる文書からは守るという、選り分けられた庇護だった。</p>
+
+<h2 id="sec5">5. なぜ深まらず、なぜ解けないのか</h2>
+<h3 id="sec5-1">5.1 六つの摩擦</h3>
+<p>深まらない理由を、 CSIS は、取引的な性格と力の非対称、距離、紛争の時期のずれ、米国の関与、利害の食い違い、不信の六つに整理した。 <sup id="fnref-19-4"><a href="#ref-19">[19]</a></sup> どれも、体制の型とは別の変数である。中国の経済規模は、ロシアの約 9 倍、イランの約 43 倍、北朝鮮の約 1,100 倍とされる。 <sup id="fnref-11-3"><a href="#ref-11">[11]</a></sup> 北朝鮮とイランは約 6,400 キロ離れている。中国にとっては、ロシアが敵に回した欧州は大きな輸出市場であり、イランが揺らす湾岸はエネルギーの供給地である。 <sup id="fnref-38-1"><a href="#ref-38">[38]</a></sup> そして、中ソは 1969 年に国境で戦い、ソ連は 1941 年にイランへ侵攻した。似た体制であることは、記憶を消してくれない。</p>
+<p>それでも束は解けない。制裁を逃れる抜け道、兵器と部品の交換、外交上の庇護という共通の需要が残るからである。ローウィー研究所のカン・ヴーは、中国と北朝鮮は、ロシアとイランの戦争から利益を得たいのであって、自分の戦争を始めたいのではない、と指摘する。四か国が同時に動くという前提を置くと、米国は手持ちの迎撃弾を薄く広げ、かえって抑止を損なう、というのである。 <sup id="fnref-39-1"><a href="#ref-39">[39]</a></sup></p>
+<h3 id="sec5-2">5.2 重く見る側と、軽く見る側は、違う問いに答えている</h3>
+<p>評価は割れている。ケンドール＝テイラーとフォンテイン、あるいは歴史上の破壊的な同盟になぞらえる論者は、移転の規模と、その破壊力を問うている。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup><sup id="fnref-40-1"><a href="#ref-40">[40]</a></sup>CSIS やカーネギーの論者は、連携の構造を問い、多国間の場でさえ二国間の関係が主であることを見いだす。 <sup id="fnref-22-2"><a href="#ref-22">[22]</a></sup><sup id="fnref-21-2"><a href="#ref-21">[21]</a></sup> 懐疑派は、連携が将来の行動を保証するかを問い、 2025 年の空振りを挙げる。 <sup id="fnref-39-2"><a href="#ref-39">[39]</a></sup><sup id="fnref-41-1"><a href="#ref-41">[41]</a></sup> 三つの問いへの答えは、互いに矛盾しない。規模は大きく、構造は二国間であり、保証はない。</p>
+<p>むしろ警戒すべきは、名づけが現実を作ることである。四か国を一つの敵として扱えば、四か国には、一つになる理由が生まれる。カーネギーの報告書は、予測の自己成就を避けよと警告し、中国を他の三国から離しておく政策を勧めた。 <sup id="fnref-21-3"><a href="#ref-21">[21]</a></sup></p>
+<p>ここまでで、三つ目の主張（陣営）は、そのままの形では支持できないことが分かった。残るのは、二つ目の主張と、それを支える推論である。独裁は、戦争を好むのか。</p>
+
+<h2 id="sec6">6. 独裁は戦争を好むのか</h2>
+<h3 id="sec6-1">6.1 観客に叱られる指導者</h3>
+<p>国際関係論には、この推論を理論にした議論がある。ジェームズ・フィアロンは 1994 年、いったん表明した威嚇から退けば国内の観客に罰せられる、という「オーディエンス・コスト」を論じた。 <sup id="fnref-42-1"><a href="#ref-42">[42]</a></sup> 民主主義国の指導者ほど罰は重く、だから威嚇は本気と受け取られ、戦争に至る前に決着しやすい。裏返せば、罰を受けない独裁者の威嚇は軽く、賭けは大胆になる。</p>
+<p>ジェシカ・ウィークスは 2008 年、この裏返しに待ったをかけた。独裁者にも観客がいる。軍や党の有力者が指導者を罰せられる体制では、独裁者も約束に縛られる。例外は、誰も罰せられない個人支配や、観客が結果を見分けにくい体制である。 <sup id="fnref-43-1"><a href="#ref-43">[43]</a></sup> ここで、独裁という大きな箱は意味を失う。問題は、選挙の有無ではなく、失敗した指導者を罰する者が、体制のどこかにいるかどうかである。</p>
+<h3 id="sec6-2">6.2 止める者のいない戦争――三つの経路</h3>
+<p>歴史は、止める者がいなくなる経路が一つではないことを示している。第一は、一人への集中である。 2022 年の侵攻は、側近の誰も大統領に反対できない体制で決まったと見られている。ロシアの対外強硬は、国内向けの正統化であると同時に、大国としての自己認識にも根ざしており、国内の体制だけには還元できない。 <sup id="fnref-44-1"><a href="#ref-44">[44]</a></sup> 第二は、責任の分散である。 1930 年代の日本には独裁者がおらず、陸軍、海軍、宮中、官僚の誰もが、自分に止める権限はないと言い、戦線は広がった。</p>
+<p>第三は、民主主義のなかの空白である。 2026 年、ベネズエラへの攻撃とイランへの攻撃を決めたのは、選挙で選ばれた政府だった。フリーダム・ハウスは米国を 81 点の「自由」に分類しながら、 2005 年以後の下落幅を 12 点とし、 V-Dem は、 2025 年の米国で最も損なわれたのは議会による抑制だったと指摘している。 <sup id="fnref-6-2"><a href="#ref-6">[6]</a></sup><sup id="fnref-45-1"><a href="#ref-45">[45]</a></sup> 観客はいた。しかし、舞台に上がる前に止める仕組みは働かなかった。そして 11 月 3 日、有権者は中間選挙で両院の多数派を入れ替えた。 <sup id="fnref-46-1"><a href="#ref-46">[46]</a></sup> 戦争だけが争点だったわけではなく、因果を読み込むことには慎重でありたい。ただ、止める仕組みが遅れて動くことも、この体制の特徴である。</p>
+<p>したがって、二つ目の主張は、こう言い直すべきだろう。威圧の手段は国ごとに違い、体制の型だけからは予測できない。ロシアは隣国に武力を使い、中国は貿易を使う。中国は 2023 年 8 月に日本産の水産物を全面的に止め、 2025 年 6 月に条件付きで緩めて、 11 月 5 日に北海道産のホタテが出荷された。ところが、その 2 週間後、台湾有事をめぐる日本の首相の答弁への反発のなかで、再び止めた。 <sup id="fnref-47-1"><a href="#ref-47">[47]</a></sup> どちらも威圧と呼べるが、同じ語で括れば、備え方を誤る。</p>
+
+<h2 id="sec7">7. 民主主義は平和をもたらすのか</h2>
+<h3 id="sec7-1">7.1 頑健な経験則と、その限定</h3>
+<p>1795 年、カントは『永遠平和のために』で、戦争の災いを自ら背負う市民の同意を要する体制は、開戦に慎重になると論じた。 <sup id="fnref-48-1"><a href="#ref-48">[48]</a></sup>1983 年、マイケル・ドイルはこれを経験的な命題に変えた。立憲的に安定したリベラルな国家どうしは、互いに戦争をしたことがない。 <sup id="fnref-49-1"><a href="#ref-49">[49]</a></sup> ブルース・ラセットが反例の候補を一つずつ検討し、命題は生き残った。 <sup id="fnref-50-1"><a href="#ref-50">[50]</a></sup></p>
+<p>批判も多い。民主主義と戦争の定義に恣意が入る。組み合わせの数が少ない。冷戦期の平和は、共通の敵で説明できる。ジョン・ミアシャイマーのように、国家を動かすのは体制ではなく力の配置だとする立場もある。 <sup id="fnref-51-1"><a href="#ref-51">[51]</a></sup> そこで今井耕介とジェームズ・ローは 2021 年、喫煙と肺がんの因果を論じるために作られた感度分析を、この命題に当てた。見落とされた第三の要因が、民主主義どうしの組に、それ以外の組の 47 倍も多く存在していなければ、関連は消えない。 <sup id="fnref-52-1"><a href="#ref-52">[52]</a></sup> 経験則としての頑健さは、疑いにくい。</p>
+<p>だが、命題の主語を取り違えてはならない。平和なのは、安定した民主主義<strong>どうし</strong>の間である。民主主義国は、植民地で、そして弱い非民主主義国に対して、繰り返し戦ってきた。 2026 年の二つの攻撃は、命題の反例ではない。命題が、もともと何も約束していない領域での出来事である。</p>
+<h3 id="sec7-2">7.2 民主化すると、かえって戦争が増えるのか</h3>
+<p>成熟した民主主義が平和だとしても、そこへ行く道が平和だとは限らない。エドワード・マンスフィールドとジャック・スナイダーは 1995 年、独裁から大衆民主主義へ一気に跳んだ国は、その後の 10 年に戦争をする確率が、独裁のままの国の約 2 倍になると論じた。 <sup id="fnref-53-1"><a href="#ref-53">[53]</a></sup> 制度が弱いまま選挙が始まると、古いエリートも新しい政治家も、民族の旗を振って票を集めるからである。</p>
+<p>有名なこの知見にも、重い反論がある。ヴィピン・ナラングとレベッカ・ネルソンは 2009 年、弱い制度のまま民主化の途中にある国が戦争をした例は、そもそも乏しく、統計的な関係は、第一次世界大戦前のオスマン帝国の解体に全面的に依存していると指摘した。 <sup id="fnref-54-1"><a href="#ref-54">[54]</a></sup> 民主化は危険だ、と言い切ることも、安全だ、と言い切ることもできない。残るのは、もっと地味な教訓である。負けた側が、次の選挙を信じられる制度があるかどうかが、弾が飛ぶかどうかを分ける。</p>
+<h3 id="sec7-3">7.3 外から持ち込めるのか</h3>
+<p>アレクサンダー・ダウンズとジョナサン・モンテンは 2013 年、外国が強制した体制転換は、めったに民主化をもたらさず、成功例は、もともと所得や民族構成などの条件に恵まれた国に偏ると論じた。 <sup id="fnref-55-1"><a href="#ref-55">[55]</a></sup> ダウンズの 2021 年の著作は、過去 2 世紀の事例から、強制された体制転換が内戦と指導者の暴力的な失脚を増やすことを示している。 <sup id="fnref-56-1"><a href="#ref-56">[56]</a></sup> イラクでは、旧軍の解体が反乱の人員を生んだ。リビアでは、権力の空白が内戦になった。アフガニスタンでは、 20 年の国家建設の末に、倒したはずの勢力が首都に戻った。</p>
+<p>2026 年は、この研究に二つの事例を加えつつある。ベネズエラでは、大統領は連れ去られたが、副大統領だったロドリゲスが暫定大統領として統治を続け、選挙の日程は 11 月になっても決まっていない。 2027 年末より前の投票は難しいとする見方が報じられている。 <sup id="fnref-57-1"><a href="#ref-57">[57]</a></sup> イランでは、最高指導者が殺されても、その息子が継ぎ、体制は立ったままである。 <sup id="fnref-29-2"><a href="#ref-29">[29]</a></sup> 首を取ることと、体制を替えることは違う。体制を替えることと、民主主義を作ることは、さらに違う。</p>
+<p>民主主義は、出来事ではなく過程である。 1986 年の民進党の結成から、 1987 年の戒厳令の解除を経て、 1996 年の総統直接選挙まで、台湾は 10 年をかけ、内側から歩いた。 <sup id="fnref-58-1"><a href="#ref-58">[58]</a></sup> 過程には、外から配達できる部分が少ない。</p>
+
+<h2 id="sec8">8. 思考実験――もし中国、ロシア、北朝鮮が民主化したら</h2>
+<h3 id="sec8-1">8.1 楽観の論拠</h3>
+<p>ここまでの知見を、日本に近い問いに当ててみる。予測ではない。もし三か国が、自由な選挙と実効的な抑制を備えた民主主義になったら、東アジアは平和になるだろうか。</p>
+<p>楽観には、相応の根拠がある。体制の共通性という接着剤が消えれば、連携は弱まる。民主的平和の経験則は、日本、韓国、台湾、米国との間にも及びうる。核についても先例がある。南アフリカは、体制転換の過程で核兵器を解体し、 1991 年 7 月に核不拡散条約に入った。 <sup id="fnref-59-1"><a href="#ref-59">[59]</a></sup> 台湾は、同じ中華文化圏で、内戦を経ずに民主化した。</p>
+<h3 id="sec8-2">8.2 三つの検証</h3>
+<ul>
+<li><strong>移行</strong><br>ロシアの民主化は、仮定の話ではない。 1991 年に一度試みられ、挫折した。マーク・ベイシンジャーが描いたように、ソ連の解体は、一つの民族の成功が次の民族を奮い立たせる潮のような連鎖で進み、バルト三国のような平和な分離もあれば、ナゴルノ・カラバフや沿ドニエストルのような紛争も残した。 <sup id="fnref-60-1"><a href="#ref-60">[60]</a></sup> 北朝鮮の崩壊は、人道危機と内戦に加え、核兵器の管理という問題を伴う。 <sup id="fnref-61-1"><a href="#ref-61">[61]</a></sup> 制度を食い尽くした個人支配のあとに、民主主義は育ちにくい。</li>
+<li><strong>ナショナリズム</strong><br>選挙で選ばれた指導者は、公にした領土の主張から、かえって退きにくい。フィアロンの理屈は、ここでは平和の敵に回りうる。アダム・リウとシャオジュン・リーの全国調査では、台湾を武力で完全に取り戻すことを支持する回答が 55% にのぼった。 <sup id="fnref-62-1"><a href="#ref-62">[62]</a></sup> ただし、この数字には三つの注がいる。調査は 2020 年末から 2021 年初めに行われたもので、 2023 年に発表された。経済制裁や限定的な武力などの、より穏やかな選択肢も、同程度に支持されている。そして、自己検閲を考慮すれば実際の支持は 4 分の 1 程度だろうとする専門家もいれば、 55% こそ下限かもしれないとする著者の見方もある。 <sup id="fnref-62-2"><a href="#ref-62">[62]</a></sup><sup id="fnref-63-1"><a href="#ref-63">[63]</a></sup> 若い世代は、上の世代よりナショナリズムが弱く、対米観も好意的だとする分析もある。 <sup id="fnref-64-1"><a href="#ref-64">[64]</a></sup> 世論が一枚岩の鷹派だとは言えないが、共産党の宣伝が消えれば台湾への要求も消える、とも言えない。</li>
+<li><strong>先例の限定</strong><br>南アフリカの核解体は、 1994 年の全人種選挙よりも前に、アパルトヘイト政権自身が決めた。民主化の結果というより、先立つ自己改革である。台湾の 2,300 万人の移行と、核を持つ 14 億人の多民族国家の移行とでは、規模も賭け金も違う。</li>
+</ul>
+<p>したがって、問うべきは、民主化するか否かの二択ではない。移行を内側から少しずつ統御できるか、そして、負けを受け入れられる手続きを、紛争より先に備えられるかである。</p>
+
+<h2 id="sec9">9. 日本から見る――糸を一本ずつ</h2>
+<h3 id="sec9-1">9.1 四か国は、日本の隣で交わる</h3>
+<p>中国とロシアと北朝鮮は日本の隣国であり、イランは、日本の石油の 95% ほどが通う地域の出口に立つ。ホルムズ海峡がほぼ閉ざされた状態は、遠い戦争ではない。 <sup id="fnref-17-2"><a href="#ref-17">[17]</a></sup><sup id="fnref-31-2"><a href="#ref-31">[31]</a></sup>CSIS に寄せた論考で、植木千可子は、日米が四か国を一つの陣営として扱うことを避け、国ごとの戦略を立てるよう勧めた。 <sup id="fnref-17-3"><a href="#ref-17">[17]</a></sup> 本稿の検討も、同じ方向を指している。中ロの爆撃機の共同飛行、ロシアから北朝鮮へ渡りうる技術、中国の貿易の威圧、湾岸の海上交通は、それぞれ別の糸であり、別の備えを要する。束と見れば、最も太い糸に合わせて備えを均し、細い糸の変化を見落とす。</p>
+<p>とりわけ注意がいるのは、糸が太くなる瞬間である。ウクライナでは、 11 月にアブダビで 9 か月ぶりの和平協議が再開したが、合意には至っていない。 <sup id="fnref-65-1"><a href="#ref-65">[65]</a></sup> ケンドール＝テイラーは、ロシアがイランのためにした以上のことを、中国や北朝鮮のためにはするだろうが、それは主にウクライナの戦争が終わったあとだ、と予測する。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> 停戦は、東アジアにとっては、糸の張り替えの始まりかもしれない。</p>
+<h3 id="sec9-2">9.2 報道を読むための三つの問い</h3>
+<ul>
+<li><strong>誰と誰の糸か</strong><br>四か国の話か、特定の二国間の話か。「結束」という見出しの下で、実際に会ったのは何人か。</li>
+<li><strong>言葉か、物か</strong><br>声明や会談か、砲弾、部品、兵力、情報か。物が動いたとして、確認したのは誰か。</li>
+<li><strong>止める者はいるか</strong><br>その国の指導者が誤算をしたとき、罰する観客はどこにいるか。選挙か、党か、将軍たちか。それとも、誰もいないか。</li>
+</ul>
+<p>三つ目の問いだけは、四か国の外にも向けなければならない。</p>
+
+<h2 id="sec10">10. 結論と、その限界</h2>
+<h3 id="sec10-1">10.1 三つの主張への答え</h3>
+<p>四か国は民主的でない。正しい。ただし、同じ程度に自由の乏しい国は多く、そのなかには西側の協力国もある。四か国は他国を威圧している。国によって手段が違い、一括はできない。四か国は一つの陣営である。支持できない。あるのは六本の糸で、うち二本が太い。 2026 年のイラン戦争では、 2025 年より多くの物が動いたと報じられたが、部隊を送った国はなく、外交上の庇護も選り分けて与えられた。</p>
+<p>接着剤だった推論、すなわち国内の抑圧が国外の暴力と群れを生む、という推論は、そのままでは成り立たない。それでも、体制の型が無関係だという結論にはならない。誤算を止める観客がいるかどうか。負けを受け入れる手続きがあるかどうか。この二点で、体制は確かに効く。「悪」という語は、その効き方を見えなくする。悪い国を名指しすれば、良い国の側の空白を問わずに済むからである。</p>
+<p>名前を付けることは、理解の始まりに見えて、しばしば終わりになる。束と呼ぶ前に糸を数え、悪と呼ぶ前に観客を探す。遠回りに見えるその手順だけが、次の戦争の形を、起きる前に見せてくれる。</p>
+<h3 id="sec10-2">10.2 確認の限界</h3>
+<ul>
+<li>CSIS の連作の数値のうち、貿易額と演習の回数は検索結果の要約で裏づけを得たが、比率や内訳の多くは、今回は原文で確かめ直せていない。</li>
+<li>イラン戦争での補給は、匿名の情報源と情報機関の評価に基づく報道が大半で、当事国は認めていない。停戦が崩れた時期は、資料の間で食い違う。</li>
+<li>ロシアの訴追の件数は、国連の特別報告者の集計を伝える報道によった。 OHCHR の原文は閲覧できていない。</li>
+<li>中国による日本産水産物の停止が 2026 年 11 月の時点でも続いているかは、確認できていない。</li>
+<li>学術研究の知見の多くは、要旨と書誌で確かめた範囲の要約である。</li>
+</ul>
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1"><a href="#fnref-1-1">^</a> George W. Bush, "The President's State of the Union Address," 2002 年 1 月 29 日。 <a href="https://georgewbush-whitehouse.archives.gov/news/releases/2002/01/20020129-11.html">ホワイトハウス記録（米国立公文書館）</a></li>
+<li id="ref-2"><a href="#fnref-2-1">^</a> 「 CRINK 」『 Wikipedia 』英語版。 2026 年 11 月 23 日閲覧。 <a href="https://en.wikipedia.org/wiki/CRINK">Wikipedia</a></li>
+<li id="ref-3"><a href="#fnref-3-1">^</a> Robbie Gramer, "Looks Like 'Axis of Evil' Is Back on the Menu," Foreign Policy, 2023 年 11 月 29 日。 <a href="https://foreignpolicy.com/2023/11/29/axis-of-evil-russia-china-iran-north-korea-bush-era/">Foreign Policy</a></li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> Andrea Kendall-Taylor, "Forecasting the Future of the Axis of Upheaval: The View from Moscow," CNAS, 2026 年 7 月 14 日。 <a href="https://www.cnas.org/publications/reports/forecasting-the-future-of-the-axis-of-upheaval">CNAS</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 相澤李帆「中国・ロシア・イラン・北朝鮮による新たな枢軸？――対抗勢力間の連携をめぐる米国政府の認識と政策議論」日本国際問題研究所『研究レポート』 FY2024-6 、 2025 年 3 月 31 日。 <a href="https://www.jiia.or.jp/jpn/report/2025/03/research-report/security-fy2024-06.html">日本国際問題研究所</a></li>
+<li id="ref-6">^ <sup><a href="#fnref-6-1">a</a></sup> <sup><a href="#fnref-6-2">b</a></sup> Freedom House, <em>Freedom in the World 2026</em>. 点数は各国のページで確かめた（ 2026 年 11 月 24 日閲覧）。 <a href="https://freedomhouse.org/report/freedom-world/2026/growing-shadow-autocracy">Freedom House</a> <a href="https://freedomhouse.org/country/saudi-arabia/freedom-world/2026">同・サウジアラビア</a></li>
+<li id="ref-7"><a href="#fnref-7-1">^</a> The Economist Intelligence Unit, <em>Democracy Index 2024</em>, 2025. <a href="https://d1qqtien6gys07.cloudfront.net/wp-content/uploads/2025/03/Democracy_INDEX_2024.pdf">EIU 公開 PDF</a></li>
+<li id="ref-8"><a href="#fnref-8-1">^</a> "Russian repression now links wartime rule at home with persecution abroad: UN expert," Devdiscourse, 2026 年 10 月。元の発表は OHCHR の 2026 年 10 月の報道発表である。 <a href="https://www.devdiscourse.com/article/law-order/3997831-russian-repression-now-links-wartime-rule-at-home-with-persecution-abroad-un-expert">Devdiscourse</a> <a href="https://www.ohchr.org/en/press-releases/2026/10/russia-must-stop-punishing-critics-traitors-motherland-home-and-abroad">OHCHR</a></li>
+<li id="ref-9"><a href="#fnref-9-1">^</a> Human Rights Watch, "Briefing Paper on the Human Rights Situation in the Russian Federation," 2026 年 8 月 24 日。 <a href="https://www.hrw.org/news/2026/08/24/briefing-paper-on-the-human-rights-situation-in-the-russian-federation">Human Rights Watch</a></li>
+<li id="ref-10"><a href="#fnref-10-1">^</a> 「 United Nations General Assembly Resolution ES-11/1 」『 Wikipedia 』英語版。決議の本文は国連デジタル図書館による。 <a href="https://en.wikipedia.org/wiki/United_Nations_General_Assembly_Resolution_ES-11/1">Wikipedia</a> <a href="https://digitallibrary.un.org/record/3965290?ln=en">国連</a></li>
+<li id="ref-11">^ <sup><a href="#fnref-11-1">a</a></sup> <sup><a href="#fnref-11-2">b</a></sup> <sup><a href="#fnref-11-3">c</a></sup> Brian Hart, Bonny Lin, Maria Snegovaya, and Mona Yacoubian, "CRINK in 10 Charts," CSIS, 2025 年 11 月 24 日。 <a href="https://www.csis.org/analysis/crink-10-charts">CSIS</a></li>
+<li id="ref-12">^ <sup><a href="#fnref-12-1">a</a></sup> <sup><a href="#fnref-12-2">b</a></sup> <sup><a href="#fnref-12-3">c</a></sup> Maria Snegovaya, Nicholas Fenton, and Tina Dolbaia, "CRINK Economic Ties: Uneven Patterns of Collaboration," CSIS, 2025 年 9 月 4 日。 <a href="https://www.csis.org/analysis/crink-economic-ties-uneven-patterns-collaboration">CSIS</a></li>
+<li id="ref-13">^ <sup><a href="#fnref-13-1">a</a></sup> <sup><a href="#fnref-13-2">b</a></sup> "Putin and Kim Jong Un's mutual defense pact uses language nearly identical to the USSR's 1961 treaty with North Korea," Meduza, 2024 年 6 月 20 日。 <a href="https://meduza.io/en/feature/2024/06/20/putin-and-kim-jong-un-s-mutual-defense-pact-uses-language-nearly-identical-to-the-ussr-s-1961-treaty-with-north-korea">Meduza</a></li>
+<li id="ref-14">^ <sup><a href="#fnref-14-1">a</a></sup> <sup><a href="#fnref-14-2">b</a></sup> "Nearly 11,000 North Korean troops stationed in Russia's Kursk Oblast at start of 2026," Kyiv Independent 、 "About 6,000 North Korean troops lost in Russia's war in Ukraine," Ukrainska Pravda, 2026 年 2 月 13 日。いずれも韓国の国家情報院の推計を伝える。 <a href="https://kyivindependent.com/nearly-11-000-north-korean-troops-stationed-in-russias-kursk-oblast-at-start-of-2026-media-reports/">Kyiv Independent</a> <a href="https://www.pravda.com.ua/eng/news/2026/02/13/8020822/">Ukrainska Pravda</a></li>
+<li id="ref-15"><a href="#fnref-15-1">^</a> "Iran-Russia agreement excludes mutual defense clause, Tehran says," Iran International, 2025 年 1 月。 <a href="https://www.iranintl.com/en/202501166749">Iran International</a></li>
+<li id="ref-16">^ <sup><a href="#fnref-16-1">a</a></sup> <sup><a href="#fnref-16-2">b</a></sup> Mona Yacoubian and Briana Winslow, "CRINK Diplomatic Ties: A Broader Tilt Toward the Global South," CSIS, 2025 年 9 月 26 日。 <a href="https://www.csis.org/analysis/crink-diplomatic-ties-broader-tilt-toward-global-south">CSIS</a></li>
+<li id="ref-17">^ <sup><a href="#fnref-17-1">a</a></sup> <sup><a href="#fnref-17-2">b</a></sup> <sup><a href="#fnref-17-3">c</a></sup> Chikako Kawakatsu Ueki, "China and CRINK: Implications for Japan and the United States," CSIS Strategic Japan, 2026 年 7 月 21 日。 <a href="https://www.csis.org/analysis/china-and-crink-implications-japan-and-united-states">CSIS</a></li>
+<li id="ref-18">^ <sup><a href="#fnref-18-1">a</a></sup> <sup><a href="#fnref-18-2">b</a></sup> "North Korea keeping Iran at arm's length, reports Seoul," Al Jazeera, 2026 年 4 月 6 日、 "North Korea distancing itself from Iran to leave door open for U.S. talks, Seoul says," The Japan Times, 2026 年 4 月 6 日。 <a href="https://www.aljazeera.com/news/2026/4/6/north-korea-keeping-iran-at-arms-length-reports-seoul">Al Jazeera</a> <a href="https://www.japantimes.co.jp/news/2026/04/06/asia-pacific/politics/north-korea-iran-trump-us/">The Japan Times</a></li>
+<li id="ref-19">^ <sup><a href="#fnref-19-1">a</a></sup> <sup><a href="#fnref-19-2">b</a></sup> <sup><a href="#fnref-19-3">c</a></sup> <sup><a href="#fnref-19-4">d</a></sup> Bonny Lin et al., "CRINK Security Ties: Growing Cooperation, Anchored by China and Russia," CSIS, 2025 年 9 月 30 日。 <a href="https://www.csis.org/analysis/crink-security-ties-growing-cooperation-anchored-china-and-russia">CSIS</a></li>
+<li id="ref-20"><a href="#fnref-20-1">^</a> Angela Stent, "The CRINK: Inside the new bloc supporting Russia's war against Ukraine," Atlantic Council, 2025 年 10 月 23 日。 <a href="https://www.atlanticcouncil.org/content-series/russia-tomorrow/the-crink-inside-the-new-bloc-supporting-russias-war-against-ukraine/">Atlantic Council</a></li>
+<li id="ref-21">^ <sup><a href="#fnref-21-1">a</a></sup> <sup><a href="#fnref-21-2">b</a></sup> <sup><a href="#fnref-21-3">c</a></sup> Christopher S. Chivvis and Jack Keating, <em>Cooperation Between China, Iran, North Korea, and Russia</em>, Carnegie Endowment for International Peace, 2024 年 10 月 8 日。 <a href="https://carnegieendowment.org/research/2024/10/cooperation-between-china-iran-north-korea-and-russia-current-and-potential-future-threats-to-america">カーネギー国際平和財団</a></li>
+<li id="ref-22">^ <sup><a href="#fnref-22-1">a</a></sup> <sup><a href="#fnref-22-2">b</a></sup> Edward Howell, "Whilst Not a Strategic Alliance, the CRINK Axis Remains a Big Deal," CSIS Korea Chair Platform, 2025 年 11 月 24 日。 <a href="https://www.csis.org/analysis/whilst-not-strategic-alliance-crink-axis-remains-big-deal">CSIS</a></li>
+<li id="ref-23">^ <sup><a href="#fnref-23-1">a</a></sup> <sup><a href="#fnref-23-2">b</a></sup> "China re-centers North Korea ties as nuclear silence reshapes balance," NPR, 2026 年 6 月 10 日。 <a href="https://www.npr.org/2026/06/10/g-s1-127013/xi-jinping-visits-pyongyang-north-korea">NPR</a></li>
+<li id="ref-24"><a href="#fnref-24-1">^</a> "Xi, Putin and Kim stand united at Beijing military parade in historic show of authoritarian strength," CNN, 2025 年 9 月 3 日。 <a href="https://www.cnn.com/2025/09/03/china/china-military-parade-authoritarian-leaders-intl-hnk">CNN</a></li>
+<li id="ref-25"><a href="#fnref-25-1">^</a> Duncan Miriri, "Lavrov shores up Eritrean support for Russia over Ukraine conflict," Reuters 配信、 2023 年 1 月 28 日。 <a href="https://www.euronews.com/2023/01/28/ukraine-crisis-russia-eritrea">Euronews 掲載</a></li>
+<li id="ref-26"><a href="#fnref-26-1">^</a> Salem Solomon, "In State Visit, Eritrea and China Signal Deeper Partnership," Voice of America, 2023 年 5 月 22 日。 <a href="https://www.voanews.com/a/in-state-visit-eritrea-and-china-signal-deeper-partnership-/7104234.html">VOA</a></li>
+<li id="ref-27"><a href="#fnref-27-1">^</a> Anni Coonan, "CRINK: The Strategic Limits of the New 'Axis of Upheaval'," Steptoe, 2025 年 7 月 18 日。 <a href="https://www.steptoe.com/en/news-publications/stepwise-risk-outlook/crink-the-strategic-limits-of-the-new-axis-of-upheaval.html">Steptoe</a></li>
+<li id="ref-28"><a href="#fnref-28-1">^</a> "World reacts to US bombing of Venezuela, 'capture' of Maduro," Al Jazeera, 2026 年 1 月 3 日。 <a href="https://www.aljazeera.com/news/2026/1/3/world-reacts-to-reported-us-bombing-of-venezuela">Al Jazeera</a> <a href="https://foreignpolicy.com/2026/01/03/us-venezuela-attack-maduro-capture-trump-global-reactions/">Foreign Policy</a></li>
+<li id="ref-29">^ <sup><a href="#fnref-29-1">a</a></sup> <sup><a href="#fnref-29-2">b</a></sup> 「 2026 Iran war 」『 Wikipedia 』英語版。 2026 年 11 月 24 日閲覧。 <a href="https://en.wikipedia.org/wiki/2026_Iran_war">Wikipedia</a></li>
+<li id="ref-30"><a href="#fnref-30-1">^</a> 「 2026 Iran war ceasefire 」『 Wikipedia 』英語版。 2026 年 11 月 24 日閲覧。 <a href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire">Wikipedia</a></li>
+<li id="ref-31">^ <sup><a href="#fnref-31-1">a</a></sup> <sup><a href="#fnref-31-2">b</a></sup> "Security Council LIVE: Fragile Gulf calm tested as threats to Hormuz shipping mount," UN News, 2026 年 11 月 13 日。 <a href="https://news.un.org/en/story/2026/11/1168804">UN News</a></li>
+<li id="ref-32"><a href="#fnref-32-1">^</a> 「 Russia in the 2026 Iran war 」『 Wikipedia 』英語版（ CNN 、ワシントン・ポスト、ブルームバーグなどの報道を引く）。 2026 年 11 月 24 日閲覧。 <a href="https://en.wikipedia.org/wiki/Russia_in_the_2026_Iran_war">Wikipedia</a></li>
+<li id="ref-33">^ <sup><a href="#fnref-33-1">a</a></sup> <sup><a href="#fnref-33-2">b</a></sup> 「 China in the 2026 Iran war 」『 Wikipedia 』英語版（ロイター、ウォール・ストリート・ジャーナルなどの報道を引く）。 2026 年 11 月 24 日閲覧。 <a href="https://en.wikipedia.org/wiki/China_in_the_2026_Iran_war">Wikipedia</a></li>
+<li id="ref-34"><a href="#fnref-34-1">^</a> "Intelligence from Chinese groups aiding in Iran's increasingly effective targeting of US sites, sources say," CNN, 2026 年 9 月 25 日。 <a href="https://www.cnn.com/2026/09/25/politics/china-intelligence-iran-targeting-hormuz">CNN</a></li>
+<li id="ref-35"><a href="#fnref-35-1">^</a> "Kim Jong Un uses Iran war to justify North Korea's decision to keep its nuclear weapons," CNN, 2026 年 3 月 25 日。 <a href="https://www.cnn.com/2026/03/25/asia/north-korea-nuclear-weapons-justified-iran-war-intl-hnk">CNN</a></li>
+<li id="ref-36"><a href="#fnref-36-1">^</a> United Nations Security Council, Resolution 2817 (2026) , adopted 11 March 2026. <a href="https://digitallibrary.un.org/record/4105560">国連デジタル図書館</a></li>
+<li id="ref-37"><a href="#fnref-37-1">^</a> "Security Council: Russia and China veto resolution on Strait of Hormuz," UN News, 2026 年 4 月 7 日。 <a href="https://news.un.org/en/story/2026/04/1167261">UN News</a> <a href="https://www.al-monitor.com/originals/2026/04/china-russia-veto-scaled-back-hormuz-resolution-un-security-council">Al-Monitor</a></li>
+<li id="ref-38"><a href="#fnref-38-1">^</a> Jonathan Fulton, <em>Coordination without Commitment: China and the CRINKs</em>, Oxus Society, 2026 年 3 月 30 日。 <a href="https://oxussociety.org/publications/fault-lines-china-coordination-without-commitment">Oxus Society</a></li>
+<li id="ref-39">^ <sup><a href="#fnref-39-1">a</a></sup> <sup><a href="#fnref-39-2">b</a></sup> Khang Vu, "CRINK: the coalition that isn't," Lowy Institute, The Interpreter, 2026 年 9 月 4 日。 <a href="https://www.lowyinstitute.org/the-interpreter/crink-the-coalition-that-isn-t">Lowy Institute</a></li>
+<li id="ref-40"><a href="#fnref-40-1">^</a> George W. Bush Presidential Center, "CRINK countries increasingly cooperate around the world." <a href="http://www.bushcenter.org/publications/crink-countries-increasingly-cooperate-around-the-world-u-s-policy-must-reflect-this-new-dynamic">ブッシュ・センター</a></li>
+<li id="ref-41"><a href="#fnref-41-1">^</a> Jung Jae Kwon, "China, Russia, and North Korea's 'Axis of Upheaval'," UC Institute on Global Conflict and Cooperation, 2026 年 6 月 29 日。 <a href="https://ucigcc.org/blog/china-russia-and-north-koreas-axis-of-upheaval/">IGCC</a></li>
+<li id="ref-42"><a href="#fnref-42-1">^</a> James D. Fearon, "Domestic Political Audiences and the Escalation of International Disputes," <em>American Political Science Review</em> 88 (3) , 1994, pp. 577–592.</li>
+<li id="ref-43"><a href="#fnref-43-1">^</a> Jessica L. Weeks, "Autocratic Audience Costs: Regime Type and Signaling Resolve," <em>International Organization</em> 62 (1) , 2008, pp. 35–64.</li>
+<li id="ref-44"><a href="#fnref-44-1">^</a> 小泉悠『「帝国」ロシアの地政学――「勢力圏」で読むユーラシア戦略』東京堂出版、 2019 年。</li>
+<li id="ref-45"><a href="#fnref-45-1">^</a> V-Dem Institute, <em>Democracy Report 2026: Unraveling the Democratic Era?</em>, 2026. <a href="https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf">V-Dem 公開 PDF</a></li>
+<li id="ref-46"><a href="#fnref-46-1">^</a> 「 2026 United States elections 」『 Wikipedia 』英語版。 2026 年 11 月 24 日閲覧。 <a href="https://en.wikipedia.org/wiki/2026_United_States_elections">Wikipedia</a></li>
+<li id="ref-47"><a href="#fnref-47-1">^</a> "China Halts Japanese Seafood Imports Amid Diplomatic Row," Caixin Global, 2025 年 11 月 20 日、 "China to suspend imports of Japanese seafood amid diplomatic row," Al Jazeera, 2025 年 11 月 19 日。 <a href="https://www.caixinglobal.com/2025-11-20/china-halts-japanese-seafood-imports-amid-diplomatic-row-102384739.html">Caixin Global</a> <a href="https://www.aljazeera.com/news/2025/11/19/china-to-suspend-imports-of-japanese-seafood-amid-diplomatic-row-reports">Al Jazeera</a></li>
+<li id="ref-48"><a href="#fnref-48-1">^</a> Immanuel Kant, <em>Zum ewigen Frieden</em>, 1795 （邦題『永遠平和のために』）。</li>
+<li id="ref-49"><a href="#fnref-49-1">^</a> Michael W. Doyle, "Kant, Liberal Legacies, and Foreign Affairs," <em>Philosophy &amp; Public Affairs</em> 12 (3–4) , 1983.</li>
+<li id="ref-50"><a href="#fnref-50-1">^</a> Bruce M. Russett, <em>Grasping the Democratic Peace</em>, Princeton University Press, 1993.</li>
+<li id="ref-51"><a href="#fnref-51-1">^</a> John J. Mearsheimer, <em>The Tragedy of Great Power Politics</em>, W. W. Norton, 2001.</li>
+<li id="ref-52"><a href="#fnref-52-1">^</a> Kosuke Imai and James Lo, "Robustness of Empirical Evidence for the Democratic Peace: A Nonparametric Sensitivity Analysis," <em>International Organization</em> 75 (3) , 2021, pp. 901–919. <a href="https://imai.fas.harvard.edu/research/dempeace.html">著者のサイト</a></li>
+<li id="ref-53"><a href="#fnref-53-1">^</a> Edward D. Mansfield and Jack Snyder, "Democratization and the Danger of War," <em>International Security</em> 20 (1) , 1995, pp. 5–38.</li>
+<li id="ref-54"><a href="#fnref-54-1">^</a> Vipin Narang and Rebecca M. Nelson, "Who Are These Belligerent Democratizers? Reassessing the Impact of Democratization on War," <em>International Organization</em> 63 (2) , 2009, pp. 357–379. <a href="https://www.belfercenter.org/publication/who-are-these-belligerent-democratizers-reassessing-impact-democratization-war">Belfer Center</a></li>
+<li id="ref-55"><a href="#fnref-55-1">^</a> Alexander B. Downes and Jonathan Monten, "Forced to Be Free? Why Foreign-Imposed Regime Change Rarely Leads to Democratization," <em>International Security</em> 37 (4) , 2013, pp. 90–131. <a href="https://www.belfercenter.org/publication/forced-be-free-why-foreign-imposed-regime-change-rarely-leads-democratization">Belfer Center</a></li>
+<li id="ref-56"><a href="#fnref-56-1">^</a> Alexander B. Downes, <em>Catastrophic Success: Why Foreign-Imposed Regime Change Goes Wrong</em>, Cornell University Press, 2021. <a href="https://muse.jhu.edu/book/94370/">Project MUSE</a></li>
+<li id="ref-57"><a href="#fnref-57-1">^</a> "Elections pose next test for Venezuela," Semafor, 2026 年 11 月 2 日、 "Venezuela's Promised Elections Face Long Delays, Sources Say," Reuters 配信、 2026 年 9 月 25 日。 <a href="https://www.semafor.com/article/11/02/2026/elections-pose-next-test-for-venezuela">Semafor</a> <a href="https://www.usnews.com/news/world/articles/2026-09-25/venezuelas-promised-elections-face-long-delays-sources-say">U.S. News 掲載</a></li>
+<li id="ref-58"><a href="#fnref-58-1">^</a> 国立中正紀念堂「 From Authoritarianism to De-authoritarianism 」。 <a href="https://www.cksmh.gov.tw">国立中正紀念堂</a></li>
+<li id="ref-59"><a href="#fnref-59-1">^</a> J. W. de Villiers, Roger Jardine, and Mitchell Reiss, "Why South Africa Gave Up the Bomb," <em>Foreign Affairs</em>, November/December 1993.</li>
+<li id="ref-60"><a href="#fnref-60-1">^</a> Mark R. Beissinger, <em>Nationalist Mobilization and the Collapse of the Soviet State</em>, Cambridge University Press, 2002.</li>
+<li id="ref-61"><a href="#fnref-61-1">^</a> Bruce W. Bennett, <em>Preparing for the Possibility of a North Korean Collapse</em>, RAND Corporation, 2013. <a href="https://www.rand.org">RAND</a></li>
+<li id="ref-62">^ <sup><a href="#fnref-62-1">a</a></sup> <sup><a href="#fnref-62-2">b</a></sup> Adam Y. Liu and Xiaojun Li, "Assessing Public Support for (Non-) Peaceful Unification with Taiwan: Evidence from a Nationwide Survey in China," <em>Journal of Contemporary China</em> 33 (145) , 2023 年 5 月 14 日オンライン公開。 <a href="https://cwp.sipa.columbia.edu/news/assessing-public-support-non-peaceful-unification-taiwan-cwp-alum-xiaojun-li">コロンビア大学</a></li>
+<li id="ref-63"><a href="#fnref-63-1">^</a> "Just over half of mainland Chinese people back full-scale war to take control of Taiwan, poll finds," South China Morning Post, 2023 年 5 月。自己検閲に関する指摘は、調査を論じた報道に引かれたレイモンド・クオ (RAND) の見方である。 <a href="https://www.scmp.com/news/china/diplomacy/article/3221238/just-over-half-mainland-chinese-people-back-full-scale-war-take-control-taiwan-poll-finds">SCMP</a> <a href="https://news.ltn.com.tw/news/focus/breakingnews/4311108">Taipei Times 転載</a></li>
+<li id="ref-64"><a href="#fnref-64-1">^</a> Shan Wei, "Are Chinese Youth Becoming More Nationalistic? Insights From Public Opinion Surveys," EAI Background Brief No. 1803, East Asian Institute, National University of Singapore, 2024 年 12 月 31 日。</li>
+<li id="ref-65"><a href="#fnref-65-1">^</a> "Ukraine peace talks restart after 9 months. What makes them different this time?," CNN, 2026 年 11 月 9 日、 "Ukraine holds peace talks with US, Europe as conflict escalates," Al Jazeera, 2026 年 11 月 17 日。 <a href="https://www.cnn.com/2026/11/09/europe/russia-ukraine-us-peace-talks-preview-intl">CNN</a> <a href="https://www.aljazeera.com/amp/news/2026/11/17/ukraine-holds-peace-talks-with-us-europe-as-conflict-escalates">Al Jazeera</a></li>
+</ol>
+<p class="endnote">本稿は、公開されている分析と報道に基づく整理であり、各国の軍事・外交の内情を独自に調査したものではない。確認できなかった事柄は、存在しないことの証明ではない。</p>
+</div>
+</main>
+</body>
+</html>

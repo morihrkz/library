@@ -2,7 +2,7 @@
 
 **文書名** : `future-article-themes.md`
 **基準日** : 2026 年 11 月 21 日（前回の基準日は 11 月 19 日で、記事は 100 本だった。その後に、 02 知識と信頼へ `humanities-standards-of-validity.html` を 1 本足して 101 本になり、 11 月 21 日に、学術論文の体裁になじまない記事 9 本を `reading` リポジトリへ移して 92 本になった。 92 本に合わせて、本数、平均字数、語の出現数、空白、順位、置き場所を書き直した。同じ日に、 `four-thousand-dollars-a-month.html` を、題（月 60 万円）との食い違いを直すため、 `lifetime-cash-thought-experiment.html` へ改名してもいる）
-**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。さらに 11 月 23 日に、同じ 07 へ `crink-china-russia-iran-north-korea-alignment.html` を 1 本足して 94 本になった。 11 月 24 日には、同じ 07 の 3 本（ `china-overseas-footholds-colonial-comparison.html` ・ `laos-china-dependence.html` ・ `cambodia-china-dependence.html` ）を `china-mainland-southeast-asia-dependence.html` 1 本に統合して、 92 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
+**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。さらに 11 月 23 日に、同じ 07 へ `crink-china-russia-iran-north-korea-alignment.html` を 1 本足して 94 本になった。 11 月 24 日には、同じ 07 の 3 本（ `china-overseas-footholds-colonial-comparison.html` ・ `laos-china-dependence.html` ・ `cambodia-china-dependence.html` ）を `china-mainland-southeast-asia-dependence.html` 1 本に統合して、 92 本になった。同じ 11 月 24 日に、 07 の 8 本（ `regime-01` 〜 `regime-04` 、 `democratic-backsliding-and-autocratization.html` 、 `auckland-mayor-democracy-remarks-coverage-and-arguments.html` 、 `axis-of-evil-and-democracy-index.html` 、 `crink-china-russia-iran-north-korea-alignment.html` ）を解体し、 `authoritarianism-democracy-and-political-error.html` と `regime-type-and-international-conduct.html` の 2 本に組み直して、 86 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
 **注記** : 11 月 21 日に `reading` リポジトリへ移した 9 本（ `modern-contemporary-periods.html` ・ `elder-housing.html` ・ `japan-industrial-products-strength.html` ・ `if-adopted-at-one.html` ・ `review-jibun-toka-nai-kara.html` ・ `strawman-fallacy.html` ・ `logic-argumentation.html` ・ `writing-techniques.html` ・ `falsifiability-introduction.html` ）は、この文書の対象に含めない。これらの記事への言及は、書庫の記事としては数えず、該当の箇所に、移した旨を書いた。
 **役割** : 書庫の現状を診断し、次に書く記事を優先順に提案する。候補ごとに、執筆の前に決めておくこと（置き場所、入口、論点の分担、確度の見通し、接続先）を示す。
 
@@ -63,7 +63,7 @@
 | 場所 | 現状 | 問題 |
 | :--- | :--- | :--- |
 | 06 の「司法と差別」 | `south-racism-claim.html` の 1 本だけ | 分類ではなく目印になっている。「司法」を名に含むが、司法を扱うのは同記事の 6 章（陪審員裁判）で、他に司法の記事は続いていない |
-| 07 の「民主主義の後退」 | `democratic-backsliding-and-autocratization.html` の 1 本だけ | 同じく目印である。この記事は、隣の連作（ `regime-03` と `regime-04` ）の概念を、英国・ドイツ・日本へ当てはめる応用であり、連作から切り離す理由が見えにくい |
+| 07 の「民主主義の後退」 | `democratic-backsliding-and-autocratization.html` の 1 本だけ | 同じく目印である。この記事は、隣の連作（ `regime-03` と `regime-04` ）の概念を、英国・ドイツ・日本へ当てはめる応用であり、連作から切り離す理由が見えにくい（ 11 月 24 日の統合で、この小見出しは廃止した） |
 
 **私ならこうする** : 小見出しを新設せず、既存の群へ入れる。 `south-racism-claim.html` は、差別を「公正」の問いとして検証する記事なので、「公正とは何か」（ 4 → 5 本）へ移す。 `democratic-backsliding-and-autocratization.html` は、連作の群（ 4 → 5 本）へ入れ、群の名を「権威主義と、民主主義の後退」のように、連作の応用を含む名に改める。理由は、 4 章の規則と整合し、目印だけの見出しが減って、分類の軸が読み取りやすくなるからである。これは提案であり、 `index.html` の書き換えは承認を得てから行う。なお、 11 月 21 日に 3 本を `reading` へ移して 1 本になった 01 の「推論と論証」は、同じ日に「原因を語る」（ 2 本）と統合し、「推論と因果」（ 3 本）にした（承認済み）。 6.1 節の記事が入れば 4 本になる。
 
@@ -102,7 +102,7 @@
 | 本人に代わって決める（認知症・成年後見） | 「成年後見」「意思決定支援」は 0 本、「認知症」は 0 本（グループホームの利用要件として触れていた `elder-housing.html` は、 `reading` へ移した）。一方、看取りの記事（ `end-of-life-place-and-advance-planning.html` ）は、本人が意思を示せないとき「誰が代わりに推定するのか」という問いを、未決のまま残している（ 3.2 節） | 部分的な空白（書庫の内側に問いがある） |
 | 美と好み | 「美学」は 3 本（ `ethics-and-philosophy.html` が下位分野として挙げる 1 本、 `taste-and-reasons-for-liking.html` 、および、人文学の「正しさ」の基準のなかで美の問いに触れる `humanities-standards-of-validity.html` ）、「美的」も 2 本。基準日以降に、後者が好みの成り立ちを主題として扱った。美術・音楽・文芸など、個別の領域の評価を主題とする記事は、まだない | 一部を埋めた（残りは小さい空白） |
 | 健康情報の読み方 | 疑似科学の線引き（ `aging-pseudoscience.html` ）、脳内物質の通説の検証（ `brain-chemicals-happiness.html` ）、論文の確かめ方（ `article-academic-vs-bestseller.html` ）がある。「サプリ」は 2 本、「栄養」「ランダム化」は各 1 本。食事やサプリの研究の読み方を主題とする記事はない | 部分的な空白 |
-| 時間と将来世代 | 「将来世代」「時間割引」「現在バイアス」「割引率」は、どの記事にも現れない。民主主義の短期主義（ `regime-03-democracy-and-authoritarianism.html` の 4.2 節）と非同一性問題（ `antinatalism-asymmetry.html` の 5.2 節）に断片がある | 部分的な空白 |
+| 時間と将来世代 | 「将来世代」「時間割引」「現在バイアス」「割引率」は、どの記事にも現れない。民主主義の短期主義（ `authoritarianism-democracy-and-political-error.html` の 7.3 節）と非同一性問題（ `antinatalism-asymmetry.html` の 5.2 節）に断片がある | 部分的な空白 |
 | 電力とエネルギー | 蓄電（ `battery-voltage-and-charge.html` ）、電力の輸出（ `china-mainland-southeast-asia-dependence.html` の 3.2 節）、電力需要と電気料金（ `ai-datacenter-politics.html` ）、電源周波数（ `broadcast-television-standards.html` の 4.2 節）が別々にある。「火力」は 0 本、「再生可能」は 1 本。発電と供給の制約を扱う記事はない | 部分的な空白 |
 | 貨幣と信用 | 「貨幣」は 0 本（近代史の文脈で 1 本に現れていた `modern-contemporary-periods.html` は、 `reading` へ移した）。「円安」「暗号資産」は 0 本。債務と通貨スワップは `china-mainland-southeast-asia-dependence.html` の 3.1 節に、政策金利は `australia-nz-economic-divergence.html` の 3.4 節に、断片がある | 空白（準備が重い） |
 
@@ -239,7 +239,7 @@
   - `japanese-buddhist-sects.html`（ 10 章。宗派分類の成立、 10.1 節「菩提寺と『檀家』関係の成立時期」）
   - `comparative-religion-christianity-islam.html`（ 1 章「仏教一本では足りない理由」、 9 章「西洋対日本という比較軸」）
   - `moral-education-policy.html`（ 3.4 節「宗教との関係」、 4.4 節のフランスのライシテ）
-  - `regime-03-democracy-and-authoritarianism.html`（ 3.3 節。同じ儒教文化圏に属しながら民主化の道が分かれた韓国・台湾）
+  - `authoritarianism-democracy-and-political-error.html`（ 7.2 節。同じ儒教文化圏に属しながら民主化の道が分かれた韓国・台湾）
   - `learning-without-pedantry.html`（ 4.3 節「東洋思想における謙虚さの位置づけ」。『論語』）
   - `happiness-theory.html`（ 2.3 節「比較への警戒――ストア派と仏教」）
   - `jungian-psychology.html`（ 4.1 節「『日本人論』としての本質主義批判」）
@@ -266,7 +266,7 @@
 - **接続（本文で確認済み）** :
   - `hostility-mobilization-legitimacy.html`（ 4 章「歴史を武器化する国家」）
   - `china-mainland-southeast-asia-dependence.html`（ 4.2 節「学校は何を教えているか」）
-  - `regime-01-concept-and-history.html`（ 8.4 節「丸山眞男の『無責任の体系』論と学説史」）
+  - `authoritarianism-democracy-and-political-error.html`（ 5.1 節「独裁者のいない破局――戦前日本」。丸山眞男の「無責任の体系」）
   - `japanese-buddhist-sects.html`（ 10 章。宗派分類の成立。 10.1 節の檀家関係の成立時期）
   - `liberal-arts-history.html`（ 3.5 節「日本語の『教養』概念――大正教養主義という系譜」。概念の歴史を確かめる例）
   - `types-of-reasoning.html`（ 5 章のアブダクション。史料から過去を推し量る手続きの比較に使える）
@@ -409,7 +409,7 @@
 - **置き場所** : 04 自己と生き方の「生の意味と価値」。 04 は、 11 月 21 日に 2 本を `reading` へ移して 10 本になっている。この記事で 11 本になり、厚いテーマの水準（ 13 本以上）には届かないが、着手の前に、置き場所と優先を見直す（ 5 章の注記）。
 - **入口** : 年金、貯蓄、健康診断、気候対策など、今の負担が将来の利益になる場面。「今は我慢しても、将来は報われる」という説明に、どこまで納得できるか。
 - **問いと骨格** : 二つの層で扱う。第一は個人の層で、遠い将来の利益を割り引く傾向（時間割引）と、目先を過大に選ぶ傾向（現在バイアス）を区別する。第二は社会の層で、まだ生まれていない人の利益を、現在の決定でどう扱うかを検討する。
-- **論点の分担** : 生まれてくることの是非は `antinatalism-asymmetry.html` に任せる。本稿は、「将来の利益を現在の行為でどう扱うか」に絞る。民主主義の短期主義の制度論は `regime-03-democracy-and-authoritarianism.html` に任せる。
+- **論点の分担** : 生まれてくることの是非は `antinatalism-asymmetry.html` に任せる。本稿は、「将来の利益を現在の行為でどう扱うか」に絞る。民主主義の短期主義の制度論は `authoritarianism-democracy-and-political-error.html` に任せる。
 - **確度の見通し**（事前調査が要る） :
 
 | 主張 | 確度 |
@@ -421,7 +421,7 @@
 
 - **接続（本文で確認済み）** :
   - `antinatalism-asymmetry.html`（ 5.2 節「非同一性問題との接続」、 6.1 節「情動予測の誤り」）
-  - `regime-03-democracy-and-authoritarianism.html`（ 4.2 節「短期主義」）
+  - `authoritarianism-democracy-and-political-error.html`（ 7.3 節「民主主義の側の、四つの弱点」のうち短期主義）
   - `counterfactual-regret-psychology.html`（ 5.2 節「感情予測の誤りと適応の力」）
   - `vocational-choice-structure.html` と `ai-labor-and-redistribution.html`（ 3.3 節。職業選択の「将来価値」の軸）
   - `overinsurance-prevention.html`（保険による備えの合理性と過剰）
