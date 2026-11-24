@@ -2,7 +2,7 @@
 
 **文書名** : `future-article-themes.md`
 **基準日** : 2026 年 11 月 21 日（前回の基準日は 11 月 19 日で、記事は 100 本だった。その後に、 02 知識と信頼へ `humanities-standards-of-validity.html` を 1 本足して 101 本になり、 11 月 21 日に、学術論文の体裁になじまない記事 9 本を `reading` リポジトリへ移して 92 本になった。 92 本に合わせて、本数、平均字数、語の出現数、空白、順位、置き場所を書き直した。同じ日に、 `four-thousand-dollars-a-month.html` を、題（月 60 万円）との食い違いを直すため、 `lifetime-cash-thought-experiment.html` へ改名してもいる）
-**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。さらに 11 月 23 日に、同じ 07 へ `crink-china-russia-iran-north-korea-alignment.html` を 1 本足して 94 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
+**対象** : 『余白の書庫――読むためのインデックス』の記事 92 本（ `index.html` を除く）・ 11 テーマ（基準日以降の 11 月 22 日に、 07 体制と権力へ `auckland-mayor-democracy-remarks-coverage-and-arguments.html` を 1 本足して 93 本になった。さらに 11 月 23 日に、同じ 07 へ `crink-china-russia-iran-north-korea-alignment.html` を 1 本足して 94 本になった。 11 月 24 日には、同じ 07 の 3 本（ `china-overseas-footholds-colonial-comparison.html` ・ `laos-china-dependence.html` ・ `cambodia-china-dependence.html` ）を `china-mainland-southeast-asia-dependence.html` 1 本に統合して、 92 本になった。この文書の本数と測定値は、基準日の 92 本のままである）
 **注記** : 11 月 21 日に `reading` リポジトリへ移した 9 本（ `modern-contemporary-periods.html` ・ `elder-housing.html` ・ `japan-industrial-products-strength.html` ・ `if-adopted-at-one.html` ・ `review-jibun-toka-nai-kara.html` ・ `strawman-fallacy.html` ・ `logic-argumentation.html` ・ `writing-techniques.html` ・ `falsifiability-introduction.html` ）は、この文書の対象に含めない。これらの記事への言及は、書庫の記事としては数えず、該当の箇所に、移した旨を書いた。
 **役割** : 書庫の現状を診断し、次に書く記事を優先順に提案する。候補ごとに、執筆の前に決めておくこと（置き場所、入口、論点の分担、確度の見通し、接続先）を示す。
 
@@ -51,7 +51,7 @@
 
 - **薄いテーマ（本数が少ない）** : 「歴史と宗教」は 2 本で、小見出しを持てない。「自然科学」は 5 本、「からだとケア」は 4 本である。この三つを、薄いテーマと呼ぶ。「論理と言葉」も 6 本に減り、薄いテーマに近い（ 4 章の基準は 5 本以下）。
 - **厚いテーマ** : 「制度と公正」（ 15 本）、「心理と道徳」（ 14 本）、「体制と権力」（ 13 本）は、すでに十分に厚い。ここへの追加は、他のテーマより強い理由を要する。
-- **字数の幅** : 4,613 字（ `laos-china-dependence.html` ）から 50,669 字（ `internet-peering-cdn.html` ）まで。中央値は約 11,000 字で、 20,000 字以上が 14 本、 8,000 字未満が 22 本ある。
+- **字数の幅** : 4,613 字（ `laos-china-dependence.html` 。 11 月 24 日に `china-mainland-southeast-asia-dependence.html` へ統合した）から 50,669 字（ `internet-peering-cdn.html` ）まで。中央値は約 11,000 字で、 20,000 字以上が 14 本、 8,000 字未満が 22 本ある。
 - **平均字数は、薄さの根拠にしない** : 平均が 10,000 字を下回るのは、「からだとケア」（ 9,799 字）だけである。 4 本のうち 2 本が 6,924 字と 8,180 字で、残る 2 本は 11,822 字と 12,269 字である。「自己と生き方」は、短い書評とエッセイ 2 本を `reading` へ移して、平均が 10,681 字になった。字数の差は、記事の型や問いの広さの差であり、テーマの薄さの証拠にはならない。逆に、「心理と道徳」の平均（ 13,678 字）は、 33,326 字の `superiority-striving-and-contempt-in-conflict.html` 1 本が押し上げている。この記事を除くと、平均は約 12,200 字になる。均衡の根拠は、本数だけにする（ 4 章）。
 
 「歴史と宗教」の 2 本は、 `japanese-buddhist-sects.html`（日本仏教）と `comparative-religion-christianity-islam.html`（キリスト教とイスラーム）で、どちらも宗教の記事である。歴史を主題とする記事は 0 本になった（時代区分の `modern-contemporary-periods.html` を、 11 月 21 日に `reading` へ移した）。テーマの名の「歴史」の側は、 6.3 節の記事を待つ。
@@ -80,7 +80,7 @@
 見出しと導入部を通して読むと、書庫の記事には共通する書き方がある。新しい記事も、この書き方を満たせる主題を選ぶ。
 
 - **確度を区別する** : 「確立した」「確立に近い」の語は 43 本に現れる。「投機的」の語まで含めて、三区分（確立した事実、未確定の仮説、投機的な理論）で書く記事は 13 本ある。確立した事実、有力な説、論争中の点、未決の問いを書き分け、表にまとめる記事が多い（例 : `brain-chemicals-happiness.html` の「通説の確信度スペクトル」、 `punishment-populism.html` の「主張ごとの確度」）。
-- **反対の立場を最も強い形で立てる** : 「最も強い」の語は 28 本に現れる（例 : `overinsurance-prevention.html` の 4.1 節「言説の最も強い形」、 `laos-china-dependence.html` の「依存と見る立場の最も強い議論」）。
+- **反対の立場を最も強い形で立てる** : 「最も強い」の語は 28 本に現れる（例 : `overinsurance-prevention.html` の 4.1 節「言説の最も強い形」、 `china-mainland-southeast-asia-dependence.html` の 6.4 節「『依存ではない』とする立場の最も強い議論」）。
 - **限界と、確かめられなかったことを書く** : 「限界」の語は 85 本に現れ、「確認できていない」「確認できなかった」の語で、確かめられなかった点を明記する記事は 30 本ある。冒頭に【方法と限界】などの注記を置く記事は 68 本である。
 - **身近な違和感から入る** : 歌詞、野球の「お見合い」、 29.97 fps 、くじの当選、二枚の投票用紙など、読者がすでに知っている場面から、構造の問いへ進む。
 - **「〜という言説」を分けて検証する** : 一つの言説を、要素に分けて検証する型が定着している（例 : `south-racism-claim.html` は五つの要素に、 `overinsurance-prevention.html` は「がん保険は必要ない」という言説に、 `australia-nz-economic-divergence.html` は指標ごとに分ける）。題名、副題、リード文に「言説」「言明」を含む記事は 9 本ある。
@@ -103,8 +103,8 @@
 | 美と好み | 「美学」は 3 本（ `ethics-and-philosophy.html` が下位分野として挙げる 1 本、 `taste-and-reasons-for-liking.html` 、および、人文学の「正しさ」の基準のなかで美の問いに触れる `humanities-standards-of-validity.html` ）、「美的」も 2 本。基準日以降に、後者が好みの成り立ちを主題として扱った。美術・音楽・文芸など、個別の領域の評価を主題とする記事は、まだない | 一部を埋めた（残りは小さい空白） |
 | 健康情報の読み方 | 疑似科学の線引き（ `aging-pseudoscience.html` ）、脳内物質の通説の検証（ `brain-chemicals-happiness.html` ）、論文の確かめ方（ `article-academic-vs-bestseller.html` ）がある。「サプリ」は 2 本、「栄養」「ランダム化」は各 1 本。食事やサプリの研究の読み方を主題とする記事はない | 部分的な空白 |
 | 時間と将来世代 | 「将来世代」「時間割引」「現在バイアス」「割引率」は、どの記事にも現れない。民主主義の短期主義（ `regime-03-democracy-and-authoritarianism.html` の 4.2 節）と非同一性問題（ `antinatalism-asymmetry.html` の 5.2 節）に断片がある | 部分的な空白 |
-| 電力とエネルギー | 蓄電（ `battery-voltage-and-charge.html` ）、電力の輸出（ `laos-china-dependence.html` の 3.2 節）、電力需要と電気料金（ `ai-datacenter-politics.html` ）、電源周波数（ `broadcast-television-standards.html` の 4.2 節）が別々にある。「火力」は 0 本、「再生可能」は 1 本。発電と供給の制約を扱う記事はない | 部分的な空白 |
-| 貨幣と信用 | 「貨幣」は 0 本（近代史の文脈で 1 本に現れていた `modern-contemporary-periods.html` は、 `reading` へ移した）。「円安」「暗号資産」は 0 本。債務と通貨スワップは `laos-china-dependence.html` の 3.1 節に、政策金利は `australia-nz-economic-divergence.html` の 3.4 節に、断片がある | 空白（準備が重い） |
+| 電力とエネルギー | 蓄電（ `battery-voltage-and-charge.html` ）、電力の輸出（ `china-mainland-southeast-asia-dependence.html` の 3.2 節）、電力需要と電気料金（ `ai-datacenter-politics.html` ）、電源周波数（ `broadcast-television-standards.html` の 4.2 節）が別々にある。「火力」は 0 本、「再生可能」は 1 本。発電と供給の制約を扱う記事はない | 部分的な空白 |
+| 貨幣と信用 | 「貨幣」は 0 本（近代史の文脈で 1 本に現れていた `modern-contemporary-periods.html` は、 `reading` へ移した）。「円安」「暗号資産」は 0 本。債務と通貨スワップは `china-mainland-southeast-asia-dependence.html` の 3.1 節に、政策金利は `australia-nz-economic-divergence.html` の 3.4 節に、断片がある | 空白（準備が重い） |
 
 ### 3.1 検討して、いまは立てない領域
 
@@ -265,7 +265,7 @@
 
 - **接続（本文で確認済み）** :
   - `hostility-mobilization-legitimacy.html`（ 4 章「歴史を武器化する国家」）
-  - `cambodia-china-dependence.html`（ 3 章「学校は何を教えているか」）
+  - `china-mainland-southeast-asia-dependence.html`（ 4.2 節「学校は何を教えているか」）
   - `regime-01-concept-and-history.html`（ 8.4 節「丸山眞男の『無責任の体系』論と学説史」）
   - `japanese-buddhist-sects.html`（ 10 章。宗派分類の成立。 10.1 節の檀家関係の成立時期）
   - `liberal-arts-history.html`（ 3.5 節「日本語の『教養』概念――大正教養主義という系譜」。概念の歴史を確かめる例）
@@ -397,7 +397,7 @@
 - **接続（本文で確認済み）** :
   - `ai-datacenter-politics.html`（ 4.1 節。電気料金と電力需要が争点になる過程）
   - `battery-voltage-and-charge.html`（蓄電）
-  - `laos-china-dependence.html`（ 3.2 節「電力の売り先は分散している」。発電量の約三分の二の輸出。冒頭と 2 章に、送電網の運営会社の持分の話もある）
+  - `china-mainland-southeast-asia-dependence.html`（ 3.2 節「送電網は中国に、電力の売り先は近隣に」。発電量の約三分の二の輸出と、送電網の運営会社の持分）
   - `broadcast-television-standards.html`（ 4.2 節「撮影地の照明とフリッカー」。 50 Hz と 60 Hz の電源周波数が映像制作に及ぼす影響）
   - `boundary-underestimation.html`（原子力発電所を例にした高信頼性組織論）
   - `theory-of-popular-will.html`（原子力発電への賛否が、有権者の選好の例に出る）
@@ -447,8 +447,7 @@
 | 暗号資産や中央銀行デジタル通貨が、国家の通貨主権を損なうか | 未決 |
 
 - **接続（本文で確認済み）** :
-  - `laos-china-dependence.html`（ 3.1 節「債務の偏りは大きい」。返済の繰り延べと人民元の通貨スワップ枠）
-  - `china-overseas-footholds-colonial-comparison.html`（ 5.3 節「『債務の罠』は、通説ほど単純ではない」）
+  - `china-mainland-southeast-asia-dependence.html`（ 3.1 節「債務の偏りは大きく、返済は先送りされている」。返済の繰り延べと人民元の通貨スワップ枠。 8.3 節「『債務の罠』は、通説ほど単純ではない」）
   - `australia-nz-economic-divergence.html`（ 3.4 節「政策金利」）
 - **接続（論理上の接続）** : `ai-labor-and-redistribution.html`（ 4.3 節の再分配政策の四類型）、 `internet-peering-cdn.html`（お金の流れを分解する方法）。
 - **資料** : クナップの国定貨幣論、ミッチェル＝イネスの信用貨幣論、グレーバー『負債論』とそれへの批判。原典、または信頼できる解説で確かめてから使う。
