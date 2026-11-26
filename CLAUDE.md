@@ -3,10 +3,11 @@
 「余白の書庫」（ GitHub Pages で公開する静的サイト）のリポジトリである。構成は、ポータルの `index.html` 1 枚、記事の `*.html` （ 86 本）、 `README.md` 、 `future-article-themes.md` （次に書く記事の計画）。 ビルド工程と外部ライブラリは使わない。 JavaScript は、 `index.html` の本文検索（後述）にだけ使い、記事には使わない。
 
 ## HTML 記事の意匠
-Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠修正・検証には、必ずローカルスキル `library-html-style`(`~/.claude/skills/library-html-style/SKILL.md`)を使う。
+Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠修正・検証には、必ずローカルスキル `readable-html-style`(`~/.claude/skills/readable-html-style/SKILL.md`)を使う（ 2026-11-26 に `library-html-style` から切り替えた）。
 
 - 記事の意匠の正はこのスキルである。配色・寸法・マークアップ・出力前チェックは、すべてスキル側に書かれている。この `CLAUDE.md` にコピーしない。
-- スキルの対象は記事だけで、 `index.html` は含まない。 `index.html` は別の意匠で、仕様は後述の「 index.html の構造」にある。
+- 一括変換が終わるまで、旧 `library-html-style` の CSS を持つ記事が残る。その修正では、旧意匠のまま直すか、先に変換するかを、ユーザーに確認する。
+- このリポジトリでスキルを適用するのは記事だけで、 `index.html` は含まない。 `index.html` は別の意匠で、仕様は後述の「 index.html の構造」にある。
   - 例 : スキルは `.wrap` を禁じるが、 `index.html` は `.wrap` を使う。記事用の検査（ `font-family` や `.wrap` の検出など）を `index.html` にそのまま当てて、誤検出を直さない。
 
 ## 規約の書き方
@@ -45,9 +46,9 @@ Markdown → HTML 変換、 HTML 記事の新規作成、既存記事の意匠�
 ## 検証
 - 見た目や挙動に関わる変更（レイアウト、レスポンシブ、目次や脚注のリンクなど）は、 Claude in Chrome で実際に開いて確かめてから、完了を報告する。
   - `navigate` は `file://` を拒否する。作業ディレクトリで `python -m http.server` を一時起動し、 `http://127.0.0.1:PORT/...` 経由で開く。確認後は、サーバーを必ず停止する。
-  - レスポンシブの確認幅は、 `index.html` なら 760px と 480px の境目の前後、記事なら 480px の前後である。
+  - レスポンシブの確認幅は、 `index.html` なら 760px と 480px の境目の前後、記事なら 640px の前後である。
   - 同一タブでの `location.hash` だけの遷移は、スクリプトを再実行しない。ページ内リンクは、新規タブで完全に読み込んでも確かめる。
-- ダークモードは、現状では全体の方針になっていない。記事と `index.html` はライト固定（ `color-scheme: light` ）で、スキルにもダークの仕様はない。どの記事も `prefers-color-scheme: dark` の変数を持たない。新しい記事にも、ダーク変数を入れない。
+- ダークモードは、現状では全体の方針になっていない。記事と `index.html` はライト固定（記事は `color-scheme: only light` 、 `index.html` は `light` ）で、スキルにもダークの仕様はない。どの記事も `prefers-color-scheme: dark` の変数を持たない。新しい記事にも、ダーク変数を入れない。
   - ダークモードの作業を頼まれたら、方針（全体に広げるか、外すか）をユーザーに確認する。
   - ダーク対応を扱うときは、 CSS 変数が定義されているだけで「対応済み」と判断しない。ダークを有効にしたブラウザで、画面上のテキスト要素全般の文字色と実際の背景色のコントラストを検証する。
     - 対象 : `h1` 〜 `h5` 、 `p` 、 `td` 、 `th` 、 `li` 、 `dt` 、 `dd` 、 `figcaption` 、 `summary` 、 `span` 、 `div` 、 `a` 、 `button` 、 `label` 。
