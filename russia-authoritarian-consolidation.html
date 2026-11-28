@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ロシアの権威主義化はなぜ進むのか</title>
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#3d5a52">
+<style>
+  /* 配色(薄い緑の基調。落ち着いた見た目のまま、読みやすくする)。色はここだけで決め、以降は var() で参照する
+     緑 : 見出し・構造　黄 : マーカーと注意　赤 : 必須・重要 */
+  :root{color-scheme:only light;--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#868a83;--box:#eceee7;--mark:#ffe27a;--note-bg:#fff6d6;--note:#d9a400;--must-bg:#fde8e6;--must:#c0392b}
+  /* 旧 contrast の色の名前の別名。変換した文書の追加 CSS を、書き換えずに使うためのもの。新しい指定には使わない */
+  :root{--ink:var(--text);--navy:var(--accent);--yellow:var(--mark);--red:var(--must);--link:var(--accent);--gray:var(--box);--rule:var(--line)}
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body { font-size: 1.2rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+  a:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: 1.05rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.8rem; line-height: 1.5; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: 1.05rem; line-height: 1.9; }
+  /* 見出し */
+  h1, h2, h3 { overflow-wrap: anywhere; }
+  h2 { font-size: 1.4rem; line-height: 1.6; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.3rem; line-height: 1.6; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  li { margin-bottom: .4em; }
+  mark { background: var(--mark); color: var(--text); padding: 0 .15em; }
+  /* 表。横スクロールを作らないため、見出しも折り返す */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 1.2rem; }
+  caption { font-weight: bold; text-align: left; padding: .5rem 0; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  th { background: var(--box); }
+  /* コード。長い行は折り返す */
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: max(.92em, 1rem); overflow-wrap: anywhere; }
+  pre { overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字 */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・印 */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: var(--note-bg); border-left: 5px solid var(--note); padding: .7rem 1rem; margin: 1rem 0; }
+  .tag, .yr { display: inline-block; font-size: 1rem; line-height: 1.6; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* 囲み。見出し語は CSS が出す(本文に書かない)。色だけに頼らず、記号と枠の形でも区別する
+     要点 = 緑の左線と枠　留意事項 = 黄の地　必須 = 赤の地　演習 = 緑の破線 */
+  .point, .caution, .must, .try { margin: 1.2rem 0; padding: .7rem 1rem; }
+  .point::before, .caution::before, .must::before, .try::before { display: block; font-weight: bold; letter-spacing: .08em; }
+  .point > p, .caution > p, .must > p, .try > p { margin: .3rem 0 0; }
+  .point { background: var(--box); border: 1px solid var(--line); border-left: 5px solid var(--accent); }
+  .point::before { content: "要点"; color: var(--accent); }
+  .caution { background: var(--note-bg); border-left: 5px solid var(--note); }
+  .caution::before { content: "▲ 留意事項"; }
+  .must { background: var(--must-bg); border-left: 5px solid var(--must); }
+  .must::before { content: "★ 必須"; color: var(--must); }
+  .try { border: 2px dashed var(--accent); }
+  .try::before { content: "▶ 演習"; color: var(--accent); }
+  /* 手順(ol.steps)。番号は緑の縁の丸。最後の項目に li.goal を付けると、緑で塗った ★ になる */
+  ol.steps { list-style: none; counter-reset: n; margin: 1.2rem 0; padding: 0; border-top: 1px solid var(--line); }
+  ol.steps > li { counter-increment: n; position: relative; min-height: 3.8rem; margin: 0; padding: .8rem 0 .8rem 3rem; border-bottom: 1px solid var(--line); }
+  ol.steps > li::before { content: counter(n); position: absolute; left: 0; top: .9rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--bg); color: var(--accent); border: 3px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; font-weight: bold; line-height: 1; }
+  ol.steps > li > strong:first-child { display: block; }
+  ol.steps > li > p, ol.steps > li > pre, ol.steps > li > figure { margin: .5rem 0; }
+  ol.steps > li.goal::before { content: "★"; background: var(--accent); color: #fff; }
+  /* 要旨・準備物・前提の一覧(dl.spec)。 div.hot の行は赤(最も重要な行) */
+  dl.spec { margin: 1.2rem 0; border: 1px solid var(--line); font-size: 1.1rem; }
+  dl.spec > div { display: grid; grid-template-columns: 7em 1fr; border-bottom: 1px solid var(--line); }
+  dl.spec > div:last-child { border-bottom: 0; }
+  dl.spec dt { padding: .5rem .7rem; background: var(--box); font-weight: bold; }
+  dl.spec dd { margin: 0; padding: .5rem .7rem; overflow-wrap: anywhere; }
+  dl.spec > div.hot dt, dl.spec > div.hot dd { background: var(--must-bg); }
+  dl.spec > div.hot dt { border-left: 5px solid var(--must); color: var(--must); }
+  /* ことば集(dl.words) */
+  dl.words { margin: 1rem 0; }
+  dl.words dt { font-weight: bold; color: var(--accent); margin-top: 1rem; }
+  dl.words dd { margin: .2rem 0 0; padding-left: .8rem; border-left: 3px solid var(--line); }
+  /* 年表(ul.tl)。緑の縦の線と丸印。年は .yr か .tag */
+  ul.tl { list-style: none; margin: 1.2rem 0; padding: 0 0 0 22px; border-left: 6px solid var(--accent); }
+  ul.tl > li { position: relative; margin: 0 0 18px; padding-left: 6px; }
+  ul.tl > li::before { content: ""; position: absolute; left: -34px; top: .45em; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  /* クイズ(div.quiz)。開くと答えが出る */
+  .quiz details { border: 1px solid var(--line); border-radius: 3px; margin: .8rem 0; }
+  .quiz summary { cursor: pointer; padding: .6rem 1rem; font-weight: bold; background: var(--box); }
+  .quiz summary:focus-visible { outline: 3px solid var(--text); outline-offset: -3px; }
+  .quiz details[open] summary { border-bottom: 1px solid var(--line); }
+  .quiz details p { margin: 0; padding: .6rem 1rem; }
+  .quiz .ans { font-weight: bold; color: var(--accent); }
+  /* 図(figure + インライン SVG)。 SVG の色と文字は、下のクラスだけで指定する(属性に色や文字サイズを書かない)
+     f-navy ・ s-navy は、旧 contrast の書き方をそのまま使うための別名 */
+  figure { margin: 1.2rem 0; }
+  /* 幅の制限は、下のクラスで描いた図だけにかける。クラスを使わない図(横長の大きな図など)の大きさは変えない */
+  figure svg:has(.t, .nf, [class^="f-"], [class^="s-"]) { display: block; width: min(100%, 480px); height: auto; }
+  figcaption { padding: .5rem 0 0; font-size: 1.05rem; }
+  figcaption .cap { display: block; font-weight: bold; }
+  svg .t { fill: var(--text); font-size: 1.5rem; }
+  svg .t.lg { font-size: 1.75rem; }
+  svg .t.white { fill: #fff; }
+  svg .nf { fill: none; }
+  svg .f-ink { fill: var(--text); }
+  svg .f-accent, svg .f-navy { fill: var(--accent); }
+  svg .f-yellow { fill: var(--mark); }
+  svg .f-red { fill: var(--must); }
+  svg .f-gray { fill: var(--box); }
+  svg .f-bg { fill: var(--bg); }
+  svg .f-white { fill: #fff; }
+  svg .s-ink { stroke: var(--text); stroke-width: 2; }
+  svg .s-accent, svg .s-navy { stroke: var(--accent); stroke-width: 2; }
+  svg .s-red { stroke: var(--must); stroke-width: 2; }
+  svg .s-rule { stroke: var(--line); stroke-width: 2; }
+  svg .s-thick { stroke-width: 3; }
+  /* チェックリスト(div.checklist)。題名(.cl-title)は、内容を区別する必要があるときだけ置く。定型の注意書きは置かない */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: .6rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin: .4rem 0 .2rem; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { margin: 0; padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .85rem; width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  /* 目次(nav.toc) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:1.05rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:1.05rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:640px){
+    .toc>ol{columns:1}
+    dl.spec > div { grid-template-columns: 5.2em 1fr; }
+  }
+  /* 脚注の参照番号 */
+  sup{font-size:.72em;line-height:0}
+  sup a{text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:1.05rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:1.05rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--mark)}
+  /* 末尾の注記 */
+  .endnote { font-size: 1.05rem; color: var(--muted); }
+  /* 表のカード化(幅 640px 以下)。 table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 640px) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1.3rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1.3rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1.3rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; text-align: left; }
+  }
+  /* この文書に固有の部品(contrast の色に置き換えたもの) */
+  dl.summary { margin: 14px 0; }
+  dl.summary > div { display: flex; flex-wrap: wrap; gap: 0 .4em; padding: 4px 0; border-bottom: 2px dashed var(--rule); }
+  dl.summary dt { white-space: nowrap; }
+  dl.summary dt::after { content: "："; }
+  dl.summary dd { margin: 0; flex: 1 1 12em; }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">国際報道の読み解き</p>
+<h1>ロシアの権威主義化はなぜ進むのか<br>――ノーバヤ・ガゼータの閉鎖を一例として</h1>
+<p class="subtitle">Causes of Russia's Authoritarian Consolidation, with the Closure of Novaya Gazeta as a Case in Point</p>
+<div class="lede">
+<p>ロシアは、自国の民主主義の指標をさらに押し下げる動きを続けている。独立系紙ノーバヤ・ガゼータの閉鎖は、その最新の一例である。なぜ、ここまで後退が進んだのか。指標、具体例、研究者の説明を順に見て、筆者の見立てを述べる。</p>
+</div>
+<p class="meta"><strong>【方法と限界】</strong> 2026 年 11 月 11 日時点で公開されていた、フリーダム・ハウス、 CPJ 、アルジャジーラ、 CBS 、 PBS （ AP 通信の配信）、 <em>Meduza</em> などの資料を読んだ。研究者の説明は、各人の主張として紹介する。「筆者の見立て」と記した箇所は、それらを踏まえた筆者の解釈であり、検証済みの事実ではない。 V-Dem の報告書は、検索結果の要約で内容を確かめただけで、本文を通読していない。 CNN の記事は、閲覧が拒否されて確認できなかった。引用は、英語の原文からの筆者の訳である。</p>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">結論</a></li>
+<li><a href="#sec2">指標が示すこと</a></li>
+<li><a href="#sec3">一例としての、ノーバヤ・ガゼータの閉鎖</a>
+<ol>
+<li><a href="#sec3-1">経過</a></li>
+<li><a href="#sec3-2">道具の組み合わせ</a></li>
+<li><a href="#sec3-3">欧州での活動の見通し</a></li>
+</ol>
+</li>
+<li><a href="#sec4">なぜ後退が進むのか</a>
+<ol>
+<li><a href="#sec4-1">選択の積み重ね</a></li>
+<li><a href="#sec4-2">多元性の「見せかけ」という設計</a></li>
+<li><a href="#sec4-3">説得から恐怖へ</a></li>
+<li><a href="#sec4-4">戦争による安全保障化</a></li>
+<li><a href="#sec4-5">派閥の均衡と経済の圧力</a></li>
+</ol>
+</li>
+<li><a href="#sec5">限界と反論</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1.  結論</h2>
+<p>筆者の見立ては、次の三点である。</p>
+<dl class="summary">
+<div><dt>位置</dt><dd>ロシアは、民主主義から滑り落ちている途中ではない。指標ではすでに底に近い位置にいる。起きているのは、残っていた多元性（異論・競争・独立した情報）を、さらに削る動きである。</dd></div>
+<div><dt>原因</dt><dd>単一の原因では説明できない。制度設計と指導者の選択、説得から恐怖への統治の変化、戦争による安全保障化、派閥の均衡と経済の圧力という、五つの見方が重なっている。</dd></div>
+<div><dt>閉鎖の位置づけ</dt><dd>ノーバヤ・ガゼータの閉鎖は、原因ではなく結果の一つである。「外国のエージェント」の指定から資金の遮断、退去の通告まで、同じ道具が他の媒体と団体にも使われている。</dd></div>
+</dl>
+
+<h2 id="sec2">2.  指標が示すこと</h2>
+<p>フリーダム・ハウスの「世界の自由度 2026 」で、ロシアは 100 点中 12 点の「不自由」である。内訳は、政治的権利が 40 点中 4 点、市民的自由が 60 点中 8 点だった。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 前年も 12 点で、点数の上では動いていない。</p>
+<table class="cardrow">
+<thead><tr><th>項目</th><th>数字</th><th>読み取り</th></tr></thead>
+<tbody>
+<tr><th>自由度の総合点</th><td data-label="数字">12 / 100 （ 2025 年の状況）</td><td data-label="読み取り">前年と同じ。点数は、すでに下限に近い <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup></td></tr>
+<tr><th>政治的な言論・活動で拘束された人</th><td data-label="数字">1,902 人（ 2025 年 12 月、 OVD-Info の集計）</td><td data-label="読み取り">反対派は、地方選挙からも事実上排除された <sup id="fnref-1-3"><a href="#ref-1">[1]</a></sup></td></tr>
+<tr><th>「外国のエージェント」に指定された記者・媒体</th><td data-label="数字">355</td><td data-label="読み取り">指定は 2017 年から続き、罰則は罰金から禁錮まで及ぶ <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup></td></tr>
+<tr><th>「望ましくない」として禁止された媒体</th><td data-label="数字">27</td><td data-label="読み取り">活動への参加に、最長 6 年の禁錮がある <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup></td></tr>
+<tr><th>戦争報道に関連して封鎖されたサイト</th><td data-label="数字">25,000 超</td><td data-label="読み取り">2026 年 2 月には、 WhatsApp も遮断された <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup></td></tr>
+</tbody>
+</table>
+<p>V-Dem の 2026 年版報告書も、ロシアを民主主義の後退が進む国の監視対象に挙げていると報じられている。 <sup id="fnref-13-1"><a href="#ref-13">[13]</a></sup></p>
+<div class="point">
+<p>点数が動かなくても、実態は動いている。フリーダム・ハウスは、当局が国内の異論を封じるために個人の権利と自由への制限を強めたこと、 2022 年の全面侵攻以降に公的な情報の不透明さが増したことを書いている。 <sup id="fnref-1-4"><a href="#ref-1">[1]</a></sup> 筆者の見立てでは、点数は下限に近づくほど、悪化を測る力を失う。</p>
+</div>
+
+<h2 id="sec3">3.  一例としての、ノーバヤ・ガゼータの閉鎖</h2>
+<h3 id="sec3-1">3.1 経過</h3>
+<ul class="tl">
+<li><span class="yr">2022 年 3 月</span>全面侵攻のあと、当局の警告を受けて、紙面とウェブの発行を停止した。同年 9 月には、媒体登録が取り消された。 <sup id="fnref-8-1"><a href="#ref-8">[8]</a></sup></li>
+<li><span class="yr">2026 年 9 月</span>「外国のエージェント」に指定され、銀行が読者からの寄付の処理を止めた。 <sup id="fnref-7-1"><a href="#ref-7">[7]</a></sup></li>
+<li><span class="yr">2026 年 10 月</span>編集長の自宅が捜索され、事務所の建物からは退去を告げられた。 <sup id="fnref-7-2"><a href="#ref-7">[7]</a></sup> <sup id="fnref-8-2"><a href="#ref-8">[8]</a></sup></li>
+<li><span class="yr">2026 年 10 月 30 日</span>閉鎖を発表した。「ロシア当局と治安機関が、編集部に活動の停止を強いた」という声明である。 <sup id="fnref-10-1"><a href="#ref-10">[10]</a></sup></li>
+<li><span class="yr">2026 年 11 月 9 日</span>最後の編集会議を開き、事務所を閉じた。 <sup id="fnref-9-1"><a href="#ref-9">[9]</a></sup></li>
+</ul>
+<h3 id="sec3-2">3.2 道具の組み合わせ</h3>
+<p>この経過には、前節の数字に出てきた道具が、順に使われている。まず「外国のエージェント」の指定で、資金の経路を断つ。次に、建物の退去で、活動の場を奪う。最後に、「過激派組織」への指定をちらつかせる。ノーバヤ・ガゼータ・ヨーロッパの伝えるところでは、編集部は、指定されれば記者の逮捕につながりかねないと判断して、閉鎖を決めた。 <sup id="fnref-10-2"><a href="#ref-10">[10]</a></sup> ムラトフ (Dmitry Muratov) は「我々は死んだのではない。憲法もろとも殺されたのだ」と語った。 <sup id="fnref-10-3"><a href="#ref-10">[10]</a></sup></p>
+<p>筆者の見立てでは、ここで目立つのは、禁止の命令が一度も必要とされていない点である。法的に有効な禁止を出さなくても、資金・場所・安全という条件を一つずつ外せば、媒体は続けられなくなる。</p>
+<h3 id="sec3-3">3.3 欧州での活動の見通し</h3>
+<p>国外での継続については、確かなことが少ない。 2022 年に国外へ出た記者たちが、ラトビアで別組織のノーバヤ・ガゼータ・ヨーロッパを創刊しており、今回の閉鎖の影響を受けずに続いている。 <sup id="fnref-11-1"><a href="#ref-11">[11]</a></sup> 一方、モスクワの本紙が欧州で再出発する計画は、発表されていない。編集長のソコロフは、本紙が「新たな力を得て」戻ると信じていると述べたが、場所も時期も示していない。 <sup id="fnref-9-2"><a href="#ref-9">[9]</a></sup> 欧州議会の議員 3 人は、亡命した記者への資金・査証・保護と、弾圧した者への制裁を、欧州連合に求めた。 <sup id="fnref-12-1"><a href="#ref-12">[12]</a></sup></p>
+
+<h2 id="sec4">4.  なぜ後退が進むのか</h2>
+<p>研究者の説明を、五つの見方に分けて紹介する。最初の三つは各研究者の主張で、四つ目は筆者の見立て、五つ目は 2021 年の分析である。</p>
+<h3 id="sec4-1">4.1 選択の積み重ね</h3>
+<p>政治学者のマイケル・マクフォールは、独裁は歴史や文化の必然ではなかったと論じる。ソ連崩壊後の混乱が民主化を難しくしたうえで、エリートの選択が後退を決めたという。 1993 年憲法の「超大統領制」と呼ばれる強い大統領権限、秘密警察の機構の再利用、そしてエリツィンがプーチンを後継に選んだことが、その例に挙がる。マクフォールは、この体制が「安定し、粘り強く、行き詰まっている」と述べ、プーチン個人に依存するため、その退任後は長く続かないだろうとみている。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup></p>
+<h3 id="sec4-2">4.2 多元性の「見せかけ」という設計</h3>
+<p>プーチン政権の体制は、スティーブン・レビツキーとルーカン・ウェイが「競争的権威主義」と呼んだ型にあたる。選挙は行うが、結果は事前に決まっている。 2006 年には、当時の大統領補佐官スルコフが、形は民主主義で中身は乏しい体制を「主権民主主義」と名づけた。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> 筆者の見立てでは、この型は、見せかけの競争を保つために、本物の競争を少しずつ削る方向へ動きやすい。止める仕組みが体制の内側にないからである。</p>
+<h3 id="sec4-3">4.3 説得から恐怖へ</h3>
+<p>ダニエル・トライスマンは、プーチンの体制を、長く「スピン独裁」（宣伝と操作に頼る統治）に分類してきた。いまは、力に頼る「恐怖の独裁」に分類するのが妥当だと述べる。指導者が、操作はもう効かないと考えたときに、統治は恐怖へ傾くという。インタビュー記事は、最も明確な転換を 2022 年の侵攻に見ている。トライスマンは、短期には効く弾圧が、経済と国内に新しい問題を残すことも指摘している。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+<h3 id="sec4-4">4.4 戦争による安全保障化</h3>
+<p>筆者の見立てでは、戦争は、後退を速める働きをした。批判を、政策への異論ではなく、敵への加担として扱えるようになったからである。 2022 年 3 月には、軍の「信用失墜」と「虚偽情報」を罰する二つの法律ができ、最長 15 年の刑が定められた。 <sup id="fnref-2-4"><a href="#ref-2">[2]</a></sup> 「外国のエージェント」の枠組みも、媒体を内部の敵として示す。この見立ては、研究者の主張ではなく、本稿が集めた事実の並びから筆者が引いたものである。</p>
+<h3 id="sec4-5">4.5 派閥の均衡と経済の圧力</h3>
+<p>ジェフ・ホーンとシム・タックは、 2021 年の分析で、プーチンを治安当局者・経済エリート・与党という派閥の調停役として描いた。停滞する経済は、エリートが協力よりも権力争いへ向かう圧力になるという。 <sup id="fnref-6-1"><a href="#ref-6">[6]</a></sup> この分析は侵攻の前のものなので、戦時の変化を説明するものではない。ただ、後退が個人の意向だけで進むのではなく、体制の内側の力学にも支えられていることを示す。</p>
+
+<h2 id="sec5">5.  限界と反論</h2>
+<ul>
+<li><strong>文化決定論</strong><br>ロシア人は権威を好む、という説明は、マクフォールが退けている。彼は、行為者の選択が方向を決めたと論じる。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup></li>
+<li><strong>数字の不確かさ</strong><br>指標は外部からの測定である。 2022 年以降に公的な情報が不透明になったため、測定の精度も落ちていると考えられる。 <sup id="fnref-1-5"><a href="#ref-1">[1]</a></sup></li>
+<li><strong>五つの見方の優劣</strong><br>本稿は、五つの見方を並べただけで、互いに検証して優劣をつけてはいない。原因の重みづけは、筆者にも分からない。</li>
+<li><strong>先行きの不確かさ</strong><br>トライスマンは、弾圧が短期には効くが、問題を残すと述べる。彼は、権力の緩やかな崩れが始まっている可能性にも触れる。ただし、それは仮説であり、確かな見通しではない。 <sup id="fnref-5-2"><a href="#ref-5">[5]</a></sup></li>
+<li><strong>資料の偏り</strong><br>本稿が読んだのは、主に欧米の研究者と報道機関の資料である。ロシア国内の当局や市民の見方は、ほとんど扱っていない。</li>
+</ul>
+<div class="caution">
+<p>「後退」の原因を一つに決める説明は、どれも単純にすぎる。本稿の五つの見方は、互いに排他的ではなく、同時に働いていると考える方が自然である。</p>
+</div>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> <sup><a href="#fnref-1-3">c</a></sup> <sup><a href="#fnref-1-4">d</a></sup> <sup><a href="#fnref-1-5">e</a></sup> フリーダム・ハウス「 Freedom in the World 2026 」のロシア報告。 <a href="https://freedomhouse.org/country/russia/freedom-world/2026">Freedom House</a></li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> <sup><a href="#fnref-2-4">d</a></sup> CPJ （ジャーナリスト保護委員会）の報告「 Russia's repression record 」（ 2026 年 2 月 17 日更新）。 <a href="https://cpj.org/2026/02/russias-repression-record/">CPJ</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> マイケル・マクフォールの議論を紹介する <em>JSTOR Daily</em> の記事「 Was Russia Destined to Be an Autocracy? 」。 <a href="https://daily.jstor.org/was-russia-destined-to-be-an-autocracy/">JSTOR Daily</a></li>
+<li id="ref-4"><a href="#fnref-4-1">^</a> イド・ヴォック「 How Russia descended into authoritarianism 」、 <em>New Statesman</em> 、 2022 年 3 月 9 日。 <a href="https://www.newstatesman.com/international-politics/2022/03/how-russia-descended-into-authoritarianism">New Statesman</a></li>
+<li id="ref-5">^ <sup><a href="#fnref-5-1">a</a></sup> <sup><a href="#fnref-5-2">b</a></sup> ダニエル・トライスマンへのインタビュー「 Putin's fear dictatorship 」、 <em>Meduza</em> 、 2023 年 7 月 24 日。 <a href="https://meduza.io/en/feature/2023/07/24/putin-s-fear-dictatorship">Meduza</a></li>
+<li id="ref-6"><a href="#fnref-6-1">^</a> ジェフ・ホーン、シム・タック「 Russia's Adaptive Authoritarianism 」、 New Lines Institute 、 2021 年 5 月 25 日。 <a href="https://newlinesinstitute.org/state-resilience-fragility/authoritarianism/russias-adaptive-authoritarianism/">New Lines Institute</a></li>
+<li id="ref-7">^ <sup><a href="#fnref-7-1">a</a></sup> <sup><a href="#fnref-7-2">b</a></sup> アルジャジーラの報道（ 2026 年 11 月 9 日付）。 <a href="https://www.aljazeera.com/news/2026/11/9/russian-investigative-newspaper-novaya-gazeta-closes-citing-govt-clampdown">Al Jazeera</a></li>
+<li id="ref-8">^ <sup><a href="#fnref-8-1">a</a></sup> <sup><a href="#fnref-8-2">b</a></sup> <em>CBS News</em> の報道（ 2026 年 10 月 30 日の発表を伝える記事）。 <a href="https://www.cbsnews.com/news/novaya-gazeta-russia-newspaper-closes-putin-free-press-crackdown/">CBS News</a></li>
+<li id="ref-9">^ <sup><a href="#fnref-9-1">a</a></sup> <sup><a href="#fnref-9-2">b</a></sup> PBS <em>NewsHour</em> が配信した AP 通信の記事（ 2026 年 11 月 9 日の事務所閉鎖を伝える）。 <a href="https://pbs.org/newshour/world/citing-government-pressure-russias-top-independent-newspaper-closes-its-office-after-three-decades">PBS NewsHour</a></li>
+<li id="ref-10">^ <sup><a href="#fnref-10-1">a</a></sup> <sup><a href="#fnref-10-2">b</a></sup> <sup><a href="#fnref-10-3">c</a></sup> ノーバヤ・ガゼータ・ヨーロッパによる、閉鎖発表の英語版記事（ 2026 年 10 月 30 日）。 <a href="https://novayagazeta.eu/en/articles/2026/10/30/they-killed-us-novaya-gazeta-announces-closure-after-more-than-30-years-en-news">Novaya Gazeta Europe</a></li>
+<li id="ref-11"><a href="#fnref-11-1">^</a> RFE/RL の報道「 Exiled Novaya Gazeta Team Publishes In Latvia 」（ 2022 年）。 <a href="https://www.rferl.org/a/novaya-gazeta-exile-latvia-publication/31838037.html">RFE/RL</a></li>
+<li id="ref-12"><a href="#fnref-12-1">^</a> 欧州議会議員 3 人の共同声明を伝える、欧州連合のプレスリリース配信（ 2026 年 11 月 10 日）。 <a href="https://news.europawire.eu/meps-condemn-novaya-gazeta-closure-and-urge-eu-support-for-independent-russian-media/eu-press-release/2026/11/10/10/59/04/186875/">EuropaWire</a></li>
+<li id="ref-13"><a href="#fnref-13-1">^</a> V-Dem 研究所「 Democracy Report 2026 」。本文は未通読で、検索結果の要約で確認した。 <a href="https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf">V-Dem Institute</a></li>
+</ol>
+<p class="endnote">本稿の事実関係は、各出典の記述に基づく。出典どうしで食い違う点と、筆者の見立ては、本文で断った。</p>
+</div>
+</main>
+</body>
+</html>

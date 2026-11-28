@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反証可能性入門――「間違いうること」が主張に力を与える理由</title>
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#3d5a52">
+<style>
+  /* 配色(薄い緑の基調。落ち着いた見た目のまま、読みやすくする)。色はここだけで決め、以降は var() で参照する
+     緑 : 見出し・構造　黄 : マーカーと注意　赤 : 必須・重要 */
+  :root{color-scheme:only light;--bg:#f7f8f6;--text:#242522;--muted:#65695f;--accent:#3d5a52;--line:#868a83;--box:#eceee7;--mark:#ffe27a;--note-bg:#fff6d6;--note:#d9a400;--must-bg:#fde8e6;--must:#c0392b}
+  /* 旧 contrast の色の名前の別名。変換した文書の追加 CSS を、書き換えずに使うためのもの。新しい指定には使わない */
+  :root{--ink:var(--text);--navy:var(--accent);--yellow:var(--mark);--red:var(--must);--link:var(--accent);--gray:var(--box);--rule:var(--line)}
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body { font-size: 1.2rem; line-height: 1.85; color: var(--text); background: var(--bg); margin: 0; }
+  main { padding: 2.5rem clamp(1rem, 4vw, 4rem) 4rem; max-width: none; margin: 0; }
+  a { color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+  a:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  /* 冒頭部(キッカー・タイトル・副題・リード文・メタ情報帯) */
+  .kicker { font-size: 1.05rem; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin: 0 0 .4rem; }
+  h1 { font-size: 1.8rem; line-height: 1.5; color: var(--text); }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; }
+  .lede { border-left: 4px solid var(--accent); padding-left: 1rem; margin: 1rem 0; }
+  .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1rem 0; margin: 0 0 2.5rem; color: var(--muted); font-size: 1.05rem; line-height: 1.9; }
+  /* 見出し */
+  h1, h2, h3 { overflow-wrap: anywhere; }
+  h2 { font-size: 1.4rem; line-height: 1.6; color: #fff; background: var(--accent); padding: .35rem .8rem; margin-top: 2.6rem; border-radius: 3px; }
+  h3 { font-size: 1.3rem; line-height: 1.6; margin-top: 1.8rem; }
+  /* 段落・箇条書き(font-size は書かず、body から継承) */
+  ul, ol { margin: 0 0 1.2rem; padding-left: 1.4em; }
+  li { margin-bottom: .4em; }
+  mark { background: var(--mark); color: var(--text); padding: 0 .15em; }
+  /* 表。横スクロールを作らないため、見出しも折り返す */
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 1.2rem; }
+  caption { font-weight: bold; text-align: left; padding: .5rem 0; }
+  th, td { border: 1px solid var(--line); padding: .5rem .7rem; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+  th { background: var(--box); }
+  /* コード。長い行は折り返す */
+  code { background: var(--box); padding: .1rem .35rem; border-radius: 3px; font-size: max(.92em, 1rem); overflow-wrap: anywhere; }
+  pre { overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--box); padding: .7rem 1rem; border-radius: 3px; margin: 0 0 20px; }
+  pre code { background: none; padding: 0; }
+  /* ターミナルに打つ文字列は黒地に白文字 */
+  pre.term { background: #000; color: #fff; }
+  pre.term code { color: #fff; }
+  code.term { background: #000; color: #fff; }
+  /* 情報ボックス・注記・印 */
+  .box { background: var(--box); border: 1px solid var(--line); padding: 1rem 1.2rem; margin: 0 0 1.4rem; }
+  .box strong { color: var(--accent); }
+  .note { background: var(--note-bg); border-left: 5px solid var(--note); padding: .7rem 1rem; margin: 1rem 0; }
+  .tag, .yr { display: inline-block; font-size: 1rem; line-height: 1.6; background: var(--accent); color: #fff; padding: 0 .5rem; border-radius: 3px; margin-right: .3rem; }
+  /* 囲み。見出し語は CSS が出す(本文に書かない)。色だけに頼らず、記号と枠の形でも区別する
+     要点 = 緑の左線と枠　留意事項 = 黄の地　必須 = 赤の地　演習 = 緑の破線 */
+  .point, .caution, .must, .try { margin: 1.2rem 0; padding: .7rem 1rem; }
+  .point::before, .caution::before, .must::before, .try::before { display: block; font-weight: bold; letter-spacing: .08em; }
+  .point > p, .caution > p, .must > p, .try > p { margin: .3rem 0 0; }
+  .point { background: var(--box); border: 1px solid var(--line); border-left: 5px solid var(--accent); }
+  .point::before { content: "要点"; color: var(--accent); }
+  .caution { background: var(--note-bg); border-left: 5px solid var(--note); }
+  .caution::before { content: "▲ 留意事項"; }
+  .must { background: var(--must-bg); border-left: 5px solid var(--must); }
+  .must::before { content: "★ 必須"; color: var(--must); }
+  .try { border: 2px dashed var(--accent); }
+  .try::before { content: "▶ 演習"; color: var(--accent); }
+  /* 手順(ol.steps)。番号は緑の縁の丸。最後の項目に li.goal を付けると、緑で塗った ★ になる */
+  ol.steps { list-style: none; counter-reset: n; margin: 1.2rem 0; padding: 0; border-top: 1px solid var(--line); }
+  ol.steps > li { counter-increment: n; position: relative; min-height: 3.8rem; margin: 0; padding: .8rem 0 .8rem 3rem; border-bottom: 1px solid var(--line); }
+  ol.steps > li::before { content: counter(n); position: absolute; left: 0; top: .9rem; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--bg); color: var(--accent); border: 3px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; font-weight: bold; line-height: 1; }
+  ol.steps > li > strong:first-child { display: block; }
+  ol.steps > li > p, ol.steps > li > pre, ol.steps > li > figure { margin: .5rem 0; }
+  ol.steps > li.goal::before { content: "★"; background: var(--accent); color: #fff; }
+  /* 要旨・準備物・前提の一覧(dl.spec)。 div.hot の行は赤(最も重要な行) */
+  dl.spec { margin: 1.2rem 0; border: 1px solid var(--line); font-size: 1.1rem; }
+  dl.spec > div { display: grid; grid-template-columns: 7em 1fr; border-bottom: 1px solid var(--line); }
+  dl.spec > div:last-child { border-bottom: 0; }
+  dl.spec dt { padding: .5rem .7rem; background: var(--box); font-weight: bold; }
+  dl.spec dd { margin: 0; padding: .5rem .7rem; overflow-wrap: anywhere; }
+  dl.spec > div.hot dt, dl.spec > div.hot dd { background: var(--must-bg); }
+  dl.spec > div.hot dt { border-left: 5px solid var(--must); color: var(--must); }
+  /* ことば集(dl.words) */
+  dl.words { margin: 1rem 0; }
+  dl.words dt { font-weight: bold; color: var(--accent); margin-top: 1rem; }
+  dl.words dd { margin: .2rem 0 0; padding-left: .8rem; border-left: 3px solid var(--line); }
+  /* 年表(ul.tl)。緑の縦の線と丸印。年は .yr か .tag */
+  ul.tl { list-style: none; margin: 1.2rem 0; padding: 0 0 0 22px; border-left: 6px solid var(--accent); }
+  ul.tl > li { position: relative; margin: 0 0 18px; padding-left: 6px; }
+  ul.tl > li::before { content: ""; position: absolute; left: -34px; top: .45em; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  /* クイズ(div.quiz)。開くと答えが出る */
+  .quiz details { border: 1px solid var(--line); border-radius: 3px; margin: .8rem 0; }
+  .quiz summary { cursor: pointer; padding: .6rem 1rem; font-weight: bold; background: var(--box); }
+  .quiz summary:focus-visible { outline: 3px solid var(--text); outline-offset: -3px; }
+  .quiz details[open] summary { border-bottom: 1px solid var(--line); }
+  .quiz details p { margin: 0; padding: .6rem 1rem; }
+  .quiz .ans { font-weight: bold; color: var(--accent); }
+  /* 図(figure + インライン SVG)。 SVG の色と文字は、下のクラスだけで指定する(属性に色や文字サイズを書かない)
+     f-navy ・ s-navy は、旧 contrast の書き方をそのまま使うための別名 */
+  figure { margin: 1.2rem 0; }
+  /* 幅の制限は、下のクラスで描いた図だけにかける。クラスを使わない図(横長の大きな図など)の大きさは変えない */
+  figure svg:has(.t, .nf, [class^="f-"], [class^="s-"]) { display: block; width: min(100%, 480px); height: auto; }
+  figcaption { padding: .5rem 0 0; font-size: 1.05rem; }
+  figcaption .cap { display: block; font-weight: bold; }
+  svg .t { fill: var(--text); font-size: 1.5rem; }
+  svg .t.lg { font-size: 1.75rem; }
+  svg .t.white { fill: #fff; }
+  svg .nf { fill: none; }
+  svg .f-ink { fill: var(--text); }
+  svg .f-accent, svg .f-navy { fill: var(--accent); }
+  svg .f-yellow { fill: var(--mark); }
+  svg .f-red { fill: var(--must); }
+  svg .f-gray { fill: var(--box); }
+  svg .f-bg { fill: var(--bg); }
+  svg .f-white { fill: #fff; }
+  svg .s-ink { stroke: var(--text); stroke-width: 2; }
+  svg .s-accent, svg .s-navy { stroke: var(--accent); stroke-width: 2; }
+  svg .s-red { stroke: var(--must); stroke-width: 2; }
+  svg .s-rule { stroke: var(--line); stroke-width: 2; }
+  svg .s-thick { stroke-width: 3; }
+  /* チェックリスト(div.checklist)。題名(.cl-title)は、内容を区別する必要があるときだけ置く。定型の注意書きは置かない */
+  .checklist { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: .6rem 1.25rem; margin: 1.2rem 0; }
+  .checklist .cl-title { display: block; font-weight: bold; color: var(--accent); margin: .4rem 0 .2rem; }
+  .checklist ul { list-style: none; padding: 0; margin: 0; }
+  .checklist li { margin: 0; padding: .5rem 0 .5rem 2.1rem; position: relative; border-bottom: 1px dashed var(--line); }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { position: absolute; left: 0; top: .85rem; width: 1.25rem; height: 1.25rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
+  .checklist label { cursor: pointer; }
+  /* 目次(nav.toc) */
+  .toc{background:var(--box);border:1px solid var(--line);padding:1rem 1.4rem;margin:1.5rem 0}
+  .toc>ol{columns:2;column-gap:2rem;margin:0}
+  .toc-title{font-size:1.05rem;letter-spacing:.1em;color:var(--accent);font-weight:700;margin:0 0 .6rem}
+  .toc li{font-size:1.05rem;margin-bottom:.3rem;break-inside:avoid}
+  .toc li li{color:var(--muted)}
+  .toc a{color:var(--text);text-decoration:none}
+  .toc a:hover{color:var(--accent);text-decoration:underline}
+  @media (max-width:640px){
+    .toc>ol{columns:1}
+    dl.spec > div { grid-template-columns: 5.2em 1fr; }
+  }
+  /* 脚注の参照番号 */
+  sup{font-size:.72em;line-height:0}
+  sup a{text-decoration:none}
+  sup a:hover{text-decoration:underline}
+  /* 参考文献欄(div.refs) */
+  .refs{border-top:1px solid var(--line);margin-top:3rem;padding-top:1rem}
+  .refs h2{margin-top:0}
+  .refs p{font-size:1.05rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs li{font-size:1.05rem;line-height:1.65;overflow-wrap:anywhere;word-break:break-word}
+  .refs em{font-style:italic}
+  .refs li>a:first-child{font-weight:700;text-decoration:none}
+  .refs sup a{font-style:italic;font-weight:700}
+  .refs li:target,sup:target{background:var(--mark)}
+  /* 末尾の注記 */
+  .endnote { font-size: 1.05rem; color: var(--muted); }
+  /* 表のカード化(幅 640px 以下)。 table に cards / cardspan / cardrow のいずれかを付けた表だけが対象 */
+  @media (max-width: 640px) {
+    table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; }
+    table.cards caption, table.cardspan caption, table.cardrow caption { display: block; }
+    table.cards thead, table.cards tr:has(> th) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cards tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cards td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cards td:last-child { border-bottom: 0; }
+    table.cards td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cards td:first-child { background: var(--box); font-weight: bold; font-size: 1.3rem; }
+    table.cards td:first-child::before { display: none; }
+    table.cardspan, table.cardspan tbody, table.cardspan tr, table.cardspan td { display: block; width: 100%; }
+    table.cardspan thead, table.cardspan tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardspan tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardspan td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cardspan td:last-child { border-bottom: 0; }
+    table.cardspan td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cardspan tr[data-group]::before { content: attr(data-group); display: block; background: var(--box); font-weight: bold; font-size: 1.3rem; padding: .45rem .7rem; border-bottom: 1px solid var(--line); }
+    table.cardspan td[rowspan] { display: none; }
+    table.cardrow, table.cardrow tbody, table.cardrow tr, table.cardrow td, table.cardrow th { display: block; width: 100%; }
+    table.cardrow thead, table.cardrow tr:not(:has(> td)) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; margin: 0; padding: 0; }
+    table.cardrow tr { border: 1px solid var(--line); margin: .7rem 0; background: #fff; border-radius: 4px; overflow: hidden; }
+    table.cardrow td { border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; font-size: 1.2rem; }
+    table.cardrow td:last-child { border-bottom: 0; }
+    table.cardrow td::before { content: attr(data-label); display: block; font-size: 1rem; font-weight: bold; color: var(--accent); }
+    table.cardrow th { background: var(--box); font-size: 1.3rem; border: 0; border-bottom: 1px solid var(--line); padding: .45rem .7rem; text-align: left; }
+  }
+  /* この文書に固有の部品(contrast の色に置き換えたもの) */
+  svg .t.sm { font-size: 20px; }
+</style>
+</head>
+<body>
+<main>
+<p class="kicker">科学哲学・入門</p>
+<h1>反証可能性入門<br>――「間違いうること」が主張に力を与える理由</h1>
+<p class="subtitle">An Introduction to Falsifiability: Why Claims That Can Be Wrong Carry Empirical Content</p>
+<div class="lede">
+<p>「どんな事実が見つかれば、その主張は誤りだったと認めるのか」。この問いに答えられない主張は、どれほどもっともらしく聞こえても、世界について何も語っていないに等しい。科学哲学は、この性質の有無を<strong>反証可能性</strong>という言葉で扱ってきた。</p>
+<p>本稿は、反証可能性をはじめて学ぶ人のための入門である。定義、白鳥の例、「禁じる範囲」という見分け方、反証から逃げる方法を図と表で確かめ、そのうえで、この基準が万能ではないことと、それでも手放せない理由を述べる。</p>
+</div>
+<div class="meta"><strong>【方法と限界】</strong>本稿は入門であり、ポパーの原典を精読した研究ではない。英語版 Wikipedia の解説と、福田純也の解説記事 (note) を主な手がかりに、初学者が最初に押さえるべき骨格に絞って書いた。反証可能性をめぐる論争は専門的に分岐しており、細部は扱わない。</div>
+
+<nav class="toc" aria-label="目次">
+<p class="toc-title">目次</p>
+<ol>
+<li><a href="#sec1">反証可能性とは何か</a>
+<ol>
+<li><a href="#sec1-1">一文での定義</a></li>
+<li><a href="#sec1-2">白鳥の例――確かめることと、覆すことの非対称</a></li>
+</ol>
+</li>
+<li><a href="#sec2">「何を禁じるか」で見分ける</a>
+<ol>
+<li><a href="#sec2-1">禁じる範囲が広いほど、多くを語っている</a></li>
+<li><a href="#sec2-2">判定の練習</a></li>
+</ol>
+</li>
+<li><a href="#sec3">なぜ大切なのか――ポパーの問題意識</a>
+<ol>
+<li><a href="#sec3-1">何でも説明できる理論への違和感</a></li>
+<li><a href="#sec3-2">外れる危険を引き受けた予測</a></li>
+</ol>
+</li>
+<li><a href="#sec4">反証から逃げる方法</a>
+<ol>
+<li><a href="#sec4-1">場当たりな修正</a></li>
+<li><a href="#sec4-2">修正がいつも悪いとは限らない</a></li>
+</ol>
+</li>
+<li><a href="#sec5">反証可能性は万能ではない</a>
+<ol>
+<li><a href="#sec5-1">実験は理論を単独で試せない</a></li>
+<li><a href="#sec5-2">ラカトシュらの応答</a></li>
+<li><a href="#sec5-3">「万能ではない」と「大事ではない」は別</a></li>
+</ol>
+</li>
+<li><a href="#sec6">日常と社会での使い方</a>
+<ol>
+<li><a href="#sec6-1">自分の主張を点検する問い</a></li>
+<li><a href="#sec6-2">言葉の定義と同語反復</a></li>
+<li><a href="#sec6-3">裁判の場で</a></li>
+</ol>
+</li>
+<li><a href="#sec7">まとめ</a></li>
+</ol>
+</nav>
+
+<h2 id="sec1">1.  反証可能性とは何か</h2>
+<h3 id="sec1-1">1.1 一文での定義</h3>
+<p>反証可能性 (falsifiability) は、科学哲学者のカール・ポパーが 1934 年の著作『科学的発見の論理』（原題 <em>Logik der Forschung</em> ）で打ち出した考え方である。 <sup id="fnref-1-1"><a href="#ref-1">[1]</a></sup> 一言でいえば、ある主張について、その主張に反する観察を原理的に思い描けるかどうか、という性質を指す。 <sup id="fnref-2-1"><a href="#ref-2">[2]</a></sup> 反する観察を思い描けない主張は、反証可能でない。</p>
+<div class="box"><strong>用語の整理</strong><br>「反証可能性」は、主張が持つ論理的な性質である。「反証」は、実際に反する観察を得て、主張が誤りだと示す行為である。反証可能であることと、実際に反証されたことは別である。ポパーも両者を区別した。 <sup id="fnref-2-2"><a href="#ref-2">[2]</a></sup></div>
+
+<h3 id="sec1-2">1.2 白鳥の例――確かめることと、覆すことの非対称</h3>
+<p>「すべての白鳥は白い」という主張で考える。</p>
+<p>この主張を、観察によって「確かめきる」ことはできない。白い白鳥を 10 羽、 1,000 羽と見つけても、まだ見ていない 1 羽が黒いかもしれないからである。ところが、黒い白鳥を 1 羽見つければ、この主張は誤りだと確定する。 <sup id="fnref-2-3"><a href="#ref-2">[2]</a></sup> 実際、オーストラリアで黒い白鳥が見つかり、この主張は覆された。確かめる側と覆す側には、このような<strong>非対称</strong>がある。</p>
+<figure>
+<svg viewBox="0 0 440 462" role="img" aria-label="左は、白い白鳥を何羽集めても「すべて白い」と言い切れないことを示す。右は、黒い白鳥が 1 羽見つかれば「すべて白い」が誤りと確定することを示す。" xmlns="http://www.w3.org/2000/svg"><rect class="f-white s-rule" x="8" y="8" width="424" height="214" rx="10"/><text class="t" x="220" y="46" text-anchor="middle">確かめる（検証）</text><circle class="f-white s-ink" cx="50" cy="90" r="16"/><circle class="f-white s-ink" cx="110" cy="90" r="16"/><circle class="f-white s-ink" cx="170" cy="90" r="16"/><circle class="f-white s-ink" cx="230" cy="90" r="16"/><circle class="f-white s-ink" cx="290" cy="90" r="16"/><text class="t lg" x="350" y="100" text-anchor="middle">…</text><text class="t" x="220" y="148" text-anchor="middle">白い白鳥を何羽集めても</text><text class="t" x="220" y="178" text-anchor="middle">「すべて白い」とは言えない</text><text class="t" x="220" y="206" text-anchor="middle">次の 1 羽が黒いかもしれない</text><rect class="f-white s-rule" x="8" y="240" width="424" height="214" rx="10"/><text class="t" x="220" y="278" text-anchor="middle">覆す（反証）</text><circle class="f-white s-ink" cx="50" cy="322" r="16"/><circle class="f-white s-ink" cx="110" cy="322" r="16"/><circle class="f-white s-ink" cx="170" cy="322" r="16"/><circle class="f-ink s-red" cx="250" cy="322" r="20"/><text class="t" x="220" y="380" text-anchor="middle">黒い白鳥が 1 羽いれば</text><text class="t" x="220" y="410" text-anchor="middle">「すべて白い」は誤りと確定</text><text class="t" x="220" y="438" text-anchor="middle">論理の上では、 1 羽で足りる</text></svg>
+<figcaption>図 1 　検証と反証の非対称</figcaption>
+</figure>
+<p>論理の形でいえば、「主張が正しければ、ある観察が見られるはずだ。ところがその観察が見られなかった。ゆえに主張は誤りだ」という推論である（後件否定、ラテン語で modus tollens ）。ポパーはこの非対称に注目した。理論は、どれだけ観察に合っても証明されたことにはならないが、観察に反すれば退けられる。だから科学は、正しさの証明ではなく、誤りの除去によって進むと考えたのである。 <sup id="fnref-2-4"><a href="#ref-2">[2]</a></sup> なお、個々の観察から一般的な法則へ進む帰納の限界は、 推論の類型学の記事でも扱っている。</p>
+
+<h2 id="sec2">2.  「何を禁じるか」で見分ける</h2>
+<h3 id="sec2-1">2.1 禁じる範囲が広いほど、多くを語っている</h3>
+<p>反証可能かどうかを見分けるには、「その主張は、どんな観察を禁じているか」を問うのが近道である。ポパーは、科学的な理論を、起こりうる観察を二つの集まりに分けるものとして捉えた。理論が許す観察と、禁じる観察である。 <sup id="fnref-1-2"><a href="#ref-1">[1]</a></sup> 禁じる観察が一つもなければ、どんな結果が出ても理論は傷つかない。それは頑丈なのではなく、何も語っていないのである。</p>
+<figure>
+<svg viewBox="0 0 440 462" role="img" aria-label="三つの主張が禁じる観察の範囲を、帯の幅で比べた図。「明日は雨か雨でないか」は何も禁じない。「すべての白鳥は白い」は黒い白鳥を禁じる。「明日正午の気温はちょうど 20.0 度」はほぼすべての観察を禁じる。" xmlns="http://www.w3.org/2000/svg"><rect class="f-gray s-rule" x="20" y="10" width="22" height="22" rx="10"/><text class="t" x="52" y="29">許す観察</text><rect class="f-white s-red" x="190" y="10" width="22" height="22" rx="10"/><text class="t" x="222" y="29">禁じる観察</text><text class="t" x="20" y="82">「雨が降るか、降らないか」</text><rect class="f-gray s-rule" x="20" y="94" width="400" height="40" rx="4"/><text class="t" x="220" y="123" text-anchor="middle">どんな天気も許す</text><text class="t" x="20" y="166">禁じる範囲：なし → 反証できない</text><text class="t" x="20" y="220">「すべての白鳥は白い」</text><rect class="f-gray s-rule" x="20" y="232" width="400" height="40" rx="4"/><rect class="f-white s-red" x="20" y="232" width="120" height="40" rx="4"/><text class="t" x="80" y="261" text-anchor="middle">黒い白鳥</text><text class="t" x="20" y="304">禁じる：黒い白鳥など → 反証できる</text><text class="t" x="20" y="358">「明日正午の気温は 20.0 度」</text><rect class="f-gray s-rule" x="20" y="370" width="400" height="40" rx="4"/><rect class="f-white s-red" x="20" y="370" width="372" height="40" rx="4"/><text class="t" x="206" y="399" text-anchor="middle">ほぼすべてを禁じる</text><text class="t" x="20" y="442">きわめて外れやすく、多くを語る</text></svg>
+<figcaption>図 2 　主張が禁じる観察の範囲（模式図。帯の幅は目安である）</figcaption>
+</figure>
+<p>図 2 の三つの主張を比べると、禁じる範囲が広いほど、外れるおそれは大きい。同時に、そのぶん世界について多くを語っている。「明日は雨か、雨でないか」は決して外れないが、天気について何も教えてくれない。「明日正午の気温はちょうど 20.0 度」はほぼ確実に外れるが、当たれば大きな情報になる。</p>
+
+<h3 id="sec2-2">2.2 判定の練習</h3>
+<p>次の表で、いくつかの主張が何を禁じるかを確かめる。</p>
+<table class="cardrow">
+<thead><tr><th>主張</th><th>その主張が禁じる観察</th><th>判定</th></tr></thead>
+<tbody>
+<tr><th>「すべての白鳥は白い」</th><td data-label="その主張が禁じる観察">黒い白鳥が見つかること</td><td data-label="判定"><strong>反証可能。</strong>実際に黒い白鳥が見つかり、誤りと分かった。</td></tr>
+<tr><th>「先カンブリア時代の地層から、ウサギの化石は出ない」</th><td data-label="その主張が禁じる観察">そのような地層からウサギの化石が見つかること</td><td data-label="判定"><strong>反証可能。</strong>進化論が禁じる観察として、 J. B. S. Haldane が挙げた例とされる。</td></tr>
+<tr><th>「明日は雨が降るか、降らないかのどちらかだ」</th><td data-label="その主張が禁じる観察">なし。どんな天気でも当てはまる。</td><td data-label="判定"><strong>反証できない。</strong>何も語っていない。</td></tr>
+<tr><th>「人間の行動はすべて利己的である」</th><td data-label="その主張が禁じる観察">なし。善い行いも「自分が満足したいからだ」と読み替えられる。</td><td data-label="判定"><strong>反証できない。</strong></td></tr>
+<tr><th>「この占いは当たる。外れたのは、読み解き方が悪かったからだ」</th><td data-label="その主張が禁じる観察">なし。当たれば占いの成功、外れれば読み解きの失敗になる。</td><td data-label="判定"><strong>反証できない。</strong></td></tr>
+<tr><th>「 3 + 4 = 7 」</th><td data-label="その主張が禁じる観察">観察では覆せない。</td><td data-label="判定"><strong>対象外。</strong>経験についての主張ではなく、定義と証明の世界に属する。</td></tr>
+</tbody>
+</table>
+<p>「人間の行動はすべて利己的である」は、反証できない主張の例としてよく挙げられる。 <sup id="fnref-2-5"><a href="#ref-2">[2]</a></sup> 最後の行の数学は、反証できないが役に立つ。反証可能性は、経験的な世界についての主張を評価する基準であり、抽象的な構造を扱う数学には当てはめない。 <sup id="fnref-2-6"><a href="#ref-2">[2]</a></sup></p>
+
+<h2 id="sec3">3.  なぜ大切なのか――ポパーの問題意識</h2>
+<h3 id="sec3-1">3.1 何でも説明できる理論への違和感</h3>
+<p>ポパーが反証可能性を重んじた背景には、当時影響力をもっていた精神分析やマルクス主義への違和感があった。 <sup id="fnref-3-1"><a href="#ref-3">[3]</a></sup> それらの理論は、どんな事例も、自分の正しさを裏づける証拠として取り込めるように見えたのである。</p>
+<p>ポパーが挙げた例に、二人の男がいる。一人は子どもを水に突き落とし、もう一人は命がけで子どもを助ける。アドラーの理論は、どちらも劣等感で説明できる。前者は罪を犯す勇気を自分に示したい欲求、後者は子どもを救う勇気を自分に示したい欲求だ、という具合である。 <sup id="fnref-3-2"><a href="#ref-3">[3]</a></sup> どんな行動でも説明できることは、理論の強みに見える。しかしポパーは、禁じる観察が一つもないことの表れだと見た。 <sup id="fnref-2-7"><a href="#ref-2">[2]</a></sup></p>
+
+<h3 id="sec3-2">3.2 外れる危険を引き受けた予測</h3>
+<p>対照的な例として、ポパーは 1919 年の日食の観測を挙げた。アインシュタインの一般相対性理論は、太陽のそばを通る星の光が曲がる角度を、あらかじめ具体的に予測していた。観測が予測と食い違えば、理論は退けられるはずだった。外れる危険を引き受けたうえで予測が当たったことに、ポパーは科学らしさを見た。 <sup id="fnref-3-3"><a href="#ref-3">[3]</a></sup></p>
+<p>反証可能性は、「間違っていてもよい」という態度ではない。間違いうる形で語ることで、主張は検査にかけられる。検査をくぐり抜けた主張だけが、暫定的に信頼に値する。</p>
+
+<h2 id="sec4">4.  反証から逃げる方法</h2>
+<p>反証可能な理論でも、扱い方しだいで、反証を免れることができる。図 3 は、予測が外れたときの二つの道筋である。</p>
+<figure>
+<svg viewBox="0 0 440 616" role="img" aria-label="理論から予測を導き、予測に反する観察が得られたとき、理論を修正または放棄する道と、検証できない説明を足して守る道に分かれることを示す流れ図。" xmlns="http://www.w3.org/2000/svg"><rect class="f-white s-rule" x="60" y="8" width="320" height="50" rx="10"/><text class="t" x="220" y="41" text-anchor="middle">理論と前提から予測を導く</text><line class="s-ink" x1="220" y1="58" x2="220" y2="78"/><polygon class="f-ink" points="211,76 229,76 220,88"/><rect class="f-white s-rule" x="50" y="90" width="340" height="50" rx="10"/><text class="t" x="220" y="123" text-anchor="middle">予測に反する観察が得られた</text><path class="nf s-navy" d="M220 140 V160 H110 V190"/><polygon class="f-navy" points="101,180 119,180 110,192"/><path class="nf s-red" d="M220 140 V160 H330 V190"/><polygon class="f-red" points="321,180 339,180 330,192"/><text class="t" x="110" y="214" text-anchor="middle">受け入れる</text><text class="t" x="330" y="214" text-anchor="middle">言い逃れる</text><rect class="f-gray s-rule" x="10" y="226" width="200" height="96" rx="10"/><text class="t" x="110" y="262" text-anchor="middle">理論を修正する</text><text class="t" x="110" y="292" text-anchor="middle">あるいは放棄する</text><rect class="f-white s-red" x="230" y="226" width="200" height="96" rx="10"/><text class="t" x="330" y="256" text-anchor="middle">検証できない</text><text class="t" x="330" y="286" text-anchor="middle">説明を足す</text><text class="t sm" x="330" y="316" text-anchor="middle">（場当たりな修正）</text><line class="s-navy" x1="110" y1="322" x2="110" y2="342"/><polygon class="f-navy" points="101,340 119,340 110,352"/><line class="s-red" x1="330" y1="322" x2="330" y2="342"/><polygon class="f-red" points="321,340 339,340 330,352"/><rect class="f-gray s-rule" x="10" y="354" width="200" height="76" rx="10"/><text class="t" x="110" y="388" text-anchor="middle">理論は試され</text><text class="t" x="110" y="418" text-anchor="middle">続ける</text><rect class="f-white s-red" x="230" y="354" width="200" height="76" rx="10"/><text class="t" x="330" y="388" text-anchor="middle">何が起きても</text><text class="t" x="330" y="418" text-anchor="middle">傷つかない</text><rect class="f-yellow s-ink" x="10" y="450" width="420" height="150" rx="10" stroke-dasharray="6 4"/><text class="t" x="220" y="484" text-anchor="middle">例外</text><text class="t" x="220" y="516" text-anchor="middle">足した説明が別の観察で確かめられ、</text><text class="t" x="220" y="546" text-anchor="middle">新しい予測を生むなら、</text><text class="t" x="220" y="576" text-anchor="middle">正当な修正になる (4.2)</text></svg>
+<figcaption>図 3 　予測が外れたときの二つの道筋</figcaption>
+</figure>
+
+<h3 id="sec4-1">4.1 場当たりな修正</h3>
+<p>「祈りには病気を治す力がある」という主張を例にする。祈っても病気が治らなかったとき、「祈りが足りなかった」「信じる心が弱かった」と説明を足せば、主張は守られる。治れば主張の証拠になり、治らなくても主張は傷つかない。禁じる観察が、説明の追加によって消えたのである。このように、反証を逃れるためだけに加える修正を、<strong>場当たりな修正</strong>（ ad hoc な修正）と呼ぶ。</p>
+<p>ポパーは、マルクスの理論についても同じ点を問題にした。マルクス本人の理論には検証できる法則が含まれており、実際に誤りだと分かった。ところが後継者たちは、理論や証拠の読み方を変えて理論を生き延びさせた。ポパーが批判したのは、マルクス本人の理論というより、この後継者たちの態度である。 <sup id="fnref-2-8"><a href="#ref-2">[2]</a></sup></p>
+
+<h3 id="sec4-2">4.2 修正がいつも悪いとは限らない</h3>
+<p>ただし、予測が外れたあとの修正がすべて悪いわけではない。 19 世紀、天王星の軌道がニュートン力学の予測からずれた。科学者たちは力学を捨てる代わりに、未知の惑星が引力を及ぼしていると考え、その位置を計算した。 1846 年、予想された方向で海王星が見つかった。</p>
+<p>水星の軌道のずれにも、同じ発想で未知の惑星「ヴァルカン」が提案された。しかしヴァルカンは見つからず、ずれは後に一般相対性理論が説明した。</p>
+<p>海王星もヴァルカンも、探せば確かめられる予測を生んだ。結果は、前者が見つかり、後者は見つからなかった。これに対して「信心が足りなかった」は、確かめる手段を何も生まない。足した説明に、独立して検証できる予測が伴うか。これが、正当な修正と場当たりな修正の分かれ目である。</p>
+
+<h2 id="sec5">5.  反証可能性は万能ではない</h2>
+<h3 id="sec5-1">5.1 実験は理論を単独で試せない</h3>
+<p>4.2 の例は、反証の難しさも示している。天王星の軌道がずれたとき、原因がニュートン力学の誤りなのか、未知の惑星の見落としなのかは、ずれを見ただけでは決められない。実験や観測は、理論だけでなく、装置が正しく動いている、他に影響する要因がない、といった背景の前提と組になって行われるからである。予測が外れても、どれが誤りなのかは一意に決まらない。この指摘は、<strong>デュエム＝クワイン・テーゼ</strong>として知られている。 <sup id="fnref-2-9"><a href="#ref-2">[2]</a></sup></p>
+<p>福田純也は、クワイン、ラカトシュ、クーン、ファイヤアーベント、ラウダンらが、実際の科学では仮説を場当たりに修正して反証を逃れることがよくあると指摘し、ポパーの考えを批判し、改善したと整理している。 <sup id="fnref-4-1"><a href="#ref-4">[4]</a></sup> この論点を学ぶ入門書として、伊勢田哲治『疑似科学と科学の哲学』が挙げられている。 <sup id="fnref-5-1"><a href="#ref-5">[5]</a></sup></p>
+
+<h3 id="sec5-2">5.2 ラカトシュらの応答</h3>
+<p>イムレ・ラカトシュは、反証主義を素朴なものと洗練されたものなどに分け、ポパーには部分的に素朴な面があると評した。また、ポパーに対して、どのような場合に反証可能性の立場を放棄するのかを問うた。 <sup id="fnref-2-10"><a href="#ref-2">[2]</a></sup> そのラカトシュの方法論も、クーン、ファイヤアーベント、マスグレイヴらから、科学者の判断に頼るもので「偽装された無秩序」にあたる、という批判を受けた。 <sup id="fnref-2-11"><a href="#ref-2">[2]</a></sup></p>
+<p>ここで押さえておきたいのは、論争の細部よりも結論である。反証可能性は、科学と非科学を一発で分ける万能の線引き基準とは、現在は見なされていない。 <sup id="fnref-4-2"><a href="#ref-4">[4]</a></sup></p>
+
+<h3 id="sec5-3">5.3 「万能ではない」と「大事ではない」は別</h3>
+<p>福田は、この結論が「反証可能性を考えることは大事ではない」という結論には結びつかないと述べる。 <sup id="fnref-4-3"><a href="#ref-4">[4]</a></sup> 万能ではない道具は、役に立たない道具ではない。次の表に、初学者が陥りやすい誤解を整理する。</p>
+<table class="cardrow">
+<thead><tr><th>よくある誤解</th><th>実際</th></tr></thead>
+<tbody>
+<tr><th>反証可能な主張は正しい</th><td data-label="実際">反証可能であることは、検査にかけられる資格にすぎない。「すべての白鳥は白い」は反証可能だったが、誤りだった。</td></tr>
+<tr><th>反証できない主張は無意味だ</th><td data-label="実際">経験的な予測としては力がない、ということである。数学や励ましの言葉のように、別の働きをもつ主張もある。</td></tr>
+<tr><th>予測が外れたら、理論はすぐ捨てるべきだ</th><td data-label="実際">前提の見直しが合理的なこともある（ 4.2 の海王星）。見るべきは、見直しが新しい検証可能な予測を伴うかどうかである。</td></tr>
+<tr><th>反証可能性だけで、科学か疑似科学かが決まる</th><td data-label="実際">万能の基準とは見なされない。再現性や、方法・データの開示など、複数の観点と組み合わせて評価する。</td></tr>
+</tbody>
+</table>
+
+<h2 id="sec6">6.  日常と社会での使い方</h2>
+<h3 id="sec6-1">6.1 自分の主張を点検する問い</h3>
+<p>反証可能性は、他人の主張を裁く道具である前に、自分の主張を点検する道具として使える。次の四つを、結果を見る前に自分へ問う。</p>
+<div class="checklist">
+<span class="cl-title">主張の点検チェックリスト</span>
+<ul>
+<li><input type="checkbox" id="c1-1"><label for="c1-1">この主張が正しいなら、どんな観察が見られるはずか、言葉にできる。</label></li>
+<li><input type="checkbox" id="c1-2"><label for="c1-2">どんな観察が見られたら、この主張は誤りだったと認めるか、言葉にできる。</label></li>
+<li><input type="checkbox" id="c1-3"><label for="c1-3">その「どんな観察」を、結果を見る前に決めている。</label></li>
+<li><input type="checkbox" id="c1-4"><label for="c1-4">外れたときに説明を足すなら、その説明は別の観察で確かめられる。</label></li>
+</ul>
+</div>
+<p>三つ目が大切である。結果を見たあとで基準を決めると、どんな結果にも合わせられるからである。本ライブラリにも、反証可能性を軸に主張を検討した記事がある。 ユング心理学――骨格・河合隼雄・批判的検証の 3 節、 「老化は治療可能な疾患」は科学か、 「受け身の人は習得できない」という言明の検討の 6.1 節である。</p>
+
+<h3 id="sec6-2">6.2 言葉の定義と同語反復</h3>
+<p>福田は、「女子力が高い人はモテる」という仮説を例に挙げる。「女子力」も「モテる」も、人によって捉え方が違う。尺度しだいで、仮説は支持も否定もされうる。定義があいまいな言葉で語った主張は、禁じる観察もあいまいになり、反証しにくくなる。 <sup id="fnref-4-4"><a href="#ref-4">[4]</a></sup></p>
+<p>もう一つの落とし穴が、同語反復である。ある行動をとる人はモテる、という傾向に「女子力仮説」と名前を付け、なぜモテるのかと聞かれて「女子力があるから」と答えれば、事実を言い換えただけで、何も説明していない。 <sup id="fnref-4-5"><a href="#ref-4">[4]</a></sup> 対策は、概念を明示的に定義し、誤りうる形で述べて、反証可能性を高めることである。 <sup id="fnref-4-6"><a href="#ref-4">[4]</a></sup></p>
+
+<h3 id="sec6-3">6.3 裁判の場で</h3>
+<p>反証可能性は、学問の外でも使われてきた。 1982 年の McLean v. Arkansas 事件では、判事の William Overton が反証可能性を根拠に、「創造科学」は科学ではなく、公立学校で科学として教えてはならないと判断した。 1993 年の Daubert v. Merrell Dow 事件では、アメリカ連邦最高裁が、科学的な専門家証言を証拠として採用する基準を示す際にポパーを引いた。 <sup id="fnref-2-12"><a href="#ref-2">[2]</a></sup> ただし、この判決は反証可能性と反証を混同しているという批判もある。 <sup id="fnref-2-13"><a href="#ref-2">[2]</a></sup></p>
+
+<h2 id="sec7">7.  まとめ</h2>
+<div class="box">
+<ul>
+<li><strong>定義</strong><br>反証可能性とは、主張に反する観察を原理的に思い描ける性質である。</li>
+<li><strong>非対称</strong><br>確かめきることはできないが、論理の上では、一つの反例で主張を覆せる。</li>
+<li><strong>見分け方</strong><br>その主張は何を禁じるかを問う。禁じる範囲が広いほど外れやすく、そのぶん多くを語る。</li>
+<li><strong>逃げ道の見分け方</strong><br>外れたあとに足した説明が、独立に検証できる予測を伴うかどうかで、正当な修正と場当たりな修正を分ける。</li>
+<li><strong>限界と効用</strong><br>万能の線引き基準ではない。それでも、自分の主張を点検する問いとして有効である。</li>
+</ul>
+</div>
+
+<div class="refs">
+<h2>参考文献・資料</h2>
+<p class="note">※ 各項目の ^ をクリックすると、本文の参照箇所へ戻る。同じ出典を複数箇所で参照している場合は、 ^ の後ろに並ぶ a ・ b などの文字が、それぞれの参照箇所へのリンクである。</p>
+<ol>
+<li id="ref-1">^ <sup><a href="#fnref-1-1">a</a></sup> <sup><a href="#fnref-1-2">b</a></sup> Karl R. Popper, <em>Logik der Forschung</em>(Wien: Julius Springer, 1934) 。英訳は <em>The Logic of Scientific Discovery</em>(London: Hutchinson, 1959) 。</li>
+<li id="ref-2">^ <sup><a href="#fnref-2-1">a</a></sup> <sup><a href="#fnref-2-2">b</a></sup> <sup><a href="#fnref-2-3">c</a></sup> <sup><a href="#fnref-2-4">d</a></sup> <sup><a href="#fnref-2-5">e</a></sup> <sup><a href="#fnref-2-6">f</a></sup> <sup><a href="#fnref-2-7">g</a></sup> <sup><a href="#fnref-2-8">h</a></sup> <sup><a href="#fnref-2-9">i</a></sup> <sup><a href="#fnref-2-10">j</a></sup> <sup><a href="#fnref-2-11">k</a></sup> <sup><a href="#fnref-2-12">l</a></sup> <sup><a href="#fnref-2-13">m</a></sup> Wikipedia contributors, "Falsifiability," <em>Wikipedia</em> （ 2026 年 11 月 1 日閲覧）。 <a href="https://en.wikipedia.org/wiki/Falsifiability">Wikipedia</a></li>
+<li id="ref-3">^ <sup><a href="#fnref-3-1">a</a></sup> <sup><a href="#fnref-3-2">b</a></sup> <sup><a href="#fnref-3-3">c</a></sup> Karl R. Popper, <em>Conjectures and Refutations: The Growth of Scientific Knowledge</em>(London: Routledge and Kegan Paul, 1963) 。</li>
+<li id="ref-4">^ <sup><a href="#fnref-4-1">a</a></sup> <sup><a href="#fnref-4-2">b</a></sup> <sup><a href="#fnref-4-3">c</a></sup> <sup><a href="#fnref-4-4">d</a></sup> <sup><a href="#fnref-4-5">e</a></sup> <sup><a href="#fnref-4-6">f</a></sup> 福田純也「反証可能性は万能ではない≠反証可能性は大事ではない」 note 、 2023 年 7 月 5 日。 <a href="https://note.com/fukuta_j/n/n8673654c95bf">note</a></li>
+<li id="ref-5"><a href="#fnref-5-1">^</a> 伊勢田哲治『疑似科学と科学の哲学』名古屋大学出版会、 2003 年。</li>
+</ol>
+<p class="endnote">本稿は入門であり、ポパーの議論の細部や、ラカトシュ以降の論争は要点だけを紹介した。英語版 Wikipedia は、定義・論理的基礎・例・批判・法的用途の解説にあたる前半部分を参照した。ポパーと伊勢田の著作そのものは確認していないので、原典の記述としてではなく、これらの解説に基づく整理として読んでほしい。</p>
+</div>
+</main>
+</body>
+</html>
