@@ -183,17 +183,9 @@
 figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
 figure.diagram svg { display: block; width: 100%; height: auto; }
 figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
-@media @media (max-width: 40rem) {
-  figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
-  figure.diagram svg { max-width: none; }
-  figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
-}
 .keywords { font-size:.9375rem; color:var(--muted); margin:0; }
 svg text { fill:var(--text); font-size:.875rem; }
 svg .muted { fill:var(--muted); }
-@media @media (max-width:480px) {
-  svg text { font-size:.75rem; }
-}
 </style>
 </head>
 <body><main>

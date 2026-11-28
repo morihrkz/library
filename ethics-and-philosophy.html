@@ -183,11 +183,6 @@
 figure.diagram { margin: 0 0 36px; padding: 20px 18px 16px; background: var(--box); border: 1px solid var(--line); }
 figure.diagram svg { display: block; width: 100%; height: auto; }
 figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-align: center; line-height: 1.7; }
-@media @media (max-width: 40rem) {
-  figure.diagram { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; padding-top: 32px; }
-  figure.diagram svg { max-width: none; }
-  figure.diagram::before { content: "→ 横にスクロールできます"; position: absolute; top: 8px; right: 14px; font-size: .8125rem; color: var(--muted); }
-}
 :root { --accent2:#a0673d; --accent2-soft:#f3e6da; }
 .dfn-grid { display:grid; grid-template-columns:1fr; gap:10px; margin:0 0 28px; }
 .dfn { background:var(--box); border:1px solid var(--line); border-left:4px solid var(--accent); padding:14px 18px; }
@@ -205,7 +200,7 @@ figcaption { font-size: .9375rem; color: var(--muted); margin-top: 12px; text-al
 .stance-a .stance-label { color:var(--accent); }
 .stance-b .stance-label { color:var(--accent2); }
 .stance-core { font-size:.96875rem; color:var(--muted); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); }
-@media @media (min-width:620px) {
+@media (min-width:620px) {
   .stance-pair { grid-template-columns:1fr 1fr; }
   .dfn-grid { grid-template-columns:1fr 1fr; }
 }
